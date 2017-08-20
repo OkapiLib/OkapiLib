@@ -25,6 +25,19 @@ Parameter | Description
 idistance | The distance the motion profile travels
 idt | The timestep between targets
 
+## operator[]
+
+Pass the `operator[]` onto the internal std::vector.
+
+## size
+
+```c++
+//Signature
+int size() const
+```
+
+Return the size of the internal std::vector.
+
 # MPTarget
 
 The `MPTarget` class is designed to encapsulate a pair of velocity and acceleration targets for a motion profile.

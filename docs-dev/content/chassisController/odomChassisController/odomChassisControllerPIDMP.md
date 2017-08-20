@@ -39,7 +39,7 @@ The `OdomChassisControllerMP` class inherits from `OdomChassisController` and fr
 
 ```c++
 //Signature
-OdomChassisControllerMP(OdomParams params, MPGenParams iparams, MPConsumerParams icParams)
+OdomChassisControllerMP(OdomParams params, const MPControllerParams& iconparams)
 
 //Make a new ChassisControllerMP using a skid steer model with two motors per side
 OdomChassisControllerMP foo(
@@ -49,8 +49,9 @@ OdomChassisControllerMP foo(
                             encoderInit(3,4,true)), //Right encoder
     1.345,     //Distance scale (encoder ticks to mm)
     12.88361), //Turn scale (encoder ticks to deg)
-  MPGenParams(1, 15, 1000),       //MPGenerator params; max & min accel: 1, max vel: 15, target pos: 1000
-  MPConsumerParams(6, 1.2, 0.5)); //MPConsumer params; kV: 6, kA: 1.2, kP: 0.5
+  MPControllerParams(
+    MPGenParams(1, 15, 1000),        //MPGenerator params; max & min accel: 1, max vel: 15, target pos: 1000
+    MPConsumerParams(6, 1.2, 0.5))); //MPConsumer params; kV: 6, kA: 1.2, kP: 0.5
 ```
 
 Parameter | Description

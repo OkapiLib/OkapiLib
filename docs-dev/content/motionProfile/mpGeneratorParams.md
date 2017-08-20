@@ -14,6 +14,7 @@ The `MPGeneratorParams` class encapsulates the parameters an `MPGenerator` takes
 MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel)
 MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos)
 MPGenParams(const float iaccel, const float imaxVel, const float itargetPos)
+MPGenParams(const float iaccel, const float imaxVel)
 MPGenParams(const MPGenParams &other)
 ```
 

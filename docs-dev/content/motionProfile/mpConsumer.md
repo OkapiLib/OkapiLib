@@ -11,8 +11,8 @@ The `MPConsumer` class is a feed-forward closed-loop controller that follows a p
 
 ```c++
 //Signature
-MPConsumer(MotionProfile &iprofile, const float ikV, const float ikA, const float ikP = 0)
-MPConsumer(MotionProfile &iprofile, const MPConsumerParams& iparams)
+MPConsumer(const float ikV, const float ikA, const float ikP = 0)
+MPConsumer(const MPConsumerParams& iparams)
 ```
 
 Parameter | Description
@@ -26,7 +26,7 @@ ikP | Feedback proportional gain (default = 0)
 
 ```c++
 //Signature
-virtual float loop(const float newReading)
+virtual float loop(const MotionProfile& profile, const float newReading)
 ```
 Loop the controller once over a new measurement and return the new response power.
 
@@ -39,11 +39,11 @@ bool isComplete() const
 
 Return whether the motion profile has been followed start to finish and is done.
 
-## newProfile
+## reset
 
 ```c++
 //Signature
-void newProfile(MotionProfile& iprofile)
+void reset()
 ```
 
-Reinitialize this instance with a new motion profile. Also resets the internal `VelPid` controller.
+Reset the controller so it can follow another profile.

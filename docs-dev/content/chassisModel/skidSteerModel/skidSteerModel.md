@@ -19,7 +19,7 @@ SkidSteerModel(const SkidSteerModel<motorsPerSide>& other)
 //Left side motors are ports 1 and 3
 //Right side motors are ports 2 and 4
 //Right side encoder is reversed because it is a mirror of the left side
-SkidSteerModel<2> foo({1, 3, 2, 4}, encoderInit(1, 2, false), encoderInit(3, 4, true))
+SkidSteerModel<2> foo({1, 3, 2, 4}, encoderInit(1, 2, false), encoderInit(3, 4, true));
 ```
 
 Parameter | Description

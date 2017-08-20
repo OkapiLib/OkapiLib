@@ -5,7 +5,7 @@ title: MPConsumerParams
 
 # MPConsumerParams
 
-The `MPConsumerParams` class encapsulates the parmaeters an `MPConsumer` takes.
+The `MPConsumerParams` class encapsulates the parameters an `MPConsumer` takes.
 
 ## Constructor
 
