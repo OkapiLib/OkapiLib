@@ -17,7 +17,7 @@
       
       <guid>https://okapilib.github.io/OkapiDocs/motionprofile/motionprofile/</guid>
       <description>MotionProfile The MotionProfile class encapsulates the series of velocity and acceleration targets that make up a motion profile.
-   Member Description     data A vector of velocity and acceleration targets   distance The distance the motion profile travels   dt The timestep between targets    Constructor //Signature MotionProfile(const float idistance, const float idt)     Parameter Description     idistance The distance the motion profile travels   idt The timestep between targets    MPTarget The MPTarget class is designed to encapsulate a pair of velocity and acceleration targets for a motion profile.</description>
+   Member Description     data A vector of velocity and acceleration targets   distance The distance the motion profile travels   dt The timestep between targets    Constructor //Signature MotionProfile(const float idistance, const float idt)     Parameter Description     idistance The distance the motion profile travels   idt The timestep between targets    operator[] Pass the operator[] onto the internal std::vector.</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@
       
       <guid>https://okapilib.github.io/OkapiDocs/motionprofile/mpconsumer/</guid>
       <description>MPConsumer The MPConsumer class is a feed-forward closed-loop controller that follows a pre-generated motion profile.
-Constructor //Signature MPConsumer(MotionProfile &amp;amp;iprofile, const float ikV, const float ikA, const float ikP = 0) MPConsumer(MotionProfile &amp;amp;iprofile, const MPConsumerParams&amp;amp; iparams)     Parameter Description     iprofile A motion profile generated using MPGenerator   ikV Feed-forward velocity gain   ikA Feed-forward acceleration gain   ikP Feedback proportional gain (default = 0)    loop //Signature virtual float loop(const float newReading)  Loop the controller once over a new measurement and return the new response power.</description>
+Constructor //Signature MPConsumer(const float ikV, const float ikA, const float ikP = 0) MPConsumer(const MPConsumerParams&amp;amp; iparams)     Parameter Description     iprofile A motion profile generated using MPGenerator   ikV Feed-forward velocity gain   ikA Feed-forward acceleration gain   ikP Feedback proportional gain (default = 0)    loop //Signature virtual float loop(const MotionProfile&amp;amp; profile, const float newReading)  Loop the controller once over a new measurement and return the new response power.</description>
     </item>
     
     <item>
@@ -36,7 +36,7 @@ Constructor //Signature MPConsumer(MotionProfile &amp;amp;iprofile, const float 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://okapilib.github.io/OkapiDocs/motionprofile/mpconsumerparams/</guid>
-      <description> MPConsumerParams The MPConsumerParams class encapsulates the parmaeters an MPConsumer takes.
+      <description> MPConsumerParams The MPConsumerParams class encapsulates the parameters an MPConsumer takes.
 Constructor //Signature MPConsumerParams(const float ikV, const float ikA, const float ikP = 0)     Parameter Description     ikV Feed-forward velocity gain   ikA Feed-forward acceleration gain   ikP Feedback proportional gain (default = 0)    </description>
     </item>
     
@@ -47,7 +47,7 @@ Constructor //Signature MPConsumerParams(const float ikV, const float ikA, const
       
       <guid>https://okapilib.github.io/OkapiDocs/motionprofile/mpgenerator/</guid>
       <description>MPGenerator The MPGenerator class is a motion profile generator. It accepts position, velocity, and acceleration bounds and produces a motion profile within those bounds.
-Constructor //Signature MPGenerator(const float iaccel, const float imaxVel, const float itargetPos) MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos) MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel) MPGenerator(MPGenParams iparams)     Parameter Description     imaxAccel Maximum acceleration   iminAccel Minimum acceleration (i.</description>
+Constructor //Signature MPGenerator(const float iaccel, const float imaxVel) MPGenerator(const float iaccel, const float imaxVel, const float itargetPos) MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos) MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel) MPGenerator(MPGenParams iparams)     Parameter Description     imaxAccel Maximum acceleration   iminAccel Minimum acceleration (i.</description>
     </item>
     
     <item>
@@ -57,7 +57,7 @@ Constructor //Signature MPGenerator(const float iaccel, const float imaxVel, con
       
       <guid>https://okapilib.github.io/OkapiDocs/motionprofile/mpgeneratorparams/</guid>
       <description>MPGeneratorParams The MPGeneratorParams class encapsulates the parameters an MPGenerator takes.
-Constructor //Signature MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel) MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos) MPGenParams(const float iaccel, const float imaxVel, const float itargetPos) MPGenParams(const MPGenParams &amp;amp;other)     Parameter Description     imaxAccel Maximum acceleration   iminAccel Minimum acceleration (i.</description>
+Constructor //Signature MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel) MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos) MPGenParams(const float iaccel, const float imaxVel, const float itargetPos) MPGenParams(const float iaccel, const float imaxVel) MPGenParams(const MPGenParams &amp;amp;other)     Parameter Description     imaxAccel Maximum acceleration   iminAccel Minimum acceleration (i.</description>
     </item>
     
   </channel>

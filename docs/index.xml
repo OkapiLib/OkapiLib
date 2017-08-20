@@ -98,7 +98,7 @@ make Allocate a new ChassisModel and return a std::shared_ptr to it. Most users 
       
       <guid>https://okapilib.github.io/OkapiDocs/chassismodel/skidsteermodel/skidsteermodel/</guid>
       <description> SkidSteerModel The SkidSteerModel class inherits from ChassisModel and takes a template parameter size_t motorsPerSide (the number of motors per each of the two sides of the chassis). It is a model for a skid steer drive (also called a tank drive).
-Constructor //Signature SkidSteerModel(const std::initializer_list&amp;lt;unsigned char&amp;gt;&amp;amp; imotorList, Encoder ileftEnc, Encoder irightEnc) SkidSteerModel(const SkidSteerModelParams&amp;lt;motorsPerSide&amp;gt;&amp;amp; iparams) SkidSteerModel(const SkidSteerModel&amp;lt;motorsPerSide&amp;gt;&amp;amp; other) //Construct a SkidSteerModel with four motors (two per side) and two encoders //Left side motors are ports 1 and 3 //Right side motors are ports 2 and 4 //Right side encoder is reversed because it is a mirror of the left side SkidSteerModel&amp;lt;2&amp;gt; foo({1, 3, 2, 4}, encoderInit(1, 2, false), encoderInit(3, 4, true))     Parameter Description     imotorList The left and right side motors for the drive in the format, {left motors, right motors}   ileftEnc The quadrature encoder for the left side   irightEnc The quadrature encoder for the right side    </description>
+Constructor //Signature SkidSteerModel(const std::initializer_list&amp;lt;unsigned char&amp;gt;&amp;amp; imotorList, Encoder ileftEnc, Encoder irightEnc) SkidSteerModel(const SkidSteerModelParams&amp;lt;motorsPerSide&amp;gt;&amp;amp; iparams) SkidSteerModel(const SkidSteerModel&amp;lt;motorsPerSide&amp;gt;&amp;amp; other) //Construct a SkidSteerModel with four motors (two per side) and two encoders //Left side motors are ports 1 and 3 //Right side motors are ports 2 and 4 //Right side encoder is reversed because it is a mirror of the left side SkidSteerModel&amp;lt;2&amp;gt; foo({1, 3, 2, 4}, encoderInit(1, 2, false), encoderInit(3, 4, true));     Parameter Description     imotorList The left and right side motors for the drive in the format, {left motors, right motors}   ileftEnc The quadrature encoder for the left side   irightEnc The quadrature encoder for the right side    </description>
     </item>
     
     <item>
@@ -118,7 +118,7 @@ Constructor //Signature SkidSteerModelParams(const std::initializer_list&amp;lt;
       
       <guid>https://okapilib.github.io/OkapiDocs/chassismodel/xdrivemodel/xdrivemodel/</guid>
       <description> XDriveModel The XDriveModel class inherits from ChassisModel and takes a template parameter size_t motorsPerCorner (the number of motors per each of the four corners of the chassis). It is a model for an x-drive.
-Constructor //Signature XDriveModel(const std::initializer_list&amp;lt;unsigned char&amp;gt;&amp;amp; imotorList, Encoder ileftEnc, Encoder irightEnc) XDriveModel(const XDriveModelParams&amp;lt;motorsPerCorner&amp;gt;&amp;amp; iparams) XDriveModel(const XDriveModel&amp;lt;motorsPerCorner&amp;gt;&amp;amp; other) //Construct an XDriveModel with four motors (one per corner) and two encoders //Top left motor is port 1, top right motor is port 2 //Bottom right motor is port 3, bottom left motor is port 4 //Right side encoder is reversed because it is a mirror of the left side XDriveModel&amp;lt;1&amp;gt; foo({1, 2, 3, 4}, encoderInit(1, 2, false), encoderInit(3, 4, true)) //Construct an XDriveModel with eight motors (two per corner) and two encoders //Top left motors are ports 1 and 2, top right motors are ports 3 and 4 //Bottom right motors are ports 5 and 6, bottom left motors are ports 7 and 8 //Right side encoder is reversed because it is a mirror of the left side XDriveModel&amp;lt;2&amp;gt; foo({1, 2, 3, 4, 5, 6, 7, 8}, encoderInit(1, 2, false), encoderInit(3, 4, true))     Parameter Description     imotorList The chassis motors for the drive in the clockwise format, {top left motors, top right motors, bottom right motors, bottom left motors}   ileftEnc The quadrature encoder for the left side   irightEnc The quadrature encoder for the right side    </description>
+Constructor //Signature XDriveModel(const std::initializer_list&amp;lt;unsigned char&amp;gt;&amp;amp; imotorList, Encoder ileftEnc, Encoder irightEnc) XDriveModel(const XDriveModelParams&amp;lt;motorsPerCorner&amp;gt;&amp;amp; iparams) XDriveModel(const XDriveModel&amp;lt;motorsPerCorner&amp;gt;&amp;amp; other) //Construct an XDriveModel with four motors (one per corner) and two encoders //Top left motor is port 1, top right motor is port 2 //Bottom right motor is port 3, bottom left motor is port 4 //Right side encoder is reversed because it is a mirror of the left side XDriveModel&amp;lt;1&amp;gt; foo({1, 2, 3, 4}, encoderInit(1, 2, false), encoderInit(3, 4, true)); //Construct an XDriveModel with eight motors (two per corner) and two encoders //Top left motors are ports 1 and 2, top right motors are ports 3 and 4 //Bottom right motors are ports 5 and 6, bottom left motors are ports 7 and 8 //Right side encoder is reversed because it is a mirror of the left side XDriveModel&amp;lt;2&amp;gt; foo({1, 2, 3, 4, 5, 6, 7, 8}, encoderInit(1, 2, false), encoderInit(3, 4, true));     Parameter Description     imotorList The chassis motors for the drive in the clockwise format, {top left motors, top right motors, bottom right motors, bottom left motors}   ileftEnc The quadrature encoder for the left side   irightEnc The quadrature encoder for the right side    </description>
     </item>
     
     <item>
@@ -191,7 +191,7 @@ Constructor //Signature DemaFilter(const float ialpha, const float ibeta)     Pa
       
       <guid>https://okapilib.github.io/OkapiDocs/motionprofile/motionprofile/</guid>
       <description>MotionProfile The MotionProfile class encapsulates the series of velocity and acceleration targets that make up a motion profile.
-   Member Description     data A vector of velocity and acceleration targets   distance The distance the motion profile travels   dt The timestep between targets    Constructor //Signature MotionProfile(const float idistance, const float idt)     Parameter Description     idistance The distance the motion profile travels   idt The timestep between targets    MPTarget The MPTarget class is designed to encapsulate a pair of velocity and acceleration targets for a motion profile.</description>
+   Member Description     data A vector of velocity and acceleration targets   distance The distance the motion profile travels   dt The timestep between targets    Constructor //Signature MotionProfile(const float idistance, const float idt)     Parameter Description     idistance The distance the motion profile travels   idt The timestep between targets    operator[] Pass the operator[] onto the internal std::vector.</description>
     </item>
     
     <item>
@@ -201,7 +201,7 @@ Constructor //Signature DemaFilter(const float ialpha, const float ibeta)     Pa
       
       <guid>https://okapilib.github.io/OkapiDocs/motionprofile/mpconsumer/</guid>
       <description>MPConsumer The MPConsumer class is a feed-forward closed-loop controller that follows a pre-generated motion profile.
-Constructor //Signature MPConsumer(MotionProfile &amp;amp;iprofile, const float ikV, const float ikA, const float ikP = 0) MPConsumer(MotionProfile &amp;amp;iprofile, const MPConsumerParams&amp;amp; iparams)     Parameter Description     iprofile A motion profile generated using MPGenerator   ikV Feed-forward velocity gain   ikA Feed-forward acceleration gain   ikP Feedback proportional gain (default = 0)    loop //Signature virtual float loop(const float newReading)  Loop the controller once over a new measurement and return the new response power.</description>
+Constructor //Signature MPConsumer(const float ikV, const float ikA, const float ikP = 0) MPConsumer(const MPConsumerParams&amp;amp; iparams)     Parameter Description     iprofile A motion profile generated using MPGenerator   ikV Feed-forward velocity gain   ikA Feed-forward acceleration gain   ikP Feedback proportional gain (default = 0)    loop //Signature virtual float loop(const MotionProfile&amp;amp; profile, const float newReading)  Loop the controller once over a new measurement and return the new response power.</description>
     </item>
     
     <item>
@@ -210,8 +210,18 @@ Constructor //Signature MPConsumer(MotionProfile &amp;amp;iprofile, const float 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://okapilib.github.io/OkapiDocs/motionprofile/mpconsumerparams/</guid>
-      <description> MPConsumerParams The MPConsumerParams class encapsulates the parmaeters an MPConsumer takes.
+      <description> MPConsumerParams The MPConsumerParams class encapsulates the parameters an MPConsumer takes.
 Constructor //Signature MPConsumerParams(const float ikV, const float ikA, const float ikP = 0)     Parameter Description     ikV Feed-forward velocity gain   ikA Feed-forward acceleration gain   ikP Feedback proportional gain (default = 0)    </description>
+    </item>
+    
+    <item>
+      <title>MPController</title>
+      <link>https://okapilib.github.io/OkapiDocs/control/mpcontroller/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiDocs/control/mpcontroller/</guid>
+      <description>MPController The MPController class packages together an MPConsumer and an MPGenerator into one class which both generates and follows a motion profile.
+Constructor //Signature MPController(const MPGenParams&amp;amp; igenParams, const MPConsumerParams&amp;amp; iconParams) MPController(const MPControllerParams&amp;amp; iparams) //Basic MPController construction MPController foo(MPGenParams(1, 15, 1000), MPConsumerParams(6, 1.2, 0.5));     Parameter Description     igenParams MPGenParams   iconParams MPConsumerParams   iparams MPControllerParams    loop //Signature virtual float loop(const float inewReading)  Loop the controller once over a new measurement and return the new response power.</description>
     </item>
     
     <item>
@@ -221,7 +231,7 @@ Constructor //Signature MPConsumerParams(const float ikV, const float ikA, const
       
       <guid>https://okapilib.github.io/OkapiDocs/motionprofile/mpgenerator/</guid>
       <description>MPGenerator The MPGenerator class is a motion profile generator. It accepts position, velocity, and acceleration bounds and produces a motion profile within those bounds.
-Constructor //Signature MPGenerator(const float iaccel, const float imaxVel, const float itargetPos) MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos) MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel) MPGenerator(MPGenParams iparams)     Parameter Description     imaxAccel Maximum acceleration   iminAccel Minimum acceleration (i.</description>
+Constructor //Signature MPGenerator(const float iaccel, const float imaxVel) MPGenerator(const float iaccel, const float imaxVel, const float itargetPos) MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos) MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel) MPGenerator(MPGenParams iparams)     Parameter Description     imaxAccel Maximum acceleration   iminAccel Minimum acceleration (i.</description>
     </item>
     
     <item>
@@ -231,7 +241,7 @@ Constructor //Signature MPGenerator(const float iaccel, const float imaxVel, con
       
       <guid>https://okapilib.github.io/OkapiDocs/motionprofile/mpgeneratorparams/</guid>
       <description>MPGeneratorParams The MPGeneratorParams class encapsulates the parameters an MPGenerator takes.
-Constructor //Signature MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel) MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos) MPGenParams(const float iaccel, const float imaxVel, const float itargetPos) MPGenParams(const MPGenParams &amp;amp;other)     Parameter Description     imaxAccel Maximum acceleration   iminAccel Minimum acceleration (i.</description>
+Constructor //Signature MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel) MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos) MPGenParams(const float iaccel, const float imaxVel, const float itargetPos) MPGenParams(const float iaccel, const float imaxVel) MPGenParams(const MPGenParams &amp;amp;other)     Parameter Description     imaxAccel Maximum acceleration   iminAccel Minimum acceleration (i.</description>
     </item>
     
     <item>
@@ -258,10 +268,10 @@ setParams //Signature static void setParams(OdomParams&amp;amp; iparams)  Set th
     
     <item>
       <title>Pid</title>
-      <link>https://okapilib.github.io/OkapiDocs/pid/pid/</link>
+      <link>https://okapilib.github.io/OkapiDocs/control/pid/pid/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://okapilib.github.io/OkapiDocs/pid/pid/</guid>
+      <guid>https://okapilib.github.io/OkapiDocs/control/pid/pid/</guid>
       <description>Pid The Pid class implements the Pid algorithm, with some quality-of-life changes to support online tuning.
 Constructor //Signature Pid(const float ikP, const float ikI, const float ikD, const float ikBias = 0) Pid(const PidParams&amp;amp; params)     Parameter Description     ikP Proportional gain   ikI Integral gain   ikD Derivative gain   ikBias Controller bias (this value added to output, default 0)   params PidParams    loop //Signature virtual float loop(const float inewReading)  Do one iteration of Pid math to compute a new motor power.</description>
     </item>
@@ -281,10 +291,10 @@ getDtFromStart //Signature unsigned long getDtFromStart() const  Return the time
     
     <item>
       <title>VelPid</title>
-      <link>https://okapilib.github.io/OkapiDocs/pid/velpid/</link>
+      <link>https://okapilib.github.io/OkapiDocs/control/pid/velpid/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://okapilib.github.io/OkapiDocs/pid/velpid/</guid>
+      <guid>https://okapilib.github.io/OkapiDocs/control/pid/velpid/</guid>
       <description>VelPid The VelPid class implements the Pid algorithm for the velocity domain, with some quality-of-life changes to support online tuning.
 Constructor //Signature VelPid(const float ikP, const float ikD) VelPid(const VelPidParams&amp;amp; params)     Parameter Description     ikP Proportional gain   ikI Integral gain   ikD Derivative gain   ikBias Controller bias (this value added to output, default 0)   params VelPidParams    loopVel //Signature virtual float loopVel(const float inewReading)  Do one iteration of velocity math to compute a new filtered velocity.</description>
     </item>

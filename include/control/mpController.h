@@ -59,9 +59,9 @@ namespace okapi {
       profile = mpGen.generateProfile(dt);
     }
 
-    void reset() { mpCon.reset(); }
-
     bool isComplete() const { return mpCon.isComplete(); }
+
+    void reset() { mpCon.reset(); }
   private:
     MPGenerator mpGen;
     MPConsumer mpCon;

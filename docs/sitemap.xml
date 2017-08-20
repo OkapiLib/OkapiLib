@@ -83,6 +83,10 @@
   </url>
   
   <url>
+    <loc>https://okapilib.github.io/OkapiDocs/control/mpcontroller/</loc>
+  </url>
+  
+  <url>
     <loc>https://okapilib.github.io/OkapiDocs/motionprofile/mpgenerator/</loc>
   </url>
   
@@ -99,7 +103,7 @@
   </url>
   
   <url>
-    <loc>https://okapilib.github.io/OkapiDocs/pid/pid/</loc>
+    <loc>https://okapilib.github.io/OkapiDocs/control/pid/pid/</loc>
   </url>
   
   <url>
@@ -107,7 +111,7 @@
   </url>
   
   <url>
-    <loc>https://okapilib.github.io/OkapiDocs/pid/velpid/</loc>
+    <loc>https://okapilib.github.io/OkapiDocs/control/pid/velpid/</loc>
   </url>
   
   <url>
@@ -122,6 +126,11 @@
   
   <url>
     <loc>https://okapilib.github.io/OkapiDocs/chassismodel/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiDocs/control/</loc>
     <priority>0</priority>
   </url>
   
@@ -142,11 +151,6 @@
   
   <url>
     <loc>https://okapilib.github.io/OkapiDocs/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://okapilib.github.io/OkapiDocs/pid/</loc>
     <priority>0</priority>
   </url>
   

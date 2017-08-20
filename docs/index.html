@@ -194,16 +194,17 @@ Most users should not call this constructor with a std::shared_ptr&lt;ChassisMod
 
 <h2 id="constructor-1">Constructor</h2>
 <div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
-<span class="n">ChassisControllerMP</span><span class="p">(</span><span class="k">const</span> <span class="n">ChassisModelParams</span><span class="o">&amp;</span> <span class="n">imodelParams</span><span class="p">,</span> <span class="n">MPGenParams</span> <span class="n">igenParams</span><span class="p">,</span> <span class="n">MPConsumerParams</span> <span class="n">icParams</span><span class="p">)</span>
-<span class="n">ChassisControllerMP</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ChassisModel</span><span class="o">&gt;</span> <span class="n">imodel</span><span class="p">,</span> <span class="n">MPGenParams</span> <span class="n">igenParams</span><span class="p">,</span> <span class="n">MPConsumerParams</span> <span class="n">icParams</span><span class="p">)</span>
+<span class="n">ChassisControllerMP</span><span class="p">(</span><span class="k">const</span> <span class="n">ChassisModelParams</span><span class="o">&amp;</span> <span class="n">imodelParams</span><span class="p">,</span> <span class="k">const</span> <span class="n">MPControllerParams</span><span class="o">&amp;</span> <span class="n">iparams</span><span class="p">)</span>
+<span class="n">ChassisControllerMP</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ChassisModel</span><span class="o">&gt;</span> <span class="n">imodel</span><span class="p">,</span> <span class="k">const</span> <span class="n">MPControllerParams</span><span class="o">&amp;</span> <span class="n">iparams</span><span class="p">)</span>
 
 <span class="c1">//Make a new ChassisControllerMP using a skid steer model with two motors per side</span>
 <span class="n">ChassisControllerMP</span> <span class="n">foo</span><span class="p">(</span>
   <span class="n">SkidSteerModelParams</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">},</span> <span class="c1">//The four motor ports</span>
                           <span class="n">encoderInit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">false</span><span class="p">),</span> <span class="c1">//Left encoder</span>
                           <span class="n">encoderInit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="nb">true</span><span class="p">)),</span> <span class="c1">//Right encoder</span>
-  <span class="n">MPGenParams</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>       <span class="c1">//MPGenerator params; max &amp; min accel: 1, max vel: 15, target pos: 1000</span>
-  <span class="n">MPConsumerParams</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">));</span> <span class="c1">//MPConsumer params; kV: 6, kA: 1.2, kP: 0.5</span>
+  <span class="n">MPControllerParams</span><span class="p">(</span>
+    <span class="n">MPGenParams</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>        <span class="c1">//MPGenerator params; max &amp; min accel: 1, max vel: 15, target pos: 1000</span>
+    <span class="n">MPConsumerParams</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)));</span> <span class="c1">//MPConsumer params; kV: 6, kA: 1.2, kP: 0.5</span>
 </code></pre></div>
 
 <table>
@@ -389,7 +390,7 @@ This class creates a new task inside its constructor and references a static cla
 
 <h2 id="constructor-1">Constructor</h2>
 <div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
-<span class="n">OdomChassisControllerMP</span><span class="p">(</span><span class="n">OdomParams</span> <span class="n">params</span><span class="p">,</span> <span class="n">MPGenParams</span> <span class="n">iparams</span><span class="p">,</span> <span class="n">MPConsumerParams</span> <span class="n">icParams</span><span class="p">)</span>
+<span class="n">OdomChassisControllerMP</span><span class="p">(</span><span class="n">OdomParams</span> <span class="n">params</span><span class="p">,</span> <span class="k">const</span> <span class="n">MPControllerParams</span><span class="o">&amp;</span> <span class="n">iconparams</span><span class="p">)</span>
 
 <span class="c1">//Make a new ChassisControllerMP using a skid steer model with two motors per side</span>
 <span class="n">OdomChassisControllerMP</span> <span class="n">foo</span><span class="p">(</span>
@@ -399,8 +400,9 @@ This class creates a new task inside its constructor and references a static cla
                             <span class="n">encoderInit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="nb">true</span><span class="p">)),</span> <span class="c1">//Right encoder</span>
     <span class="mf">1.345</span><span class="p">,</span>     <span class="c1">//Distance scale (encoder ticks to mm)</span>
     <span class="mf">12.88361</span><span class="p">),</span> <span class="c1">//Turn scale (encoder ticks to deg)</span>
-  <span class="n">MPGenParams</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>       <span class="c1">//MPGenerator params; max &amp; min accel: 1, max vel: 15, target pos: 1000</span>
-  <span class="n">MPConsumerParams</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">));</span> <span class="c1">//MPConsumer params; kV: 6, kA: 1.2, kP: 0.5</span>
+  <span class="n">MPControllerParams</span><span class="p">(</span>
+    <span class="n">MPGenParams</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>        <span class="c1">//MPGenerator params; max &amp; min accel: 1, max vel: 15, target pos: 1000</span>
+    <span class="n">MPConsumerParams</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)));</span> <span class="c1">//MPConsumer params; kV: 6, kA: 1.2, kP: 0.5</span>
 </code></pre></div>
 
 <table>
@@ -569,7 +571,7 @@ This class creates a new task inside its constructor and references a static cla
 <span class="c1">//Left side motors are ports 1 and 3</span>
 <span class="c1">//Right side motors are ports 2 and 4</span>
 <span class="c1">//Right side encoder is reversed because it is a mirror of the left side</span>
-<span class="n">SkidSteerModel</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">},</span> <span class="n">encoderInit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">false</span><span class="p">),</span> <span class="n">encoderInit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="nb">true</span><span class="p">))</span>
+<span class="n">SkidSteerModel</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">},</span> <span class="n">encoderInit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">false</span><span class="p">),</span> <span class="n">encoderInit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="nb">true</span><span class="p">));</span>
 </code></pre></div>
 
 <table>
@@ -653,13 +655,13 @@ This class creates a new task inside its constructor and references a static cla
 <span class="c1">//Top left motor is port 1, top right motor is port 2</span>
 <span class="c1">//Bottom right motor is port 3, bottom left motor is port 4</span>
 <span class="c1">//Right side encoder is reversed because it is a mirror of the left side</span>
-<span class="n">XDriveModel</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">},</span> <span class="n">encoderInit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">false</span><span class="p">),</span> <span class="n">encoderInit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="nb">true</span><span class="p">))</span>
+<span class="n">XDriveModel</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">},</span> <span class="n">encoderInit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">false</span><span class="p">),</span> <span class="n">encoderInit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="nb">true</span><span class="p">));</span>
 
 <span class="c1">//Construct an XDriveModel with eight motors (two per corner) and two encoders</span>
 <span class="c1">//Top left motors are ports 1 and 2, top right motors are ports 3 and 4</span>
 <span class="c1">//Bottom right motors are ports 5 and 6, bottom left motors are ports 7 and 8</span>
 <span class="c1">//Right side encoder is reversed because it is a mirror of the left side</span>
-<span class="n">XDriveModel</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">},</span> <span class="n">encoderInit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">false</span><span class="p">),</span> <span class="n">encoderInit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="nb">true</span><span class="p">))</span>
+<span class="n">XDriveModel</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">},</span> <span class="n">encoderInit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">false</span><span class="p">),</span> <span class="n">encoderInit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="nb">true</span><span class="p">));</span>
 </code></pre></div>
 
 <table>
@@ -1028,6 +1030,17 @@ This class creates a new task inside its constructor and references a static cla
 </tbody>
 </table>
 
+<h2 id="operator">operator[]</h2>
+
+<p>Pass the <code>operator[]</code> onto the internal std::vector.</p>
+
+<h2 id="size">size</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="kt">int</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span>
+</code></pre></div>
+
+<p>Return the size of the internal std::vector.</p>
+
 <h1 id="mptarget">MPTarget</h1>
 
 <p>The <code>MPTarget</code> class is designed to encapsulate a pair of velocity and acceleration targets for a motion profile.</p>
@@ -1089,8 +1102,8 @@ This class creates a new task inside its constructor and references a static cla
 
 <h2 id="constructor">Constructor</h2>
 <div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
-<span class="n">MPConsumer</span><span class="p">(</span><span class="n">MotionProfile</span> <span class="o">&amp;</span><span class="n">iprofile</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">ikV</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">ikA</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">ikP</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">MPConsumer</span><span class="p">(</span><span class="n">MotionProfile</span> <span class="o">&amp;</span><span class="n">iprofile</span><span class="p">,</span> <span class="k">const</span> <span class="n">MPConsumerParams</span><span class="o">&amp;</span> <span class="n">iparams</span><span class="p">)</span>
+<span class="n">MPConsumer</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">ikV</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">ikA</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">ikP</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">MPConsumer</span><span class="p">(</span><span class="k">const</span> <span class="n">MPConsumerParams</span><span class="o">&amp;</span> <span class="n">iparams</span><span class="p">)</span>
 </code></pre></div>
 
 <table>
@@ -1126,7 +1139,7 @@ This class creates a new task inside its constructor and references a static cla
 
 <h2 id="loop">loop</h2>
 <div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
-<span class="k">virtual</span> <span class="kt">float</span> <span class="n">loop</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">newReading</span><span class="p">)</span>
+<span class="k">virtual</span> <span class="kt">float</span> <span class="n">loop</span><span class="p">(</span><span class="k">const</span> <span class="n">MotionProfile</span><span class="o">&amp;</span> <span class="n">profile</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">newReading</span><span class="p">)</span>
 </code></pre></div>
 
 <p>Loop the controller once over a new measurement and return the new response power.</p>
@@ -1138,19 +1151,19 @@ This class creates a new task inside its constructor and references a static cla
 
 <p>Return whether the motion profile has been followed start to finish and is done.</p>
 
-<h2 id="newprofile">newProfile</h2>
+<h2 id="reset">reset</h2>
 <div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
-<span class="kt">void</span> <span class="n">newProfile</span><span class="p">(</span><span class="n">MotionProfile</span><span class="o">&amp;</span> <span class="n">iprofile</span><span class="p">)</span>
+<span class="kt">void</span> <span class="n">reset</span><span class="p">()</span>
 </code></pre></div>
 
-<p>Reinitialize this instance with a new motion profile. Also resets the internal <code>VelPid</code> controller.</p>
+<p>Reset the controller so it can follow another profile.</p>
 
     
         
 
 <h1 id="mpconsumerparams">MPConsumerParams</h1>
 
-<p>The <code>MPConsumerParams</code> class encapsulates the parmaeters an <code>MPConsumer</code> takes.</p>
+<p>The <code>MPConsumerParams</code> class encapsulates the parameters an <code>MPConsumer</code> takes.</p>
 
 <h2 id="constructor">Constructor</h2>
 <div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
@@ -1186,12 +1199,113 @@ This class creates a new task inside its constructor and references a static cla
     
         
 
+<h1 id="mpcontroller">MPController</h1>
+
+<p>The <code>MPController</code> class packages together an <code>MPConsumer</code> and an <code>MPGenerator</code> into one class which both generates and follows a motion profile.</p>
+
+<h2 id="constructor">Constructor</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="n">MPController</span><span class="p">(</span><span class="k">const</span> <span class="n">MPGenParams</span><span class="o">&amp;</span> <span class="n">igenParams</span><span class="p">,</span> <span class="k">const</span> <span class="n">MPConsumerParams</span><span class="o">&amp;</span> <span class="n">iconParams</span><span class="p">)</span>
+<span class="n">MPController</span><span class="p">(</span><span class="k">const</span> <span class="n">MPControllerParams</span><span class="o">&amp;</span> <span class="n">iparams</span><span class="p">)</span>
+
+<span class="c1">//Basic MPController construction</span>
+<span class="n">MPController</span> <span class="n">foo</span><span class="p">(</span><span class="n">MPGenParams</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">MPConsumerParams</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">));</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>igenParams</td>
+<td><code>MPGenParams</code></td>
+</tr>
+
+<tr>
+<td>iconParams</td>
+<td><code>MPConsumerParams</code></td>
+</tr>
+
+<tr>
+<td>iparams</td>
+<td><code>MPControllerParams</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="loop">loop</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="k">virtual</span> <span class="kt">float</span> <span class="n">loop</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">inewReading</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Loop the controller once over a new measurement and return the new response power.</p>
+
+<h2 id="settarget">setTarget</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="kt">void</span> <span class="n">setTarget</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Set a new target for the controller, causing the internal motion profile to be regenerated.</p>
+
+<h2 id="iscomplete">isComplete</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="kt">bool</span> <span class="n">isComplete</span><span class="p">()</span> <span class="k">const</span>
+</code></pre></div>
+
+<p>Return whether the motion profile has been followed start to finish and is done.</p>
+
+<h2 id="reset">reset</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="kt">void</span> <span class="n">reset</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Reset the controller so it can follow another profile.</p>
+
+<h1 id="mpcontrollerparams">MPControllerParams</h1>
+
+<p>The <code>MPControllerParams</code> class encapsulates the parameters an <code>MPController</code> takes.</p>
+
+<h2 id="constructor-1">Constructor</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="n">MPControllerParams</span><span class="p">(</span><span class="k">const</span> <span class="n">MPGenParams</span><span class="o">&amp;</span> <span class="n">igenParams</span><span class="p">,</span> <span class="k">const</span> <span class="n">MPConsumerParams</span><span class="o">&amp;</span> <span class="n">iconParams</span><span class="p">)</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>igenParams</td>
+<td><code>MPGenParams</code></td>
+</tr>
+
+<tr>
+<td>iconParams</td>
+<td><code>MPConsumerParams</code></td>
+</tr>
+</tbody>
+</table>
+
+    
+        
+
 <h1 id="mpgenerator">MPGenerator</h1>
 
 <p>The <code>MPGenerator</code> class is a motion profile generator. It accepts position, velocity, and acceleration bounds and produces a motion profile within those bounds.</p>
 
 <h2 id="constructor">Constructor</h2>
 <div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="n">MPGenerator</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">iaccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">imaxVel</span><span class="p">)</span>
 <span class="n">MPGenerator</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">iaccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">imaxVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">itargetPos</span><span class="p">)</span>
 <span class="n">MPGenerator</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">imaxAccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">iminAccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">imaxVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">itargetPos</span><span class="p">)</span>
 <span class="n">MPGenerator</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">imaxAccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">iminAccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">imaxVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">itargetPos</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">istartVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">iendVel</span><span class="p">)</span>
@@ -1288,6 +1402,7 @@ This class creates a new task inside its constructor and references a static cla
 <span class="n">MPGenParams</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">imaxAccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">iminAccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">imaxVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">itargetPos</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">istartVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">iendVel</span><span class="p">)</span>
 <span class="n">MPGenParams</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">imaxAccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">iminAccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">imaxVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">itargetPos</span><span class="p">)</span>
 <span class="n">MPGenParams</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">iaccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">imaxVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">itargetPos</span><span class="p">)</span>
+<span class="n">MPGenParams</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">iaccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">imaxVel</span><span class="p">)</span>
 <span class="n">MPGenParams</span><span class="p">(</span><span class="k">const</span> <span class="n">MPGenParams</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span>
 </code></pre></div>
 
