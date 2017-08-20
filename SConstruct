@@ -28,4 +28,4 @@ env.Append(LINKFLAGS = "-Wall " + compFlags + linkFlags + "-Wl,--gc-sections fir
 env.Append(CFLAGS = ccFlags + "-std=gnu99 -Werror=implicit-function-declaration")
 env.Append(CXXFLAGS = ccFlags + "-std=c++14 -fno-exceptions -fno-rtti -felide-constructors -fno-use-cxa-atexit")
 
-env.Program('program', source=AllSources('.', '*.c*'))
+env.Program('program', source=AllSources('src', '*.c*'))
