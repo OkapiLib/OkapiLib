@@ -1,0 +1,16 @@
+baseURL = "https://okapilib.github.io/OkapiDocs/"
+languageCode = "en-us"
+title = "OkapiLib Docs"
+theme = "docuapi"
+publishDir = "../docs"
+
+pygmentsCodefences = true
+pygmentsCodeFencesGuessSyntax = true
+pygmentsOptions = ""
+pygmentsStyle = "monokai"
+pygmentsUseClasses = true
+
+defaultContentLanguage = "en"
+
+[params]
+search = true

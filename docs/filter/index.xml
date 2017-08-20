@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Filters on OkapiLib Docs</title>
+    <link>https://okapilib.github.io/OkapiDocs/filter/</link>
+    <description>Recent content in Filters on OkapiLib Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://okapilib.github.io/OkapiDocs/filter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Filter</title>
+      <link>https://okapilib.github.io/OkapiDocs/filter/filter/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiDocs/filter/filter/</guid>
+      <description>Filter (abstract) The Filter class is an interface for data filtering.
+Constructor //Signature Filter()  The constructor does not take any parameters.
+filter //Signature virtual float filter(const float ireading) = 0;  Filter an input and return the filtered output.
+getOutput //Signature virtual float getOutput() const = 0;  Return the previous output.</description>
+    </item>
+    
+    <item>
+      <title>AvgFilter</title>
+      <link>https://okapilib.github.io/OkapiDocs/filter/avgfilter/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiDocs/filter/avgfilter/</guid>
+      <description>AvgFilter The AvgFilter class inherits from Filter and takes a template parameter std::size_t n&amp;gt; (the number of inputs to average). It is a finite impulse response (FIR) filter that averages the last n inputs.
+Constructor //Signature AvgFilter()  The constructor does not take any parameters.</description>
+    </item>
+    
+    <item>
+      <title>EmaFilter</title>
+      <link>https://okapilib.github.io/OkapiDocs/filter/emafilter/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiDocs/filter/emafilter/</guid>
+      <description> EmaFilter The EmaFilter class inherits from Filter. It is an infinite impulse response (IIR) filter that implements the exponential moving average algorithm (EMA).
+Constructor //Signature EmaFilter(const float ialpha, const float ibeta)     Parameter Description     ialpha Alpha gain   ibeta Beta gain    setGains //Signature void setGains(const float ialpha, const float ibeta)  Set new gains for this filter
+   Parameter Description     ialpha New alpha gain   ibeta New beta gain    </description>
+    </item>
+    
+    <item>
+      <title>DemaFilter</title>
+      <link>https://okapilib.github.io/OkapiDocs/filter/demafilter/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiDocs/filter/demafilter/</guid>
+      <description>DemaFilter The DemaFilter class inherits from Filter. It is an infinite impulse response (IIR) filter that implements the double exponential moving average algorithm (EMA). This is very similar to the normal EMA, except it can pick up on trends in data and follow the current trend until a new trend starts. This filter performs better than a single EMA when data frequently follows a trend.
+Constructor //Signature DemaFilter(const float ialpha, const float ibeta)     Parameter Description     ialpha Alpha gain   ibeta Beta gain    setGains //Signature void setGains(const float ialpha, const float ibeta)  Set new gains for this filter</description>
+    </item>
+    
+  </channel>
+</rss>
