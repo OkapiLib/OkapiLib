@@ -1,6 +1,7 @@
 #include <cmath>
 #include "odometry/odometry.h"
 #include "util/mathUtil.h"
+#include <API.h>
 
 namespace okapi {
   std::shared_ptr<ChassisModel> Odometry::model;
@@ -15,20 +16,24 @@ namespace okapi {
   }
 
   OdomState Odometry::loop() {
-    const auto newTicks = model->getEncoderVals();
-    currentTicks = newTicks - lastTicks;
-    mm = (((float)currentTicks[0] * scale) + ((float)currentTicks[1] * scale)) / 2.0;
-    lastTicks = newTicks;
+    unsigned long now = millis();
 
-    state.theta += (currentTicks[1] - currentTicks[0]) * turnScale;
-    if (state.theta > 180)
-      state.theta -= 360;
-    else if (state.theta <= -180)
-      state.theta += 360;
+    while (true) {
+      const auto newTicks = model->getEncoderVals();
+      currentTicks = newTicks - lastTicks;
+      mm = (((float)currentTicks[0] * scale) + ((float)currentTicks[1] * scale)) / 2.0;
+      lastTicks = newTicks;
 
-    state.x += mm * std::cos(state.theta) * radianToDegree;
-    state.y += mm * std::sin(state.theta) * radianToDegree;
+      state.theta += (currentTicks[1] - currentTicks[0]) * turnScale;
+      if (state.theta > 180)
+        state.theta -= 360;
+      else if (state.theta <= -180)
+        state.theta += 360;
 
-    return state;
+      state.x += mm * std::cos(state.theta) * radianToDegree;
+      state.y += mm * std::sin(state.theta) * radianToDegree;
+
+      taskDelayUntil(&now, 15);
+    }
   }
 }
