@@ -1,4 +1,4 @@
-baseURL = "https://okapilib.github.io/OkapiDocs/"
+baseURL = "https://okapilib.github.io/OkapiLib/"
 languageCode = "en-us"
 title = "OkapiLib Docs"
 theme = "docuapi"

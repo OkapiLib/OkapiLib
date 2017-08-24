@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ChassisModels on OkapiLib Docs</title>
-    <link>https://okapilib.github.io/OkapiDocs/chassismodel/</link>
+    <link>https://okapilib.github.io/OkapiLib/chassismodel/</link>
     <description>Recent content in ChassisModels on OkapiLib Docs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://okapilib.github.io/OkapiDocs/chassismodel/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://okapilib.github.io/OkapiLib/chassismodel/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>ChassisModel (abstract)</title>
-      <link>https://okapilib.github.io/OkapiDocs/chassismodel/chassismodel/</link>
+      <link>https://okapilib.github.io/OkapiLib/chassismodel/chassismodel/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://okapilib.github.io/OkapiDocs/chassismodel/chassismodel/</guid>
+      <guid>https://okapilib.github.io/OkapiLib/chassismodel/chassismodel/</guid>
       <description>ChassisModel (abstract) The ChassisModel class is an interface to a robot&amp;rsquo;s chassis: it provides methods to control the chassis and to read from standard sensors placed on most chassis (i.e., quadrature encoders).
 Constructor //Signature ChassisModel()  The constructor does not take any parameters.
 driveForward //Signature virtual void driveForward(const int power) = 0  Drives the chassis forwards by setting all motors to the input power. A positive value for power should cause all chassis wheels to move the robot forward in a straight line.</description>
@@ -23,10 +23,10 @@ driveForward //Signature virtual void driveForward(const int power) = 0  Drives 
     
     <item>
       <title>ChassisModelParams</title>
-      <link>https://okapilib.github.io/OkapiDocs/chassismodel/chassismodelparams/</link>
+      <link>https://okapilib.github.io/OkapiLib/chassismodel/chassismodelparams/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://okapilib.github.io/OkapiDocs/chassismodel/chassismodelparams/</guid>
+      <guid>https://okapilib.github.io/OkapiLib/chassismodel/chassismodelparams/</guid>
       <description> ChassisModelParams (Abstract) The ChassisModelParams class encapsulates the parameters a ChassisModel takes.
 Constructor //Signature ChassisModelParams()  The constructor does not take any parameters.
 make Allocate a new ChassisModel and return a std::shared_ptr to it. Most users will not have to call this, classes that take a ChassisModel will figure out the memory model themselves.
@@ -35,40 +35,40 @@ make Allocate a new ChassisModel and return a std::shared_ptr to it. Most users 
     
     <item>
       <title>SkidSteerModel</title>
-      <link>https://okapilib.github.io/OkapiDocs/chassismodel/skidsteermodel/skidsteermodel/</link>
+      <link>https://okapilib.github.io/OkapiLib/chassismodel/skidsteermodel/skidsteermodel/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://okapilib.github.io/OkapiDocs/chassismodel/skidsteermodel/skidsteermodel/</guid>
+      <guid>https://okapilib.github.io/OkapiLib/chassismodel/skidsteermodel/skidsteermodel/</guid>
       <description> SkidSteerModel The SkidSteerModel class inherits from ChassisModel and takes a template parameter size_t motorsPerSide (the number of motors per each of the two sides of the chassis). It is a model for a skid steer drive (also called a tank drive).
 Constructor //Signature SkidSteerModel(const std::initializer_list&amp;lt;unsigned char&amp;gt;&amp;amp; imotorList, Encoder ileftEnc, Encoder irightEnc) SkidSteerModel(const SkidSteerModelParams&amp;lt;motorsPerSide&amp;gt;&amp;amp; iparams) SkidSteerModel(const SkidSteerModel&amp;lt;motorsPerSide&amp;gt;&amp;amp; other) //Construct a SkidSteerModel with four motors (two per side) and two encoders //Left side motors are ports 1 and 3 //Right side motors are ports 2 and 4 //Right side encoder is reversed because it is a mirror of the left side SkidSteerModel&amp;lt;2&amp;gt; foo({1, 3, 2, 4}, encoderInit(1, 2, false), encoderInit(3, 4, true));     Parameter Description     imotorList The left and right side motors for the drive in the format, {left motors, right motors}   ileftEnc The quadrature encoder for the left side   irightEnc The quadrature encoder for the right side    </description>
     </item>
     
     <item>
       <title>SkidSteerModelParams</title>
-      <link>https://okapilib.github.io/OkapiDocs/chassismodel/skidsteermodel/skidsteermodelparams/</link>
+      <link>https://okapilib.github.io/OkapiLib/chassismodel/skidsteermodel/skidsteermodelparams/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://okapilib.github.io/OkapiDocs/chassismodel/skidsteermodel/skidsteermodelparams/</guid>
+      <guid>https://okapilib.github.io/OkapiLib/chassismodel/skidsteermodel/skidsteermodelparams/</guid>
       <description> SkidSteerModelParams The SkidSteerModelParams class inherits from ChassisModelParams. It encapsulates the parameters a SkidSteerModel takes.
 Constructor //Signature SkidSteerModelParams(const std::initializer_list&amp;lt;unsigned char&amp;gt;&amp;amp; imotorList, Encoder ileftEnc, Encoder irightEnc)     Parameter Description     imotorList The left and right side motors for the drive in the format, {left motors, right motors}   ileftEnc The quadrature encoder for the left side   irightEnc The quadrature encoder for the right side    </description>
     </item>
     
     <item>
       <title>XDriveModel</title>
-      <link>https://okapilib.github.io/OkapiDocs/chassismodel/xdrivemodel/xdrivemodel/</link>
+      <link>https://okapilib.github.io/OkapiLib/chassismodel/xdrivemodel/xdrivemodel/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://okapilib.github.io/OkapiDocs/chassismodel/xdrivemodel/xdrivemodel/</guid>
+      <guid>https://okapilib.github.io/OkapiLib/chassismodel/xdrivemodel/xdrivemodel/</guid>
       <description> XDriveModel The XDriveModel class inherits from ChassisModel and takes a template parameter size_t motorsPerCorner (the number of motors per each of the four corners of the chassis). It is a model for an x-drive.
 Constructor //Signature XDriveModel(const std::initializer_list&amp;lt;unsigned char&amp;gt;&amp;amp; imotorList, Encoder ileftEnc, Encoder irightEnc) XDriveModel(const XDriveModelParams&amp;lt;motorsPerCorner&amp;gt;&amp;amp; iparams) XDriveModel(const XDriveModel&amp;lt;motorsPerCorner&amp;gt;&amp;amp; other) //Construct an XDriveModel with four motors (one per corner) and two encoders //Top left motor is port 1, top right motor is port 2 //Bottom right motor is port 3, bottom left motor is port 4 //Right side encoder is reversed because it is a mirror of the left side XDriveModel&amp;lt;1&amp;gt; foo({1, 2, 3, 4}, encoderInit(1, 2, false), encoderInit(3, 4, true)); //Construct an XDriveModel with eight motors (two per corner) and two encoders //Top left motors are ports 1 and 2, top right motors are ports 3 and 4 //Bottom right motors are ports 5 and 6, bottom left motors are ports 7 and 8 //Right side encoder is reversed because it is a mirror of the left side XDriveModel&amp;lt;2&amp;gt; foo({1, 2, 3, 4, 5, 6, 7, 8}, encoderInit(1, 2, false), encoderInit(3, 4, true));     Parameter Description     imotorList The chassis motors for the drive in the clockwise format, {top left motors, top right motors, bottom right motors, bottom left motors}   ileftEnc The quadrature encoder for the left side   irightEnc The quadrature encoder for the right side    </description>
     </item>
     
     <item>
       <title>XDriveModelParams</title>
-      <link>https://okapilib.github.io/OkapiDocs/chassismodel/xdrivemodel/xdrivemodelparams/</link>
+      <link>https://okapilib.github.io/OkapiLib/chassismodel/xdrivemodel/xdrivemodelparams/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://okapilib.github.io/OkapiDocs/chassismodel/xdrivemodel/xdrivemodelparams/</guid>
+      <guid>https://okapilib.github.io/OkapiLib/chassismodel/xdrivemodel/xdrivemodelparams/</guid>
       <description> XDriveModelParams The XDriveModelParams class inherits from ChassisModelParams. It encapsulates the parameters an XDriveModel takes.
 Constructor //Signature XDriveModelParams(const std::initializer_list&amp;lt;unsigned char&amp;gt;&amp;amp; imotorList, Encoder ileftEnc, Encoder irightEnc)     Parameter Description     imotorList The chassis motors for the drive in the clockwise format, {top left motors, top right motors, bottom right motors, bottom left motors}   ileftEnc The quadrature encoder for the left side   irightEnc The quadrature encoder for the right side    </description>
     </item>

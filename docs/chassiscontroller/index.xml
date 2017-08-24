@@ -2,50 +2,50 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ChassisControllers on OkapiLib Docs</title>
-    <link>https://okapilib.github.io/OkapiDocs/chassiscontroller/</link>
+    <link>https://okapilib.github.io/OkapiLib/chassiscontroller/</link>
     <description>Recent content in ChassisControllers on OkapiLib Docs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://okapilib.github.io/OkapiDocs/chassiscontroller/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://okapilib.github.io/OkapiLib/chassiscontroller/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>ChassisController</title>
-      <link>https://okapilib.github.io/OkapiDocs/chassiscontroller/chassiscontroller/</link>
+      <link>https://okapilib.github.io/OkapiLib/chassiscontroller/chassiscontroller/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://okapilib.github.io/OkapiDocs/chassiscontroller/chassiscontroller/</guid>
+      <guid>https://okapilib.github.io/OkapiLib/chassiscontroller/chassiscontroller/</guid>
       <description>ChassisController (abstract) The ChassisController class an interface for controlling a robot&amp;rsquo;s chassis: it provides methods that build upon the basic methods ChassisModel has for more accurate control.
 Constructor //Signature ChassisController(const ChassisModelParams&amp;amp; imodelParams) ChassisController(std::shared_ptr&amp;lt;ChassisModel&amp;gt; imodel)     Parameter Description     imodelParams ChassisModelParams (used to make a new ChassisModel)   imodel An existing ChassisModel    driveStraight //Signature virtual void driveStraight(const int itarget) = 0  Drive the robot straight for a distance of itarget in the units of itarget.</description>
     </item>
     
     <item>
       <title>ChassisControllerPIDMP</title>
-      <link>https://okapilib.github.io/OkapiDocs/chassiscontroller/chassiscontrollerpidmp/</link>
+      <link>https://okapilib.github.io/OkapiLib/chassiscontroller/chassiscontrollerpidmp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://okapilib.github.io/OkapiDocs/chassiscontroller/chassiscontrollerpidmp/</guid>
+      <guid>https://okapilib.github.io/OkapiLib/chassiscontroller/chassiscontrollerpidmp/</guid>
       <description>ChassisControllerPid The ChassisControllerPid class inherits from ChassisController and implements its interface using PID control.
 Constructor //Signature ChassisControllerPid(const ChassisModelParams&amp;amp; imodelParams, PidParams idistanceParams, PidParams iangleParams) ChassisControllerPid(std::shared_ptr&amp;lt;ChassisModel&amp;gt; imodel, PidParams idistanceParams, PidParams iangleParams) //Make a new ChassisControllerPid using a skid steer model with two motors per side ChassisControllerPid foo( SkidSteerModelParams&amp;lt;2&amp;gt;({1, 3, 2, 4}, //The four motor ports encoderInit(1, 2, false), //Left encoder encoderInit(3, 4, true)), //Right encoder PidParams(2, 0.1, 0.4), //Distance PID controller PidParams(0.</description>
     </item>
     
     <item>
       <title>OdomChassisController</title>
-      <link>https://okapilib.github.io/OkapiDocs/chassiscontroller/odomchassiscontroller/odomchassiscontroller/</link>
+      <link>https://okapilib.github.io/OkapiLib/chassiscontroller/odomchassiscontroller/odomchassiscontroller/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://okapilib.github.io/OkapiDocs/chassiscontroller/odomchassiscontroller/odomchassiscontroller/</guid>
+      <guid>https://okapilib.github.io/OkapiLib/chassiscontroller/odomchassiscontroller/odomchassiscontroller/</guid>
       <description>OdomChassisController (abstract) The OdomChassisController class inherits from ChassisController. It extends the ChassisController interface to add odometry-based functionality.
 Constructor //Signature OdomChassisController(OdomParams iparams)     Parameter Description     iparams OdomParams (used to make a new Odometry)    This class creates a new task inside its constructor and references a static class (Odometry). Be careful and remember to only make one.  driveToPoint //Signature virtual void driveToPoint(const float ix, const float iy, const bool ibackwards = false, const float ioffset = 0) = 0     Parameter Description     ix X coordinate of destination   iy Y coordinate of destination   ibackwards Whether to drive to the destination backwards (default false)   ioffset How far back from the destination to stop (default 0)    Drive to the point (ix, iy) in the field frame.</description>
     </item>
     
     <item>
       <title>OdomChassisControllerPIDMP</title>
-      <link>https://okapilib.github.io/OkapiDocs/chassiscontroller/odomchassiscontroller/odomchassiscontrollerpidmp/</link>
+      <link>https://okapilib.github.io/OkapiLib/chassiscontroller/odomchassiscontroller/odomchassiscontrollerpidmp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://okapilib.github.io/OkapiDocs/chassiscontroller/odomchassiscontroller/odomchassiscontrollerpidmp/</guid>
+      <guid>https://okapilib.github.io/OkapiLib/chassiscontroller/odomchassiscontroller/odomchassiscontrollerpidmp/</guid>
       <description>OdomChassisControllerPid The OdomChassisControllerPid class inherits from OdomChassisController and from ChassisControllerPid. It implements the OdomChassisController interface using PID control.
 Constructor //Signature OdomChassisControllerPid(OdomParams params, PidParams idistanceParams, PidParams iangleParams) //Make a new OdomChassisControllerPid using a skid steer model with two motors per side OdomChassisControllerPid foo( OdomParams( SkidSteerModelParams&amp;lt;2&amp;gt;({1,3,2,4}, //The four motor ports encoderInit(1,2,false), //Left encoder encoderInit(3,4,true)), //Right encoder 1.345, //Distance scale (encoder ticks to mm) 12.88361), //Turn scale (encoder ticks to deg) PidParams(0,0,0), //Distance PID controller PidParams(0,0,0)); //Angle PID controller     Parameter Description     params OdomParams (used to make a new Odometry)   idistanceParams PidParams for the distance PID controller   iangleParams PidParams for the angle PID controller    OdomChassisControllerMP The OdomChassisControllerMP class inherits from OdomChassisController and from ChassisControllerMP.</description>
     </item>
