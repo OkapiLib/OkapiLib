@@ -20,6 +20,12 @@ namespace okapi {
 
     virtual ~ChassisController() = default;
 
+    //Passed through to internal ChassisModel
+    void driveForward(const int power) { model->driveForward(power); }
+    void driveVector(const int distPower, const int anglePower) { model->driveVector(distPower, anglePower); }
+    void turnClockwise(const int power) { model->turnClockwise(power); }
+    std::valarray<int> getEncoderVals() const { return model->getEncoderVals(); }
+
     /**
      * Drives the robot straight
      * @param itarget Distance to travel
