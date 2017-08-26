@@ -12,4 +12,4 @@ language: cpp
 compiler: gcc
 
 script:
-  - scons -Q mcuPrefix=~/gcc-arm-none-eabi-4_9-2014q4/bin/arm-none-eabi-
+  - make all MCUPREFIX=~/gcc-arm-none-eabi-4_9-2014q4/bin/arm-none-eabi-
