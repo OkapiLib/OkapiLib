@@ -33,14 +33,19 @@ using namespace okapi;
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 void operatorControl() {
+	Encoder leftEnc = encoderInit(3, 4, true);
+	Encoder rightEnc = encoderInit(1, 2, false);
 	ChassisControllerPid controller(SkidSteerModelParams<3>({4,5,6, 7,8,9}, //Left motors, right motors
-                                                          encoderInit(3, 4, false), //Left encoder
-                                                          encoderInit(1, 2, true)), //Right encoder
+                                                          leftEnc,   //Left encoder
+                                                          rightEnc), //Right encoder
                                   PidParams(0.35, 0.22, 0.18), //Distance PID
                                   PidParams(0.5, 0.5, 0));     //Angle PID
 
 	while (1) {
-	  controller.driveForward(30);
+	  // controller.driveForward(30);
+		// controller.turnClockwise(30);
+		// printf("%d,%d\n",encoderGet(leftEnc), encoderGet(rightEnc));
+		// controller.driveStraight(100);
 		delay(15);
 	}
 }
