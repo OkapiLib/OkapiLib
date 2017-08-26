@@ -11,6 +11,9 @@
  */
 
 #include "main.h"
+#include "chassis/basicChassisController.h"
+
+using namespace okapi;
 
 /*
  * Runs the user operator control code. This function will be started in its own task with the
@@ -30,7 +33,14 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 void operatorControl() {
+	ChassisControllerPid controller(SkidSteerModelParams<3>({4,5,6, 7,8,9}, //Left motors, right motors
+                                                          encoderInit(3, 4, false), //Left encoder
+                                                          encoderInit(1, 2, true)), //Right encoder
+                                  PidParams(0.35, 0.22, 0.18), //Distance PID
+                                  PidParams(0.5, 0.5, 0));     //Angle PID
+
 	while (1) {
-		delay(20);
+	  controller.driveForward(30);
+		delay(15);
 	}
 }
