@@ -17,7 +17,7 @@ namespace okapi {
 
     virtual ~AvgFilter() { delete &data; }
 
-    float filter(const float ireading) {
+    float filter(const float ireading) override {
       data[index++] = ireading;
       if (index > n)
         index = 0;
@@ -30,7 +30,7 @@ namespace okapi {
       return output;
     }
 
-    float getOutput() const { return output; }
+    float getOutput() const override { return output; }
   private:
     std::array<float, n> data;
     float index, output;

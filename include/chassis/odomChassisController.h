@@ -52,13 +52,13 @@ namespace okapi {
      * @param ix X coordinate
      * @param iy Y coordinate
      */
-    void driveToPoint(const float ix, const float iy, const bool ibackwards = false, const float ioffset = 0);
+    void driveToPoint(const float ix, const float iy, const bool ibackwards = false, const float ioffset = 0) override;
 
     /**
      * Turns the robot to face an angle in the odom frame
      * @param iangle Angle to turn to
      */
-    void turnToAngle(const float iangle);
+    void turnToAngle(const float iangle) override;
   };
 
   class OdomChassisControllerMP : public OdomChassisController, public ChassisControllerMP {
@@ -75,13 +75,13 @@ namespace okapi {
      * @param ix X coordinate
      * @param iy Y coordinate
      */
-    void driveToPoint(const float ix, const float iy, const bool ibackwards = false, const float ioffset = 0);
+    void driveToPoint(const float ix, const float iy, const bool ibackwards = false, const float ioffset = 0) override;
 
     /**
      * Turns the robot to face an angle in the odom frame
      * @param iangle Angle to turn to
      */
-    void turnToAngle(const float iangle);
+    void turnToAngle(const float iangle) override;
   };
 }
 

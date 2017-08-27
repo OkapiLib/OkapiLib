@@ -62,13 +62,13 @@ namespace okapi {
        * Drives the robot straight
        * @param itarget Distance to travel
        */
-      void driveStraight(const int itarget);
+      void driveStraight(const int itarget) override;
 
       /**
        * Turns the robot clockwise in place
        * @param idegTarget Degrees to turn for
        */
-      void pointTurn(float idegTarget);
+      void pointTurn(float idegTarget) override;
   protected:
     Pid distancePid, anglePid;
   };
@@ -92,13 +92,13 @@ namespace okapi {
      * Drives the robot straight
      * @param itarget Distance to travel
      */
-    void driveStraight(const int itarget);
+    void driveStraight(const int itarget) override;
 
     /**
      * Turns the robot clockwise in place
      * @param idegTarget Degrees to turn for
      */
-    void pointTurn(float idegTarget);
+    void pointTurn(float idegTarget) override;
   protected:
     MPController controller;
   };

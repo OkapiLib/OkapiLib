@@ -14,7 +14,7 @@ namespace okapi {
 
     virtual ~EmaFilter() = default;
 
-    float filter(const float ireading) {
+    float filter(const float ireading) override {
       output = alpha * ireading + (1.0 - alpha) * lastOutput;
       lastOutput = output;
       return output;
@@ -25,7 +25,7 @@ namespace okapi {
       beta = ibeta;
     }
 
-    float getOutput() const { return output; }
+    float getOutput() const override { return output; }
   private:
     float alpha, beta;
     float output, lastOutput;

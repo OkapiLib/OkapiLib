@@ -16,7 +16,7 @@ namespace okapi {
 
     virtual ~DemaFilter() = default;
 
-    float filter(const float ireading) {
+    float filter(const float ireading) override {
       outputS = (alpha * ireading) + ((1.0 - alpha) * (lastOutputS + lastOutputB));
       outputB = (beta * (outputS - lastOutputS)) + ((1.0 - beta) * lastOutputB);
       lastOutputS = outputS;
@@ -29,7 +29,7 @@ namespace okapi {
       beta = ibeta;
     }
 
-    float getOutput() const { return outputS + outputB; }
+    float getOutput() const override { return outputS + outputB; }
   private:
     float alpha, beta;
     float outputS, lastOutputS;

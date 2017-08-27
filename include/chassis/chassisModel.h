@@ -43,7 +43,7 @@ namespace okapi {
 
     virtual ~SkidSteerModelParams() = default;
 
-    std::shared_ptr<ChassisModel> make() const {
+    std::shared_ptr<ChassisModel> make() const override {
       return std::make_shared<SkidSteerModel<motorsPerSide>>(*this);
     }
 
@@ -85,26 +85,26 @@ namespace okapi {
       delete &motors;
     }
 
-    void driveForward(const int power) {
+    void driveForward(const int power) override {
       for (size_t i = 0; i < motorsPerSide * 2; i++)
         motorSet(motors[i], power);
     }
 
-    void driveVector(const int distPower, const int anglePower) {
+    void driveVector(const int distPower, const int anglePower) override {
       for (size_t i = 0; i < motorsPerSide; i++)
         motorSet(motors[i], distPower + anglePower);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
         motorSet(motors[i], distPower - anglePower);
     }
 
-    void turnClockwise(const int power) {
+    void turnClockwise(const int power) override {
       for (size_t i = 0; i < motorsPerSide; i++)
         motorSet(motors[i], power);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
         motorSet(motors[i], -1 * power);
     }
 
-    std::valarray<int> getEncoderVals() const {
+    std::valarray<int> getEncoderVals() const override {
       return std::valarray<int>(encoderGet(leftEnc), encoderGet(rightEnc));
     }
   private:
@@ -125,7 +125,7 @@ namespace okapi {
 
     virtual ~XDriveModelParams() {}
 
-    std::shared_ptr<ChassisModel> make() const {
+    std::shared_ptr<ChassisModel> make() const override {
       return std::make_shared<XDriveModel<motorsPerCorner>>(*this);
     }
 
@@ -164,12 +164,12 @@ namespace okapi {
       delete &motors;
     }
 
-    void driveForward(const int power) {
+    void driveForward(const int power) override {
       for (size_t i = 0; i < motorsPerCorner; i++)
         motorSet(motors[i], power);
     }
 
-    void driveVector(const int distPower, const int anglePower) {
+    void driveVector(const int distPower, const int anglePower) override {
       for (size_t i = 0; i < motorsPerCorner; i++)
         motorSet(motors[i], distPower + anglePower);
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
@@ -180,7 +180,7 @@ namespace okapi {
         motorSet(motors[i], distPower + anglePower);
     }
 
-    void turnClockwise(const int power) {
+    void turnClockwise(const int power) override {
       for (size_t i = 0; i < motorsPerCorner; i++)
         motorSet(motors[i], power);
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
@@ -191,7 +191,7 @@ namespace okapi {
         motorSet(motors[i], power);
     }
 
-    std::valarray<int> getEncoderVals() const {
+    std::valarray<int> getEncoderVals() const override {
       return std::valarray<int>(encoderGet(leftEnc), encoderGet(rightEnc));
     }
   private:
