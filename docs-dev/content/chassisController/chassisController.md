@@ -41,3 +41,39 @@ virtual void pointTurn(const float idegTarget) = 0
 ```
 
 Turn the robot in place for an angle of `idegTarget`. The units of the angle travel is most often the difference in encoder ticks between the two sides of the chassis.
+
+## driveForward
+
+```c++
+//Signature
+void driveForward(const int power)
+```
+
+Passthrough function to call `driveForward` on the internal `ChassisModel`.
+
+## driveVector
+
+```c++
+//Signature
+void driveVector(const int distPower, const int anglePower)
+```
+
+Passthrough function to call `driveVector` on the internal `ChassisModel`.
+
+## turnClockwise
+
+```c++
+//Signature
+void turnClockwise(const int power)
+```
+
+Passthrough function to call `turnClockwise` on the internal `ChassisModel`.
+
+## getEncoderVals
+
+```c++
+//Signature
+std::valarray<int> getEncoderVals() const
+```
+
+Passthrough function to call `getEncoderVals` on the internal `ChassisModel`.
