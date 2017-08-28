@@ -27,6 +27,7 @@ namespace okapi {
      * @param kP      Proportional gain
      */
     MPConsumer(const float ikV, const float ikA, const float ikP = 0):
+      isCompleteFlag(false),
       step(0),
       kV(ikV),
       kA(ikA),
@@ -38,6 +39,7 @@ namespace okapi {
      * @param iparams  mpConsumer params
      */
     MPConsumer(const MPConsumerParams& iparams):
+      isCompleteFlag(false),
       step(0),
       kV(iparams.kV),
       kA(iparams.kA),
