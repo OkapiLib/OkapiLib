@@ -15,7 +15,7 @@ namespace okapi {
     ChassisController(const ChassisModelParams& imodelParams):
       model(imodelParams.make()) {}
 
-    ChassisController(std::shared_ptr<ChassisModel> imodel):
+    ChassisController(const std::shared_ptr<ChassisModel>& imodel):
       model(imodel) {}
 
     virtual ~ChassisController() = default;
@@ -43,12 +43,12 @@ namespace okapi {
 
   class ChassisControllerPid : public virtual ChassisController {
   public:
-    ChassisControllerPid(const ChassisModelParams& imodelParams, PidParams idistanceParams, PidParams iangleParams):
+    ChassisControllerPid(const ChassisModelParams& imodelParams, const PidParams& idistanceParams, const PidParams& iangleParams):
       ChassisController(imodelParams),
       distancePid(idistanceParams),
       anglePid(iangleParams) {}
 
-    ChassisControllerPid(std::shared_ptr<ChassisModel> imodel, PidParams idistanceParams, PidParams iangleParams):
+    ChassisControllerPid(const std::shared_ptr<ChassisModel>& imodel, const PidParams& idistanceParams, const PidParams& iangleParams):
       ChassisController(imodel),
       distancePid(idistanceParams),
       anglePid(iangleParams) {}
@@ -80,7 +80,7 @@ namespace okapi {
       controller(iparams) {}
 
 
-    ChassisControllerMP(std::shared_ptr<ChassisModel> imodel, const MPControllerParams& iparams):
+    ChassisControllerMP(const std::shared_ptr<ChassisModel>& imodel, const MPControllerParams& iparams):
       ChassisController(imodel),
       controller(iparams) {}
 

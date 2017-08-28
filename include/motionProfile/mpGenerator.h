@@ -142,7 +142,7 @@ namespace okapi {
      * Motion profile generator
      * @param params Parameters (see MPGenParams docs)
      */
-    MPGenerator(MPGenParams iparams):
+    MPGenerator(const MPGenParams& iparams):
       maxAccel(iparams.maxAccel),
       minAccel(iparams.minAccel),
       maxVel(iparams.maxVel),

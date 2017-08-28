@@ -11,7 +11,7 @@ The `OdomChassisControllerPid` class inherits from `OdomChassisController` and f
 
 ```c++
 //Signature
-OdomChassisControllerPid(OdomParams params, PidParams idistanceParams, PidParams iangleParams)
+OdomChassisControllerPid(const OdomParams& params, const PidParams& idistanceParams, const PidParams& iangleParams)
 
 //Make a new OdomChassisControllerPid using a skid steer model with two motors per side
 OdomChassisControllerPid foo(
@@ -39,7 +39,7 @@ The `OdomChassisControllerMP` class inherits from `OdomChassisController` and fr
 
 ```c++
 //Signature
-OdomChassisControllerMP(OdomParams params, const MPControllerParams& iconparams)
+OdomChassisControllerMP(const OdomParams& params, const MPControllerParams& iconparams)
 
 //Make a new ChassisControllerMP using a skid steer model with two motors per side
 OdomChassisControllerMP foo(

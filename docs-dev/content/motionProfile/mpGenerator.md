@@ -15,7 +15,7 @@ MPGenerator(const float iaccel, const float imaxVel)
 MPGenerator(const float iaccel, const float imaxVel, const float itargetPos)
 MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos)
 MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel)
-MPGenerator(MPGenParams iparams)
+MPGenerator(const MPGenParams& iparams)
 ```
 
 Parameter | Description

@@ -11,8 +11,8 @@ The `ChassisControllerPid` class inherits from `ChassisController` and implement
 
 ```c++
 //Signature
-ChassisControllerPid(const ChassisModelParams& imodelParams, PidParams idistanceParams, PidParams iangleParams)
-ChassisControllerPid(std::shared_ptr<ChassisModel> imodel, PidParams idistanceParams, PidParams iangleParams)
+ChassisControllerPid(const ChassisModelParams& imodelParams, const PidParams& idistanceParams, const PidParams& iangleParams)
+ChassisControllerPid(const std::shared_ptr<ChassisModel>& imodel, const PidParams& idistanceParams, const PidParams& iangleParams)
 
 //Make a new ChassisControllerPid using a skid steer model with two motors per side
 ChassisControllerPid foo(
@@ -43,7 +43,7 @@ The `ChassisControllerMP` class inherits from `ChassisController` and implements
 ```c++
 //Signature
 ChassisControllerMP(const ChassisModelParams& imodelParams, const MPControllerParams& iparams)
-ChassisControllerMP(std::shared_ptr<ChassisModel> imodel, const MPControllerParams& iparams)
+ChassisControllerMP(const std::shared_ptr<ChassisModel>& imodel, const MPControllerParams& iparams)
 
 //Make a new ChassisControllerMP using a skid steer model with two motors per side
 ChassisControllerMP foo(
