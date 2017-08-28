@@ -156,9 +156,10 @@ namespace okapi {
           motors[i] = *(iparams.motorList.begin() + i);
     }
 
-    XDriveModel(const XDriveModel<motorsPerCorner>& other) {
-      motors(other.motors);
-    }
+    XDriveModel(const XDriveModel<motorsPerCorner>& other):
+      motors(other.motors),
+      leftEnc(other.leftEnc),
+      rightEnc(other.rightEnc) {}
 
     virtual ~XDriveModel() {
       delete &motors;
