@@ -38,7 +38,7 @@ AFLAGS:=$(MCUAFLAGS)
 ARFLAGS:=$(MCUCFLAGS)
 CCFLAGS:=-c -Wall $(MCUCFLAGS) -Os -ffunction-sections -fsigned-char -fomit-frame-pointer -fsingle-precision-constant
 CFLAGS:=$(CCFLAGS) -std=gnu99 -Werror=implicit-function-declaration
-CPPFLAGS:=$(CCFLAGS) -std=c++14 -fno-exceptions -fno-rtti -felide-constructors
+CPPFLAGS:=$(CCFLAGS) -std=c++14 -fno-exceptions -fno-rtti -felide-constructors -fno-use-cxa-atexit -fno-use-cxa-get-exception-ptr
 LDFLAGS:=-Wall $(MCUCFLAGS) $(MCULFLAGS) -Wl,--gc-sections
 
 # Tools used in program
