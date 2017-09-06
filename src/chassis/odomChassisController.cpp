@@ -4,7 +4,7 @@
 
 namespace okapi {
   void OdomChassisControllerPid::driveToPoint(const float ix, const float iy, const bool ibackwards, const float ioffset) {
-    DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, Odometry::getState());
+    DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom.getState());
 
     if (ibackwards) {
       daa.theta += 180;
@@ -18,11 +18,11 @@ namespace okapi {
   }
 
   void OdomChassisControllerPid::turnToAngle(const float iangle) {
-    ChassisControllerPid::pointTurn(iangle - Odometry::getState().theta);
+    ChassisControllerPid::pointTurn(iangle - odom.getState().theta);
   }
 
   void OdomChassisControllerMP::driveToPoint(const float ix, const float iy, const bool ibackwards, const float ioffset) {
-    DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, Odometry::getState());
+    DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom.getState());
 
     if (ibackwards) {
       daa.theta += 180;
@@ -36,6 +36,6 @@ namespace okapi {
   }
 
   void OdomChassisControllerMP::turnToAngle(const float iangle) {
-    ChassisControllerMP::pointTurn(iangle - Odometry::getState().theta);
+    ChassisControllerMP::pointTurn(iangle - odom.getState().theta);
   }
 }

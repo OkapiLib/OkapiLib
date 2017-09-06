@@ -4,12 +4,6 @@
 #include <API.h>
 
 namespace okapi {
-  std::shared_ptr<ChassisModel> Odometry::model;
-  OdomState Odometry::state;
-  float Odometry::scale = 0, Odometry::turnScale = 0;
-  std::valarray<int> Odometry::lastTicks(0, 0), Odometry::currentTicks(0, 0);
-  float Odometry::mm = 0;
-
   void Odometry::guessScales(const float chassisDiam, const float wheelDiam, const float ticksPerRev) {
     scale = (wheelDiam * pi * inchToMM) / ticksPerRev;
     turnScale = 1.0 / (chassisDiam * inchToMM);

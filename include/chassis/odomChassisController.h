@@ -15,9 +15,9 @@ namespace okapi {
      * @param iparams Odometry parameters for the internal odometry math
      */
     OdomChassisController(OdomParams iparams):
-      ChassisController(iparams.model) {
-        Odometry::setParams(iparams);
-        taskCreate((TaskCode)&Odometry::loop, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT + 1);
+      ChassisController(iparams.model),
+      odom(iparams) {
+        taskCreate((TaskCode)Odometry::trampoline, TASK_DEFAULT_STACK_SIZE, &odom, TASK_PRIORITY_DEFAULT + 1);
       }
 
     virtual ~OdomChassisController() = default;
@@ -34,8 +34,15 @@ namespace okapi {
      * @param iangle Angle to turn to
      */
     virtual void turnToAngle(const float iangle) = 0;
+
+    /**
+     * Passthrough to internal Odometry object
+     * @return State from internal Odometry object
+     */
+    OdomState getState() { return odom.getState(); }
   protected:
     static constexpr int moveThreshold = 100; //Minimum length movement
+    Odometry odom;
   };
 
   class OdomChassisControllerPid : public OdomChassisController, public ChassisControllerPid {

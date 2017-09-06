@@ -11,41 +11,27 @@
  */
 
 #include "main.h"
-#include "chassis/basicChassisController.h"
+#include "chassis/odomChassisController.h"
 
 using namespace okapi;
 
-/*
- * Runs the user operator control code. This function will be started in its own task with the
- * default priority and stack size whenever the robot is enabled via the Field Management System
- * or the VEX Competition Switch in the operator control mode. If the robot is disabled or
- * communications is lost, the operator control task will be stopped by the kernel. Re-enabling
- * the robot will restart the task, not resume it from where it left off.
- *
- * If no VEX Competition Switch or Field Management system is plugged in, the VEX Cortex will
- * run the operator control task. Be warned that this will also occur if the VEX Cortex is
- * tethered directly to a computer via the USB A to A cable without any VEX Joystick attached.
- *
- * Code running in this task can take almost any action, as the VEX Joystick is available and
- * the scheduler is operational. However, proper use of delay() or taskDelayUntil() is highly
- * recommended to give other tasks (including system tasks such as updating LCDs) time to run.
- *
- * This task should never exit; it should end with some kind of infinite loop, even if empty.
- */
 void operatorControl() {
 	Encoder leftEnc = encoderInit(3, 4, true);
 	Encoder rightEnc = encoderInit(1, 2, false);
-	ChassisControllerPid controller(SkidSteerModelParams<3>({4,5,6, 7,8,9}, //Left motors, right motors
-                                                          leftEnc,   //Left encoder
-                                                          rightEnc), //Right encoder
-                                  PidParams(0.35, 0.22, 0.18), //Distance PID
-                                  PidParams(0.5, 0.5, 0));     //Angle PID
+	OdomChassisControllerPid chassis(OdomParams(
+    SkidSteerModelParams<3>({4,5,6, 7,8,9}, //The six motor ports
+                            leftEnc,   //Left encoder
+                            rightEnc), //Right encoder
+    1.345,     //Distance scale (encoder ticks to mm)
+    12.88361), //Turn scale (encoder ticks to deg)
+  PidParams(0,0,0),  //Distance PID controller
+  PidParams(0,0,0)); //Angle PID controller
 
 	while (1) {
-	  // controller.driveForward(30);
-		// controller.turnClockwise(30);
-		// printf("%d,%d\n",encoderGet(leftEnc), encoderGet(rightEnc));
-		// controller.driveStraight(100);
-		delay(15);
+		// volatile int x = *((int*)0xFFFFFFFF) = 69;
+		// printf("%d", x);
+		const auto state = chassis.getState();
+		printf("%1.2f, %1.2f, %1.2f\n", state.x, state.y, state.theta);
+		taskDelay(100);
 	}
 }
