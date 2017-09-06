@@ -11,17 +11,18 @@ namespace okapi {
 
   OdomState Odometry::loop() {
     unsigned long now = millis();
+    std::valarray<int> newTicks{0, 0}, tickDiff{0, 0};
 
     while (true) {
-      const auto newTicks = model->getEncoderVals();
-      currentTicks = newTicks - lastTicks;
-      mm = (((float)currentTicks[0] * scale) + ((float)currentTicks[1] * scale)) / 2.0;
+      newTicks = model->getEncoderVals();
+      tickDiff = newTicks - lastTicks;
+      mm = ((tickDiff[0] + tickDiff[1]) / 2.0) * scale;
       lastTicks = newTicks;
 
-      state.theta += (currentTicks[1] - currentTicks[0]) * turnScale;
+      state.theta += (tickDiff[1] - tickDiff[0]) * turnScale;
       if (state.theta > 180)
         state.theta -= 360;
-      else if (state.theta <= -180)
+      else if (state.theta < -180)
         state.theta += 360;
 
       state.x += mm * std::cos(state.theta) * radianToDegree;

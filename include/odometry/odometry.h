@@ -43,16 +43,14 @@ namespace okapi {
       model(imodelParams.make()),
       scale(iscale),
       turnScale(iturnScale),
-      lastTicks(0, 0),
-      currentTicks(0, 0),
+      lastTicks{0, 0},
       mm(0) {}
 
     Odometry(const OdomParams& iparams):
       model(iparams.model),
       scale(iparams.scale),
       turnScale(iparams.turnScale),
-      lastTicks(0, 0),
-      currentTicks(0, 0),
+      lastTicks{0, 0},
       mm(0) {}
 
     /**
@@ -96,7 +94,7 @@ namespace okapi {
     std::shared_ptr<ChassisModel> model;
     OdomState state;
     float scale, turnScale;
-    std::valarray<int> lastTicks, currentTicks;
+    std::valarray<int> lastTicks;
     float mm;
   };
 }
