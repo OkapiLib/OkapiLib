@@ -22,16 +22,16 @@ void operatorControl() {
     SkidSteerModelParams<3>({4,5,6, 7,8,9}, //The six motor ports
                             leftEnc,   //Left encoder
                             rightEnc), //Right encoder
-    1.345,     //Distance scale (encoder ticks to mm)
-    12.88361), //Turn scale (encoder ticks to deg)
+    0.716457354, //Distance scale (encoder ticks to mm)
+    0.0270938),  //Turn scale (encoder ticks to deg)
   PidParams(0,0,0),  //Distance PID controller
   PidParams(0,0,0)); //Angle PID controller
 
 	while (1) {
 		// volatile int x = *((int*)0xFFFFFFFF) = 69;
 		// printf("%d", x);
-		const auto state = chassis.getState();
-		printf("%1.2f, %1.2f, %1.2f\n", state.x, state.y, state.theta);
+		// const auto state = chassis.getState();
+		// printf("%1.2f, %1.2f, %1.2f\n", state.x, state.y, state.theta);
 		taskDelay(100);
 	}
 }

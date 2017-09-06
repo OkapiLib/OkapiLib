@@ -16,10 +16,13 @@ namespace okapi {
     while (true) {
       newTicks = model->getEncoderVals();
       tickDiff = newTicks - lastTicks;
+      printf("avg: %1.2f\t", (tickDiff[0] + tickDiff[1]) / 2.0);
       mm = ((tickDiff[0] + tickDiff[1]) / 2.0) * scale;
+      printf("mm: %1.2f\t", mm);
       lastTicks = newTicks;
 
       state.theta += (tickDiff[1] - tickDiff[0]) * turnScale;
+      printf("theta: %1.2f\n", state.theta);
       if (state.theta > 180)
         state.theta -= 360;
       else if (state.theta < -180)
