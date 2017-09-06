@@ -105,7 +105,7 @@ namespace okapi {
     }
 
     std::valarray<int> getEncoderVals() const override {
-      return std::valarray<int>(encoderGet(leftEnc), encoderGet(rightEnc));
+      return std::valarray<int>{encoderGet(leftEnc), encoderGet(rightEnc)};
     }
   private:
     std::array<unsigned char, motorsPerSide * 2> motors;
@@ -193,7 +193,7 @@ namespace okapi {
     }
 
     std::valarray<int> getEncoderVals() const override {
-      return std::valarray<int>(encoderGet(leftEnc), encoderGet(rightEnc));
+      return std::valarray<int>{encoderGet(leftEnc), encoderGet(rightEnc)};
     }
   private:
     std::array<unsigned char, motorsPerCorner * 4> motors;
