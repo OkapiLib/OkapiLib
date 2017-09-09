@@ -5,8 +5,8 @@
 
 namespace okapi {
   void Odometry::guessScales(const float chassisDiam, const float wheelDiam, const float ticksPerRev) {
-    scale = (wheelDiam * pi * inchToMM) / ticksPerRev;
-    turnScale = 1.0 / (chassisDiam * inchToMM);
+    scale = ((wheelDiam * pi * inchToMM) / ticksPerRev) * 0.9945483364; //This scale is usually off by this amount
+    turnScale = (1.0 / (chassisDiam * inchToMM)) * degreeToRadian;
   }
 
   OdomState Odometry::loop() {
@@ -16,20 +16,17 @@ namespace okapi {
     while (true) {
       newTicks = model->getEncoderVals();
       tickDiff = newTicks - lastTicks;
-      printf("avg: %1.2f\t", (tickDiff[0] + tickDiff[1]) / 2.0);
-      mm = ((tickDiff[0] + tickDiff[1]) / 2.0) * scale;
-      printf("mm: %1.2f\t", mm);
+      mm = ((tickDiff[1] + tickDiff[0]) / 2.0) * scale;
       lastTicks = newTicks;
 
-      state.theta += (tickDiff[1] - tickDiff[0]) * turnScale;
-      printf("theta: %1.2f\n", state.theta);
+      state.theta += ((tickDiff[1] - tickDiff[0]) / 2.0) * turnScale;
       if (state.theta > 180)
         state.theta -= 360;
       else if (state.theta < -180)
         state.theta += 360;
 
-      state.x += mm * std::cos(state.theta) * radianToDegree;
-      state.y += mm * std::sin(state.theta) * radianToDegree;
+      state.x += mm * std::cos(state.theta);
+      state.y += mm * std::sin(state.theta);
 
       taskDelayUntil(&now, 15);
     }

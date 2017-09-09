@@ -36,7 +36,6 @@ namespace okapi {
     float scale, turnScale;
   };
 
-  //Odometry has to be static because loop has to be called from a task
   class Odometry {
   public:
     Odometry(const ChassisModelParams& imodelParams, const float iscale, const float iturnScale):
@@ -66,7 +65,7 @@ namespace okapi {
     /**
      * Set the drive and turn scales
      * @param iscale     Scale converting encoder ticks to mm
-     * @param iturnScale Scale converting encoder ticks to deg
+     * @param iturnScale Scale converting encoder ticks to radians
      */
     void setScales(const float iscale, const float iturnScale) {
       scale = iscale;

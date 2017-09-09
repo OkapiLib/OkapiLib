@@ -23,15 +23,16 @@ void operatorControl() {
                             leftEnc,   //Left encoder
                             rightEnc), //Right encoder
     0.716457354, //Distance scale (encoder ticks to mm)
-    0.0270938),  //Turn scale (encoder ticks to deg)
+    0.1122), //Turn scale (encoder ticks to radians)
   PidParams(0,0,0),  //Distance PID controller
   PidParams(0,0,0)); //Angle PID controller
 
 	while (1) {
 		// volatile int x = *((int*)0xFFFFFFFF) = 69;
 		// printf("%d", x);
-		// const auto state = chassis.getState();
-		// printf("%1.2f, %1.2f, %1.2f\n", state.x, state.y, state.theta);
+		const auto state = chassis.getState();
+		printf("%1.2f, %1.2f, %1.2f\n", state.x, state.y, state.theta);
+		// printf("l: %d, r: %d\n", encoderGet(leftEnc), encoderGet(rightEnc));
 		taskDelay(100);
 	}
 }
