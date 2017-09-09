@@ -230,15 +230,15 @@ namespace okapi {
         motorSet(motors[i], verticalVal + horizontalVal);
     }
 
-    void xArcade(const int verticalVal, const int horizontalVal, const int translate) {
+    void xArcade(const int verticalVal, const int horizontalVal, const int rotateVal) {
         for (size_t i = 0; i < motorsPerCorner; i++)
-          motorSet(motors[i], verticalVal + horizontalVal + translate);
+          motorSet(motors[i], verticalVal + horizontalVal + rotateVal);
         for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
-          motorSet(motors[i], verticalVal - horizontalVal - translate);
+          motorSet(motors[i], verticalVal - horizontalVal - rotateVal);
         for (size_t i = motorsPerCorner * 2; i < motorsPerCorner * 3; i++)
-          motorSet(motors[i], verticalVal - horizontalVal + translate);
+          motorSet(motors[i], verticalVal + horizontalVal - rotateVal);
         for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
-          motorSet(motors[i], verticalVal + horizontalVal - translate);
+          motorSet(motors[i], verticalVal - horizontalVal + rotateVal);
     }
 
     std::valarray<int> getEncoderVals() const override {

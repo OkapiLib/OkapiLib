@@ -33,3 +33,18 @@ Parameter | Description
 imotorList | The chassis motors for the drive in the clockwise format, `{top left motors, top right motors, bottom right motors, bottom left motors}`
 ileftEnc | The quadrature encoder for the left side
 irightEnc | The quadrature encoder for the right side
+
+## xArcade
+
+```c++
+//Signature
+void xArcade(const int verticalVal, const int horizontalVal, const int rotateVal)
+```
+
+Specifically for an x-drive, power the motors like arcade drive with a channel for rotation.
+
+Parameter | Description
+----------|------------
+verticalVal | Motor power for the vertical component of movement
+horizontalVal | Motor power for the horizontal component of movement
+rotateVal | Motor power for rotation

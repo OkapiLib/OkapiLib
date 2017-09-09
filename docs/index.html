@@ -132,6 +132,34 @@ Remember that derived classes inherit the interface of their base class; therefo
 
 <p>Turn the robot in place for an angle of <code>idegTarget</code>. The units of the angle travel is most often the difference in encoder ticks between the two sides of the chassis.</p>
 
+<h2 id="driveforward">driveForward</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="kt">void</span> <span class="n">driveForward</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">power</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Passthrough function to call <code>driveForward</code> on the internal <code>ChassisModel</code>.</p>
+
+<h2 id="drivevector">driveVector</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="kt">void</span> <span class="n">driveVector</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">distPower</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">anglePower</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Passthrough function to call <code>driveVector</code> on the internal <code>ChassisModel</code>.</p>
+
+<h2 id="turnclockwise">turnClockwise</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="kt">void</span> <span class="n">turnClockwise</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">power</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Passthrough function to call <code>turnClockwise</code> on the internal <code>ChassisModel</code>.</p>
+
+<h2 id="getencodervals">getEncoderVals</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="n">std</span><span class="o">::</span><span class="n">valarray</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">getEncoderVals</span><span class="p">()</span> <span class="k">const</span>
+</code></pre></div>
+
+<p>Passthrough function to call <code>getEncoderVals</code> on the internal <code>ChassisModel</code>.</p>
+
     
         
 
@@ -141,8 +169,8 @@ Remember that derived classes inherit the interface of their base class; therefo
 
 <h2 id="constructor">Constructor</h2>
 <div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
-<span class="n">ChassisControllerPid</span><span class="p">(</span><span class="k">const</span> <span class="n">ChassisModelParams</span><span class="o">&amp;</span> <span class="n">imodelParams</span><span class="p">,</span> <span class="n">PidParams</span> <span class="n">idistanceParams</span><span class="p">,</span> <span class="n">PidParams</span> <span class="n">iangleParams</span><span class="p">)</span>
-<span class="n">ChassisControllerPid</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ChassisModel</span><span class="o">&gt;</span> <span class="n">imodel</span><span class="p">,</span> <span class="n">PidParams</span> <span class="n">idistanceParams</span><span class="p">,</span> <span class="n">PidParams</span> <span class="n">iangleParams</span><span class="p">)</span>
+<span class="n">ChassisControllerPid</span><span class="p">(</span><span class="k">const</span> <span class="n">ChassisModelParams</span><span class="o">&amp;</span> <span class="n">imodelParams</span><span class="p">,</span> <span class="k">const</span> <span class="n">PidParams</span><span class="o">&amp;</span> <span class="n">idistanceParams</span><span class="p">,</span> <span class="k">const</span> <span class="n">PidParams</span><span class="o">&amp;</span> <span class="n">iangleParams</span><span class="p">)</span>
+<span class="n">ChassisControllerPid</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ChassisModel</span><span class="o">&gt;&amp;</span> <span class="n">imodel</span><span class="p">,</span> <span class="k">const</span> <span class="n">PidParams</span><span class="o">&amp;</span> <span class="n">idistanceParams</span><span class="p">,</span> <span class="k">const</span> <span class="n">PidParams</span><span class="o">&amp;</span> <span class="n">iangleParams</span><span class="p">)</span>
 
 <span class="c1">//Make a new ChassisControllerPid using a skid steer model with two motors per side</span>
 <span class="n">ChassisControllerPid</span> <span class="n">foo</span><span class="p">(</span>
@@ -195,7 +223,7 @@ Most users should not call this constructor with a std::shared_ptr&lt;ChassisMod
 <h2 id="constructor-1">Constructor</h2>
 <div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
 <span class="n">ChassisControllerMP</span><span class="p">(</span><span class="k">const</span> <span class="n">ChassisModelParams</span><span class="o">&amp;</span> <span class="n">imodelParams</span><span class="p">,</span> <span class="k">const</span> <span class="n">MPControllerParams</span><span class="o">&amp;</span> <span class="n">iparams</span><span class="p">)</span>
-<span class="n">ChassisControllerMP</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ChassisModel</span><span class="o">&gt;</span> <span class="n">imodel</span><span class="p">,</span> <span class="k">const</span> <span class="n">MPControllerParams</span><span class="o">&amp;</span> <span class="n">iparams</span><span class="p">)</span>
+<span class="n">ChassisControllerMP</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ChassisModel</span><span class="o">&gt;&amp;</span> <span class="n">imodel</span><span class="p">,</span> <span class="k">const</span> <span class="n">MPControllerParams</span><span class="o">&amp;</span> <span class="n">iparams</span><span class="p">)</span>
 
 <span class="c1">//Make a new ChassisControllerMP using a skid steer model with two motors per side</span>
 <span class="n">ChassisControllerMP</span> <span class="n">foo</span><span class="p">(</span>
@@ -344,7 +372,7 @@ This class creates a new task inside its constructor and references a static cla
 
 <h2 id="constructor">Constructor</h2>
 <div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
-<span class="n">OdomChassisControllerPid</span><span class="p">(</span><span class="n">OdomParams</span> <span class="n">params</span><span class="p">,</span> <span class="n">PidParams</span> <span class="n">idistanceParams</span><span class="p">,</span> <span class="n">PidParams</span> <span class="n">iangleParams</span><span class="p">)</span>
+<span class="n">OdomChassisControllerPid</span><span class="p">(</span><span class="k">const</span> <span class="n">OdomParams</span><span class="o">&amp;</span> <span class="n">params</span><span class="p">,</span> <span class="k">const</span> <span class="n">PidParams</span><span class="o">&amp;</span> <span class="n">idistanceParams</span><span class="p">,</span> <span class="k">const</span> <span class="n">PidParams</span><span class="o">&amp;</span> <span class="n">iangleParams</span><span class="p">)</span>
 
 <span class="c1">//Make a new OdomChassisControllerPid using a skid steer model with two motors per side</span>
 <span class="n">OdomChassisControllerPid</span> <span class="n">foo</span><span class="p">(</span>
@@ -390,7 +418,7 @@ This class creates a new task inside its constructor and references a static cla
 
 <h2 id="constructor-1">Constructor</h2>
 <div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
-<span class="n">OdomChassisControllerMP</span><span class="p">(</span><span class="n">OdomParams</span> <span class="n">params</span><span class="p">,</span> <span class="k">const</span> <span class="n">MPControllerParams</span><span class="o">&amp;</span> <span class="n">iconparams</span><span class="p">)</span>
+<span class="n">OdomChassisControllerMP</span><span class="p">(</span><span class="k">const</span> <span class="n">OdomParams</span><span class="o">&amp;</span> <span class="n">params</span><span class="p">,</span> <span class="k">const</span> <span class="n">MPControllerParams</span><span class="o">&amp;</span> <span class="n">iconparams</span><span class="p">)</span>
 
 <span class="c1">//Make a new ChassisControllerMP using a skid steer model with two motors per side</span>
 <span class="n">OdomChassisControllerMP</span> <span class="n">foo</span><span class="p">(</span>
@@ -522,6 +550,62 @@ This class creates a new task inside its constructor and references a static cla
 <tr>
 <td>anglePower</td>
 <td>The motor power making up the &ldquo;turn&rdquo; component of the final motor power</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="tank">tank</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">tank</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">leftVal</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">rightVal</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div>
+
+<p>Power the motors like tank drive.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>leftVal</td>
+<td>Motor power for the left side motors</td>
+</tr>
+
+<tr>
+<td>rightVal</td>
+<td>Motor power for the right side motors</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="arcade">arcade</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="k">virtual</span> <span class="kt">void</span> <span class="nf">arcade</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">verticalVal</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">horizontalVal</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div>
+
+<p>Power the motors like arcade drive.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>verticalVal</td>
+<td>Motor power for the vertical component of movement</td>
+</tr>
+
+<tr>
+<td>horizontalVal</td>
+<td>Motor power for the horizontal component of movement</td>
 </tr>
 </tbody>
 </table>
@@ -686,6 +770,39 @@ This class creates a new task inside its constructor and references a static cla
 <tr>
 <td>irightEnc</td>
 <td>The quadrature encoder for the right side</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="xarcade">xArcade</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="kt">void</span> <span class="n">xArcade</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">verticalVal</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">horizontalVal</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">rotateVal</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Specifically for an x-drive, power the motors like arcade drive with a channel for rotation.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>verticalVal</td>
+<td>Motor power for the vertical component of movement</td>
+</tr>
+
+<tr>
+<td>horizontalVal</td>
+<td>Motor power for the horizontal component of movement</td>
+</tr>
+
+<tr>
+<td>rotateVal</td>
+<td>Motor power for rotation</td>
 </tr>
 </tbody>
 </table>
@@ -1309,7 +1426,7 @@ This class creates a new task inside its constructor and references a static cla
 <span class="n">MPGenerator</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">iaccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">imaxVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">itargetPos</span><span class="p">)</span>
 <span class="n">MPGenerator</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">imaxAccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">iminAccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">imaxVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">itargetPos</span><span class="p">)</span>
 <span class="n">MPGenerator</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">imaxAccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">iminAccel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">imaxVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">itargetPos</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">istartVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">iendVel</span><span class="p">)</span>
-<span class="n">MPGenerator</span><span class="p">(</span><span class="n">MPGenParams</span> <span class="n">iparams</span><span class="p">)</span>
+<span class="n">MPGenerator</span><span class="p">(</span><span class="k">const</span> <span class="n">MPGenParams</span><span class="o">&amp;</span> <span class="n">iparams</span><span class="p">)</span>
 </code></pre></div>
 
 <table>
