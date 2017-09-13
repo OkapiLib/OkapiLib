@@ -8,7 +8,7 @@
 
 namespace okapi {
   template<std::size_t n>
-  class AvgFilter : public Filter {
+  class AvgFilter final : public Filter {
   public:
     AvgFilter():
       data(),

@@ -63,6 +63,34 @@ Parameter | Description
 distPower | The motor power making up the "straight" component of the final motor power
 anglePower | The motor power making up the "turn" component of the final motor power
 
+## tank
+
+```c++
+//Signature
+virtual void tank(const int leftVal, const int rightVal) = 0;
+```
+
+Power the motors like tank drive.
+
+Parameter | Description
+----------|------------
+leftVal | Motor power for the left side motors
+rightVal | Motor power for the right side motors
+
+## arcade
+
+```c++
+//Signature
+virtual void arcade(const int verticalVal, const int horizontalVal) = 0;
+```
+
+Power the motors like arcade drive.
+
+Parameter | Description
+----------|------------
+verticalVal | Motor power for the vertical component of movement
+horizontalVal | Motor power for the horizontal component of movement
+
 ## getEncoderVals
 
 Reads the encoders given to the chassis model at construction time and returns them in the format `{left encoder value, right encoder value}`. Return type is a `std::valarray` because it features operator overrides for common math operations making encoder math easy.

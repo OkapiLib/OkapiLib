@@ -36,14 +36,27 @@ namespace okapi {
     float scale, turnScale;
   };
 
-  //Odometry has to be static because loop has to be called from a task
   class Odometry {
   public:
+    Odometry(const ChassisModelParams& imodelParams, const float iscale, const float iturnScale):
+      model(imodelParams.make()),
+      scale(iscale),
+      turnScale(iturnScale),
+      lastTicks{0, 0},
+      mm(0) {}
+
+    Odometry(const OdomParams& iparams):
+      model(iparams.model),
+      scale(iparams.scale),
+      turnScale(iparams.turnScale),
+      lastTicks{0, 0},
+      mm(0) {}
+
     /**
      * Sets the parameters for Odometry math
      * @param iparams Odometry parameters
      */
-    static void setParams(OdomParams& iparams) {
+    void setParams(OdomParams& iparams) {
       model = iparams.model;
       scale = iparams.scale;
       turnScale = iparams.turnScale;
@@ -52,9 +65,9 @@ namespace okapi {
     /**
      * Set the drive and turn scales
      * @param iscale     Scale converting encoder ticks to mm
-     * @param iturnScale Scale converting encoder ticks to deg
+     * @param iturnScale Scale converting encoder ticks to radians
      */
-    static void setScales(const float iscale, const float iturnScale) {
+    void setScales(const float iscale, const float iturnScale) {
       scale = iscale;
       turnScale = iturnScale;
     }
@@ -65,25 +78,23 @@ namespace okapi {
      * @param wheelDiam   Edge-to-edge wheel diameter in inches
      * @param ticksPerRev Quad ticks per revolution (default is 360)
      */
-    static void guessScales(const float chassisDiam, const float wheelDiam, const float ticksPerRev = 360.0);
+    void guessScales(const float chassisDiam, const float wheelDiam, const float ticksPerRev = 360.0);
 
     /**
      * Do one iteration of odometry math and return the new state estimate
      * @return               New state estimate
      */
-    static OdomState loop();
+    OdomState loop();
 
-    static OdomState getState() { return state; }
+    static void trampoline(void * const context) { ((Odometry*)context)->loop(); }
+
+    OdomState getState() { return state; }
   private:
-    Odometry() {}
-    Odometry(const Odometry& other);
-    Odometry& operator=(Odometry& other);
-
-    static std::shared_ptr<ChassisModel> model;
-    static OdomState state;
-    static float scale, turnScale;
-    static std::valarray<int> lastTicks, currentTicks;
-    static float mm;
+    std::shared_ptr<ChassisModel> model;
+    OdomState state;
+    float scale, turnScale;
+    std::valarray<int> lastTicks;
+    float mm;
   };
 }
 

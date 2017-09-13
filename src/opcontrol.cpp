@@ -89,6 +89,7 @@ void operatorControl() {
 		}
 
 		controller.driveForward(joystickGetAnalog(1, 2));
+		
 
 		// while (lcdReadButtons(uart1) != LCD_BTN_CENTER)
 		// 	taskDelay(15);

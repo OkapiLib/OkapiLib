@@ -4,7 +4,7 @@
 #include "filter/filter.h"
 
 namespace okapi {
-  class DemaFilter : public Filter {
+  class DemaFilter final : public Filter {
   public:
     DemaFilter(const float ialpha, const float ibeta):
       alpha(ialpha),
