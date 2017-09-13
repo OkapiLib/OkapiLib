@@ -47,11 +47,8 @@ void operatorControl() {
 
 	Encoder leftEnc = encoderInit(12, 11, true);
 	Encoder rightEnc = encoderInit(1, 2, false);
-	ChassisControllerPid controller(SkidSteerModelParams<3>({1,2,3, 4,5,6}, //Left motors, right motors
-                                                          leftEnc,   //Left encoder
-                                                          rightEnc), //Right encoder
-                                  PidParams(0.35, 0.22, 0.18), //Distance PID
-                                  PidParams(0.5, 0.5, 0));     //Angle PID
+	SkidSteerModel<3> model({2,3,4, 5,6,7}, leftEnc, rightEnc);
+	ChassisControllerPid controller(std::make_shared<SkidSteerModel<3>>(model), PidParams(0.35, 0.22, 0.18), PidParams(0.5, 0.5, 0));
 
 	const unsigned char liftLeft = 8, liftRight = 9, liftPot = 1;
 
@@ -59,7 +56,7 @@ void operatorControl() {
 
 	constexpr int liftUpTarget = 2570, liftDownTarget = 10;
 	int target = liftUpTarget;
-	bool isOn = false;
+	bool isOn = true;
 
 	// constexpr unsigned char motor1 = 2, motor2 = 3;
 	// lcdSetBacklight(uart1, true);
@@ -72,9 +69,9 @@ void operatorControl() {
 		// volatile int x = *((int*)0xFFFFFFFF) = 69;
 		// printf("%d", x);
 
-		if (joystickGetDigital(1, 8, JOY_UP))
+		if (joystickGetDigital(1, 6, JOY_UP))
 			target = liftUpTarget;
-		else if (joystickGetDigital(1, 8, JOY_DOWN))
+		else if (joystickGetDigital(1, 6, JOY_DOWN))
 			target = liftDownTarget;
 		else if (joystickGetDigital(1, 8, JOY_LEFT))
 			isOn = !isOn;
@@ -86,10 +83,12 @@ void operatorControl() {
 			liftPid.loop(analogRead(liftPot));
 			motorSet(liftLeft, liftPid.getOutput());
 			motorSet(liftRight, liftPid.getOutput());
+		} else {
+			motorSet(liftLeft, 0);
+			motorSet(liftRight, 0);
 		}
 
-		controller.driveForward(joystickGetAnalog(1, 2));
-		
+		model.arcade(joystickGetAnalog(1, 3), joystickGetAnalog(1, 1));
 
 		// while (lcdReadButtons(uart1) != LCD_BTN_CENTER)
 		// 	taskDelay(15);
