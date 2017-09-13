@@ -36,6 +36,7 @@ namespace std {
  */
 void initializeIO() {
   __libc_init_array();
+  lcdInit(uart1);
 }
 
 /*
