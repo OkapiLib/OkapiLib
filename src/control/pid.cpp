@@ -54,36 +54,40 @@ namespace okapi {
   float Pid::loop(const float inewReading) {
     using namespace std; //Needed to get copysign to compile
 
-    const long now = millis();
+    if (isOn) {
+      const long now = millis();
 
-    if (now - lastTime >= sampleTime) {
-      const float error = target - inewReading;
+      if (now - lastTime >= sampleTime) {
+        const float error = target - inewReading;
 
-      integral += kI * error; //Eliminate integral kick while realtime tuning
+        integral += kI * error; //Eliminate integral kick while realtime tuning
 
-      if (shouldResetOnCross && copysign(1.0, (float)error) != copysign(1.0, (float)lastError))
-        integral = 0;
+        if (shouldResetOnCross && copysign(1.0, (float)error) != copysign(1.0, (float)lastError))
+          integral = 0;
 
-      if (integral > integralMax)
-        integral = integralMax;
-      else if (integral < integralMin)
-        integral = integralMin;
+        if (integral > integralMax)
+          integral = integralMax;
+        else if (integral < integralMin)
+          integral = integralMin;
 
-      const float derivative = inewReading - lastReading; //Derivative over measurement to eliminate derivative kick on setpoint change
+        const float derivative = inewReading - lastReading; //Derivative over measurement to eliminate derivative kick on setpoint change
 
-      output = kP * error + integral - kD * derivative + kBias;
+        output = kP * error + integral - kD * derivative + kBias;
 
-      if (output > outputMax)
-        output = outputMax;
-      else if (output < outputMin)
-        output = outputMin;
+        if (output > outputMax)
+          output = outputMax;
+        else if (output < outputMin)
+          output = outputMin;
 
-      lastReading = inewReading;
-      lastError = error;
-      lastTime = now; //Important that we only assign lastTime if dt >= sampleTime
+        lastReading = inewReading;
+        lastError = error;
+        lastTime = now; //Important that we only assign lastTime if dt >= sampleTime
+      }
+
+      return output;
     }
 
-    return output;
+    return 0;
   }
 
   void Pid::setGains(const float ikP, const float ikI, const float ikD, const float ikBias) {

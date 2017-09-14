@@ -35,7 +35,8 @@ namespace okapi {
       output(0),
       outputMax(127),
       outputMin(-127),
-      shouldResetOnCross(true) {
+      shouldResetOnCross(true),
+      isOn(true) {
         setGains(ikP, ikI, ikD, ikBias);
       }
 
@@ -56,7 +57,8 @@ namespace okapi {
       output(0),
       outputMax(127),
       outputMin(-127),
-      shouldResetOnCross(true) {
+      shouldResetOnCross(true),
+      isOn(true) {
         setGains(params.kP, params.kI, params.kD, params.kBias);
       }
 
@@ -110,6 +112,8 @@ namespace okapi {
      */
     void setIntegratorReset(bool iresetOnZero) { shouldResetOnCross = iresetOnZero; }
 
+    void flipDisable() { isOn = !isOn; }
+
     void setTarget(const float itarget) { target = itarget; }
 
     float getOutput() const { return output; }
@@ -120,7 +124,7 @@ namespace okapi {
     float target, lastReading;
     float integral, integralMax, integralMin;
     float output, outputMax, outputMin;
-    bool shouldResetOnCross;
+    bool shouldResetOnCross, isOn;
   };
 }
 
