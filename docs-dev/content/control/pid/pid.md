@@ -116,6 +116,15 @@ Parameter | Description
 ----------|------------
 iresetOnZero | Whether the integrator should be cleared when the controller's error is zero or changes sign
 
+## flipDisable
+
+```c++
+//Signature
+void flipDisable()
+```
+
+Change whether the controller is on or off. A controller which is off will output 0.
+
 ## setTarget
 
 ```c++
