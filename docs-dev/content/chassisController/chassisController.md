@@ -69,6 +69,24 @@ void turnClockwise(const int power)
 
 Passthrough function to call `turnClockwise` on the internal `ChassisModel`.
 
+## tank
+
+```c++
+//Signature
+void tank(const int leftVal, const int rightVal)
+```
+
+Passthrough function to call `tank` on the internal `ChassisModel`
+
+## arcade
+
+```c++
+//Signature
+void arcade(const int verticalVal, const int horizontalVal)
+```
+
+Passthrough function to call `arcade` on the internal `ChassisModel`
+
 ## getEncoderVals
 
 ```c++

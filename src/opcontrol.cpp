@@ -82,7 +82,7 @@ void operatorControl() {
 		motorSet(liftLeft, liftPid.getOutput());
 		motorSet(liftRight, liftPid.getOutput());
 
-		model.arcade(joystickGetAnalog(1, 3), joystickGetAnalog(1, 1));
+		controller.arcade(joystickGetAnalog(1, 3), joystickGetAnalog(1, 1));
 
 		// while (lcdReadButtons(uart1) != LCD_BTN_CENTER)
 		// 	taskDelay(15);
