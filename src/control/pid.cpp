@@ -83,11 +83,10 @@ namespace okapi {
         lastError = error;
         lastTime = now; //Important that we only assign lastTime if dt >= sampleTime
       }
-
-      return output;
     }
 
-    return 0;
+    output = 0; //Controller is off so write 0
+    return output;
   }
 
   void Pid::setGains(const float ikP, const float ikI, const float ikD, const float ikBias) {

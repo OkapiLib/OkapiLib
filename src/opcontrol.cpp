@@ -56,7 +56,6 @@ void operatorControl() {
 
 	constexpr int liftUpTarget = 2570, liftDownTarget = 10;
 	int target = liftUpTarget;
-	bool isOn = true;
 
 	// constexpr unsigned char motor1 = 2, motor2 = 3;
 	// lcdSetBacklight(uart1, true);
@@ -74,19 +73,14 @@ void operatorControl() {
 		else if (joystickGetDigital(1, 6, JOY_DOWN))
 			target = liftDownTarget;
 		else if (joystickGetDigital(1, 8, JOY_LEFT))
-			isOn = !isOn;
+			liftPid.flipDisable();
 
 		// printf("%d\n", analogRead(liftPot));
 
-		if (isOn) {
-			liftPid.setTarget(target);
-			liftPid.loop(analogRead(liftPot));
-			motorSet(liftLeft, liftPid.getOutput());
-			motorSet(liftRight, liftPid.getOutput());
-		} else {
-			motorSet(liftLeft, 0);
-			motorSet(liftRight, 0);
-		}
+		liftPid.setTarget(target);
+		liftPid.loop(analogRead(liftPot));
+		motorSet(liftLeft, liftPid.getOutput());
+		motorSet(liftRight, liftPid.getOutput());
 
 		model.arcade(joystickGetAnalog(1, 3), joystickGetAnalog(1, 1));
 

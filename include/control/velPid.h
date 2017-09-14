@@ -114,7 +114,7 @@ namespace okapi {
 
     void setTarget(const float itarget) { target = itarget; }
 
-    float getOutput() const { return output; }
+    float getOutput() const { return isOn ? output : 0; }
 
   private:
     float kP, kD;
