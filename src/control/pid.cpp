@@ -83,9 +83,10 @@ namespace okapi {
         lastError = error;
         lastTime = now; //Important that we only assign lastTime if dt >= sampleTime
       }
+    } else {
+      output = 0; //Controller is off so write 0
     }
 
-    output = 0; //Controller is off so write 0
     return output;
   }
 

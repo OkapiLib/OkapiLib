@@ -74,8 +74,10 @@ void operatorControl() {
 			target = liftDownTarget;
 		else if (joystickGetDigital(1, 5, JOY_UP))
 			target = lift34;
-		else if (joystickGetDigital(1, 8, JOY_LEFT))
+		else if (joystickGetDigital(1, 8, JOY_LEFT)) {
 			liftPid.flipDisable();
+			while (joystickGetDigital(1, 8, JOY_LEFT));
+		}
 
 		// printf("%d\n", analogRead(liftPot));
 
@@ -84,7 +86,7 @@ void operatorControl() {
 		motorSet(liftLeft, liftPid.getOutput());
 		motorSet(liftRight, liftPid.getOutput());
 
-		controller.arcade(joystickGetAnalog(1, 3), joystickGetAnalog(1, 1));
+		controller.arcade(joystickGetAnalog(1, 3), joystickGetAnalog(1, 4));
 
 		// while (lcdReadButtons(uart1) != LCD_BTN_CENTER)
 		// 	taskDelay(15);
