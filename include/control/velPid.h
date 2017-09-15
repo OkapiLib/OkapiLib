@@ -29,7 +29,6 @@ namespace okapi {
       output(0),
       outputMax(127),
       outputMin(-127),
-      shouldResetOnCross(true),
       vel(0),
       lastVel(0),
       lastPos(0),
@@ -51,7 +50,6 @@ namespace okapi {
       output(0),
       outputMax(127),
       outputMin(-127),
-      shouldResetOnCross(true),
       vel(0),
       lastVel(0),
       lastPos(0),
@@ -112,9 +110,11 @@ namespace okapi {
 
     void reset();
 
+    void flipDisable() { isOn = !isOn; }
+
     void setTarget(const float itarget) { target = itarget; }
 
-    float getOutput() const { return output; }
+    float getOutput() const { return isOn ? output : 0; }
 
   private:
     float kP, kD;
@@ -122,7 +122,7 @@ namespace okapi {
     float error, lastError;
     float target;
     float output, outputMax, outputMin;
-    bool shouldResetOnCross;
+    bool isOn;
     float vel, lastVel, lastPos, ticksPerRev;
     DemaFilter filter;
   };

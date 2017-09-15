@@ -126,6 +126,15 @@ void reset()
 
 Reset the controller so it will start from zero again.
 
+## flipDisable
+
+```c++
+//Signature
+void flipDisable()
+```
+
+Change whether the controller is on or off. A controller which is off will output 0.
+
 ## setTarget
 
 ```c++
