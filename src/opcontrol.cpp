@@ -54,7 +54,7 @@ void operatorControl() {
 
   Pid liftPid(0.2, 0.5, 0.1);
 
-	constexpr int liftUpTarget = 2570, liftDownTarget = 10;
+	constexpr int liftUpTarget = 2570, lift34 = 800, liftDownTarget = 10;
 	int target = liftUpTarget;
 	bool isOn = true;
 
@@ -73,6 +73,8 @@ void operatorControl() {
 			target = liftUpTarget;
 		else if (joystickGetDigital(1, 6, JOY_DOWN))
 			target = liftDownTarget;
+		else if (joystickGetDigital(1, 5, JOY_UP))
+			target = lift34;
 		else if (joystickGetDigital(1, 8, JOY_LEFT))
 			isOn = !isOn;
 
