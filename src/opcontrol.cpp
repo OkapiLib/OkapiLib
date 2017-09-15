@@ -52,7 +52,7 @@ void operatorControl() {
 
 	const unsigned char liftLeft = 8, liftRight = 9, liftPot = 1;
 
-  Pid liftPid(0.2, 0.5, 0.1);
+  Pid liftPid(0.2, 0.1, 0.1);
 
 	constexpr int liftUpTarget = 2570, lift34 = 800, liftDownTarget = 10;
 	int target = liftUpTarget;
