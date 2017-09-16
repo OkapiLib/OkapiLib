@@ -7,7 +7,11 @@
 namespace okapi {
   class NsPid : public Pid {
     public:
-      using Pid::Pid;
+      NsPid(const PidParams& iparams, const VelMathParams& ivelParams, const float iminVel, const float iscale = 0.1):
+        Pid::Pid(iparams),
+        velMath(ivelParams),
+        minVel(iminVel),
+        scale(iscale) {}
 
       /**
        * Do one iteration of the controller
@@ -17,7 +21,7 @@ namespace okapi {
       virtual float loop(const float inewReading);
     protected:
       VelMath velMath;
-      static constexpr float minVel = 1;
+      float minVel, scale;
   };
 }
 

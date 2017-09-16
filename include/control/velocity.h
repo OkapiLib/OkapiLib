@@ -4,6 +4,16 @@
 #include "filter/demaFilter.h"
 
 namespace okapi {
+  class VelMathParams {
+    public:
+      VelMathParams(const float iticksPerRev, const float ialpha = 0.19, const float ibeta = 0.0526):
+        ticksPerRev(iticksPerRev),
+        alpha(ialpha),
+        beta(ibeta) {}
+
+      float ticksPerRev, alpha, beta;
+  };
+
   class VelMath {
   public:
     VelMath(const float iticksPerRev, const float ialpha = 0.19, const float ibeta = 0.0526):
@@ -13,6 +23,10 @@ namespace okapi {
       lastPos(0),
       ticksPerRev(iticksPerRev),
       filter(ialpha, ibeta) {}
+
+    VelMath(const VelMathParams& iparams):
+      ticksPerRev(iparams.ticksPerRev),
+      filter(iparams.alpha, iparams.beta) {}
 
     /**
      * Calculate new velocity
