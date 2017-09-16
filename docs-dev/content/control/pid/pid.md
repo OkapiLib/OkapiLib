@@ -171,3 +171,27 @@ ikP | Proportional gain
 ikI | Integral gain
 ikD | Derivative gain
 ikBias | Controller bias (this value added to output, default 0)
+
+# NsPid
+
+## Constructor
+
+```c++
+//Signature
+NsPid(const PidParams& iparams, const VelMathParams& ivelParams, const float iminVel, const float iscale = 0.1)
+```
+
+# loop
+
+```c++
+//Signature
+virtual float loop(const float inewReading) override
+```
+
+Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).
+
+Calls `loop` from class `Pid`, and may return a reduced power if the velocity of the process is sufficiently low. The purpose of a low power mode is to prevent motors from stalling once they have reached their target (or if they can't quite reach their target).
+
+Parameter | Description
+----------|------------
+inewReading | New sensor reading

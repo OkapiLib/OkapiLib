@@ -18,7 +18,7 @@ namespace okapi {
        * @param  inewReading New measurement
        * @return            Controller output
        */
-      virtual float loop(const float inewReading);
+      virtual float loop(const float inewReading) override;
     protected:
       VelMath velMath;
       float minVel, scale;
