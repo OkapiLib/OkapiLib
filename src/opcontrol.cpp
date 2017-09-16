@@ -47,14 +47,13 @@ void operatorControl() {
 
 	Encoder leftEnc = encoderInit(12, 11, true);
 	Encoder rightEnc = encoderInit(1, 2, false);
-	SkidSteerModel<3> model({2,3,4, 5,6,7}, leftEnc, rightEnc);
-	ChassisControllerPid controller(std::make_shared<SkidSteerModel<3>>(model), PidParams(0.35, 0.22, 0.18), PidParams(0.5, 0.5, 0));
+	ChassisControllerPid controller(SkidSteerModelParams<3>({2,3,4, 5,6,7}, leftEnc, rightEnc), PidParams(0.35, 0.22, 0.18), PidParams(0.5, 0.5, 0));
 
 	const unsigned char liftLeft = 8, liftRight = 9, liftPot = 1;
 
   Pid liftPid(0.2, 0.1, 0.1);
 
-	constexpr int liftUpTarget = 2570, lift34 = 800, liftDownTarget = 10;
+	constexpr int liftUpTarget = 2570, lift34 = 300, liftDownTarget = 10;
 	int target = liftUpTarget;
 
 	// constexpr unsigned char motor1 = 2, motor2 = 3;
