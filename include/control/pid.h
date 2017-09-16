@@ -117,7 +117,7 @@ namespace okapi {
     void setTarget(const float itarget) { target = itarget; }
 
     float getOutput() const { return output; }
-  private:
+  protected:
     float kP, kI, kD, kBias;
     long lastTime, sampleTime;
     float error, lastError;

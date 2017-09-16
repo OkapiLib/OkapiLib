@@ -1,7 +1,7 @@
 #ifndef OKAPI_VELPID
 #define OKAPI_VELPID
 
-#include "filter/demaFilter.h"
+#include "control/velocity.h"
 
 namespace okapi {
   class VelPidParams {
@@ -29,11 +29,7 @@ namespace okapi {
       output(0),
       outputMax(127),
       outputMin(-127),
-      vel(0),
-      lastVel(0),
-      lastPos(0),
-      ticksPerRev(360),
-      filter(0.19, 0.0526) {
+      velMath(360) {
         setGains(ikP, ikD);
       }
 
@@ -50,11 +46,7 @@ namespace okapi {
       output(0),
       outputMax(127),
       outputMin(-127),
-      vel(0),
-      lastVel(0),
-      lastPos(0),
-      ticksPerRev(360),
-      filter(0.19, 0.0526) {
+      velMath(360) {
         setGains(params.kP, params.kD);
       }
 
@@ -87,7 +79,7 @@ namespace okapi {
      * @param alpha Alpha gain
      * @param beta  Beta gain
      */
-    void setFilterGains(const float alpha, const float beta) { filter.setGains(alpha, beta); }
+    void setFilterGains(const float alpha, const float beta) { velMath.setGains(alpha, beta); }
 
     /**
      * Set time between loops in ms
@@ -99,7 +91,7 @@ namespace okapi {
      * Set the number of measurements per revolution. Default is 360
      * @param tpr Number of measured units per revolution
      */
-    void setTicksPerRev(const float tpr) { ticksPerRev = tpr; }
+    void setTicksPerRev(const float tpr) { velMath.setTicksPerRev(tpr); }
 
     /**
      * Set controller output bounds
@@ -123,8 +115,7 @@ namespace okapi {
     float target;
     float output, outputMax, outputMin;
     bool isOn;
-    float vel, lastVel, lastPos, ticksPerRev;
-    DemaFilter filter;
+    VelMath velMath;
   };
 }
 

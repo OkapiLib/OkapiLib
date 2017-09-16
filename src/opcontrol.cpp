@@ -15,6 +15,7 @@
 #include "util/timer.h"
 #include "util/mathUtil.h"
 #include "control/pid.h"
+#include "control/nsPid.h"
 #include <cmath>
 
 using namespace okapi;
@@ -51,7 +52,7 @@ void operatorControl() {
 
 	const unsigned char liftLeft = 8, liftRight = 9, liftPot = 1;
 
-  Pid liftPid(0.2, 0.1, 0.1);
+  NsPid liftPid(PidParams(0.2, 0.1, 0.1), VelMathParams(360), 0.5);
 
 	constexpr int liftUpTarget = 2570, lift34 = 300, liftDownTarget = 10;
 	int target = liftUpTarget;
@@ -77,8 +78,6 @@ void operatorControl() {
 			liftPid.flipDisable();
 			while (joystickGetDigital(1, 8, JOY_LEFT));
 		}
-
-		// printf("%d\n", analogRead(liftPot));
 
 		liftPid.setTarget(target);
 		liftPid.loop(analogRead(liftPot));

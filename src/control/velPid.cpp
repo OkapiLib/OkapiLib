@@ -34,16 +34,7 @@ namespace okapi {
   }
 
   float VelPid::loopVel(const float inewReading) {
-    const long now = millis();
-    if (now - lastTime >= sampleTime) {
-      vel = (now - lastTime) * (inewReading - lastPos) * 60.0 / ticksPerRev;
-      vel = filter.filter(vel);
-
-      lastPos = inewReading;
-      lastTime = now;
-    }
-
-    return vel;
+    return velMath.loop(inewReading);
   }
 
   float VelPid::loop(const float inewReading) {
@@ -52,7 +43,7 @@ namespace okapi {
       if (now - lastTime >= sampleTime) {
         const float error = target - inewReading;
 
-        const float derivative = vel - lastVel; //Derivative over measurement to eliminate derivative kick on setpoint change
+        const float derivative = velMath.getDiff(); //Derivative over measurement to eliminate derivative kick on setpoint change
 
         output += kP * error - kD * derivative;
 
@@ -61,7 +52,6 @@ namespace okapi {
         else if (output < outputMin)
           output = outputMin;
 
-        lastVel = vel;
         lastError = error;
         lastTime = now; //Important that we only assign lastTime if dt >= sampleTime
       }
@@ -75,8 +65,6 @@ namespace okapi {
   void VelPid::reset() {
     error = 0;
     lastError = 0;
-    lastVel = 0;
-    lastPos = 0;
     output = 0;
   }
 }
