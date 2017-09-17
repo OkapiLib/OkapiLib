@@ -2291,6 +2291,38 @@ This class creates a new task inside its constructor and references a static cla
 </tbody>
 </table>
 
+<h1 id="nspid">NsPid</h1>
+
+<h2 id="constructor-2">Constructor</h2>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="n">NsPid</span><span class="p">(</span><span class="k">const</span> <span class="n">PidParams</span><span class="o">&amp;</span> <span class="n">iparams</span><span class="p">,</span> <span class="k">const</span> <span class="n">VelMathParams</span><span class="o">&amp;</span> <span class="n">ivelParams</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">iminVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">iscale</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+</code></pre></div>
+
+<h1 id="loop-1">loop</h1>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
+<span class="k">virtual</span> <span class="kt">float</span> <span class="n">loop</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">inewReading</span><span class="p">)</span> <span class="k">override</span>
+</code></pre></div>
+
+<p>Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).</p>
+
+<p>Calls <code>loop</code> from class <code>Pid</code>, and may return a reduced power if the velocity of the process is sufficiently low. The purpose of a low power mode is to prevent motors from stalling once they have reached their target (or if they can&rsquo;t quite reach their target).</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>inewReading</td>
+<td>New sensor reading</td>
+</tr>
+</tbody>
+</table>
+
     
         
 
