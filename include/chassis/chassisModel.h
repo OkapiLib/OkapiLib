@@ -91,43 +91,43 @@ namespace okapi {
     void driveForward(const int power) override {
       for (size_t i = 0; i < motorsPerSide * 2; i++)
         // motorSet(motors[i], power);
-        motors[i].set(power);
+        motors[i].setTS(power);
     }
 
     void driveVector(const int distPower, const int anglePower) override {
       for (size_t i = 0; i < motorsPerSide; i++)
         // motorSet(motors[i], distPower + anglePower);
-        motors[i].set(distPower + anglePower);
+        motors[i].setTS(distPower + anglePower);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
         // motorSet(motors[i], distPower - anglePower);
-        motors[i].set(distPower - anglePower);
+        motors[i].setTS(distPower - anglePower);
     }
 
     void turnClockwise(const int power) override {
       for (size_t i = 0; i < motorsPerSide; i++)
         // motorSet(motors[i], power);
-        motors[i].set(power);
+        motors[i].setTS(power);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
         // motorSet(motors[i], -1 * power);
-        motors[i].set(-1 * power);
+        motors[i].setTS(-1 * power);
     }
 
     void tank(const int leftVal, const int rightVal) override {
       for (size_t i = 0; i < motorsPerSide; i++)
         // motorSet(motors[i], leftVal);
-        motors[i].setTS(leftVal);
+        motors[i].set(leftVal);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
         // motorSet(motors[i], rightVal);
-        motors[i].setTS(rightVal);
+        motors[i].set(rightVal);
     }
 
     void arcade(const int verticalVal, const int horizontalVal) override {
       for (size_t i = 0; i < motorsPerSide; i++)
         // motorSet(motors[i], verticalVal + horizontalVal);
-        motors[i].setTS(verticalVal + horizontalVal);
+        motors[i].set(verticalVal + horizontalVal);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
         // motorSet(motors[i], verticalVal - horizontalVal);
-        motors[i].setTS(verticalVal - horizontalVal);
+        motors[i].set(verticalVal - horizontalVal);
     }
 
     std::valarray<int> getEncoderVals() const override {
