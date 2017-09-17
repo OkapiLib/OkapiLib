@@ -181,6 +181,13 @@ ikBias | Controller bias (this value added to output, default 0)
 NsPid(const PidParams& iparams, const VelMathParams& ivelParams, const float iminVel, const float iscale = 0.1)
 ```
 
+Parameter | Description
+----------|------------
+iparams | `PidParams` to make the internal PID controller
+ivelParams | `VelMathParams` for the velocity calculations
+iminVel | Minimum velocity at which the controller will start reducing the output power
+iscale | Scale to reduce the output power by
+
 # loop
 
 ```c++

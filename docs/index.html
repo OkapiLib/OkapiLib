@@ -2298,6 +2298,37 @@ This class creates a new task inside its constructor and references a static cla
 <span class="n">NsPid</span><span class="p">(</span><span class="k">const</span> <span class="n">PidParams</span><span class="o">&amp;</span> <span class="n">iparams</span><span class="p">,</span> <span class="k">const</span> <span class="n">VelMathParams</span><span class="o">&amp;</span> <span class="n">ivelParams</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">iminVel</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">iscale</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
 </code></pre></div>
 
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iparams</td>
+<td><code>PidParams</code> to make the internal PID controller</td>
+</tr>
+
+<tr>
+<td>ivelParams</td>
+<td><code>VelMathParams</code> for the velocity calculations</td>
+</tr>
+
+<tr>
+<td>iminVel</td>
+<td>Minimum velocity at which the controller will start reducing the output power</td>
+</tr>
+
+<tr>
+<td>iscale</td>
+<td>Scale to reduce the output power by</td>
+</tr>
+</tbody>
+</table>
+
 <h1 id="loop-1">loop</h1>
 <div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">//Signature</span>
 <span class="k">virtual</span> <span class="kt">float</span> <span class="n">loop</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">inewReading</span><span class="p">)</span> <span class="k">override</span>
