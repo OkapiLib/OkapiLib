@@ -41,7 +41,8 @@ namespace okapi {
     if (isOn) {
       const long now = millis();
       if (now - lastTime >= sampleTime) {
-        const float error = target - inewReading;
+        loopVel(inewReading);
+        const float error = target - velMath.getOutput();
 
         const float derivative = velMath.getDiff(); //Derivative over measurement to eliminate derivative kick on setpoint change
 

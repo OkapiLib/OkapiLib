@@ -108,6 +108,8 @@ namespace okapi {
 
     float getOutput() const { return isOn ? output : 0; }
 
+    float getVel() const { return velMath.getOutput(); }
+
   private:
     float kP, kD;
     long lastTime, sampleTime;

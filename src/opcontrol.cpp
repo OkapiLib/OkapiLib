@@ -17,6 +17,7 @@
 #include "util/mathUtil.h"
 #include "control/pid.h"
 #include "control/nsPid.h"
+#include "control/velPid.h"
 
 using namespace okapi;
 
@@ -46,8 +47,8 @@ float measureRPM(const unsigned char motorPort, const Encoder enc1, const Encode
 void operatorControl() {
 	using namespace std; //Needed to get round to compile
 
-	Encoder leftEnc = encoderInit(3, 4, false);
-	Encoder rightEnc = encoderInit(1, 2, false);
+	Encoder leftEnc = encoderInit(1, 2, false);
+	Encoder rightEnc = encoderInit(3, 4, false);
 	ChassisControllerPid controller(SkidSteerModelParams<3>({2_m,3_m,4_m, 5_m,6_m,7_m}, leftEnc, rightEnc), PidParams(0.15, 0.05, 0.07), PidParams(0.02, 0.01, 0));
 
 	const unsigned char liftLeft = 8, liftRight = 9, liftPot = 1;
@@ -71,27 +72,39 @@ void operatorControl() {
 		// volatile int x = *((int*)0xFFFFFFFF) = 69;
 		// printf("%d", x);
 
-		// if (joystickGetDigital(1, 6, JOY_UP))
-		// 	target = liftUpTarget;
-		// else if (joystickGetDigital(1, 6, JOY_DOWN))
-		// 	target = liftDownTarget;
-		// else if (joystickGetDigital(1, 5, JOY_UP))
-		// 	target = lift34;
-		// else if (joystickGetDigital(1, 8, JOY_LEFT)) {
-		// 	liftPid.flipDisable();
-		// 	while (joystickGetDigital(1, 8, JOY_LEFT));
-		// }
-		//
-		// liftPid.setTarget(target);
-		// liftPid.loop(analogRead(liftPot));
-		// motorSet(liftLeft, liftPid.getOutput());
-		// motorSet(liftRight, liftPid.getOutput());
+		if (joystickGetDigital(1, 6, JOY_UP))
+			target = liftUpTarget;
+		else if (joystickGetDigital(1, 6, JOY_DOWN))
+			target = liftDownTarget;
+		else if (joystickGetDigital(1, 5, JOY_UP))
+			target = lift34;
+		else if (joystickGetDigital(1, 8, JOY_LEFT)) {
+			liftPid.flipDisable();
+			while (joystickGetDigital(1, 8, JOY_LEFT));
+		}
+
+		liftPid.setTarget(target);
+		liftPid.loop(analogRead(liftPot));
+		motorSet(liftLeft, liftPid.getOutput());
+		motorSet(liftRight, liftPid.getOutput());
 
 		controller.arcade(joystickGetAnalog(1, 3), joystickGetAnalog(1, 4));
 
 		// controller.driveForward(power);
-		if (joystickGetDigital(1, 8, JOY_LEFT)) {
-			controller.driveStraight(3000);
+		if (joystickGetDigital(1, 8, JOY_RIGHT)) {
+			encoderReset(leftEnc);
+			encoderReset(rightEnc);
+			VelPid left(0.05, 0), right(0.05, 0);
+			left.setTarget(50);
+			right.setTarget(25);
+			while (true) {
+				left.loop(encoderGet(leftEnc));
+				right.loop(encoderGet(rightEnc));
+				controller.tank(left.getOutput(), right.getOutput());
+				// printf("%1.2f,%1.2f\n", left.getVel(), right.getVel());
+				if (joystickGetDigital(1, 7, JOY_RIGHT)) break;
+				taskDelay(15);
+			}
 		}
 
 		// vm.loop((encoderGet(leftEnc) + encoderGet(rightEnc)) / 2.0);
