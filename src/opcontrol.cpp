@@ -10,13 +10,13 @@
  * obtained from http://sourceforge.net/projects/freertos/files/ or on request.
  */
 
+#include <cmath>
 #include "main.h"
 #include "chassis/basicChassisController.h"
 #include "util/timer.h"
 #include "util/mathUtil.h"
 #include "control/pid.h"
 #include "control/nsPid.h"
-#include <cmath>
 
 using namespace okapi;
 
@@ -48,7 +48,7 @@ void operatorControl() {
 
 	Encoder leftEnc = encoderInit(12, 11, true);
 	Encoder rightEnc = encoderInit(1, 2, false);
-	ChassisControllerPid controller(SkidSteerModelParams<3>({2,3,4, 5,6,7}, leftEnc, rightEnc), PidParams(0.35, 0.22, 0.18), PidParams(0.5, 0.5, 0));
+	ChassisControllerPid controller(SkidSteerModelParams<3>({2_m,3_m,4_m, 5_m,6_m,7_m}, leftEnc, rightEnc), PidParams(0.35, 0.22, 0.18), PidParams(0.5, 0.5, 0));
 
 	const unsigned char liftLeft = 8, liftRight = 9, liftPot = 1;
 
