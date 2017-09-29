@@ -18,6 +18,7 @@
 #include "control/pid.h"
 #include "control/nsPid.h"
 #include "control/velPid.h"
+#include "control/genericController.h"
 
 using namespace okapi;
 
@@ -61,7 +62,7 @@ void operatorControl() {
 	// constexpr unsigned char motor1 = 2, motor2 = 3;
 	// lcdSetBacklight(uart1, true);
 
-	int power = 0;
+	// int power = 0;
 	VelMath vm(360);
 
 	while (1) {
