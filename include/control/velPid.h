@@ -2,9 +2,10 @@
 #define OKAPI_VELPID
 
 #include "control/velocity.h"
+#include "control/controlObject.h"
 
 namespace okapi {
-  class VelPidParams {
+  class VelPidParams : public ControlObjectParams {
   public:
     VelPidParams(const float ikP, const float ikD):
       kP(ikP),
@@ -13,7 +14,7 @@ namespace okapi {
     float kP, kD;
   };
 
-  class VelPid {
+  class VelPid : public ControlObject {
   public:
     /**
      * Velocity PID controller
@@ -64,7 +65,7 @@ namespace okapi {
      * @param  inewReading New measurement
      * @return            Controller output
      */
-    virtual float loop(const float inewReading);
+    virtual float loop(const float inewReading) override;
 
     /**
      * Set controller gains
@@ -85,7 +86,7 @@ namespace okapi {
      * Set time between loops in ms
      * @param isampleTime Time between loops in ms
      */
-    void setSampleTime(const int isampleTime);
+    void setSampleTime(const int isampleTime) override;
 
     /**
      * Set the number of measurements per revolution. Default is 360
@@ -98,15 +99,15 @@ namespace okapi {
      * @param imax Max output
      * @param imin Min output
      */
-    void setOutputLimits(float imax, float imin);
+    void setOutputLimits(float imax, float imin) override;
 
-    void reset();
+    void reset() override;
 
-    void flipDisable() { isOn = !isOn; }
+    void flipDisable() override { isOn = !isOn; }
 
-    void setTarget(const float itarget) { target = itarget; }
+    void setTarget(const float itarget) override { target = itarget; }
 
-    float getOutput() const { return isOn ? output : 0; }
+    float getOutput() const override { return isOn ? output : 0; }
 
     float getVel() const { return velMath.getOutput(); }
 
