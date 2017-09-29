@@ -1,8 +1,10 @@
 #ifndef OKAPI_PID
 #define OKAPI_PID
 
+#include "control/controlObject.h"
+
 namespace okapi {
-  class PidParams {
+  class PidParams : public ControlObjectParams {
   public:
     PidParams(const float ikP, const float ikI, const float ikD, const float ikBias = 0):
       kP(ikP),
@@ -13,7 +15,7 @@ namespace okapi {
     float kP, kI, kD, kBias;
   };
 
-  class Pid {
+  class Pid : public ControlObject {
   public:
     /**
      * PID controller
@@ -69,7 +71,7 @@ namespace okapi {
      * @param  inewReading New measurement
      * @return            Controller output
      */
-    virtual float loop(const float inewReading);
+    virtual float loop(const float inewReading) override;
 
     /**
      * Set controller gains
@@ -84,14 +86,14 @@ namespace okapi {
      * Set time between loops in ms
      * @param isampleTime Time between loops in ms
      */
-    void setSampleTime(const int isampleTime);
+    void setSampleTime(const int isampleTime) override;
 
     /**
      * Set controller output bounds
      * @param imax Max output
      * @param imin Min output
      */
-    void setOutputLimits(float imax, float imin);
+    void setOutputLimits(float imax, float imin) override;
 
     /**
      * Set integrator bounds
@@ -104,7 +106,7 @@ namespace okapi {
      * Resets the controller so it can start from 0 again properly. Keeps gains
      * and limits from before
      */
-    void reset();
+    void reset() override;
 
     /**
      * Set whether the integrator should be reset when error is 0 or changes sign
@@ -112,11 +114,11 @@ namespace okapi {
      */
     void setIntegratorReset(bool iresetOnZero) { shouldResetOnCross = iresetOnZero; }
 
-    void flipDisable() { isOn = !isOn; }
+    void flipDisable() override { isOn = !isOn; }
 
-    void setTarget(const float itarget) { target = itarget; }
+    void setTarget(const float itarget) override { target = itarget; }
 
-    float getOutput() const { return output; }
+    float getOutput() const override { return output; }
   protected:
     float kP, kI, kD, kBias;
     long lastTime, sampleTime;
