@@ -18,12 +18,12 @@ namespace okapi {
     /**
     * Sets the target for the controller
     */
-    virtual void setTarget() = 0;
+    virtual void setTarget(const float itarget) = 0;
 
     /**
     * Returns the last calculated output of the controller
     */
-    virtual float getOutput() = 0;
+    virtual float getOutput() const = 0;
 
     /**
     * Set time between loops in ms
