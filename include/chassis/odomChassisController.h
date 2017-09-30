@@ -45,7 +45,7 @@ namespace okapi {
     Odometry odom;
   };
 
-  class OdomChassisControllerPid final : public OdomChassisController, public ChassisControllerPid {
+  class OdomChassisControllerPid : public OdomChassisController, public ChassisControllerPid {
   public:
     OdomChassisControllerPid(const OdomParams& params, const PidParams& idistanceParams, const PidParams& iangleParams):
       ChassisController(params.model),
@@ -68,7 +68,7 @@ namespace okapi {
     void turnToAngle(const float iangle) override;
   };
 
-  class OdomChassisControllerMP final : public OdomChassisController, public ChassisControllerMP {
+  class OdomChassisControllerMP : public OdomChassisController, public ChassisControllerMP {
   public:
     OdomChassisControllerMP(const OdomParams& iparams, const MPControllerParams& iconParams):
       ChassisController(iparams.model),

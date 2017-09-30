@@ -10,10 +10,11 @@ namespace okapi {
   template<size_t motorNum>
   class GenericController {
   public:
-    GenericController(const std::initializer_list<Motor> &imotorList, const std::shared_ptr<ControlObject> &iptr):
-      controller(iptr) {
-        for (size_t i = 0; i < imotorList.size(); i++)
-        motors[i] = *(imotorList.begin() + i);
+    GenericController(const std::array<Motor, motorNum> &imotorList, const std::shared_ptr<ControlObject> &iptr):
+      controller(iptr),
+      motors(imotorList) {
+        // for (size_t i = 0; i < imotorList.size(); i++)
+        //   motors[i] = *(imotorList.begin() + i);
       }
 
     void loop(const float ireading) {

@@ -5,7 +5,7 @@
 #include "control/velocity.h"
 
 namespace okapi {
-  class NsPid final : public Pid {
+  class NsPid : public Pid {
     public:
       NsPid(const PidParams& iparams, const VelMathParams& ivelParams, const float iminVel, const float iscale = 0.1):
         Pid::Pid(iparams),

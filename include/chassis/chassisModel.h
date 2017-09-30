@@ -37,9 +37,9 @@ namespace okapi {
   class SkidSteerModel;
 
   template<size_t motorsPerSide>
-  class SkidSteerModelParams final : public ChassisModelParams {
+  class SkidSteerModelParams : public ChassisModelParams {
   public:
-    SkidSteerModelParams(const std::initializer_list<Motor>& imotorList, Encoder ileftEnc, Encoder irightEnc):
+    SkidSteerModelParams(const std::array<Motor, motorsPerSide * 2>& imotorList, Encoder ileftEnc, Encoder irightEnc):
       motorList(imotorList),
       leftEnc(ileftEnc),
       rightEnc(irightEnc) {}
@@ -50,12 +50,12 @@ namespace okapi {
       return std::make_shared<SkidSteerModel<motorsPerSide>>(*this);
     }
 
-    const std::initializer_list<Motor>& motorList;
+    const std::array<Motor, motorsPerSide * 2>& motorList;
     Encoder leftEnc, rightEnc;
   };
 
   template<size_t motorsPerSide>
-  class SkidSteerModel final : public ChassisModel {
+  class SkidSteerModel : public ChassisModel {
   public:
     /**
      * Model for a skid steer drive (wheels parallel with robot's direction of
@@ -65,28 +65,22 @@ namespace okapi {
      * @param ileftEnc  Left side encoder
      * @param irightEnc Right side encoder
      */
-    SkidSteerModel(const std::initializer_list<Motor>& imotorList, Encoder ileftEnc, Encoder irightEnc):
+    SkidSteerModel(const std::array<Motor, motorsPerSide * 2>& imotorList, const Encoder ileftEnc, const Encoder irightEnc):
+      motors(imotorList),
       leftEnc(ileftEnc),
-      rightEnc(irightEnc) {
-        for (size_t i = 0; i < imotorList.size(); i++)
-          motors[i] = *(imotorList.begin() + i);
-    }
+      rightEnc(irightEnc) {}
 
     SkidSteerModel(const SkidSteerModelParams<motorsPerSide>& iparams):
+      motors(iparams.motorList),
       leftEnc(iparams.leftEnc),
-      rightEnc(iparams.rightEnc) {
-        for (size_t i = 0; i < iparams.motorList.size(); i++)
-          motors[i] = *(iparams.motorList.begin() + i);
-    }
+      rightEnc(iparams.rightEnc) {}
 
     SkidSteerModel(const SkidSteerModel<motorsPerSide>& other):
       motors(other.motors),
       leftEnc(other.leftEnc),
       rightEnc(other.rightEnc) {}
 
-    virtual ~SkidSteerModel() {
-      delete &motors;
-    }
+    virtual ~SkidSteerModel() { delete &motors; }
 
     void driveForward(const int power) override {
       for (size_t i = 0; i < motorsPerSide * 2; i++)
@@ -125,17 +119,17 @@ namespace okapi {
       return std::valarray<int>{encoderGet(leftEnc), encoderGet(rightEnc)};
     }
   private:
-    std::array<Motor, motorsPerSide * 2> motors;
-    Encoder leftEnc, rightEnc;
+    const std::array<Motor, motorsPerSide * 2> motors;
+    const Encoder leftEnc, rightEnc;
   };
 
   template<size_t motorsPerCorner>
   class XDriveModel;
 
   template<size_t motorsPerCorner>
-  class XDriveModelParams final : public ChassisModelParams {
+  class XDriveModelParams : public ChassisModelParams {
   public:
-    XDriveModelParams(const std::initializer_list<unsigned char>& imotorList, Encoder ileftEnc, Encoder irightEnc):
+    XDriveModelParams(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const Encoder ileftEnc, const Encoder irightEnc):
       motorList(imotorList),
       leftEnc(ileftEnc),
       rightEnc(irightEnc) {}
@@ -146,12 +140,12 @@ namespace okapi {
       return std::make_shared<XDriveModel<motorsPerCorner>>(*this);
     }
 
-    const std::initializer_list<unsigned char>& motorList;
-    Encoder leftEnc, rightEnc;
+    const std::array<unsigned char, motorsPerCorner * 4>& motorList;
+    const Encoder leftEnc, rightEnc;
   };
 
   template<size_t motorsPerCorner>
-  class XDriveModel final : public ChassisModel {
+  class XDriveModel : public ChassisModel {
   public:
     /**
      * Model for an x drive (wheels at 45 deg from a skid steer drive). When all
@@ -159,28 +153,22 @@ namespace okapi {
      * at full speed.
      * @param imotors Motors in the format: {{top left motors}, {top right motors}, {bottom right motors}, {bottom left motors}}
      */
-    XDriveModel(const std::initializer_list<unsigned char>& imotorList, Encoder ileftEnc, Encoder irightEnc):
+    XDriveModel(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const Encoder ileftEnc, const Encoder irightEnc):
+      motors(imotorList),
       leftEnc(ileftEnc),
-      rightEnc(irightEnc) {
-        for (size_t i = 0; i < imotorList.size(); i++)
-          motors[i] = *(imotorList.begin() + i);
-    }
+      rightEnc(irightEnc) {}
 
     XDriveModel(const XDriveModelParams<motorsPerCorner>& iparams):
+      motors(iparams.motorList),
       leftEnc(iparams.leftEnc),
-      rightEnc(iparams.rightEnc) {
-        for (size_t i = 0; i < iparams.motorList.size(); i++)
-          motors[i] = *(iparams.motorList.begin() + i);
-    }
+      rightEnc(iparams.rightEnc) {}
 
     XDriveModel(const XDriveModel<motorsPerCorner>& other):
       motors(other.motors),
       leftEnc(other.leftEnc),
       rightEnc(other.rightEnc) {}
 
-    virtual ~XDriveModel() {
-      delete &motors;
-    }
+    virtual ~XDriveModel() { delete &motors; }
 
     void driveForward(const int power) override {
       for (size_t i = 0; i < motorsPerCorner; i++)
@@ -232,22 +220,22 @@ namespace okapi {
     }
 
     void xArcade(const int verticalVal, const int horizontalVal, const int rotateVal) {
-        for (size_t i = 0; i < motorsPerCorner; i++)
-          motors[i].set(verticalVal + horizontalVal + rotateVal);
-        for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
-          motors[i].set(verticalVal - horizontalVal - rotateVal);
-        for (size_t i = motorsPerCorner * 2; i < motorsPerCorner * 3; i++)
-          motors[i].set(verticalVal + horizontalVal - rotateVal);
-        for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
-          motors[i].set(verticalVal - horizontalVal + rotateVal);
+      for (size_t i = 0; i < motorsPerCorner; i++)
+        motors[i].set(verticalVal + horizontalVal + rotateVal);
+      for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
+        motors[i].set(verticalVal - horizontalVal - rotateVal);
+      for (size_t i = motorsPerCorner * 2; i < motorsPerCorner * 3; i++)
+        motors[i].set(verticalVal + horizontalVal - rotateVal);
+      for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
+        motors[i].set(verticalVal - horizontalVal + rotateVal);
     }
 
     std::valarray<int> getEncoderVals() const override {
       return std::valarray<int>{encoderGet(leftEnc), encoderGet(rightEnc)};
     }
   private:
-    std::array<unsigned char, motorsPerCorner * 4> motors;
-    Encoder leftEnc, rightEnc;
+    const std::array<unsigned char, motorsPerCorner * 4> motors;
+    const Encoder leftEnc, rightEnc;
   };
 }
 

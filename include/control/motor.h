@@ -33,15 +33,9 @@ namespace okapi {
         port(iport),
         sign(isign) {}
 
-      Motor& operator=(const Motor& m) {
-        port = m.port;
-        sign = m.sign;
-        return *this;
-      }
-
       virtual void set(const int val) const { motorSet(port, val * sign); }
 
-      void setTS(int val) const {
+      void setTS(const int val) const {
         if (val > 127)
           motorSet(port, motor::trueSpeed[127] * sign);
         else if (val < -127)
@@ -53,8 +47,8 @@ namespace okapi {
       }
 
     protected:
-      unsigned long long int port;
-      int sign;
+      const unsigned long long int port;
+      const int sign;
   };
 
   class CubicMotor final : public Motor {
@@ -64,12 +58,6 @@ namespace okapi {
 
     explicit constexpr CubicMotor(const unsigned long long int iport, const int isign):
       Motor(iport, isign) {}
-
-    CubicMotor& operator=(const CubicMotor& m) {
-      port = m.port;
-      sign = m.sign;
-      return *this;
-    }
 
     void set(const int val) const override {
       if (val > 127)
