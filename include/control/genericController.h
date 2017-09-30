@@ -21,6 +21,18 @@ namespace okapi {
       for (size_t i = 0; i < motors.size(); i++)
         motors[i].setTS(controller->getOutput());
     }
+
+    void setTarget(const float itarget) { controller->setTarget(itarget); }
+
+    void getOutput() const { return controller->getOutput(); }
+
+    void setSampleTime(const int isampleTime) { controller->setSampleTime(isampleTime); }
+
+    void setOutputLimits(float imax, float imin) { controller->setOutputLimits(imax, imin); }
+
+    void reset() { controller->reset(); }
+
+    void flipDisable() { controller->flipDisable(); }
   private:
     std::shared_ptr<ControlObject> controller;
     std::array<Motor, motorNum> motors;

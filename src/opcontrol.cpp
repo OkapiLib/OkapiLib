@@ -52,9 +52,9 @@ void operatorControl() {
 	Encoder rightEnc = encoderInit(3, 4, false);
 	ChassisControllerPid controller(SkidSteerModelParams<3>({2_m,3_m,4_m, 5_m,6_m,7_m}, leftEnc, rightEnc), PidParams(0.15, 0.05, 0.07), PidParams(0.02, 0.01, 0));
 
-	const unsigned char liftLeft = 8, liftRight = 9, liftPot = 1;
+	const unsigned char liftPot = 1;
 
-  NsPid liftPid(PidParams(0.2, 0.1, 0.1), VelMathParams(360), 0.5);
+  GenericController<2> liftController({8_m, 9_m}, std::make_shared<NsPid>(NsPid(PidParams(0.2, 0.1, 0.1), VelMathParams(360), 0.5)));
 
 	constexpr int liftUpTarget = 2570, lift34 = 300, liftDownTarget = 10;
 	int target = liftUpTarget;
@@ -80,14 +80,12 @@ void operatorControl() {
 		else if (joystickGetDigital(1, 5, JOY_UP))
 			target = lift34;
 		else if (joystickGetDigital(1, 8, JOY_LEFT)) {
-			liftPid.flipDisable();
+			liftController.flipDisable();
 			while (joystickGetDigital(1, 8, JOY_LEFT));
 		}
 
-		liftPid.setTarget(target);
-		liftPid.loop(analogRead(liftPot));
-		motorSet(liftLeft, liftPid.getOutput());
-		motorSet(liftRight, liftPid.getOutput());
+    liftController.setTarget(target);
+    liftController.loop(analogRead(liftPot));
 
 		controller.arcade(joystickGetAnalog(1, 3), joystickGetAnalog(1, 4));
 
