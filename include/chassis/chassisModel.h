@@ -16,6 +16,7 @@ namespace okapi {
     virtual void driveForward(const int power) = 0;
     virtual void driveVector(const int distPower, const int anglePower) = 0;
     virtual void turnClockwise(const int power) = 0;
+    virtual void stop() = 0;
     virtual void tank(const int leftVal, const int rightVal) = 0;
     virtual void arcade(const int verticalVal, const int horizontalVal) = 0;
     virtual std::valarray<int> getEncoderVals() const = 0;
@@ -96,9 +97,14 @@ namespace okapi {
 
     void turnClockwise(const int power) override {
       for (size_t i = 0; i < motorsPerSide; i++)
-        motors[i].setTS(power);
+        motors[i].set(power);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-        motors[i].setTS(-1 * power);
+        motors[i].set(-1 * power);
+    }
+
+    void stop() override {
+      for (size_t i = 0; i <= motorsPerSide * 2; i++)
+        motors[i].setTS(0);
     }
 
     void tank(const int leftVal, const int rightVal) override {
@@ -171,7 +177,7 @@ namespace okapi {
     virtual ~XDriveModel() { delete &motors; }
 
     void driveForward(const int power) override {
-      for (size_t i = 0; i < motorsPerCorner; i++)
+      for (size_t i = 0; i < motorsPerCorner * 4; i++)
         motors[i].setTS(power);
     }
 
@@ -195,6 +201,11 @@ namespace okapi {
         motors[i].setTS(-1 * power);
       for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
         motors[i].setTS(power);
+    }
+
+    void stop() override {
+      for (size_t i = 0; i < motorsPerCorner * 4; i++)
+        motors[i].setTS(0);
     }
 
     void tank(const int leftVal, const int rightVal) override {
