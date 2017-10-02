@@ -54,6 +54,7 @@ void operatorControl() {
     controller.arcade(joystickGetAnalog(1, 3), joystickGetAnalog(1, 4));
     
     if (joystickGetDigital(1, 8, JOY_RIGHT)) {
+      printf("Filtered,Unfiltered\n");
       while (true) {
         VelMath vm1(360), vm2(360, 1, 0);
         float avg = (encoderGet(leftEnc) + encoderGet(rightEnc)) / 2.0;
