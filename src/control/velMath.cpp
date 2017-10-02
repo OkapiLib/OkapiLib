@@ -5,7 +5,7 @@ namespace okapi {
   float VelMath::loop(const float inewPos) {
     const long now = millis();
 
-    vel = (now - lastTime) * (inewPos - lastPos) * 60.0 / ticksPerRev;
+    vel = (1000 / (now - lastTime)) * (inewPos - lastPos) * (60 / ticksPerRev);
     vel = filter.filter(vel);
 
     lastPos = inewPos;
