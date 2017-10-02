@@ -2,7 +2,7 @@
 #define OKAPI_NSPID
 
 #include "control/pid.h"
-#include "control/velocity.h"
+#include "control/velMath.h"
 
 namespace okapi {
   class NsPid : public Pid {

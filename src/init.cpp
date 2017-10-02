@@ -15,14 +15,14 @@
 extern "C" {
   void __libc_init_array();
   void __cxa_pure_virtual() { exit(1111); }
-  int _getpid() { return -1;}
-  int _kill(int pid, int sig) { return -1; }
-  void _sbrk() {}
-  void __dso_handle() {}
+  // int _getpid() { return -1;}
+  // int _kill(int pid, int sig) { return -1; }
+  // void _sbrk() {}
+  // void __dso_handle() {}
 }
 
 namespace std {
-  void __throw_length_error(char const*) { exit(1112); }
+  // void __throw_length_error(char const*) { exit(1112); }
   void __throw_bad_alloc() { exit(1113); }
 }
 

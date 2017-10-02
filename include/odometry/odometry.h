@@ -86,7 +86,7 @@ namespace okapi {
      */
     OdomState loop();
 
-    static void trampoline(void * const context) { ((Odometry*)context)->loop(); }
+    static void trampoline(void *context) { static_cast<Odometry*>(context)->loop(); }
 
     OdomState getState() { return state; }
   private:

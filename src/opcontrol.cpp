@@ -63,7 +63,7 @@ void operatorControl() {
 	// lcdSetBacklight(uart1, true);
 
 	// int power = 0;
-	VelMath vm(360);
+  VelMath vm(360);
 
 	while (1) {
 	  // controller.driveForward(30);
@@ -71,7 +71,7 @@ void operatorControl() {
 		// printf("%d,%d\n",encoderGet(leftEnc), encoderGet(rightEnc));
 
 		// volatile int x = *((int*)0xFFFFFFFF) = 69;
-		// printf("%d", x);
+    // printf("%d", x);
 
 		if (joystickGetDigital(1, 6, JOY_UP))
 			target = liftUpTarget;

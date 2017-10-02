@@ -14,7 +14,7 @@ namespace okapi {
      * priority plus 1 for odometry when constructed
      * @param iparams Odometry parameters for the internal odometry math
      */
-    OdomChassisController(OdomParams iparams):
+    OdomChassisController(const OdomParams& iparams):
       ChassisController(iparams.model),
       odom(iparams) {
         taskCreate((TaskCode)Odometry::trampoline, TASK_DEFAULT_STACK_SIZE, &odom, TASK_PRIORITY_DEFAULT + 1);

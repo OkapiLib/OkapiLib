@@ -83,7 +83,7 @@ namespace okapi {
     virtual ~SkidSteerModel() { delete &motors; }
 
     void driveForward(const int power) override {
-      for (size_t i = 0; i < motorsPerSide * 2; i++)
+      for (size_t i = 0; i <= motorsPerSide * 2; i++)
         motors[i].setTS(power);
     }
 

@@ -41,7 +41,7 @@ namespace okapi {
     /**
      * Do one iteration of the controller
      * @param  inewReading New measurement
-     * @return            Controller output
+     * @return             Controller output
      */
     virtual float loop(const float inewReading) { return mpCon.loop(profile, inewReading); }
 

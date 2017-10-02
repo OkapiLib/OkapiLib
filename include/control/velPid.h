@@ -1,7 +1,7 @@
 #ifndef OKAPI_VELPID
 #define OKAPI_VELPID
 
-#include "control/velocity.h"
+#include "control/velMath.h"
 #include "control/controlObject.h"
 
 namespace okapi {
@@ -30,6 +30,7 @@ namespace okapi {
       output(0),
       outputMax(127),
       outputMin(-127),
+      isOn(true),
       velMath(360) {
         setGains(ikP, ikD);
       }
@@ -47,6 +48,7 @@ namespace okapi {
       output(0),
       outputMax(127),
       outputMin(-127),
+      isOn(true),
       velMath(360) {
         setGains(params.kP, params.kD);
       }
