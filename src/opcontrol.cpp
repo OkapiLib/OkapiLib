@@ -54,11 +54,20 @@ void operatorControl() {
     controller.arcade(joystickGetAnalog(1, 3), joystickGetAnalog(1, 4));
     
     if (joystickGetDigital(1, 8, JOY_RIGHT)) {
-      VelMath vm1(360), vm2(360, 1, 0);
-      float avg = (encoderGet(leftEnc) + encoderGet(rightEnc)) / 2.0;
-      vm1.loop(avg);
-      vm2.loop(avg);
-      printf("%1.2f,%1.2f\n", vm1.getOutput(), vm2.getOutput());
+      while (true) {
+        VelMath vm1(360), vm2(360, 1, 0);
+        float avg = (encoderGet(leftEnc) + encoderGet(rightEnc)) / 2.0;
+        vm1.loop(avg);
+        vm2.loop(avg);
+        printf("%1.2f,%1.2f\n", vm1.getOutput(), vm2.getOutput());
+
+        if (joystickGetDigital(1, 8, JOY_LEFT)) {
+          while (joystickGetDigital(1, 8, JOY_LEFT)) { taskDelay(15); }
+          break;
+        }
+
+        taskDelay(15);
+      }
     }
 	}
 }
