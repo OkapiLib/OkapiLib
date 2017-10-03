@@ -6,7 +6,7 @@
 namespace okapi {
   class VelMathParams {
     public:
-      VelMathParams(const float iticksPerRev, const float ialpha = 0.19, const float ibeta = 0.0526):
+      VelMathParams(const float iticksPerRev, const float ialpha = 0.19, const float ibeta = 0.041):
         ticksPerRev(iticksPerRev),
         alpha(ialpha),
         beta(ibeta) {}
@@ -16,7 +16,7 @@ namespace okapi {
 
   class VelMath {
   public:
-    VelMath(const float iticksPerRev, const float ialpha = 0.19, const float ibeta = 0.0526):
+    VelMath(const float iticksPerRev, const float ialpha = 0.19, const float ibeta = 0.041):
       lastTime(0),
       vel(0),
       lastVel(0),
