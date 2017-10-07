@@ -22,14 +22,14 @@ namespace okapi {
       92,94,97,99,102,104,107,110,113,115,118,121,124,127
     };
   }
-  
+
   class Motor {
     public:
       explicit constexpr Motor():
         port(0),
         sign(1) {}
 
-      explicit constexpr Motor(const unsigned long long int iport, const int isign):
+      explicit constexpr Motor(const int iport, const int isign):
         port(iport),
         sign(isign) {}
 
@@ -47,7 +47,7 @@ namespace okapi {
       }
 
     protected:
-      const unsigned long long int port;
+      const unsigned char port;
       const int sign;
   };
 
@@ -56,7 +56,7 @@ namespace okapi {
     explicit constexpr CubicMotor():
       Motor() {}
 
-    explicit constexpr CubicMotor(const unsigned long long int iport, const int isign):
+    explicit constexpr CubicMotor(const int iport, const int isign):
       Motor(iport, isign) {}
 
     void set(const int val) const override {
@@ -72,10 +72,10 @@ namespace okapi {
   };
 
 
-  constexpr Motor operator"" _m(const unsigned long long int m) { return Motor(m, 1); }
-  constexpr Motor operator"" _rm(const unsigned long long int m) { return Motor(m, -1); }
-  constexpr Motor operator"" _m3(const unsigned long long int m) { return CubicMotor(m, 1); }
-  constexpr Motor operator"" _rm3(const unsigned long long int m) { return CubicMotor(m, -1); }
+  constexpr Motor operator"" _m(const unsigned long long int m) { return Motor(static_cast<unsigned char>(m), 1); }
+  constexpr Motor operator"" _rm(const unsigned long long int m) { return Motor(static_cast<unsigned char>(m), -1); }
+  constexpr Motor operator"" _m3(const unsigned long long int m) { return CubicMotor(static_cast<unsigned char>(m), 1); }
+  constexpr Motor operator"" _rm3(const unsigned long long int m) { return CubicMotor(static_cast<unsigned char>(m), -1); }
 }
 
 #endif /* end of include guard: OKAPI_MOTOR */
