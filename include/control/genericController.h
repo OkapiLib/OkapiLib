@@ -4,7 +4,7 @@
 #include <memory>
 #include <array>
 #include "control/controlObject.h"
-#include "control/motor.h"
+#include "device/motor.h"
 
 namespace okapi {
   template<size_t motorNum>

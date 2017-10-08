@@ -13,7 +13,6 @@ namespace okapi {
       inverted(iinverted) {}
 
     bool isPressed() const { return inverted ? !digitalRead(port) : digitalRead(port); }
-
   private:
     const unsigned char port;
     const bool inverted;

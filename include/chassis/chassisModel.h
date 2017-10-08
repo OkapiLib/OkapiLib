@@ -6,7 +6,7 @@
 #include <valarray>
 #include <API.h>
 #include <memory>
-#include "control/motor.h"
+#include "device/motor.h"
 
 namespace okapi {
   class ChassisModel {
