@@ -7,6 +7,7 @@
 #include <API.h>
 #include <memory>
 #include "device/motor.h"
+#include "device/quadEncoder.h"
 
 namespace okapi {
   class ChassisModel {
@@ -40,7 +41,7 @@ namespace okapi {
   template<size_t motorsPerSide>
   class SkidSteerModelParams : public ChassisModelParams {
   public:
-    SkidSteerModelParams(const std::array<Motor, motorsPerSide * 2>& imotorList, Encoder ileftEnc, Encoder irightEnc):
+    SkidSteerModelParams(const std::array<Motor, motorsPerSide * 2>& imotorList, QuadEncoder ileftEnc, QuadEncoder irightEnc):
       motorList(imotorList),
       leftEnc(ileftEnc),
       rightEnc(irightEnc) {}
@@ -52,7 +53,7 @@ namespace okapi {
     }
 
     const std::array<Motor, motorsPerSide * 2>& motorList;
-    Encoder leftEnc, rightEnc;
+    QuadEncoder leftEnc, rightEnc;
   };
 
   template<size_t motorsPerSide>
@@ -66,7 +67,7 @@ namespace okapi {
      * @param ileftEnc  Left side encoder
      * @param irightEnc Right side encoder
      */
-    SkidSteerModel(const std::array<Motor, motorsPerSide * 2>& imotorList, const Encoder ileftEnc, const Encoder irightEnc):
+    SkidSteerModel(const std::array<Motor, motorsPerSide * 2>& imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc):
       motors(imotorList),
       leftEnc(ileftEnc),
       rightEnc(irightEnc) {}
@@ -122,11 +123,11 @@ namespace okapi {
     }
 
     std::valarray<int> getEncoderVals() const override {
-      return std::valarray<int>{encoderGet(leftEnc), encoderGet(rightEnc)};
+      return std::valarray<int>{leftEnc.get(), rightEnc.get()};
     }
   private:
     const std::array<Motor, motorsPerSide * 2> motors;
-    const Encoder leftEnc, rightEnc;
+    const QuadEncoder leftEnc, rightEnc;
   };
 
   template<size_t motorsPerCorner>
@@ -135,7 +136,7 @@ namespace okapi {
   template<size_t motorsPerCorner>
   class XDriveModelParams : public ChassisModelParams {
   public:
-    XDriveModelParams(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const Encoder ileftEnc, const Encoder irightEnc):
+    XDriveModelParams(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc):
       motorList(imotorList),
       leftEnc(ileftEnc),
       rightEnc(irightEnc) {}
@@ -147,7 +148,7 @@ namespace okapi {
     }
 
     const std::array<unsigned char, motorsPerCorner * 4>& motorList;
-    const Encoder leftEnc, rightEnc;
+    const QuadEncoder leftEnc, rightEnc;
   };
 
   template<size_t motorsPerCorner>
@@ -159,7 +160,7 @@ namespace okapi {
      * at full speed.
      * @param imotors Motors in the format: {{top left motors}, {top right motors}, {bottom right motors}, {bottom left motors}}
      */
-    XDriveModel(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const Encoder ileftEnc, const Encoder irightEnc):
+    XDriveModel(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc):
       motors(imotorList),
       leftEnc(ileftEnc),
       rightEnc(irightEnc) {}
@@ -242,11 +243,11 @@ namespace okapi {
     }
 
     std::valarray<int> getEncoderVals() const override {
-      return std::valarray<int>{encoderGet(leftEnc), encoderGet(rightEnc)};
+      return std::valarray<int>{leftEnc.get(), rightEnc.get()};
     }
   private:
     const std::array<unsigned char, motorsPerCorner * 4> motors;
-    const Encoder leftEnc, rightEnc;
+    const QuadEncoder leftEnc, rightEnc;
   };
 }
 
