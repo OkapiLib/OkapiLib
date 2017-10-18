@@ -3,3 +3,5 @@ bin/
 program
 *.dblite
 .vscode/
+okapilib-template.zip
+.clang/

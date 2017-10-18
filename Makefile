@@ -11,6 +11,7 @@ SUBDIRS=src
 
 # Include common aspects of this project
 -include $(ROOT)/common.mk
+-include $(ROOT)/template.mk
 
 ASMSRC:=$(wildcard *.$(ASMEXT))
 ASMOBJ:=$(patsubst %.o,$(BINDIR)/%.o,$(ASMSRC:.$(ASMEXT)=.o))
