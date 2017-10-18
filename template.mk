@@ -17,4 +17,4 @@ library: clean $(BINDIR) $(SUBDIRS) $(ASMOBJ) $(COBJ) $(CPPOBJ)
 	$(foreach f,$(TEMPLATEFILES),cp $(f) $(TEMPLATE)/$(f);)
 	pros conduct create-template $(LIBNAME) $(VERSION) $(TEMPLATE) --ignore template.pros --upgrade-files "firmware/$(LIBNAME).a $(TEMPLATEFILES)"
 	@echo Need to zip $(TEMPLATE) without the base directory
-	# cd $(TEMPLATE) && zip -r ../$(basename $(TEMPLATE)) *
+	cd $(TEMPLATE) && zip -r ../$(basename $(TEMPLATE)) *
