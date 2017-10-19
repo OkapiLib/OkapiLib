@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorials on Okapi Docs</title>
+    <link>https://okapilib.github.io/OkapiLib/tutorials/</link>
+    <description>Recent content in Tutorials on Okapi Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://okapilib.github.io/OkapiLib/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://okapilib.github.io/OkapiLib/tutorials/pidtutorial/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiLib/tutorials/pidtutorial/</guid>
+      <description> PID PID is useful. Get learnt
+//Comment PID myPid(1);  </description>
+    </item>
+    
+    <item>
+      <title>Tutorials</title>
+      <link>https://okapilib.github.io/OkapiLib/tutorials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiLib/tutorials/</guid>
+      <description> Tutorials This section contains various tutorials for the different parts of OkapiLib. Scroll down or view the menus on the left to pick a tutorial.
+PID PID is useful. Get learnt
+//Comment PID myPid(1);  </description>
+    </item>
+    
+  </channel>
+</rss>

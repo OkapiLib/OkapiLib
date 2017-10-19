@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/chassiscontroller/chassiscontroller/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/chassiscontroller/chassiscontrollermp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/chassiscontroller/chassiscontrollerpid/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/chassiscontroller/odomchassiscontroller/odomchassiscontroller/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/chassiscontroller/odomchassiscontroller/odomchassiscontrollermp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/chassiscontroller/odomchassiscontroller/odomchassiscontrollerpid/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/chassismodel/chassismodel/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/chassismodel/chassismodelparams/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/chassismodel/skidsteermodel/skidsteermodel/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/chassismodel/skidsteermodel/skidsteermodelparams/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/chassismodel/xdrivemodel/xdrivemodel/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/chassismodel/xdrivemodel/xdrivemodelparams/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/control/controlobject/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/control/genericcontroller/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/control/mpcontroller/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/control/pid/nspid/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/control/pid/pid/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/control/pid/pidparams/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/control/pid/velpid/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/control/pid/velpidparams/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/control/velmath/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/device/button/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/device/cubicmotor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/device/motor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/device/potentiometer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/device/quadencoder/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/device/rangefinder/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/filter/avgfilter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/filter/demafilter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/filter/emafilter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/filter/filter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/motionprofile/motionprofile/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/motionprofile/mpconsumer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/motionprofile/mpconsumerparams/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/motionprofile/mpgenerator/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/motionprofile/mpgeneratorparams/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/odometry/distanceandangle/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/odometry/odommath/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/odometry/odometry/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/util/mathutil/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/util/timer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/tutorials/pidtutorial/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/license/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/license/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/tutorials/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/tutorials/</loc>
+  </url>
+  
+</urlset>
