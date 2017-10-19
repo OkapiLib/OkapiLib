@@ -6,7 +6,7 @@ The `SkidSteerModelParams` class inherits from `ChassisModelParams`. It encapsul
 
 ```c++
 //Signature
-SkidSteerModelParams(const std::initializer_list<unsigned char>& imotorList, Encoder ileftEnc, Encoder irightEnc)
+SkidSteerModelParams(const std::array<Motor, motorsPerSide * 2>& imotorList, QuadEncoder ileftEnc, QuadEncoder irightEnc)
 ```
 
 Parameter | Description

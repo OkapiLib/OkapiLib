@@ -5,7 +5,7 @@ The `XDriveModelParams` class inherits from `ChassisModelParams`. It encapsulate
 ### Constructor
  ```c++
  //Signature
- XDriveModelParams(const std::initializer_list<unsigned char>& imotorList, Encoder ileftEnc, Encoder irightEnc)
+XDriveModelParams(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc)
  ```
 
  Parameter | Description

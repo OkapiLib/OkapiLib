@@ -6,7 +6,7 @@ The `XDriveModel` class inherits from `ChassisModel` and takes a template parame
 
 ```c++
 //Signature
-XDriveModel(const std::initializer_list<unsigned char>& imotorList, Encoder ileftEnc, Encoder irightEnc)
+XDriveModel(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc)
 XDriveModel(const XDriveModelParams<motorsPerCorner>& iparams)
 XDriveModel(const XDriveModel<motorsPerCorner>& other)
 
@@ -14,13 +14,13 @@ XDriveModel(const XDriveModel<motorsPerCorner>& other)
 //Top left motor is port 1, top right motor is port 2
 //Bottom right motor is port 3, bottom left motor is port 4
 //Right side encoder is reversed because it is a mirror of the left side
-XDriveModel<1> foo({1, 2, 3, 4}, encoderInit(1, 2, false), encoderInit(3, 4, true));
+XDriveModel<1> foo({1, 2, 3, 4}, QuadEncoder(1, 2, false), QuadEncoder(3, 4, true));
 
 //Construct an XDriveModel with eight motors (two per corner) and two encoders
 //Top left motors are ports 1 and 2, top right motors are ports 3 and 4
 //Bottom right motors are ports 5 and 6, bottom left motors are ports 7 and 8
 //Right side encoder is reversed because it is a mirror of the left side
-XDriveModel<2> foo({1, 2, 3, 4, 5, 6, 7, 8}, encoderInit(1, 2, false), encoderInit(3, 4, true));
+XDriveModel<2> foo({1, 2, 3, 4, 5, 6, 7, 8}, QuadEncoder(1, 2, false), QuadEncoder(3, 4, true));
 ```
 
 Parameter | Description

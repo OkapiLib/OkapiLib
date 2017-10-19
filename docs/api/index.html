@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>API Reference - Okapi Docs</title>
-    <meta name="generator" content="Hugo 0.30" />
+    <meta name="generator" content="Hugo 0.30.2" />
 
     
     <meta name="description" content="A PROS library for fast C&#43;&#43; development.">
@@ -2956,6 +2956,86 @@ int get() const
 
 <p>Return the current measured range in centimeters.</p>
 
+<h2 id="skidsteermodel">SkidSteerModel</h2>
+
+<p>The <code>SkidSteerModel</code> class inherits from <code>ChassisModel</code> and takes a template parameter <code>size_t motorsPerSide</code> (the number of motors per each of the two sides of the chassis). It is a model for a skid steer drive (also called a tank drive).</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+SkidSteerModel(const std::array&lt;Motor, motorsPerSide * 2&gt;&amp; imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc)
+SkidSteerModel(const SkidSteerModelParams&lt;motorsPerSide&gt;&amp; iparams)
+SkidSteerModel(const SkidSteerModel&lt;motorsPerSide&gt;&amp; other)
+
+//Construct a SkidSteerModel with four motors (two per side) and two encoders
+//Left side motors are ports 1 and 3
+//Right side motors are ports 2 and 4
+//Right side encoder is reversed because it is a mirror of the left side
+SkidSteerModel&lt;2&gt; foo({1, 3, 2, 4}, QuadEncoder(1, 2, false), QuadEncoder(3, 4, true));
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imotorList</td>
+<td>The left and right side motors for the drive in the format, <code>{left motors, right motors}</code></td>
+</tr>
+
+<tr>
+<td>ileftEnc</td>
+<td>The quadrature encoder for the left side</td>
+</tr>
+
+<tr>
+<td>irightEnc</td>
+<td>The quadrature encoder for the right side</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="skidsteermodelparams">SkidSteerModelParams</h2>
+
+<p>The <code>SkidSteerModelParams</code> class inherits from <code>ChassisModelParams</code>. It encapsulates the parameters a <code>SkidSteerModel</code> takes.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+SkidSteerModelParams(const std::array&lt;Motor, motorsPerSide * 2&gt;&amp; imotorList, QuadEncoder ileftEnc, QuadEncoder irightEnc)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imotorList</td>
+<td>The left and right side motors for the drive in the format, <code>{left motors, right motors}</code></td>
+</tr>
+
+<tr>
+<td>ileftEnc</td>
+<td>The quadrature encoder for the left side</td>
+</tr>
+
+<tr>
+<td>irightEnc</td>
+<td>The quadrature encoder for the right side</td>
+</tr>
+</tbody>
+</table>
+
 <h2 id="timer">Timer</h2>
 
 <p>The <code>Timer</code> class has timing-related utilities to make measuring time differences and writing non-blocking code in loops easier.</p>
@@ -3478,6 +3558,126 @@ VelPidParams(const float ikP, const float ikD)
 <tr>
 <td>ikD</td>
 <td>Derivative gain</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="xdrivemodel">XDriveModel</h2>
+
+<p>The <code>XDriveModel</code> class inherits from <code>ChassisModel</code> and takes a template parameter <code>size_t motorsPerCorner</code> (the number of motors per each of the four corners of the chassis). It is a model for an x-drive.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+XDriveModel(const std::array&lt;unsigned char, motorsPerCorner * 4&gt;&amp; imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc)
+XDriveModel(const XDriveModelParams&lt;motorsPerCorner&gt;&amp; iparams)
+XDriveModel(const XDriveModel&lt;motorsPerCorner&gt;&amp; other)
+
+//Construct an XDriveModel with four motors (one per corner) and two encoders
+//Top left motor is port 1, top right motor is port 2
+//Bottom right motor is port 3, bottom left motor is port 4
+//Right side encoder is reversed because it is a mirror of the left side
+XDriveModel&lt;1&gt; foo({1, 2, 3, 4}, QuadEncoder(1, 2, false), QuadEncoder(3, 4, true));
+
+//Construct an XDriveModel with eight motors (two per corner) and two encoders
+//Top left motors are ports 1 and 2, top right motors are ports 3 and 4
+//Bottom right motors are ports 5 and 6, bottom left motors are ports 7 and 8
+//Right side encoder is reversed because it is a mirror of the left side
+XDriveModel&lt;2&gt; foo({1, 2, 3, 4, 5, 6, 7, 8}, QuadEncoder(1, 2, false), QuadEncoder(3, 4, true));
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imotorList</td>
+<td>The chassis motors for the drive in the clockwise format, <code>{top left motors, top right motors, bottom right motors, bottom left motors}</code></td>
+</tr>
+
+<tr>
+<td>ileftEnc</td>
+<td>The quadrature encoder for the left side</td>
+</tr>
+
+<tr>
+<td>irightEnc</td>
+<td>The quadrature encoder for the right side</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="xarcade">xArcade</h3>
+
+<pre><code class="language-c++">//Signature
+void xArcade(const int verticalVal, const int horizontalVal, const int rotateVal)
+</code></pre>
+
+<p>Specifically for an x-drive, power the motors like arcade drive with a channel for rotation.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>verticalVal</td>
+<td>Motor power for the vertical component of movement</td>
+</tr>
+
+<tr>
+<td>horizontalVal</td>
+<td>Motor power for the horizontal component of movement</td>
+</tr>
+
+<tr>
+<td>rotateVal</td>
+<td>Motor power for rotation</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="xdrivemodelparams">XDriveModelParams</h2>
+
+<p>The <code>XDriveModelParams</code> class inherits from <code>ChassisModelParams</code>. It encapsulates the parameters an <code>XDriveModel</code> takes.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++"> //Signature
+XDriveModelParams(const std::array&lt;unsigned char, motorsPerCorner * 4&gt;&amp; imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imotorList</td>
+<td>The chassis motors for the drive in the clockwise format, <code>{top left motors, top right motors, bottom right motors, bottom left motors}</code></td>
+</tr>
+
+<tr>
+<td>ileftEnc</td>
+<td>The quadrature encoder for the left side</td>
+</tr>
+
+<tr>
+<td>irightEnc</td>
+<td>The quadrature encoder for the right side</td>
 </tr>
 </tbody>
 </table>

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title> - Okapi Docs</title>
-    <meta name="generator" content="Hugo 0.30" />
+    <meta name="generator" content="Hugo 0.30.2" />
 
     
     <meta name="description" content="A PROS library for fast C&#43;&#43; development.">
@@ -304,7 +304,7 @@
 <h3 id="constructor">Constructor</h3>
 
 <pre><code class="language-c++">//Signature
-SkidSteerModelParams(const std::initializer_list&lt;unsigned char&gt;&amp; imotorList, Encoder ileftEnc, Encoder irightEnc)
+SkidSteerModelParams(const std::array&lt;Motor, motorsPerSide * 2&gt;&amp; imotorList, QuadEncoder ileftEnc, QuadEncoder irightEnc)
 </code></pre>
 
 <table>
