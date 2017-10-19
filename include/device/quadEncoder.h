@@ -13,7 +13,7 @@ namespace okapi {
       enc(encoderInit(iportTop, iportBottom, ireversed)) {}
 
     int get() const { return encoderGet(enc); }
-    void reset() { encoderReset(enc); }
+    void reset() const { encoderReset(enc); }
   private:
     const Encoder enc;
   };

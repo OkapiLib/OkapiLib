@@ -25,15 +25,11 @@ params | `VelPidParams`
 virtual float loopVel(const float inewReading)
 ```
 
-Do one iteration of velocity math to compute a new filtered velocity. This is only meant to be used separately from `loop` if you only want to compute a new velocity.
+Do one iteration of velocity math to compute a new filtered velocity. This is only meant to be used separately from `loop` if you only want to compute a new velocity. Don't call loopVel if you are already calling loop because loop will call loopVel on its own.
 
 Parameter | Description
 ----------|------------
 inewReading | New sensor reading
-
-<aside class="notice">
-Don't call loopVel if you are already calling loop because loop will call loopVel on its own.
-</aside>
 
 ### loop
 

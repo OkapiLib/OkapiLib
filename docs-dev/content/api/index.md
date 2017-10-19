@@ -23,6 +23,7 @@ Most users should not call this constructor with a std::shared_ptr&lt;ChassisMod
 {{< readfile file="content/api/chassisModel/chassisModel.md" markdown="true" >}}
 {{< readfile file="content/api/chassisModel/chassisModelParams.md" markdown="true" >}}
 {{< readfile file="content/api/control/controlObject.md" markdown="true" >}}
+{{< readfile file="content/api/device/cubicMotor.md" markdown="true" >}}
 {{< readfile file="content/api/filter/demaFilter.md" markdown="true" >}}
 {{< readfile file="content/api/odometry/distanceAndAngle.md" markdown="true" >}}
 {{< readfile file="content/api/filter/emaFilter.md" markdown="true" >}}
@@ -33,7 +34,7 @@ Most users should not call this constructor with a std::shared_ptr&lt;ChassisMod
 {{< readfile file="content/api/device/motor.md" markdown="true" >}}
 {{< readfile file="content/api/motionProfile/mpConsumer.md" markdown="true" >}}
 {{< readfile file="content/api/motionProfile/mpConsumerParams.md" markdown="true" >}}
-{{< readfile file="content/api/motionProfile/mpController.md" markdown="true" >}}
+{{< readfile file="content/api/control/mpController.md" markdown="true" >}}
 {{< readfile file="content/api/motionProfile/mpGenerator.md" markdown="true" >}}
 {{< readfile file="content/api/motionProfile/mpGeneratorParams.md" markdown="true" >}}
 {{< readfile file="content/api/control/pid/nsPid.md" markdown="true" >}}
@@ -42,8 +43,8 @@ Most users should not call this constructor with a std::shared_ptr&lt;ChassisMod
 {{< readfile file="content/api/chassisController/odomChassisController/odomChassisControllerPID.md" markdown="true" >}}
 {{< readfile file="content/api/odometry/odometry.md" markdown="true" >}}
 {{< readfile file="content/api/odometry/odomMath.md" markdown="true" >}}
-{{< readfile file="content/api/control/pid.md" markdown="true" >}}
-{{< readfile file="content/api/control/pidParams.md" markdown="true" >}}
+{{< readfile file="content/api/control/pid/pid.md" markdown="true" >}}
+{{< readfile file="content/api/control/pid/pidParams.md" markdown="true" >}}
 {{< readfile file="content/api/device/potentiometer.md" markdown="true" >}}
 {{< readfile file="content/api/device/quadEncoder.md" markdown="true" >}}
 {{< readfile file="content/api/device/rangeFinder.md" markdown="true" >}}

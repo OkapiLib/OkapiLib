@@ -23,3 +23,12 @@ Literal | Button Value
 --------|-------------
 `n_b` | `Button(n, false)`
 `n_ib` | `Button(n, true)`
+
+### isPressed
+
+```c++
+//Signature
+bool isPressed() const
+```
+
+Return whether this button is pressed or not. This takes into account whether the button is inverted or not.
