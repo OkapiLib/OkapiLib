@@ -184,6 +184,15 @@
   </url>
   
   <url>
+    <loc>https://okapilib.github.io/OkapiLib/getting-started/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/getting-started/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://okapilib.github.io/OkapiLib/license/</loc>
   </url>
   
