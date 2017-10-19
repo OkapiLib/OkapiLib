@@ -24,8 +24,10 @@ namespace okapi {
     const bool inverted;
   };
 
-  constexpr Button operator"" _b(const unsigned long long int p) { return Button(static_cast<unsigned char>(p), false); }
-  constexpr Button operator"" _ib(const unsigned long long int p) { return Button(static_cast<unsigned char>(p), true); }
+  inline namespace literals {
+    constexpr Button operator"" _b(const unsigned long long int p) { return Button(static_cast<unsigned char>(p), false); }
+    constexpr Button operator"" _ib(const unsigned long long int p) { return Button(static_cast<unsigned char>(p), true); }
+  }
 }
 
 #endif /* end of include guard: OKAPI_BUTTON */

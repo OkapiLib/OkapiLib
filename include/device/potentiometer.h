@@ -24,8 +24,10 @@ namespace okapi {
     const bool inverted;
   };
 
-  constexpr Potentiometer operator"" _p(const unsigned long long int p) { return Potentiometer(static_cast<unsigned char>(p), false); }
-  constexpr Potentiometer operator"" _ip(const unsigned long long int p) { return Potentiometer(static_cast<unsigned char>(p), true); }
+  inline namespace literals {
+    constexpr Potentiometer operator"" _p(const unsigned long long int p) { return Potentiometer(static_cast<unsigned char>(p), false); }
+    constexpr Potentiometer operator"" _ip(const unsigned long long int p) { return Potentiometer(static_cast<unsigned char>(p), true); }
+  }
 }
 
 #endif /* end of include guard: OKAPI_POTENTIOMETER */

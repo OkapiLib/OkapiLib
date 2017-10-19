@@ -71,11 +71,12 @@ namespace okapi {
     }
   };
 
-
-  constexpr Motor operator"" _m(const unsigned long long int m) { return Motor(static_cast<unsigned char>(m), 1); }
-  constexpr Motor operator"" _rm(const unsigned long long int m) { return Motor(static_cast<unsigned char>(m), -1); }
-  constexpr Motor operator"" _m3(const unsigned long long int m) { return CubicMotor(static_cast<unsigned char>(m), 1); }
-  constexpr Motor operator"" _rm3(const unsigned long long int m) { return CubicMotor(static_cast<unsigned char>(m), -1); }
+  inline namespace literals {
+    constexpr Motor operator"" _m(const unsigned long long int m) { return Motor(static_cast<unsigned char>(m), 1); }
+    constexpr Motor operator"" _rm(const unsigned long long int m) { return Motor(static_cast<unsigned char>(m), -1); }
+    constexpr Motor operator"" _m3(const unsigned long long int m) { return CubicMotor(static_cast<unsigned char>(m), 1); }
+    constexpr Motor operator"" _rm3(const unsigned long long int m) { return CubicMotor(static_cast<unsigned char>(m), -1); }
+  }
 }
 
 #endif /* end of include guard: OKAPI_MOTOR */
