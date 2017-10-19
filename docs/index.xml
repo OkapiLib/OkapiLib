@@ -479,6 +479,15 @@ getDtFromStart //Signature unsigned long getDtFromStart() const  Return the time
     </item>
     
     <item>
+      <title>Okapi Documentation</title>
+      <link>https://okapilib.github.io/OkapiLib/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiLib/</guid>
+      <description>Primary Objective Welcome to Okapi! This library is designed to make modeling and programming complex robot behavior easy, efficient, and maintainable. This library is targeted at PROS users looking to take their competition robot to the next level, whether that means starting to use motion profiles instead of PID or designing an autonomous robot from the ground up. Okapi also comes with an optional cross-platform client that lets you interact with your robot in real time as a graphical interface to Okapi&amp;rsquo;s modules.</description>
+    </item>
+    
+    <item>
       <title>Tutorials</title>
       <link>https://okapilib.github.io/OkapiLib/tutorials/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

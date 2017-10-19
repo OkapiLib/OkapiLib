@@ -217,6 +217,10 @@
   </url>
   
   <url>
+    <loc>https://okapilib.github.io/OkapiLib/</loc>
+  </url>
+  
+  <url>
     <loc>https://okapilib.github.io/OkapiLib/tags/</loc>
     <priority>0</priority>
   </url>
