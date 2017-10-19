@@ -11,11 +11,8 @@ namespace okapi {
   class GenericController {
   public:
     GenericController(const std::array<Motor, motorNum> &imotorList, const std::shared_ptr<ControlObject> &iptr):
-      controller(iptr),
-      motors(imotorList) {
-        // for (size_t i = 0; i < imotorList.size(); i++)
-        //   motors[i] = *(imotorList.begin() + i);
-      }
+      motors(imotorList),
+      controller(iptr) {}
 
     void loop(const float ireading) {
       controller->loop(ireading);
@@ -35,8 +32,8 @@ namespace okapi {
 
     void flipDisable() { controller->flipDisable(); }
   private:
-    std::shared_ptr<ControlObject> controller;
     std::array<Motor, motorNum> motors;
+    std::shared_ptr<ControlObject> controller;
   };
 }
 
