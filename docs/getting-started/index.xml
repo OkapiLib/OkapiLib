@@ -18,7 +18,7 @@
       <guid>https://okapilib.github.io/OkapiLib/getting-started/</guid>
       <description>Programming the Clawbot This tutorial is a step-by-step guide to programming this simple skills robot:
  This robot has motors and sensors plugged into the following ports:
-   Motor Port Description Motor Port Description     1  6 Right middle motor   2 Left front motor 7 Right bottom motor   3 Left middle motor 8    4 Left bottom motor 9    5 Right top motor 10        Digital Port Description Digital Port Description     1 Left encoder top wire 7    2 Left encoder bottom wire 8    3 Right encoder top wire 9    4 Right encoder bottom wire 10    5  11    6  12        Analog Port Description Analog Port Description     1 Lift potentiometer 5    2  6    3  7    4  8     Project Configuration After installing OkapiLib through the PROS Conductor tool, okapilib.</description>
+   Motor Port Description Motor Port Description     1  6 Right middle motor   2 Left front motor 7 Right bottom motor   3 Left middle motor 8 Lift left motor   4 Left bottom motor 9 Lift right motor   5 Right top motor 10        Digital Port Description Digital Port Description     1 Left encoder top wire 7    2 Left encoder bottom wire 8    3 Right encoder top wire 9    4 Right encoder bottom wire 10    5  11    6  12        Analog Port Description Analog Port Description     1 Lift potentiometer 5    2  6    3  7    4  8     Project Configuration After installing OkapiLib through the PROS Conductor tool, okapilib.</description>
     </item>
     
   </channel>

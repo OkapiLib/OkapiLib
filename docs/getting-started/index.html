@@ -346,14 +346,14 @@
 <td>3</td>
 <td>Left middle motor</td>
 <td>8</td>
-<td></td>
+<td>Lift left motor</td>
 </tr>
 
 <tr>
 <td>4</td>
 <td>Left bottom motor</td>
 <td>9</td>
-<td></td>
+<td>Lift right motor</td>
 </tr>
 
 <tr>
@@ -492,6 +492,45 @@ void initialize() {
 <p>This line: <code>CPPFLAGS:=$(CCFLAGS)-fno-exceptions -fno-rtti -felide-constructors</code></p>
 
 <p>Should become this: <code>CPPFLAGS:=$(CCFLAGS) -std=c++14 -fno-exceptions -fno-rtti -felide-constructors</code></p>
+
+<h2 id="programming-user-control">Programming User Control</h2>
+
+<h3 id="drivetrain-setup">Drivetrain Setup</h3>
+
+<p>Let&rsquo;s start by setting up our sensor and motor configuration. We want to tell Okapi that we have two quadrature encoders and six motors on our chassis.</p>
+
+<p>Our two quad encoders:</p>
+
+<pre><code>QuadEncoder leftEnc(1, 2, true), rightEnc(3, 4);
+</code></pre>
+
+<p>Now we can use those quads with our motors to make a model for controlling our chassis:</p>
+
+<pre><code>SkidSteerModel&lt;3&gt; model({2_m, 3_m, 4_m, 5_m, 6_m, 7_m}, leftEnc, rightEnc);
+</code></pre>
+
+<p>That syntax might look a little weird. Breaking it down further, the template argument to our <code>SkidSteerModel</code> specifies the number of motors per side we have. In our case, we have three motors on each side of our chassis, so the argument value is <code>3</code>. Next, the first argument to the <code>SkidSteerModel</code> constructor is an array of motors. Each motor is specified using special syntax called a literal, which lets you abbreviate the <code>Motor</code> constructor. Writing <code>2_m</code> translates into <code>Motor(2, false)</code>, which is a non-reversed motor on port two. <code>2_rm</code> would translate into <code>Motor(2, true)</code>, which is a reversed motor on port two.</p>
+
+<p>It&rsquo;s a good idea to use PID control to have the chassis drive around accurately during autonomous. Okapi can do this using a <code>ChassisController</code>, which combines a <code>ChassisModel</code> with either PID or Motion Profile control. Let&rsquo;s refactor to use that instead:</p>
+
+<pre><code> ChassisControllerPid controller(SkidSteerModelParams&lt;3&gt;({2_m,3_m,4_m, 5_m,6_m,7_m}, leftEnc, rightEnc),
+                                 PidParams(0.15, 0.05, 0.07),
+                                 PidParams(0.02, 0.01, 0));
+</code></pre>
+
+<p>Take a look at the first argument to the <code>ChassisControllerPid</code> constructor. It looks just like our model from before, except it has a <code>Parmas</code> suffix now. Okapi often encapsulates the constructor arguments of classes into their own <code>Params</code> class to simplify making complex objects. Notice we do the same thing for the remaining two arguments, <code>PidParams</code> specifies how to make a <code>Pid</code> controller.</p>
+
+<h3 id="lift-setup">Lift Setup</h3>
+
+<p>Okapi provides a tool, called <code>GenericController</code>, to associate a group of motors to some closed-loop controller. We want to use this for our lift because all of the lift motors should act like one, so it&rsquo;s easier to think about in that manner. Let&rsquo;s tie our two lift motors together and control them with a special PID controller, called <code>NsPid</code>, that moniors velocity and reduces the control signal at low velocity to prevent the system from stalling itself.</p>
+
+<pre><code class="language-c++">GenericController&lt;2&gt; liftController({8_m, 9_m},
+                                    std::make_shared&lt;NsPid&gt;(NsPid(PidParams(0.2, 0.1, 0.1), 
+                                                            VelMathParams(360),
+                                                            0.5)));
+</code></pre>
+
+<p>Like before, we specify our two motors in an array using motor literals, and we specify the number of motors using the template argument. These two motors will recieve the control signal from the closed-loop controller we specify in the second argument. Notice that because <code>GenericController</code> accepts an abstract <code>ControlObject</code>, we cannot supply a concrete class directly. Instead, we must make a <code>std::shared_ptr</code> to our concrete class.</p>
 
 
 			<aside class="copyright" role="note">
