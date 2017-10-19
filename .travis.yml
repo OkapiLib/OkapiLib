@@ -2,9 +2,9 @@ sudo: required
 
 before_install:
   - sudo apt-get update -y
+  - sudo apt-get install -y lib32z1 lib32ncurses5 lib32bz2-1.0 zip python3
   - pip3 install --upgrade pip
   - pip3 install -q pros-cli
-  - sudo apt-get install -y lib32z1 lib32ncurses5 lib32bz2-1.0 zip
 
 install:
   - wget -O ~/gcc-arm-none-eabi-4_9-2014q4-20141203-linux.tar.bz2 https://launchpad.net/gcc-arm-embedded/4.9/4.9-2014-q4-major/+download/gcc-arm-none-eabi-4_9-2014q4-20141203-linux.tar.bz2
