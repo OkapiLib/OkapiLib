@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Homes on Okapi Docs</title>
+    <link>https://okapilib.github.io/OkapiLib/home/</link>
+    <description>Recent content in Homes on Okapi Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://okapilib.github.io/OkapiLib/home/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Okapi Documentation</title>
+      <link>https://okapilib.github.io/OkapiLib/home/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiLib/home/</guid>
+      <description>Primary Objective Welcome to Okapi! This library is designed to make modeling and programming complex robot behavior easy, efficient, and maintainable. This library is targeted at PROS users looking to take their competition robot to the next level, whether that means starting to use motion profiles instead of PID or designing an autonomous robot from the ground up. Okapi also comes with an optional cross-platform client that lets you interact with your robot in real time as a graphical interface to Okapi&amp;rsquo;s modules.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -447,12 +447,14 @@ getDtFromStart //Signature unsigned long getDtFromStart() const  Return the time
     </item>
     
     <item>
-      <title>Getting Started</title>
+      <title>Getting started</title>
       <link>https://okapilib.github.io/OkapiLib/getting-started/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://okapilib.github.io/OkapiLib/getting-started/</guid>
-      <description>get started</description>
+      <description>Programming the Clawbot This tutorial is a step-by-step guide to programming this simple skills robot:
+ This robot has motors and sensors plugged into the following ports:
+   Motor Port Description Motor Port Description     1  6 Right middle motor   2 Left front motor 7 Right bottom motor   3 Left middle motor 8    4 Left bottom motor 9    5 Right top motor 10        Digital Port Description Digital Port Description     1 Left encoder top wire 7    2 Left encoder bottom wire 8    3 Right encoder top wire 9    4 Right encoder bottom wire 10    5  11    6  12        Analog Port Description Analog Port Description     1 Lift potentiometer 5    2  6    3  7    4  8     Project Configuration After installing OkapiLib through the PROS Conductor tool, okapilib.</description>
     </item>
     
     <item>
@@ -469,10 +471,10 @@ getDtFromStart //Signature unsigned long getDtFromStart() const  Return the time
     
     <item>
       <title>Okapi Documentation</title>
-      <link>https://okapilib.github.io/OkapiLib/</link>
+      <link>https://okapilib.github.io/OkapiLib/home/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://okapilib.github.io/OkapiLib/</guid>
+      <guid>https://okapilib.github.io/OkapiLib/home/</guid>
       <description>Primary Objective Welcome to Okapi! This library is designed to make modeling and programming complex robot behavior easy, efficient, and maintainable. This library is targeted at PROS users looking to take their competition robot to the next level, whether that means starting to use motion profiles instead of PID or designing an autonomous robot from the ground up. Okapi also comes with an optional cross-platform client that lets you interact with your robot in real time as a graphical interface to Okapi&amp;rsquo;s modules.</description>
     </item>
     

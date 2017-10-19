@@ -66,6 +66,8 @@
     </style>
 
     
+    <link rel="stylesheet" href="https://okapilib.github.io/OkapiLib/css/imageAlign.css">
+    
     <script src="https://okapilib.github.io/OkapiLib/javascripts/modernizr.js"></script>
 
     
@@ -183,7 +185,7 @@
 
 
 
-<a  title="Home" href="https://okapilib.github.io/OkapiLib/">
+<a  title="Home" href="https://okapilib.github.io/OkapiLib/home/">
 	
 	Home
 </a>
@@ -3685,9 +3687,200 @@ XDriveModelParams(const std::array&lt;unsigned char, motorsPerCorner * 4&gt;&amp
 </p>
 
 			
-				<h1>Getting Started </h1>
+				<h1>Getting started </h1>
 
-				<p>get started</p>
+				
+
+<h2 id="programming-the-clawbot">Programming the Clawbot</h2>
+
+<p>This tutorial is a step-by-step guide to programming this simple skills robot:</p>
+
+
+<figure >
+    
+        <img src="https://okapilib.github.io/OkapiLib/images/skillsRobotPicture.png#center" />
+    
+    
+</figure>
+
+
+<p>This robot has motors and sensors plugged into the following ports:</p>
+
+<table>
+<thead>
+<tr>
+<th>Motor Port</th>
+<th>Description</th>
+<th>Motor Port</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td>6</td>
+<td>Right middle motor</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Left front motor</td>
+<td>7</td>
+<td>Right bottom motor</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Left middle motor</td>
+<td>8</td>
+<td></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Left bottom motor</td>
+<td>9</td>
+<td></td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>Right top motor</td>
+<td>10</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>Digital Port</th>
+<th>Description</th>
+<th>Digital Port</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>Left encoder top wire</td>
+<td>7</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Left encoder bottom wire</td>
+<td>8</td>
+<td></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Right encoder top wire</td>
+<td>9</td>
+<td></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Right encoder bottom wire</td>
+<td>10</td>
+<td></td>
+</tr>
+
+<tr>
+<td>5</td>
+<td></td>
+<td>11</td>
+<td></td>
+</tr>
+
+<tr>
+<td>6</td>
+<td></td>
+<td>12</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>Analog Port</th>
+<th>Description</th>
+<th>Analog Port</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>Lift potentiometer</td>
+<td>5</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td></td>
+<td>6</td>
+<td></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td></td>
+<td>7</td>
+<td></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td></td>
+<td>8</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="project-configuration">Project Configuration</h2>
+
+<p>After installing OkapiLib through the PROS Conductor tool, <code>okapilib.a</code> will be copied into <code>firmware/</code> and OkapiLib&rsquo;s header files will be copied into <code>include/</code>. In order to properly compile your project, you need to modify a few files:</p>
+
+<ol>
+<li><p>The <code>src/</code> folder contains three files, <code>auto.c</code>, <code>init.c</code>, and <code>opcontrol.c</code>. The <code>.c</code> extension of these files needs to be changed to <code>.cpp</code> so the compiler knows they contain C++ code.</p></li>
+
+<li><p>The <code>src/init.cpp</code> file needs to be changed so it instead contains the following code which calls a special internal function <code>__libc_init_array()</code>:</p></li>
+</ol>
+
+<pre><code class="language-c++">#include &quot;main.h&quot;
+
+extern &quot;C&quot; {
+  void __libc_init_array();
+}
+
+void initializeIO() {
+  __libc_init_array();
+}
+
+void initialize() {
+}
+</code></pre>
+
+<ol>
+<li>Finally, the <code>common.mk</code> file needs to have the <code>CPPFLAGS</code> variable modified to contain the flag <code>-std=c++14</code> so the compiler knows the correct C++ standard to use:</li>
+</ol>
+
+<p>This line: <code>CPPFLAGS:=$(CCFLAGS)-fno-exceptions -fno-rtti -felide-constructors</code></p>
+
+<p>Should become this: <code>CPPFLAGS:=$(CCFLAGS) -std=c++14 -fno-exceptions -fno-rtti -felide-constructors</code></p>
 
 			
 				<h1>Okapi Documentation </h1>

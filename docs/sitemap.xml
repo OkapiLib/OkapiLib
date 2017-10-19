@@ -194,6 +194,11 @@
   </url>
   
   <url>
+    <loc>https://okapilib.github.io/OkapiLib/home/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://okapilib.github.io/OkapiLib/license/</loc>
   </url>
   
@@ -208,7 +213,7 @@
   </url>
   
   <url>
-    <loc>https://okapilib.github.io/OkapiLib/</loc>
+    <loc>https://okapilib.github.io/OkapiLib/home/</loc>
   </url>
   
   <url>
