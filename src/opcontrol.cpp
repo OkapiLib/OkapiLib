@@ -19,6 +19,7 @@
 #include "control/nsPid.h"
 #include "control/velPid.h"
 #include "control/genericController.h"
+#include "device/rangeFinder.h"
 
 using namespace okapi;
 

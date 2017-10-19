@@ -331,10 +331,18 @@ RangeFinder(const unsigned char iportTop, const unsigned char iportBottom)
 <h3 id="get">get</h3>
 
 <pre><code class="language-c++">//Signature
-int get() const
+int get()
 </code></pre>
 
 <p>Return the current measured range in centimeters.</p>
+
+<h3 id="getfiltered">getFiltered</h3>
+
+<pre><code class="language-c++">//Signature
+int getFiltered()
+</code></pre>
+
+<p>Return the median measured range in centimeters. The median is measured across the previous five measurements.</p>
 
 
 			<aside class="copyright" role="note">

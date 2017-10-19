@@ -16,7 +16,16 @@ iportBottom | Bottom digital port
 
 ```c++
 //Signature
-int get() const
+int get()
 ```
 
 Return the current measured range in centimeters.
+
+### getFiltered
+
+```c++
+//Signature
+int getFiltered()
+```
+
+Return the median measured range in centimeters. The median is measured across the previous five measurements.
