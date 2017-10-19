@@ -47,7 +47,7 @@ publishDir = "../docs"
 
 [[menu.main]]
 	name   = "Home"
-	url    = "/"
+	url    = "home/"
 	weight = 10
 
 [[menu.main]]
