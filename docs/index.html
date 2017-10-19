@@ -3698,7 +3698,7 @@ XDriveModelParams(const std::array&lt;unsigned char, motorsPerCorner * 4&gt;&amp
 
 <figure >
     
-        <img src="https://okapilib.github.io/OkapiLib/images/skillsRobotPicture.png#center" />
+        <img src="https://okapilib.github.io/OkapiLib/images/skillsRobotPicture.jpg#center" />
     
     
 </figure>
@@ -3890,24 +3890,32 @@ void initialize() {
 
 <p>Our two quad encoders:</p>
 
-<pre><code>QuadEncoder leftEnc(1, 2, true), rightEnc(3, 4);
+<pre><code class="language-c++">QuadEncoder leftEnc(1, 2, true), rightEnc(3, 4);
 </code></pre>
 
 <p>Now we can use those quads with our motors to make a model for controlling our chassis:</p>
 
-<pre><code>SkidSteerModel&lt;3&gt; model({2_m, 3_m, 4_m, 5_m, 6_m, 7_m}, leftEnc, rightEnc);
+<pre><code class="language-c++">SkidSteerModel&lt;3&gt; model({2_m, 3_m, 4_m, 5_m, 6_m, 7_m}, leftEnc, rightEnc);
 </code></pre>
 
 <p>That syntax might look a little weird. Breaking it down further, the template argument to our <code>SkidSteerModel</code> specifies the number of motors per side we have. In our case, we have three motors on each side of our chassis, so the argument value is <code>3</code>. Next, the first argument to the <code>SkidSteerModel</code> constructor is an array of motors. Each motor is specified using special syntax called a literal, which lets you abbreviate the <code>Motor</code> constructor. Writing <code>2_m</code> translates into <code>Motor(2, false)</code>, which is a non-reversed motor on port two. <code>2_rm</code> would translate into <code>Motor(2, true)</code>, which is a reversed motor on port two.</p>
 
 <p>It&rsquo;s a good idea to use PID control to have the chassis drive around accurately during autonomous. Okapi can do this using a <code>ChassisController</code>, which combines a <code>ChassisModel</code> with either PID or Motion Profile control. Let&rsquo;s refactor to use that instead:</p>
 
-<pre><code> ChassisControllerPid controller(SkidSteerModelParams&lt;3&gt;({2_m,3_m,4_m, 5_m,6_m,7_m}, leftEnc, rightEnc),
+<pre><code class="language-c++"> ChassisControllerPid controller(SkidSteerModelParams&lt;3&gt;({2_m,3_m,4_m, 5_m,6_m,7_m}, leftEnc, rightEnc),
                                  PidParams(0.15, 0.05, 0.07),
                                  PidParams(0.02, 0.01, 0));
 </code></pre>
 
 <p>Take a look at the first argument to the <code>ChassisControllerPid</code> constructor. It looks just like our model from before, except it has a <code>Parmas</code> suffix now. Okapi often encapsulates the constructor arguments of classes into their own <code>Params</code> class to simplify making complex objects. Notice we do the same thing for the remaining two arguments, <code>PidParams</code> specifies how to make a <code>Pid</code> controller.</p>
+
+<p>To recap, this is the final state of our chassis setup code:</p>
+
+<pre><code class="language-c++">QuadEncoder leftEnc(1, 2, true), rightEnc(3, 4);
+ChassisControllerPid controller(SkidSteerModelParams&lt;3&gt;({2_m,3_m,4_m, 5_m,6_m,7_m}, leftEnc, rightEnc),
+                                PidParams(0.15, 0.05, 0.07),
+                                PidParams(0.02, 0.01, 0));
+</code></pre>
 
 <h3 id="lift-setup">Lift Setup</h3>
 
@@ -3920,6 +3928,90 @@ void initialize() {
 </code></pre>
 
 <p>Like before, we specify our two motors in an array using motor literals, and we specify the number of motors using the template argument. These two motors will recieve the control signal from the closed-loop controller we specify in the second argument. Notice that because <code>GenericController</code> accepts an abstract <code>ControlObject</code>, we cannot supply a concrete class directly. Instead, we must make a <code>std::shared_ptr</code> to our concrete class.</p>
+
+<h3 id="control-code">Control Code</h3>
+
+<p>We&rsquo;ll have a simple state machine that controls the lift&rsquo;s target height:</p>
+
+<pre><code class="language-c++">const unsigned char liftPot = 1;
+constexpr int liftUpTarget = 2570, lift34 = 300, liftDownTarget = 10;
+int target = liftUpTarget;
+
+while (1) {
+  if (joystickGetDigital(1, 6, JOY_UP))
+    target = liftUpTarget;
+  else if (joystickGetDigital(1, 6, JOY_DOWN))
+    target = liftDownTarget;
+  else if (joystickGetDigital(1, 5, JOY_UP))
+    target = lift34;
+  else if (joystickGetDigital(1, 8, JOY_LEFT)) {
+    liftController.flipDisable(); //Turn the controller on or off
+    while (joystickGetDigital(1, 8, JOY_LEFT)); //And wait
+  }
+
+  liftController.setTarget(target); //Set the new target
+  liftController.loop(analogRead(liftPot)); //Loop the controller
+}
+</code></pre>
+
+<p>Let&rsquo;s also use arcade control to drive around ourselves:</p>
+
+<pre><code class="language-c++"> controller.arcade(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1));
+</code></pre>
+
+<h2 id="review">Review</h2>
+
+<p>That&rsquo;s all the code we need to drive around and use the lift. Here&rsquo;s our final product:</p>
+
+<pre><code class="language-c++">#include &lt;cmath&gt;
+#include &quot;main.h&quot;
+#include &quot;chassis/basicChassisController.h&quot;
+#include &quot;util/timer.h&quot;
+#include &quot;util/mathUtil.h&quot;
+#include &quot;control/pid.h&quot;
+#include &quot;control/nsPid.h&quot;
+#include &quot;control/velPid.h&quot;
+#include &quot;control/genericController.h&quot;
+
+using namespace okapi;
+
+void operatorControl() {
+  using namespace std; //Needed to get round to compile
+  
+  QuadEncoder leftEnc(1, 2, true), rightEnc(3, 4);
+  ChassisControllerPid controller(SkidSteerModelParams&lt;3&gt;({2_m,3_m,4_m, 5_m,6_m,7_m}, leftEnc, rightEnc),
+                                  PidParams(0.15, 0.05, 0.07),
+                                  PidParams(0.02, 0.01, 0));
+
+  const unsigned char liftPot = 1;
+
+  GenericController&lt;2&gt; liftController({8_m, 9_m},
+                                      std::make_shared&lt;NsPid&gt;(NsPid(PidParams(0.2, 0.1, 0.1),
+                                                                    VelMathParams(360),
+                                                                    0.5)));
+
+  constexpr int liftUpTarget = 2570, lift34 = 300, liftDownTarget = 10;
+  int target = liftUpTarget;
+
+  while (1) {
+    if (joystickGetDigital(1, 6, JOY_UP))
+      target = liftUpTarget;
+    else if (joystickGetDigital(1, 6, JOY_DOWN))
+      target = liftDownTarget;
+    else if (joystickGetDigital(1, 5, JOY_UP))
+      target = lift34;
+    else if (joystickGetDigital(1, 8, JOY_LEFT)) {
+      liftController.flipDisable();
+      while (joystickGetDigital(1, 8, JOY_LEFT));
+    }
+
+    liftController.setTarget(target);
+    liftController.loop(analogRead(liftPot));
+
+    controller.arcade(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1));
+  }
+}
+</code></pre>
 
 			
 				<h1>Okapi Documentation </h1>
