@@ -24,7 +24,7 @@ publishDir = "../docs"
 	permalink = "#"
 
 	# Custom assets
-	custom_css = []
+	custom_css = ["css/imageAlign.css"]
 	custom_js  = []
 
 	# Syntax highlighting theme
