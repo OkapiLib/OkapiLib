@@ -20,6 +20,8 @@ namespace okapi {
     virtual void stop() = 0;
     virtual void tank(const int leftVal, const int rightVal) = 0;
     virtual void arcade(const int verticalVal, const int horizontalVal) = 0;
+    virtual void left(const int val) = 0;
+    virtual void right(const int val) = 0;
     virtual std::valarray<int> getEncoderVals() const = 0;
   };
 
@@ -120,6 +122,16 @@ namespace okapi {
         motors[i].set(verticalVal + horizontalVal);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
         motors[i].set(verticalVal - horizontalVal);
+    }
+
+    void left(const int val) override {
+      for (size_t i = 0; i < motorsPerSide; i++)
+        motors[i].set(val);
+    }
+
+    void right(const int val) override {
+      for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
+        motors[i].set(val);
     }
 
     std::valarray<int> getEncoderVals() const override {
@@ -240,6 +252,18 @@ namespace okapi {
         motors[i].set(verticalVal + horizontalVal - rotateVal);
       for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
         motors[i].set(verticalVal - horizontalVal + rotateVal);
+    }
+    
+    void left(const int val) override {
+      for (size_t i = 0; i < motorsPerCorner; i++)
+        motors[i].set(val);
+      for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
+        motors[i].set(val);
+    }
+
+    void right(const int val) override {
+      for (size_t i = motorsPerCorner; i < motorsPerCorner * 3; i++)
+        motors[i].set(val);
     }
 
     std::valarray<int> getEncoderVals() const override {
