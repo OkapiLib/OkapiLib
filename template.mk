@@ -1,5 +1,5 @@
 LIBNAME=okapilib
-VERSION=0.2.3
+VERSION=0.2.4
 
 # extra files (like header files)
 TEMPLATEFILES = include/main.h include/device/motor.h include/device/button.h include/device/potentiometer.h include/device/quadEncoder.h include/device/rangeFinder.h include/chassis/chassisModel.h include/chassis/odomChassisController.h include/chassis/basicChassisController.h include/API.h include/util/timer.h include/util/mathUtil.h include/odometry/odomMath.h include/odometry/odometry.h include/filter/filter.h include/filter/emaFilter.h include/filter/avgFilter.h include/filter/demaFilter.h include/motionProfile/motionProfile.h include/motionProfile/mpGenerator.h include/control/mpController.h include/control/pid.h include/control/trueSpeed.h include/control/genericController.h include/control/velMath.h include/control/mpConsumer.h include/control/nsPid.h include/control/velPid.h include/control/controlObject.h
@@ -15,6 +15,6 @@ library: clean $(BINDIR) $(SUBDIRS) $(ASMOBJ) $(COBJ) $(CPPOBJ)
 	mkdir -p $(TEMPLATE) $(TEMPLATE)/firmware $(addprefix $(TEMPLATE)/, $(dir $(TEMPLATEFILES)))
 	cp $(BINDIR)/$(LIBNAME).a $(TEMPLATE)/firmware/$(LIBNAME).a
 	$(foreach f,$(TEMPLATEFILES),cp $(f) $(TEMPLATE)/$(f);)
-	pros conduct create-template $(LIBNAME) $(VERSION) $(TEMPLATE) --ignore template.pros --upgrade-files "firmware/$(LIBNAME).a $(TEMPLATEFILES)"
+	pros conduct create-template $(LIBNAME) $(VERSION) $(TEMPLATE) --ignore template.pros --upgrade-files firmware/$(LIBNAME).a $(foreach f,$(TEMPLATEFILES),--upgrade-files $(f))
 	@echo Need to zip $(TEMPLATE) without the base directory
 	cd $(TEMPLATE) && zip -r ../$(basename $(TEMPLATE)) *
