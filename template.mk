@@ -1,5 +1,5 @@
 LIBNAME=okapilib
-VERSION=0.2.1
+VERSION=0.2.3
 
 # extra files (like header files)
 TEMPLATEFILES = include/main.h include/device/motor.h include/device/button.h include/device/potentiometer.h include/device/quadEncoder.h include/device/rangeFinder.h include/chassis/chassisModel.h include/chassis/odomChassisController.h include/chassis/basicChassisController.h include/API.h include/util/timer.h include/util/mathUtil.h include/odometry/odomMath.h include/odometry/odometry.h include/filter/filter.h include/filter/emaFilter.h include/filter/avgFilter.h include/filter/demaFilter.h include/motionProfile/motionProfile.h include/motionProfile/mpGenerator.h include/control/mpController.h include/control/pid.h include/control/trueSpeed.h include/control/genericController.h include/control/velMath.h include/control/mpConsumer.h include/control/nsPid.h include/control/velPid.h include/control/controlObject.h
