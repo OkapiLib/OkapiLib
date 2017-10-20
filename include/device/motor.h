@@ -24,34 +24,38 @@ namespace okapi {
   }
 
   class Motor {
-    public:
-      explicit constexpr Motor():
-        port(0),
-        sign(1) {}
+  public:
+    explicit constexpr Motor():
+      port(0),
+      sign(1) {}
 
-      explicit constexpr Motor(const int iport, const int isign):
-        port(iport),
-        sign(isign) {}
+    explicit constexpr Motor(const int iport, const int isign):
+      port(iport),
+      sign(isign) {}
 
-      virtual void set(const int val) const { motorSet(port, val * sign); }
+    constexpr Motor(const Motor& other):
+      port(other.port),
+      sign(other.sign) {}
 
-      void setTS(const int val) const {
-        if (val > 127)
-          motorSet(port, motor::trueSpeed[127] * sign);
-        else if (val < -127)
-          motorSet(port, motor::trueSpeed[127] * -1 * sign);
-        else if (val < 0)
-          motorSet(port, motor::trueSpeed[-1 * val] * -1 * sign);
-        else
-          motorSet(port, motor::trueSpeed[val] * sign);
-      }
+    virtual void set(const int val) const { motorSet(port, val * sign); }
 
-    protected:
-      const unsigned char port;
-      const int sign;
+    virtual void setTS(const int val) const {
+      if (val > 127)
+        motorSet(port, motor::trueSpeed[127] * sign);
+      else if (val < -127)
+        motorSet(port, motor::trueSpeed[127] * -1 * sign);
+      else if (val < 0)
+        motorSet(port, motor::trueSpeed[-1 * val] * -1 * sign);
+      else
+        motorSet(port, motor::trueSpeed[val] * sign);
+    }
+
+  protected:
+    const unsigned char port;
+    const int sign;
   };
 
-  class CubicMotor final : public Motor {
+  class CubicMotor : public Motor {
   public:
     explicit constexpr CubicMotor():
       Motor() {}
@@ -59,7 +63,7 @@ namespace okapi {
     explicit constexpr CubicMotor(const int iport, const int isign):
       Motor(iport, isign) {}
 
-    void set(const int val) const override {
+    virtual void set(const int val) const override {
       if (val > 127)
         motorSet(port, motor::cubicSpeed[127] * sign);
       else if (val < -127)
@@ -69,6 +73,33 @@ namespace okapi {
       else
         motorSet(port, motor::cubicSpeed[val] * sign);
     }
+
+    virtual void setTS(const int val) const override { Motor::set(val); }
+  };
+
+  class SlewMotor : public Motor {
+  public:
+    SlewMotor(const Motor& imotor, const float islewRate):
+      Motor(imotor),
+      slewRate(islewRate) {}
+
+    virtual void set(const int val) {
+      if (artSpeed != val) {
+        if (val > artSpeed) {
+          artSpeed += slewRate;
+          if (artSpeed > val)
+            artSpeed = val;
+        } else if (val < artSpeed) {
+          artSpeed -= slewRate;
+          if (artSpeed < val)
+            artSpeed = val;
+        }
+
+        Motor::set((int)artSpeed);
+      }
+    }
+  private:
+    float slewRate, artSpeed = 0;
   };
 
   inline namespace literals {
