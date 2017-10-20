@@ -82,6 +82,24 @@ void arcade(const int verticalVal, const int horizontalVal)
 
 Passthrough function to call `arcade` on the internal `ChassisModel`
 
+### left
+
+```c++
+//Signature
+void left(const int val);
+```
+
+Passthrough function to call `left` on the internal `ChassisModel`.
+
+### right
+
+```c++
+//Signature
+void right(const int val);
+```
+
+Passthrough function to call `right` on the internal `ChassisModel`.
+
 ### getEncoderVals
 
 ```c++

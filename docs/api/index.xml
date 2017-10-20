@@ -227,7 +227,7 @@ Constructor //Signature VelPid(const float ikP, const float ikD) VelPid(const Ve
       
       <guid>https://okapilib.github.io/OkapiLib/api/device/button/</guid>
       <description>Button The Button class is a sample wrapper around a digital input port that represents a button.
-Constructor //Signature explicit constexpr Button() explicit constexpr Button(const unsigned long long int iport) explicit constexpr Button(const unsigned long long int iport, const bool iinverted)     Parameter Description     iport Digital port   iinverted Whether the button is inverted (default open vs. default closed)    This class also has literals available:</description>
+Constructor //Signature explicit constexpr Button() explicit constexpr Button(const unsigned long long int iport, const bool iinverted = false) explicit constexpr Button(const unsigned char ijoystick, const unsigned char ibuttonGroup, const unsigned char ibutton, const bool iinverted = false)     Parameter Description     iport Digital port   iinverted Whether the button is inverted (default open vs.</description>
     </item>
     
     <item>

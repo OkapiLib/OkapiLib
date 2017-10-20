@@ -453,6 +453,54 @@ virtual void arcade(const int verticalVal, const int horizontalVal) = 0;
 </tbody>
 </table>
 
+<h3 id="left">left</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void left(const int val) = 0;
+</code></pre>
+
+<p>Power the left side motors.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Motor power</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="right">right</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void right(const int val) = 0;
+</code></pre>
+
+<p>Power the right side motors.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Motor power</td>
+</tr>
+</tbody>
+</table>
+
 <h3 id="getencodervals">getEncoderVals</h3>
 
 <p>Reads the encoders given to the chassis model at construction time and returns them in the format <code>{left encoder value, right encoder value}</code>. Return type is a <code>std::valarray</code> because it features operator overrides for common math operations making encoder math easy.</p>

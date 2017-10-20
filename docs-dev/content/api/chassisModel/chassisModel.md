@@ -86,6 +86,32 @@ Parameter | Description
 verticalVal | Motor power for the vertical component of movement
 horizontalVal | Motor power for the horizontal component of movement
 
+### left
+
+```c++
+//Signature
+virtual void left(const int val) = 0;
+```
+
+Power the left side motors.
+
+Parameter | Description
+----------|------------
+val | Motor power
+
+### right
+
+```c++
+//Signature
+virtual void right(const int val) = 0;
+```
+
+Power the right side motors.
+
+Parameter | Description
+----------|------------
+val | Motor power
+
 ### getEncoderVals
 
 Reads the encoders given to the chassis model at construction time and returns them in the format `{left encoder value, right encoder value}`. Return type is a `std::valarray` because it features operator overrides for common math operations making encoder math easy.

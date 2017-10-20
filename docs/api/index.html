@@ -327,8 +327,8 @@ AvgFilter()
 
 <pre><code class="language-c++">//Signature
 explicit constexpr Button()
-explicit constexpr Button(const unsigned long long int iport)
-explicit constexpr Button(const unsigned long long int iport, const bool iinverted)
+explicit constexpr Button(const unsigned long long int iport, const bool iinverted = false)
+explicit constexpr Button(const unsigned char ijoystick, const unsigned char ibuttonGroup, const unsigned char ibutton, const bool iinverted = false)
 </code></pre>
 
 <table>
@@ -378,10 +378,18 @@ explicit constexpr Button(const unsigned long long int iport, const bool iinvert
 <h3 id="ispressed">isPressed</h3>
 
 <pre><code class="language-c++">//Signature
-bool isPressed() const
+bool isPressed()
 </code></pre>
 
 <p>Return whether this button is pressed or not. This takes into account whether the button is inverted or not.</p>
+
+<h3 id="edge">edge</h3>
+
+<pre><code class="language-c++">//Signature
+bool edge()
+</code></pre>
+
+<p>Return <code>true</code> if a rising or falling edge is detected. This takes into account whether the button is inverted or not.</p>
 
 <h2 id="chassiscontroller-abstract">ChassisController (abstract)</h2>
 
@@ -486,6 +494,22 @@ void arcade(const int verticalVal, const int horizontalVal)
 </code></pre>
 
 <p>Passthrough function to call <code>arcade</code> on the internal <code>ChassisModel</code></p>
+
+<h3 id="left">left</h3>
+
+<pre><code class="language-c++">//Signature
+void left(const int val);
+</code></pre>
+
+<p>Passthrough function to call <code>left</code> on the internal <code>ChassisModel</code>.</p>
+
+<h3 id="right">right</h3>
+
+<pre><code class="language-c++">//Signature
+void right(const int val);
+</code></pre>
+
+<p>Passthrough function to call <code>right</code> on the internal <code>ChassisModel</code>.</p>
 
 <h3 id="getencodervals">getEncoderVals</h3>
 
@@ -754,6 +778,54 @@ virtual void arcade(const int verticalVal, const int horizontalVal) = 0;
 <tr>
 <td>horizontalVal</td>
 <td>Motor power for the horizontal component of movement</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="left">left</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void left(const int val) = 0;
+</code></pre>
+
+<p>Power the left side motors.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Motor power</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="right">right</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void right(const int val) = 0;
+</code></pre>
+
+<p>Power the right side motors.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Motor power</td>
 </tr>
 </tbody>
 </table>

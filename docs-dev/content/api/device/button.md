@@ -7,8 +7,8 @@ The `Button` class is a sample wrapper around a digital input port that represen
 ```c++
 //Signature
 explicit constexpr Button()
-explicit constexpr Button(const unsigned long long int iport)
-explicit constexpr Button(const unsigned long long int iport, const bool iinverted)
+explicit constexpr Button(const unsigned long long int iport, const bool iinverted = false)
+explicit constexpr Button(const unsigned char ijoystick, const unsigned char ibuttonGroup, const unsigned char ibutton, const bool iinverted = false)
 ```
 
 Parameter | Description
@@ -28,7 +28,16 @@ Literal | Button Value
 
 ```c++
 //Signature
-bool isPressed() const
+bool isPressed()
 ```
 
 Return whether this button is pressed or not. This takes into account whether the button is inverted or not.
+
+### edge
+
+```c++
+//Signature
+bool edge()
+```
+
+Return `true` if a rising or falling edge is detected. This takes into account whether the button is inverted or not.
