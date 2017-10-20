@@ -7,21 +7,36 @@ namespace okapi {
   class Button {
   public:
     explicit constexpr Button():
+      joystick(1),
+      buttonGroup(8),
       port(0),
-      inverted(false) {}
+      inverted(false),
+      isJoystick(false) {}
       
-    explicit constexpr Button(const unsigned long long int iport):
+    explicit constexpr Button(const unsigned long long int iport, const bool iinverted = false):
+      joystick(1),
+      buttonGroup(8),
       port(iport),
-      inverted(false) {}
+      inverted(iinverted),
+      isJoystick(false) {}
 
-    explicit constexpr Button(const unsigned long long int iport, const bool iinverted):
-      port(iport),
-      inverted(iinverted) {}
+    explicit constexpr Button(const unsigned char ijoystick, const unsigned char ibuttonGroup, const unsigned char ibutton, const bool iinverted = false):
+      joystick(ijoystick),
+      buttonGroup(ibuttonGroup),
+      port(ibutton),
+      inverted(iinverted),
+      isJoystick(true) {}
 
-    bool isPressed() const { return inverted ? !digitalRead(port) : digitalRead(port); }
+
+    bool isPressed() const {
+      if (isJoystick)
+        return inverted ? !joystickGetDigital(joystick, buttonGroup, port) : joystickGetDigital(joystick, buttonGroup, port);
+      else
+        return inverted ? !digitalRead(port) : digitalRead(port);
+    }
   private:
-    const unsigned char port;
-    const bool inverted;
+    const unsigned char joystick, buttonGroup, port;
+    const bool inverted, isJoystick;
   };
 
   inline namespace literals {

@@ -12,14 +12,39 @@
 
 #include <cmath>
 #include "main.h"
+
 #include "chassis/basicChassisController.h"
-#include "util/timer.h"
-#include "util/mathUtil.h"
-#include "control/pid.h"
-#include "control/nsPid.h"
-#include "control/velPid.h"
+#include "chassis/chassisModel.h"
+#include "chassis/odomChassisController.h"
+
+#include "control/controlObject.h"
 #include "control/genericController.h"
+#include "control/mpConsumer.h"
+#include "control/mpController.h"
+#include "control/nsPid.h"
+#include "control/pid.h"
+#include "control/velMath.h"
+#include "control/velPid.h"
+
+#include "device/button.h"
+#include "device/motor.h"
+#include "device/potentiometer.h"
+#include "device/quadEncoder.h"
 #include "device/rangeFinder.h"
+
+#include "filter/avgFilter.h"
+#include "filter/demaFilter.h"
+#include "filter/emaFilter.h"
+#include "filter/filter.h"
+
+#include "motionProfile/motionProfile.h"
+#include "motionProfile/mpGenerator.h"
+
+#include "odometry/odometry.h"
+#include "odometry/odomMath.h"
+
+#include "util/mathUtil.h"
+#include "util/timer.h"
 
 using namespace okapi;
 
