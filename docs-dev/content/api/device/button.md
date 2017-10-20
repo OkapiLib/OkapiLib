@@ -28,7 +28,7 @@ Literal | Button Value
 
 ```c++
 //Signature
-bool isPressed()
+bool isPressed() const
 ```
 
 Return whether this button is pressed or not. This takes into account whether the button is inverted or not.

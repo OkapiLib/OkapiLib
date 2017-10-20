@@ -28,14 +28,19 @@ namespace okapi {
       isJoystick(true) {}
 
 
-    bool isPressed() {
+    bool isPressed() const {
       if (isJoystick)
-        return wasPressedLast = (inverted ? !joystickGetDigital(joystick, buttonGroup, port) : joystickGetDigital(joystick, buttonGroup, port));
+        return inverted ? !joystickGetDigital(joystick, buttonGroup, port) : joystickGetDigital(joystick, buttonGroup, port);
       else
-        return wasPressedLast = (inverted ? !digitalRead(port) : digitalRead(port));
+        return inverted ? !digitalRead(port) : digitalRead(port);
     }
 
-    bool edge() { return isPressed() ^ wasPressedLast; }
+    bool edge() {
+      const bool pressed = isPressed();
+      const bool out = pressed ^ wasPressedLast;
+      wasPressedLast = pressed;
+      return out;
+    }
   private:
     const unsigned char joystick, buttonGroup, port;
     const bool inverted, isJoystick;
