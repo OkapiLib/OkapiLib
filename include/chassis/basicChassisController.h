@@ -37,8 +37,8 @@ namespace okapi {
     void driveVector(const int distPower, const int anglePower) { model->driveVector(distPower, anglePower); }
     void turnClockwise(const int power) { model->turnClockwise(power); }
     void stop() { model->stop(); }
-    void tank(const int leftVal, const int rightVal) { model->tank(leftVal, rightVal); }
-    void arcade(const int verticalVal, const int horizontalVal) { model->arcade(verticalVal, horizontalVal); }
+    void tank(const int leftVal, const int rightVal, const int threshold = 0) { model->tank(leftVal, rightVal, threshold); }
+    void arcade(int verticalVal, int horizontalVal, const int threshold = 0) { model->arcade(verticalVal, horizontalVal, threshold); }
     void left(const int val) { model->left(val); }
     void right(const int val) { model->right(val); }
     std::valarray<int> getEncoderVals() const { return model->getEncoderVals(); }

@@ -62,7 +62,7 @@ anglePower | The motor power making up the "turn" component of the final motor p
 
 ```c++
 //Signature
-virtual void tank(const int leftVal, const int rightVal) = 0;
+virtual void tank(const int leftVal, const int rightVal, const int threshold = 0) = 0;
 ```
 
 Power the motors like tank drive.
@@ -71,12 +71,13 @@ Parameter | Description
 ----------|------------
 leftVal | Motor power for the left side motors
 rightVal | Motor power for the right side motors
+threshold | Motor power below this threshold will become zero
 
 ### arcade
 
 ```c++
 //Signature
-virtual void arcade(const int verticalVal, const int horizontalVal) = 0;
+virtual void arcade(int verticalVal, int horizontalVal, const int threshold = 0) = 0;
 ```
 
 Power the motors like arcade drive.
@@ -85,6 +86,7 @@ Parameter | Description
 ----------|------------
 verticalVal | Motor power for the vertical component of movement
 horizontalVal | Motor power for the horizontal component of movement
+threshold | Motor power below this threshold will become zero
 
 ### left
 

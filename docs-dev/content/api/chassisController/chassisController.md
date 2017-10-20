@@ -68,7 +68,7 @@ Passthrough function to call `turnClockwise` on the internal `ChassisModel`.
 
 ```c++
 //Signature
-void tank(const int leftVal, const int rightVal)
+void tank(const int leftVal, const int rightVal, const int threshold = 0)
 ```
 
 Passthrough function to call `tank` on the internal `ChassisModel`
@@ -77,7 +77,7 @@ Passthrough function to call `tank` on the internal `ChassisModel`
 
 ```c++
 //Signature
-void arcade(const int verticalVal, const int horizontalVal)
+void arcade(int verticalVal, int horizontalVal, const int threshold = 0)
 ```
 
 Passthrough function to call `arcade` on the internal `ChassisModel`

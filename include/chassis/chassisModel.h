@@ -18,8 +18,8 @@ namespace okapi {
     virtual void driveVector(const int distPower, const int anglePower) = 0;
     virtual void turnClockwise(const int power) = 0;
     virtual void stop() = 0;
-    virtual void tank(const int leftVal, const int rightVal) = 0;
-    virtual void arcade(const int verticalVal, const int horizontalVal) = 0;
+    virtual void tank(const int leftVal, const int rightVal, const int threshold = 0) = 0;
+    virtual void arcade(int verticalVal, int horizontalVal, const int threshold = 0) = 0;
     virtual void left(const int val) = 0;
     virtual void right(const int val) = 0;
     virtual std::valarray<int> getEncoderVals() const = 0;
@@ -110,14 +110,34 @@ namespace okapi {
         motors[i].setTS(0);
     }
 
-    void tank(const int leftVal, const int rightVal) override {
-      for (size_t i = 0; i < motorsPerSide; i++)
-        motors[i].set(leftVal);
-      for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-        motors[i].set(rightVal);
+    void tank(const int leftVal, const int rightVal, const int threshold = 0) override {
+      using namespace std;
+
+      if (fabs(leftVal) < threshold) {
+        for (size_t i = 0; i < motorsPerSide; i++)
+          motors[i].set(0);
+      } else {
+        for (size_t i = 0; i < motorsPerSide; i++)
+          motors[i].set(leftVal);
+      }
+      
+      if (fabs(rightVal) < threshold) {
+        for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
+          motors[i].set(0);
+      } else {
+        for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
+          motors[i].set(rightVal);
+      }
     }
 
-    void arcade(const int verticalVal, const int horizontalVal) override {
+    void arcade(int verticalVal, int horizontalVal, const int threshold = 0) override {
+      using namespace std;
+      
+      if (fabs(verticalVal) < threshold)
+        verticalVal = 0;
+      if (fabs(horizontalVal) < threshold)
+        horizontalVal = 0;
+      
       for (size_t i = 0; i < motorsPerSide; i++)
         motors[i].set(verticalVal + horizontalVal);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
@@ -221,18 +241,42 @@ namespace okapi {
         motors[i].setTS(0);
     }
 
-    void tank(const int leftVal, const int rightVal) override {
-      for (size_t i = 0; i < motorsPerCorner; i++)
-        motors[i].set(leftVal);
-      for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
-        motors[i].set(rightVal);
-      for (size_t i = motorsPerCorner * 2; i < motorsPerCorner * 3; i++)
-        motors[i].set(rightVal);
-      for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
-        motors[i].set(leftVal);
+    void tank(const int leftVal, const int rightVal, const int threshold = 0) override {
+      using namespace std;
+
+      if (fabs(leftVal) < threshold) {
+        for (size_t i = 0; i < motorsPerCorner; i++)
+          motors[i].set(0);
+        for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
+          motors[i].set(0);
+      } else {
+        for (size_t i = 0; i < motorsPerCorner; i++)
+          motors[i].set(leftVal);
+        for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
+          motors[i].set(leftVal);
+      }
+      
+      if (fabs(rightVal) < threshold) {
+        for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
+          motors[i].set(0);
+        for (size_t i = motorsPerCorner * 2; i < motorsPerCorner * 3; i++)
+          motors[i].set(0);
+      } else {
+        for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
+          motors[i].set(rightVal);
+        for (size_t i = motorsPerCorner * 2; i < motorsPerCorner * 3; i++)
+          motors[i].set(rightVal);
+      }
     }
 
-    void arcade(const int verticalVal, const int horizontalVal) override {
+    void arcade(int verticalVal, int horizontalVal, const int threshold = 0) override {
+      using namespace std;
+      
+      if (fabs(verticalVal) < threshold)
+        verticalVal = 0;
+      if (fabs(horizontalVal) < threshold)
+        horizontalVal = 0;
+      
       for (size_t i = 0; i < motorsPerCorner; i++)
         motors[i].set(verticalVal + horizontalVal);
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
@@ -243,7 +287,16 @@ namespace okapi {
         motors[i].set(verticalVal + horizontalVal);
     }
 
-    void xArcade(const int verticalVal, const int horizontalVal, const int rotateVal) {
+    void xArcade(int verticalVal, int horizontalVal, int rotateVal, const int threshold = 0) {
+      using namespace std;
+      
+      if (fabs(verticalVal) < threshold)
+        verticalVal = 0;
+      if (fabs(horizontalVal) < threshold)
+        horizontalVal = 0;
+      if (fabs(rotateVal) < threshold)
+        rotateVal = 0;
+      
       for (size_t i = 0; i < motorsPerCorner; i++)
         motors[i].set(verticalVal + horizontalVal + rotateVal);
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)

@@ -482,7 +482,7 @@ void turnClockwise(const int power)
 <h3 id="tank">tank</h3>
 
 <pre><code class="language-c++">//Signature
-void tank(const int leftVal, const int rightVal)
+void tank(const int leftVal, const int rightVal, const int threshold = 0)
 </code></pre>
 
 <p>Passthrough function to call <code>tank</code> on the internal <code>ChassisModel</code></p>
@@ -490,7 +490,7 @@ void tank(const int leftVal, const int rightVal)
 <h3 id="arcade">arcade</h3>
 
 <pre><code class="language-c++">//Signature
-void arcade(const int verticalVal, const int horizontalVal)
+void arcade(int verticalVal, int horizontalVal, const int threshold = 0)
 </code></pre>
 
 <p>Passthrough function to call <code>arcade</code> on the internal <code>ChassisModel</code></p>
@@ -727,7 +727,7 @@ driveVector(90, 20)
 <h3 id="tank">tank</h3>
 
 <pre><code class="language-c++">//Signature
-virtual void tank(const int leftVal, const int rightVal) = 0;
+virtual void tank(const int leftVal, const int rightVal, const int threshold = 0) = 0;
 </code></pre>
 
 <p>Power the motors like tank drive.</p>
@@ -750,13 +750,18 @@ virtual void tank(const int leftVal, const int rightVal) = 0;
 <td>rightVal</td>
 <td>Motor power for the right side motors</td>
 </tr>
+
+<tr>
+<td>threshold</td>
+<td>Motor power below this threshold will become zero</td>
+</tr>
 </tbody>
 </table>
 
 <h3 id="arcade">arcade</h3>
 
 <pre><code class="language-c++">//Signature
-virtual void arcade(const int verticalVal, const int horizontalVal) = 0;
+virtual void arcade(int verticalVal, int horizontalVal, const int threshold = 0) = 0;
 </code></pre>
 
 <p>Power the motors like arcade drive.</p>
@@ -778,6 +783,11 @@ virtual void arcade(const int verticalVal, const int horizontalVal) = 0;
 <tr>
 <td>horizontalVal</td>
 <td>Motor power for the horizontal component of movement</td>
+</tr>
+
+<tr>
+<td>threshold</td>
+<td>Motor power below this threshold will become zero</td>
 </tr>
 </tbody>
 </table>

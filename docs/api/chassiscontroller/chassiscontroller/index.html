@@ -390,7 +390,7 @@ void turnClockwise(const int power)
 <h3 id="tank">tank</h3>
 
 <pre><code class="language-c++">//Signature
-void tank(const int leftVal, const int rightVal)
+void tank(const int leftVal, const int rightVal, const int threshold = 0)
 </code></pre>
 
 <p>Passthrough function to call <code>tank</code> on the internal <code>ChassisModel</code></p>
@@ -398,7 +398,7 @@ void tank(const int leftVal, const int rightVal)
 <h3 id="arcade">arcade</h3>
 
 <pre><code class="language-c++">//Signature
-void arcade(const int verticalVal, const int horizontalVal)
+void arcade(int verticalVal, int horizontalVal, const int threshold = 0)
 </code></pre>
 
 <p>Passthrough function to call <code>arcade</code> on the internal <code>ChassisModel</code></p>
