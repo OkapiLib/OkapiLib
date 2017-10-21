@@ -13,7 +13,7 @@
 #include <cmath>
 #include "main.h"
 
-#include "chassis/basicChassisController.h"
+#include "chassis/chassisController.h"
 #include "chassis/chassisModel.h"
 #include "chassis/odomChassisController.h"
 
