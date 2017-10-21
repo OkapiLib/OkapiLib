@@ -11,21 +11,24 @@ namespace okapi {
       buttonGroup(8),
       port(0),
       inverted(false),
-      isJoystick(false) {}
+      isJoystick(false),
+      wasPressedLast(false) {}
       
     explicit constexpr Button(const unsigned long long int iport, const bool iinverted = false):
       joystick(1),
       buttonGroup(8),
       port(iport),
       inverted(iinverted),
-      isJoystick(false) {}
+      isJoystick(false),
+      wasPressedLast(iinverted) {}
 
     explicit constexpr Button(const unsigned char ijoystick, const unsigned char ibuttonGroup, const unsigned char ibutton, const bool iinverted = false):
       joystick(ijoystick),
       buttonGroup(ibuttonGroup),
       port(ibutton),
       inverted(iinverted),
-      isJoystick(true) {}
+      isJoystick(true),
+      wasPressedLast(iinverted) {}
 
 
     bool isPressed() const {
@@ -44,7 +47,7 @@ namespace okapi {
   private:
     const unsigned char joystick, buttonGroup, port;
     const bool inverted, isJoystick;
-    bool wasPressedLast = false;
+    bool wasPressedLast;
   };
 
   inline namespace literals {
