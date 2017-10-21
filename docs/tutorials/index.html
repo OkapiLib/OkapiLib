@@ -22,7 +22,7 @@
 
     <meta property="og:url" content="https://okapilib.github.io/OkapiLib/tutorials/">
     <meta property="og:title" content="Okapi Docs">
-    <meta property="og:image" content="https://okapilib.github.io/OkapiLib/images/logo.png">
+    <meta property="og:image" content="https://okapilib.github.io/OkapiLib/images/okapi.jpg">
     <meta name="apple-mobile-web-app-title" content="Okapi Docs">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -136,11 +136,11 @@
     <div class="banner">
       
         <div class="logo">
-          <img src="https://okapilib.github.io/OkapiLib/images/logo.png">
+          <img src="https://okapilib.github.io/OkapiLib/images/okapi.jpg">
         </div>
       
       <div class="name">
-        <strong>Okapi Docs <span class="version">0.1.1</span></strong>
+        <strong>Okapi Docs <span class="version">0.2.4</span></strong>
         
           <br>
           OkapiLib/OkapiLib
@@ -309,10 +309,20 @@
 
 <h2 id="pid">PID</h2>
 
-<p>PID is useful. Get learnt</p>
+<p>Proportional-Integral-Derivative (PID) control is a simple and useful closed-loop controller. Say you have a subsystem with a motor and a potentiometer:</p>
 
-<pre><code class="language-c++">//Comment
-PID myPid(1);
+<pre><code class="language-c++">#include &lt;device/pid.h&gt;
+
+int port = 1; //Motor port
+int pot = 1; //Potentiometer
+Pid controller(1, 0.2, 0.3); //PID controller with kP = 1, kI = 0.2, kD = 0.3
+controller.setTarget(1500); //Set the target to 1500 on the potentiometer
+
+while (1) {
+    controller.loop(analodRead(pot)); //Loop the controller with the new pot reading
+    motorSet(port, controller.getOutput()); //Power the motor with the output of the controller
+    taskDelay(15);
+}
 </code></pre>
 
 

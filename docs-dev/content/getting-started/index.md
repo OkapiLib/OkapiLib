@@ -156,13 +156,9 @@ while (1) {
  ```c++
 #include <cmath>
 #include "main.h"
-#include "chassis/basicChassisController.h"
-#include "util/timer.h"
-#include "util/mathUtil.h"
-#include "control/pid.h"
-#include "control/nsPid.h"
-#include "control/velPid.h"
-#include "control/genericController.h"
+#include <chassis/basicChassisController.h>
+#include <control/nsPid.h>
+#include <control/genericController.h>
 
 using namespace okapi;
 
