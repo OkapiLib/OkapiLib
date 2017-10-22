@@ -18,7 +18,7 @@ while (1) {
     taskDelay(15);
 ```
 
-The motor motors and control structure we have the messier this becomes. So instead, Okapi provides a way to do this in a cleaner fashion:
+The more motors and control structure we have, the messier this becomes. So instead, Okapi provides a way to do this in a cleaner fashion:
 
 ```c++
 #include <device/pid.h>
