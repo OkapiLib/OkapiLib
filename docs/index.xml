@@ -430,12 +430,22 @@ getDtFromStart //Signature unsigned long getDtFromStart() const  Return the time
     
     <item>
       <title></title>
+      <link>https://okapilib.github.io/OkapiLib/tutorials/genconttutorial/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiLib/tutorials/genconttutorial/</guid>
+      <description>Generic Controller Often times, you have a closed-loop controller, sensor, and a few motors acting together as a system, and you wind up with code that powers each motor individually like this:
+#include &amp;lt;device/pid.h&amp;gt; int port1 = 1, port2 = 2; //Motor ports int pot = 1; //Potentiometer Pid controller(1, 0.2, 0.3); //PID controller with kP = 1, kI = 0.2, kD = 0.3 controller.setTarget(1500); //Set the target to 1500 on the potentiometer while (1) { controller.</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://okapilib.github.io/OkapiLib/tutorials/pidtutorial/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://okapilib.github.io/OkapiLib/tutorials/pidtutorial/</guid>
       <description>PID Proportional-Integral-Derivative (PID) control is a simple and useful closed-loop controller. Say you have a subsystem with a motor and a potentiometer:
-#include &amp;lt;device/pid.h&amp;gt; int port = 1; //Motor port int pot = 1; //Potentiometer Pid controller(1, 0.2, 0.3); //PID controller with kP = 1, kI = 0.2, kD = 0.3 controller.setTarget(1500); //Set the target to 1500 on the potentiometer while (1) { controller.loop(analodRead(pot)); //Loop the controller with the new pot reading motorSet(port, controller.</description>
+#include &amp;lt;device/pid.h&amp;gt; int port = 1; //Motor port int pot = 1; //Potentiometer Pid controller(1, 0.2, 0.3); //PID controller with kP = 1, kI = 0.2, kD = 0.3 controller.setTarget(1500); //Set the target to 1500 on the potentiometer while (1) { controller.loop(analogRead(pot)); //Loop the controller with the new pot reading motorSet(port, controller.</description>
     </item>
     
     <item>

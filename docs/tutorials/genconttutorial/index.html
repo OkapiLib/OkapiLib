@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Tutorials - Okapi Docs</title>
+    <title> - Okapi Docs</title>
     <meta name="generator" content="Hugo 0.30.2" />
 
     
     <meta name="description" content="A PROS library for fast C&#43;&#43; development.">
     
-    <link rel="canonical" href="https://okapilib.github.io/OkapiLib/tutorials/">
+    <link rel="canonical" href="https://okapilib.github.io/OkapiLib/tutorials/genconttutorial/">
     
     <meta name="author" content="OkapiLib">
     
 
-    <meta property="og:url" content="https://okapilib.github.io/OkapiLib/tutorials/">
+    <meta property="og:url" content="https://okapilib.github.io/OkapiLib/tutorials/genconttutorial/">
     <meta property="og:title" content="Okapi Docs">
     <meta property="og:image" content="https://okapilib.github.io/OkapiLib/images/okapi.jpg">
     <meta name="apple-mobile-web-app-title" content="Okapi Docs">
@@ -99,7 +99,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Tutorials
+        
       </div>
     </div>
 
@@ -218,14 +218,11 @@
 
 
 
-<a class="current" title="Tutorials" href="https://okapilib.github.io/OkapiLib/tutorials/">
+<a  title="Tutorials" href="https://okapilib.github.io/OkapiLib/tutorials/">
 	
 	Tutorials
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
 
   
@@ -298,31 +295,9 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Tutorials </h1>
+			<h1> </h1>
 
 			
-
-<h2 id="tutorials">Tutorials</h2>
-
-<p>This section contains various tutorials for the different parts of OkapiLib. Scroll down or view the menus on the left to pick a tutorial.</p>
-
-<p><h2 id="pid">PID</h2>
-
-<p>Proportional-Integral-Derivative (PID) control is a simple and useful closed-loop controller. Say you have a subsystem with a motor and a potentiometer:</p>
-
-<pre><code class="language-c++">#include &lt;device/pid.h&gt;
-
-int port = 1; //Motor port
-int pot = 1; //Potentiometer
-Pid controller(1, 0.2, 0.3); //PID controller with kP = 1, kI = 0.2, kD = 0.3
-controller.setTarget(1500); //Set the target to 1500 on the potentiometer
-
-while (1) {
-    controller.loop(analogRead(pot)); //Loop the controller with the new pot reading
-    motorSet(port, controller.getOutput()); //Power the motor with the output of the controller
-    taskDelay(15);
-}
-</code></pre>
 
 <h2 id="generic-controller">Generic Controller</h2>
 
@@ -359,7 +334,6 @@ while (1) {
     taskDelay(15);
 }
 </code></pre>
-</p>
 
 
 			<aside class="copyright" role="note">
@@ -376,7 +350,7 @@ while (1) {
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://okapilib.github.io/OkapiLib/" title="Okapi Documentation">
+      <a href="https://okapilib.github.io/OkapiLib/api/util/timer/" title="">
         <span class="direction">
           Previous
         </span>
@@ -386,7 +360,7 @@ while (1) {
           </div>
           <div class="stretch">
             <div class="title">
-              Okapi Documentation
+              
             </div>
           </div>
         </div>
@@ -395,6 +369,22 @@ while (1) {
   </div>
 
   <div class="next">
+  
+      <a href="https://okapilib.github.io/OkapiLib/tutorials/pidtutorial/" title="">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
   
   </div>
 </nav>
