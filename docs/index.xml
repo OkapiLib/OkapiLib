@@ -537,8 +537,8 @@ CubicMotor foo(2); //Motor on port 2 CubicMotor foo = 2_3m; //Equivalent literal
       
       <guid>https://okapilib.github.io/OkapiLib/tutorials/</guid>
       <description>Tutorials This section contains various tutorials for the different parts of OkapiLib. Scroll down or view the menus on the left to pick a tutorial.
-PID Proportional-Integral-Derivative (PID) control is a simple and useful closed-loop controller. Say you have a subsystem with a motor and a potentiometer:
-#include &amp;lt;device/pid.h&amp;gt; int port = 1; //Motor port int pot = 1; //Potentiometer Pid controller(1, 0.2, 0.3); //PID controller with kP = 1, kI = 0.</description>
+Motor Writing the full Motor constructor any time you want to specify a motor gets quite tedious, so Okapi has some literals that make specifying motors much easier:
+Motor foo(2); //Motor on port 2 Motor foo = 2_m; //Equivalent literal Motor foo(2, true); //Reversed motor on port 2 Motor foo = 2_rm; //Equivalent literal  Okapi also provides cubic control if you prefer to drive that way:</description>
     </item>
     
   </channel>
