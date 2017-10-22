@@ -4228,6 +4228,28 @@ ChassisControllerPid controller(SkidSteerModelParams&lt;2&gt;({2_m, 3_m, 4_m, 5_
 <pre><code class="language-c++">controller.driveStraight(100); //Drive in a straight line for 100 encoder ticks
 controller.pointTurn(100); //Turn clockwise in place for 100 encoder ticks
 </code></pre>
+
+<h2 id="motor">Motor</h2>
+
+<p>Writing the full <code>Motor</code> constructor any time you want to specify a motor gets quite tedious, so Okapi has some literals that make specifying motors much easier:</p>
+
+<pre><code class="language-c++">Motor foo(2); //Motor on port 2
+Motor foo = 2_m; //Equivalent literal
+
+Motor foo(2, true); //Reversed motor on port 2
+Motor foo = 2_rm; //Equivalent literal
+</code></pre>
+
+<p>Okapi also provides cubic control if you prefer to drive that way:</p>
+
+<pre><code class="language-c++">CubicMotor foo(2); //Motor on port 2
+CubicMotor foo = 2_3m; //Equivalent literal
+
+CubicMotor foo(2, true); //Reversed motor on port 2
+CubicMotor foo = 2_3rm; //Equivalent literal
+</code></pre>
+
+<p>Both <code>Motor</code> and <code>CubicMotor</code> can be given to a <code>ChassisModel</code>, and the behavior of <code>tank</code> and <code>arcade</code> will change accordingly.</p>
 </p>
 
 			
