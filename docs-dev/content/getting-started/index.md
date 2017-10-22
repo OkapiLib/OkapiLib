@@ -3,7 +3,7 @@ title: Getting started
 type: index
 ---
 
-## Programming the Clawbot
+## Programming a Skills Robot
 
 This tutorial is a step-by-step guide to programming this simple skills robot:
 
