@@ -12,6 +12,16 @@
     
     <item>
       <title></title>
+      <link>https://okapilib.github.io/OkapiLib/tutorials/chassiscontrollertutorial/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiLib/tutorials/chassiscontrollertutorial/</guid>
+      <description>Chassis Controller Okapi provides a way to control a ChassisModel using closed-loop control, like PID, so you don&amp;rsquo;t have to rewrite a driveStraight() function every year. Rather than making a model directly, we can instead give ChassisModelParams to a ChassisController, which will instantiate the model for itself:
+#include &amp;lt;chassis/chassisController.h&amp;gt; ChassisControllerPid controller(SkidSteerModelParams&amp;lt;2&amp;gt;({2_m, 3_m, 4_m, 5_m}, //Skid steer chassis with two motors per side QuadEncoder(1, 2, true), //Left encoder (reversed) QuadEncoder(3, 4)), //Right encoder PidParams(0.</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://okapilib.github.io/OkapiLib/tutorials/chassismodeltutorial/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

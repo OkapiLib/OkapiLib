@@ -10,3 +10,4 @@ This section contains various tutorials for the different parts of OkapiLib. Scr
 {{< readfile file="content/tutorials/pidTutorial.md" markdown="true" >}}
 {{< readfile file="content/tutorials/genContTutorial.md" markdown="true" >}}
 {{< readfile file="content/tutorials/chassisModelTutorial.md" markdown="true" >}}
+{{< readfile file="content/tutorials/chassisControllerTutorial.md" markdown="true" >}}

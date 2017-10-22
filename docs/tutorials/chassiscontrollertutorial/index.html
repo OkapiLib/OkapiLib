@@ -15,12 +15,12 @@
     
     <meta name="description" content="A PROS library for fast C&#43;&#43; development.">
     
-    <link rel="canonical" href="https://okapilib.github.io/OkapiLib/api/util/timer/">
+    <link rel="canonical" href="https://okapilib.github.io/OkapiLib/tutorials/chassiscontrollertutorial/">
     
     <meta name="author" content="OkapiLib">
     
 
-    <meta property="og:url" content="https://okapilib.github.io/OkapiLib/api/util/timer/">
+    <meta property="og:url" content="https://okapilib.github.io/OkapiLib/tutorials/chassiscontrollertutorial/">
     <meta property="og:title" content="Okapi Docs">
     <meta property="og:image" content="https://okapilib.github.io/OkapiLib/images/okapi.jpg">
     <meta name="apple-mobile-web-app-title" content="Okapi Docs">
@@ -299,105 +299,25 @@
 
 			
 
-<h2 id="timer">Timer</h2>
+<h2 id="chassis-controller">Chassis Controller</h2>
 
-<p>The <code>Timer</code> class has timing-related utilities to make measuring time differences and writing non-blocking code in loops easier.</p>
+<p>Okapi provides a way to control a <code>ChassisModel</code> using closed-loop control, like PID, so you don&rsquo;t have to rewrite a driveStraight() function every year. Rather than making a model directly, we can instead give <code>ChassisModelParams</code> to a <code>ChassisController</code>, which will instantiate the model for itself:</p>
 
-<h3 id="constructor">Constructor</h3>
-
-<pre><code class="language-c++">//Signature
-Timer()
+<pre><code class="language-c++">#include &lt;chassis/chassisController.h&gt;
+ChassisControllerPid controller(SkidSteerModelParams&lt;2&gt;({2_m, 3_m, 4_m, 5_m}, //Skid steer chassis with two motors per side
+                                                        QuadEncoder(1, 2, true), //Left encoder (reversed)
+                                                        QuadEncoder(3, 4)), //Right encoder
+                                PidParams(0.15, 0.05, 0.07), //Distance PID controller
+                                PidParams(0.02, 0.01, 0)); //Angle PID controller
 </code></pre>
 
-<p>The constructor does not take any parameters.</p>
+<p>A <code>ChassisControllerPid</code> implements the <code>ChassisController</code> interface using PID control. It takes two <code>PidParams</code> to describe the controller gains for both controllers. The first controls distance to the target, but the second keeps the robot on a straight path while it drives to its target. Often times the second controller&rsquo;s gains will have lower kP, lower or no kD, and moderate kI because this controller just needs to make slight adjustments to the power the motors on each side of the chassis get.</p>
 
-<h3 id="getdt">getDt</h3>
+<p>Once we have our controller, we can control the robot more accurately than with just a model:</p>
 
-<pre><code class="language-c++">//Signature
-unsigned long getDt()
+<pre><code class="language-c++">controller.driveStraight(100); //Drive in a straight line for 100 encoder ticks
+controller.pointTurn(100); //Turn clockwise in place for 100 encoder ticks
 </code></pre>
-
-<p>Return the time passed in ms since the last time this function was called.</p>
-
-<h3 id="getstartingtime">getStartingTime</h3>
-
-<pre><code class="language-c++">//Signature
-unsigned long getStartingTime() const
-</code></pre>
-
-<p>Return the time in ms the timer was constructed.</p>
-
-<h3 id="getdtfromstart">getDtFromStart</h3>
-
-<pre><code class="language-c++">//Signature
-unsigned long getDtFromStart() const
-</code></pre>
-
-<p>Return the time passed in ms since the timer was constructed.</p>
-
-<h3 id="placemark">placeMark</h3>
-
-<pre><code class="language-c++">//Signature
-void placeMark()
-</code></pre>
-
-<p>Place a time marker. Placing another marker will overwrite the previous one.</p>
-
-<h3 id="placehardmark">placeHardMark</h3>
-
-<pre><code class="language-c++">//Signature
-void placeHardMark()
-</code></pre>
-
-<p>Place a hard time marker. Placing another hard marker will not overwrite the previous one; instead, <code>clearHardMark()</code> must be called before another can be placed.</p>
-
-<h3 id="clearhardmark">clearHardMark</h3>
-
-<pre><code class="language-c++">//Signature
-unsigned long clearHardMark()
-</code></pre>
-
-<p>Clear and return the current hard marker.</p>
-
-<h3 id="getdtfrommark">getDtFromMark</h3>
-
-<pre><code class="language-c++">//Signature
-unsigned long getDtFromMark()
-</code></pre>
-
-<p>Return the time in ms since the marker was placed.</p>
-
-<h3 id="getdtfromhardmark">getDtFromHardMark</h3>
-
-<pre><code class="language-c++">//Signature
-unsigned long getDtFromHardMark()
-</code></pre>
-
-<p>Return the time in ms since the hard marker was placed.</p>
-
-<h3 id="repeat">repeat</h3>
-
-<pre><code class="language-c++">//Signature
-bool repeat(unsigned long ms)
-</code></pre>
-
-<p>Return true when the input time period <code>ms</code> has passed, and then reset. Meant to be used in loops to execute a block of code every so many ms without blocking the loop.</p>
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>ms</td>
-<td>Number of milliseconds between calls of <code>repeat</code> that return true</td>
-</tr>
-</tbody>
-</table>
 
 
 			<aside class="copyright" role="note">
@@ -414,7 +334,7 @@ bool repeat(unsigned long ms)
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://okapilib.github.io/OkapiLib/api/util/mathutil/" title="">
+      <a href="https://okapilib.github.io/OkapiLib/api/util/timer/" title="">
         <span class="direction">
           Previous
         </span>
@@ -434,7 +354,7 @@ bool repeat(unsigned long ms)
 
   <div class="next">
   
-      <a href="https://okapilib.github.io/OkapiLib/tutorials/chassiscontrollertutorial/" title="">
+      <a href="https://okapilib.github.io/OkapiLib/tutorials/chassismodeltutorial/" title="">
         <span class="direction">
           Next
         </span>

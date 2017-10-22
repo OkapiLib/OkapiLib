@@ -391,6 +391,26 @@ model.stop(); //Set all motors to 0
 </code></pre>
 
 <p>If we wanted to use some sort of closed-loop control, we could either do it ourselves or use one of Okapi&rsquo;s structures instead, covered in the <code>ChassisController</code> or <code>OdomChassisController</code> tutorials.</p>
+
+<h2 id="chassis-controller">Chassis Controller</h2>
+
+<p>Okapi provides a way to control a <code>ChassisModel</code> using closed-loop control, like PID, so you don&rsquo;t have to rewrite a driveStraight() function every year. Rather than making a model directly, we can instead give <code>ChassisModelParams</code> to a <code>ChassisController</code>, which will instantiate the model for itself:</p>
+
+<pre><code class="language-c++">#include &lt;chassis/chassisController.h&gt;
+ChassisControllerPid controller(SkidSteerModelParams&lt;2&gt;({2_m, 3_m, 4_m, 5_m}, //Skid steer chassis with two motors per side
+                                                        QuadEncoder(1, 2, true), //Left encoder (reversed)
+                                                        QuadEncoder(3, 4)), //Right encoder
+                                PidParams(0.15, 0.05, 0.07), //Distance PID controller
+                                PidParams(0.02, 0.01, 0)); //Angle PID controller
+</code></pre>
+
+<p>A <code>ChassisControllerPid</code> implements the <code>ChassisController</code> interface using PID control. It takes two <code>PidParams</code> to describe the controller gains for both controllers. The first controls distance to the target, but the second keeps the robot on a straight path while it drives to its target. Often times the second controller&rsquo;s gains will have lower kP, lower or no kD, and moderate kI because this controller just needs to make slight adjustments to the power the motors on each side of the chassis get.</p>
+
+<p>Once we have our controller, we can control the robot more accurately than with just a model:</p>
+
+<pre><code class="language-c++">controller.driveStraight(100); //Drive in a straight line for 100 encoder ticks
+controller.pointTurn(100); //Turn clockwise in place for 100 encoder ticks
+</code></pre>
 </p>
 
 
