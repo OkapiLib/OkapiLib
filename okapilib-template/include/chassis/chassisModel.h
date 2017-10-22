@@ -100,9 +100,9 @@ namespace okapi {
 
     void turnClockwise(const int power) override {
       for (size_t i = 0; i < motorsPerSide; i++)
-        motors[i].set(power);
+        motors[i].setTS(power);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-        motors[i].set(-1 * power);
+        motors[i].setTS(-1 * power);
     }
 
     void stop() override {
