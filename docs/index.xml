@@ -430,6 +430,17 @@ getDtFromStart //Signature unsigned long getDtFromStart() const  Return the time
     
     <item>
       <title></title>
+      <link>https://okapilib.github.io/OkapiLib/tutorials/chassismodeltutorial/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiLib/tutorials/chassismodeltutorial/</guid>
+      <description>Chassis Model Okapi has a way to represent the most common robot chassis, skid steer and x-drive. With this model we can tell the robot how to move around in a general sense.
+For example, a skid steer chassis with two motors per side and two quad encoders:
+#include &amp;lt;chassis/chassisModel.h&amp;gt; SkidSteerModel&amp;lt;2&amp;gt; model({2_m, 3_m, 4_m, 5_m}, //Left motors: 2 &amp;amp; 3, right motors: 4 &amp;amp; 5 QuadEncoder(1, 2, true), //Left encoder (reversed) QuadEncoder(3, 4)); //Right encoder  Or you can have an x-drive with one motor per corner and two quad encoders:</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://okapilib.github.io/OkapiLib/tutorials/genconttutorial/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
