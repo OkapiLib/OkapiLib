@@ -465,11 +465,11 @@
 
 <p>After installing OkapiLib through the PROS Conductor tool, <code>okapilib.a</code> will be copied into <code>firmware/</code> and OkapiLib&rsquo;s header files will be copied into <code>include/</code>. In order to properly compile your project, you need to modify a few files:</p>
 
-<ol>
+<ul>
 <li><p>The <code>src/</code> folder contains three files, <code>auto.c</code>, <code>init.c</code>, and <code>opcontrol.c</code>. The <code>.c</code> extension of these files needs to be changed to <code>.cpp</code> so the compiler knows they contain C++ code.</p></li>
 
 <li><p>The <code>src/init.cpp</code> file needs to be changed so it instead contains the following code which calls a special internal function <code>__libc_init_array()</code>:</p></li>
-</ol>
+</ul>
 
 <pre><code class="language-c++">#include &quot;main.h&quot;
 
@@ -485,9 +485,9 @@ void initialize() {
 }
 </code></pre>
 
-<ol>
+<ul>
 <li>Finally, the <code>common.mk</code> file needs to have the <code>CPPFLAGS</code> variable modified to contain the flag <code>-std=c++14</code> so the compiler knows the correct C++ standard to use:</li>
-</ol>
+</ul>
 
 <p>This line: <code>CPPFLAGS:=$(CCFLAGS)-fno-exceptions -fno-rtti -felide-constructors</code></p>
 
@@ -497,9 +497,9 @@ void initialize() {
 
 <h3 id="drivetrain-setup">Drivetrain Setup</h3>
 
-<p>Let&rsquo;s start by setting up our sensor and motor configuration. We want to tell Okapi that we have two quadrature encoders and six motors on our chassis.</p>
+<p>Let&rsquo;s start by setting up our motors and sensors configuration. We want to tell Okapi that we have two quadrature encoders and six motors on our chassis.</p>
 
-<p>Our two quad encoders:</p>
+<p>Our two quad encoders can be written as:</p>
 
 <pre><code class="language-c++">QuadEncoder leftEnc(1, 2, true), rightEnc(3, 4);
 </code></pre>
@@ -509,7 +509,7 @@ void initialize() {
 <pre><code class="language-c++">SkidSteerModel&lt;3&gt; model({2_m, 3_m, 4_m, 5_m, 6_m, 7_m}, leftEnc, rightEnc);
 </code></pre>
 
-<p>That syntax might look a little weird. Breaking it down further, the template argument to our <code>SkidSteerModel</code> specifies the number of motors per side we have. In our case, we have three motors on each side of our chassis, so the argument value is <code>3</code>. Next, the first argument to the <code>SkidSteerModel</code> constructor is an array of motors. Each motor is specified using special syntax called a literal, which lets you abbreviate the <code>Motor</code> constructor. Writing <code>2_m</code> translates into <code>Motor(2, false)</code>, which is a non-reversed motor on port two. <code>2_rm</code> would translate into <code>Motor(2, true)</code>, which is a reversed motor on port two.</p>
+<p>That syntax might look a little weird. Breaking it down further, the template argument to our <code>SkidSteerModel</code> specifies the number of motors per side we have. In our case, we have three motors on each side of our chassis, so the template argument value is <code>3</code>. Next, the first argument to the <code>SkidSteerModel</code> constructor is an array of motors. Each motor is specified using special syntax called a literal, which lets you abbreviate the <code>Motor</code> constructor. Writing <code>2_m</code> translates into <code>Motor(2, false)</code>, which is a non-reversed motor on port two. <code>2_rm</code> would translate into <code>Motor(2, true)</code>, which is a reversed motor on port two.</p>
 
 <p>It&rsquo;s a good idea to use PID control to have the chassis drive around accurately during autonomous. Okapi can do this using a <code>ChassisController</code>, which combines a <code>ChassisModel</code> with either PID or Motion Profile control. Let&rsquo;s refactor to use that instead:</p>
 
