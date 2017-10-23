@@ -299,9 +299,134 @@
 
 			
 
-<h2 id="controlobject">ControlObject</h2>
+<h2 id="controlobject-abstract">ControlObject (abstract)</h2>
 
-<p>docs</p>
+<p>The <code>ControlObject</code> class is an interface to closed-loop controllers. It requires implementation of step, target, and output functions.</p>
+
+<h3 id="step">step</h3>
+
+<pre><code class="language-c++">//Signature
+virtual float step(const float ireading) = 0
+</code></pre>
+
+<p>Do one iteration of the control math to compute a new motor power. Normally called in a loop.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ireading</td>
+<td>New sensor reading</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="settarget">setTarget</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void setTarget(const float itarget) = 0
+</code></pre>
+
+<p>Set the target value.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>itarget</td>
+<td>New target value</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="getoutput">getOutput</h3>
+
+<pre><code class="language-c++">//Signature
+virtual float getOutput() const = 0
+</code></pre>
+
+<p>Return the most recent controller output.</p>
+
+<h3 id="setsampletime">setSampleTime</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void setSampleTime(const int isampleTime)
+</code></pre>
+
+<p>Set the timestep (in ms) between calls to <code>step</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>isampleTime</td>
+<td>Timestep between calls to <code>step</code> in ms</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setoutputlimits">setOutputLimits</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void setOutputLimits(float imax, float imin)
+</code></pre>
+
+<p>Set the max and min value for the controller output.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imax</td>
+<td>Max output</td>
+</tr>
+
+<tr>
+<td>imin</td>
+<td>Min output</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="reset">reset</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void reset()
+</code></pre>
+
+<p>Reset the controller so it will start from zero again.</p>
+
+<h3 id="flipdisable">flipDisable</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void flipDisable()
+</code></pre>
+
+<p>Change whether the controller is on or off. A controller which is off will output 0.</p>
 
 
 			<aside class="copyright" role="note">

@@ -139,7 +139,9 @@ Constructor //Signature XDriveModelParams(const std::array&amp;lt;unsigned char,
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://okapilib.github.io/OkapiLib/api/control/controlobject/</guid>
-      <description>ControlObject docs</description>
+      <description>ControlObject (abstract) The ControlObject class is an interface to closed-loop controllers. It requires implementation of step, target, and output functions.
+step //Signature virtual float step(const float ireading) = 0  Do one iteration of the control math to compute a new motor power. Normally called in a loop.
+   Parameter Description     ireading New sensor reading    setTarget //Signature virtual void setTarget(const float itarget) = 0  Set the target value.</description>
     </item>
     
     <item>
