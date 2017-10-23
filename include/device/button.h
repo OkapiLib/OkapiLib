@@ -44,6 +44,10 @@ namespace okapi {
       wasPressedLast = pressed;
       return out;
     }
+
+    bool risingEdge() { return edge() && wasPressedLast; } //Remember edge sets wasPressedLast
+
+    bool fallingEdge() { return edge() && !wasPressedLast; }  //Remember edge sets wasPressedLast
   private:
     const unsigned char joystick, buttonGroup, port;
     const bool inverted, isJoystick;

@@ -71,7 +71,7 @@ namespace okapi {
      * @param  inewReading New measurement
      * @return            Controller output
      */
-    virtual float loop(const float inewReading) override;
+    virtual float step(const float inewReading) override;
 
     /**
      * Set controller gains

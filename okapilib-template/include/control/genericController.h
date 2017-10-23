@@ -14,8 +14,8 @@ namespace okapi {
       motors(imotorList),
       controller(iptr) {}
 
-    void loop(const float ireading) {
-      controller->loop(ireading);
+    void step(const float ireading) {
+      controller->step(ireading);
       for (size_t i = 0; i < motors.size(); i++)
         motors[i].setTS(controller->getOutput());
     }

@@ -13,7 +13,7 @@ namespace okapi {
     * @param  inewReading New measurement
     * @return            Controller output
     */
-    virtual float loop(const float ireading) = 0;
+    virtual float step(const float ireading) = 0;
 
     /**
     * Sets the target for the controller

@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Okapi Documentation - Okapi Docs</title>
+    <title>Okapi Docs</title>
     <meta name="generator" content="Hugo 0.30.2" />
 
     
@@ -71,6 +71,9 @@
     <script src="https://okapilib.github.io/OkapiLib/javascripts/modernizr.js"></script>
 
     
+    <link href="https://okapilib.github.io/OkapiLib/index.xml" rel="alternate" type="application/rss+xml" title="Okapi Docs" />
+    <link href="https://okapilib.github.io/OkapiLib/index.xml" rel="feed" type="application/rss+xml" title="Okapi Docs" />
+    
 
   </head>
   <body class="palette-primary-red palette-accent-teal">
@@ -99,7 +102,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Okapi Documentation
+        Okapi Docs
       </div>
     </div>
 
@@ -295,9 +298,3953 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Okapi Documentation </h1>
+			
+				<h1>API Reference </h1>
+
+				<p>This section is meant to be a quick reference for Okapi&rsquo;s entire API, including methods the user may not normally interact with. This reference is broken into sections, covering one class per section. Subclasses are placed below the base class, but in different sections. If a class is marked (abstract) then it contains one or more pure virtual functions, and cannot be instantiated (it is designed only to be an interface).</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember that derived classes inherit the interface of their base class; therefore, derived classes will not have their base class&rsquo; functions documented (you can safely assume that all functions from the base class are implemented).</p>
+</div>
+
+<p><h2 id="avgfilter">AvgFilter</h2>
+
+<p>The <code>AvgFilter</code> class inherits from <code>Filter</code> and takes a template parameter <code>std::size_t n&gt;</code> (the number of inputs to average). It is a finite impulse response (FIR) filter that averages the last <code>n</code> inputs.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+AvgFilter()
+</code></pre>
+
+<p>The constructor does not take any parameters.</p>
+
+<h2 id="button">Button</h2>
+
+<p>The <code>Button</code> class is a sample wrapper around a digital input port that represents a button.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+explicit constexpr Button()
+explicit constexpr Button(const unsigned long long int iport, const bool iinverted = false)
+explicit constexpr Button(const unsigned char ijoystick, const unsigned char ibuttonGroup, const unsigned char ibutton, const bool iinverted = false)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iport</td>
+<td>Digital port</td>
+</tr>
+
+<tr>
+<td>iinverted</td>
+<td>Whether the button is inverted (default open vs. default closed)</td>
+</tr>
+</tbody>
+</table>
+
+<p>This class also has literals available:</p>
+
+<table>
+<thead>
+<tr>
+<th>Literal</th>
+<th>Button Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>n_b</code></td>
+<td><code>Button(n, false)</code></td>
+</tr>
+
+<tr>
+<td><code>n_ib</code></td>
+<td><code>Button(n, true)</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="ispressed">isPressed</h3>
+
+<pre><code class="language-c++">//Signature
+bool isPressed() const
+</code></pre>
+
+<p>Return whether this button is pressed or not. This takes into account whether the button is inverted or not.</p>
+
+<h3 id="edge">edge</h3>
+
+<pre><code class="language-c++">//Signature
+bool edge()
+</code></pre>
+
+<p>Return <code>true</code> if a rising or falling edge is detected. This takes into account whether the button is inverted or not.</p>
+
+<h3 id="risingedge">risingEdge</h3>
+
+<pre><code class="language-c++">//Signature
+bool risingEdge()
+</code></pre>
+
+<p>Return <code>true</code> if a rising edge is detected. This takes into account whether the button is inverted or not.</p>
+
+<h3 id="fallgedge">fallgEdge</h3>
+
+<pre><code class="language-c++">//Signature
+bool fallgEdge()
+</code></pre>
+
+<p>Return <code>true</code> if a falling edge is detected. This takes into account whether the button is inverted or not.</p>
+
+<h2 id="chassiscontroller-abstract">ChassisController (abstract)</h2>
+
+<p>The <code>ChassisController</code> class an interface for controlling a robot&rsquo;s chassis: it provides methods that build upon the basic methods <code>ChassisModel</code> has for more accurate control.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+ChassisController(const ChassisModelParams&amp; imodelParams)
+ChassisController(std::shared_ptr&lt;ChassisModel&gt; imodel)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imodelParams</td>
+<td><code>ChassisModelParams</code> (used to make a new <code>ChassisModel</code>)</td>
+</tr>
+
+<tr>
+<td>imodel</td>
+<td>An existing <code>ChassisModel</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="drivestraight">driveStraight</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void driveStraight(const int itarget) = 0
+</code></pre>
+
+<p>Drive the robot straight for a distance of <code>itarget</code> in the units of <code>itarget</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>itarget</td>
+<td>Distance for the robot to travel</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="pointturn">pointTurn</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void pointTurn(const float idegTarget) = 0
+</code></pre>
+
+<p>Turn the robot in place for an angle of <code>idegTarget</code>. The units of the angle travel is most often the difference in encoder ticks between the two sides of the chassis.</p>
+
+<h3 id="driveforward">driveForward</h3>
+
+<pre><code class="language-c++">//Signature
+void driveForward(const int power)
+</code></pre>
+
+<p>Passthrough function to call <code>driveForward</code> on the internal <code>ChassisModel</code>.</p>
+
+<h3 id="drivevector">driveVector</h3>
+
+<pre><code class="language-c++">//Signature
+void driveVector(const int distPower, const int anglePower)
+</code></pre>
+
+<p>Passthrough function to call <code>driveVector</code> on the internal <code>ChassisModel</code>.</p>
+
+<h3 id="turnclockwise">turnClockwise</h3>
+
+<pre><code class="language-c++">//Signature
+void turnClockwise(const int power)
+</code></pre>
+
+<p>Passthrough function to call <code>turnClockwise</code> on the internal <code>ChassisModel</code>.</p>
+
+<h3 id="tank">tank</h3>
+
+<pre><code class="language-c++">//Signature
+void tank(const int leftVal, const int rightVal, const int threshold = 0)
+</code></pre>
+
+<p>Passthrough function to call <code>tank</code> on the internal <code>ChassisModel</code></p>
+
+<h3 id="arcade">arcade</h3>
+
+<pre><code class="language-c++">//Signature
+void arcade(int verticalVal, int horizontalVal, const int threshold = 0)
+</code></pre>
+
+<p>Passthrough function to call <code>arcade</code> on the internal <code>ChassisModel</code></p>
+
+<h3 id="left">left</h3>
+
+<pre><code class="language-c++">//Signature
+void left(const int val);
+</code></pre>
+
+<p>Passthrough function to call <code>left</code> on the internal <code>ChassisModel</code>.</p>
+
+<h3 id="right">right</h3>
+
+<pre><code class="language-c++">//Signature
+void right(const int val);
+</code></pre>
+
+<p>Passthrough function to call <code>right</code> on the internal <code>ChassisModel</code>.</p>
+
+<h3 id="getencodervals">getEncoderVals</h3>
+
+<pre><code class="language-c++">//Signature
+std::valarray&lt;int&gt; getEncoderVals() const
+</code></pre>
+
+<p>Passthrough function to call <code>getEncoderVals</code> on the internal <code>ChassisModel</code>.</p>
+
+<h2 id="chassiscontrollermp">ChassisControllerMP</h2>
+
+<p>The <code>ChassisControllerMP</code> class inherits from <code>ChassisController</code> and implements its interface using motion profiling.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+ChassisControllerMP(const ChassisModelParams&amp; imodelParams, const MPControllerParams&amp; iparams)
+ChassisControllerMP(const std::shared_ptr&lt;ChassisModel&gt;&amp; imodel, const MPControllerParams&amp; iparams)
+
+//Make a new ChassisControllerMP using a skid steer model with two motors per side
+ChassisControllerMP foo(
+  SkidSteerModelParams&lt;2&gt;({1, 3, 2, 4}, //The four motor ports
+                          encoderInit(1, 2, false), //Left encoder
+                          encoderInit(3, 4, true)), //Right encoder
+  MPControllerParams(
+    MPGenParams(1, 15, 1000),        //MPGenerator params; max &amp; min accel: 1, max vel: 15, target pos: 1000
+    MPConsumerParams(6, 1.2, 0.5))); //MPConsumer params; kV: 6, kA: 1.2, kP: 0.5
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imodelParams</td>
+<td><code>ChassisModelParams</code> (used to make a new <code>ChassisModel</code>)</td>
+</tr>
+
+<tr>
+<td>imodel</td>
+<td>An existing <code>ChassisModel</code></td>
+</tr>
+
+<tr>
+<td>igenParams</td>
+<td><code>MPGenParams</code> (used to make a new <code>MPGenerator</code>)</td>
+</tr>
+
+<tr>
+<td>icParams</td>
+<td><code>MPConsumerParams</code> (used to make a new <code>MPConsumer</code>)</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition warning">
+<p class="admonition-title">Careful</p>
+<p>Most users should not call this constructor with a std::shared_ptr&lt;ChassisModel&gt;. Instead, pass a ChassisModelParams and Okapi will figure out what to do.</p>
+</div>
+<h2 id="chassiscontrollerpid">ChassisControllerPid</h2>
+
+<p>The <code>ChassisControllerPid</code> class inherits from <code>ChassisController</code> and implements its interface using PID control.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+ChassisControllerPid(const ChassisModelParams&amp; imodelParams, const PidParams&amp; idistanceParams, const PidParams&amp; iangleParams)
+ChassisControllerPid(const std::shared_ptr&lt;ChassisModel&gt;&amp; imodel, const PidParams&amp; idistanceParams, const PidParams&amp; iangleParams)
+
+//Make a new ChassisControllerPid using a skid steer model with two motors per side
+ChassisControllerPid foo(
+  SkidSteerModelParams&lt;2&gt;({1, 3, 2, 4}, //The four motor ports
+                          encoderInit(1, 2, false), //Left encoder
+                          encoderInit(3, 4, true)), //Right encoder
+  PidParams(2, 0.1, 0.4),    //Distance PID controller
+  PidParams(0.3, 1.2, 0.1)); //Angle PID controller
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imodelParams</td>
+<td><code>ChassisModelParams</code> (used to make a new <code>ChassisModel</code>)</td>
+</tr>
+
+<tr>
+<td>imodel</td>
+<td>An existing <code>ChassisModel</code></td>
+</tr>
+
+<tr>
+<td>idistanceParams</td>
+<td><code>PidParams</code> for the distance PID controller</td>
+</tr>
+
+<tr>
+<td>iangleParams</td>
+<td><code>PidParams</code> for the angle PID controller</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition warning">
+<p class="admonition-title">Careful</p>
+<p>Most users should not call this constructor with a std::shared_ptr&lt;ChassisModel&gt;. Instead, pass a ChassisModelParams and Okapi will figure out what to do.</p>
+</div>
+<h2 id="chassismodel-abstract">ChassisModel (abstract)</h2>
+
+<p>The <code>ChassisModel</code> class is an interface to a robot&rsquo;s chassis: it provides methods to control the chassis and to read from standard sensors placed on most chassis (i.e., quadrature encoders).</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+ChassisModel()
+</code></pre>
+
+<p>The constructor does not take any parameters.</p>
+
+<h3 id="driveforward">driveForward</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void driveForward(const int power) = 0
+</code></pre>
+
+<p>Drives the chassis forwards by setting all motors to the input power. A positive value for <code>power</code> should cause all chassis wheels to move the robot forward in a straight line.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>power</td>
+<td>The raw motor power sent directly to the chassis&rsquo; motors</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="turnclockwise">turnClockwise</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void turnClockwise(const int power) = 0
+</code></pre>
+
+<p>Turns the robot clockwise by setting the left side motors to the input power and the right side motors to the negative of the input power. A positive value for <code>power</code> should cause all chassis wheels to turn the robot clockwise on a point.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>power</td>
+<td>The raw motor power sent directly to the chassis&rsquo; motors</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="drivevector">driveVector</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void driveVector(const int distPower, const int anglePower) = 0
+
+driveVector(127, 0) //Same as driveForward(127)
+driveVector(0, 127) //Same as turnClockwise(127)
+
+//Make a moderate swing turn clockwise
+//left motors get 110 power, right motors get 70 power
+driveVector(90, 20)
+</code></pre>
+
+<p>Drive the chassis along a curved path. Calling <code>driveVector(127, 0)</code> should be equivalent to calling <code>driveForward(127)</code>; calling <code>driveVector(0, 127)</code> should be equivalent to calling <code>turnClockwise(127)</code>. A mix between the two will cause the robot to make a swing turn.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>distPower</td>
+<td>The motor power making up the &ldquo;straight&rdquo; component of the final motor power</td>
+</tr>
+
+<tr>
+<td>anglePower</td>
+<td>The motor power making up the &ldquo;turn&rdquo; component of the final motor power</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="tank">tank</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void tank(const int leftVal, const int rightVal, const int threshold = 0) = 0;
+</code></pre>
+
+<p>Power the motors like tank drive.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>leftVal</td>
+<td>Motor power for the left side motors</td>
+</tr>
+
+<tr>
+<td>rightVal</td>
+<td>Motor power for the right side motors</td>
+</tr>
+
+<tr>
+<td>threshold</td>
+<td>Motor power below this threshold will become zero</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="arcade">arcade</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void arcade(int verticalVal, int horizontalVal, const int threshold = 0) = 0;
+</code></pre>
+
+<p>Power the motors like arcade drive.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>verticalVal</td>
+<td>Motor power for the vertical component of movement</td>
+</tr>
+
+<tr>
+<td>horizontalVal</td>
+<td>Motor power for the horizontal component of movement</td>
+</tr>
+
+<tr>
+<td>threshold</td>
+<td>Motor power below this threshold will become zero</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="left">left</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void left(const int val) = 0;
+</code></pre>
+
+<p>Power the left side motors.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Motor power</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="right">right</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void right(const int val) = 0;
+</code></pre>
+
+<p>Power the right side motors.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Motor power</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="getencodervals">getEncoderVals</h3>
+
+<p>Reads the encoders given to the chassis model at construction time and returns them in the format <code>{left encoder value, right encoder value}</code>. Return type is a <code>std::valarray</code> because it features operator overrides for common math operations making encoder math easy.</p>
+
+<pre><code class="language-c++">//Signature
+virtual std::valarray&lt;int&gt; getEncoderVals() const = 0
+</code></pre>
+
+<h2 id="chassismodelparams-abstract">ChassisModelParams (Abstract)</h2>
+
+<p>The <code>ChassisModelParams</code> class encapsulates the parameters a <code>ChassisModel</code> takes.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+ChassisModelParams()
+</code></pre>
+
+<p>The constructor does not take any parameters.</p>
+
+<h3 id="make">make</h3>
+
+<p>Allocate a new <code>ChassisModel</code> and return a <code>std::shared_ptr</code> to it. Most users will not have to call this, classes that take a <code>ChassisModel</code> will figure out the memory model themselves.</p>
+
+<pre><code class="language-c++">//Signature
+virtual std::shared_ptr&lt;ChassisModel&gt; make() const = 0
+</code></pre>
+
+<h2 id="controlobject-abstract">ControlObject (abstract)</h2>
+
+<p>The <code>ControlObject</code> class is an interface to closed-loop controllers. It requires implementation of step, target, and output functions.</p>
+
+<h3 id="step">step</h3>
+
+<pre><code class="language-c++">//Signature
+virtual float step(const float ireading) = 0
+</code></pre>
+
+<p>Do one iteration of the control math to compute a new motor power. Normally called in a loop.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ireading</td>
+<td>New sensor reading</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="settarget">setTarget</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void setTarget(const float itarget) = 0
+</code></pre>
+
+<p>Set the target value.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>itarget</td>
+<td>New target value</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="getoutput">getOutput</h3>
+
+<pre><code class="language-c++">//Signature
+virtual float getOutput() const = 0
+</code></pre>
+
+<p>Return the most recent controller output.</p>
+
+<h3 id="setsampletime">setSampleTime</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void setSampleTime(const int isampleTime)
+</code></pre>
+
+<p>Set the timestep (in ms) between calls to <code>step</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>isampleTime</td>
+<td>Timestep between calls to <code>step</code> in ms</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setoutputlimits">setOutputLimits</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void setOutputLimits(float imax, float imin)
+</code></pre>
+
+<p>Set the max and min value for the controller output.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imax</td>
+<td>Max output</td>
+</tr>
+
+<tr>
+<td>imin</td>
+<td>Min output</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="reset">reset</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void reset()
+</code></pre>
+
+<p>Reset the controller so it will start from zero again.</p>
+
+<h3 id="flipdisable">flipDisable</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void flipDisable()
+</code></pre>
+
+<p>Change whether the controller is on or off. A controller which is off will output 0.</p>
+
+<h2 id="cubicmotor">CubicMotor</h2>
+
+<p>The <code>CubicMotor</code> class provides a cubic-control based implementation of the <code>set</code> function <code>Motor</code> defines. This means that the motor power from <code>set</code> follows a cubic curve instead of the default identity function. The <code>setTS</code> function is not overridden and so provides the same behavior as in <code>Motor</code>.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+explicit constexpr CubicMotor()
+explicit constexpr CubicMotor(const int iport, const int isign)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iport</td>
+<td>Motor port</td>
+</tr>
+
+<tr>
+<td>isign</td>
+<td><code>1</code> for forward, <code>-1</code> for reversed</td>
+</tr>
+</tbody>
+</table>
+
+<p>This class also has literals available:</p>
+
+<table>
+<thead>
+<tr>
+<th>Literal</th>
+<th>Motor Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>n_m3</code></td>
+<td><code>CubicMotor(m, 1)</code></td>
+</tr>
+
+<tr>
+<td><code>n_rm3</code></td>
+<td><code>CubicMotor(m, -1)</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="set">set</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void set(const int val) const
+</code></pre>
+
+<p>Set the power of this motor using a cubic function. The exact math for the output of this function is <code>(val * val * val) / (127 * 127)</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Motor power</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="demafilter">DemaFilter</h2>
+
+<p>The <code>DemaFilter</code> class inherits from <code>Filter</code>. It is an infinite impulse response (IIR) filter that implements the double exponential moving average algorithm (EMA). This is very similar to the normal EMA, except it can pick up on trends in data and follow the current trend until a new trend starts. This filter performs better than a single EMA when data frequently follows a trend.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+DemaFilter(const float ialpha, const float ibeta)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ialpha</td>
+<td>Alpha gain</td>
+</tr>
+
+<tr>
+<td>ibeta</td>
+<td>Beta gain</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setgains">setGains</h3>
+
+<pre><code class="language-c++">//Signature
+void setGains(const float ialpha, const float ibeta)
+</code></pre>
+
+<p>Set new gains for this filter</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ialpha</td>
+<td>New alpha gain</td>
+</tr>
+
+<tr>
+<td>ibeta</td>
+<td>New beta gain</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="distanceandangle">DistanceAndAngle</h2>
+
+<p>The <code>DistanceAndAngle</code> class is a simple container for the two parameters returned by <code>OdomMath::computeDistanceAndAngleToPoint</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>length</td>
+<td>Distance to point</td>
+</tr>
+
+<tr>
+<td>theta</td>
+<td>Angle to point</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+DistanceAndAngle(const float ilength, const float itheta)
+DistanceAndAngle()
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ilength</td>
+<td>Distance to point</td>
+</tr>
+
+<tr>
+<td>itheta</td>
+<td>Angle to point</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="emafilter">EmaFilter</h2>
+
+<p>The <code>EmaFilter</code> class inherits from <code>Filter</code>. It is an infinite impulse response (IIR) filter that implements the exponential moving average algorithm (EMA).</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+EmaFilter(const float ialpha, const float ibeta)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ialpha</td>
+<td>Alpha gain</td>
+</tr>
+
+<tr>
+<td>ibeta</td>
+<td>Beta gain</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setgains">setGains</h3>
+
+<pre><code class="language-c++">//Signature
+void setGains(const float ialpha, const float ibeta)
+</code></pre>
+
+<p>Set new gains for this filter</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ialpha</td>
+<td>New alpha gain</td>
+</tr>
+
+<tr>
+<td>ibeta</td>
+<td>New beta gain</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="filter-abstract">Filter (abstract)</h2>
+
+<p>The <code>Filter</code> class is an interface for data filtering.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+Filter()
+</code></pre>
+
+<p>The constructor does not take any parameters.</p>
+
+<h3 id="filter">filter</h3>
+
+<pre><code class="language-c++">//Signature
+virtual float filter(const float ireading) = 0;
+</code></pre>
+
+<p>Filter an input and return the filtered output.</p>
+
+<h3 id="getoutput">getOutput</h3>
+
+<pre><code class="language-c++">//Signature
+virtual float getOutput() const = 0;
+</code></pre>
+
+<p>Return the previous output.</p>
+
+<h2 id="genericcontroller">GenericController</h2>
+
+<p>The <code>GenericController</code> class combines motors and a <code>ControlObject</code> into one package that uses the controller to control the motors as a group (all motors get the same controller output).</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+GenericController(const std::array&lt;Motor, motorNum&gt; &amp;imotorList, const std::shared_ptr&lt;ControlObject&gt; &amp;iptr)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imotorList</td>
+<td><code>std::array</code> of <code>Motor</code> that will be controlled</td>
+</tr>
+
+<tr>
+<td>iptr</td>
+<td><code>ControlObject</code> used to control the motors</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="step">step</h3>
+
+<pre><code class="language-c++">//Signature
+void step(const float ireading)
+</code></pre>
+
+<p>Have the <code>ControlObject</code> do one iteration and then power the motors with the output. This needs to be called every so many milliseconds (15 ms works fine).</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ireading</td>
+<td>New sensor reading</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="settarget">setTarget</h3>
+
+<pre><code class="language-c++">//Signature
+void setTarget(const float itarget)
+</code></pre>
+
+<p>Set the target value.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>itarget</td>
+<td>New target value</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="getoutput">getOutput</h3>
+
+<pre><code class="language-c++">//Signature
+void getOutput() const
+</code></pre>
+
+<p>Return the most recent controller output.</p>
+
+<h3 id="setsampletime">setSampleTime</h3>
+
+<pre><code class="language-c++">//Signature
+void setSampleTime(const int isampleTime)
+</code></pre>
+
+<p>Set the timestep (in ms) between calls to <code>step</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>isampleTime</td>
+<td>Timestep between calls to <code>step</code> in ms</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setoutputlimits">setOutputLimits</h3>
+
+<pre><code class="language-c++">//Signature
+void setOutputLimits(float imax, float imin)
+</code></pre>
+
+<p>Set the max and min value for the controller output.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imax</td>
+<td>Max output</td>
+</tr>
+
+<tr>
+<td>imin</td>
+<td>Min output</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="reset">reset</h3>
+
+<pre><code class="language-c++">//Signature
+void reset()
+</code></pre>
+
+<p>Reset the controller so it will start from zero again.</p>
+
+<h3 id="flipdisable">flipDisable</h3>
+
+<pre><code class="language-c++">//Signature
+void flipDisable()
+</code></pre>
+
+<p>Change whether the controller is on or off. A controller which is off will output 0.</p>
+
+<h2 id="mathutil">MathUtil</h2>
+
+<p>The <code>MathUtil</code> class provides <code>static constexpr</code> definitions for commonly used numbers, measurements, and conversion rates.</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>analogInToV</td>
+<td>286.0</td>
+<td>Converts an analog reading to a battery voltage measurement in Volts.</td>
+</tr>
+
+<tr>
+<td>inchToMM</td>
+<td>25.4</td>
+<td>Converts one inch to millimeters.</td>
+</tr>
+
+<tr>
+<td>degreeToRadian</td>
+<td>0.01745</td>
+<td>Converts one degree to radians.</td>
+</tr>
+
+<tr>
+<td>radianToDegree</td>
+<td>57.2958</td>
+<td>Converts one radian to degrees.</td>
+</tr>
+
+<tr>
+<td>imeHighTorTPR</td>
+<td>627.2</td>
+<td>The number of ticks an IME returns for one revolution of a 369 motor with high torque gearing.</td>
+</tr>
+
+<tr>
+<td>imeHighStrTPR</td>
+<td>392.0</td>
+<td>The number of ticks an IME returns for one revolution of a 369 motor with high speed gearing.</td>
+</tr>
+
+<tr>
+<td>imeTurboTPR</td>
+<td>261.333</td>
+<td>The number of ticks an IME returns for one revolution of a 369 motor with turbo gearing.</td>
+</tr>
+
+<tr>
+<td>ime269TPR</td>
+<td>240.448</td>
+<td>The number of ticks an IME returns for one revolution of a 269 motor.</td>
+</tr>
+
+<tr>
+<td>quadEncoderTPR</td>
+<td>360.0</td>
+<td>The number of ticks a quadrature encoder returns per revolution.</td>
+</tr>
+
+<tr>
+<td>pi</td>
+<td>3.14159265358979323846</td>
+<td>The value of pi from GCC&rsquo;s math header (redefined here for convenience)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="motionprofile">MotionProfile</h2>
+
+<p>The <code>MotionProfile</code> class encapsulates the series of velocity and acceleration targets that make up a motion profile.</p>
+
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>data</td>
+<td>A vector of velocity and acceleration targets</td>
+</tr>
+
+<tr>
+<td>distance</td>
+<td>The distance the motion profile travels</td>
+</tr>
+
+<tr>
+<td>dt</td>
+<td>The timestep between targets</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+MotionProfile(const float idistance, const float idt)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>idistance</td>
+<td>The distance the motion profile travels</td>
+</tr>
+
+<tr>
+<td>idt</td>
+<td>The timestep between targets</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="operator">operator[]</h3>
+
+<p>Pass the <code>operator[]</code> onto the internal std::vector.</p>
+
+<h3 id="size">size</h3>
+
+<pre><code class="language-c++">//Signature
+int size() const
+</code></pre>
+
+<p>Return the size of the internal std::vector.</p>
+
+<h2 id="mptarget">MPTarget</h2>
+
+<p>The <code>MPTarget</code> class is designed to encapsulate a pair of velocity and acceleration targets for a motion profile.</p>
+
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>vel</td>
+<td>A velocity target</td>
+</tr>
+
+<tr>
+<td>accel</td>
+<td>An acceleration target</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="constructor-1">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+MPTarget(const float velocity, const float acceleration)
+MPTarget()
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>vel</td>
+<td>A velocity target</td>
+</tr>
+
+<tr>
+<td>accel</td>
+<td>An acceleration target</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="motor">Motor</h2>
+
+<p>The <code>Motor</code> class provides a wrapper around the default motor utilities.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+explicit constexpr Motor()
+explicit constexpr Motor(const int iport, const int isign)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iport</td>
+<td>Motor port</td>
+</tr>
+
+<tr>
+<td>isign</td>
+<td><code>1</code> for forward, <code>-1</code> for reversed</td>
+</tr>
+</tbody>
+</table>
+
+<p>This class also has literals available:</p>
+
+<table>
+<thead>
+<tr>
+<th>Literal</th>
+<th>Motor Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>n_m</code></td>
+<td><code>Motor(m, 1)</code></td>
+</tr>
+
+<tr>
+<td><code>n_rm</code></td>
+<td><code>Motor(m, -1)</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="set">set</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void set(const int val) const
+</code></pre>
+
+<p>Set the power of this motor.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Motor power</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setts">setTS</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void set(const int val) const
+</code></pre>
+
+<p>Set the power of this motor using trueSpeed. The trueSpeed array can be changed in the file <code>include/device/motor.h</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Motor power</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="mpconsumer">MPConsumer</h2>
+
+<p>The <code>MPConsumer</code> class is a feed-forward closed-loop controller that follows a pre-generated motion profile.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+MPConsumer(const float ikV, const float ikA, const float ikP = 0)
+MPConsumer(const MPConsumerParams&amp; iparams)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iprofile</td>
+<td>A motion profile generated using <code>MPGenerator</code></td>
+</tr>
+
+<tr>
+<td>ikV</td>
+<td>Feed-forward velocity gain</td>
+</tr>
+
+<tr>
+<td>ikA</td>
+<td>Feed-forward acceleration gain</td>
+</tr>
+
+<tr>
+<td>ikP</td>
+<td>Feedback proportional gain (default = 0)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="step">step</h3>
+
+<pre><code class="language-c++">//Signature
+virtual float step(const MotionProfile&amp; profile, const float newReading)
+</code></pre>
+
+<p>Step the controller once over a new measurement and return the new response power.</p>
+
+<h3 id="iscomplete">isComplete</h3>
+
+<pre><code class="language-c++">//Signature
+bool isComplete() const
+</code></pre>
+
+<p>Return whether the motion profile has been followed start to finish and is done.</p>
+
+<h3 id="reset">reset</h3>
+
+<pre><code class="language-c++">//Signature
+void reset()
+</code></pre>
+
+<p>Reset the controller so it can follow another profile.</p>
+
+<h2 id="mpconsumerparams">MPConsumerParams</h2>
+
+<p>The <code>MPConsumerParams</code> class encapsulates the parameters an <code>MPConsumer</code> takes.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+MPConsumerParams(const float ikV, const float ikA, const float ikP = 0)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ikV</td>
+<td>Feed-forward velocity gain</td>
+</tr>
+
+<tr>
+<td>ikA</td>
+<td>Feed-forward acceleration gain</td>
+</tr>
+
+<tr>
+<td>ikP</td>
+<td>Feedback proportional gain (default = 0)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="mpcontroller">MPController</h2>
+
+<p>The <code>MPController</code> class packages together an <code>MPConsumer</code> and an <code>MPGenerator</code> into one class which both generates and follows a motion profile.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+MPController(const MPGenParams&amp; igenParams, const MPConsumerParams&amp; iconParams)
+MPController(const MPControllerParams&amp; iparams)
+
+//Basic MPController construction
+MPController foo(MPGenParams(1, 15, 1000), MPConsumerParams(6, 1.2, 0.5));
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>igenParams</td>
+<td><code>MPGenParams</code></td>
+</tr>
+
+<tr>
+<td>iconParams</td>
+<td><code>MPConsumerParams</code></td>
+</tr>
+
+<tr>
+<td>iparams</td>
+<td><code>MPControllerParams</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="step">step</h3>
+
+<pre><code class="language-c++">//Signature
+virtual float step(const float inewReading)
+</code></pre>
+
+<p>Step the controller once over a new measurement and return the new response power.</p>
+
+<h3 id="settarget">setTarget</h3>
+
+<pre><code class="language-c++">//Signature
+void setTarget(const int pos)
+</code></pre>
+
+<p>Set a new target for the controller, causing the internal motion profile to be regenerated.</p>
+
+<h3 id="iscomplete">isComplete</h3>
+
+<pre><code class="language-c++">//Signature
+bool isComplete() const
+</code></pre>
+
+<p>Return whether the motion profile has been followed start to finish and is done.</p>
+
+<h3 id="reset">reset</h3>
+
+<pre><code class="language-c++">//Signature
+void reset()
+</code></pre>
+
+<p>Reset the controller so it can follow another profile.</p>
+
+<h2 id="mpcontrollerparams">MPControllerParams</h2>
+
+<p>The <code>MPControllerParams</code> class encapsulates the parameters an <code>MPController</code> takes.</p>
+
+<h3 id="constructor-1">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+MPControllerParams(const MPGenParams&amp; igenParams, const MPConsumerParams&amp; iconParams)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>igenParams</td>
+<td><code>MPGenParams</code></td>
+</tr>
+
+<tr>
+<td>iconParams</td>
+<td><code>MPConsumerParams</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="mpgenerator">MPGenerator</h2>
+
+<p>The <code>MPGenerator</code> class is a motion profile generator. It accepts position, velocity, and acceleration bounds and produces a motion profile within those bounds.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+MPGenerator(const float iaccel, const float imaxVel)
+MPGenerator(const float iaccel, const float imaxVel, const float itargetPos)
+MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos)
+MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel)
+MPGenerator(const MPGenParams&amp; iparams)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imaxAccel</td>
+<td>Maximum acceleration</td>
+</tr>
+
+<tr>
+<td>iminAccel</td>
+<td>Minimum acceleration (i.e., maximum deceleration, make sure this value is negative)</td>
+</tr>
+
+<tr>
+<td>imaxVel</td>
+<td>Maximum velocity</td>
+</tr>
+
+<tr>
+<td>itargetPos</td>
+<td>Target position (how far should the robot travel)</td>
+</tr>
+
+<tr>
+<td>istartVel</td>
+<td>Starting velocity (normally 0)</td>
+</tr>
+
+<tr>
+<td>iendVel</td>
+<td>Ending velocity (normally 0)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="generateprofile">generateProfile</h3>
+
+<pre><code class="language-c++">//Signature
+MotionProfile generateProfile(const float idt)
+</code></pre>
+
+<p>Generate and return a complete motion profile.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>idt</td>
+<td>Timestep between targets</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="getnextveltarget">getNextVelTarget</h3>
+
+<pre><code class="language-c++">//Signature
+MPTarget getNextVelTarget(const float itime)
+</code></pre>
+
+<p>Calculate and return the next velocity target in the motion profile.</p>
+
+<h3 id="iscomplete">isComplete</h3>
+
+<pre><code class="language-c++">//Signature
+bool isComplete() const
+</code></pre>
+
+<p>Return whether the motion profile has been followed start to finish and is done.</p>
+
+<h2 id="mpgeneratorparams">MPGeneratorParams</h2>
+
+<p>The <code>MPGeneratorParams</code> class encapsulates the parameters an <code>MPGenerator</code> takes.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel)
+MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos)
+MPGenParams(const float iaccel, const float imaxVel, const float itargetPos)
+MPGenParams(const float iaccel, const float imaxVel)
+MPGenParams(const MPGenParams &amp;other)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imaxAccel</td>
+<td>Maximum acceleration</td>
+</tr>
+
+<tr>
+<td>iminAccel</td>
+<td>Minimum acceleration (i.e., maximum deceleration, make sure this value is negative)</td>
+</tr>
+
+<tr>
+<td>imaxVel</td>
+<td>Maximum velocity</td>
+</tr>
+
+<tr>
+<td>itargetPos</td>
+<td>Target position (how far should the robot travel)</td>
+</tr>
+
+<tr>
+<td>istartVel</td>
+<td>Starting velocity (normally 0)</td>
+</tr>
+
+<tr>
+<td>iendVel</td>
+<td>Ending velocity (normally 0)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="nspid">NsPid</h2>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+NsPid(const PidParams&amp; iparams, const VelMathParams&amp; ivelParams, const float iminVel, const float iscale = 0.1)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iparams</td>
+<td><code>PidParams</code> to make the internal PID controller</td>
+</tr>
+
+<tr>
+<td>ivelParams</td>
+<td><code>VelMathParams</code> for the velocity calculations</td>
+</tr>
+
+<tr>
+<td>iminVel</td>
+<td>Minimum velocity at which the controller will start reducing the output power</td>
+</tr>
+
+<tr>
+<td>iscale</td>
+<td>Scale to reduce the output power by</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="step">step</h3>
+
+<pre><code class="language-c++">//Signature
+virtual float step(const float inewReading) override
+</code></pre>
+
+<p>Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).</p>
+
+<p>Calls <code>step</code> from class <code>Pid</code>, and may return a reduced power if the velocity of the process is sufficiently low. The purpose of a low power mode is to prevent motors from stalling once they have reached their target (or if they can&rsquo;t quite reach their target).</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>inewReading</td>
+<td>New sensor reading</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="odomchassiscontroller-abstract">OdomChassisController (abstract)</h2>
+
+<p>The <code>OdomChassisController</code> class inherits from <code>ChassisController</code>. It extends the <code>ChassisController</code> interface to add odometry-based functionality.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+OdomChassisController(OdomParams iparams)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iparams</td>
+<td><code>OdomParams</code> (used to make a new <code>Odometry</code>)</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="notice">
+This class creates a new task inside its constructor and references a static class (Odometry). Be careful and remember to only make one.
+</aside>
+
+<h3 id="drivetopoint">driveToPoint</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void driveToPoint(const float ix, const float iy, const bool ibackwards = false, const float ioffset = 0) = 0
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ix</td>
+<td>X coordinate of destination</td>
+</tr>
+
+<tr>
+<td>iy</td>
+<td>Y coordinate of destination</td>
+</tr>
+
+<tr>
+<td>ibackwards</td>
+<td>Whether to drive to the destination backwards (default false)</td>
+</tr>
+
+<tr>
+<td>ioffset</td>
+<td>How far back from the destination to stop (default 0)</td>
+</tr>
+</tbody>
+</table>
+
+<p>Drive to the point (<code>ix</code>, <code>iy</code>) in the field frame. If required, the robot will first turn to face the destination point.</p>
+
+<h3 id="turntoangle">turnToAngle</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void turnToAngle(const float iangle) = 0
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iangle</td>
+<td>Angle to face</td>
+</tr>
+</tbody>
+</table>
+
+<p>Turn to the angle <code>iangle</code> in the field frame.</p>
+
+<h2 id="odomchassiscontrollermp">OdomChassisControllerMP</h2>
+
+<p>The <code>OdomChassisControllerMP</code> class inherits from <code>OdomChassisController</code> and from <code>ChassisControllerMP</code>. It implements the <code>OdomChassisController</code> interface using motion profiling.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+OdomChassisControllerMP(const OdomParams&amp; params, const MPControllerParams&amp; iconparams)
+
+//Make a new ChassisControllerMP using a skid steer model with two motors per side
+OdomChassisControllerMP foo(
+  OdomParams(
+    SkidSteerModelParams&lt;2&gt;({1,3,2,4}, //The four motor ports
+                            encoderInit(1,2,false), //Left encoder
+                            encoderInit(3,4,true)), //Right encoder
+    1.345,     //Distance scale (encoder ticks to mm)
+    12.88361), //Turn scale (encoder ticks to deg)
+  MPControllerParams(
+    MPGenParams(1, 15, 1000),        //MPGenerator params; max &amp; min accel: 1, max vel: 15, target pos: 1000
+    MPConsumerParams(6, 1.2, 0.5))); //MPConsumer params; kV: 6, kA: 1.2, kP: 0.5
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>params</td>
+<td><code>OdomParams</code> (used to make a new <code>Odometry</code>)</td>
+</tr>
+
+<tr>
+<td>igenParams</td>
+<td><code>MPGenParams</code> (used to make a new <code>MPGenerator</code>)</td>
+</tr>
+
+<tr>
+<td>icParams</td>
+<td><code>MPConsumerParams</code> (used to make a new <code>MPConsumer</code>)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="odomchassiscontrollerpid">OdomChassisControllerPid</h2>
+
+<p>The <code>OdomChassisControllerPid</code> class inherits from <code>OdomChassisController</code> and from <code>ChassisControllerPid</code>. It implements the <code>OdomChassisController</code> interface using PID control.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+OdomChassisControllerPid(const OdomParams&amp; params, const PidParams&amp; idistanceParams, const PidParams&amp; iangleParams)
+
+//Make a new OdomChassisControllerPid using a skid steer model with two motors per side
+OdomChassisControllerPid foo(
+  OdomParams(
+    SkidSteerModelParams&lt;2&gt;({1,3,2,4}, //The four motor ports
+                            encoderInit(1,2,false), //Left encoder
+                            encoderInit(3,4,true)), //Right encoder
+    1.345,     //Distance scale (encoder ticks to mm)
+    12.88361), //Turn scale (encoder ticks to deg)
+  PidParams(0,0,0),  //Distance PID controller
+  PidParams(0,0,0)); //Angle PID controller
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>params</td>
+<td><code>OdomParams</code> (used to make a new <code>Odometry</code>)</td>
+</tr>
+
+<tr>
+<td>idistanceParams</td>
+<td><code>PidParams</code> for the distance PID controller</td>
+</tr>
+
+<tr>
+<td>iangleParams</td>
+<td><code>PidParams</code> for the angle PID controller</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="odometry">Odometry</h2>
+
+<p>The <code>Odometry</code> class tracks the robot as it moves, computing its position in the field frame. It is a singleton so its main method, <code>step</code>, can be called in a task.</p>
+
+<h3 id="setparams">setParams</h3>
+
+<pre><code class="language-c++">//Signature
+static void setParams(OdomParams&amp; iparams)
+</code></pre>
+
+<p>Set the model, scale, and turnScale parameters.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iparams</td>
+<td><code>OdomParams</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setscales">setScales</h3>
+
+<pre><code class="language-c++">//Signature
+static void setScales(const float iscale, const float iturnScale)
+</code></pre>
+
+<p>Set the scale and turnScale parameters.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iscale</td>
+<td>Driving scale (encoder ticks to mm)</td>
+</tr>
+
+<tr>
+<td>iturnScale</td>
+<td>Turning scale (encoder ticks to degrees)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="guessscales">guessScales</h3>
+
+<pre><code class="language-c++">//Signature
+static void guessScales(const float chassisDiam, const float wheelDiam, const float ticksPerRev = 360.0)
+</code></pre>
+
+<p>Attempt to guess the two odometry scales from chassis and wheel diameter. This might get you close, but it serves only as a quick and temporary fix. The two odometry scales must be found experimentally for your specific robot.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>chassisDiam</td>
+<td>Center-to-center wheel base in inches</td>
+</tr>
+
+<tr>
+<td>wheelDiam</td>
+<td>Edge-to-edge wheel diameter in inches</td>
+</tr>
+
+<tr>
+<td>ticksPerRev</td>
+<td>Quadrate encoder ticks per one wheel revolution (default 360)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="step">step</h3>
+
+<pre><code class="language-c++">//Signature
+static OdomState step()
+</code></pre>
+
+<p>Do one iteration of odometry math to compute the new position of the robot. This needs to be called every so many milliseconds (15 ms seems to work fine).</p>
+
+<h3 id="getstate">getState</h3>
+
+<pre><code class="language-c++">//Signature
+static OdomState getState()
+</code></pre>
+
+<p>Return the last calculated position of the robot.</p>
+
+<h2 id="odomparams">OdomParams</h2>
+
+<p>The <code>OdomParams</code> class encapsulates the parameters an <code>Odometry</code> takes.</p>
+
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>model</td>
+<td><code>ChassisModel</code></td>
+</tr>
+
+<tr>
+<td>scale</td>
+<td>Driving scale (encoder ticks to mm)</td>
+</tr>
+
+<tr>
+<td>turnScale</td>
+<td>Turning scale (encoder ticks to degrees)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+OdomParams(const ChassisModelParams&amp; iparams, const float iscale, const float iturnScale)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iparams</td>
+<td><code>ChassisModelParams</code> (used to make a new <code>ChassisModel</code>)</td>
+</tr>
+
+<tr>
+<td>iscale</td>
+<td>Driving scale (encoder ticks to mm)</td>
+</tr>
+
+<tr>
+<td>iturnScale</td>
+<td>Turning scale (encoder ticks to degrees)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="odomstate">OdomState</h2>
+
+<p>The <code>OdomState</code> class is a simple container for the position of the robot tracked by <code>Odometry</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>x</td>
+<td>X coordinate of robot</td>
+</tr>
+
+<tr>
+<td>y</td>
+<td>Y coordinate of robot</td>
+</tr>
+
+<tr>
+<td>theta</td>
+<td>Theta of robot</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="constructor-1">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+OdomState(const float ix, const float iy, const float itheta)
+OdomState()
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ix</td>
+<td>X coordinate of robot</td>
+</tr>
+
+<tr>
+<td>iy</td>
+<td>Y coordinate of robot</td>
+</tr>
+
+<tr>
+<td>itheta</td>
+<td>Theta of robot</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="odommath">OdomMath</h2>
+
+<p>The <code>OdomMath</code> class provides static implementations for common odometry operations.</p>
+
+<h3 id="computedistancetopoint">computeDistanceToPoint</h3>
+
+<pre><code class="language-c++">//Signature
+static float computeDistanceToPoint(const float ix, const float iy, const OdomState&amp; istate)
+</code></pre>
+
+<p>Calculate the distance from the robot to a point, (<code>ix</code>, <code>iy</code>).</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ix</td>
+<td>X coordinate</td>
+</tr>
+
+<tr>
+<td>iy</td>
+<td>Y coordinate</td>
+</tr>
+
+<tr>
+<td>istate</td>
+<td>Odometry state</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="computeangletopoint">computeAngleToPoint</h3>
+
+<pre><code class="language-c++">//Signature
+static float computeAngleToPoint(const float ix, const float iy, const OdomState&amp; istate)
+</code></pre>
+
+<p>Calculate the angle from the robot to a point, (<code>ix</code>, <code>iy</code>).</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ix</td>
+<td>X coordinate</td>
+</tr>
+
+<tr>
+<td>iy</td>
+<td>Y coordinate</td>
+</tr>
+
+<tr>
+<td>istate</td>
+<td>Odometry state</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="computedistanceandangletopoint">computeDistanceAndAngleToPoint</h3>
+
+<pre><code class="language-c++">//Signature
+static DistanceAndAngle computeDistanceAndAngleToPoint(const float ix, const float iy, const OdomState&amp; istate)
+</code></pre>
+
+<p>Calculate the distance and the angle from the robot to a point, (<code>ix</code>, <code>iy</code>).</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ix</td>
+<td>X coordinate</td>
+</tr>
+
+<tr>
+<td>iy</td>
+<td>Y coordinate</td>
+</tr>
+
+<tr>
+<td>istate</td>
+<td>Odometry state</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="pid">Pid</h2>
+
+<p>The <code>Pid</code> class implements the Pid algorithm, with some quality-of-life changes to support online tuning.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+Pid(const float ikP, const float ikI, const float ikD, const float ikBias = 0)
+Pid(const PidParams&amp; params)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ikP</td>
+<td>Proportional gain</td>
+</tr>
+
+<tr>
+<td>ikI</td>
+<td>Integral gain</td>
+</tr>
+
+<tr>
+<td>ikD</td>
+<td>Derivative gain</td>
+</tr>
+
+<tr>
+<td>ikBias</td>
+<td>Controller bias (this value added to output, default 0)</td>
+</tr>
+
+<tr>
+<td>params</td>
+<td><code>PidParams</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="step">step</h3>
+
+<pre><code class="language-c++">//Signature
+virtual float step(const float inewReading)
+</code></pre>
+
+<p>Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>inewReading</td>
+<td>New sensor reading</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setgains">setGains</h3>
+
+<pre><code class="language-c++">//Signature
+void setGains(const float ikP, const float ikI, const float ikD, const float ikBias = 0)
+</code></pre>
+
+<p>Set new controller gains and bias.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ikP</td>
+<td>Proportional gain</td>
+</tr>
+
+<tr>
+<td>ikI</td>
+<td>Integral gain</td>
+</tr>
+
+<tr>
+<td>ikD</td>
+<td>Derivative gain</td>
+</tr>
+
+<tr>
+<td>ikBias</td>
+<td>Controller bias (this value added to output, default 0)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setsampletime">setSampleTime</h3>
+
+<pre><code class="language-c++">//Signature
+void setSampleTime(const int isampleTime)
+</code></pre>
+
+<p>Set the timestep (in ms) between calls to <code>step</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>isampleTime</td>
+<td>Timestep between calls to <code>step</code> in ms</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setoutputlimits">setOutputLimits</h3>
+
+<pre><code class="language-c++">//Signature
+void setOutputLimits(float imax, float imin)
+</code></pre>
+
+<p>Set the max and min value for the controller output.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imax</td>
+<td>Max output</td>
+</tr>
+
+<tr>
+<td>imin</td>
+<td>Min output</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setintegrallimits">setIntegralLimits</h3>
+
+<pre><code class="language-c++">//Signature
+void setIntegralLimits(float imax, float imin)
+</code></pre>
+
+<p>Set the max and min value for the integrator sum.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imax</td>
+<td>Max integrator value</td>
+</tr>
+
+<tr>
+<td>imin</td>
+<td>Min integrator value</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="reset">reset</h3>
+
+<pre><code class="language-c++">//Signature
+void reset()
+</code></pre>
+
+<p>Reset the controller so it will start from zero again.</p>
+
+<h3 id="setintegratorreset">setIntegratorReset</h3>
+
+<pre><code class="language-c++">//Signature
+void setIntegratorReset(bool iresetOnZero)
+</code></pre>
+
+<p>Set whether the integrator should be cleared when the controller&rsquo;s error is zero or changes sign.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iresetOnZero</td>
+<td>Whether the integrator should be cleared when the controller&rsquo;s error is zero or changes sign</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="flipdisable">flipDisable</h3>
+
+<pre><code class="language-c++">//Signature
+void flipDisable()
+</code></pre>
+
+<p>Change whether the controller is on or off. A controller which is off will output 0.</p>
+
+<h3 id="settarget">setTarget</h3>
+
+<pre><code class="language-c++">//Signature
+void setTarget(const float itarget)
+</code></pre>
+
+<p>Set the target value.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>itarget</td>
+<td>New target value</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="getoutput">getOutput</h3>
+
+<pre><code class="language-c++">//Signature
+float getOutput() const
+</code></pre>
+
+<p>Return the most recent controller output.</p>
+
+<h2 id="pidparams">PidParams</h2>
+
+<p>The <code>PidParams</code> class encapsulates the parameters a <code>Pid</code> takes.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>kP</td>
+<td>Proportional gain</td>
+</tr>
+
+<tr>
+<td>kI</td>
+<td>Integral gain</td>
+</tr>
+
+<tr>
+<td>kD</td>
+<td>Derivative gain</td>
+</tr>
+
+<tr>
+<td>kBias</td>
+<td>Controller bias (this value added to output)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+PidParams(const float ikP, const float ikI, const float ikD, const float ikBias = 0)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ikP</td>
+<td>Proportional gain</td>
+</tr>
+
+<tr>
+<td>ikI</td>
+<td>Integral gain</td>
+</tr>
+
+<tr>
+<td>ikD</td>
+<td>Derivative gain</td>
+</tr>
+
+<tr>
+<td>ikBias</td>
+<td>Controller bias (this value added to output, default 0)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="potentiometer">Potentiometer</h2>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+explicit constexpr Potentiometer()
+explicit constexpr Potentiometer(const unsigned long long int iport)
+explicit constexpr Potentiometer(const unsigned long long int iport, const bool iinverted)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iport</td>
+<td>Analog input port</td>
+</tr>
+
+<tr>
+<td>iinverted</td>
+<td>Whether the potentiometer is inverted (range is 0-&gt;4095 or 4095-&gt;0)</td>
+</tr>
+</tbody>
+</table>
+
+<p>This class also has literals available:</p>
+
+<table>
+<thead>
+<tr>
+<th>Literal</th>
+<th>Potentiometer Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>n_p</code></td>
+<td><code>Potentiometer(n, false)</code></td>
+</tr>
+
+<tr>
+<td><code>n_ip</code></td>
+<td><code>Potentiometer(n, true)</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get">get</h3>
+
+<pre><code class="language-c++">//Signature
+int get() const
+</code></pre>
+
+<p>Return the value of this potentiometer.</p>
+
+<h2 id="quadencoder">QuadEncoder</h2>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+QuadEncoder(const unsigned char iportTop, const unsigned char iportBottom)
+QuadEncoder(const unsigned char iportTop, const unsigned char iportBottom, const bool ireversed)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iportTop</td>
+<td>Top digital in port</td>
+</tr>
+
+<tr>
+<td>iportBototm</td>
+<td>Bottom digital in port</td>
+</tr>
+
+<tr>
+<td>ireversed</td>
+<td>Whether the encoder is reversed or not (clockwise turn increases vs. decreases ticks)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get">get</h3>
+
+<pre><code class="language-c++">//Signature
+int get() const
+</code></pre>
+
+<p>Return the current tick count.</p>
+
+<h3 id="reset">reset</h3>
+
+<pre><code class="language-c++">//Signature
+void reset() const
+</code></pre>
+
+<p>Reset the tick count to zero.</p>
+
+<h2 id="rangefinder">RangeFinder</h2>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+RangeFinder(const unsigned char iportTop, const unsigned char iportBottom)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iportTop</td>
+<td>Top digital port</td>
+</tr>
+
+<tr>
+<td>iportBottom</td>
+<td>Bottom digital port</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="get">get</h3>
+
+<pre><code class="language-c++">//Signature
+int get()
+</code></pre>
+
+<p>Return the current measured range in centimeters.</p>
+
+<h3 id="getfiltered">getFiltered</h3>
+
+<pre><code class="language-c++">//Signature
+int getFiltered()
+</code></pre>
+
+<p>Return the median measured range in centimeters. The median is measured across the previous five measurements.</p>
+
+<h2 id="skidsteermodel">SkidSteerModel</h2>
+
+<p>The <code>SkidSteerModel</code> class inherits from <code>ChassisModel</code> and takes a template parameter <code>size_t motorsPerSide</code> (the number of motors per each of the two sides of the chassis). It is a model for a skid steer drive (also called a tank drive).</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+SkidSteerModel(const std::array&lt;Motor, motorsPerSide * 2&gt;&amp; imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc)
+SkidSteerModel(const SkidSteerModelParams&lt;motorsPerSide&gt;&amp; iparams)
+SkidSteerModel(const SkidSteerModel&lt;motorsPerSide&gt;&amp; other)
+
+//Construct a SkidSteerModel with four motors (two per side) and two encoders
+//Left side motors are ports 1 and 3
+//Right side motors are ports 2 and 4
+//Right side encoder is reversed because it is a mirror of the left side
+SkidSteerModel&lt;2&gt; foo({1, 3, 2, 4}, QuadEncoder(1, 2, false), QuadEncoder(3, 4, true));
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imotorList</td>
+<td>The left and right side motors for the drive in the format, <code>{left motors, right motors}</code></td>
+</tr>
+
+<tr>
+<td>ileftEnc</td>
+<td>The quadrature encoder for the left side</td>
+</tr>
+
+<tr>
+<td>irightEnc</td>
+<td>The quadrature encoder for the right side</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="skidsteermodelparams">SkidSteerModelParams</h2>
+
+<p>The <code>SkidSteerModelParams</code> class inherits from <code>ChassisModelParams</code>. It encapsulates the parameters a <code>SkidSteerModel</code> takes.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+SkidSteerModelParams(const std::array&lt;Motor, motorsPerSide * 2&gt;&amp; imotorList, QuadEncoder ileftEnc, QuadEncoder irightEnc)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imotorList</td>
+<td>The left and right side motors for the drive in the format, <code>{left motors, right motors}</code></td>
+</tr>
+
+<tr>
+<td>ileftEnc</td>
+<td>The quadrature encoder for the left side</td>
+</tr>
+
+<tr>
+<td>irightEnc</td>
+<td>The quadrature encoder for the right side</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="timer">Timer</h2>
+
+<p>The <code>Timer</code> class has timing-related utilities to make measuring time differences and writing non-blocking code in loops easier.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+Timer()
+</code></pre>
+
+<p>The constructor does not take any parameters.</p>
+
+<h3 id="getdt">getDt</h3>
+
+<pre><code class="language-c++">//Signature
+unsigned long getDt()
+</code></pre>
+
+<p>Return the time passed in ms since the last time this function was called.</p>
+
+<h3 id="getstartingtime">getStartingTime</h3>
+
+<pre><code class="language-c++">//Signature
+unsigned long getStartingTime() const
+</code></pre>
+
+<p>Return the time in ms the timer was constructed.</p>
+
+<h3 id="getdtfromstart">getDtFromStart</h3>
+
+<pre><code class="language-c++">//Signature
+unsigned long getDtFromStart() const
+</code></pre>
+
+<p>Return the time passed in ms since the timer was constructed.</p>
+
+<h3 id="placemark">placeMark</h3>
+
+<pre><code class="language-c++">//Signature
+void placeMark()
+</code></pre>
+
+<p>Place a time marker. Placing another marker will overwrite the previous one.</p>
+
+<h3 id="placehardmark">placeHardMark</h3>
+
+<pre><code class="language-c++">//Signature
+void placeHardMark()
+</code></pre>
+
+<p>Place a hard time marker. Placing another hard marker will not overwrite the previous one; instead, <code>clearHardMark()</code> must be called before another can be placed.</p>
+
+<h3 id="clearhardmark">clearHardMark</h3>
+
+<pre><code class="language-c++">//Signature
+unsigned long clearHardMark()
+</code></pre>
+
+<p>Clear and return the current hard marker.</p>
+
+<h3 id="getdtfrommark">getDtFromMark</h3>
+
+<pre><code class="language-c++">//Signature
+unsigned long getDtFromMark()
+</code></pre>
+
+<p>Return the time in ms since the marker was placed.</p>
+
+<h3 id="getdtfromhardmark">getDtFromHardMark</h3>
+
+<pre><code class="language-c++">//Signature
+unsigned long getDtFromHardMark()
+</code></pre>
+
+<p>Return the time in ms since the hard marker was placed.</p>
+
+<h3 id="repeat">repeat</h3>
+
+<pre><code class="language-c++">//Signature
+bool repeat(unsigned long ms)
+</code></pre>
+
+<p>Return true when the input time period <code>ms</code> has passed, and then reset. Meant to be used in loops to execute a block of code every so many ms without blocking the loop.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ms</td>
+<td>Number of milliseconds between calls of <code>repeat</code> that return true</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="velmath">VelMath</h2>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+VelMath(const float iticksPerRev, const float ialpha = 0.19, const float ibeta = 0.041)
+VelMath(const VelMathParams&amp; iparams)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iticksPerRev</td>
+<td>Encoder ticks per one revolution</td>
+</tr>
+
+<tr>
+<td>ialpha</td>
+<td><code>DemaFilter</code> alpha gain</td>
+</tr>
+
+<tr>
+<td>ibeta</td>
+<td><code>DemaFilter</code> beta gain</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="step">step</h3>
+
+<pre><code class="language-c++">//Signature
+float step(const float inewPos)
+</code></pre>
+
+<p>Calculate, filter, and return a new velocity. This need to be called every so many milliseconds (not any faster than 15 ms).</p>
+
+<h3 id="setgains">setGains</h3>
+
+<pre><code class="language-c++">//Signature
+void setGains(const float ialpha, const float ibeta)
+</code></pre>
+
+<p>Set new filter gains.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ialpha</td>
+<td>Alpha gain</td>
+</tr>
+
+<tr>
+<td>ibeta</td>
+<td>Beta gain</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setticksperrev">setTicksPerRev</h3>
+
+<pre><code class="language-c++">//Signature
+void setTicksPerRev(const float iTPR)
+</code></pre>
+
+<p>Set a new ticks per rev value.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>iTPR</td>
+<td>Encoder ticks per one revolution</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="getoutput">getOutput</h3>
+
+<pre><code class="language-c++">//Signature
+float getOutput() const
+</code></pre>
+
+<p>Return the most recent velocity.</p>
+
+<h3 id="getdiff">getDiff</h3>
+
+<pre><code class="language-c++">//Signature
+float getDiff() const
+</code></pre>
+
+<p>Return the difference between the last and second to last velocity. Dividing this value by the sample time would give an acceleration.</p>
+
+<h2 id="velpid">VelPid</h2>
+
+<p>The <code>VelPid</code> class implements the Pid algorithm for the velocity domain, with some quality-of-life changes to support online tuning.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+VelPid(const float ikP, const float ikD)
+VelPid(const VelPidParams&amp; params)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ikP</td>
+<td>Proportional gain</td>
+</tr>
+
+<tr>
+<td>ikI</td>
+<td>Integral gain</td>
+</tr>
+
+<tr>
+<td>ikD</td>
+<td>Derivative gain</td>
+</tr>
+
+<tr>
+<td>ikBias</td>
+<td>Controller bias (this value added to output, default 0)</td>
+</tr>
+
+<tr>
+<td>params</td>
+<td><code>VelPidParams</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="stepvel">stepVel</h3>
+
+<pre><code class="language-c++">//Signature
+virtual float stepVel(const float inewReading)
+</code></pre>
+
+<p>Do one iteration of velocity math to compute a new filtered velocity. This is only meant to be used separately from <code>step</code> if you only want to compute a new velocity. Don&rsquo;t call <code>stepVel</code> if you are already calling <code>step</code> because <code>step</code> will call <code>stepVel</code> on its own.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>inewReading</td>
+<td>New sensor reading</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="step">step</h3>
+
+<pre><code class="language-c++">//Signature
+virtual float step(const float inewReading)
+</code></pre>
+
+<p>Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>inewReading</td>
+<td>New sensor reading</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setgains">setGains</h3>
+
+<pre><code class="language-c++">//Signature
+void setGains(const float ikP, const float ikD)
+</code></pre>
+
+<p>Set new controller gains and bias.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ikP</td>
+<td>Proportional gain</td>
+</tr>
+
+<tr>
+<td>ikD</td>
+<td>Derivative gain</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setfiltergains">setFilterGains</h3>
+
+<pre><code class="language-c++">//Signature
+void setFilterGains(const float alpha, const float beta)
+</code></pre>
+
+<p>Set new gains for the <code>DemaFilter</code></p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>alpha</td>
+<td>Alpha gain</td>
+</tr>
+
+<tr>
+<td>beta</td>
+<td>Beta gain</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setsampletime">setSampleTime</h3>
+
+<pre><code class="language-c++">//Signature
+void setSampleTime(const int isampleTime)
+</code></pre>
+
+<p>Set the timestep (in ms) between calls to <code>step</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>isampleTime</td>
+<td>Timestep between calls to <code>step</code> in ms</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setticksperrev">setTicksPerRev</h3>
+
+<pre><code class="language-c++">//Signature
+void setTicksPerRev(const float tpr)
+</code></pre>
+
+<p>Set the number of measurement units per revolution. Default is 360 (quadrature encoder).</p>
+
+<h3 id="setoutputlimits">setOutputLimits</h3>
+
+<pre><code class="language-c++">//Signature
+void setOutputLimits(float imax, float imin)
+</code></pre>
+
+<p>Set the max and min value for the controller output.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imax</td>
+<td>Max output</td>
+</tr>
+
+<tr>
+<td>imin</td>
+<td>Min output</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="reset">reset</h3>
+
+<pre><code class="language-c++">//Signature
+void reset()
+</code></pre>
+
+<p>Reset the controller so it will start from zero again.</p>
+
+<h3 id="flipdisable">flipDisable</h3>
+
+<pre><code class="language-c++">//Signature
+void flipDisable()
+</code></pre>
+
+<p>Change whether the controller is on or off. A controller which is off will output 0.</p>
+
+<h3 id="settarget">setTarget</h3>
+
+<pre><code class="language-c++">//Signature
+void setTarget(const float itarget)
+</code></pre>
+
+<p>Set the target value.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>itarget</td>
+<td>New target value</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="getoutput">getOutput</h3>
+
+<pre><code class="language-c++">//Signature
+float getOutput() const
+</code></pre>
+
+<p>Return the most recent controller output.</p>
+
+<h2 id="velpidparams">VelPidParams</h2>
+
+<p>The <code>VelPidParams</code> class encapsulates the parameters a <code>VelPid</code> takes.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>kP</td>
+<td>Proportional gain</td>
+</tr>
+
+<tr>
+<td>kD</td>
+<td>Derivative gain</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+VelPidParams(const float ikP, const float ikD)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ikP</td>
+<td>Proportional gain</td>
+</tr>
+
+<tr>
+<td>ikD</td>
+<td>Derivative gain</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="xdrivemodel">XDriveModel</h2>
+
+<p>The <code>XDriveModel</code> class inherits from <code>ChassisModel</code> and takes a template parameter <code>size_t motorsPerCorner</code> (the number of motors per each of the four corners of the chassis). It is a model for an x-drive.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+XDriveModel(const std::array&lt;unsigned char, motorsPerCorner * 4&gt;&amp; imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc)
+XDriveModel(const XDriveModelParams&lt;motorsPerCorner&gt;&amp; iparams)
+XDriveModel(const XDriveModel&lt;motorsPerCorner&gt;&amp; other)
+
+//Construct an XDriveModel with four motors (one per corner) and two encoders
+//Top left motor is port 1, top right motor is port 2
+//Bottom right motor is port 3, bottom left motor is port 4
+//Right side encoder is reversed because it is a mirror of the left side
+XDriveModel&lt;1&gt; foo({1, 2, 3, 4}, QuadEncoder(1, 2, false), QuadEncoder(3, 4, true));
+
+//Construct an XDriveModel with eight motors (two per corner) and two encoders
+//Top left motors are ports 1 and 2, top right motors are ports 3 and 4
+//Bottom right motors are ports 5 and 6, bottom left motors are ports 7 and 8
+//Right side encoder is reversed because it is a mirror of the left side
+XDriveModel&lt;2&gt; foo({1, 2, 3, 4, 5, 6, 7, 8}, QuadEncoder(1, 2, false), QuadEncoder(3, 4, true));
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imotorList</td>
+<td>The chassis motors for the drive in the clockwise format, <code>{top left motors, top right motors, bottom right motors, bottom left motors}</code></td>
+</tr>
+
+<tr>
+<td>ileftEnc</td>
+<td>The quadrature encoder for the left side</td>
+</tr>
+
+<tr>
+<td>irightEnc</td>
+<td>The quadrature encoder for the right side</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="xarcade">xArcade</h3>
+
+<pre><code class="language-c++">//Signature
+void xArcade(const int verticalVal, const int horizontalVal, const int rotateVal)
+</code></pre>
+
+<p>Specifically for an x-drive, power the motors like arcade drive with a channel for rotation.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>verticalVal</td>
+<td>Motor power for the vertical component of movement</td>
+</tr>
+
+<tr>
+<td>horizontalVal</td>
+<td>Motor power for the horizontal component of movement</td>
+</tr>
+
+<tr>
+<td>rotateVal</td>
+<td>Motor power for rotation</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="xdrivemodelparams">XDriveModelParams</h2>
+
+<p>The <code>XDriveModelParams</code> class inherits from <code>ChassisModelParams</code>. It encapsulates the parameters an <code>XDriveModel</code> takes.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++"> //Signature
+XDriveModelParams(const std::array&lt;unsigned char, motorsPerCorner * 4&gt;&amp; imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imotorList</td>
+<td>The chassis motors for the drive in the clockwise format, <code>{top left motors, top right motors, bottom right motors, bottom left motors}</code></td>
+</tr>
+
+<tr>
+<td>ileftEnc</td>
+<td>The quadrature encoder for the left side</td>
+</tr>
+
+<tr>
+<td>irightEnc</td>
+<td>The quadrature encoder for the right side</td>
+</tr>
+</tbody>
+</table>
+</p>
 
 			
+				<h1>Getting started </h1>
+
+				
+
+<h2 id="programming-a-skills-robot">Programming a Skills Robot</h2>
+
+<p>This tutorial is a step-by-step guide to programming this simple skills robot:</p>
+
+
+<figure >
+    
+        <img src="https://okapilib.github.io/OkapiLib/images/skillsRobotPicture.jpg#center" />
+    
+    
+</figure>
+
+
+<p>This robot has motors and sensors plugged into the following ports:</p>
+
+<table>
+<thead>
+<tr>
+<th>Motor Port</th>
+<th>Description</th>
+<th>Motor Port</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td>6</td>
+<td>Right middle motor</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Left front motor</td>
+<td>7</td>
+<td>Right bottom motor</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Left middle motor</td>
+<td>8</td>
+<td>Lift left motor</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Left bottom motor</td>
+<td>9</td>
+<td>Lift right motor</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>Right top motor</td>
+<td>10</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>Digital Port</th>
+<th>Description</th>
+<th>Digital Port</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>Left encoder top wire</td>
+<td>7</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Left encoder bottom wire</td>
+<td>8</td>
+<td></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Right encoder top wire</td>
+<td>9</td>
+<td></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Right encoder bottom wire</td>
+<td>10</td>
+<td></td>
+</tr>
+
+<tr>
+<td>5</td>
+<td></td>
+<td>11</td>
+<td></td>
+</tr>
+
+<tr>
+<td>6</td>
+<td></td>
+<td>12</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>Analog Port</th>
+<th>Description</th>
+<th>Analog Port</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>Lift potentiometer</td>
+<td>5</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td></td>
+<td>6</td>
+<td></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td></td>
+<td>7</td>
+<td></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td></td>
+<td>8</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="project-configuration">Project Configuration</h2>
+
+<p>After installing OkapiLib through the PROS Conductor tool, <code>okapilib.a</code> will be copied into <code>firmware/</code> and OkapiLib&rsquo;s header files will be copied into <code>include/</code>. In order to properly compile your project, you need to modify a few files:</p>
+
+<ul>
+<li><p>The <code>src/</code> folder contains three files, <code>auto.c</code>, <code>init.c</code>, and <code>opcontrol.c</code>. The <code>.c</code> extension of these files needs to be changed to <code>.cpp</code> so the compiler knows they contain C++ code.</p></li>
+
+<li><p>The <code>src/init.cpp</code> file needs to be changed so it instead contains the following code which calls a special internal function <code>__libc_init_array()</code>:</p></li>
+</ul>
+
+<pre><code class="language-c++">#include &quot;main.h&quot;
+
+extern &quot;C&quot; {
+  void __libc_init_array();
+}
+
+void initializeIO() {
+  __libc_init_array();
+}
+
+void initialize() {
+}
+</code></pre>
+
+<ul>
+<li>Finally, the <code>common.mk</code> file needs to have the <code>CPPFLAGS</code> variable modified to contain the flag <code>-std=c++14</code> so the compiler knows the correct C++ standard to use:</li>
+</ul>
+
+<p>This line: <code>CPPFLAGS:=$(CCFLAGS)-fno-exceptions -fno-rtti -felide-constructors</code></p>
+
+<p>Should become this: <code>CPPFLAGS:=$(CCFLAGS) -std=c++14 -fno-exceptions -fno-rtti -felide-constructors</code></p>
+
+<h2 id="programming-user-control">Programming User Control</h2>
+
+<h3 id="drivetrain-setup">Drivetrain Setup</h3>
+
+<p>Let&rsquo;s start by setting up our motors and sensors configuration. We want to tell Okapi that we have two quadrature encoders and six motors on our chassis.</p>
+
+<p>Our two quad encoders can be written as:</p>
+
+<pre><code class="language-c++">QuadEncoder leftEnc(1, 2, true), rightEnc(3, 4);
+</code></pre>
+
+<p>Now we can use those quads with our motors to make a model for controlling our chassis:</p>
+
+<pre><code class="language-c++">SkidSteerModel&lt;3&gt; model({2_m, 3_m, 4_m, 5_m, 6_m, 7_m}, leftEnc, rightEnc);
+</code></pre>
+
+<p>That syntax might look a little weird. Breaking it down further, the template argument to our <code>SkidSteerModel</code> specifies the number of motors per side we have. In our case, we have three motors on each side of our chassis, so the template argument value is <code>3</code>. Next, the first argument to the <code>SkidSteerModel</code> constructor is an array of motors. Each motor is specified using special syntax called a literal, which lets you abbreviate the <code>Motor</code> constructor. Writing <code>2_m</code> translates into <code>Motor(2, false)</code>, which is a non-reversed motor on port two. <code>2_rm</code> would translate into <code>Motor(2, true)</code>, which is a reversed motor on port two.</p>
+
+<p>It&rsquo;s a good idea to use PID control to have the chassis drive around accurately during autonomous. Okapi can do this using a <code>ChassisController</code>, which combines a <code>ChassisModel</code> with either PID or Motion Profile control. Let&rsquo;s refactor to use that instead:</p>
+
+<pre><code class="language-c++"> ChassisControllerPid controller(SkidSteerModelParams&lt;3&gt;({2_m,3_m,4_m, 5_m,6_m,7_m}, leftEnc, rightEnc),
+                                 PidParams(0.15, 0.05, 0.07),
+                                 PidParams(0.02, 0.01, 0));
+</code></pre>
+
+<p>Take a look at the first argument to the <code>ChassisControllerPid</code> constructor. It looks just like our model from before, except it has a <code>Parmas</code> suffix now. Okapi often encapsulates the constructor arguments of classes into their own <code>Params</code> class to simplify making complex objects. Notice we do the same thing for the remaining two arguments, <code>PidParams</code> specifies how to make a <code>Pid</code> controller.</p>
+
+<p>To recap, this is the final state of our chassis setup code:</p>
+
+<pre><code class="language-c++">QuadEncoder leftEnc(1, 2, true), rightEnc(3, 4);
+ChassisControllerPid controller(SkidSteerModelParams&lt;3&gt;({2_m,3_m,4_m, 5_m,6_m,7_m}, leftEnc, rightEnc),
+                                PidParams(0.15, 0.05, 0.07),
+                                PidParams(0.02, 0.01, 0));
+</code></pre>
+
+<h3 id="lift-setup">Lift Setup</h3>
+
+<p>Okapi provides a tool, called <code>GenericController</code>, to associate a group of motors to some closed-loop controller. We want to use this for our lift because all of the lift motors should act like one, so it&rsquo;s easier to think about in that manner. Let&rsquo;s tie our two lift motors together and control them with a special PID controller, called <code>NsPid</code>, that moniors velocity and reduces the control signal at low velocity to prevent the system from stalling itself.</p>
+
+<pre><code class="language-c++">GenericController&lt;2&gt; liftController({8_m, 9_m},
+                                    std::make_shared&lt;NsPid&gt;(NsPid(PidParams(0.2, 0.1, 0.1), 
+                                                            VelMathParams(360),
+                                                            0.5)));
+</code></pre>
+
+<p>Like before, we specify our two motors in an array using motor literals, and we specify the number of motors using the template argument. These two motors will recieve the control signal from the closed-loop controller we specify in the second argument. Notice that because <code>GenericController</code> accepts an abstract <code>ControlObject</code>, we cannot supply a concrete class directly. Instead, we must make a <code>std::shared_ptr</code> to our concrete class.</p>
+
+<h3 id="control-code">Control Code</h3>
+
+<p>We&rsquo;ll have a simple state machine that controls the lift&rsquo;s target height:</p>
+
+<pre><code class="language-c++">const unsigned char liftPot = 1;
+constexpr int liftUpTarget = 2570, lift34 = 300, liftDownTarget = 10;
+int target = liftUpTarget;
+
+while (1) {
+  if (joystickGetDigital(1, 6, JOY_UP))
+    target = liftUpTarget;
+  else if (joystickGetDigital(1, 6, JOY_DOWN))
+    target = liftDownTarget;
+  else if (joystickGetDigital(1, 5, JOY_UP))
+    target = lift34;
+  else if (joystickGetDigital(1, 8, JOY_LEFT)) {
+    liftController.flipDisable(); //Turn the controller on or off
+    while (joystickGetDigital(1, 8, JOY_LEFT)); //And wait
+  }
+
+  liftController.setTarget(target); //Set the new target
+  liftController.loop(analogRead(liftPot)); //Loop the controller
+}
+</code></pre>
+
+<p>Let&rsquo;s also use arcade control to drive around ourselves:</p>
+
+<pre><code class="language-c++"> controller.arcade(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1));
+</code></pre>
+
+<h2 id="review">Review</h2>
+
+<p>That&rsquo;s all the code we need to drive around and use the lift. Here&rsquo;s our final product:</p>
+
+<pre><code class="language-c++">#include &lt;cmath&gt;
+#include &quot;main.h&quot;
+#include &lt;chassis/basicChassisController.h&gt;
+#include &lt;control/nsPid.h&gt;
+#include &lt;control/genericController.h&gt;
+
+using namespace okapi;
+
+void operatorControl() {
+  using namespace std; //Needed to get round to compile
+  
+  QuadEncoder leftEnc(1, 2, true), rightEnc(3, 4);
+  ChassisControllerPid controller(SkidSteerModelParams&lt;3&gt;({2_m,3_m,4_m, 5_m,6_m,7_m}, leftEnc, rightEnc),
+                                  PidParams(0.15, 0.05, 0.07),
+                                  PidParams(0.02, 0.01, 0));
+
+  const unsigned char liftPot = 1;
+
+  GenericController&lt;2&gt; liftController({8_m, 9_m},
+                                      std::make_shared&lt;NsPid&gt;(NsPid(PidParams(0.2, 0.1, 0.1),
+                                                                    VelMathParams(360),
+                                                                    0.5)));
+
+  constexpr int liftUpTarget = 2570, lift34 = 300, liftDownTarget = 10;
+  int target = liftUpTarget;
+
+  while (1) {
+    if (joystickGetDigital(1, 6, JOY_UP))
+      target = liftUpTarget;
+    else if (joystickGetDigital(1, 6, JOY_DOWN))
+      target = liftDownTarget;
+    else if (joystickGetDigital(1, 5, JOY_UP))
+      target = lift34;
+    else if (joystickGetDigital(1, 8, JOY_LEFT)) {
+      liftController.flipDisable();
+      while (joystickGetDigital(1, 8, JOY_LEFT));
+    }
+
+    liftController.setTarget(target);
+    liftController.loop(analogRead(liftPot));
+
+    controller.arcade(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1));
+  }
+}
+</code></pre>
+
+			
+				<h1>Okapi Documentation </h1>
+
+				
 
 <h2 id="primary-objective">Primary Objective</h2>
 
@@ -309,6 +4256,145 @@
 
 <p>Okapi is targeted at users of PROS that are familiar with C++ programming. If you are not comfortable with PROS, there are tutorials on the <a href="https://pros.cs.purdue.edu">PROS website</a>, and those still learning C++ should look towards <a href="https://www.tutorialspoint.com/cplusplus/">tutorialspoint</a> and <a href="http://www.cs.wustl.edu/~schmidt/C++/">Washington University</a>.</p>
 
+			
+				<h1>Tutorials </h1>
+
+				
+
+<h2 id="tutorials">Tutorials</h2>
+
+<p>This section contains various tutorials for the different parts of OkapiLib. Scroll down or view the menus on the left to pick a tutorial.</p>
+
+<p><h2 id="motor">Motor</h2>
+
+<p>Writing the full <code>Motor</code> constructor any time you want to specify a motor gets quite tedious, so Okapi has some literals that make specifying motors much easier:</p>
+
+<pre><code class="language-c++">Motor foo(2); //Motor on port 2
+Motor foo = 2_m; //Equivalent literal
+
+Motor foo(2, true); //Reversed motor on port 2
+Motor foo = 2_rm; //Equivalent literal
+</code></pre>
+
+<p>Okapi also provides cubic control if you prefer to drive that way:</p>
+
+<pre><code class="language-c++">CubicMotor foo(2); //Motor on port 2
+CubicMotor foo = 2_3m; //Equivalent literal
+
+CubicMotor foo(2, true); //Reversed motor on port 2
+CubicMotor foo = 2_3rm; //Equivalent literal
+</code></pre>
+
+<p>Both <code>Motor</code> and <code>CubicMotor</code> can be given to a <code>ChassisModel</code>, and the behavior of <code>tank</code> and <code>arcade</code> will change accordingly.</p>
+
+<h2 id="pid">PID</h2>
+
+<p>Proportional-Integral-Derivative (PID) control is a simple and useful closed-loop controller. Say you have a subsystem with a motor and a potentiometer:</p>
+
+<pre><code class="language-c++">#include &lt;device/pid.h&gt;
+
+int port = 1; //Motor port
+int pot = 1; //Potentiometer
+Pid controller(1, 0.2, 0.3); //PID controller with kP = 1, kI = 0.2, kD = 0.3
+controller.setTarget(1500); //Set the target to 1500 on the potentiometer
+
+while (1) {
+    controller.step(analogRead(pot)); //Loop the controller with the new pot reading
+    motorSet(port, controller.getOutput()); //Power the motor with the output of the controller
+    taskDelay(15);
+}
+</code></pre>
+
+<h2 id="generic-controller">Generic Controller</h2>
+
+<p>Often times, you have a closed-loop controller, sensor, and a few motors acting together as a system, and you wind up with code that powers each motor individually like this:</p>
+
+<pre><code class="language-c++">#include &lt;device/pid.h&gt;
+
+int port1 = 1, port2 = 2; //Motor ports
+int pot = 1; //Potentiometer
+Pid controller(1, 0.2, 0.3); //PID controller with kP = 1, kI = 0.2, kD = 0.3
+controller.setTarget(1500); //Set the target to 1500 on the potentiometer
+
+while (1) {
+    controller.step(analogRead(pot)); //Loop the controller with the new pot reading
+    //Power the motors with the output of the controller
+    motorSet(port1, controller.getOutput());
+    motorSet(port2, controller.getOutput());
+    taskDelay(15);
+</code></pre>
+
+<p>The more motors and control structure we have, the messier this becomes. So instead, Okapi provides a way to do this in a cleaner fashion:</p>
+
+<pre><code class="language-c++">#include &lt;device/pid.h&gt;
+#include &lt;control/genericController.h&gt;
+
+int pot = 1;
+//Two motors in ports 1 and 2 like before
+//Use make_shared to give GenericController the instance of your ControlObject
+GenericController&lt;2&gt; liftController({1_m, 2_m}, std::make_shared&lt;Pid&gt;(Pid(1, 0.2, 0.3)));
+liftController.setTarget(1500);
+
+while (1) {
+    controller.step(analogRead(pot)); //Loop the controller and power the motors
+    taskDelay(15);
+}
+</code></pre>
+
+<h2 id="chassis-model">Chassis Model</h2>
+
+<p>Okapi has a way to represent the most common robot chassis, skid steer and x-drive. With this model we can tell the robot how to move around in a general sense.</p>
+
+<p>For example, a skid steer chassis with two motors per side and two quad encoders:</p>
+
+<pre><code class="language-c++">#include &lt;chassis/chassisModel.h&gt;
+
+SkidSteerModel&lt;2&gt; model({2_m, 3_m, 4_m, 5_m}, //Left motors: 2 &amp; 3, right motors: 4 &amp; 5
+                        QuadEncoder(1, 2, true), //Left encoder (reversed)
+                        QuadEncoder(3, 4)); //Right encoder
+</code></pre>
+
+<p>Or you can have an x-drive with one motor per corner and two quad encoders:</p>
+
+<pre><code class="language-c++">#include &lt;chassis/chassisModel.h&gt;
+
+XDriveModel&lt;1&gt; model({2_m, 3_m, 4_m, 5_m}, //Motors are ordered counter-clockwise from the top left
+                        QuadEncoder(1, 2, true), //Top left encoder (reversed)
+                        QuadEncoder(3, 4)); //Top right encoder
+</code></pre>
+
+<p>Then once we have a model, we can do everything a generic <code>ChassisModel</code> can do:</p>
+
+<pre><code class="language-c++">model.driveForward(100); //Drive forward at 100 power
+model.turnClockwise(90); //Turn clockwise at 90 power
+model.tank(joystickGetAnalog(1, 4), joystickGetAnalog(1, 3)); //Tank drive on the vertical channels
+model.stop(); //Set all motors to 0
+</code></pre>
+
+<p>If we wanted to use some sort of closed-loop control, we could either do it ourselves or use one of Okapi&rsquo;s structures instead, covered in the <code>ChassisController</code> or <code>OdomChassisController</code> tutorials.</p>
+
+<h2 id="chassis-controller">Chassis Controller</h2>
+
+<p>Okapi provides a way to control a <code>ChassisModel</code> using closed-loop control, like PID, so you don&rsquo;t have to rewrite a driveStraight() function every year. Rather than making a model directly, we can instead give <code>ChassisModelParams</code> to a <code>ChassisController</code>, which will instantiate the model for itself:</p>
+
+<pre><code class="language-c++">#include &lt;chassis/chassisController.h&gt;
+ChassisControllerPid controller(SkidSteerModelParams&lt;2&gt;({2_m, 3_m, 4_m, 5_m}, //Skid steer chassis with two motors per side
+                                                        QuadEncoder(1, 2, true), //Left encoder (reversed)
+                                                        QuadEncoder(3, 4)), //Right encoder
+                                PidParams(0.15, 0.05, 0.07), //Distance PID controller
+                                PidParams(0.02, 0.01, 0)); //Angle PID controller
+</code></pre>
+
+<p>A <code>ChassisControllerPid</code> implements the <code>ChassisController</code> interface using PID control. It takes two <code>PidParams</code> to describe the controller gains for both controllers. The first controls distance to the target, but the second keeps the robot on a straight path while it drives to its target. Often times the second controller&rsquo;s gains will have lower kP, lower or no kD, and moderate kI because this controller just needs to make slight adjustments to the power the motors on each side of the chassis get.</p>
+
+<p>Once we have our controller, we can control the robot more accurately than with just a model:</p>
+
+<pre><code class="language-c++">controller.driveStraight(100); //Drive in a straight line for 100 encoder ticks
+controller.pointTurn(100); //Turn clockwise in place for 100 encoder ticks
+</code></pre>
+</p>
+
+			
 
 			<aside class="copyright" role="note">
 				
@@ -321,37 +4407,23 @@
 			<footer class="footer">
 				
 
+
+
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
-  
-      <a href="https://okapilib.github.io/OkapiLib/home/" title="Okapi Documentation">
-        <span class="direction">
-          Previous
-        </span>
-        <div class="page">
-          <div class="button button-previous" role="button" aria-label="Previous">
-            <i class="icon icon-back"></i>
-          </div>
-          <div class="stretch">
-            <div class="title">
-              Okapi Documentation
-            </div>
-          </div>
-        </div>
-      </a>
-  
   </div>
 
-  <div class="next">
   
-      <a href="https://okapilib.github.io/OkapiLib/tutorials/" title="Tutorials">
+  
+  <div class="next">
+      <a href="https://okapilib.github.io/OkapiLib/api/chassiscontroller/chassiscontrollermp/" title="">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Tutorials
+              
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -359,11 +4431,8 @@
           </div>
         </div>
       </a>
-  
   </div>
 </nav>
-
-
 
 
 

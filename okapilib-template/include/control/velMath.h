@@ -37,7 +37,7 @@ namespace okapi {
      * @param  inewPos New position
      * @return         New velocity
      */
-    float loop(const float inewPos);
+    float step(const float inewPos);
 
     void setGains(const float ialpha, const float ibeta) { filter.setGains(ialpha, ibeta); }
 
