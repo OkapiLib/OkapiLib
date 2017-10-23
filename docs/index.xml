@@ -149,7 +149,7 @@ Constructor //Signature XDriveModelParams(const std::array&amp;lt;unsigned char,
       
       <guid>https://okapilib.github.io/OkapiLib/api/control/genericcontroller/</guid>
       <description>GenericController The GenericController class combines motors and a ControlObject into one package that uses the controller to control the motors as a group (all motors get the same controller output).
-Constructor //Signature GenericController(const std::array&amp;lt;Motor, motorNum&amp;gt; &amp;amp;imotorList, const std::shared_ptr&amp;lt;ControlObject&amp;gt; &amp;amp;iptr)     Parameter Description     imotorList std::array of Motor that will be controlled   iptr ControlObject used to control the motors    loop //Signature void loop(const float ireading)  Have the ControlObject do one iteration and then power the motors with the output.</description>
+Constructor //Signature GenericController(const std::array&amp;lt;Motor, motorNum&amp;gt; &amp;amp;imotorList, const std::shared_ptr&amp;lt;ControlObject&amp;gt; &amp;amp;iptr)     Parameter Description     imotorList std::array of Motor that will be controlled   iptr ControlObject used to control the motors    step //Signature void step(const float ireading)  Have the ControlObject do one iteration and then power the motors with the output.</description>
     </item>
     
     <item>
@@ -159,7 +159,7 @@ Constructor //Signature GenericController(const std::array&amp;lt;Motor, motorNu
       
       <guid>https://okapilib.github.io/OkapiLib/api/control/mpcontroller/</guid>
       <description>MPController The MPController class packages together an MPConsumer and an MPGenerator into one class which both generates and follows a motion profile.
-Constructor //Signature MPController(const MPGenParams&amp;amp; igenParams, const MPConsumerParams&amp;amp; iconParams) MPController(const MPControllerParams&amp;amp; iparams) //Basic MPController construction MPController foo(MPGenParams(1, 15, 1000), MPConsumerParams(6, 1.2, 0.5));     Parameter Description     igenParams MPGenParams   iconParams MPConsumerParams   iparams MPControllerParams    loop //Signature virtual float loop(const float inewReading)  Loop the controller once over a new measurement and return the new response power.</description>
+Constructor //Signature MPController(const MPGenParams&amp;amp; igenParams, const MPConsumerParams&amp;amp; iconParams) MPController(const MPControllerParams&amp;amp; iparams) //Basic MPController construction MPController foo(MPGenParams(1, 15, 1000), MPConsumerParams(6, 1.2, 0.5));     Parameter Description     igenParams MPGenParams   iconParams MPConsumerParams   iparams MPControllerParams    step //Signature virtual float step(const float inewReading)  Step the controller once over a new measurement and return the new response power.</description>
     </item>
     
     <item>
@@ -168,7 +168,7 @@ Constructor //Signature MPController(const MPGenParams&amp;amp; igenParams, cons
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://okapilib.github.io/OkapiLib/api/control/pid/nspid/</guid>
-      <description>NsPid Constructor //Signature NsPid(const PidParams&amp;amp; iparams, const VelMathParams&amp;amp; ivelParams, const float iminVel, const float iscale = 0.1)     Parameter Description     iparams PidParams to make the internal PID controller   ivelParams VelMathParams for the velocity calculations   iminVel Minimum velocity at which the controller will start reducing the output power   iscale Scale to reduce the output power by    loop //Signature virtual float loop(const float inewReading) override  Do one iteration of Pid math to compute a new motor power.</description>
+      <description>NsPid Constructor //Signature NsPid(const PidParams&amp;amp; iparams, const VelMathParams&amp;amp; ivelParams, const float iminVel, const float iscale = 0.1)     Parameter Description     iparams PidParams to make the internal PID controller   ivelParams VelMathParams for the velocity calculations   iminVel Minimum velocity at which the controller will start reducing the output power   iscale Scale to reduce the output power by    step //Signature virtual float step(const float inewReading) override  Do one iteration of Pid math to compute a new motor power.</description>
     </item>
     
     <item>
@@ -178,7 +178,7 @@ Constructor //Signature MPController(const MPGenParams&amp;amp; igenParams, cons
       
       <guid>https://okapilib.github.io/OkapiLib/api/control/pid/pid/</guid>
       <description>Pid The Pid class implements the Pid algorithm, with some quality-of-life changes to support online tuning.
-Constructor //Signature Pid(const float ikP, const float ikI, const float ikD, const float ikBias = 0) Pid(const PidParams&amp;amp; params)     Parameter Description     ikP Proportional gain   ikI Integral gain   ikD Derivative gain   ikBias Controller bias (this value added to output, default 0)   params PidParams    loop //Signature virtual float loop(const float inewReading)  Do one iteration of Pid math to compute a new motor power.</description>
+Constructor //Signature Pid(const float ikP, const float ikI, const float ikD, const float ikBias = 0) Pid(const PidParams&amp;amp; params)     Parameter Description     ikP Proportional gain   ikI Integral gain   ikD Derivative gain   ikBias Controller bias (this value added to output, default 0)   params PidParams    step //Signature virtual float step(const float inewReading)  Do one iteration of Pid math to compute a new motor power.</description>
     </item>
     
     <item>
@@ -198,7 +198,7 @@ Constructor //Signature Pid(const float ikP, const float ikI, const float ikD, c
       
       <guid>https://okapilib.github.io/OkapiLib/api/control/pid/velpid/</guid>
       <description>VelPid The VelPid class implements the Pid algorithm for the velocity domain, with some quality-of-life changes to support online tuning.
-Constructor //Signature VelPid(const float ikP, const float ikD) VelPid(const VelPidParams&amp;amp; params)     Parameter Description     ikP Proportional gain   ikI Integral gain   ikD Derivative gain   ikBias Controller bias (this value added to output, default 0)   params VelPidParams    loopVel //Signature virtual float loopVel(const float inewReading)  Do one iteration of velocity math to compute a new filtered velocity.</description>
+Constructor //Signature VelPid(const float ikP, const float ikD) VelPid(const VelPidParams&amp;amp; params)     Parameter Description     ikP Proportional gain   ikI Integral gain   ikD Derivative gain   ikBias Controller bias (this value added to output, default 0)   params VelPidParams    stepVel //Signature virtual float stepVel(const float inewReading)  Do one iteration of velocity math to compute a new filtered velocity.</description>
     </item>
     
     <item>
@@ -217,7 +217,7 @@ Constructor //Signature VelPid(const float ikP, const float ikD) VelPid(const Ve
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://okapilib.github.io/OkapiLib/api/control/velmath/</guid>
-      <description>VelMath Constructor //Signature VelMath(const float iticksPerRev, const float ialpha = 0.19, const float ibeta = 0.041) VelMath(const VelMathParams&amp;amp; iparams)     Parameter Description     iticksPerRev Encoder ticks per one revolution   ialpha DemaFilter alpha gain   ibeta DemaFilter beta gain    loop //Signature float loop(const float inewPos)  Calculate, filter, and return a new velocity. This need to be called every so many milliseconds (not any faster than 15 ms).</description>
+      <description>VelMath Constructor //Signature VelMath(const float iticksPerRev, const float ialpha = 0.19, const float ibeta = 0.041) VelMath(const VelMathParams&amp;amp; iparams)     Parameter Description     iticksPerRev Encoder ticks per one revolution   ialpha DemaFilter alpha gain   ibeta DemaFilter beta gain    step //Signature float step(const float inewPos)  Calculate, filter, and return a new velocity. This need to be called every so many milliseconds (not any faster than 15 ms).</description>
     </item>
     
     <item>
@@ -340,7 +340,7 @@ getOutput //Signature virtual float getOutput() const = 0;  Return the previous 
       
       <guid>https://okapilib.github.io/OkapiLib/api/motionprofile/mpconsumer/</guid>
       <description>MPConsumer The MPConsumer class is a feed-forward closed-loop controller that follows a pre-generated motion profile.
-Constructor //Signature MPConsumer(const float ikV, const float ikA, const float ikP = 0) MPConsumer(const MPConsumerParams&amp;amp; iparams)     Parameter Description     iprofile A motion profile generated using MPGenerator   ikV Feed-forward velocity gain   ikA Feed-forward acceleration gain   ikP Feedback proportional gain (default = 0)    loop //Signature virtual float loop(const MotionProfile&amp;amp; profile, const float newReading)  Loop the controller once over a new measurement and return the new response power.</description>
+Constructor //Signature MPConsumer(const float ikV, const float ikA, const float ikP = 0) MPConsumer(const MPConsumerParams&amp;amp; iparams)     Parameter Description     iprofile A motion profile generated using MPGenerator   ikV Feed-forward velocity gain   ikA Feed-forward acceleration gain   ikP Feedback proportional gain (default = 0)    step //Signature virtual float step(const MotionProfile&amp;amp; profile, const float newReading)  Step the controller once over a new measurement and return the new response power.</description>
     </item>
     
     <item>
@@ -400,7 +400,7 @@ computeDistanceToPoint //Signature static float computeDistanceToPoint(const flo
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://okapilib.github.io/OkapiLib/api/odometry/odometry/</guid>
-      <description>Odometry The Odometry class tracks the robot as it moves, computing its position in the field frame. It is a singleton so its main method, loop, can be called in a task.
+      <description>Odometry The Odometry class tracks the robot as it moves, computing its position in the field frame. It is a singleton so its main method, step, can be called in a task.
 setParams //Signature static void setParams(OdomParams&amp;amp; iparams)  Set the model, scale, and turnScale parameters.
    Parameter Description     iparams OdomParams    setScales //Signature static void setScales(const float iscale, const float iturnScale)  Set the scale and turnScale parameters.</description>
     </item>
@@ -477,7 +477,7 @@ CubicMotor foo(2); //Motor on port 2 CubicMotor foo = 2_3m; //Equivalent literal
       
       <guid>https://okapilib.github.io/OkapiLib/tutorials/pidtutorial/</guid>
       <description>PID Proportional-Integral-Derivative (PID) control is a simple and useful closed-loop controller. Say you have a subsystem with a motor and a potentiometer:
-#include &amp;lt;device/pid.h&amp;gt; int port = 1; //Motor port int pot = 1; //Potentiometer Pid controller(1, 0.2, 0.3); //PID controller with kP = 1, kI = 0.2, kD = 0.3 controller.setTarget(1500); //Set the target to 1500 on the potentiometer while (1) { controller.loop(analogRead(pot)); //Loop the controller with the new pot reading motorSet(port, controller.</description>
+#include &amp;lt;device/pid.h&amp;gt; int port = 1; //Motor port int pot = 1; //Potentiometer Pid controller(1, 0.2, 0.3); //PID controller with kP = 1, kI = 0.2, kD = 0.3 controller.setTarget(1500); //Set the target to 1500 on the potentiometer while (1) { controller.step(analogRead(pot)); //Loop the controller with the new pot reading motorSet(port, controller.</description>
     </item>
     
     <item>

@@ -43,7 +43,7 @@ namespace okapi {
      * @param  inewReading New measurement
      * @return             Controller output
      */
-    virtual float loop(const float inewReading) { return mpCon.loop(profile, inewReading); }
+    virtual float step(const float inewReading) { return mpCon.step(profile, inewReading); }
 
     /**
      * Set a new target position and regenerate the motion profile

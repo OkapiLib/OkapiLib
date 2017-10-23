@@ -330,10 +330,10 @@ GenericController(const std::array&lt;Motor, motorNum&gt; &amp;imotorList, const
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-void loop(const float ireading)
+void step(const float ireading)
 </code></pre>
 
 <p>Have the <code>ControlObject</code> do one iteration and then power the motors with the output. This needs to be called every so many milliseconds (15 ms works fine).</p>
@@ -392,7 +392,7 @@ void getOutput() const
 void setSampleTime(const int isampleTime)
 </code></pre>
 
-<p>Set the timestep (in ms) between calls to <code>loop</code>.</p>
+<p>Set the timestep (in ms) between calls to <code>step</code>.</p>
 
 <table>
 <thead>
@@ -405,7 +405,7 @@ void setSampleTime(const int isampleTime)
 <tbody>
 <tr>
 <td>isampleTime</td>
-<td>Timestep between calls to <code>loop</code> in ms</td>
+<td>Timestep between calls to <code>step</code> in ms</td>
 </tr>
 </tbody>
 </table>

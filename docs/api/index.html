@@ -1182,10 +1182,10 @@ GenericController(const std::array&lt;Motor, motorNum&gt; &amp;imotorList, const
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-void loop(const float ireading)
+void step(const float ireading)
 </code></pre>
 
 <p>Have the <code>ControlObject</code> do one iteration and then power the motors with the output. This needs to be called every so many milliseconds (15 ms works fine).</p>
@@ -1244,7 +1244,7 @@ void getOutput() const
 void setSampleTime(const int isampleTime)
 </code></pre>
 
-<p>Set the timestep (in ms) between calls to <code>loop</code>.</p>
+<p>Set the timestep (in ms) between calls to <code>step</code>.</p>
 
 <table>
 <thead>
@@ -1257,7 +1257,7 @@ void setSampleTime(const int isampleTime)
 <tbody>
 <tr>
 <td>isampleTime</td>
-<td>Timestep between calls to <code>loop</code> in ms</td>
+<td>Timestep between calls to <code>step</code> in ms</td>
 </tr>
 </tbody>
 </table>
@@ -1650,13 +1650,13 @@ MPConsumer(const MPConsumerParams&amp; iparams)
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float loop(const MotionProfile&amp; profile, const float newReading)
+virtual float step(const MotionProfile&amp; profile, const float newReading)
 </code></pre>
 
-<p>Loop the controller once over a new measurement and return the new response power.</p>
+<p>Step the controller once over a new measurement and return the new response power.</p>
 
 <h3 id="iscomplete">isComplete</h3>
 
@@ -1750,13 +1750,13 @@ MPController foo(MPGenParams(1, 15, 1000), MPConsumerParams(6, 1.2, 0.5));
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float loop(const float inewReading)
+virtual float step(const float inewReading)
 </code></pre>
 
-<p>Loop the controller once over a new measurement and return the new response power.</p>
+<p>Step the controller once over a new measurement and return the new response power.</p>
 
 <h3 id="settarget">setTarget</h3>
 
@@ -2002,15 +2002,15 @@ NsPid(const PidParams&amp; iparams, const VelMathParams&amp; ivelParams, const f
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float loop(const float inewReading) override
+virtual float step(const float inewReading) override
 </code></pre>
 
 <p>Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).</p>
 
-<p>Calls <code>loop</code> from class <code>Pid</code>, and may return a reduced power if the velocity of the process is sufficiently low. The purpose of a low power mode is to prevent motors from stalling once they have reached their target (or if they can&rsquo;t quite reach their target).</p>
+<p>Calls <code>step</code> from class <code>Pid</code>, and may return a reduced power if the velocity of the process is sufficiently low. The purpose of a low power mode is to prevent motors from stalling once they have reached their target (or if they can&rsquo;t quite reach their target).</p>
 
 <table>
 <thead>
@@ -2218,7 +2218,7 @@ OdomChassisControllerPid foo(
 
 <h2 id="odometry">Odometry</h2>
 
-<p>The <code>Odometry</code> class tracks the robot as it moves, computing its position in the field frame. It is a singleton so its main method, <code>loop</code>, can be called in a task.</p>
+<p>The <code>Odometry</code> class tracks the robot as it moves, computing its position in the field frame. It is a singleton so its main method, <code>step</code>, can be called in a task.</p>
 
 <h3 id="setparams">setParams</h3>
 
@@ -2307,10 +2307,10 @@ static void guessScales(const float chassisDiam, const float wheelDiam, const fl
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-static OdomState loop()
+static OdomState step()
 </code></pre>
 
 <p>Do one iteration of odometry math to compute the new position of the robot. This needs to be called every so many milliseconds (15 ms seems to work fine).</p>
@@ -2601,10 +2601,10 @@ Pid(const PidParams&amp; params)
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float loop(const float inewReading)
+virtual float step(const float inewReading)
 </code></pre>
 
 <p>Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).</p>
@@ -2670,7 +2670,7 @@ void setGains(const float ikP, const float ikI, const float ikD, const float ikB
 void setSampleTime(const int isampleTime)
 </code></pre>
 
-<p>Set the timestep (in ms) between calls to <code>loop</code>.</p>
+<p>Set the timestep (in ms) between calls to <code>step</code>.</p>
 
 <table>
 <thead>
@@ -2683,7 +2683,7 @@ void setSampleTime(const int isampleTime)
 <tbody>
 <tr>
 <td>isampleTime</td>
-<td>Timestep between calls to <code>loop</code> in ms</td>
+<td>Timestep between calls to <code>step</code> in ms</td>
 </tr>
 </tbody>
 </table>
@@ -3263,10 +3263,10 @@ VelMath(const VelMathParams&amp; iparams)
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-float loop(const float inewPos)
+float step(const float inewPos)
 </code></pre>
 
 <p>Calculate, filter, and return a new velocity. This need to be called every so many milliseconds (not any faster than 15 ms).</p>
@@ -3387,13 +3387,13 @@ VelPid(const VelPidParams&amp; params)
 </tbody>
 </table>
 
-<h3 id="loopvel">loopVel</h3>
+<h3 id="stepvel">stepVel</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float loopVel(const float inewReading)
+virtual float stepVel(const float inewReading)
 </code></pre>
 
-<p>Do one iteration of velocity math to compute a new filtered velocity. This is only meant to be used separately from <code>loop</code> if you only want to compute a new velocity. Don&rsquo;t call loopVel if you are already calling loop because loop will call loopVel on its own.</p>
+<p>Do one iteration of velocity math to compute a new filtered velocity. This is only meant to be used separately from <code>step</code> if you only want to compute a new velocity. Don&rsquo;t call <code>stepVel</code> if you are already calling <code>step</code> because <code>step</code> will call <code>stepVel</code> on its own.</p>
 
 <table>
 <thead>
@@ -3411,10 +3411,10 @@ virtual float loopVel(const float inewReading)
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float loop(const float inewReading)
+virtual float step(const float inewReading)
 </code></pre>
 
 <p>Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).</p>
@@ -3499,7 +3499,7 @@ void setFilterGains(const float alpha, const float beta)
 void setSampleTime(const int isampleTime)
 </code></pre>
 
-<p>Set the timestep (in ms) between calls to <code>loop</code>.</p>
+<p>Set the timestep (in ms) between calls to <code>step</code>.</p>
 
 <table>
 <thead>
@@ -3512,7 +3512,7 @@ void setSampleTime(const int isampleTime)
 <tbody>
 <tr>
 <td>isampleTime</td>
-<td>Timestep between calls to <code>loop</code> in ms</td>
+<td>Timestep between calls to <code>step</code> in ms</td>
 </tr>
 </tbody>
 </table>

@@ -2,13 +2,13 @@
 #include <cmath>
 
 namespace okapi {
-  float NsPid::loop(const float inewReading) {
+  float NsPid::step(const float inewReading) {
     using namespace std;
 
-    Pid::loop(inewReading); //Main control loop
+    Pid::step(inewReading); //Main control loop
 
     //Check if velocity is sufficiently small
-    if (abs(velMath.loop(inewReading)) < minVel) {
+    if (abs(velMath.step(inewReading)) < minVel) {
       return scale * Pid::output;
     }
 

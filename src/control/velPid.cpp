@@ -33,15 +33,15 @@ namespace okapi {
       output = outputMin;
   }
 
-  float VelPid::loopVel(const float inewReading) {
-    return velMath.loop(inewReading);
+  float VelPid::stepVel(const float inewReading) {
+    return velMath.step(inewReading);
   }
 
-  float VelPid::loop(const float inewReading) {
+  float VelPid::step(const float inewReading) {
     if (isOn) {
       const long now = millis();
       if (now - lastTime >= sampleTime) {
-        loopVel(inewReading);
+        stepVel(inewReading);
         const float error = target - velMath.getOutput();
 
         const float derivative = velMath.getDiff(); //Derivative over measurement to eliminate derivative kick on setpoint change

@@ -346,10 +346,10 @@ Pid(const PidParams&amp; params)
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float loop(const float inewReading)
+virtual float step(const float inewReading)
 </code></pre>
 
 <p>Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).</p>
@@ -415,7 +415,7 @@ void setGains(const float ikP, const float ikI, const float ikD, const float ikB
 void setSampleTime(const int isampleTime)
 </code></pre>
 
-<p>Set the timestep (in ms) between calls to <code>loop</code>.</p>
+<p>Set the timestep (in ms) between calls to <code>step</code>.</p>
 
 <table>
 <thead>
@@ -428,7 +428,7 @@ void setSampleTime(const int isampleTime)
 <tbody>
 <tr>
 <td>isampleTime</td>
-<td>Timestep between calls to <code>loop</code> in ms</td>
+<td>Timestep between calls to <code>step</code> in ms</td>
 </tr>
 </tbody>
 </table>

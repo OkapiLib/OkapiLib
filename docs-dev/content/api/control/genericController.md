@@ -14,11 +14,11 @@ Parameter | Description
 imotorList | `std::array` of `Motor` that will be controlled
 iptr | `ControlObject` used to control the motors
 
-### loop
+### step
 
 ```c++
 //Signature
-void loop(const float ireading)
+void step(const float ireading)
 ```
 
 Have the `ControlObject` do one iteration and then power the motors with the output. This needs to be called every so many milliseconds (15 ms works fine).
@@ -56,11 +56,11 @@ Return the most recent controller output.
 void setSampleTime(const int isampleTime)
 ```
 
-Set the timestep (in ms) between calls to `loop`.
+Set the timestep (in ms) between calls to `step`.
 
 Parameter | Description
 ----------|------------
-isampleTime | Timestep between calls to `loop` in ms
+isampleTime | Timestep between calls to `step` in ms
 
 ### setOutputLimits
 

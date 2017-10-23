@@ -29,8 +29,8 @@ namespace okapi {
       distanceElapsed = (encVals[0] + encVals[1]) / 2.0;
       angleChange = encVals[0] - encVals[1];
 
-      distOutput = distancePid.loop(distanceElapsed);
-      angleOutput = anglePid.loop(angleChange);
+      distOutput = distancePid.step(distanceElapsed);
+      angleOutput = anglePid.step(angleChange);
       model->driveVector(distOutput, angleOutput);
 
       if (std::abs(itarget - distanceElapsed) <= atTargetDistance)
@@ -78,7 +78,7 @@ namespace okapi {
       encVals = model->getEncoderVals() - encStartVals;
       angleChange = encVals[1] - encVals[0];
 
-      model->turnClockwise(anglePid.loop(angleChange));
+      model->turnClockwise(anglePid.step(angleChange));
 
       if (std::abs(idegTarget - angleChange) <= atTargetAngle)
         atTargetTimer.placeHardMark();
@@ -111,7 +111,7 @@ namespace okapi {
       encVals = model->getEncoderVals() - encStartVals;
       distanceElapsed = (encVals[0] + encVals[1]) / 2.0;
 
-      model->driveForward(controller.loop(distanceElapsed));
+      model->driveForward(controller.step(distanceElapsed));
 
       taskDelayUntil(&prevWakeTime, 15);
     }
@@ -132,7 +132,7 @@ namespace okapi {
       encVals = model->getEncoderVals() - encStartVals;
       angleChange = encVals[1] - encVals[0];
 
-      model->turnClockwise(controller.loop(angleChange));
+      model->turnClockwise(controller.step(angleChange));
 
       taskDelayUntil(&prevWakeTime, 15);
     }

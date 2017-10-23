@@ -11,7 +11,7 @@ Pid controller(1, 0.2, 0.3); //PID controller with kP = 1, kI = 0.2, kD = 0.3
 controller.setTarget(1500); //Set the target to 1500 on the potentiometer
 
 while (1) {
-    controller.loop(analogRead(pot)); //Loop the controller with the new pot reading
+    controller.step(analogRead(pot)); //Loop the controller with the new pot reading
     //Power the motors with the output of the controller
     motorSet(port1, controller.getOutput());
     motorSet(port2, controller.getOutput());
@@ -31,7 +31,7 @@ GenericController<2> liftController({1_m, 2_m}, std::make_shared<Pid>(Pid(1, 0.2
 liftController.setTarget(1500);
 
 while (1) {
-    controller.loop(analogRead(pot)); //Loop the controller and power the motors
+    controller.step(analogRead(pot)); //Loop the controller and power the motors
     taskDelay(15);
 }
 ```

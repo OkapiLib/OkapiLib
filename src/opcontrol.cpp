@@ -74,7 +74,7 @@ void operatorControl() {
 		}
 
     liftController.setTarget(target);
-    liftController.loop(analogRead(liftPot));
+    liftController.step(analogRead(liftPot));
 
     controller.arcade(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1));
     

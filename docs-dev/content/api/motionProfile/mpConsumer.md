@@ -17,13 +17,14 @@ ikV | Feed-forward velocity gain
 ikA | Feed-forward acceleration gain
 ikP | Feedback proportional gain (default = 0)
 
-### loop
+### step
 
 ```c++
 //Signature
-virtual float loop(const MotionProfile& profile, const float newReading)
+virtual float step(const MotionProfile& profile, const float newReading)
 ```
-Loop the controller once over a new measurement and return the new response power.
+
+Step the controller once over a new measurement and return the new response power.
 
 ### isComplete
 

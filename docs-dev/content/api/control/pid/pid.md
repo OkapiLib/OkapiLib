@@ -18,11 +18,11 @@ ikD | Derivative gain
 ikBias | Controller bias (this value added to output, default 0)
 params | `PidParams`
 
-### loop
+### step
 
 ```c++
 //Signature
-virtual float loop(const float inewReading)
+virtual float step(const float inewReading)
 ```
 
 Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).
@@ -54,11 +54,11 @@ ikBias | Controller bias (this value added to output, default 0)
 void setSampleTime(const int isampleTime)
 ```
 
-Set the timestep (in ms) between calls to `loop`.
+Set the timestep (in ms) between calls to `step`.
 
 Parameter | Description
 ----------|------------
-isampleTime | Timestep between calls to `loop` in ms
+isampleTime | Timestep between calls to `step` in ms
 
 ### setOutputLimits
 

@@ -338,15 +338,15 @@ NsPid(const PidParams&amp; iparams, const VelMathParams&amp; ivelParams, const f
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float loop(const float inewReading) override
+virtual float step(const float inewReading) override
 </code></pre>
 
 <p>Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).</p>
 
-<p>Calls <code>loop</code> from class <code>Pid</code>, and may return a reduced power if the velocity of the process is sufficiently low. The purpose of a low power mode is to prevent motors from stalling once they have reached their target (or if they can&rsquo;t quite reach their target).</p>
+<p>Calls <code>step</code> from class <code>Pid</code>, and may return a reduced power if the velocity of the process is sufficiently low. The purpose of a low power mode is to prevent motors from stalling once they have reached their target (or if they can&rsquo;t quite reach their target).</p>
 
 <table>
 <thead>

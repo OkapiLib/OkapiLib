@@ -1,6 +1,6 @@
 ## Odometry
 
-The `Odometry` class tracks the robot as it moves, computing its position in the field frame. It is a singleton so its main method, `loop`, can be called in a task.
+The `Odometry` class tracks the robot as it moves, computing its position in the field frame. It is a singleton so its main method, `step`, can be called in a task.
 
 ### setParams
 
@@ -44,11 +44,11 @@ chassisDiam | Center-to-center wheel base in inches
 wheelDiam | Edge-to-edge wheel diameter in inches
 ticksPerRev | Quadrate encoder ticks per one wheel revolution (default 360)
 
-### loop
+### step
 
 ```c++
 //Signature
-static OdomState loop()
+static OdomState step()
 ```
 
 Do one iteration of odometry math to compute the new position of the robot. This needs to be called every so many milliseconds (15 ms seems to work fine).

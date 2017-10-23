@@ -2,7 +2,7 @@
 #include <API.h>
 
 namespace okapi {
-  float VelMath::loop(const float inewPos) {
+  float VelMath::step(const float inewPos) {
     const long now = millis();
 
     vel = (1000 / (now - lastTime)) * (inewPos - lastPos) * (60 / ticksPerRev);

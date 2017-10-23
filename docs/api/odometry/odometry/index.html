@@ -301,7 +301,7 @@
 
 <h2 id="odometry">Odometry</h2>
 
-<p>The <code>Odometry</code> class tracks the robot as it moves, computing its position in the field frame. It is a singleton so its main method, <code>loop</code>, can be called in a task.</p>
+<p>The <code>Odometry</code> class tracks the robot as it moves, computing its position in the field frame. It is a singleton so its main method, <code>step</code>, can be called in a task.</p>
 
 <h3 id="setparams">setParams</h3>
 
@@ -390,10 +390,10 @@ static void guessScales(const float chassisDiam, const float wheelDiam, const fl
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-static OdomState loop()
+static OdomState step()
 </code></pre>
 
 <p>Do one iteration of odometry math to compute the new position of the robot. This needs to be called every so many milliseconds (15 ms seems to work fine).</p>

@@ -14,11 +14,11 @@ iticksPerRev | Encoder ticks per one revolution
 ialpha | `DemaFilter` alpha gain
 ibeta | `DemaFilter` beta gain
 
-### loop
+### step
 
 ```c++
 //Signature
-float loop(const float inewPos)
+float step(const float inewPos)
 ```
 
 Calculate, filter, and return a new velocity. This need to be called every so many milliseconds (not any faster than 15 ms).

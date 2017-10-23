@@ -346,13 +346,13 @@ VelPid(const VelPidParams&amp; params)
 </tbody>
 </table>
 
-<h3 id="loopvel">loopVel</h3>
+<h3 id="stepvel">stepVel</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float loopVel(const float inewReading)
+virtual float stepVel(const float inewReading)
 </code></pre>
 
-<p>Do one iteration of velocity math to compute a new filtered velocity. This is only meant to be used separately from <code>loop</code> if you only want to compute a new velocity. Don&rsquo;t call loopVel if you are already calling loop because loop will call loopVel on its own.</p>
+<p>Do one iteration of velocity math to compute a new filtered velocity. This is only meant to be used separately from <code>step</code> if you only want to compute a new velocity. Don&rsquo;t call <code>stepVel</code> if you are already calling <code>step</code> because <code>step</code> will call <code>stepVel</code> on its own.</p>
 
 <table>
 <thead>
@@ -370,10 +370,10 @@ virtual float loopVel(const float inewReading)
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float loop(const float inewReading)
+virtual float step(const float inewReading)
 </code></pre>
 
 <p>Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).</p>
@@ -458,7 +458,7 @@ void setFilterGains(const float alpha, const float beta)
 void setSampleTime(const int isampleTime)
 </code></pre>
 
-<p>Set the timestep (in ms) between calls to <code>loop</code>.</p>
+<p>Set the timestep (in ms) between calls to <code>step</code>.</p>
 
 <table>
 <thead>
@@ -471,7 +471,7 @@ void setSampleTime(const int isampleTime)
 <tbody>
 <tr>
 <td>isampleTime</td>
-<td>Timestep between calls to <code>loop</code> in ms</td>
+<td>Timestep between calls to <code>step</code> in ms</td>
 </tr>
 </tbody>
 </table>

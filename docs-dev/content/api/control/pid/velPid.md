@@ -18,24 +18,24 @@ ikD | Derivative gain
 ikBias | Controller bias (this value added to output, default 0)
 params | `VelPidParams`
 
-### loopVel
+### stepVel
 
 ```c++
 //Signature
-virtual float loopVel(const float inewReading)
+virtual float stepVel(const float inewReading)
 ```
 
-Do one iteration of velocity math to compute a new filtered velocity. This is only meant to be used separately from `loop` if you only want to compute a new velocity. Don't call loopVel if you are already calling loop because loop will call loopVel on its own.
+Do one iteration of velocity math to compute a new filtered velocity. This is only meant to be used separately from `step` if you only want to compute a new velocity. Don't call `stepVel` if you are already calling `step` because `step` will call `stepVel` on its own.
 
 Parameter | Description
 ----------|------------
 inewReading | New sensor reading
 
-### loop
+### step
 
 ```c++
 //Signature
-virtual float loop(const float inewReading)
+virtual float step(const float inewReading)
 ```
 
 Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).
@@ -79,11 +79,11 @@ beta | Beta gain
 void setSampleTime(const int isampleTime)
 ```
 
-Set the timestep (in ms) between calls to `loop`.
+Set the timestep (in ms) between calls to `step`.
 
 Parameter | Description
 ----------|------------
-isampleTime | Timestep between calls to `loop` in ms
+isampleTime | Timestep between calls to `step` in ms
 
 ### setTicksPerRev
 

@@ -27,8 +27,6 @@ namespace okapi {
      * @param kP      Proportional gain
      */
     MPConsumer(const float ikV, const float ikA, const float ikP = 0):
-      isCompleteFlag(false),
-      step(0),
       kV(ikV),
       kA(ikA),
       pid(ikP, 0),
@@ -39,8 +37,6 @@ namespace okapi {
      * @param iparams  mpConsumer params
      */
     MPConsumer(const MPConsumerParams& iparams):
-      isCompleteFlag(false),
-      step(0),
       kV(iparams.kV),
       kA(iparams.kA),
       pid(iparams.kP, 0),
@@ -54,7 +50,7 @@ namespace okapi {
      * @param  newReading New process measurement
      * @return            Controller output
      */
-    virtual float loop(const MotionProfile& profile, const float newReading);
+    virtual float step(const MotionProfile& profile, const float newReading);
 
     /**
      * Returns whether the motion profile has been completely followed
@@ -64,13 +60,13 @@ namespace okapi {
 
     void reset() {
       isCompleteFlag = false;
-      step = 0;
+      pathStep = 0;
       pid.reset();
       output = 0;
     }
   private:
-    bool isCompleteFlag;
-    int step;
+    bool isCompleteFlag = false;
+    int pathStep = 0;
     const float kV, kA;
     VelPid pid;
     float output;

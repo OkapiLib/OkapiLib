@@ -19,14 +19,14 @@ igenParams | `MPGenParams`
 iconParams | `MPConsumerParams`
 iparams | `MPControllerParams`
 
-### loop
+### step
 
 ```c++
 //Signature
-virtual float loop(const float inewReading)
+virtual float step(const float inewReading)
 ```
 
-Loop the controller once over a new measurement and return the new response power.
+Step the controller once over a new measurement and return the new response power.
 
 ### setTarget
 

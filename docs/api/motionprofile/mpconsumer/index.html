@@ -341,13 +341,13 @@ MPConsumer(const MPConsumerParams&amp; iparams)
 </tbody>
 </table>
 
-<h3 id="loop">loop</h3>
+<h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float loop(const MotionProfile&amp; profile, const float newReading)
+virtual float step(const MotionProfile&amp; profile, const float newReading)
 </code></pre>
 
-<p>Loop the controller once over a new measurement and return the new response power.</p>
+<p>Step the controller once over a new measurement and return the new response power.</p>
 
 <h3 id="iscomplete">isComplete</h3>
 

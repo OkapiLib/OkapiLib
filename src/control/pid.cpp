@@ -51,7 +51,7 @@ namespace okapi {
       integral = integralMin;
   }
 
-  float Pid::loop(const float inewReading) {
+  float Pid::step(const float inewReading) {
     using namespace std; //Needed to get copysign to compile
 
     if (isOn) {
