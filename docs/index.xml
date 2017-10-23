@@ -161,7 +161,7 @@ Constructor //Signature GenericController(const std::array&amp;lt;Motor, motorNu
       
       <guid>https://okapilib.github.io/OkapiLib/api/control/mpcontroller/</guid>
       <description>MPController The MPController class packages together an MPConsumer and an MPGenerator into one class which both generates and follows a motion profile.
-Constructor //Signature MPController(const MPGenParams&amp;amp; igenParams, const MPConsumerParams&amp;amp; iconParams) MPController(const MPControllerParams&amp;amp; iparams) //Basic MPController construction MPController foo(MPGenParams(1, 15, 1000), MPConsumerParams(6, 1.2, 0.5));     Parameter Description     igenParams MPGenParams   iconParams MPConsumerParams   iparams MPControllerParams    step //Signature virtual float step(const float inewReading) override  Step the controller once over a new measurement and return the new response power.</description>
+Constructor //Signature MPController(const MPGenParams&amp;amp; igenParams, const MPConsumerParams&amp;amp; iconParams) MPController(const MPControllerParams&amp;amp; iparams) //Basic MPController construction MPController foo(MPGenParams(1, 15, 1000), MPConsumerParams(6, 1.2, 0.5));     Parameter Description     igenParams MPGenParams   iconParams MPConsumerParams   iparams MPControllerParams    step //Signature float step(const float inewReading) override  Step the controller once over a new measurement and return the new response power.</description>
     </item>
     
     <item>

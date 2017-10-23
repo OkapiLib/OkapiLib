@@ -23,15 +23,11 @@ namespace okapi {
     MPController(const MPGenParams& igenParams, const MPConsumerParams& iconParams):
       mpGen(igenParams),
       mpCon(iconParams),
-      target(0),
-      dt(15),
       profile(mpGen.generateProfile(dt)) {}
 
     MPController(const MPControllerParams& iparams):
       mpGen(iparams.mpGenParams),
       mpCon(iparams.mpConParams),
-      target(0),
-      dt(15),
       profile(mpGen.generateProfile(dt)) {}
 
     virtual ~MPController() {
@@ -44,7 +40,21 @@ namespace okapi {
      * @param  ireading New measurement
      * @return          Controller output
      */
-    virtual float step(const float ireading) override { return mpCon.step(profile, ireading); }
+    float step(const float ireading) override {
+      if (isOn) {
+        output = mpCon.step(profile, ireading);
+        
+        //Bound output
+        if (output > max)
+          output = max;
+        else if (output < min)
+         output = min;
+      } else {
+        output = 0; //Controller is off so write 0
+      }
+
+      return output;
+    }
 
     /**
      * Set a new target position and regenerate the motion profile
@@ -57,20 +67,31 @@ namespace okapi {
 
       target = itarget;
       mpGen.setTarget(itarget);
-      profile = mpGen.generateProfile(dt);
+      profile = mpGen.generateProfile(dt); //Have to regen profile with new target
     }
 
-    float getOutput() const override { return mpCon.getOutput(); }
+    float getOutput() const override { return output; }
+
+    void setSampleTime(const int isampleTime) override {
+      dt = isampleTime;
+      profile = mpGen.generateProfile(dt); //Have to regen profile with new dt
+      reset();
+    }
+
+    void setOutputLimits(float imax, float imin) override { max = imax; min = imin; }
 
     void reset() override { mpCon.reset(); }
+
+    void flipDisable() override { isOn = !isOn; }
 
     bool isComplete() const { return mpCon.isComplete(); }
   private:
     MPGenerator mpGen;
     MPConsumer mpCon;
-    float target;
-    int dt;
     MotionProfile profile;
+    float target = 0, output = 0, max = 127, min = -127;
+    int dt = 0;
+    bool isOn = true;
   };
 }
 

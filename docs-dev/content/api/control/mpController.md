@@ -23,7 +23,7 @@ iparams | `MPControllerParams`
 
 ```c++
 //Signature
-virtual float step(const float inewReading) override
+float step(const float inewReading) override
 ```
 
 Step the controller once over a new measurement and return the new response power.
@@ -46,6 +46,33 @@ float getOutput() const override
 
 Return the most recent controller output.
 
+### setSampleTime
+
+```c++
+//Signature
+void setSampleTime(const int isampleTime) override
+```
+
+Set the timestep (in ms) between calls to `step`.
+
+Parameter | Description
+----------|------------
+isampleTime | Timestep between calls to `step` in ms
+
+### setOutputLimits
+
+```c++
+//Signature
+void setOutputLimits(float imax, float imin) override
+```
+
+Set the max and min value for the controller output.
+
+Parameter | Description
+----------|------------
+imax | Max output
+imin | Min output
+
 ### reset
 
 ```c++
@@ -53,7 +80,16 @@ Return the most recent controller output.
 void reset() override
 ```
 
-Reset the controller so it can follow another profile.
+Reset the controller so it can follow the profile again.
+
+### flipDisable
+
+```c++
+//Signature
+void flipDisable() override
+```
+
+Change whether the controller is on or off. A controller which is off will output 0.
 
 ### isComplete
 

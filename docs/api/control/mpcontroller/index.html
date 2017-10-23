@@ -342,7 +342,7 @@ MPController foo(MPGenParams(1, 15, 1000), MPConsumerParams(6, 1.2, 0.5));
 <h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float step(const float inewReading) override
+float step(const float inewReading) override
 </code></pre>
 
 <p>Step the controller once over a new measurement and return the new response power.</p>
@@ -363,13 +363,74 @@ float getOutput() const override
 
 <p>Return the most recent controller output.</p>
 
+<h3 id="setsampletime">setSampleTime</h3>
+
+<pre><code class="language-c++">//Signature
+void setSampleTime(const int isampleTime) override
+</code></pre>
+
+<p>Set the timestep (in ms) between calls to <code>step</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>isampleTime</td>
+<td>Timestep between calls to <code>step</code> in ms</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setoutputlimits">setOutputLimits</h3>
+
+<pre><code class="language-c++">//Signature
+void setOutputLimits(float imax, float imin) override
+</code></pre>
+
+<p>Set the max and min value for the controller output.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imax</td>
+<td>Max output</td>
+</tr>
+
+<tr>
+<td>imin</td>
+<td>Min output</td>
+</tr>
+</tbody>
+</table>
+
 <h3 id="reset">reset</h3>
 
 <pre><code class="language-c++">//Signature
 void reset() override
 </code></pre>
 
-<p>Reset the controller so it can follow another profile.</p>
+<p>Reset the controller so it can follow the profile again.</p>
+
+<h3 id="flipdisable">flipDisable</h3>
+
+<pre><code class="language-c++">//Signature
+void flipDisable() override
+</code></pre>
+
+<p>Change whether the controller is on or off. A controller which is off will output 0.</p>
 
 <h3 id="iscomplete">isComplete</h3>
 
