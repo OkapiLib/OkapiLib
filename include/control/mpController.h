@@ -2,6 +2,7 @@
 #define OKAPI_MPCONTROLLER
 
 #include "control/mpConsumer.h"
+#include "control/controlObject.h"
 #include "motionProfile/mpGenerator.h"
 
 namespace okapi {
@@ -17,7 +18,7 @@ namespace okapi {
     const MPConsumerParams& mpConParams;
   };
 
-  class MPController {
+  class MPController : public ControlObject {
   public:
     MPController(const MPGenParams& igenParams, const MPConsumerParams& iconParams):
       mpGen(igenParams),
@@ -40,32 +41,35 @@ namespace okapi {
 
     /**
      * Do one iteration of the controller
-     * @param  inewReading New measurement
-     * @return             Controller output
+     * @param  ireading New measurement
+     * @return          Controller output
      */
-    virtual float step(const float inewReading) { return mpCon.step(profile, inewReading); }
+    virtual float step(const float ireading) override { return mpCon.step(profile, ireading); }
 
     /**
      * Set a new target position and regenerate the motion profile
-     * @param pos New target position
+     * @param itarget New target position
      */
-    void setTarget(const int pos) {
+    void setTarget(const float itarget) override {
       //Don't recalculate to get to the same spot
-      if (pos == target)
+      if (itarget == target)
         return;
 
-      target = pos;
-      mpGen.setTarget(pos);
+      target = itarget;
+      mpGen.setTarget(itarget);
       profile = mpGen.generateProfile(dt);
     }
 
-    bool isComplete() const { return mpCon.isComplete(); }
+    float getOutput() const override { return mpCon.getOutput(); }
 
-    void reset() { mpCon.reset(); }
+    void reset() override { mpCon.reset(); }
+
+    bool isComplete() const { return mpCon.isComplete(); }
   private:
     MPGenerator mpGen;
     MPConsumer mpCon;
-    int target, dt;
+    float target;
+    int dt;
     MotionProfile profile;
   };
 }

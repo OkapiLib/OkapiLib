@@ -58,6 +58,8 @@ namespace okapi {
      */
     bool isComplete() const { return isCompleteFlag; }
 
+    float getOutput() const { return output; }
+
     void reset() {
       isCompleteFlag = false;
       pathStep = 0;

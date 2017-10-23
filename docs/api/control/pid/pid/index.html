@@ -349,7 +349,7 @@ Pid(const PidParams&amp; params)
 <h3 id="step">step</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float step(const float inewReading)
+virtual float step(const float inewReading) override
 </code></pre>
 
 <p>Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).</p>
@@ -369,6 +369,38 @@ virtual float step(const float inewReading)
 </tr>
 </tbody>
 </table>
+
+<h3 id="settarget">setTarget</h3>
+
+<pre><code class="language-c++">//Signature
+void setTarget(const float itarget) override
+</code></pre>
+
+<p>Set the target value.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>itarget</td>
+<td>New target value</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="getoutput">getOutput</h3>
+
+<pre><code class="language-c++">//Signature
+float getOutput() const
+</code></pre>
+
+<p>Return the most recent controller output.</p>
 
 <h3 id="setgains">setGains</h3>
 
@@ -412,7 +444,7 @@ void setGains(const float ikP, const float ikI, const float ikD, const float ikB
 <h3 id="setsampletime">setSampleTime</h3>
 
 <pre><code class="language-c++">//Signature
-void setSampleTime(const int isampleTime)
+void setSampleTime(const int isampleTime) override
 </code></pre>
 
 <p>Set the timestep (in ms) between calls to <code>step</code>.</p>
@@ -436,7 +468,7 @@ void setSampleTime(const int isampleTime)
 <h3 id="setoutputlimits">setOutputLimits</h3>
 
 <pre><code class="language-c++">//Signature
-void setOutputLimits(float imax, float imin)
+void setOutputLimits(float imax, float imin) override
 </code></pre>
 
 <p>Set the max and min value for the controller output.</p>
@@ -494,7 +526,7 @@ void setIntegralLimits(float imax, float imin)
 <h3 id="reset">reset</h3>
 
 <pre><code class="language-c++">//Signature
-void reset()
+void reset() override
 </code></pre>
 
 <p>Reset the controller so it will start from zero again.</p>
@@ -526,42 +558,10 @@ void setIntegratorReset(bool iresetOnZero)
 <h3 id="flipdisable">flipDisable</h3>
 
 <pre><code class="language-c++">//Signature
-void flipDisable()
+void flipDisable() override
 </code></pre>
 
 <p>Change whether the controller is on or off. A controller which is off will output 0.</p>
-
-<h3 id="settarget">setTarget</h3>
-
-<pre><code class="language-c++">//Signature
-void setTarget(const float itarget)
-</code></pre>
-
-<p>Set the target value.</p>
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>itarget</td>
-<td>New target value</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="getoutput">getOutput</h3>
-
-<pre><code class="language-c++">//Signature
-float getOutput() const
-</code></pre>
-
-<p>Return the most recent controller output.</p>
 
 
 			<aside class="copyright" role="note">

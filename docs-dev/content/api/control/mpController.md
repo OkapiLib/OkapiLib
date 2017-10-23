@@ -23,7 +23,7 @@ iparams | `MPControllerParams`
 
 ```c++
 //Signature
-virtual float step(const float inewReading)
+virtual float step(const float inewReading) override
 ```
 
 Step the controller once over a new measurement and return the new response power.
@@ -32,10 +32,28 @@ Step the controller once over a new measurement and return the new response powe
 
 ```c++
 //Signature
-void setTarget(const int pos)
+void setTarget(const int pos) override
 ```
 
 Set a new target for the controller, causing the internal motion profile to be regenerated.
+
+### getOutput
+
+```c++
+//Signature
+float getOutput() const override
+```
+
+Return the most recent controller output.
+
+### reset
+
+```c++
+//Signature
+void reset() override
+```
+
+Reset the controller so it can follow another profile.
 
 ### isComplete
 
@@ -45,15 +63,6 @@ bool isComplete() const
 ```
 
 Return whether the motion profile has been followed start to finish and is done.
-
-### reset
-
-```c++
-//Signature
-void reset()
-```
-
-Reset the controller so it can follow another profile.
 
 ## MPControllerParams
 

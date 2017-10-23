@@ -22,7 +22,7 @@ params | `PidParams`
 
 ```c++
 //Signature
-virtual float step(const float inewReading)
+virtual float step(const float inewReading) override
 ```
 
 Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).
@@ -30,6 +30,28 @@ Do one iteration of Pid math to compute a new motor power. This needs to be call
 Parameter | Description
 ----------|------------
 inewReading | New sensor reading
+
+### setTarget
+
+```c++
+//Signature
+void setTarget(const float itarget) override
+```
+
+Set the target value.
+
+Parameter | Description
+----------|------------
+itarget | New target value
+
+### getOutput
+
+```c++
+//Signature
+float getOutput() const
+```
+
+Return the most recent controller output.
 
 ### setGains
 
@@ -51,7 +73,7 @@ ikBias | Controller bias (this value added to output, default 0)
 
 ```c++
 //Signature
-void setSampleTime(const int isampleTime)
+void setSampleTime(const int isampleTime) override
 ```
 
 Set the timestep (in ms) between calls to `step`.
@@ -64,7 +86,7 @@ isampleTime | Timestep between calls to `step` in ms
 
 ```c++
 //Signature
-void setOutputLimits(float imax, float imin)
+void setOutputLimits(float imax, float imin) override
 ```
 
 Set the max and min value for the controller output.
@@ -92,7 +114,7 @@ imin | Min integrator value
 
 ```c++
 //Signature
-void reset()
+void reset() override
 ```
 
 Reset the controller so it will start from zero again.
@@ -115,29 +137,7 @@ iresetOnZero | Whether the integrator should be cleared when the controller's er
 
 ```c++
 //Signature
-void flipDisable()
+void flipDisable() override
 ```
 
 Change whether the controller is on or off. A controller which is off will output 0.
-
-### setTarget
-
-```c++
-//Signature
-void setTarget(const float itarget)
-```
-
-Set the target value.
-
-Parameter | Description
-----------|------------
-itarget | New target value
-
-### getOutput
-
-```c++
-//Signature
-float getOutput() const
-```
-
-Return the most recent controller output.

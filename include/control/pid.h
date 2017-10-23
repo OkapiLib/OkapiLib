@@ -72,6 +72,10 @@ namespace okapi {
      * @return            Controller output
      */
     virtual float step(const float inewReading) override;
+    
+    void setTarget(const float itarget) override { target = itarget; }
+
+    float getOutput() const override { return output; }
 
     /**
      * Set controller gains
@@ -115,10 +119,6 @@ namespace okapi {
     void setIntegratorReset(bool iresetOnZero) { shouldResetOnCross = iresetOnZero; }
 
     void flipDisable() override { isOn = !isOn; }
-
-    void setTarget(const float itarget) override { target = itarget; }
-
-    float getOutput() const override { return output; }
   protected:
     float kP, kI, kD, kBias;
     long lastTime, sampleTime;
