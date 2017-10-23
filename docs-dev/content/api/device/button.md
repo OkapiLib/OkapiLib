@@ -51,11 +51,11 @@ bool risingEdge()
 
 Return `true` if a rising edge is detected. This takes into account whether the button is inverted or not.
 
-### fallgEdge
+### fallingEdge
 
 ```c++
 //Signature
-bool fallgEdge()
+bool fallingEdge()
 ```
 
 Return `true` if a falling edge is detected. This takes into account whether the button is inverted or not.
