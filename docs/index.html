@@ -330,7 +330,10 @@ AvgFilter()
 explicit constexpr Button()
 explicit constexpr Button(const unsigned long long int iport, const bool iinverted = false)
 explicit constexpr Button(const unsigned char ijoystick, const unsigned char ibuttonGroup, const unsigned char ibutton, const bool iinverted = false)
+explicit constexpr Button(PROS_FILE* ilcdPort, const unsigned char ilcdButton, const bool iinverted = false)
 </code></pre>
+
+<p>Button or limit switch constructor:</p>
 
 <table>
 <thead>
@@ -344,6 +347,67 @@ explicit constexpr Button(const unsigned char ijoystick, const unsigned char ibu
 <tr>
 <td>iport</td>
 <td>Digital port</td>
+</tr>
+
+<tr>
+<td>iinverted</td>
+<td>Whether the button is inverted (default open vs. default closed)</td>
+</tr>
+</tbody>
+</table>
+
+<p>Joystick button constructor:</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ijoystick</td>
+<td>Joystick number (primary (1) or partner (2))</td>
+</tr>
+
+<tr>
+<td>ibuttonGroup</td>
+<td>Joystick button group</td>
+</tr>
+
+<tr>
+<td>ibutton</td>
+<td>Button in button group</td>
+</tr>
+
+<tr>
+<td>iinverted</td>
+<td>Whether the button is inverted (default open vs. default closed)</td>
+</tr>
+</tbody>
+</table>
+
+<p>LCD button constructor:</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ilcdPort</td>
+<td>LCD port (uart1 or uart2)</td>
+</tr>
+
+<tr>
+<td>ilcdbutton</td>
+<td>LCD button mask</td>
 </tr>
 
 <tr>

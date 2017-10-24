@@ -9,13 +9,32 @@ The `Button` class is a sample wrapper around a digital input port that represen
 explicit constexpr Button()
 explicit constexpr Button(const unsigned long long int iport, const bool iinverted = false)
 explicit constexpr Button(const unsigned char ijoystick, const unsigned char ibuttonGroup, const unsigned char ibutton, const bool iinverted = false)
+explicit constexpr Button(PROS_FILE* ilcdPort, const unsigned char ilcdButton, const bool iinverted = false)
 ```
+
+Button or limit switch constructor:
 
 Parameter | Description
 ----------|------------
 iport | Digital port
 iinverted | Whether the button is inverted (default open vs. default closed)
 
+Joystick button constructor:
+
+Parameter | Description
+----------|------------
+ijoystick | Joystick number (primary (1) or partner (2))
+ibuttonGroup | Joystick button group
+ibutton | Button in button group
+iinverted | Whether the button is inverted (default open vs. default closed)
+
+LCD button constructor:
+
+Parameter | Description
+----------|------------
+ilcdPort | LCD port (uart1 or uart2)
+ilcdbutton | LCD button mask
+iinverted | Whether the button is inverted (default open vs. default closed)
 
 This class also has literals available:
 
