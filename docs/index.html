@@ -4420,6 +4420,48 @@ CubicMotor foo = 2_3rm; //Equivalent literal
 
 <p>Both <code>Motor</code> and <code>CubicMotor</code> can be given to a <code>ChassisModel</code>, and the behavior of <code>tank</code> and <code>arcade</code> will change accordingly.</p>
 
+<h2 id="buttons">Buttons</h2>
+
+<p>The Vex EDR system has three kinds of buttons in it: push buttons &amp; limit switches, joystick buttons, and LCD module buttons. Okapi provides a class to interact with all three.</p>
+
+<p>Say you have a button on your robot you want to use to control something. This is the simplest use, so Okapi makes this easy:</p>
+
+<pre><code class="language-c++">#include &lt;device/button.h&gt;
+
+Button foo = 1_b; //literal for Button(1, false)
+</code></pre>
+
+<p><code>foo</code> is now a non-inverted button in digital port 1. For reference, an inverted button returns true when it isn&rsquo;t pressed, and false when it is (opposite of a normal button).</p>
+
+<p>Now that we have our button, we can check various things:</p>
+
+<pre><code class="language-c++">foo.isPressed(); //Returns true when the button is pressed (or false when pressed if inverted)
+foo.edge(); //Returns true when the button changes from pressed to not pressed, or vice versa
+foo.risingEdge(); //Returns true when the button changes from not pressed to pressed
+foo.fallingEdge(); //Returns true when the button changes from pressed to not pressed
+</code></pre>
+
+<p>For example, say we wanted to do something whenever the button was pressed inside of our control loop:</p>
+
+<pre><code class="language-c++">while (1) { //Placeholder for the actual control loop
+    //Trigger whenever we press the button (but not when we release it)
+    if (foo.risingEdge()) {
+        doSomething();
+    }
+
+    //Trigger whenever we release the button (but not when we press it)
+    if (foo.fallingEdge()) {
+        doSomethingElse();
+    }
+}
+</code></pre>
+
+<p>We use all the same exact code with the other two kinds of buttons, joystick &amp; LCD:</p>
+
+<pre><code class="language-c++">Button foo(1, 8, JOY_DOWN); //Joystic button for the bottom of the right d-pad
+Button foo(uart1, LCD_BTN_CENTER); //LCD center button in port uart1
+</code></pre>
+
 <h2 id="pid">PID</h2>
 
 <p>Proportional-Integral-Derivative (PID) control is a simple and useful closed-loop controller. Say you have a subsystem with a motor and a potentiometer:</p>

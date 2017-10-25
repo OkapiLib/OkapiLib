@@ -432,6 +432,17 @@ getDtFromStart //Signature unsigned long getDtFromStart() const  Return the time
     
     <item>
       <title></title>
+      <link>https://okapilib.github.io/OkapiLib/tutorials/buttontutorial/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiLib/tutorials/buttontutorial/</guid>
+      <description>Buttons The Vex EDR system has three kinds of buttons in it: push buttons &amp;amp; limit switches, joystick buttons, and LCD module buttons. Okapi provides a class to interact with all three.
+Say you have a button on your robot you want to use to control something. This is the simplest use, so Okapi makes this easy:
+#include &amp;lt;device/button.h&amp;gt; Button foo = 1_b; //literal for Button(1, false)  foo is now a non-inverted button in digital port 1.</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://okapilib.github.io/OkapiLib/tutorials/chassiscontrollertutorial/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

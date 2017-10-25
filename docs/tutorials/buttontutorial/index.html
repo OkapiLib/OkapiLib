@@ -15,12 +15,12 @@
     
     <meta name="description" content="A PROS library for fast C&#43;&#43; development.">
     
-    <link rel="canonical" href="https://okapilib.github.io/OkapiLib/tutorials/chassiscontrollertutorial/">
+    <link rel="canonical" href="https://okapilib.github.io/OkapiLib/tutorials/buttontutorial/">
     
     <meta name="author" content="OkapiLib">
     
 
-    <meta property="og:url" content="https://okapilib.github.io/OkapiLib/tutorials/chassiscontrollertutorial/">
+    <meta property="og:url" content="https://okapilib.github.io/OkapiLib/tutorials/buttontutorial/">
     <meta property="og:title" content="Okapi Docs">
     <meta property="og:image" content="https://okapilib.github.io/OkapiLib/images/okapi.jpg">
     <meta name="apple-mobile-web-app-title" content="Okapi Docs">
@@ -299,24 +299,46 @@
 
 			
 
-<h2 id="chassis-controller">Chassis Controller</h2>
+<h2 id="buttons">Buttons</h2>
 
-<p>Okapi provides a way to control a <code>ChassisModel</code> using closed-loop control, like PID, so you don&rsquo;t have to rewrite a driveStraight() function every year. Rather than making a model directly, we can instead give <code>ChassisModelParams</code> to a <code>ChassisController</code>, which will instantiate the model for itself:</p>
+<p>The Vex EDR system has three kinds of buttons in it: push buttons &amp; limit switches, joystick buttons, and LCD module buttons. Okapi provides a class to interact with all three.</p>
 
-<pre><code class="language-c++">#include &lt;chassis/chassisController.h&gt;
-ChassisControllerPid controller(SkidSteerModelParams&lt;2&gt;({2_m, 3_m, 4_m, 5_m}, //Skid steer chassis with two motors per side
-                                                        QuadEncoder(1, 2, true), //Left encoder (reversed)
-                                                        QuadEncoder(3, 4)), //Right encoder
-                                PidParams(0.15, 0.05, 0.07), //Distance PID controller
-                                PidParams(0.02, 0.01, 0)); //Angle PID controller
+<p>Say you have a button on your robot you want to use to control something. This is the simplest use, so Okapi makes this easy:</p>
+
+<pre><code class="language-c++">#include &lt;device/button.h&gt;
+
+Button foo = 1_b; //literal for Button(1, false)
 </code></pre>
 
-<p>A <code>ChassisControllerPid</code> implements the <code>ChassisController</code> interface using PID control. It takes two <code>PidParams</code> to describe the controller gains for both controllers. The first controls distance to the target, but the second keeps the robot on a straight path while it drives to its target. Often times the second controller&rsquo;s gains will have lower kP, lower or no kD, and moderate kI because this controller just needs to make slight adjustments to the power the motors on each side of the chassis get.</p>
+<p><code>foo</code> is now a non-inverted button in digital port 1. For reference, an inverted button returns true when it isn&rsquo;t pressed, and false when it is (opposite of a normal button).</p>
 
-<p>Once we have our controller, we can control the robot more accurately than with just a model:</p>
+<p>Now that we have our button, we can check various things:</p>
 
-<pre><code class="language-c++">controller.driveStraight(100); //Drive in a straight line for 100 encoder ticks
-controller.pointTurn(100); //Turn clockwise in place for 100 encoder ticks
+<pre><code class="language-c++">foo.isPressed(); //Returns true when the button is pressed (or false when pressed if inverted)
+foo.edge(); //Returns true when the button changes from pressed to not pressed, or vice versa
+foo.risingEdge(); //Returns true when the button changes from not pressed to pressed
+foo.fallingEdge(); //Returns true when the button changes from pressed to not pressed
+</code></pre>
+
+<p>For example, say we wanted to do something whenever the button was pressed inside of our control loop:</p>
+
+<pre><code class="language-c++">while (1) { //Placeholder for the actual control loop
+    //Trigger whenever we press the button (but not when we release it)
+    if (foo.risingEdge()) {
+        doSomething();
+    }
+
+    //Trigger whenever we release the button (but not when we press it)
+    if (foo.fallingEdge()) {
+        doSomethingElse();
+    }
+}
+</code></pre>
+
+<p>We use all the same exact code with the other two kinds of buttons, joystick &amp; LCD:</p>
+
+<pre><code class="language-c++">Button foo(1, 8, JOY_DOWN); //Joystic button for the bottom of the right d-pad
+Button foo(uart1, LCD_BTN_CENTER); //LCD center button in port uart1
 </code></pre>
 
 
@@ -334,7 +356,7 @@ controller.pointTurn(100); //Turn clockwise in place for 100 encoder ticks
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://okapilib.github.io/OkapiLib/tutorials/buttontutorial/" title="">
+      <a href="https://okapilib.github.io/OkapiLib/api/util/timer/" title="">
         <span class="direction">
           Previous
         </span>
@@ -354,7 +376,7 @@ controller.pointTurn(100); //Turn clockwise in place for 100 encoder ticks
 
   <div class="next">
   
-      <a href="https://okapilib.github.io/OkapiLib/tutorials/chassismodeltutorial/" title="">
+      <a href="https://okapilib.github.io/OkapiLib/tutorials/chassiscontrollertutorial/" title="">
         <span class="direction">
           Next
         </span>
