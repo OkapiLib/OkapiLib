@@ -60,6 +60,8 @@ namespace okapi {
 
     float getOutput() const { return output; }
 
+    float getError() const { return pid.getError(); }
+
     void reset() {
       isCompleteFlag = false;
       pathStep = 0;

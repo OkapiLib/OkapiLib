@@ -72,6 +72,8 @@ namespace okapi {
 
     float getOutput() const override { return output; }
 
+    float getError() const override { return mpCon.getError(); }
+
     void setSampleTime(const int isampleTime) override {
       dt = isampleTime;
       profile = mpGen.generateProfile(dt); //Have to regen profile with new dt

@@ -77,6 +77,8 @@ namespace okapi {
 
     float getOutput() const override { return output; }
 
+    float getError() const override { return error; }
+
     /**
      * Set controller gains
      * @param ikP    Proportional gain

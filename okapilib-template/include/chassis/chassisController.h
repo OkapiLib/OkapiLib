@@ -43,7 +43,7 @@ namespace okapi {
     void leftTS(const int val) { model->leftTS(val); }
     void right(const int val) { model->right(val); }
     void rightTS(const int val) { model->rightTS(val); }
-    std::valarray<int> getEncoderVals() const { return model->getEncoderVals(); }
+    std::valarray<int> getSensorVals() { return model->getSensorVals(); }
   protected:
     std::shared_ptr<ChassisModel> model;
   };
