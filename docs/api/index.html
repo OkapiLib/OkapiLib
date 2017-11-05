@@ -992,6 +992,14 @@ virtual std::valarray&lt;int&gt; getSensorVals() = 0
 
 <p>Reads the sensors given to the chassis model at construction time and returns them in the format <code>{left sensor value, right sensor value}</code>. Return type is a <code>std::valarray</code> because it features operator overrides for common math operations making encoder math easy.</p>
 
+<h3 id="resetsensors">resetSensors</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void resetSensors() = 0
+</code></pre>
+
+<p>Reset the sensors to zero.</p>
+
 <h2 id="chassismodelparams-abstract">ChassisModelParams (Abstract)</h2>
 
 <p>The <code>ChassisModelParams</code> class encapsulates the parameters a <code>ChassisModel</code> takes.</p>

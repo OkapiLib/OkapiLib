@@ -26,6 +26,7 @@ namespace okapi {
     virtual void right(const int val) = 0;
     virtual void rightTS(const int val) = 0;
     virtual std::valarray<int> getSensorVals() = 0;
+    virtual void resetSensors() = 0;
   };
 
   class ChassisModelParams {
@@ -187,6 +188,11 @@ namespace okapi {
 
     std::valarray<int> getSensorVals() override {
       return std::valarray<int>{leftSensor->get(), rightSensor->get()};
+    }
+
+    void resetSensors() override {
+      leftSensor->reset();
+      rightSensor->reset();
     }
   private:
     const std::array<Motor, motorsPerSide * 2> motors;
@@ -384,6 +390,11 @@ namespace okapi {
 
     std::valarray<int> getSensorVals() override {
       return std::valarray<int>{leftSensor->get(), rightSensor->get()};
+    }
+
+    void resetSensors() override {
+      leftSensor->reset();
+      rightSensor->reset();
     }
   private:
     const std::array<unsigned char, motorsPerCorner * 4> motors;
