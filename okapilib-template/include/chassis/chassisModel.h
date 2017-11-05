@@ -21,7 +21,9 @@ namespace okapi {
     virtual void tank(const int leftVal, const int rightVal, const int threshold = 0) = 0;
     virtual void arcade(int verticalVal, int horizontalVal, const int threshold = 0) = 0;
     virtual void left(const int val) = 0;
+    virtual void leftTS(const int val) = 0;
     virtual void right(const int val) = 0;
+    virtual void rightTS(const int val) = 0;
     virtual std::valarray<int> getEncoderVals() const = 0;
   };
 
@@ -107,7 +109,7 @@ namespace okapi {
 
     void stop() override {
       for (size_t i = 0; i <= motorsPerSide * 2; i++)
-        motors[i].setTS(0);
+        motors[i].set(0);
     }
 
     void tank(const int leftVal, const int rightVal, const int threshold = 0) override {
@@ -148,10 +150,20 @@ namespace okapi {
       for (size_t i = 0; i < motorsPerSide; i++)
         motors[i].set(val);
     }
+    
+    void leftTS(const int val) override {
+      for (size_t i = 0; i < motorsPerSide; i++)
+        motors[i].setTS(val);
+    }
 
     void right(const int val) override {
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
         motors[i].set(val);
+    }
+    
+    void rightTS(const int val) override {
+      for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
+        motors[i].setTS(val);
     }
 
     std::valarray<int> getEncoderVals() const override {
@@ -238,7 +250,7 @@ namespace okapi {
 
     void stop() override {
       for (size_t i = 0; i < motorsPerCorner * 4; i++)
-        motors[i].setTS(0);
+        motors[i].set(0);
     }
 
     void tank(const int leftVal, const int rightVal, const int threshold = 0) override {
@@ -313,10 +325,22 @@ namespace okapi {
       for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
         motors[i].set(val);
     }
+    
+    void leftTS(const int val) override {
+      for (size_t i = 0; i < motorsPerCorner; i++)
+        motors[i].setTS(val);
+      for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
+        motors[i].setTS(val);
+    }
 
     void right(const int val) override {
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 3; i++)
         motors[i].set(val);
+    }
+    
+    void rightTS(const int val) override {
+      for (size_t i = motorsPerCorner; i < motorsPerCorner * 3; i++)
+        motors[i].setTS(val);
     }
 
     std::valarray<int> getEncoderVals() const override {

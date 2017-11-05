@@ -306,7 +306,8 @@
 <h3 id="constructor">Constructor</h3>
 
 <pre><code class="language-c++">//Signature
-XDriveModel(const std::array&lt;unsigned char, motorsPerCorner * 4&gt;&amp; imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc)
+XDriveModelParams(const std::array&lt;unsigned char, motorsPerCorner * 4&gt;&amp; imotorList, const QuadEncoder&amp; ileftEnc, const QuadEncoder&amp; irightEnc):
+XDriveModelParams(const std::array&lt;unsigned char, motorsPerCorner * 4&gt;&amp; imotorList, const IME&amp; ileftIME, const IME&amp; irightIME)
 XDriveModel(const XDriveModelParams&lt;motorsPerCorner&gt;&amp; iparams)
 XDriveModel(const XDriveModel&lt;motorsPerCorner&gt;&amp; other)
 
@@ -345,6 +346,16 @@ XDriveModel&lt;2&gt; foo({1, 2, 3, 4, 5, 6, 7, 8}, QuadEncoder(1, 2, false), Qua
 <tr>
 <td>irightEnc</td>
 <td>The quadrature encoder for the right side</td>
+</tr>
+
+<tr>
+<td>ileftIME</td>
+<td>The IME for the left side</td>
+</tr>
+
+<tr>
+<td>irightIME</td>
+<td>The IME for the right side</td>
 </tr>
 </tbody>
 </table>

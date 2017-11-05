@@ -15,12 +15,12 @@
     
     <meta name="description" content="A PROS library for fast C&#43;&#43; development.">
     
-    <link rel="canonical" href="https://okapilib.github.io/OkapiLib/api/control/pid/velpid/">
+    <link rel="canonical" href="https://okapilib.github.io/OkapiLib/api/device/ime/">
     
     <meta name="author" content="OkapiLib">
     
 
-    <meta property="og:url" content="https://okapilib.github.io/OkapiLib/api/control/pid/velpid/">
+    <meta property="og:url" content="https://okapilib.github.io/OkapiLib/api/device/ime/">
     <meta property="og:title" content="Okapi Docs">
     <meta property="og:image" content="https://okapilib.github.io/OkapiLib/images/okapi.jpg">
     <meta name="apple-mobile-web-app-title" content="Okapi Docs">
@@ -299,15 +299,15 @@
 
 			
 
-<h2 id="velpid">VelPid</h2>
+<h2 id="ime">IME</h2>
 
-<p>The <code>VelPid</code> class implements the Pid algorithm for the velocity domain, with some quality-of-life changes to support online tuning. Inherits from <code>ControlObject</code>.</p>
+<p>The <code>IME</code> class is a simple container for an IME. Inherits from <code>RotarySensor</code>.</p>
 
 <h3 id="constructor">Constructor</h3>
 
 <pre><code class="language-c++">//Signature
-VelPid(const float ikP, const float ikD)
-VelPid(const VelPidParams&amp; params)
+IME(const unsigned int iindex)
+IME(const unsigned int iindex, const bool ireversed)
 </code></pre>
 
 <table>
@@ -320,254 +320,32 @@ VelPid(const VelPidParams&amp; params)
 
 <tbody>
 <tr>
-<td>ikP</td>
-<td>Proportional gain</td>
+<td>iindex</td>
+<td>IME index in the chain</td>
 </tr>
 
 <tr>
-<td>ikI</td>
-<td>Integral gain</td>
-</tr>
-
-<tr>
-<td>ikD</td>
-<td>Derivative gain</td>
-</tr>
-
-<tr>
-<td>ikBias</td>
-<td>Controller bias (this value added to output, default 0)</td>
-</tr>
-
-<tr>
-<td>params</td>
-<td><code>VelPidParams</code></td>
+<td>ireversed</td>
+<td>Whether the IME is reversed or not (clockwise turn increases vs. decreases ticks)</td>
 </tr>
 </tbody>
 </table>
 
-<h3 id="stepvel">stepVel</h3>
+<h3 id="get">get</h3>
 
 <pre><code class="language-c++">//Signature
-virtual float stepVel(const float inewReading)
+int get() override
 </code></pre>
 
-<p>Do one iteration of velocity math to compute a new filtered velocity. This is only meant to be used separately from <code>step</code> if you only want to compute a new velocity. Don&rsquo;t call <code>stepVel</code> if you are already calling <code>step</code> because <code>step</code> will call <code>stepVel</code> on its own.</p>
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>inewReading</td>
-<td>New sensor reading</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="step">step</h3>
-
-<pre><code class="language-c++">//Signature
-virtual float step(const float inewReading)
-</code></pre>
-
-<p>Do one iteration of Pid math to compute a new motor power. This needs to be called every so many milliseconds (15 ms works fine).</p>
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>inewReading</td>
-<td>New sensor reading</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="settarget">setTarget</h3>
-
-<pre><code class="language-c++">//Signature
-void setTarget(const float itarget)
-</code></pre>
-
-<p>Set the target value.</p>
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>itarget</td>
-<td>New target value</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="getoutput">getOutput</h3>
-
-<pre><code class="language-c++">//Signature
-float getOutput() const
-</code></pre>
-
-<p>Return the most recent controller output.</p>
-
-<h3 id="geterror">getError</h3>
-
-<pre><code class="language-c++">//Signature
-virtual float getError() const = 0
-</code></pre>
-
-<p>Return the most recent controller error.</p>
-
-<h3 id="setsampletime">setSampleTime</h3>
-
-<pre><code class="language-c++">//Signature
-void setSampleTime(const int isampleTime)
-</code></pre>
-
-<p>Set the timestep (in ms) between calls to <code>step</code>.</p>
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>isampleTime</td>
-<td>Timestep between calls to <code>step</code> in ms</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="setoutputlimits">setOutputLimits</h3>
-
-<pre><code class="language-c++">//Signature
-void setOutputLimits(float imax, float imin)
-</code></pre>
-
-<p>Set the max and min value for the controller output.</p>
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>imax</td>
-<td>Max output</td>
-</tr>
-
-<tr>
-<td>imin</td>
-<td>Min output</td>
-</tr>
-</tbody>
-</table>
+<p>Return the current tick count.</p>
 
 <h3 id="reset">reset</h3>
 
 <pre><code class="language-c++">//Signature
-void reset()
+void reset() override
 </code></pre>
 
-<p>Reset the controller so it will start from zero again.</p>
-
-<h3 id="flipdisable">flipDisable</h3>
-
-<pre><code class="language-c++">//Signature
-void flipDisable()
-</code></pre>
-
-<p>Change whether the controller is on or off. A controller which is off will output 0.</p>
-
-<h3 id="setgains">setGains</h3>
-
-<pre><code class="language-c++">//Signature
-void setGains(const float ikP, const float ikD)
-</code></pre>
-
-<p>Set new controller gains and bias.</p>
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>ikP</td>
-<td>Proportional gain</td>
-</tr>
-
-<tr>
-<td>ikD</td>
-<td>Derivative gain</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="setfiltergains">setFilterGains</h3>
-
-<pre><code class="language-c++">//Signature
-void setFilterGains(const float alpha, const float beta)
-</code></pre>
-
-<p>Set new gains for the <code>DemaFilter</code></p>
-
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>alpha</td>
-<td>Alpha gain</td>
-</tr>
-
-<tr>
-<td>beta</td>
-<td>Beta gain</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="setticksperrev">setTicksPerRev</h3>
-
-<pre><code class="language-c++">//Signature
-void setTicksPerRev(const float tpr)
-</code></pre>
-
-<p>Set the number of measurement units per revolution. Default is 360 (quadrature encoder).</p>
+<p>Reset the tick count to zero.</p>
 
 
 			<aside class="copyright" role="note">
@@ -584,7 +362,7 @@ void setTicksPerRev(const float tpr)
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://okapilib.github.io/OkapiLib/api/control/pid/pidparams/" title="">
+      <a href="https://okapilib.github.io/OkapiLib/api/device/cubicmotor/" title="">
         <span class="direction">
           Previous
         </span>
@@ -604,7 +382,7 @@ void setTicksPerRev(const float tpr)
 
   <div class="next">
   
-      <a href="https://okapilib.github.io/OkapiLib/api/control/pid/velpidparams/" title="">
+      <a href="https://okapilib.github.io/OkapiLib/api/device/motor/" title="">
         <span class="direction">
           Next
         </span>

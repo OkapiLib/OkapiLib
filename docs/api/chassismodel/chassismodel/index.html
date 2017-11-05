@@ -317,7 +317,7 @@ ChassisModel()
 virtual void driveForward(const int power) = 0
 </code></pre>
 
-<p>Drives the chassis forwards by setting all motors to the input power. A positive value for <code>power</code> should cause all chassis wheels to move the robot forward in a straight line.</p>
+<p>Drives the chassis forwards by setting all motors to the input power. A positive value for <code>power</code> should cause all chassis wheels to move the robot forward in a straight line. Uses truespeed.</p>
 
 <table>
 <thead>
@@ -341,7 +341,7 @@ virtual void driveForward(const int power) = 0
 virtual void turnClockwise(const int power) = 0
 </code></pre>
 
-<p>Turns the robot clockwise by setting the left side motors to the input power and the right side motors to the negative of the input power. A positive value for <code>power</code> should cause all chassis wheels to turn the robot clockwise on a point.</p>
+<p>Turns the robot clockwise by setting the left side motors to the input power and the right side motors to the negative of the input power. A positive value for <code>power</code> should cause all chassis wheels to turn the robot clockwise on a point. Uses truespeed.</p>
 
 <table>
 <thead>
@@ -372,7 +372,7 @@ driveVector(0, 127) //Same as turnClockwise(127)
 driveVector(90, 20)
 </code></pre>
 
-<p>Drive the chassis along a curved path. Calling <code>driveVector(127, 0)</code> should be equivalent to calling <code>driveForward(127)</code>; calling <code>driveVector(0, 127)</code> should be equivalent to calling <code>turnClockwise(127)</code>. A mix between the two will cause the robot to make a swing turn.</p>
+<p>Drive the chassis along a curved path. Calling <code>driveVector(127, 0)</code> should be equivalent to calling <code>driveForward(127)</code>; calling <code>driveVector(0, 127)</code> should be equivalent to calling <code>turnClockwise(127)</code>. A mix between the two will cause the robot to make a swing turn. Uses truespeed.</p>
 
 <table>
 <thead>
@@ -487,6 +487,30 @@ virtual void left(const int val) = 0;
 </tbody>
 </table>
 
+<h3 id="leftts">leftTS</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void leftTS(const int val) = 0;
+</code></pre>
+
+<p>Power the left side motors using truespeed.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Motor power</td>
+</tr>
+</tbody>
+</table>
+
 <h3 id="right">right</h3>
 
 <pre><code class="language-c++">//Signature
@@ -511,13 +535,37 @@ virtual void right(const int val) = 0;
 </tbody>
 </table>
 
-<h3 id="getencodervals">getEncoderVals</h3>
-
-<p>Reads the encoders given to the chassis model at construction time and returns them in the format <code>{left encoder value, right encoder value}</code>. Return type is a <code>std::valarray</code> because it features operator overrides for common math operations making encoder math easy.</p>
+<h3 id="rightts">rightTS</h3>
 
 <pre><code class="language-c++">//Signature
-virtual std::valarray&lt;int&gt; getEncoderVals() const = 0
+virtual void rightTS(const int val) = 0;
 </code></pre>
+
+<p>Power the right side motors using truespeed.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Motor power</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="getencodervals">getEncoderVals</h3>
+
+<pre><code class="language-c++">//Signature
+virtual std::valarray&lt;int&gt; getSensorVals() = 0
+</code></pre>
+
+<p>Reads the sensors given to the chassis model at construction time and returns them in the format <code>{left sensor value, right sensor value}</code>. Return type is a <code>std::valarray</code> because it features operator overrides for common math operations making encoder math easy.</p>
 
 
 			<aside class="copyright" role="note">

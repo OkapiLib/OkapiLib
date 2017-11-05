@@ -69,6 +69,29 @@ namespace okapi {
      */
     virtual float step(const float inewReading) override;
 
+    void setTarget(const float itarget) override { target = itarget; }
+    
+    float getOutput() const override { return isOn ? output : 0; }
+
+    float getError() const override { return error; }
+    
+    /**
+     * Set time between loops in ms
+     * @param isampleTime Time between loops in ms
+     */
+    void setSampleTime(const int isampleTime) override;
+    
+    /**
+     * Set controller output bounds
+     * @param imax Max output
+     * @param imin Min output
+     */
+    void setOutputLimits(float imax, float imin) override;
+    
+    void reset() override;
+
+    void flipDisable() override { isOn = !isOn; }
+    
     /**
      * Set controller gains
      * @param ikP    Proportional gain
@@ -85,31 +108,10 @@ namespace okapi {
     void setFilterGains(const float alpha, const float beta) { velMath.setGains(alpha, beta); }
 
     /**
-     * Set time between loops in ms
-     * @param isampleTime Time between loops in ms
-     */
-    void setSampleTime(const int isampleTime) override;
-
-    /**
      * Set the number of measurements per revolution. Default is 360
      * @param tpr Number of measured units per revolution
      */
     void setTicksPerRev(const float tpr) { velMath.setTicksPerRev(tpr); }
-
-    /**
-     * Set controller output bounds
-     * @param imax Max output
-     * @param imin Min output
-     */
-    void setOutputLimits(float imax, float imin) override;
-
-    void reset() override;
-
-    void flipDisable() override { isOn = !isOn; }
-
-    void setTarget(const float itarget) override { target = itarget; }
-
-    float getOutput() const override { return isOn ? output : 0; }
 
     float getVel() const { return velMath.getOutput(); }
 

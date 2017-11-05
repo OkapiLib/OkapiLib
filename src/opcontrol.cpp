@@ -27,10 +27,12 @@
 #include "control/velPid.h"
 
 #include "device/button.h"
+#include "device/ime.h"
 #include "device/motor.h"
 #include "device/potentiometer.h"
 #include "device/quadEncoder.h"
 #include "device/rangeFinder.h"
+#include "device/rotarySensor.h"
 
 #include "filter/avgFilter.h"
 #include "filter/demaFilter.h"

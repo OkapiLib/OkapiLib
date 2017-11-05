@@ -37,6 +37,15 @@ virtual float getOutput() const = 0
 
 Return the most recent controller output.
 
+### getError
+
+```c++
+//Signature
+virtual float getError() const = 0
+```
+
+Return the most recent controller error.
+
 ### setSampleTime
 
 ```c++

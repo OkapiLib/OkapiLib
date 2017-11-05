@@ -1,5 +1,7 @@
 ## QuadEncoder
 
+The `QuadEncoder` class is a simple container for an encoder. Inherits from `RotarySensor`.
+
 ### Constructor
 
 ```c++
@@ -11,14 +13,14 @@ QuadEncoder(const unsigned char iportTop, const unsigned char iportBottom, const
 Parameter | Description
 ----------|------------
 iportTop | Top digital in port
-iportBototm | Bottom digital in port
+iportBottom | Bottom digital in port
 ireversed | Whether the encoder is reversed or not (clockwise turn increases vs. decreases ticks)
 
 ### get
 
 ```c++
 //Signature
-int get() const
+int get() override
 ```
 
 Return the current tick count.
@@ -27,7 +29,7 @@ Return the current tick count.
 
 ```c++
 //Signature
-void reset() const
+void reset() override
 ```
 
 Reset the tick count to zero.

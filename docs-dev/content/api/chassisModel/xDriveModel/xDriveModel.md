@@ -6,7 +6,8 @@ The `XDriveModel` class inherits from `ChassisModel` and takes a template parame
 
 ```c++
 //Signature
-XDriveModel(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc)
+XDriveModelParams(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
+XDriveModelParams(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const IME& ileftIME, const IME& irightIME)
 XDriveModel(const XDriveModelParams<motorsPerCorner>& iparams)
 XDriveModel(const XDriveModel<motorsPerCorner>& other)
 
@@ -28,6 +29,8 @@ Parameter | Description
 imotorList | The chassis motors for the drive in the clockwise format, `{top left motors, top right motors, bottom right motors, bottom left motors}`
 ileftEnc | The quadrature encoder for the left side
 irightEnc | The quadrature encoder for the right side
+ileftIME | The IME for the left side
+irightIME | The IME for the right side
 
 ### xArcade
 

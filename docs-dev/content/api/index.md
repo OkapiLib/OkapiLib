@@ -29,6 +29,7 @@ Most users should not call this constructor with a std::shared_ptr&lt;ChassisMod
 {{< readfile file="content/api/filter/emaFilter.md" markdown="true" >}}
 {{< readfile file="content/api/filter/filter.md" markdown="true" >}}
 {{< readfile file="content/api/control/genericController.md" markdown="true" >}}
+{{< readfile file="content/api/device/ime.md" markdown="true" >}}
 {{< readfile file="content/api/util/mathUtil.md" markdown="true" >}}
 {{< readfile file="content/api/motionProfile/motionProfile.md" markdown="true" >}}
 {{< readfile file="content/api/device/motor.md" markdown="true" >}}
@@ -48,6 +49,7 @@ Most users should not call this constructor with a std::shared_ptr&lt;ChassisMod
 {{< readfile file="content/api/device/potentiometer.md" markdown="true" >}}
 {{< readfile file="content/api/device/quadEncoder.md" markdown="true" >}}
 {{< readfile file="content/api/device/rangeFinder.md" markdown="true" >}}
+{{< readfile file="content/api/device/rotarySensor.md" markdown="true" >}}
 {{< readfile file="content/api/chassisModel/skidSteerModel/skidSteerModel.md" markdown="true" >}}
 {{< readfile file="content/api/chassisModel/skidSteerModel/skidSteerModelParams.md" markdown="true" >}}
 {{< readfile file="content/api/util/timer.md" markdown="true" >}}

@@ -14,7 +14,7 @@ namespace okapi {
     std::valarray<int> newTicks{0, 0}, tickDiff{0, 0};
 
     while (true) {
-      newTicks = model->getEncoderVals();
+      newTicks = model->getSensorVals();
       tickDiff = newTicks - lastTicks;
       mm = ((tickDiff[1] + tickDiff[0]) / 2.0) * scale;
       lastTicks = newTicks;

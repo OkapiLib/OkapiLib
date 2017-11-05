@@ -306,7 +306,8 @@
 <h3 id="constructor">Constructor</h3>
 
 <pre><code class="language-c++">//Signature
-SkidSteerModelParams(const std::array&lt;Motor, motorsPerSide * 2&gt;&amp; imotorList, QuadEncoder ileftEnc, QuadEncoder irightEnc)
+SkidSteerModelParams(const std::array&lt;Motor, motorsPerSide * 2&gt;&amp; imotorList, const QuadEncoder&amp; ileftEnc, const QuadEncoder&amp; irightEnc):
+SkidSteerModelParams(const std::array&lt;Motor, motorsPerSide * 2&gt;&amp; imotorList, const IME&amp; ileftIME, const IME&amp; irightIME)
 </code></pre>
 
 <table>
@@ -331,6 +332,16 @@ SkidSteerModelParams(const std::array&lt;Motor, motorsPerSide * 2&gt;&amp; imoto
 <tr>
 <td>irightEnc</td>
 <td>The quadrature encoder for the right side</td>
+</tr>
+
+<tr>
+<td>ileftIME</td>
+<td>The IME for the left side</td>
+</tr>
+
+<tr>
+<td>irightIME</td>
+<td>The IME for the right side</td>
 </tr>
 </tbody>
 </table>

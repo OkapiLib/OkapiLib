@@ -301,7 +301,7 @@
 
 <h2 id="pid">Pid</h2>
 
-<p>The <code>Pid</code> class implements the Pid algorithm, with some quality-of-life changes to support online tuning.</p>
+<p>The <code>Pid</code> class implements the Pid algorithm, with some quality-of-life changes to support online tuning. Inherits from <code>ControlObject</code>.</p>
 
 <h3 id="constructor">Constructor</h3>
 
@@ -401,6 +401,14 @@ float getOutput() const
 </code></pre>
 
 <p>Return the most recent controller output.</p>
+
+<h3 id="geterror">getError</h3>
+
+<pre><code class="language-c++">//Signature
+virtual float getError() const = 0
+</code></pre>
+
+<p>Return the most recent controller error.</p>
 
 <h3 id="setgains">setGains</h3>
 

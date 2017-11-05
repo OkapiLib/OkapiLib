@@ -18,7 +18,7 @@ The constructor does not take any parameters.
 virtual void driveForward(const int power) = 0
 ```
 
-Drives the chassis forwards by setting all motors to the input power. A positive value for `power` should cause all chassis wheels to move the robot forward in a straight line.
+Drives the chassis forwards by setting all motors to the input power. A positive value for `power` should cause all chassis wheels to move the robot forward in a straight line. Uses truespeed.
 
 Parameter | Description
 ----------|------------
@@ -31,7 +31,7 @@ power | The raw motor power sent directly to the chassis' motors
 virtual void turnClockwise(const int power) = 0
 ```
 
-Turns the robot clockwise by setting the left side motors to the input power and the right side motors to the negative of the input power. A positive value for `power` should cause all chassis wheels to turn the robot clockwise on a point.
+Turns the robot clockwise by setting the left side motors to the input power and the right side motors to the negative of the input power. A positive value for `power` should cause all chassis wheels to turn the robot clockwise on a point. Uses truespeed.
 
 Parameter | Description
 ----------|------------
@@ -51,7 +51,7 @@ driveVector(0, 127) //Same as turnClockwise(127)
 driveVector(90, 20)
 ```
 
-Drive the chassis along a curved path. Calling `driveVector(127, 0)` should be equivalent to calling `driveForward(127)`; calling `driveVector(0, 127)` should be equivalent to calling `turnClockwise(127)`. A mix between the two will cause the robot to make a swing turn.
+Drive the chassis along a curved path. Calling `driveVector(127, 0)` should be equivalent to calling `driveForward(127)`; calling `driveVector(0, 127)` should be equivalent to calling `turnClockwise(127)`. A mix between the two will cause the robot to make a swing turn. Uses truespeed.
 
 Parameter | Description
 ----------|------------
@@ -101,6 +101,19 @@ Parameter | Description
 ----------|------------
 val | Motor power
 
+### leftTS
+
+```c++
+//Signature
+virtual void leftTS(const int val) = 0;
+```
+
+Power the left side motors using truespeed.
+
+Parameter | Description
+----------|------------
+val | Motor power
+
 ### right
 
 ```c++
@@ -114,11 +127,24 @@ Parameter | Description
 ----------|------------
 val | Motor power
 
-### getEncoderVals
-
-Reads the encoders given to the chassis model at construction time and returns them in the format `{left encoder value, right encoder value}`. Return type is a `std::valarray` because it features operator overrides for common math operations making encoder math easy.
+### rightTS
 
 ```c++
 //Signature
-virtual std::valarray<int> getEncoderVals() const = 0
+virtual void rightTS(const int val) = 0;
 ```
+
+Power the right side motors using truespeed.
+
+Parameter | Description
+----------|------------
+val | Motor power
+
+### getEncoderVals
+
+```c++
+//Signature
+virtual std::valarray<int> getSensorVals() = 0
+```
+
+Reads the sensors given to the chassis model at construction time and returns them in the format `{left sensor value, right sensor value}`. Return type is a `std::valarray` because it features operator overrides for common math operations making encoder math easy.

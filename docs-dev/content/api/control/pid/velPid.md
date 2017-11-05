@@ -1,6 +1,6 @@
 ## VelPid
 
-The `VelPid` class implements the Pid algorithm for the velocity domain, with some quality-of-life changes to support online tuning.
+The `VelPid` class implements the Pid algorithm for the velocity domain, with some quality-of-life changes to support online tuning. Inherits from `ControlObject`.
 
 ### Constructor
 
@@ -44,33 +44,36 @@ Parameter | Description
 ----------|------------
 inewReading | New sensor reading
 
-### setGains
+### setTarget
 
 ```c++
 //Signature
-void setGains(const float ikP, const float ikD)
+void setTarget(const float itarget)
 ```
 
-Set new controller gains and bias.
+Set the target value.
 
 Parameter | Description
 ----------|------------
-ikP | Proportional gain
-ikD | Derivative gain
+itarget | New target value
 
-### setFilterGains
+### getOutput
 
 ```c++
 //Signature
-void setFilterGains(const float alpha, const float beta)
+float getOutput() const
 ```
 
-Set new gains for the `DemaFilter`
+Return the most recent controller output.
 
-Parameter | Description
-----------|------------
-alpha | Alpha gain
-beta | Beta gain
+### getError
+
+```c++
+//Signature
+virtual float getError() const = 0
+```
+
+Return the most recent controller error.
 
 ### setSampleTime
 
@@ -84,15 +87,6 @@ Set the timestep (in ms) between calls to `step`.
 Parameter | Description
 ----------|------------
 isampleTime | Timestep between calls to `step` in ms
-
-### setTicksPerRev
-
-```c++
-//Signature
-void setTicksPerRev(const float tpr)
-```
-
-Set the number of measurement units per revolution. Default is 360 (quadrature encoder).
 
 ### setOutputLimits
 
@@ -126,24 +120,39 @@ void flipDisable()
 
 Change whether the controller is on or off. A controller which is off will output 0.
 
-### setTarget
+### setGains
 
 ```c++
 //Signature
-void setTarget(const float itarget)
+void setGains(const float ikP, const float ikD)
 ```
 
-Set the target value.
+Set new controller gains and bias.
 
 Parameter | Description
 ----------|------------
-itarget | New target value
+ikP | Proportional gain
+ikD | Derivative gain
 
-### getOutput
+### setFilterGains
 
 ```c++
 //Signature
-float getOutput() const
+void setFilterGains(const float alpha, const float beta)
 ```
 
-Return the most recent controller output.
+Set new gains for the `DemaFilter`
+
+Parameter | Description
+----------|------------
+alpha | Alpha gain
+beta | Beta gain
+
+### setTicksPerRev
+
+```c++
+//Signature
+void setTicksPerRev(const float tpr)
+```
+
+Set the number of measurement units per revolution. Default is 360 (quadrature encoder).

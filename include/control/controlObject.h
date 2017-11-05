@@ -26,6 +26,11 @@ namespace okapi {
     virtual float getOutput() const = 0;
 
     /**
+    * Returns the last error of the controller
+    */
+    virtual float getError() const = 0;
+
+    /**
     * Set time between loops in ms
     * @param isampleTime Time between loops in ms
     */

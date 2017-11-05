@@ -91,6 +91,15 @@ void left(const int val);
 
 Passthrough function to call `left` on the internal `ChassisModel`.
 
+### leftTS
+
+```c++
+//Signature
+void leftTS(const int val);
+```
+
+Passthrough function to call `leftTS` on the internal `ChassisModel`.
+
 ### right
 
 ```c++
@@ -99,6 +108,15 @@ void right(const int val);
 ```
 
 Passthrough function to call `right` on the internal `ChassisModel`.
+
+### rightTS
+
+```c++
+//Signature
+void rightTS(const int val);
+```
+
+Passthrough function to call `rightTS` on the internal `ChassisModel`.
 
 ### getEncoderVals
 

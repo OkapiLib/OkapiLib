@@ -6,6 +6,7 @@
 #include <valarray>
 #include <API.h>
 #include <memory>
+#include "device/ime.h"
 #include "device/motor.h"
 #include "device/quadEncoder.h"
 
@@ -21,8 +22,10 @@ namespace okapi {
     virtual void tank(const int leftVal, const int rightVal, const int threshold = 0) = 0;
     virtual void arcade(int verticalVal, int horizontalVal, const int threshold = 0) = 0;
     virtual void left(const int val) = 0;
+    virtual void leftTS(const int val) = 0;
     virtual void right(const int val) = 0;
-    virtual std::valarray<int> getEncoderVals() const = 0;
+    virtual void rightTS(const int val) = 0;
+    virtual std::valarray<int> getSensorVals() = 0;
   };
 
   class ChassisModelParams {
@@ -43,10 +46,15 @@ namespace okapi {
   template<size_t motorsPerSide>
   class SkidSteerModelParams : public ChassisModelParams {
   public:
-    SkidSteerModelParams(const std::array<Motor, motorsPerSide * 2>& imotorList, QuadEncoder ileftEnc, QuadEncoder irightEnc):
+    SkidSteerModelParams(const std::array<Motor, motorsPerSide * 2>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
       motorList(imotorList),
-      leftEnc(ileftEnc),
-      rightEnc(irightEnc) {}
+      leftSensor(std::make_shared<QuadEncoder>(ileftEnc)),
+      rightSensor(std::make_shared<QuadEncoder>(irightEnc)) {}
+    
+    SkidSteerModelParams(const std::array<Motor, motorsPerSide * 2>& imotorList, const IME& ileftIME, const IME& irightIME):
+      motorList(imotorList),
+      leftSensor(std::make_shared<IME>(ileftIME)),
+      rightSensor(std::make_shared<IME>(irightIME)) {}
 
     virtual ~SkidSteerModelParams() = default;
 
@@ -55,7 +63,7 @@ namespace okapi {
     }
 
     const std::array<Motor, motorsPerSide * 2>& motorList;
-    QuadEncoder leftEnc, rightEnc;
+    std::shared_ptr<RotarySensor> leftSensor, rightSensor;
   };
 
   template<size_t motorsPerSide>
@@ -69,20 +77,33 @@ namespace okapi {
      * @param ileftEnc  Left side encoder
      * @param irightEnc Right side encoder
      */
-    SkidSteerModel(const std::array<Motor, motorsPerSide * 2>& imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc):
+    SkidSteerModel(const std::array<Motor, motorsPerSide * 2>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
       motors(imotorList),
-      leftEnc(ileftEnc),
-      rightEnc(irightEnc) {}
+      leftSensor(std::make_shared<QuadEncoder>(ileftEnc)),
+      rightSensor(std::make_shared<QuadEncoder>(irightEnc)) {}
+
+    /**
+     * Model for a skid steer drive (wheels parallel with robot's direction of
+     * motion). When all motors are powered +127, the robot should move forward
+     * in a straight line at full speed.
+     * @param imotors   Motors in the format: {{left side motors}, {right side motors}}
+     * @param ileftIME  Left side IME
+     * @param irightIME Right side IME
+     */
+    SkidSteerModel(const std::array<Motor, motorsPerSide * 2>& imotorList, const IME& ileftIME, const IME& irightIME):
+      motors(imotorList),
+      leftSensor(std::make_shared<IME>(ileftIME)),
+      rightSensor(std::make_shared<IME>(irightIME)) {}
 
     SkidSteerModel(const SkidSteerModelParams<motorsPerSide>& iparams):
       motors(iparams.motorList),
-      leftEnc(iparams.leftEnc),
-      rightEnc(iparams.rightEnc) {}
+      leftSensor(iparams.leftSensor),
+      rightSensor(iparams.rightSensor) {}
 
     SkidSteerModel(const SkidSteerModel<motorsPerSide>& other):
       motors(other.motors),
-      leftEnc(other.leftEnc),
-      rightEnc(other.rightEnc) {}
+      leftSensor(other.leftSensor),
+      rightSensor(other.rightSensor) {}
 
     virtual ~SkidSteerModel() { delete &motors; }
 
@@ -107,7 +128,7 @@ namespace okapi {
 
     void stop() override {
       for (size_t i = 0; i <= motorsPerSide * 2; i++)
-        motors[i].setTS(0);
+        motors[i].set(0);
     }
 
     void tank(const int leftVal, const int rightVal, const int threshold = 0) override {
@@ -148,18 +169,28 @@ namespace okapi {
       for (size_t i = 0; i < motorsPerSide; i++)
         motors[i].set(val);
     }
+    
+    void leftTS(const int val) override {
+      for (size_t i = 0; i < motorsPerSide; i++)
+        motors[i].setTS(val);
+    }
 
     void right(const int val) override {
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
         motors[i].set(val);
     }
+    
+    void rightTS(const int val) override {
+      for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
+        motors[i].setTS(val);
+    }
 
-    std::valarray<int> getEncoderVals() const override {
-      return std::valarray<int>{leftEnc.get(), rightEnc.get()};
+    std::valarray<int> getSensorVals() override {
+      return std::valarray<int>{leftSensor->get(), rightSensor->get()};
     }
   private:
     const std::array<Motor, motorsPerSide * 2> motors;
-    const QuadEncoder leftEnc, rightEnc;
+    std::shared_ptr<RotarySensor> leftSensor, rightSensor;
   };
 
   template<size_t motorsPerCorner>
@@ -168,10 +199,15 @@ namespace okapi {
   template<size_t motorsPerCorner>
   class XDriveModelParams : public ChassisModelParams {
   public:
-    XDriveModelParams(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc):
+    XDriveModelParams(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
       motorList(imotorList),
-      leftEnc(ileftEnc),
-      rightEnc(irightEnc) {}
+      leftSensor(std::make_shared<QuadEncoder>(ileftEnc)),
+      rightSensor(std::make_shared<QuadEncoder>(irightEnc)) {}
+
+    XDriveModelParams(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const IME& ileftIME, const IME& irightIME):
+      motorList(imotorList),
+      leftSensor(std::make_shared<IME>(ileftIME)),
+      rightSensor(std::make_shared<IME>(irightIME)) {}
 
     virtual ~XDriveModelParams() {}
 
@@ -180,7 +216,7 @@ namespace okapi {
     }
 
     const std::array<unsigned char, motorsPerCorner * 4>& motorList;
-    const QuadEncoder leftEnc, rightEnc;
+    std::shared_ptr<RotarySensor> leftSensor, rightSensor;
   };
 
   template<size_t motorsPerCorner>
@@ -191,21 +227,36 @@ namespace okapi {
      * motors are powered +127, the robot should move forward in a straight line
      * at full speed.
      * @param imotors Motors in the format: {{top left motors}, {top right motors}, {bottom right motors}, {bottom left motors}}
+     * @param ileftEnc Left side encoder
+     * @param irightEnc Right side encoder
      */
-    XDriveModel(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc):
+    XDriveModel(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
       motors(imotorList),
-      leftEnc(ileftEnc),
-      rightEnc(irightEnc) {}
+      leftSensor(std::make_shared<QuadEncoder>(ileftEnc)),
+      rightSensor(std::make_shared<QuadEncoder>(irightEnc)) {}
+    
+    /**
+     * Model for an x drive (wheels at 45 deg from a skid steer drive). When all
+     * motors are powered +127, the robot should move forward in a straight line
+     * at full speed.
+     * @param imotors Motors in the format: {{top left motors}, {top right motors}, {bottom right motors}, {bottom left motors}}
+     * @param ileftIME Left side IME
+     * @param irightIME Right side IME
+     */
+    XDriveModel(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const IME& ileftIME, const IME& irightIME):
+      motors(imotorList),
+      leftSensor(std::make_shared<IME>(ileftIME)),
+      rightSensor(std::make_shared<IME>(irightIME)) {}
 
     XDriveModel(const XDriveModelParams<motorsPerCorner>& iparams):
       motors(iparams.motorList),
-      leftEnc(iparams.leftEnc),
-      rightEnc(iparams.rightEnc) {}
+      leftSensor(iparams.leftSensor),
+      rightSensor(iparams.rightSensor) {}
 
     XDriveModel(const XDriveModel<motorsPerCorner>& other):
       motors(other.motors),
-      leftEnc(other.leftEnc),
-      rightEnc(other.rightEnc) {}
+      leftSensor(other.leftSensor),
+      rightSensor(other.rightSensor) {}
 
     virtual ~XDriveModel() { delete &motors; }
 
@@ -238,7 +289,7 @@ namespace okapi {
 
     void stop() override {
       for (size_t i = 0; i < motorsPerCorner * 4; i++)
-        motors[i].setTS(0);
+        motors[i].set(0);
     }
 
     void tank(const int leftVal, const int rightVal, const int threshold = 0) override {
@@ -313,18 +364,30 @@ namespace okapi {
       for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
         motors[i].set(val);
     }
+    
+    void leftTS(const int val) override {
+      for (size_t i = 0; i < motorsPerCorner; i++)
+        motors[i].setTS(val);
+      for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
+        motors[i].setTS(val);
+    }
 
     void right(const int val) override {
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 3; i++)
         motors[i].set(val);
     }
+    
+    void rightTS(const int val) override {
+      for (size_t i = motorsPerCorner; i < motorsPerCorner * 3; i++)
+        motors[i].setTS(val);
+    }
 
-    std::valarray<int> getEncoderVals() const override {
-      return std::valarray<int>{leftEnc.get(), rightEnc.get()};
+    std::valarray<int> getSensorVals() override {
+      return std::valarray<int>{leftSensor->get(), rightSensor->get()};
     }
   private:
     const std::array<unsigned char, motorsPerCorner * 4> motors;
-    const QuadEncoder leftEnc, rightEnc;
+    std::shared_ptr<RotarySensor> leftSensor, rightSensor;
   };
 }
 

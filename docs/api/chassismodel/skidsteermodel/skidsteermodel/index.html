@@ -306,7 +306,8 @@
 <h3 id="constructor">Constructor</h3>
 
 <pre><code class="language-c++">//Signature
-SkidSteerModel(const std::array&lt;Motor, motorsPerSide * 2&gt;&amp; imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc)
+SkidSteerModel(const std::array&lt;Motor, motorsPerSide * 2&gt;&amp; imotorList, const QuadEncoder&amp; ileftEnc, const QuadEncoder&amp; irightEnc)
+SkidSteerModel(const std::array&lt;Motor, motorsPerSide * 2&gt;&amp; imotorList, const IME&amp; ileftIME, const IME&amp; irightIME)
 SkidSteerModel(const SkidSteerModelParams&lt;motorsPerSide&gt;&amp; iparams)
 SkidSteerModel(const SkidSteerModel&lt;motorsPerSide&gt;&amp; other)
 
@@ -339,6 +340,16 @@ SkidSteerModel&lt;2&gt; foo({1, 3, 2, 4}, QuadEncoder(1, 2, false), QuadEncoder(
 <tr>
 <td>irightEnc</td>
 <td>The quadrature encoder for the right side</td>
+</tr>
+
+<tr>
+<td>ileftIME</td>
+<td>The IME for the left side</td>
+</tr>
+
+<tr>
+<td>irightIME</td>
+<td>The IME for the right side</td>
 </tr>
 </tbody>
 </table>

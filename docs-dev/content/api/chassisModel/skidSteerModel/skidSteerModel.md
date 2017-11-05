@@ -6,7 +6,8 @@ The `SkidSteerModel` class inherits from `ChassisModel` and takes a template par
 
 ```c++
 //Signature
-SkidSteerModel(const std::array<Motor, motorsPerSide * 2>& imotorList, const QuadEncoder ileftEnc, const QuadEncoder irightEnc)
+SkidSteerModel(const std::array<Motor, motorsPerSide * 2>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc)
+SkidSteerModel(const std::array<Motor, motorsPerSide * 2>& imotorList, const IME& ileftIME, const IME& irightIME)
 SkidSteerModel(const SkidSteerModelParams<motorsPerSide>& iparams)
 SkidSteerModel(const SkidSteerModel<motorsPerSide>& other)
 
@@ -22,3 +23,5 @@ Parameter | Description
 imotorList | The left and right side motors for the drive in the format, `{left motors, right motors}`
 ileftEnc | The quadrature encoder for the left side
 irightEnc | The quadrature encoder for the right side
+ileftIME | The IME for the left side
+irightIME | The IME for the right side

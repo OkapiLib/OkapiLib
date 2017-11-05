@@ -1,6 +1,6 @@
 ## Pid
 
-The `Pid` class implements the Pid algorithm, with some quality-of-life changes to support online tuning.
+The `Pid` class implements the Pid algorithm, with some quality-of-life changes to support online tuning. Inherits from `ControlObject`.
 
 ### Constructor
 
@@ -52,6 +52,15 @@ float getOutput() const
 ```
 
 Return the most recent controller output.
+
+### getError
+
+```c++
+//Signature
+virtual float getError() const = 0
+```
+
+Return the most recent controller error.
 
 ### setGains
 

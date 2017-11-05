@@ -4,7 +4,7 @@
 
 namespace okapi {
   void ChassisControllerPid::driveStraight(const int itarget) {
-    const auto encStartVals = model->getEncoderVals();
+    const auto encStartVals = model->getSensorVals();
     float distanceElapsed = 0, angleChange = 0, lastDistance = 0;
     unsigned long prevWakeTime = millis();
 
@@ -25,7 +25,7 @@ namespace okapi {
     float distOutput, angleOutput;
 
     while (!atTarget) {
-      encVals = model->getEncoderVals() - encStartVals;
+      encVals = model->getSensorVals() - encStartVals;
       distanceElapsed = (encVals[0] + encVals[1]) / 2.0;
       angleChange = encVals[0] - encVals[1];
 
@@ -52,7 +52,7 @@ namespace okapi {
   }
 
   void ChassisControllerPid::pointTurn(float idegTarget) {
-    const auto encStartVals = model->getEncoderVals();
+    const auto encStartVals = model->getSensorVals();
     float angleChange = 0, lastAngle = 0;
     unsigned long prevWakeTime = millis();
 
@@ -75,7 +75,7 @@ namespace okapi {
     std::valarray<int> encVals{0, 0};
 
     while (!atTarget) {
-      encVals = model->getEncoderVals() - encStartVals;
+      encVals = model->getSensorVals() - encStartVals;
       angleChange = encVals[1] - encVals[0];
 
       model->turnClockwise(anglePid.step(angleChange));
@@ -101,14 +101,14 @@ namespace okapi {
   void ChassisControllerMP::driveStraight(const int itarget) {
     controller.setTarget(itarget);
 
-    const auto encStartVals = model->getEncoderVals();
+    const auto encStartVals = model->getSensorVals();
     float distanceElapsed = 0;
     unsigned long prevWakeTime = millis();
 
     std::valarray<int> encVals{0, 0};
 
     while (!controller.isComplete()) {
-      encVals = model->getEncoderVals() - encStartVals;
+      encVals = model->getSensorVals() - encStartVals;
       distanceElapsed = (encVals[0] + encVals[1]) / 2.0;
 
       model->driveForward(controller.step(distanceElapsed));
@@ -122,14 +122,14 @@ namespace okapi {
   void ChassisControllerMP::pointTurn(float idegTarget) {
     controller.setTarget(idegTarget); //TODO: Might not be able to use the same params for turning
 
-    const auto encStartVals = model->getEncoderVals();
+    const auto encStartVals = model->getSensorVals();
     float angleChange = 0;
     unsigned long prevWakeTime = millis();
 
     std::valarray<int> encVals{0, 0};
 
     while (!controller.isComplete()) {
-      encVals = model->getEncoderVals() - encStartVals;
+      encVals = model->getSensorVals() - encStartVals;
       angleChange = encVals[1] - encVals[0];
 
       model->turnClockwise(controller.step(angleChange));

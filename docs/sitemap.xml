@@ -95,6 +95,10 @@
   </url>
   
   <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/device/ime/</loc>
+  </url>
+  
+  <url>
     <loc>https://okapilib.github.io/OkapiLib/api/device/motor/</loc>
   </url>
   
@@ -108,6 +112,10 @@
   
   <url>
     <loc>https://okapilib.github.io/OkapiLib/api/device/rangefinder/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/device/rotarysensor/</loc>
   </url>
   
   <url>

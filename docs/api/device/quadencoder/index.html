@@ -301,6 +301,8 @@
 
 <h2 id="quadencoder">QuadEncoder</h2>
 
+<p>The <code>QuadEncoder</code> class is a simple container for an encoder. Inherits from <code>RotarySensor</code>.</p>
+
 <h3 id="constructor">Constructor</h3>
 
 <pre><code class="language-c++">//Signature
@@ -323,7 +325,7 @@ QuadEncoder(const unsigned char iportTop, const unsigned char iportBottom, const
 </tr>
 
 <tr>
-<td>iportBototm</td>
+<td>iportBottom</td>
 <td>Bottom digital in port</td>
 </tr>
 
@@ -337,7 +339,7 @@ QuadEncoder(const unsigned char iportTop, const unsigned char iportBottom, const
 <h3 id="get">get</h3>
 
 <pre><code class="language-c++">//Signature
-int get() const
+int get() override
 </code></pre>
 
 <p>Return the current tick count.</p>
@@ -345,7 +347,7 @@ int get() const
 <h3 id="reset">reset</h3>
 
 <pre><code class="language-c++">//Signature
-void reset() const
+void reset() override
 </code></pre>
 
 <p>Reset the tick count to zero.</p>

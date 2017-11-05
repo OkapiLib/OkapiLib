@@ -40,7 +40,9 @@ namespace okapi {
     void tank(const int leftVal, const int rightVal, const int threshold = 0) { model->tank(leftVal, rightVal, threshold); }
     void arcade(int verticalVal, int horizontalVal, const int threshold = 0) { model->arcade(verticalVal, horizontalVal, threshold); }
     void left(const int val) { model->left(val); }
+    void leftTS(const int val) { model->leftTS(val); }
     void right(const int val) { model->right(val); }
+    void rightTS(const int val) { model->rightTS(val); }
     std::valarray<int> getEncoderVals() const { return model->getEncoderVals(); }
   protected:
     std::shared_ptr<ChassisModel> model;
