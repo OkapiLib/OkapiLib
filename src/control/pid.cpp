@@ -58,7 +58,7 @@ namespace okapi {
       const long now = millis();
 
       if (now - lastTime >= sampleTime) {
-        const float error = target - inewReading;
+        error = target - inewReading;
 
         integral += kI * error; //Eliminate integral kick while realtime tuning
 
