@@ -35,7 +35,6 @@ namespace std {
  * configure a UART port (usartOpen()) but cannot set up an LCD (lcdInit()).
  */
 void initializeIO() {
-  __libc_init_array();
   lcdInit(uart1);
 }
 
@@ -53,4 +52,5 @@ void initializeIO() {
  * can be implemented in this task if desired.
  */
 void initialize() {
+  __libc_init_array();
 }
