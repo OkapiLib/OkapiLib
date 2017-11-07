@@ -15,6 +15,13 @@ Parameter | Description
 iindex | IME index in the chain
 ireversed | Whether the IME is reversed or not (clockwise turn increases vs. decreases ticks)
 
+This class also has literals available:
+
+Literal | IME Value
+--------|-------------
+`n_ime` | `IME(n, false)`
+`n_rime` | `IME(n, true)`
+
 ### get
 
 ```c++

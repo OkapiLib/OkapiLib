@@ -249,7 +249,8 @@ Constructor //Signature explicit constexpr CubicMotor() explicit constexpr Cubic
       
       <guid>https://okapilib.github.io/OkapiLib/api/device/ime/</guid>
       <description>IME The IME class is a simple container for an IME. Inherits from RotarySensor.
-Constructor //Signature IME(const unsigned int iindex) IME(const unsigned int iindex, const bool ireversed)     Parameter Description     iindex IME index in the chain   ireversed Whether the IME is reversed or not (clockwise turn increases vs. decreases ticks)    get //Signature int get() override  Return the current tick count.</description>
+Constructor //Signature IME(const unsigned int iindex) IME(const unsigned int iindex, const bool ireversed)     Parameter Description     iindex IME index in the chain   ireversed Whether the IME is reversed or not (clockwise turn increases vs. decreases ticks)    This class also has literals available:
+   Literal IME Value     n_ime IME(n, false)   n_rime IME(n, true)    get //Signature int get() override  Return the current tick count.</description>
     </item>
     
     <item>
