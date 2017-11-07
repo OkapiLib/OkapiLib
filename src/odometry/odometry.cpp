@@ -2,6 +2,7 @@
 #include "odometry/odometry.h"
 #include "util/mathUtil.h"
 #include <API.h>
+#include "PAL/PAL.h"
 
 namespace okapi {
   void Odometry::guessScales(const float chassisDiam, const float wheelDiam, const float ticksPerRev) {
@@ -10,7 +11,7 @@ namespace okapi {
   }
 
   OdomState Odometry::loop() {
-    unsigned long now = millis();
+    unsigned long now = PAL::millis();
     std::valarray<int> newTicks{0, 0}, tickDiff{0, 0};
 
     while (true) {
@@ -28,7 +29,7 @@ namespace okapi {
       state.x += mm * std::cos(state.theta);
       state.y += mm * std::sin(state.theta);
 
-      taskDelayUntil(&now, 15);
+      PAL::taskDelayUntil(&now, 15);
     }
   }
 }

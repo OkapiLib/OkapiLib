@@ -1,6 +1,7 @@
 #include <cmath>
 #include <API.h>
 #include "control/pid.h"
+#include "PAL/PAL.h"
 
 namespace okapi {
   void Pid::setSampleTime(const int isampleTime) {
@@ -55,7 +56,7 @@ namespace okapi {
     using namespace std; //Needed to get copysign to compile
 
     if (isOn) {
-      const long now = millis();
+      const long now = PAL::millis();
 
       if (now - lastTime >= sampleTime) {
         error = target - inewReading;

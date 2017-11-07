@@ -1,6 +1,7 @@
 #include <cmath>
 #include <API.h>
 #include "control/velPid.h"
+#include "PAL/PAL.h"
 
 namespace okapi {
   void VelPid::setGains(const float ikP, const float ikD) {
@@ -39,7 +40,7 @@ namespace okapi {
 
   float VelPid::step(const float inewReading) {
     if (isOn) {
-      const long now = millis();
+      const long now = PAL::millis();
       if (now - lastTime >= sampleTime) {
         stepVel(inewReading);
         const float error = target - velMath.getOutput();

@@ -3,6 +3,7 @@
 
 #include <API.h>
 #include "device/rotarySensor.h"
+#include "PAL/PAL.h"
 
 namespace okapi {
   class IME : public RotarySensor {
@@ -17,8 +18,8 @@ namespace okapi {
         reversed(ireversed ? -1 : 1),
         val(0) {}
 
-    int get() override { imeGet(index, &val); return reversed * val; }
-    void reset() override { imeReset(index); }
+    int get() override { PAL::imeGet(index, &val); return reversed * val; }
+    void reset() override { PAL::imeReset(index); }
   private:
     unsigned int index;
     const int reversed;

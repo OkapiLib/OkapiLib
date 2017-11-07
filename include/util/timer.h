@@ -1,13 +1,13 @@
 #ifndef OKAPI_TIMER
 #define OKAPI_TIMER
 
-#include <API.h>
+#include "PAL/PAL.h"
 
 namespace okapi {
   class Timer {
   public:
     Timer():
-      firstCalled(millis()),
+      firstCalled(PAL::millis()),
       lastCalled(0),
       mark(0),
       hardMark(-1),

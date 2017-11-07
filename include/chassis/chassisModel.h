@@ -9,6 +9,7 @@
 #include "device/ime.h"
 #include "device/motor.h"
 #include "device/quadEncoder.h"
+#include "PAL/PAL.h"
 
 namespace okapi {
   class ChassisModel {

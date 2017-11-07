@@ -1,12 +1,13 @@
 #include "chassis/chassisController.h"
 #include "util/timer.h"
+#include "PAL/PAL.h"
 #include <cmath>
 
 namespace okapi {
   void ChassisControllerPid::driveStraight(const int itarget) {
     const auto encStartVals = model->getSensorVals();
     float distanceElapsed = 0, angleChange = 0, lastDistance = 0;
-    unsigned long prevWakeTime = millis();
+    unsigned long prevWakeTime = PAL::millis();
 
     distancePid.reset();
     anglePid.reset();
@@ -45,7 +46,7 @@ namespace okapi {
       if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod)
         atTarget = true;
 
-      taskDelayUntil(&prevWakeTime, 15);
+      PAL::taskDelayUntil(&prevWakeTime, 15);
     }
 
     model->driveForward(0);
@@ -54,7 +55,7 @@ namespace okapi {
   void ChassisControllerPid::pointTurn(float idegTarget) {
     const auto encStartVals = model->getSensorVals();
     float angleChange = 0, lastAngle = 0;
-    unsigned long prevWakeTime = millis();
+    unsigned long prevWakeTime = PAL::millis();
 
     while (idegTarget > 180)
       idegTarget -= 360;
@@ -92,7 +93,7 @@ namespace okapi {
       if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod)
         atTarget = true;
 
-      taskDelayUntil(&prevWakeTime, 15);
+      PAL::taskDelayUntil(&prevWakeTime, 15);
     }
 
     model->driveForward(0);
@@ -103,7 +104,7 @@ namespace okapi {
 
     const auto encStartVals = model->getSensorVals();
     float distanceElapsed = 0;
-    unsigned long prevWakeTime = millis();
+    unsigned long prevWakeTime = PAL::millis();
 
     std::valarray<int> encVals{0, 0};
 
@@ -112,8 +113,8 @@ namespace okapi {
       distanceElapsed = (encVals[0] + encVals[1]) / 2.0;
 
       model->driveForward(controller.step(distanceElapsed));
-
-      taskDelayUntil(&prevWakeTime, 15);
+      
+      PAL::taskDelayUntil(&prevWakeTime, 15);
     }
 
     model->driveForward(0);
@@ -124,7 +125,7 @@ namespace okapi {
 
     const auto encStartVals = model->getSensorVals();
     float angleChange = 0;
-    unsigned long prevWakeTime = millis();
+    unsigned long prevWakeTime = PAL::millis();
 
     std::valarray<int> encVals{0, 0};
 
@@ -134,7 +135,7 @@ namespace okapi {
 
       model->turnClockwise(controller.step(angleChange));
 
-      taskDelayUntil(&prevWakeTime, 15);
+      PAL::taskDelayUntil(&prevWakeTime, 15);
     }
 
     model->driveForward(0);

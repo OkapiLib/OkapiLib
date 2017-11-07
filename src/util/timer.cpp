@@ -1,8 +1,9 @@
 #include "util/timer.h"
+#include "PAL/PAL.h"
 
 namespace okapi {
   unsigned long Timer::getDt() {
-    const unsigned long currTime = millis();
+    const unsigned long currTime = PAL::millis();
     const unsigned long dt = currTime - lastCalled;
     lastCalled = currTime;
     return dt;
@@ -13,16 +14,16 @@ namespace okapi {
   }
 
   unsigned long Timer::getDtFromStart() const {
-    return millis() - firstCalled;
+    return PAL::millis() - firstCalled;
   }
 
   void Timer::placeMark() {
-    mark = millis();
+    mark = PAL::millis();
   }
 
   void Timer::placeHardMark() {
     if (hardMark == -1)
-      hardMark = millis();
+      hardMark = PAL::millis();
   }
 
   unsigned long Timer::clearHardMark() {
@@ -32,18 +33,18 @@ namespace okapi {
   }
 
   unsigned long Timer::getDtFromMark() const {
-    return millis() - mark;
+    return PAL::millis() - mark;
   }
 
   unsigned long Timer::getDtFromHardMark() const {
-    return hardMark == -1 ? 0 : millis() - hardMark;
+    return hardMark == -1 ? 0 : PAL::millis() - hardMark;
   }
 
   bool Timer::repeat(unsigned long ms) {
     if (repeatMark == -1)
-      repeatMark = millis();
+      repeatMark = PAL::millis();
 
-    if (millis() - repeatMark >= ms) {
+    if (PAL::millis() - repeatMark >= ms) {
       repeatMark = -1;
       return true;
     }

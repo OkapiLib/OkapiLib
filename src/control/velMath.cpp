@@ -1,9 +1,10 @@
 #include "control/velMath.h"
 #include <API.h>
+#include "PAL/PAL.h"
 
 namespace okapi {
   float VelMath::step(const float inewPos) {
-    const long now = millis();
+    const long now = PAL::millis();
 
     vel = (1000 / (now - lastTime)) * (inewPos - lastPos) * (60 / ticksPerRev);
     vel = filter.filter(vel);
