@@ -140,14 +140,14 @@ namespace okapi {
         static int putchar(int value) { return ::putchar(value); }
         __attribute__((always_inline))
         static int puts(const char *string) { return ::puts(string); }
-        __attribute__((always_inline))
-        static int fprintf(PROS_FILE *stream, const char *formatString, ...);
-        __attribute__((always_inline))
-        static int printf(const char *formatString, ...);
-        __attribute__((always_inline))
-        static int snprintf(char *buffer, size_t limit, const char *formatString, ...);
-        __attribute__((always_inline))
-        static int sprintf(char *buffer, const char *formatString, ...);
+        // __attribute__((always_inline))
+        // static int fprintf(PROS_FILE *stream, const char *formatString, ...);
+        // __attribute__((always_inline))
+        // static int printf(const char *formatString, ...);
+        // __attribute__((always_inline))
+        // static int snprintf(char *buffer, size_t limit, const char *formatString, ...);
+        // __attribute__((always_inline))
+        // static int sprintf(char *buffer, const char *formatString, ...);
         __attribute__((always_inline))
         static void lcdClear(PROS_FILE *lcdPort) { ::lcdClear(lcdPort); }
         __attribute__((always_inline))
