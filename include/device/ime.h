@@ -16,7 +16,7 @@ namespace okapi {
         reversed(ireversed ? -1 : 1) {}
 
     int get() override { imeGet(index, &val); return reversed * val; }
-    void reset() override { val = 0; }
+    void reset() override { imeReset(index); }
   private:
     unsigned int index;
     const int reversed;
