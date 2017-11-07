@@ -1236,6 +1236,85 @@ virtual void set(const int val) const
 </tbody>
 </table>
 
+<h2 id="cubicslewmotor">CubicSlewMotor</h2>
+
+<p>The <code>CubicSlewMotor</code> class adds a slew rate to the <code>CubicMotor</code> class.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+CubicSlewMotor(const CubicMotor&amp; imotor, const float islewRate)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imotor</td>
+<td>Motor to slew</td>
+</tr>
+
+<tr>
+<td>islewRate</td>
+<td>Slew rate</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="set">set</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void set(const int val) const
+</code></pre>
+
+<p>Slew the power of this motor up to <code>val</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Target motor power</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setts">setTS</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void set(const int val) const
+</code></pre>
+
+<p>Slew the power of this motor up to <code>val</code> using trueSpeed.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Target motor power</td>
+</tr>
+</tbody>
+</table>
+
 <h2 id="demafilter">DemaFilter</h2>
 
 <p>The <code>DemaFilter</code> class inherits from <code>Filter</code>. It is an infinite impulse response (IIR) filter that implements the double exponential moving average algorithm (EMA). This is very similar to the normal EMA, except it can pick up on trends in data and follow the current trend until a new trend starts. This filter performs better than a single EMA when data frequently follows a trend.</p>
@@ -1947,7 +2026,7 @@ virtual void set(const int val) const
 virtual void set(const int val) const
 </code></pre>
 
-<p>Set the power of this motor using trueSpeed. The trueSpeed array can be changed in the file <code>include/device/motor.h</code>.</p>
+<p>Set the power of this motor using trueSpeed.</p>
 
 <table>
 <thead>
@@ -3602,6 +3681,85 @@ SkidSteerModelParams(const std::array&lt;Motor, motorsPerSide * 2&gt;&amp; imoto
 <tr>
 <td>irightIME</td>
 <td>The IME for the right side</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="slewmotor">SlewMotor</h2>
+
+<p>The <code>SlewMotor</code> class adds a slew rate to the <code>Motor</code> class.</p>
+
+<h3 id="constructor">Constructor</h3>
+
+<pre><code class="language-c++">//Signature
+SlewMotor(const Motor&amp; imotor, const float islewRate)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>imotor</td>
+<td>Motor to slew</td>
+</tr>
+
+<tr>
+<td>islewRate</td>
+<td>Slew rate</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="set">set</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void set(const int val) const
+</code></pre>
+
+<p>Slew the power of this motor up to <code>val</code>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Target motor power</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setts">setTS</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void set(const int val) const
+</code></pre>
+
+<p>Slew the power of this motor up to <code>val</code> using trueSpeed.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Target motor power</td>
 </tr>
 </tbody>
 </table>

@@ -62,6 +62,9 @@ namespace okapi {
 
     explicit constexpr CubicMotor(const int iport, const int isign):
       Motor(iport, isign) {}
+      
+    constexpr CubicMotor(const CubicMotor& other):
+      CubicMotor(other.port, other.sign) {}
 
     virtual void set(const int val) const override {
       if (val > 127)
@@ -74,7 +77,7 @@ namespace okapi {
         motorSet(port, motor::cubicSpeed[val] * sign);
     }
 
-    virtual void setTS(const int val) const override { Motor::set(val); }
+    virtual void setTS(const int val) const override { Motor::setTS(val); }
   };
 
   class SlewMotor : public Motor {
@@ -84,6 +87,19 @@ namespace okapi {
       slewRate(islewRate) {}
 
     virtual void set(const int val) {
+      slew(val);
+      Motor::set((int)artSpeed);
+    }
+
+    virtual void setTS(const int val) {
+      slew(val);
+      Motor::setTS((int)artSpeed);
+    }
+  protected:
+    float slewRate, artSpeed = 0;
+
+    __attribute__((always_inline))
+    void slew(const int val) {
       if (artSpeed != val) {
         if (val > artSpeed) {
           artSpeed += slewRate;
@@ -94,19 +110,49 @@ namespace okapi {
           if (artSpeed < val)
             artSpeed = val;
         }
-
-        Motor::set((int)artSpeed);
       }
     }
-  private:
+  };
+
+  class CubicSlewMotor : public CubicMotor {
+  public:
+    CubicSlewMotor(const CubicMotor& imotor, const float islewRate):
+      CubicMotor(imotor),
+      slewRate(islewRate) {}
+    
+    virtual void set(const int val) {
+      slew(val);
+      CubicMotor::set((int)artSpeed);
+    }
+
+    virtual void setTS(const int val) {
+      slew(val);
+      CubicMotor::setTS((int)artSpeed);
+    }
+  protected:
     float slewRate, artSpeed = 0;
+    
+    __attribute__((always_inline))
+    void slew(const int val) {
+      if (artSpeed != val) {
+        if (val > artSpeed) {
+          artSpeed += slewRate;
+          if (artSpeed > val)
+            artSpeed = val;
+        } else if (val < artSpeed) {
+          artSpeed -= slewRate;
+          if (artSpeed < val)
+            artSpeed = val;
+        }
+      }
+    }
   };
 
   inline namespace literals {
     constexpr Motor operator"" _m(const unsigned long long int m) { return Motor(static_cast<unsigned char>(m), 1); }
     constexpr Motor operator"" _rm(const unsigned long long int m) { return Motor(static_cast<unsigned char>(m), -1); }
-    constexpr Motor operator"" _m3(const unsigned long long int m) { return CubicMotor(static_cast<unsigned char>(m), 1); }
-    constexpr Motor operator"" _rm3(const unsigned long long int m) { return CubicMotor(static_cast<unsigned char>(m), -1); }
+    constexpr CubicMotor operator"" _m3(const unsigned long long int m) { return CubicMotor(static_cast<unsigned char>(m), 1); }
+    constexpr CubicMotor operator"" _rm3(const unsigned long long int m) { return CubicMotor(static_cast<unsigned char>(m), -1); }
   }
 }
 

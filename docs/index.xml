@@ -244,6 +244,17 @@ Constructor //Signature explicit constexpr CubicMotor() explicit constexpr Cubic
     
     <item>
       <title></title>
+      <link>https://okapilib.github.io/OkapiLib/api/device/cubicslewmotor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiLib/api/device/cubicslewmotor/</guid>
+      <description>CubicSlewMotor The CubicSlewMotor class adds a slew rate to the CubicMotor class.
+Constructor //Signature CubicSlewMotor(const CubicMotor&amp;amp; imotor, const float islewRate)     Parameter Description     imotor Motor to slew   islewRate Slew rate    set //Signature virtual void set(const int val) const  Slew the power of this motor up to val.
+   Parameter Description     val Target motor power    setTS //Signature virtual void set(const int val) const  Slew the power of this motor up to val using trueSpeed.</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://okapilib.github.io/OkapiLib/api/device/ime/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -303,6 +314,17 @@ getFiltered //Signature int getFiltered()  Return the median measured range in c
       <description>RotarySensor (abstract) The RotarySensor class is a simple container for a sensor which spins indefinitely to measure rotation, like a QuadEncoder or an IME.
 get //Signature virtual int get() = 0  Return the current tick count.
 reset //Signature virtual void reset() = 0  Reset the tick count to zero.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://okapilib.github.io/OkapiLib/api/device/slewmotor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://okapilib.github.io/OkapiLib/api/device/slewmotor/</guid>
+      <description>SlewMotor The SlewMotor class adds a slew rate to the Motor class.
+Constructor //Signature SlewMotor(const Motor&amp;amp; imotor, const float islewRate)     Parameter Description     imotor Motor to slew   islewRate Slew rate    set //Signature virtual void set(const int val) const  Slew the power of this motor up to val.
+   Parameter Description     val Target motor power    setTS //Signature virtual void set(const int val) const  Slew the power of this motor up to val using trueSpeed.</description>
     </item>
     
     <item>

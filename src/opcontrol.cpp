@@ -61,7 +61,9 @@ void operatorControl() {
   GenericController<2> liftController({8_m, 9_m}, std::make_shared<NsPid>(NsPid(PidParams(0.2, 0.1, 0.1), VelMathParams(360), 0.5)));
 
 	constexpr int liftUpTarget = 2570, lift34 = 300, liftDownTarget = 10;
-	int target = liftUpTarget;
+  int target = liftUpTarget;
+  
+  SlewMotor foo(1_m3, 10);
 
 	while (1) {
 		if (joystickGetDigital(1, 6, JOY_UP))

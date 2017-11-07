@@ -42,7 +42,7 @@ val | Motor power
 virtual void set(const int val) const
 ```
 
-Set the power of this motor using trueSpeed. The trueSpeed array can be changed in the file `include/device/motor.h`.
+Set the power of this motor using trueSpeed.
 
 Parameter | Description
 ----------|------------

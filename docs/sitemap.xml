@@ -95,6 +95,10 @@
   </url>
   
   <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/device/cubicslewmotor/</loc>
+  </url>
+  
+  <url>
     <loc>https://okapilib.github.io/OkapiLib/api/device/ime/</loc>
   </url>
   
@@ -116,6 +120,10 @@
   
   <url>
     <loc>https://okapilib.github.io/OkapiLib/api/device/rotarysensor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://okapilib.github.io/OkapiLib/api/device/slewmotor/</loc>
   </url>
   
   <url>

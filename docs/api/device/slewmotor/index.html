@@ -15,12 +15,12 @@
     
     <meta name="description" content="A PROS library for fast C&#43;&#43; development.">
     
-    <link rel="canonical" href="https://okapilib.github.io/OkapiLib/api/device/cubicmotor/">
+    <link rel="canonical" href="https://okapilib.github.io/OkapiLib/api/device/slewmotor/">
     
     <meta name="author" content="OkapiLib">
     
 
-    <meta property="og:url" content="https://okapilib.github.io/OkapiLib/api/device/cubicmotor/">
+    <meta property="og:url" content="https://okapilib.github.io/OkapiLib/api/device/slewmotor/">
     <meta property="og:title" content="Okapi Docs">
     <meta property="og:image" content="https://okapilib.github.io/OkapiLib/images/okapi.jpg">
     <meta name="apple-mobile-web-app-title" content="Okapi Docs">
@@ -299,15 +299,14 @@
 
 			
 
-<h2 id="cubicmotor">CubicMotor</h2>
+<h2 id="slewmotor">SlewMotor</h2>
 
-<p>The <code>CubicMotor</code> class provides a cubic-control based implementation of the <code>set</code> function <code>Motor</code> defines. This means that the motor power from <code>set</code> follows a cubic curve instead of the default identity function. The <code>setTS</code> function is not overridden and so provides the same behavior as in <code>Motor</code>.</p>
+<p>The <code>SlewMotor</code> class adds a slew rate to the <code>Motor</code> class.</p>
 
 <h3 id="constructor">Constructor</h3>
 
 <pre><code class="language-c++">//Signature
-explicit constexpr CubicMotor()
-explicit constexpr CubicMotor(const int iport, const int isign)
+SlewMotor(const Motor&amp; imotor, const float islewRate)
 </code></pre>
 
 <table>
@@ -320,36 +319,13 @@ explicit constexpr CubicMotor(const int iport, const int isign)
 
 <tbody>
 <tr>
-<td>iport</td>
-<td>Motor port</td>
+<td>imotor</td>
+<td>Motor to slew</td>
 </tr>
 
 <tr>
-<td>isign</td>
-<td><code>1</code> for forward, <code>-1</code> for reversed</td>
-</tr>
-</tbody>
-</table>
-
-<p>This class also has literals available:</p>
-
-<table>
-<thead>
-<tr>
-<th>Literal</th>
-<th>Motor Value</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><code>n_m3</code></td>
-<td><code>CubicMotor(m, 1)</code></td>
-</tr>
-
-<tr>
-<td><code>n_rm3</code></td>
-<td><code>CubicMotor(m, -1)</code></td>
+<td>islewRate</td>
+<td>Slew rate</td>
 </tr>
 </tbody>
 </table>
@@ -360,7 +336,7 @@ explicit constexpr CubicMotor(const int iport, const int isign)
 virtual void set(const int val) const
 </code></pre>
 
-<p>Set the power of this motor using a cubic function. The exact math for the output of this function is <code>(val * val * val) / (127 * 127)</code>.</p>
+<p>Slew the power of this motor up to <code>val</code>.</p>
 
 <table>
 <thead>
@@ -373,7 +349,31 @@ virtual void set(const int val) const
 <tbody>
 <tr>
 <td>val</td>
-<td>Motor power</td>
+<td>Target motor power</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="setts">setTS</h3>
+
+<pre><code class="language-c++">//Signature
+virtual void set(const int val) const
+</code></pre>
+
+<p>Slew the power of this motor up to <code>val</code> using trueSpeed.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>val</td>
+<td>Target motor power</td>
 </tr>
 </tbody>
 </table>
@@ -393,7 +393,7 @@ virtual void set(const int val) const
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://okapilib.github.io/OkapiLib/api/device/button/" title="">
+      <a href="https://okapilib.github.io/OkapiLib/api/device/rotarysensor/" title="">
         <span class="direction">
           Previous
         </span>
@@ -413,7 +413,7 @@ virtual void set(const int val) const
 
   <div class="next">
   
-      <a href="https://okapilib.github.io/OkapiLib/api/device/cubicslewmotor/" title="">
+      <a href="https://okapilib.github.io/OkapiLib/api/filter/avgfilter/" title="">
         <span class="direction">
           Next
         </span>
