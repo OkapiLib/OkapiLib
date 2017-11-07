@@ -37,11 +37,13 @@ Analog Port | Description | Analog Port | Description
 
 ## Project Configuration
 
+If you are creating a new project, the easiest way to get up to speed is to download Okapi's provided [starter project](https://github.com/OkapiLib/StarterProject), which comes pre-configured with everything you need to start coding. Otherwise, you will have to follow the remaining steps in this section:
+
 After installing OkapiLib through the PROS Conductor tool, `okapilib.a` will be copied into `firmware/` and OkapiLib's header files will be copied into `include/`. In order to properly compile your project, you need to modify a few files:
 
 - The `src/` folder contains three files, `auto.c`, `init.c`, and `opcontrol.c`. The `.c` extension of these files needs to be changed to `.cpp` so the compiler knows they contain C++ code.
 
-- The `src/init.cpp` file needs to be changed so it instead contains the following code which calls a special internal function `__libc_init_array()`:
+- The `src/init.cpp` file needs to be changed so it contains the following code which calls a special internal function `__libc_init_array()`:
 
 ```c++
 #include "main.h"
@@ -51,10 +53,10 @@ extern "C" {
 }
 
 void initializeIO() {
-  __libc_init_array();
 }
 
 void initialize() {
+  __libc_init_array();
 }
 ```
 

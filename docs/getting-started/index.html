@@ -463,12 +463,14 @@
 
 <h2 id="project-configuration">Project Configuration</h2>
 
+<p>If you are creating a new project, the easiest way to get up to speed is to download Okapi&rsquo;s provided <a href="https://github.com/OkapiLib/StarterProject">starter project</a>, which comes pre-configured with everything you need to start coding. Otherwise, you will have to follow the remaining steps in this section:</p>
+
 <p>After installing OkapiLib through the PROS Conductor tool, <code>okapilib.a</code> will be copied into <code>firmware/</code> and OkapiLib&rsquo;s header files will be copied into <code>include/</code>. In order to properly compile your project, you need to modify a few files:</p>
 
 <ul>
 <li><p>The <code>src/</code> folder contains three files, <code>auto.c</code>, <code>init.c</code>, and <code>opcontrol.c</code>. The <code>.c</code> extension of these files needs to be changed to <code>.cpp</code> so the compiler knows they contain C++ code.</p></li>
 
-<li><p>The <code>src/init.cpp</code> file needs to be changed so it instead contains the following code which calls a special internal function <code>__libc_init_array()</code>:</p></li>
+<li><p>The <code>src/init.cpp</code> file needs to be changed so it contains the following code which calls a special internal function <code>__libc_init_array()</code>:</p></li>
 </ul>
 
 <pre><code class="language-c++">#include &quot;main.h&quot;
@@ -478,10 +480,10 @@ extern &quot;C&quot; {
 }
 
 void initializeIO() {
-  __libc_init_array();
 }
 
 void initialize() {
+  __libc_init_array();
 }
 </code></pre>
 
