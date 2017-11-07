@@ -2,7 +2,6 @@
 #define OKAPI_MOTOR
 
 #include <API.h>
-#include <cmath>
 
 namespace okapi {
   namespace motor {
