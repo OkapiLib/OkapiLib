@@ -1,7 +1,6 @@
 #include <cmath>
 #include "odometry/odometry.h"
 #include "util/mathUtil.h"
-#include <API.h>
 #include "PAL/PAL.h"
 
 namespace okapi {

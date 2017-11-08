@@ -1,7 +1,6 @@
 #ifndef OKAPI_RANGEFINDER
 #define OKAPI_RANGEFINDER
 
-#include <API.h>
 #include <array>
 #include "PAL/PAL.h"
 

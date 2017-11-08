@@ -4,7 +4,6 @@
 #include <cstddef>
 #include <array>
 #include "filter/filter.h"
-#include <API.h>
 
 namespace okapi {
   template<std::size_t n>

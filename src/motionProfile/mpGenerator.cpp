@@ -1,6 +1,5 @@
 #include <cmath>
 #include "motionProfile/mpGenerator.h"
-#include <API.h>
 
 namespace okapi {
     MotionProfile MPGenerator::generateProfile(const float idt) {
@@ -31,7 +30,7 @@ namespace okapi {
         const float squareTerm = b * b - 4 * a * c;
 
         if (squareTerm < 0) {
-            printf("ERROR: Cannot reach location\n");
+            // printf("ERROR: Cannot reach location\n");
             return 0;
         }
 
@@ -47,7 +46,7 @@ namespace okapi {
         if (option2 > 0 && option1 < 0)
             return option2;
         if (option1 < 0 && option2 < 0) {
-            printf("ERROR: Both time results are negative\n");
+            // printf("ERROR: Both time results are negative\n");
             return 0;
         }
 

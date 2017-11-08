@@ -1,7 +1,6 @@
 #ifndef OKAPI_BUTTON
 #define OKAPI_BUTTON
 
-#include <API.h>
 #include "PAL/PAL.h"
 
 namespace okapi {
