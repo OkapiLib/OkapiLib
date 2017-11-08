@@ -7,7 +7,7 @@ The `Motor` class provides a wrapper around the default motor utilities.
 ```c++
 //Signature
 explicit constexpr Motor()
-explicit constexpr Motor(const int iport, const int isign)
+explicit constexpr Motor(const unsigned char iport, const int isign)
 ```
 
 Parameter | Description

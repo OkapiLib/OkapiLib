@@ -327,7 +327,7 @@ AvgFilter()
 
 <pre><code class="language-c++">//Signature
 explicit constexpr Button()
-explicit constexpr Button(const unsigned long long int iport, const bool iinverted = false)
+explicit constexpr Button(const unsigned char iport, const bool iinverted = false)
 explicit constexpr Button(const unsigned char ijoystick, const unsigned char ibuttonGroup, const unsigned char ibutton, const bool iinverted = false)
 explicit constexpr Button(PROS_FILE* ilcdPort, const unsigned char ilcdButton, const bool iinverted = false)
 </code></pre>
@@ -1165,7 +1165,7 @@ virtual void flipDisable()
 
 <pre><code class="language-c++">//Signature
 explicit constexpr CubicMotor()
-explicit constexpr CubicMotor(const int iport, const int isign)
+explicit constexpr CubicMotor(const unsigned char iport, const int isign)
 </code></pre>
 
 <table>
@@ -1949,7 +1949,7 @@ MPTarget()
 
 <pre><code class="language-c++">//Signature
 explicit constexpr Motor()
-explicit constexpr Motor(const int iport, const int isign)
+explicit constexpr Motor(const unsigned char iport, const int isign)
 </code></pre>
 
 <table>
@@ -3409,8 +3409,8 @@ PidParams(const float ikP, const float ikI, const float ikD, const float ikBias 
 
 <pre><code class="language-c++">//Signature
 explicit constexpr Potentiometer()
-explicit constexpr Potentiometer(const unsigned long long int iport)
-explicit constexpr Potentiometer(const unsigned long long int iport, const bool iinverted)
+explicit constexpr Potentiometer(const unsigned char iport)
+explicit constexpr Potentiometer(const unsigned char iport, const bool iinverted)
 </code></pre>
 
 <table>

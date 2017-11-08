@@ -229,7 +229,7 @@ Constructor //Signature VelPid(const float ikP, const float ikD) VelPid(const Ve
       
       <guid>https://okapilib.github.io/OkapiLib/api/device/button/</guid>
       <description>Button The Button class is a sample wrapper around a digital input port that represents a button.
-Constructor //Signature explicit constexpr Button() explicit constexpr Button(const unsigned long long int iport, const bool iinverted = false) explicit constexpr Button(const unsigned char ijoystick, const unsigned char ibuttonGroup, const unsigned char ibutton, const bool iinverted = false) explicit constexpr Button(PROS_FILE* ilcdPort, const unsigned char ilcdButton, const bool iinverted = false)  Button or limit switch constructor:</description>
+Constructor //Signature explicit constexpr Button() explicit constexpr Button(const unsigned char iport, const bool iinverted = false) explicit constexpr Button(const unsigned char ijoystick, const unsigned char ibuttonGroup, const unsigned char ibutton, const bool iinverted = false) explicit constexpr Button(PROS_FILE* ilcdPort, const unsigned char ilcdButton, const bool iinverted = false)  Button or limit switch constructor:</description>
     </item>
     
     <item>
@@ -239,7 +239,7 @@ Constructor //Signature explicit constexpr Button() explicit constexpr Button(co
       
       <guid>https://okapilib.github.io/OkapiLib/api/device/cubicmotor/</guid>
       <description>CubicMotor The CubicMotor class provides a cubic-control based implementation of the set function Motor defines. This means that the motor power from set follows a cubic curve instead of the default identity function. The setTS function is not overridden and so provides the same behavior as in Motor.
-Constructor //Signature explicit constexpr CubicMotor() explicit constexpr CubicMotor(const int iport, const int isign)     Parameter Description     iport Motor port   isign 1 for forward, -1 for reversed    This class also has literals available:</description>
+Constructor //Signature explicit constexpr CubicMotor() explicit constexpr CubicMotor(const unsigned char iport, const int isign)     Parameter Description     iport Motor port   isign 1 for forward, -1 for reversed    This class also has literals available:</description>
     </item>
     
     <item>
@@ -271,7 +271,7 @@ Constructor //Signature IME(const unsigned int iindex) IME(const unsigned int ii
       
       <guid>https://okapilib.github.io/OkapiLib/api/device/motor/</guid>
       <description>Motor The Motor class provides a wrapper around the default motor utilities.
-Constructor //Signature explicit constexpr Motor() explicit constexpr Motor(const int iport, const int isign)     Parameter Description     iport Motor port   isign 1 for forward, -1 for reversed    This class also has literals available:
+Constructor //Signature explicit constexpr Motor() explicit constexpr Motor(const unsigned char iport, const int isign)     Parameter Description     iport Motor port   isign 1 for forward, -1 for reversed    This class also has literals available:
    Literal Motor Value     n_m Motor(m, 1)   n_rm Motor(m, -1)    set //Signature virtual void set(const int val) const  Set the power of this motor.</description>
     </item>
     
@@ -281,7 +281,7 @@ Constructor //Signature explicit constexpr Motor() explicit constexpr Motor(cons
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://okapilib.github.io/OkapiLib/api/device/potentiometer/</guid>
-      <description>Potentiometer Constructor //Signature explicit constexpr Potentiometer() explicit constexpr Potentiometer(const unsigned long long int iport) explicit constexpr Potentiometer(const unsigned long long int iport, const bool iinverted)     Parameter Description     iport Analog input port   iinverted Whether the potentiometer is inverted (range is 0-&amp;gt;4095 or 4095-&amp;gt;0)    This class also has literals available:
+      <description>Potentiometer Constructor //Signature explicit constexpr Potentiometer() explicit constexpr Potentiometer(const unsigned char iport) explicit constexpr Potentiometer(const unsigned char iport, const bool iinverted)     Parameter Description     iport Analog input port   iinverted Whether the potentiometer is inverted (range is 0-&amp;gt;4095 or 4095-&amp;gt;0)    This class also has literals available:
    Literal Potentiometer Value     n_p Potentiometer(n, false)   n_ip Potentiometer(n, true)    get //Signature int get() const  Return the value of this potentiometer.</description>
     </item>
     

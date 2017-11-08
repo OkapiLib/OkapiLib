@@ -7,7 +7,7 @@ The `CubicMotor` class provides a cubic-control based implementation of the `set
 ```c++
 //Signature
 explicit constexpr CubicMotor()
-explicit constexpr CubicMotor(const int iport, const int isign)
+explicit constexpr CubicMotor(const unsigned char iport, const int isign)
 ```
 
 Parameter | Description
