@@ -36,7 +36,7 @@ OUTNAME=output.elf
 # Flags for programs
 AFLAGS:=$(MCUAFLAGS)
 ARFLAGS:=$(MCUCFLAGS)
-CCFLAGS:=-c -Wall -pedantic -Wextra -Wconversion $(MCUCFLAGS) -O2 -ffunction-sections -fsigned-char -fomit-frame-pointer -fsingle-precision-constant
+CCFLAGS:=-c -Wall -pedantic -Wextra -Wconversion -Wno-implicit-fallthrough -Wmissing-include-dirs $(MCUCFLAGS) -O2 -ffunction-sections -fsigned-char -fomit-frame-pointer -fsingle-precision-constant
 CFLAGS:=$(CCFLAGS) -std=gnu99 -Werror=implicit-function-declaration
 CPPFLAGS:=$(CCFLAGS) -std=c++14 -fno-exceptions -fno-rtti -felide-constructors
 LDFLAGS:=-Wall $(MCUCFLAGS) $(MCULFLAGS) -Wl,--gc-sections

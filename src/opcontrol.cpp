@@ -77,8 +77,8 @@ void operatorControl() {
 			while (joystickGetDigital(1, 8, JOY_LEFT));
 		}
 
-    liftController.setTarget(target);
-    liftController.step(analogRead(liftPot));
+    liftController.setTarget(static_cast<float>(target));
+    liftController.step(static_cast<float>(analogRead(liftPot)));
 
     controller.arcade(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1));
     

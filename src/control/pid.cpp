@@ -6,7 +6,7 @@
 namespace okapi {
   void Pid::setSampleTime(const int isampleTime) {
     if (isampleTime > 0) {
-      const float ratio = isampleTime / (float)sampleTime;
+      const float ratio = static_cast<float>(isampleTime) / static_cast<float>(sampleTime);
       kI *= ratio;
       kD /= ratio;
       sampleTime = isampleTime;
@@ -92,7 +92,7 @@ namespace okapi {
   }
 
   void Pid::setGains(const float ikP, const float ikI, const float ikD, const float ikBias) {
-    const float sampleTimeSec = sampleTime / 1000.0;
+    const float sampleTimeSec = static_cast<float>(sampleTime) / 1000.0;
     kP = ikP;
     kI = ikI * sampleTimeSec;
     kD = ikD * sampleTimeSec;

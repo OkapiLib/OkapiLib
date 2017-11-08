@@ -6,12 +6,12 @@
 namespace okapi {
   void VelPid::setGains(const float ikP, const float ikD) {
     kP = ikP;
-    kD = ikD * sampleTime / 1000.0;
+    kD = ikD * static_cast<float>(sampleTime) / 1000.0;
   }
 
   void VelPid::setSampleTime(const int isampleTime) {
     if (isampleTime > 0) {
-      kD /= isampleTime / (float)sampleTime;
+      kD /= static_cast<float>(isampleTime) / static_cast<float>(sampleTime);
       sampleTime = isampleTime;
     }
   }

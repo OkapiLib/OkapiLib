@@ -13,7 +13,7 @@ namespace okapi {
 
     if (std::abs(daa.length - ioffset) > moveThreshold) {
       ChassisControllerPid::pointTurn(daa.theta);
-      ChassisControllerPid::driveStraight(daa.length - ioffset);
+      ChassisControllerPid::driveStraight(static_cast<int>(daa.length - ioffset));
     }
   }
 
@@ -31,7 +31,7 @@ namespace okapi {
 
     if (std::abs(daa.length - ioffset) > moveThreshold) {
       ChassisControllerMP::pointTurn(daa.theta);
-      ChassisControllerMP::driveStraight(daa.length - ioffset);
+      ChassisControllerMP::driveStraight(static_cast<int>(daa.length - ioffset));
     }
   }
 

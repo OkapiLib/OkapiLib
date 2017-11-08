@@ -17,10 +17,10 @@ namespace okapi {
     while (true) {
       newTicks = model->getSensorVals();
       tickDiff = newTicks - lastTicks;
-      mm = ((tickDiff[1] + tickDiff[0]) / 2.0) * scale;
+      mm = (static_cast<float>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
       lastTicks = newTicks;
 
-      state.theta += ((tickDiff[1] - tickDiff[0]) / 2.0) * turnScale;
+      state.theta += (static_cast<float>(tickDiff[1] - tickDiff[0]) / 2.0) * turnScale;
       if (state.theta > 180)
         state.theta -= 360;
       else if (state.theta < -180)

@@ -86,7 +86,7 @@ namespace okapi {
         const float distAtMaxVel = targetPos - distFromAccel - distToStop;
         const float timeWithMax = distAtMaxVel / maxVel;
 
-        const float dir = 1 - 2 * static_cast<int>(startVel > maxVel || endVel > maxVel);
+        const float dir = 1 - 2 * static_cast<float>(startVel > maxVel || endVel > maxVel);
 
         if (timeToMaxVel < itime) {
             if (dir * (distFromAccel + distFromMaxVel + distToStop) < targetPos * dir) {

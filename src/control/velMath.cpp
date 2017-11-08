@@ -6,7 +6,7 @@ namespace okapi {
   float VelMath::step(const float inewPos) {
     const long now = PAL::millis();
 
-    vel = (1000 / (now - lastTime)) * (inewPos - lastPos) * (60 / ticksPerRev);
+    vel = static_cast<float>((1000 / (now - lastTime))) * (inewPos - lastPos) * (60 / ticksPerRev);
     vel = filter.filter(vel);
 
     lastPos = inewPos;

@@ -5,6 +5,8 @@
 
 namespace okapi {
   void ChassisControllerPid::driveStraight(const int itarget) {
+    using namespace std;
+
     const auto encStartVals = model->getSensorVals();
     float distanceElapsed = 0, angleChange = 0, lastDistance = 0;
     unsigned long prevWakeTime = PAL::millis();
@@ -22,7 +24,7 @@ namespace okapi {
 
     const int timeoutPeriod = 250;
 
-    std::valarray<int> encVals{0, 0};
+    valarray<int> encVals{0, 0};
     float distOutput, angleOutput;
 
     while (!atTarget) {
@@ -34,9 +36,9 @@ namespace okapi {
       angleOutput = anglePid.step(angleChange);
       model->driveVector(static_cast<int>(distOutput), static_cast<int>(angleOutput));
 
-      if (std::abs(itarget - distanceElapsed) <= atTargetDistance)
+      if (abs(itarget - static_cast<int>(distanceElapsed)) <= atTargetDistance)
         atTargetTimer.placeHardMark();
-      else if (std::abs(distanceElapsed - lastDistance) <= threshold)
+      else if (abs(static_cast<int>(distanceElapsed) - static_cast<int>(lastDistance)) <= threshold)
         atTargetTimer.placeHardMark();
       else
         atTargetTimer.clearHardMark();
@@ -53,6 +55,8 @@ namespace okapi {
   }
 
   void ChassisControllerPid::pointTurn(float idegTarget) {
+    using namespace std;
+    
     const auto encStartVals = model->getSensorVals();
     float angleChange = 0, lastAngle = 0;
     unsigned long prevWakeTime = PAL::millis();
@@ -73,7 +77,7 @@ namespace okapi {
 
     const int timeoutPeriod = 250;
 
-    std::valarray<int> encVals{0, 0};
+    valarray<int> encVals{0, 0};
 
     while (!atTarget) {
       encVals = model->getSensorVals() - encStartVals;
@@ -81,9 +85,9 @@ namespace okapi {
 
       model->turnClockwise(static_cast<int>(anglePid.step(angleChange)));
 
-      if (std::abs(idegTarget - angleChange) <= atTargetAngle)
+      if (fabs(idegTarget - angleChange) <= atTargetAngle)
         atTargetTimer.placeHardMark();
-      else if (std::abs(angleChange - lastAngle) <= threshold)
+      else if (fabs(angleChange - lastAngle) <= threshold)
         atTargetTimer.placeHardMark();
       else
         atTargetTimer.clearHardMark();
