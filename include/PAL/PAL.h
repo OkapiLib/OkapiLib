@@ -1,7 +1,9 @@
 #ifndef OKAPI_PAL
 #define OKAPI_PAL
 
+#ifndef DEBUG
 #include <API.h>
+#endif
 
 namespace okapi {
     class PAL {
