@@ -6,6 +6,8 @@
 namespace okapi {
     class PAL {
     public:
+        #ifdef DEBUG
+        #else
         __attribute__((always_inline))
         static bool isAutonomous() { return ::isAutonomous(); }
         __attribute__((always_inline))
@@ -214,6 +216,7 @@ namespace okapi {
         static void watchdogInit() { ::watchdogInit(); }
         __attribute__((always_inline))
         static void standaloneModeEnable() { ::standaloneModeEnable(); }
+        #endif
     };
 }
 

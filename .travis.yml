@@ -14,3 +14,5 @@ compiler: gcc
 
 script:
   - make all MCUPREFIX=~/gcc-arm-none-eabi-4_9-2014q4/bin/arm-none-eabi-
+
+# test: make all CCFLAGS+=-DDEBUG
