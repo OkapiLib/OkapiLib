@@ -17,7 +17,7 @@ namespace okapi {
       isLCD(false),
       wasPressedLast(false) {}
       
-    explicit constexpr Button(const unsigned long long int iport, const bool iinverted = false):
+    explicit constexpr Button(const unsigned char iport, const bool iinverted = false):
       joystick(1),
       buttonGroup(8),
       port(iport),

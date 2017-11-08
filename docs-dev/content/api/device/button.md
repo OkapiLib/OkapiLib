@@ -7,7 +7,7 @@ The `Button` class is a sample wrapper around a digital input port that represen
 ```c++
 //Signature
 explicit constexpr Button()
-explicit constexpr Button(const unsigned long long int iport, const bool iinverted = false)
+explicit constexpr Button(const unsigned char iport, const bool iinverted = false)
 explicit constexpr Button(const unsigned char ijoystick, const unsigned char ibuttonGroup, const unsigned char ibutton, const bool iinverted = false)
 explicit constexpr Button(PROS_FILE* ilcdPort, const unsigned char ilcdButton, const bool iinverted = false)
 ```

@@ -11,7 +11,7 @@ namespace okapi {
 
     distancePid.reset();
     anglePid.reset();
-    distancePid.setTarget(itarget);
+    distancePid.setTarget(static_cast<float>(itarget));
     anglePid.setTarget(0);
 
     bool atTarget = false;
@@ -27,12 +27,12 @@ namespace okapi {
 
     while (!atTarget) {
       encVals = model->getSensorVals() - encStartVals;
-      distanceElapsed = (encVals[0] + encVals[1]) / 2.0;
-      angleChange = encVals[0] - encVals[1];
+      distanceElapsed = static_cast<float>((encVals[0] + encVals[1])) / 2.0;
+      angleChange = static_cast<float>(encVals[1] - encVals[0]);
 
       distOutput = distancePid.step(distanceElapsed);
       angleOutput = anglePid.step(angleChange);
-      model->driveVector(distOutput, angleOutput);
+      model->driveVector(static_cast<int>(distOutput), static_cast<int>(angleOutput));
 
       if (std::abs(itarget - distanceElapsed) <= atTargetDistance)
         atTargetTimer.placeHardMark();
@@ -63,7 +63,7 @@ namespace okapi {
       idegTarget += 360;
 
     anglePid.reset();
-    anglePid.setTarget(idegTarget);
+    anglePid.setTarget(static_cast<float>(idegTarget));
 
     bool atTarget = false;
     const int atTargetAngle = 10;
@@ -77,9 +77,9 @@ namespace okapi {
 
     while (!atTarget) {
       encVals = model->getSensorVals() - encStartVals;
-      angleChange = encVals[1] - encVals[0];
+      angleChange = static_cast<float>(encVals[1] - encVals[0]);
 
-      model->turnClockwise(anglePid.step(angleChange));
+      model->turnClockwise(static_cast<int>(anglePid.step(angleChange)));
 
       if (std::abs(idegTarget - angleChange) <= atTargetAngle)
         atTargetTimer.placeHardMark();
@@ -100,7 +100,7 @@ namespace okapi {
   }
 
   void ChassisControllerMP::driveStraight(const int itarget) {
-    controller.setTarget(itarget);
+    controller.setTarget(static_cast<float>(itarget));
 
     const auto encStartVals = model->getSensorVals();
     float distanceElapsed = 0;
@@ -110,9 +110,9 @@ namespace okapi {
 
     while (!controller.isComplete()) {
       encVals = model->getSensorVals() - encStartVals;
-      distanceElapsed = (encVals[0] + encVals[1]) / 2.0;
+      distanceElapsed = static_cast<float>((encVals[0] + encVals[1])) / 2.0;
 
-      model->driveForward(controller.step(distanceElapsed));
+      model->driveForward(static_cast<int>(controller.step(distanceElapsed)));
       
       PAL::taskDelayUntil(&prevWakeTime, 15);
     }
@@ -121,7 +121,7 @@ namespace okapi {
   }
 
   void ChassisControllerMP::pointTurn(float idegTarget) {
-    controller.setTarget(idegTarget); //TODO: Might not be able to use the same params for turning
+    controller.setTarget(static_cast<float>(idegTarget)); //TODO: Might not be able to use the same params for turning
 
     const auto encStartVals = model->getSensorVals();
     float angleChange = 0;
@@ -131,9 +131,9 @@ namespace okapi {
 
     while (!controller.isComplete()) {
       encVals = model->getSensorVals() - encStartVals;
-      angleChange = encVals[1] - encVals[0];
+      angleChange = static_cast<float>(encVals[1] - encVals[0]);
 
-      model->turnClockwise(controller.step(angleChange));
+      model->turnClockwise(static_cast<int>(controller.step(angleChange)));
 
       PAL::taskDelayUntil(&prevWakeTime, 15);
     }

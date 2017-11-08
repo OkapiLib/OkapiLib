@@ -29,7 +29,7 @@ namespace okapi {
       port(0),
       sign(1) {}
 
-    explicit constexpr Motor(const int iport, const int isign):
+    explicit constexpr Motor(const unsigned char iport, const int isign):
       port(iport),
       sign(isign) {}
 
@@ -60,7 +60,7 @@ namespace okapi {
     explicit constexpr CubicMotor():
       Motor() {}
 
-    explicit constexpr CubicMotor(const int iport, const int isign):
+    explicit constexpr CubicMotor(const unsigned char iport, const int isign):
       Motor(iport, isign) {}
       
     constexpr CubicMotor(const CubicMotor& other):
@@ -104,11 +104,11 @@ namespace okapi {
         if (val > artSpeed) {
           artSpeed += slewRate;
           if (artSpeed > val)
-            artSpeed = val;
+            artSpeed = static_cast<float>(val);
         } else if (val < artSpeed) {
           artSpeed -= slewRate;
           if (artSpeed < val)
-            artSpeed = val;
+            artSpeed = static_cast<float>(val);
         }
       }
     }
@@ -138,11 +138,11 @@ namespace okapi {
         if (val > artSpeed) {
           artSpeed += slewRate;
           if (artSpeed > val)
-            artSpeed = val;
+            artSpeed = static_cast<float>(val);
         } else if (val < artSpeed) {
           artSpeed -= slewRate;
           if (artSpeed < val)
-            artSpeed = val;
+            artSpeed = static_cast<float>(val);
         }
       }
     }

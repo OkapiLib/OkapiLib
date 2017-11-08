@@ -11,11 +11,11 @@ namespace okapi {
       port(0),
       inverted(false) {}
       
-    explicit constexpr Potentiometer(const unsigned long long int iport):
+    explicit constexpr Potentiometer(const unsigned char iport):
       port(iport),
       inverted(false) {}
 
-    explicit constexpr Potentiometer(const unsigned long long int iport, const bool iinverted):
+    explicit constexpr Potentiometer(const unsigned char iport, const bool iinverted):
       port(iport),
       inverted(iinverted) {}
 

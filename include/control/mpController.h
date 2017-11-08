@@ -23,12 +23,12 @@ namespace okapi {
     MPController(const MPGenParams& igenParams, const MPConsumerParams& iconParams):
       mpGen(igenParams),
       mpCon(iconParams),
-      profile(mpGen.generateProfile(dt)) {}
+      profile(mpGen.generateProfile(static_cast<float>(dt))) {}
 
     MPController(const MPControllerParams& iparams):
       mpGen(iparams.mpGenParams),
       mpCon(iparams.mpConParams),
-      profile(mpGen.generateProfile(dt)) {}
+      profile(mpGen.generateProfile(static_cast<float>(dt))) {}
 
     virtual ~MPController() {
       delete &mpGen;
@@ -67,7 +67,7 @@ namespace okapi {
 
       target = itarget;
       mpGen.setTarget(itarget);
-      profile = mpGen.generateProfile(dt); //Have to regen profile with new target
+      profile = mpGen.generateProfile(static_cast<float>(dt)); //Have to regen profile with new target
     }
 
     float getOutput() const override { return output; }
@@ -76,7 +76,7 @@ namespace okapi {
 
     void setSampleTime(const int isampleTime) override {
       dt = isampleTime;
-      profile = mpGen.generateProfile(dt); //Have to regen profile with new dt
+      profile = mpGen.generateProfile(static_cast<float>(dt)); //Have to regen profile with new dt
       reset();
     }
 
