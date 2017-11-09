@@ -1,7 +1,6 @@
 #ifndef OKAPI_POTENTIOMETER
 #define OKAPI_POTENTIOMETER
 
-#include <API.h>
 #include "PAL/PAL.h"
 
 namespace okapi {

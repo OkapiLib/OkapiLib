@@ -1,7 +1,6 @@
 #ifndef OKAPI_QUADENCODER
 #define OKAPI_QUADENCODER
 
-#include <API.h>
 #include "device/rotarySensor.h"
 #include "PAL/PAL.h"
 

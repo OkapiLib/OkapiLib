@@ -1,7 +1,6 @@
 #ifndef OKAPI_MOTOR
 #define OKAPI_MOTOR
 
-#include <API.h>
 #include "PAL/PAL.h"
 
 namespace okapi {

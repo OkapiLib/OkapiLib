@@ -6,7 +6,6 @@
 #include "control/mpController.h"
 #include "motionProfile/mpGenerator.h"
 #include "odometry/odometry.h"
-#include <API.h>
 #include <memory>
 
 namespace okapi {

@@ -1,7 +1,6 @@
 #ifndef OKAPI_IME
 #define OKAPI_IME
 
-#include <API.h>
 #include "device/rotarySensor.h"
 #include "PAL/PAL.h"
 

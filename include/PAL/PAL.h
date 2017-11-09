@@ -1,7 +1,8 @@
 #ifndef OKAPI_PAL
 #define OKAPI_PAL
 
-#ifndef DEBUG
+#ifdef DEBUG
+#else
 #include <API.h>
 #endif
 

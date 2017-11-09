@@ -1,5 +1,4 @@
 #include "control/velMath.h"
-#include <API.h>
 #include "PAL/PAL.h"
 
 namespace okapi {
