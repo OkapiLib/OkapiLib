@@ -8,7 +8,7 @@ namespace okapi {
     Pid::step(inewReading); //Main control loop
 
     //Check if velocity is sufficiently small
-    if (abs(velMath.step(inewReading)) < minVel) {
+    if (fabs(velMath.step(inewReading)) < minVel) {
       return scale * Pid::output;
     }
 
