@@ -22,16 +22,6 @@ Constructor //Signature ChassisController(const ChassisModelParams&amp;amp; imod
     
     <item>
       <title></title>
-      <link>https://okapilib.github.io/OkapiLib/api/chassiscontroller/chassiscontrollermp/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://okapilib.github.io/OkapiLib/api/chassiscontroller/chassiscontrollermp/</guid>
-      <description>ChassisControllerMP The ChassisControllerMP class inherits from ChassisController and implements its interface using motion profiling.
-Constructor //Signature ChassisControllerMP(const ChassisModelParams&amp;amp; imodelParams, const MPControllerParams&amp;amp; iparams) ChassisControllerMP(const std::shared_ptr&amp;lt;ChassisModel&amp;gt;&amp;amp; imodel, const MPControllerParams&amp;amp; iparams) //Make a new ChassisControllerMP using a skid steer model with two motors per side ChassisControllerMP foo( SkidSteerModelParams&amp;lt;2&amp;gt;({1, 3, 2, 4}, //The four motor ports encoderInit(1, 2, false), //Left encoder encoderInit(3, 4, true)), //Right encoder MPControllerParams( MPGenParams(1, 15, 1000), //MPGenerator params; max &amp;amp; min accel: 1, max vel: 15, target pos: 1000 MPConsumerParams(6, 1.</description>
-    </item>
-    
-    <item>
-      <title></title>
       <link>https://okapilib.github.io/OkapiLib/api/chassiscontroller/chassiscontrollerpid/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -48,16 +38,6 @@ Constructor //Signature ChassisControllerPid(const ChassisModelParams&amp;amp; i
       <guid>https://okapilib.github.io/OkapiLib/api/chassiscontroller/odomchassiscontroller/odomchassiscontroller/</guid>
       <description>OdomChassisController (abstract) The OdomChassisController class inherits from ChassisController. It extends the ChassisController interface to add odometry-based functionality.
 Constructor //Signature OdomChassisController(OdomParams iparams)     Parameter Description     iparams OdomParams (used to make a new Odometry)    This class creates a new task inside its constructor and references a static class (Odometry). Be careful and remember to only make one.  driveToPoint //Signature virtual void driveToPoint(const float ix, const float iy, const bool ibackwards = false, const float ioffset = 0) = 0     Parameter Description     ix X coordinate of destination   iy Y coordinate of destination   ibackwards Whether to drive to the destination backwards (default false)   ioffset How far back from the destination to stop (default 0)    Drive to the point (ix, iy) in the field frame.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://okapilib.github.io/OkapiLib/api/chassiscontroller/odomchassiscontroller/odomchassiscontrollermp/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://okapilib.github.io/OkapiLib/api/chassiscontroller/odomchassiscontroller/odomchassiscontrollermp/</guid>
-      <description>OdomChassisControllerMP The OdomChassisControllerMP class inherits from OdomChassisController and from ChassisControllerMP. It implements the OdomChassisController interface using motion profiling.
-Constructor //Signature OdomChassisControllerMP(const OdomParams&amp;amp; params, const MPControllerParams&amp;amp; iconparams) //Make a new ChassisControllerMP using a skid steer model with two motors per side OdomChassisControllerMP foo( OdomParams( SkidSteerModelParams&amp;lt;2&amp;gt;({1,3,2,4}, //The four motor ports encoderInit(1,2,false), //Left encoder encoderInit(3,4,true)), //Right encoder 1.345, //Distance scale (encoder ticks to mm) 12.88361), //Turn scale (encoder ticks to deg) MPControllerParams( MPGenParams(1, 15, 1000), //MPGenerator params; max &amp;amp; min accel: 1, max vel: 15, target pos: 1000 MPConsumerParams(6, 1.</description>
     </item>
     
     <item>
@@ -152,16 +132,6 @@ step //Signature virtual float step(const float ireading) = 0  Do one iteration 
       <guid>https://okapilib.github.io/OkapiLib/api/control/genericcontroller/</guid>
       <description>GenericController The GenericController class combines motors and a ControlObject into one package that uses the controller to control the motors as a group (all motors get the same controller output).
 Constructor //Signature GenericController(const std::array&amp;lt;Motor, motorNum&amp;gt; &amp;amp;imotorList, const std::shared_ptr&amp;lt;ControlObject&amp;gt; &amp;amp;iptr)     Parameter Description     imotorList std::array of Motor that will be controlled   iptr ControlObject used to control the motors    step //Signature void step(const float ireading)  Have the ControlObject do one iteration and then power the motors with the output.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://okapilib.github.io/OkapiLib/api/control/mpcontroller/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://okapilib.github.io/OkapiLib/api/control/mpcontroller/</guid>
-      <description>MPController The MPController class packages together an MPConsumer and an MPGenerator into one class which both generates and follows a motion profile.
-Constructor //Signature MPController(const MPGenParams&amp;amp; igenParams, const MPConsumerParams&amp;amp; iconParams) MPController(const MPControllerParams&amp;amp; iparams) //Basic MPController construction MPController foo(MPGenParams(1, 15, 1000), MPConsumerParams(6, 1.2, 0.5));     Parameter Description     igenParams MPGenParams   iconParams MPConsumerParams   iparams MPControllerParams    step //Signature float step(const float inewReading) override  Step the controller once over a new measurement and return the new response power.</description>
     </item>
     
     <item>
@@ -368,56 +338,6 @@ Constructor //Signature EmaFilter(const float ialpha, const float ibeta)     Par
 Constructor //Signature Filter()  The constructor does not take any parameters.
 filter //Signature virtual float filter(const float ireading) = 0;  Filter an input and return the filtered output.
 getOutput //Signature virtual float getOutput() const = 0;  Return the previous output.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://okapilib.github.io/OkapiLib/api/motionprofile/motionprofile/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://okapilib.github.io/OkapiLib/api/motionprofile/motionprofile/</guid>
-      <description>MotionProfile The MotionProfile class encapsulates the series of velocity and acceleration targets that make up a motion profile.
-   Member Description     data A vector of velocity and acceleration targets   distance The distance the motion profile travels   dt The timestep between targets    Constructor //Signature MotionProfile(const float idistance, const float idt)     Parameter Description     idistance The distance the motion profile travels   idt The timestep between targets    operator[] Pass the operator[] onto the internal std::vector.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://okapilib.github.io/OkapiLib/api/motionprofile/mpconsumer/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://okapilib.github.io/OkapiLib/api/motionprofile/mpconsumer/</guid>
-      <description>MPConsumer The MPConsumer class is a feed-forward closed-loop controller that follows a pre-generated motion profile.
-Constructor //Signature MPConsumer(const float ikV, const float ikA, const float ikP = 0) MPConsumer(const MPConsumerParams&amp;amp; iparams)     Parameter Description     iprofile A motion profile generated using MPGenerator   ikV Feed-forward velocity gain   ikA Feed-forward acceleration gain   ikP Feedback proportional gain (default = 0)    step //Signature virtual float step(const MotionProfile&amp;amp; profile, const float newReading)  Step the controller once over a new measurement and return the new response power.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://okapilib.github.io/OkapiLib/api/motionprofile/mpconsumerparams/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://okapilib.github.io/OkapiLib/api/motionprofile/mpconsumerparams/</guid>
-      <description> MPConsumerParams The MPConsumerParams class encapsulates the parameters an MPConsumer takes.
-Constructor //Signature MPConsumerParams(const float ikV, const float ikA, const float ikP = 0)     Parameter Description     ikV Feed-forward velocity gain   ikA Feed-forward acceleration gain   ikP Feedback proportional gain (default = 0)    </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://okapilib.github.io/OkapiLib/api/motionprofile/mpgenerator/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://okapilib.github.io/OkapiLib/api/motionprofile/mpgenerator/</guid>
-      <description>MPGenerator The MPGenerator class is a motion profile generator. It accepts position, velocity, and acceleration bounds and produces a motion profile within those bounds.
-Constructor //Signature MPGenerator(const float iaccel, const float imaxVel) MPGenerator(const float iaccel, const float imaxVel, const float itargetPos) MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos) MPGenerator(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel) MPGenerator(const MPGenParams&amp;amp; iparams)     Parameter Description     imaxAccel Maximum acceleration   iminAccel Minimum acceleration (i.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://okapilib.github.io/OkapiLib/api/motionprofile/mpgeneratorparams/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://okapilib.github.io/OkapiLib/api/motionprofile/mpgeneratorparams/</guid>
-      <description>MPGeneratorParams The MPGeneratorParams class encapsulates the parameters an MPGenerator takes.
-Constructor //Signature MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos, const float istartVel, const float iendVel) MPGenParams(const float imaxAccel, const float iminAccel, const float imaxVel, const float itargetPos) MPGenParams(const float iaccel, const float imaxVel, const float itargetPos) MPGenParams(const float iaccel, const float imaxVel) MPGenParams(const MPGenParams &amp;amp;other)     Parameter Description     imaxAccel Maximum acceleration   iminAccel Minimum acceleration (i.</description>
     </item>
     
     <item>

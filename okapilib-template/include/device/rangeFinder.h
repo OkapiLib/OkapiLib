@@ -1,8 +1,8 @@
 #ifndef OKAPI_RANGEFINDER
 #define OKAPI_RANGEFINDER
 
-#include <API.h>
 #include <array>
+#include "PAL/PAL.h"
 
 namespace okapi {
   class RangeFinder {
@@ -13,13 +13,13 @@ namespace okapi {
       index(0) {}
 
     int get() {
-      const int val = ultrasonicGet(ultra);
+      const int val = PAL::ultrasonicGet(ultra);
       vals[index++ % len] = val;
       return val;
     }
 
     int getFiltered() {
-      const int val = ultrasonicGet(ultra);
+      const int val = PAL::ultrasonicGet(ultra);
       vals[index++ % len] = val;
 
       sort(0, 1, index);

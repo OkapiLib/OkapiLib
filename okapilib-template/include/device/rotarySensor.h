@@ -1,8 +1,6 @@
 #ifndef OKAPI_ROTARYSENSOR
 #define OKAPI_ROTARYSENSOR
 
-#include <API.h>
-
 namespace okapi {
   class RotarySensor {
   public:

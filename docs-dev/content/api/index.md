@@ -12,7 +12,6 @@ Remember that derived classes inherit the interface of their base class; therefo
 {{< readfile file="content/api/filter/avgFilter.md" markdown="true" >}}
 {{< readfile file="content/api/device/button.md" markdown="true" >}}
 {{< readfile file="content/api/chassisController/chassisController.md" markdown="true" >}}
-{{< readfile file="content/api/chassisController/chassisControllerMP.md" markdown="true" >}}
 {{< warning title="Careful" >}}
 Most users should not call this constructor with a std::shared_ptr&lt;ChassisModel&gt;. Instead, pass a ChassisModelParams and Okapi will figure out what to do.
 {{< /warning >}}
@@ -32,16 +31,9 @@ Most users should not call this constructor with a std::shared_ptr&lt;ChassisMod
 {{< readfile file="content/api/control/genericController.md" markdown="true" >}}
 {{< readfile file="content/api/device/ime.md" markdown="true" >}}
 {{< readfile file="content/api/util/mathUtil.md" markdown="true" >}}
-{{< readfile file="content/api/motionProfile/motionProfile.md" markdown="true" >}}
 {{< readfile file="content/api/device/motor.md" markdown="true" >}}
-{{< readfile file="content/api/motionProfile/mpConsumer.md" markdown="true" >}}
-{{< readfile file="content/api/motionProfile/mpConsumerParams.md" markdown="true" >}}
-{{< readfile file="content/api/control/mpController.md" markdown="true" >}}
-{{< readfile file="content/api/motionProfile/mpGenerator.md" markdown="true" >}}
-{{< readfile file="content/api/motionProfile/mpGeneratorParams.md" markdown="true" >}}
 {{< readfile file="content/api/control/pid/nsPid.md" markdown="true" >}}
 {{< readfile file="content/api/chassisController/odomChassisController/odomChassisController.md" markdown="true" >}}
-{{< readfile file="content/api/chassisController/odomChassisController/odomChassisControllerMP.md" markdown="true" >}}
 {{< readfile file="content/api/chassisController/odomChassisController/odomChassisControllerPID.md" markdown="true" >}}
 {{< readfile file="content/api/odometry/odometry.md" markdown="true" >}}
 {{< readfile file="content/api/odometry/odomMath.md" markdown="true" >}}

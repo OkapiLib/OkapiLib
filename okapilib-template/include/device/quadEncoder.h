@@ -1,8 +1,8 @@
 #ifndef OKAPI_QUADENCODER
 #define OKAPI_QUADENCODER
 
-#include <API.h>
 #include "device/rotarySensor.h"
+#include "PAL/PAL.h"
 
 namespace okapi {
   class QuadEncoder : public RotarySensor {
@@ -13,8 +13,8 @@ namespace okapi {
     QuadEncoder(const unsigned char iportTop, const unsigned char iportBottom, const bool ireversed):
       enc(encoderInit(iportTop, iportBottom, ireversed)) {}
 
-    int get() override { return encoderGet(enc); }
-    void reset() override { encoderReset(enc); }
+    int get() override { return PAL::encoderGet(enc); }
+    void reset() override { PAL::encoderReset(enc); }
   private:
     const Encoder enc;
   };

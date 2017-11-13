@@ -1,8 +1,7 @@
 #ifndef OKAPI_MOTOR
 #define OKAPI_MOTOR
 
-#include <API.h>
-#include "HAL/HAL.h"
+#include "PAL/PAL.h"
 
 namespace okapi {
   namespace motor {
@@ -29,7 +28,7 @@ namespace okapi {
       port(0),
       sign(1) {}
 
-    explicit constexpr Motor(const int iport, const int isign):
+    explicit constexpr Motor(const unsigned char iport, const int isign):
       port(iport),
       sign(isign) {}
 
@@ -37,17 +36,17 @@ namespace okapi {
       port(other.port),
       sign(other.sign) {}
 
-    virtual void set(const int val) const { HAL::setMotor(port, val * sign); }
+    virtual void set(const int val) const { PAL::motorSet(port, val * sign); }
 
     virtual void setTS(const int val) const {
       if (val > 127)
-        HAL::setMotor(port, motor::trueSpeed[127] * sign);
+        PAL::motorSet(port, motor::trueSpeed[127] * sign);
       else if (val < -127)
-        HAL::setMotor(port, motor::trueSpeed[127] * -1 * sign);
+        PAL::motorSet(port, motor::trueSpeed[127] * -1 * sign);
       else if (val < 0)
-        HAL::setMotor(port, motor::trueSpeed[-1 * val] * -1 * sign);
+        PAL::motorSet(port, motor::trueSpeed[-1 * val] * -1 * sign);
       else
-        HAL::setMotor(port, motor::trueSpeed[val] * sign);
+        PAL::motorSet(port, motor::trueSpeed[val] * sign);
     }
 
   protected:
@@ -60,7 +59,7 @@ namespace okapi {
     explicit constexpr CubicMotor():
       Motor() {}
 
-    explicit constexpr CubicMotor(const int iport, const int isign):
+    explicit constexpr CubicMotor(const unsigned char iport, const int isign):
       Motor(iport, isign) {}
       
     constexpr CubicMotor(const CubicMotor& other):
@@ -68,13 +67,13 @@ namespace okapi {
 
     virtual void set(const int val) const override {
       if (val > 127)
-        HAL::setMotor(port, motor::cubicSpeed[127] * sign);
+        PAL::motorSet(port, motor::cubicSpeed[127] * sign);
       else if (val < -127)
-        HAL::setMotor(port, motor::cubicSpeed[127] * -1 * sign);
+        PAL::motorSet(port, motor::cubicSpeed[127] * -1 * sign);
       else if (val < 0)
-        HAL::setMotor(port, motor::cubicSpeed[-1 * val] * -1 * sign);
+        PAL::motorSet(port, motor::cubicSpeed[-1 * val] * -1 * sign);
       else
-        HAL::setMotor(port, motor::cubicSpeed[val] * sign);
+        PAL::motorSet(port, motor::cubicSpeed[val] * sign);
     }
 
     virtual void setTS(const int val) const override { Motor::setTS(val); }
@@ -104,11 +103,11 @@ namespace okapi {
         if (val > artSpeed) {
           artSpeed += slewRate;
           if (artSpeed > val)
-            artSpeed = val;
+            artSpeed = static_cast<float>(val);
         } else if (val < artSpeed) {
           artSpeed -= slewRate;
           if (artSpeed < val)
-            artSpeed = val;
+            artSpeed = static_cast<float>(val);
         }
       }
     }
@@ -138,11 +137,11 @@ namespace okapi {
         if (val > artSpeed) {
           artSpeed += slewRate;
           if (artSpeed > val)
-            artSpeed = val;
+            artSpeed = static_cast<float>(val);
         } else if (val < artSpeed) {
           artSpeed -= slewRate;
           if (artSpeed < val)
-            artSpeed = val;
+            artSpeed = static_cast<float>(val);
         }
       }
     }

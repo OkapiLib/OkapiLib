@@ -7,19 +7,11 @@
   </url>
   
   <url>
-    <loc>https://okapilib.github.io/OkapiLib/api/chassiscontroller/chassiscontrollermp/</loc>
-  </url>
-  
-  <url>
     <loc>https://okapilib.github.io/OkapiLib/api/chassiscontroller/chassiscontrollerpid/</loc>
   </url>
   
   <url>
     <loc>https://okapilib.github.io/OkapiLib/api/chassiscontroller/odomchassiscontroller/odomchassiscontroller/</loc>
-  </url>
-  
-  <url>
-    <loc>https://okapilib.github.io/OkapiLib/api/chassiscontroller/odomchassiscontroller/odomchassiscontrollermp/</loc>
   </url>
   
   <url>
@@ -56,10 +48,6 @@
   
   <url>
     <loc>https://okapilib.github.io/OkapiLib/api/control/genericcontroller/</loc>
-  </url>
-  
-  <url>
-    <loc>https://okapilib.github.io/OkapiLib/api/control/mpcontroller/</loc>
   </url>
   
   <url>
@@ -140,26 +128,6 @@
   
   <url>
     <loc>https://okapilib.github.io/OkapiLib/api/filter/filter/</loc>
-  </url>
-  
-  <url>
-    <loc>https://okapilib.github.io/OkapiLib/api/motionprofile/motionprofile/</loc>
-  </url>
-  
-  <url>
-    <loc>https://okapilib.github.io/OkapiLib/api/motionprofile/mpconsumer/</loc>
-  </url>
-  
-  <url>
-    <loc>https://okapilib.github.io/OkapiLib/api/motionprofile/mpconsumerparams/</loc>
-  </url>
-  
-  <url>
-    <loc>https://okapilib.github.io/OkapiLib/api/motionprofile/mpgenerator/</loc>
-  </url>
-  
-  <url>
-    <loc>https://okapilib.github.io/OkapiLib/api/motionprofile/mpgeneratorparams/</loc>
   </url>
   
   <url>

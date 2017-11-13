@@ -1,7 +1,7 @@
 #ifndef OKAPI_BUTTON
 #define OKAPI_BUTTON
 
-#include <API.h>
+#include "PAL/PAL.h"
 
 namespace okapi {
   class Button {
@@ -16,7 +16,7 @@ namespace okapi {
       isLCD(false),
       wasPressedLast(false) {}
       
-    explicit constexpr Button(const unsigned long long int iport, const bool iinverted = false):
+    explicit constexpr Button(const unsigned char iport, const bool iinverted = false):
       joystick(1),
       buttonGroup(8),
       port(iport),
@@ -48,11 +48,11 @@ namespace okapi {
 
     bool isPressed() const {
       if (isJoystick)
-        return inverted ? !joystickGetDigital(joystick, buttonGroup, port) : joystickGetDigital(joystick, buttonGroup, port);
+        return inverted ? !PAL::joystickGetDigital(joystick, buttonGroup, port) : PAL::joystickGetDigital(joystick, buttonGroup, port);
       else if (isLCD)
-        return inverted ? !(lcdReadButtons(lcd) == port) : (lcdReadButtons(lcd) == port);
+        return inverted ? !(PAL::lcdReadButtons(lcd) == port) : (PAL::lcdReadButtons(lcd) == port);
       else
-        return inverted ? !digitalRead(port) : digitalRead(port);
+        return inverted ? !PAL::digitalRead(port) : PAL::digitalRead(port);
     }
 
     bool edge() {

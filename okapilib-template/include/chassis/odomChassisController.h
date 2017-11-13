@@ -3,8 +3,6 @@
 
 #include "odometry/odometry.h"
 #include "chassis/chassisController.h"
-#include "control/mpController.h"
-#include <API.h>
 
 namespace okapi {
   class OdomChassisController : public virtual ChassisController {
@@ -53,29 +51,6 @@ namespace okapi {
       ChassisControllerPid(params.model, idistanceParams, iangleParams) {}
 
     virtual ~OdomChassisControllerPid() = default;
-
-    /**
-     * Drives the robot straight to a point in the odom frame
-     * @param ix X coordinate
-     * @param iy Y coordinate
-     */
-    void driveToPoint(const float ix, const float iy, const bool ibackwards = false, const float ioffset = 0) override;
-
-    /**
-     * Turns the robot to face an angle in the odom frame
-     * @param iangle Angle to turn to
-     */
-    void turnToAngle(const float iangle) override;
-  };
-
-  class OdomChassisControllerMP : public OdomChassisController, public ChassisControllerMP {
-  public:
-    OdomChassisControllerMP(const OdomParams& iparams, const MPControllerParams& iconParams):
-      ChassisController(iparams.model),
-      OdomChassisController(iparams),
-      ChassisControllerMP(iparams.model, iconParams) {}
-
-    virtual ~OdomChassisControllerMP() = default;
 
     /**
      * Drives the robot straight to a point in the odom frame

@@ -1,7 +1,7 @@
 #ifndef OKAPI_POTENTIOMETER
 #define OKAPI_POTENTIOMETER
 
-#include <API.h>
+#include "PAL/PAL.h"
 
 namespace okapi {
   class Potentiometer {
@@ -10,15 +10,15 @@ namespace okapi {
       port(0),
       inverted(false) {}
       
-    explicit constexpr Potentiometer(const unsigned long long int iport):
+    explicit constexpr Potentiometer(const unsigned char iport):
       port(iport),
       inverted(false) {}
 
-    explicit constexpr Potentiometer(const unsigned long long int iport, const bool iinverted):
+    explicit constexpr Potentiometer(const unsigned char iport, const bool iinverted):
       port(iport),
       inverted(iinverted) {}
 
-    int get() const { return inverted ? 4095 - analogRead(port) : analogRead(port); }
+    int get() const { return inverted ? 4095 - PAL::analogRead(port) : PAL::analogRead(port); }
   private:
     const unsigned char port;
     const bool inverted;

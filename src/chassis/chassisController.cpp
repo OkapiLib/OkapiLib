@@ -102,46 +102,4 @@ namespace okapi {
 
     model->driveForward(0);
   }
-
-  void ChassisControllerMP::driveStraight(const int itarget) {
-    controller.setTarget(static_cast<float>(itarget));
-
-    const auto encStartVals = model->getSensorVals();
-    float distanceElapsed = 0;
-    unsigned long prevWakeTime = PAL::millis();
-
-    std::valarray<int> encVals{0, 0};
-
-    while (!controller.isComplete()) {
-      encVals = model->getSensorVals() - encStartVals;
-      distanceElapsed = static_cast<float>((encVals[0] + encVals[1])) / 2.0;
-
-      model->driveForward(static_cast<int>(controller.step(distanceElapsed)));
-      
-      PAL::taskDelayUntil(&prevWakeTime, 15);
-    }
-
-    model->driveForward(0);
-  }
-
-  void ChassisControllerMP::pointTurn(float idegTarget) {
-    controller.setTarget(static_cast<float>(idegTarget)); //TODO: Might not be able to use the same params for turning
-
-    const auto encStartVals = model->getSensorVals();
-    float angleChange = 0;
-    unsigned long prevWakeTime = PAL::millis();
-
-    std::valarray<int> encVals{0, 0};
-
-    while (!controller.isComplete()) {
-      encVals = model->getSensorVals() - encStartVals;
-      angleChange = static_cast<float>(encVals[1] - encVals[0]);
-
-      model->turnClockwise(static_cast<int>(controller.step(angleChange)));
-
-      PAL::taskDelayUntil(&prevWakeTime, 15);
-    }
-
-    model->driveForward(0);
-  }
 }

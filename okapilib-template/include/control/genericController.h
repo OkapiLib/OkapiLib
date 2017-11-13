@@ -17,7 +17,7 @@ namespace okapi {
     void step(const float ireading) {
       controller->step(ireading);
       for (size_t i = 0; i < motors.size(); i++)
-        motors[i].setTS(controller->getOutput());
+        motors[i].setTS(static_cast<int>(controller->getOutput()));
     }
 
     void setTarget(const float itarget) { controller->setTarget(itarget); }

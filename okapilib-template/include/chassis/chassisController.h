@@ -3,10 +3,7 @@
 
 #include "chassis/chassisModel.h"
 #include "control/pid.h"
-#include "control/mpController.h"
-#include "motionProfile/mpGenerator.h"
 #include "odometry/odometry.h"
-#include <API.h>
 #include <memory>
 
 namespace okapi {
@@ -78,36 +75,6 @@ namespace okapi {
       void pointTurn(float idegTarget) override;
   protected:
     Pid distancePid, anglePid;
-  };
-
-  class ChassisControllerMP : public virtual ChassisController {
-  public:
-    ChassisControllerMP(const ChassisModelParams& imodelParams, const MPControllerParams& iparams):
-      ChassisController(imodelParams),
-      controller(iparams) {}
-
-
-    ChassisControllerMP(const std::shared_ptr<ChassisModel>& imodel, const MPControllerParams& iparams):
-      ChassisController(imodel),
-      controller(iparams) {}
-
-    virtual ~ChassisControllerMP() {
-      delete &controller;
-    }
-
-    /**
-     * Drives the robot straight
-     * @param itarget Distance to travel
-     */
-    void driveStraight(const int itarget) override;
-
-    /**
-     * Turns the robot clockwise in place
-     * @param idegTarget Degrees to turn for
-     */
-    void pointTurn(float idegTarget) override;
-  protected:
-    MPController controller;
   };
 }
 

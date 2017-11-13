@@ -19,8 +19,6 @@
 
 #include "control/controlObject.h"
 #include "control/genericController.h"
-#include "control/mpConsumer.h"
-#include "control/mpController.h"
 #include "control/nsPid.h"
 #include "control/pid.h"
 #include "control/velMath.h"
@@ -38,9 +36,6 @@
 #include "filter/demaFilter.h"
 #include "filter/emaFilter.h"
 #include "filter/filter.h"
-
-#include "motionProfile/motionProfile.h"
-#include "motionProfile/mpGenerator.h"
 
 #include "odometry/odometry.h"
 #include "odometry/odomMath.h"
