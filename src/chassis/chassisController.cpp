@@ -27,6 +27,7 @@ namespace okapi {
     valarray<int> encVals{0, 0};
     float distOutput, angleOutput;
 
+
     while (!atTarget) {
       encVals = model->getSensorVals() - encStartVals;
       distanceElapsed = static_cast<float>((encVals[0] + encVals[1])) / 2.0;

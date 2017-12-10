@@ -48,34 +48,54 @@ using namespace okapi;
 void operatorControl() {
   using namespace std; //Needed to get round to compile
 
-	QuadEncoder leftEnc(1, 2, true), rightEnc(3, 4);
-	ChassisControllerPid controller(SkidSteerModelParams<3>({2_m,3_m,4_m, 5_m,6_m,7_m}, leftEnc, rightEnc), PidParams(0.15, 0.05, 0.07), PidParams(0.02, 0.01, 0));
+  IME leftIME = 0_ime, rightIME = 1_rime;
+  leftIME.reset();
+  rightIME.reset();
 
-	const unsigned char liftPot = 1;
+  Button driveBtn(1, 8, JOY_UP);
 
-  GenericController<2> liftController({8_m, 9_m}, std::make_shared<NsPid>(NsPid(PidParams(0.2, 0.1, 0.1), VelMathParams(360), 0.5)));
+  auto scales = OdomMath::guessScales(11.75, 3.25, imeTurboTPR);
+  OdomChassisControllerPid controller(
+    OdomParams(SkidSteerModelParams<3>({2_m,3_m,4_m, 5_m,6_m,7_m}, leftIME, rightIME), std::get<0>(scales), std::get<1>(scales)),
+    PidParams(0.15, 0.05, 0.07),
+    PidParams(0.02, 0.01, 0));
 
-	constexpr int liftUpTarget = 2570, lift34 = 300, liftDownTarget = 10;
-  int target = liftUpTarget;
-  
-  SlewMotor foo(1_m3, 10);
+  while (true) {
+    if (driveBtn.risingEdge()) {
+      controller.driveToPoint(100, 0);
+    }
 
-	while (1) {
-		if (joystickGetDigital(1, 6, JOY_UP))
-			target = liftUpTarget;
-		else if (joystickGetDigital(1, 6, JOY_DOWN))
-			target = liftDownTarget;
-		else if (joystickGetDigital(1, 5, JOY_UP))
-			target = lift34;
-		else if (joystickGetDigital(1, 8, JOY_LEFT)) {
-			liftController.flipDisable();
-			while (joystickGetDigital(1, 8, JOY_LEFT));
-		}
+    auto state = controller.getState();
+    printf("%1.2f, %1.2f, %1.2f\n", state.x, state.y, state.theta);
+    delay(15);
+  }
 
-    liftController.setTarget(static_cast<float>(target));
-    liftController.step(static_cast<float>(analogRead(liftPot)));
+	// QuadEncoder leftEnc(1, 2, true), rightEnc(3, 4);
+	// ChassisControllerPid controller(SkidSteerModelParams<3>({2_m,3_m,4_m, 5_m,6_m,7_m}, leftEnc, rightEnc), PidParams(0.15, 0.05, 0.07), PidParams(0.02, 0.01, 0));
 
-    controller.arcade(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1));
+	// const unsigned char liftPot = 1;
+
+  // GenericController<2> liftController({8_m, 9_m}, std::make_shared<NsPid>(NsPid(PidParams(0.2, 0.1, 0.1), VelMathParams(360), 0.5)));
+
+	// constexpr int liftUpTarget = 2570, lift34 = 300, liftDownTarget = 10;
+  // int target = liftUpTarget;
+
+	// while (1) {
+	// 	if (joystickGetDigital(1, 6, JOY_UP))
+	// 		target = liftUpTarget;
+	// 	else if (joystickGetDigital(1, 6, JOY_DOWN))
+	// 		target = liftDownTarget;
+	// 	else if (joystickGetDigital(1, 5, JOY_UP))
+	// 		target = lift34;
+	// 	else if (joystickGetDigital(1, 8, JOY_LEFT)) {
+	// 		liftController.flipDisable();
+	// 		while (joystickGetDigital(1, 8, JOY_LEFT));
+	// 	}
+
+  //   liftController.setTarget(static_cast<float>(target));
+  //   liftController.step(static_cast<float>(analogRead(liftPot)));
+
+  //   controller.arcade(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1));
     
     // if (joystickGetDigital(1, 8, JOY_RIGHT)) {
     //   encoderReset(leftEnc);
@@ -111,5 +131,5 @@ void operatorControl() {
     //     taskDelay(15);
     //   }
     // }
-	}
+	// }
 }
