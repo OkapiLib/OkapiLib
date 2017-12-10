@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>API Reference - Okapi Docs</title>
-    <meta name="generator" content="Hugo 0.30.2" />
+    <meta name="generator" content="Hugo 0.31.1" />
 
     
     <meta name="description" content="A PROS library for fast C&#43;&#43; development.">
@@ -1113,8 +1113,8 @@ virtual void flipDisable()
 <h3 id="constructor">Constructor</h3>
 
 <pre><code class="language-c++">//Signature
-explicit constexpr CubicMotor()
-explicit constexpr CubicMotor(const unsigned char iport, const int isign)
+explicit constexpr CubicMotor(const unsigned char iport, const int *its)
+explicit constexpr CubicMotor(const unsigned char iport, const int isign = 1, const int *its = motor::trueSpeed)
 </code></pre>
 
 <table>
@@ -1134,6 +1134,11 @@ explicit constexpr CubicMotor(const unsigned char iport, const int isign)
 <tr>
 <td>isign</td>
 <td><code>1</code> for forward, <code>-1</code> for reversed</td>
+</tr>
+
+<tr>
+<td>its</td>
+<td>TrueSpeed array to linearize the motor controller</td>
 </tr>
 </tbody>
 </table>
@@ -1775,8 +1780,8 @@ void reset() override
 <h3 id="constructor">Constructor</h3>
 
 <pre><code class="language-c++">//Signature
-explicit constexpr Motor()
-explicit constexpr Motor(const unsigned char iport, const int isign)
+explicit constexpr Motor(const unsigned char iport, const int *its)
+explicit constexpr Motor(const unsigned char iport, const int isign = 1, const int *its = motor::trueSpeed)
 </code></pre>
 
 <table>
@@ -1796,6 +1801,11 @@ explicit constexpr Motor(const unsigned char iport, const int isign)
 <tr>
 <td>isign</td>
 <td><code>1</code> for forward, <code>-1</code> for reversed</td>
+</tr>
+
+<tr>
+<td>its</td>
+<td>TrueSpeed array to linearize the motor controller</td>
 </tr>
 </tbody>
 </table>

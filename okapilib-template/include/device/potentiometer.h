@@ -6,15 +6,7 @@
 namespace okapi {
   class Potentiometer {
   public:
-    explicit constexpr Potentiometer():
-      port(0),
-      inverted(false) {}
-      
-    explicit constexpr Potentiometer(const unsigned char iport):
-      port(iport),
-      inverted(false) {}
-
-    explicit constexpr Potentiometer(const unsigned char iport, const bool iinverted):
+    explicit constexpr Potentiometer(const unsigned char iport, const bool iinverted = false):
       port(iport),
       inverted(iinverted) {}
 

@@ -7,10 +7,7 @@
 namespace okapi {
   class QuadEncoder : public RotarySensor {
   public:
-    QuadEncoder(const unsigned char iportTop, const unsigned char iportBottom):
-      enc(encoderInit(iportTop, iportBottom, false)) {}
-
-    QuadEncoder(const unsigned char iportTop, const unsigned char iportBottom, const bool ireversed):
+    QuadEncoder(const unsigned char iportTop, const unsigned char iportBottom, const bool ireversed = false):
       enc(encoderInit(iportTop, iportBottom, ireversed)) {}
 
     int get() override { return PAL::encoderGet(enc); }

@@ -6,14 +6,15 @@ The `CubicMotor` class provides a cubic-control based implementation of the `set
 
 ```c++
 //Signature
-explicit constexpr CubicMotor()
-explicit constexpr CubicMotor(const unsigned char iport, const int isign)
+explicit constexpr CubicMotor(const unsigned char iport, const int *its)
+explicit constexpr CubicMotor(const unsigned char iport, const int isign = 1, const int *its = motor::trueSpeed)
 ```
 
 Parameter | Description
 ----------|------------
 iport | Motor port
 isign | `1` for forward, `-1` for reversed
+its | TrueSpeed array to linearize the motor controller
 
 This class also has literals available:
 

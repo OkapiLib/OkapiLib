@@ -24,43 +24,47 @@ namespace okapi {
 
   class Motor {
   public:
-    explicit constexpr Motor():
-      port(0),
-      sign(1) {}
-
-    explicit constexpr Motor(const unsigned char iport, const int isign):
+    explicit constexpr Motor(const unsigned char iport, const int *its):
       port(iport),
-      sign(isign) {}
+      sign(1),
+      ts(its) {}
+
+    explicit constexpr Motor(const unsigned char iport, const int isign = 1, const int *its = motor::trueSpeed):
+      port(iport),
+      sign(isign),
+      ts(its) {}
 
     constexpr Motor(const Motor& other):
       port(other.port),
-      sign(other.sign) {}
+      sign(other.sign),
+      ts(motor::trueSpeed) {}
 
     virtual void set(const int val) const { PAL::motorSet(port, val * sign); }
 
     virtual void setTS(const int val) const {
       if (val > 127)
-        PAL::motorSet(port, motor::trueSpeed[127] * sign);
+        PAL::motorSet(port, ts[127] * sign);
       else if (val < -127)
-        PAL::motorSet(port, motor::trueSpeed[127] * -1 * sign);
+        PAL::motorSet(port, ts[127] * -1 * sign);
       else if (val < 0)
-        PAL::motorSet(port, motor::trueSpeed[-1 * val] * -1 * sign);
+        PAL::motorSet(port, ts[-1 * val] * -1 * sign);
       else
-        PAL::motorSet(port, motor::trueSpeed[val] * sign);
+        PAL::motorSet(port, ts[val] * sign);
     }
 
   protected:
     const unsigned char port;
     const int sign;
+    const int *ts;
   };
 
   class CubicMotor : public Motor {
   public:
-    explicit constexpr CubicMotor():
-      Motor() {}
-
-    explicit constexpr CubicMotor(const unsigned char iport, const int isign):
-      Motor(iport, isign) {}
+    explicit constexpr CubicMotor(const unsigned char iport, const int *its):
+      Motor(iport, 1, its) {}
+    
+    explicit constexpr CubicMotor(const unsigned char iport, const int isign = 1, const int *its = motor::trueSpeed):
+      Motor(iport, isign, its) {}
       
     constexpr CubicMotor(const CubicMotor& other):
       CubicMotor(other.port, other.sign) {}
