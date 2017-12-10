@@ -1,6 +1,7 @@
 #ifndef OKAPI_ODOMMATH
 #define OKAPI_ODOMMATH
 
+#include <tuple>
 #include "odometry/odometry.h"
 
 namespace okapi {
@@ -47,6 +48,14 @@ namespace okapi {
      * @return        Distance and angle to the point
      */
     static DistanceAndAngle computeDistanceAndAngleToPoint(const float ix, const float iy, const OdomState& istate);
+
+    /**
+     * Attempt to guess scales based on robot dimensions
+     * @param chassisDiam Center-to-center wheelbase diameter in inches
+     * @param wheelDiam   Edge-to-edge wheel diameter in inches
+     * @param ticksPerRev Quad ticks per revolution (default is 360)
+     */
+    static std::tuple<float, float> guessScales(const float chassisDiam, const float wheelDiam, const float ticksPerRev = 360.0);
   private:
     OdomMath() {}
   };

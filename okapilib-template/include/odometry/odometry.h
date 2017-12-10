@@ -73,18 +73,9 @@ namespace okapi {
     }
 
     /**
-     * Attempt to guess scales based on robot dimensions
-     * @param chassisDiam Center-to-center wheelbase diameter in inches
-     * @param wheelDiam   Edge-to-edge wheel diameter in inches
-     * @param ticksPerRev Quad ticks per revolution (default is 360)
+     * Do odom math in an infinite loop
      */
-    void guessScales(const float chassisDiam, const float wheelDiam, const float ticksPerRev = 360.0);
-
-    /**
-     * Do one iteration of odometry math and return the new state estimate
-     * @return               New state estimate
-     */
-    OdomState loop();
+    void loop();
 
     static void trampoline(void *context) { static_cast<Odometry*>(context)->loop(); }
 

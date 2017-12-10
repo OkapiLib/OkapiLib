@@ -39,7 +39,7 @@ namespace okapi {
      */
     OdomState getState() { return odom.getState(); }
   protected:
-    static constexpr int moveThreshold = 100; //Minimum length movement
+    static constexpr int moveThreshold = 10; //Minimum length movement
     Odometry odom;
   };
 
