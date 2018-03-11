@@ -18,35 +18,31 @@ namespace okapi {
     /**
      * Return whether the button is current pressed.
      **/
-    bool isPressed();
+    virtual bool isPressed() = 0;
 
     /**
      * Return whether there just was a rising or falling edge.
      **/
-    bool edge();
+    virtual bool edge() = 0;
 
     /**
      * Return whether there was just a rising edge.
      **/
-    bool risingEdge();
+    virtual bool risingEdge() = 0;
 
     /**
      * Return whether there was just a falling edge.
      **/
-    bool fallingEdge();
+    virtual bool fallingEdge() = 0;
 
   private:
     const bool isADIButton, isControllerButton;
 
-    union {
-      pros::ADIButton btn;
-      std::reference_wrapper<pros::Controller> controller;
-    };
+    pros::ADIButton btn;
+    uint8_t port;
 
-    union {
-      controller_digital_e_t controllerButton;
-      uint8_t port;
-    };
+    pros::Controller &controller;
+    controller_digital_e_t controllerButton;
 
     const bool inverted;
     bool wasPressedLast;

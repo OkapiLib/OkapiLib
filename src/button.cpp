@@ -48,7 +48,7 @@ namespace okapi {
       const bool pressed = btn.value_get() != 0;
       return inverted ? !pressed : pressed;
     } else if (isControllerButton) {
-      const bool pressed = controller.get().get_digital(controllerButton);
+      const bool pressed = controller.get_digital(controllerButton);
       return inverted ? !pressed : pressed;
     } else {
       return false;
@@ -57,11 +57,11 @@ namespace okapi {
 
   inline namespace literals {
     Button operator"" _b(const unsigned long long int iport) {
-      return Button(iport, false);
+      return Button(static_cast<uint8_t>(iport), false);
     }
 
     Button operator"" _ib(const unsigned long long int iport) {
-      return Button(iport, true);
+      return Button(static_cast<uint8_t>(iport), true);
     }
   }
 }
