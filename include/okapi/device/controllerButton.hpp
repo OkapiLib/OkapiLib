@@ -1,17 +1,18 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-#ifndef _OKAPI_ADIBUTTON_HPP_
-#define _OKAPI_ADIBUTTON_HPP_
+#ifndef _OKAPI_CONTROLLERBUTTON_HPP_
+#define _OKAPI_CONTROLLERBUTTON_HPP_
 
 #include "okapi/device/button.hpp"
 
 namespace okapi {
-  class ADIButton : public Button {
+  class ControllerButton : public Button {
   public:
-    ADIButton(const uint8_t iport, const bool iinverted = false);
+    ControllerButton(controller_id_e_t icontroller, controller_digital_e_t ibtn,
+      const bool iinverted = false);
 
-    virtual ~ADIButton() = default;
+    virtual ~ControllerButton() = default;
 
     bool isPressed();
 
@@ -22,8 +23,8 @@ namespace okapi {
     bool fallingEdge();
 
   private:
-    pros::ADIButton btn;
-    uint8_t port;
+    pros::Controller controller;
+    controller_digital_e_t btn;
     const bool inverted;
     bool wasPressedLast;
 
