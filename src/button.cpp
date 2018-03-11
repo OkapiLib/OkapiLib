@@ -12,7 +12,8 @@ namespace okapi {
     inverted(iinverted),
     wasPressedLast(false) {}
   
-  Button::Button(pros::Controller &icontroller, const controller_digital_e_t ibtn, const bool iinverted):
+  Button::Button(pros::Controller &icontroller, const controller_digital_e_t ibtn,
+    const bool iinverted):
     isADIButton(false),
     isControllerButton(true),
     controller(icontroller),

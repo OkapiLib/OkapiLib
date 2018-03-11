@@ -11,7 +11,8 @@ namespace okapi {
   class Button {
   public:
     Button(const uint8_t iport, const bool iinverted = false);
-    Button(pros::Controller &icontroller, const controller_digital_e_t ibtn, const bool iinverted = false);
+    Button(pros::Controller &icontroller, const controller_digital_e_t ibtn,
+      const bool iinverted = false);
     virtual ~Button();
 
     /**
@@ -50,6 +51,10 @@ namespace okapi {
     const bool inverted;
     bool wasPressedLast;
 
+    /**
+     * Whether the button is currently pressed. Same result from isPressed() but isPressed()
+     * updates wasPressedLast.
+     **/
     bool currentlyPressed();
   };
 
