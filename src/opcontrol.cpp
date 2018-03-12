@@ -4,8 +4,6 @@
 #include "okapi/chassis/chassisModel.hpp"
 #include "okapi/chassis/odomChassisController.hpp"
 
-#include "okapi/control/motorGroupController.hpp"
-
 #include "okapi/device/adiButton.hpp"
 #include "okapi/device/controllerButton.hpp"
 #include "okapi/device/motor.hpp"
