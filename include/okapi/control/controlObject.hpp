@@ -37,7 +37,7 @@ namespace okapi {
     *
     * @param isampleTime Time between loops in ms
     */
-    virtual void setSampleTime(const int isampleTime);
+    virtual void setSampleTime(const int isampleTime) {}
 
     /**
     * Set controller output bounds.
@@ -45,17 +45,17 @@ namespace okapi {
     * @param imax Max output
     * @param imin Min output
     */
-    virtual void setOutputLimits(float imax, float imin);
+    virtual void setOutputLimits(float imax, float imin) {}
 
     /**
     * Resets the controller so it can start from 0 again properly. Keeps configuration from before.
     */
-    virtual void reset();
+    virtual void reset() {}
 
     /**
     * Turns the controller on or off.
     */
-    virtual void flipDisable();
+    virtual void flipDisable() {}
   };
 }
 

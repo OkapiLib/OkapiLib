@@ -6,7 +6,6 @@
 
 #include "okapi/chassis/chassisModel.hpp"
 #include "okapi/control/pid.hpp"
-#include "okapi/odometry/odometry.hpp"
 #include <memory>
 
 namespace okapi {
@@ -63,24 +62,24 @@ namespace okapi {
       distancePid(idistanceParams),
       anglePid(iangleParams) {}
 
-      virtual ~ChassisControllerPid() {
-        delete &distancePid;
-        delete &anglePid;
-      }
+    virtual ~ChassisControllerPid() {
+      delete &distancePid;
+      delete &anglePid;
+    }
 
-      /**
-       * Drives the robot straight.
-       * 
-       * @param itarget Distance to travel
-       */
-      void driveStraight(const int itarget) override;
+    /**
+     * Drives the robot straight.
+     * 
+     * @param itarget Distance to travel
+     */
+    void driveStraight(const int itarget) override;
 
-      /**
-       * Turns the robot clockwise in place.
-       * 
-       * @param idegTarget Degrees to turn for
-       */
-      void pointTurn(float idegTarget) override;
+    /**
+     * Turns the robot clockwise in place.
+     * 
+     * @param idegTarget Degrees to turn for
+     */
+    void pointTurn(float idegTarget) override;
 
   protected:
     Pid distancePid, anglePid;
