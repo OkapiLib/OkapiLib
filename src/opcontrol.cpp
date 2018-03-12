@@ -1,8 +1,11 @@
 #include "api.h"
+
+#include "okapi/chassis/chassisController.hpp"
+#include "okapi/chassis/chassisModel.hpp"
+
 #include "okapi/device/adiButton.hpp"
 #include "okapi/device/controllerButton.hpp"
 #include "okapi/device/motor.hpp"
-#include "okapi/chassis/chassisModel.hpp"
 #include "okapi/odometry/odomMath.hpp"
 
 void opcontrol() {
@@ -21,13 +24,21 @@ void opcontrol() {
       pros::Motor mtr = 1_m;
       pros::Motor r_mtr = 2_rm;
 
-      okapi::SkidSteerModel<2> model({2_m, 3_m, 4_m, 5_m}, //Left motors: 2 & 3, right motors: 4 & 5
+      okapi::SkidSteerModel<2> model1({2_m, 3_m, 4_m, 5_m}, //Left motors: 2 & 3, right motors: 4 & 5
                     okapi::QuadEncoder(1, 2, true), //Left encoder (reversed)
                     okapi::QuadEncoder(3, 4)); //Right encoder
       
       okapi::XDriveModel<1> model2({2_m, 3_m, 4_m, 5_m}, //Motors are ordered counter-clockwise from the top left
                         okapi::QuadEncoder(1, 2, true), //Top left encoder (reversed)
                         okapi::QuadEncoder(3, 4)); //Top right encoder
+      
+      okapi::ChassisControllerPid controller1(
+        okapi::SkidSteerModelParams<2>(
+          {2_m, 3_m, 4_m, 5_m},
+          okapi::QuadEncoder(1, 2, true),
+          okapi::QuadEncoder(3, 4)),
+        okapi::PidParams(0, 0, 0),
+        okapi::PidParams(0, 0, 0));
     }
   }
 }

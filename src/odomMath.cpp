@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 #include "okapi/odometry/odomMath.hpp"
-#include <cmath>
 #include "okapi/util/mathUtil.hpp"
+#include <cmath>
 
 namespace okapi {
   float OdomMath::computeDistanceToPoint(const float ix, const float iy, const OdomState& istate) {
@@ -22,6 +22,7 @@ namespace okapi {
     const OdomState& istate) {
     const float xDiff = ix - istate.x;
     const float yDiff = iy - istate.y;
+
     DistanceAndAngle out;
     out.length = std::sqrt((xDiff * xDiff) + (yDiff * yDiff));
 

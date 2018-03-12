@@ -9,8 +9,6 @@ namespace okapi {
 
   class ControlObject {
   public:
-    virtual ~ControlObject() = default;
-
     /**
     * Do one iteration of the controller.
     *
