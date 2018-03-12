@@ -27,7 +27,7 @@ namespace okapi {
 
     //Small xDiff is essentially dividing by zero, so avoid it and do custom math
     if (xDiff < 0.0001 && xDiff > -0.0001) {
-      const int yDiffSign = static_cast<int>(std::copysign(1, yDiff));
+      const int yDiffSign = static_cast<int>(copysign(1, yDiff));
       if (yDiffSign == 1) {
         out.theta = -1 * istate.theta;
       } else if (yDiffSign == -1) {
