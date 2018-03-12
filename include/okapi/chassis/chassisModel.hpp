@@ -188,7 +188,7 @@ namespace okapi {
   template<size_t motorsPerCorner>
   class XDriveModelParams : public ChassisModelParams {
   public:
-    XDriveModelParams(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
+    XDriveModelParams(const std::array<pros::Motor, motorsPerCorner * 4>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
       motorList(imotorList),
       leftSensor(std::make_shared<QuadEncoder>(ileftEnc)),
       rightSensor(std::make_shared<QuadEncoder>(irightEnc)) {}
@@ -199,7 +199,7 @@ namespace okapi {
       return std::make_shared<XDriveModel<motorsPerCorner>>(*this);
     }
 
-    const std::array<unsigned char, motorsPerCorner * 4>& motorList;
+    const std::array<pros::Motor, motorsPerCorner * 4>& motorList;
     std::shared_ptr<RotarySensor> leftSensor, rightSensor;
   };
 
@@ -214,7 +214,7 @@ namespace okapi {
      * @param ileftEnc Left side encoder
      * @param irightEnc Right side encoder
      */
-    XDriveModel(const std::array<unsigned char, motorsPerCorner * 4>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
+    XDriveModel(const std::array<pros::Motor, motorsPerCorner * 4>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
       motors(imotorList),
       leftSensor(std::make_shared<QuadEncoder>(ileftEnc)),
       rightSensor(std::make_shared<QuadEncoder>(irightEnc)) {}
@@ -363,7 +363,7 @@ namespace okapi {
     }
 
   private:
-    std::array<unsigned char, motorsPerCorner * 4> motors;
+    std::array<pros::Motor, motorsPerCorner * 4> motors;
     std::shared_ptr<RotarySensor> leftSensor, rightSensor;
   };
 }

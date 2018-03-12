@@ -23,6 +23,10 @@ void opcontrol() {
       okapi::SkidSteerModel<2> model({2_m, 3_m, 4_m, 5_m}, //Left motors: 2 & 3, right motors: 4 & 5
                     okapi::QuadEncoder(1, 2, true), //Left encoder (reversed)
                     okapi::QuadEncoder(3, 4)); //Right encoder
+      
+      okapi::XDriveModel<1> model2({2_m, 3_m, 4_m, 5_m}, //Motors are ordered counter-clockwise from the top left
+                        okapi::QuadEncoder(1, 2, true), //Top left encoder (reversed)
+                        okapi::QuadEncoder(3, 4)); //Top right encoder
     }
   }
 }
