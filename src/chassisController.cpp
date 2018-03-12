@@ -1,5 +1,8 @@
-#include "okapi/chassis/chassisController.h"
-#include "okapi/util/timer.h"
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#include "okapi/chassis/chassisController.hpp"
+#include "okapi/util/timer.hpp"
 #include <cmath>
 
 namespace okapi {

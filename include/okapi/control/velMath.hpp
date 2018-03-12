@@ -1,7 +1,10 @@
-#ifndef OKAPI_VELOCITY
-#define OKAPI_VELOCITY
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#ifndef _OKAPI_VELOCITY_HPP_
+#define _OKAPI_VELOCITY_HPP_
 
-#include "okapi/filter/demaFilter.h"
+#include "okapi/filter/demaFilter.hpp"
 
 namespace okapi {
   class VelMathParams {
@@ -46,6 +49,7 @@ namespace okapi {
     float getOutput() const { return vel; }
 
     float getDiff() const { return vel - lastVel; }
+
   private:
     long lastTime;
     float vel, lastVel, lastPos, ticksPerRev;
@@ -53,4 +57,4 @@ namespace okapi {
   };
 }
 
-#endif /* end of include guard: OKAPI_VELOCITY */
+#endif

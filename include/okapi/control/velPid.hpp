@@ -1,8 +1,11 @@
-#ifndef OKAPI_VELPID
-#define OKAPI_VELPID
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#ifndef _OKAPI_VELPID_HPP_
+#define _OKAPI_VELPID_HPP_
 
-#include "okapi/control/velMath.h"
-#include "okapi/control/controlObject.h"
+#include "okapi/control/velMath.hpp"
+#include "okapi/control/controlObject.hpp"
 
 namespace okapi {
   class VelPidParams : public ControlObjectParams {
@@ -124,4 +127,4 @@ namespace okapi {
   };
 }
 
-#endif /* end of include guard: OKAPI_VELPID */
+#endif

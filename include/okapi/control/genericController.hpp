@@ -1,10 +1,13 @@
-#ifndef OKAPI_GENERICCONTROLLER
-#define OKAPI_GENERICCONTROLLER
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#ifndef _OKAPI_GENERICCONTROLLER_HPP_
+#define _OKAPI_GENERICCONTROLLER_HPP_
 
 #include <memory>
 #include <array>
-#include "okapi/control/controlObject.h"
-#include "okapi/device/motor.h"
+#include "okapi/control/controlObject.hpp"
+#include "okapi/device/motor.hpp"
 
 namespace okapi {
   template<size_t motorNum>
@@ -31,10 +34,11 @@ namespace okapi {
     void reset() { controller->reset(); }
 
     void flipDisable() { controller->flipDisable(); }
+
   private:
     std::array<Motor, motorNum> motors;
     std::shared_ptr<ControlObject> controller;
   };
 }
 
-#endif /* OKAPI_GENERICCONTROLLER */
+#endif

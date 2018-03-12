@@ -1,9 +1,12 @@
-#ifndef OKAPI_ODOMCHASSISCONTROLLER
-#define OKAPI_ODOMCHASSISCONTROLLER
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#ifndef _OKAPI_ODOMCHASSISCONTROLLER_HPP_
+#define _OKAPI_ODOMCHASSISCONTROLLER_HPP_
 
 #include "api.h"
-#include "okapi/odometry/odometry.h"
-#include "okapi/chassis/chassisController.h"
+#include "okapi/odometry/odometry.hpp"
+#include "okapi/chassis/chassisController.hpp"
 
 namespace okapi {
   class OdomChassisController : public virtual ChassisController {
@@ -39,6 +42,7 @@ namespace okapi {
      * @return State from internal Odometry object
      */
     OdomState getState() { return odom.getState(); }
+
   protected:
     static constexpr int moveThreshold = 10; //Minimum length movement
     Odometry odom;
@@ -68,4 +72,4 @@ namespace okapi {
   };
 }
 
-#endif /* end of include guard: OKAPI_ODOMCHASSISCONTROLLER */
+#endif

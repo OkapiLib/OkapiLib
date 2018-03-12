@@ -1,5 +1,8 @@
-#ifndef OKAPI_CHASSISMODEL
-#define OKAPI_CHASSISMODEL
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#ifndef OKAPI_CHASSISMODEL_HPP_
+#define OKAPI_CHASSISMODEL_HPP_
 
 #include <array>
 #include <initializer_list>
@@ -173,6 +176,7 @@ namespace okapi {
       leftSensor->reset();
       rightSensor->reset();
     }
+
   private:
     const std::array<pros::Motor, motorsPerSide * 2> motors;
     std::shared_ptr<RotarySensor> leftSensor, rightSensor;
@@ -357,10 +361,11 @@ namespace okapi {
       leftSensor->reset();
       rightSensor->reset();
     }
+
   private:
     const std::array<unsigned char, motorsPerCorner * 4> motors;
     std::shared_ptr<RotarySensor> leftSensor, rightSensor;
   };
 }
 
-#endif /* end of include guard: OKAPI_CHASSISMODEL */
+#endif

@@ -1,7 +1,10 @@
-#ifndef OKAPI_DEMAFILTER
-#define OKAPI_DEMAFILTER
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#ifndef OKAPI_DEMAFILTER_HPP_
+#define OKAPI_DEMAFILTER_HPP_
 
-#include "okapi/filter/filter.h"
+#include "okapi/filter/filter.hpp"
 
 namespace okapi {
   class DemaFilter final : public Filter {
@@ -30,6 +33,7 @@ namespace okapi {
     }
 
     float getOutput() const override { return outputS + outputB; }
+
   private:
     float alpha, beta;
     float outputS, lastOutputS;
@@ -37,4 +41,4 @@ namespace okapi {
   };
 }
 
-#endif /* end of include guard: OKAPI_DEMAFILTER */
+#endif

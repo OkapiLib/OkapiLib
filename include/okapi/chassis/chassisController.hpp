@@ -1,9 +1,12 @@
-#ifndef OKAPI_CHASSISCONTROLLER
-#define OKAPI_CHASSISCONTROLLER
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#ifndef _OKAPI_CHASSISCONTROLLER_HPP_
+#define _OKAPI_CHASSISCONTROLLER_HPP_
 
-#include "okapi/chassis/chassisModel.h"
-#include "okapi/control/pid.h"
-#include "okapi/odometry/odometry.h"
+#include "okapi/chassis/chassisModel.hpp"
+#include "okapi/control/pid.hpp"
+#include "okapi/odometry/odometry.hpp"
 #include <memory>
 
 namespace okapi {
@@ -41,6 +44,7 @@ namespace okapi {
     void right(const int val) { model->right(val); }
     void rightTS(const int val) { model->rightTS(val); }
     std::valarray<int> getSensorVals() { return model->getSensorVals(); }
+
   protected:
     std::shared_ptr<ChassisModel> model;
   };
@@ -73,9 +77,10 @@ namespace okapi {
        * @param idegTarget Degrees to turn for
        */
       void pointTurn(float idegTarget) override;
+
   protected:
     Pid distancePid, anglePid;
   };
 }
 
-#endif /* end of include guard: OKAPI_CHASSISCONTROLLER */
+#endif

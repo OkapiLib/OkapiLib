@@ -1,5 +1,8 @@
-#ifndef OKAPI_FILTER
-#define OKAPI_FILTER
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#ifndef _OKAPI_FILTER_HPP_
+#define _OKAPI_FILTER_HPP_
 
 namespace okapi {
   class Filter {
@@ -22,4 +25,4 @@ namespace okapi {
   };
 }
 
-#endif /* end of include guard: OKAPI_FILTER */
+#endif

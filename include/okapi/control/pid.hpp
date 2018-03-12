@@ -1,7 +1,10 @@
-#ifndef OKAPI_PID
-#define OKAPI_PID
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#ifndef _OKAPI_PID_HPP_
+#define _OKAPI_PID_HPP_
 
-#include "okapi/control/controlObject.h"
+#include "okapi/control/controlObject.hpp"
 
 namespace okapi {
   class PidParams : public ControlObjectParams {
@@ -121,6 +124,7 @@ namespace okapi {
     void setIntegratorReset(bool iresetOnZero) { shouldResetOnCross = iresetOnZero; }
 
     void flipDisable() override { isOn = !isOn; }
+
   protected:
     float kP, kI, kD, kBias;
     long lastTime, sampleTime;
@@ -132,4 +136,4 @@ namespace okapi {
   };
 }
 
-#endif /* end of include guard: OKAPI_PID */
+#endif

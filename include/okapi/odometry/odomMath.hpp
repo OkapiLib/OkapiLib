@@ -1,8 +1,11 @@
-#ifndef OKAPI_ODOMMATH
-#define OKAPI_ODOMMATH
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#ifndef _OKAPI_ODOMMATH_HPP_
+#define _OKAPI_ODOMMATH_HPP_
 
 #include <tuple>
-#include "okapi/odometry/odometry.h"
+#include "okapi/odometry/odometry.hpp"
 
 namespace okapi {
   class DistanceAndAngle {
@@ -56,9 +59,10 @@ namespace okapi {
      * @param ticksPerRev Quad ticks per revolution (default is 360)
      */
     static std::tuple<float, float> guessScales(const float chassisDiam, const float wheelDiam, const float ticksPerRev = 360.0);
+
   private:
     OdomMath() {}
   };
 }
 
-#endif /* end of include guard: OKAPI_ODOMMATH */
+#endif

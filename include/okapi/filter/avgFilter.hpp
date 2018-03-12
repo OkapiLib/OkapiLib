@@ -1,9 +1,12 @@
-#ifndef OKAPI_AVGFILTER
-#define OKAPI_AVGFILTER
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#ifndef OKAPI_AVGFILTER_HPP_
+#define OKAPI_AVGFILTER_HPP_
 
 #include <cstddef>
 #include <array>
-#include "okapi/filter/filter.h"
+#include "okapi/filter/filter.hpp"
 
 namespace okapi {
   template<std::size_t n>
@@ -30,10 +33,11 @@ namespace okapi {
     }
 
     float getOutput() const override { return output; }
+
   private:
     std::array<float, n> data;
     float index, output;
   };
 }
 
-#endif /* end of include guard: OKAPI_AVGFILTER */
+#endif

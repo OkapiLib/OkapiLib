@@ -1,18 +1,21 @@
-#include "okapi/util/timer.h"
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#include "okapi/util/timer.hpp"
 
 namespace okapi {
-  unsigned long Timer::getDt() {
-    const unsigned long currTime = pros::millis();
-    const unsigned long dt = currTime - lastCalled;
+  uint32_t Timer::getDt() {
+    const uint32_t currTime = pros::millis();
+    const uint32_t dt = currTime - lastCalled;
     lastCalled = currTime;
     return dt;
   }
 
-  unsigned long Timer::getStartingTime() const {
+  uint32_t Timer::getStartingTime() const {
     return firstCalled;
   }
 
-  unsigned long Timer::getDtFromStart() const {
+  uint32_t Timer::getDtFromStart() const {
     return pros::millis() - firstCalled;
   }
 
@@ -21,30 +24,30 @@ namespace okapi {
   }
 
   void Timer::placeHardMark() {
-    if (hardMark == -1)
+    if (hardMark == 0)
       hardMark = pros::millis();
   }
 
-  unsigned long Timer::clearHardMark() {
+  uint32_t Timer::clearHardMark() {
     const long old = hardMark;
-    hardMark = -1;
+    hardMark = 0;
     return old;
   }
 
-  unsigned long Timer::getDtFromMark() const {
+  uint32_t Timer::getDtFromMark() const {
     return pros::millis() - mark;
   }
 
-  unsigned long Timer::getDtFromHardMark() const {
-    return hardMark == -1 ? 0 : pros::millis() - hardMark;
+  uint32_t Timer::getDtFromHardMark() const {
+    return hardMark == 0 ? 0 : pros::millis() - hardMark;
   }
 
-  bool Timer::repeat(unsigned long ms) {
-    if (repeatMark == -1)
+  bool Timer::repeat(uint32_t ms) {
+    if (repeatMark == 0)
       repeatMark = pros::millis();
 
     if (pros::millis() - repeatMark >= ms) {
-      repeatMark = -1;
+      repeatMark = 0;
       return true;
     }
 

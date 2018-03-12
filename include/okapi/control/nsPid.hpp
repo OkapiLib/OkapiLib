@@ -1,8 +1,11 @@
-#ifndef OKAPI_NSPID
-#define OKAPI_NSPID
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#ifndef _OKAPI_NSPID_HPP_
+#define _OKAPI_NSPID_HPP_
 
-#include "okapi/control/pid.h"
-#include "okapi/control/velMath.h"
+#include "okapi/control/pid.hpp"
+#include "okapi/control/velMath.hpp"
 
 namespace okapi {
   class NsPid : public Pid {
@@ -19,10 +22,11 @@ namespace okapi {
        * @return            Controller output
        */
       virtual float step(const float inewReading) override;
+
     protected:
       VelMath velMath;
       float minVel, scale;
   };
 }
 
-#endif /* end of include guard: OKAPI_NSPID */
+#endif

@@ -1,5 +1,8 @@
-#ifndef OKAPI_MATHUTIL
-#define OKAPI_MATHUTIL
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#ifndef _OKAPI_MATHUTIL_HPP_
+#define _OKAPI_MATHUTIL_HPP_
 
 namespace okapi {
   static constexpr float analogInToV = 286.0;
@@ -14,4 +17,4 @@ namespace okapi {
   static constexpr float pi = 3.14159265358979323846;
 }
 
-#endif /* end of include guard: OKAPI_MATHUTIL */
+#endif
