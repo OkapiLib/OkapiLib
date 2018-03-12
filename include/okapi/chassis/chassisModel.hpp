@@ -92,26 +92,26 @@ namespace okapi {
 
     void driveForward(const int power) override {
       for (size_t i = 0; i < motorsPerSide * 2; i++)
-        motors[i].setTS(power);
+        motors[i].set_velocity(power);
     }
 
     void driveVector(const int distPower, const int anglePower) override {
       for (size_t i = 0; i < motorsPerSide; i++)
-        motors[i].setTS(distPower + anglePower);
+        motors[i].set_velocity(distPower + anglePower);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-        motors[i].setTS(distPower - anglePower);
+        motors[i].set_velocity(distPower - anglePower);
     }
 
     void turnClockwise(const int power) override {
       for (size_t i = 0; i < motorsPerSide; i++)
-        motors[i].setTS(power);
+        motors[i].set_velocity(power);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-        motors[i].setTS(-1 * power);
+        motors[i].set_velocity(-1 * power);
     }
 
     void stop() override {
       for (size_t i = 0; i < motorsPerSide * 2; i++)
-        motors[i].set(0);
+        motors[i].set_velocity(0);
     }
 
     void tank(const int leftVal, const int rightVal, const int threshold = 0) override {
@@ -119,18 +119,18 @@ namespace okapi {
 
       if (fabs(leftVal) < threshold) {
         for (size_t i = 0; i < motorsPerSide; i++)
-          motors[i].set(0);
+          motors[i].set_velocity(0);
       } else {
         for (size_t i = 0; i < motorsPerSide; i++)
-          motors[i].set(leftVal);
+          motors[i].set_velocity(leftVal);
       }
       
       if (fabs(rightVal) < threshold) {
         for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-          motors[i].set(0);
+          motors[i].set_velocity(0);
       } else {
         for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-          motors[i].set(rightVal);
+          motors[i].set_velocity(rightVal);
       }
     }
 
@@ -143,29 +143,29 @@ namespace okapi {
         horizontalVal = 0;
       
       for (size_t i = 0; i < motorsPerSide; i++)
-        motors[i].set(verticalVal + horizontalVal);
+        motors[i].set_velocity(verticalVal + horizontalVal);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-        motors[i].set(verticalVal - horizontalVal);
+        motors[i].set_velocity(verticalVal - horizontalVal);
     }
 
     void left(const int val) override {
       for (size_t i = 0; i < motorsPerSide; i++)
-        motors[i].set(val);
+        motors[i].set_velocity(val);
     }
     
     void leftTS(const int val) override {
       for (size_t i = 0; i < motorsPerSide; i++)
-        motors[i].setTS(val);
+        motors[i].set_velocity(val);
     }
 
     void right(const int val) override {
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-        motors[i].set(val);
+        motors[i].set_velocity(val);
     }
     
     void rightTS(const int val) override {
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-        motors[i].setTS(val);
+        motors[i].set_velocity(val);
     }
 
     std::valarray<int> getSensorVals() override {
@@ -178,7 +178,7 @@ namespace okapi {
     }
 
   private:
-    const std::array<pros::Motor, motorsPerSide * 2> motors;
+    std::array<pros::Motor, motorsPerSide * 2> motors;
     std::shared_ptr<RotarySensor> leftSensor, rightSensor;
   };
 
@@ -233,34 +233,34 @@ namespace okapi {
 
     void driveForward(const int power) override {
       for (size_t i = 0; i < motorsPerCorner * 4; i++)
-        motors[i].setTS(power);
+        motors[i].set_velocity(power);
     }
 
     void driveVector(const int distPower, const int anglePower) override {
       for (size_t i = 0; i < motorsPerCorner; i++)
-        motors[i].setTS(distPower + anglePower);
+        motors[i].set_velocity(distPower + anglePower);
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
-        motors[i].setTS(distPower - anglePower);
+        motors[i].set_velocity(distPower - anglePower);
       for (size_t i = motorsPerCorner * 2; i < motorsPerCorner * 3; i++)
-        motors[i].setTS(distPower - anglePower);
+        motors[i].set_velocity(distPower - anglePower);
       for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
-        motors[i].setTS(distPower + anglePower);
+        motors[i].set_velocity(distPower + anglePower);
     }
 
     void turnClockwise(const int power) override {
       for (size_t i = 0; i < motorsPerCorner; i++)
-        motors[i].setTS(power);
+        motors[i].set_velocity(power);
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
-        motors[i].setTS(-1 * power);
+        motors[i].set_velocity(-1 * power);
       for (size_t i = motorsPerCorner * 2; i < motorsPerCorner * 3; i++)
-        motors[i].setTS(-1 * power);
+        motors[i].set_velocity(-1 * power);
       for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
-        motors[i].setTS(power);
+        motors[i].set_velocity(power);
     }
 
     void stop() override {
       for (size_t i = 0; i < motorsPerCorner * 4; i++)
-        motors[i].set(0);
+        motors[i].set_velocity(0);
     }
 
     void tank(const int leftVal, const int rightVal, const int threshold = 0) override {
@@ -268,26 +268,26 @@ namespace okapi {
 
       if (fabs(leftVal) < threshold) {
         for (size_t i = 0; i < motorsPerCorner; i++)
-          motors[i].set(0);
+          motors[i].set_velocity(0);
         for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
-          motors[i].set(0);
+          motors[i].set_velocity(0);
       } else {
         for (size_t i = 0; i < motorsPerCorner; i++)
-          motors[i].set(leftVal);
+          motors[i].set_velocity(leftVal);
         for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
-          motors[i].set(leftVal);
+          motors[i].set_velocity(leftVal);
       }
       
       if (fabs(rightVal) < threshold) {
         for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
-          motors[i].set(0);
+          motors[i].set_velocity(0);
         for (size_t i = motorsPerCorner * 2; i < motorsPerCorner * 3; i++)
-          motors[i].set(0);
+          motors[i].set_velocity(0);
       } else {
         for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
-          motors[i].set(rightVal);
+          motors[i].set_velocity(rightVal);
         for (size_t i = motorsPerCorner * 2; i < motorsPerCorner * 3; i++)
-          motors[i].set(rightVal);
+          motors[i].set_velocity(rightVal);
       }
     }
 
@@ -300,13 +300,13 @@ namespace okapi {
         horizontalVal = 0;
       
       for (size_t i = 0; i < motorsPerCorner; i++)
-        motors[i].set(verticalVal + horizontalVal);
+        motors[i].set_velocity(verticalVal + horizontalVal);
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
-        motors[i].set(verticalVal - horizontalVal);
+        motors[i].set_velocity(verticalVal - horizontalVal);
       for (size_t i = motorsPerCorner * 2; i < motorsPerCorner * 3; i++)
-        motors[i].set(verticalVal - horizontalVal);
+        motors[i].set_velocity(verticalVal - horizontalVal);
       for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
-        motors[i].set(verticalVal + horizontalVal);
+        motors[i].set_velocity(verticalVal + horizontalVal);
     }
 
     void xArcade(int verticalVal, int horizontalVal, int rotateVal, const int threshold = 0) {
@@ -320,37 +320,37 @@ namespace okapi {
         rotateVal = 0;
       
       for (size_t i = 0; i < motorsPerCorner; i++)
-        motors[i].set(verticalVal + horizontalVal + rotateVal);
+        motors[i].set_velocity(verticalVal + horizontalVal + rotateVal);
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
-        motors[i].set(verticalVal - horizontalVal - rotateVal);
+        motors[i].set_velocity(verticalVal - horizontalVal - rotateVal);
       for (size_t i = motorsPerCorner * 2; i < motorsPerCorner * 3; i++)
-        motors[i].set(verticalVal + horizontalVal - rotateVal);
+        motors[i].set_velocity(verticalVal + horizontalVal - rotateVal);
       for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
-        motors[i].set(verticalVal - horizontalVal + rotateVal);
+        motors[i].set_velocity(verticalVal - horizontalVal + rotateVal);
     }
     
     void left(const int val) override {
       for (size_t i = 0; i < motorsPerCorner; i++)
-        motors[i].set(val);
+        motors[i].set_velocity(val);
       for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
-        motors[i].set(val);
+        motors[i].set_velocity(val);
     }
     
     void leftTS(const int val) override {
       for (size_t i = 0; i < motorsPerCorner; i++)
-        motors[i].setTS(val);
+        motors[i].set_velocity(val);
       for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
-        motors[i].setTS(val);
+        motors[i].set_velocity(val);
     }
 
     void right(const int val) override {
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 3; i++)
-        motors[i].set(val);
+        motors[i].set_velocity(val);
     }
     
     void rightTS(const int val) override {
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 3; i++)
-        motors[i].setTS(val);
+        motors[i].set_velocity(val);
     }
 
     std::valarray<int> getSensorVals() override {
@@ -363,7 +363,7 @@ namespace okapi {
     }
 
   private:
-    const std::array<unsigned char, motorsPerCorner * 4> motors;
+    std::array<unsigned char, motorsPerCorner * 4> motors;
     std::shared_ptr<RotarySensor> leftSensor, rightSensor;
   };
 }
