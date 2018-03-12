@@ -8,11 +8,11 @@ namespace okapi {
     const bool ireversed):
     enc(iportBottom, iportTop, ireversed) {}
 
-  int32_t QuadEncoder::get() {
-    return enc.value_get();
+  int32_t QuadEncoder::get() const {
+    // return enc.value_get();
   }
 
-  int32_t QuadEncoder::reset() {
-    return enc.reset();
+  int32_t QuadEncoder::reset() const {
+    // return enc.reset();
   }
 }

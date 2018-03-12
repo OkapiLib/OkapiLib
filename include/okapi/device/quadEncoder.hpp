@@ -12,9 +12,9 @@ namespace okapi {
   public:
     QuadEncoder(const uint8_t iportTop, const uint8_t iportBottom, const bool ireversed = false);
 
-    int32_t get() override;
+    int32_t get() const override;
 
-    int32_t reset() override;
+    int32_t reset() const override;
 
   private:
     pros::ADIEncoder enc;

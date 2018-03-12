@@ -9,9 +9,11 @@
 namespace okapi {
   class RotarySensor {
   public:
-    virtual int32_t get() = 0;
+    virtual ~RotarySensor() = default;
 
-    virtual int32_t reset() = 0;
+    virtual int32_t get() const = 0;
+
+    virtual int32_t reset() const = 0;
   };
 }
 
