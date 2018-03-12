@@ -26,7 +26,8 @@ namespace okapi {
   class OdomMath {
   public:
     /**
-     * Computes the distance from the given Odometry state to the given point
+     * Computes the distance from the given Odometry state to the given point.
+     * 
      * @param  ix     X coordinate
      * @param  iy     Y coordinate
      * @param  istate Odometry state
@@ -35,7 +36,8 @@ namespace okapi {
     static float computeDistanceToPoint(const float ix, const float iy, const OdomState& istate);
 
     /**
-     * Computes the angle from the given Odometry state to the given point
+     * Computes the angle from the given Odometry state to the given point.
+     * 
      * @param  ix     X coordinate
      * @param  iy     Y coordinate
      * @param  istate Odometry state
@@ -44,21 +46,25 @@ namespace okapi {
     static float computeAngleToPoint(const float ix, const float iy, const OdomState& istate);
 
     /**
-     * Computes the distance and angle from the given Odometry state to the given point
+     * Computes the distance and angle from the given Odometry state to the given point.
+     * 
      * @param  ix     X coordinate
      * @param  iy     Y coordinate
      * @param  istate Odometry state
      * @return        Distance and angle to the point
      */
-    static DistanceAndAngle computeDistanceAndAngleToPoint(const float ix, const float iy, const OdomState& istate);
+    static DistanceAndAngle computeDistanceAndAngleToPoint(const float ix, const float iy,
+      const OdomState& istate);
 
     /**
-     * Attempt to guess scales based on robot dimensions
+     * Attempt to guess scales based on robot dimensions.
+     * 
      * @param chassisDiam Center-to-center wheelbase diameter in inches
      * @param wheelDiam   Edge-to-edge wheel diameter in inches
      * @param ticksPerRev Quad ticks per revolution (default is 360)
      */
-    static std::tuple<float, float> guessScales(const float chassisDiam, const float wheelDiam, const float ticksPerRev = 360.0);
+    static std::tuple<float, float> guessScales(const float chassisDiam, const float wheelDiam,
+      const float ticksPerRev = 360.0);
 
   private:
     OdomMath() {}

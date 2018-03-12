@@ -21,7 +21,8 @@ namespace okapi {
   class Pid : public ControlObject {
   public:
     /**
-     * PID controller
+     * PID controller.
+     * 
      * @param ikP    Proportional gain
      * @param ikI    Integral gain
      * @param ikD    Derivative gain
@@ -46,7 +47,8 @@ namespace okapi {
       }
 
     /**
-     * PID controller
+     * PID controller.
+     * 
      * @param params Params (see PidParams docs)
      */
     Pid(const PidParams& params):
@@ -70,7 +72,8 @@ namespace okapi {
     virtual ~Pid() = default;
 
     /**
-     * Do one iteration of the controller
+     * Do one iteration of the controller.
+     * 
      * @param  inewReading New measurement
      * @return            Controller output
      */
@@ -83,7 +86,8 @@ namespace okapi {
     float getError() const override { return error; }
 
     /**
-     * Set controller gains
+     * Set controller gains.
+     * 
      * @param ikP    Proportional gain
      * @param ikI    Integral gain
      * @param ikD    Derivative gain
@@ -92,33 +96,37 @@ namespace okapi {
     void setGains(const float ikP, const float ikI, const float ikD, const float ikBias = 0);
 
     /**
-     * Set time between loops in ms
+     * Set time between loops in ms.
+     * 
      * @param isampleTime Time between loops in ms
      */
     void setSampleTime(const int isampleTime) override;
 
     /**
-     * Set controller output bounds
+     * Set controller output bounds.
+     * 
      * @param imax Max output
      * @param imin Min output
      */
     void setOutputLimits(float imax, float imin) override;
 
     /**
-     * Set integrator bounds
+     * Set integrator bounds.
+     * 
      * @param imax Max integrator value
      * @param imin Min integrator value
      */
     void setIntegralLimits(float imax, float imin);
 
     /**
-     * Resets the controller so it can start from 0 again properly. Keeps gains
-     * and limits from before
+     * Resets the controller so it can start from 0 again properly. Keeps gains and limits from
+     * before.
      */
     void reset() override;
 
     /**
-     * Set whether the integrator should be reset when error is 0 or changes sign
+     * Set whether the integrator should be reset when error is 0 or changes sign.
+     * 
      * @param iresetOnZero True to reset
      */
     void setIntegratorReset(bool iresetOnZero) { shouldResetOnCross = iresetOnZero; }

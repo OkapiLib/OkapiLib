@@ -3,6 +3,7 @@
 #include "okapi/device/controllerButton.hpp"
 #include "okapi/device/motor.hpp"
 #include "okapi/chassis/chassisModel.hpp"
+#include "okapi/odometry/odomMath.hpp"
 
 void opcontrol() {
   while (true) {

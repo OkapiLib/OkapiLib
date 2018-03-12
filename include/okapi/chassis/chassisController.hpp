@@ -21,13 +21,15 @@ namespace okapi {
     virtual ~ChassisController() = default;
 
     /**
-     * Drives the robot straight
+     * Drives the robot straight.
+     * 
      * @param itarget Distance to travel
      */
     virtual void driveStraight(const int itarget) = 0;
 
     /**
-     * Turns the robot clockwise in place
+     * Turns the robot clockwise in place.
+     * 
      * @param idegTarget Degrees to turn for
      */
     virtual void pointTurn(const float idegTarget) = 0;
@@ -67,13 +69,15 @@ namespace okapi {
       }
 
       /**
-       * Drives the robot straight
+       * Drives the robot straight.
+       * 
        * @param itarget Distance to travel
        */
       void driveStraight(const int itarget) override;
 
       /**
-       * Turns the robot clockwise in place
+       * Turns the robot clockwise in place.
+       * 
        * @param idegTarget Degrees to turn for
        */
       void pointTurn(float idegTarget) override;

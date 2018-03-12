@@ -36,7 +36,8 @@ namespace okapi {
       filter(iparams.alpha, iparams.beta) {}
 
     /**
-     * Calculate new velocity
+     * Calculate new velocity.
+     * 
      * @param  inewPos New position
      * @return         New velocity
      */

@@ -56,7 +56,8 @@ namespace okapi {
       mm(0) {}
 
     /**
-     * Sets the parameters for Odometry math
+     * Sets the parameters for Odometry math.
+     * 
      * @param iparams Odometry parameters
      */
     void setParams(OdomParams& iparams) {
@@ -66,7 +67,8 @@ namespace okapi {
     }
 
     /**
-     * Set the drive and turn scales
+     * Set the drive and turn scales.
+     * 
      * @param iscale     Scale converting encoder ticks to mm
      * @param iturnScale Scale converting encoder ticks to radians
      */
@@ -76,7 +78,7 @@ namespace okapi {
     }
 
     /**
-     * Do odom math in an infinite loop
+     * Do odom math in an infinite loop.
      */
     void loop();
 

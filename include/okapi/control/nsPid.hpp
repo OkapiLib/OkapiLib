@@ -17,7 +17,8 @@ namespace okapi {
         scale(iscale) {}
 
       /**
-       * Do one iteration of the controller
+       * Do one iteration of the controller.
+       * 
        * @param  inewReading New measurement
        * @return            Controller output
        */

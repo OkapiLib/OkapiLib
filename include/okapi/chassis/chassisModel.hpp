@@ -35,7 +35,8 @@ namespace okapi {
     virtual ~ChassisModelParams() = default;
 
     /**
-     * Allocates a new ChassisModel
+     * Allocates a new ChassisModel.
+     * 
      * @return shared_ptr pointing to new ChassisModel
      */
     virtual std::shared_ptr<ChassisModel> make() const = 0;
@@ -47,7 +48,8 @@ namespace okapi {
   template<size_t motorsPerSide>
   class SkidSteerModelParams : public ChassisModelParams {
   public:
-    SkidSteerModelParams(const std::array<pros::Motor, motorsPerSide * 2>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
+    SkidSteerModelParams(const std::array<pros::Motor, motorsPerSide * 2>& imotorList,
+      const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
       motorList(imotorList),
       leftSensor(std::make_shared<QuadEncoder>(ileftEnc)),
       rightSensor(std::make_shared<QuadEncoder>(irightEnc)) {}
@@ -66,14 +68,15 @@ namespace okapi {
   class SkidSteerModel : public ChassisModel {
   public:
     /**
-     * Model for a skid steer drive (wheels parallel with robot's direction of
-     * motion). When all motors are powered +127, the robot should move forward
-     * in a straight line at full speed.
+     * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
+     * motors are powered +127, the robot should move forward in a straight line at full speed.
+     * 
      * @param imotors   Motors in the format: {{left side motors}, {right side motors}}
      * @param ileftEnc  Left side encoder
      * @param irightEnc Right side encoder
      */
-    SkidSteerModel(const std::array<pros::Motor, motorsPerSide * 2>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
+    SkidSteerModel(const std::array<pros::Motor, motorsPerSide * 2>& imotorList,
+      const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
       motors(imotorList),
       leftSensor(std::make_shared<QuadEncoder>(ileftEnc)),
       rightSensor(std::make_shared<QuadEncoder>(irightEnc)) {}
@@ -115,8 +118,6 @@ namespace okapi {
     }
 
     void tank(const int leftVal, const int rightVal, const int threshold = 0) override {
-      using namespace std;
-
       if (fabs(leftVal) < threshold) {
         for (size_t i = 0; i < motorsPerSide; i++)
           motors[i].set_velocity(0);
@@ -135,8 +136,6 @@ namespace okapi {
     }
 
     void arcade(int verticalVal, int horizontalVal, const int threshold = 0) override {
-      using namespace std;
-      
       if (fabs(verticalVal) < threshold)
         verticalVal = 0;
       if (fabs(horizontalVal) < threshold)
@@ -188,7 +187,8 @@ namespace okapi {
   template<size_t motorsPerCorner>
   class XDriveModelParams : public ChassisModelParams {
   public:
-    XDriveModelParams(const std::array<pros::Motor, motorsPerCorner * 4>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
+    XDriveModelParams(const std::array<pros::Motor, motorsPerCorner * 4>& imotorList,
+      const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
       motorList(imotorList),
       leftSensor(std::make_shared<QuadEncoder>(ileftEnc)),
       rightSensor(std::make_shared<QuadEncoder>(irightEnc)) {}
@@ -207,14 +207,16 @@ namespace okapi {
   class XDriveModel : public ChassisModel {
   public:
     /**
-     * Model for an x drive (wheels at 45 deg from a skid steer drive). When all
-     * motors are powered +127, the robot should move forward in a straight line
-     * at full speed.
-     * @param imotors Motors in the format: {{top left motors}, {top right motors}, {bottom right motors}, {bottom left motors}}
+     * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
+     * +127, the robot should move forward in a straight line at full speed.
+     * 
+     * @param imotors Motors in the format:
+     *  {{top left motors}, {top right motors}, {bottom right motors}, {bottom left motors}}
      * @param ileftEnc Left side encoder
      * @param irightEnc Right side encoder
      */
-    XDriveModel(const std::array<pros::Motor, motorsPerCorner * 4>& imotorList, const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
+    XDriveModel(const std::array<pros::Motor, motorsPerCorner * 4>& imotorList,
+      const QuadEncoder& ileftEnc, const QuadEncoder& irightEnc):
       motors(imotorList),
       leftSensor(std::make_shared<QuadEncoder>(ileftEnc)),
       rightSensor(std::make_shared<QuadEncoder>(irightEnc)) {}
@@ -264,8 +266,6 @@ namespace okapi {
     }
 
     void tank(const int leftVal, const int rightVal, const int threshold = 0) override {
-      using namespace std;
-
       if (fabs(leftVal) < threshold) {
         for (size_t i = 0; i < motorsPerCorner; i++)
           motors[i].set_velocity(0);
@@ -292,8 +292,6 @@ namespace okapi {
     }
 
     void arcade(int verticalVal, int horizontalVal, const int threshold = 0) override {
-      using namespace std;
-      
       if (fabs(verticalVal) < threshold)
         verticalVal = 0;
       if (fabs(horizontalVal) < threshold)
@@ -310,8 +308,6 @@ namespace okapi {
     }
 
     void xArcade(int verticalVal, int horizontalVal, int rotateVal, const int threshold = 0) {
-      using namespace std;
-      
       if (fabs(verticalVal) < threshold)
         verticalVal = 0;
       if (fabs(horizontalVal) < threshold)
