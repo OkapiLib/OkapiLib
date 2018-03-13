@@ -10,6 +10,11 @@
 namespace okapi {
   class VelPidControllerParams : public ControlObjectParams {
   public:
+    VelPidControllerParams(const float ikP, const float ikD):
+      kP(ikP),
+      kD(ikD),
+      params(360) {}
+
     VelPidControllerParams(const float ikP, const float ikD, const VelMathParams& iparams):
       kP(ikP),
       kD(ikD),

@@ -5,6 +5,8 @@
 #include "okapi/chassis/odomChassisController.hpp"
 
 #include "okapi/control/motorGroupController.hpp"
+#include "okapi/control/pidController.hpp"
+#include "okapi/control/velPidController.hpp"
 
 #include "okapi/device/adiButton.hpp"
 #include "okapi/device/controllerButton.hpp"
@@ -79,6 +81,14 @@ void opcontrol() {
       MotorGroupController<2> mgController(
         {1_m, 2_m},
         pid1);
+
+      PidController pid2(0, 0, 0);
+      PidController pid3(0, 0, 0, 0);
+      PidController pid4(PidControllerParams(0, 0, 0));
+      PidController pid5(PidControllerParams(0, 0, 0, 0));
+
+      VelPidController velPid1(0, 0);
+      VelPidController velPid2(VelPidControllerParams(0, 0));
     }
   }
 }
