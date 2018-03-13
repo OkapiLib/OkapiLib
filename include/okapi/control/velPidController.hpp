@@ -20,7 +20,7 @@ namespace okapi {
       kD(ikD),
       params(iparams) {}
 
-    float kP, kD;
+    const float kP, kD;
     const VelMathParams &params;
   };
 

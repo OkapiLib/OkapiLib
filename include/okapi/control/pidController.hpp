@@ -15,7 +15,7 @@ namespace okapi {
       kD(ikD),
       kBias(ikBias) {}
 
-    float kP, kI, kD, kBias;
+    const float kP, kI, kD, kBias;
   };
 
   class PidController : public ControlObject {

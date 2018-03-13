@@ -5,10 +5,10 @@
 #include "api.h"
 
 namespace okapi {
-  float VelMath::step(const float inewPos) {
+  double VelMath::step(const double inewPos) {
     const long now = pros::millis();
 
-    vel = static_cast<float>((1000 / (now - lastTime))) * (inewPos - lastPos) * (60 / ticksPerRev);
+    vel = static_cast<double>((1000 / (now - lastTime))) * (inewPos - lastPos) * (60 / ticksPerRev);
     vel = filter.filter(vel);
 
     lastPos = inewPos;

@@ -6,6 +6,7 @@
 
 #include "okapi/control/motorGroupController.hpp"
 #include "okapi/control/pidController.hpp"
+#include "okapi/control/velMath.hpp"
 #include "okapi/control/velPidController.hpp"
 
 #include "okapi/device/adiButton.hpp"
@@ -95,6 +96,10 @@ void opcontrol() {
       PidController pid3(0, 0, 0, 0);
       PidController pid4(PidControllerParams(0, 0, 0));
       PidController pid5(PidControllerParams(0, 0, 0, 0));
+
+      VelMath velMath1(0);
+      VelMath velMath2(0, 0);
+      VelMath velMath3(0, 0, 0);
 
       VelPidController velPid1(0, 0);
       VelPidController velPid2(VelPidControllerParams(0, 0));

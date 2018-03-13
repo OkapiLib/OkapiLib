@@ -9,17 +9,17 @@
 namespace okapi {
   class VelMathParams {
     public:
-      VelMathParams(const float iticksPerRev, const float ialpha = 0.19, const float ibeta = 0.041):
+      VelMathParams(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041):
         ticksPerRev(iticksPerRev),
         alpha(ialpha),
         beta(ibeta) {}
 
-      float ticksPerRev, alpha, beta;
+      const double ticksPerRev, alpha, beta;
   };
 
   class VelMath {
   public:
-    VelMath(const float iticksPerRev, const float ialpha = 0.19, const float ibeta = 0.041):
+    VelMath(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041):
       lastTime(0),
       vel(0),
       lastVel(0),
@@ -41,19 +41,19 @@ namespace okapi {
      * @param  inewPos New position
      * @return         New velocity
      */
-    float step(const float inewPos);
+    double step(const double inewPos);
 
-    void setGains(const float ialpha, const float ibeta) { filter.setGains(ialpha, ibeta); }
+    void setGains(const double ialpha, const double ibeta) { filter.setGains(ialpha, ibeta); }
 
-    void setTicksPerRev(const float iTPR) { ticksPerRev = iTPR; }
+    void setTicksPerRev(const double iTPR) { ticksPerRev = iTPR; }
 
-    float getOutput() const { return vel; }
+    double getOutput() const { return vel; }
 
-    float getDiff() const { return vel - lastVel; }
+    double getDiff() const { return vel - lastVel; }
 
   private:
     long lastTime;
-    float vel, lastVel, lastPos, ticksPerRev;
+    double vel, lastVel, lastPos, ticksPerRev;
     DemaFilter filter;
   };
 }

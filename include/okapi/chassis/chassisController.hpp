@@ -64,6 +64,18 @@ namespace okapi {
       distancePid(idistanceParams),
       anglePid(iangleParams) {}
 
+    ChassisControllerPid(const ChassisModelParams& imodelParams,
+      const PidController& idistance, const PidController& iangle):
+      ChassisController(imodelParams),
+      distancePid(idistance),
+      anglePid(iangle) {}
+
+    ChassisControllerPid(const std::shared_ptr<ChassisModel>& imodel,
+      const PidController& idistance, const PidController& iangle):
+      ChassisController(imodel),
+      distancePid(idistance),
+      anglePid(iangle) {}
+
     virtual ~ChassisControllerPid() {
       delete &distancePid;
       delete &anglePid;
