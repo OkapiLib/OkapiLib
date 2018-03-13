@@ -14,7 +14,7 @@
 #include "okapi/device/adiButton.hpp"
 #include "okapi/device/controllerButton.hpp"
 #include "okapi/device/motor.hpp"
-#include "okapi/device/quadEncoder.hpp"
+#include "okapi/device/adiEncoder.hpp"
 
 #include "okapi/filter/averageFilter.hpp"
 #include "okapi/filter/demaFilter.hpp"
@@ -42,27 +42,27 @@ void opcontrol() {
       pros::Motor r_mtr = 2_rm;
 
       // SkidSteerModel<2> model1({2_m, 3_m, 4_m, 5_m}, //Left motors: 2 & 3, right motors: 4 & 5
-      //               QuadEncoder(1, 2, true), //Left encoder (reversed)
-      //               QuadEncoder(3, 4)); //Right encoder
+      //               ADIEncoder(1, 2, true), //Left encoder (reversed)
+      //               ADIEncoder(3, 4)); //Right encoder
 
       // XDriveModel<1> model2({2_m, 3_m, 4_m, 5_m}, //Motors are ordered counter-clockwise from the
       // top left
-      //                   QuadEncoder(1, 2, true), //Top left encoder (reversed)
-      //                   QuadEncoder(3, 4)); //Top right encoder
+      //                   ADIEncoder(1, 2, true), //Top left encoder (reversed)
+      //                   ADIEncoder(3, 4)); //Top right encoder
 
       // ChassisControllerPID controller1(
       //   SkidSteerModelParams<2>(
       //     {2_m, 3_m, 4_m, 5_m},
-      //     QuadEncoder(1, 2, true),
-      //     QuadEncoder(3, 4)),
+      //     ADIEncoder(1, 2, true),
+      //     ADIEncoder(3, 4)),
       //   PIDControllerParams(0, 0, 0),
       //   PIDControllerParams(0, 0, 0));
 
       // ChassisControllerPID controller2(
       //   XDriveModelParams<1>(
       //     {2_m, 3_m, 4_m, 5_m},
-      //     QuadEncoder(1, 2, true),
-      //     QuadEncoder(3, 4)),
+      //     ADIEncoder(1, 2, true),
+      //     ADIEncoder(3, 4)),
       //   PIDControllerParams(0, 0, 0),
       //   PIDControllerParams(0, 0, 0));
 
@@ -70,8 +70,8 @@ void opcontrol() {
       //   OdometryParams(
       //     SkidSteerModelParams<2>(
       //       {2_m, 3_m, 4_m, 5_m},
-      //       QuadEncoder(1, 2, true),
-      //       QuadEncoder(3, 4)),
+      //       ADIEncoder(1, 2, true),
+      //       ADIEncoder(3, 4)),
       //     0,
       //     0
       //   ),
@@ -82,8 +82,8 @@ void opcontrol() {
       //   OdometryParams(
       //     XDriveModelParams<1>(
       //       {2_m, 3_m, 4_m, 5_m},
-      //       QuadEncoder(1, 2, true),
-      //       QuadEncoder(3, 4)),
+      //       ADIEncoder(1, 2, true),
+      //       ADIEncoder(3, 4)),
       //     0,
       //     0
       //   ),
@@ -105,8 +105,8 @@ void opcontrol() {
       VelPIDController velPid1(0, 0);
       VelPIDController velPid2(VelPIDControllerParams(0, 0));
 
-      QuadEncoder quad1(0, 0);
-      QuadEncoder quad2(0, 0, true);
+      ADIEncoder quad1(0, 0);
+      ADIEncoder quad2(0, 0, true);
 
       AverageFilter<1> avgFilt1();
 
@@ -117,8 +117,8 @@ void opcontrol() {
       // Odometry odom1(
       //   SkidSteerModelParams<2>(
       //     {2_m, 3_m, 4_m, 5_m},
-      //     QuadEncoder(1, 2, true),
-      //     QuadEncoder(3, 4)),
+      //     ADIEncoder(1, 2, true),
+      //     ADIEncoder(3, 4)),
       //   0,
       //   0);
 

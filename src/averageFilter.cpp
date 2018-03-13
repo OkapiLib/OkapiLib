@@ -27,4 +27,4 @@ template <std::size_t n> float AverageFilter<n>::filter(const float ireading) {
 template <std::size_t n> float AverageFilter<n>::getOutput() const {
   return output;
 }
-}
+} // namespace okapi

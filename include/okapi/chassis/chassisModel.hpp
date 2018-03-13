@@ -4,10 +4,8 @@
 #ifndef _OKAPI_CHASSISMODEL_HPP_
 #define _OKAPI_CHASSISMODEL_HPP_
 
-#include "okapi/device/quadEncoder.hpp"
 #include <array>
 #include <initializer_list>
-#include <memory>
 #include <valarray>
 
 namespace okapi {

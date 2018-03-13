@@ -59,4 +59,4 @@ std::tuple<double, double> OdomMath::guessScales(const double chassisDiam, const
   const double turnScale = (1.0 / (chassisDiam * inchToMM)) * radianToDegree * 2;
   return std::make_tuple(scale, turnScale);
 }
-}
+} // namespace okapi

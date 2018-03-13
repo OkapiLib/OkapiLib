@@ -33,4 +33,4 @@ bool ADIButton::currentlyPressed() {
   const bool pressed = state != 0 && state != PROS_ERR;
   return inverted ? !pressed : pressed;
 }
-}
+} // namespace okapi

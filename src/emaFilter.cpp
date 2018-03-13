@@ -20,4 +20,4 @@ double EmaFilter::getOutput() const {
 void EmaFilter::setGains(const double ialpha) {
   alpha = ialpha;
 }
-}
+} // namespace okapi

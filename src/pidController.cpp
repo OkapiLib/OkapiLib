@@ -168,4 +168,4 @@ void PIDController::setIntegratorReset(bool iresetOnZero) {
 void PIDController::flipDisable() {
   isOn = !isOn;
 }
-}
+} // namespace okapi

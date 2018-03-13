@@ -3,6 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 #include "okapi/odometry/odometry.hpp"
 #include "okapi/util/mathUtil.hpp"
+#include "api.h"
 #include <cmath>
 
 namespace okapi {
@@ -56,4 +57,4 @@ void Odometry::trampoline(void *context) {
 OdomState Odometry::getState() {
   return state;
 }
-}
+} // namespace okapi

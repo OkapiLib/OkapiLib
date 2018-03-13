@@ -58,4 +58,4 @@ bool Timer::repeat(uint32_t ms) {
 
   return false;
 }
-}
+} // namespace okapi

@@ -145,4 +145,4 @@ void VelPIDController::setTicksPerRev(const double tpr) {
 double VelPIDController::getVel() const {
   return velMath.getOutput();
 }
-}
+} // namespace okapi

@@ -45,4 +45,4 @@ double VelMath::getOutput() const {
 double VelMath::getDiff() const {
   return vel - lastVel;
 }
-}
+} // namespace okapi

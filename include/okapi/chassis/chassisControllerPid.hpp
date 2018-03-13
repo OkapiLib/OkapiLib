@@ -6,7 +6,6 @@
 
 #include "okapi/chassis/chassisController.hpp"
 #include "okapi/control/pidController.hpp"
-#include <memory>
 
 namespace okapi {
 class ChassisControllerPID : public virtual ChassisController {
