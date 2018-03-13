@@ -9,38 +9,38 @@ namespace okapi {
   ChassisController::~ChassisController() = default;
 
   void ChassisController::driveForward(const int power) {
-    model->driveForward(power);
+    model.driveForward(power);
   }
 
   void ChassisController::driveVector(const int distPower, const int anglePower) {
-    model->driveVector(distPower, anglePower);
+    model.driveVector(distPower, anglePower);
   }
 
   void ChassisController::turnClockwise(const int power) {
-    model->turnClockwise(power);
+    model.turnClockwise(power);
   }
 
   void ChassisController::stop() {
-    model->stop();
+    model.stop();
   }
 
   void ChassisController::tank(const int leftVal, const int rightVal, const int threshold) {
-    model->tank(leftVal, rightVal, threshold);
+    model.tank(leftVal, rightVal, threshold);
   }
 
   void ChassisController::arcade(int verticalVal, int horizontalVal, const int threshold) {
-    model->arcade(verticalVal, horizontalVal, threshold);
+    model.arcade(verticalVal, horizontalVal, threshold);
   }
 
   void ChassisController::left(const int val) {
-    model->left(val);
+    model.left(val);
   }
 
   void ChassisController::right(const int val) {
-    model->right(val);
+    model.right(val);
   }
 
   std::valarray<int> ChassisController::getSensorVals() {
-    return model->getSensorVals();
+    return model.getSensorVals();
   }
 }

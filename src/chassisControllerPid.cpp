@@ -11,7 +11,7 @@ namespace okapi {
   void ChassisControllerPid::driveStraight(const int itarget) {
     using namespace std;
 
-    const auto encStartVals = model->getSensorVals();
+    const auto encStartVals = model.getSensorVals();
     float distanceElapsed = 0, angleChange = 0, lastDistance = 0;
     uint32_t prevWakeTime = pros::millis();
 
@@ -33,13 +33,13 @@ namespace okapi {
 
 
     while (!atTarget) {
-      encVals = model->getSensorVals() - encStartVals;
+      encVals = model.getSensorVals() - encStartVals;
       distanceElapsed = static_cast<float>((encVals[0] + encVals[1])) / 2.0;
       angleChange = static_cast<float>(encVals[1] - encVals[0]);
 
       distOutput = distancePid.step(distanceElapsed);
       angleOutput = anglePid.step(angleChange);
-      model->driveVector(static_cast<int>(distOutput), static_cast<int>(angleOutput));
+      model.driveVector(static_cast<int>(distOutput), static_cast<int>(angleOutput));
 
       if (abs(itarget - static_cast<int>(distanceElapsed)) <= atTargetDistance)
         atTargetTimer.placeHardMark();
@@ -56,13 +56,13 @@ namespace okapi {
       task_delay_until(&prevWakeTime, 15);
     }
 
-    model->driveForward(0);
+    model.driveForward(0);
   }
 
   void ChassisControllerPid::pointTurn(float idegTarget) {
     using namespace std;
     
-    const auto encStartVals = model->getSensorVals();
+    const auto encStartVals = model.getSensorVals();
     float angleChange = 0, lastAngle = 0;
     uint32_t prevWakeTime = pros::millis();
 
@@ -85,10 +85,10 @@ namespace okapi {
     valarray<int> encVals{0, 0};
 
     while (!atTarget) {
-      encVals = model->getSensorVals() - encStartVals;
+      encVals = model.getSensorVals() - encStartVals;
       angleChange = static_cast<float>(encVals[1] - encVals[0]);
 
-      model->turnClockwise(static_cast<int>(anglePid.step(angleChange)));
+      model.turnClockwise(static_cast<int>(anglePid.step(angleChange)));
 
       if (fabs(idegTarget - angleChange) <= atTargetAngle)
         atTargetTimer.placeHardMark();
@@ -105,6 +105,6 @@ namespace okapi {
       task_delay_until(&prevWakeTime, 15);
     }
 
-    model->driveForward(0);
+    model.driveForward(0);
   }
 }

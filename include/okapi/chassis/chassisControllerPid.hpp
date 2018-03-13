@@ -17,7 +17,7 @@ namespace okapi {
       distancePid(idistanceParams),
       anglePid(iangleParams) {}
 
-    ChassisControllerPid(const std::shared_ptr<ChassisModel>& imodel,
+    ChassisControllerPid(const ChassisModel& imodel,
       const PidControllerParams& idistanceParams, const PidControllerParams& iangleParams):
       ChassisController(imodel),
       distancePid(idistanceParams),
@@ -29,7 +29,7 @@ namespace okapi {
       distancePid(idistance),
       anglePid(iangle) {}
 
-    ChassisControllerPid(const std::shared_ptr<ChassisModel>& imodel,
+    ChassisControllerPid(const ChassisModel& imodel,
       const PidController& idistance, const PidController& iangle):
       ChassisController(imodel),
       distancePid(idistance),

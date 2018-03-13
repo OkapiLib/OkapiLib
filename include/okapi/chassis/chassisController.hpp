@@ -13,7 +13,7 @@ namespace okapi {
     ChassisController(const ChassisModelParams& imodelParams):
       model(imodelParams.make()) {}
 
-    ChassisController(const std::shared_ptr<ChassisModel>& imodel):
+    ChassisController(const ChassisModel& imodel):
       model(imodel) {}
 
     virtual ~ChassisController();
@@ -51,7 +51,7 @@ namespace okapi {
     std::valarray<int> getSensorVals();
 
   protected:
-    std::shared_ptr<ChassisModel> model;
+    const ChassisModel &model;
   };
 }
 

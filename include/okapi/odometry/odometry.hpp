@@ -35,7 +35,7 @@ namespace okapi {
 
     virtual ~OdometryParams() = default;
 
-    std::shared_ptr<ChassisModel> model;
+    const ChassisModel& model;
     float scale, turnScale;
   };
 
@@ -54,17 +54,6 @@ namespace okapi {
       turnScale(iparams.turnScale),
       lastTicks{0, 0},
       mm(0) {}
-
-    /**
-     * Sets the parameters for Odometry math.
-     * 
-     * @param iparams Odometry parameters
-     */
-    void setParams(OdometryParams& iparams) {
-      model = iparams.model;
-      scale = iparams.scale;
-      turnScale = iparams.turnScale;
-    }
 
     /**
      * Set the drive and turn scales.
@@ -86,7 +75,7 @@ namespace okapi {
 
     OdomState getState() { return state; }
   private:
-    std::shared_ptr<ChassisModel> model;
+    const ChassisModel& model;
     OdomState state;
     float scale, turnScale;
     std::valarray<int> lastTicks;

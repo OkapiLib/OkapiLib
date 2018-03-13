@@ -13,19 +13,19 @@
 namespace okapi {
   class ChassisModel {
   public:
-    ChassisModel() {}
-    virtual ~ChassisModel() = default;
+    ChassisModel();
+    virtual ~ChassisModel();
 
-    virtual void driveForward(const int power) = 0;
-    virtual void driveVector(const int distPower, const int anglePower) = 0;
-    virtual void turnClockwise(const int power) = 0;
-    virtual void stop() = 0;
-    virtual void tank(const int leftVal, const int rightVal, const int threshold = 0) = 0;
-    virtual void arcade(int verticalVal, int horizontalVal, const int threshold = 0) = 0;
-    virtual void left(const int val) = 0;
-    virtual void right(const int val) = 0;
-    virtual std::valarray<int> getSensorVals() = 0;
-    virtual void resetSensors() = 0;
+    virtual void driveForward(const int power) const = 0;
+    virtual void driveVector(const int distPower, const int anglePower) const = 0;
+    virtual void turnClockwise(const int power) const = 0;
+    virtual void stop() const = 0;
+    virtual void tank(const int leftVal, const int rightVal, const int threshold = 0) const = 0;
+    virtual void arcade(int verticalVal, int horizontalVal, const int threshold = 0) const = 0;
+    virtual void left(const int val) const = 0;
+    virtual void right(const int val) const = 0;
+    virtual std::valarray<int> getSensorVals() const = 0;
+    virtual void resetSensors() const = 0;
   };
 
   class ChassisModelParams {
@@ -38,7 +38,7 @@ namespace okapi {
      * 
      * @return shared_ptr pointing to new ChassisModel
      */
-    virtual std::shared_ptr<ChassisModel> make() const = 0;
+    virtual const ChassisModel& make() const = 0;
   };
 
   template<size_t motorsPerSide>
@@ -55,8 +55,8 @@ namespace okapi {
 
     virtual ~SkidSteerModelParams() = default;
 
-    std::shared_ptr<ChassisModel> make() const override {
-      return std::make_shared<SkidSteerModel<motorsPerSide>>(*this);
+    const ChassisModel& make() const override {
+      return SkidSteerModel<motorsPerSide>(*this);
     }
 
     const std::array<pros::Motor, motorsPerSide * 2>& motorList;
@@ -93,31 +93,31 @@ namespace okapi {
 
     virtual ~SkidSteerModel() { delete &motors; }
 
-    void driveForward(const int power) override {
+    void driveForward(const int power) const override {
       for (size_t i = 0; i < motorsPerSide * 2; i++)
         motors[i].set_velocity(power);
     }
 
-    void driveVector(const int distPower, const int anglePower) override {
+    void driveVector(const int distPower, const int anglePower) const override {
       for (size_t i = 0; i < motorsPerSide; i++)
         motors[i].set_velocity(distPower + anglePower);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
         motors[i].set_velocity(distPower - anglePower);
     }
 
-    void turnClockwise(const int power) override {
+    void turnClockwise(const int power) const override {
       for (size_t i = 0; i < motorsPerSide; i++)
         motors[i].set_velocity(power);
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
         motors[i].set_velocity(-1 * power);
     }
 
-    void stop() override {
+    void stop() const override {
       for (size_t i = 0; i < motorsPerSide * 2; i++)
         motors[i].set_velocity(0);
     }
 
-    void tank(const int leftVal, const int rightVal, const int threshold = 0) override {
+    void tank(const int leftVal, const int rightVal, const int threshold = 0) const override {
       if (fabs(leftVal) < threshold) {
         for (size_t i = 0; i < motorsPerSide; i++)
           motors[i].set_velocity(0);
@@ -135,7 +135,7 @@ namespace okapi {
       }
     }
 
-    void arcade(int verticalVal, int horizontalVal, const int threshold = 0) override {
+    void arcade(int verticalVal, int horizontalVal, const int threshold = 0) const override {
       if (fabs(verticalVal) < threshold)
         verticalVal = 0;
       if (fabs(horizontalVal) < threshold)
@@ -147,21 +147,21 @@ namespace okapi {
         motors[i].set_velocity(verticalVal - horizontalVal);
     }
 
-    void left(const int val) override {
+    void left(const int val) const override {
       for (size_t i = 0; i < motorsPerSide; i++)
         motors[i].set_velocity(val);
     }
 
-    void right(const int val) override {
+    void right(const int val) const override {
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
         motors[i].set_velocity(val);
     }
 
-    std::valarray<int> getSensorVals() override {
+    std::valarray<int> getSensorVals() const override {
       return std::valarray<int>{leftSensor.get(), rightSensor.get()};
     }
 
-    void resetSensors() override {
+    void resetSensors() const override {
       leftSensor.reset();
       rightSensor.reset();
     }
@@ -186,8 +186,8 @@ namespace okapi {
 
     virtual ~XDriveModelParams() {}
 
-    std::shared_ptr<ChassisModel> make() const override {
-      return std::make_shared<XDriveModel<motorsPerCorner>>(*this);
+    const ChassisModel& make() const override {
+      return XDriveModel<motorsPerCorner>(*this);
     }
 
     const std::array<pros::Motor, motorsPerCorner * 4>& motorList;
@@ -225,12 +225,12 @@ namespace okapi {
 
     virtual ~XDriveModel() { delete &motors; }
 
-    void driveForward(const int power) override {
+    void driveForward(const int power) const override {
       for (size_t i = 0; i < motorsPerCorner * 4; i++)
         motors[i].set_velocity(power);
     }
 
-    void driveVector(const int distPower, const int anglePower) override {
+    void driveVector(const int distPower, const int anglePower) const override {
       for (size_t i = 0; i < motorsPerCorner; i++)
         motors[i].set_velocity(distPower + anglePower);
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
@@ -241,7 +241,7 @@ namespace okapi {
         motors[i].set_velocity(distPower + anglePower);
     }
 
-    void turnClockwise(const int power) override {
+    void turnClockwise(const int power) const override {
       for (size_t i = 0; i < motorsPerCorner; i++)
         motors[i].set_velocity(power);
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 2; i++)
@@ -252,12 +252,12 @@ namespace okapi {
         motors[i].set_velocity(power);
     }
 
-    void stop() override {
+    void stop() const override {
       for (size_t i = 0; i < motorsPerCorner * 4; i++)
         motors[i].set_velocity(0);
     }
 
-    void tank(const int leftVal, const int rightVal, const int threshold = 0) override {
+    void tank(const int leftVal, const int rightVal, const int threshold = 0) const override {
       if (fabs(leftVal) < threshold) {
         for (size_t i = 0; i < motorsPerCorner; i++)
           motors[i].set_velocity(0);
@@ -283,7 +283,7 @@ namespace okapi {
       }
     }
 
-    void arcade(int verticalVal, int horizontalVal, const int threshold = 0) override {
+    void arcade(int verticalVal, int horizontalVal, const int threshold = 0) const override {
       if (fabs(verticalVal) < threshold)
         verticalVal = 0;
       if (fabs(horizontalVal) < threshold)
@@ -299,7 +299,7 @@ namespace okapi {
         motors[i].set_velocity(verticalVal + horizontalVal);
     }
 
-    void xArcade(int verticalVal, int horizontalVal, int rotateVal, const int threshold = 0) {
+    void xArcade(int verticalVal, int horizontalVal, int rotateVal, const int threshold = 0) const {
       if (fabs(verticalVal) < threshold)
         verticalVal = 0;
       if (fabs(horizontalVal) < threshold)
@@ -317,23 +317,23 @@ namespace okapi {
         motors[i].set_velocity(verticalVal - horizontalVal + rotateVal);
     }
     
-    void left(const int val) override {
+    void left(const int val) const override {
       for (size_t i = 0; i < motorsPerCorner; i++)
         motors[i].set_velocity(val);
       for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
         motors[i].set_velocity(val);
     }
 
-    void right(const int val) override {
+    void right(const int val) const override {
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 3; i++)
         motors[i].set_velocity(val);
     }
 
-    std::valarray<int> getSensorVals() override {
+    std::valarray<int> getSensorVals() const override {
       return std::valarray<int>{leftSensor.get(), rightSensor.get()};
     }
 
-    void resetSensors() override {
+    void resetSensors() const override {
       leftSensor.reset();
       rightSensor.reset();
     }
