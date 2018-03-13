@@ -52,16 +52,16 @@ void opcontrol() {
           {2_m, 3_m, 4_m, 5_m},
           QuadEncoder(1, 2, true),
           QuadEncoder(3, 4)),
-        PidControllerParams(0, 0, 0),
-        PidControllerParams(0, 0, 0));
+        PIDControllerParams(0, 0, 0),
+        PIDControllerParams(0, 0, 0));
 
       ChassisControllerPid controller2(
         XDriveModelParams<1>(
           {2_m, 3_m, 4_m, 5_m},
           QuadEncoder(1, 2, true),
           QuadEncoder(3, 4)),
-        PidControllerParams(0, 0, 0),
-        PidControllerParams(0, 0, 0));
+        PIDControllerParams(0, 0, 0),
+        PIDControllerParams(0, 0, 0));
       
       OdomChassisControllerPid controller3(
         OdometryParams(
@@ -72,8 +72,8 @@ void opcontrol() {
           0,
           0
         ),
-        PidControllerParams(0, 0, 0),
-        PidControllerParams(0, 0, 0));
+        PIDControllerParams(0, 0, 0),
+        PIDControllerParams(0, 0, 0));
       
       OdomChassisControllerPid controller4(
         OdometryParams(
@@ -84,25 +84,25 @@ void opcontrol() {
           0,
           0
         ),
-        PidControllerParams(0, 0, 0),
-        PidControllerParams(0, 0, 0));
+        PIDControllerParams(0, 0, 0),
+        PIDControllerParams(0, 0, 0));
 
-      PidController pid1(0,0,0);
+      PIDController pid1(0,0,0);
       MotorGroupController<2> mgController(
         {1_m, 2_m},
         pid1);
 
-      PidController pid2(0, 0, 0);
-      PidController pid3(0, 0, 0, 0);
-      PidController pid4(PidControllerParams(0, 0, 0));
-      PidController pid5(PidControllerParams(0, 0, 0, 0));
+      PIDController pid2(0, 0, 0);
+      PIDController pid3(0, 0, 0, 0);
+      PIDController pid4(PIDControllerParams(0, 0, 0));
+      PIDController pid5(PIDControllerParams(0, 0, 0, 0));
 
       VelMath velMath1(0);
       VelMath velMath2(0, 0);
       VelMath velMath3(0, 0, 0);
 
-      VelPidController velPid1(0, 0);
-      VelPidController velPid2(VelPidControllerParams(0, 0));
+      VelPIDController velPid1(0, 0);
+      VelPIDController velPid2(VelPIDControllerParams(0, 0));
 
       QuadEncoder quad1(0, 0);
       QuadEncoder quad2(0, 0, true);

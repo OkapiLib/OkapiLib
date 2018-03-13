@@ -7,9 +7,9 @@
 #include "okapi/control/controlObject.hpp"
 
 namespace okapi {
-  class PidControllerParams : public ControlObjectParams {
+  class PIDControllerParams : public ControlObjectParams {
   public:
-    PidControllerParams(const float ikP, const float ikI, const float ikD, const float ikBias = 0):
+    PIDControllerParams(const float ikP, const float ikI, const float ikD, const float ikBias = 0):
       kP(ikP),
       kI(ikI),
       kD(ikD),
@@ -18,7 +18,7 @@ namespace okapi {
     const float kP, kI, kD, kBias;
   };
 
-  class PidController : public ControlObject {
+  class PIDController : public ControlObject {
   public:
     /**
      * PID controller.
@@ -28,7 +28,7 @@ namespace okapi {
      * @param ikD    Derivative gain
      * @param ikBias Controller bias (added to final output)
      */
-    PidController(const float ikP, const float ikI, const float ikD, const float ikBias = 0):
+    PIDController(const float ikP, const float ikI, const float ikD, const float ikBias = 0):
       lastTime(0),
       sampleTime(15),
       error(0),
@@ -51,7 +51,7 @@ namespace okapi {
      * 
      * @param params Params (see PidParams docs)
      */
-    PidController(const PidControllerParams& params):
+    PIDController(const PIDControllerParams& params):
       lastTime(0),
       sampleTime(15),
       error(0),
@@ -69,7 +69,7 @@ namespace okapi {
         setGains(params.kP, params.kI, params.kD, params.kBias);
       }
 
-    virtual ~PidController() = default;
+    virtual ~PIDController() = default;
 
     /**
      * Do one iteration of the controller.

@@ -12,25 +12,25 @@ namespace okapi {
   class ChassisControllerPid : public virtual ChassisController {
   public:
     ChassisControllerPid(const ChassisModelParams& imodelParams,
-      const PidControllerParams& idistanceParams, const PidControllerParams& iangleParams):
+      const PIDControllerParams& idistanceParams, const PIDControllerParams& iangleParams):
       ChassisController(imodelParams),
       distancePid(idistanceParams),
       anglePid(iangleParams) {}
 
     ChassisControllerPid(const ChassisModel& imodel,
-      const PidControllerParams& idistanceParams, const PidControllerParams& iangleParams):
+      const PIDControllerParams& idistanceParams, const PIDControllerParams& iangleParams):
       ChassisController(imodel),
       distancePid(idistanceParams),
       anglePid(iangleParams) {}
 
     ChassisControllerPid(const ChassisModelParams& imodelParams,
-      const PidController& idistance, const PidController& iangle):
+      const PIDController& idistance, const PIDController& iangle):
       ChassisController(imodelParams),
       distancePid(idistance),
       anglePid(iangle) {}
 
     ChassisControllerPid(const ChassisModel& imodel,
-      const PidController& idistance, const PidController& iangle):
+      const PIDController& idistance, const PIDController& iangle):
       ChassisController(imodel),
       distancePid(idistance),
       anglePid(iangle) {}
@@ -52,7 +52,7 @@ namespace okapi {
     void pointTurn(float idegTarget) override;
 
   protected:
-    PidController distancePid, anglePid;
+    PIDController distancePid, anglePid;
   };
 }
 

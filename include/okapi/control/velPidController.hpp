@@ -8,14 +8,14 @@
 #include "okapi/control/controlObject.hpp"
 
 namespace okapi {
-  class VelPidControllerParams : public ControlObjectParams {
+  class VelPIDControllerParams : public ControlObjectParams {
   public:
-    VelPidControllerParams(const float ikP, const float ikD):
+    VelPIDControllerParams(const float ikP, const float ikD):
       kP(ikP),
       kD(ikD),
       params(360) {}
 
-    VelPidControllerParams(const float ikP, const float ikD, const VelMathParams& iparams):
+    VelPIDControllerParams(const float ikP, const float ikD, const VelMathParams& iparams):
       kP(ikP),
       kD(ikD),
       params(iparams) {}
@@ -24,7 +24,7 @@ namespace okapi {
     const VelMathParams &params;
   };
 
-  class VelPidController : public ControlObject {
+  class VelPIDController : public ControlObject {
   public:
     /**
      * Velocity PID controller.
@@ -32,7 +32,7 @@ namespace okapi {
      * @param ikP    Proportional gain
      * @param ikD    Derivative gain
      */
-    VelPidController(const float ikP, const float ikD):
+    VelPIDController(const float ikP, const float ikD):
       lastTime(0),
       sampleTime(15),
       error(0),
@@ -52,7 +52,7 @@ namespace okapi {
      * @param ikP    Proportional gain
      * @param ikD    Derivative gain
      */
-    VelPidController(const float ikP, const float ikD, const VelMathParams& iparams):
+    VelPIDController(const float ikP, const float ikD, const VelMathParams& iparams):
       lastTime(0),
       sampleTime(15),
       error(0),
@@ -71,7 +71,7 @@ namespace okapi {
      * 
      * @param params Params (see VelPidParams docs)
      */
-    VelPidController(const VelPidControllerParams& params):
+    VelPIDController(const VelPIDControllerParams& params):
       lastTime(0),
       sampleTime(15),
       error(0),
