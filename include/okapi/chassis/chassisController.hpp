@@ -19,36 +19,92 @@ namespace okapi {
     virtual ~ChassisController();
 
     /**
-     * Drives the robot straight.
+     * Drives the robot straight (using closed-loop control).
      * 
-     * @param itarget Distance to travel
+     * @param itarget distance to travel
      */
     virtual void driveStraight(const int itarget) = 0;
 
     /**
-     * Turns the robot clockwise in place.
+     * Turns the robot clockwise in place (using closed-loop control).
      * 
-     * @param idegTarget Degrees to turn for
+     * @param idegTarget degrees to turn for
      */
     virtual void pointTurn(const float idegTarget) = 0;
 
-    void driveForward(const int power);
+    /**
+     * Drive the robot forwards (using open-loop control).
+     * 
+     * @param ipower motor power 
+     */
+    void driveForward(const int ipower);
 
-    void driveVector(const int distPower, const int anglePower);
+    /**
+     * Drive the robot in an arc (using open-loop control).
+     * The algorithm is:
+     *   leftPower = distPower + anglePower
+     *   rightPower = distPower - anglePower
+     * 
+     * @param idistPower see above
+     * @param ianglePower see above
+     */
+    void driveVector(const int idistPower, const int ianglePower);
 
-    void turnClockwise(const int power);
+    /**
+     * Turn the robot clockwise (using open-loop control).
+     * 
+     * @param ipower motor power
+     */
+    void turnClockwise(const int ipower);
 
+    /**
+     * Stop the robot (set all the motors to 0).
+     */
     void stop();
 
-    void tank(const int leftVal, const int rightVal, const int threshold = 0);
+    /**
+     * Drive the robot with a tank drive layout.
+     * 
+     * @param ileftVal left joystick value
+     * @param irightVal right joystick value
+     * @param ithreshold deadband on joystick values
+     */
+    void tank(const int ileftVal, const int irightVal, const int ithreshold = 0);
 
-    void arcade(int verticalVal, int horizontalVal, const int threshold = 0);
+    /**
+     * Drive the robot with an arcade drive layout.
+     * 
+     * @param iverticalVal vertical joystick value
+     * @param ihorizontalVal horizontal joystick value
+     * @param ithreshold deadband on joystick values
+     */
+    void arcade(int iverticalVal, int ihorizontalVal, const int ithreshold = 0);
 
-    void left(const int val);
+    /**
+     * Power the left side motors.
+     * 
+     * @param ipower motor power
+     */
+    void left(const int ipower);
 
-    void right(const int val);
+    /**
+     * Power the right side motors.
+     * 
+     * @param ipower motor power
+     */
+    void right(const int ipower);
 
+    /**
+     * Read the sensors.
+     * 
+     * @return sensor readings in the format {left, right}
+     */
     std::valarray<int> getSensorVals();
+
+    /**
+     * Reset the sensors to their zero point.
+     */
+    void resetSensors() const;
 
   protected:
     const ChassisModel &model;
