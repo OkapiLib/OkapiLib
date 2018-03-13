@@ -14,8 +14,13 @@
 #include "okapi/device/quadEncoder.hpp"
 
 #include "okapi/filter/averageFilter.hpp"
+#include "okapi/filter/demaFilter.hpp"
+#include "okapi/filter/emaFilter.hpp"
 
+#include "okapi/odometry/odometry.hpp"
 #include "okapi/odometry/odomMath.hpp"
+
+#include "okapi/util/timer.hpp"
 
 void opcontrol() {
   while (true) {
@@ -58,7 +63,7 @@ void opcontrol() {
         PidControllerParams(0, 0, 0));
       
       OdomChassisControllerPid controller3(
-        OdomParams(
+        OdometryParams(
           SkidSteerModelParams<2>(
             {2_m, 3_m, 4_m, 5_m},
             QuadEncoder(1, 2, true),
@@ -70,7 +75,7 @@ void opcontrol() {
         PidControllerParams(0, 0, 0));
       
       OdomChassisControllerPid controller4(
-        OdomParams(
+        OdometryParams(
           XDriveModelParams<1>(
             {2_m, 3_m, 4_m, 5_m},
             QuadEncoder(1, 2, true),
@@ -98,6 +103,20 @@ void opcontrol() {
       QuadEncoder quad2(0, 0, true);
 
       AverageFilter<1> avgFilt1();
+
+      DemaFilter demaFilt1(0, 0);
+
+      EmaFilter emaFilt1(0, 0);
+
+      Odometry odom1(
+        SkidSteerModelParams<2>(
+          {2_m, 3_m, 4_m, 5_m},
+          QuadEncoder(1, 2, true),
+          QuadEncoder(3, 4)),
+        0,
+        0);
+
+      Timer timer1();
     }
   }
 }

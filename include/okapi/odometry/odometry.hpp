@@ -26,14 +26,14 @@ namespace okapi {
     float x, y, theta;
   };
 
-  class OdomParams {
+  class OdometryParams {
   public:
-    OdomParams(const ChassisModelParams& iparams, const float iscale, const float iturnScale):
+    OdometryParams(const ChassisModelParams& iparams, const float iscale, const float iturnScale):
       model(iparams.make()),
       scale(iscale),
       turnScale(iturnScale) {}
 
-    virtual ~OdomParams() = default;
+    virtual ~OdometryParams() = default;
 
     std::shared_ptr<ChassisModel> model;
     float scale, turnScale;
@@ -48,7 +48,7 @@ namespace okapi {
       lastTicks{0, 0},
       mm(0) {}
 
-    Odometry(const OdomParams& iparams):
+    Odometry(const OdometryParams& iparams):
       model(iparams.model),
       scale(iparams.scale),
       turnScale(iparams.turnScale),
@@ -60,7 +60,7 @@ namespace okapi {
      * 
      * @param iparams Odometry parameters
      */
-    void setParams(OdomParams& iparams) {
+    void setParams(OdometryParams& iparams) {
       model = iparams.model;
       scale = iparams.scale;
       turnScale = iparams.turnScale;

@@ -17,7 +17,7 @@ namespace okapi {
      * 
      * @param iparams Odometry parameters for the internal odometry math
      */
-    OdomChassisController(const OdomParams& iparams):
+    OdomChassisController(const OdometryParams& iparams):
       ChassisController(iparams.model),
       odom(iparams) {
         task_create((task_fn_t)Odometry::trampoline, &odom, TASK_PRIORITY_DEFAULT + 1,
@@ -56,7 +56,7 @@ namespace okapi {
 
   class OdomChassisControllerPid : public OdomChassisController, public ChassisControllerPid {
   public:
-    OdomChassisControllerPid(const OdomParams& params, const PidControllerParams& idistanceParams,
+    OdomChassisControllerPid(const OdometryParams& params, const PidControllerParams& idistanceParams,
       const PidControllerParams& iangleParams):
       ChassisController(params.model),
       OdomChassisController(params),
