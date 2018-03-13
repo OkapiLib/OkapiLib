@@ -2,23 +2,23 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 #include <cmath>
-#include "okapi/control/velPid.hpp"
+#include "okapi/control/velPidController.hpp"
 #include "api.h"
 
 namespace okapi {
-  void VelPid::setGains(const float ikP, const float ikD) {
+  void VelPidController::setGains(const float ikP, const float ikD) {
     kP = ikP;
     kD = ikD * static_cast<float>(sampleTime) / 1000.0;
   }
 
-  void VelPid::setSampleTime(const int isampleTime) {
+  void VelPidController::setSampleTime(const int isampleTime) {
     if (isampleTime > 0) {
       kD /= static_cast<float>(isampleTime) / static_cast<float>(sampleTime);
       sampleTime = isampleTime;
     }
   }
 
-  void VelPid::setOutputLimits(float imax, float imin) {
+  void VelPidController::setOutputLimits(float imax, float imin) {
     //Always use larger value as max
     if (imin > imax) {
       const float temp = imax;
@@ -36,11 +36,11 @@ namespace okapi {
       output = outputMin;
   }
 
-  float VelPid::stepVel(const float inewReading) {
+  float VelPidController::stepVel(const float inewReading) {
     return velMath.step(inewReading);
   }
 
-  float VelPid::step(const float inewReading) {
+  float VelPidController::step(const float inewReading) {
     if (isOn) {
       const long now = pros::millis();
       if (now - lastTime >= sampleTime) {
@@ -66,7 +66,7 @@ namespace okapi {
     return 0;
   }
 
-  void VelPid::reset() {
+  void VelPidController::reset() {
     error = 0;
     lastError = 0;
     output = 0;

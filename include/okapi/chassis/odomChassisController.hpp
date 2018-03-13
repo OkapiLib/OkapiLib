@@ -56,8 +56,8 @@ namespace okapi {
 
   class OdomChassisControllerPid : public OdomChassisController, public ChassisControllerPid {
   public:
-    OdomChassisControllerPid(const OdomParams& params, const PidParams& idistanceParams,
-      const PidParams& iangleParams):
+    OdomChassisControllerPid(const OdomParams& params, const PidControllerParams& idistanceParams,
+      const PidControllerParams& iangleParams):
       ChassisController(params.model),
       OdomChassisController(params),
       ChassisControllerPid(params.model, idistanceParams, iangleParams) {}

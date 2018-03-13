@@ -5,7 +5,7 @@
 #define _OKAPI_CHASSISCONTROLLER_HPP_
 
 #include "okapi/chassis/chassisModel.hpp"
-#include "okapi/control/pid.hpp"
+#include "okapi/control/pidController.hpp"
 #include <memory>
 
 namespace okapi {
@@ -52,12 +52,14 @@ namespace okapi {
 
   class ChassisControllerPid : public virtual ChassisController {
   public:
-    ChassisControllerPid(const ChassisModelParams& imodelParams, const PidParams& idistanceParams, const PidParams& iangleParams):
+    ChassisControllerPid(const ChassisModelParams& imodelParams,
+      const PidControllerParams& idistanceParams, const PidControllerParams& iangleParams):
       ChassisController(imodelParams),
       distancePid(idistanceParams),
       anglePid(iangleParams) {}
 
-    ChassisControllerPid(const std::shared_ptr<ChassisModel>& imodel, const PidParams& idistanceParams, const PidParams& iangleParams):
+    ChassisControllerPid(const std::shared_ptr<ChassisModel>& imodel,
+      const PidControllerParams& idistanceParams, const PidControllerParams& iangleParams):
       ChassisController(imodel),
       distancePid(idistanceParams),
       anglePid(iangleParams) {}
@@ -82,7 +84,7 @@ namespace okapi {
     void pointTurn(float idegTarget) override;
 
   protected:
-    Pid distancePid, anglePid;
+    PidController distancePid, anglePid;
   };
 }
 

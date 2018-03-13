@@ -8,9 +8,9 @@
 #include "okapi/control/controlObject.hpp"
 
 namespace okapi {
-  class VelPidParams : public ControlObjectParams {
+  class VelPidControllerParams : public ControlObjectParams {
   public:
-    VelPidParams(const float ikP, const float ikD, const VelMathParams& iparams):
+    VelPidControllerParams(const float ikP, const float ikD, const VelMathParams& iparams):
       kP(ikP),
       kD(ikD),
       params(iparams) {}
@@ -19,7 +19,7 @@ namespace okapi {
     const VelMathParams &params;
   };
 
-  class VelPid : public ControlObject {
+  class VelPidController : public ControlObject {
   public:
     /**
      * Velocity PID controller.
@@ -27,7 +27,7 @@ namespace okapi {
      * @param ikP    Proportional gain
      * @param ikD    Derivative gain
      */
-    VelPid(const float ikP, const float ikD):
+    VelPidController(const float ikP, const float ikD):
       lastTime(0),
       sampleTime(15),
       error(0),
@@ -47,7 +47,7 @@ namespace okapi {
      * @param ikP    Proportional gain
      * @param ikD    Derivative gain
      */
-    VelPid(const float ikP, const float ikD, const VelMathParams& iparams):
+    VelPidController(const float ikP, const float ikD, const VelMathParams& iparams):
       lastTime(0),
       sampleTime(15),
       error(0),
@@ -66,7 +66,7 @@ namespace okapi {
      * 
      * @param params Params (see VelPidParams docs)
      */
-    VelPid(const VelPidParams& params):
+    VelPidController(const VelPidControllerParams& params):
       lastTime(0),
       sampleTime(15),
       error(0),

@@ -1,12 +1,12 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-#include "okapi/control/pid.hpp"
+#include "okapi/control/pidController.hpp"
 #include "api.h"
 #include <cmath>
 
 namespace okapi {
-  void Pid::setSampleTime(const int isampleTime) {
+  void PidController::setSampleTime(const int isampleTime) {
     if (isampleTime > 0) {
       const float ratio = static_cast<float>(isampleTime) / static_cast<float>(sampleTime);
       kI *= ratio;
@@ -15,7 +15,7 @@ namespace okapi {
     }
   }
 
-  void Pid::setOutputLimits(float imax, float imin) {
+  void PidController::setOutputLimits(float imax, float imin) {
     //Always use larger value as max
     if (imin > imax) {
       const float temp = imax;
@@ -36,7 +36,7 @@ namespace okapi {
     setIntegralLimits(imax, imin);
   }
 
-  void Pid::setIntegralLimits(float imax, float imin) {
+  void PidController::setIntegralLimits(float imax, float imin) {
     //Always use larger value as max
     if (imin > imax) {
       const float temp = imax;
@@ -54,7 +54,7 @@ namespace okapi {
       integral = integralMin;
   }
 
-  float Pid::step(const float inewReading) {
+  float PidController::step(const float inewReading) {
     if (isOn) {
       const long now = pros::millis();
 
@@ -91,7 +91,7 @@ namespace okapi {
     return output;
   }
 
-  void Pid::setGains(const float ikP, const float ikI, const float ikD, const float ikBias) {
+  void PidController::setGains(const float ikP, const float ikI, const float ikD, const float ikBias) {
     const float sampleTimeSec = static_cast<float>(sampleTime) / 1000.0;
     kP = ikP;
     kI = ikI * sampleTimeSec;
@@ -99,7 +99,7 @@ namespace okapi {
     kBias = ikBias;
   }
 
-  void Pid::reset() {
+  void PidController::reset() {
     error = 0;
     lastError = 0;
     lastReading = 0;

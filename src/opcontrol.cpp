@@ -4,6 +4,8 @@
 #include "okapi/chassis/chassisModel.hpp"
 #include "okapi/chassis/odomChassisController.hpp"
 
+#include "okapi/control/motorGroupController.hpp"
+
 #include "okapi/device/adiButton.hpp"
 #include "okapi/device/controllerButton.hpp"
 #include "okapi/device/motor.hpp"
@@ -38,16 +40,16 @@ void opcontrol() {
           {2_m, 3_m, 4_m, 5_m},
           QuadEncoder(1, 2, true),
           QuadEncoder(3, 4)),
-        PidParams(0, 0, 0),
-        PidParams(0, 0, 0));
+        PidControllerParams(0, 0, 0),
+        PidControllerParams(0, 0, 0));
 
       ChassisControllerPid controller2(
         XDriveModelParams<1>(
           {2_m, 3_m, 4_m, 5_m},
           QuadEncoder(1, 2, true),
           QuadEncoder(3, 4)),
-        PidParams(0, 0, 0),
-        PidParams(0, 0, 0));
+        PidControllerParams(0, 0, 0),
+        PidControllerParams(0, 0, 0));
       
       OdomChassisControllerPid controller3(
         OdomParams(
@@ -58,8 +60,8 @@ void opcontrol() {
           0,
           0
         ),
-        PidParams(0, 0, 0),
-        PidParams(0, 0, 0));
+        PidControllerParams(0, 0, 0),
+        PidControllerParams(0, 0, 0));
       
       OdomChassisControllerPid controller4(
         OdomParams(
@@ -70,8 +72,13 @@ void opcontrol() {
           0,
           0
         ),
-        PidParams(0, 0, 0),
-        PidParams(0, 0, 0));
+        PidControllerParams(0, 0, 0),
+        PidControllerParams(0, 0, 0));
+
+      PidController pid1(0,0,0);
+      MotorGroupController<2> mgController(
+        {1_m, 2_m},
+        pid1);
     }
   }
 }
