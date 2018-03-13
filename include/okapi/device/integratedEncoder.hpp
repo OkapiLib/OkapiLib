@@ -9,6 +9,11 @@
 namespace okapi {
 class IntegratedEncoder : public RotarySensor {
   public:
+  /**
+   * Integrated motor encoder. Uses the encoder inside the V5 motor.
+   * 
+   * @param imotor motor
+   */
   IntegratedEncoder(const pros::Motor &imotor);
 
   /**

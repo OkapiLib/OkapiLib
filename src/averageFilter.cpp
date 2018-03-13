@@ -7,9 +7,7 @@ namespace okapi {
 template <std::size_t n> AverageFilter<n>::AverageFilter() : data(), index(0), output(0) {
 }
 
-template <std::size_t n> AverageFilter<n>::~AverageFilter() {
-  delete &data;
-}
+template <std::size_t n> AverageFilter<n>::~AverageFilter() = default;
 
 template <std::size_t n> float AverageFilter<n>::filter(const float ireading) {
   data[index++] = ireading;
