@@ -6,7 +6,7 @@
 #include <cmath>
 
 namespace okapi {
-  PIDController::PIDController(const float ikP, const float ikI, const float ikD, const float ikBias):
+  PIDController::PIDController(const double ikP, const double ikI, const double ikD, const double ikBias):
     lastTime(0),
     sampleTime(15),
     error(0),
@@ -44,31 +44,31 @@ namespace okapi {
 
   PIDController::~PIDController() = default;
 
-  void PIDController::setTarget(const float itarget) {
+  void PIDController::setTarget(const double itarget) {
     target = itarget;
   }
 
-  float PIDController::getOutput() const {
+  double PIDController::getOutput() const {
     return output;
   }
 
-  float PIDController::getError() const {
+  double PIDController::getError() const {
     return error;
   }
 
-  void PIDController::setSampleTime(const int isampleTime) {
+  void PIDController::setSampleTime(const uint32_t isampleTime) {
     if (isampleTime > 0) {
-      const float ratio = static_cast<float>(isampleTime) / static_cast<float>(sampleTime);
+      const double ratio = static_cast<double>(isampleTime) / static_cast<double>(sampleTime);
       kI *= ratio;
       kD /= ratio;
       sampleTime = isampleTime;
     }
   }
 
-  void PIDController::setOutputLimits(float imax, float imin) {
+  void PIDController::setOutputLimits(double imax, double imin) {
     //Always use larger value as max
     if (imin > imax) {
-      const float temp = imax;
+      const double temp = imax;
       imax = imin;
       imin = temp;
     }
@@ -86,10 +86,10 @@ namespace okapi {
     setIntegralLimits(imax, imin);
   }
 
-  void PIDController::setIntegralLimits(float imax, float imin) {
+  void PIDController::setIntegralLimits(double imax, double imin) {
     //Always use larger value as max
     if (imin > imax) {
-      const float temp = imax;
+      const double temp = imax;
       imax = imin;
       imin = temp;
     }
@@ -104,16 +104,16 @@ namespace okapi {
       integral = integralMin;
   }
 
-  float PIDController::step(const float inewReading) {
+  double PIDController::step(const double inewReading) {
     if (isOn) {
-      const long now = pros::millis();
+      const uint32_t now = pros::millis();
 
       if (now - lastTime >= sampleTime) {
         error = target - inewReading;
 
         integral += kI * error; //Eliminate integral kick while realtime tuning
 
-        if (shouldResetOnCross && copysign(1.0, (float)error) != copysign(1.0, (float)lastError))
+        if (shouldResetOnCross && copysign(1.0, (double)error) != copysign(1.0, (double)lastError))
           integral = 0;
 
         if (integral > integralMax)
@@ -121,7 +121,7 @@ namespace okapi {
         else if (integral < integralMin)
           integral = integralMin;
 
-        const float derivative = inewReading - lastReading; //Derivative over measurement to eliminate derivative kick on setpoint change
+        const double derivative = inewReading - lastReading; //Derivative over measurement to eliminate derivative kick on setpoint change
 
         output = kP * error + integral - kD * derivative + kBias;
 
@@ -141,8 +141,8 @@ namespace okapi {
     return output;
   }
 
-  void PIDController::setGains(const float ikP, const float ikI, const float ikD, const float ikBias) {
-    const float sampleTimeSec = static_cast<float>(sampleTime) / 1000.0;
+  void PIDController::setGains(const double ikP, const double ikI, const double ikD, const double ikBias) {
+    const double sampleTimeSec = static_cast<double>(sampleTime) / 1000.0;
     kP = ikP;
     kI = ikI * sampleTimeSec;
     kD = ikD * sampleTimeSec;

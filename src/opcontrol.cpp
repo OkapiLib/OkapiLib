@@ -1,8 +1,8 @@
 #include "api.h"
 
-#include "okapi/chassis/chassisController.hpp"
-#include "okapi/chassis/chassisModel.hpp"
-#include "okapi/chassis/odomChassisController.hpp"
+// #include "okapi/chassis/chassisController.hpp"
+// #include "okapi/chassis/chassisModel.hpp"
+// #include "okapi/chassis/odomChassisController.hpp"
 
 #include "okapi/control/motorGroupController.hpp"
 #include "okapi/control/pidController.hpp"
@@ -18,8 +18,8 @@
 #include "okapi/filter/demaFilter.hpp"
 #include "okapi/filter/emaFilter.hpp"
 
-#include "okapi/odometry/odometry.hpp"
-#include "okapi/odometry/odomMath.hpp"
+// #include "okapi/odometry/odometry.hpp"
+// #include "okapi/odometry/odomMath.hpp"
 
 #include "okapi/util/timer.hpp"
 
@@ -39,53 +39,53 @@ void opcontrol() {
       pros::Motor mtr = 1_m;
       pros::Motor r_mtr = 2_rm;
 
-      SkidSteerModel<2> model1({2_m, 3_m, 4_m, 5_m}, //Left motors: 2 & 3, right motors: 4 & 5
-                    QuadEncoder(1, 2, true), //Left encoder (reversed)
-                    QuadEncoder(3, 4)); //Right encoder
+      // SkidSteerModel<2> model1({2_m, 3_m, 4_m, 5_m}, //Left motors: 2 & 3, right motors: 4 & 5
+      //               QuadEncoder(1, 2, true), //Left encoder (reversed)
+      //               QuadEncoder(3, 4)); //Right encoder
       
-      XDriveModel<1> model2({2_m, 3_m, 4_m, 5_m}, //Motors are ordered counter-clockwise from the top left
-                        QuadEncoder(1, 2, true), //Top left encoder (reversed)
-                        QuadEncoder(3, 4)); //Top right encoder
+      // XDriveModel<1> model2({2_m, 3_m, 4_m, 5_m}, //Motors are ordered counter-clockwise from the top left
+      //                   QuadEncoder(1, 2, true), //Top left encoder (reversed)
+      //                   QuadEncoder(3, 4)); //Top right encoder
       
-      ChassisControllerPID controller1(
-        SkidSteerModelParams<2>(
-          {2_m, 3_m, 4_m, 5_m},
-          QuadEncoder(1, 2, true),
-          QuadEncoder(3, 4)),
-        PIDControllerParams(0, 0, 0),
-        PIDControllerParams(0, 0, 0));
+      // ChassisControllerPID controller1(
+      //   SkidSteerModelParams<2>(
+      //     {2_m, 3_m, 4_m, 5_m},
+      //     QuadEncoder(1, 2, true),
+      //     QuadEncoder(3, 4)),
+      //   PIDControllerParams(0, 0, 0),
+      //   PIDControllerParams(0, 0, 0));
 
-      ChassisControllerPID controller2(
-        XDriveModelParams<1>(
-          {2_m, 3_m, 4_m, 5_m},
-          QuadEncoder(1, 2, true),
-          QuadEncoder(3, 4)),
-        PIDControllerParams(0, 0, 0),
-        PIDControllerParams(0, 0, 0));
+      // ChassisControllerPID controller2(
+      //   XDriveModelParams<1>(
+      //     {2_m, 3_m, 4_m, 5_m},
+      //     QuadEncoder(1, 2, true),
+      //     QuadEncoder(3, 4)),
+      //   PIDControllerParams(0, 0, 0),
+      //   PIDControllerParams(0, 0, 0));
       
-      OdomChassisControllerPID controller3(
-        OdometryParams(
-          SkidSteerModelParams<2>(
-            {2_m, 3_m, 4_m, 5_m},
-            QuadEncoder(1, 2, true),
-            QuadEncoder(3, 4)),
-          0,
-          0
-        ),
-        PIDControllerParams(0, 0, 0),
-        PIDControllerParams(0, 0, 0));
+      // OdomChassisControllerPID controller3(
+      //   OdometryParams(
+      //     SkidSteerModelParams<2>(
+      //       {2_m, 3_m, 4_m, 5_m},
+      //       QuadEncoder(1, 2, true),
+      //       QuadEncoder(3, 4)),
+      //     0,
+      //     0
+      //   ),
+      //   PIDControllerParams(0, 0, 0),
+      //   PIDControllerParams(0, 0, 0));
       
-      OdomChassisControllerPID controller4(
-        OdometryParams(
-          XDriveModelParams<1>(
-            {2_m, 3_m, 4_m, 5_m},
-            QuadEncoder(1, 2, true),
-            QuadEncoder(3, 4)),
-          0,
-          0
-        ),
-        PIDControllerParams(0, 0, 0),
-        PIDControllerParams(0, 0, 0));
+      // OdomChassisControllerPID controller4(
+      //   OdometryParams(
+      //     XDriveModelParams<1>(
+      //       {2_m, 3_m, 4_m, 5_m},
+      //       QuadEncoder(1, 2, true),
+      //       QuadEncoder(3, 4)),
+      //     0,
+      //     0
+      //   ),
+      //   PIDControllerParams(0, 0, 0),
+      //   PIDControllerParams(0, 0, 0));
 
       PIDController pid1(0,0,0);
       MotorGroupController<2> mgController(
@@ -113,13 +113,13 @@ void opcontrol() {
 
       EmaFilter emaFilt1(0, 0);
 
-      Odometry odom1(
-        SkidSteerModelParams<2>(
-          {2_m, 3_m, 4_m, 5_m},
-          QuadEncoder(1, 2, true),
-          QuadEncoder(3, 4)),
-        0,
-        0);
+      // Odometry odom1(
+      //   SkidSteerModelParams<2>(
+      //     {2_m, 3_m, 4_m, 5_m},
+      //     QuadEncoder(1, 2, true),
+      //     QuadEncoder(3, 4)),
+      //   0,
+      //   0);
 
       Timer timer1();
     }

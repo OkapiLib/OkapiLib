@@ -4,18 +4,19 @@
 #ifndef _OKAPI_PID_HPP_
 #define _OKAPI_PID_HPP_
 
+#include "api.h"
 #include "okapi/control/controlObject.hpp"
 
 namespace okapi {
   class PIDControllerParams : public ControlObjectParams {
   public:
-    PIDControllerParams(const float ikP, const float ikI, const float ikD, const float ikBias = 0):
+    PIDControllerParams(const double ikP, const double ikI, const double ikD, const double ikBias = 0):
       kP(ikP),
       kI(ikI),
       kD(ikD),
       kBias(ikBias) {}
 
-    const float kP, kI, kD, kBias;
+    const double kP, kI, kD, kBias;
   };
 
   class PIDController : public ControlObject {
@@ -28,7 +29,7 @@ namespace okapi {
      * @param ikD derivative gain
      * @param ikBias controller bias (constant offset added to the output)
      */
-    PIDController(const float ikP, const float ikI, const float ikD, const float ikBias = 0);
+    PIDController(const double ikP, const double ikI, const double ikD, const double ikBias = 0);
 
     /**
      * PID controller.
@@ -45,22 +46,22 @@ namespace okapi {
      * @param inewReading new measurement
      * @return controller output
      */
-    virtual float step(const float inewReading) override;
+    virtual double step(const double inewReading) override;
 
     /**
      * Sets the target for the controller.
      */
-    void setTarget(const float itarget) override;
+    void setTarget(const double itarget) override;
 
     /**
      * Returns the last calculated output of the controller.
      */
-    float getOutput() const override;
+    double getOutput() const override;
 
     /**
      * Returns the last error of the controller.
      */
-    float getError() const override;
+    double getError() const override;
 
     /**
      * Set controller gains.
@@ -70,14 +71,14 @@ namespace okapi {
      * @param ikD derivative gain
      * @param ikBias bias (constant offset added to the output)
      */
-    void setGains(const float ikP, const float ikI, const float ikD, const float ikBias = 0);
+    void setGains(const double ikP, const double ikI, const double ikD, const double ikBias = 0);
 
     /**
      * Set time between loops in ms.
      * 
      * @param isampleTime time between loops in ms
      */
-    void setSampleTime(const int isampleTime) override;
+    void setSampleTime(const uint32_t isampleTime) override;
 
     /**
      * Set controller output bounds.
@@ -85,7 +86,7 @@ namespace okapi {
      * @param imax max output
      * @param imin min output
      */
-    void setOutputLimits(float imax, float imin) override;
+    void setOutputLimits(double imax, double imin) override;
 
     /**
      * Set integrator bounds.
@@ -93,7 +94,7 @@ namespace okapi {
      * @param imax max integrator value
      * @param imin min integrator value
      */
-    void setIntegralLimits(float imax, float imin);
+    void setIntegralLimits(double imax, double imin);
 
     /**
      * Resets the controller so it can start from 0 again properly. Keeps gains and limits from
@@ -114,12 +115,12 @@ namespace okapi {
     void flipDisable() override;
 
   protected:
-    float kP, kI, kD, kBias;
-    long lastTime, sampleTime;
-    float error, lastError;
-    float target, lastReading;
-    float integral, integralMax, integralMin;
-    float output, outputMax, outputMin;
+    double kP, kI, kD, kBias;
+    uint32_t lastTime, sampleTime;
+    double error, lastError;
+    double target, lastReading;
+    double integral, integralMax, integralMin;
+    double output, outputMax, outputMin;
     bool shouldResetOnCross, isOn;
   };
 }

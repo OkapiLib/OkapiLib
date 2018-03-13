@@ -4,6 +4,8 @@
 #ifndef _OKAPI_CONTORLOBJECT_HPP_
 #define _OKAPI_CONTORLOBJECT_HPP_
 
+#include "api.h"
+
 namespace okapi {
   class ControlObjectParams {};
 
@@ -15,29 +17,29 @@ namespace okapi {
      * @param inewReading new measurement
      * @return controller output
      */
-    virtual float step(const float ireading) = 0;
+    virtual double step(const double ireading) = 0;
 
     /**
      * Sets the target for the controller.
      */
-    virtual void setTarget(const float itarget) = 0;
+    virtual void setTarget(const double itarget) = 0;
 
     /**
      * Returns the last calculated output of the controller.
      */
-    virtual float getOutput() const = 0;
+    virtual double getOutput() const = 0;
 
     /**
      * Returns the last error of the controller.
      */
-    virtual float getError() const = 0;
+    virtual double getError() const = 0;
 
     /**
      * Set time between loops in ms.
      *
      * @param isampleTime time between loops in ms
      */
-    virtual void setSampleTime(const int isampleTime) {}
+    virtual void setSampleTime(const uint32_t isampleTime) {}
 
     /**
      * Set controller output bounds.
@@ -45,7 +47,7 @@ namespace okapi {
      * @param imax max output
      * @param imin min output
      */
-    virtual void setOutputLimits(float imax, float imin) {}
+    virtual void setOutputLimits(double imax, double imin) {}
 
     /**
      * Resets the controller so it can start from 0 again properly. Keeps configuration from

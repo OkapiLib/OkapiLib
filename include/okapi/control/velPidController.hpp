@@ -10,17 +10,17 @@
 namespace okapi {
   class VelPIDControllerParams : public ControlObjectParams {
   public:
-    VelPIDControllerParams(const float ikP, const float ikD):
+    VelPIDControllerParams(const double ikP, const double ikD):
       kP(ikP),
       kD(ikD),
       params(360) {}
 
-    VelPIDControllerParams(const float ikP, const float ikD, const VelMathParams& iparams):
+    VelPIDControllerParams(const double ikP, const double ikD, const VelMathParams& iparams):
       kP(ikP),
       kD(ikD),
       params(iparams) {}
 
-    const float kP, kD;
+    const double kP, kD;
     const VelMathParams &params;
   };
 
@@ -29,136 +29,121 @@ namespace okapi {
     /**
      * Velocity PID controller.
      * 
-     * @param ikP    Proportional gain
-     * @param ikD    Derivative gain
+     * @param ikP proportional gain
+     * @param ikD derivative gain
      */
-    VelPIDController(const float ikP, const float ikD):
-      lastTime(0),
-      sampleTime(15),
-      error(0),
-      lastError(0),
-      target(0),
-      output(0),
-      outputMax(127),
-      outputMin(-127),
-      isOn(true),
-      velMath(360) {
-        setGains(ikP, ikD);
-      }
+    VelPIDController(const double ikP, const double ikD);
 
     /**
      * Velocity PID controller.
      * 
-     * @param ikP    Proportional gain
-     * @param ikD    Derivative gain
+     * @param ikP proportional gain
+     * @param ikD derivative gain
      */
-    VelPIDController(const float ikP, const float ikD, const VelMathParams& iparams):
-      lastTime(0),
-      sampleTime(15),
-      error(0),
-      lastError(0),
-      target(0),
-      output(0),
-      outputMax(127),
-      outputMin(-127),
-      isOn(true),
-      velMath(iparams) {
-        setGains(ikP, ikD);
-      }
+    VelPIDController(const double ikP, const double ikD, const VelMathParams& iparams);
 
     /**
      * Velocity PID controller.
      * 
-     * @param params Params (see VelPidParams docs)
+     * @param params params (see VelPIDControllerParams docs)
      */
-    VelPIDController(const VelPIDControllerParams& params):
-      lastTime(0),
-      sampleTime(15),
-      error(0),
-      lastError(0),
-      target(0),
-      output(0),
-      outputMax(127),
-      outputMin(-127),
-      isOn(true),
-      velMath(params.params) {
-        setGains(params.kP, params.kD);
-      }
+    VelPIDController(const VelPIDControllerParams& params);
 
-    /**
-     * Do one iteration of velocity calculation.
-     * 
-     * @param  inewReading New measurement
-     * @return             Filtered velocity
-     */
-    virtual float stepVel(const float inewReading);
+    virtual ~VelPIDController();
 
     /**
      * Do one iteration of the controller.
      * 
-     * @param  inewReading New measurement
-     * @return            Controller output
+     * @param inewReading new measurement
+     * @return controller output
      */
-    virtual float step(const float inewReading) override;
+    virtual double step(const double inewReading) override;
 
-    void setTarget(const float itarget) override { target = itarget; }
-    
-    float getOutput() const override { return isOn ? output : 0; }
+    /**
+     * Sets the target for the controller.
+     */
+    void setTarget(const double itarget) override;
 
-    float getError() const override { return error; }
+    /**
+     * Returns the last calculated output of the controller.
+     */
+    double getOutput() const override;
+
+    /**
+     * Returns the last error of the controller.
+     */
+    double getError() const override;
     
     /**
      * Set time between loops in ms.
      * 
-     * @param isampleTime Time between loops in ms
+     * @param isampleTime time between loops in ms
      */
-    void setSampleTime(const int isampleTime) override;
+    void setSampleTime(const uint32_t isampleTime) override;
     
     /**
      * Set controller output bounds.
      * 
-     * @param imax Max output
-     * @param imin Min output
+     * @param imax max output
+     * @param imin min output
      */
-    void setOutputLimits(float imax, float imin) override;
-    
+    void setOutputLimits(double imax, double imin) override;
+
+    /**
+     * Resets the controller so it can start from 0 again properly. Keeps configuration from
+     * before.
+     */
     void reset() override;
 
-    void flipDisable() override { isOn = !isOn; }
-    
+    /**
+     * Change whether the controll is off or on.
+     */
+    void flipDisable() override;
+
+    /**
+     * Do one iteration of velocity calculation.
+     * 
+     * @param inewReading new measurement
+     * @return filtered velocity
+     */
+    virtual double stepVel(const double inewReading);
+
     /**
      * Set controller gains.
      * 
-     * @param ikP    Proportional gain
-     * @param ikD    Derivative gain
-     * @param ikBias Controller bias
+     * @param ikP proportional gain
+     * @param ikD derivative gain
+     * @param ikBias controller bias
      */
-    void setGains(const float ikP, const float ikD);
+    void setGains(const double ikP, const double ikD);
 
     /**
      * Set the gains for the double moving average filter. Defaults are 0.19 and 0.0526,
      * respectively.
      * 
-     * @param alpha Alpha gain
-     * @param beta  Beta gain
+     * @param alpha alpha gain
+     * @param beta beta gain
      */
-    void setFilterGains(const float alpha, const float beta) { velMath.setGains(alpha, beta); }
+    void setFilterGains(const double alpha, const double beta);
 
     /**
      * Set the number of measurements per revolution. Default is 360.
      * 
-     * @param tpr Number of measured units per revolution
+     * @param tpr number of measured units per revolution
      */
-    void setTicksPerRev(const float tpr) { velMath.setTicksPerRev(tpr); }
+    void setTicksPerRev(const double tpr);
 
-    float getVel() const { return velMath.getOutput(); }
+    /**
+     * Get the current velocity.
+     */
+    double getVel() const;
 
   private:
-    float kP, kD;
-    long lastTime, sampleTime;
-    float error, lastError;
-    float target;
-    float output, outputMax, outputMin;
+    double kP, kD;
+    uint32_t lastTime, sampleTime;
+    double error, lastError;
+    double target;
+    double output, outputMax, outputMin;
     bool isOn;
     VelMath velMath;
   };
