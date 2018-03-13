@@ -14,19 +14,23 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(const ChassisModelParams &imodelParams,
                        const PIDControllerParams &idistanceParams,
                        const PIDControllerParams &iangleParams)
-    : ChassisController(imodelParams), distancePid(idistanceParams), anglePid(iangleParams) {}
+    : ChassisController(imodelParams), distancePid(idistanceParams), anglePid(iangleParams) {
+  }
 
   ChassisControllerPID(const ChassisModel &imodel, const PIDControllerParams &idistanceParams,
                        const PIDControllerParams &iangleParams)
-    : ChassisController(imodel), distancePid(idistanceParams), anglePid(iangleParams) {}
+    : ChassisController(imodel), distancePid(idistanceParams), anglePid(iangleParams) {
+  }
 
   ChassisControllerPID(const ChassisModelParams &imodelParams, const PIDController &idistance,
                        const PIDController &iangle)
-    : ChassisController(imodelParams), distancePid(idistance), anglePid(iangle) {}
+    : ChassisController(imodelParams), distancePid(idistance), anglePid(iangle) {
+  }
 
   ChassisControllerPID(const ChassisModel &imodel, const PIDController &idistance,
                        const PIDController &iangle)
-    : ChassisController(imodel), distancePid(idistance), anglePid(iangle) {}
+    : ChassisController(imodel), distancePid(idistance), anglePid(iangle) {
+  }
 
   virtual ~ChassisControllerPID();
 

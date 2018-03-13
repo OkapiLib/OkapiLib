@@ -15,7 +15,8 @@ class ChassisModel;
 
 class ChassisModelParams {
   public:
-  ChassisModelParams() {}
+  ChassisModelParams() {
+  }
   virtual ~ChassisModelParams() = default;
 
   /**
@@ -112,7 +113,8 @@ template <size_t motorsPerSide> class SkidSteerModelParams : public ChassisModel
   public:
   SkidSteerModelParams(const std::array<pros::Motor, motorsPerSide * 2> &imotorList,
                        const RotarySensor &ileftEnc, const RotarySensor &irightEnc)
-    : motorList(imotorList), leftSensor(ileftEnc), rightSensor(irightEnc) {}
+    : motorList(imotorList), leftSensor(ileftEnc), rightSensor(irightEnc) {
+  }
 
   virtual ~SkidSteerModelParams() = default;
 
@@ -121,7 +123,9 @@ template <size_t motorsPerSide> class SkidSteerModelParams : public ChassisModel
    *
    * @return const reference to the ChassisModel
    */
-  const ChassisModel &make() const override { return SkidSteerModel<motorsPerSide>(*this); }
+  const ChassisModel &make() const override {
+    return SkidSteerModel<motorsPerSide>(*this);
+  }
 
   const std::array<pros::Motor, motorsPerSide * 2> &motorList;
   const RotarySensor &leftSensor;
@@ -143,15 +147,20 @@ template <size_t motorsPerSide> class SkidSteerModel : public ChassisModel {
    */
   SkidSteerModel(const std::array<pros::Motor, motorsPerSide * 2> &imotorList,
                  const RotarySensor &ileftEnc, const RotarySensor &irightEnc)
-    : motors(imotorList), leftSensor(ileftEnc), rightSensor(irightEnc) {}
+    : motors(imotorList), leftSensor(ileftEnc), rightSensor(irightEnc) {
+  }
 
   SkidSteerModel(const SkidSteerModelParams<motorsPerSide> &iparams)
-    : motors(iparams.motorList), leftSensor(iparams.leftSensor), rightSensor(iparams.rightSensor) {}
+    : motors(iparams.motorList), leftSensor(iparams.leftSensor), rightSensor(iparams.rightSensor) {
+  }
 
   SkidSteerModel(const SkidSteerModel<motorsPerSide> &other)
-    : motors(other.motors), leftSensor(other.leftSensor), rightSensor(other.rightSensor) {}
+    : motors(other.motors), leftSensor(other.leftSensor), rightSensor(other.rightSensor) {
+  }
 
-  virtual ~SkidSteerModel() { delete &motors; }
+  virtual ~SkidSteerModel() {
+    delete &motors;
+  }
 
   void driveForward(const int ipower) const override {
     for (size_t i = 0; i < motorsPerSide * 2; i++)
@@ -238,16 +247,20 @@ template <size_t motorsPerCorner> class XDriveModelParams : public ChassisModelP
   public:
   XDriveModelParams(const std::array<pros::Motor, motorsPerCorner * 4> &imotorList,
                     const RotarySensor &ileftEnc, const RotarySensor &irightEnc)
-    : motorList(imotorList), leftSensor(ileftEnc), rightSensor(irightEnc) {}
+    : motorList(imotorList), leftSensor(ileftEnc), rightSensor(irightEnc) {
+  }
 
-  virtual ~XDriveModelParams() {}
+  virtual ~XDriveModelParams() {
+  }
 
   /**
    * Consutructs a new XDriveModel.
    *
    * @return const reference to the ChassisModel
    */
-  const ChassisModel &make() const override { return XDriveModel<motorsPerCorner>(*this); }
+  const ChassisModel &make() const override {
+    return XDriveModel<motorsPerCorner>(*this);
+  }
 
   const std::array<pros::Motor, motorsPerCorner * 4> &motorList;
   const RotarySensor &leftSensor;
@@ -270,15 +283,20 @@ template <size_t motorsPerCorner> class XDriveModel : public ChassisModel {
    */
   XDriveModel(const std::array<pros::Motor, motorsPerCorner * 4> &imotorList,
               const RotarySensor &ileftEnc, const RotarySensor &irightEnc)
-    : motors(imotorList), leftSensor(ileftEnc), rightSensor(irightEnc) {}
+    : motors(imotorList), leftSensor(ileftEnc), rightSensor(irightEnc) {
+  }
 
   XDriveModel(const XDriveModelParams<motorsPerCorner> &iparams)
-    : motors(iparams.motorList), leftSensor(iparams.leftSensor), rightSensor(iparams.rightSensor) {}
+    : motors(iparams.motorList), leftSensor(iparams.leftSensor), rightSensor(iparams.rightSensor) {
+  }
 
   XDriveModel(const XDriveModel<motorsPerCorner> &other)
-    : motors(other.motors), leftSensor(other.leftSensor), rightSensor(other.rightSensor) {}
+    : motors(other.motors), leftSensor(other.leftSensor), rightSensor(other.rightSensor) {
+  }
 
-  virtual ~XDriveModel() { delete &motors; }
+  virtual ~XDriveModel() {
+    delete &motors;
+  }
 
   void driveForward(const int ipower) const override {
     for (size_t i = 0; i < motorsPerCorner * 4; i++)

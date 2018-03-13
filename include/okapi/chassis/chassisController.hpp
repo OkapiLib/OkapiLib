@@ -10,9 +10,11 @@
 namespace okapi {
 class ChassisController {
   public:
-  ChassisController(const ChassisModelParams &imodelParams) : model(imodelParams.make()) {}
+  ChassisController(const ChassisModelParams &imodelParams) : model(imodelParams.make()) {
+  }
 
-  ChassisController(const ChassisModel &imodel) : model(imodel) {}
+  ChassisController(const ChassisModel &imodel) : model(imodel) {
+  }
 
   virtual ~ChassisController();
 

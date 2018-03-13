@@ -11,7 +11,8 @@ namespace okapi {
 class VelMathParams {
   public:
   VelMathParams(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041)
-    : ticksPerRev(iticksPerRev), alpha(ialpha), beta(ibeta) {}
+    : ticksPerRev(iticksPerRev), alpha(ialpha), beta(ibeta) {
+  }
 
   const double ticksPerRev, alpha, beta;
 };

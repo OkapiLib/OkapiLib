@@ -10,7 +10,8 @@ namespace okapi {
 class PIDControllerParams : public ControlObjectParams {
   public:
   PIDControllerParams(const double ikP, const double ikI, const double ikD, const double ikBias = 0)
-    : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {}
+    : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
+  }
 
   const double kP, kI, kD, kBias;
 };

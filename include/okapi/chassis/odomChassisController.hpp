@@ -47,7 +47,9 @@ class OdomChassisController : public virtual ChassisController {
    *
    * @return State from internal Odometry object
    */
-  OdomState getState() { return odom.getState(); }
+  OdomState getState() {
+    return odom.getState();
+  }
 
   protected:
   static constexpr int moveThreshold = 10; // Minimum length movement
@@ -60,7 +62,8 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
                            const PIDControllerParams &iangleParams)
     : ChassisController(params.model),
       OdomChassisController(params),
-      ChassisControllerPID(params.model, idistanceParams, iangleParams) {}
+      ChassisControllerPID(params.model, idistanceParams, iangleParams) {
+  }
 
   virtual ~OdomChassisControllerPID() = default;
 

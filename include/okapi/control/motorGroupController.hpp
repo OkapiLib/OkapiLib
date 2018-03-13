@@ -13,7 +13,8 @@ namespace okapi {
 template <size_t motorNum> class MotorGroupController {
   public:
   MotorGroupController(const std::array<pros::Motor, motorNum> &imotorList, ControlObject &iptr)
-    : motors(imotorList), controller(iptr) {}
+    : motors(imotorList), controller(iptr) {
+  }
 
   void step(const float ireading) {
     controller.step(ireading);
@@ -21,19 +22,33 @@ template <size_t motorNum> class MotorGroupController {
       motors[i].set_velocity(static_cast<int>(controller.getOutput()));
   }
 
-  void setTarget(const float itarget) { controller.setTarget(itarget); }
+  void setTarget(const float itarget) {
+    controller.setTarget(itarget);
+  }
 
-  float getOutput() const { return controller.getOutput(); }
+  float getOutput() const {
+    return controller.getOutput();
+  }
 
-  float getError() const { return controller.getError(); }
+  float getError() const {
+    return controller.getError();
+  }
 
-  void setSampleTime(const int isampleTime) { controller.setSampleTime(isampleTime); }
+  void setSampleTime(const int isampleTime) {
+    controller.setSampleTime(isampleTime);
+  }
 
-  void setOutputLimits(float imax, float imin) { controller.setOutputLimits(imax, imin); }
+  void setOutputLimits(float imax, float imin) {
+    controller.setOutputLimits(imax, imin);
+  }
 
-  void reset() { controller.reset(); }
+  void reset() {
+    controller.reset();
+  }
 
-  void flipDisable() { controller.flipDisable(); }
+  void flipDisable() {
+    controller.flipDisable();
+  }
 
   private:
   std::array<pros::Motor, motorNum> motors;
