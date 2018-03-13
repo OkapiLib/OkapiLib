@@ -7,78 +7,78 @@
 #include "api.h"
 
 namespace okapi {
-  class Timer {
+class Timer {
   public:
-    Timer();
+  Timer();
 
-    virtual ~Timer();
+  virtual ~Timer();
 
-    /**
-     * Returns the time passed in ms since the previous call of this function.
-     * 
-     * @return The time passed in ms since the previous call of this function
-     */
-    uint32_t getDt();
+  /**
+   * Returns the time passed in ms since the previous call of this function.
+   *
+   * @return The time passed in ms since the previous call of this function
+   */
+  uint32_t getDt();
 
-    /**
-     * Returns the time the timer was first initialized.
-     * 
-     * @return The time the timer was first initialized
-     */
-    uint32_t getStartingTime() const;
+  /**
+   * Returns the time the timer was first initialized.
+   *
+   * @return The time the timer was first initialized
+   */
+  uint32_t getStartingTime() const;
 
-    /**
-     * Returns the time since the timer was first initialized.
-     * 
-     * @return The time since the timer was first initialized
-     */
-    uint32_t getDtFromStart() const;
+  /**
+   * Returns the time since the timer was first initialized.
+   *
+   * @return The time since the timer was first initialized
+   */
+  uint32_t getDtFromStart() const;
 
-    /**
-     * Place a time marker. Placing another marker will overwrite the previous one.
-     */
-    void placeMark();
+  /**
+   * Place a time marker. Placing another marker will overwrite the previous one.
+   */
+  void placeMark();
 
-    /**
-     * Place a hard time marker. Placing another hard marker will not overwrite the previous one;
-     * instead, call clearHardMark() and then place another.
-     */
-    void placeHardMark();
+  /**
+   * Place a hard time marker. Placing another hard marker will not overwrite the previous one;
+   * instead, call clearHardMark() and then place another.
+   */
+  void placeHardMark();
 
-    /**
-     * Clears the hard marker.
-     * 
-     * @return The old hard marker
-     */
-    uint32_t clearHardMark();
+  /**
+   * Clears the hard marker.
+   *
+   * @return The old hard marker
+   */
+  uint32_t clearHardMark();
 
-    /**
-     * Returns the time since the time marker.
-     * 
-     * @return The time since the time marker
-     */
-    uint32_t getDtFromMark() const;
+  /**
+   * Returns the time since the time marker.
+   *
+   * @return The time since the time marker
+   */
+  uint32_t getDtFromMark() const;
 
-    /**
-     * Returns the time since the hard time marker.
-     * 
-     * @return The time since the hard time marker
-     */
-    uint32_t getDtFromHardMark() const;
+  /**
+   * Returns the time since the hard time marker.
+   *
+   * @return The time since the hard time marker
+   */
+  uint32_t getDtFromHardMark() const;
 
-    /**
-     * Returns true when the input time period has passed, then resets. Meant to be used in loops
-     * to run an action every so many ms without blocking.
-     * 
-     * @param ms time period
-     * @return true when the input time period has passed, false after reading true until the
-     *   period has passed again
-     */
-    bool repeat(uint32_t ms);
+  /**
+   * Returns true when the input time period has passed, then resets. Meant to be used in loops
+   * to run an action every so many ms without blocking.
+   *
+   * @param ms time period
+   * @return true when the input time period has passed, false after reading true until the
+   *   period has passed again
+   */
+  bool repeat(uint32_t ms);
 
   private:
-    uint32_t firstCalled, lastCalled, mark, hardMark, repeatMark;
-  };
-}
+  uint32_t firstCalled, lastCalled, mark, hardMark, repeatMark;
+};
+} // namespace okapi
 
 #endif

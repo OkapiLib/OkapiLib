@@ -6,24 +6,25 @@
 #include <cmath>
 
 namespace okapi {
-  void OdomChassisControllerPID::driveToPoint(const float ix, const float iy, const bool ibackwards, const float ioffset) {
-    DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom.getState());
+void OdomChassisControllerPID::driveToPoint(const float ix, const float iy, const bool ibackwards,
+                                            const float ioffset) {
+  DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom.getState());
 
-    if (ibackwards) {
-      daa.theta += 180;
-      daa.length *= -1;
-    }
-
-    if (std::abs(daa.theta) > 1) {
-      ChassisControllerPID::pointTurn(daa.theta);
-    }
-
-    if (std::abs(daa.length - ioffset) > moveThreshold) {
-      ChassisControllerPID::driveStraight(static_cast<int>(daa.length - ioffset));
-    }
+  if (ibackwards) {
+    daa.theta += 180;
+    daa.length *= -1;
   }
 
-  void OdomChassisControllerPID::turnToAngle(const float iangle) {
-    ChassisControllerPID::pointTurn(iangle - odom.getState().theta);
+  if (std::abs(daa.theta) > 1) {
+    ChassisControllerPID::pointTurn(daa.theta);
   }
+
+  if (std::abs(daa.length - ioffset) > moveThreshold) {
+    ChassisControllerPID::driveStraight(static_cast<int>(daa.length - ioffset));
+  }
+}
+
+void OdomChassisControllerPID::turnToAngle(const float iangle) {
+  ChassisControllerPID::pointTurn(iangle - odom.getState().theta);
+}
 }

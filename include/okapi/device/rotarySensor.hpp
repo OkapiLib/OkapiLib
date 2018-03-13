@@ -7,14 +7,14 @@
 #include "api.h"
 
 namespace okapi {
-  class RotarySensor {
+class RotarySensor {
   public:
-    virtual ~RotarySensor() = default;
+  virtual ~RotarySensor() = default;
 
-    virtual int32_t get() const = 0;
+  virtual int32_t get() const = 0;
 
-    virtual int32_t reset() const = 0;
-  };
-}
+  virtual int32_t reset() const = 0;
+};
+} // namespace okapi
 
 #endif

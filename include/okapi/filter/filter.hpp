@@ -5,25 +5,25 @@
 #define _OKAPI_FILTER_HPP_
 
 namespace okapi {
-  class Filter {
+class Filter {
   public:
-    virtual ~Filter();
+  virtual ~Filter();
 
-    /**
-     * Filters a reading.
-     * 
-     * @param reading new measurement
-     * @return filtered result
-     */
-    virtual double filter(const double ireading) = 0;
+  /**
+   * Filters a reading.
+   *
+   * @param reading new measurement
+   * @return filtered result
+   */
+  virtual double filter(const double ireading) = 0;
 
-    /**
-     * Returns the previous output from filter.
-     * 
-     * @return the previous output from filter
-     */
-    virtual double getOutput() const = 0;
-  };
-}
+  /**
+   * Returns the previous output from filter.
+   *
+   * @return the previous output from filter
+   */
+  virtual double getOutput() const = 0;
+};
+} // namespace okapi
 
 #endif

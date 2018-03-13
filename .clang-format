@@ -1,0 +1,9 @@
+BasedOnStyle: LLVM
+AccessModifierOffset: 0
+AllowShortFunctionsOnASingleLine: None
+ColumnLimit: 100
+ContinuationIndentWidth: 2
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerIndentWidth: 2
+IndentWidth: 2
+SpacesInContainerLiterals: false

@@ -6,56 +6,57 @@
 #include <cmath>
 
 namespace okapi {
-  OdomMath::OdomMath() {}
+OdomMath::OdomMath() {
+}
 
-  OdomMath::~OdomMath() = default;
+OdomMath::~OdomMath() = default;
 
-  double OdomMath::computeDistanceToPoint(const double ix, const double iy, const OdomState& istate) {
-    const double xDiff = ix - istate.x;
-    const double yDiff = iy - istate.y;
-    return std::sqrt((xDiff * xDiff) + (yDiff * yDiff));
-  }
+double OdomMath::computeDistanceToPoint(const double ix, const double iy, const OdomState &istate) {
+  const double xDiff = ix - istate.x;
+  const double yDiff = iy - istate.y;
+  return std::sqrt((xDiff * xDiff) + (yDiff * yDiff));
+}
 
-  double OdomMath::computeAngleToPoint(const double ix, const double iy, const OdomState& istate) {
-    const double xDiff = ix - istate.x;
-    const double yDiff = iy - istate.y;
-    return (std::atan2(yDiff, xDiff) * radianToDegree) - istate.theta;
-  }
+double OdomMath::computeAngleToPoint(const double ix, const double iy, const OdomState &istate) {
+  const double xDiff = ix - istate.x;
+  const double yDiff = iy - istate.y;
+  return (std::atan2(yDiff, xDiff) * radianToDegree) - istate.theta;
+}
 
-  DistanceAndAngle OdomMath::computeDistanceAndAngleToPoint(const double ix, const double iy,
-    const OdomState& istate) {
-    const double xDiff = ix - istate.x;
-    const double yDiff = iy - istate.y;
+DistanceAndAngle OdomMath::computeDistanceAndAngleToPoint(const double ix, const double iy,
+                                                          const OdomState &istate) {
+  const double xDiff = ix - istate.x;
+  const double yDiff = iy - istate.y;
 
-    DistanceAndAngle out;
-    out.length = std::sqrt((xDiff * xDiff) + (yDiff * yDiff));
+  DistanceAndAngle out;
+  out.length = std::sqrt((xDiff * xDiff) + (yDiff * yDiff));
 
-    //Small xDiff is essentially dividing by zero, so avoid it and do custom math
-    if (xDiff < 0.0001 && xDiff > -0.0001) {
-      const int yDiffSign = static_cast<int>(copysign(1, yDiff));
-      if (yDiffSign == 1) {
-        out.theta = -1 * istate.theta;
-      } else if (yDiffSign == -1) {
-        out.theta = -180 - istate.theta;
+  // Small xDiff is essentially dividing by zero, so avoid it and do custom math
+  if (xDiff < 0.0001 && xDiff > -0.0001) {
+    const int yDiffSign = static_cast<int>(copysign(1, yDiff));
+    if (yDiffSign == 1) {
+      out.theta = -1 * istate.theta;
+    } else if (yDiffSign == -1) {
+      out.theta = -180 - istate.theta;
 
-        //Fix theta
-        if (out.theta <= -360)
-          out.theta += 360;
-        else if (out.theta >= 360)
-          out.theta -= 360;
-      }
-    } else {
-      out.theta = (std::atan2(yDiff, xDiff) * radianToDegree) - istate.theta;
+      // Fix theta
+      if (out.theta <= -360)
+        out.theta += 360;
+      else if (out.theta >= 360)
+        out.theta -= 360;
     }
-
-    return out;
+  } else {
+    out.theta = (std::atan2(yDiff, xDiff) * radianToDegree) - istate.theta;
   }
 
-  std::tuple<double, double> OdomMath::guessScales(const double chassisDiam, const double wheelDiam,
-    const double ticksPerRev) {
-    const double scale = ((wheelDiam * pi * inchToMM) / ticksPerRev)
-      * 0.9945483364; //The scale is usually off by this amount
-    const double turnScale = (1.0 / (chassisDiam * inchToMM)) * radianToDegree * 2;
-    return std::make_tuple(scale, turnScale);
-  }
+  return out;
+}
+
+std::tuple<double, double> OdomMath::guessScales(const double chassisDiam, const double wheelDiam,
+                                                 const double ticksPerRev) {
+  const double scale = ((wheelDiam * pi * inchToMM) / ticksPerRev) *
+                       0.9945483364; // The scale is usually off by this amount
+  const double turnScale = (1.0 / (chassisDiam * inchToMM)) * radianToDegree * 2;
+  return std::make_tuple(scale, turnScale);
+}
 }

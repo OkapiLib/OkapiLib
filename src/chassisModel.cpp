@@ -4,7 +4,8 @@
 #include "okapi/chassis/chassisModel.hpp"
 
 namespace okapi {
-  ChassisModel::ChassisModel() {}
+ChassisModel::ChassisModel() {
+}
 
-  ChassisModel::~ChassisModel() = default;
+ChassisModel::~ChassisModel() = default;
 }

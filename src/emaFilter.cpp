@@ -4,22 +4,20 @@
 #include "okapi/filter/emaFilter.hpp"
 
 namespace okapi {
-  EmaFilter::EmaFilter(const double ialpha):
-    alpha(ialpha),
-    output(0),
-    lastOutput(0) {}
-  
-  double EmaFilter::filter(const double ireading) {
-    output = alpha * ireading + (1.0 - alpha) * lastOutput;
-    lastOutput = output;
-    return output;
-  }
+EmaFilter::EmaFilter(const double ialpha) : alpha(ialpha), output(0), lastOutput(0) {
+}
 
-  double EmaFilter::getOutput() const {
-    return output;
-  }
+double EmaFilter::filter(const double ireading) {
+  output = alpha * ireading + (1.0 - alpha) * lastOutput;
+  lastOutput = output;
+  return output;
+}
 
-  void EmaFilter::setGains(const double ialpha) {
-    alpha = ialpha;
-  }
+double EmaFilter::getOutput() const {
+  return output;
+}
+
+void EmaFilter::setGains(const double ialpha) {
+  alpha = ialpha;
+}
 }

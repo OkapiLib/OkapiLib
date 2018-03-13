@@ -8,72 +8,70 @@
 #include "okapi/filter/demaFilter.hpp"
 
 namespace okapi {
-  class VelMathParams {
-    public:
-      VelMathParams(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041):
-        ticksPerRev(iticksPerRev),
-        alpha(ialpha),
-        beta(ibeta) {}
-
-      const double ticksPerRev, alpha, beta;
-  };
-
-  class VelMath {
+class VelMathParams {
   public:
-    /**
-     * Velocity math helper. Calculates filtered velocity (DemaFilter).
-     * 
-     * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
-     * @param ialpha alpha gain
-     * @param ibeta beta gain
-     */
-    VelMath(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041);
+  VelMathParams(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041)
+    : ticksPerRev(iticksPerRev), alpha(ialpha), beta(ibeta) {}
 
-    /**
-     * Velocity math helper. Calculates filtered velocity (DemaFilter).
-     * 
-     * @param iparams VelMathParams
-     */
-    VelMath(const VelMathParams& iparams);
+  const double ticksPerRev, alpha, beta;
+};
 
-    /**
-     * Calculate new velocity.
-     * 
-     * @param inewPos new position
-     * @return new velocity
-     */
-    virtual double step(const double inewPos);
+class VelMath {
+  public:
+  /**
+   * Velocity math helper. Calculates filtered velocity (DemaFilter).
+   *
+   * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
+   * @param ialpha alpha gain
+   * @param ibeta beta gain
+   */
+  VelMath(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041);
 
-    /**
-     * Set filter gains.
-     * 
-     * @param ialpha alpha gain
-     * @param ibeta beta gain
-     */
-    void setGains(const double ialpha, const double ibeta);
+  /**
+   * Velocity math helper. Calculates filtered velocity (DemaFilter).
+   *
+   * @param iparams VelMathParams
+   */
+  VelMath(const VelMathParams &iparams);
 
-    /**
-     * Set ticks per revolution (or whatever units you are using).
-     * 
-     * @para iTPR ticks per revolution
-     */
-    void setTicksPerRev(const double iTPR);
+  /**
+   * Calculate new velocity.
+   *
+   * @param inewPos new position
+   * @return new velocity
+   */
+  virtual double step(const double inewPos);
 
-    /**
-     * Get the last calculated output.
-     */
-    double getOutput() const;
+  /**
+   * Set filter gains.
+   *
+   * @param ialpha alpha gain
+   * @param ibeta beta gain
+   */
+  void setGains(const double ialpha, const double ibeta);
 
-    /**
-     * Get the difference between the last output and the output before that.
-     */
-    double getDiff() const;
+  /**
+   * Set ticks per revolution (or whatever units you are using).
+   *
+   * @para iTPR ticks per revolution
+   */
+  void setTicksPerRev(const double iTPR);
+
+  /**
+   * Get the last calculated output.
+   */
+  double getOutput() const;
+
+  /**
+   * Get the difference between the last output and the output before that.
+   */
+  double getDiff() const;
 
   protected:
-    uint32_t lastTime;
-    double vel, lastVel, lastPos, ticksPerRev;
-    DemaFilter filter;
-  };
-}
+  uint32_t lastTime;
+  double vel, lastVel, lastPos, ticksPerRev;
+  DemaFilter filter;
+};
+} // namespace okapi
 
 #endif

@@ -8,17 +8,17 @@
 #include "okapi/device/rotarySensor.hpp"
 
 namespace okapi {
-  class QuadEncoder : public RotarySensor {
+class QuadEncoder : public RotarySensor {
   public:
-    QuadEncoder(const uint8_t iportTop, const uint8_t iportBottom, const bool ireversed = false);
+  QuadEncoder(const uint8_t iportTop, const uint8_t iportBottom, const bool ireversed = false);
 
-    int32_t get() const override;
+  int32_t get() const override;
 
-    int32_t reset() const override;
+  int32_t reset() const override;
 
   private:
-    pros::ADIEncoder enc;
-  };
-}
+  pros::ADIEncoder enc;
+};
+} // namespace okapi
 
 #endif

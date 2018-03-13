@@ -4,5 +4,5 @@
 #include "okapi/device/button.hpp"
 
 namespace okapi {
-  Button::~Button() = default;
+Button::~Button() = default;
 }

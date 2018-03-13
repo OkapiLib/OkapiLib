@@ -7,39 +7,39 @@
 #include "okapi/device/button.hpp"
 
 namespace okapi {
-  class ControllerButton : public Button {
+class ControllerButton : public Button {
   public:
-    ControllerButton(controller_id_e_t icontroller, controller_digital_e_t ibtn,
-      const bool iinverted = false);
+  ControllerButton(controller_id_e_t icontroller, controller_digital_e_t ibtn,
+                   const bool iinverted = false);
 
-    /**
-     * Return whether the button is current pressed.
-     **/
-    bool isPressed();
+  /**
+   * Return whether the button is current pressed.
+   **/
+  bool isPressed();
 
-    /**
-     * Return whether there just was a rising or falling edge.
-     **/
-    bool edge();
+  /**
+   * Return whether there just was a rising or falling edge.
+   **/
+  bool edge();
 
-    /**
-     * Return whether there was just a rising edge.
-     **/
-    bool risingEdge();
+  /**
+   * Return whether there was just a rising edge.
+   **/
+  bool risingEdge();
 
-    /**
-     * Return whether there was just a falling edge.
-     **/
-    bool fallingEdge();
+  /**
+   * Return whether there was just a falling edge.
+   **/
+  bool fallingEdge();
 
   private:
-    pros::Controller controller;
-    controller_digital_e_t btn;
-    const bool inverted;
-    bool wasPressedLast;
+  pros::Controller controller;
+  controller_digital_e_t btn;
+  const bool inverted;
+  bool wasPressedLast;
 
-    bool currentlyPressed();
-  };
-}
+  bool currentlyPressed();
+};
+} // namespace okapi
 
 #endif

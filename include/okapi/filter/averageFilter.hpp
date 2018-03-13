@@ -4,32 +4,31 @@
 #ifndef OKAPI_AVERAGEFILTER_HPP_
 #define OKAPI_AVERAGEFILTER_HPP_
 
-#include <cstddef>
-#include <array>
 #include "okapi/filter/filter.hpp"
+#include <array>
+#include <cstddef>
 
 namespace okapi {
-  /**
-   * @tparam number of taps in the filter
-   */
-  template<std::size_t n>
-  class AverageFilter : public Filter {
+/**
+ * @tparam number of taps in the filter
+ */
+template <std::size_t n> class AverageFilter : public Filter {
   public:
-    /**
-     * Averaging filter.
-     */
-    AverageFilter();
+  /**
+   * Averaging filter.
+   */
+  AverageFilter();
 
-    virtual ~AverageFilter();
+  virtual ~AverageFilter();
 
-    float filter(const float ireading) override;
+  float filter(const float ireading) override;
 
-    float getOutput() const override;
+  float getOutput() const override;
 
   private:
-    std::array<float, n> data;
-    float index, output;
-  };
-}
+  std::array<float, n> data;
+  float index, output;
+};
+} // namespace okapi
 
 #endif

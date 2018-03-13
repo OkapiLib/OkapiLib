@@ -9,51 +9,44 @@
 #include <memory>
 
 namespace okapi {
-  class ChassisControllerPID : public virtual ChassisController {
+class ChassisControllerPID : public virtual ChassisController {
   public:
-    ChassisControllerPID(const ChassisModelParams& imodelParams,
-      const PIDControllerParams& idistanceParams, const PIDControllerParams& iangleParams):
-      ChassisController(imodelParams),
-      distancePid(idistanceParams),
-      anglePid(iangleParams) {}
+  ChassisControllerPID(const ChassisModelParams &imodelParams,
+                       const PIDControllerParams &idistanceParams,
+                       const PIDControllerParams &iangleParams)
+    : ChassisController(imodelParams), distancePid(idistanceParams), anglePid(iangleParams) {}
 
-    ChassisControllerPID(const ChassisModel& imodel,
-      const PIDControllerParams& idistanceParams, const PIDControllerParams& iangleParams):
-      ChassisController(imodel),
-      distancePid(idistanceParams),
-      anglePid(iangleParams) {}
+  ChassisControllerPID(const ChassisModel &imodel, const PIDControllerParams &idistanceParams,
+                       const PIDControllerParams &iangleParams)
+    : ChassisController(imodel), distancePid(idistanceParams), anglePid(iangleParams) {}
 
-    ChassisControllerPID(const ChassisModelParams& imodelParams,
-      const PIDController& idistance, const PIDController& iangle):
-      ChassisController(imodelParams),
-      distancePid(idistance),
-      anglePid(iangle) {}
+  ChassisControllerPID(const ChassisModelParams &imodelParams, const PIDController &idistance,
+                       const PIDController &iangle)
+    : ChassisController(imodelParams), distancePid(idistance), anglePid(iangle) {}
 
-    ChassisControllerPID(const ChassisModel& imodel,
-      const PIDController& idistance, const PIDController& iangle):
-      ChassisController(imodel),
-      distancePid(idistance),
-      anglePid(iangle) {}
+  ChassisControllerPID(const ChassisModel &imodel, const PIDController &idistance,
+                       const PIDController &iangle)
+    : ChassisController(imodel), distancePid(idistance), anglePid(iangle) {}
 
-    virtual ~ChassisControllerPID();
+  virtual ~ChassisControllerPID();
 
-    /**
-     * Drives the robot straight.
-     * 
-     * @param itarget Distance to travel
-     */
-    void driveStraight(const int itarget) override;
+  /**
+   * Drives the robot straight.
+   *
+   * @param itarget Distance to travel
+   */
+  void driveStraight(const int itarget) override;
 
-    /**
-     * Turns the robot clockwise in place.
-     * 
-     * @param idegTarget Degrees to turn for
-     */
-    void pointTurn(float idegTarget) override;
+  /**
+   * Turns the robot clockwise in place.
+   *
+   * @param idegTarget Degrees to turn for
+   */
+  void pointTurn(float idegTarget) override;
 
   protected:
-    PIDController distancePid, anglePid;
-  };
-}
+  PIDController distancePid, anglePid;
+};
+} // namespace okapi
 
 #endif

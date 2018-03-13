@@ -7,38 +7,38 @@
 #include "okapi/device/button.hpp"
 
 namespace okapi {
-  class ADIButton : public Button {
+class ADIButton : public Button {
   public:
-    ADIButton(const uint8_t iport, const bool iinverted = false);
+  ADIButton(const uint8_t iport, const bool iinverted = false);
 
-    /**
-     * Return whether the button is current pressed.
-     **/
-    bool isPressed();
+  /**
+   * Return whether the button is current pressed.
+   **/
+  bool isPressed();
 
-    /**
-     * Return whether there just was a rising or falling edge.
-     **/
-    bool edge();
+  /**
+   * Return whether there just was a rising or falling edge.
+   **/
+  bool edge();
 
-    /**
-     * Return whether there was just a rising edge.
-     **/
-    bool risingEdge();
+  /**
+   * Return whether there was just a rising edge.
+   **/
+  bool risingEdge();
 
-    /**
-     * Return whether there was just a falling edge.
-     **/
-    bool fallingEdge();
+  /**
+   * Return whether there was just a falling edge.
+   **/
+  bool fallingEdge();
 
   private:
-    pros::ADIButton btn;
-    uint8_t port;
-    const bool inverted;
-    bool wasPressedLast;
+  pros::ADIButton btn;
+  uint8_t port;
+  const bool inverted;
+  bool wasPressedLast;
 
-    bool currentlyPressed();
-  };
-}
+  bool currentlyPressed();
+};
+} // namespace okapi
 
 #endif

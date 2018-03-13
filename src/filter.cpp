@@ -4,5 +4,5 @@
 #include "okapi/filter/filter.hpp"
 
 namespace okapi {
-  Filter::~Filter() = default;
+Filter::~Filter() = default;
 }
