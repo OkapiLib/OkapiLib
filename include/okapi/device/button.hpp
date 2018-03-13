@@ -9,6 +9,8 @@
 namespace okapi {
   class Button {
   public:
+    virtual ~Button();
+
     /**
      * Return whether the button is current pressed.
      **/

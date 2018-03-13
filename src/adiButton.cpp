@@ -9,8 +9,6 @@
     port(iport),
     inverted(iinverted),
     wasPressedLast(false) {}
-  
-  ADIButton::~ADIButton() = default;
 
   bool ADIButton::isPressed() {
     wasPressedLast = currentlyPressed();

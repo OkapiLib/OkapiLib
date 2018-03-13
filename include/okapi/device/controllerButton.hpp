@@ -12,14 +12,24 @@ namespace okapi {
     ControllerButton(controller_id_e_t icontroller, controller_digital_e_t ibtn,
       const bool iinverted = false);
 
-    virtual ~ControllerButton() = default;
-
+    /**
+     * Return whether the button is current pressed.
+     **/
     bool isPressed();
 
+    /**
+     * Return whether there just was a rising or falling edge.
+     **/
     bool edge();
 
+    /**
+     * Return whether there was just a rising edge.
+     **/
     bool risingEdge();
 
+    /**
+     * Return whether there was just a falling edge.
+     **/
     bool fallingEdge();
 
   private:

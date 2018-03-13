@@ -11,14 +11,24 @@ namespace okapi {
   public:
     ADIButton(const uint8_t iport, const bool iinverted = false);
 
-    virtual ~ADIButton();
-
+    /**
+     * Return whether the button is current pressed.
+     **/
     bool isPressed();
 
+    /**
+     * Return whether there just was a rising or falling edge.
+     **/
     bool edge();
 
+    /**
+     * Return whether there was just a rising edge.
+     **/
     bool risingEdge();
 
+    /**
+     * Return whether there was just a falling edge.
+     **/
     bool fallingEdge();
 
   private:
