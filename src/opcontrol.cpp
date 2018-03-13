@@ -11,6 +11,10 @@
 #include "okapi/device/adiButton.hpp"
 #include "okapi/device/controllerButton.hpp"
 #include "okapi/device/motor.hpp"
+#include "okapi/device/quadEncoder.hpp"
+
+#include "okapi/filter/averageFilter.hpp"
+
 #include "okapi/odometry/odomMath.hpp"
 
 void opcontrol() {
@@ -89,6 +93,11 @@ void opcontrol() {
 
       VelPidController velPid1(0, 0);
       VelPidController velPid2(VelPidControllerParams(0, 0));
+
+      QuadEncoder quad1(0, 0);
+      QuadEncoder quad2(0, 0, true);
+
+      AverageFilter<1> avgFilt1();
     }
   }
 }

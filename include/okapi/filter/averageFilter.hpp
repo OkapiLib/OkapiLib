@@ -1,8 +1,8 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-#ifndef OKAPI_AVGFILTER_HPP_
-#define OKAPI_AVGFILTER_HPP_
+#ifndef OKAPI_AVERAGEFILTER_HPP_
+#define OKAPI_AVERAGEFILTER_HPP_
 
 #include <cstddef>
 #include <array>
@@ -10,14 +10,14 @@
 
 namespace okapi {
   template<std::size_t n>
-  class AvgFilter final : public Filter {
+  class AverageFilter final : public Filter {
   public:
-    AvgFilter():
+    AverageFilter():
       data(),
       index(0),
       output(0) {}
 
-    virtual ~AvgFilter() { delete &data; }
+    virtual ~AverageFilter() { delete &data; }
 
     float filter(const float ireading) override {
       data[index++] = ireading;
