@@ -45,7 +45,7 @@ namespace okapi {
     /**
      * Velocity PID controller.
      * 
-     * @param params params (see VelPIDControllerParams docs)
+     * @param params VelPIDControllerParams
      */
     VelPIDController(const VelPIDControllerParams& params);
 
@@ -118,7 +118,7 @@ namespace okapi {
     void setGains(const double ikP, const double ikD);
 
     /**
-     * Set the gains for the double moving average filter. Defaults are 0.19 and 0.0526,
+     * Set the gains for the DemaFilter. Defaults are 0.19 and 0.0526,
      * respectively.
      * 
      * @param alpha alpha gain

@@ -4,7 +4,6 @@
 #ifndef _OKAPI_PID_HPP_
 #define _OKAPI_PID_HPP_
 
-#include "api.h"
 #include "okapi/control/controlObject.hpp"
 
 namespace okapi {
@@ -34,7 +33,7 @@ namespace okapi {
     /**
      * PID controller.
      * 
-     * @param params params (see PIDControllerParams docs)
+     * @param params PIDControllerParams
      */
     PIDController(const PIDControllerParams& params);
 

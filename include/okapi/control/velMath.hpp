@@ -4,6 +4,7 @@
 #ifndef _OKAPI_VELOCITY_HPP_
 #define _OKAPI_VELOCITY_HPP_
 
+#include "api.h"
 #include "okapi/filter/demaFilter.hpp"
 
 namespace okapi {
@@ -19,40 +20,57 @@ namespace okapi {
 
   class VelMath {
   public:
-    VelMath(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041):
-      lastTime(0),
-      vel(0),
-      lastVel(0),
-      lastPos(0),
-      ticksPerRev(iticksPerRev),
-      filter(ialpha, ibeta) {}
+    /**
+     * Velocity math helper. Calculates filtered velocity (DemaFilter).
+     * 
+     * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
+     * @param ialpha alpha gain
+     * @param ibeta beta gain
+     */
+    VelMath(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041);
 
-    VelMath(const VelMathParams& iparams):
-      lastTime(0),
-      vel(0),
-      lastVel(0),
-      lastPos(0),
-      ticksPerRev(iparams.ticksPerRev),
-      filter(iparams.alpha, iparams.beta) {}
+    /**
+     * Velocity math helper. Calculates filtered velocity (DemaFilter).
+     * 
+     * @param iparams VelMathParams
+     */
+    VelMath(const VelMathParams& iparams);
 
     /**
      * Calculate new velocity.
      * 
-     * @param  inewPos New position
-     * @return         New velocity
+     * @param inewPos new position
+     * @return new velocity
      */
-    double step(const double inewPos);
+    virtual double step(const double inewPos);
 
-    void setGains(const double ialpha, const double ibeta) { filter.setGains(ialpha, ibeta); }
+    /**
+     * Set filter gains.
+     * 
+     * @param ialpha alpha gain
+     * @param ibeta beta gain
+     */
+    void setGains(const double ialpha, const double ibeta);
 
-    void setTicksPerRev(const double iTPR) { ticksPerRev = iTPR; }
+    /**
+     * Set ticks per revolution (or whatever units you are using).
+     * 
+     * @para iTPR ticks per revolution
+     */
+    void setTicksPerRev(const double iTPR);
 
-    double getOutput() const { return vel; }
+    /**
+     * Get the last calculated output.
+     */
+    double getOutput() const;
 
-    double getDiff() const { return vel - lastVel; }
+    /**
+     * Get the difference between the last output and the output before that.
+     */
+    double getDiff() const;
 
-  private:
-    long lastTime;
+  protected:
+    uint32_t lastTime;
     double vel, lastVel, lastPos, ticksPerRev;
     DemaFilter filter;
   };
