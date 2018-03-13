@@ -7,37 +7,43 @@
 #include "okapi/filter/filter.hpp"
 
 namespace okapi {
-  class DemaFilter final : public Filter {
+  class DemaFilter : public Filter {
   public:
-    DemaFilter(const float ialpha, const float ibeta):
-      alpha(ialpha),
-      beta(ibeta),
-      outputS(0),
-      lastOutputS(0),
-      outputB(0),
-      lastOutputB(0) {}
+    /**
+     * Double exponential moving average filter.
+     * 
+     * @param ialpha alpha gain
+     * @param ibeta beta gain
+     */
+    DemaFilter(const double ialpha, const double ibeta);
 
-    virtual ~DemaFilter() = default;
+    /**
+     * Filters a reading.
+     * 
+     * @param reading new measurement
+     * @return filtered result
+     */
+    double filter(const double ireading) override;
 
-    float filter(const float ireading) override {
-      outputS = (alpha * ireading) + ((1.0 - alpha) * (lastOutputS + lastOutputB));
-      outputB = (beta * (outputS - lastOutputS)) + ((1.0 - beta) * lastOutputB);
-      lastOutputS = outputS;
-      lastOutputB = outputB;
-      return outputS + outputB;
-    }
+    /**
+     * Returns the previous output from filter.
+     * 
+     * @return the previous output from filter
+     */
+    double getOutput() const override;
 
-    void setGains(const float ialpha, const float ibeta) {
-      alpha = ialpha;
-      beta = ibeta;
-    }
-
-    float getOutput() const override { return outputS + outputB; }
+    /**
+     * Set filter gains.
+     * 
+     * @param ialpha alpha gain
+     * @param ibeta beta gain
+     */
+    void setGains(const double ialpha, const double ibeta);
 
   private:
-    float alpha, beta;
-    float outputS, lastOutputS;
-    float outputB, lastOutputB;
+    double alpha, beta;
+    double outputS, lastOutputS;
+    double outputB, lastOutputB;
   };
 }
 

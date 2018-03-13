@@ -111,7 +111,7 @@ void opcontrol() {
 
       DemaFilter demaFilt1(0, 0);
 
-      EmaFilter emaFilt1(0, 0);
+      EmaFilter emaFilt1(0);
 
       // Odometry odom1(
       //   SkidSteerModelParams<2>(

@@ -10,29 +10,15 @@
 
 namespace okapi {
   template<std::size_t n>
-  class AverageFilter final : public Filter {
+  class AverageFilter : public Filter {
   public:
-    AverageFilter():
-      data(),
-      index(0),
-      output(0) {}
+    AverageFilter();
 
-    virtual ~AverageFilter() { delete &data; }
+    virtual ~AverageFilter();
 
-    float filter(const float ireading) override {
-      data[index++] = ireading;
-      if (index > n)
-        index = 0;
+    float filter(const float ireading) override;
 
-      output = 0.0;
-      for (size_t i = 0; i < n; i++)
-        output += data[i];
-      output /= (float)n;
-
-      return output;
-    }
-
-    float getOutput() const override { return output; }
+    float getOutput() const override;
 
   private:
     std::array<float, n> data;

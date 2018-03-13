@@ -7,32 +7,40 @@
 #include "okapi/filter/filter.hpp"
 
 namespace okapi {
-  class EmaFilter final : public Filter {
+  class EmaFilter : public Filter {
   public:
-    EmaFilter(const float ialpha, const float ibeta):
-      alpha(ialpha),
-      beta(ibeta),
-      output(0),
-      lastOutput(0) {}
+    /**
+     * Exponential moving average filter.
+     * 
+     * @param ialpha alpha gain
+     */
+    EmaFilter(const double ialpha);
 
-    virtual ~EmaFilter() = default;
+    /**
+     * Filters a reading.
+     * 
+     * @param reading new measurement
+     * @return filtered result
+     */
+    double filter(const double ireading) override;
 
-    float filter(const float ireading) override {
-      output = alpha * ireading + (1.0 - alpha) * lastOutput;
-      lastOutput = output;
-      return output;
-    }
+    /**
+     * Returns the previous output from filter.
+     * 
+     * @return the previous output from filter
+     */
+    double getOutput() const override;
 
-    void setGains(const float ialpha, const float ibeta) {
-      alpha = ialpha;
-      beta = ibeta;
-    }
-
-    float getOutput() const override { return output; }
+    /**
+     * Set filter gains.
+     * 
+     * @param ialpha alpha gain
+     */
+    void setGains(const double ialpha);
 
   private:
-    float alpha, beta;
-    float output, lastOutput;
+    double alpha;
+    double output, lastOutput;
   };
 }
 

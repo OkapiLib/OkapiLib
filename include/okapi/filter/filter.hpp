@@ -7,21 +7,22 @@
 namespace okapi {
   class Filter {
   public:
-    Filter() {}
-    virtual ~Filter() = default;
-    
-    /**
-     * Filters a reading
-     * @param  reading New measurement
-     * @return         Filtered result
-     */
-    virtual float filter(const float ireading) = 0;
+    virtual ~Filter();
 
     /**
-     * Returns the previous output from filter
-     * @return The previous output from filter
+     * Filters a reading.
+     * 
+     * @param reading new measurement
+     * @return filtered result
      */
-    virtual float getOutput() const = 0;
+    virtual double filter(const double ireading) = 0;
+
+    /**
+     * Returns the previous output from filter.
+     * 
+     * @return the previous output from filter
+     */
+    virtual double getOutput() const = 0;
   };
 }
 
