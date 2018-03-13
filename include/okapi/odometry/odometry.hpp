@@ -41,39 +41,53 @@ namespace okapi {
 
   class Odometry {
   public:
-    Odometry(const ChassisModelParams& imodelParams, const float iscale, const float iturnScale):
-      model(imodelParams.make()),
-      scale(iscale),
-      turnScale(iturnScale),
-      lastTicks{0, 0},
-      mm(0) {}
+    /**
+     * Odometry. Tracks the movement of the robot and estimates its position in coordinates
+     * relative to the start (assumed to be (0, 0)).
+     * 
+     * @param imodelParams ChassisModel for reading sensors
+     * @param iscale straight scale
+     * @param iturnScale turn scale
+     */
+    Odometry(const ChassisModelParams& imodelParams, const float iscale, const float iturnScale);
 
-    Odometry(const OdometryParams& iparams):
-      model(iparams.model),
-      scale(iparams.scale),
-      turnScale(iparams.turnScale),
-      lastTicks{0, 0},
-      mm(0) {}
+    /**
+     * Odometry. Tracks the movement of the robot and estimates its position in coordinates
+     * relative to the start (assumed to be (0, 0)).
+     * 
+     * @param iparams OdometryParams
+     */
+    Odometry(const OdometryParams& iparams);
+
+    virtual ~Odometry();
 
     /**
      * Set the drive and turn scales.
      * 
-     * @param iscale     Scale converting encoder ticks to mm
-     * @param iturnScale Scale converting encoder ticks to radians
+     * @param iscale straight scale converting encoder ticks to mm
+     * @param iturnScale turn scale converting encoder ticks to radians
      */
-    void setScales(const float iscale, const float iturnScale) {
-      scale = iscale;
-      turnScale = iturnScale;
-    }
+    void setScales(const float iscale, const float iturnScale);
 
     /**
-     * Do odom math in an infinite loop.
+     * Do odometry math in an infinite loop.
      */
     void loop();
 
-    static void trampoline(void *context) { static_cast<Odometry*>(context)->loop(); }
+    /**
+     * Tread the input as an Odometry pointer and call loop. Meant to be used to bounce into a
+     * thread because loop runs forever.
+     * 
+     * @param context pointer to an Odometry object
+     */
+    static void trampoline(void *context);
 
-    OdomState getState() { return state; }
+    /**
+     * Get the current state.
+     * 
+     * @return current state
+     */
+    OdomState getState();
   private:
     const ChassisModel& model;
     OdomState state;

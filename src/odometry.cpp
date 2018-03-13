@@ -6,6 +6,27 @@
 #include "okapi/util/mathUtil.hpp"
 
 namespace okapi {
+  Odometry::Odometry(const ChassisModelParams& imodelParams, const float iscale, const float iturnScale):
+    model(imodelParams.make()),
+    scale(iscale),
+    turnScale(iturnScale),
+    lastTicks{0, 0},
+    mm(0) {}
+
+  Odometry::Odometry(const OdometryParams& iparams):
+    model(iparams.model),
+    scale(iparams.scale),
+    turnScale(iparams.turnScale),
+    lastTicks{0, 0},
+    mm(0) {}
+
+  Odometry::~Odometry() = default;
+
+  void Odometry::setScales(const float iscale, const float iturnScale) {
+    scale = iscale;
+    turnScale = iturnScale;
+  }
+
   void Odometry::loop() {
     uint32_t now = pros::millis();
     std::valarray<int> newTicks{0, 0}, tickDiff{0, 0};
@@ -27,5 +48,13 @@ namespace okapi {
 
       task_delay_until(&now, 15);
     }
+  }
+
+  void Odometry::trampoline(void *context) {
+    static_cast<Odometry*>(context)->loop();
+  }
+
+  OdomState Odometry::getState() {
+    return state;
   }
 }
