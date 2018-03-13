@@ -33,4 +33,4 @@ bool ControllerButton::currentlyPressed() {
   const bool pressed = controller.get_digital(btn) != 0;
   return inverted ? !pressed : pressed;
 }
-}
+} // namespace okapi

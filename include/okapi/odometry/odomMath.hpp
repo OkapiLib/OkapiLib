@@ -10,9 +10,11 @@
 namespace okapi {
 class DistanceAndAngle {
   public:
-  DistanceAndAngle(const double ilength, const double itheta) : length(ilength), theta(itheta) {}
+  DistanceAndAngle(const double ilength, const double itheta) : length(ilength), theta(itheta) {
+  }
 
-  DistanceAndAngle() : length(0), theta(0) {}
+  DistanceAndAngle() : length(0), theta(0) {
+  }
 
   virtual ~DistanceAndAngle() = default;
 

@@ -27,7 +27,6 @@ class ChassisModelParams {
 
 class ChassisModel {
   public:
-  ChassisModel();
   virtual ~ChassisModel();
 
   /**

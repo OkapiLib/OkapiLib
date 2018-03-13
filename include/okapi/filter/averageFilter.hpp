@@ -17,17 +17,31 @@ template <std::size_t n> class AverageFilter : public Filter {
   /**
    * Averaging filter.
    */
-  AverageFilter();
+  AverageFilter() : data(), index(0), output(0) {
+  }
 
-  virtual ~AverageFilter();
+  virtual ~AverageFilter() = default;
 
-  float filter(const float ireading) override;
+  double filter(const double ireading) override {
+    data[index++] = ireading;
+    if (index > n)
+      index = 0;
 
-  float getOutput() const override;
+    output = 0.0;
+    for (size_t i = 0; i < n; i++)
+      output += data[i];
+    output /= (double)n;
+
+    return output;
+  }
+
+  double getOutput() const override {
+    return output;
+  }
 
   private:
-  std::array<float, n> data;
-  float index, output;
+  std::array<double, n> data;
+  double index, output;
 };
 } // namespace okapi
 

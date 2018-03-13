@@ -24,4 +24,4 @@ void DemaFilter::setGains(const double ialpha, const double ibeta) {
   alpha = ialpha;
   beta = ibeta;
 }
-}
+} // namespace okapi

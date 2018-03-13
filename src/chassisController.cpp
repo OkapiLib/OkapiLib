@@ -47,4 +47,4 @@ std::valarray<int> ChassisController::getSensorVals() {
 void ChassisController::resetSensors() const {
   model.resetSensors();
 }
-}
+} // namespace okapi

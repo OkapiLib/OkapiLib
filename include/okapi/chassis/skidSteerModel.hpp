@@ -140,6 +140,6 @@ template <size_t motorsPerSide> class SkidSteerModel : public ChassisModel {
   const RotarySensor &leftSensor;
   const RotarySensor &rightSensor;
 };
-}
+} // namespace okapi
 
 #endif

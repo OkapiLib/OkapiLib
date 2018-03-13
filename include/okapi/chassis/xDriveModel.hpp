@@ -183,6 +183,6 @@ template <size_t motorsPerCorner> class XDriveModel : public ChassisModel {
   const RotarySensor &leftSensor;
   const RotarySensor &rightSensor;
 };
-}
+} // namespace okapi
 
 #endif

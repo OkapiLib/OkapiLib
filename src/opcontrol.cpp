@@ -12,9 +12,10 @@
 #include "okapi/control/velPidController.hpp"
 
 #include "okapi/device/adiButton.hpp"
+#include "okapi/device/adiEncoder.hpp"
 #include "okapi/device/controllerButton.hpp"
 #include "okapi/device/motor.hpp"
-#include "okapi/device/adiEncoder.hpp"
+#include "okapi/device/motorGroup.hpp"
 
 #include "okapi/filter/averageFilter.hpp"
 #include "okapi/filter/demaFilter.hpp"
@@ -108,7 +109,11 @@ void opcontrol() {
       ADIEncoder quad1(0, 0);
       ADIEncoder quad2(0, 0, true);
 
-      AverageFilter<1> avgFilt1();
+      MotorGroup<2> mg1({Motor(1), Motor(2)});
+
+      AverageFilter<1> avgFilt1;
+      avgFilt1.filter(0);
+      avgFilt1.getOutput();
 
       DemaFilter demaFilt1(0, 0);
 

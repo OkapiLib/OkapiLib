@@ -11,9 +11,11 @@
 namespace okapi {
 class OdomState {
   public:
-  OdomState(const float ix, const float iy, const float itheta) : x(ix), y(iy), theta(itheta) {}
+  OdomState(const float ix, const float iy, const float itheta) : x(ix), y(iy), theta(itheta) {
+  }
 
-  OdomState() : x(0), y(0), theta(0) {}
+  OdomState() : x(0), y(0), theta(0) {
+  }
 
   virtual ~OdomState() = default;
 
@@ -23,7 +25,8 @@ class OdomState {
 class OdometryParams {
   public:
   OdometryParams(const ChassisModelParams &iparams, const float iscale, const float iturnScale)
-    : model(iparams.make()), scale(iscale), turnScale(iturnScale) {}
+    : model(iparams.make()), scale(iscale), turnScale(iturnScale) {
+  }
 
   virtual ~OdometryParams() = default;
 
