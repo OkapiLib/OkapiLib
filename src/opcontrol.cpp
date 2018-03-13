@@ -4,6 +4,7 @@
 // #include "okapi/chassis/chassisModel.hpp"
 // #include "okapi/chassis/odomChassisController.hpp"
 // #include "okapi/chassis/skidSteerModel.hpp"
+// #include "okapi/chassis/xDriveModel.hpp"
 
 #include "okapi/control/motorGroupController.hpp"
 #include "okapi/control/pidController.hpp"
