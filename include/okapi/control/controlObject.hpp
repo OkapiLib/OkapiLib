@@ -10,51 +10,52 @@ namespace okapi {
   class ControlObject {
   public:
     /**
-    * Do one iteration of the controller.
-    *
-    * @param  inewReading New measurement
-    * @return            Controller output
-    */
+     * Do one iteration of the controller.
+     *
+     * @param inewReading new measurement
+     * @return controller output
+     */
     virtual float step(const float ireading) = 0;
 
     /**
-    * Sets the target for the controller.
-    */
+     * Sets the target for the controller.
+     */
     virtual void setTarget(const float itarget) = 0;
 
     /**
-    * Returns the last calculated output of the controller.
-    */
+     * Returns the last calculated output of the controller.
+     */
     virtual float getOutput() const = 0;
 
     /**
-    * Returns the last error of the controller.
-    */
+     * Returns the last error of the controller.
+     */
     virtual float getError() const = 0;
 
     /**
-    * Set time between loops in ms.
-    *
-    * @param isampleTime Time between loops in ms
-    */
+     * Set time between loops in ms.
+     *
+     * @param isampleTime time between loops in ms
+     */
     virtual void setSampleTime(const int isampleTime) {}
 
     /**
-    * Set controller output bounds.
-    *
-    * @param imax Max output
-    * @param imin Min output
-    */
+     * Set controller output bounds.
+     *
+     * @param imax max output
+     * @param imin min output
+     */
     virtual void setOutputLimits(float imax, float imin) {}
 
     /**
-    * Resets the controller so it can start from 0 again properly. Keeps configuration from before.
-    */
+     * Resets the controller so it can start from 0 again properly. Keeps configuration from
+     * before.
+     */
     virtual void reset() {}
 
     /**
-    * Turns the controller on or off.
-    */
+     * Change whether the controll is off or on.
+     */
     virtual void flipDisable() {}
   };
 }

@@ -23,98 +23,75 @@ namespace okapi {
     /**
      * PID controller.
      * 
-     * @param ikP    Proportional gain
-     * @param ikI    Integral gain
-     * @param ikD    Derivative gain
-     * @param ikBias Controller bias (added to final output)
+     * @param ikP proportional gain
+     * @param ikI integral gain
+     * @param ikD derivative gain
+     * @param ikBias controller bias (constant offset added to the output)
      */
-    PIDController(const float ikP, const float ikI, const float ikD, const float ikBias = 0):
-      lastTime(0),
-      sampleTime(15),
-      error(0),
-      lastError(0),
-      target(0),
-      lastReading(0),
-      integral(0),
-      integralMax(127),
-      integralMin(-127),
-      output(0),
-      outputMax(127),
-      outputMin(-127),
-      shouldResetOnCross(true),
-      isOn(true) {
-        setGains(ikP, ikI, ikD, ikBias);
-      }
+    PIDController(const float ikP, const float ikI, const float ikD, const float ikBias = 0);
 
     /**
      * PID controller.
      * 
-     * @param params Params (see PidParams docs)
+     * @param params params (see PIDControllerParams docs)
      */
-    PIDController(const PIDControllerParams& params):
-      lastTime(0),
-      sampleTime(15),
-      error(0),
-      lastError(0),
-      target(0),
-      lastReading(0),
-      integral(0),
-      integralMax(127),
-      integralMin(-127),
-      output(0),
-      outputMax(127),
-      outputMin(-127),
-      shouldResetOnCross(true),
-      isOn(true) {
-        setGains(params.kP, params.kI, params.kD, params.kBias);
-      }
+    PIDController(const PIDControllerParams& params);
 
-    virtual ~PIDController() = default;
+    virtual ~PIDController();
 
     /**
      * Do one iteration of the controller.
      * 
-     * @param  inewReading New measurement
-     * @return            Controller output
+     * @param inewReading new measurement
+     * @return controller output
      */
     virtual float step(const float inewReading) override;
-    
-    void setTarget(const float itarget) override { target = itarget; }
 
-    float getOutput() const override { return output; }
+    /**
+     * Sets the target for the controller.
+     */
+    void setTarget(const float itarget) override;
 
-    float getError() const override { return error; }
+    /**
+     * Returns the last calculated output of the controller.
+     */
+    float getOutput() const override;
+
+    /**
+     * Returns the last error of the controller.
+     */
+    float getError() const override;
 
     /**
      * Set controller gains.
      * 
-     * @param ikP    Proportional gain
-     * @param ikI    Integral gain
-     * @param ikD    Derivative gain
-     * @param ikBias Controller bias
+     * @param ikP proportional gain
+     * @param ikI integral gain
+     * @param ikD derivative gain
+     * @param ikBias bias (constant offset added to the output)
      */
     void setGains(const float ikP, const float ikI, const float ikD, const float ikBias = 0);
 
     /**
      * Set time between loops in ms.
      * 
-     * @param isampleTime Time between loops in ms
+     * @param isampleTime time between loops in ms
      */
     void setSampleTime(const int isampleTime) override;
 
     /**
      * Set controller output bounds.
      * 
-     * @param imax Max output
-     * @param imin Min output
+     * @param imax max output
+     * @param imin min output
      */
     void setOutputLimits(float imax, float imin) override;
 
     /**
      * Set integrator bounds.
      * 
-     * @param imax Max integrator value
-     * @param imin Min integrator value
+     * @param imax max integrator value
+     * @param imin min integrator value
      */
     void setIntegralLimits(float imax, float imin);
 
@@ -127,11 +104,14 @@ namespace okapi {
     /**
      * Set whether the integrator should be reset when error is 0 or changes sign.
      * 
-     * @param iresetOnZero True to reset
+     * @param iresetOnZero true to reset
      */
-    void setIntegratorReset(bool iresetOnZero) { shouldResetOnCross = iresetOnZero; }
+    void setIntegratorReset(bool iresetOnZero);
 
-    void flipDisable() override { isOn = !isOn; }
+    /**
+     * Change whether the controll is off or on.
+     */
+    void flipDisable() override;
 
   protected:
     float kP, kI, kD, kBias;

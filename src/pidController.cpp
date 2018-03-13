@@ -6,6 +6,56 @@
 #include <cmath>
 
 namespace okapi {
+  PIDController::PIDController(const float ikP, const float ikI, const float ikD, const float ikBias):
+    lastTime(0),
+    sampleTime(15),
+    error(0),
+    lastError(0),
+    target(0),
+    lastReading(0),
+    integral(0),
+    integralMax(127),
+    integralMin(-127),
+    output(0),
+    outputMax(127),
+    outputMin(-127),
+    shouldResetOnCross(true),
+    isOn(true) {
+    setGains(ikP, ikI, ikD, ikBias);
+  }
+
+  PIDController::PIDController(const PIDControllerParams& params):
+    lastTime(0),
+    sampleTime(15),
+    error(0),
+    lastError(0),
+    target(0),
+    lastReading(0),
+    integral(0),
+    integralMax(127),
+    integralMin(-127),
+    output(0),
+    outputMax(127),
+    outputMin(-127),
+    shouldResetOnCross(true),
+    isOn(true) {
+    setGains(params.kP, params.kI, params.kD, params.kBias);
+  }
+
+  PIDController::~PIDController() = default;
+
+  void PIDController::setTarget(const float itarget) {
+    target = itarget;
+  }
+
+  float PIDController::getOutput() const {
+    return output;
+  }
+
+  float PIDController::getError() const {
+    return error;
+  }
+
   void PIDController::setSampleTime(const int isampleTime) {
     if (isampleTime > 0) {
       const float ratio = static_cast<float>(isampleTime) / static_cast<float>(sampleTime);
@@ -105,5 +155,13 @@ namespace okapi {
     lastReading = 0;
     integral = 0;
     output = 0;
+  }
+
+  void PIDController::setIntegratorReset(bool iresetOnZero) {
+    shouldResetOnCross = iresetOnZero;
+  }
+
+  void PIDController::flipDisable() {
+    isOn = !isOn;
   }
 }
