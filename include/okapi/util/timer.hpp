@@ -70,9 +70,9 @@ namespace okapi {
      * Returns true when the input time period has passed, then resets. Meant to be used in loops
      * to run an action every so many ms without blocking.
      * 
-     * @param  ms Time period
-     * @return    True when the input time period has passed, false after
-     *                 reading true until the period has passed again
+     * @param ms time period
+     * @return true when the input time period has passed, false after reading true until the
+     *   period has passed again
      */
     bool repeat(uint32_t ms);
 
