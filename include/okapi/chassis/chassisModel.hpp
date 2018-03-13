@@ -19,9 +19,9 @@ namespace okapi {
     virtual ~ChassisModelParams() = default;
 
     /**
-     * Allocates a new ChassisModel.
+     * Consutructs a new ChassisModel.
      * 
-     * @return shared_ptr pointing to new ChassisModel
+     * @return const reference to the ChassisModel
      */
     virtual const ChassisModel& make() const = 0;
   };
@@ -120,6 +120,11 @@ namespace okapi {
 
     virtual ~SkidSteerModelParams() = default;
 
+    /**
+     * Consutructs a new SkidSteerModel.
+     * 
+     * @return const reference to the ChassisModel
+     */
     const ChassisModel& make() const override {
       return SkidSteerModel<motorsPerSide>(*this);
     }
@@ -134,9 +139,12 @@ namespace okapi {
   public:
     /**
      * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-     * motors are powered +127, the robot should move forward in a straight line at full speed.
+     * motors are powered +127, the robot should move forward in a straight line.
      * 
-     * @param imotors   Motors in the format: {{left side motors}, {right side motors}}
+     * @param imotors   Motors in the format: {left side motors, right side motors}
+     *   For example,
+     *     {1_m, 2_m}
+     *     {1_m, 2_m, 3_m, 4_m}
      * @param ileftEnc  Left side encoder
      * @param irightEnc Right side encoder
      */
@@ -251,6 +259,11 @@ namespace okapi {
 
     virtual ~XDriveModelParams() {}
 
+    /**
+     * Consutructs a new XDriveModel.
+     * 
+     * @return const reference to the ChassisModel
+     */
     const ChassisModel& make() const override {
       return XDriveModel<motorsPerCorner>(*this);
     }
@@ -265,10 +278,13 @@ namespace okapi {
   public:
     /**
      * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
-     * +127, the robot should move forward in a straight line at full speed.
+     * +127, the robot should move forward in a straight line.
      * 
      * @param imotors Motors in the format:
-     *  {{top left motors}, {top right motors}, {bottom right motors}, {bottom left motors}}
+     *  {top left motors, top right motors, bottom right motors, bottom left motors}
+     *  For example,
+     *    {1_m, 2_m, 3_m, 4_m}
+     *    {1_m, 2_m, 3_m, 4_m, 5_m, 6_m, 7_m, 8_m}
      * @param ileftEnc Left side encoder
      * @param irightEnc Right side encoder
      */
