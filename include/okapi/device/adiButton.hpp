@@ -11,7 +11,7 @@ namespace okapi {
   public:
     ADIButton(const uint8_t iport, const bool iinverted = false);
 
-    virtual ~ADIButton() = default;
+    virtual ~ADIButton();
 
     bool isPressed();
 

@@ -9,6 +9,8 @@
     port(iport),
     inverted(iinverted),
     wasPressedLast(false) {}
+  
+  ADIButton::~ADIButton() = default;
 
   bool ADIButton::isPressed() {
     wasPressedLast = currentlyPressed();
@@ -31,7 +33,8 @@
   }
 
   bool ADIButton::currentlyPressed() {
-    const bool pressed = btn.value_get() != 0;
+    const int32_t state = btn.value_get();
+    const bool pressed = state != 0 && state != PROS_ERR;
     return inverted ? !pressed : pressed;
   }
  }
