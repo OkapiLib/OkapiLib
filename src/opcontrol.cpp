@@ -47,7 +47,7 @@ void opcontrol() {
                         QuadEncoder(1, 2, true), //Top left encoder (reversed)
                         QuadEncoder(3, 4)); //Top right encoder
       
-      ChassisControllerPid controller1(
+      ChassisControllerPID controller1(
         SkidSteerModelParams<2>(
           {2_m, 3_m, 4_m, 5_m},
           QuadEncoder(1, 2, true),
@@ -55,7 +55,7 @@ void opcontrol() {
         PIDControllerParams(0, 0, 0),
         PIDControllerParams(0, 0, 0));
 
-      ChassisControllerPid controller2(
+      ChassisControllerPID controller2(
         XDriveModelParams<1>(
           {2_m, 3_m, 4_m, 5_m},
           QuadEncoder(1, 2, true),
@@ -63,7 +63,7 @@ void opcontrol() {
         PIDControllerParams(0, 0, 0),
         PIDControllerParams(0, 0, 0));
       
-      OdomChassisControllerPid controller3(
+      OdomChassisControllerPID controller3(
         OdometryParams(
           SkidSteerModelParams<2>(
             {2_m, 3_m, 4_m, 5_m},
@@ -75,7 +75,7 @@ void opcontrol() {
         PIDControllerParams(0, 0, 0),
         PIDControllerParams(0, 0, 0));
       
-      OdomChassisControllerPid controller4(
+      OdomChassisControllerPID controller4(
         OdometryParams(
           XDriveModelParams<1>(
             {2_m, 3_m, 4_m, 5_m},

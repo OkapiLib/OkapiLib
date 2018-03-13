@@ -9,33 +9,33 @@
 #include <memory>
 
 namespace okapi {
-  class ChassisControllerPid : public virtual ChassisController {
+  class ChassisControllerPID : public virtual ChassisController {
   public:
-    ChassisControllerPid(const ChassisModelParams& imodelParams,
+    ChassisControllerPID(const ChassisModelParams& imodelParams,
       const PIDControllerParams& idistanceParams, const PIDControllerParams& iangleParams):
       ChassisController(imodelParams),
       distancePid(idistanceParams),
       anglePid(iangleParams) {}
 
-    ChassisControllerPid(const ChassisModel& imodel,
+    ChassisControllerPID(const ChassisModel& imodel,
       const PIDControllerParams& idistanceParams, const PIDControllerParams& iangleParams):
       ChassisController(imodel),
       distancePid(idistanceParams),
       anglePid(iangleParams) {}
 
-    ChassisControllerPid(const ChassisModelParams& imodelParams,
+    ChassisControllerPID(const ChassisModelParams& imodelParams,
       const PIDController& idistance, const PIDController& iangle):
       ChassisController(imodelParams),
       distancePid(idistance),
       anglePid(iangle) {}
 
-    ChassisControllerPid(const ChassisModel& imodel,
+    ChassisControllerPID(const ChassisModel& imodel,
       const PIDController& idistance, const PIDController& iangle):
       ChassisController(imodel),
       distancePid(idistance),
       anglePid(iangle) {}
 
-    virtual ~ChassisControllerPid();
+    virtual ~ChassisControllerPID();
 
     /**
      * Drives the robot straight.

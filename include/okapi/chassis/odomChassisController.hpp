@@ -55,15 +55,15 @@ namespace okapi {
     Odometry odom;
   };
 
-  class OdomChassisControllerPid : public OdomChassisController, public ChassisControllerPid {
+  class OdomChassisControllerPID : public OdomChassisController, public ChassisControllerPID {
   public:
-    OdomChassisControllerPid(const OdometryParams& params, const PIDControllerParams& idistanceParams,
+    OdomChassisControllerPID(const OdometryParams& params, const PIDControllerParams& idistanceParams,
       const PIDControllerParams& iangleParams):
       ChassisController(params.model),
       OdomChassisController(params),
-      ChassisControllerPid(params.model, idistanceParams, iangleParams) {}
+      ChassisControllerPID(params.model, idistanceParams, iangleParams) {}
 
-    virtual ~OdomChassisControllerPid() = default;
+    virtual ~OdomChassisControllerPID() = default;
 
     /**
      * Drives the robot straight to a point in the odom frame

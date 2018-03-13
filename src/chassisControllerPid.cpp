@@ -6,9 +6,9 @@
 #include <cmath>
 
 namespace okapi {
-  ChassisControllerPid::~ChassisControllerPid() = default;
+  ChassisControllerPID::~ChassisControllerPID() = default;
 
-  void ChassisControllerPid::driveStraight(const int itarget) {
+  void ChassisControllerPID::driveStraight(const int itarget) {
     using namespace std;
 
     const auto encStartVals = model.getSensorVals();
@@ -59,7 +59,7 @@ namespace okapi {
     model.driveForward(0);
   }
 
-  void ChassisControllerPid::pointTurn(float idegTarget) {
+  void ChassisControllerPID::pointTurn(float idegTarget) {
     using namespace std;
     
     const auto encStartVals = model.getSensorVals();
