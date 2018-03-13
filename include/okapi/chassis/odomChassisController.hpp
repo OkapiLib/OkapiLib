@@ -7,6 +7,7 @@
 #include "api.h"
 #include "okapi/odometry/odometry.hpp"
 #include "okapi/chassis/chassisController.hpp"
+#include "okapi/chassis/chassisControllerPid.hpp"
 
 namespace okapi {
   class OdomChassisController : public virtual ChassisController {

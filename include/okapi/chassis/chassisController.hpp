@@ -5,8 +5,7 @@
 #define _OKAPI_CHASSISCONTROLLER_HPP_
 
 #include "okapi/chassis/chassisModel.hpp"
-#include "okapi/control/pidController.hpp"
-#include <memory>
+#include <valarray>
 
 namespace okapi {
   class ChassisController {
@@ -17,7 +16,7 @@ namespace okapi {
     ChassisController(const std::shared_ptr<ChassisModel>& imodel):
       model(imodel) {}
 
-    virtual ~ChassisController() = default;
+    virtual ~ChassisController();
 
     /**
      * Drives the robot straight.
@@ -33,70 +32,26 @@ namespace okapi {
      */
     virtual void pointTurn(const float idegTarget) = 0;
 
-    //Passed through to internal ChassisModel
-    void driveForward(const int power) { model->driveForward(power); }
-    void driveVector(const int distPower, const int anglePower) { model->driveVector(distPower, anglePower); }
-    void turnClockwise(const int power) { model->turnClockwise(power); }
-    void stop() { model->stop(); }
-    void tank(const int leftVal, const int rightVal, const int threshold = 0) { model->tank(leftVal, rightVal, threshold); }
-    void arcade(int verticalVal, int horizontalVal, const int threshold = 0) { model->arcade(verticalVal, horizontalVal, threshold); }
-    void left(const int val) { model->left(val); }
-    void leftTS(const int val) { model->leftTS(val); }
-    void right(const int val) { model->right(val); }
-    void rightTS(const int val) { model->rightTS(val); }
-    std::valarray<int> getSensorVals() { return model->getSensorVals(); }
+    void driveForward(const int power);
+
+    void driveVector(const int distPower, const int anglePower);
+
+    void turnClockwise(const int power);
+
+    void stop();
+
+    void tank(const int leftVal, const int rightVal, const int threshold = 0);
+
+    void arcade(int verticalVal, int horizontalVal, const int threshold = 0);
+
+    void left(const int val);
+
+    void right(const int val);
+
+    std::valarray<int> getSensorVals();
 
   protected:
     std::shared_ptr<ChassisModel> model;
-  };
-
-  class ChassisControllerPid : public virtual ChassisController {
-  public:
-    ChassisControllerPid(const ChassisModelParams& imodelParams,
-      const PidControllerParams& idistanceParams, const PidControllerParams& iangleParams):
-      ChassisController(imodelParams),
-      distancePid(idistanceParams),
-      anglePid(iangleParams) {}
-
-    ChassisControllerPid(const std::shared_ptr<ChassisModel>& imodel,
-      const PidControllerParams& idistanceParams, const PidControllerParams& iangleParams):
-      ChassisController(imodel),
-      distancePid(idistanceParams),
-      anglePid(iangleParams) {}
-
-    ChassisControllerPid(const ChassisModelParams& imodelParams,
-      const PidController& idistance, const PidController& iangle):
-      ChassisController(imodelParams),
-      distancePid(idistance),
-      anglePid(iangle) {}
-
-    ChassisControllerPid(const std::shared_ptr<ChassisModel>& imodel,
-      const PidController& idistance, const PidController& iangle):
-      ChassisController(imodel),
-      distancePid(idistance),
-      anglePid(iangle) {}
-
-    virtual ~ChassisControllerPid() {
-      delete &distancePid;
-      delete &anglePid;
-    }
-
-    /**
-     * Drives the robot straight.
-     * 
-     * @param itarget Distance to travel
-     */
-    void driveStraight(const int itarget) override;
-
-    /**
-     * Turns the robot clockwise in place.
-     * 
-     * @param idegTarget Degrees to turn for
-     */
-    void pointTurn(float idegTarget) override;
-
-  protected:
-    PidController distancePid, anglePid;
   };
 }
 

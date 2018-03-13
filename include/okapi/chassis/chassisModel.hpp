@@ -23,9 +23,7 @@ namespace okapi {
     virtual void tank(const int leftVal, const int rightVal, const int threshold = 0) = 0;
     virtual void arcade(int verticalVal, int horizontalVal, const int threshold = 0) = 0;
     virtual void left(const int val) = 0;
-    virtual void leftTS(const int val) = 0;
     virtual void right(const int val) = 0;
-    virtual void rightTS(const int val) = 0;
     virtual std::valarray<int> getSensorVals() = 0;
     virtual void resetSensors() = 0;
   };
@@ -153,18 +151,8 @@ namespace okapi {
       for (size_t i = 0; i < motorsPerSide; i++)
         motors[i].set_velocity(val);
     }
-    
-    void leftTS(const int val) override {
-      for (size_t i = 0; i < motorsPerSide; i++)
-        motors[i].set_velocity(val);
-    }
 
     void right(const int val) override {
-      for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-        motors[i].set_velocity(val);
-    }
-    
-    void rightTS(const int val) override {
       for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
         motors[i].set_velocity(val);
     }
@@ -335,20 +323,8 @@ namespace okapi {
       for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
         motors[i].set_velocity(val);
     }
-    
-    void leftTS(const int val) override {
-      for (size_t i = 0; i < motorsPerCorner; i++)
-        motors[i].set_velocity(val);
-      for (size_t i = motorsPerCorner * 3; i < motorsPerCorner * 4; i++)
-        motors[i].set_velocity(val);
-    }
 
     void right(const int val) override {
-      for (size_t i = motorsPerCorner; i < motorsPerCorner * 3; i++)
-        motors[i].set_velocity(val);
-    }
-    
-    void rightTS(const int val) override {
       for (size_t i = motorsPerCorner; i < motorsPerCorner * 3; i++)
         motors[i].set_velocity(val);
     }
