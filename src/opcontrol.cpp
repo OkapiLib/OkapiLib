@@ -3,6 +3,7 @@
 // #include "okapi/chassis/chassisController.hpp"
 // #include "okapi/chassis/chassisModel.hpp"
 // #include "okapi/chassis/odomChassisController.hpp"
+// #include "okapi/chassis/skidSteerModel.hpp"
 
 #include "okapi/control/motorGroupController.hpp"
 #include "okapi/control/pidController.hpp"
@@ -42,11 +43,12 @@ void opcontrol() {
       // SkidSteerModel<2> model1({2_m, 3_m, 4_m, 5_m}, //Left motors: 2 & 3, right motors: 4 & 5
       //               QuadEncoder(1, 2, true), //Left encoder (reversed)
       //               QuadEncoder(3, 4)); //Right encoder
-      
-      // XDriveModel<1> model2({2_m, 3_m, 4_m, 5_m}, //Motors are ordered counter-clockwise from the top left
+
+      // XDriveModel<1> model2({2_m, 3_m, 4_m, 5_m}, //Motors are ordered counter-clockwise from the
+      // top left
       //                   QuadEncoder(1, 2, true), //Top left encoder (reversed)
       //                   QuadEncoder(3, 4)); //Top right encoder
-      
+
       // ChassisControllerPID controller1(
       //   SkidSteerModelParams<2>(
       //     {2_m, 3_m, 4_m, 5_m},
@@ -62,7 +64,7 @@ void opcontrol() {
       //     QuadEncoder(3, 4)),
       //   PIDControllerParams(0, 0, 0),
       //   PIDControllerParams(0, 0, 0));
-      
+
       // OdomChassisControllerPID controller3(
       //   OdometryParams(
       //     SkidSteerModelParams<2>(
@@ -74,7 +76,7 @@ void opcontrol() {
       //   ),
       //   PIDControllerParams(0, 0, 0),
       //   PIDControllerParams(0, 0, 0));
-      
+
       // OdomChassisControllerPID controller4(
       //   OdometryParams(
       //     XDriveModelParams<1>(
@@ -87,10 +89,8 @@ void opcontrol() {
       //   PIDControllerParams(0, 0, 0),
       //   PIDControllerParams(0, 0, 0));
 
-      PIDController pid1(0,0,0);
-      MotorGroupController<2> mgController(
-        {1_m, 2_m},
-        pid1);
+      PIDController pid1(0, 0, 0);
+      MotorGroupController<2> mgController({1_m, 2_m}, pid1);
 
       PIDController pid2(0, 0, 0);
       PIDController pid3(0, 0, 0, 0);
