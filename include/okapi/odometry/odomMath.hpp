@@ -10,7 +10,7 @@
 namespace okapi {
   class DistanceAndAngle {
   public:
-    DistanceAndAngle(const float ilength, const float itheta):
+    DistanceAndAngle(const double ilength, const double itheta):
       length(ilength),
       theta(itheta) {}
 
@@ -20,7 +20,7 @@ namespace okapi {
 
     virtual ~DistanceAndAngle() = default;
 
-    float length, theta;
+    double length, theta;
   };
 
   class OdomMath {
@@ -28,46 +28,48 @@ namespace okapi {
     /**
      * Computes the distance from the given Odometry state to the given point.
      * 
-     * @param  ix     X coordinate
-     * @param  iy     Y coordinate
-     * @param  istate Odometry state
-     * @return        Distance between the points
+     * @param ix x coordinate
+     * @param iy y coordinate
+     * @param istate odometry state
+     * @return distance between the points
      */
-    static float computeDistanceToPoint(const float ix, const float iy, const OdomState& istate);
+    static double computeDistanceToPoint(const double ix, const double iy, const OdomState& istate);
 
     /**
      * Computes the angle from the given Odometry state to the given point.
      * 
-     * @param  ix     X coordinate
-     * @param  iy     Y coordinate
-     * @param  istate Odometry state
-     * @return        Angle to the point
+     * @param ix x coordinate
+     * @param iy y coordinate
+     * @param istate odometry state
+     * @return angle to the point
      */
-    static float computeAngleToPoint(const float ix, const float iy, const OdomState& istate);
+    static double computeAngleToPoint(const double ix, const double iy, const OdomState& istate);
 
     /**
      * Computes the distance and angle from the given Odometry state to the given point.
      * 
-     * @param  ix     X coordinate
-     * @param  iy     Y coordinate
-     * @param  istate Odometry state
-     * @return        Distance and angle to the point
+     * @param ix x coordinate
+     * @param iy y coordinate
+     * @param istate odometry state
+     * @return distance and angle to the point
      */
-    static DistanceAndAngle computeDistanceAndAngleToPoint(const float ix, const float iy,
+    static DistanceAndAngle computeDistanceAndAngleToPoint(const double ix, const double iy,
       const OdomState& istate);
 
     /**
      * Attempt to guess scales based on robot dimensions.
      * 
-     * @param chassisDiam Center-to-center wheelbase diameter in inches
-     * @param wheelDiam   Edge-to-edge wheel diameter in inches
-     * @param ticksPerRev Quad ticks per revolution (default is 360)
+     * @param chassisDiam center-to-center wheelbase diameter in inches
+     * @param wheelDiam edge-to-edge wheel diameter in inches
+     * @param ticksPerRev ticks per revolution (default is 360)
+     * @return scales in the format {straight scale, turn scale}
      */
-    static std::tuple<float, float> guessScales(const float chassisDiam, const float wheelDiam,
-      const float ticksPerRev = 360.0);
+    static std::tuple<double, double> guessScales(const double chassisDiam, const double wheelDiam,
+      const double ticksPerRev = 360.0);
 
   private:
-    OdomMath() {}
+    OdomMath();
+    ~OdomMath();
   };
 }
 
