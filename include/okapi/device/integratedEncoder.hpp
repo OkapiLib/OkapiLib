@@ -1,15 +1,15 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-#ifndef _OKAPI_QUADENCODER_HPP_
-#define _OKAPI_QUADENCODER_HPP_
+#ifndef _OKAPI_INTEGRATEDENCODER_HPP_
+#define _OKAPI_INTEGRATEDENCODER_HPP_
 
 #include "okapi/device/rotarySensor.hpp"
 
 namespace okapi {
-class QuadEncoder : public RotarySensor {
+class IntegratedEncoder : public RotarySensor {
   public:
-  QuadEncoder(const uint8_t iportTop, const uint8_t iportBottom, const bool ireversed = false);
+  IntegratedEncoder(const pros::Motor &imotor);
 
   /**
    * Get the current sensor value.
@@ -26,7 +26,7 @@ class QuadEncoder : public RotarySensor {
   int32_t reset() const override;
 
   private:
-  pros::ADIEncoder enc;
+  const pros::Motor &motor;
 };
 } // namespace okapi
 

@@ -11,8 +11,18 @@ class RotarySensor {
   public:
   virtual ~RotarySensor() = default;
 
+  /**
+   * Get the current sensor value.
+   *
+   * @return current value, PROS_ERR on fail
+   */
   virtual int32_t get() const = 0;
 
+  /**
+   * Reset the sensor to zero.
+   *
+   * @return 1 on suceess, PROS_ERR on fail
+   */
   virtual int32_t reset() const = 0;
 };
 } // namespace okapi
