@@ -9,12 +9,9 @@
 namespace okapi {
   class Timer {
   public:
-    Timer():
-      firstCalled(pros::millis()),
-      lastCalled(0),
-      mark(0),
-      hardMark(0),
-      repeatMark(0) {}
+    Timer();
+
+    virtual ~Timer();
 
     /**
      * Returns the time passed in ms since the previous call of this function.

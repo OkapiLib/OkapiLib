@@ -4,6 +4,15 @@
 #include "okapi/util/timer.hpp"
 
 namespace okapi {
+  Timer::Timer():
+    firstCalled(pros::millis()),
+    lastCalled(0),
+    mark(0),
+    hardMark(0),
+    repeatMark(0) {}
+
+  Timer::~Timer() = default;
+
   uint32_t Timer::getDt() {
     const uint32_t currTime = pros::millis();
     const uint32_t dt = currTime - lastCalled;
