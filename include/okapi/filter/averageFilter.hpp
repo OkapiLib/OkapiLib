@@ -9,9 +9,15 @@
 #include "okapi/filter/filter.hpp"
 
 namespace okapi {
+  /**
+   * @tparam number of taps in the filter
+   */
   template<std::size_t n>
   class AverageFilter : public Filter {
   public:
+    /**
+     * Averaging filter.
+     */
     AverageFilter();
 
     virtual ~AverageFilter();
