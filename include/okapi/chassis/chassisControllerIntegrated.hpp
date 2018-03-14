@@ -42,12 +42,15 @@ class ChassisControllerIntegrated : public virtual ChassisController {
       rightController(irightController) {
   }
 
-  ChassisControllerIntegrated(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor)
+  ChassisControllerIntegrated(const AbstractMotor &ileftSideMotor,
+                              const AbstractMotor &irightSideMotor)
     : ChassisController(SkidSteerModelParams(ileftSideMotor, irightSideMotor)),
-    leftController(ileftSideMotor),
-    rightController(irightSideMotor) {}
+      leftController(ileftSideMotor),
+      rightController(irightSideMotor) {
+  }
 
-  virtual ~ChassisControllerIntegrated() {}
+  virtual ~ChassisControllerIntegrated() {
+  }
 
   /**
    * Drives the robot straight.

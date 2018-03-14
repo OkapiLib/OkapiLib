@@ -22,8 +22,8 @@ class IntegratedController {
   IntegratedController(const AbstractMotor &imotor) : motor(imotor) {
   }
 
-  IntegratedController(const IntegratedControllerParams &iparams):
-  motor(iparams.motor) {}
+  IntegratedController(const IntegratedControllerParams &iparams) : motor(iparams.motor) {
+  }
 
   ~IntegratedController() = default;
 

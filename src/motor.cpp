@@ -5,7 +5,7 @@
 
 namespace okapi {
 okapi::Motor::Motor(uint8_t port, const bool reverse, motor_encoder_units_e_t encoder_units,
-             motor_gearset_e_t gearset)
+                    motor_gearset_e_t gearset)
   : motor(port, reverse, encoder_units, gearset) {
 }
 
