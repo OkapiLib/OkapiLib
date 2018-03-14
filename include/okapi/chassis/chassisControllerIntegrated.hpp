@@ -6,6 +6,8 @@
 
 #include "okapi/chassis/chassisController.hpp"
 #include "okapi/control/integratedController.hpp"
+#include "okapi/chassis/skidSteerModel.hpp"
+#include "okapi/chassis/xDriveModel.hpp"
 
 namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {
@@ -42,11 +44,37 @@ class ChassisControllerIntegrated : public virtual ChassisController {
       rightController(irightController) {
   }
 
+  /**
+   * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
+   * steer layout.
+   *
+   * @param ileftSideMotor left side motor
+   * @param irightSideMotor right side motor
+   */
   ChassisControllerIntegrated(const AbstractMotor &ileftSideMotor,
                               const AbstractMotor &irightSideMotor)
     : ChassisController(SkidSteerModelParams(ileftSideMotor, irightSideMotor)),
       leftController(ileftSideMotor),
       rightController(irightSideMotor) {
+  }
+
+  /**
+   * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
+   * layout.
+   *
+   * @param itopLeftMotor top left motor
+   * @param itopRightMotor top right motor
+   * @param ibottomRightMotor bottom right motor
+   * @param ibottomLeftMotor bottom left motor
+   */
+  ChassisControllerIntegrated(const AbstractMotor &itopLeftMotor,
+                              const AbstractMotor &itopRightMotor,
+                              const AbstractMotor &ibottomRightMotor,
+                              const AbstractMotor &ibottomLeftMotor)
+    : ChassisController(
+        XDriveModelParams(itopLeftMotor, itopRightMotor, ibottomRightMotor, ibottomLeftMotor)),
+      leftController(itopLeftMotor),
+      rightController(itopRightMotor) {
   }
 
   virtual ~ChassisControllerIntegrated() {

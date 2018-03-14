@@ -15,6 +15,9 @@ class XDriveModelParams : public ChassisModelParams {
                     const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
                     const RotarySensor &ileftEnc, const RotarySensor &irightEnc);
 
+  XDriveModelParams(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
+                    const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor);
+
   virtual ~XDriveModelParams();
 
   /**
