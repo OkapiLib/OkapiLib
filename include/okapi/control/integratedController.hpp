@@ -10,34 +10,29 @@
 namespace okapi {
 class IntegratedControllerParams {
   public:
-  IntegratedControllerParams(const AbstractMotor &imotor) : motor(imotor) {
-  }
+  IntegratedControllerParams(const AbstractMotor &imotor);
 
   const AbstractMotor &motor;
 };
 
+/**
+ * Closed-loop controller that uses the V5 motor's onboard control to move.
+ */
 class IntegratedController {
   public:
-  IntegratedController(const AbstractMotor &imotor) : motor(imotor) {
-  }
+  IntegratedController(const AbstractMotor &imotor);
 
-  IntegratedController(const IntegratedControllerParams &iparams) : motor(iparams.motor) {
-  }
+  IntegratedController(const IntegratedControllerParams &iparams);
 
-  ~IntegratedController() = default;
+  virtual ~IntegratedController();
 
-  int32_t moveAbsolute(const double position, const int32_t velocity) const {
-  }
+  int32_t moveAbsolute(const double position, const int32_t velocity) const;
 
-  int32_t moveRelative(const double position, const int32_t velocity) const {
-  }
+  int32_t moveRelative(const double position, const int32_t velocity) const;
 
-  int32_t moveVelocity(const int16_t velocity) const {
-    motor.moveVelocity(velocity);
-  }
+  int32_t moveVelocity(const int16_t velocity) const;
 
-  int32_t moveVoltage(const int16_t voltage) const {
-  }
+  int32_t moveVoltage(const int16_t voltage) const;
 
   private:
   const AbstractMotor &motor;
