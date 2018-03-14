@@ -50,11 +50,10 @@ class XDriveModel : public ChassisModel {
    * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
    * +127, the robot should move forward in a straight line.
    *
-   * @param imotors Motors in the format:
-   *  {top left motors, top right motors, bottom right motors, bottom left motors}
-   *  For example,
-   *    {1_m, 2_m, 3_m, 4_m}
-   *    {1_m, 2_m, 3_m, 4_m, 5_m, 6_m, 7_m, 8_m}
+   * @param itopLeftMotor top left motor
+   * @param itopRightMotor top right motor
+   * @param ibottomRightMotor bottom right motor
+   * @param ibottomLeftMotor bottom left motor
    * @param ileftEnc Left side encoder
    * @param irightEnc Right side encoder
    */

@@ -44,10 +44,8 @@ class SkidSteerModel : public ChassisModel {
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
    * motors are powered +127, the robot should move forward in a straight line.
    *
-   * @param imotors   Motors in the format: {left side motors, right side motors}
-   *   For example,
-   *     {1_m, 2_m}
-   *     {1_m, 2_m, 3_m, 4_m}
+   * @param ileftSideMotor left side motor
+   * @param irightSideMotor right side motor
    * @param ileftEnc  Left side encoder
    * @param irightEnc Right side encoder
    */
