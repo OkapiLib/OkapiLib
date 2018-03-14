@@ -6,6 +6,7 @@
 
 #include "okapi/control/controlObject.hpp"
 #include "okapi/control/velMath.hpp"
+#include "okapi/control/velocityDomainController.hpp"
 
 namespace okapi {
 class VelPIDControllerParams : public ControlObjectParams {
@@ -21,7 +22,7 @@ class VelPIDControllerParams : public ControlObjectParams {
   const VelMathParams &params;
 };
 
-class VelPIDController : public ControlObject {
+class VelPIDController : public VelocityDomainController {
   public:
   /**
    * Velocity PID controller.

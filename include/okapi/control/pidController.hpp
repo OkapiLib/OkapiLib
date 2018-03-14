@@ -5,6 +5,7 @@
 #define _OKAPI_PID_HPP_
 
 #include "okapi/control/controlObject.hpp"
+#include "okapi/control/positionDomainController.hpp"
 
 namespace okapi {
 class PIDControllerParams : public ControlObjectParams {
@@ -16,7 +17,7 @@ class PIDControllerParams : public ControlObjectParams {
   const double kP, kI, kD, kBias;
 };
 
-class PIDController : public ControlObject {
+class PIDController : public PositionDomainController {
   public:
   /**
    * PID controller.

@@ -21,7 +21,7 @@
 
 namespace pros {
 class Task {
-      public:
+	public:
 	Task(task_fn_t function,
 	     void* parameters = NULL,
 	     uint32_t prio = TASK_PRIORITY_DEFAULT,
@@ -45,18 +45,18 @@ class Task {
 	static void delay(const uint32_t milliseconds);
 	static void delay_until(uint32_t* const prev_time, const uint32_t delta);
 
-      private:
+	private:
 	task_t task;
 };
 
 class Mutex {
-      public:
+	public:
 	Mutex();
 
 	bool take(uint32_t timeout);
 	bool give();
 
-      private:
+	private:
 	mutex_t mutex;
 };
 

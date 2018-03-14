@@ -6,31 +6,33 @@
 
 #include "api.h"
 #include "okapi/control/controlObject.hpp"
+#include "okapi/control/velocityDomainController.hpp"
 #include "okapi/device/abstractMotor.hpp"
 #include <array>
 #include <memory>
 
 namespace okapi {
-class MotorController {
+class MotorController : public VelocityDomainController {
   public:
   MotorController(const AbstractMotor &imotor, ControlObject &iptr)
     : motor(imotor), controller(iptr) {
   }
 
-  void step(const float ireading) {
+  double step(const double ireading) {
     controller.step(ireading);
     motor.set_velocity(static_cast<int>(controller.getOutput()));
-  }
-
-  void setTarget(const float itarget) {
-    controller.setTarget(itarget);
-  }
-
-  float getOutput() const {
     return controller.getOutput();
   }
 
-  float getError() const {
+  void setTarget(const double itarget) {
+    controller.setTarget(itarget);
+  }
+
+  double getOutput() const {
+    return controller.getOutput();
+  }
+
+  double getError() const {
     return controller.getError();
   }
 
@@ -38,7 +40,7 @@ class MotorController {
     controller.setSampleTime(isampleTime);
   }
 
-  void setOutputLimits(float imax, float imin) {
+  void setOutputLimits(double imax, double imin) {
     controller.setOutputLimits(imax, imin);
   }
 

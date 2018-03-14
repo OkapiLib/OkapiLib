@@ -9,7 +9,13 @@
 namespace okapi {
 class AbstractMotor {
   public:
-  virtual int32_t set_velocity(const int16_t ivelocity) const = 0;
+  virtual int32_t moveAbsolute(const double position, const int32_t velocity) const = 0;
+
+  virtual int32_t moveRelative(const double position, const int32_t velocity) const = 0;
+
+  virtual int32_t moveVelocity(const int16_t velocity) const = 0;
+
+  virtual int32_t moveVoltage(const int16_t voltage) const = 0;
 };
 } // namespace okapi
 

@@ -10,27 +10,33 @@
 namespace okapi {
 class Motor : public AbstractMotor {
   public:
-  Motor(uint8_t port, const bool reverse = false,
-        motor_encoder_units_e_t encoder_units = E_MOTOR_ENCODER_DEGREES,
-        motor_gearset_e_t gearset = E_MOTOR_GEARSET_36);
+  Motor(const uint8_t port, const bool reverse = false,
+        const motor_encoder_units_e_t encoder_units = E_MOTOR_ENCODER_DEGREES,
+        const motor_gearset_e_t gearset = E_MOTOR_GEARSET_36);
 
-  int32_t set_velocity(const int16_t ivelocity) const override;
+  int32_t moveAbsolute(const double position, const int32_t velocity) const override;
+
+  int32_t moveRelative(const double position, const int32_t velocity) const override;
+
+  int32_t moveVelocity(const int16_t velocity) const override;
+
+  int32_t moveVoltage(const int16_t voltage) const override;
 
   private:
-  pros::Motor motor;
+  const pros::Motor motor;
 };
 
-inline namespace literals {
-/**
- * Non-reversed motor.
- **/
-Motor operator"" _m(const unsigned long long iport);
+// inline namespace literals {
+// /**
+//  * Non-reversed motor.
+//  **/
+// Motor operator"" _m(const unsigned long long iport);
 
-/**
- * Reversed motor.
- **/
-Motor operator"" _rm(const unsigned long long iport);
-} // namespace literals
+// /**
+//  * Reversed motor.
+//  **/
+// Motor operator"" _rm(const unsigned long long iport);
+// } // namespace literals
 } // namespace okapi
 
 #endif

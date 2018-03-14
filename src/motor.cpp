@@ -9,17 +9,29 @@ Motor::Motor(uint8_t port, const bool reverse, motor_encoder_units_e_t encoder_u
   : motor(port, reverse, encoder_units, gearset) {
 }
 
-int32_t Motor::set_velocity(const int16_t ivelocity) const {
-  // return motor.set_velocity(ivelocity);
+int32_t Motor::moveAbsolute(const double position, const int32_t velocity) const {
+  return motor.move_absolute(position, velocity);
 }
 
-inline namespace literals {
-Motor operator"" _m(const unsigned long long iport) {
-  return Motor(static_cast<uint8_t>(iport));
+int32_t Motor::moveRelative(const double position, const int32_t velocity) const {
+  return motor.move_relative(position, velocity);
 }
 
-Motor operator"" _rm(const unsigned long long iport) {
-  return Motor(static_cast<uint8_t>(iport));
+int32_t Motor::moveVelocity(const int16_t velocity) const {
+  return motor.move_velocity(velocity);
 }
-} // namespace literals
+
+int32_t Motor::moveVoltage(const int16_t voltage) const {
+  return motor.move_voltage(voltage);
+}
+
+// inline namespace literals {
+// Motor operator"" _m(const unsigned long long iport) {
+//   return Motor(static_cast<uint8_t>(iport));
+// }
+
+// Motor operator"" _rm(const unsigned long long iport) {
+//   return Motor(static_cast<uint8_t>(iport));
+// }
+// } // namespace literals
 } // namespace okapi
