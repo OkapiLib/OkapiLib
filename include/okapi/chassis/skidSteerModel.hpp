@@ -14,6 +14,9 @@ class SkidSteerModelParams : public ChassisModelParams {
   SkidSteerModelParams(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
                        const RotarySensor &ileftEnc, const RotarySensor &irightEnc);
 
+  // Create the sensors using the integrated encoder
+  SkidSteerModelParams(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor);
+
   virtual ~SkidSteerModelParams();
 
   /**

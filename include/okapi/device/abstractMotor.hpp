@@ -5,6 +5,7 @@
 #define _OKAPI_ABSTRACTMOTOR_HPP_
 
 #include "api.h"
+#include "okapi/device/integratedEncoder.hpp"
 
 namespace okapi {
 class AbstractMotor {
@@ -16,6 +17,8 @@ class AbstractMotor {
   virtual int32_t moveVelocity(const int16_t velocity) const = 0;
 
   virtual int32_t moveVoltage(const int16_t voltage) const = 0;
+
+  virtual IntegratedEncoder getEncoder() const = 0;
 };
 } // namespace okapi
 

@@ -14,6 +14,14 @@ SkidSteerModelParams::SkidSteerModelParams(const AbstractMotor &ileftSideMotor,
     rightSensor(irightEnc) {
 }
 
+SkidSteerModelParams::SkidSteerModelParams(const AbstractMotor &ileftSideMotor,
+                                           const AbstractMotor &irightSideMotor)
+  : leftSideMotor(ileftSideMotor),
+    rightSideMotor(irightSideMotor),
+    leftSensor(ileftSideMotor.getEncoder()),
+    rightSensor(irightSideMotor.getEncoder()) {
+}
+
 SkidSteerModelParams::~SkidSteerModelParams() = default;
 
 std::shared_ptr<const ChassisModel> SkidSteerModelParams::make() const {

@@ -11,26 +11,43 @@ namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {
   public:
   ChassisControllerIntegrated(const ChassisModelParams &imodelParams,
-                              const IntegratedControllerParams &icontrollerParams)
-    : ChassisController(imodelParams), controller(icontrollerParams) {
+                              const IntegratedControllerParams &ileftControllerParams,
+                              const IntegratedControllerParams &irightControllerParams)
+    : ChassisController(imodelParams),
+      leftController(ileftControllerParams),
+      rightController(irightControllerParams) {
   }
 
   ChassisControllerIntegrated(std::shared_ptr<const ChassisModel> imodel,
-                              const IntegratedControllerParams &icontrollerParams)
-    : ChassisController(imodel), controller(icontrollerParams) {
+                              const IntegratedControllerParams &ileftControllerParams,
+                              const IntegratedControllerParams &irightControllerParams)
+    : ChassisController(imodel),
+      leftController(ileftControllerParams),
+      rightController(irightControllerParams) {
   }
 
   ChassisControllerIntegrated(const ChassisModelParams &imodelParams,
-                              const IntegratedController &icontroller)
-    : ChassisController(imodelParams), controller(icontroller) {
+                              const IntegratedController &ileftController,
+                              const IntegratedController &irightController)
+    : ChassisController(imodelParams),
+      leftController(ileftController),
+      rightController(irightController) {
   }
 
   ChassisControllerIntegrated(std::shared_ptr<const ChassisModel> imodel,
-                              const IntegratedController &icontroller)
-    : ChassisController(imodel), controller(icontroller) {
+                              const IntegratedController &ileftController,
+                              const IntegratedController &irightController)
+    : ChassisController(imodel),
+      leftController(ileftController),
+      rightController(irightController) {
   }
 
-  virtual ~ChassisControllerIntegrated();
+  ChassisControllerIntegrated(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor)
+    : ChassisController(SkidSteerModelParams(ileftSideMotor, irightSideMotor)),
+    leftController(ileftSideMotor),
+    rightController(irightSideMotor) {}
+
+  virtual ~ChassisControllerIntegrated() {}
 
   /**
    * Drives the robot straight.
@@ -40,6 +57,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   void driveStraight(const int itarget) override {
     // TODO: How to control this using onboard? One controller for left and right side? Does
     // ChassisModel need to be changed?
+    leftController.moveRelative(itarget, 100);
+    rightController.moveRelative(itarget, 100);
   }
 
   /**
@@ -48,10 +67,13 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param idegTarget Degrees to turn for
    */
   void pointTurn(float idegTarget) override {
+    leftController.moveRelative(idegTarget, 100);
+    rightController.moveRelative(-1 * idegTarget, 100);
   }
 
   protected:
-  IntegratedController controller;
+  IntegratedController leftController;
+  IntegratedController rightController;
 };
 } // namespace okapi
 

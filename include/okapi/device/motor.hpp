@@ -22,6 +22,8 @@ class Motor : public AbstractMotor {
 
   int32_t moveVoltage(const int16_t voltage) const override;
 
+  IntegratedEncoder getEncoder() const override;
+
   private:
   const pros::Motor motor;
 };

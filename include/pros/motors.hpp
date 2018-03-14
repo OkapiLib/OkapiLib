@@ -21,10 +21,10 @@
 namespace pros {
 class Motor {
 	public:
-	constexpr Motor(const uint8_t port,
-	                const bool reverse = false,
-	                const motor_encoder_units_e_t encoder_units = E_MOTOR_ENCODER_DEGREES,
-	                const motor_gearset_e_t gearset = E_MOTOR_GEARSET_36);
+	Motor(const uint8_t port,
+	      const bool reverse = false,
+	      const motor_encoder_units_e_t encoder_units = E_MOTOR_ENCODER_DEGREES,
+	      const motor_gearset_e_t gearset = E_MOTOR_GEARSET_36);
 
 	/******************************************************************************/
 	/**                         Motor movement functions                         **/
@@ -511,8 +511,8 @@ class Motor {
 };
 
 inline namespace literals {
-	constexpr Motor operator"" _m(const unsigned long long int m);
-	constexpr Motor operator"" _rm(const unsigned long long int m);
+	const Motor operator"" _m(const unsigned long long int m);
+	const Motor operator"" _rm(const unsigned long long int m);
 }
 }
 #endif

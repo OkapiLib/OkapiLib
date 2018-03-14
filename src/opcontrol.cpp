@@ -5,6 +5,7 @@
 #include "okapi/chassis/odomChassisController.hpp"
 #include "okapi/chassis/skidSteerModel.hpp"
 #include "okapi/chassis/xDriveModel.hpp"
+#include "okapi/chassis/chassisControllerIntegrated.hpp"
 
 #include "okapi/control/motorController.hpp"
 #include "okapi/control/pidController.hpp"
@@ -45,39 +46,42 @@ void opcontrol() {
       // SkidSteerModel model1(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
       //                       ADIEncoder(1, 2, true), ADIEncoder(3, 4));
 
-      // XDriveModel model2(MotorGroup<1>({1_m}), // {2_m, 3_m, 4_m, 5_m}
-      //                    MotorGroup<1>({2_m}), MotorGroup<1>({3_m}), MotorGroup<1>({4_m}),
-      //                    ADIEncoder(1, 2, true), ADIEncoder(3, 4));
+      ChassisControllerIntegrated int1(okapi::Motor(1), okapi::Motor(2));
 
-      // ChassisControllerPID controller1(
-      //   SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
-      //                        ADIEncoder(1, 2, true), ADIEncoder(3, 4)),
-      //   PIDControllerParams(0, 0, 0), PIDControllerParams(0, 0, 0));
+        // XDriveModel model2(MotorGroup<1>({1_m}), // {2_m, 3_m, 4_m, 5_m}
+        //                    MotorGroup<1>({2_m}), MotorGroup<1>({3_m}), MotorGroup<1>({4_m}),
+        //                    ADIEncoder(1, 2, true), ADIEncoder(3, 4));
 
-      // ChassisControllerPID controller2(
-      //   XDriveModelParams(MotorGroup<1>({1_m}), // {2_m, 3_m, 4_m, 5_m}
-      //                     MotorGroup<1>({2_m}), MotorGroup<1>({3_m}), MotorGroup<1>({4_m}),
-      //                     ADIEncoder(1, 2, true), ADIEncoder(3, 4)),
-      //   PIDControllerParams(0, 0, 0), PIDControllerParams(0, 0, 0));
+        // ChassisControllerPID controller1(
+        //   SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
+        //                        ADIEncoder(1, 2, true), ADIEncoder(3, 4)),
+        //   PIDControllerParams(0, 0, 0), PIDControllerParams(0, 0, 0));
 
-      // OdomChassisControllerPID controller3(
-      //   OdometryParams(SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
-      //                                       ADIEncoder(1, 2, true), ADIEncoder(3, 4)),
-      //                  0, 0),
-      //   PIDControllerParams(0, 0, 0), PIDControllerParams(0, 0, 0));
+        // ChassisControllerPID controller2(
+        //   XDriveModelParams(MotorGroup<1>({1_m}), // {2_m, 3_m, 4_m, 5_m}
+        //                     MotorGroup<1>({2_m}), MotorGroup<1>({3_m}), MotorGroup<1>({4_m}),
+        //                     ADIEncoder(1, 2, true), ADIEncoder(3, 4)),
+        //   PIDControllerParams(0, 0, 0), PIDControllerParams(0, 0, 0));
 
-      // OdomChassisControllerPID controller4(
-      //   OdometryParams(XDriveModelParams(MotorGroup<1>({1_m}), // {2_m, 3_m, 4_m, 5_m}
-      //                                    MotorGroup<1>({2_m}), MotorGroup<1>({3_m}),
-      //                                    MotorGroup<1>({4_m}), ADIEncoder(1, 2, true),
-      //                                    ADIEncoder(3, 4)),
-      //                  0, 0),
-      //   PIDControllerParams(0, 0, 0), PIDControllerParams(0, 0, 0));
+        // OdomChassisControllerPID controller3(
+        //   OdometryParams(SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m,
+        //   4_m}),
+        //                                       ADIEncoder(1, 2, true), ADIEncoder(3, 4)),
+        //                  0, 0),
+        //   PIDControllerParams(0, 0, 0), PIDControllerParams(0, 0, 0));
 
-      // PIDController pid1(0, 0, 0);
-      // MotorController mgController(MotorGroup<2>({1_m, 2_m}), pid1);
+        // OdomChassisControllerPID controller4(
+        //   OdometryParams(XDriveModelParams(MotorGroup<1>({1_m}), // {2_m, 3_m, 4_m, 5_m}
+        //                                    MotorGroup<1>({2_m}), MotorGroup<1>({3_m}),
+        //                                    MotorGroup<1>({4_m}), ADIEncoder(1, 2, true),
+        //                                    ADIEncoder(3, 4)),
+        //                  0, 0),
+        //   PIDControllerParams(0, 0, 0), PIDControllerParams(0, 0, 0));
 
-      PIDController pid2(0, 0, 0);
+        // PIDController pid1(0, 0, 0);
+        // MotorController mgController(MotorGroup<2>({1_m, 2_m}), pid1);
+
+        PIDController pid2(0, 0, 0);
       PIDController pid3(0, 0, 0, 0);
       PIDController pid4(PIDControllerParams(0, 0, 0));
       PIDController pid5(PIDControllerParams(0, 0, 0, 0));

@@ -15,12 +15,15 @@ class IntegratedControllerParams : public AsyncControllerParams {
   }
 
   const AbstractMotor &motor;
-}
+};
 
-class IntegratedController : public AsyncController {
+class IntegratedController {
   public:
   IntegratedController(const AbstractMotor &imotor) : motor(imotor) {
   }
+
+  IntegratedController(const IntegratedControllerParams &iparams):
+  motor(iparams.motor) {}
 
   ~IntegratedController() = default;
 

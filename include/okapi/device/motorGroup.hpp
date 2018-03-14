@@ -39,6 +39,10 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
     }
   }
 
+  IntegratedEncoder getEncoder() const override {
+    return motors[0].getEncoder();
+  }
+
   private:
   const std::array<Motor, motorNum> motors;
 };
