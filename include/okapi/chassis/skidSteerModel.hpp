@@ -5,15 +5,17 @@
 #define _OKAPI_SKIDSTEERMODEL_HPP_
 
 #include "okapi/chassis/chassisModel.hpp"
+#include "okapi/device/abstractMotor.hpp"
+#include "okapi/device/rotarySensor.hpp"
 
 namespace okapi {
-template <size_t motorsPerSide> class SkidSteerModel;
+class SkidSteerModel;
 
-template <size_t motorsPerSide> class SkidSteerModelParams : public ChassisModelParams {
+class SkidSteerModelParams : public ChassisModelParams {
   public:
-  SkidSteerModelParams(const std::array<pros::Motor, motorsPerSide * 2> &imotorList,
+  SkidSteerModelParams(const AbstractMotor &ileftSide, const AbstractMotor &irightSide,
                        const RotarySensor &ileftEnc, const RotarySensor &irightEnc)
-    : motorList(imotorList), leftSensor(ileftEnc), rightSensor(irightEnc) {
+    : leftSide(ileftSide), rightSide(irightSide), leftSensor(ileftEnc), rightSensor(irightEnc) {
   }
 
   virtual ~SkidSteerModelParams() = default;
@@ -24,15 +26,16 @@ template <size_t motorsPerSide> class SkidSteerModelParams : public ChassisModel
    * @return const reference to the ChassisModel
    */
   const ChassisModel &make() const override {
-    return SkidSteerModel<motorsPerSide>(*this);
+    return SkidSteerModel(*this);
   }
 
-  const std::array<pros::Motor, motorsPerSide * 2> &motorList;
+  const AbstractMotor &leftSide;
+  const AbstractMotor &rightSide;
   const RotarySensor &leftSensor;
   const RotarySensor &rightSensor;
 };
 
-template <size_t motorsPerSide> class SkidSteerModel : public ChassisModel {
+class SkidSteerModel : public ChassisModel {
   public:
   /**
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
@@ -45,62 +48,58 @@ template <size_t motorsPerSide> class SkidSteerModel : public ChassisModel {
    * @param ileftEnc  Left side encoder
    * @param irightEnc Right side encoder
    */
-  SkidSteerModel(const std::array<pros::Motor, motorsPerSide * 2> &imotorList,
+  SkidSteerModel(const AbstractMotor &ileftSide, const AbstractMotor &irightSide,
                  const RotarySensor &ileftEnc, const RotarySensor &irightEnc)
-    : motors(imotorList), leftSensor(ileftEnc), rightSensor(irightEnc) {
+    : leftSide(ileftSide), rightSide(irightSide), leftSensor(ileftEnc), rightSensor(irightEnc) {
   }
 
-  SkidSteerModel(const SkidSteerModelParams<motorsPerSide> &iparams)
-    : motors(iparams.motorList), leftSensor(iparams.leftSensor), rightSensor(iparams.rightSensor) {
+  SkidSteerModel(const SkidSteerModelParams &iparams)
+    : leftSide(iparams.leftSide),
+      rightSide(iparams.rightSide),
+      leftSensor(iparams.leftSensor),
+      rightSensor(iparams.rightSensor) {
   }
 
-  SkidSteerModel(const SkidSteerModel<motorsPerSide> &other)
-    : motors(other.motors), leftSensor(other.leftSensor), rightSensor(other.rightSensor) {
+  SkidSteerModel(const SkidSteerModel &other)
+    : leftSide(other.leftSide),
+      rightSide(other.rightSide),
+      leftSensor(other.leftSensor),
+      rightSensor(other.rightSensor) {
   }
 
-  virtual ~SkidSteerModel() {
-    delete &motors;
-  }
+  virtual ~SkidSteerModel() = default;
 
   void driveForward(const int ipower) const override {
-    for (size_t i = 0; i < motorsPerSide * 2; i++)
-      motors[i].set_velocity(ipower);
+    leftSide.set_velocity(ipower);
+    rightSide.set_velocity(ipower);
   }
 
   void driveVector(const int idistPower, const int ianglePower) const override {
-    for (size_t i = 0; i < motorsPerSide; i++)
-      motors[i].set_velocity(idistPower + ianglePower);
-    for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-      motors[i].set_velocity(idistPower - ianglePower);
+    leftSide.set_velocity(idistPower + ianglePower);
+    rightSide.set_velocity(idistPower - ianglePower);
   }
 
   void turnClockwise(const int ipower) const override {
-    for (size_t i = 0; i < motorsPerSide; i++)
-      motors[i].set_velocity(ipower);
-    for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-      motors[i].set_velocity(-1 * ipower);
+    leftSide.set_velocity(ipower);
+    rightSide.set_velocity(-1 * ipower);
   }
 
   void stop() const override {
-    for (size_t i = 0; i < motorsPerSide * 2; i++)
-      motors[i].set_velocity(0);
+    leftSide.set_velocity(0);
+    rightSide.set_velocity(0);
   }
 
   void tank(const int ileftVal, const int irightVal, const int ithreshold = 0) const override {
     if (fabs(ileftVal) < ithreshold) {
-      for (size_t i = 0; i < motorsPerSide; i++)
-        motors[i].set_velocity(0);
+      leftSide.set_velocity(0);
     } else {
-      for (size_t i = 0; i < motorsPerSide; i++)
-        motors[i].set_velocity(ileftVal);
+      leftSide.set_velocity(ileftVal);
     }
 
     if (fabs(irightVal) < ithreshold) {
-      for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-        motors[i].set_velocity(0);
+      rightSide.set_velocity(0);
     } else {
-      for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-        motors[i].set_velocity(irightVal);
+      rightSide.set_velocity(irightVal);
     }
   }
 
@@ -110,20 +109,16 @@ template <size_t motorsPerSide> class SkidSteerModel : public ChassisModel {
     if (fabs(ihorizontalVal) < ithreshold)
       ihorizontalVal = 0;
 
-    for (size_t i = 0; i < motorsPerSide; i++)
-      motors[i].set_velocity(iverticalVal + ihorizontalVal);
-    for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-      motors[i].set_velocity(iverticalVal - ihorizontalVal);
+    leftSide.set_velocity(iverticalVal + ihorizontalVal);
+    rightSide.set_velocity(iverticalVal - ihorizontalVal);
   }
 
   void left(const int ipower) const override {
-    for (size_t i = 0; i < motorsPerSide; i++)
-      motors[i].set_velocity(ipower);
+    leftSide.set_velocity(ipower);
   }
 
   void right(const int ipower) const override {
-    for (size_t i = motorsPerSide; i < motorsPerSide * 2; i++)
-      motors[i].set_velocity(ipower);
+    rightSide.set_velocity(ipower);
   }
 
   std::valarray<int> getSensorVals() const override {
@@ -136,7 +131,8 @@ template <size_t motorsPerSide> class SkidSteerModel : public ChassisModel {
   }
 
   private:
-  std::array<pros::Motor, motorsPerSide * 2> motors;
+  const AbstractMotor &leftSide;
+  const AbstractMotor &rightSide;
   const RotarySensor &leftSensor;
   const RotarySensor &rightSensor;
 };

@@ -10,7 +10,7 @@ Motor::Motor(uint8_t port, const bool reverse, motor_encoder_units_e_t encoder_u
 }
 
 int32_t Motor::set_velocity(const int16_t ivelocity) const {
-  return motor.set_velocity(ivelocity);
+  // return motor.set_velocity(ivelocity);
 }
 
 inline namespace literals {
