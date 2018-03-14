@@ -22,7 +22,7 @@ class XDriveModelParams : public ChassisModelParams {
    *
    * @return const reference to the ChassisModel
    */
-  const ChassisModel &make() const override;
+  std::unique_ptr<ChassisModel> make() const override;
 
   const AbstractMotor &topLeftMotor;
   const AbstractMotor &topRightMotor;

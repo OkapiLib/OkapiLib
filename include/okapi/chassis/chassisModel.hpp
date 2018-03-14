@@ -6,6 +6,7 @@
 
 #include <array>
 #include <initializer_list>
+#include <memory>
 #include <valarray>
 
 namespace okapi {
@@ -20,7 +21,7 @@ class ChassisModelParams {
    *
    * @return const reference to the ChassisModel
    */
-  virtual const ChassisModel &make() const = 0;
+  virtual std::unique_ptr<ChassisModel> make() const = 0;
 };
 
 class ChassisModel {
