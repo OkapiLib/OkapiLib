@@ -46,36 +46,36 @@ SkidSteerModel::SkidSteerModel(const SkidSteerModel &other)
 SkidSteerModel::~SkidSteerModel() = default;
 
 void SkidSteerModel::driveForward(const int ipower) const {
-  leftSideMotor.set_velocity(ipower);
-  rightSideMotor.set_velocity(ipower);
+  leftSideMotor.moveVelocity(ipower);
+  rightSideMotor.moveVelocity(ipower);
 }
 
 void SkidSteerModel::driveVector(const int idistPower, const int ianglePower) const {
-  leftSideMotor.set_velocity(idistPower + ianglePower);
-  rightSideMotor.set_velocity(idistPower - ianglePower);
+  leftSideMotor.moveVelocity(idistPower + ianglePower);
+  rightSideMotor.moveVelocity(idistPower - ianglePower);
 }
 
 void SkidSteerModel::turnClockwise(const int ipower) const {
-  leftSideMotor.set_velocity(ipower);
-  rightSideMotor.set_velocity(-1 * ipower);
+  leftSideMotor.moveVelocity(ipower);
+  rightSideMotor.moveVelocity(-1 * ipower);
 }
 
 void SkidSteerModel::stop() const {
-  leftSideMotor.set_velocity(0);
-  rightSideMotor.set_velocity(0);
+  leftSideMotor.moveVelocity(0);
+  rightSideMotor.moveVelocity(0);
 }
 
 void SkidSteerModel::tank(const int ileftVal, const int irightVal, const int ithreshold) const {
   if (fabs(ileftVal) < ithreshold) {
-    leftSideMotor.set_velocity(0);
+    leftSideMotor.moveVelocity(0);
   } else {
-    leftSideMotor.set_velocity(ileftVal);
+    leftSideMotor.moveVelocity(ileftVal);
   }
 
   if (fabs(irightVal) < ithreshold) {
-    rightSideMotor.set_velocity(0);
+    rightSideMotor.moveVelocity(0);
   } else {
-    rightSideMotor.set_velocity(irightVal);
+    rightSideMotor.moveVelocity(irightVal);
   }
 }
 
@@ -85,16 +85,16 @@ void SkidSteerModel::arcade(int iverticalVal, int ihorizontalVal, const int ithr
   if (fabs(ihorizontalVal) < ithreshold)
     ihorizontalVal = 0;
 
-  leftSideMotor.set_velocity(iverticalVal + ihorizontalVal);
-  rightSideMotor.set_velocity(iverticalVal - ihorizontalVal);
+  leftSideMotor.moveVelocity(iverticalVal + ihorizontalVal);
+  rightSideMotor.moveVelocity(iverticalVal - ihorizontalVal);
 }
 
 void SkidSteerModel::left(const int ipower) const {
-  leftSideMotor.set_velocity(ipower);
+  leftSideMotor.moveVelocity(ipower);
 }
 
 void SkidSteerModel::right(const int ipower) const {
-  rightSideMotor.set_velocity(ipower);
+  rightSideMotor.moveVelocity(ipower);
 }
 
 std::valarray<int> SkidSteerModel::getSensorVals() const {

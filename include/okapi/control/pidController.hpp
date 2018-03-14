@@ -4,11 +4,11 @@
 #ifndef _OKAPI_PID_HPP_
 #define _OKAPI_PID_HPP_
 
-#include "okapi/control/controlObject.hpp"
+#include "okapi/control/iterativeController.hpp"
 #include "okapi/control/positionDomainController.hpp"
 
 namespace okapi {
-class PIDControllerParams : public ControlObjectParams {
+class PIDControllerParams : public IterativeControllerParams {
   public:
   PIDControllerParams(const double ikP, const double ikI, const double ikD, const double ikBias = 0)
     : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {

@@ -4,11 +4,20 @@
 #ifndef _OKAPI_INTEGRATEDCONTROLLER_HPP_
 #define _OKAPI_INTEGRATEDCONTROLLER_HPP_
 
+#include "okapi/control/asyncController.hpp"
 #include "okapi/device/abstractMotor.hpp"
 #include "okapi/device/integratedEncoder.hpp"
 
 namespace okapi {
-class IntegratedController {
+class IntegratedControllerParams : public AsyncControllerParams {
+  public:
+  IntegratedControllerParams(const AbstractMotor &imotor) : motor(imotor) {
+  }
+
+  const AbstractMotor &motor;
+}
+
+class IntegratedController : public AsyncController {
   public:
   IntegratedController(const AbstractMotor &imotor) : motor(imotor) {
   }

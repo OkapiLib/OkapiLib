@@ -4,12 +4,12 @@
 #ifndef _OKAPI_VELPID_HPP_
 #define _OKAPI_VELPID_HPP_
 
-#include "okapi/control/controlObject.hpp"
+#include "okapi/control/iterativeController.hpp"
 #include "okapi/control/velMath.hpp"
 #include "okapi/control/velocityDomainController.hpp"
 
 namespace okapi {
-class VelPIDControllerParams : public ControlObjectParams {
+class VelPIDControllerParams : public IterativeControllerParams {
   public:
   VelPIDControllerParams(const double ikP, const double ikD) : kP(ikP), kD(ikD), params(360) {
   }

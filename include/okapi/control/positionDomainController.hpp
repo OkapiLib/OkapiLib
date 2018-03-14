@@ -4,10 +4,10 @@
 #ifndef _OKAPI_POSITIONDOMAINCONTROLLER_HPP_
 #define _OKAPI_POSITIONDOMAINCONTROLLER_HPP_
 
-#include "okapi/control/controlObject.hpp"
+#include "okapi/control/iterativeController.hpp"
 
 namespace okapi {
-class PositionDomainController : public ControlObject {};
+class PositionDomainController : public IterativeController {};
 } // namespace okapi
 
 #endif

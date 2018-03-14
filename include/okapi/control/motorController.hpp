@@ -5,7 +5,7 @@
 #define _OKAPI_MOTORCONTROLLER_HPP_
 
 #include "api.h"
-#include "okapi/control/controlObject.hpp"
+#include "okapi/control/iterativeController.hpp"
 #include "okapi/control/velocityDomainController.hpp"
 #include "okapi/device/abstractMotor.hpp"
 #include <array>
@@ -14,13 +14,13 @@
 namespace okapi {
 class MotorController : public VelocityDomainController {
   public:
-  MotorController(const AbstractMotor &imotor, ControlObject &iptr)
+  MotorController(const AbstractMotor &imotor, IterativeController &iptr)
     : motor(imotor), controller(iptr) {
   }
 
   double step(const double ireading) {
     controller.step(ireading);
-    motor.set_velocity(static_cast<int>(controller.getOutput()));
+    motor.moveVelocity(static_cast<int>(controller.getOutput()));
     return controller.getOutput();
   }
 
@@ -54,7 +54,7 @@ class MotorController : public VelocityDomainController {
 
   private:
   const AbstractMotor &motor;
-  ControlObject &controller;
+  IterativeController &controller;
 };
 } // namespace okapi
 

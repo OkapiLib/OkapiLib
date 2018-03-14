@@ -15,27 +15,27 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
   MotorGroup(const std::array<Motor, motorNum> &imotors) : motors(imotors) {
   }
 
-  int32_t moveAbsolute(const double position, const int32_t velocity) const override {
+  int32_t moveAbsolute(const double iposition, const int32_t ivelocity) const override {
     for (size_t i = 0; i < motorNum; i++) {
-      motors[i].moveAbsolute(position, velocity);
+      motors[i].moveAbsolute(iposition, ivelocity);
     }
   }
 
-  int32_t moveRelative(const double position, const int32_t velocity) const override {
+  int32_t moveRelative(const double iposition, const int32_t ivelocity) const override {
     for (size_t i = 0; i < motorNum; i++) {
-      motors[i].moveRelative(position, velocity);
+      motors[i].moveRelative(iposition, ivelocity);
     }
   }
 
-  int32_t moveVelocity(const int16_t velocity) const override {
+  int32_t moveVelocity(const int16_t ivelocity) const override {
     for (size_t i = 0; i < motorNum; i++) {
       motors[i].moveVelocity(ivelocity);
     }
   }
 
-  int32_t moveVoltage(const int16_t voltage) const override {
+  int32_t moveVoltage(const int16_t ivoltage) const override {
     for (size_t i = 0; i < motorNum; i++) {
-      motors[i].moveVoltage(voltage);
+      motors[i].moveVoltage(ivoltage);
     }
   }
 
