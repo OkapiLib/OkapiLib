@@ -25,20 +25,20 @@ class Motor : public AbstractMotor {
   IntegratedEncoder getEncoder() const override;
 
   private:
-  const pros::Motor motor;
+  pros::Motor motor;
 };
 
-// inline namespace literals {
-// /**
-//  * Non-reversed motor.
-//  **/
-// Motor operator"" _m(const unsigned long long iport);
+inline namespace literals {
+/**
+ * Non-reversed motor.
+ **/
+okapi::Motor operator"" _m(const unsigned long long iport);
 
-// /**
-//  * Reversed motor.
-//  **/
-// Motor operator"" _rm(const unsigned long long iport);
-// } // namespace literals
+/**
+ * Reversed motor.
+ **/
+okapi::Motor operator"" _rm(const unsigned long long iport);
+} // namespace literals
 } // namespace okapi
 
 #endif

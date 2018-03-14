@@ -61,7 +61,7 @@
 #include "pros/vision.hpp"
 
 #ifdef PROS_USE_SIMPLE_NAMES
-using namespace pros;
+// using namespace pros;
 #endif
 #endif
 

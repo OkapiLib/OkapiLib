@@ -29,13 +29,13 @@ IntegratedEncoder okapi::Motor::getEncoder() const {
   return IntegratedEncoder(motor);
 }
 
-// inline namespace literals {
-// Motor operator"" _m(const unsigned long long iport) {
-//   return Motor(static_cast<uint8_t>(iport));
-// }
+inline namespace literals {
+okapi::Motor operator"" _m(const unsigned long long iport) {
+  return okapi::Motor(static_cast<uint8_t>(iport));
+}
 
-// Motor operator"" _rm(const unsigned long long iport) {
-//   return Motor(static_cast<uint8_t>(iport));
-// }
-// } // namespace literals
+okapi::Motor operator"" _rm(const unsigned long long iport) {
+  return okapi::Motor(static_cast<uint8_t>(iport));
+}
+} // namespace literals
 } // namespace okapi
