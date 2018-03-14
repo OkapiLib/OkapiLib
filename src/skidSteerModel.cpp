@@ -37,6 +37,14 @@ SkidSteerModel::SkidSteerModel(const AbstractMotor &ileftSideMotor,
     rightSensor(irightEnc) {
 }
 
+SkidSteerModel::SkidSteerModel(const AbstractMotor &ileftSideMotor,
+                               const AbstractMotor &irightSideMotor)
+  : leftSideMotor(ileftSideMotor),
+    rightSideMotor(irightSideMotor),
+    leftSensor(ileftSideMotor.getEncoder()),
+    rightSensor(irightSideMotor.getEncoder()) {
+}
+
 SkidSteerModel::SkidSteerModel(const SkidSteerModelParams &iparams)
   : leftSideMotor(iparams.leftSideMotor),
     rightSideMotor(iparams.rightSideMotor),

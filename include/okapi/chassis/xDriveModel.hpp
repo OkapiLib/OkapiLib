@@ -52,6 +52,21 @@ class XDriveModel : public ChassisModel {
               const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
               const RotarySensor &ileftEnc, const RotarySensor &irightEnc);
 
+  /**
+   * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
+   * +127, the robot should move forward in a straight line.
+   *
+   * This constructor infers the two sensors from the top left and top right motors (using the
+   * integrated encoders).
+   *
+   * @param itopLeftMotor top left motor
+   * @param itopRightMotor top right motor
+   * @param ibottomRightMotor bottom right motor
+   * @param ibottomLeftMotor bottom left motor
+   */
+  XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
+              const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor);
+
   XDriveModel(const XDriveModelParams &iparams);
 
   XDriveModel(const XDriveModel &other);

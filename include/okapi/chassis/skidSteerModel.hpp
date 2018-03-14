@@ -46,6 +46,17 @@ class SkidSteerModel : public ChassisModel {
   SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
                  const RotarySensor &ileftEnc, const RotarySensor &irightEnc);
 
+  /**
+   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
+   * motors are powered +127, the robot should move forward in a straight line.
+   *
+   * This constructor infers the two sensors from the given motors (using the integrated encoders).
+   *
+   * @param ileftSideMotor left side motor
+   * @param irightSideMotor right side motor
+   */
+  SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor);
+
   SkidSteerModel(const SkidSteerModelParams &iparams);
 
   SkidSteerModel(const SkidSteerModel &other);

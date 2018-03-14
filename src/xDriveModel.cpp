@@ -47,6 +47,17 @@ XDriveModel::XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor
     rightSensor(irightEnc) {
 }
 
+XDriveModel::XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
+                         const AbstractMotor &ibottomRightMotor,
+                         const AbstractMotor &ibottomLeftMotor)
+  : topLeftMotor(itopLeftMotor),
+    topRightMotor(itopRightMotor),
+    bottomRightMotor(ibottomRightMotor),
+    bottomLeftMotor(ibottomLeftMotor),
+    leftSensor(itopLeftMotor.getEncoder()),
+    rightSensor(itopRightMotor.getEncoder()) {
+}
+
 XDriveModel::XDriveModel(const XDriveModelParams &iparams)
   : topLeftMotor(iparams.topLeftMotor),
     topRightMotor(iparams.topRightMotor),

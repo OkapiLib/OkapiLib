@@ -10,7 +10,7 @@ namespace okapi {
 class IterativeControllerParams {};
 
 /**
- * Closed-loop controller that steps iteratively using the step method.
+ * Closed-loop controller that steps iteratively using the step method below.
  */
 class IterativeController {
   public:
