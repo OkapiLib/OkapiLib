@@ -24,12 +24,12 @@ inline namespace literals {
 /**
  * Non-reversed motor.
  **/
-pros::Motor operator"" _m(const unsigned long long iport);
+Motor operator"" _m(const unsigned long long iport);
 
 /**
  * Reversed motor.
  **/
-pros::Motor operator"" _rm(const unsigned long long iport);
+Motor operator"" _rm(const unsigned long long iport);
 } // namespace literals
 } // namespace okapi
 

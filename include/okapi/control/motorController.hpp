@@ -1,25 +1,25 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-#ifndef _OKAPI_MOTORGROUPCONTROLLER_HPP_
-#define _OKAPI_MOTORGROUPCONTROLLER_HPP_
+#ifndef _OKAPI_MOTORCONTROLLER_HPP_
+#define _OKAPI_MOTORCONTROLLER_HPP_
 
 #include "api.h"
 #include "okapi/control/controlObject.hpp"
+#include "okapi/device/abstractMotor.hpp"
 #include <array>
 #include <memory>
 
 namespace okapi {
-template <size_t motorNum> class MotorGroupController {
+class MotorController {
   public:
-  MotorGroupController(const std::array<pros::Motor, motorNum> &imotorList, ControlObject &iptr)
-    : motors(imotorList), controller(iptr) {
+  MotorController(const AbstractMotor &imotor, ControlObject &iptr)
+    : motor(imotor), controller(iptr) {
   }
 
   void step(const float ireading) {
     controller.step(ireading);
-    for (size_t i = 0; i < motors.size(); i++)
-      motors[i].set_velocity(static_cast<int>(controller.getOutput()));
+    motor.set_velocity(static_cast<int>(controller.getOutput()));
   }
 
   void setTarget(const float itarget) {
@@ -51,7 +51,7 @@ template <size_t motorNum> class MotorGroupController {
   }
 
   private:
-  std::array<pros::Motor, motorNum> motors;
+  const AbstractMotor &motor;
   ControlObject &controller;
 };
 } // namespace okapi

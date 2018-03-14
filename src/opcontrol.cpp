@@ -1,12 +1,12 @@
 #include "api.h"
 
-// #include "okapi/chassis/chassisController.hpp"
-// #include "okapi/chassis/chassisModel.hpp"
-// #include "okapi/chassis/odomChassisController.hpp"
-// #include "okapi/chassis/skidSteerModel.hpp"
-// #include "okapi/chassis/xDriveModel.hpp"
+#include "okapi/chassis/chassisController.hpp"
+#include "okapi/chassis/chassisModel.hpp"
+#include "okapi/chassis/odomChassisController.hpp"
+#include "okapi/chassis/skidSteerModel.hpp"
+#include "okapi/chassis/xDriveModel.hpp"
 
-#include "okapi/control/motorGroupController.hpp"
+#include "okapi/control/motorController.hpp"
 #include "okapi/control/pidController.hpp"
 #include "okapi/control/velMath.hpp"
 #include "okapi/control/velPidController.hpp"
@@ -21,8 +21,8 @@
 #include "okapi/filter/demaFilter.hpp"
 #include "okapi/filter/emaFilter.hpp"
 
-// #include "okapi/odometry/odometry.hpp"
-// #include "okapi/odometry/odomMath.hpp"
+#include "okapi/odometry/odomMath.hpp"
+#include "okapi/odometry/odometry.hpp"
 
 #include "okapi/util/timer.hpp"
 
@@ -39,12 +39,13 @@ void opcontrol() {
     {
       using namespace okapi;
 
-      pros::Motor mtr = 1_m;
-      pros::Motor r_mtr = 2_rm;
+      Motor mtr = 1_m;
+      Motor r_mtr = 2_rm;
 
-      // SkidSteerModel<2> model1({2_m, 3_m, 4_m, 5_m}, //Left motors: 2 & 3, right motors: 4 & 5
-      //               ADIEncoder(1, 2, true), //Left encoder (reversed)
-      //               ADIEncoder(3, 4)); //Right encoder
+      SkidSteerModel model1(MotorGroup<2>({1_m, 2_m}),
+                            MotorGroup<2>({3_m, 4_m}), // Left motors: 2 & 3, right motors: 4 & 5
+                            ADIEncoder(1, 2, true),    // Left encoder (reversed)
+                            ADIEncoder(3, 4));         // Right encoder
 
       // XDriveModel<1> model2({2_m, 3_m, 4_m, 5_m}, //Motors are ordered counter-clockwise from the
       // top left
@@ -92,7 +93,7 @@ void opcontrol() {
       //   PIDControllerParams(0, 0, 0));
 
       PIDController pid1(0, 0, 0);
-      MotorGroupController<2> mgController({1_m, 2_m}, pid1);
+      MotorController mgController(MotorGroup<2>({1_m, 2_m}), pid1);
 
       PIDController pid2(0, 0, 0);
       PIDController pid3(0, 0, 0, 0);

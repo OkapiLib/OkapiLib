@@ -14,12 +14,12 @@ int32_t Motor::set_velocity(const int16_t ivelocity) const {
 }
 
 inline namespace literals {
-pros::Motor operator"" _m(const unsigned long long iport) {
-  return pros::Motor(static_cast<uint8_t>(iport));
+Motor operator"" _m(const unsigned long long iport) {
+  return Motor(static_cast<uint8_t>(iport));
 }
 
-pros::Motor operator"" _rm(const unsigned long long iport) {
-  return pros::Motor(static_cast<uint8_t>(iport));
+Motor operator"" _rm(const unsigned long long iport) {
+  return Motor(static_cast<uint8_t>(iport));
 }
 } // namespace literals
 } // namespace okapi

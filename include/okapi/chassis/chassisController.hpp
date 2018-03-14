@@ -13,7 +13,7 @@ class ChassisController {
   ChassisController(const ChassisModelParams &imodelParams) : model(imodelParams.make()) {
   }
 
-  ChassisController(const ChassisModel &imodel) : model(imodel) {
+  ChassisController(const std::shared_ptr<const ChassisModel> &imodel) : model(imodel) {
   }
 
   virtual ~ChassisController();
@@ -107,7 +107,7 @@ class ChassisController {
   void resetSensors() const;
 
   protected:
-  const ChassisModel &model;
+  std::shared_ptr<const ChassisModel> model;
 };
 } // namespace okapi
 

@@ -30,7 +30,7 @@ class OdometryParams {
 
   virtual ~OdometryParams() = default;
 
-  const ChassisModel &model;
+  std::shared_ptr<const ChassisModel> model;
   float scale, turnScale;
 };
 
@@ -85,7 +85,7 @@ class Odometry {
   OdomState getState();
 
   private:
-  const ChassisModel &model;
+  std::shared_ptr<const ChassisModel> model;
   OdomState state;
   float scale, turnScale;
   std::valarray<int> lastTicks;

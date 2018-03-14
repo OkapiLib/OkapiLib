@@ -21,7 +21,7 @@ class ChassisModelParams {
    *
    * @return const reference to the ChassisModel
    */
-  virtual std::unique_ptr<ChassisModel> make() const = 0;
+  virtual std::shared_ptr<const ChassisModel> make() const = 0;
 };
 
 class ChassisModel {
