@@ -13,9 +13,12 @@ class SkidSteerModel;
 
 class SkidSteerModelParams : public ChassisModelParams {
   public:
-  SkidSteerModelParams(const AbstractMotor &ileftSide, const AbstractMotor &irightSide,
+  SkidSteerModelParams(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
                        const RotarySensor &ileftEnc, const RotarySensor &irightEnc)
-    : leftSide(ileftSide), rightSide(irightSide), leftSensor(ileftEnc), rightSensor(irightEnc) {
+    : leftSideMotor(ileftSideMotor),
+      rightSideMotor(irightSideMotor),
+      leftSensor(ileftEnc),
+      rightSensor(irightEnc) {
   }
 
   virtual ~SkidSteerModelParams() = default;
@@ -29,8 +32,8 @@ class SkidSteerModelParams : public ChassisModelParams {
     return SkidSteerModel(*this);
   }
 
-  const AbstractMotor &leftSide;
-  const AbstractMotor &rightSide;
+  const AbstractMotor &leftSideMotor;
+  const AbstractMotor &rightSideMotor;
   const RotarySensor &leftSensor;
   const RotarySensor &rightSensor;
 };
@@ -48,21 +51,24 @@ class SkidSteerModel : public ChassisModel {
    * @param ileftEnc  Left side encoder
    * @param irightEnc Right side encoder
    */
-  SkidSteerModel(const AbstractMotor &ileftSide, const AbstractMotor &irightSide,
+  SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
                  const RotarySensor &ileftEnc, const RotarySensor &irightEnc)
-    : leftSide(ileftSide), rightSide(irightSide), leftSensor(ileftEnc), rightSensor(irightEnc) {
+    : leftSideMotor(ileftSideMotor),
+      rightSideMotor(irightSideMotor),
+      leftSensor(ileftEnc),
+      rightSensor(irightEnc) {
   }
 
   SkidSteerModel(const SkidSteerModelParams &iparams)
-    : leftSide(iparams.leftSide),
-      rightSide(iparams.rightSide),
+    : leftSideMotor(iparams.leftSideMotor),
+      rightSideMotor(iparams.rightSideMotor),
       leftSensor(iparams.leftSensor),
       rightSensor(iparams.rightSensor) {
   }
 
   SkidSteerModel(const SkidSteerModel &other)
-    : leftSide(other.leftSide),
-      rightSide(other.rightSide),
+    : leftSideMotor(other.leftSideMotor),
+      rightSideMotor(other.rightSideMotor),
       leftSensor(other.leftSensor),
       rightSensor(other.rightSensor) {
   }
@@ -70,36 +76,36 @@ class SkidSteerModel : public ChassisModel {
   virtual ~SkidSteerModel() = default;
 
   void driveForward(const int ipower) const override {
-    leftSide.set_velocity(ipower);
-    rightSide.set_velocity(ipower);
+    leftSideMotor.set_velocity(ipower);
+    rightSideMotor.set_velocity(ipower);
   }
 
   void driveVector(const int idistPower, const int ianglePower) const override {
-    leftSide.set_velocity(idistPower + ianglePower);
-    rightSide.set_velocity(idistPower - ianglePower);
+    leftSideMotor.set_velocity(idistPower + ianglePower);
+    rightSideMotor.set_velocity(idistPower - ianglePower);
   }
 
   void turnClockwise(const int ipower) const override {
-    leftSide.set_velocity(ipower);
-    rightSide.set_velocity(-1 * ipower);
+    leftSideMotor.set_velocity(ipower);
+    rightSideMotor.set_velocity(-1 * ipower);
   }
 
   void stop() const override {
-    leftSide.set_velocity(0);
-    rightSide.set_velocity(0);
+    leftSideMotor.set_velocity(0);
+    rightSideMotor.set_velocity(0);
   }
 
   void tank(const int ileftVal, const int irightVal, const int ithreshold = 0) const override {
     if (fabs(ileftVal) < ithreshold) {
-      leftSide.set_velocity(0);
+      leftSideMotor.set_velocity(0);
     } else {
-      leftSide.set_velocity(ileftVal);
+      leftSideMotor.set_velocity(ileftVal);
     }
 
     if (fabs(irightVal) < ithreshold) {
-      rightSide.set_velocity(0);
+      rightSideMotor.set_velocity(0);
     } else {
-      rightSide.set_velocity(irightVal);
+      rightSideMotor.set_velocity(irightVal);
     }
   }
 
@@ -109,16 +115,16 @@ class SkidSteerModel : public ChassisModel {
     if (fabs(ihorizontalVal) < ithreshold)
       ihorizontalVal = 0;
 
-    leftSide.set_velocity(iverticalVal + ihorizontalVal);
-    rightSide.set_velocity(iverticalVal - ihorizontalVal);
+    leftSideMotor.set_velocity(iverticalVal + ihorizontalVal);
+    rightSideMotor.set_velocity(iverticalVal - ihorizontalVal);
   }
 
   void left(const int ipower) const override {
-    leftSide.set_velocity(ipower);
+    leftSideMotor.set_velocity(ipower);
   }
 
   void right(const int ipower) const override {
-    rightSide.set_velocity(ipower);
+    rightSideMotor.set_velocity(ipower);
   }
 
   std::valarray<int> getSensorVals() const override {
@@ -131,8 +137,8 @@ class SkidSteerModel : public ChassisModel {
   }
 
   private:
-  const AbstractMotor &leftSide;
-  const AbstractMotor &rightSide;
+  const AbstractMotor &leftSideMotor;
+  const AbstractMotor &rightSideMotor;
   const RotarySensor &leftSensor;
   const RotarySensor &rightSensor;
 };
