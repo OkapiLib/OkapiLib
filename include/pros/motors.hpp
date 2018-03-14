@@ -64,7 +64,7 @@ class Motor {
 	 * \return 1 if the operation was successful or PROS_ERR if the operation failed,
 	 *         setting errno.
 	 */
-	int32_t move_absolute(const double position, const int32_t velocity) const;
+	virtual int32_t move_absolute(const double position, const int32_t velocity) const;
 
 	/**
 	 * \brief Sets the relative target position for the motor to move to.
@@ -83,7 +83,7 @@ class Motor {
 	 * \return 1 if the operation was successful or PROS_ERR if the operation failed,
 	 *         setting errno.
 	 */
-	int32_t move_relative(const double position, const int32_t velocity) const;
+	virtual int32_t move_relative(const double position, const int32_t velocity) const;
 
 	/**
 	 * \brief Sets the velocity for the motor from -128 to 127.
@@ -100,7 +100,7 @@ class Motor {
 	 * \return 1 if the operation was successful or PROS_ERR if the operation failed,
 	 *         setting errno.
 	 */
-	int32_t move_velocity(const int16_t velocity) const;
+	virtual int32_t move_velocity(const int16_t velocity) const;
 
 	/**
 	 * \brief Sets the voltage for the motor from -128 to 127.
@@ -116,7 +116,7 @@ class Motor {
 	 * \return 1 if the operation was successful or PROS_ERR if the operation failed,
 	 *         setting errno.
 	 */
-	int32_t move_voltage(const int16_t voltage) const;
+	virtual int32_t move_voltage(const int16_t voltage) const;
 
 	/**
 	 * \brief Sets the target absolute position for the motor to move to.

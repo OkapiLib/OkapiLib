@@ -8,15 +8,15 @@
 #include "okapi/device/integratedEncoder.hpp"
 
 namespace okapi {
-class AbstractMotor {
+class AbstractMotor : public pros::Motor {
   public:
-  virtual int32_t moveAbsolute(const double position, const int32_t velocity) const = 0;
+  AbstractMotor(const uint8_t port, const bool reverse = false,
+                const motor_encoder_units_e_t encoder_units = E_MOTOR_ENCODER_DEGREES,
+                const motor_gearset_e_t gearset = E_MOTOR_GEARSET_36)
+    : pros::Motor::Motor(port, reverse, encoder_units, gearset) {
+  }
 
-  virtual int32_t moveRelative(const double position, const int32_t velocity) const = 0;
-
-  virtual int32_t moveVelocity(const int16_t velocity) const = 0;
-
-  virtual int32_t moveVoltage(const int16_t voltage) const = 0;
+  virtual ~AbstractMotor() = default;
 
   virtual IntegratedEncoder getEncoder() const = 0;
 };

@@ -10,22 +10,9 @@
 namespace okapi {
 class Motor : public AbstractMotor {
   public:
-  Motor(const uint8_t port, const bool reverse = false,
-        const motor_encoder_units_e_t encoder_units = E_MOTOR_ENCODER_DEGREES,
-        const motor_gearset_e_t gearset = E_MOTOR_GEARSET_36);
-
-  int32_t moveAbsolute(const double position, const int32_t velocity) const override;
-
-  int32_t moveRelative(const double position, const int32_t velocity) const override;
-
-  int32_t moveVelocity(const int16_t velocity) const override;
-
-  int32_t moveVoltage(const int16_t voltage) const override;
+  using AbstractMotor::AbstractMotor;
 
   IntegratedEncoder getEncoder() const override;
-
-  private:
-  pros::Motor motor;
 };
 
 inline namespace literals {

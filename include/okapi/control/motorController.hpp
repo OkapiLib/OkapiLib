@@ -20,7 +20,7 @@ class MotorController : public VelocityDomainController {
 
   double step(const double ireading) {
     controller.step(ireading);
-    motor.moveVelocity(static_cast<int>(controller.getOutput()));
+    motor.move_velocity(static_cast<int>(controller.getOutput()));
     return controller.getOutput();
   }
 

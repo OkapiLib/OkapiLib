@@ -18,18 +18,18 @@ IntegratedController::IntegratedController(const IntegratedControllerParams &ipa
 IntegratedController::~IntegratedController() = default;
 
 int32_t IntegratedController::moveAbsolute(const double position, const int32_t velocity) const {
-  motor.moveAbsolute(position, velocity);
+  return motor.move_absolute(position, velocity);
 }
 
 int32_t IntegratedController::moveRelative(const double position, const int32_t velocity) const {
-  motor.moveRelative(position, velocity);
+  return motor.move_relative(position, velocity);
 }
 
 int32_t IntegratedController::moveVelocity(const int16_t velocity) const {
-  motor.moveVelocity(velocity);
+  return motor.move_velocity(velocity);
 }
 
 int32_t IntegratedController::moveVoltage(const int16_t voltage) const {
-  motor.moveVoltage(voltage);
+  return motor.move_voltage(voltage);
 }
 } // namespace okapi
