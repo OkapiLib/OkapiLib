@@ -38,6 +38,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param itarget Distance to travel
    */
   void driveStraight(const int itarget) override {
+    // TODO: How to control this using onboard? One controller for left and right side? Does
+    // ChassisModel need to be changed?
   }
 
   /**
