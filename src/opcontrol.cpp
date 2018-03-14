@@ -46,7 +46,8 @@ void opcontrol() {
       SkidSteerModel model1(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
                             ADIEncoder(1, 2, true), ADIEncoder(3, 4));
 
-      ChassisControllerIntegrated int1(okapi::Motor(1), okapi::Motor(2));
+      ChassisControllerIntegrated int1(1_m, 2_m);
+      ChassisControllerIntegrated int2(MotorGroup<3>({1_m, 2_m, 3_m}), MotorGroup<2>({4_m, 5_m}));
 
       XDriveModel model2(MotorGroup<1>({1_m}), // {2_m, 3_m, 4_m, 5_m}
                          MotorGroup<1>({2_m}), MotorGroup<1>({3_m}), MotorGroup<1>({4_m}),
