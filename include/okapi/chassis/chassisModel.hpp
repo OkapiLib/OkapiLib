@@ -13,8 +13,6 @@ class ChassisModel;
 
 class ChassisModelParams {
   public:
-  ChassisModelParams() {
-  }
   virtual ~ChassisModelParams() = default;
 
   /**
@@ -94,7 +92,7 @@ class ChassisModel {
   /**
    * Read the sensors.
    *
-   * @return sensor readings in the format {left, right}
+   * @return sensor readings (format is implementation dependent)
    */
   virtual std::valarray<int> getSensorVals() const = 0;
 
