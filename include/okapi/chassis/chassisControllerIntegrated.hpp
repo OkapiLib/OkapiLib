@@ -5,9 +5,9 @@
 #define _OKAPI_CHASSISCONTROLLERINTEGRATED_HPP_
 
 #include "okapi/chassis/chassisController.hpp"
-#include "okapi/control/integratedController.hpp"
 #include "okapi/chassis/skidSteerModel.hpp"
 #include "okapi/chassis/xDriveModel.hpp"
+#include "okapi/control/integratedController.hpp"
 
 namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {

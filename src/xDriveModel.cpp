@@ -17,8 +17,10 @@ XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
     rightSensor(irightEnc) {
 }
 
-XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
-                  const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor)
+XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
+                                     const AbstractMotor &itopRightMotor,
+                                     const AbstractMotor &ibottomRightMotor,
+                                     const AbstractMotor &ibottomLeftMotor)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
