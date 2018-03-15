@@ -9,10 +9,10 @@ ADIEncoder::ADIEncoder(const uint8_t iportTop, const uint8_t iportBottom, const 
 }
 
 int32_t ADIEncoder::get() const {
-  // return enc.value_get();
+  return enc.value_get();
 }
 
 int32_t ADIEncoder::reset() const {
-  // return enc.reset();
+  return enc.reset();
 }
 } // namespace okapi
