@@ -37,7 +37,7 @@ class ChassisController {
    *
    * @param ipower motor power
    */
-  void driveForward(const int ipower);
+  void driveForward(const int ipower) const;
 
   /**
    * Drive the robot in an arc (using open-loop control).
@@ -48,19 +48,19 @@ class ChassisController {
    * @param idistPower see above
    * @param ianglePower see above
    */
-  void driveVector(const int idistPower, const int ianglePower);
+  void driveVector(const int idistPower, const int ianglePower) const;
 
   /**
    * Turn the robot clockwise (using open-loop control).
    *
    * @param ipower motor power
    */
-  void turnClockwise(const int ipower);
+  void turnClockwise(const int ipower) const;
 
   /**
    * Stop the robot (set all the motors to 0).
    */
-  void stop();
+  void stop() const;
 
   /**
    * Drive the robot with a tank drive layout.
@@ -69,7 +69,7 @@ class ChassisController {
    * @param irightVal right joystick value
    * @param ithreshold deadband on joystick values
    */
-  void tank(const int ileftVal, const int irightVal, const int ithreshold = 0);
+  void tank(const int ileftVal, const int irightVal, const int ithreshold = 0) const;
 
   /**
    * Drive the robot with an arcade drive layout.
@@ -78,28 +78,28 @@ class ChassisController {
    * @param ihorizontalVal horizontal joystick value
    * @param ithreshold deadband on joystick values
    */
-  void arcade(int iverticalVal, int ihorizontalVal, const int ithreshold = 0);
+  void arcade(int iverticalVal, int ihorizontalVal, const int ithreshold = 0) const;
 
   /**
    * Power the left side motors.
    *
    * @param ipower motor power
    */
-  void left(const int ipower);
+  void left(const int ipower) const;
 
   /**
    * Power the right side motors.
    *
    * @param ipower motor power
    */
-  void right(const int ipower);
+  void right(const int ipower) const;
 
   /**
    * Read the sensors.
    *
    * @return sensor readings in the format {left, right}
    */
-  std::valarray<int> getSensorVals();
+  std::valarray<int> getSensorVals() const;
 
   /**
    * Reset the sensors to their zero point.

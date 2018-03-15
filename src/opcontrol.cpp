@@ -48,6 +48,18 @@ void opcontrol() {
 
       ChassisControllerIntegrated int1(1_m, 2_m);
       ChassisControllerIntegrated int2(MotorGroup<3>({1_m, 2_m, 3_m}), MotorGroup<2>({4_m, 5_m}));
+      int1.driveStraight(0);
+      int1.pointTurn(0);
+      int1.driveForward(0);
+      int1.turnClockwise(0);
+      int1.driveVector(0, 0);
+      int1.tank(0, 0);
+      int1.arcade(0, 0);
+      int1.left(0);
+      int1.right(0);
+      int1.stop();
+      auto vals = int1.getSensorVals();
+      int1.resetSensors();
 
       XDriveModel model2(MotorGroup<1>({1_m}), // {2_m, 3_m, 4_m, 5_m}
                          MotorGroup<1>({2_m}), MotorGroup<1>({3_m}), MotorGroup<1>({4_m}),

@@ -8,39 +8,39 @@
 namespace okapi {
 ChassisController::~ChassisController() = default;
 
-void ChassisController::driveForward(const int ipower) {
+void ChassisController::driveForward(const int ipower) const {
   model->driveForward(ipower);
 }
 
-void ChassisController::driveVector(const int idistPower, const int ianglePower) {
+void ChassisController::driveVector(const int idistPower, const int ianglePower) const {
   model->driveVector(idistPower, ianglePower);
 }
 
-void ChassisController::turnClockwise(const int ipower) {
+void ChassisController::turnClockwise(const int ipower) const {
   model->turnClockwise(ipower);
 }
 
-void ChassisController::stop() {
+void ChassisController::stop() const {
   model->stop();
 }
 
-void ChassisController::tank(const int ileftVal, const int irightVal, const int ithreshold) {
+void ChassisController::tank(const int ileftVal, const int irightVal, const int ithreshold) const {
   model->tank(ileftVal, irightVal, ithreshold);
 }
 
-void ChassisController::arcade(int iverticalVal, int ihorizontalVal, const int ithreshold) {
+void ChassisController::arcade(int iverticalVal, int ihorizontalVal, const int ithreshold) const {
   model->arcade(iverticalVal, ihorizontalVal, ithreshold);
 }
 
-void ChassisController::left(const int ipower) {
+void ChassisController::left(const int ipower) const {
   model->left(ipower);
 }
 
-void ChassisController::right(const int ipower) {
+void ChassisController::right(const int ipower) const {
   model->right(ipower);
 }
 
-std::valarray<int> ChassisController::getSensorVals() {
+std::valarray<int> ChassisController::getSensorVals() const {
   return model->getSensorVals();
 }
 

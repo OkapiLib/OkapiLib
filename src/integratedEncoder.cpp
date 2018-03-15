@@ -8,8 +8,10 @@ IntegratedEncoder::IntegratedEncoder(const pros::Motor &imotor) : motor(imotor) 
 }
 
 int32_t IntegratedEncoder::get() const {
+  return motor.get_position();
 }
 
 int32_t IntegratedEncoder::reset() const {
+  return motor.reset_zero_position();
 }
 } // namespace okapi
