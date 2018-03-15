@@ -15,11 +15,11 @@ PIDController::PIDController(const double ikP, const double ikI, const double ik
     target(0),
     lastReading(0),
     integral(0),
-    integralMax(127),
-    integralMin(-127),
+    integralMax(1),
+    integralMin(-1),
     output(0),
-    outputMax(127),
-    outputMin(-127),
+    outputMax(1),
+    outputMin(-1),
     shouldResetOnCross(true),
     isOn(true) {
   setGains(ikP, ikI, ikD, ikBias);
@@ -33,11 +33,11 @@ PIDController::PIDController(const PIDControllerParams &params)
     target(0),
     lastReading(0),
     integral(0),
-    integralMax(127),
-    integralMin(-127),
+    integralMax(1),
+    integralMin(-1),
     output(0),
-    outputMax(127),
-    outputMin(-127),
+    outputMax(1),
+    outputMin(-1),
     shouldResetOnCross(true),
     isOn(true) {
   setGains(params.kP, params.kI, params.kD, params.kBias);

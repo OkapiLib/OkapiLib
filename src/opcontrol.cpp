@@ -94,8 +94,10 @@ void opcontrol() {
                        0, 0),
         PIDControllerParams(0, 0, 0), PIDControllerParams(0, 0, 0));
 
-      PIDController pid1(0, 0, 0);
-      MotorController mgController(MotorGroup<2>({1_m, 2_m}), pid1);
+      PIDController pid1(0, 0, 0);    // PID controller
+      MotorController mc1(1_m, pid1); // Motor controller with one motor and the PID controller
+      MotorController mc2(MotorGroup<2>({1_m, 2_m}),
+                          pid1); // Motor controller with two motors and the PID controller
 
       PIDController pid2(0, 0, 0);
       PIDController pid3(0, 0, 0, 0);

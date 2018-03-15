@@ -38,7 +38,7 @@ void ChassisControllerPID::driveStraight(const int itarget) {
 
     distOutput = distancePid.step(distanceElapsed);
     angleOutput = anglePid.step(angleChange);
-    model->driveVector(static_cast<int>(distOutput), static_cast<int>(angleOutput));
+    model->driveVector(static_cast<int>(distOutput * 127), static_cast<int>(angleOutput * 127));
 
     if (abs(itarget - static_cast<int>(distanceElapsed)) <= atTargetDistance)
       atTargetTimer.placeHardMark();
@@ -55,7 +55,7 @@ void ChassisControllerPID::driveStraight(const int itarget) {
     task_delay_until(&prevWakeTime, 15);
   }
 
-  model->driveForward(0);
+  model->stop();
 }
 
 void ChassisControllerPID::pointTurn(float idegTarget) {
@@ -87,7 +87,7 @@ void ChassisControllerPID::pointTurn(float idegTarget) {
     encVals = model->getSensorVals() - encStartVals;
     angleChange = static_cast<float>(encVals[1] - encVals[0]);
 
-    model->turnClockwise(static_cast<int>(anglePid.step(angleChange)));
+    model->turnClockwise(static_cast<int>(anglePid.step(angleChange) * 127));
 
     if (fabs(idegTarget - angleChange) <= atTargetAngle)
       atTargetTimer.placeHardMark();
@@ -104,6 +104,6 @@ void ChassisControllerPID::pointTurn(float idegTarget) {
     task_delay_until(&prevWakeTime, 15);
   }
 
-  model->driveForward(0);
+  model->stop();
 }
 } // namespace okapi

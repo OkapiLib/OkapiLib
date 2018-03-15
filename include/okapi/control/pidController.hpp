@@ -39,7 +39,8 @@ class PIDController : public PositionDomainController {
   virtual ~PIDController();
 
   /**
-   * Do one iteration of the controller.
+   * Do one iteration of the controller. Returns the reading in the range [-1, 1] unless the bounds
+   * have been changed with setOutputLimits().
    *
    * @param inewReading new measurement
    * @return controller output
@@ -52,7 +53,8 @@ class PIDController : public PositionDomainController {
   void setTarget(const double itarget) override;
 
   /**
-   * Returns the last calculated output of the controller.
+   * Returns the last calculated output of the controller. Output is in the range [-1, 1] unless the
+   * bounds have been changed with setOutputLimits().
    */
   double getOutput() const override;
 
@@ -79,7 +81,7 @@ class PIDController : public PositionDomainController {
   void setSampleTime(const uint32_t isampleTime) override;
 
   /**
-   * Set controller output bounds.
+   * Set controller output bounds. Default bounds are [-1, 1].
    *
    * @param imax max output
    * @param imin min output
@@ -87,7 +89,7 @@ class PIDController : public PositionDomainController {
   void setOutputLimits(double imax, double imin) override;
 
   /**
-   * Set integrator bounds.
+   * Set integrator bounds. Default bounds are [-1, 1];
    *
    * @param imax max integrator value
    * @param imin min integrator value
