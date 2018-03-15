@@ -46,20 +46,24 @@ void opcontrol() {
       SkidSteerModel model1(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
                             ADIEncoder(1, 2, true), ADIEncoder(3, 4));
 
-      ChassisControllerIntegrated int1(1_m, 2_m);
-      ChassisControllerIntegrated int2(MotorGroup<3>({1_m, 2_m, 3_m}), MotorGroup<2>({4_m, 5_m}));
-      int1.driveStraight(0);
-      int1.pointTurn(0);
-      int1.driveForward(0);
-      int1.turnClockwise(0);
-      int1.driveVector(0, 0);
-      int1.tank(0, 0);
-      int1.arcade(0, 0);
-      int1.left(0);
-      int1.right(0);
-      int1.stop();
-      auto vals = int1.getSensorVals();
-      int1.resetSensors();
+      ChassisControllerIntegrated int1(1_m, 2_m); // One motor on left side, one on right side
+
+      ChassisControllerIntegrated int2(
+        MotorGroup<3>({1_m, 2_m, 3_m}),
+        MotorGroup<2>({4_m, 5_m})); // Three motors on left side, two on right side
+
+      int1.driveStraight(0);            // Closed-loop control
+      int1.pointTurn(0);                // Closed-loop control
+      int1.driveForward(0);             // Open-loop control
+      int1.turnClockwise(0);            // Open-loop control
+      int1.driveVector(0, 0);           // Open-loop control
+      int1.tank(0, 0);                  // Tank drive
+      int1.arcade(0, 0);                // Arcade drive
+      int1.left(0);                     // Left drive side
+      int1.right(0);                    // Right drive side
+      int1.stop();                      // Stop motors
+      auto vals = int1.getSensorVals(); // Read left and right sensors
+      int1.resetSensors();              // Set sensors to 0
 
       XDriveModel model2(MotorGroup<1>({1_m}), // {2_m, 3_m, 4_m, 5_m}
                          MotorGroup<1>({2_m}), MotorGroup<1>({3_m}), MotorGroup<1>({4_m}),
