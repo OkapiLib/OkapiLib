@@ -5,8 +5,7 @@
 #define _OKAPI_MOTORCONTROLLER_HPP_
 
 #include "api.h"
-#include "okapi/control/iterativeController.hpp"
-#include "okapi/control/iterativeVelocityController.hpp"
+#include "okapi/control/iterative/iterativeVelocityController.hpp"
 #include "okapi/device/abstractMotor.hpp"
 #include <array>
 #include <memory>

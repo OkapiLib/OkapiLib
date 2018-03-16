@@ -4,15 +4,18 @@
 #ifndef _OKAPI_POSINTEGRATEDCONTROLLER_HPP_
 #define _OKAPI_POSINTEGRATEDCONTROLLER_HPP_
 
-#include "okapi/control/asyncPositionController.hpp"
+#include "okapi/control/async/asyncPositionController.hpp"
 #include "okapi/device/abstractMotor.hpp"
 #include "okapi/device/integratedEncoder.hpp"
 
 namespace okapi {
+class PosIntegratedController;
+
 class PosIntegratedControllerParams : public AsyncPositionControllerParams {
   public:
-  PosIntegratedControllerParams(const AbstractMotor &imotor) : motor(imotor) {
-  }
+  PosIntegratedControllerParams(const AbstractMotor &imotor);
+
+  std::shared_ptr<AsyncPositionController> make() const override;
 
   const AbstractMotor &motor;
 };
@@ -22,32 +25,31 @@ class PosIntegratedControllerParams : public AsyncPositionControllerParams {
  */
 class PosIntegratedController : public AsyncPositionController {
   public:
-  PosIntegratedController(const AbstractMotor &imotor) : motor(imotor), lastTarget(0) {
-  }
+  PosIntegratedController(const AbstractMotor &imotor);
 
-  PosIntegratedController(const PosIntegratedControllerParams &iparams)
-    : motor(iparams.motor), lastTarget(0) {
-  }
+  PosIntegratedController(const PosIntegratedControllerParams &iparams);
 
-  virtual ~PosIntegratedController() = default;
+  virtual ~PosIntegratedController();
 
   /**
    * Sets the target for the controller.
    */
-  virtual void setTarget(const double itarget) {
-    motor.move_absolute(itarget, 100);
-  }
+  virtual void setTarget(const double itarget);
 
   /**
    * Returns the last error of the controller.
    */
-  virtual double getError() const {
-    return lastTarget - motor.get_position();
-  }
+  virtual double getError() const;
+
+  /**
+   * Resets the controller so it can start from 0 again properly. Keeps configuration from
+   * before.
+   */
+  virtual void reset();
 
   private:
   const AbstractMotor &motor;
-  double lastTarget;
+  double lastTarget, offset;
 };
 } // namespace okapi
 

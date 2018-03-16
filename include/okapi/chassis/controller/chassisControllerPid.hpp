@@ -5,7 +5,7 @@
 #define _OKAPI_CHASSISCONTROLLERPID_HPP_
 
 #include "okapi/chassis/controller/chassisController.hpp"
-#include "okapi/control/posPidController.hpp"
+#include "okapi/control/iterative/posPidController.hpp"
 
 namespace okapi {
 class ChassisControllerPID : public virtual ChassisController {

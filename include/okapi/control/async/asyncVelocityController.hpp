@@ -4,7 +4,7 @@
 #ifndef _OKAPI_ASYNCVELOCITYCONTROLLER_HPP_
 #define _OKAPI_ASYNCVELOCITYCONTROLLER_HPP_
 
-#include "okapi/control/asyncController.hpp"
+#include "okapi/control/async/asyncController.hpp"
 
 namespace okapi {
 class AsyncVelocityControllerParams : public AsyncControllerParams {};

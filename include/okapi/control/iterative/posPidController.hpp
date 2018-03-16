@@ -4,7 +4,7 @@
 #ifndef _OKAPI_PID_HPP_
 #define _OKAPI_PID_HPP_
 
-#include "okapi/control/iterativePositionController.hpp"
+#include "okapi/control/iterative/iterativePositionController.hpp"
 
 namespace okapi {
 class PosPIDControllerParams : public IterativePositionControllerParams {

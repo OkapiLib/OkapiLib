@@ -4,7 +4,7 @@
 #ifndef _OKAPI_ITERATIVEVELOCITYCONTROLLER_HPP_
 #define _OKAPI_ITERATIVEVELOCITYCONTROLLER_HPP_
 
-#include "okapi/control/iterativeController.hpp"
+#include "okapi/control/iterative/iterativeController.hpp"
 
 namespace okapi {
 class IterativeVelocityControllerParams : public IterativeControllerParams {};

@@ -7,7 +7,8 @@
 #include "okapi/chassis/controller/chassisController.hpp"
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
-#include "okapi/control/integratedController.hpp"
+#include "okapi/control/async/asyncPositionController.hpp"
+#include "okapi/control/async/posIntegratedController.hpp"
 
 namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {
@@ -20,35 +21,19 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param irightControllerParams right side controller params
    */
   ChassisControllerIntegrated(const ChassisModelParams &imodelParams,
-                              const IntegratedControllerParams &ileftControllerParams,
-                              const IntegratedControllerParams &irightControllerParams)
+                              const AsyncPositionControllerParams &ileftControllerParams,
+                              const AsyncPositionControllerParams &irightControllerParams)
     : ChassisController(imodelParams),
-      leftController(ileftControllerParams),
-      rightController(irightControllerParams) {
+      leftController(ileftControllerParams.make()),
+      rightController(irightControllerParams.make()) {
   }
 
   ChassisControllerIntegrated(std::shared_ptr<const ChassisModel> imodel,
-                              const IntegratedControllerParams &ileftControllerParams,
-                              const IntegratedControllerParams &irightControllerParams)
+                              const AsyncPositionControllerParams &ileftControllerParams,
+                              const AsyncPositionControllerParams &irightControllerParams)
     : ChassisController(imodel),
-      leftController(ileftControllerParams),
-      rightController(irightControllerParams) {
-  }
-
-  ChassisControllerIntegrated(const ChassisModelParams &imodelParams,
-                              const IntegratedController &ileftController,
-                              const IntegratedController &irightController)
-    : ChassisController(imodelParams),
-      leftController(ileftController),
-      rightController(irightController) {
-  }
-
-  ChassisControllerIntegrated(std::shared_ptr<const ChassisModel> imodel,
-                              const IntegratedController &ileftController,
-                              const IntegratedController &irightController)
-    : ChassisController(imodel),
-      leftController(ileftController),
-      rightController(irightController) {
+      leftController(ileftControllerParams.make()),
+      rightController(irightControllerParams.make()) {
   }
 
   /**
@@ -61,8 +46,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   ChassisControllerIntegrated(const AbstractMotor &ileftSideMotor,
                               const AbstractMotor &irightSideMotor)
     : ChassisController(SkidSteerModelParams(ileftSideMotor, irightSideMotor)),
-      leftController(ileftSideMotor),
-      rightController(irightSideMotor) {
+      leftController(PosIntegratedControllerParams(ileftSideMotor).make()),
+      rightController(PosIntegratedControllerParams(ileftSideMotor).make()) {
   }
 
   /**
@@ -80,8 +65,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
                               const AbstractMotor &ibottomLeftMotor)
     : ChassisController(
         XDriveModelParams(itopLeftMotor, itopRightMotor, ibottomRightMotor, ibottomLeftMotor)),
-      leftController(itopLeftMotor),
-      rightController(itopRightMotor) {
+      leftController(PosIntegratedControllerParams(itopLeftMotor).make()),
+      rightController(PosIntegratedControllerParams(itopRightMotor).make()) {
   }
 
   virtual ~ChassisControllerIntegrated() {
@@ -93,8 +78,9 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param itarget Distance to travel
    */
   void driveStraight(const int itarget) override {
-    leftController.moveRelative(itarget, 100);
-    rightController.moveRelative(itarget, 100);
+    const int newTarget = itarget + lastTarget;
+    leftController->setTarget(newTarget);
+    rightController->setTarget(newTarget);
   }
 
   /**
@@ -103,13 +89,18 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param idegTarget Degrees to turn for
    */
   void pointTurn(float idegTarget) override {
-    leftController.moveRelative(idegTarget, 100);
-    rightController.moveRelative(-1 * idegTarget, 100);
+    lastTarget = 0;
+    leftController->reset();
+    rightController->reset();
+
+    leftController->setTarget(idegTarget);
+    rightController->setTarget(-1 * idegTarget);
   }
 
   protected:
-  IntegratedController leftController;
-  IntegratedController rightController;
+  std::shared_ptr<AsyncPositionController> leftController;
+  std::shared_ptr<AsyncPositionController> rightController;
+  int lastTarget;
 };
 } // namespace okapi
 

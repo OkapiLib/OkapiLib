@@ -4,8 +4,8 @@
 #ifndef _OKAPI_VELPID_HPP_
 #define _OKAPI_VELPID_HPP_
 
-#include "okapi/control/velMath.hpp"
-#include "okapi/control/iterativeVelocityController.hpp"
+#include "okapi/filter/velMath.hpp"
+#include "okapi/control/iterative/iterativeVelocityController.hpp"
 
 namespace okapi {
 class VelPIDControllerParams : public IterativeVelocityControllerParams {

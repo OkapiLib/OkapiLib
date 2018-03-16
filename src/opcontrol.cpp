@@ -8,11 +8,10 @@
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
 
-#include "okapi/control/motorController.hpp"
-#include "okapi/control/posIntegratedController.hpp"
-#include "okapi/control/posPidController.hpp"
-#include "okapi/control/velMath.hpp"
-#include "okapi/control/velPidController.hpp"
+#include "okapi/control/iterative/motorController.hpp"
+#include "okapi/control/async/posIntegratedController.hpp"
+#include "okapi/control/iterative/posPidController.hpp"
+#include "okapi/control/iterative/velPidController.hpp"
 
 #include "okapi/device/adiButton.hpp"
 #include "okapi/device/adiEncoder.hpp"
@@ -24,6 +23,7 @@
 #include "okapi/filter/demaFilter.hpp"
 #include "okapi/filter/ekfFilter.hpp"
 #include "okapi/filter/emaFilter.hpp"
+#include "okapi/filter/velMath.hpp"
 
 #include "okapi/odometry/odomMath.hpp"
 #include "okapi/odometry/odometry.hpp"
