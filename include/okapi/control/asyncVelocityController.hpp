@@ -7,6 +7,8 @@
 #include "okapi/control/asyncController.hpp"
 
 namespace okapi {
+class AsyncVelocityControllerParams : public AsyncControllerParams {};
+
 class AsyncVelocityController : public AsyncController {};
 } // namespace okapi
 

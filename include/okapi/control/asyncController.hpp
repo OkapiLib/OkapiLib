@@ -19,7 +19,7 @@ class AsyncController {
   /**
    * Returns the last calculated output of the controller.
    */
-  virtual double getOutput() const = 0;
+  virtual double getOutput() const;
 
   /**
    * Returns the last error of the controller.

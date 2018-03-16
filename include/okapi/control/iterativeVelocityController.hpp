@@ -7,6 +7,8 @@
 #include "okapi/control/iterativeController.hpp"
 
 namespace okapi {
+class IterativeVelocityControllerParams : public IterativeControllerParams {};
+
 class IterativeVelocityController : public IterativeController {};
 } // namespace okapi
 

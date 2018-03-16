@@ -9,6 +9,7 @@
 #include "okapi/chassis/model/xDriveModel.hpp"
 
 #include "okapi/control/motorController.hpp"
+#include "okapi/control/posIntegratedController.hpp"
 #include "okapi/control/posPidController.hpp"
 #include "okapi/control/velMath.hpp"
 #include "okapi/control/velPidController.hpp"
@@ -100,6 +101,8 @@ void opcontrol() {
       MotorController mc1(1_m, pid1); // Motor controller with one motor and the PID controller
       MotorController mc2(MotorGroup<2>({1_m, 2_m}),
                           pid1); // Motor controller with two motors and the PID controller
+
+      PosIntegratedController posI1(1_m);
 
       PosPIDController pid2(0, 0, 0);
       PosPIDController pid3(0, 0, 0, 0);
