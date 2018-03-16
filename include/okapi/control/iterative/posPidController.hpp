@@ -9,7 +9,8 @@
 namespace okapi {
 class PosPIDControllerParams : public IterativePositionControllerParams {
   public:
-  PosPIDControllerParams(const double ikP, const double ikI, const double ikD, const double ikBias = 0)
+  PosPIDControllerParams(const double ikP, const double ikI, const double ikD,
+                         const double ikBias = 0)
     : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
   }
 

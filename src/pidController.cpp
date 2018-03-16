@@ -1,13 +1,13 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-#include "okapi/control/iterative/posPidController.hpp"
 #include "api.h"
+#include "okapi/control/iterative/posPidController.hpp"
 #include <cmath>
 
 namespace okapi {
 PosPIDController::PosPIDController(const double ikP, const double ikI, const double ikD,
-                             const double ikBias)
+                                   const double ikBias)
   : lastTime(0),
     sampleTime(15),
     error(0),
@@ -145,7 +145,7 @@ double PosPIDController::step(const double inewReading) {
 }
 
 void PosPIDController::setGains(const double ikP, const double ikI, const double ikD,
-                             const double ikBias) {
+                                const double ikBias) {
   const double sampleTimeSec = static_cast<double>(sampleTime) / 1000.0;
   kP = ikP;
   kI = ikI * sampleTimeSec;

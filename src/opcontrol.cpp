@@ -8,8 +8,8 @@
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
 
-#include "okapi/control/iterative/motorController.hpp"
 #include "okapi/control/async/posIntegratedController.hpp"
+#include "okapi/control/iterative/motorController.hpp"
 #include "okapi/control/iterative/posPidController.hpp"
 #include "okapi/control/iterative/velPidController.hpp"
 
@@ -97,7 +97,7 @@ void opcontrol() {
                        0, 0),
         PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
 
-      PosPIDController pid1(0, 0, 0);    // PID controller
+      PosPIDController pid1(0, 0, 0); // PID controller
       MotorController mc1(1_m, pid1); // Motor controller with one motor and the PID controller
       MotorController mc2(MotorGroup<2>({1_m, 2_m}),
                           pid1); // Motor controller with two motors and the PID controller

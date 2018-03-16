@@ -34,8 +34,8 @@ class ChassisControllerPID : public virtual ChassisController {
     : ChassisController(imodelParams), distancePid(idistance), anglePid(iangle) {
   }
 
-  ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel, const PosPIDController &idistance,
-                       const PosPIDController &iangle)
+  ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel,
+                       const PosPIDController &idistance, const PosPIDController &iangle)
     : ChassisController(imodel), distancePid(idistance), anglePid(iangle) {
   }
 
