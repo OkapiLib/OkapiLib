@@ -5,8 +5,8 @@
 #define _OKAPI_ODOMCHASSISCONTROLLER_HPP_
 
 #include "api.h"
-#include "okapi/chassis/chassisController.hpp"
-#include "okapi/chassis/chassisControllerPid.hpp"
+#include "okapi/chassis/controller/chassisController.hpp"
+#include "okapi/chassis/controller/chassisControllerPid.hpp"
 #include "okapi/odometry/odometry.hpp"
 
 namespace okapi {

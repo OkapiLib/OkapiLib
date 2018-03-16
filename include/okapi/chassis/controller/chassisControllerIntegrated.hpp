@@ -4,7 +4,7 @@
 #ifndef _OKAPI_CHASSISCONTROLLERINTEGRATED_HPP_
 #define _OKAPI_CHASSISCONTROLLERINTEGRATED_HPP_
 
-#include "okapi/chassis/chassisController.hpp"
+#include "okapi/chassis/controller/chassisController.hpp"
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
 #include "okapi/control/integratedController.hpp"

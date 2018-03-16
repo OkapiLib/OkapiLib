@@ -1,9 +1,9 @@
 #include "api.h"
 
-#include "okapi/chassis/chassisController.hpp"
-#include "okapi/chassis/chassisControllerIntegrated.hpp"
+#include "okapi/chassis/controller/chassisController.hpp"
+#include "okapi/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/chassis/model/chassisModel.hpp"
-#include "okapi/chassis/odomChassisController.hpp"
+#include "okapi/chassis/controller/odomChassisController.hpp"
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
 

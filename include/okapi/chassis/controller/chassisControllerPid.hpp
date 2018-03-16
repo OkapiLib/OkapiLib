@@ -4,7 +4,7 @@
 #ifndef _OKAPI_CHASSISCONTROLLERPID_HPP_
 #define _OKAPI_CHASSISCONTROLLERPID_HPP_
 
-#include "okapi/chassis/chassisController.hpp"
+#include "okapi/chassis/controller/chassisController.hpp"
 #include "okapi/control/pidController.hpp"
 
 namespace okapi {
