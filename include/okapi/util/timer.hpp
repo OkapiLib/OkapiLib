@@ -74,7 +74,7 @@ class Timer {
    * @return true when the input time period has passed, false after reading true until the
    *   period has passed again
    */
-  bool repeat(uint32_t ms);
+  bool repeat(const uint32_t ms);
 
   private:
   uint32_t firstCalled, lastCalled, mark, hardMark, repeatMark;
