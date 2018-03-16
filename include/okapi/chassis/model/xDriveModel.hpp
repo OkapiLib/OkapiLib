@@ -21,7 +21,7 @@ class XDriveModelParams : public ChassisModelParams {
   virtual ~XDriveModelParams();
 
   /**
-   * Consutructs a new XDriveModel.
+   * Constructs a new XDriveModel.
    *
    * @return const reference to the ChassisModel
    */

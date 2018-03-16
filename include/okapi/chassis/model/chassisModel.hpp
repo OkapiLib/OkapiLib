@@ -17,7 +17,7 @@ class ChassisModelParams {
   virtual ~ChassisModelParams() = default;
 
   /**
-   * Consutructs a new ChassisModel.
+   * Constructs a new ChassisModel.
    *
    * @return const reference to the ChassisModel
    */

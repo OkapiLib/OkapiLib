@@ -20,7 +20,7 @@ class SkidSteerModelParams : public ChassisModelParams {
   virtual ~SkidSteerModelParams();
 
   /**
-   * Consutructs a new SkidSteerModel.
+   * Constructs a new SkidSteerModel.
    *
    * @return const reference to the ChassisModel
    */
