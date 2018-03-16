@@ -10,7 +10,7 @@ MFLAGS=-march=armv7-a -mfpu=neon-fp16 -mfloat-abi=softfp
 CPPFLAGS=-D_POSIX_THREADS -D_UNIX98_THREAD_MUTEX_ATTRIBUTES -Os
 GCCFLAGS=-ffunction-sections -fdata-sections -fdiagnostics-color
 
-WARNFLAGS=-Wall
+WARNFLAGS=-Wall -pedantic -Wextra -Wconversion -Wno-implicit-fallthrough -Wmissing-include-dirs
 
 SPACE :=
 SPACE +=

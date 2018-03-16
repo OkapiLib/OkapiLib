@@ -7,8 +7,8 @@
 #include <cmath>
 
 namespace okapi {
-Odometry::Odometry(const ChassisModelParams &imodelParams, const float iscale,
-                   const float iturnScale)
+Odometry::Odometry(const ChassisModelParams &imodelParams, const double iscale,
+                   const double iturnScale)
   : model(imodelParams.make()), scale(iscale), turnScale(iturnScale), lastTicks{0, 0}, mm(0) {
 }
 
@@ -22,7 +22,7 @@ Odometry::Odometry(const OdometryParams &iparams)
 
 Odometry::~Odometry() = default;
 
-void Odometry::setScales(const float iscale, const float iturnScale) {
+void Odometry::setScales(const double iscale, const double iturnScale) {
   scale = iscale;
   turnScale = iturnScale;
 }
@@ -34,10 +34,10 @@ void Odometry::loop() {
   while (true) {
     newTicks = model->getSensorVals();
     tickDiff = newTicks - lastTicks;
-    mm = (static_cast<float>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
+    mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
     lastTicks = newTicks;
 
-    state.theta += (static_cast<float>(tickDiff[1] - tickDiff[0]) / 2.0) * turnScale;
+    state.theta += (static_cast<double>(tickDiff[1] - tickDiff[0]) / 2.0) * turnScale;
     if (state.theta > 180)
       state.theta -= 360;
     else if (state.theta < -180)

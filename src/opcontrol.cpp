@@ -114,7 +114,7 @@ void opcontrol() {
       okapi::ADIEncoder quad1(0, 0);
       okapi::ADIEncoder quad2(0, 0, true);
 
-      // MotorGroup<2> mg1({1_m, 2_m});
+      MotorGroup<2> mg1({1_m, 2_m});
 
       AverageFilter<1> avgFilt1;
       avgFilt1.filter(0);
