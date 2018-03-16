@@ -16,29 +16,29 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
     : AbstractMotor(imotors[0]), motors(imotors) {
   }
 
-  int32_t move_absolute(const double iposition, const int32_t ivelocity) const override {
-    for (size_t i = 0; i < motorNum; i++) {
-      motors[i].move_absolute(iposition, ivelocity);
-    }
-  }
+  // int32_t move_absolute(const float iposition, const int32_t ivelocity) const override {
+  //   for (size_t i = 0; i < motorNum; i++) {
+  //     motors[i].move_absolute(iposition, ivelocity);
+  //   }
+  // }
 
-  int32_t move_relative(const double iposition, const int32_t ivelocity) const override {
-    for (size_t i = 0; i < motorNum; i++) {
-      motors[i].move_relative(iposition, ivelocity);
-    }
-  }
+  // int32_t move_relative(const float iposition, const int32_t ivelocity) const override {
+  //   for (size_t i = 0; i < motorNum; i++) {
+  //     motors[i].move_relative(iposition, ivelocity);
+  //   }
+  // }
 
-  int32_t move_velocity(const int16_t ivelocity) const override {
-    for (size_t i = 0; i < motorNum; i++) {
-      motors[i].move_velocity(ivelocity);
-    }
-  }
+  // int32_t move_velocity(const int16_t ivelocity) const override {
+  //   for (size_t i = 0; i < motorNum; i++) {
+  //     motors[i].move_velocity(ivelocity);
+  //   }
+  // }
 
-  int32_t move_voltage(const int16_t ivoltage) const override {
-    for (size_t i = 0; i < motorNum; i++) {
-      motors[i].move_voltage(ivoltage);
-    }
-  }
+  // int32_t move_voltage(const int16_t ivoltage) const override {
+  //   for (size_t i = 0; i < motorNum; i++) {
+  //     motors[i].move_voltage(ivoltage);
+  //   }
+  // }
 
   IntegratedEncoder getEncoder() const override {
     return motors[0].getEncoder();

@@ -20,6 +20,7 @@
 
 #include "okapi/filter/averageFilter.hpp"
 #include "okapi/filter/demaFilter.hpp"
+#include "okapi/filter/ekfFilter.hpp"
 #include "okapi/filter/emaFilter.hpp"
 
 #include "okapi/odometry/odomMath.hpp"
@@ -121,6 +122,10 @@ void opcontrol() {
       avgFilt1.getOutput();
 
       DemaFilter demaFilt1(0, 0);
+
+      EKFFilter ekfFilter1();
+      EKFFilter ekfFilter2(0);
+      EKFFilter ekfFilter3(0, 0);
 
       EmaFilter emaFilt1(0);
 
