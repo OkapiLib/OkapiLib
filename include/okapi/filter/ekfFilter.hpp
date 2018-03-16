@@ -8,11 +8,26 @@
 #include "okapi/util/mathUtil.hpp"
 
 namespace okapi {
-class EKFFilter final : public Filter {
+class EKFFilter : public Filter {
   public:
+  /**
+   * One dimensional extended Kalman filter. Q is the covariance of the process noise and R is the
+   * covariance of the observation noise. The default values for Q and R should be a modest balance
+   * between trust in the sensor and FIR filtering.
+   *
+   * Think of R as how noisy your sensor is. Its value can be found mathematically by computing the
+   * standard deviation of your sensor reading vs. "truth" (of course, "truth" is still an estimate;
+   * try to calibrate your robot in a controlled setting where you can minimize the error in what
+   * "truth" is).
+   *
+   * Think of Q as how noisy your model is. It decides how much "smoothing" the filter does and how
+   * far it lags behind the true signal. This parameter is most often used as a "tuning" parameter
+   * to adjust the response of the filter.
+   *
+   * @param iQ process noise covariance
+   * @param iR measurement noise covariance
+   */
   EKFFilter(const double iQ = 0.0001, const double iR = ipow(0.2, 2));
-
-  virtual ~EKFFilter();
 
   /**
    * Filters a reading. Assumes the control input is zero.

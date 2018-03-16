@@ -6,8 +6,8 @@
 #include <cmath>
 
 namespace okapi {
-void OdomChassisControllerPID::driveToPoint(const float ix, const float iy, const bool ibackwards,
-                                            const float ioffset) {
+void OdomChassisControllerPID::driveToPoint(const double ix, const double iy, const bool ibackwards,
+                                            const double ioffset) {
   DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom.getState());
 
   if (ibackwards) {
@@ -24,7 +24,7 @@ void OdomChassisControllerPID::driveToPoint(const float ix, const float iy, cons
   }
 }
 
-void OdomChassisControllerPID::turnToAngle(const float iangle) {
+void OdomChassisControllerPID::turnToAngle(const double iangle) {
   ChassisControllerPID::pointTurn(iangle - odom.getState().theta);
 }
 } // namespace okapi

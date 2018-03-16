@@ -9,15 +9,13 @@ namespace okapi {
 ChassisControllerPID::~ChassisControllerPID() = default;
 
 void ChassisControllerPID::driveStraight(const int itarget) {
-  using namespace std;
-
   const auto encStartVals = model->getSensorVals();
-  float distanceElapsed = 0, angleChange = 0, lastDistance = 0;
+  double distanceElapsed = 0, angleChange = 0, lastDistance = 0;
   uint32_t prevWakeTime = pros::millis();
 
   distancePid.reset();
   anglePid.reset();
-  distancePid.setTarget(static_cast<float>(itarget));
+  distancePid.setTarget(static_cast<double>(itarget));
   anglePid.setTarget(0);
 
   bool atTarget = false;
@@ -28,13 +26,13 @@ void ChassisControllerPID::driveStraight(const int itarget) {
 
   const int timeoutPeriod = 250;
 
-  valarray<int> encVals{0, 0};
-  float distOutput, angleOutput;
+  std::valarray<int> encVals{0, 0};
+  double distOutput, angleOutput;
 
   while (!atTarget) {
     encVals = model->getSensorVals() - encStartVals;
-    distanceElapsed = static_cast<float>((encVals[0] + encVals[1])) / 2.0;
-    angleChange = static_cast<float>(encVals[1] - encVals[0]);
+    distanceElapsed = static_cast<double>((encVals[0] + encVals[1])) / 2.0;
+    angleChange = static_cast<double>(encVals[1] - encVals[0]);
 
     distOutput = distancePid.step(distanceElapsed);
     angleOutput = anglePid.step(angleChange);
@@ -58,11 +56,9 @@ void ChassisControllerPID::driveStraight(const int itarget) {
   model->stop();
 }
 
-void ChassisControllerPID::pointTurn(float idegTarget) {
-  using namespace std;
-
+void ChassisControllerPID::pointTurn(double idegTarget) {
   const auto encStartVals = model->getSensorVals();
-  float angleChange = 0, lastAngle = 0;
+  double angleChange = 0, lastAngle = 0;
   uint32_t prevWakeTime = pros::millis();
 
   while (idegTarget > 180)
@@ -71,7 +67,7 @@ void ChassisControllerPID::pointTurn(float idegTarget) {
     idegTarget += 360;
 
   anglePid.reset();
-  anglePid.setTarget(static_cast<float>(idegTarget));
+  anglePid.setTarget(static_cast<double>(idegTarget));
 
   bool atTarget = false;
   const int atTargetAngle = 10;
@@ -81,11 +77,11 @@ void ChassisControllerPID::pointTurn(float idegTarget) {
 
   const int timeoutPeriod = 250;
 
-  valarray<int> encVals{0, 0};
+  std::valarray<int> encVals{0, 0};
 
   while (!atTarget) {
     encVals = model->getSensorVals() - encStartVals;
-    angleChange = static_cast<float>(encVals[1] - encVals[0]);
+    angleChange = static_cast<double>(encVals[1] - encVals[0]);
 
     model->turnClockwise(static_cast<int>(anglePid.step(angleChange) * 127));
 

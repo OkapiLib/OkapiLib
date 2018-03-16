@@ -32,15 +32,15 @@ class OdomChassisController : public virtual ChassisController {
    * @param ix X coordinate
    * @param iy Y coordinate
    */
-  virtual void driveToPoint(const float ix, const float iy, const bool ibackwards = false,
-                            const float ioffset = 0) = 0;
+  virtual void driveToPoint(const double ix, const double iy, const bool ibackwards = false,
+                            const double ioffset = 0) = 0;
 
   /**
    * Turns the robot to face an angle in the odom frame.
    *
    * @param iangle Angle to turn to
    */
-  virtual void turnToAngle(const float iangle) = 0;
+  virtual void turnToAngle(const double iangle) = 0;
 
   /**
    * Passthrough to internal Odometry object.
@@ -52,7 +52,7 @@ class OdomChassisController : public virtual ChassisController {
   }
 
   protected:
-  static constexpr int moveThreshold = 10; // Minimum length movement
+  static constexpr double moveThreshold = 10; // Minimum length movement
   Odometry odom;
 };
 
@@ -72,14 +72,14 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
    * @param ix X coordinate
    * @param iy Y coordinate
    */
-  void driveToPoint(const float ix, const float iy, const bool ibackwards = false,
-                    const float ioffset = 0) override;
+  void driveToPoint(const double ix, const double iy, const bool ibackwards = false,
+                    const double ioffset = 0) override;
 
   /**
    * Turns the robot to face an angle in the odom frame
    * @param iangle Angle to turn to
    */
-  void turnToAngle(const float iangle) override;
+  void turnToAngle(const double iangle) override;
 };
 } // namespace okapi
 
