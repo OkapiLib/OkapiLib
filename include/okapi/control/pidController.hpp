@@ -5,7 +5,7 @@
 #define _OKAPI_PID_HPP_
 
 #include "okapi/control/iterativeController.hpp"
-#include "okapi/control/positionDomainController.hpp"
+#include "okapi/control/iterativePositionController.hpp"
 
 namespace okapi {
 class PIDControllerParams : public IterativeControllerParams {
@@ -17,7 +17,7 @@ class PIDControllerParams : public IterativeControllerParams {
   const double kP, kI, kD, kBias;
 };
 
-class PIDController : public PositionDomainController {
+class PIDController : public IterativePositionController {
   public:
   /**
    * PID controller.

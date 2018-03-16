@@ -6,13 +6,13 @@
 
 #include "api.h"
 #include "okapi/control/iterativeController.hpp"
-#include "okapi/control/velocityDomainController.hpp"
+#include "okapi/control/iterativeVelocityController.hpp"
 #include "okapi/device/abstractMotor.hpp"
 #include <array>
 #include <memory>
 
 namespace okapi {
-class MotorController : public VelocityDomainController {
+class MotorController : public IterativeVelocityController {
   public:
   MotorController(const AbstractMotor &imotor, IterativeController &iptr)
     : motor(imotor), controller(iptr) {
