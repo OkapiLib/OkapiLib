@@ -7,8 +7,8 @@
 
 namespace okapi {
 OdomChassisControllerPID::OdomChassisControllerPID(const OdometryParams &iparams,
-                                                   const PIDControllerParams &idistanceParams,
-                                                   const PIDControllerParams &iangleParams)
+                                                   const PosPIDControllerParams &idistanceParams,
+                                                   const PosPIDControllerParams &iangleParams)
   : ChassisController(iparams.model),
     OdomChassisController(iparams),
     ChassisControllerPID(iparams.model, idistanceParams, iangleParams) {

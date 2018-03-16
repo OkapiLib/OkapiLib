@@ -5,7 +5,7 @@
 #define _OKAPI_CHASSISCONTROLLERPID_HPP_
 
 #include "okapi/chassis/controller/chassisController.hpp"
-#include "okapi/control/pidController.hpp"
+#include "okapi/control/posPidController.hpp"
 
 namespace okapi {
 class ChassisControllerPID : public virtual ChassisController {
@@ -18,24 +18,24 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param iangleParams angle PID controller params (keeps the robot straight)
    */
   ChassisControllerPID(const ChassisModelParams &imodelParams,
-                       const PIDControllerParams &idistanceParams,
-                       const PIDControllerParams &iangleParams)
+                       const PosPIDControllerParams &idistanceParams,
+                       const PosPIDControllerParams &iangleParams)
     : ChassisController(imodelParams), distancePid(idistanceParams), anglePid(iangleParams) {
   }
 
   ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel,
-                       const PIDControllerParams &idistanceParams,
-                       const PIDControllerParams &iangleParams)
+                       const PosPIDControllerParams &idistanceParams,
+                       const PosPIDControllerParams &iangleParams)
     : ChassisController(imodel), distancePid(idistanceParams), anglePid(iangleParams) {
   }
 
-  ChassisControllerPID(const ChassisModelParams &imodelParams, const PIDController &idistance,
-                       const PIDController &iangle)
+  ChassisControllerPID(const ChassisModelParams &imodelParams, const PosPIDController &idistance,
+                       const PosPIDController &iangle)
     : ChassisController(imodelParams), distancePid(idistance), anglePid(iangle) {
   }
 
-  ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel, const PIDController &idistance,
-                       const PIDController &iangle)
+  ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel, const PosPIDController &idistance,
+                       const PosPIDController &iangle)
     : ChassisController(imodel), distancePid(idistance), anglePid(iangle) {
   }
 
@@ -56,7 +56,7 @@ class ChassisControllerPID : public virtual ChassisController {
   void pointTurn(float idegTarget) override;
 
   protected:
-  PIDController distancePid, anglePid;
+  PosPIDController distancePid, anglePid;
 };
 } // namespace okapi
 

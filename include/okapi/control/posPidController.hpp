@@ -8,16 +8,16 @@
 #include "okapi/control/iterativePositionController.hpp"
 
 namespace okapi {
-class PIDControllerParams : public IterativeControllerParams {
+class PosPIDControllerParams : public IterativeControllerParams {
   public:
-  PIDControllerParams(const double ikP, const double ikI, const double ikD, const double ikBias = 0)
+  PosPIDControllerParams(const double ikP, const double ikI, const double ikD, const double ikBias = 0)
     : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
   }
 
   const double kP, kI, kD, kBias;
 };
 
-class PIDController : public IterativePositionController {
+class PosPIDController : public IterativePositionController {
   public:
   /**
    * PID controller.
@@ -27,16 +27,16 @@ class PIDController : public IterativePositionController {
    * @param ikD derivative gain
    * @param ikBias controller bias (constant offset added to the output)
    */
-  PIDController(const double ikP, const double ikI, const double ikD, const double ikBias = 0);
+  PosPIDController(const double ikP, const double ikI, const double ikD, const double ikBias = 0);
 
   /**
    * PID controller.
    *
-   * @param params PIDControllerParams
+   * @param params PosPIDControllerParams
    */
-  PIDController(const PIDControllerParams &params);
+  PosPIDController(const PosPIDControllerParams &params);
 
-  virtual ~PIDController();
+  virtual ~PosPIDController();
 
   /**
    * Do one iteration of the controller. Returns the reading in the range [-127, 127] unless the

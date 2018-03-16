@@ -25,8 +25,8 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
    * @param iangleParams angle PID controller params (keeps the robot straight)
    */
   OdomChassisControllerPID(const OdometryParams &iparams,
-                           const PIDControllerParams &idistanceParams,
-                           const PIDControllerParams &iangleParams);
+                           const PosPIDControllerParams &idistanceParams,
+                           const PosPIDControllerParams &iangleParams);
 
   virtual ~OdomChassisControllerPID();
 

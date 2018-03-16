@@ -9,7 +9,7 @@
 #include "okapi/chassis/model/xDriveModel.hpp"
 
 #include "okapi/control/motorController.hpp"
-#include "okapi/control/pidController.hpp"
+#include "okapi/control/posPidController.hpp"
 #include "okapi/control/velMath.hpp"
 #include "okapi/control/velPidController.hpp"
 
@@ -74,19 +74,19 @@ void opcontrol() {
       ChassisControllerPID controller1(
         SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
                              ADIEncoder(1, 2, true), ADIEncoder(3, 4)),
-        PIDControllerParams(0, 0, 0), PIDControllerParams(0, 0, 0));
+        PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
 
       ChassisControllerPID controller2(
         XDriveModelParams(MotorGroup<1>({1_m}), // {2_m, 3_m, 4_m, 5_m}
                           MotorGroup<1>({2_m}), MotorGroup<1>({3_m}), MotorGroup<1>({4_m}),
                           ADIEncoder(1, 2, true), ADIEncoder(3, 4)),
-        PIDControllerParams(0, 0, 0), PIDControllerParams(0, 0, 0));
+        PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
 
       OdomChassisControllerPID controller3(
         OdometryParams(SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
                                             ADIEncoder(1, 2, true), ADIEncoder(3, 4)),
                        0, 0),
-        PIDControllerParams(0, 0, 0), PIDControllerParams(0, 0, 0));
+        PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
 
       OdomChassisControllerPID controller4(
         OdometryParams(XDriveModelParams(MotorGroup<1>({1_m}), // {2_m, 3_m, 4_m, 5_m}
@@ -94,17 +94,17 @@ void opcontrol() {
                                          MotorGroup<1>({4_m}), ADIEncoder(1, 2, true),
                                          ADIEncoder(3, 4)),
                        0, 0),
-        PIDControllerParams(0, 0, 0), PIDControllerParams(0, 0, 0));
+        PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
 
-      PIDController pid1(0, 0, 0);    // PID controller
+      PosPIDController pid1(0, 0, 0);    // PID controller
       MotorController mc1(1_m, pid1); // Motor controller with one motor and the PID controller
       MotorController mc2(MotorGroup<2>({1_m, 2_m}),
                           pid1); // Motor controller with two motors and the PID controller
 
-      PIDController pid2(0, 0, 0);
-      PIDController pid3(0, 0, 0, 0);
-      PIDController pid4(PIDControllerParams(0, 0, 0));
-      PIDController pid5(PIDControllerParams(0, 0, 0, 0));
+      PosPIDController pid2(0, 0, 0);
+      PosPIDController pid3(0, 0, 0, 0);
+      PosPIDController pid4(PosPIDControllerParams(0, 0, 0));
+      PosPIDController pid5(PosPIDControllerParams(0, 0, 0, 0));
 
       VelMath velMath1(0);
       VelMath velMath2(0, 0);
