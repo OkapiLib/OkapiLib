@@ -4,14 +4,14 @@
 #ifndef _OKAPI_ASYNCPOSITIONCONTROLLER_HPP_
 #define _OKAPI_ASYNCPOSITIONCONTROLLER_HPP_
 
-#include <memory>
 #include "okapi/control/async/asyncController.hpp"
+#include <memory>
 
 namespace okapi {
 class AsyncPositionController;
 
 class AsyncPositionControllerParams : public AsyncControllerParams {
-public:
+  public:
   /**
    * Constructs a new AsyncPositionController.
    *

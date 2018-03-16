@@ -9,10 +9,13 @@
 #include "okapi/device/integratedEncoder.hpp"
 
 namespace okapi {
+class VelIntegratedController;
+
 class VelIntegratedControllerParams : public AsyncVelocityControllerParams {
   public:
-  VelIntegratedControllerParams(const AbstractMotor &imotor) : motor(imotor) {
-  }
+  VelIntegratedControllerParams(const AbstractMotor &imotor);
+
+  std::shared_ptr<AsyncVelocityController> make() const override;
 
   const AbstractMotor &motor;
 };
@@ -22,37 +25,27 @@ class VelIntegratedControllerParams : public AsyncVelocityControllerParams {
  */
 class VelIntegratedController : public AsyncVelocityController {
   public:
-  VelIntegratedController(const AbstractMotor &imotor) : motor(imotor), lastTarget(0) {
-  }
+  VelIntegratedController(const AbstractMotor &imotor);
 
-  VelIntegratedController(const VelIntegratedControllerParams &iparams)
-    : motor(iparams.motor), lastTarget(0) {
-  }
+  VelIntegratedController(const VelIntegratedControllerParams &iparams);
 
-  virtual ~VelIntegratedController() = default;
+  virtual ~VelIntegratedController();
 
   /**
    * Sets the target for the controller.
    */
-  virtual void setTarget(const double itarget) {
-    motor.move_velocity(itarget);
-    lastTarget = itarget;
-  }
+  virtual void setTarget(const double itarget) override;
 
   /**
    * Returns the last error of the controller.
    */
-  virtual double getError() const {
-    return lastTarget - motor.get_actual_velocity();
-  }
+  virtual double getError() const override;
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
-  virtual void reset() {
-    // Don't have to do anything
-  }
+  virtual void reset() override;
 
   private:
   const AbstractMotor &motor;
