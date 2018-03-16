@@ -10,12 +10,12 @@ ChassisControllerPID::~ChassisControllerPID() = default;
 
 void ChassisControllerPID::driveStraight(const int itarget) {
   const auto encStartVals = model->getSensorVals();
-  double distanceElapsed = 0, angleChange = 0, lastDistance = 0;
+  float distanceElapsed = 0, angleChange = 0, lastDistance = 0;
   uint32_t prevWakeTime = pros::millis();
 
   distancePid.reset();
   anglePid.reset();
-  distancePid.setTarget(static_cast<double>(itarget));
+  distancePid.setTarget(static_cast<float>(itarget));
   anglePid.setTarget(0);
 
   bool atTarget = false;
@@ -27,12 +27,12 @@ void ChassisControllerPID::driveStraight(const int itarget) {
   const int timeoutPeriod = 250;
 
   std::valarray<int> encVals{0, 0};
-  double distOutput, angleOutput;
+  float distOutput, angleOutput;
 
   while (!atTarget) {
     encVals = model->getSensorVals() - encStartVals;
-    distanceElapsed = static_cast<double>((encVals[0] + encVals[1])) / 2.0;
-    angleChange = static_cast<double>(encVals[1] - encVals[0]);
+    distanceElapsed = static_cast<float>((encVals[0] + encVals[1])) / 2.0;
+    angleChange = static_cast<float>(encVals[1] - encVals[0]);
 
     distOutput = distancePid.step(distanceElapsed);
     angleOutput = anglePid.step(angleChange);
@@ -56,9 +56,9 @@ void ChassisControllerPID::driveStraight(const int itarget) {
   model->stop();
 }
 
-void ChassisControllerPID::pointTurn(double idegTarget) {
+void ChassisControllerPID::pointTurn(float idegTarget) {
   const auto encStartVals = model->getSensorVals();
-  double angleChange = 0, lastAngle = 0;
+  float angleChange = 0, lastAngle = 0;
   uint32_t prevWakeTime = pros::millis();
 
   while (idegTarget > 180)
@@ -67,7 +67,7 @@ void ChassisControllerPID::pointTurn(double idegTarget) {
     idegTarget += 360;
 
   anglePid.reset();
-  anglePid.setTarget(static_cast<double>(idegTarget));
+  anglePid.setTarget(static_cast<float>(idegTarget));
 
   bool atTarget = false;
   const int atTargetAngle = 10;
@@ -81,7 +81,7 @@ void ChassisControllerPID::pointTurn(double idegTarget) {
 
   while (!atTarget) {
     encVals = model->getSensorVals() - encStartVals;
-    angleChange = static_cast<double>(encVals[1] - encVals[0]);
+    angleChange = static_cast<float>(encVals[1] - encVals[0]);
 
     model->turnClockwise(static_cast<int>(anglePid.step(angleChange) * 127));
 
