@@ -12,7 +12,7 @@ class ChassisControllerPID : public virtual ChassisController {
   public:
   /**
    * ChassisController using PID control.
-   * 
+   *
    * @param imodelParams ChassisModelParams
    * @param idistanceParams distance PID controller params
    * @param iangleParams angle PID controller params (keeps the robot straight)

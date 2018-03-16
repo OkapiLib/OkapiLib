@@ -50,7 +50,8 @@ class SkidSteerModel : public ChassisModel {
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
    * motors are powered +127, the robot should move forward in a straight line.
    *
-   * This constructor infers the two sensors from the left and right motors (using the integrated encoders).
+   * This constructor infers the two sensors from the left and right motors (using the integrated
+   * encoders).
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor

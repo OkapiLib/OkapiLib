@@ -17,6 +17,6 @@ OdomState OdomChassisController::getState() const {
 }
 
 void OdomChassisController::setMoveThreshold(const float imoveThreshold) {
-    moveThreshold = imoveThreshold;
+  moveThreshold = imoveThreshold;
 }
 } // namespace okapi

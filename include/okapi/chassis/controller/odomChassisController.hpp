@@ -53,7 +53,7 @@ class OdomChassisController : public virtual ChassisController {
   /**
    * Set a new move threshold. Any requested movements smaller than the move threshold will not be
    * performed.
-   * 
+   *
    * @param imoveThreshold new move threshold
    */
   void setMoveThreshold(const float imoveThreshold);

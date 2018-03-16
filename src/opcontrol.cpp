@@ -2,9 +2,9 @@
 
 #include "okapi/chassis/controller/chassisController.hpp"
 #include "okapi/chassis/controller/chassisControllerIntegrated.hpp"
-#include "okapi/chassis/model/chassisModel.hpp"
 #include "okapi/chassis/controller/odomChassisController.hpp"
 #include "okapi/chassis/controller/odomChassisControllerPid.hpp"
+#include "okapi/chassis/model/chassisModel.hpp"
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
 

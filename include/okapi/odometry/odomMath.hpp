@@ -63,7 +63,7 @@ class OdomMath {
    * @return scales in the format {straight scale, turn scale}
    */
   static std::tuple<float, float> guessScales(const float chassisDiam, const float wheelDiam,
-                                                const float ticksPerRev = 360.0);
+                                              const float ticksPerRev = 360.0);
 
   private:
   OdomMath();

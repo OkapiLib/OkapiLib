@@ -53,9 +53,9 @@ DistanceAndAngle OdomMath::computeDistanceAndAngleToPoint(const float ix, const 
 }
 
 std::tuple<float, float> OdomMath::guessScales(const float chassisDiam, const float wheelDiam,
-                                                 const float ticksPerRev) {
+                                               const float ticksPerRev) {
   const float scale = ((wheelDiam * pi * inchToMM) / ticksPerRev) *
-                       0.9945483364; // The scale is usually off by this amount
+                      0.9945483364; // The scale is usually off by this amount
   const float turnScale = (1.0 / (chassisDiam * inchToMM)) * radianToDegree * 2;
   return std::make_tuple(scale, turnScale);
 }
