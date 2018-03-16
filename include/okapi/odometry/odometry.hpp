@@ -4,7 +4,7 @@
 #ifndef _OKAPI_ODOMETRY_HPP_
 #define _OKAPI_ODOMETRY_HPP_
 
-#include "okapi/chassis/chassisModel.hpp"
+#include "okapi/chassis/model/chassisModel.hpp"
 #include <memory>
 #include <valarray>
 

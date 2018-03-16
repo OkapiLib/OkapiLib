@@ -4,7 +4,7 @@
 #ifndef _OKAPI_CHASSISCONTROLLER_HPP_
 #define _OKAPI_CHASSISCONTROLLER_HPP_
 
-#include "okapi/chassis/chassisModel.hpp"
+#include "okapi/chassis/model/chassisModel.hpp"
 #include <valarray>
 
 namespace okapi {

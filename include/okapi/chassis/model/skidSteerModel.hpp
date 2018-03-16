@@ -4,7 +4,7 @@
 #ifndef _OKAPI_SKIDSTEERMODEL_HPP_
 #define _OKAPI_SKIDSTEERMODEL_HPP_
 
-#include "okapi/chassis/chassisModel.hpp"
+#include "okapi/chassis/model/chassisModel.hpp"
 #include "okapi/device/abstractMotor.hpp"
 #include "okapi/device/rotarySensor.hpp"
 
