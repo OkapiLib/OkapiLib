@@ -82,7 +82,7 @@ class Odometry {
    *
    * @return current state
    */
-  OdomState getState();
+  OdomState getState() const;
 
   private:
   std::shared_ptr<const ChassisModel> model;

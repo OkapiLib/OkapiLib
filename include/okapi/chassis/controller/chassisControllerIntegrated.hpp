@@ -12,6 +12,13 @@
 namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {
   public:
+  /**
+   * ChassisController using the V5 motor's integrated control.
+   * 
+   * @param imodelParams ChassisModelParams
+   * @param ileftControllerParams left side controller params
+   * @param irightControllerParams right side controller params
+   */
   ChassisControllerIntegrated(const ChassisModelParams &imodelParams,
                               const IntegratedControllerParams &ileftControllerParams,
                               const IntegratedControllerParams &irightControllerParams)

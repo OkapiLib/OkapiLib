@@ -54,7 +54,7 @@ void Odometry::trampoline(void *context) {
   static_cast<Odometry *>(context)->loop();
 }
 
-OdomState Odometry::getState() {
+OdomState Odometry::getState() const {
   return state;
 }
 } // namespace okapi
