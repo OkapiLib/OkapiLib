@@ -113,7 +113,7 @@ class PosPIDController : public IterativePositionController {
    * Change whether the controll is off or on.
    */
   void flipDisable() override;
-  
+
   /**
    * Get the last set sample time.
    *

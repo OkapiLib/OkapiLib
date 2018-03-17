@@ -19,7 +19,11 @@ AsyncPosPIDController::AsyncPosPIDController(const AbstractMotor &imotor,
                                              const RotarySensor &isensor, const double ikP,
                                              const double ikI, const double ikD,
                                              const double ikBias)
-  : motor(imotor), sensor(isensor), controller(ikP, ikI, ikD, ikBias), prevTime(0), task(trampoline, this) {
+  : motor(imotor),
+    sensor(isensor),
+    controller(ikP, ikI, ikD, ikBias),
+    prevTime(0),
+    task(trampoline, this) {
 }
 
 AsyncPosPIDController::~AsyncPosPIDController() = default;
