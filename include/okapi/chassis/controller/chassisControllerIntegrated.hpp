@@ -24,7 +24,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
                               const PosIntegratedControllerParams &irightControllerParams)
     : ChassisController(imodelParams),
       leftController(ileftControllerParams),
-      rightController(irightControllerParams) {
+      rightController(irightControllerParams),
+      lastTarget(0) {
   }
 
   ChassisControllerIntegrated(std::shared_ptr<const ChassisModel> imodel,
@@ -32,7 +33,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
                               const PosIntegratedControllerParams &irightControllerParams)
     : ChassisController(imodel),
       leftController(ileftControllerParams),
-      rightController(irightControllerParams) {
+      rightController(irightControllerParams),
+      lastTarget(0) {
   }
 
   /**
@@ -46,7 +48,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
                               const AbstractMotor &irightSideMotor)
     : ChassisController(SkidSteerModelParams(ileftSideMotor, irightSideMotor)),
       leftController(ileftSideMotor),
-      rightController(irightSideMotor) {
+      rightController(irightSideMotor),
+      lastTarget(0) {
   }
 
   /**
@@ -65,7 +68,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
     : ChassisController(
         XDriveModelParams(itopLeftMotor, itopRightMotor, ibottomRightMotor, ibottomLeftMotor)),
       leftController(itopLeftMotor),
-      rightController(itopRightMotor) {
+      rightController(itopRightMotor),
+      lastTarget(0) {
   }
 
   virtual ~ChassisControllerIntegrated() {
