@@ -168,4 +168,8 @@ void PosPIDController::setIntegratorReset(bool iresetOnZero) {
 void PosPIDController::flipDisable() {
   isOn = !isOn;
 }
+
+uint32_t PosPIDController::getSampleTime() const {
+  return sampleTime;
+}
 } // namespace okapi

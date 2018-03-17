@@ -13,45 +13,65 @@
 namespace okapi {
 class MotorController : public IterativeVelocityController {
   public:
-  MotorController(const AbstractMotor &imotor, IterativeController &iptr)
-    : motor(imotor), controller(iptr) {
-  }
+  MotorController(const AbstractMotor &imotor, IterativeController &iptr);
 
-  double step(const double ireading) {
-    controller.step(ireading);
-    motor.move_velocity(static_cast<int>(controller.getOutput()));
-    return controller.getOutput();
-  }
+  /**
+   * Do one iteration of the controller.
+   *
+   * @param inewReading new measurement
+   * @return controller output
+   */
+  virtual double step(const double ireading);
 
-  void setTarget(const double itarget) {
-    controller.setTarget(itarget);
-  }
+  /**
+   * Sets the target for the controller.
+   */
+  void setTarget(const double itarget);
 
-  double getOutput() const {
-    return controller.getOutput();
-  }
+  /**
+   * Returns the last calculated output of the controller.
+   */
+  double getOutput() const;
 
-  double getError() const {
-    return controller.getError();
-  }
+  /**
+   * Returns the last error of the controller.
+   */
+  double getError() const;
 
-  void setSampleTime(const int isampleTime) {
-    controller.setSampleTime(isampleTime);
-  }
+  /**
+   * Set time between loops in ms.
+   *
+   * @param isampleTime time between loops in ms
+   */
+  void setSampleTime(const int isampleTime);
 
-  void setOutputLimits(double imax, double imin) {
-    controller.setOutputLimits(imax, imin);
-  }
+  /**
+   * Set controller output bounds.
+   *
+   * @param imax max output
+   * @param imin min output
+   */
+  void setOutputLimits(double imax, double imin);
 
-  void reset() {
-    controller.reset();
-  }
+  /**
+   * Resets the controller so it can start from 0 again properly. Keeps configuration from
+   * before.
+   */
+  void reset();
 
-  void flipDisable() {
-    controller.flipDisable();
-  }
+  /**
+   * Change whether the controll is off or on.
+   */
+  void flipDisable();
 
-  private:
+  /**
+   * Get the last set sample time.
+   *
+   * @return sample time
+   */
+  virtual uint32_t getSampleTime() const;
+
+  protected:
   const AbstractMotor &motor;
   IterativeController &controller;
 };

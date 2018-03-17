@@ -145,4 +145,8 @@ void VelPIDController::setTicksPerRev(const double tpr) {
 double VelPIDController::getVel() const {
   return velMath.getOutput();
 }
+
+uint32_t VelPIDController::getSampleTime() const {
+  return sampleTime;
+}
 } // namespace okapi

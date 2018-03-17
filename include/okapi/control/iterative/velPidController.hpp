@@ -135,6 +135,13 @@ class VelPIDController : public IterativeVelocityController {
    */
   double getVel() const;
 
+  /**
+   * Get the last set sample time.
+   *
+   * @return sample time
+   */
+  uint32_t getSampleTime() const override;
+
   private:
   double kP, kD;
   uint32_t lastTime, sampleTime;

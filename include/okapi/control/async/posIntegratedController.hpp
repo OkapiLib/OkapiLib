@@ -38,15 +38,15 @@ class PosIntegratedController : public AsyncPositionController {
   /**
    * Returns the last error of the controller.
    */
-  virtual double getError() const override;
+  double getError() const override;
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
-  virtual void reset() override;
+  void reset() override;
 
-  private:
+  protected:
   const AbstractMotor &motor;
   double lastTarget, offset;
 };

@@ -12,20 +12,23 @@ AsyncPosPIDControllerParams::AsyncPosPIDControllerParams(const AbstractMotor &im
 AsyncPosPIDController::AsyncPosPIDController(const AbstractMotor &imotor,
                                              const RotarySensor &isensor,
                                              const PosPIDControllerParams &iparams)
-  : motor(imotor), sensor(isensor), controller(iparams), task(trampoline, this) {
+  : motor(imotor), sensor(isensor), controller(iparams), prevTime(0), task(trampoline, this) {
 }
 
 AsyncPosPIDController::AsyncPosPIDController(const AbstractMotor &imotor,
                                              const RotarySensor &isensor, const double ikP,
                                              const double ikI, const double ikD,
                                              const double ikBias)
-  : motor(imotor), sensor(isensor), controller(ikP, ikI, ikD, ikBias), task(trampoline, this) {
+  : motor(imotor), sensor(isensor), controller(ikP, ikI, ikD, ikBias), prevTime(0), task(trampoline, this) {
 }
 
 AsyncPosPIDController::~AsyncPosPIDController() = default;
 
 void AsyncPosPIDController::step() {
-  controller.step(sensor.get());
+  while (true) {
+    motor.move_velocity(controller.step(sensor.get()));
+    task.delay_until(&prevTime, controller.getSampleTime());
+  }
 }
 
 void AsyncPosPIDController::trampoline(void *context) {

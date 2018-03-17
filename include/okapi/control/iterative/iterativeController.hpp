@@ -66,6 +66,15 @@ class IterativeController {
    */
   virtual void flipDisable() {
   }
+
+  /**
+   * Get the last set sample time. Default is 15.
+   *
+   * @return sample time
+   */
+  virtual uint32_t getSampleTime() const {
+    return 15;
+  }
 };
 } // namespace okapi
 

@@ -38,19 +38,19 @@ class AsyncPosPIDController : public AsyncPositionController {
   /**
    * Returns the last calculated output of the controller. Default is 0.
    */
-  virtual double getOutput() const override;
+  double getOutput() const override;
 
   /**
    * Returns the last error of the controller.
    */
-  virtual double getError() const override;
+  double getError() const override;
 
   /**
    * Set time between loops in ms. Default does nothing.
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime) override;
+  void setSampleTime(const uint32_t isampleTime) override;
 
   /**
    * Set controller output bounds. Default does nothing.
@@ -58,23 +58,24 @@ class AsyncPosPIDController : public AsyncPositionController {
    * @param imax max output
    * @param imin min output
    */
-  virtual void setOutputLimits(double imax, double imin) override;
+  void setOutputLimits(double imax, double imin) override;
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
-  virtual void reset() override;
+  void reset() override;
 
   /**
    * Change whether the controll is off or on. Default does nothing.
    */
-  virtual void flipDisable() override;
+  void flipDisable() override;
 
   protected:
   const AbstractMotor &motor;
   const RotarySensor &sensor;
   PosPIDController controller;
+  uint32_t prevTime;
   pros::Task task;
 
   static void trampoline(void *context);
