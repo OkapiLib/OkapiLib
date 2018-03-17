@@ -1,15 +1,18 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-#ifndef _OKAPI_CONTORLOBJECT_HPP_
-#define _OKAPI_CONTORLOBJECT_HPP_
+#ifndef _OKAPI_ITERATIVECONTROLLER_HPP_
+#define _OKAPI_ITERATIVECONTROLLER_HPP_
 
 #include "api.h"
 
 namespace okapi {
-class ControlObjectParams {};
+class IterativeControllerParams {};
 
-class ControlObject {
+/**
+ * Closed-loop controller that steps iteratively using the step method below.
+ */
+class IterativeController {
   public:
   /**
    * Do one iteration of the controller.
@@ -62,6 +65,15 @@ class ControlObject {
    * Change whether the controll is off or on.
    */
   virtual void flipDisable() {
+  }
+
+  /**
+   * Get the last set sample time. Default is 15.
+   *
+   * @return sample time
+   */
+  virtual uint32_t getSampleTime() const {
+    return 15;
   }
 };
 } // namespace okapi

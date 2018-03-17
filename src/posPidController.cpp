@@ -1,13 +1,13 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-#include "okapi/control/pidController.hpp"
+#include "okapi/control/iterative/posPidController.hpp"
 #include "api.h"
 #include <cmath>
 
 namespace okapi {
-PIDController::PIDController(const double ikP, const double ikI, const double ikD,
-                             const double ikBias)
+PosPIDController::PosPIDController(const double ikP, const double ikI, const double ikD,
+                                   const double ikBias)
   : lastTime(0),
     sampleTime(15),
     error(0),
@@ -25,7 +25,7 @@ PIDController::PIDController(const double ikP, const double ikI, const double ik
   setGains(ikP, ikI, ikD, ikBias);
 }
 
-PIDController::PIDController(const PIDControllerParams &params)
+PosPIDController::PosPIDController(const PosPIDControllerParams &params)
   : lastTime(0),
     sampleTime(15),
     error(0),
@@ -43,21 +43,21 @@ PIDController::PIDController(const PIDControllerParams &params)
   setGains(params.kP, params.kI, params.kD, params.kBias);
 }
 
-PIDController::~PIDController() = default;
+PosPIDController::~PosPIDController() = default;
 
-void PIDController::setTarget(const double itarget) {
+void PosPIDController::setTarget(const double itarget) {
   target = itarget;
 }
 
-double PIDController::getOutput() const {
+double PosPIDController::getOutput() const {
   return output;
 }
 
-double PIDController::getError() const {
+double PosPIDController::getError() const {
   return error;
 }
 
-void PIDController::setSampleTime(const uint32_t isampleTime) {
+void PosPIDController::setSampleTime(const uint32_t isampleTime) {
   if (isampleTime > 0) {
     const double ratio = static_cast<double>(isampleTime) / static_cast<double>(sampleTime);
     kI *= ratio;
@@ -66,7 +66,7 @@ void PIDController::setSampleTime(const uint32_t isampleTime) {
   }
 }
 
-void PIDController::setOutputLimits(double imax, double imin) {
+void PosPIDController::setOutputLimits(double imax, double imin) {
   // Always use larger value as max
   if (imin > imax) {
     const double temp = imax;
@@ -87,7 +87,7 @@ void PIDController::setOutputLimits(double imax, double imin) {
   setIntegralLimits(imax, imin);
 }
 
-void PIDController::setIntegralLimits(double imax, double imin) {
+void PosPIDController::setIntegralLimits(double imax, double imin) {
   // Always use larger value as max
   if (imin > imax) {
     const double temp = imax;
@@ -105,7 +105,7 @@ void PIDController::setIntegralLimits(double imax, double imin) {
     integral = integralMin;
 }
 
-double PIDController::step(const double inewReading) {
+double PosPIDController::step(const double inewReading) {
   if (isOn) {
     const uint32_t now = pros::millis();
 
@@ -144,8 +144,8 @@ double PIDController::step(const double inewReading) {
   return output;
 }
 
-void PIDController::setGains(const double ikP, const double ikI, const double ikD,
-                             const double ikBias) {
+void PosPIDController::setGains(const double ikP, const double ikI, const double ikD,
+                                const double ikBias) {
   const double sampleTimeSec = static_cast<double>(sampleTime) / 1000.0;
   kP = ikP;
   kI = ikI * sampleTimeSec;
@@ -153,7 +153,7 @@ void PIDController::setGains(const double ikP, const double ikI, const double ik
   kBias = ikBias;
 }
 
-void PIDController::reset() {
+void PosPIDController::reset() {
   error = 0;
   lastError = 0;
   lastReading = 0;
@@ -161,11 +161,15 @@ void PIDController::reset() {
   output = 0;
 }
 
-void PIDController::setIntegratorReset(bool iresetOnZero) {
+void PosPIDController::setIntegratorReset(bool iresetOnZero) {
   shouldResetOnCross = iresetOnZero;
 }
 
-void PIDController::flipDisable() {
+void PosPIDController::flipDisable() {
   isOn = !isOn;
+}
+
+uint32_t PosPIDController::getSampleTime() const {
+  return sampleTime;
 }
 } // namespace okapi

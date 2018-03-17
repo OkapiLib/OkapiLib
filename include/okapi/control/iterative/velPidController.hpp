@@ -4,11 +4,11 @@
 #ifndef _OKAPI_VELPID_HPP_
 #define _OKAPI_VELPID_HPP_
 
-#include "okapi/control/controlObject.hpp"
-#include "okapi/control/velMath.hpp"
+#include "okapi/control/iterative/iterativeVelocityController.hpp"
+#include "okapi/filter/velMath.hpp"
 
 namespace okapi {
-class VelPIDControllerParams : public ControlObjectParams {
+class VelPIDControllerParams : public IterativeVelocityControllerParams {
   public:
   VelPIDControllerParams(const double ikP, const double ikD) : kP(ikP), kD(ikD), params(360) {
   }
@@ -21,7 +21,7 @@ class VelPIDControllerParams : public ControlObjectParams {
   const VelMathParams &params;
 };
 
-class VelPIDController : public ControlObject {
+class VelPIDController : public IterativeVelocityController {
   public:
   /**
    * Velocity PID controller.
@@ -134,6 +134,13 @@ class VelPIDController : public ControlObject {
    * Get the current velocity.
    */
   double getVel() const;
+
+  /**
+   * Get the last set sample time.
+   *
+   * @return sample time
+   */
+  uint32_t getSampleTime() const override;
 
   private:
   double kP, kD;

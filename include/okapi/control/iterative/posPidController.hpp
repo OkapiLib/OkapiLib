@@ -4,19 +4,20 @@
 #ifndef _OKAPI_PID_HPP_
 #define _OKAPI_PID_HPP_
 
-#include "okapi/control/controlObject.hpp"
+#include "okapi/control/iterative/iterativePositionController.hpp"
 
 namespace okapi {
-class PIDControllerParams : public ControlObjectParams {
+class PosPIDControllerParams : public IterativePositionControllerParams {
   public:
-  PIDControllerParams(const double ikP, const double ikI, const double ikD, const double ikBias = 0)
+  PosPIDControllerParams(const double ikP, const double ikI, const double ikD,
+                         const double ikBias = 0)
     : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
   }
 
   const double kP, kI, kD, kBias;
 };
 
-class PIDController : public ControlObject {
+class PosPIDController : public IterativePositionController {
   public:
   /**
    * PID controller.
@@ -26,19 +27,20 @@ class PIDController : public ControlObject {
    * @param ikD derivative gain
    * @param ikBias controller bias (constant offset added to the output)
    */
-  PIDController(const double ikP, const double ikI, const double ikD, const double ikBias = 0);
+  PosPIDController(const double ikP, const double ikI, const double ikD, const double ikBias = 0);
 
   /**
    * PID controller.
    *
-   * @param params PIDControllerParams
+   * @param params PosPIDControllerParams
    */
-  PIDController(const PIDControllerParams &params);
+  PosPIDController(const PosPIDControllerParams &params);
 
-  virtual ~PIDController();
+  virtual ~PosPIDController();
 
   /**
-   * Do one iteration of the controller.
+   * Do one iteration of the controller. Returns the reading in the range [-127, 127] unless the
+   * bounds have been changed with setOutputLimits().
    *
    * @param inewReading new measurement
    * @return controller output
@@ -51,7 +53,8 @@ class PIDController : public ControlObject {
   void setTarget(const double itarget) override;
 
   /**
-   * Returns the last calculated output of the controller.
+   * Returns the last calculated output of the controller. Output is in the range [-127, 127]
+   * unless the bounds have been changed with setOutputLimits().
    */
   double getOutput() const override;
 
@@ -78,7 +81,7 @@ class PIDController : public ControlObject {
   void setSampleTime(const uint32_t isampleTime) override;
 
   /**
-   * Set controller output bounds.
+   * Set controller output bounds. Default bounds are [-127, 127].
    *
    * @param imax max output
    * @param imin min output
@@ -86,7 +89,7 @@ class PIDController : public ControlObject {
   void setOutputLimits(double imax, double imin) override;
 
   /**
-   * Set integrator bounds.
+   * Set integrator bounds. Default bounds are [-127, 127];
    *
    * @param imax max integrator value
    * @param imin min integrator value
@@ -110,6 +113,13 @@ class PIDController : public ControlObject {
    * Change whether the controll is off or on.
    */
   void flipDisable() override;
+
+  /**
+   * Get the last set sample time.
+   *
+   * @return sample time
+   */
+  uint32_t getSampleTime() const override;
 
   protected:
   double kP, kI, kD, kBias;

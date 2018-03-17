@@ -7,6 +7,22 @@
 #include <cmath>
 
 namespace okapi {
+OdomState::OdomState(const float ix, const float iy, const float itheta)
+  : x(ix), y(iy), theta(itheta) {
+}
+
+OdomState::OdomState() : x(0), y(0), theta(0) {
+}
+
+OdomState::~OdomState() = default;
+
+OdometryParams::OdometryParams(const ChassisModelParams &iparams, const float iscale,
+                               const float iturnScale)
+  : model(iparams.make()), scale(iscale), turnScale(iturnScale) {
+}
+
+OdometryParams::~OdometryParams() = default;
+
 Odometry::Odometry(const ChassisModelParams &imodelParams, const float iscale,
                    const float iturnScale)
   : model(imodelParams.make()), scale(iscale), turnScale(iturnScale), lastTicks{0, 0}, mm(0) {
@@ -32,7 +48,7 @@ void Odometry::loop() {
   std::valarray<int> newTicks{0, 0}, tickDiff{0, 0};
 
   while (true) {
-    newTicks = model.getSensorVals();
+    newTicks = model->getSensorVals();
     tickDiff = newTicks - lastTicks;
     mm = (static_cast<float>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
     lastTicks = newTicks;
@@ -54,7 +70,14 @@ void Odometry::trampoline(void *context) {
   static_cast<Odometry *>(context)->loop();
 }
 
-OdomState Odometry::getState() {
+OdomState Odometry::getState() const {
   return state;
 }
+
+void Odometry::setState(const OdomState &istate) {
+  state = istate;
+  lastTicks[0] = 0;
+  lastTicks[1] = 0;
+}
+
 } // namespace okapi

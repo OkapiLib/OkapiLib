@@ -12,7 +12,7 @@ class Filter {
   /**
    * Filters a reading.
    *
-   * @param reading new measurement
+   * @param ireading new measurement
    * @return filtered result
    */
   virtual double filter(const double ireading) = 0;

@@ -1,7 +1,7 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-#include "okapi/control/velPidController.hpp"
+#include "okapi/control/iterative/velPidController.hpp"
 #include "api.h"
 #include <cmath>
 
@@ -144,5 +144,9 @@ void VelPIDController::setTicksPerRev(const double tpr) {
 
 double VelPIDController::getVel() const {
   return velMath.getOutput();
+}
+
+uint32_t VelPIDController::getSampleTime() const {
+  return sampleTime;
 }
 } // namespace okapi

@@ -1,43 +1,37 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-#ifndef _OKAPI_CHASSISCONTROLLER_HPP_
-#define _OKAPI_CHASSISCONTROLLER_HPP_
+#ifndef _OKAPI_CHASSISMODEL_HPP_
+#define _OKAPI_CHASSISMODEL_HPP_
 
-#include "okapi/chassis/chassisModel.hpp"
+#include <array>
+#include <initializer_list>
+#include <memory>
 #include <valarray>
 
 namespace okapi {
-class ChassisController {
+class ChassisModel;
+
+class ChassisModelParams {
   public:
-  ChassisController(const ChassisModelParams &imodelParams) : model(imodelParams.make()) {
-  }
-
-  ChassisController(const ChassisModel &imodel) : model(imodel) {
-  }
-
-  virtual ~ChassisController();
+  virtual ~ChassisModelParams() = default;
 
   /**
-   * Drives the robot straight (using closed-loop control).
+   * Constructs a new ChassisModel.
    *
-   * @param itarget distance to travel
+   * @return const reference to the ChassisModel
    */
-  virtual void driveStraight(const int itarget) = 0;
+  virtual std::shared_ptr<const ChassisModel> make() const = 0;
+};
 
-  /**
-   * Turns the robot clockwise in place (using closed-loop control).
-   *
-   * @param idegTarget degrees to turn for
-   */
-  virtual void pointTurn(const float idegTarget) = 0;
-
+class ChassisModel {
+  public:
   /**
    * Drive the robot forwards (using open-loop control).
    *
    * @param ipower motor power
    */
-  void driveForward(const int ipower);
+  virtual void driveForward(const int ipower) const = 0;
 
   /**
    * Drive the robot in an arc (using open-loop control).
@@ -48,19 +42,19 @@ class ChassisController {
    * @param idistPower see above
    * @param ianglePower see above
    */
-  void driveVector(const int idistPower, const int ianglePower);
+  virtual void driveVector(const int idistPower, const int ianglePower) const = 0;
 
   /**
    * Turn the robot clockwise (using open-loop control).
    *
    * @param ipower motor power
    */
-  void turnClockwise(const int ipower);
+  virtual void turnClockwise(const int ipower) const = 0;
 
   /**
    * Stop the robot (set all the motors to 0).
    */
-  void stop();
+  virtual void stop() const = 0;
 
   /**
    * Drive the robot with a tank drive layout.
@@ -69,7 +63,7 @@ class ChassisController {
    * @param irightVal right joystick value
    * @param ithreshold deadband on joystick values
    */
-  void tank(const int ileftVal, const int irightVal, const int ithreshold = 0);
+  virtual void tank(const int ileftVal, const int irightVal, const int ithreshold = 0) const = 0;
 
   /**
    * Drive the robot with an arcade drive layout.
@@ -78,36 +72,33 @@ class ChassisController {
    * @param ihorizontalVal horizontal joystick value
    * @param ithreshold deadband on joystick values
    */
-  void arcade(int iverticalVal, int ihorizontalVal, const int ithreshold = 0);
+  virtual void arcade(int iverticalVal, int ihorizontalVal, const int ithreshold = 0) const = 0;
 
   /**
    * Power the left side motors.
    *
    * @param ipower motor power
    */
-  void left(const int ipower);
+  virtual void left(const int ipower) const = 0;
 
   /**
    * Power the right side motors.
    *
    * @param ipower motor power
    */
-  void right(const int ipower);
+  virtual void right(const int ipower) const = 0;
 
   /**
    * Read the sensors.
    *
-   * @return sensor readings in the format {left, right}
+   * @return sensor readings (format is implementation dependent)
    */
-  std::valarray<int> getSensorVals();
+  virtual std::valarray<int> getSensorVals() const = 0;
 
   /**
    * Reset the sensors to their zero point.
    */
-  void resetSensors() const;
-
-  protected:
-  const ChassisModel &model;
+  virtual void resetSensors() const = 0;
 };
 } // namespace okapi
 

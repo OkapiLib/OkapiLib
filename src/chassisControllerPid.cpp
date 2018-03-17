@@ -1,7 +1,7 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-#include "okapi/chassis/chassisControllerPid.hpp"
+#include "okapi/chassis/controller/chassisControllerPid.hpp"
 #include "okapi/util/timer.hpp"
 #include <cmath>
 
@@ -9,9 +9,7 @@ namespace okapi {
 ChassisControllerPID::~ChassisControllerPID() = default;
 
 void ChassisControllerPID::driveStraight(const int itarget) {
-  using namespace std;
-
-  const auto encStartVals = model.getSensorVals();
+  const auto encStartVals = model->getSensorVals();
   float distanceElapsed = 0, angleChange = 0, lastDistance = 0;
   uint32_t prevWakeTime = pros::millis();
 
@@ -28,17 +26,17 @@ void ChassisControllerPID::driveStraight(const int itarget) {
 
   const int timeoutPeriod = 250;
 
-  valarray<int> encVals{0, 0};
+  std::valarray<int> encVals{0, 0};
   float distOutput, angleOutput;
 
   while (!atTarget) {
-    encVals = model.getSensorVals() - encStartVals;
+    encVals = model->getSensorVals() - encStartVals;
     distanceElapsed = static_cast<float>((encVals[0] + encVals[1])) / 2.0;
     angleChange = static_cast<float>(encVals[1] - encVals[0]);
 
     distOutput = distancePid.step(distanceElapsed);
     angleOutput = anglePid.step(angleChange);
-    model.driveVector(static_cast<int>(distOutput), static_cast<int>(angleOutput));
+    model->driveVector(static_cast<int>(distOutput * 127), static_cast<int>(angleOutput * 127));
 
     if (abs(itarget - static_cast<int>(distanceElapsed)) <= atTargetDistance)
       atTargetTimer.placeHardMark();
@@ -55,13 +53,11 @@ void ChassisControllerPID::driveStraight(const int itarget) {
     task_delay_until(&prevWakeTime, 15);
   }
 
-  model.driveForward(0);
+  model->stop();
 }
 
 void ChassisControllerPID::pointTurn(float idegTarget) {
-  using namespace std;
-
-  const auto encStartVals = model.getSensorVals();
+  const auto encStartVals = model->getSensorVals();
   float angleChange = 0, lastAngle = 0;
   uint32_t prevWakeTime = pros::millis();
 
@@ -81,13 +77,13 @@ void ChassisControllerPID::pointTurn(float idegTarget) {
 
   const int timeoutPeriod = 250;
 
-  valarray<int> encVals{0, 0};
+  std::valarray<int> encVals{0, 0};
 
   while (!atTarget) {
-    encVals = model.getSensorVals() - encStartVals;
+    encVals = model->getSensorVals() - encStartVals;
     angleChange = static_cast<float>(encVals[1] - encVals[0]);
 
-    model.turnClockwise(static_cast<int>(anglePid.step(angleChange)));
+    model->turnClockwise(static_cast<int>(anglePid.step(angleChange) * 127));
 
     if (fabs(idegTarget - angleChange) <= atTargetAngle)
       atTargetTimer.placeHardMark();
@@ -104,6 +100,6 @@ void ChassisControllerPID::pointTurn(float idegTarget) {
     task_delay_until(&prevWakeTime, 15);
   }
 
-  model.driveForward(0);
+  model->stop();
 }
 } // namespace okapi

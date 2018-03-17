@@ -47,7 +47,7 @@ uint32_t Timer::getDtFromHardMark() const {
   return hardMark == 0 ? 0 : pros::millis() - hardMark;
 }
 
-bool Timer::repeat(uint32_t ms) {
+bool Timer::repeat(const uint32_t ms) {
   if (repeatMark == 0)
     repeatMark = pros::millis();
 

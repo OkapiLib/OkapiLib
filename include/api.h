@@ -40,7 +40,7 @@
 #define PROS_VERSION_MAJOR 3
 #define PROS_VERSION_MINOR 0
 #define PROS_PATCH 2
-#define PROS_VERSION_STRING "3.0.3"
+#define PROS_VERSION_STRING "3.0.4-dirty+f566f75"
 
 #define PROS_ERR (INT32_MAX)
 #define PROS_ERR_F (INFINITY)
@@ -59,6 +59,10 @@
 #include "pros/motors.hpp"
 #include "pros/rtos.hpp"
 #include "pros/vision.hpp"
+
+#ifdef PROS_USE_SIMPLE_NAMES
+// using namespace pros;
+#endif
 #endif
 
 #endif /* _PROS_API_H_ */

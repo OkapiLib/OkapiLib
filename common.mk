@@ -10,7 +10,7 @@ MFLAGS=-march=armv7-a -mfpu=neon-fp16 -mfloat-abi=softfp
 CPPFLAGS=-D_POSIX_THREADS -D_UNIX98_THREAD_MUTEX_ATTRIBUTES -Os
 GCCFLAGS=-ffunction-sections -fdata-sections -fdiagnostics-color
 
-WARNFLAGS=-Wall
+WARNFLAGS=-Wall# -pedantic -Wextra -Wconversion -Wno-implicit-fallthrough -Wmissing-include-dirs
 
 SPACE :=
 SPACE +=
@@ -19,7 +19,7 @@ LNK_FLAGS = -T?%$(FWDIR)/v5.ld --gc-sections
 
 ASMFLAGS=$(MFLAGS) $(WARNFLAGS)
 CFLAGS=$(MFLAGS) $(CPPFLAGS) $(WARNFLAGS) $(GCCFLAGS) --std=gnu11
-CXXFLAGS=$(MFLAGS) $(CPPFLAGS) $(WARNFLAGS) -funwind-tables $(GCCFLAGS) --std=gnu++14
+CXXFLAGS=$(MFLAGS) $(CPPFLAGS) $(WARNFLAGS) -funwind-tables $(GCCFLAGS)  --std=gnu++14
 LDFLAGS=$(MFLAGS) $(WARNFLAGS) -nostdlib  $(subst ?%,$(SPACE),$(addprefix -Wl$(COMMA), $(LNK_FLAGS)))
 SIZEFLAGS=-d --common
 NUMFMTFLAGS=--to=iec --format %.2f --suffix=B

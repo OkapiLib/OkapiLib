@@ -5,11 +5,20 @@
 #define _OKAPI_ABSTRACTMOTOR_HPP_
 
 #include "api.h"
+#include "okapi/device/integratedEncoder.hpp"
 
 namespace okapi {
-class AbstractMotor {
+class AbstractMotor : public pros::Motor {
   public:
-  virtual int32_t set_velocity(const int16_t ivelocity) const = 0;
+  AbstractMotor(const uint8_t port, const bool reverse = false,
+                const motor_encoder_units_e_t encoder_units = E_MOTOR_ENCODER_DEGREES,
+                const motor_gearset_e_t gearset = E_MOTOR_GEARSET_36)
+    : pros::Motor::Motor(port, reverse, encoder_units, gearset) {
+  }
+
+  virtual ~AbstractMotor() = default;
+
+  virtual IntegratedEncoder getEncoder() const = 0;
 };
 } // namespace okapi
 

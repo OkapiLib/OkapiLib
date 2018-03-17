@@ -4,22 +4,17 @@
 #include "okapi/device/motor.hpp"
 
 namespace okapi {
-Motor::Motor(uint8_t port, const bool reverse, motor_encoder_units_e_t encoder_units,
-             motor_gearset_e_t gearset)
-  : motor(port, reverse, encoder_units, gearset) {
-}
-
-int32_t Motor::set_velocity(const int16_t ivelocity) const {
-  return motor.set_velocity(ivelocity);
+IntegratedEncoder okapi::Motor::getEncoder() const {
+  return IntegratedEncoder(*this);
 }
 
 inline namespace literals {
-pros::Motor operator"" _m(const unsigned long long iport) {
-  return pros::Motor(static_cast<uint8_t>(iport));
+okapi::Motor operator"" _m(const unsigned long long iport) {
+  return okapi::Motor(static_cast<uint8_t>(iport));
 }
 
-pros::Motor operator"" _rm(const unsigned long long iport) {
-  return pros::Motor(static_cast<uint8_t>(iport));
+okapi::Motor operator"" _rm(const unsigned long long iport) {
+  return okapi::Motor(static_cast<uint8_t>(iport));
 }
 } // namespace literals
 } // namespace okapi

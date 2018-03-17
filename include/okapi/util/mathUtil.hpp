@@ -16,6 +16,21 @@ static constexpr double ime269TPR = 240.448;
 static constexpr double imev5TPR = 1800.0;
 static constexpr double quadEncoderTPR = 360.0;
 static constexpr double pi = 3.14159265358979323846;
+
+/**
+ * Integer power function. Computes x^n.
+ *
+ * @param x base
+ * @param n exponent
+ * @return x^n
+ */
+constexpr float ipow(float x, int n) {
+  return (n == 0)
+           ? 1
+           : n == 1 ? x
+                    : n > 1 ? ((n & 1) ? x * ipow(x, n - 1) : ipow(x, n / 2) * ipow(x, n / 2))
+                            : 1 / ipow(x, -n);
+}
 } // namespace okapi
 
 #endif
