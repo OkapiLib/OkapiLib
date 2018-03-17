@@ -6,7 +6,6 @@
 
 #include "okapi/control/async/asyncPositionController.hpp"
 #include "okapi/device/abstractMotor.hpp"
-#include "okapi/device/integratedEncoder.hpp"
 
 namespace okapi {
 class PosIntegratedController;

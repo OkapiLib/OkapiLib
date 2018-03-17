@@ -8,6 +8,7 @@
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
 
+#include "okapi/control/async/asyncPosPidController.hpp"
 #include "okapi/control/async/posIntegratedController.hpp"
 #include "okapi/control/iterative/motorController.hpp"
 #include "okapi/control/iterative/posPidController.hpp"
@@ -103,6 +104,9 @@ void opcontrol() {
                           pid1); // Motor controller with two motors and the PID controller
 
       PosIntegratedController posI1(1_m);
+
+      AsyncPosPIDController apospid1(1_m, ADIEncoder(1, 2), PosPIDControllerParams(0, 0, 0));
+      AsyncPosPIDController apospid2(1_m, ADIEncoder(1, 2), 0, 0, 0);
 
       PosPIDController pid2(0, 0, 0);
       PosPIDController pid3(0, 0, 0, 0);
