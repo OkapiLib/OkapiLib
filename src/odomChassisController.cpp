@@ -4,10 +4,12 @@
 #include "okapi/chassis/controller/odomChassisController.hpp"
 
 namespace okapi {
-OdomChassisController::OdomChassisController(const OdometryParams &iparams)
-  : ChassisController(iparams.model), odom(iparams) {
-  task_create((task_fn_t)Odometry::trampoline, &odom, TASK_PRIORITY_DEFAULT + 1,
-              TASK_STACK_DEPTH_DEFAULT, "odomtask");
+OdomChassisController::OdomChassisController(const OdometryParams &iparams,
+                                             const float imoveThreshold)
+  : ChassisController(iparams.model),
+    moveThreshold(imoveThreshold),
+    odom(iparams),
+    task((task_fn_t)Odometry::trampoline, &odom, TASK_PRIORITY_DEFAULT + 1) {
 }
 
 OdomChassisController::~OdomChassisController() = default;

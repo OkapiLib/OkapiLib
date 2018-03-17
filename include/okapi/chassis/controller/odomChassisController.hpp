@@ -20,8 +20,9 @@ class OdomChassisController : public virtual ChassisController {
    * a specific angle, relative to its starting position.
    *
    * @param iparams odometry parameters for the internal odometry math
+   * @param imoveThreshold minimum length movement
    */
-  OdomChassisController(const OdometryParams &iparams);
+  OdomChassisController(const OdometryParams &iparams, const float imoveThreshold = 10);
 
   virtual ~OdomChassisController();
 
@@ -59,8 +60,9 @@ class OdomChassisController : public virtual ChassisController {
   void setMoveThreshold(const float imoveThreshold);
 
   protected:
-  float moveThreshold = 10; // Minimum length movement
+  float moveThreshold; // Minimum length movement
   Odometry odom;
+  pros::Task task;
 };
 } // namespace okapi
 
