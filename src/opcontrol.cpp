@@ -20,11 +20,11 @@ void opcontrol() {
     SkidSteerModel model1(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
                           ADIEncoder(1, 2, true), ADIEncoder(3, 4));
 
-    ChassisControllerIntegrated int1(1_m, 2_m); // One motor on left side, one on right side
+    ChassisControllerIntegrated int1(1_m,  // One motor on left side
+                                     2_m); // One motor on right side
 
-    ChassisControllerIntegrated int2(
-      MotorGroup<3>({1_m, 2_m, 3_m}),
-      MotorGroup<2>({4_m, 5_m})); // Three motors on left side, two on right side
+    ChassisControllerIntegrated int2(MotorGroup<3>({1_m, 2_m, 3_m}), // Three motors on left side
+                                     MotorGroup<2>({4_m, 5_m}));     // Two motors on right side
 
     int1.driveStraight(0);            // Closed-loop control
     int1.pointTurn(0);                // Closed-loop control
