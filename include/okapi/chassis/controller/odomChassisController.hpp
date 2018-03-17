@@ -52,6 +52,13 @@ class OdomChassisController : public virtual ChassisController {
   OdomState getState() const;
 
   /**
+   * Set a new state to be the current state.
+   *
+   * @param istate new state
+   */
+  void setState(const OdomState &istate);
+
+  /**
    * Set a new move threshold. Any requested movements smaller than the move threshold will not be
    * performed.
    *

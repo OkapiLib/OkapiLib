@@ -11,24 +11,20 @@
 namespace okapi {
 class OdomState {
   public:
-  OdomState(const float ix, const float iy, const float itheta) : x(ix), y(iy), theta(itheta) {
-  }
+  OdomState(const float ix, const float iy, const float itheta);
 
-  OdomState() : x(0), y(0), theta(0) {
-  }
+  OdomState();
 
-  virtual ~OdomState() = default;
+  virtual ~OdomState();
 
   float x, y, theta;
 };
 
 class OdometryParams {
   public:
-  OdometryParams(const ChassisModelParams &iparams, const float iscale, const float iturnScale)
-    : model(iparams.make()), scale(iscale), turnScale(iturnScale) {
-  }
+  OdometryParams(const ChassisModelParams &iparams, const float iscale, const float iturnScale);
 
-  virtual ~OdometryParams() = default;
+  virtual ~OdometryParams();
 
   std::shared_ptr<const ChassisModel> model;
   float scale, turnScale;
@@ -83,6 +79,13 @@ class Odometry {
    * @return current state
    */
   OdomState getState() const;
+
+  /**
+   * Set a new state to be the current state.
+   *
+   * @param istate new state
+   */
+  void setState(const OdomState &istate);
 
   private:
   std::shared_ptr<const ChassisModel> model;

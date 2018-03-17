@@ -18,6 +18,10 @@ OdomState OdomChassisController::getState() const {
   return odom.getState();
 }
 
+void OdomChassisController::setState(const OdomState &istate) {
+  odom.setState(istate);
+}
+
 void OdomChassisController::setMoveThreshold(const float imoveThreshold) {
   moveThreshold = imoveThreshold;
 }
