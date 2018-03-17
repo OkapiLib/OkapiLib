@@ -7,7 +7,6 @@
 #include "okapi/chassis/controller/chassisController.hpp"
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
-#include "okapi/control/async/asyncPositionController.hpp"
 #include "okapi/control/async/posIntegratedController.hpp"
 
 namespace okapi {
@@ -21,19 +20,19 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param irightControllerParams right side controller params
    */
   ChassisControllerIntegrated(const ChassisModelParams &imodelParams,
-                              const AsyncPositionControllerParams &ileftControllerParams,
-                              const AsyncPositionControllerParams &irightControllerParams)
+                              const PosIntegratedControllerParams &ileftControllerParams,
+                              const PosIntegratedControllerParams &irightControllerParams)
     : ChassisController(imodelParams),
-      leftController(ileftControllerParams.make()),
-      rightController(irightControllerParams.make()) {
+      leftController(ileftControllerParams),
+      rightController(irightControllerParams) {
   }
 
   ChassisControllerIntegrated(std::shared_ptr<const ChassisModel> imodel,
-                              const AsyncPositionControllerParams &ileftControllerParams,
-                              const AsyncPositionControllerParams &irightControllerParams)
+                              const PosIntegratedControllerParams &ileftControllerParams,
+                              const PosIntegratedControllerParams &irightControllerParams)
     : ChassisController(imodel),
-      leftController(ileftControllerParams.make()),
-      rightController(irightControllerParams.make()) {
+      leftController(ileftControllerParams),
+      rightController(irightControllerParams) {
   }
 
   /**
@@ -46,8 +45,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   ChassisControllerIntegrated(const AbstractMotor &ileftSideMotor,
                               const AbstractMotor &irightSideMotor)
     : ChassisController(SkidSteerModelParams(ileftSideMotor, irightSideMotor)),
-      leftController(PosIntegratedControllerParams(ileftSideMotor).make()),
-      rightController(PosIntegratedControllerParams(ileftSideMotor).make()) {
+      leftController(ileftSideMotor),
+      rightController(irightSideMotor) {
   }
 
   /**
@@ -65,8 +64,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
                               const AbstractMotor &ibottomLeftMotor)
     : ChassisController(
         XDriveModelParams(itopLeftMotor, itopRightMotor, ibottomRightMotor, ibottomLeftMotor)),
-      leftController(PosIntegratedControllerParams(itopLeftMotor).make()),
-      rightController(PosIntegratedControllerParams(itopRightMotor).make()) {
+      leftController(itopLeftMotor),
+      rightController(itopRightMotor) {
   }
 
   virtual ~ChassisControllerIntegrated() {
@@ -79,8 +78,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   void driveStraight(const int itarget) override {
     const int newTarget = itarget + lastTarget;
-    leftController->setTarget(newTarget);
-    rightController->setTarget(newTarget);
+    leftController.setTarget(newTarget);
+    rightController.setTarget(newTarget);
   }
 
   /**
@@ -90,16 +89,16 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   void pointTurn(float idegTarget) override {
     lastTarget = 0;
-    leftController->reset();
-    rightController->reset();
+    leftController.reset();
+    rightController.reset();
 
-    leftController->setTarget(idegTarget);
-    rightController->setTarget(-1 * idegTarget);
+    leftController.setTarget(idegTarget);
+    rightController.setTarget(-1 * idegTarget);
   }
 
   protected:
-  std::shared_ptr<AsyncPositionController> leftController;
-  std::shared_ptr<AsyncPositionController> rightController;
+  PosIntegratedController leftController;
+  PosIntegratedController rightController;
   int lastTarget;
 };
 } // namespace okapi
