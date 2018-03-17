@@ -120,8 +120,8 @@ void opcontrol() {
       VelPIDController velPid1(0, 0);
       VelPIDController velPid2(VelPIDControllerParams(0, 0));
 
-      okapi::ADIEncoder quad1(0, 0);
-      okapi::ADIEncoder quad2(0, 0, true);
+      ADIEncoder quad1(0, 0);
+      ADIEncoder quad2(0, 0, true);
 
       MotorGroup<2> mg1({1_m, 2_m});
 
