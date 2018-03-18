@@ -8,6 +8,8 @@ ADIButton::ADIButton(const uint8_t iport, const bool iinverted)
   : btn(iport), port(iport), inverted(iinverted), wasPressedLast(false) {
 }
 
+ADIButton::~ADIButton() = default;
+
 bool ADIButton::isPressed() {
   wasPressedLast = currentlyPressed();
   return wasPressedLast;

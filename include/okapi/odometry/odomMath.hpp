@@ -10,15 +10,11 @@
 namespace okapi {
 class DistanceAndAngle {
   public:
-  DistanceAndAngle(const float ilength, const float itheta) : length(ilength), theta(itheta) {
-  }
+  DistanceAndAngle(const double ilength = 0, const double itheta = 0);
 
-  DistanceAndAngle() : length(0), theta(0) {
-  }
+  virtual ~DistanceAndAngle();
 
-  virtual ~DistanceAndAngle() = default;
-
-  float length, theta;
+  double length, theta;
 };
 
 class OdomMath {
@@ -31,7 +27,7 @@ class OdomMath {
    * @param istate odometry state
    * @return distance between the points
    */
-  static float computeDistanceToPoint(const float ix, const float iy, const OdomState &istate);
+  static double computeDistanceToPoint(const double ix, const double iy, const OdomState &istate);
 
   /**
    * Computes the angle from the given Odometry state to the given point.
@@ -41,7 +37,7 @@ class OdomMath {
    * @param istate odometry state
    * @return angle to the point
    */
-  static float computeAngleToPoint(const float ix, const float iy, const OdomState &istate);
+  static double computeAngleToPoint(const double ix, const double iy, const OdomState &istate);
 
   /**
    * Computes the distance and angle from the given Odometry state to the given point.
@@ -51,7 +47,7 @@ class OdomMath {
    * @param istate odometry state
    * @return distance and angle to the point
    */
-  static DistanceAndAngle computeDistanceAndAngleToPoint(const float ix, const float iy,
+  static DistanceAndAngle computeDistanceAndAngleToPoint(const double ix, const double iy,
                                                          const OdomState &istate);
 
   /**
@@ -62,8 +58,8 @@ class OdomMath {
    * @param ticksPerRev ticks per revolution (default is 360)
    * @return scales in the format {straight scale, turn scale}
    */
-  static std::tuple<float, float> guessScales(const float chassisDiam, const float wheelDiam,
-                                              const float ticksPerRev = 360.0);
+  static std::tuple<double, double> guessScales(const double chassisDiam, const double wheelDiam,
+                                                const double ticksPerRev = 360.0);
 
   private:
   OdomMath();

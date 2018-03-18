@@ -9,7 +9,7 @@
 namespace okapi {
 class RotarySensor {
   public:
-  virtual ~RotarySensor() = default;
+  virtual ~RotarySensor();
 
   /**
    * Get the current sensor value.

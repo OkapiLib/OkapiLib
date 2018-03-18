@@ -16,6 +16,8 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
     : AbstractMotor(imotors[0]), motors(imotors) {
   }
 
+  virtual ~MotorGroup() = default;
+
   // int32_t move_absolute(const float iposition, const int32_t ivelocity) const override {
   //   for (size_t i = 0; i < motorNum; i++) {
   //     motors[i].move_absolute(iposition, ivelocity);

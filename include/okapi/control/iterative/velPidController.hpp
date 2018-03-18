@@ -10,12 +10,11 @@
 namespace okapi {
 class VelPIDControllerParams : public IterativeVelocityControllerParams {
   public:
-  VelPIDControllerParams(const double ikP, const double ikD) : kP(ikP), kD(ikD), params(360) {
-  }
+  VelPIDControllerParams(const double ikP, const double ikD);
 
-  VelPIDControllerParams(const double ikP, const double ikD, const VelMathParams &iparams)
-    : kP(ikP), kD(ikD), params(iparams) {
-  }
+  VelPIDControllerParams(const double ikP, const double ikD, const VelMathParams &iparams);
+
+  virtual ~VelPIDControllerParams();
 
   const double kP, kD;
   const VelMathParams &params;

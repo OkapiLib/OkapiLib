@@ -11,23 +11,23 @@
 namespace okapi {
 class OdomState {
   public:
-  OdomState(const float ix, const float iy, const float itheta);
+  OdomState(const double ix, const double iy, const double itheta);
 
   OdomState();
 
   virtual ~OdomState();
 
-  float x, y, theta;
+  double x, y, theta;
 };
 
 class OdometryParams {
   public:
-  OdometryParams(const ChassisModelParams &iparams, const float iscale, const float iturnScale);
+  OdometryParams(const ChassisModelParams &iparams, const double iscale, const double iturnScale);
 
   virtual ~OdometryParams();
 
   std::shared_ptr<const ChassisModel> model;
-  float scale, turnScale;
+  double scale, turnScale;
 };
 
 class Odometry {
@@ -40,7 +40,7 @@ class Odometry {
    * @param iscale straight scale
    * @param iturnScale turn scale
    */
-  Odometry(const ChassisModelParams &imodelParams, const float iscale, const float iturnScale);
+  Odometry(const ChassisModelParams &imodelParams, const double iscale, const double iturnScale);
 
   /**
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
@@ -58,7 +58,7 @@ class Odometry {
    * @param iscale straight scale converting encoder ticks to mm
    * @param iturnScale turn scale converting encoder ticks to radians
    */
-  void setScales(const float iscale, const float iturnScale);
+  void setScales(const double iscale, const double iturnScale);
 
   /**
    * Do odometry math in an infinite loop.
@@ -90,9 +90,9 @@ class Odometry {
   private:
   std::shared_ptr<const ChassisModel> model;
   OdomState state;
-  float scale, turnScale;
+  double scale, turnScale;
   std::valarray<int> lastTicks;
-  float mm;
+  double mm;
 };
 } // namespace okapi
 

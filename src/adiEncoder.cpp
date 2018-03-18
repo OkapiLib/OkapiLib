@@ -8,6 +8,8 @@ ADIEncoder::ADIEncoder(const uint8_t iportTop, const uint8_t iportBottom, const 
   : enc(iportBottom, iportTop, ireversed) {
 }
 
+ADIEncoder::~ADIEncoder() = default;
+
 int32_t ADIEncoder::get() const {
   return enc.value_get();
 }

@@ -5,6 +5,12 @@
 #include "api.h"
 
 namespace okapi {
+VelMathParams::VelMathParams(const double iticksPerRev, const double ialpha, const double ibeta)
+  : ticksPerRev(iticksPerRev), alpha(ialpha), beta(ibeta) {
+}
+
+VelMathParams::~VelMathParams() = default;
+
 VelMath::VelMath(const double iticksPerRev, const double ialpha, const double ibeta)
   : lastTime(0), vel(0), lastVel(0), lastPos(0), ticksPerRev(iticksPerRev), filter(ialpha, ibeta) {
 }

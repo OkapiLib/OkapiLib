@@ -11,6 +11,8 @@ class ADIEncoder : public RotarySensor {
   public:
   ADIEncoder(const uint8_t iportTop, const uint8_t iportBottom, const bool ireversed = false);
 
+  virtual ~ADIEncoder();
+
   /**
    * Get the current sensor value.
    *

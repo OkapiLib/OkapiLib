@@ -21,21 +21,11 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   ChassisControllerIntegrated(const ChassisModelParams &imodelParams,
                               const PosIntegratedControllerParams &ileftControllerParams,
-                              const PosIntegratedControllerParams &irightControllerParams)
-    : ChassisController(imodelParams),
-      leftController(ileftControllerParams),
-      rightController(irightControllerParams),
-      lastTarget(0) {
-  }
+                              const PosIntegratedControllerParams &irightControllerParams);
 
   ChassisControllerIntegrated(std::shared_ptr<const ChassisModel> imodel,
                               const PosIntegratedControllerParams &ileftControllerParams,
-                              const PosIntegratedControllerParams &irightControllerParams)
-    : ChassisController(imodel),
-      leftController(ileftControllerParams),
-      rightController(irightControllerParams),
-      lastTarget(0) {
-  }
+                              const PosIntegratedControllerParams &irightControllerParams);
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -45,12 +35,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param irightSideMotor right side motor
    */
   ChassisControllerIntegrated(const AbstractMotor &ileftSideMotor,
-                              const AbstractMotor &irightSideMotor)
-    : ChassisController(SkidSteerModelParams(ileftSideMotor, irightSideMotor)),
-      leftController(ileftSideMotor),
-      rightController(irightSideMotor),
-      lastTarget(0) {
-  }
+                              const AbstractMotor &irightSideMotor);
 
   /**
    * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
@@ -64,41 +49,23 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   ChassisControllerIntegrated(const AbstractMotor &itopLeftMotor,
                               const AbstractMotor &itopRightMotor,
                               const AbstractMotor &ibottomRightMotor,
-                              const AbstractMotor &ibottomLeftMotor)
-    : ChassisController(
-        XDriveModelParams(itopLeftMotor, itopRightMotor, ibottomRightMotor, ibottomLeftMotor)),
-      leftController(itopLeftMotor),
-      rightController(itopRightMotor),
-      lastTarget(0) {
-  }
+                              const AbstractMotor &ibottomLeftMotor);
 
-  virtual ~ChassisControllerIntegrated() {
-  }
+  virtual ~ChassisControllerIntegrated();
 
   /**
    * Drives the robot straight.
    *
    * @param itarget Distance to travel
    */
-  void driveStraight(const int itarget) override {
-    const int newTarget = itarget + lastTarget;
-    leftController.setTarget(newTarget);
-    rightController.setTarget(newTarget);
-  }
+  void driveStraight(const int itarget) override;
 
   /**
    * Turns the robot clockwise in place.
    *
    * @param idegTarget Degrees to turn for
    */
-  void pointTurn(float idegTarget) override {
-    lastTarget = 0;
-    leftController.reset();
-    rightController.reset();
-
-    leftController.setTarget(idegTarget);
-    rightController.setTarget(-1 * idegTarget);
-  }
+  void pointTurn(float idegTarget) override;
 
   protected:
   PosIntegratedController leftController;

@@ -6,6 +6,13 @@
 #include <cmath>
 
 namespace okapi {
+PosPIDControllerParams::PosPIDControllerParams(const double ikP, const double ikI, const double ikD,
+                                               const double ikBias)
+  : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
+}
+
+PosPIDControllerParams::~PosPIDControllerParams() = default;
+
 PosPIDController::PosPIDController(const double ikP, const double ikI, const double ikD,
                                    const double ikBias)
   : lastTime(0),

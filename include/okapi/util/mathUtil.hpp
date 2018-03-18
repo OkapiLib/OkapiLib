@@ -24,7 +24,7 @@ static constexpr double pi = 3.14159265358979323846;
  * @param n exponent
  * @return x^n
  */
-constexpr float ipow(float x, int n) {
+constexpr double ipow(double x, int n) {
   return (n == 0)
            ? 1
            : n == 1 ? x

@@ -14,7 +14,7 @@ class ChassisModel;
 
 class ChassisModelParams {
   public:
-  virtual ~ChassisModelParams() = default;
+  virtual ~ChassisModelParams();
 
   /**
    * Constructs a new ChassisModel.

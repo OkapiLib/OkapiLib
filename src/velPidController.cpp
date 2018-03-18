@@ -6,6 +6,18 @@
 #include <cmath>
 
 namespace okapi {
+
+VelPIDControllerParams::VelPIDControllerParams(const double ikP, const double ikD)
+  : kP(ikP), kD(ikD), params(360) {
+}
+
+VelPIDControllerParams::VelPIDControllerParams(const double ikP, const double ikD,
+                                               const VelMathParams &iparams)
+  : kP(ikP), kD(ikD), params(iparams) {
+}
+
+VelPIDControllerParams::~VelPIDControllerParams() = default;
+
 VelPIDController::VelPIDController(const double ikP, const double ikD)
   : lastTime(0),
     sampleTime(15),

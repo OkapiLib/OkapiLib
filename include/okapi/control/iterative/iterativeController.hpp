@@ -42,8 +42,7 @@ class IterativeController {
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime) {
-  }
+  virtual void setSampleTime(const uint32_t isampleTime);
 
   /**
    * Set controller output bounds.
@@ -51,30 +50,25 @@ class IterativeController {
    * @param imax max output
    * @param imin min output
    */
-  virtual void setOutputLimits(double imax, double imin) {
-  }
+  virtual void setOutputLimits(double imax, double imin);
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
-  virtual void reset() {
-  }
+  virtual void reset();
 
   /**
    * Change whether the controll is off or on.
    */
-  virtual void flipDisable() {
-  }
+  virtual void flipDisable();
 
   /**
    * Get the last set sample time. Default is 15.
    *
    * @return sample time
    */
-  virtual uint32_t getSampleTime() const {
-    return 15;
-  }
+  virtual uint32_t getSampleTime() const;
 };
 } // namespace okapi
 

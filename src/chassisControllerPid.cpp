@@ -6,6 +6,30 @@
 #include <cmath>
 
 namespace okapi {
+ChassisControllerPID::ChassisControllerPID(const ChassisModelParams &imodelParams,
+                                           const PosPIDControllerParams &idistanceParams,
+                                           const PosPIDControllerParams &iangleParams)
+  : ChassisController(imodelParams), distancePid(idistanceParams), anglePid(iangleParams) {
+}
+
+ChassisControllerPID::ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel,
+                                           const PosPIDControllerParams &idistanceParams,
+                                           const PosPIDControllerParams &iangleParams)
+  : ChassisController(imodel), distancePid(idistanceParams), anglePid(iangleParams) {
+}
+
+ChassisControllerPID::ChassisControllerPID(const ChassisModelParams &imodelParams,
+                                           const PosPIDController &idistance,
+                                           const PosPIDController &iangle)
+  : ChassisController(imodelParams), distancePid(idistance), anglePid(iangle) {
+}
+
+ChassisControllerPID::ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel,
+                                           const PosPIDController &idistance,
+                                           const PosPIDController &iangle)
+  : ChassisController(imodel), distancePid(idistance), anglePid(iangle) {
+}
+
 ChassisControllerPID::~ChassisControllerPID() = default;
 
 void ChassisControllerPID::driveStraight(const int itarget) {

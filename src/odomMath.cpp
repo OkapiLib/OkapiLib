@@ -1,32 +1,38 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#include <cmath>
 #include "okapi/odometry/odomMath.hpp"
 #include "okapi/util/mathUtil.hpp"
-#include <cmath>
 
 namespace okapi {
+DistanceAndAngle::DistanceAndAngle(const double ilength, const double itheta)
+  : length(ilength), theta(itheta) {
+}
+
+DistanceAndAngle::~DistanceAndAngle() = default;
+
 OdomMath::OdomMath() {
 }
 
 OdomMath::~OdomMath() = default;
 
-float OdomMath::computeDistanceToPoint(const float ix, const float iy, const OdomState &istate) {
-  const float xDiff = ix - istate.x;
-  const float yDiff = iy - istate.y;
+double OdomMath::computeDistanceToPoint(const double ix, const double iy, const OdomState &istate) {
+  const double xDiff = ix - istate.x;
+  const double yDiff = iy - istate.y;
   return std::sqrt((xDiff * xDiff) + (yDiff * yDiff));
 }
 
-float OdomMath::computeAngleToPoint(const float ix, const float iy, const OdomState &istate) {
-  const float xDiff = ix - istate.x;
-  const float yDiff = iy - istate.y;
+double OdomMath::computeAngleToPoint(const double ix, const double iy, const OdomState &istate) {
+  const double xDiff = ix - istate.x;
+  const double yDiff = iy - istate.y;
   return (std::atan2(yDiff, xDiff) * radianToDegree) - istate.theta;
 }
 
-DistanceAndAngle OdomMath::computeDistanceAndAngleToPoint(const float ix, const float iy,
+DistanceAndAngle OdomMath::computeDistanceAndAngleToPoint(const double ix, const double iy,
                                                           const OdomState &istate) {
-  const float xDiff = ix - istate.x;
-  const float yDiff = iy - istate.y;
+  const double xDiff = ix - istate.x;
+  const double yDiff = iy - istate.y;
 
   DistanceAndAngle out;
   out.length = std::sqrt((xDiff * xDiff) + (yDiff * yDiff));
@@ -52,11 +58,11 @@ DistanceAndAngle OdomMath::computeDistanceAndAngleToPoint(const float ix, const 
   return out;
 }
 
-std::tuple<float, float> OdomMath::guessScales(const float chassisDiam, const float wheelDiam,
-                                               const float ticksPerRev) {
-  const float scale = ((wheelDiam * pi * inchToMM) / ticksPerRev) *
+std::tuple<double, double> OdomMath::guessScales(const double chassisDiam, const double wheelDiam,
+                                               const double ticksPerRev) {
+  const double scale = ((wheelDiam * pi * inchToMM) / ticksPerRev) *
                       0.9945483364; // The scale is usually off by this amount
-  const float turnScale = (1.0 / (chassisDiam * inchToMM)) * radianToDegree * 2;
+  const double turnScale = (1.0 / (chassisDiam * inchToMM)) * radianToDegree * 2;
   return std::make_tuple(scale, turnScale);
 }
 } // namespace okapi
