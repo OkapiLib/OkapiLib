@@ -64,6 +64,11 @@ class PosPIDController : public IterativePositionController {
   double getError() const override;
 
   /**
+   * Returns the last derivative (change in error) of the controller.
+   */
+  double getDerivative() const override;
+
+  /**
    * Set controller gains.
    *
    * @param ikP proportional gain
@@ -124,9 +129,10 @@ class PosPIDController : public IterativePositionController {
   protected:
   double kP, kI, kD, kBias;
   uint32_t lastTime, sampleTime;
-  double error, lastError;
   double target, lastReading;
+  double error, lastError;
   double integral, integralMax, integralMin;
+  double derivative;
   double output, outputMax, outputMin;
   bool shouldResetOnCross, isOn;
 };

@@ -26,6 +26,10 @@ double MotorController::getError() const {
   return controller.getError();
 }
 
+double MotorController::getDerivative() const {
+  return controller.getDerivative();
+}
+
 void MotorController::setSampleTime(const int isampleTime) {
   controller.setSampleTime(isampleTime);
 }

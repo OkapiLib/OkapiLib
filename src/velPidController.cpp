@@ -23,6 +23,7 @@ VelPIDController::VelPIDController(const double ikP, const double ikD)
     sampleTime(15),
     error(0),
     lastError(0),
+    derivative(0),
     target(0),
     output(0),
     outputMax(127),
@@ -37,6 +38,7 @@ VelPIDController::VelPIDController(const double ikP, const double ikD, const Vel
     sampleTime(15),
     error(0),
     lastError(0),
+    derivative(0),
     target(0),
     output(0),
     outputMax(127),
@@ -51,6 +53,7 @@ VelPIDController::VelPIDController(const VelPIDControllerParams &params)
     sampleTime(15),
     error(0),
     lastError(0),
+    derivative(0),
     target(0),
     output(0),
     outputMax(127),
@@ -98,14 +101,13 @@ double VelPIDController::stepVel(const double inewReading) {
 
 double VelPIDController::step(const double inewReading) {
   if (isOn) {
-    const uint32_t now = pros::millis();
+    const uint32_t now = millis();
     if (now - lastTime >= sampleTime) {
       stepVel(inewReading);
       const double error = target - velMath.getOutput();
 
-      const double derivative =
-        velMath
-          .getDiff(); // Derivative over measurement to eliminate derivative kick on setpoint change
+      // Derivative over measurement to eliminate derivative kick on setpoint change
+      derivative = velMath.getDiff();
 
       output += kP * error - kD * derivative;
 
@@ -134,6 +136,10 @@ double VelPIDController::getOutput() const {
 
 double VelPIDController::getError() const {
   return error;
+}
+
+double VelPIDController::getDerivative() const {
+  return derivative;
 }
 
 void VelPIDController::reset() {

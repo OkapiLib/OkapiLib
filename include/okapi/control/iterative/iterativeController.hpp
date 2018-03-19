@@ -38,6 +38,11 @@ class IterativeController {
   virtual double getError() const = 0;
 
   /**
+   * Returns the last derivative (change in error) of the controller.
+   */
+  virtual double getDerivative() const = 0;
+
+  /**
    * Set time between loops in ms.
    *
    * @param isampleTime time between loops in ms

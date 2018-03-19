@@ -39,6 +39,11 @@ class MotorController : public IterativeVelocityController {
   double getError() const;
 
   /**
+   * Returns the last derivative (change in error) of the controller.
+   */
+  double getDerivative() const;
+
+  /**
    * Set time between loops in ms.
    *
    * @param isampleTime time between loops in ms

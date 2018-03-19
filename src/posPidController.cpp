@@ -17,13 +17,14 @@ PosPIDController::PosPIDController(const double ikP, const double ikI, const dou
                                    const double ikBias)
   : lastTime(0),
     sampleTime(15),
-    error(0),
-    lastError(0),
     target(0),
     lastReading(0),
+    error(0),
+    lastError(0),
     integral(0),
     integralMax(127),
     integralMin(-127),
+    derivative(0),
     output(0),
     outputMax(127),
     outputMin(-127),
@@ -35,13 +36,14 @@ PosPIDController::PosPIDController(const double ikP, const double ikI, const dou
 PosPIDController::PosPIDController(const PosPIDControllerParams &params)
   : lastTime(0),
     sampleTime(15),
-    error(0),
-    lastError(0),
     target(0),
     lastReading(0),
+    error(0),
+    lastError(0),
     integral(0),
     integralMax(127),
     integralMin(-127),
+    derivative(0),
     output(0),
     outputMax(127),
     outputMin(-127),
@@ -62,6 +64,10 @@ double PosPIDController::getOutput() const {
 
 double PosPIDController::getError() const {
   return error;
+}
+
+double PosPIDController::getDerivative() const {
+  return derivative;
 }
 
 void PosPIDController::setSampleTime(const uint32_t isampleTime) {
@@ -114,7 +120,7 @@ void PosPIDController::setIntegralLimits(double imax, double imin) {
 
 double PosPIDController::step(const double inewReading) {
   if (isOn) {
-    const uint32_t now = pros::millis();
+    const uint32_t now = millis();
 
     if (now - lastTime >= sampleTime) {
       error = target - inewReading;
@@ -129,7 +135,7 @@ double PosPIDController::step(const double inewReading) {
       else if (integral < integralMin)
         integral = integralMin;
 
-      const double derivative =
+      derivative =
         inewReading -
         lastReading; // Derivative over measurement to eliminate derivative kick on setpoint change
 

@@ -71,6 +71,11 @@ class VelPIDController : public IterativeVelocityController {
   double getError() const override;
 
   /**
+   * Returns the last derivative (change in error) of the controller.
+   */
+  double getDerivative() const override;
+
+  /**
    * Set time between loops in ms.
    *
    * @param isampleTime time between loops in ms
@@ -145,6 +150,7 @@ class VelPIDController : public IterativeVelocityController {
   double kP, kD;
   uint32_t lastTime, sampleTime;
   double error, lastError;
+  double derivative;
   double target;
   double output, outputMax, outputMin;
   bool isOn;
