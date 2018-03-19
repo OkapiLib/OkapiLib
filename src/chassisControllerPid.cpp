@@ -35,7 +35,7 @@ ChassisControllerPID::~ChassisControllerPID() = default;
 void ChassisControllerPID::driveStraight(const int itarget) {
   const auto encStartVals = model->getSensorVals();
   float distanceElapsed = 0, angleChange = 0, lastDistance = 0;
-  uint32_t prevWakeTime = pros::millis();
+  uint32_t prevWakeTime = millis();
 
   distancePid.reset();
   anglePid.reset();
@@ -83,7 +83,7 @@ void ChassisControllerPID::driveStraight(const int itarget) {
 void ChassisControllerPID::pointTurn(float idegTarget) {
   const auto encStartVals = model->getSensorVals();
   float angleChange = 0, lastAngle = 0;
-  uint32_t prevWakeTime = pros::millis();
+  uint32_t prevWakeTime = millis();
 
   while (idegTarget > 180)
     idegTarget -= 360;

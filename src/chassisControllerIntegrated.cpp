@@ -2,6 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 #include "okapi/chassis/controller/chassisControllerIntegrated.hpp"
+#include "okapi/util/timer.hpp"
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
@@ -67,9 +68,38 @@ ChassisControllerIntegrated::~ChassisControllerIntegrated() = default;
  * @param itarget Distance to travel
  */
 void ChassisControllerIntegrated::driveStraight(const int itarget) {
+  int distanceElapsed = 0, lastDistance = 0;
+  uint32_t prevWakeTime = millis();
+  bool atTarget = false;
+  const int atTargetDistance = 15;
+  const int threshold = 2;
+
+  const auto encStartVals = model->getSensorVals();
+  std::valarray<int> encVals{0, 0};
+
+  Timer atTargetTimer;
+  const uint32_t timeoutPeriod = 250;
+
   const int newTarget = itarget + lastTarget;
   leftController.setTarget(newTarget);
   rightController.setTarget(newTarget);
+
+  while (!atTarget) {
+    encVals = model->getSensorVals() - encStartVals;
+    distanceElapsed = static_cast<int>((encVals[0] + encVals[1]) / 2.0);
+
+    if (abs(itarget - distanceElapsed) <= atTargetDistance && abs(distanceElapsed - lastDistance) <= threshold)
+      atTargetTimer.placeHardMark();
+    else
+      atTargetTimer.clearHardMark();
+
+    lastDistance = distanceElapsed;
+
+    if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod)
+      atTarget = true;
+
+    task_delay_until(&prevWakeTime, 15);
+  }
 }
 
 /**
