@@ -28,24 +28,29 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<const ChassisModel> i
     turnScale(iturnScale) {
 }
 
-ChassisControllerPID::ChassisControllerPID(const ChassisModelParams &imodelParams,
-                                           const PosPIDController &idistance,
-                                           const PosPIDController &iangle,
+ChassisControllerPID::ChassisControllerPID(const AbstractMotor &ileftSideMotor,
+                                           const AbstractMotor &irightSideMotor,
+                                           const PosPIDControllerParams &idistanceParams,
+                                           const PosPIDControllerParams &iangleParams,
                                            const double istraightScale, const double iturnScale)
-  : ChassisController(imodelParams),
-    distancePid(idistance),
-    anglePid(iangle),
+  : ChassisController(SkidSteerModelParams(ileftSideMotor, irightSideMotor)),
+    distancePid(idistanceParams),
+    anglePid(iangleParams),
     straightScale(istraightScale),
     turnScale(iturnScale) {
 }
 
-ChassisControllerPID::ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel,
-                                           const PosPIDController &idistance,
-                                           const PosPIDController &iangle,
+ChassisControllerPID::ChassisControllerPID(const AbstractMotor &itopLeftMotor,
+                                           const AbstractMotor &itopRightMotor,
+                                           const AbstractMotor &ibottomRightMotor,
+                                           const AbstractMotor &ibottomLeftMotor,
+                                           const PosPIDControllerParams &idistanceParams,
+                                           const PosPIDControllerParams &iangleParams,
                                            const double istraightScale, const double iturnScale)
-  : ChassisController(imodel),
-    distancePid(idistance),
-    anglePid(iangle),
+  : ChassisController(
+      XDriveModelParams(itopLeftMotor, itopRightMotor, ibottomRightMotor, ibottomLeftMotor)),
+    distancePid(idistanceParams),
+    anglePid(iangleParams),
     straightScale(istraightScale),
     turnScale(iturnScale) {
 }
