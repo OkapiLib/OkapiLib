@@ -8,26 +8,46 @@
 namespace okapi {
 ChassisControllerPID::ChassisControllerPID(const ChassisModelParams &imodelParams,
                                            const PosPIDControllerParams &idistanceParams,
-                                           const PosPIDControllerParams &iangleParams)
-  : ChassisController(imodelParams), distancePid(idistanceParams), anglePid(iangleParams) {
+                                           const PosPIDControllerParams &iangleParams,
+                                           const double istraightScale, const double iturnScale)
+  : ChassisController(imodelParams),
+    distancePid(idistanceParams),
+    anglePid(iangleParams),
+    straightScale(istraightScale),
+    turnScale(iturnScale) {
 }
 
 ChassisControllerPID::ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel,
                                            const PosPIDControllerParams &idistanceParams,
-                                           const PosPIDControllerParams &iangleParams)
-  : ChassisController(imodel), distancePid(idistanceParams), anglePid(iangleParams) {
+                                           const PosPIDControllerParams &iangleParams,
+                                           const double istraightScale, const double iturnScale)
+  : ChassisController(imodel),
+    distancePid(idistanceParams),
+    anglePid(iangleParams),
+    straightScale(istraightScale),
+    turnScale(iturnScale) {
 }
 
 ChassisControllerPID::ChassisControllerPID(const ChassisModelParams &imodelParams,
                                            const PosPIDController &idistance,
-                                           const PosPIDController &iangle)
-  : ChassisController(imodelParams), distancePid(idistance), anglePid(iangle) {
+                                           const PosPIDController &iangle,
+                                           const double istraightScale, const double iturnScale)
+  : ChassisController(imodelParams),
+    distancePid(idistance),
+    anglePid(iangle),
+    straightScale(istraightScale),
+    turnScale(iturnScale) {
 }
 
 ChassisControllerPID::ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel,
                                            const PosPIDController &idistance,
-                                           const PosPIDController &iangle)
-  : ChassisController(imodel), distancePid(idistance), anglePid(iangle) {
+                                           const PosPIDController &iangle,
+                                           const double istraightScale, const double iturnScale)
+  : ChassisController(imodel),
+    distancePid(idistance),
+    anglePid(iangle),
+    straightScale(istraightScale),
+    turnScale(iturnScale) {
 }
 
 ChassisControllerPID::~ChassisControllerPID() = default;
@@ -37,9 +57,11 @@ void ChassisControllerPID::moveDistance(const int itarget) {
   float distanceElapsed = 0, angleChange = 0, lastDistance = 0;
   uint32_t prevWakeTime = millis();
 
+  const double newTarget = itarget * straightScale;
+
   distancePid.reset();
   anglePid.reset();
-  distancePid.setTarget(static_cast<float>(itarget));
+  distancePid.setTarget(static_cast<float>(newTarget));
   anglePid.setTarget(0);
 
   bool atTarget = false;
@@ -62,7 +84,7 @@ void ChassisControllerPID::moveDistance(const int itarget) {
     angleOutput = anglePid.step(angleChange);
     model->driveVector(static_cast<int>(distOutput * 127), static_cast<int>(angleOutput * 127));
 
-    if (abs(itarget - static_cast<int>(distanceElapsed)) <= atTargetDistance)
+    if (abs(newTarget - static_cast<int>(distanceElapsed)) <= atTargetDistance)
       atTargetTimer.placeHardMark();
     else if (abs(static_cast<int>(distanceElapsed) - static_cast<int>(lastDistance)) <= threshold)
       atTargetTimer.placeHardMark();
@@ -85,13 +107,10 @@ void ChassisControllerPID::turnAngle(float idegTarget) {
   float angleChange = 0, lastAngle = 0;
   uint32_t prevWakeTime = millis();
 
-  while (idegTarget > 180)
-    idegTarget -= 360;
-  while (idegTarget <= -180)
-    idegTarget += 360;
+  const float newTarget = idegTarget * turnScale;
 
   anglePid.reset();
-  anglePid.setTarget(static_cast<float>(idegTarget));
+  anglePid.setTarget(static_cast<float>(newTarget));
 
   bool atTarget = false;
   const int atTargetAngle = 10;
@@ -109,7 +128,7 @@ void ChassisControllerPID::turnAngle(float idegTarget) {
 
     model->rotate(static_cast<int>(anglePid.step(angleChange) * 127));
 
-    if (fabs(idegTarget - angleChange) <= atTargetAngle)
+    if (fabs(newTarget - angleChange) <= atTargetAngle)
       atTargetTimer.placeHardMark();
     else if (fabs(angleChange - lastAngle) <= threshold)
       atTargetTimer.placeHardMark();

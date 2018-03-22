@@ -16,20 +16,28 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param imodelParams ChassisModelParams
    * @param idistanceParams distance PID controller params
    * @param iangleParams angle PID controller params (keeps the robot straight)
+   * @param istraightScale scale converting your units of choice to encoder ticks, used for
+   * measuring distance
+   * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
+   * angle
    */
   ChassisControllerPID(const ChassisModelParams &imodelParams,
                        const PosPIDControllerParams &idistanceParams,
-                       const PosPIDControllerParams &iangleParams);
+                       const PosPIDControllerParams &iangleParams, const double istraightScale = 1,
+                       const double iturnScale = 1);
 
   ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel,
                        const PosPIDControllerParams &idistanceParams,
-                       const PosPIDControllerParams &iangleParams);
+                       const PosPIDControllerParams &iangleParams, const double istraightScale = 1,
+                       const double iturnScale = 1);
 
   ChassisControllerPID(const ChassisModelParams &imodelParams, const PosPIDController &idistance,
-                       const PosPIDController &iangle);
+                       const PosPIDController &iangle, const double istraightScale = 1,
+                       const double iturnScale = 1);
 
   ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel,
-                       const PosPIDController &idistance, const PosPIDController &iangle);
+                       const PosPIDController &idistance, const PosPIDController &iangle,
+                       const double istraightScale = 1, const double iturnScale = 1);
 
   virtual ~ChassisControllerPID();
 
@@ -49,6 +57,8 @@ class ChassisControllerPID : public virtual ChassisController {
 
   protected:
   PosPIDController distancePid, anglePid;
+  const double straightScale;
+  const double turnScale;
 };
 } // namespace okapi
 
