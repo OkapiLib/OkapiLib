@@ -6,9 +6,10 @@
 
 #include "api.h"
 #include "okapi/device/integratedEncoder.hpp"
+#include "okapi/control/controllerOutput.hpp"
 
 namespace okapi {
-class AbstractMotor : public pros::Motor {
+class AbstractMotor : public pros::Motor, public ControllerOutput {
   public:
   AbstractMotor(const uint8_t port, const bool reverse = false,
                 const motor_encoder_units_e_t encoder_units = E_MOTOR_ENCODER_DEGREES,

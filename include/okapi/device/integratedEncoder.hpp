@@ -32,6 +32,8 @@ class IntegratedEncoder : public RotarySensor {
    */
   int32_t reset() const override;
 
+  double controllerGet() override;
+
   private:
   const pros::Motor &motor;
 };

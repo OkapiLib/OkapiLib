@@ -42,6 +42,12 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
   //   }
   // }
 
+  void controllerSet(const double ivalue) override {
+    for (size_t i = 0; i < motorNum; i++) {
+      motors[i].move_velocity(ivalue);
+    }
+  }
+
   IntegratedEncoder getEncoder() const override {
     return motors[0].getEncoder();
   }

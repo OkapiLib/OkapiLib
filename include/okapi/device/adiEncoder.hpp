@@ -27,6 +27,8 @@ class ADIEncoder : public RotarySensor {
    */
   int32_t reset() const override;
 
+  double controllerGet() override;
+
   private:
   pros::ADIEncoder enc;
 };

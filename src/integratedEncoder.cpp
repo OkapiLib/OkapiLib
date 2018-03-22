@@ -16,4 +16,8 @@ int32_t IntegratedEncoder::get() const {
 int32_t IntegratedEncoder::reset() const {
   return motor.reset_zero_position();
 }
+
+double IntegratedEncoder::controllerGet() {
+  return get();
+}
 } // namespace okapi

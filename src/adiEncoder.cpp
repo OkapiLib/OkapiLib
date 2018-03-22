@@ -17,4 +17,8 @@ int32_t ADIEncoder::get() const {
 int32_t ADIEncoder::reset() const {
   return enc.reset();
 }
+
+double ADIEncoder::controllerGet() {
+  return get();
+}
 } // namespace okapi

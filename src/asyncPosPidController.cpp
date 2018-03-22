@@ -4,23 +4,22 @@
 #include "okapi/control/async/asyncPosPidController.hpp"
 
 namespace okapi {
-AsyncPosPIDControllerParams::AsyncPosPIDControllerParams(const AbstractMotor &imotor,
+AsyncPosPIDControllerParams::AsyncPosPIDControllerParams(ControllerInput &iinput,
+                                                         ControllerOutput &ioutput,
                                                          const PosPIDControllerParams &iparams)
-  : motor(imotor), params(iparams) {
+  : input(iinput), output(ioutput), params(iparams) {
 }
 
-AsyncPosPIDController::AsyncPosPIDController(const AbstractMotor &imotor,
-                                             const RotarySensor &isensor,
+AsyncPosPIDController::AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
                                              const PosPIDControllerParams &iparams)
-  : motor(imotor), sensor(isensor), controller(iparams), prevTime(0), task(trampoline, this) {
+  : input(iinput), output(ioutput), controller(iparams), prevTime(0), task(trampoline, this) {
 }
 
-AsyncPosPIDController::AsyncPosPIDController(const AbstractMotor &imotor,
-                                             const RotarySensor &isensor, const double ikP,
-                                             const double ikI, const double ikD,
+AsyncPosPIDController::AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
+                                             const double ikP, const double ikI, const double ikD,
                                              const double ikBias)
-  : motor(imotor),
-    sensor(isensor),
+  : input(iinput),
+    output(ioutput),
     controller(ikP, ikI, ikD, ikBias),
     prevTime(0),
     task(trampoline, this) {
@@ -30,7 +29,7 @@ AsyncPosPIDController::~AsyncPosPIDController() = default;
 
 void AsyncPosPIDController::step() {
   while (true) {
-    motor.move_velocity(controller.step(sensor.get()));
+    output.controllerSet(controller.step(input.controllerGet()));
     task.delay_until(&prevTime, controller.getSampleTime());
   }
 }

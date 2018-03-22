@@ -14,6 +14,8 @@ class Motor : public AbstractMotor {
 
   virtual ~Motor();
 
+  void controllerSet(const double ivalue) override;
+
   IntegratedEncoder getEncoder() const override;
 };
 

@@ -5,9 +5,10 @@
 #define _OKAPI_ROTARYSENSOR_HPP_
 
 #include "api.h"
+#include "okapi/control/controllerInput.hpp"
 
 namespace okapi {
-class RotarySensor {
+class RotarySensor : public ControllerInput {
   public:
   virtual ~RotarySensor();
 

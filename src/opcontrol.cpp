@@ -14,13 +14,16 @@ void opcontrol() {
     btn.changedToPressed();
     btn.changedToReleased();
 
+    ADIEncoder leftEncoder(1, 2, true);
+    ADIEncoder rightEncoder(3, 4);
+
     ControllerButton btn2(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A);
 
     Motor mtr = 1_m;
     Motor r_mtr = 2_rm;
 
-    SkidSteerModel model1(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
-                          ADIEncoder(1, 2, true), ADIEncoder(3, 4));
+    SkidSteerModel model1(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}), leftEncoder,
+                          rightEncoder);
 
     SkidSteerModel model2(MotorGroup<2>({1_m, 2_m}),
                           MotorGroup<2>({3_m, 4_m})); // Using integrated encoders
@@ -45,28 +48,27 @@ void opcontrol() {
     auto vals = int1.getSensorVals(); // Read left and right sensors
     int1.resetSensors();              // Set sensors to 0
 
-    XDriveModel xmodel1(1_m, 2_m, 3_m, 4_m, ADIEncoder(1, 2, true), ADIEncoder(3, 4));
+    XDriveModel xmodel1(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder);
 
     XDriveModel xmodel2(1_m, 2_m, 3_m, 4_m); // Using integrated encoders
 
     ChassisControllerPID controller1(
-      SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
-                           ADIEncoder(1, 2, true), ADIEncoder(3, 4)),
+      SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}), leftEncoder,
+                           rightEncoder),
       PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
 
     ChassisControllerPID controller2(
-      XDriveModelParams(1_m, 2_m, 3_m, 4_m, ADIEncoder(1, 2, true), ADIEncoder(3, 4)),
+      XDriveModelParams(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder),
       PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
 
     OdomChassisControllerPID controller3(
       OdometryParams(SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
-                                          ADIEncoder(1, 2, true), ADIEncoder(3, 4)),
+                                          leftEncoder, rightEncoder),
                      0, 0),
       PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
 
     OdomChassisControllerPID controller4(
-      OdometryParams(
-        XDriveModelParams(1_m, 2_m, 3_m, 4_m, ADIEncoder(1, 2, true), ADIEncoder(3, 4)), 0, 0),
+      OdometryParams(XDriveModelParams(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder), 0, 0),
       PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
 
     PosPIDController pid1(0, 0, 0); // PID controller
@@ -76,8 +78,9 @@ void opcontrol() {
 
     PosIntegratedController posI1(1_m);
 
-    AsyncPosPIDController apospid1(1_m, ADIEncoder(1, 2), PosPIDControllerParams(0, 0, 0));
-    AsyncPosPIDController apospid2(1_m, ADIEncoder(1, 2), 0, 0, 0);
+    Motor tempMotor = 1_m;
+    AsyncPosPIDController apospid1(leftEncoder, tempMotor, PosPIDControllerParams(0, 0, 0));
+    AsyncPosPIDController apospid2(leftEncoder, tempMotor, 0, 0, 0);
 
     PosPIDController pid2(0, 0, 0);
     PosPIDController pid3(0, 0, 0, 0);
@@ -109,7 +112,7 @@ void opcontrol() {
     EmaFilter emaFilt1(0);
 
     Odometry odom1(SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
-                                        ADIEncoder(1, 2, true), ADIEncoder(3, 4)),
+                                        leftEncoder, rightEncoder),
                    0, 0);
 
     // Timer timer1();

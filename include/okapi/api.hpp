@@ -16,6 +16,8 @@
 #include "okapi/control/iterative/motorController.hpp"
 #include "okapi/control/iterative/posPidController.hpp"
 #include "okapi/control/iterative/velPidController.hpp"
+#include "okapi/control/controllerInput.hpp"
+#include "okapi/control/controllerOutput.hpp"
 
 #include "okapi/device/adiButton.hpp"
 #include "okapi/device/adiEncoder.hpp"

@@ -6,6 +6,8 @@
 
 #include "api.h"
 #include "okapi/control/async/asyncPositionController.hpp"
+#include "okapi/control/controllerInput.hpp"
+#include "okapi/control/controllerOutput.hpp"
 #include "okapi/control/iterative/posPidController.hpp"
 #include "okapi/device/abstractMotor.hpp"
 
@@ -14,18 +16,20 @@ class AsyncPosPIDController;
 
 class AsyncPosPIDControllerParams : public AsyncPositionControllerParams {
   public:
-  AsyncPosPIDControllerParams(const AbstractMotor &imotor, const PosPIDControllerParams &iparams);
+  AsyncPosPIDControllerParams(ControllerInput &iinput, ControllerOutput &ioutput,
+                              const PosPIDControllerParams &iparams);
 
-  const AbstractMotor &motor;
+  ControllerInput &input;
+  ControllerOutput &output;
   const PosPIDControllerParams &params;
 };
 
 class AsyncPosPIDController : public AsyncPositionController {
   public:
-  AsyncPosPIDController(const AbstractMotor &imotor, const RotarySensor &isensor,
+  AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
                         const PosPIDControllerParams &iparams);
 
-  AsyncPosPIDController(const AbstractMotor &imotor, const RotarySensor &isensor, const double ikP,
+  AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput, const double ikP,
                         const double ikI, const double ikD, const double ikBias = 0);
 
   virtual ~AsyncPosPIDController();
@@ -72,8 +76,8 @@ class AsyncPosPIDController : public AsyncPositionController {
   void flipDisable() override;
 
   protected:
-  const AbstractMotor &motor;
-  const RotarySensor &sensor;
+  ControllerInput &input;
+  ControllerOutput &output;
   PosPIDController controller;
   uint32_t prevTime;
   pros::Task task;
