@@ -13,43 +13,60 @@ namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {
   public:
   /**
-   * ChassisController using the V5 motor's integrated control.
+   * ChassisController using the V5 motor's integrated control. Puts the motors into encoder tick
+   * units.
    *
    * @param imodelParams ChassisModelParams
    * @param ileftControllerParams left side controller params
    * @param irightControllerParams right side controller params
+   * @param istraightScale scale converting your units of choice to encoder ticks, used for
+   * measuring distance
+   * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
+   * angle
    */
   ChassisControllerIntegrated(const ChassisModelParams &imodelParams,
                               const PosIntegratedControllerParams &ileftControllerParams,
-                              const PosIntegratedControllerParams &irightControllerParams);
+                              const PosIntegratedControllerParams &irightControllerParams,
+                              const double istraightScale = 1, const double iturnScale = 1);
 
   ChassisControllerIntegrated(std::shared_ptr<const ChassisModel> imodel,
                               const PosIntegratedControllerParams &ileftControllerParams,
-                              const PosIntegratedControllerParams &irightControllerParams);
+                              const PosIntegratedControllerParams &irightControllerParams,
+                              const double istraightScale = 1, const double iturnScale = 1);
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
-   * steer layout.
+   * steer layout. Puts the motors into encoder tick units.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
+   * @param istraightScale scale converting your units of choice to encoder ticks, used for
+   * measuring distance
+   * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
+   * angle
    */
   ChassisControllerIntegrated(const AbstractMotor &ileftSideMotor,
-                              const AbstractMotor &irightSideMotor);
+                              const AbstractMotor &irightSideMotor, const double istraightScale = 1,
+                              const double iturnScale = 1);
 
   /**
    * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
-   * layout.
+   * layout. Puts the motors into encoder tick units.
    *
    * @param itopLeftMotor top left motor
    * @param itopRightMotor top right motor
    * @param ibottomRightMotor bottom right motor
    * @param ibottomLeftMotor bottom left motor
+   * @param istraightScale scale converting your units of choice to encoder ticks, used for
+   * measuring distance
+   * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
+   * angle
    */
   ChassisControllerIntegrated(const AbstractMotor &itopLeftMotor,
                               const AbstractMotor &itopRightMotor,
                               const AbstractMotor &ibottomRightMotor,
-                              const AbstractMotor &ibottomLeftMotor);
+                              const AbstractMotor &ibottomLeftMotor, const double istraightScale = 1,
+                              const double iturnScale = 1);
 
   virtual ~ChassisControllerIntegrated();
 
@@ -63,7 +80,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
-   * @param idegTarget degrees to turn for
+   * @param idegTarget angle to turn for
    */
   void turnAngle(float idegTarget) override;
 
@@ -71,6 +88,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   PosIntegratedController leftController;
   PosIntegratedController rightController;
   int lastTarget;
+  const double straightScale;
+  const double turnScale;
 };
 } // namespace okapi
 

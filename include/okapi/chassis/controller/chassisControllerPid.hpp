@@ -43,7 +43,7 @@ class ChassisControllerPID : public virtual ChassisController {
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
-   * @param idegTarget degrees to turn for
+   * @param idegTarget angle to turn for
    */
   void turnAngle(float idegTarget) override;
 

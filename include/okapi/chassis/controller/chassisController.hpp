@@ -28,7 +28,7 @@ class ChassisController {
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
-   * @param idegTarget degrees to turn for
+   * @param idegTarget angle to turn for
    */
   virtual void turnAngle(const float idegTarget) = 0;
 
