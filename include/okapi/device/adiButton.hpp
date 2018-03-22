@@ -19,19 +19,22 @@ class ADIButton : public Button {
   bool isPressed();
 
   /**
-   * Return whether there just was a rising or falling edge.
+   * Return whether the state of the button changed since the last time this method was
+   * called.
    **/
-  bool edge();
+  bool changed();
 
   /**
-   * Return whether there was just a rising edge.
+   * Return whether the state of the button changed to being pressed since the last time this method
+   * was called.
    **/
-  bool risingEdge();
+  bool changedToPressed();
 
   /**
-   * Return whether there was just a falling edge.
+   * Return whether the state of the button to being not pressed changed since the last time this
+   * method was called.
    **/
-  bool fallingEdge();
+  bool changedToReleased();
 
   private:
   pros::ADIButton btn;

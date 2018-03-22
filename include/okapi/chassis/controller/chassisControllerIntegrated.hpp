@@ -54,16 +54,16 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   virtual ~ChassisControllerIntegrated();
 
   /**
-   * Drives the robot straight.
+   * Drives the robot straight for a distance (using closed-loop control).
    *
-   * @param itarget Distance to travel
+   * @param itarget distance to travel
    */
   void moveDistance(const int itarget) override;
 
   /**
-   * Turns the robot clockwise in place.
+   * Turns the robot clockwise in place (using closed-loop control).
    *
-   * @param idegTarget Degrees to turn for
+   * @param idegTarget degrees to turn for
    */
   void turnAngle(float idegTarget) override;
 

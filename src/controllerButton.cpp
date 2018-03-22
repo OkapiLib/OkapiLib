@@ -16,19 +16,19 @@ bool ControllerButton::isPressed() {
   return wasPressedLast;
 }
 
-bool ControllerButton::edge() {
+bool ControllerButton::changed() {
   const bool pressed = currentlyPressed();
   const bool out = pressed ^ wasPressedLast;
   wasPressedLast = pressed;
   return out;
 }
 
-bool ControllerButton::risingEdge() {
-  return edge() && wasPressedLast;
+bool ControllerButton::changedToPressed() {
+  return changed() && wasPressedLast;
 }
 
-bool ControllerButton::fallingEdge() {
-  return edge() && !wasPressedLast;
+bool ControllerButton::changedToReleased() {
+  return changed() && !wasPressedLast;
 }
 
 bool ControllerButton::currentlyPressed() {

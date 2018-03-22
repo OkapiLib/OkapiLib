@@ -17,19 +17,22 @@ class Button {
   virtual bool isPressed() = 0;
 
   /**
-   * Return whether there just was a rising or falling edge.
+   * Return whether the state of the button changed since the last time this method was
+   * called.
    **/
-  virtual bool edge() = 0;
+  virtual bool changed() = 0;
 
   /**
-   * Return whether there was just a rising edge.
+   * Return whether the state of the button changed to being pressed since the last time this method
+   * was called.
    **/
-  virtual bool risingEdge() = 0;
+  virtual bool changedToPressed() = 0;
 
   /**
-   * Return whether there was just a falling edge.
+   * Return whether the state of the button to being not pressed changed since the last time this
+   * method was called.
    **/
-  virtual bool fallingEdge() = 0;
+  virtual bool changedToReleased() = 0;
 };
 } // namespace okapi
 

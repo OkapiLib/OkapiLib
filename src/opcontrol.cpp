@@ -10,9 +10,9 @@ void opcontrol() {
   while (true) {
     ADIButton btn(2);
     btn.isPressed();
-    btn.edge();
-    btn.risingEdge();
-    btn.fallingEdge();
+    btn.changed();
+    btn.changedToPressed();
+    btn.changedToReleased();
 
     ControllerButton btn2(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A);
 
@@ -31,10 +31,11 @@ void opcontrol() {
     ChassisControllerIntegrated int2(MotorGroup<3>({1_m, 2_m, 3_m}), // Three motors on left side
                                      MotorGroup<2>({4_m, 5_m}));     // Two motors on right side
 
-    int1.moveDistance(0);            // Closed-loop control
-    int1.turnAngle(0);                // Closed-loop control
-    int1.forward(0);             // Open-loop control
-    int1.rotate(0);            // Open-loop control
+    int1.moveDistance(0); // Closed-loop control
+    int1.turnAngle(0);    // Closed-loop control
+
+    int1.forward(0);                  // Open-loop control
+    int1.rotate(0);                   // Open-loop control
     int1.driveVector(0, 0);           // Open-loop control
     int1.tank(0, 0);                  // Tank drive
     int1.arcade(0, 0);                // Arcade drive

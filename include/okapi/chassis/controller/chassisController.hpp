@@ -19,7 +19,7 @@ class ChassisController {
   virtual ~ChassisController();
 
   /**
-   * Drives the robot straight (using closed-loop control).
+   * Drives the robot straight for a distance (using closed-loop control).
    *
    * @param itarget distance to travel
    */

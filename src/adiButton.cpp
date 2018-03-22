@@ -15,19 +15,19 @@ bool ADIButton::isPressed() {
   return wasPressedLast;
 }
 
-bool ADIButton::edge() {
+bool ADIButton::changed() {
   const bool pressed = currentlyPressed();
   const bool out = pressed ^ wasPressedLast;
   wasPressedLast = pressed;
   return out;
 }
 
-bool ADIButton::risingEdge() {
-  return edge() && wasPressedLast;
+bool ADIButton::changedToPressed() {
+  return changed() && wasPressedLast;
 }
 
-bool ADIButton::fallingEdge() {
-  return edge() && !wasPressedLast;
+bool ADIButton::changedToReleased() {
+  return changed() && !wasPressedLast;
 }
 
 bool ADIButton::currentlyPressed() {
