@@ -61,7 +61,7 @@ SkidSteerModel::SkidSteerModel(const SkidSteerModel &other)
 
 SkidSteerModel::~SkidSteerModel() = default;
 
-void SkidSteerModel::driveForward(const int ipower) const {
+void SkidSteerModel::forward(const int ipower) const {
   leftSideMotor.move_velocity(ipower);
   rightSideMotor.move_velocity(ipower);
 }
@@ -71,7 +71,7 @@ void SkidSteerModel::driveVector(const int idistPower, const int ianglePower) co
   rightSideMotor.move_velocity(idistPower - ianglePower);
 }
 
-void SkidSteerModel::turnClockwise(const int ipower) const {
+void SkidSteerModel::rotate(const int ipower) const {
   leftSideMotor.move_velocity(ipower);
   rightSideMotor.move_velocity(-1 * ipower);
 }

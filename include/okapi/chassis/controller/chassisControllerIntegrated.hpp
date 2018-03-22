@@ -58,14 +58,14 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    *
    * @param itarget Distance to travel
    */
-  void driveStraight(const int itarget) override;
+  void moveDistance(const int itarget) override;
 
   /**
    * Turns the robot clockwise in place.
    *
    * @param idegTarget Degrees to turn for
    */
-  void pointTurn(float idegTarget) override;
+  void turnAngle(float idegTarget) override;
 
   protected:
   PosIntegratedController leftController;

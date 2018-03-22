@@ -32,7 +32,7 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<const ChassisModel> i
 
 ChassisControllerPID::~ChassisControllerPID() = default;
 
-void ChassisControllerPID::driveStraight(const int itarget) {
+void ChassisControllerPID::moveDistance(const int itarget) {
   const auto encStartVals = model->getSensorVals();
   float distanceElapsed = 0, angleChange = 0, lastDistance = 0;
   uint32_t prevWakeTime = millis();
@@ -80,7 +80,7 @@ void ChassisControllerPID::driveStraight(const int itarget) {
   model->stop();
 }
 
-void ChassisControllerPID::pointTurn(float idegTarget) {
+void ChassisControllerPID::turnAngle(float idegTarget) {
   const auto encStartVals = model->getSensorVals();
   float angleChange = 0, lastAngle = 0;
   uint32_t prevWakeTime = millis();
@@ -107,7 +107,7 @@ void ChassisControllerPID::pointTurn(float idegTarget) {
     encVals = model->getSensorVals() - encStartVals;
     angleChange = static_cast<float>(encVals[1] - encVals[0]);
 
-    model->turnClockwise(static_cast<int>(anglePid.step(angleChange) * 127));
+    model->rotate(static_cast<int>(anglePid.step(angleChange) * 127));
 
     if (fabs(idegTarget - angleChange) <= atTargetAngle)
       atTargetTimer.placeHardMark();

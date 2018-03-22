@@ -69,7 +69,7 @@ class SkidSteerModel : public ChassisModel {
    *
    * @param ipower motor power
    */
-  void driveForward(const int ipower) const override;
+  void forward(const int ipower) const override;
 
   /**
    * Drive the robot in an arc (using open-loop control).
@@ -87,7 +87,7 @@ class SkidSteerModel : public ChassisModel {
    *
    * @param ipower motor power
    */
-  void turnClockwise(const int ipower) const override;
+  void rotate(const int ipower) const override;
 
   /**
    * Stop the robot (set all the motors to 0).

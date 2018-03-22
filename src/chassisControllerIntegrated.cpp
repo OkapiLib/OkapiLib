@@ -67,7 +67,7 @@ ChassisControllerIntegrated::~ChassisControllerIntegrated() = default;
  *
  * @param itarget Distance to travel
  */
-void ChassisControllerIntegrated::driveStraight(const int itarget) {
+void ChassisControllerIntegrated::moveDistance(const int itarget) {
   int distanceElapsed = 0, lastDistance = 0;
   uint32_t prevWakeTime = millis();
   bool atTarget = false;
@@ -107,7 +107,7 @@ void ChassisControllerIntegrated::driveStraight(const int itarget) {
  *
  * @param idegTarget Degrees to turn for
  */
-void ChassisControllerIntegrated::pointTurn(float idegTarget) {
+void ChassisControllerIntegrated::turnAngle(float idegTarget) {
   lastTarget = 0;
   leftController.reset();
   rightController.reset();

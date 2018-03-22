@@ -78,7 +78,7 @@ XDriveModel::XDriveModel(const XDriveModel &other)
 
 XDriveModel::~XDriveModel() = default;
 
-void XDriveModel::driveForward(const int ipower) const {
+void XDriveModel::forward(const int ipower) const {
   topLeftMotor.move_velocity(ipower);
   topRightMotor.move_velocity(ipower);
   bottomRightMotor.move_velocity(ipower);
@@ -92,7 +92,7 @@ void XDriveModel::driveVector(const int idistPower, const int ianglePower) const
   bottomLeftMotor.move_velocity(idistPower + ianglePower);
 }
 
-void XDriveModel::turnClockwise(const int ipower) const {
+void XDriveModel::rotate(const int ipower) const {
   topLeftMotor.move_velocity(ipower);
   topRightMotor.move_velocity(-1 * ipower);
   bottomRightMotor.move_velocity(-1 * ipower);

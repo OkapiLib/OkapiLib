@@ -26,15 +26,15 @@ void OdomChassisControllerPID::driveToPoint(const float ix, const float iy, cons
   }
 
   if (std::abs(daa.theta) > 1) {
-    ChassisControllerPID::pointTurn(daa.theta);
+    ChassisControllerPID::turnAngle(daa.theta);
   }
 
   if (std::abs(daa.length - ioffset) > moveThreshold) {
-    ChassisControllerPID::driveStraight(static_cast<int>(daa.length - ioffset));
+    ChassisControllerPID::moveDistance(static_cast<int>(daa.length - ioffset));
   }
 }
 
 void OdomChassisControllerPID::turnToAngle(const float iangle) {
-  ChassisControllerPID::pointTurn(iangle - odom.getState().theta);
+  ChassisControllerPID::turnAngle(iangle - odom.getState().theta);
 }
 } // namespace okapi

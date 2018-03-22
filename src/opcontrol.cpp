@@ -31,10 +31,10 @@ void opcontrol() {
     ChassisControllerIntegrated int2(MotorGroup<3>({1_m, 2_m, 3_m}), // Three motors on left side
                                      MotorGroup<2>({4_m, 5_m}));     // Two motors on right side
 
-    int1.driveStraight(0);            // Closed-loop control
-    int1.pointTurn(0);                // Closed-loop control
-    int1.driveForward(0);             // Open-loop control
-    int1.turnClockwise(0);            // Open-loop control
+    int1.moveDistance(0);            // Closed-loop control
+    int1.turnAngle(0);                // Closed-loop control
+    int1.forward(0);             // Open-loop control
+    int1.rotate(0);            // Open-loop control
     int1.driveVector(0, 0);           // Open-loop control
     int1.tank(0, 0);                  // Tank drive
     int1.arcade(0, 0);                // Arcade drive

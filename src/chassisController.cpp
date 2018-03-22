@@ -8,16 +8,16 @@
 namespace okapi {
 ChassisController::~ChassisController() = default;
 
-void ChassisController::driveForward(const int ipower) const {
-  model->driveForward(ipower);
+void ChassisController::forward(const int ipower) const {
+  model->forward(ipower);
 }
 
 void ChassisController::driveVector(const int idistPower, const int ianglePower) const {
   model->driveVector(idistPower, ianglePower);
 }
 
-void ChassisController::turnClockwise(const int ipower) const {
-  model->turnClockwise(ipower);
+void ChassisController::rotate(const int ipower) const {
+  model->rotate(ipower);
 }
 
 void ChassisController::stop() const {

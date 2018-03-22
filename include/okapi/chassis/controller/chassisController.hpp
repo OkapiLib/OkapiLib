@@ -23,21 +23,21 @@ class ChassisController {
    *
    * @param itarget distance to travel
    */
-  virtual void driveStraight(const int itarget) = 0;
+  virtual void moveDistance(const int itarget) = 0;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget degrees to turn for
    */
-  virtual void pointTurn(const float idegTarget) = 0;
+  virtual void turnAngle(const float idegTarget) = 0;
 
   /**
    * Drive the robot forwards (using open-loop control).
    *
    * @param ipower motor power
    */
-  void driveForward(const int ipower) const;
+  void forward(const int ipower) const;
 
   /**
    * Drive the robot in an arc (using open-loop control).
@@ -55,7 +55,7 @@ class ChassisController {
    *
    * @param ipower motor power
    */
-  void turnClockwise(const int ipower) const;
+  void rotate(const int ipower) const;
 
   /**
    * Stop the robot (set all the motors to 0).
