@@ -30,6 +30,7 @@
 #include "okapi/filter/demaFilter.hpp"
 #include "okapi/filter/ekfFilter.hpp"
 #include "okapi/filter/emaFilter.hpp"
+#include "okapi/filter/medianFilter.hpp"
 #include "okapi/filter/velMath.hpp"
 
 #include "okapi/odometry/odomMath.hpp"

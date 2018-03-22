@@ -105,11 +105,13 @@ void opcontrol() {
 
     DemaFilter demaFilt1(0, 0);
 
-    EKFFilter ekfFilter1();
+    EKFFilter ekfFilter1;
     EKFFilter ekfFilter2(0);
     EKFFilter ekfFilter3(0, 0);
 
     EmaFilter emaFilt1(0);
+
+    MedianFilter<5> medianFilt1;
 
     Odometry odom1(SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
                                         leftEncoder, rightEncoder),

@@ -10,7 +10,7 @@
 
 namespace okapi {
 /**
- * @tparam number of taps in the filter
+ * @param n number of taps in the filter
  */
 template <std::size_t n> class AverageFilter : public Filter {
   public:
@@ -24,8 +24,9 @@ template <std::size_t n> class AverageFilter : public Filter {
 
   double filter(const double ireading) override {
     data[index++] = ireading;
-    if (index > n)
+    if (index > n) {
       index = 0;
+    }
 
     output = 0.0;
     for (size_t i = 0; i < n; i++)
