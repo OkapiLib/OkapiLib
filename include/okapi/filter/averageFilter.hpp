@@ -28,7 +28,7 @@ template <std::size_t n> class AverageFilter : public Filter {
 
   double filter(const double ireading) override {
     data[index++] = ireading;
-    if (index > n) {
+    if (index >= n) {
       index = 0;
     }
 

@@ -11,6 +11,7 @@
 #define _OKAPI_MEDIANFILTER_HPP_
 
 #include "okapi/filter/filter.hpp"
+#include <algorithm>
 #include <array>
 #include <cstddef>
 
@@ -28,9 +29,10 @@ template <std::size_t n> class MedianFilter : public Filter {
 
   double filter(const double ireading) override {
     data[index++] = ireading;
-    if (index > n) {
+    if (index >= n) {
       index = 0;
     }
+
     return kth_smallset();
   }
 

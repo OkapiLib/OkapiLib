@@ -45,8 +45,8 @@ void opcontrol() {
     auto vals = int1.getSensorVals(); // Read left and right sensors
     int1.resetSensors();              // Set sensors to 0
 
-    // A ChassisModel (SkidSteerModel or XDriveModel) is a simple interface to a robot chassis. It
-    // is only an organization of motors and sensors, and is meant to be used by higher level
+    // A ChassisModel (SkidSteerModel or XDriveModel) is a simple interface to a robot chassis.
+    // It is only an organization of motors and sensors, and is meant to be used by higher level
     // control systems that add closed-loop control, like ChassisController.
     SkidSteerModel model1(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}), leftEncoder,
                           rightEncoder);
@@ -109,7 +109,7 @@ void opcontrol() {
 
     MotorGroup<2> mg1({1_m, 2_m});
 
-    AverageFilter<1> avgFilt1;
+    AverageFilter<2> avgFilt1;
     avgFilt1.filter(0);
     avgFilt1.getOutput();
 
@@ -122,6 +122,10 @@ void opcontrol() {
     EmaFilter emaFilt1(0);
 
     MedianFilter<5> medianFilt1;
+
+    for (int i = 0; i < 10; i++) {
+      printf("%d: %1.2f\n", i, avgFilt1.filter(i));
+    }
 
     Odometry odom1(SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
                                         leftEncoder, rightEncoder),
