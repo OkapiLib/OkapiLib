@@ -8,7 +8,7 @@
 #ifndef _OKAPI_ADIENCODER_HPP_
 #define _OKAPI_ADIENCODER_HPP_
 
-#include "okapi/device/rotarySensor.hpp"
+#include "okapi/device/rotarysensor/rotarySensor.hpp"
 
 namespace okapi {
 class ADIEncoder : public RotarySensor {

@@ -9,8 +9,8 @@
 #define _OKAPI_VELINTEGRATEDCONTROLLER_HPP_
 
 #include "okapi/control/async/asyncVelocityController.hpp"
-#include "okapi/device/abstractMotor.hpp"
-#include "okapi/device/integratedEncoder.hpp"
+#include "okapi/device/motor/abstractMotor.hpp"
+#include "okapi/device/rotarysensor/integratedEncoder.hpp"
 
 namespace okapi {
 class VelIntegratedController;

@@ -8,8 +8,8 @@
 #ifndef _OKAPI_MOTORGROUP_HPP_
 #define _OKAPI_MOTORGROUP_HPP_
 
-#include "okapi/device/abstractMotor.hpp"
-#include "okapi/device/motor.hpp"
+#include "okapi/device/motor/abstractMotor.hpp"
+#include "okapi/device/motor/motor.hpp"
 #include <array>
 #include <initializer_list>
 

@@ -9,7 +9,7 @@
 #define _OKAPI_POSINTEGRATEDCONTROLLER_HPP_
 
 #include "okapi/control/async/asyncPositionController.hpp"
-#include "okapi/device/abstractMotor.hpp"
+#include "okapi/device/motor/abstractMotor.hpp"
 
 namespace okapi {
 class PosIntegratedController;

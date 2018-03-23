@@ -10,7 +10,7 @@
 
 #include "api.h"
 #include "okapi/control/iterative/iterativeVelocityController.hpp"
-#include "okapi/device/abstractMotor.hpp"
+#include "okapi/device/motor/abstractMotor.hpp"
 #include <array>
 #include <memory>
 

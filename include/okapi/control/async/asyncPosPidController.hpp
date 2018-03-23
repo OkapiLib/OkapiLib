@@ -13,7 +13,7 @@
 #include "okapi/control/controllerInput.hpp"
 #include "okapi/control/controllerOutput.hpp"
 #include "okapi/control/iterative/posPidController.hpp"
-#include "okapi/device/abstractMotor.hpp"
+#include "okapi/device/motor/abstractMotor.hpp"
 
 namespace okapi {
 class AsyncPosPIDController;

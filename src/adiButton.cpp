@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/device/adiButton.hpp"
+#include "okapi/device/button/adiButton.hpp"
 
 namespace okapi {
 ADIButton::ADIButton(const uint8_t iport, const bool iinverted)

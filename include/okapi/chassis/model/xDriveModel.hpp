@@ -9,8 +9,8 @@
 #define _OKAPI_XDRIVEMODEL_HPP_
 
 #include "okapi/chassis/model/chassisModel.hpp"
-#include "okapi/device/abstractMotor.hpp"
-#include "okapi/device/rotarySensor.hpp"
+#include "okapi/device/motor/abstractMotor.hpp"
+#include "okapi/device/rotarysensor/rotarySensor.hpp"
 
 namespace okapi {
 class XDriveModelParams : public ChassisModelParams {

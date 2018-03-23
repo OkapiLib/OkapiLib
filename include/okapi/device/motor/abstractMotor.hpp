@@ -10,7 +10,7 @@
 
 #include "api.h"
 #include "okapi/control/controllerOutput.hpp"
-#include "okapi/device/integratedEncoder.hpp"
+#include "okapi/device/rotarysensor/integratedEncoder.hpp"
 
 namespace okapi {
 class AbstractMotor : public pros::Motor, public ControllerOutput {

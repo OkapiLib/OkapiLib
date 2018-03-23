@@ -8,7 +8,7 @@
 #ifndef _OKAPI_CONTROLLERBUTTON_HPP_
 #define _OKAPI_CONTROLLERBUTTON_HPP_
 
-#include "okapi/device/button.hpp"
+#include "okapi/device/button/button.hpp"
 
 namespace okapi {
 class ControllerButton : public Button {

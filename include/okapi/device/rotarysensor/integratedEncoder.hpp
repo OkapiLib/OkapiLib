@@ -8,7 +8,7 @@
 #ifndef _OKAPI_INTEGRATEDENCODER_HPP_
 #define _OKAPI_INTEGRATEDENCODER_HPP_
 
-#include "okapi/device/rotarySensor.hpp"
+#include "okapi/device/rotarysensor/rotarySensor.hpp"
 
 namespace okapi {
 class IntegratedEncoder : public RotarySensor {

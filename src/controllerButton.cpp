@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/device/controllerButton.hpp"
+#include "okapi/device/button/controllerButton.hpp"
 
 namespace okapi {
 ControllerButton::ControllerButton(controller_id_e_t icontroller, controller_digital_e_t ibtn,

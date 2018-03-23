@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/device/integratedEncoder.hpp"
+#include "okapi/device/rotarysensor/integratedEncoder.hpp"
 
 namespace okapi {
 IntegratedEncoder::IntegratedEncoder(const pros::Motor &imotor) : motor(imotor) {

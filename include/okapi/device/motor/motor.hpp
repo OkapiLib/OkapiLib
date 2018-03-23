@@ -9,7 +9,7 @@
 #define _OKAPI_MOTOR_HPP_
 
 #include "api.h"
-#include "okapi/device/abstractMotor.hpp"
+#include "okapi/device/motor/abstractMotor.hpp"
 
 namespace okapi {
 class Motor : public AbstractMotor {
