@@ -1,6 +1,10 @@
-/* This Source Code Form is subject to the terms of the Mozilla Public
+/**
+ * @author Ryan Benasutti, WPI
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
 #ifndef _OKAPI_API_HPP_
 #define _OKAPI_API_HPP_
 
@@ -13,11 +17,11 @@
 
 #include "okapi/control/async/asyncPosPidController.hpp"
 #include "okapi/control/async/posIntegratedController.hpp"
+#include "okapi/control/controllerInput.hpp"
+#include "okapi/control/controllerOutput.hpp"
 #include "okapi/control/iterative/motorController.hpp"
 #include "okapi/control/iterative/posPidController.hpp"
 #include "okapi/control/iterative/velPidController.hpp"
-#include "okapi/control/controllerInput.hpp"
-#include "okapi/control/controllerOutput.hpp"
 
 #include "okapi/device/adiButton.hpp"
 #include "okapi/device/adiEncoder.hpp"

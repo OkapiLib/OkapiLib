@@ -1,6 +1,10 @@
-/* This Source Code Form is subject to the terms of the Mozilla Public
+/**
+ * @author Ryan Benasutti, WPI
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
 #ifndef _OKAPI_CHASSISCONTROLLERINTEGRATED_HPP_
 #define _OKAPI_CHASSISCONTROLLERINTEGRATED_HPP_
 
@@ -65,8 +69,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   ChassisControllerIntegrated(const AbstractMotor &itopLeftMotor,
                               const AbstractMotor &itopRightMotor,
                               const AbstractMotor &ibottomRightMotor,
-                              const AbstractMotor &ibottomLeftMotor, const double istraightScale = 1,
-                              const double iturnScale = 1);
+                              const AbstractMotor &ibottomLeftMotor,
+                              const double istraightScale = 1, const double iturnScale = 1);
 
   virtual ~ChassisControllerIntegrated();
 
