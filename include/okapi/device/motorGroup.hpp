@@ -44,12 +44,21 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
   //   }
   // }
 
+  /**
+   * Write the value of the controller output. This method might be automatically called in another
+   * thread by the controller.
+   */
   void controllerSet(const double ivalue) override {
     for (size_t i = 0; i < motorNum; i++) {
       motors[i].move_velocity(ivalue);
     }
   }
 
+  /**
+   * Get the encoder associated with this motor.
+   *
+   * @return encoder for this motor
+   */
   IntegratedEncoder getEncoder() const override {
     return motors[0].getEncoder();
   }

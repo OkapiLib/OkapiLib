@@ -16,8 +16,17 @@ class Motor : public AbstractMotor {
   public:
   using AbstractMotor::AbstractMotor;
 
+  /**
+   * Write the value of the controller output. This method might be automatically called in another
+   * thread by the controller.
+   */
   void controllerSet(const double ivalue) override;
 
+  /**
+   * Get the encoder associated with this motor.
+   *
+   * @return encoder for this motor
+   */
   IntegratedEncoder getEncoder() const override;
 };
 

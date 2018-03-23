@@ -21,6 +21,11 @@ class AbstractMotor : public pros::Motor, public ControllerOutput {
 
   virtual ~AbstractMotor();
 
+  /**
+   * Get the encoder associated with this motor.
+   *
+   * @return encoder for this motor
+   */
   virtual IntegratedEncoder getEncoder() const = 0;
 };
 } // namespace okapi
