@@ -31,6 +31,7 @@ class PIDTuner {
   static constexpr double confSelf = 1.1;  // Self confidence
   static constexpr double confSwarm = 1.2; // Particle swarm confidence
   static constexpr int increment = 5;
+  static constexpr int divisor = 5;
 
   struct particle {
     double pos, vel, best;
@@ -55,9 +56,12 @@ class PIDTuner {
   const double kSettle;
   const double kITAE;
 
+  double itae;
   std::vector<particleSet> particles;
   PosPIDController leftController;
   PosPIDController rightController;
+
+  uint32_t moveDistance(const int itarget);
 };
 } // namespace okapi
 
