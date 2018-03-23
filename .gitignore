@@ -5,3 +5,4 @@ program
 .vscode/
 okapilib-template.zip
 .clang/
+*.gch

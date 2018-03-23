@@ -28,25 +28,15 @@ PosIntegratedController::PosIntegratedController(const PosIntegratedControllerPa
 
 PosIntegratedController::~PosIntegratedController() = default;
 
-/**
- * Sets the target for the controller.
- */
 void PosIntegratedController::setTarget(const double itarget) {
   motor.move_absolute(itarget + offset, 100);
   lastTarget = itarget;
 }
 
-/**
- * Returns the last error of the controller.
- */
 double PosIntegratedController::getError() const {
   return lastTarget - motor.get_position();
 }
 
-/**
- * Resets the controller so it can start from 0 again properly. Keeps configuration from
- * before.
- */
 void PosIntegratedController::reset() {
   // Save the current target as an offset for the new targets so the current target becomes a
   // "zero position"

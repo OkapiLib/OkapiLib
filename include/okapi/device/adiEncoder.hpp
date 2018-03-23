@@ -31,6 +31,10 @@ class ADIEncoder : public RotarySensor {
    */
   int32_t reset() const override;
 
+  /**
+   * Get the sensor value for use in a control loop. This method might be automatically called in
+   * another thread by the controller.
+   */
   double controllerGet() override;
 
   private:

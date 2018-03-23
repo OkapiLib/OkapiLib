@@ -9,6 +9,7 @@ void opcontrol() {
 
   while (true) {
     ADIButton btn(2);
+    ControllerButton btn2(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A);
     btn.isPressed();
     btn.changed();
     btn.changedToPressed();
@@ -16,17 +17,13 @@ void opcontrol() {
 
     ADIEncoder leftEncoder(1, 2, true);
     ADIEncoder rightEncoder(3, 4);
+    leftEncoder.get();
 
-    ControllerButton btn2(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A);
+    ADIUltrasonic ultra1(1, 2);
+    ultra1.get();
 
     Motor mtr = 1_m;
     Motor r_mtr = 2_rm;
-
-    SkidSteerModel model1(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}), leftEncoder,
-                          rightEncoder);
-
-    SkidSteerModel model2(MotorGroup<2>({1_m, 2_m}),
-                          MotorGroup<2>({3_m, 4_m})); // Using integrated encoders
 
     ChassisControllerIntegrated int1(1_m,  // One motor on left side
                                      2_m); // One motor on right side
@@ -48,8 +45,14 @@ void opcontrol() {
     auto vals = int1.getSensorVals(); // Read left and right sensors
     int1.resetSensors();              // Set sensors to 0
 
+    // A ChassisModel (SkidSteerModel or XDriveModel) is a simple interface to a robot chassis. It
+    // is only an organization of motors and sensors, and is meant to be used by higher level
+    // control systems that add closed-loop control, like ChassisController.
+    SkidSteerModel model1(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}), leftEncoder,
+                          rightEncoder);
+    SkidSteerModel model2(MotorGroup<2>({1_m, 2_m}),
+                          MotorGroup<2>({3_m, 4_m})); // Using integrated encoders
     XDriveModel xmodel1(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder);
-
     XDriveModel xmodel2(1_m, 2_m, 3_m, 4_m); // Using integrated encoders
 
     ChassisControllerPID controller1(
@@ -61,6 +64,10 @@ void opcontrol() {
       XDriveModelParams(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder),
       PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
 
+    // An "odometry" chassis controller adds an odometry layer running in another task which keeps
+    // track of the position of the robot in the odom frame. This means that you can tell the robot
+    // to move to an arbitrary point on the field, or turn to an absolute angle (i.e., "turn to 90
+    // degrees" will always put the robot facing east relative to the starting position)
     OdomChassisControllerPID controller3(
       OdometryParams(SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
                                           leftEncoder, rightEncoder),
@@ -70,6 +77,9 @@ void opcontrol() {
     OdomChassisControllerPID controller4(
       OdometryParams(XDriveModelParams(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder), 0, 0),
       PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
+
+    controller3.driveToPoint(0, 0); // Drive to (0, 0) on the field
+    controller3.turnToAngle(0);     // Turn to 0 degrees
 
     PosPIDController pid1(0, 0, 0); // PID controller
     MotorController mc1(1_m, pid1); // Motor controller with one motor and the PID controller
@@ -117,6 +127,6 @@ void opcontrol() {
                                         leftEncoder, rightEncoder),
                    0, 0);
 
-    // Timer timer1();
+    Timer timer1();
   }
 }

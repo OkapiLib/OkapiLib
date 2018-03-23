@@ -25,6 +25,7 @@
 
 #include "okapi/device/adiButton.hpp"
 #include "okapi/device/adiEncoder.hpp"
+#include "okapi/device/adiUltrasonic.hpp"
 #include "okapi/device/controllerButton.hpp"
 #include "okapi/device/integratedEncoder.hpp"
 #include "okapi/device/motor.hpp"
