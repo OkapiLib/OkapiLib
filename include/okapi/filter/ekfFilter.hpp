@@ -15,7 +15,11 @@ namespace okapi {
 class EKFFilter : public Filter {
   public:
   /**
-   * One dimensional extended Kalman filter. Q is the covariance of the process noise and R is the
+   * One dimensional extended Kalman filter. The default arguments should work fine for most signal
+   * filtering. It won't hurt to graph your signal and the filtered result, and check if the filter
+   * is doing its job.
+   *
+   * Q is the covariance of the process noise and R is the
    * covariance of the observation noise. The default values for Q and R should be a modest balance
    * between trust in the sensor and FIR filtering.
    *
