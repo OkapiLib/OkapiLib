@@ -16,8 +16,6 @@ class ControllerButton : public Button {
   ControllerButton(controller_id_e_t icontroller, controller_digital_e_t ibtn,
                    const bool iinverted = false);
 
-  virtual ~ControllerButton();
-
   /**
    * Return whether the button is current pressed.
    **/

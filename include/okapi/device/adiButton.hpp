@@ -15,8 +15,6 @@ class ADIButton : public Button {
   public:
   ADIButton(const uint8_t iport, const bool iinverted = false);
 
-  virtual ~ADIButton();
-
   /**
    * Return whether the button is current pressed.
    **/

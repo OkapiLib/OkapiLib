@@ -16,8 +16,6 @@ IntegratedEncoder okapi::Motor::getEncoder() const {
   return IntegratedEncoder(*this);
 }
 
-Motor::~Motor() = default;
-
 inline namespace literals {
 okapi::Motor operator"" _m(const unsigned long long iport) {
   return okapi::Motor(static_cast<uint8_t>(iport));
