@@ -13,8 +13,6 @@ ControllerButton::ControllerButton(controller_id_e_t icontroller, controller_dig
   : controller(icontroller), btn(ibtn), inverted(iinverted), wasPressedLast(false) {
 }
 
-ControllerButton::~ControllerButton() = default;
-
 bool ControllerButton::isPressed() {
   wasPressedLast = currentlyPressed();
   return wasPressedLast;

@@ -12,23 +12,10 @@ EKFFilter::EKFFilter(const double iQ, const double iR)
   : Q(iQ), R(iR), xHat(0), xHatPrev(0), xHatMinus(0), P(0), Pprev(1), Pminus(0), K(0) {
 }
 
-/**
- * Filters a reading.
- *
- * @param ireading new measurement
- * @return filtered result
- */
 double EKFFilter::filter(const double ireading) {
   return filter(ireading, 0);
 }
 
-/**
- * Filters a reading.
- *
- * @param ireading new measurement
- * @param icontrol control input
- * @return filtered result
- */
 double EKFFilter::filter(const double ireading, const double icontrol) {
   // Time update
   xHatMinus = xHatPrev + icontrol;
