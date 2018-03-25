@@ -1,11 +1,27 @@
 #include "api.h"
 
 #include "okapi/api.hpp"
+#include "okapi/snowhouse/snowhouse.h"
 
 using namespace okapi;
 
 void opcontrol() {
   task_delay(100);
+
+  {
+    using namespace snowhouse;
+
+    printf("Testing that 23 is equal to 23.\n");
+    AssertThat(23, Is().EqualTo(23));
+
+    printf("Testing that 12 is less than 11 and greater than 99.\n");
+    try {
+      AssertThat(12, Is().LessThan(11).And().GreaterThan(99));
+    } catch (const AssertionException &ex) {
+      std::cout << "Apparently this failed:" << std::endl;
+      std::cout << ex.GetMessage() << std::endl;
+    }
+  }
 
   while (true) {
     ADIButton btn(2);
