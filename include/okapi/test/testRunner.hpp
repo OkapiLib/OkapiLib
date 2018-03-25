@@ -10,6 +10,8 @@
 
 #include "api.h"
 #include "okapi/snowhouse/snowhouse.h"
+#include <functional>
+#include <string>
 
 #define TEST_PRINT_RED "\x1B[31m"
 #define TEST_PRINT_GRN "\x1B[32m"
@@ -20,13 +22,22 @@
 #define TEST_PRINT_WHT "\x1B[37m"
 #define TEST_PRINT_RESET "\x1B[0m"
 
-#define TEST(NAME, FUNCTION, ...)                                                                  \
-  try {                                                                                            \
-    FUNCTION(__VA_ARGS__);                                                                         \
-    printf(TEST_PRINT_GRN "Test passed:" TEST_PRINT_WHT " %s\n\n" TEST_PRINT_RESET, NAME);         \
-  } catch (const AssertionException &e) {                                                          \
-    printf(TEST_PRINT_RED "Test failed:" TEST_PRINT_WHT " %s" TEST_PRINT_RESET "\n%s\n", NAME,     \
-           e.GetMessage().c_str());                                                                \
+#define TEST_BODY(FUNCTION, ...) [&]() { FUNCTION(__VA_ARGS__); }
+
+namespace okapi {
+static void test_printf(const std::string &istring) {
+  printf("\n%s\n%s\n", istring.c_str(), std::string(istring.length(), '-').c_str());
+}
+
+static void test(const std::string &iname, std::function<void()> ifunc) {
+  try {
+    ifunc();
+    printf(TEST_PRINT_GRN "Test passed:" TEST_PRINT_WHT " %s\n\n" TEST_PRINT_RESET, iname.c_str());
+  } catch (const snowhouse::AssertionException &e) {
+    printf(TEST_PRINT_RED "Test failed:" TEST_PRINT_WHT " %s" TEST_PRINT_RESET "\n%s\n",
+           iname.c_str(), e.GetMessage().c_str());
   }
+}
+} // namespace okapi
 
 #endif

@@ -12,48 +12,49 @@ void opcontrol() {
     using namespace snowhouse;
 
     {
-      printf("Testing ipow.\n---------------\n");
-      printf("\nInteger tests.\n");
-      TEST("0^0 == 1", AssertThat, ipow(0, 0), Equals(1));
-      TEST("0^1 == 0", AssertThat, ipow(0, 1), Equals(0));
-      TEST("1^0 == 1", AssertThat, ipow(1, 0), Equals(1));
-      TEST("1^1 == 1", AssertThat, ipow(1, 1), Equals(1));
-      TEST("2^1 == 2", AssertThat, ipow(2, 1), Equals(2));
-      TEST("2^2 == 4", AssertThat, ipow(2, 2), Equals(4));
+      test_printf("Testing ipow");
+      test_printf("Integer tests");
+      test("0^0 == 1", TEST_BODY(AssertThat, ipow(0, 0), Equals(1)));
+      test("0^1 == 0", TEST_BODY(AssertThat, ipow(0, 1), Equals(0)));
+      test("1^0 == 1", TEST_BODY(AssertThat, ipow(1, 0), Equals(1)));
+      test("1^1 == 1", TEST_BODY(AssertThat, ipow(1, 1), Equals(1)));
+      test("2^1 == 2", TEST_BODY(AssertThat, ipow(2, 1), Equals(2)));
+      test("2^2 == 4", TEST_BODY(AssertThat, ipow(2, 2), Equals(4)));
 
-      printf("\nFloating point tests.\n");
-      TEST("0.5^1 == 0.5", AssertThat, ipow(0.5, 1), EqualsWithDelta(0.5, 0.0001));
-      TEST("2.5^2 == 6.25", AssertThat, ipow(2.5, 2), EqualsWithDelta(6.25, 0.0001));
+      test_printf("Floating point tests");
+      test("0.5^1 == 0.5", TEST_BODY(AssertThat, ipow(0.5, 1), EqualsWithDelta(0.5, 0.0001)));
+      test("2.5^2 == 6.25", TEST_BODY(AssertThat, ipow(2.5, 2), EqualsWithDelta(6.25, 0.0001)));
     }
 
     {
-      printf("\nTesting AverageFilter.\n---------------\n");
+      test_printf("Testing AverageFilter");
       AverageFilter<5> filt;
 
       for (int i = 0; i < 10; i++) {
+        auto testName = "Filter i = " + std::to_string(i);
         switch (i) {
         case 0: {
-          TEST("Filter i = 0", AssertThat, filt.filter(i), Equals(0));
+          test(testName, TEST_BODY(AssertThat, filt.filter(i), Equals(0)));
           break;
         }
 
         case 1: {
-          TEST("Filter i = 1", AssertThat, filt.filter(i), EqualsWithDelta(0.2, 0.01));
+          test(testName, TEST_BODY(AssertThat, filt.filter(i), EqualsWithDelta(0.2, 0.01)));
           break;
         }
 
         case 2: {
-          TEST("Filter i = 2", AssertThat, filt.filter(i), EqualsWithDelta(0.6, 0.01));
+          test(testName, TEST_BODY(AssertThat, filt.filter(i), EqualsWithDelta(0.6, 0.01)));
           break;
         }
 
         case 3: {
-          TEST("Filter i = 3", AssertThat, filt.filter(i), EqualsWithDelta(1.2, 0.01));
+          test(testName, TEST_BODY(AssertThat, filt.filter(i), EqualsWithDelta(1.2, 0.01)));
           break;
         }
 
         default: {
-          TEST("Filter i - 2", AssertThat, filt.filter(i), Equals(i - 2));
+          test(testName, TEST_BODY(AssertThat, filt.filter(i), Equals(i - 2)));
           break;
         }
         }
