@@ -31,6 +31,7 @@ PIDTuner::PIDTuner(const ChassisModelParams &imodelParams, const uint32_t itimeo
     numParticles(inumParticles),
     kSettle(ikSettle),
     kITAE(ikITAE),
+    itae(0),
     leftController(0, 0, 0),
     rightController(0, 0, 0) {
 }
