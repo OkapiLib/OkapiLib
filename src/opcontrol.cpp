@@ -11,15 +11,47 @@ void opcontrol() {
   {
     using namespace snowhouse;
 
-    printf("Testing that 23 is equal to 23.\n");
-    AssertThat(23, Is().EqualTo(23));
+    {
+      printf("Testing that 23 is equal to 23.\n");
+      AssertThat(23, Equals(23));
 
-    printf("Testing that 12 is less than 11 and greater than 99.\n");
-    try {
-      AssertThat(12, Is().LessThan(11).And().GreaterThan(99));
-    } catch (const AssertionException &ex) {
-      std::cout << "Apparently this failed:" << std::endl;
-      std::cout << ex.GetMessage() << std::endl;
+      printf("Testing that 12 is less than 11 and greater than 99.\n");
+      try {
+        AssertThat(12, Is().LessThan(11).And().GreaterThan(99));
+      } catch (const AssertionException &e) {
+        std::cout << "Apparently this failed:" << std::endl;
+        std::cout << e.GetMessage() << std::endl;
+      }
+
+      {
+        printf("Testing ipow.\n---------------\n");
+        printf("Integer tests.\n");
+        AssertThat(ipow(0, 0), Equals(0));
+        AssertThat(ipow(0, 1), Equals(0));
+        AssertThat(ipow(1, 0), Equals(1));
+        AssertThat(ipow(1, 1), Equals(1));
+        AssertThat(ipow(2, 1), Equals(2));
+        AssertThat(ipow(2, 2), Equals(4));
+
+        printf("Floating point tests.\n");
+        AssertThat(ipow(0.5, 1), EqualsWithDelta(0.5, 0.0001));
+        AssertThat(ipow(2.5, 2), EqualsWithDelta(6.25, 0.0001));
+      }
+
+      {
+        printf("Testing AverageFilter.\n---------------\n");
+        AverageFilter<5> filt;
+
+        for (int i = 0; i < 10; i++) {
+          try {
+            AssertThat(filt.filter(i), Equals(i < 3 ? 0 : i - 3));
+          } catch (const AssertionException &e) {
+            std::cout << e.GetMessage() << std::endl; // TODO: Do we need to catch? Or will
+                                                      // snowhouse's default reporting be good
+                                                      // enough?
+          }
+        }
+      }
     }
   }
 
