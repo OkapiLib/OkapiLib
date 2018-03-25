@@ -85,6 +85,8 @@ void opcontrol() {
       test("EmaFilter i = -3",
            TEST_BODY(AssertThat, filt.filter(-3), EqualsWithDelta(-0.875, 0.0001)));
     }
+
+    test_print_report();
   }
 
   /*while (true) {
