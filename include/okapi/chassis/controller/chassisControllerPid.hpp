@@ -27,13 +27,7 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
    * angle
    */
-  ChassisControllerPID(const ChassisModelParams &imodelParams,
-                       const PosPIDControllerParams &idistanceParams,
-                       const PosPIDControllerParams &iangleParams, const double istraightScale = 1,
-                       const double iturnScale = 1);
-
-  ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel,
-                       const PosPIDControllerParams &idistanceParams,
+  ChassisControllerPID(const ChassisModel &imodel, const PosPIDControllerParams &idistanceParams,
                        const PosPIDControllerParams &iangleParams, const double istraightScale = 1,
                        const double iturnScale = 1);
 

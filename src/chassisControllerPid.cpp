@@ -10,18 +10,7 @@
 #include <cmath>
 
 namespace okapi {
-ChassisControllerPID::ChassisControllerPID(const ChassisModelParams &imodelParams,
-                                           const PosPIDControllerParams &idistanceParams,
-                                           const PosPIDControllerParams &iangleParams,
-                                           const double istraightScale, const double iturnScale)
-  : ChassisController(imodelParams),
-    distancePid(idistanceParams),
-    anglePid(iangleParams),
-    straightScale(istraightScale),
-    turnScale(iturnScale) {
-}
-
-ChassisControllerPID::ChassisControllerPID(std::shared_ptr<const ChassisModel> imodel,
+ChassisControllerPID::ChassisControllerPID(const ChassisModel &imodel,
                                            const PosPIDControllerParams &idistanceParams,
                                            const PosPIDControllerParams &iangleParams,
                                            const double istraightScale, const double iturnScale)
@@ -37,7 +26,7 @@ ChassisControllerPID::ChassisControllerPID(const AbstractMotor &ileftSideMotor,
                                            const PosPIDControllerParams &idistanceParams,
                                            const PosPIDControllerParams &iangleParams,
                                            const double istraightScale, const double iturnScale)
-  : ChassisController(SkidSteerModelParams(ileftSideMotor, irightSideMotor)),
+  : ChassisController(SkidSteerModel(ileftSideMotor, irightSideMotor)),
     distancePid(idistanceParams),
     anglePid(iangleParams),
     straightScale(istraightScale),
@@ -52,7 +41,7 @@ ChassisControllerPID::ChassisControllerPID(const AbstractMotor &itopLeftMotor,
                                            const PosPIDControllerParams &iangleParams,
                                            const double istraightScale, const double iturnScale)
   : ChassisController(
-      XDriveModelParams(itopLeftMotor, itopRightMotor, ibottomRightMotor, ibottomLeftMotor)),
+      XDriveModel(itopLeftMotor, itopRightMotor, ibottomRightMotor, ibottomLeftMotor)),
     distancePid(idistanceParams),
     anglePid(iangleParams),
     straightScale(istraightScale),
@@ -62,7 +51,7 @@ ChassisControllerPID::ChassisControllerPID(const AbstractMotor &itopLeftMotor,
 ChassisControllerPID::~ChassisControllerPID() = default;
 
 void ChassisControllerPID::moveDistance(const int itarget) {
-  const auto encStartVals = model->getSensorVals();
+  const auto encStartVals = model.getSensorVals();
   float distanceElapsed = 0, angleChange = 0, lastDistance = 0;
   uint32_t prevWakeTime = millis();
 
@@ -85,13 +74,13 @@ void ChassisControllerPID::moveDistance(const int itarget) {
   float distOutput, angleOutput;
 
   while (!atTarget) {
-    encVals = model->getSensorVals() - encStartVals;
+    encVals = model.getSensorVals() - encStartVals;
     distanceElapsed = static_cast<float>((encVals[0] + encVals[1])) / 2.0;
     angleChange = static_cast<float>(encVals[1] - encVals[0]);
 
     distOutput = distancePid.step(distanceElapsed);
     angleOutput = anglePid.step(angleChange);
-    model->driveVector(static_cast<int>(distOutput * 127), static_cast<int>(angleOutput * 127));
+    model.driveVector(static_cast<int>(distOutput * 127), static_cast<int>(angleOutput * 127));
 
     if (abs(newTarget - static_cast<int>(distanceElapsed)) <= atTargetDistance)
       atTargetTimer.placeHardMark();
@@ -108,11 +97,11 @@ void ChassisControllerPID::moveDistance(const int itarget) {
     task_delay_until(&prevWakeTime, 15);
   }
 
-  model->stop();
+  model.stop();
 }
 
 void ChassisControllerPID::turnAngle(float idegTarget) {
-  const auto encStartVals = model->getSensorVals();
+  const auto encStartVals = model.getSensorVals();
   float angleChange = 0, lastAngle = 0;
   uint32_t prevWakeTime = millis();
 
@@ -132,10 +121,10 @@ void ChassisControllerPID::turnAngle(float idegTarget) {
   std::valarray<int> encVals{0, 0};
 
   while (!atTarget) {
-    encVals = model->getSensorVals() - encStartVals;
+    encVals = model.getSensorVals() - encStartVals;
     angleChange = static_cast<float>(encVals[1] - encVals[0]);
 
-    model->rotate(static_cast<int>(anglePid.step(angleChange) * 127));
+    model.rotate(static_cast<int>(anglePid.step(angleChange) * 127));
 
     if (fabs(newTarget - angleChange) <= atTargetAngle)
       atTargetTimer.placeHardMark();
@@ -152,6 +141,6 @@ void ChassisControllerPID::turnAngle(float idegTarget) {
     task_delay_until(&prevWakeTime, 15);
   }
 
-  model->stop();
+  model.stop();
 }
 } // namespace okapi

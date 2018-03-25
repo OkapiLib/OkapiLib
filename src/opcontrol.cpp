@@ -124,7 +124,7 @@ void opcontrol() {
     test_print_report();
   }
 
-  /*while (true) {
+  while (true) {
     ADIButton btn(2);
     ControllerButton btn2(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A);
     btn.isPressed();
@@ -173,26 +173,22 @@ void opcontrol() {
     XDriveModel xmodel2(1_m, 2_m, 3_m, 4_m); // Using integrated encoders
 
     ChassisControllerPID controller1(
-      SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}), leftEncoder,
-                           rightEncoder),
+      SkidSteerModel(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}), leftEncoder,
+                     rightEncoder),
       PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
 
-    ChassisControllerPID controller2(
-      XDriveModelParams(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder),
-      PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
+    ChassisControllerPID controller2(XDriveModel(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder),
+                                     PosPIDControllerParams(0, 0, 0),
+                                     PosPIDControllerParams(0, 0, 0));
 
     // An "odometry" chassis controller adds an odometry layer running in another task which keeps
     // track of the position of the robot in the odom frame. This means that you can tell the robot
     // to move to an arbitrary point on the field, or turn to an absolute angle (i.e., "turn to 90
     // degrees" will always put the robot facing east relative to the starting position)
     OdomChassisControllerPID controller3(
-      OdometryParams(SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
-                                          leftEncoder, rightEncoder),
+      OdometryParams(SkidSteerModel(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
+                                    leftEncoder, rightEncoder),
                      0, 0),
-      PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
-
-    OdomChassisControllerPID controller4(
-      OdometryParams(XDriveModelParams(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder), 0, 0),
       PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
 
     controller3.driveToPoint(0, 0); // Drive to (0, 0) on the field
@@ -244,10 +240,10 @@ void opcontrol() {
       printf("%d: %1.2f\n", i, avgFilt1.filter(i));
     }
 
-    Odometry odom1(SkidSteerModelParams(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
-                                        leftEncoder, rightEncoder),
+    Odometry odom1(SkidSteerModel(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}), leftEncoder,
+                                  rightEncoder),
                    0, 0);
 
     Timer timer1();
-  }*/
+  }
 }

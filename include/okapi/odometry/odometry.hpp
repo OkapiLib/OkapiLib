@@ -8,7 +8,7 @@
 #ifndef _OKAPI_ODOMETRY_HPP_
 #define _OKAPI_ODOMETRY_HPP_
 
-#include "okapi/chassis/model/chassisModel.hpp"
+#include "okapi/chassis/model/skidSteerModel.hpp"
 #include <memory>
 #include <valarray>
 
@@ -26,11 +26,11 @@ class OdomState {
 
 class OdometryParams {
   public:
-  OdometryParams(const ChassisModelParams &iparams, const double iscale, const double iturnScale);
+  OdometryParams(const SkidSteerModel &iparams, const double iscale, const double iturnScale);
 
   virtual ~OdometryParams();
 
-  std::shared_ptr<const ChassisModel> model;
+  const SkidSteerModel &model;
   double scale, turnScale;
 };
 
@@ -44,7 +44,7 @@ class Odometry {
    * @param iscale straight scale
    * @param iturnScale turn scale
    */
-  Odometry(const ChassisModelParams &imodelParams, const double iscale, const double iturnScale);
+  Odometry(const SkidSteerModel &imodel, const double iscale, const double iturnScale);
 
   /**
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
@@ -62,12 +62,12 @@ class Odometry {
    * @param iscale straight scale converting encoder ticks to mm
    * @param iturnScale turn scale converting encoder ticks to radians
    */
-  void setScales(const double iscale, const double iturnScale);
+  virtual void setScales(const double iscale, const double iturnScale);
 
   /**
    * Do odometry math in an infinite loop.
    */
-  void loop();
+  virtual void loop();
 
   /**
    * Tread the input as an Odometry pointer and call loop. Meant to be used to bounce into a
@@ -82,21 +82,23 @@ class Odometry {
    *
    * @return current state
    */
-  OdomState getState() const;
+  virtual OdomState getState() const;
 
   /**
    * Set a new state to be the current state.
    *
    * @param istate new state
    */
-  void setState(const OdomState &istate);
+  virtual void setState(const OdomState &istate);
 
-  private:
-  std::shared_ptr<const ChassisModel> model;
+  protected:
   OdomState state;
   double scale, turnScale;
   std::valarray<int> lastTicks;
   double mm;
+
+  private:
+  const SkidSteerModel &model;
 };
 } // namespace okapi
 

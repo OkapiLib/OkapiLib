@@ -28,12 +28,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
    * angle
    */
-  ChassisControllerIntegrated(const ChassisModelParams &imodelParams,
-                              const PosIntegratedControllerParams &ileftControllerParams,
-                              const PosIntegratedControllerParams &irightControllerParams,
-                              const double istraightScale = 1, const double iturnScale = 1);
-
-  ChassisControllerIntegrated(std::shared_ptr<const ChassisModel> imodel,
+  ChassisControllerIntegrated(const ChassisModel &imodel,
                               const PosIntegratedControllerParams &ileftControllerParams,
                               const PosIntegratedControllerParams &irightControllerParams,
                               const double istraightScale = 1, const double iturnScale = 1);
