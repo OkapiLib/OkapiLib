@@ -28,6 +28,7 @@ void opcontrol() {
 
     {
       test_printf("Testing AverageFilter");
+
       AverageFilter<5> filt;
 
       for (int i = 0; i < 10; i++) {
@@ -63,6 +64,7 @@ void opcontrol() {
 
     {
       test_printf("Testing MedianFilter");
+
       MedianFilter<5> filt;
 
       for (int i = 0; i < 10; i++) {
@@ -77,6 +79,7 @@ void opcontrol() {
 
     {
       test_printf("Testing EmaFilter");
+
       EmaFilter filt(0.5);
 
       test("EmaFilter i = 0", TEST_BODY(AssertThat, filt.filter(0), EqualsWithDelta(0, 0.0001)));
@@ -88,6 +91,7 @@ void opcontrol() {
 
     {
       test_printf("Testing DemaFilter");
+
       DemaFilter filt(0.5, 0.05);
 
       test("DemaFilter i = 0", TEST_BODY(AssertThat, filt.filter(0), EqualsWithDelta(0, 0.0001)));
@@ -103,6 +107,7 @@ void opcontrol() {
 
     {
       test_printf("Testing EKFFilter");
+
       EKFFilter filt(0.0001, ipow(0.2, 2));
 
       test("EKFFilter i = 0", TEST_BODY(AssertThat, filt.filter(0), EqualsWithDelta(0, 0.0001)));
