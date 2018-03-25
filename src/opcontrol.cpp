@@ -101,6 +101,21 @@ void opcontrol() {
            TEST_BODY(AssertThat, filt.filter(2), EqualsWithDelta(1.9557, 0.0001)));
     }
 
+    {
+      test_printf("Testing EKFFilter");
+      EKFFilter filt(0.0001, ipow(0.2, 2));
+
+      test("EKFFilter i = 0", TEST_BODY(AssertThat, filt.filter(0), EqualsWithDelta(0, 0.0001)));
+      test("EKFFilter i = 0.5",
+           TEST_BODY(AssertThat, filt.filter(0.5), EqualsWithDelta(0.2454, 0.0001)));
+      test("EKFFilter i = -0.5",
+           TEST_BODY(AssertThat, filt.filter(-0.5), EqualsWithDelta(-0.0008, 0.0001)));
+      test("EKFFilter i = 0.5",
+           TEST_BODY(AssertThat, filt.filter(0.5), EqualsWithDelta(0.1242, 0.0001)));
+      test("EKFFilter i = 0",
+           TEST_BODY(AssertThat, filt.filter(0), EqualsWithDelta(0.0992, 0.0001)));
+    }
+
     test_print_report();
   }
 
