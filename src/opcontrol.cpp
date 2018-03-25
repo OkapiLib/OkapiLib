@@ -86,6 +86,21 @@ void opcontrol() {
            TEST_BODY(AssertThat, filt.filter(-3), EqualsWithDelta(-0.875, 0.0001)));
     }
 
+    {
+      test_printf("Testing DemaFilter");
+      DemaFilter filt(0.5, 0.05);
+
+      test("DemaFilter i = 0", TEST_BODY(AssertThat, filt.filter(0), EqualsWithDelta(0, 0.0001)));
+      test("DemaFilter i = 1",
+           TEST_BODY(AssertThat, filt.filter(1), EqualsWithDelta(0.525, 0.0001)));
+      test("DemaFilter i = 2",
+           TEST_BODY(AssertThat, filt.filter(2), EqualsWithDelta(1.3244, 0.0001)));
+      test("DemaFilter i = 2",
+           TEST_BODY(AssertThat, filt.filter(2), EqualsWithDelta(1.7410, 0.0001)));
+      test("DemaFilter i = 2",
+           TEST_BODY(AssertThat, filt.filter(2), EqualsWithDelta(1.9557, 0.0001)));
+    }
+
     test_print_report();
   }
 
