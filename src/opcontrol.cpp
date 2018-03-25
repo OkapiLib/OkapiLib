@@ -1,7 +1,7 @@
 #include "api.h"
 
 #include "okapi/api.hpp"
-#include "okapi/snowhouse/snowhouse.h"
+#include "okapi/test/testRunner.hpp"
 
 using namespace okapi;
 
@@ -12,44 +12,50 @@ void opcontrol() {
     using namespace snowhouse;
 
     {
-      printf("Testing that 23 is equal to 23.\n");
-      AssertThat(23, Equals(23));
+      printf("Testing ipow.\n---------------\n");
+      printf("\nInteger tests.\n");
+      TEST("0^0 == 1", AssertThat, ipow(0, 0), Equals(1));
+      TEST("0^1 == 0", AssertThat, ipow(0, 1), Equals(0));
+      TEST("1^0 == 1", AssertThat, ipow(1, 0), Equals(1));
+      TEST("1^1 == 1", AssertThat, ipow(1, 1), Equals(1));
+      TEST("2^1 == 2", AssertThat, ipow(2, 1), Equals(2));
+      TEST("2^2 == 4", AssertThat, ipow(2, 2), Equals(4));
 
-      printf("Testing that 12 is less than 11 and greater than 99.\n");
-      try {
-        AssertThat(12, Is().LessThan(11).And().GreaterThan(99));
-      } catch (const AssertionException &e) {
-        std::cout << "Apparently this failed:" << std::endl;
-        std::cout << e.GetMessage() << std::endl;
-      }
+      printf("\nFloating point tests.\n");
+      TEST("0.5^1 == 0.5", AssertThat, ipow(0.5, 1), EqualsWithDelta(0.5, 0.0001));
+      TEST("2.5^2 == 6.25", AssertThat, ipow(2.5, 2), EqualsWithDelta(6.25, 0.0001));
+    }
 
-      {
-        printf("Testing ipow.\n---------------\n");
-        printf("Integer tests.\n");
-        AssertThat(ipow(0, 0), Equals(0));
-        AssertThat(ipow(0, 1), Equals(0));
-        AssertThat(ipow(1, 0), Equals(1));
-        AssertThat(ipow(1, 1), Equals(1));
-        AssertThat(ipow(2, 1), Equals(2));
-        AssertThat(ipow(2, 2), Equals(4));
+    {
+      printf("\nTesting AverageFilter.\n---------------\n");
+      AverageFilter<5> filt;
 
-        printf("Floating point tests.\n");
-        AssertThat(ipow(0.5, 1), EqualsWithDelta(0.5, 0.0001));
-        AssertThat(ipow(2.5, 2), EqualsWithDelta(6.25, 0.0001));
-      }
+      for (int i = 0; i < 10; i++) {
+        switch (i) {
+        case 0: {
+          TEST("Filter i = 0", AssertThat, filt.filter(i), Equals(0));
+          break;
+        }
 
-      {
-        printf("Testing AverageFilter.\n---------------\n");
-        AverageFilter<5> filt;
+        case 1: {
+          TEST("Filter i = 1", AssertThat, filt.filter(i), EqualsWithDelta(0.2, 0.01));
+          break;
+        }
 
-        for (int i = 0; i < 10; i++) {
-          try {
-            AssertThat(filt.filter(i), Equals(i < 3 ? 0 : i - 3));
-          } catch (const AssertionException &e) {
-            std::cout << e.GetMessage() << std::endl; // TODO: Do we need to catch? Or will
-                                                      // snowhouse's default reporting be good
-                                                      // enough?
-          }
+        case 2: {
+          TEST("Filter i = 2", AssertThat, filt.filter(i), EqualsWithDelta(0.6, 0.01));
+          break;
+        }
+
+        case 3: {
+          TEST("Filter i = 3", AssertThat, filt.filter(i), EqualsWithDelta(1.2, 0.01));
+          break;
+        }
+
+        default: {
+          TEST("Filter i - 2", AssertThat, filt.filter(i), Equals(i - 2));
+          break;
+        }
         }
       }
     }
