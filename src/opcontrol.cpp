@@ -31,7 +31,7 @@ void opcontrol() {
       AverageFilter<5> filt;
 
       for (int i = 0; i < 10; i++) {
-        auto testName = "Filter i = " + std::to_string(i);
+        auto testName = "AverageFilter i = " + std::to_string(i);
         switch (i) {
         case 0: {
           test(testName, TEST_BODY(AssertThat, filt.filter(i), Equals(0)));
@@ -59,6 +59,31 @@ void opcontrol() {
         }
         }
       }
+    }
+
+    {
+      test_printf("Testing MedianFilter");
+      MedianFilter<5> filt;
+
+      for (int i = 0; i < 10; i++) {
+        auto testName = "MedianFilter i = " + std::to_string(i);
+        if (i < 3) {
+          test(testName, TEST_BODY(AssertThat, filt.filter(i), EqualsWithDelta(0, 0.0001)));
+        } else {
+          test(testName, TEST_BODY(AssertThat, filt.filter(i), EqualsWithDelta(i - 2, 0.0001)));
+        }
+      }
+    }
+
+    {
+      test_printf("Testing EmaFilter");
+      EmaFilter filt(0.5);
+
+      test("EmaFilter i = 0", TEST_BODY(AssertThat, filt.filter(0), EqualsWithDelta(0, 0.0001)));
+      test("EmaFilter i = 1", TEST_BODY(AssertThat, filt.filter(1), EqualsWithDelta(0.5, 0.0001)));
+      test("EmaFilter i = 2", TEST_BODY(AssertThat, filt.filter(2), EqualsWithDelta(1.25, 0.0001)));
+      test("EmaFilter i = -3",
+           TEST_BODY(AssertThat, filt.filter(-3), EqualsWithDelta(-0.875, 0.0001)));
     }
   }
 
