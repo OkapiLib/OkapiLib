@@ -25,37 +25,27 @@
 #define TEST_BODY(FUNCTION, ...) [&]() { FUNCTION(__VA_ARGS__); }
 
 namespace okapi {
-static size_t testPassCount = 0;
-static size_t testFailCount = 0;
-static std::vector<std::string> testFailLog;
+/**
+ * Print the input string with an underline made from hypens ("-").
+ *
+ * @param istring string to print
+ */
+void test_printf(const std::string &istring);
 
-static void test_printf(const std::string &istring) {
-  printf("\n%s\n%s\n", istring.c_str(), std::string(istring.length(), '-').c_str());
-}
+/**
+ * Run a test. The lambda can have any body, or it can be a sinlge function call. In that case, use
+ * TEST_BODY for a more succinct way of writing the test.
+ *
+ * @param iname test name (describe what it does)
+ * @param ifunc test body
+ */
+void test(const std::string &iname, std::function<void()> ifunc);
 
-static void test(const std::string &iname, std::function<void()> ifunc) {
-  try {
-    ifunc();
-    testPassCount++;
-    printf(TEST_PRINT_GRN "Test passed:" TEST_PRINT_WHT " %s\n\n" TEST_PRINT_RESET, iname.c_str());
-  } catch (const snowhouse::AssertionException &e) {
-    testFailCount++;
-    testFailLog.push_back(iname);
-    printf(TEST_PRINT_RED "Test failed:" TEST_PRINT_WHT " %s" TEST_PRINT_RESET "\n%s\n",
-           iname.c_str(), e.GetMessage().c_str());
-  }
-}
-
-static void test_print_report() {
-  printf(TEST_PRINT_GRN "%d tests passed" TEST_PRINT_RESET "\n", testPassCount);
-  printf(TEST_PRINT_RED "%d tests failed" TEST_PRINT_RESET "\n", testFailCount);
-  if (testFailLog.size() > 0) {
-    printf(TEST_PRINT_RED "Failed tests:\n" TEST_PRINT_RESET);
-    for (auto &&elem : testFailLog) {
-      printf("%s\n", elem.c_str());
-    }
-  }
-}
+/**
+ * Print out a test report detailing how many tests passed; how many tests failed; and if any
+ * failed, which ones.
+ */
+void test_print_report();
 } // namespace okapi
 
 #endif
