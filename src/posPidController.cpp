@@ -9,6 +9,7 @@
  */
 #include "okapi/control/iterative/posPidController.hpp"
 #include "api.h"
+#include <algorithm>
 #include <cmath>
 
 namespace okapi {
@@ -28,14 +29,16 @@ PosPIDController::PosPIDController(const double ikP, const double ikI, const dou
     error(0),
     lastError(0),
     integral(0),
-    integralMax(127),
-    integralMin(-127),
     derivative(0),
     output(0),
-    outputMax(127),
-    outputMin(-127),
     shouldResetOnCross(true),
     isOn(true) {
+  if (ikI == 0) {
+    setIntegralLimits(-1, 1);
+  } else {
+    setIntegralLimits(-1 / ikI, 1 / ikI);
+  }
+  setOutputLimits(-1, 1);
   setGains(ikP, ikI, ikD, ikBias);
 }
 
@@ -47,14 +50,16 @@ PosPIDController::PosPIDController(const PosPIDControllerParams &params)
     error(0),
     lastError(0),
     integral(0),
-    integralMax(127),
-    integralMin(-127),
     derivative(0),
     output(0),
-    outputMax(127),
-    outputMin(-127),
     shouldResetOnCross(true),
     isOn(true) {
+  if (params.kI == 0) {
+    setIntegralLimits(-1, 1);
+  } else {
+    setIntegralLimits(-1 / params.kI, 1 / params.kI);
+  }
+  setOutputLimits(-1, 1);
   setGains(params.kP, params.kI, params.kD, params.kBias);
 }
 
@@ -96,11 +101,7 @@ void PosPIDController::setOutputLimits(double imax, double imin) {
   outputMax = imax;
   outputMin = imin;
 
-  // Fix output
-  if (output > outputMax)
-    output = outputMax;
-  else if (output < outputMin)
-    output = outputMin;
+  output = std::clamp(output, outputMin, outputMax);
 
   // Fix integral
   setIntegralLimits(imax, imin);
@@ -117,11 +118,7 @@ void PosPIDController::setIntegralLimits(double imax, double imin) {
   integralMax = imax;
   integralMin = imin;
 
-  // Fix integral
-  if (integral > integralMax)
-    integral = integralMax;
-  else if (integral < integralMin)
-    integral = integralMin;
+  integral = std::clamp(integral, integralMin, integralMax);
 }
 
 double PosPIDController::step(const double inewReading) {
@@ -129,28 +126,21 @@ double PosPIDController::step(const double inewReading) {
     const uint32_t now = millis();
 
     if (now - lastTime >= sampleTime) {
-      error = target - inewReading;
+      error = (target - inewReading) / target;
 
       integral += kI * error; // Eliminate integral kick while realtime tuning
 
-      if (shouldResetOnCross && copysign(1.0, (double)error) != copysign(1.0, (double)lastError))
+      if (shouldResetOnCross && copysign(1.0, (double)error) != copysign(1.0, (double)lastError)) {
         integral = 0;
+      }
 
-      if (integral > integralMax)
-        integral = integralMax;
-      else if (integral < integralMin)
-        integral = integralMin;
+      integral = std::clamp(integral, integralMin, integralMax);
 
       derivative =
         inewReading -
         lastReading; // Derivative over measurement to eliminate derivative kick on setpoint change
 
-      output = kP * error + integral - kD * derivative + kBias;
-
-      if (output > outputMax)
-        output = outputMax;
-      else if (output < outputMin)
-        output = outputMin;
+      output = std::clamp(kP * error + integral - kD * derivative + kBias, outputMin, outputMax);
 
       lastReading = inewReading;
       lastError = error;

@@ -19,10 +19,10 @@ class IterativeControllerParams {};
 class IterativeController {
   public:
   /**
-   * Do one iteration of the controller.
+   * Do one iteration of the controller. Outputs in the range [-1, 1]
    *
    * @param inewReading new measurement
-   * @return controller output
+   * @return controller [-1, 1]
    */
   virtual double step(const double ireading) = 0;
 
