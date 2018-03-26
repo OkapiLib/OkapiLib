@@ -12,25 +12,28 @@ XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
                                      const AbstractMotor &itopRightMotor,
                                      const AbstractMotor &ibottomRightMotor,
                                      const AbstractMotor &ibottomLeftMotor,
-                                     const RotarySensor &ileftEnc, const RotarySensor &irightEnc)
+                                     const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                                     const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
     bottomLeftMotor(ibottomLeftMotor),
     leftSensor(ileftEnc),
-    rightSensor(irightEnc) {
+    rightSensor(irightEnc),
+    maxOutput(imaxOutput) {
 }
 
 XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
                                      const AbstractMotor &itopRightMotor,
                                      const AbstractMotor &ibottomRightMotor,
-                                     const AbstractMotor &ibottomLeftMotor)
+                                     const AbstractMotor &ibottomLeftMotor, const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
     bottomLeftMotor(ibottomLeftMotor),
     leftSensor(itopLeftMotor.getEncoder()),
-    rightSensor(itopRightMotor.getEncoder()) {
+    rightSensor(itopRightMotor.getEncoder()),
+    maxOutput(imaxOutput) {
 }
 
 XDriveModelParams::~XDriveModelParams() = default;
@@ -38,24 +41,26 @@ XDriveModelParams::~XDriveModelParams() = default;
 XDriveModel::XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
                          const AbstractMotor &ibottomRightMotor,
                          const AbstractMotor &ibottomLeftMotor, const RotarySensor &ileftEnc,
-                         const RotarySensor &irightEnc)
+                         const RotarySensor &irightEnc, const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
     bottomLeftMotor(ibottomLeftMotor),
     leftSensor(ileftEnc),
-    rightSensor(irightEnc) {
+    rightSensor(irightEnc),
+    maxOutput(imaxOutput) {
 }
 
 XDriveModel::XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
                          const AbstractMotor &ibottomRightMotor,
-                         const AbstractMotor &ibottomLeftMotor)
+                         const AbstractMotor &ibottomLeftMotor, const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
     bottomLeftMotor(ibottomLeftMotor),
     leftSensor(itopLeftMotor.getEncoder()),
-    rightSensor(itopRightMotor.getEncoder()) {
+    rightSensor(itopRightMotor.getEncoder()),
+    maxOutput(imaxOutput) {
 }
 
 XDriveModel::XDriveModel(const XDriveModelParams &iparams)
@@ -64,7 +69,8 @@ XDriveModel::XDriveModel(const XDriveModelParams &iparams)
     bottomRightMotor(iparams.bottomRightMotor),
     bottomLeftMotor(iparams.bottomLeftMotor),
     leftSensor(iparams.leftSensor),
-    rightSensor(iparams.rightSensor) {
+    rightSensor(iparams.rightSensor),
+    maxOutput(iparams.maxOutput) {
 }
 
 XDriveModel::XDriveModel(const XDriveModel &other)
@@ -73,26 +79,27 @@ XDriveModel::XDriveModel(const XDriveModel &other)
     bottomRightMotor(other.bottomRightMotor),
     bottomLeftMotor(other.bottomLeftMotor),
     leftSensor(other.leftSensor),
-    rightSensor(other.rightSensor) {
+    rightSensor(other.rightSensor),
+    maxOutput(other.maxOutput) {
 }
 
 XDriveModel::~XDriveModel() = default;
 
-void XDriveModel::forward(const int ipower) const {
+void XDriveModel::forward(const double ipower) const {
   topLeftMotor.move_velocity(ipower);
   topRightMotor.move_velocity(ipower);
   bottomRightMotor.move_velocity(ipower);
   bottomLeftMotor.move_velocity(ipower);
 }
 
-void XDriveModel::driveVector(const int idistPower, const int ianglePower) const {
+void XDriveModel::driveVector(const double idistPower, const double ianglePower) const {
   topLeftMotor.move_velocity(idistPower + ianglePower);
   topRightMotor.move_velocity(idistPower - ianglePower);
   bottomRightMotor.move_velocity(idistPower - ianglePower);
   bottomLeftMotor.move_velocity(idistPower + ianglePower);
 }
 
-void XDriveModel::rotate(const int ipower) const {
+void XDriveModel::rotate(const double ipower) const {
   topLeftMotor.move_velocity(ipower);
   topRightMotor.move_velocity(-1 * ipower);
   bottomRightMotor.move_velocity(-1 * ipower);
@@ -106,7 +113,8 @@ void XDriveModel::stop() const {
   bottomLeftMotor.move_velocity(0);
 }
 
-void XDriveModel::tank(const int ileftVal, const int irightVal, const int ithreshold) const {
+void XDriveModel::tank(const double ileftVal, const double irightVal,
+                       const double ithreshold) const {
   if (fabs(ileftVal) < ithreshold) {
     topLeftMotor.move_velocity(0);
     bottomLeftMotor.move_velocity(0);
@@ -124,7 +132,8 @@ void XDriveModel::tank(const int ileftVal, const int irightVal, const int ithres
   }
 }
 
-void XDriveModel::arcade(int iverticalVal, int ihorizontalVal, const int ithreshold) const {
+void XDriveModel::arcade(double iverticalVal, double ihorizontalVal,
+                         const double ithreshold) const {
   if (fabs(iverticalVal) < ithreshold)
     iverticalVal = 0;
   if (fabs(ihorizontalVal) < ithreshold)
@@ -136,8 +145,8 @@ void XDriveModel::arcade(int iverticalVal, int ihorizontalVal, const int ithresh
   bottomLeftMotor.move_velocity(iverticalVal + ihorizontalVal);
 }
 
-void XDriveModel::xArcade(int iverticalVal, int ihorizontalVal, int irotateVal,
-                          const int ithreshold) const {
+void XDriveModel::xArcade(double iverticalVal, double ihorizontalVal, double irotateVal,
+                          const double ithreshold) const {
   if (fabs(iverticalVal) < ithreshold)
     iverticalVal = 0;
   if (fabs(ihorizontalVal) < ithreshold)
@@ -151,12 +160,12 @@ void XDriveModel::xArcade(int iverticalVal, int ihorizontalVal, int irotateVal,
   bottomLeftMotor.move_velocity(iverticalVal - ihorizontalVal + irotateVal);
 }
 
-void XDriveModel::left(const int ipower) const {
+void XDriveModel::left(const double ipower) const {
   topLeftMotor.move_velocity(ipower);
   bottomLeftMotor.move_velocity(ipower);
 }
 
-void XDriveModel::right(const int ipower) const {
+void XDriveModel::right(const double ipower) const {
   topRightMotor.move_velocity(ipower);
   bottomRightMotor.move_velocity(ipower);
 }

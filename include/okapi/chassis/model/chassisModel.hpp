@@ -28,7 +28,7 @@ class ChassisModel {
    *
    * @param ipower motor power
    */
-  virtual void forward(const int ipower) const = 0;
+  virtual void forward(const double ipower) const = 0;
 
   /**
    * Drive the robot in an arc (using open-loop control).
@@ -39,14 +39,14 @@ class ChassisModel {
    * @param idistPower see above
    * @param ianglePower see above
    */
-  virtual void driveVector(const int idistPower, const int ianglePower) const = 0;
+  virtual void driveVector(const double idistPower, const double ianglePower) const = 0;
 
   /**
    * Turn the robot clockwise (using open-loop control).
    *
    * @param ipower motor power
    */
-  virtual void rotate(const int ipower) const = 0;
+  virtual void rotate(const double ipower) const = 0;
 
   /**
    * Stop the robot (set all the motors to 0).
@@ -60,7 +60,8 @@ class ChassisModel {
    * @param irightVal right joystick value
    * @param ithreshold deadband on joystick values
    */
-  virtual void tank(const int ileftVal, const int irightVal, const int ithreshold = 0) const = 0;
+  virtual void tank(const double ileftVal, const double irightVal,
+                    const double ithreshold = 0) const = 0;
 
   /**
    * Drive the robot with an arcade drive layout.
@@ -69,21 +70,22 @@ class ChassisModel {
    * @param ihorizontalVal horizontal joystick value
    * @param ithreshold deadband on joystick values
    */
-  virtual void arcade(int iverticalVal, int ihorizontalVal, const int ithreshold = 0) const = 0;
+  virtual void arcade(double iverticalVal, double ihorizontalVal,
+                      const double ithreshold = 0) const = 0;
 
   /**
    * Power the left side motors.
    *
    * @param ipower motor power
    */
-  virtual void left(const int ipower) const = 0;
+  virtual void left(const double ipower) const = 0;
 
   /**
    * Power the right side motors.
    *
    * @param ipower motor power
    */
-  virtual void right(const int ipower) const = 0;
+  virtual void right(const double ipower) const = 0;
 
   /**
    * Read the sensors.

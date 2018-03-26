@@ -17,10 +17,12 @@ class XDriveModelParams : public ChassisModelParams {
   public:
   XDriveModelParams(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
                     const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-                    const RotarySensor &ileftEnc, const RotarySensor &irightEnc);
+                    const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                    const double imaxOutput = 100);
 
   XDriveModelParams(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
-                    const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor);
+                    const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+                    const double imaxOutput = 100);
 
   virtual ~XDriveModelParams();
 
@@ -30,6 +32,7 @@ class XDriveModelParams : public ChassisModelParams {
   const AbstractMotor &bottomLeftMotor;
   const RotarySensor &leftSensor;
   const RotarySensor &rightSensor;
+  const double maxOutput;
 };
 
 class XDriveModel : public ChassisModel {
@@ -47,7 +50,8 @@ class XDriveModel : public ChassisModel {
    */
   XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
               const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-              const RotarySensor &ileftEnc, const RotarySensor &irightEnc);
+              const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+              const double imaxOutput = 100);
 
   /**
    * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
@@ -62,7 +66,8 @@ class XDriveModel : public ChassisModel {
    * @param ibottomLeftMotor bottom left motor
    */
   XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
-              const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor);
+              const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+              const double imaxOutput = 100);
 
   XDriveModel(const XDriveModelParams &iparams);
 
@@ -75,7 +80,7 @@ class XDriveModel : public ChassisModel {
    *
    * @param ipower motor power
    */
-  virtual void forward(const int ipower) const override;
+  virtual void forward(const double ipower) const override;
 
   /**
    * Drive the robot in an arc (using open-loop control).
@@ -86,14 +91,14 @@ class XDriveModel : public ChassisModel {
    * @param idistPower see above
    * @param ianglePower see above
    */
-  virtual void driveVector(const int idistPower, const int ianglePower) const override;
+  virtual void driveVector(const double idistPower, const double ianglePower) const override;
 
   /**
    * Turn the robot clockwise (using open-loop control).
    *
    * @param ipower motor power
    */
-  virtual void rotate(const int ipower) const override;
+  virtual void rotate(const double ipower) const override;
 
   /**
    * Stop the robot (set all the motors to 0).
@@ -107,8 +112,8 @@ class XDriveModel : public ChassisModel {
    * @param irightVal right joystick value
    * @param ithreshold deadband on joystick values
    */
-  virtual void tank(const int ileftVal, const int irightVal,
-                    const int ithreshold = 0) const override;
+  virtual void tank(const double ileftVal, const double irightVal,
+                    const double ithreshold = 0) const override;
 
   /**
    * Drive the robot with an arcade drive layout.
@@ -117,8 +122,8 @@ class XDriveModel : public ChassisModel {
    * @param ihorizontalVal horizontal joystick value
    * @param ithreshold deadband on joystick values
    */
-  virtual void arcade(int iverticalVal, int ihorizontalVal,
-                      const int ithreshold = 0) const override;
+  virtual void arcade(double iverticalVal, double ihorizontalVal,
+                      const double ithreshold = 0) const override;
 
   /**
    * Drive the robot with an arcade drive layout specially for a holonomic drive. The horizontal
@@ -129,22 +134,22 @@ class XDriveModel : public ChassisModel {
    * @param ihorizontalVal horizontal joystick value
    * @param ithreshold deadband on joystick values
    */
-  virtual void xArcade(int iverticalVal, int ihorizontalVal, int irotateVal,
-                       const int ithreshold = 0) const;
+  virtual void xArcade(double iverticalVal, double ihorizontalVal, double irotateVal,
+                       const double ithreshold = 0) const;
 
   /**
    * Power the left side motors.
    *
    * @param ipower motor power
    */
-  virtual void left(const int ipower) const override;
+  virtual void left(const double ipower) const override;
 
   /**
    * Power the right side motors.
    *
    * @param ipower motor power
    */
-  virtual void right(const int ipower) const override;
+  virtual void right(const double ipower) const override;
 
   /**
    * Read the sensors.
@@ -165,6 +170,7 @@ class XDriveModel : public ChassisModel {
   const AbstractMotor &bottomLeftMotor;
   const RotarySensor &leftSensor;
   const RotarySensor &rightSensor;
+  const double maxOutput;
 };
 } // namespace okapi
 

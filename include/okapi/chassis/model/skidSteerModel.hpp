@@ -16,10 +16,12 @@ namespace okapi {
 class SkidSteerModelParams : public ChassisModelParams {
   public:
   SkidSteerModelParams(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                       const RotarySensor &ileftEnc, const RotarySensor &irightEnc);
+                       const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                       const double imaxOutput = 100);
 
   // Create the sensors using the integrated encoder
-  SkidSteerModelParams(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor);
+  SkidSteerModelParams(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
+                       const double imaxOutput = 100);
 
   virtual ~SkidSteerModelParams();
 
@@ -27,6 +29,7 @@ class SkidSteerModelParams : public ChassisModelParams {
   const AbstractMotor &rightSideMotor;
   const RotarySensor &leftSensor;
   const RotarySensor &rightSensor;
+  const double maxOutput;
 };
 
 class SkidSteerModel : public ChassisModel {
@@ -41,7 +44,8 @@ class SkidSteerModel : public ChassisModel {
    * @param irightEnc right side encoder
    */
   SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                 const RotarySensor &ileftEnc, const RotarySensor &irightEnc);
+                 const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                 const double imaxOutput = 100);
 
   /**
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
@@ -53,7 +57,8 @@ class SkidSteerModel : public ChassisModel {
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
    */
-  SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor);
+  SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
+                 const double imaxOutput = 100);
 
   SkidSteerModel(const SkidSteerModelParams &iparams);
 
@@ -62,68 +67,68 @@ class SkidSteerModel : public ChassisModel {
   virtual ~SkidSteerModel();
 
   /**
-   * Drive the robot forwards (using open-loop control).
+   * Drive the robot forwards (using open-loop control). Uses velocity mode.
    *
    * @param ipower motor power
    */
-  virtual void forward(const int ipower) const override;
+  virtual void forward(const double ipower) const override;
 
   /**
-   * Drive the robot in an arc (using open-loop control).
-   * The algorithm is:
-   *   leftPower = distPower + anglePower
-   *   rightPower = distPower - anglePower
+   * Drive the robot in an arc (using open-loop control). Uses velocity mode.
+   * The algorithm is (approximately):
+   *   leftPower = ySpeed + zRotation
+   *   rightPower = ySpeed - zRotation
    *
-   * @param idistPower see above
-   * @param ianglePower see above
+   * @param iySpeed speed on y axis (forward)
+   * @param izRotation speed around z axis (up)
    */
-  virtual void driveVector(const int idistPower, const int ianglePower) const override;
+  virtual void driveVector(const double iySpeed, const double izRotation) const override;
 
   /**
-   * Turn the robot clockwise (using open-loop control).
+   * Turn the robot clockwise (using open-loop control). Uses velocity mode.
    *
    * @param ipower motor power
    */
-  virtual void rotate(const int ipower) const override;
+  virtual void rotate(const double ipower) const override;
 
   /**
-   * Stop the robot (set all the motors to 0).
+   * Stop the robot (set all the motors to 0). Uses velocity mode.
    */
   virtual void stop() const override;
 
   /**
-   * Drive the robot with a tank drive layout.
+   * Drive the robot with a tank drive layout. Uses voltage mode.
    *
    * @param ileftVal left joystick value
    * @param irightVal right joystick value
    * @param ithreshold deadband on joystick values
    */
-  virtual void tank(const int ileftVal, const int irightVal,
-                    const int ithreshold = 0) const override;
+  virtual void tank(const double ileftVal, const double irightVal,
+                    const double ithreshold = 0) const override;
 
   /**
-   * Drive the robot with an arcade drive layout.
+   * Drive the robot with an arcade drive layout. Uses voltage mode.
    *
-   * @param iverticalVal vertical joystick value
-   * @param ihorizontalVal horizontal joystick value
+   * @param iySpeed speed on y axis (forward)
+   * @param izRotation speed around z axis (up)
    * @param ithreshold deadband on joystick values
    */
-  virtual void arcade(int iverticalVal, int ihorizontalVal,
-                      const int ithreshold = 0) const override;
+  virtual void arcade(const double iySpeed, const double izRotation,
+                      const double ithreshold = 0) const override;
 
   /**
-   * Power the left side motors.
+   * Power the left side motors. Uses velocity mode.
    *
    * @param ipower motor power
    */
-  virtual void left(const int ipower) const override;
+  virtual void left(const double ipower) const override;
 
   /**
-   * Power the right side motors.
+   * Power the right side motors. Uses velocity mode.
    *
    * @param ipower motor power
    */
-  virtual void right(const int ipower) const override;
+  virtual void right(const double ipower) const override;
 
   /**
    * Read the sensors.
@@ -142,6 +147,7 @@ class SkidSteerModel : public ChassisModel {
   const AbstractMotor &rightSideMotor;
   const RotarySensor &leftSensor;
   const RotarySensor &rightSensor;
+  const double maxOutput;
 };
 } // namespace okapi
 

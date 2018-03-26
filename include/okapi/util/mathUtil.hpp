@@ -8,6 +8,8 @@
 #ifndef _OKAPI_MATHUTIL_HPP_
 #define _OKAPI_MATHUTIL_HPP_
 
+#include <algorithm>
+
 namespace okapi {
 static constexpr double analogInToV = 286.0;
 static constexpr double inchToMM = 25.4;
@@ -35,6 +37,19 @@ constexpr double ipow(const double base, const int expo) {
                        : expo > 1 ? ((expo & 1) ? base * ipow(base, expo - 1)
                                                 : ipow(base, expo / 2) * ipow(base, expo / 2))
                                   : 1 / ipow(base, -expo);
+}
+
+/**
+ * Cut out a range from the number. The new range of the input number will be
+ * (-inf, min]U[max, +inf).
+ *
+ * @param value number to bound
+ * @param min lower bound of deadband
+ * @param max upper bound of deadband
+ * @return value, or 0 is value was within [min, max]
+ */
+constexpr double cut_range(const double value, const double min, const double max) {
+  return std::clamp(value, min, max) == value ? 0 : value;
 }
 } // namespace okapi
 
