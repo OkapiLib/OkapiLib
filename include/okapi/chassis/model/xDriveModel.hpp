@@ -76,76 +76,75 @@ class XDriveModel : public ChassisModel {
   virtual ~XDriveModel();
 
   /**
-   * Drive the robot forwards (using open-loop control).
+   * Drive the robot forwards (using open-loop control). Uses velocity mode.
    *
    * @param ipower motor power
    */
   virtual void forward(const double ipower) const override;
 
   /**
-   * Drive the robot in an arc (using open-loop control).
-   * The algorithm is:
-   *   leftPower = distPower + anglePower
-   *   rightPower = distPower - anglePower
+   * Drive the robot in an arc (using open-loop control). Uses velocity mode.
+   * The algorithm is (approximately):
+   *   leftPower = ySpeed + zRotation
+   *   rightPower = ySpeed - zRotation
    *
-   * @param idistPower see above
-   * @param ianglePower see above
+   * @param iySpeed speed on y axis (forward)
+   * @param izRotation speed around z axis (up)
    */
-  virtual void driveVector(const double idistPower, const double ianglePower) const override;
+  virtual void driveVector(const double iySpeed, const double izRotation) const override;
 
   /**
-   * Turn the robot clockwise (using open-loop control).
+   * Turn the robot clockwise (using open-loop control). Uses velocity mode.
    *
    * @param ipower motor power
    */
   virtual void rotate(const double ipower) const override;
 
   /**
-   * Stop the robot (set all the motors to 0).
+   * Stop the robot (set all the motors to 0). Uses velocity mode.
    */
   virtual void stop() const override;
 
   /**
-   * Drive the robot with a tank drive layout.
+   * Drive the robot with a tank drive layout. Uses voltage mode.
    *
-   * @param ileftVal left joystick value
-   * @param irightVal right joystick value
+   * @param ileftSpeed left side speed
+   * @param irightSpeed right side speed
    * @param ithreshold deadband on joystick values
    */
-  virtual void tank(const double ileftVal, const double irightVal,
+  virtual void tank(const double ileftSpeed, const double irightSpeed,
                     const double ithreshold = 0) const override;
 
   /**
-   * Drive the robot with an arcade drive layout.
+   * Drive the robot with an arcade drive layout. Uses voltage mode.
    *
-   * @param iverticalVal vertical joystick value
-   * @param ihorizontalVal horizontal joystick value
+   * @param iySpeed speed on y axis (forward)
+   * @param izRotation speed around z axis (up)
    * @param ithreshold deadband on joystick values
    */
-  virtual void arcade(double iverticalVal, double ihorizontalVal,
+  virtual void arcade(const double iySpeed, const double izRotation,
                       const double ithreshold = 0) const override;
 
   /**
-   * Drive the robot with an arcade drive layout specially for a holonomic drive. The horizontal
-   * value no longer rotates the robot (the rotate value does that); instead, it strafes the robot
-   * sideways.
+   * Drive the robot with an arcade drive layout. Uses voltage mode.
    *
-   * @param iverticalVal vertical joystick value
-   * @param ihorizontalVal horizontal joystick value
+   * @param izSpeed speed on x axis (right)
+   * @param iySpeed speed on y axis (forward)
+   * @param izRotation speed around z axis (up)
    * @param ithreshold deadband on joystick values
    */
-  virtual void xArcade(double iverticalVal, double ihorizontalVal, double irotateVal,
+  virtual void xArcade(const double ixSpeed, const double iySpeed, const double izRotation,
                        const double ithreshold = 0) const;
 
   /**
-   * Power the left side motors.
+   * Power the left side motors. Uses velocity mode.
    *
    * @param ipower motor power
    */
   virtual void left(const double ipower) const override;
 
   /**
-   * Power the right side motors.
+   * Power the right side motors. Uses velocity mode.
    *
    * @param ipower motor power
    */

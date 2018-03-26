@@ -99,11 +99,11 @@ class SkidSteerModel : public ChassisModel {
   /**
    * Drive the robot with a tank drive layout. Uses voltage mode.
    *
-   * @param ileftVal left joystick value
-   * @param irightVal right joystick value
+   * @param ileftSpeed left side speed
+   * @param irightSpeed right side speed
    * @param ithreshold deadband on joystick values
    */
-  virtual void tank(const double ileftVal, const double irightVal,
+  virtual void tank(const double ileftSpeed, const double irightSpeed,
                     const double ithreshold = 0) const override;
 
   /**

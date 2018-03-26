@@ -86,24 +86,37 @@ XDriveModel::XDriveModel(const XDriveModel &other)
 XDriveModel::~XDriveModel() = default;
 
 void XDriveModel::forward(const double ipower) const {
-  topLeftMotor.move_velocity(ipower);
-  topRightMotor.move_velocity(ipower);
-  bottomRightMotor.move_velocity(ipower);
-  bottomLeftMotor.move_velocity(ipower);
+  topLeftMotor.move_velocity(ipower * maxOutput);
+  topRightMotor.move_velocity(ipower * maxOutput);
+  bottomRightMotor.move_velocity(ipower * maxOutput);
+  bottomLeftMotor.move_velocity(ipower * maxOutput);
 }
 
-void XDriveModel::driveVector(const double idistPower, const double ianglePower) const {
-  topLeftMotor.move_velocity(idistPower + ianglePower);
-  topRightMotor.move_velocity(idistPower - ianglePower);
-  bottomRightMotor.move_velocity(idistPower - ianglePower);
-  bottomLeftMotor.move_velocity(idistPower + ianglePower);
+void XDriveModel::driveVector(const double iySpeed, const double izRotation) const {
+  // This code is taken from WPIlib. ALl credit goes to them. Link:
+  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  const double ySpeed = std::clamp(iySpeed, -1.0, 1.0);
+  const double zRotation = std::clamp(izRotation, -1.0, 1.0);
+
+  double leftOutput = ySpeed + zRotation;
+  double rightOutput = ySpeed - zRotation;
+  const double maxInputMag = std::max(abs(ySpeed), abs(zRotation));
+  if (maxInputMag > 1) {
+    leftOutput /= maxInputMag;
+    rightOutput /= maxInputMag;
+  }
+
+  topLeftMotor.move_velocity(leftOutput * maxOutput);
+  topRightMotor.move_velocity(rightOutput * maxOutput);
+  bottomRightMotor.move_velocity(rightOutput * maxOutput);
+  bottomLeftMotor.move_velocity(leftOutput * maxOutput);
 }
 
 void XDriveModel::rotate(const double ipower) const {
-  topLeftMotor.move_velocity(ipower);
-  topRightMotor.move_velocity(-1 * ipower);
-  bottomRightMotor.move_velocity(-1 * ipower);
-  bottomLeftMotor.move_velocity(ipower);
+  topLeftMotor.move_velocity(ipower * maxOutput);
+  topRightMotor.move_velocity(-1 * ipower * maxOutput);
+  bottomRightMotor.move_velocity(-1 * ipower * maxOutput);
+  bottomLeftMotor.move_velocity(ipower * maxOutput);
 }
 
 void XDriveModel::stop() const {
@@ -113,61 +126,102 @@ void XDriveModel::stop() const {
   bottomLeftMotor.move_velocity(0);
 }
 
-void XDriveModel::tank(const double ileftVal, const double irightVal,
+void XDriveModel::tank(const double ileftSpeed, const double irightSpeed,
                        const double ithreshold) const {
-  if (fabs(ileftVal) < ithreshold) {
-    topLeftMotor.move_velocity(0);
-    bottomLeftMotor.move_velocity(0);
-  } else {
-    topLeftMotor.move_velocity(ileftVal);
-    bottomLeftMotor.move_velocity(ileftVal);
+  // This code is taken from WPIlib. ALl credit goes to them. Link:
+  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  double leftSpeed = std::clamp(ileftSpeed, -1.0, 1.0);
+  if (fabs(leftSpeed) < ithreshold) {
+    leftSpeed = 0;
   }
 
-  if (fabs(irightVal) < ithreshold) {
-    topRightMotor.move_velocity(0);
-    bottomRightMotor.move_velocity(0);
-  } else {
-    topRightMotor.move_velocity(irightVal);
-    bottomRightMotor.move_velocity(irightVal);
+  double rightSpeed = std::clamp(irightSpeed, -1.0, 1.0);
+  if (fabs(rightSpeed) < ithreshold) {
+    rightSpeed = 0;
   }
+
+  topLeftMotor.move_voltage(leftSpeed * maxOutput);
+  topRightMotor.move_voltage(rightSpeed * maxOutput);
+  bottomRightMotor.move_voltage(rightSpeed * maxOutput);
+  bottomLeftMotor.move_voltage(leftSpeed * maxOutput);
 }
 
-void XDriveModel::arcade(double iverticalVal, double ihorizontalVal,
+void XDriveModel::arcade(const double iySpeed, const double izRotation,
                          const double ithreshold) const {
-  if (fabs(iverticalVal) < ithreshold)
-    iverticalVal = 0;
-  if (fabs(ihorizontalVal) < ithreshold)
-    ihorizontalVal = 0;
+  // This code is taken from WPIlib. ALl credit goes to them. Link:
+  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  double ySpeed = std::clamp(iySpeed, -1.0, 1.0);
+  if (fabs(ySpeed) < ithreshold) {
+    ySpeed = 0;
+  }
 
-  topLeftMotor.move_velocity(iverticalVal + ihorizontalVal);
-  topRightMotor.move_velocity(iverticalVal - ihorizontalVal);
-  bottomRightMotor.move_velocity(iverticalVal - ihorizontalVal);
-  bottomLeftMotor.move_velocity(iverticalVal + ihorizontalVal);
+  double zRotation = std::clamp(izRotation, -1.0, 1.0);
+  if (fabs(zRotation) < ithreshold) {
+    zRotation = 0;
+  }
+
+  double maxInput = std::copysign(std::max(fabs(ySpeed), fabs(zRotation)), ySpeed);
+  double leftOutput = 0;
+  double rightOutput = 0;
+
+  if (ySpeed >= 0) {
+    if (zRotation >= 0) {
+      leftOutput = maxInput;
+      rightOutput = ySpeed - zRotation;
+    } else {
+      leftOutput = ySpeed + zRotation;
+      rightOutput = maxInput;
+    }
+  } else {
+    if (zRotation >= 0) {
+      leftOutput = ySpeed + zRotation;
+      rightOutput = maxInput;
+    } else {
+      leftOutput = maxInput;
+      rightOutput = ySpeed - zRotation;
+    }
+  }
+
+  leftOutput = std::clamp(leftOutput, -1.0, 1.0);
+  rightOutput = std::clamp(rightOutput, -1.0, 1.0);
+
+  topLeftMotor.move_voltage(leftOutput * maxOutput);
+  topRightMotor.move_voltage(rightOutput * maxOutput);
+  bottomRightMotor.move_voltage(rightOutput * maxOutput);
+  bottomLeftMotor.move_voltage(leftOutput * maxOutput);
 }
 
-void XDriveModel::xArcade(double iverticalVal, double ihorizontalVal, double irotateVal,
+void XDriveModel::xArcade(const double ixSpeed, const double iySpeed, const double izRotation,
                           const double ithreshold) const {
-  if (fabs(iverticalVal) < ithreshold)
-    iverticalVal = 0;
-  if (fabs(ihorizontalVal) < ithreshold)
-    ihorizontalVal = 0;
-  if (fabs(irotateVal) < ithreshold)
-    irotateVal = 0;
+  double xSpeed = std::clamp(ixSpeed, -1.0, 1.0);
+  if (fabs(xSpeed) < ithreshold) {
+    xSpeed = 0;
+  }
 
-  topLeftMotor.move_velocity(iverticalVal + ihorizontalVal + irotateVal);
-  topRightMotor.move_velocity(iverticalVal - ihorizontalVal - irotateVal);
-  bottomRightMotor.move_velocity(iverticalVal + ihorizontalVal - irotateVal);
-  bottomLeftMotor.move_velocity(iverticalVal - ihorizontalVal + irotateVal);
+  double ySpeed = std::clamp(iySpeed, -1.0, 1.0);
+  if (fabs(ySpeed) < ithreshold) {
+    ySpeed = 0;
+  }
+
+  double zRotation = std::clamp(izRotation, -1.0, 1.0);
+  if (fabs(zRotation) < ithreshold) {
+    zRotation = 0;
+  }
+
+  topLeftMotor.move_voltage(ySpeed + xSpeed + zRotation);
+  topRightMotor.move_voltage(ySpeed - xSpeed - zRotation);
+  bottomRightMotor.move_voltage(ySpeed + xSpeed - zRotation);
+  bottomLeftMotor.move_voltage(ySpeed - xSpeed + zRotation);
 }
 
 void XDriveModel::left(const double ipower) const {
-  topLeftMotor.move_velocity(ipower);
-  bottomLeftMotor.move_velocity(ipower);
+  topLeftMotor.move_velocity(ipower * maxOutput);
+  bottomLeftMotor.move_velocity(ipower * maxOutput);
 }
 
 void XDriveModel::right(const double ipower) const {
-  topRightMotor.move_velocity(ipower);
-  bottomRightMotor.move_velocity(ipower);
+  topRightMotor.move_velocity(ipower * maxOutput);
+  bottomRightMotor.move_velocity(ipower * maxOutput);
 }
 
 std::valarray<int> XDriveModel::getSensorVals() const {

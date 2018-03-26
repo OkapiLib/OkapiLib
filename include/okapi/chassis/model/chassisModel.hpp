@@ -32,14 +32,14 @@ class ChassisModel {
 
   /**
    * Drive the robot in an arc (using open-loop control).
-   * The algorithm is:
-   *   leftPower = distPower + anglePower
-   *   rightPower = distPower - anglePower
+   * The algorithm is (approximately):
+   *   leftPower = ySpeed + zRotation
+   *   rightPower = ySpeed - zRotation
    *
-   * @param idistPower see above
-   * @param ianglePower see above
+   * @param iySpeed speed on y axis (forward)
+   * @param izRotation speed around z axis (up)
    */
-  virtual void driveVector(const double idistPower, const double ianglePower) const = 0;
+  virtual void driveVector(const double iySpeed, const double izRotation) const = 0;
 
   /**
    * Turn the robot clockwise (using open-loop control).
@@ -54,23 +54,23 @@ class ChassisModel {
   virtual void stop() const = 0;
 
   /**
-   * Drive the robot with a tank drive layout.
+   * Drive the robot with a tank drive layout. Uses voltage mode.
    *
-   * @param ileftVal left joystick value
-   * @param irightVal right joystick value
+   * @param ileftSpeed left side speed
+   * @param irightSpeed right side speed
    * @param ithreshold deadband on joystick values
    */
-  virtual void tank(const double ileftVal, const double irightVal,
-                    const double ithreshold = 0) const = 0;
+  virtual void tank(const double ileftSpeed, const double irightSpeed,
+                    const double ithreshold = 0) const;
 
   /**
    * Drive the robot with an arcade drive layout.
    *
-   * @param iverticalVal vertical joystick value
-   * @param ihorizontalVal horizontal joystick value
+   * @param iySpeed speed on y axis (forward)
+   * @param izRotation speed around z axis (up)
    * @param ithreshold deadband on joystick values
    */
-  virtual void arcade(double iverticalVal, double ihorizontalVal,
+  virtual void arcade(const double iySpeed, const double izRotation,
                       const double ithreshold = 0) const = 0;
 
   /**
