@@ -8,7 +8,19 @@ using namespace okapi;
 void opcontrol() {
   task_delay(100);
 
-  {
+  PosPIDController controller(3, 0, 0.5);
+  motor_reset_zero_position(15);
+  controller.setTarget(-1000);
+  Timer t;
+  while (true) {
+    motor_move_velocity(15, controller.step(motor_get_position(15)) * 100);
+    if (t.repeat(100)) {
+      printf("Error: %1.2f\tOutput: %1.2f\n", controller.getError(), controller.getOutput());
+    }
+    task_delay(5);
+  }
+
+  /*{
     using namespace snowhouse;
 
     {
@@ -122,7 +134,7 @@ void opcontrol() {
     }
 
     test_print_report();
-  }
+  }*/
 
   /*while (true) {
     ADIButton btn(2);
