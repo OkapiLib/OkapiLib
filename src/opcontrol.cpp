@@ -124,7 +124,7 @@ void opcontrol() {
     test_print_report();
   }
 
-  while (true) {
+  /*while (true) {
     ADIButton btn(2);
     ControllerButton btn2(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A);
     btn.isPressed();
@@ -245,5 +245,5 @@ void opcontrol() {
                    0, 0);
 
     Timer timer1();
-  }
+  }*/
 }

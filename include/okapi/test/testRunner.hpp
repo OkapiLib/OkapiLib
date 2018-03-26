@@ -42,8 +42,8 @@ void test_printf(const std::string &istring);
 void test(const std::string &iname, std::function<void()> ifunc);
 
 /**
- * Print out a test report detailing how many tests passed; how many tests failed; and if any
- * failed, which ones.
+ * Print out a test report detailing how long the tests took to run; how many tests passed; how many
+ * tests failed; and if any failed, which ones.
  */
 void test_print_report();
 } // namespace okapi
