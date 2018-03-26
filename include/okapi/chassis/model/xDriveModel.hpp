@@ -158,7 +158,7 @@ class XDriveModel : public ChassisModel {
    */
   virtual void resetSensors() const override;
 
-  private:
+  protected:
   const AbstractMotor &topLeftMotor;
   const AbstractMotor &topRightMotor;
   const AbstractMotor &bottomRightMotor;

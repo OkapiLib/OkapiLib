@@ -23,15 +23,15 @@ class ADIMotor : public ControllerOutput {
    *
    * @param ivoltage voltage
    */
-  void move_voltage(const int32_t ivoltage) const;
+  virtual void move_voltage(const int32_t ivoltage) const;
 
   /**
    * Write the value of the controller output. This method might be automatically called in another
    * thread by the controller.
    */
-  void controllerSet(const double ivalue) override;
+  virtual void controllerSet(const double ivalue) override;
 
-  private:
+  protected:
   const pros::ADIMotor motor;
 };
 } // namespace okapi

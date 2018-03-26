@@ -22,53 +22,53 @@ class Timer {
    *
    * @return The time passed in ms since the previous call of this function
    */
-  uint32_t getDt();
+  virtual uint32_t getDt();
 
   /**
    * Returns the time the timer was first initialized.
    *
    * @return The time the timer was first initialized
    */
-  uint32_t getStartingTime() const;
+  virtual uint32_t getStartingTime() const;
 
   /**
    * Returns the time since the timer was first initialized.
    *
    * @return The time since the timer was first initialized
    */
-  uint32_t getDtFromStart() const;
+  virtual uint32_t getDtFromStart() const;
 
   /**
    * Place a time marker. Placing another marker will overwrite the previous one.
    */
-  void placeMark();
+  virtual void placeMark();
 
   /**
    * Place a hard time marker. Placing another hard marker will not overwrite the previous one;
    * instead, call clearHardMark() and then place another.
    */
-  void placeHardMark();
+  virtual void placeHardMark();
 
   /**
    * Clears the hard marker.
    *
    * @return The old hard marker
    */
-  uint32_t clearHardMark();
+  virtual uint32_t clearHardMark();
 
   /**
    * Returns the time since the time marker.
    *
    * @return The time since the time marker
    */
-  uint32_t getDtFromMark() const;
+  virtual uint32_t getDtFromMark() const;
 
   /**
    * Returns the time since the hard time marker.
    *
    * @return The time since the hard time marker
    */
-  uint32_t getDtFromHardMark() const;
+  virtual uint32_t getDtFromHardMark() const;
 
   /**
    * Returns true when the input time period has passed, then resets. Meant to be used in loops
@@ -78,9 +78,9 @@ class Timer {
    * @return true when the input time period has passed, false after reading true until the
    *   period has passed again
    */
-  bool repeat(const uint32_t ms);
+  virtual bool repeat(const uint32_t ms);
 
-  private:
+  protected:
   uint32_t firstCalled, lastCalled, mark, hardMark, repeatMark;
 };
 } // namespace okapi

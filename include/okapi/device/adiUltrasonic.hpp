@@ -24,15 +24,15 @@ class ADIUltrasonic : public ControllerInput {
    *
    * @return current value, PROS_ERR on fail
    */
-  int32_t get();
+  virtual int32_t get();
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in
    * another thread by the controller. Uses a median filter to remove outliers.
    */
-  double controllerGet() override;
+  virtual double controllerGet() override;
 
-  private:
+  protected:
   pros::ADIUltrasonic ultra;
   MedianFilter<5> filter;
 };

@@ -53,14 +53,14 @@ class OdomChassisController : public virtual ChassisController {
    *
    * @return state from internal Odometry object
    */
-  OdomState getState() const;
+  virtual OdomState getState() const;
 
   /**
    * Set a new state to be the current state.
    *
    * @param istate new state
    */
-  void setState(const OdomState &istate);
+  virtual void setState(const OdomState &istate);
 
   /**
    * Set a new move threshold. Any requested movements smaller than the move threshold will not be
@@ -68,7 +68,7 @@ class OdomChassisController : public virtual ChassisController {
    *
    * @param imoveThreshold new move threshold
    */
-  void setMoveThreshold(const float imoveThreshold);
+  virtual void setMoveThreshold(const float imoveThreshold);
 
   protected:
   float moveThreshold; // Minimum length movement

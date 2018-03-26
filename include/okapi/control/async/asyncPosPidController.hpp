@@ -46,19 +46,19 @@ class AsyncPosPIDController : public AsyncPositionController {
   /**
    * Returns the last calculated output of the controller. Default is 0.
    */
-  double getOutput() const override;
+  virtual double getOutput() const override;
 
   /**
    * Returns the last error of the controller.
    */
-  double getError() const override;
+  virtual double getError() const override;
 
   /**
    * Set time between loops in ms. Default does nothing.
    *
    * @param isampleTime time between loops in ms
    */
-  void setSampleTime(const uint32_t isampleTime) override;
+  virtual void setSampleTime(const uint32_t isampleTime) override;
 
   /**
    * Set controller output bounds. Default does nothing.
@@ -66,18 +66,18 @@ class AsyncPosPIDController : public AsyncPositionController {
    * @param imax max output
    * @param imin min output
    */
-  void setOutputLimits(double imax, double imin) override;
+  virtual void setOutputLimits(double imax, double imin) override;
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
-  void reset() override;
+  virtual void reset() override;
 
   /**
    * Change whether the controll is off or on. Default does nothing.
    */
-  void flipDisable() override;
+  virtual void flipDisable() override;
 
   protected:
   ControllerInput &input;

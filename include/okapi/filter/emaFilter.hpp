@@ -26,23 +26,23 @@ class EmaFilter : public Filter {
    * @param reading new measurement
    * @return filtered result
    */
-  double filter(const double ireading) override;
+  virtual double filter(const double ireading) override;
 
   /**
    * Returns the previous output from filter.
    *
    * @return the previous output from filter
    */
-  double getOutput() const override;
+  virtual double getOutput() const override;
 
   /**
    * Set filter gains.
    *
    * @param ialpha alpha gain
    */
-  void setGains(const double ialpha);
+  virtual void setGains(const double ialpha);
 
-  private:
+  protected:
   double alpha;
   double output, lastOutput;
 };

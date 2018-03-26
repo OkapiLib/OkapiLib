@@ -24,9 +24,9 @@ class Rate {
    *
    * @param ihz rate in Hertz
    */
-  void delayHz(const uint32_t ihz);
+  virtual void delayHz(const uint32_t ihz);
 
-  private:
+  protected:
   uint32_t lastTime;
 };
 } // namespace okapi

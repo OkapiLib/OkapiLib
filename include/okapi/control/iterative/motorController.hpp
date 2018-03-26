@@ -30,29 +30,29 @@ class MotorController : public IterativeVelocityController {
   /**
    * Sets the target for the controller.
    */
-  void setTarget(const double itarget);
+  virtual void setTarget(const double itarget);
 
   /**
    * Returns the last calculated output of the controller.
    */
-  double getOutput() const;
+  virtual double getOutput() const;
 
   /**
    * Returns the last error of the controller.
    */
-  double getError() const;
+  virtual double getError() const;
 
   /**
    * Returns the last derivative (change in error) of the controller.
    */
-  double getDerivative() const;
+  virtual double getDerivative() const;
 
   /**
    * Set time between loops in ms.
    *
    * @param isampleTime time between loops in ms
    */
-  void setSampleTime(const int isampleTime);
+  virtual void setSampleTime(const int isampleTime);
 
   /**
    * Set controller output bounds.
@@ -60,18 +60,18 @@ class MotorController : public IterativeVelocityController {
    * @param imax max output
    * @param imin min output
    */
-  void setOutputLimits(double imax, double imin);
+  virtual void setOutputLimits(double imax, double imin);
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
-  void reset();
+  virtual void reset();
 
   /**
    * Change whether the controll is off or on.
    */
-  void flipDisable();
+  virtual void flipDisable();
 
   /**
    * Get the last set sample time.

@@ -24,9 +24,9 @@ class PIDTuner {
 
   virtual ~PIDTuner();
 
-  PosPIDControllerParams autotune();
+  virtual PosPIDControllerParams autotune();
 
-  private:
+  protected:
   static constexpr double inertia = 0.5;   // Particle intertia
   static constexpr double confSelf = 1.1;  // Self confidence
   static constexpr double confSwarm = 1.2; // Particle swarm confidence

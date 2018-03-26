@@ -56,23 +56,23 @@ class PosPIDController : public IterativePositionController {
   /**
    * Sets the target for the controller.
    */
-  void setTarget(const double itarget) override;
+  virtual void setTarget(const double itarget) override;
 
   /**
    * Returns the last calculated output of the controller. Output is in the range [-127, 127]
    * unless the bounds have been changed with setOutputLimits().
    */
-  double getOutput() const override;
+  virtual double getOutput() const override;
 
   /**
    * Returns the last error of the controller.
    */
-  double getError() const override;
+  virtual double getError() const override;
 
   /**
    * Returns the last derivative (change in error) of the controller.
    */
-  double getDerivative() const override;
+  virtual double getDerivative() const override;
 
   /**
    * Set controller gains.
@@ -82,14 +82,15 @@ class PosPIDController : public IterativePositionController {
    * @param ikD derivative gain
    * @param ikBias bias (constant offset added to the output)
    */
-  void setGains(const double ikP, const double ikI, const double ikD, const double ikBias = 0);
+  virtual void setGains(const double ikP, const double ikI, const double ikD,
+                        const double ikBias = 0);
 
   /**
    * Set time between loops in ms.
    *
    * @param isampleTime time between loops in ms
    */
-  void setSampleTime(const uint32_t isampleTime) override;
+  virtual void setSampleTime(const uint32_t isampleTime) override;
 
   /**
    * Set controller output bounds. Default bounds are [-127, 127].
@@ -97,7 +98,7 @@ class PosPIDController : public IterativePositionController {
    * @param imax max output
    * @param imin min output
    */
-  void setOutputLimits(double imax, double imin) override;
+  virtual void setOutputLimits(double imax, double imin) override;
 
   /**
    * Set integrator bounds. Default bounds are [-127, 127];
@@ -105,32 +106,32 @@ class PosPIDController : public IterativePositionController {
    * @param imax max integrator value
    * @param imin min integrator value
    */
-  void setIntegralLimits(double imax, double imin);
+  virtual void setIntegralLimits(double imax, double imin);
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps gains and limits from
    * before.
    */
-  void reset() override;
+  virtual void reset() override;
 
   /**
    * Set whether the integrator should be reset when error is 0 or changes sign.
    *
    * @param iresetOnZero true to reset
    */
-  void setIntegratorReset(bool iresetOnZero);
+  virtual void setIntegratorReset(bool iresetOnZero);
 
   /**
    * Change whether the controll is off or on.
    */
-  void flipDisable() override;
+  virtual void flipDisable() override;
 
   /**
    * Get the last set sample time.
    *
    * @return sample time
    */
-  uint32_t getSampleTime() const override;
+  virtual uint32_t getSampleTime() const override;
 
   protected:
   double kP, kI, kD, kBias;

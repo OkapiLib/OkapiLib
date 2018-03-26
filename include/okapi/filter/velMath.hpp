@@ -53,24 +53,24 @@ class VelMath {
    * @param ialpha alpha gain
    * @param ibeta beta gain
    */
-  void setGains(const double ialpha, const double ibeta);
+  virtual void setGains(const double ialpha, const double ibeta);
 
   /**
    * Set ticks per revolution (or whatever units you are using).
    *
    * @para iTPR ticks per revolution
    */
-  void setTicksPerRev(const double iTPR);
+  virtual void setTicksPerRev(const double iTPR);
 
   /**
    * Get the last calculated output.
    */
-  double getOutput() const;
+  virtual double getOutput() const;
 
   /**
    * Get the difference between the last output and the output before that.
    */
-  double getDiff() const;
+  virtual double getDiff() const;
 
   protected:
   uint32_t lastTime;

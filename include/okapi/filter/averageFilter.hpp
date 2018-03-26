@@ -26,7 +26,7 @@ template <std::size_t n> class AverageFilter : public Filter {
 
   virtual ~AverageFilter() = default;
 
-  double filter(const double ireading) override {
+  virtual double filter(const double ireading) override {
     data[index++] = ireading;
     if (index >= n) {
       index = 0;
@@ -40,11 +40,11 @@ template <std::size_t n> class AverageFilter : public Filter {
     return output;
   }
 
-  double getOutput() const override {
+  virtual double getOutput() const override {
     return output;
   }
 
-  private:
+  protected:
   std::array<double, n> data;
   double index, output;
 };

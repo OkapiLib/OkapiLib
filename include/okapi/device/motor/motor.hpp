@@ -20,14 +20,14 @@ class Motor : public AbstractMotor {
    * Write the value of the controller output. This method might be automatically called in another
    * thread by the controller.
    */
-  void controllerSet(const double ivalue) override;
+  virtual void controllerSet(const double ivalue) override;
 
   /**
    * Get the encoder associated with this motor.
    *
    * @return encoder for this motor
    */
-  IntegratedEncoder getEncoder() const override;
+  virtual IntegratedEncoder getEncoder() const override;
 };
 
 inline namespace literals {

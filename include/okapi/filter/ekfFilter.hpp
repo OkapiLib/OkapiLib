@@ -43,7 +43,7 @@ class EKFFilter : public Filter {
    * @param ireading new measurement
    * @return filtered result
    */
-  double filter(const double ireading) override;
+  virtual double filter(const double ireading) override;
 
   /**
    * Filters a reading with a control input.
@@ -52,16 +52,16 @@ class EKFFilter : public Filter {
    * @param icontrol control input
    * @return filtered result
    */
-  double filter(const double ireading, const double icontrol);
+  virtual double filter(const double ireading, const double icontrol);
 
   /**
    * Returns the previous output from filter.
    *
    * @return the previous output from filter
    */
-  double getOutput() const override;
+  virtual double getOutput() const override;
 
-  private:
+  protected:
   const double Q, R;
   double xHat, xHatPrev, xHatMinus, P, Pprev, Pminus, K;
 };

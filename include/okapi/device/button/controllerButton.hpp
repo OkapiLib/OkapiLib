@@ -19,33 +19,33 @@ class ControllerButton : public Button {
   /**
    * Return whether the button is current pressed.
    **/
-  bool isPressed();
+  virtual bool isPressed();
 
   /**
    * Return whether the state of the button changed since the last time this method was
    * called.
    **/
-  bool changed();
+  virtual bool changed();
 
   /**
    * Return whether the state of the button changed to being pressed since the last time this method
    * was called.
    **/
-  bool changedToPressed();
+  virtual bool changedToPressed();
 
   /**
    * Return whether the state of the button to being not pressed changed since the last time this
    * method was called.
    **/
-  bool changedToReleased();
+  virtual bool changedToReleased();
 
-  private:
+  protected:
   pros::Controller controller;
   controller_digital_e_t btn;
   const bool inverted;
   bool wasPressedLast;
 
-  bool currentlyPressed();
+  virtual bool currentlyPressed();
 };
 } // namespace okapi
 
