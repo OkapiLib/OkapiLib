@@ -69,9 +69,9 @@ class SkidSteerModel : public ChassisModel {
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.
    *
-   * @param ipower motor power
+   * @param ispeed motor power
    */
-  virtual void forward(const double ipower) const override;
+  virtual void forward(const double ispeed) const override;
 
   /**
    * Drive the robot in an arc (using open-loop control). Uses velocity mode.
@@ -87,9 +87,9 @@ class SkidSteerModel : public ChassisModel {
   /**
    * Turn the robot clockwise (using open-loop control). Uses velocity mode.
    *
-   * @param ipower motor power
+   * @param ispeed motor power
    */
-  virtual void rotate(const double ipower) const override;
+  virtual void rotate(const double ispeed) const override;
 
   /**
    * Stop the robot (set all the motors to 0). Uses velocity mode.
@@ -119,16 +119,16 @@ class SkidSteerModel : public ChassisModel {
   /**
    * Power the left side motors. Uses velocity mode.
    *
-   * @param ipower motor power
+   * @param ispeed motor power
    */
-  virtual void left(const double ipower) const override;
+  virtual void left(const double ispeed) const override;
 
   /**
    * Power the right side motors. Uses velocity mode.
    *
-   * @param ipower motor power
+   * @param ispeed motor power
    */
-  virtual void right(const double ipower) const override;
+  virtual void right(const double ispeed) const override;
 
   /**
    * Read the sensors.

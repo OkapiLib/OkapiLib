@@ -28,7 +28,7 @@ class ChassisModel {
    *
    * @param ipower motor power
    */
-  virtual void forward(const double ipower) const = 0;
+  virtual void forward(const double ispeed) const = 0;
 
   /**
    * Drive the robot in an arc (using open-loop control).
@@ -44,9 +44,9 @@ class ChassisModel {
   /**
    * Turn the robot clockwise (using open-loop control).
    *
-   * @param ipower motor power
+   * @param ispeed motor power
    */
-  virtual void rotate(const double ipower) const = 0;
+  virtual void rotate(const double ispeed) const = 0;
 
   /**
    * Stop the robot (set all the motors to 0).
@@ -78,14 +78,14 @@ class ChassisModel {
    *
    * @param ipower motor power
    */
-  virtual void left(const double ipower) const = 0;
+  virtual void left(const double ispeed) const = 0;
 
   /**
    * Power the right side motors.
    *
    * @param ipower motor power
    */
-  virtual void right(const double ipower) const = 0;
+  virtual void right(const double ispeed) const = 0;
 
   /**
    * Read the sensors.

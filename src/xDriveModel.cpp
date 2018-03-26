@@ -85,11 +85,11 @@ XDriveModel::XDriveModel(const XDriveModel &other)
 
 XDriveModel::~XDriveModel() = default;
 
-void XDriveModel::forward(const double ipower) const {
-  topLeftMotor.move_velocity(ipower * maxOutput);
-  topRightMotor.move_velocity(ipower * maxOutput);
-  bottomRightMotor.move_velocity(ipower * maxOutput);
-  bottomLeftMotor.move_velocity(ipower * maxOutput);
+void XDriveModel::forward(const double ispeed) const {
+  topLeftMotor.move_velocity(ispeed * maxOutput);
+  topRightMotor.move_velocity(ispeed * maxOutput);
+  bottomRightMotor.move_velocity(ispeed * maxOutput);
+  bottomLeftMotor.move_velocity(ispeed * maxOutput);
 }
 
 void XDriveModel::driveVector(const double iySpeed, const double izRotation) const {
@@ -112,11 +112,11 @@ void XDriveModel::driveVector(const double iySpeed, const double izRotation) con
   bottomLeftMotor.move_velocity(leftOutput * maxOutput);
 }
 
-void XDriveModel::rotate(const double ipower) const {
-  topLeftMotor.move_velocity(ipower * maxOutput);
-  topRightMotor.move_velocity(-1 * ipower * maxOutput);
-  bottomRightMotor.move_velocity(-1 * ipower * maxOutput);
-  bottomLeftMotor.move_velocity(ipower * maxOutput);
+void XDriveModel::rotate(const double ispeed) const {
+  topLeftMotor.move_velocity(ispeed * maxOutput);
+  topRightMotor.move_velocity(-1 * ispeed * maxOutput);
+  bottomRightMotor.move_velocity(-1 * ispeed * maxOutput);
+  bottomLeftMotor.move_velocity(ispeed * maxOutput);
 }
 
 void XDriveModel::stop() const {
@@ -214,14 +214,14 @@ void XDriveModel::xArcade(const double ixSpeed, const double iySpeed, const doub
   bottomLeftMotor.move_voltage(ySpeed - xSpeed + zRotation);
 }
 
-void XDriveModel::left(const double ipower) const {
-  topLeftMotor.move_velocity(ipower * maxOutput);
-  bottomLeftMotor.move_velocity(ipower * maxOutput);
+void XDriveModel::left(const double ispeed) const {
+  topLeftMotor.move_velocity(ispeed * maxOutput);
+  bottomLeftMotor.move_velocity(ispeed * maxOutput);
 }
 
-void XDriveModel::right(const double ipower) const {
-  topRightMotor.move_velocity(ipower * maxOutput);
-  bottomRightMotor.move_velocity(ipower * maxOutput);
+void XDriveModel::right(const double ispeed) const {
+  topRightMotor.move_velocity(ispeed * maxOutput);
+  bottomRightMotor.move_velocity(ispeed * maxOutput);
 }
 
 std::valarray<int> XDriveModel::getSensorVals() const {

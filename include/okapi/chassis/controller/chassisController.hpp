@@ -44,25 +44,25 @@ class ChassisController {
    *
    * @param ipower motor power
    */
-  virtual void forward(const int ipower) const;
+  virtual void forward(const int ispeed) const;
 
   /**
    * Drive the robot in an arc (using open-loop control).
-   * The algorithm is:
-   *   leftPower = distPower + anglePower
-   *   rightPower = distPower - anglePower
+   * The algorithm is (approximately):
+   *   leftPower = ySpeed + zRotation
+   *   rightPower = ySpeed - zRotation
    *
-   * @param idistPower see above
-   * @param ianglePower see above
+   * @param iySpeed speed on y axis (forward)
+   * @param izRotation speed around z axis (up)
    */
-  virtual void driveVector(const int idistPower, const int ianglePower) const;
+  virtual void driveVector(const double iySpeed, const double izRotation) const;
 
   /**
    * Turn the robot clockwise (using open-loop control).
    *
    * @param ipower motor power
    */
-  virtual void rotate(const int ipower) const;
+  virtual void rotate(const int ispeed) const;
 
   /**
    * Stop the robot (set all the motors to 0).
@@ -70,36 +70,38 @@ class ChassisController {
   virtual void stop() const;
 
   /**
-   * Drive the robot with a tank drive layout.
+   * Drive the robot with a tank drive layout. Uses voltage mode.
    *
-   * @param ileftVal left joystick value
-   * @param irightVal right joystick value
+   * @param ileftSpeed left side speed
+   * @param irightSpeed right side speed
    * @param ithreshold deadband on joystick values
    */
-  virtual void tank(const int ileftVal, const int irightVal, const int ithreshold = 0) const;
+  virtual void tank(const double ileftSpeed, const double irightSpeed,
+                    const double ithreshold = 0) const;
 
   /**
    * Drive the robot with an arcade drive layout.
    *
-   * @param iverticalVal vertical joystick value
-   * @param ihorizontalVal horizontal joystick value
+   * @param iySpeed speed on y axis (forward)
+   * @param izRotation speed around z axis (up)
    * @param ithreshold deadband on joystick values
    */
-  virtual void arcade(int iverticalVal, int ihorizontalVal, const int ithreshold = 0) const;
+  virtual void arcade(const double iySpeed, const double izRotation,
+                      const double ithreshold = 0) const;
 
   /**
    * Power the left side motors.
    *
    * @param ipower motor power
    */
-  virtual void left(const int ipower) const;
+  virtual void left(const int ispeed) const;
 
   /**
    * Power the right side motors.
    *
    * @param ipower motor power
    */
-  virtual void right(const int ipower) const;
+  virtual void right(const int ispeed) const;
 
   /**
    * Read the sensors.

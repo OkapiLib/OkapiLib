@@ -78,7 +78,7 @@ class XDriveModel : public ChassisModel {
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.
    *
-   * @param ipower motor power
+   * @param ispeed motor power
    */
   virtual void forward(const double ipower) const override;
 

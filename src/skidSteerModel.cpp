@@ -69,9 +69,9 @@ SkidSteerModel::SkidSteerModel(const SkidSteerModel &other)
 
 SkidSteerModel::~SkidSteerModel() = default;
 
-void SkidSteerModel::forward(const double ipower) const {
-  leftSideMotor.move_velocity(ipower * maxOutput);
-  rightSideMotor.move_velocity(ipower * maxOutput);
+void SkidSteerModel::forward(const double ispeed) const {
+  leftSideMotor.move_velocity(ispeed * maxOutput);
+  rightSideMotor.move_velocity(ispeed * maxOutput);
 }
 
 void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) const {
@@ -92,9 +92,9 @@ void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) 
   rightSideMotor.move_velocity(rightOutput * maxOutput);
 }
 
-void SkidSteerModel::rotate(const double ipower) const {
-  leftSideMotor.move_velocity(ipower * maxOutput);
-  rightSideMotor.move_velocity(-1 * ipower * maxOutput);
+void SkidSteerModel::rotate(const double ispeed) const {
+  leftSideMotor.move_velocity(ispeed * maxOutput);
+  rightSideMotor.move_velocity(-1 * ispeed * maxOutput);
 }
 
 void SkidSteerModel::stop() const {
@@ -160,12 +160,12 @@ void SkidSteerModel::arcade(const double iySpeed, const double izRotation,
   rightSideMotor.move_voltage(std::clamp(rightOutput, -1.0, 1.0) * maxOutput);
 }
 
-void SkidSteerModel::left(const double ipower) const {
-  leftSideMotor.move_velocity(ipower * maxOutput);
+void SkidSteerModel::left(const double ispeed) const {
+  leftSideMotor.move_velocity(ispeed * maxOutput);
 }
 
-void SkidSteerModel::right(const double ipower) const {
-  rightSideMotor.move_velocity(ipower * maxOutput);
+void SkidSteerModel::right(const double ispeed) const {
+  rightSideMotor.move_velocity(ispeed * maxOutput);
 }
 
 std::valarray<int> SkidSteerModel::getSensorVals() const {

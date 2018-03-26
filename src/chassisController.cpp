@@ -15,36 +15,38 @@ ChassisController::ChassisController(const ChassisModel &imodel) : model(imodel)
 
 ChassisController::~ChassisController() = default;
 
-void ChassisController::forward(const int ipower) const {
-  model.forward(ipower);
+void ChassisController::forward(const int ispeed) const {
+  model.forward(ispeed);
 }
 
-void ChassisController::driveVector(const int idistPower, const int ianglePower) const {
-  model.driveVector(idistPower, ianglePower);
+void ChassisController::driveVector(const double iySpeed, const double izRotation) const {
+  model.driveVector(iySpeed, izRotation);
 }
 
-void ChassisController::rotate(const int ipower) const {
-  model.rotate(ipower);
+void ChassisController::rotate(const int ispeed) const {
+  model.rotate(ispeed);
 }
 
 void ChassisController::stop() const {
   model.stop();
 }
 
-void ChassisController::tank(const int ileftVal, const int irightVal, const int ithreshold) const {
-  model.tank(ileftVal, irightVal, ithreshold);
+void ChassisController::tank(const double ileftSpeed, const double irightSpeed,
+                             const double ithreshold) const {
+  model.tank(ileftSpeed, irightSpeed, ithreshold);
 }
 
-void ChassisController::arcade(int iverticalVal, int ihorizontalVal, const int ithreshold) const {
-  model.arcade(iverticalVal, ihorizontalVal, ithreshold);
+void ChassisController::arcade(const double iySpeed, const double izRotation,
+                               const double ithreshold) const {
+  model.arcade(iySpeed, izRotation, ithreshold);
 }
 
-void ChassisController::left(const int ipower) const {
-  model.left(ipower);
+void ChassisController::left(const int ispeed) const {
+  model.left(ispeed);
 }
 
-void ChassisController::right(const int ipower) const {
-  model.right(ipower);
+void ChassisController::right(const int ispeed) const {
+  model.right(ispeed);
 }
 
 std::valarray<int> ChassisController::getSensorVals() const {
