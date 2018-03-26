@@ -20,13 +20,6 @@ class ThreeEncoderSkidSteerModelParams : public SkidSteerModelParams {
 
   virtual ~ThreeEncoderSkidSteerModelParams();
 
-  /**
-   * Constructs a new SkidSteerModel.
-   *
-   * @return const reference to the ChassisModel
-   */
-  virtual std::shared_ptr<const ChassisModel> make() const override;
-
   const RotarySensor &middleSensor;
 };
 

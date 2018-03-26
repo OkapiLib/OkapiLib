@@ -18,10 +18,6 @@ ThreeEncoderSkidSteerModelParams::ThreeEncoderSkidSteerModelParams(
 
 ThreeEncoderSkidSteerModelParams::~ThreeEncoderSkidSteerModelParams() = default;
 
-std::shared_ptr<const ChassisModel> ThreeEncoderSkidSteerModelParams::make() const {
-  return std::make_shared<const ThreeEncoderSkidSteerModel>(ThreeEncoderSkidSteerModel(*this));
-}
-
 ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(const AbstractMotor &ileftSideMotor,
                                                        const AbstractMotor &irightSideMotor,
                                                        const RotarySensor &ileftEnc,
@@ -40,6 +36,7 @@ ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
 ThreeEncoderSkidSteerModel::~ThreeEncoderSkidSteerModel() = default;
 
 std::valarray<int> ThreeEncoderSkidSteerModel::getSensorVals() const {
+  // Return the middle sensor last so this is compatible with SkidSteerModel::getSensorVals()
   return std::valarray<int>{leftSensor.get(), rightSensor.get(), middleSensor.get()};
 }
 } // namespace okapi

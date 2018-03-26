@@ -28,10 +28,6 @@ SkidSteerModelParams::SkidSteerModelParams(const AbstractMotor &ileftSideMotor,
 
 SkidSteerModelParams::~SkidSteerModelParams() = default;
 
-std::shared_ptr<const ChassisModel> SkidSteerModelParams::make() const {
-  return std::make_shared<const SkidSteerModel>(SkidSteerModel(*this));
-}
-
 SkidSteerModel::SkidSteerModel(const AbstractMotor &ileftSideMotor,
                                const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc,
                                const RotarySensor &irightEnc)

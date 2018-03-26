@@ -40,7 +40,7 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
    * @param ix x coordinate
    * @param iy y coordinate
    * @param ibackwards whether to drive to the target point backwards
-   * @param ioffset offset from target point in the direction point towards the robot
+   * @param ioffset offset from target point in the direction pointing towards the robot
    */
   void driveToPoint(const float ix, const float iy, const bool ibackwards = false,
                     const float ioffset = 0) override;

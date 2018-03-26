@@ -12,6 +12,16 @@
 #include "okapi/odometry/odometry.hpp"
 
 namespace okapi {
+class ThreeEncoderOdometryParams : public OdometryParams {
+  public:
+  ThreeEncoderOdometryParams(const SkidSteerModel &iparams, const double iscale,
+                             const double iturnScale, const double imiddleScale);
+
+  virtual ~ThreeEncoderOdometryParams();
+
+  const double middleScale;
+};
+
 class ThreeEncoderOdometry : public Odometry {
   public:
   /**

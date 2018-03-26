@@ -35,10 +35,6 @@ XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
 
 XDriveModelParams::~XDriveModelParams() = default;
 
-std::shared_ptr<const ChassisModel> XDriveModelParams::make() const {
-  return std::make_shared<const XDriveModel>(XDriveModel(*this));
-}
-
 XDriveModel::XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
                          const AbstractMotor &ibottomRightMotor,
                          const AbstractMotor &ibottomLeftMotor, const RotarySensor &ileftEnc,

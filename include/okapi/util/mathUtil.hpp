@@ -22,18 +22,19 @@ static constexpr double quadEncoderTPR = 360.0;
 static constexpr double pi = 3.14159265358979323846;
 
 /**
- * Integer power function. Computes x^n.
+ * Integer power function. Computes base^expo.
  *
- * @param x base
- * @param n exponent
- * @return x^n
+ * @param base base
+ * @param expo exponent
+ * @return base^expo
  */
-constexpr double ipow(const double x, const int n) {
-  return (n == 0)
+constexpr double ipow(const double base, const int expo) {
+  return (expo == 0)
            ? 1
-           : n == 1 ? x
-                    : n > 1 ? ((n & 1) ? x * ipow(x, n - 1) : ipow(x, n / 2) * ipow(x, n / 2))
-                            : 1 / ipow(x, -n);
+           : expo == 1 ? base
+                       : expo > 1 ? ((expo & 1) ? base * ipow(base, expo - 1)
+                                                : ipow(base, expo / 2) * ipow(base, expo / 2))
+                                  : 1 / ipow(base, -expo);
 }
 } // namespace okapi
 

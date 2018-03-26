@@ -13,12 +13,12 @@
 #include <random>
 
 namespace okapi {
-PIDTuner::PIDTuner(const ChassisModelParams &imodelParams, const uint32_t itimeout,
-                   const int32_t igoal, const double ikPMin, const double ikPMax,
-                   const double ikIMin, const double ikIMax, const double ikDMin,
-                   const double ikDMax, const size_t inumIterations, const size_t inumParticles,
-                   const double ikSettle, const double ikITAE)
-  : model(imodelParams.make()),
+PIDTuner::PIDTuner(const ChassisModel &imodel, const uint32_t itimeout, const int32_t igoal,
+                   const double ikPMin, const double ikPMax, const double ikIMin,
+                   const double ikIMax, const double ikDMin, const double ikDMax,
+                   const size_t inumIterations, const size_t inumParticles, const double ikSettle,
+                   const double ikITAE)
+  : model(imodel),
     timeout(itimeout),
     goal(igoal),
     kPMin(ikPMin),
@@ -145,7 +145,7 @@ PosPIDControllerParams PIDTuner::autotune() {
 }
 
 uint32_t PIDTuner::moveDistance(const int itarget) {
-  const auto encStartVals = model->getSensorVals();
+  const auto encStartVals = model.getSensorVals();
   float distanceElapsed = 0, lastDistance = 0;
   uint32_t prevWakeTime = millis();
 
@@ -164,13 +164,13 @@ uint32_t PIDTuner::moveDistance(const int itarget) {
   std::valarray<int> encVals{0, 0};
 
   while (!atTarget) {
-    encVals = model->getSensorVals() - encStartVals;
+    encVals = model.getSensorVals() - encStartVals;
     distanceElapsed = static_cast<float>((encVals[0] + encVals[1])) / 2.0;
     itae += ((atTargetTimer.getDtFromStart() * abs(itarget - distanceElapsed)) /
              (divisor * abs(itarget)));
 
-    model->left(leftController.step(distanceElapsed));
-    model->right(rightController.step(distanceElapsed));
+    model.left(leftController.step(distanceElapsed));
+    model.right(rightController.step(distanceElapsed));
 
     if (abs(itarget - static_cast<int>(distanceElapsed)) <= atTargetDistance) {
       atTargetTimer.placeHardMark();
@@ -192,7 +192,7 @@ uint32_t PIDTuner::moveDistance(const int itarget) {
 
   auto settleTime = atTargetTimer.getDtFromStart();
 
-  model->stop();
+  model.stop();
   task_delay(1000); // Let the robot settle
   return settleTime;
 }

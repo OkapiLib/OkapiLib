@@ -23,13 +23,6 @@ class SkidSteerModelParams : public ChassisModelParams {
 
   virtual ~SkidSteerModelParams();
 
-  /**
-   * Constructs a new SkidSteerModel.
-   *
-   * @return const reference to the ChassisModel
-   */
-  virtual std::shared_ptr<const ChassisModel> make() const override;
-
   const AbstractMotor &leftSideMotor;
   const AbstractMotor &rightSideMotor;
   const RotarySensor &leftSensor;

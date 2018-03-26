@@ -31,7 +31,7 @@ class OdometryParams {
   virtual ~OdometryParams();
 
   const SkidSteerModel &model;
-  double scale, turnScale;
+  const double scale, turnScale;
 };
 
 class Odometry {

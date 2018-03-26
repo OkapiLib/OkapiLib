@@ -17,7 +17,7 @@
 namespace okapi {
 class PIDTuner {
   public:
-  PIDTuner(const ChassisModelParams &imodelParams, const uint32_t itimeout, const int32_t igoal,
+  PIDTuner(const ChassisModel &imodel, const uint32_t itimeout, const int32_t igoal,
            const double ikPMin, const double ikPMax, const double ikIMin, const double ikIMax,
            const double ikDMin, const double ikDMax, const size_t inumIterations = 5,
            const size_t inumParticles = 16, const double ikSettle = 1, const double ikITAE = 2);
@@ -42,7 +42,7 @@ class PIDTuner {
     double bestError;
   };
 
-  std::shared_ptr<const ChassisModel> model;
+  const ChassisModel &model;
   const uint32_t timeout;
   const int32_t goal;
   const double kPMin;

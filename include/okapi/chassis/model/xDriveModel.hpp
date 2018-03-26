@@ -24,13 +24,6 @@ class XDriveModelParams : public ChassisModelParams {
 
   virtual ~XDriveModelParams();
 
-  /**
-   * Constructs a new XDriveModel.
-   *
-   * @return const reference to the ChassisModel
-   */
-  std::shared_ptr<const ChassisModel> make() const override;
-
   const AbstractMotor &topLeftMotor;
   const AbstractMotor &topRightMotor;
   const AbstractMotor &bottomRightMotor;
@@ -82,7 +75,7 @@ class XDriveModel : public ChassisModel {
    *
    * @param ipower motor power
    */
-  void forward(const int ipower) const override;
+  virtual void forward(const int ipower) const override;
 
   /**
    * Drive the robot in an arc (using open-loop control).
@@ -93,19 +86,19 @@ class XDriveModel : public ChassisModel {
    * @param idistPower see above
    * @param ianglePower see above
    */
-  void driveVector(const int idistPower, const int ianglePower) const override;
+  virtual void driveVector(const int idistPower, const int ianglePower) const override;
 
   /**
    * Turn the robot clockwise (using open-loop control).
    *
    * @param ipower motor power
    */
-  void rotate(const int ipower) const override;
+  virtual void rotate(const int ipower) const override;
 
   /**
    * Stop the robot (set all the motors to 0).
    */
-  void stop() const override;
+  virtual void stop() const override;
 
   /**
    * Drive the robot with a tank drive layout.
@@ -114,7 +107,8 @@ class XDriveModel : public ChassisModel {
    * @param irightVal right joystick value
    * @param ithreshold deadband on joystick values
    */
-  void tank(const int ileftVal, const int irightVal, const int ithreshold = 0) const override;
+  virtual void tank(const int ileftVal, const int irightVal,
+                    const int ithreshold = 0) const override;
 
   /**
    * Drive the robot with an arcade drive layout.
@@ -123,7 +117,8 @@ class XDriveModel : public ChassisModel {
    * @param ihorizontalVal horizontal joystick value
    * @param ithreshold deadband on joystick values
    */
-  void arcade(int iverticalVal, int ihorizontalVal, const int ithreshold = 0) const override;
+  virtual void arcade(int iverticalVal, int ihorizontalVal,
+                      const int ithreshold = 0) const override;
 
   /**
    * Drive the robot with an arcade drive layout specially for a holonomic drive. The horizontal
@@ -134,34 +129,34 @@ class XDriveModel : public ChassisModel {
    * @param ihorizontalVal horizontal joystick value
    * @param ithreshold deadband on joystick values
    */
-  void xArcade(int iverticalVal, int ihorizontalVal, int irotateVal,
-               const int ithreshold = 0) const;
+  virtual void xArcade(int iverticalVal, int ihorizontalVal, int irotateVal,
+                       const int ithreshold = 0) const;
 
   /**
    * Power the left side motors.
    *
    * @param ipower motor power
    */
-  void left(const int ipower) const override;
+  virtual void left(const int ipower) const override;
 
   /**
    * Power the right side motors.
    *
    * @param ipower motor power
    */
-  void right(const int ipower) const override;
+  virtual void right(const int ipower) const override;
 
   /**
    * Read the sensors.
    *
    * @return sensor readings in the format {left, right}
    */
-  std::valarray<int> getSensorVals() const override;
+  virtual std::valarray<int> getSensorVals() const override;
 
   /**
    * Reset the sensors to their zero point.
    */
-  void resetSensors() const override;
+  virtual void resetSensors() const override;
 
   private:
   const AbstractMotor &topLeftMotor;

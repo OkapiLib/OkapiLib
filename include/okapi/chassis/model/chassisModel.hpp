@@ -19,13 +19,6 @@ class ChassisModel;
 class ChassisModelParams {
   public:
   virtual ~ChassisModelParams();
-
-  /**
-   * Constructs a new ChassisModel.
-   *
-   * @return const reference to the ChassisModel
-   */
-  virtual std::shared_ptr<const ChassisModel> make() const = 0;
 };
 
 class ChassisModel {

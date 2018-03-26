@@ -17,7 +17,7 @@ namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {
   public:
   /**
-   * ChassisController using the V5 motor's integrated control. Puts the motors into encoder tick
+   * ChassisController using the V5 motor's integrated control. Puts the motors' encoders into tick
    * units.
    *
    * @param imodelParams ChassisModelParams
@@ -35,7 +35,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
-   * steer layout. Puts the motors into encoder tick units.
+   * steer layout. Puts the motors' encoders into tick units.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
@@ -50,7 +50,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
 
   /**
    * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
-   * layout. Puts the motors into encoder tick units.
+   * layout. Puts the motors' encoders into tick units.
    *
    * @param itopLeftMotor top left motor
    * @param itopRightMotor top right motor

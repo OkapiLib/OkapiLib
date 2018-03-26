@@ -17,7 +17,7 @@ namespace okapi {
 class ChassisControllerPID : public virtual ChassisController {
   public:
   /**
-   * ChassisController using PID control.
+   * ChassisController using PID control. Puts the motors into encoder tick units.
    *
    * @param imodelParams ChassisModelParams
    * @param idistanceParams distance PID controller params

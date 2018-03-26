@@ -14,6 +14,13 @@
 namespace okapi {
 class ChassisController {
   public:
+  /**
+   * A ChassisController adds a closed-loop layer on top of a ChassisModel. moveDistance and
+   * turnAngle both use closed-loop control to move the robot. There are passthrough functions for
+   * everything defined in ChassisModel.
+   *
+   * @param imodel underlying ChassisModel
+   */
   ChassisController(const ChassisModel &imodel);
 
   virtual ~ChassisController();

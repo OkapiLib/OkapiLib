@@ -16,7 +16,7 @@ namespace okapi {
 class OdomChassisController : public virtual ChassisController {
   public:
   /**
-   * Odometry based chassis controller. Spins up a task at the default priority plus 1 for
+   * Odometry based chassis controller. Starts task at the default priority plus 1 for
    * odometry when constructed.
    *
    * Moves the robot around in the odom frame. Instead of telling the robot to drive forward or
@@ -36,7 +36,7 @@ class OdomChassisController : public virtual ChassisController {
    * @param ix x coordinate
    * @param iy y coordinate
    * @param ibackwards whether to drive to the target point backwards
-   * @param ioffset offset from target point in the direction point towards the robot
+   * @param ioffset offset from target point in the direction pointing towards the robot
    */
   virtual void driveToPoint(const float ix, const float iy, const bool ibackwards = false,
                             const float ioffset = 0) = 0;
