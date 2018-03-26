@@ -93,7 +93,7 @@ void XDriveModel::forward(const double ispeed) const {
 }
 
 void XDriveModel::driveVector(const double iySpeed, const double izRotation) const {
-  // This code is taken from WPIlib. ALl credit goes to them. Link:
+  // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   const double ySpeed = std::clamp(iySpeed, -1.0, 1.0);
   const double zRotation = std::clamp(izRotation, -1.0, 1.0);
@@ -128,7 +128,7 @@ void XDriveModel::stop() const {
 
 void XDriveModel::tank(const double ileftSpeed, const double irightSpeed,
                        const double ithreshold) const {
-  // This code is taken from WPIlib. ALl credit goes to them. Link:
+  // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   double leftSpeed = std::clamp(ileftSpeed, -1.0, 1.0);
   if (fabs(leftSpeed) < ithreshold) {
@@ -148,7 +148,7 @@ void XDriveModel::tank(const double ileftSpeed, const double irightSpeed,
 
 void XDriveModel::arcade(const double iySpeed, const double izRotation,
                          const double ithreshold) const {
-  // This code is taken from WPIlib. ALl credit goes to them. Link:
+  // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   double ySpeed = std::clamp(iySpeed, -1.0, 1.0);
   if (fabs(ySpeed) < ithreshold) {
