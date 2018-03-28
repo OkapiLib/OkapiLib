@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/chassis/model/xDriveModel.hpp"
+#include <utility>
 
 namespace okapi {
 XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
@@ -31,8 +32,8 @@ XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
     bottomLeftMotor(ibottomLeftMotor),
-    leftSensor(itopLeftMotor.getEncoder()),
-    rightSensor(itopRightMotor.getEncoder()),
+    leftSensor(std::move(itopLeftMotor.getEncoder())),
+    rightSensor(std::move(itopRightMotor.getEncoder())),
     maxOutput(imaxOutput) {
 }
 
@@ -58,8 +59,8 @@ XDriveModel::XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
     bottomLeftMotor(ibottomLeftMotor),
-    leftSensor(itopLeftMotor.getEncoder()),
-    rightSensor(itopRightMotor.getEncoder()),
+    leftSensor(std::move(itopLeftMotor.getEncoder())),
+    rightSensor(std::move(itopRightMotor.getEncoder())),
     maxOutput(imaxOutput) {
 }
 

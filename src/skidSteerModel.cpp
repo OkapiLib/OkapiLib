@@ -7,6 +7,7 @@
  */
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include <algorithm>
+#include <utility>
 
 namespace okapi {
 SkidSteerModelParams::SkidSteerModelParams(const AbstractMotor &ileftSideMotor,
@@ -25,8 +26,8 @@ SkidSteerModelParams::SkidSteerModelParams(const AbstractMotor &ileftSideMotor,
                                            const double imaxOutput)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
-    leftSensor(ileftSideMotor.getEncoder()),
-    rightSensor(irightSideMotor.getEncoder()),
+    leftSensor(std::move(ileftSideMotor.getEncoder())),
+    rightSensor(std::move(irightSideMotor.getEncoder())),
     maxOutput(imaxOutput) {
 }
 
@@ -46,8 +47,8 @@ SkidSteerModel::SkidSteerModel(const AbstractMotor &ileftSideMotor,
                                const AbstractMotor &irightSideMotor, const double imaxOutput)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
-    leftSensor(ileftSideMotor.getEncoder()),
-    rightSensor(irightSideMotor.getEncoder()),
+    leftSensor(std::move(ileftSideMotor.getEncoder())),
+    rightSensor(std::move(irightSideMotor.getEncoder())),
     maxOutput(imaxOutput) {
 }
 
