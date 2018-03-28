@@ -138,13 +138,32 @@ void opcontrol() {
     }
 
     {
+      test_printf("Testing Rate");
+
+      Rate rate;
+      uint32_t lastTime = millis();
+
+      for (int i = 0; i < 10; i++) {
+        rate.delayHz(10);
+
+        // Static cast so the compiler doesn't complain about comparing signed and unsigned values
+        test("Rate " + std::to_string(i),
+             TEST_BODY(AssertThat, static_cast<double>(millis() - lastTime),
+                       EqualsWithDelta(100, 10)));
+
+        lastTime = millis();
+        task_delay(50); // Emulate some computation
+      }
+    }
+
+    {
       test_printf("Testing VelMath");
 
       // DemaFilter gains 1 and 0 so it returns input signal and no filtering is performed
       VelMath velMath(360, 1, 0);
       Rate rate;
 
-      for (size_t i = 0; i < 10; i++) {
+      for (int i = 0; i < 10; i++) {
         rate.delayHz(10); // Delay first so the timestep works for the first iteration
         // 10 ticks per 100 ms should be ~16.67 rpm
         test("VelMath " + std::to_string(i),
