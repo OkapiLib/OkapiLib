@@ -14,10 +14,6 @@ PosIntegratedControllerParams::PosIntegratedControllerParams(const AbstractMotor
 
 PosIntegratedControllerParams::~PosIntegratedControllerParams() = default;
 
-std::shared_ptr<AsyncPositionController> PosIntegratedControllerParams::make() const {
-  return std::make_shared<PosIntegratedController>(PosIntegratedController(*this));
-}
-
 PosIntegratedController::PosIntegratedController(const AbstractMotor &imotor) : motor(imotor) {
 }
 

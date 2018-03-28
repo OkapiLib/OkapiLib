@@ -20,8 +20,6 @@ class PosIntegratedControllerParams : public AsyncPositionControllerParams {
 
   virtual ~PosIntegratedControllerParams();
 
-  std::shared_ptr<AsyncPositionController> make() const override;
-
   const AbstractMotor &motor;
 };
 

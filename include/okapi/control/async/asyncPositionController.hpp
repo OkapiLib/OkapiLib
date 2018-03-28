@@ -14,15 +14,7 @@
 namespace okapi {
 class AsyncPositionController;
 
-class AsyncPositionControllerParams : public AsyncControllerParams {
-  public:
-  /**
-   * Constructs a new AsyncPositionController.
-   *
-   * @return shared_ptr to the AsyncPositionController
-   */
-  virtual std::shared_ptr<AsyncPositionController> make() const = 0;
-};
+class AsyncPositionControllerParams : public AsyncControllerParams {};
 
 class AsyncPositionController : public AsyncController {};
 } // namespace okapi

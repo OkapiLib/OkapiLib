@@ -14,15 +14,7 @@
 namespace okapi {
 class AsyncVelocityController;
 
-class AsyncVelocityControllerParams : public AsyncControllerParams {
-  public:
-  /**
-   * Constructs a new AsyncVelocityController.
-   *
-   * @return shared_ptr to the AsyncVelocityController
-   */
-  virtual std::shared_ptr<AsyncVelocityController> make() const = 0;
-};
+class AsyncVelocityControllerParams : public AsyncControllerParams {};
 
 class AsyncVelocityController : public AsyncController {};
 } // namespace okapi

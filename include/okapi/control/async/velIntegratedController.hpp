@@ -21,8 +21,6 @@ class VelIntegratedControllerParams : public AsyncVelocityControllerParams {
 
   virtual ~VelIntegratedControllerParams();
 
-  std::shared_ptr<AsyncVelocityController> make() const override;
-
   const AbstractMotor &motor;
 };
 

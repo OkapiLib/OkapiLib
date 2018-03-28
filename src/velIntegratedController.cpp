@@ -14,10 +14,6 @@ VelIntegratedControllerParams::VelIntegratedControllerParams(const AbstractMotor
 
 VelIntegratedControllerParams::~VelIntegratedControllerParams() = default;
 
-std::shared_ptr<AsyncVelocityController> VelIntegratedControllerParams::make() const {
-  return std::make_shared<VelIntegratedController>(VelIntegratedController(*this));
-}
-
 VelIntegratedController::VelIntegratedController(const AbstractMotor &imotor) : motor(imotor) {
 }
 

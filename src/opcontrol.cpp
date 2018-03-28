@@ -8,7 +8,7 @@ using namespace okapi;
 void opcontrol() {
   task_delay(100);
 
-  /*{
+  {
     using namespace snowhouse;
 
     {
@@ -122,7 +122,7 @@ void opcontrol() {
     }
 
     test_print_report();
-  }*/
+  }
 
   /*while (true) {
     ADIButton btn(2);
