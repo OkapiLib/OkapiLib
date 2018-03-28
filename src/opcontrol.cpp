@@ -161,13 +161,18 @@ void opcontrol() {
 
       // DemaFilter gains 1 and 0 so it returns input signal and no filtering is performed
       VelMath velMath(360, 1, 0);
-      Rate rate;
 
       for (int i = 0; i < 10; i++) {
-        rate.delayHz(10); // Delay first so the timestep works for the first iteration
-        // 10 ticks per 100 ms should be ~16.67 rpm
+        task_delay(100); // Delay first so the timestep works for the first iteration
+
+        if (i == 0) {
         test("VelMath " + std::to_string(i),
-             TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(16.67, 0.01)));
+             TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(0, 0.01)));
+        } else {
+          // 10 ticks per 100 ms should be ~16.67 rpm
+          test("VelMath " + std::to_string(i),
+               TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(16.67, 0.01)));
+        }
       }
     }
 
