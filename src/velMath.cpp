@@ -24,7 +24,7 @@ VelMath::VelMath(const VelMathParams &iparams)
 }
 
 double VelMath::step(const double inewPos) {
-  const uint32_t now = pros::millis();
+  const uint32_t now = millis();
 
   vel = static_cast<double>((1000 / (now - lastTime))) * (inewPos - lastPos) * (60 / ticksPerRev);
   vel = filter.filter(vel);

@@ -87,6 +87,14 @@ void opcontrol() {
       test("EmaFilter i = 2", TEST_BODY(AssertThat, filt.filter(2), EqualsWithDelta(1.25, 0.0001)));
       test("EmaFilter i = -3",
            TEST_BODY(AssertThat, filt.filter(-3), EqualsWithDelta(-0.875, 0.0001)));
+
+      EmaFilter filt2(1);
+      test("EmaFilter with alpha = 1 should return input signal 1",
+           TEST_BODY(AssertThat, filt2.filter(5), EqualsWithDelta(5, 0.0001)));
+      test("EmaFilter with alpha = 1 should return input signal 2",
+           TEST_BODY(AssertThat, filt2.filter(5), EqualsWithDelta(5, 0.0001)));
+      test("EmaFilter with alpha = 1 should return input signal 3",
+           TEST_BODY(AssertThat, filt2.filter(5), EqualsWithDelta(5, 0.0001)));
     }
 
     {
@@ -103,6 +111,14 @@ void opcontrol() {
            TEST_BODY(AssertThat, filt.filter(2), EqualsWithDelta(1.7410, 0.0001)));
       test("DemaFilter i = 2",
            TEST_BODY(AssertThat, filt.filter(2), EqualsWithDelta(1.9557, 0.0001)));
+
+      DemaFilter filt2(1, 0);
+      test("DemaFilter with alpha = 1 and beta = 0 should return input signal 1",
+           TEST_BODY(AssertThat, filt2.filter(5), EqualsWithDelta(5, 0.0001)));
+      test("DemaFilter with alpha = 1 and beta = 0 should return input signal 2",
+           TEST_BODY(AssertThat, filt2.filter(5), EqualsWithDelta(5, 0.0001)));
+      test("DemaFilter with alpha = 1 and beta = 0 should return input signal 3",
+           TEST_BODY(AssertThat, filt2.filter(5), EqualsWithDelta(5, 0.0001)));
     }
 
     {
@@ -119,6 +135,21 @@ void opcontrol() {
            TEST_BODY(AssertThat, filt.filter(0.5), EqualsWithDelta(0.1242, 0.0001)));
       test("EKFFilter i = 0",
            TEST_BODY(AssertThat, filt.filter(0), EqualsWithDelta(0.0992, 0.0001)));
+    }
+
+    {
+      test_printf("Testing VelMath");
+
+      // DemaFilter gains 1 and 0 so it returns input signal and no filtering is performed
+      VelMath velMath(360, 1, 0);
+      Rate rate;
+
+      for (size_t i = 0; i < 10; i++) {
+        rate.delayHz(10); // Delay first so the timestep works for the first iteration
+        // 10 ticks per 100 ms should be ~16.67 rpm
+        test("VelMath " + std::to_string(i),
+             TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(16.67, 0.01)));
+      }
     }
 
     test_print_report();
