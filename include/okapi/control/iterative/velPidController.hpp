@@ -159,8 +159,8 @@ class VelPIDController : public IterativeVelocityController {
   double derivative = 0;
   double target = 0;
   double output = 0;
-  double outputMax = 127;
-  double outputMin = -127;
+  double outputMax = 1;
+  double outputMin = -1;
   bool isOn = true;
   VelMath velMath{360};
 };

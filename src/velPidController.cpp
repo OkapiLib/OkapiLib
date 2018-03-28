@@ -7,6 +7,7 @@
  */
 #include "okapi/control/iterative/velPidController.hpp"
 #include "api.h"
+#include <algorithm>
 #include <cmath>
 
 namespace okapi {
@@ -60,11 +61,7 @@ void VelPIDController::setOutputLimits(double imax, double imin) {
   outputMax = imax;
   outputMin = imin;
 
-  // Fix output
-  if (output > outputMax)
-    output = outputMax;
-  else if (output < outputMin)
-    output = outputMin;
+  output = std::clamp(output, outputMin, outputMax);
 }
 
 double VelPIDController::stepVel(const double inewReading) {
@@ -76,17 +73,13 @@ double VelPIDController::step(const double inewReading) {
     const uint32_t now = millis();
     if (now - lastTime >= sampleTime) {
       stepVel(inewReading);
-      const double error = target - velMath.getOutput();
+      error = (target - velMath.getOutput()) / fabs(target);
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
       derivative = velMath.getDiff();
 
       output += kP * error - kD * derivative;
-
-      if (output > outputMax)
-        output = outputMax;
-      else if (output < outputMin)
-        output = outputMin;
+      output = std::clamp(output, outputMin, outputMax);
 
       lastError = error;
       lastTime = now; // Important that we only assign lastTime if dt >= sampleTime
