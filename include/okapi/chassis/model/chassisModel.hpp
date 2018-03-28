@@ -8,10 +8,12 @@
 #ifndef _OKAPI_CHASSISMODEL_HPP_
 #define _OKAPI_CHASSISMODEL_HPP_
 
+#include "okapi/device/motor/abstractMotor.hpp"
 #include <array>
 #include <initializer_list>
 #include <memory>
 #include <valarray>
+#include <vector>
 
 namespace okapi {
 class ChassisModel;
@@ -98,6 +100,27 @@ class ChassisModel {
    * Reset the sensors to their zero point.
    */
   virtual void resetSensors() const = 0;
+
+  /**
+   * Set the brake mode for each motor.
+   *
+   * @param mode new brake mode
+   */
+  virtual void setBrakeMode(const motor_brake_mode_e_t mode) const = 0;
+
+  /**
+   * Set the encoder units for each motor.
+   *
+   * @param units new motor encoder units
+   */
+  virtual void setEncoderUnits(const motor_encoder_units_e_t units) const = 0;
+
+  /**
+   * Set the gearset for each motor.
+   *
+   * @param gearset new motor gearset
+   */
+  virtual void setGearing(const motor_gearset_e_t gearset) const = 0;
 };
 } // namespace okapi
 

@@ -19,6 +19,7 @@ ChassisControllerPID::ChassisControllerPID(const ChassisModel &imodel,
     anglePid(iangleParams),
     straightScale(istraightScale),
     turnScale(iturnScale) {
+  setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
 }
 
 ChassisControllerPID::ChassisControllerPID(const AbstractMotor &ileftSideMotor,
@@ -31,6 +32,7 @@ ChassisControllerPID::ChassisControllerPID(const AbstractMotor &ileftSideMotor,
     anglePid(iangleParams),
     straightScale(istraightScale),
     turnScale(iturnScale) {
+  setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
 }
 
 ChassisControllerPID::ChassisControllerPID(const AbstractMotor &itopLeftMotor,
@@ -46,6 +48,7 @@ ChassisControllerPID::ChassisControllerPID(const AbstractMotor &itopLeftMotor,
     anglePid(iangleParams),
     straightScale(istraightScale),
     turnScale(iturnScale) {
+  setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
 }
 
 ChassisControllerPID::~ChassisControllerPID() = default;

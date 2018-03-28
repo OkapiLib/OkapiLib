@@ -177,4 +177,19 @@ void SkidSteerModel::resetSensors() const {
   leftSensor.reset();
   rightSensor.reset();
 }
+
+void SkidSteerModel::setBrakeMode(const motor_brake_mode_e_t mode) const {
+  leftSideMotor.set_brake_mode(mode);
+  rightSideMotor.set_brake_mode(mode);
+}
+
+void SkidSteerModel::setEncoderUnits(const motor_encoder_units_e_t units) const {
+  leftSideMotor.set_encoder_units(units);
+  rightSideMotor.set_encoder_units(units);
+}
+
+void SkidSteerModel::setGearing(const motor_gearset_e_t gearset) const {
+  leftSideMotor.set_gearing(gearset);
+  rightSideMotor.set_gearing(gearset);
+}
 } // namespace okapi

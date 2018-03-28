@@ -19,6 +19,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     lastTarget(0),
     straightScale(istraightScale),
     turnScale(iturnScale) {
+  setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
 }
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(const AbstractMotor &ileftSideMotor,
@@ -31,6 +32,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(const AbstractMotor &il
     lastTarget(0),
     straightScale(istraightScale),
     turnScale(iturnScale) {
+  setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
 }
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(const AbstractMotor &itopLeftMotor,
@@ -46,6 +48,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(const AbstractMotor &it
     lastTarget(0),
     straightScale(istraightScale),
     turnScale(iturnScale) {
+  setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
 }
 
 ChassisControllerIntegrated::~ChassisControllerIntegrated() = default;

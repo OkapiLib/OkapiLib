@@ -233,4 +233,25 @@ void XDriveModel::resetSensors() const {
   leftSensor.reset();
   rightSensor.reset();
 }
+
+void XDriveModel::setBrakeMode(const motor_brake_mode_e_t mode) const {
+  topLeftMotor.set_brake_mode(mode);
+  topRightMotor.set_brake_mode(mode);
+  bottomRightMotor.set_brake_mode(mode);
+  bottomLeftMotor.set_brake_mode(mode);
+}
+
+void XDriveModel::setEncoderUnits(const motor_encoder_units_e_t units) const {
+  topLeftMotor.set_encoder_units(units);
+  topRightMotor.set_encoder_units(units);
+  bottomRightMotor.set_encoder_units(units);
+  bottomLeftMotor.set_encoder_units(units);
+}
+
+void XDriveModel::setGearing(const motor_gearset_e_t gearset) const {
+  topLeftMotor.set_gearing(gearset);
+  topRightMotor.set_gearing(gearset);
+  bottomRightMotor.set_gearing(gearset);
+  bottomLeftMotor.set_gearing(gearset);
+}
 } // namespace okapi

@@ -56,4 +56,16 @@ std::valarray<int> ChassisController::getSensorVals() const {
 void ChassisController::resetSensors() const {
   model.resetSensors();
 }
+
+void ChassisController::setBrakeMode(const motor_brake_mode_e_t mode) const {
+  model.setBrakeMode(mode);
+}
+
+void ChassisController::setEncoderUnits(const motor_encoder_units_e_t units) const {
+  model.setEncoderUnits(units);
+}
+
+void ChassisController::setGearing(const motor_gearset_e_t gearset) const {
+  model.setGearing(gearset);
+}
 } // namespace okapi
