@@ -73,8 +73,11 @@ class VelMath {
   virtual double getDiff() const;
 
   protected:
-  uint32_t lastTime;
-  double vel, lastVel, lastPos, ticksPerRev;
+  uint32_t lastTime = 0;
+  double vel = 0;
+  double lastVel = 0;
+  double lastPos = 0;
+  double ticksPerRev;
   DemaFilter filter;
 };
 } // namespace okapi

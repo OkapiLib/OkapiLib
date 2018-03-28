@@ -63,7 +63,13 @@ class EKFFilter : public Filter {
 
   protected:
   const double Q, R;
-  double xHat, xHatPrev, xHatMinus, P, Pprev, Pminus, K;
+  double xHat = 0;
+  double xHatPrev = 0;
+  double xHatMinus = 0;
+  double P = 0;
+  double Pprev = 1;
+  double Pminus = 0;
+  double K = 0;
 };
 } // namespace okapi
 

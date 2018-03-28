@@ -27,7 +27,7 @@ class Rate {
   virtual void delayHz(const uint32_t ihz);
 
   protected:
-  uint32_t lastTime;
+  uint32_t lastTime = 0;
 };
 } // namespace okapi
 

@@ -8,8 +8,7 @@
 #include "okapi/filter/ekfFilter.hpp"
 
 namespace okapi {
-EKFFilter::EKFFilter(const double iQ, const double iR)
-  : Q(iQ), R(iR), xHat(0), xHatPrev(0), xHatMinus(0), P(0), Pprev(1), Pminus(0), K(0) {
+EKFFilter::EKFFilter(const double iQ, const double iR) : Q(iQ), R(iR) {
 }
 
 double EKFFilter::filter(const double ireading) {

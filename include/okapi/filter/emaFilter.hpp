@@ -44,7 +44,8 @@ class EmaFilter : public Filter {
 
   protected:
   double alpha;
-  double output, lastOutput;
+  double output = 0;
+  double lastOutput = 0;
 };
 } // namespace okapi
 

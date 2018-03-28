@@ -56,10 +56,10 @@ class PIDTuner {
   const double kSettle;
   const double kITAE;
 
-  double itae;
-  std::vector<particleSet> particles;
-  PosPIDController leftController;
-  PosPIDController rightController;
+  double itae = 0;
+  std::vector<particleSet> particles{};
+  PosPIDController leftController{0, 0, 0};
+  PosPIDController rightController{0, 0, 0};
 
   uint32_t moveDistance(const int itarget);
 };

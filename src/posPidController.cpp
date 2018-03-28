@@ -21,42 +21,16 @@ PosPIDControllerParams::PosPIDControllerParams(const double ikP, const double ik
 PosPIDControllerParams::~PosPIDControllerParams() = default;
 
 PosPIDController::PosPIDController(const double ikP, const double ikI, const double ikD,
-                                   const double ikBias)
-  : lastTime(0),
-    sampleTime(15),
-    target(0),
-    lastReading(0),
-    error(0),
-    lastError(0),
-    integral(0),
-    derivative(0),
-    output(0),
-    shouldResetOnCross(true),
-    isOn(true) {
-  if (ikI == 0) {
-    setIntegralLimits(-1, 1);
-  } else {
+                                   const double ikBias) {
+  if (ikI != 0) {
     setIntegralLimits(-1 / ikI, 1 / ikI);
   }
   setOutputLimits(-1, 1);
   setGains(ikP, ikI, ikD, ikBias);
 }
 
-PosPIDController::PosPIDController(const PosPIDControllerParams &params)
-  : lastTime(0),
-    sampleTime(15),
-    target(0),
-    lastReading(0),
-    error(0),
-    lastError(0),
-    integral(0),
-    derivative(0),
-    output(0),
-    shouldResetOnCross(true),
-    isOn(true) {
-  if (params.kI == 0) {
-    setIntegralLimits(-1, 1);
-  } else {
+PosPIDController::PosPIDController(const PosPIDControllerParams &params) {
+  if (params.kI != 0) {
     setIntegralLimits(-1 / params.kI, 1 / params.kI);
   }
   setOutputLimits(-1, 1);

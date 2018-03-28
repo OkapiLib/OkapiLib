@@ -8,7 +8,7 @@
 #include "okapi/util/timer.hpp"
 
 namespace okapi {
-Timer::Timer() : firstCalled(millis()), lastCalled(0), mark(0), hardMark(0), repeatMark(0) {
+Timer::Timer() : firstCalled(millis()) {
 }
 
 Timer::~Timer() = default;

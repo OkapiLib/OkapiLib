@@ -10,7 +10,7 @@
 namespace okapi {
 ControllerButton::ControllerButton(controller_id_e_t icontroller, controller_digital_e_t ibtn,
                                    const bool iinverted)
-  : controller(icontroller), btn(ibtn), inverted(iinverted), wasPressedLast(false) {
+  : controller(icontroller), btn(ibtn), inverted(iinverted) {
 }
 
 bool ControllerButton::isPressed() {

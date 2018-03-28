@@ -25,16 +25,16 @@ class Timer {
   virtual uint32_t getDt();
 
   /**
-   * Returns the time the timer was first initialized.
+   * Returns the time the timer was first constructed.
    *
-   * @return The time the timer was first initialized
+   * @return The time the timer was first constructed
    */
   virtual uint32_t getStartingTime() const;
 
   /**
-   * Returns the time since the timer was first initialized.
+   * Returns the time since the timer was first constructed.
    *
-   * @return The time since the timer was first initialized
+   * @return The time since the timer was first constructed
    */
   virtual uint32_t getDtFromStart() const;
 
@@ -81,7 +81,11 @@ class Timer {
   virtual bool repeat(const uint32_t ms);
 
   protected:
-  uint32_t firstCalled, lastCalled, mark, hardMark, repeatMark;
+  uint32_t firstCalled;
+  uint32_t lastCalled = 0;
+  uint32_t mark = 0;
+  uint32_t hardMark = 0;
+  uint32_t repeatMark = 0;
 };
 } // namespace okapi
 

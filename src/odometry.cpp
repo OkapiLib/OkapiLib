@@ -11,11 +11,10 @@
 #include <cmath>
 
 namespace okapi {
+OdomState::OdomState() = default;
+
 OdomState::OdomState(const double ix, const double iy, const double itheta)
   : x(ix), y(iy), theta(itheta) {
-}
-
-OdomState::OdomState() : x(0), y(0), theta(0) {
 }
 
 OdomState::~OdomState() = default;
@@ -32,11 +31,7 @@ Odometry::Odometry(const SkidSteerModel &imodel, const double iscale, const doub
 }
 
 Odometry::Odometry(const OdometryParams &iparams)
-  : scale(iparams.scale),
-    turnScale(iparams.turnScale),
-    lastTicks{0, 0},
-    mm(0),
-    model(iparams.model) {
+  : scale(iparams.scale), turnScale(iparams.turnScale), model(iparams.model) {
 }
 
 Odometry::~Odometry() = default;

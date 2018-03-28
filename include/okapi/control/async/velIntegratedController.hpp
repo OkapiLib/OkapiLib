@@ -55,7 +55,7 @@ class VelIntegratedController : public AsyncVelocityController {
 
   protected:
   const AbstractMotor &motor;
-  double lastTarget;
+  double lastTarget = 0;
 };
 } // namespace okapi
 

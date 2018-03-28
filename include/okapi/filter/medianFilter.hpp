@@ -21,8 +21,7 @@ namespace okapi {
  */
 template <std::size_t n> class MedianFilter : public Filter {
   public:
-  MedianFilter()
-    : data(), index(0), output(0), middleIndex((((n)&1) ? ((n) / 2) : (((n) / 2) - 1))) {
+  MedianFilter() : middleIndex((((n)&1) ? ((n) / 2) : (((n) / 2) - 1))) {
   }
 
   virtual ~MedianFilter() = default;
@@ -41,8 +40,9 @@ template <std::size_t n> class MedianFilter : public Filter {
   }
 
   protected:
-  std::array<double, n> data;
-  double index, output;
+  std::array<double, n> data{0};
+  double index = 0;
+  double output = 0;
   const size_t middleIndex;
 
   /**

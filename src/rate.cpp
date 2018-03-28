@@ -8,8 +8,7 @@
 #include "okapi/util/rate.hpp"
 
 namespace okapi {
-Rate::Rate() : lastTime(0) {
-}
+Rate::Rate() = default;
 
 Rate::~Rate() = default;
 

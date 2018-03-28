@@ -42,7 +42,7 @@ class ADIButton : public Button {
   pros::ADIButton btn;
   uint8_t port;
   const bool inverted;
-  bool wasPressedLast;
+  bool wasPressedLast = false;
 
   virtual bool currentlyPressed();
 };

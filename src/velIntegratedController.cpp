@@ -18,12 +18,11 @@ std::shared_ptr<AsyncVelocityController> VelIntegratedControllerParams::make() c
   return std::make_shared<VelIntegratedController>(VelIntegratedController(*this));
 }
 
-VelIntegratedController::VelIntegratedController(const AbstractMotor &imotor)
-  : motor(imotor), lastTarget(0) {
+VelIntegratedController::VelIntegratedController(const AbstractMotor &imotor) : motor(imotor) {
 }
 
 VelIntegratedController::VelIntegratedController(const VelIntegratedControllerParams &iparams)
-  : motor(iparams.motor), lastTarget(0) {
+  : motor(iparams.motor) {
 }
 
 VelIntegratedController::~VelIntegratedController() = default;

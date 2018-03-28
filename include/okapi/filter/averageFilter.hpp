@@ -21,8 +21,7 @@ template <std::size_t n> class AverageFilter : public Filter {
   /**
    * Averaging filter.
    */
-  AverageFilter() : data(), index(0), output(0) {
-  }
+  AverageFilter() = default;
 
   virtual ~AverageFilter() = default;
 
@@ -45,8 +44,9 @@ template <std::size_t n> class AverageFilter : public Filter {
   }
 
   protected:
-  std::array<double, n> data;
-  double index, output;
+  std::array<double, n> data{0};
+  double index = 0;
+  double output = 0;
 };
 } // namespace okapi
 

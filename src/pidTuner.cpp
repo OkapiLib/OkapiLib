@@ -30,10 +30,7 @@ PIDTuner::PIDTuner(const ChassisModel &imodel, const uint32_t itimeout, const in
     numIterations(inumIterations),
     numParticles(inumParticles),
     kSettle(ikSettle),
-    kITAE(ikITAE),
-    itae(0),
-    leftController(0, 0, 0),
-    rightController(0, 0, 0) {
+    kITAE(ikITAE) {
 }
 
 PIDTuner::~PIDTuner() = default;

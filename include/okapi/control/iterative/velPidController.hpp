@@ -21,7 +21,7 @@ class VelPIDControllerParams : public IterativeVelocityControllerParams {
   virtual ~VelPIDControllerParams();
 
   const double kP, kD;
-  const VelMathParams &params;
+  const VelMathParams &params = VelMathParams(360);
 };
 
 class VelPIDController : public IterativeVelocityController {
@@ -152,13 +152,17 @@ class VelPIDController : public IterativeVelocityController {
 
   protected:
   double kP, kD;
-  uint32_t lastTime, sampleTime;
-  double error, lastError;
-  double derivative;
-  double target;
-  double output, outputMax, outputMin;
-  bool isOn;
-  VelMath velMath;
+  uint32_t lastTime = 0;
+  uint32_t sampleTime = 15;
+  double error = 0;
+  double lastError = 0;
+  double derivative = 0;
+  double target = 0;
+  double output = 0;
+  double outputMax = 127;
+  double outputMin = -127;
+  bool isOn = true;
+  VelMath velMath = VelMath(360);
 };
 } // namespace okapi
 

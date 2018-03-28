@@ -12,7 +12,7 @@
 namespace okapi {
 
 VelPIDControllerParams::VelPIDControllerParams(const double ikP, const double ikD)
-  : kP(ikP), kD(ikD), params(360) {
+  : kP(ikP), kD(ikD) {
 }
 
 VelPIDControllerParams::VelPIDControllerParams(const double ikP, const double ikD,
@@ -22,48 +22,16 @@ VelPIDControllerParams::VelPIDControllerParams(const double ikP, const double ik
 
 VelPIDControllerParams::~VelPIDControllerParams() = default;
 
-VelPIDController::VelPIDController(const double ikP, const double ikD)
-  : lastTime(0),
-    sampleTime(15),
-    error(0),
-    lastError(0),
-    derivative(0),
-    target(0),
-    output(0),
-    outputMax(127),
-    outputMin(-127),
-    isOn(true),
-    velMath(360) {
+VelPIDController::VelPIDController(const double ikP, const double ikD) {
   setGains(ikP, ikD);
 }
 
 VelPIDController::VelPIDController(const double ikP, const double ikD, const VelMathParams &iparams)
-  : lastTime(0),
-    sampleTime(15),
-    error(0),
-    lastError(0),
-    derivative(0),
-    target(0),
-    output(0),
-    outputMax(127),
-    outputMin(-127),
-    isOn(true),
-    velMath(iparams) {
+  : velMath(iparams) {
   setGains(ikP, ikD);
 }
 
-VelPIDController::VelPIDController(const VelPIDControllerParams &params)
-  : lastTime(0),
-    sampleTime(15),
-    error(0),
-    lastError(0),
-    derivative(0),
-    target(0),
-    output(0),
-    outputMax(127),
-    outputMin(-127),
-    isOn(true),
-    velMath(params.params) {
+VelPIDController::VelPIDController(const VelPIDControllerParams &params) : velMath(params.params) {
   setGains(params.kP, params.kD);
 }
 

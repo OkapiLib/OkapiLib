@@ -43,7 +43,7 @@ class ControllerButton : public Button {
   pros::Controller controller;
   controller_digital_e_t btn;
   const bool inverted;
-  bool wasPressedLast;
+  bool wasPressedLast = false;
 
   virtual bool currentlyPressed();
 };

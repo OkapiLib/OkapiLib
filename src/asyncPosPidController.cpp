@@ -16,17 +16,13 @@ AsyncPosPIDControllerParams::AsyncPosPIDControllerParams(ControllerInput &iinput
 
 AsyncPosPIDController::AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
                                              const PosPIDControllerParams &iparams)
-  : input(iinput), output(ioutput), controller(iparams), prevTime(0), task(trampoline, this) {
+  : input(iinput), output(ioutput), controller(iparams), task(trampoline, this) {
 }
 
 AsyncPosPIDController::AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
                                              const double ikP, const double ikI, const double ikD,
                                              const double ikBias)
-  : input(iinput),
-    output(ioutput),
-    controller(ikP, ikI, ikD, ikBias),
-    prevTime(0),
-    task(trampoline, this) {
+  : input(iinput), output(ioutput), controller(ikP, ikI, ikD, ikBias), task(trampoline, this) {
 }
 
 AsyncPosPIDController::~AsyncPosPIDController() = default;

@@ -15,13 +15,14 @@
 namespace okapi {
 class OdomState {
   public:
-  OdomState(const double ix, const double iy, const double itheta);
-
   OdomState();
+  OdomState(const double ix, const double iy, const double itheta);
 
   virtual ~OdomState();
 
-  double x, y, theta;
+  double x = 0;
+  double y = 0;
+  double theta = 0;
 };
 
 class OdometryParams {
@@ -94,8 +95,8 @@ class Odometry {
   protected:
   OdomState state;
   double scale, turnScale;
-  std::valarray<int> lastTicks;
-  double mm;
+  std::valarray<int> lastTicks{0, 0};
+  double mm = 0;
 
   private:
   const SkidSteerModel &model;

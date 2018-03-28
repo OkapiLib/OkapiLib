@@ -135,13 +135,21 @@ class PosPIDController : public IterativePositionController {
 
   protected:
   double kP, kI, kD, kBias;
-  uint32_t lastTime, sampleTime;
-  double target, lastReading;
-  double error, lastError;
-  double integral, integralMax, integralMin;
-  double derivative;
-  double output, outputMax, outputMin;
-  bool shouldResetOnCross, isOn;
+  uint32_t lastTime = 0;
+  uint32_t sampleTime = 0;
+  double target = 0;
+  double lastReading = 0;
+  double error = 0;
+  double lastError = 0;
+  double integral = 0;
+  double integralMax = 1;
+  double integralMin = -1;
+  double derivative = 0;
+  double output = 0;
+  double outputMax = 0;
+  double outputMin = 0;
+  bool shouldResetOnCross = true;
+  bool isOn = true;
 };
 } // namespace okapi
 

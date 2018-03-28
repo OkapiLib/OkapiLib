@@ -9,7 +9,7 @@
 
 namespace okapi {
 ADIUltrasonic::ADIUltrasonic(const uint8_t iportTop, const uint8_t iportBottom)
-  : ultra(iportBottom, iportTop), filter() {
+  : ultra(iportBottom, iportTop) {
 }
 
 ADIUltrasonic::~ADIUltrasonic() = default;

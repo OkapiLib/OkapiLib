@@ -46,8 +46,10 @@ class DemaFilter : public Filter {
 
   protected:
   double alpha, beta;
-  double outputS, lastOutputS;
-  double outputB, lastOutputB;
+  double outputS = 0;
+  double lastOutputS = 0;
+  double outputB = 0;
+  double lastOutputB = 0;
 };
 } // namespace okapi
 

@@ -16,16 +16,11 @@ VelMathParams::VelMathParams(const double iticksPerRev, const double ialpha, con
 VelMathParams::~VelMathParams() = default;
 
 VelMath::VelMath(const double iticksPerRev, const double ialpha, const double ibeta)
-  : lastTime(0), vel(0), lastVel(0), lastPos(0), ticksPerRev(iticksPerRev), filter(ialpha, ibeta) {
+  : ticksPerRev(iticksPerRev), filter(ialpha, ibeta) {
 }
 
 VelMath::VelMath(const VelMathParams &iparams)
-  : lastTime(0),
-    vel(0),
-    lastVel(0),
-    lastPos(0),
-    ticksPerRev(iparams.ticksPerRev),
-    filter(iparams.alpha, iparams.beta) {
+  : ticksPerRev(iparams.ticksPerRev), filter(iparams.alpha, iparams.beta) {
 }
 
 double VelMath::step(const double inewPos) {
