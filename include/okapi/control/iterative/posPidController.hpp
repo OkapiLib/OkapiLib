@@ -140,6 +140,7 @@ class PosPIDController : public IterativePositionController {
   double target = 0;
   double lastReading = 0;
   double error = 0;
+  const double errorScale = 4096; // 12 bit ADC scale, good enough for most things
   double lastError = 0;
   double integral = 0;
   double integralMax = 1;

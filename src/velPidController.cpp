@@ -73,7 +73,7 @@ double VelPIDController::step(const double inewReading) {
     const uint32_t now = millis();
     if (now - lastTime >= sampleTime) {
       stepVel(inewReading);
-      error = (target - velMath.getOutput()) / fabs(target);
+      error = (target - velMath.getOutput()) / errorScale;
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
       derivative = velMath.getDiff();

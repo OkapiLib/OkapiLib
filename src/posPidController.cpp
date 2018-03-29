@@ -100,7 +100,7 @@ double PosPIDController::step(const double inewReading) {
     const uint32_t now = millis();
 
     if (now - lastTime >= sampleTime) {
-      error = (target - inewReading) / fabs(target);
+      error = (target - inewReading) / errorScale;
 
       integral += kI * error; // Eliminate integral kick while realtime tuning
 
