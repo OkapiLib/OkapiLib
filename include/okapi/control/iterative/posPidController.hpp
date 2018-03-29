@@ -140,16 +140,29 @@ class PosPIDController : public IterativePositionController {
   double target = 0;
   double lastReading = 0;
   double error = 0;
-  const double errorScale = 4096; // 12 bit ADC scale, good enough for most things
   double lastError = 0;
+  // 12 bit ADC scale, good enough for most things
+  const double errorScale = 4096;
+
+  // Integral bounds
   double integral = 0;
   double integralMax = 1;
   double integralMin = -1;
+
+  // Error will only be added to the integral term within these bounds
+  double errorSumMin = 500;
+  double errorSumMax = 1250;
+
   double derivative = 0;
+
+  // Output bounds
   double output = 0;
   double outputMax = 0;
   double outputMin = 0;
+
+  // Reset the integrated when the controller crosses 0 or not
   bool shouldResetOnCross = true;
+
   bool isOn = true;
 };
 } // namespace okapi
