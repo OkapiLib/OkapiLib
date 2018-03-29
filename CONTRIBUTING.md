@@ -19,7 +19,7 @@ The following is a set of guidelines for contributing to OkapiLib. These are mos
 [Styleguides](#styleguides)
   * [Git Commit Messages](#git-commit-messages)
   * [Git Branch Naming](#git-branch-naming)
-  * [C++ Styleguide](#c&#43;&#43;-styleguide)
+  * [Code Styleguide](#code-styleguide)
 
 ## Code of Conduct
 
@@ -115,7 +115,7 @@ Unsure where to begin contributing? You can start by looking through these `begi
 * Name a new branch according to its purpose in the format: [issue/bug/feature]/[your initials]/[issue number][description]
   * For example, to make a branch to fix Issue #0 about adding a README file, name the branch `issue/ABC/#0_add_readme_file`
 
-### C++ Styleguide
+### Code Styleguide
 
 #### clang-format
 
