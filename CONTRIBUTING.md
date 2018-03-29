@@ -1,4 +1,4 @@
-# Contributing to OKapiLib
+# Contributing to OkapiLib
 
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
@@ -9,10 +9,6 @@ The following is a set of guidelines for contributing to OkapiLib. These are mos
 [Code of Conduct](#code-of-conduct)
 
 [I don't want to read this whole thing, I just have a question!!!](#i-dont-want-to-read-this-whole-thing-i-just-have-a-question)
-
-[What should I know before I get started?](#what-should-i-know-before-i-get-started)
-  * [Atom and Packages](#atom-and-packages)
-  * [Atom Design Decisions](#design-decisions)
 
 [How Can I Contribute?](#how-can-i-contribute)
   * [Reporting Bugs](#reporting-bugs)
