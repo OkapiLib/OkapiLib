@@ -1,3 +1,41 @@
+# Contributing to OKapiLib
+
+:+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
+
+The following is a set of guidelines for contributing to OkapiLib. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
+
+#### Table Of Contents
+
+[Code of Conduct](#code-of-conduct)
+
+[I don't want to read this whole thing, I just have a question!!!](#i-dont-want-to-read-this-whole-thing-i-just-have-a-question)
+
+[What should I know before I get started?](#what-should-i-know-before-i-get-started)
+  * [Atom and Packages](#atom-and-packages)
+  * [Atom Design Decisions](#design-decisions)
+
+[How Can I Contribute?](#how-can-i-contribute)
+  * [Reporting Bugs](#reporting-bugs)
+  * [Suggesting Enhancements](#suggesting-enhancements)
+  * [Your First Code Contribution](#your-first-code-contribution)
+  * [Pull Requests](#pull-requests)
+
+[Styleguides](#styleguides)
+  * [Git Commit Messages](#git-commit-messages)
+  * [Git Branch Naming](#git-branch-naming)
+  * [C++ Styleguide](#c++-styleguide)
+
+[Additional Notes](#additional-notes)
+  * [Issue and Pull Request Labels](#issue-and-pull-request-labels)
+
+## Code of Conduct
+
+This project and everyone participating in it is governed by OkapiLib's [Code of Conduct](code-of-conduct.md). By participating, you are expected to uphold this code.
+
+## I don't want to read this whole thing I just have a question!!!
+
+You can get help for questions that can't be answered by [OkapiLib's docs](????????????????????) by [filing an issue](???????????????????).
+
 ## How Can I Contribute?
 
 ### Reporting Bugs
@@ -88,7 +126,7 @@ Unsure where to begin contributing? You can start by looking through these `begi
 
 #### clang-format
 
-OkapiLib uses the program [clang-format](https://clang.llvm.org/docs/ClangFormat.html) to format code to meet a specific style (lightly modified LLVM style). Install the latest version and run `./run_clang-format.sh` to format all project files.
+OkapiLib uses the program [clang-format](https://clang.llvm.org/docs/ClangFormat.html) to format code to meet a specific style (lightly modified LLVM style). Install the latest version and run `./run_clang-format.sh` to format all project files. Atom and VS Code, among other editors, have plugins that add support for running clang-format when you save a file. OkapiLib recommends these plugins so you stay on top of your formatting as you work.
 
 #### cppcheck
 
