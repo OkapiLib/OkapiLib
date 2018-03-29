@@ -21,9 +21,6 @@ The following is a set of guidelines for contributing to OkapiLib. These are mos
   * [Git Branch Naming](#git-branch-naming)
   * [C++ Styleguide](#c++-styleguide)
 
-[Additional Notes](#additional-notes)
-  * [Issue and Pull Request Labels](#issue-and-pull-request-labels)
-
 ## Code of Conduct
 
 This project and everyone participating in it is governed by OkapiLib's [Code of Conduct](code-of-conduct.md). By participating, you are expected to uphold this code.
@@ -128,14 +125,15 @@ OkapiLib uses the program [clang-format](https://clang.llvm.org/docs/ClangFormat
 
 OkapiLib uses the program [cppcheck](http://cppcheck.sourceforge.net/) for static analysis. Install the latest version and run `./run_cppcheck.sh` to check all project files.
 
-#### Other points
+#### Other Points
 
 * Every file must include the MPL2.0 header and attributions to applicable authors (first authors placed first).
 * Use [Javadoc-style](https://www.tutorialspoint.com/java/java_documentation.htm) comments on constructors and methods.
 * Name classes and methods using Camel case. Class names should start with a capital letter.
+* Do not prefix member variables with `m_`; instead, prefix parameters with `i`.
 * Do not `using namespace std` or any other namespace as this pollutes the user's namespace.
 * No raw pointers or smart pointers. Use references (preferably `const` references) instead.
-* Use in-class member initializers and default constructors for no-arg constructors where possible
-* Use default arguments instead of method overloading
-* Everything that can be `const` should be
-* Don't optimize for no reason or prematurely optimize
+* Use in-class member initializers and default constructors for no-arg constructors where possible.
+* Use default arguments instead of method overloading.
+* Everything that can be `const` should be.
+* Don't optimize for no reason or prematurely optimize.
