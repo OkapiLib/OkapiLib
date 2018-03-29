@@ -19,7 +19,7 @@ The following is a set of guidelines for contributing to OkapiLib. These are mos
 [Styleguides](#styleguides)
   * [Git Commit Messages](#git-commit-messages)
   * [Git Branch Naming](#git-branch-naming)
-  * [C++ Styleguide](#c++-styleguide)
+  * [C++ Styleguide](#c&#43;&#43;-styleguide)
 
 ## Code of Conduct
 
