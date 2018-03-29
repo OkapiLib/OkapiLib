@@ -102,11 +102,12 @@ double PosPIDController::step(const double inewReading) {
     if (now - lastTime >= sampleTime) {
       error = (target - inewReading) / errorScale;
 
-      if (fabs(error) > errorSumMin && fabs(error) < errorSumMax) {
+      if ((fabs(error) < target - errorSumMin && fabs(error) > target - errorSumMax) ||
+          (fabs(error) > target + errorSumMin && fabs(error) < target + errorSumMax)) {
         integral += kI * error; // Eliminate integral kick while realtime tuning
       }
 
-      if (shouldResetOnCross && copysign(1.0, (double)error) != copysign(1.0, (double)lastError)) {
+      if (shouldResetOnCross && copysign(1.0, error) != copysign(1.0, lastError)) {
         integral = 0;
       }
 

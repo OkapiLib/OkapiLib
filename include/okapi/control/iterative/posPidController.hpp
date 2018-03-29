@@ -109,6 +109,15 @@ class PosPIDController : public IterativePositionController {
   virtual void setIntegralLimits(double imax, double imin);
 
   /**
+   * Set the error sum bounds. Default bounds are [500, 1250]. Error will only be added to the
+   * integral term when its absolute value between these bounds of either side of the target.
+   *
+   * @param imax max error value that will be summed
+   * @param imin min error value that will be summed
+   */
+  virtual void setErrorSumLimits(const double imax, const double imin);
+
+  /**
    * Resets the controller so it can start from 0 again properly. Keeps gains and limits from
    * before.
    */
@@ -149,7 +158,7 @@ class PosPIDController : public IterativePositionController {
   double integralMax = 1;
   double integralMin = -1;
 
-  // Error will only be added to the integral term within these bounds
+  // Error will only be added to the integral term within these bounds on either side of the target
   double errorSumMin = 500;
   double errorSumMax = 1250;
 
