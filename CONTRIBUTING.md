@@ -59,8 +59,8 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 
 Unsure where to begin contributing? You can start by looking through these `beginner` and `help-wanted` issues:
 
-* [Beginner issues][beginner] - issues which should only require a few lines of code
-* [Help wanted issues][help-wanted] - issues which should be a bit more involved than `beginner` issues.
+* [Beginner issues][good first issue] - issues which should only require a few lines of code
+* [Help wanted issues][help wanted] - issues which should be a bit more involved than `beginner` issues.
 
 ### Pull Requests
 
