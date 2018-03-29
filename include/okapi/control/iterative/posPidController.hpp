@@ -55,6 +55,8 @@ class PosPIDController : public IterativePositionController {
 
   /**
    * Sets the target for the controller.
+   *
+   * @param itarget new target position
    */
   virtual void setTarget(const double itarget) override;
 

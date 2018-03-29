@@ -61,6 +61,8 @@ class VelPIDController : public IterativeVelocityController {
 
   /**
    * Sets the target for the controller.
+   *
+   * @param itarget new target velocity
    */
   virtual void setTarget(const double itarget) override;
 

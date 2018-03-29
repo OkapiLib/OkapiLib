@@ -28,6 +28,8 @@ class IterativeController {
 
   /**
    * Sets the target for the controller.
+   *
+   * @param itarget new target value
    */
   virtual void setTarget(const double itarget) = 0;
 
