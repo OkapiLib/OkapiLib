@@ -65,12 +65,12 @@ class VelMath {
   virtual void setTicksPerRev(const double iTPR);
 
   /**
-   * Get the last calculated output.
+   * Get the last calculated velocity.
    */
-  virtual double getOutput() const;
+  virtual double getVelocity() const;
 
   /**
-   * Get the acceleration.
+   * Get the last calculated acceleration.
    */
   virtual double getAccel() const;
 

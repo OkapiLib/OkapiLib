@@ -11,7 +11,9 @@ void opcontrol() {
   // printf("current,efficiency,power,temperature,torque,voltage\n");
   // motor_move_voltage(9, 127);
   // while (true) {
-  //   printf("%lu,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", motor_get_current_draw(9), motor_get_efficiency(9), motor_get_power(9), motor_get_temperature(9), motor_get_torque(9), motor_get_voltage(9));
+  //   printf("%lu,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", motor_get_current_draw(9),
+  //   motor_get_efficiency(9), motor_get_power(9), motor_get_temperature(9), motor_get_torque(9),
+  //   motor_get_voltage(9));
   //   task_delay(10);
   // }
 
@@ -31,7 +33,7 @@ void opcontrol() {
 
     const double pos = motor_get_position(8);
     velMath.step(pos);
-    filt.filter(medFilt.filter(velMath.getOutput()));
+    filt.filter(medFilt.filter(velMath.getVelocity()));
     accel = velMath.getAccel();
 
     force = torque / (wheelDiam / 2.0);
@@ -44,7 +46,7 @@ void opcontrol() {
 
     mass = force / accel;
     // printf("%1.2f,%1.2f\n", mass, accel);
-    printf("%1.2f,%1.2f,\n", req, velMath.getOutput());
+    printf("%1.2f,%1.2f,\n", req, velMath.getVelocity());
     task_delay(10);
   }
 

@@ -47,7 +47,7 @@ void VelMath::setTicksPerRev(const double iTPR) {
   ticksPerRev = iTPR;
 }
 
-double VelMath::getOutput() const {
+double VelMath::getVelocity() const {
   return vel;
 }
 
