@@ -51,6 +51,21 @@ constexpr double ipow(const double base, const int expo) {
 constexpr double cut_range(const double value, const double min, const double max) {
   return std::clamp(value, min, max) == value ? 0 : value;
 }
+
+/**
+ * Remap a value in the range [oldMin, oldMax] to the range [newMin, newMax].
+ *
+ * @param value value in the old range
+ * @param oldMin old range lower bound
+ * @param oldMax old range upper bound
+ * @param newMin new range lower bound
+ * @param newMax new range upper bound
+ * @return remapped value in the new range [newMin, newMax]
+ */
+constexpr double remapRange(const double value, const double oldMin, const double oldMax,
+                            const double newMin, const double newMax) {
+  return (value - oldMin) * ((newMax - newMin) / (oldMax - oldMin)) + newMin;
+}
 } // namespace okapi
 
 #endif

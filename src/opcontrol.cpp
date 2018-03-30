@@ -13,6 +13,7 @@ void opcontrol() {
 
     {
       test_printf("Testing ipow");
+
       test_printf("Integer tests");
       test("0^0 == 1", TEST_BODY(AssertThat, ipow(0, 0), Equals(1)));
       test("0^1 == 0", TEST_BODY(AssertThat, ipow(0, 1), Equals(0)));
@@ -24,6 +25,19 @@ void opcontrol() {
       test_printf("Floating point tests");
       test("0.5^1 == 0.5", TEST_BODY(AssertThat, ipow(0.5, 1), EqualsWithDelta(0.5, 0.0001)));
       test("2.5^2 == 6.25", TEST_BODY(AssertThat, ipow(2.5, 2), EqualsWithDelta(6.25, 0.0001)));
+    }
+
+    {
+      test_printf("Testing remapRange");
+
+      test("0 : [-1, 1] -> [-2, 2]",
+           TEST_BODY(AssertThat, remapRange(0, -1, 1, -2, 2), EqualsWithDelta(0, 0.0001)));
+      test("0.1 : [-1, 1] -> [-2, 2]",
+           TEST_BODY(AssertThat, remapRange(0.1, -1, 1, -2, 2), EqualsWithDelta(0.2, 0.0001)));
+      test("-0.1 : [-1, 1] -> [2, -2]",
+           TEST_BODY(AssertThat, remapRange(-0.1, -1, 1, -2, 2), EqualsWithDelta(0.2, 0.0001)));
+      test("0 : [-1, 1] -> [-5, 2]",
+           TEST_BODY(AssertThat, remapRange(0, -1, 1, -5, 2), EqualsWithDelta(-1.5, 0.0001)));
     }
 
     {
@@ -166,8 +180,8 @@ void opcontrol() {
         task_delay(100); // Delay first so the timestep works for the first iteration
 
         if (i == 0) {
-        test("VelMath " + std::to_string(i),
-             TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(0, 0.01)));
+          test("VelMath " + std::to_string(i),
+               TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(0, 0.01)));
         } else {
           // 10 ticks per 100 ms should be ~16.67 rpm
           test("VelMath " + std::to_string(i),
