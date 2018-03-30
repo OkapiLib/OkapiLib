@@ -8,6 +8,13 @@ using namespace okapi;
 void opcontrol() {
   task_delay(100);
 
+  printf("current,efficiency,power,temperature,torque,voltage\n");
+  motor_move_voltage(9, 127);
+  while (true) {
+    printf("%lu,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", motor_get_current_draw(9), motor_get_efficiency(9), motor_get_power(9), motor_get_temperature(9), motor_get_torque(9), motor_get_voltage(9));
+    task_delay(10);
+  }
+
   {
     using namespace snowhouse;
 
