@@ -13,17 +13,17 @@
 #include "okapi/device/rotarysensor/rotarySensor.hpp"
 
 namespace okapi {
-class SkidSteerModelParams : public ChassisModelParams {
+class SkidSteerModelArgs : public ChassisModelArgs {
   public:
-  SkidSteerModelParams(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
+  SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
                        const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
                        const double imaxOutput = 100);
 
   // Create the sensors using the integrated encoder
-  SkidSteerModelParams(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
+  SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
                        const double imaxOutput = 100);
 
-  virtual ~SkidSteerModelParams();
+  virtual ~SkidSteerModelArgs();
 
   const AbstractMotor &leftSideMotor;
   const AbstractMotor &rightSideMotor;
@@ -60,7 +60,7 @@ class SkidSteerModel : public ChassisModel {
   SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
                  const double imaxOutput = 100);
 
-  SkidSteerModel(const SkidSteerModelParams &iparams);
+  SkidSteerModel(const SkidSteerModelArgs &iparams);
 
   SkidSteerModel(const SkidSteerModel &other);
 

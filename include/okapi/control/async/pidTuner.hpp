@@ -24,7 +24,7 @@ class PIDTuner {
 
   virtual ~PIDTuner();
 
-  virtual PosPIDControllerParams autotune();
+  virtual PosPIDControllerArgs autotune();
 
   protected:
   static constexpr double inertia = 0.5;   // Particle intertia

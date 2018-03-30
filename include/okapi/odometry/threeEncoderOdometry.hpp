@@ -12,12 +12,12 @@
 #include "okapi/odometry/odometry.hpp"
 
 namespace okapi {
-class ThreeEncoderOdometryParams : public OdometryParams {
+class ThreeEncoderOdometryArgs : public OdometryArgs {
   public:
-  ThreeEncoderOdometryParams(const SkidSteerModel &iparams, const double iscale,
+  ThreeEncoderOdometryArgs(const SkidSteerModel &iparams, const double iscale,
                              const double iturnScale, const double imiddleScale);
 
-  virtual ~ThreeEncoderOdometryParams();
+  virtual ~ThreeEncoderOdometryArgs();
 
   const double middleScale;
 };
@@ -28,7 +28,7 @@ class ThreeEncoderOdometry : public Odometry {
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
    * relative to the start (assumed to be (0, 0)).
    *
-   * @param imodelParams ChassisModel for reading sensors
+   * @param imodelArgs ChassisModel for reading sensors
    * @param iscale straight scale
    * @param iturnScale turn scale
    * @param imiddleScale turn scale for the middle encoder (mounted perpendicular to the two side

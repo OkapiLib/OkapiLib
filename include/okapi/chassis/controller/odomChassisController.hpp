@@ -26,7 +26,7 @@ class OdomChassisController : public virtual ChassisController {
    * @param iparams odometry parameters for the internal odometry math
    * @param imoveThreshold minimum length movement
    */
-  OdomChassisController(const OdometryParams &iparams, const float imoveThreshold = 10);
+  OdomChassisController(const OdometryArgs &iparams, const float imoveThreshold = 10);
 
   virtual ~OdomChassisController();
 

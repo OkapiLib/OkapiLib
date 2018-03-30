@@ -8,16 +8,16 @@
 #include "okapi/control/async/velIntegratedController.hpp"
 
 namespace okapi {
-VelIntegratedControllerParams::VelIntegratedControllerParams(const AbstractMotor &imotor)
+VelIntegratedControllerArgs::VelIntegratedControllerArgs(const AbstractMotor &imotor)
   : motor(imotor) {
 }
 
-VelIntegratedControllerParams::~VelIntegratedControllerParams() = default;
+VelIntegratedControllerArgs::~VelIntegratedControllerArgs() = default;
 
 VelIntegratedController::VelIntegratedController(const AbstractMotor &imotor) : motor(imotor) {
 }
 
-VelIntegratedController::VelIntegratedController(const VelIntegratedControllerParams &iparams)
+VelIntegratedController::VelIntegratedController(const VelIntegratedControllerArgs &iparams)
   : motor(iparams.motor) {
 }
 

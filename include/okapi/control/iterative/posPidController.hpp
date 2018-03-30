@@ -13,12 +13,12 @@
 #include "okapi/control/iterative/iterativePositionController.hpp"
 
 namespace okapi {
-class PosPIDControllerParams : public IterativePositionControllerParams {
+class PosPIDControllerArgs : public IterativePositionControllerArgs {
   public:
-  PosPIDControllerParams(const double ikP, const double ikI, const double ikD,
+  PosPIDControllerArgs(const double ikP, const double ikI, const double ikD,
                          const double ikBias = 0);
 
-  virtual ~PosPIDControllerParams();
+  virtual ~PosPIDControllerArgs();
 
   const double kP, kI, kD, kBias;
 };
@@ -38,9 +38,9 @@ class PosPIDController : public IterativePositionController {
   /**
    * PID controller.
    *
-   * @param params PosPIDControllerParams
+   * @param params PosPIDControllerArgs
    */
-  PosPIDController(const PosPIDControllerParams &params);
+  PosPIDController(const PosPIDControllerArgs &params);
 
   virtual ~PosPIDController();
 

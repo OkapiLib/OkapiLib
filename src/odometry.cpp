@@ -19,18 +19,18 @@ OdomState::OdomState(const double ix, const double iy, const double itheta)
 
 OdomState::~OdomState() = default;
 
-OdometryParams::OdometryParams(const SkidSteerModel &imodel, const double iscale,
+OdometryArgs::OdometryArgs(const SkidSteerModel &imodel, const double iscale,
                                const double iturnScale)
   : model(imodel), scale(iscale), turnScale(iturnScale) {
 }
 
-OdometryParams::~OdometryParams() = default;
+OdometryArgs::~OdometryArgs() = default;
 
 Odometry::Odometry(const SkidSteerModel &imodel, const double iscale, const double iturnScale)
   : scale(iscale), turnScale(iturnScale), lastTicks{0, 0}, mm(0), model(imodel) {
 }
 
-Odometry::Odometry(const OdometryParams &iparams)
+Odometry::Odometry(const OdometryArgs &iparams)
   : scale(iparams.scale), turnScale(iparams.turnScale), model(iparams.model) {
 }
 

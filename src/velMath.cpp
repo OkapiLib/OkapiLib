@@ -9,17 +9,17 @@
 #include "api.h"
 
 namespace okapi {
-VelMathParams::VelMathParams(const double iticksPerRev, const double ialpha, const double ibeta)
+VelMathArgs::VelMathArgs(const double iticksPerRev, const double ialpha, const double ibeta)
   : ticksPerRev(iticksPerRev), alpha(ialpha), beta(ibeta) {
 }
 
-VelMathParams::~VelMathParams() = default;
+VelMathArgs::~VelMathArgs() = default;
 
 VelMath::VelMath(const double iticksPerRev, const double ialpha, const double ibeta)
   : ticksPerRev(iticksPerRev), filter(ialpha, ibeta) {
 }
 
-VelMath::VelMath(const VelMathParams &iparams)
+VelMath::VelMath(const VelMathArgs &iparams)
   : ticksPerRev(iparams.ticksPerRev), filter(iparams.alpha, iparams.beta) {
 }
 

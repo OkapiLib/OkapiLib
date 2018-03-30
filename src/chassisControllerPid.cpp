@@ -11,12 +11,12 @@
 
 namespace okapi {
 ChassisControllerPID::ChassisControllerPID(const ChassisModel &imodel,
-                                           const PosPIDControllerParams &idistanceParams,
-                                           const PosPIDControllerParams &iangleParams,
+                                           const PosPIDControllerArgs &idistanceArgs,
+                                           const PosPIDControllerArgs &iangleArgs,
                                            const double istraightScale, const double iturnScale)
   : ChassisController(imodel),
-    distancePid(idistanceParams),
-    anglePid(iangleParams),
+    distancePid(idistanceArgs),
+    anglePid(iangleArgs),
     straightScale(istraightScale),
     turnScale(iturnScale) {
   setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
@@ -24,12 +24,12 @@ ChassisControllerPID::ChassisControllerPID(const ChassisModel &imodel,
 
 ChassisControllerPID::ChassisControllerPID(const AbstractMotor &ileftSideMotor,
                                            const AbstractMotor &irightSideMotor,
-                                           const PosPIDControllerParams &idistanceParams,
-                                           const PosPIDControllerParams &iangleParams,
+                                           const PosPIDControllerArgs &idistanceArgs,
+                                           const PosPIDControllerArgs &iangleArgs,
                                            const double istraightScale, const double iturnScale)
   : ChassisController(SkidSteerModel(ileftSideMotor, irightSideMotor)),
-    distancePid(idistanceParams),
-    anglePid(iangleParams),
+    distancePid(idistanceArgs),
+    anglePid(iangleArgs),
     straightScale(istraightScale),
     turnScale(iturnScale) {
   setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
@@ -39,13 +39,13 @@ ChassisControllerPID::ChassisControllerPID(const AbstractMotor &itopLeftMotor,
                                            const AbstractMotor &itopRightMotor,
                                            const AbstractMotor &ibottomRightMotor,
                                            const AbstractMotor &ibottomLeftMotor,
-                                           const PosPIDControllerParams &idistanceParams,
-                                           const PosPIDControllerParams &iangleParams,
+                                           const PosPIDControllerArgs &idistanceArgs,
+                                           const PosPIDControllerArgs &iangleArgs,
                                            const double istraightScale, const double iturnScale)
   : ChassisController(
       XDriveModel(itopLeftMotor, itopRightMotor, ibottomRightMotor, ibottomLeftMotor)),
-    distancePid(idistanceParams),
-    anglePid(iangleParams),
+    distancePid(idistanceArgs),
+    anglePid(iangleArgs),
     straightScale(istraightScale),
     turnScale(iturnScale) {
   setEncoderUnits(E_MOTOR_ENCODER_COUNTS);

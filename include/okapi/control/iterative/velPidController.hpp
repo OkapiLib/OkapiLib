@@ -12,16 +12,16 @@
 #include "okapi/filter/velMath.hpp"
 
 namespace okapi {
-class VelPIDControllerParams : public IterativeVelocityControllerParams {
+class VelPIDControllerArgs : public IterativeVelocityControllerArgs {
   public:
-  VelPIDControllerParams(const double ikP, const double ikD);
+  VelPIDControllerArgs(const double ikP, const double ikD);
 
-  VelPIDControllerParams(const double ikP, const double ikD, const VelMathParams &iparams);
+  VelPIDControllerArgs(const double ikP, const double ikD, const VelMathArgs &iparams);
 
-  virtual ~VelPIDControllerParams();
+  virtual ~VelPIDControllerArgs();
 
   const double kP, kD;
-  const VelMathParams params{1800};
+  const VelMathArgs params{1800};
 };
 
 class VelPIDController : public IterativeVelocityController {
@@ -40,14 +40,14 @@ class VelPIDController : public IterativeVelocityController {
    * @param ikP proportional gain
    * @param ikD derivative gain
    */
-  VelPIDController(const double ikP, const double ikD, const VelMathParams &iparams);
+  VelPIDController(const double ikP, const double ikD, const VelMathArgs &iparams);
 
   /**
    * Velocity PID controller.
    *
-   * @param params VelPIDControllerParams
+   * @param params VelPIDControllerArgs
    */
-  VelPIDController(const VelPIDControllerParams &params);
+  VelPIDController(const VelPIDControllerArgs &params);
 
   virtual ~VelPIDController();
 

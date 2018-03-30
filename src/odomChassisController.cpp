@@ -8,7 +8,7 @@
 #include "okapi/chassis/controller/odomChassisController.hpp"
 
 namespace okapi {
-OdomChassisController::OdomChassisController(const OdometryParams &iparams,
+OdomChassisController::OdomChassisController(const OdometryArgs &iparams,
                                              const float imoveThreshold)
   : ChassisController(iparams.model),
     moveThreshold(imoveThreshold),

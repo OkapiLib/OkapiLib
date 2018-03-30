@@ -244,21 +244,21 @@ void opcontrol() {
     ChassisControllerPID controller1(
       SkidSteerModel(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}), leftEncoder,
                      rightEncoder),
-      PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
+      PosPIDControllerArgs(0, 0, 0), PosPIDControllerArgs(0, 0, 0));
 
     ChassisControllerPID controller2(XDriveModel(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder),
-                                     PosPIDControllerParams(0, 0, 0),
-                                     PosPIDControllerParams(0, 0, 0));
+                                     PosPIDControllerArgs(0, 0, 0),
+                                     PosPIDControllerArgs(0, 0, 0));
 
     // An "odometry" chassis controller adds an odometry layer running in another task which keeps
     // track of the position of the robot in the odom frame. This means that you can tell the robot
     // to move to an arbitrary point on the field, or turn to an absolute angle (i.e., "turn to 90
     // degrees" will always put the robot facing east relative to the starting position)
     OdomChassisControllerPID controller3(
-      OdometryParams(SkidSteerModel(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
+      OdometryArgs(SkidSteerModel(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
                                     leftEncoder, rightEncoder),
                      0, 0),
-      PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
+      PosPIDControllerArgs(0, 0, 0), PosPIDControllerArgs(0, 0, 0));
 
     controller3.driveToPoint(0, 0); // Drive to (0, 0) on the field
     controller3.turnToAngle(0);     // Turn to 0 degrees
@@ -271,20 +271,20 @@ void opcontrol() {
     PosIntegratedController posI1(1_m);
 
     Motor tempMotor = 1_m;
-    AsyncPosPIDController apospid1(leftEncoder, tempMotor, PosPIDControllerParams(0, 0, 0));
+    AsyncPosPIDController apospid1(leftEncoder, tempMotor, PosPIDControllerArgs(0, 0, 0));
     AsyncPosPIDController apospid2(leftEncoder, tempMotor, 0, 0, 0);
 
     PosPIDController pid2(0, 0, 0);
     PosPIDController pid3(0, 0, 0, 0);
-    PosPIDController pid4(PosPIDControllerParams(0, 0, 0));
-    PosPIDController pid5(PosPIDControllerParams(0, 0, 0, 0));
+    PosPIDController pid4(PosPIDControllerArgs(0, 0, 0));
+    PosPIDController pid5(PosPIDControllerArgs(0, 0, 0, 0));
 
     VelMath velMath1(0);
     VelMath velMath2(0, 0);
     VelMath velMath3(0, 0, 0);
 
     VelPIDController velPid1(0, 0);
-    VelPIDController velPid2(VelPIDControllerParams(0, 0));
+    VelPIDController velPid2(VelPIDControllerArgs(0, 0));
 
     ADIEncoder quad1(0, 0);
     ADIEncoder quad2(0, 0, true);

@@ -8,13 +8,13 @@
 #include "okapi/odometry/threeEncoderOdometry.hpp"
 
 namespace okapi {
-ThreeEncoderOdometryParams::ThreeEncoderOdometryParams(const SkidSteerModel &iparams,
+ThreeEncoderOdometryArgs::ThreeEncoderOdometryArgs(const SkidSteerModel &iparams,
                                                        const double iscale, const double iturnScale,
                                                        const double imiddleScale)
-  : OdometryParams(iparams, iscale, iturnScale), middleScale(imiddleScale) {
+  : OdometryArgs(iparams, iscale, iturnScale), middleScale(imiddleScale) {
 }
 
-ThreeEncoderOdometryParams::~ThreeEncoderOdometryParams() = default;
+ThreeEncoderOdometryArgs::~ThreeEncoderOdometryArgs() = default;
 
 ThreeEncoderOdometry::ThreeEncoderOdometry(const ThreeEncoderSkidSteerModel &imodel,
                                            const double iscale, const double iturnScale,

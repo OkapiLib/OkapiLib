@@ -15,11 +15,11 @@
 namespace okapi {
 class VelIntegratedController;
 
-class VelIntegratedControllerParams : public AsyncVelocityControllerParams {
+class VelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
   public:
-  VelIntegratedControllerParams(const AbstractMotor &imotor);
+  VelIntegratedControllerArgs(const AbstractMotor &imotor);
 
-  virtual ~VelIntegratedControllerParams();
+  virtual ~VelIntegratedControllerArgs();
 
   const AbstractMotor &motor;
 };
@@ -31,7 +31,7 @@ class VelIntegratedController : public AsyncVelocityController {
   public:
   VelIntegratedController(const AbstractMotor &imotor);
 
-  VelIntegratedController(const VelIntegratedControllerParams &iparams);
+  VelIntegratedController(const VelIntegratedControllerArgs &iparams);
 
   virtual ~VelIntegratedController();
 

@@ -8,14 +8,14 @@
 #include "okapi/control/async/asyncPosPidController.hpp"
 
 namespace okapi {
-AsyncPosPIDControllerParams::AsyncPosPIDControllerParams(ControllerInput &iinput,
+AsyncPosPIDControllerArgs::AsyncPosPIDControllerArgs(ControllerInput &iinput,
                                                          ControllerOutput &ioutput,
-                                                         const PosPIDControllerParams &iparams)
+                                                         const PosPIDControllerArgs &iparams)
   : input(iinput), output(ioutput), params(iparams) {
 }
 
 AsyncPosPIDController::AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
-                                             const PosPIDControllerParams &iparams)
+                                             const PosPIDControllerArgs &iparams)
   : input(iinput), output(ioutput), controller(iparams), task(trampoline, this) {
 }
 

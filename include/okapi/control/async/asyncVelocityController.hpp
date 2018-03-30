@@ -14,7 +14,7 @@
 namespace okapi {
 class AsyncVelocityController;
 
-class AsyncVelocityControllerParams : public AsyncControllerParams {};
+class AsyncVelocityControllerArgs : public AsyncControllerArgs {};
 
 class AsyncVelocityController : public AsyncController {};
 } // namespace okapi

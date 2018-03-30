@@ -11,7 +11,7 @@
 #include "api.h"
 
 namespace okapi {
-class IterativeControllerParams {};
+class IterativeControllerArgs {};
 
 /**
  * Closed-loop controller that steps iteratively using the step method below.

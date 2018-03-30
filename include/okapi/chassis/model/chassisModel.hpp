@@ -18,9 +18,9 @@
 namespace okapi {
 class ChassisModel;
 
-class ChassisModelParams {
+class ChassisModelArgs {
   public:
-  virtual ~ChassisModelParams();
+  virtual ~ChassisModelArgs();
 };
 
 class ChassisModel {

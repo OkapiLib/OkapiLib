@@ -12,27 +12,27 @@
 
 namespace okapi {
 
-VelPIDControllerParams::VelPIDControllerParams(const double ikP, const double ikD)
+VelPIDControllerArgs::VelPIDControllerArgs(const double ikP, const double ikD)
   : kP(ikP), kD(ikD) {
 }
 
-VelPIDControllerParams::VelPIDControllerParams(const double ikP, const double ikD,
-                                               const VelMathParams &iparams)
+VelPIDControllerArgs::VelPIDControllerArgs(const double ikP, const double ikD,
+                                               const VelMathArgs &iparams)
   : kP(ikP), kD(ikD), params(iparams) {
 }
 
-VelPIDControllerParams::~VelPIDControllerParams() = default;
+VelPIDControllerArgs::~VelPIDControllerArgs() = default;
 
 VelPIDController::VelPIDController(const double ikP, const double ikD) {
   setGains(ikP, ikD);
 }
 
-VelPIDController::VelPIDController(const double ikP, const double ikD, const VelMathParams &iparams)
+VelPIDController::VelPIDController(const double ikP, const double ikD, const VelMathArgs &iparams)
   : velMath(iparams) {
   setGains(ikP, ikD);
 }
 
-VelPIDController::VelPIDController(const VelPIDControllerParams &params) : velMath(params.params) {
+VelPIDController::VelPIDController(const VelPIDControllerArgs &params) : velMath(params.params) {
   setGains(params.kP, params.kD);
 }
 

@@ -25,11 +25,11 @@ class OdomState {
   double theta = 0;
 };
 
-class OdometryParams {
+class OdometryArgs {
   public:
-  OdometryParams(const SkidSteerModel &iparams, const double iscale, const double iturnScale);
+  OdometryArgs(const SkidSteerModel &iparams, const double iscale, const double iturnScale);
 
-  virtual ~OdometryParams();
+  virtual ~OdometryArgs();
 
   const SkidSteerModel &model;
   const double scale, turnScale;
@@ -41,7 +41,7 @@ class Odometry {
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
    * relative to the start (assumed to be (0, 0)).
    *
-   * @param imodelParams ChassisModel for reading sensors
+   * @param imodelArgs ChassisModel for reading sensors
    * @param iscale straight scale
    * @param iturnScale turn scale
    */
@@ -51,9 +51,9 @@ class Odometry {
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
    * relative to the start (assumed to be (0, 0)).
    *
-   * @param iparams OdometryParams
+   * @param iparams OdometryArgs
    */
-  Odometry(const OdometryParams &iparams);
+  Odometry(const OdometryArgs &iparams);
 
   virtual ~Odometry();
 

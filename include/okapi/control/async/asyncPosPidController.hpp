@@ -18,20 +18,20 @@
 namespace okapi {
 class AsyncPosPIDController;
 
-class AsyncPosPIDControllerParams : public AsyncPositionControllerParams {
+class AsyncPosPIDControllerArgs : public AsyncPositionControllerArgs {
   public:
-  AsyncPosPIDControllerParams(ControllerInput &iinput, ControllerOutput &ioutput,
-                              const PosPIDControllerParams &iparams);
+  AsyncPosPIDControllerArgs(ControllerInput &iinput, ControllerOutput &ioutput,
+                              const PosPIDControllerArgs &iparams);
 
   ControllerInput &input;
   ControllerOutput &output;
-  const PosPIDControllerParams &params;
+  const PosPIDControllerArgs &params;
 };
 
 class AsyncPosPIDController : public AsyncPositionController {
   public:
   AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
-                        const PosPIDControllerParams &iparams);
+                        const PosPIDControllerArgs &iparams);
 
   AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput, const double ikP,
                         const double ikI, const double ikD, const double ikBias = 0);

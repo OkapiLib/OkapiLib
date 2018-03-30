@@ -10,12 +10,12 @@
 #include <cmath>
 
 namespace okapi {
-OdomChassisControllerPID::OdomChassisControllerPID(const OdometryParams &iparams,
-                                                   const PosPIDControllerParams &idistanceParams,
-                                                   const PosPIDControllerParams &iangleParams)
+OdomChassisControllerPID::OdomChassisControllerPID(const OdometryArgs &iparams,
+                                                   const PosPIDControllerArgs &idistanceArgs,
+                                                   const PosPIDControllerArgs &iangleArgs)
   : ChassisController(iparams.model),
     OdomChassisController(iparams),
-    ChassisControllerPID(iparams.model, idistanceParams, iangleParams) {
+    ChassisControllerPID(iparams.model, idistanceArgs, iangleArgs) {
 }
 
 OdomChassisControllerPID::~OdomChassisControllerPID() = default;

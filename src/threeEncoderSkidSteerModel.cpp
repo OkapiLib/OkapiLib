@@ -9,14 +9,14 @@
 #include "okapi/chassis/model/threeEncoderSkidSteerModel.hpp"
 
 namespace okapi {
-ThreeEncoderSkidSteerModelParams::ThreeEncoderSkidSteerModelParams(
+ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs(
   const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
   const RotarySensor &ileftEnc, const RotarySensor &imiddleEnc, const RotarySensor &irightEnc)
-  : SkidSteerModelParams(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc),
+  : SkidSteerModelArgs(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc),
     middleSensor(imiddleEnc) {
 }
 
-ThreeEncoderSkidSteerModelParams::~ThreeEncoderSkidSteerModelParams() = default;
+ThreeEncoderSkidSteerModelArgs::~ThreeEncoderSkidSteerModelArgs() = default;
 
 ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(const AbstractMotor &ileftSideMotor,
                                                        const AbstractMotor &irightSideMotor,
@@ -27,7 +27,7 @@ ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(const AbstractMotor &ilef
 }
 
 ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
-  const ThreeEncoderSkidSteerModelParams &iparams)
+  const ThreeEncoderSkidSteerModelArgs &iparams)
   : SkidSteerModel(iparams.leftSideMotor, iparams.rightSideMotor, iparams.leftSensor,
                    iparams.rightSensor),
     middleSensor(iparams.middleSensor) {

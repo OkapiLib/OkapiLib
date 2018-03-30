@@ -12,11 +12,11 @@
 #include "okapi/filter/demaFilter.hpp"
 
 namespace okapi {
-class VelMathParams {
+class VelMathArgs {
   public:
-  VelMathParams(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041);
+  VelMathArgs(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041);
 
-  virtual ~VelMathParams();
+  virtual ~VelMathArgs();
 
   const double ticksPerRev, alpha, beta;
 };
@@ -35,9 +35,9 @@ class VelMath {
   /**
    * Velocity math helper. Calculates filtered velocity (DemaFilter).
    *
-   * @param iparams VelMathParams
+   * @param iparams VelMathArgs
    */
-  VelMath(const VelMathParams &iparams);
+  VelMath(const VelMathArgs &iparams);
 
   /**
    * Calculate new velocity.

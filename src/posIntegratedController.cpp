@@ -8,16 +8,16 @@
 #include "okapi/control/async/posIntegratedController.hpp"
 
 namespace okapi {
-PosIntegratedControllerParams::PosIntegratedControllerParams(const AbstractMotor &imotor)
+PosIntegratedControllerArgs::PosIntegratedControllerArgs(const AbstractMotor &imotor)
   : motor(imotor) {
 }
 
-PosIntegratedControllerParams::~PosIntegratedControllerParams() = default;
+PosIntegratedControllerArgs::~PosIntegratedControllerArgs() = default;
 
 PosIntegratedController::PosIntegratedController(const AbstractMotor &imotor) : motor(imotor) {
 }
 
-PosIntegratedController::PosIntegratedController(const PosIntegratedControllerParams &iparams)
+PosIntegratedController::PosIntegratedController(const PosIntegratedControllerArgs &iparams)
   : motor(iparams.motor) {
 }
 

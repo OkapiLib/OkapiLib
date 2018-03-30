@@ -25,12 +25,12 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
    * a specific angle, relative to its starting position.
    *
    * @param iparams odometry parameters for the internal odometry math
-   * @param idistanceParams distance PID controller params
-   * @param iangleParams angle PID controller params (keeps the robot straight)
+   * @param idistanceArgs distance PID controller params
+   * @param iangleArgs angle PID controller params (keeps the robot straight)
    */
-  OdomChassisControllerPID(const OdometryParams &iparams,
-                           const PosPIDControllerParams &idistanceParams,
-                           const PosPIDControllerParams &iangleParams);
+  OdomChassisControllerPID(const OdometryArgs &iparams,
+                           const PosPIDControllerArgs &idistanceArgs,
+                           const PosPIDControllerArgs &iangleArgs);
 
   virtual ~OdomChassisControllerPID();
 

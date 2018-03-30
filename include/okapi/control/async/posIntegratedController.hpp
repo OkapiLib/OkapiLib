@@ -14,11 +14,11 @@
 namespace okapi {
 class PosIntegratedController;
 
-class PosIntegratedControllerParams : public AsyncPositionControllerParams {
+class PosIntegratedControllerArgs : public AsyncPositionControllerArgs {
   public:
-  PosIntegratedControllerParams(const AbstractMotor &imotor);
+  PosIntegratedControllerArgs(const AbstractMotor &imotor);
 
-  virtual ~PosIntegratedControllerParams();
+  virtual ~PosIntegratedControllerArgs();
 
   const AbstractMotor &motor;
 };
@@ -30,7 +30,7 @@ class PosIntegratedController : public AsyncPositionController {
   public:
   PosIntegratedController(const AbstractMotor &imotor);
 
-  PosIntegratedController(const PosIntegratedControllerParams &iparams);
+  PosIntegratedController(const PosIntegratedControllerArgs &iparams);
 
   virtual ~PosIntegratedController();
 

@@ -13,12 +13,12 @@
 #include <cmath>
 
 namespace okapi {
-PosPIDControllerParams::PosPIDControllerParams(const double ikP, const double ikI, const double ikD,
+PosPIDControllerArgs::PosPIDControllerArgs(const double ikP, const double ikI, const double ikD,
                                                const double ikBias)
   : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
 }
 
-PosPIDControllerParams::~PosPIDControllerParams() = default;
+PosPIDControllerArgs::~PosPIDControllerArgs() = default;
 
 PosPIDController::PosPIDController(const double ikP, const double ikI, const double ikD,
                                    const double ikBias) {
@@ -29,7 +29,7 @@ PosPIDController::PosPIDController(const double ikP, const double ikI, const dou
   setGains(ikP, ikI, ikD, ikBias);
 }
 
-PosPIDController::PosPIDController(const PosPIDControllerParams &params) {
+PosPIDController::PosPIDController(const PosPIDControllerArgs &params) {
   if (params.kI != 0) {
     setIntegralLimits(-1 / params.kI, 1 / params.kI);
   }

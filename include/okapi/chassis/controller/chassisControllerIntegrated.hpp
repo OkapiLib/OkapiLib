@@ -20,17 +20,17 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * ChassisController using the V5 motor's integrated control. Puts the motors' encoders into tick
    * units.
    *
-   * @param imodelParams ChassisModelParams
-   * @param ileftControllerParams left side controller params
-   * @param irightControllerParams right side controller params
+   * @param imodelArgs ChassisModelArgs
+   * @param ileftControllerArgs left side controller params
+   * @param irightControllerArgs right side controller params
    * @param istraightScale scale converting your units of choice to encoder ticks, used for
    * measuring distance
    * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
    * angle
    */
   ChassisControllerIntegrated(const ChassisModel &imodel,
-                              const PosIntegratedControllerParams &ileftControllerParams,
-                              const PosIntegratedControllerParams &irightControllerParams,
+                              const PosIntegratedControllerArgs &ileftControllerArgs,
+                              const PosIntegratedControllerArgs &irightControllerArgs,
                               const double istraightScale = 1, const double iturnScale = 1);
 
   /**

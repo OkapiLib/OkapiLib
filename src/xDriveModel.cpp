@@ -9,7 +9,7 @@
 #include <utility>
 
 namespace okapi {
-XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
+XDriveModelArgs::XDriveModelArgs(const AbstractMotor &itopLeftMotor,
                                      const AbstractMotor &itopRightMotor,
                                      const AbstractMotor &ibottomRightMotor,
                                      const AbstractMotor &ibottomLeftMotor,
@@ -24,7 +24,7 @@ XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
     maxOutput(imaxOutput) {
 }
 
-XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
+XDriveModelArgs::XDriveModelArgs(const AbstractMotor &itopLeftMotor,
                                      const AbstractMotor &itopRightMotor,
                                      const AbstractMotor &ibottomRightMotor,
                                      const AbstractMotor &ibottomLeftMotor, const double imaxOutput)
@@ -37,7 +37,7 @@ XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
     maxOutput(imaxOutput) {
 }
 
-XDriveModelParams::~XDriveModelParams() = default;
+XDriveModelArgs::~XDriveModelArgs() = default;
 
 XDriveModel::XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
                          const AbstractMotor &ibottomRightMotor,
@@ -64,7 +64,7 @@ XDriveModel::XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor
     maxOutput(imaxOutput) {
 }
 
-XDriveModel::XDriveModel(const XDriveModelParams &iparams)
+XDriveModel::XDriveModel(const XDriveModelArgs &iparams)
   : topLeftMotor(iparams.topLeftMotor),
     topRightMotor(iparams.topRightMotor),
     bottomRightMotor(iparams.bottomRightMotor),

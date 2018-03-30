@@ -11,14 +11,14 @@
 #include "okapi/chassis/model/skidSteerModel.hpp"
 
 namespace okapi {
-class ThreeEncoderSkidSteerModelParams : public SkidSteerModelParams {
+class ThreeEncoderSkidSteerModelArgs : public SkidSteerModelArgs {
   public:
-  ThreeEncoderSkidSteerModelParams(const AbstractMotor &ileftSideMotor,
+  ThreeEncoderSkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
                                    const AbstractMotor &irightSideMotor,
                                    const RotarySensor &ileftEnc, const RotarySensor &imiddleEnc,
                                    const RotarySensor &irightEnc);
 
-  virtual ~ThreeEncoderSkidSteerModelParams();
+  virtual ~ThreeEncoderSkidSteerModelArgs();
 
   const RotarySensor &middleSensor;
 };
@@ -39,7 +39,7 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
                              const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc,
                              const RotarySensor &imiddleEnc, const RotarySensor &irightEnc);
 
-  ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelParams &iparams);
+  ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams);
 
   virtual ~ThreeEncoderSkidSteerModel();
 
