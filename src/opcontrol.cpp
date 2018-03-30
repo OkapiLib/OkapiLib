@@ -8,10 +8,43 @@ using namespace okapi;
 void opcontrol() {
   task_delay(100);
 
-  printf("current,efficiency,power,temperature,torque,voltage\n");
-  motor_move_voltage(9, 127);
+  // printf("current,efficiency,power,temperature,torque,voltage\n");
+  // motor_move_voltage(9, 127);
+  // while (true) {
+  //   printf("%lu,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", motor_get_current_draw(9), motor_get_efficiency(9), motor_get_power(9), motor_get_temperature(9), motor_get_torque(9), motor_get_voltage(9));
+  //   task_delay(10);
+  // }
+
+  VelMath velMath(1800, 1, 0);
+  double mass = 0;
+  double accel = 0;
+  const double wheelDiam = 3.75;
+  double torque = 0;
+  double force = 0;
+  printf("request,velocity,filter\n");
+  MedianFilter<5> medFilt;
+  AverageFilter<5> filt;
+  double req = 0;
+  double increment = 1;
   while (true) {
-    printf("%lu,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", motor_get_current_draw(9), motor_get_efficiency(9), motor_get_power(9), motor_get_temperature(9), motor_get_torque(9), motor_get_voltage(9));
+    torque = motor_get_torque(8);
+
+    const double pos = motor_get_position(8);
+    velMath.step(pos);
+    filt.filter(medFilt.filter(velMath.getOutput()));
+    accel = velMath.getAccel();
+
+    force = torque / (wheelDiam / 2.0);
+    req += increment;
+    if (req > 100) {
+      req = 0;
+      increment = 0;
+    }
+    motor_move_velocity(8, (int)req);
+
+    mass = force / accel;
+    // printf("%1.2f,%1.2f\n", mass, accel);
+    printf("%1.2f,%1.2f,\n", req, velMath.getOutput());
     task_delay(10);
   }
 

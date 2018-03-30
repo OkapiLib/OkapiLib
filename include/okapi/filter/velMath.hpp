@@ -68,13 +68,14 @@ class VelMath {
   virtual double getOutput() const;
 
   /**
-   * Get the difference between the last output and the output before that.
+   * Get the acceleration.
    */
-  virtual double getDiff() const;
+  virtual double getAccel() const;
 
   protected:
   uint32_t lastTime = 0;
   double vel = 0;
+  double accel = 0;
   double lastVel = 0;
   double lastPos = 0;
   double ticksPerRev;

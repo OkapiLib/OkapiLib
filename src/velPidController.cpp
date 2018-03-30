@@ -75,7 +75,7 @@ double VelPIDController::step(const double inewReading) {
       error = (target - velMath.getOutput()) / errorScale;
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
-      derivative = velMath.getDiff();
+      derivative = velMath.getAccel();
 
       output += kP * error - kD * derivative;
       output = std::clamp(output, outputMin, outputMax);

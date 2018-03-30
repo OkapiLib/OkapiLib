@@ -28,7 +28,9 @@ double VelMath::step(const double inewPos) {
 
   vel = static_cast<double>((1000 / (now - lastTime))) * (inewPos - lastPos) * (60 / ticksPerRev);
   vel = filter.filter(vel);
+  accel = static_cast<double>((1000 / (now - lastTime))) * (vel - lastVel);
 
+  lastVel = vel;
   lastPos = inewPos;
   lastTime = now;
 
@@ -47,7 +49,7 @@ double VelMath::getOutput() const {
   return vel;
 }
 
-double VelMath::getDiff() const {
-  return vel - lastVel;
+double VelMath::getAccel() const {
+  return accel;
 }
 } // namespace okapi
