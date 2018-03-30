@@ -20,8 +20,6 @@ class IntegratedEncoder : public RotarySensor {
    */
   IntegratedEncoder(const pros::Motor &imotor);
 
-  virtual ~IntegratedEncoder();
-
   /**
    * Get the current sensor value.
    *

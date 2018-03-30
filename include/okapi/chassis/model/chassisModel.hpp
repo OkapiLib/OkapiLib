@@ -25,6 +25,8 @@ class ChassisModelArgs {
 
 class ChassisModel {
   public:
+  virtual ~ChassisModel();
+
   /**
    * Drive the robot forwards (using open-loop control).
    *

@@ -9,4 +9,6 @@
 
 namespace okapi {
 ChassisModelArgs::~ChassisModelArgs() = default;
+
+ChassisModel::~ChassisModel() = default;
 }

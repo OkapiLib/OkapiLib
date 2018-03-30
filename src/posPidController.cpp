@@ -18,8 +18,6 @@ PosPIDControllerArgs::PosPIDControllerArgs(const double ikP, const double ikI, c
   : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
 }
 
-PosPIDControllerArgs::~PosPIDControllerArgs() = default;
-
 PosPIDController::PosPIDController(const double ikP, const double ikI, const double ikD,
                                    const double ikBias) {
   if (ikI != 0) {
@@ -36,8 +34,6 @@ PosPIDController::PosPIDController(const PosPIDControllerArgs &params) {
   setOutputLimits(-1, 1);
   setGains(params.kP, params.kI, params.kD, params.kBias);
 }
-
-PosPIDController::~PosPIDController() = default;
 
 void PosPIDController::setTarget(const double itarget) {
   target = itarget;

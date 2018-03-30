@@ -37,8 +37,6 @@ XDriveModelArgs::XDriveModelArgs(const AbstractMotor &itopLeftMotor,
     maxOutput(imaxOutput) {
 }
 
-XDriveModelArgs::~XDriveModelArgs() = default;
-
 XDriveModel::XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
                          const AbstractMotor &ibottomRightMotor,
                          const AbstractMotor &ibottomLeftMotor, const RotarySensor &ileftEnc,
@@ -83,8 +81,6 @@ XDriveModel::XDriveModel(const XDriveModel &other)
     rightSensor(other.rightSensor),
     maxOutput(other.maxOutput) {
 }
-
-XDriveModel::~XDriveModel() = default;
 
 void XDriveModel::forward(const double ispeed) const {
   topLeftMotor.move_velocity(ispeed * maxOutput);

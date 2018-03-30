@@ -23,8 +23,6 @@ template <std::size_t n> class AverageFilter : public Filter {
    */
   AverageFilter() = default;
 
-  virtual ~AverageFilter() = default;
-
   virtual double filter(const double ireading) override {
     data[index++] = ireading;
     if (index >= n) {

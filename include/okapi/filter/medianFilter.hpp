@@ -24,8 +24,6 @@ template <std::size_t n> class MedianFilter : public Filter {
   MedianFilter() : middleIndex((((n)&1) ? ((n) / 2) : (((n) / 2) - 1))) {
   }
 
-  virtual ~MedianFilter() = default;
-
   virtual double filter(const double ireading) override {
     data[index++] = ireading;
     if (index >= n) {

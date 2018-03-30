@@ -17,8 +17,6 @@ class ThreeEncoderSkidSteerModelArgs : public SkidSteerModelArgs {
                                  const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc,
                                  const RotarySensor &imiddleEnc, const RotarySensor &irightEnc);
 
-  virtual ~ThreeEncoderSkidSteerModelArgs();
-
   const RotarySensor &middleSensor;
 };
 
@@ -39,8 +37,6 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
                              const RotarySensor &imiddleEnc, const RotarySensor &irightEnc);
 
   ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams);
-
-  virtual ~ThreeEncoderSkidSteerModel();
 
   /**
    * Read the sensors.

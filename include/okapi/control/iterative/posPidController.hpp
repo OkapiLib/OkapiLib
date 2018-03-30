@@ -18,8 +18,6 @@ class PosPIDControllerArgs : public IterativePositionControllerArgs {
   PosPIDControllerArgs(const double ikP, const double ikI, const double ikD,
                        const double ikBias = 0);
 
-  virtual ~PosPIDControllerArgs();
-
   const double kP, kI, kD, kBias;
 };
 
@@ -41,8 +39,6 @@ class PosPIDController : public IterativePositionController {
    * @param params PosPIDControllerArgs
    */
   PosPIDController(const PosPIDControllerArgs &params);
-
-  virtual ~PosPIDController();
 
   /**
    * Do one iteration of the controller. Returns the reading in the range [-127, 127] unless the

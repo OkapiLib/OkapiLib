@@ -25,8 +25,6 @@ AsyncPosPIDController::AsyncPosPIDController(ControllerInput &iinput, Controller
   : input(iinput), output(ioutput), controller(ikP, ikI, ikD, ikBias), task(trampoline, this) {
 }
 
-AsyncPosPIDController::~AsyncPosPIDController() = default;
-
 void AsyncPosPIDController::step() {
   while (true) {
     output.controllerSet(controller.step(input.controllerGet()));

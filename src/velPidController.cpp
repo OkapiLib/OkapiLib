@@ -20,8 +20,6 @@ VelPIDControllerArgs::VelPIDControllerArgs(const double ikP, const double ikD,
   : kP(ikP), kD(ikD), params(iparams) {
 }
 
-VelPIDControllerArgs::~VelPIDControllerArgs() = default;
-
 VelPIDController::VelPIDController(const double ikP, const double ikD) {
   setGains(ikP, ikD);
 }
@@ -34,8 +32,6 @@ VelPIDController::VelPIDController(const double ikP, const double ikD, const Vel
 VelPIDController::VelPIDController(const VelPIDControllerArgs &params) : velMath(params.params) {
   setGains(params.kP, params.kD);
 }
-
-VelPIDController::~VelPIDController() = default;
 
 void VelPIDController::setGains(const double ikP, const double ikD) {
   kP = ikP;

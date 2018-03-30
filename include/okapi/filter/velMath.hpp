@@ -39,6 +39,8 @@ class VelMath {
    */
   VelMath(const VelMathArgs &iparams);
 
+  virtual ~VelMath();
+
   /**
    * Calculate new velocity.
    *

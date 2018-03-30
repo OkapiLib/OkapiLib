@@ -19,8 +19,6 @@ class VelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
   public:
   VelIntegratedControllerArgs(const AbstractMotor &imotor);
 
-  virtual ~VelIntegratedControllerArgs();
-
   const AbstractMotor &motor;
 };
 
@@ -32,8 +30,6 @@ class VelIntegratedController : public AsyncVelocityController {
   VelIntegratedController(const AbstractMotor &imotor);
 
   VelIntegratedController(const VelIntegratedControllerArgs &iparams);
-
-  virtual ~VelIntegratedController();
 
   /**
    * Sets the target for the controller.

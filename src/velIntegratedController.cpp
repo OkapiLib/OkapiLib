@@ -12,16 +12,12 @@ VelIntegratedControllerArgs::VelIntegratedControllerArgs(const AbstractMotor &im
   : motor(imotor) {
 }
 
-VelIntegratedControllerArgs::~VelIntegratedControllerArgs() = default;
-
 VelIntegratedController::VelIntegratedController(const AbstractMotor &imotor) : motor(imotor) {
 }
 
 VelIntegratedController::VelIntegratedController(const VelIntegratedControllerArgs &iparams)
   : motor(iparams.motor) {
 }
-
-VelIntegratedController::~VelIntegratedController() = default;
 
 void VelIntegratedController::setTarget(const double itarget) {
   motor.move_velocity(itarget);

@@ -51,8 +51,6 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(const AbstractMotor &it
   setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
 }
 
-ChassisControllerIntegrated::~ChassisControllerIntegrated() = default;
-
 void ChassisControllerIntegrated::moveDistance(const int itarget) {
   int distanceElapsed = 0, lastDistance = 0;
   uint32_t prevWakeTime = millis();

@@ -18,8 +18,6 @@ OdomChassisControllerPID::OdomChassisControllerPID(const OdometryArgs &iparams,
     ChassisControllerPID(iparams.model, idistanceArgs, iangleArgs) {
 }
 
-OdomChassisControllerPID::~OdomChassisControllerPID() = default;
-
 void OdomChassisControllerPID::driveToPoint(const float ix, const float iy, const bool ibackwards,
                                             const float ioffset) {
   DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom.getState());

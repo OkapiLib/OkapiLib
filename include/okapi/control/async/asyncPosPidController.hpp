@@ -36,8 +36,6 @@ class AsyncPosPIDController : public AsyncPositionController {
   AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput, const double ikP,
                         const double ikI, const double ikD, const double ikBias = 0);
 
-  virtual ~AsyncPosPIDController();
-
   /**
    * Sets the target for the controller.
    */

@@ -17,8 +17,6 @@ class ThreeEncoderOdometryArgs : public OdometryArgs {
   ThreeEncoderOdometryArgs(const SkidSteerModel &iparams, const double iscale,
                            const double iturnScale, const double imiddleScale);
 
-  virtual ~ThreeEncoderOdometryArgs();
-
   const double middleScale;
 };
 
@@ -36,8 +34,6 @@ class ThreeEncoderOdometry : public Odometry {
    */
   ThreeEncoderOdometry(const ThreeEncoderSkidSteerModel &imodel, const double iscale,
                        const double iturnScale, const double imiddleScale);
-
-  virtual ~ThreeEncoderOdometry();
 
   /**
    * Do odometry math in an infinite loop.

@@ -18,8 +18,6 @@ ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs(const AbstractMot
     middleSensor(imiddleEnc) {
 }
 
-ThreeEncoderSkidSteerModelArgs::~ThreeEncoderSkidSteerModelArgs() = default;
-
 ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(const AbstractMotor &ileftSideMotor,
                                                        const AbstractMotor &irightSideMotor,
                                                        const RotarySensor &ileftEnc,
@@ -34,8 +32,6 @@ ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
                    iparams.rightSensor),
     middleSensor(iparams.middleSensor) {
 }
-
-ThreeEncoderSkidSteerModel::~ThreeEncoderSkidSteerModel() = default;
 
 std::valarray<int> ThreeEncoderSkidSteerModel::getSensorVals() const {
   // Return the middle sensor last so this is compatible with SkidSteerModel::getSensorVals()

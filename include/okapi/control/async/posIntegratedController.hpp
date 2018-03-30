@@ -18,8 +18,6 @@ class PosIntegratedControllerArgs : public AsyncPositionControllerArgs {
   public:
   PosIntegratedControllerArgs(const AbstractMotor &imotor);
 
-  virtual ~PosIntegratedControllerArgs();
-
   const AbstractMotor &motor;
 };
 
@@ -31,8 +29,6 @@ class PosIntegratedController : public AsyncPositionController {
   PosIntegratedController(const AbstractMotor &imotor);
 
   PosIntegratedController(const PosIntegratedControllerArgs &iparams);
-
-  virtual ~PosIntegratedController();
 
   /**
    * Sets the target for the controller.

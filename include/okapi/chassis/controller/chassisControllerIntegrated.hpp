@@ -67,8 +67,6 @@ class ChassisControllerIntegrated : public virtual ChassisController {
                               const AbstractMotor &ibottomLeftMotor,
                               const double istraightScale = 1, const double iturnScale = 1);
 
-  virtual ~ChassisControllerIntegrated();
-
   /**
    * Drives the robot straight for a distance (using closed-loop control).
    *

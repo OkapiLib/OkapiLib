@@ -24,8 +24,6 @@ class XDriveModelArgs : public ChassisModelArgs {
                   const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
                   const double imaxOutput = 100);
 
-  virtual ~XDriveModelArgs();
-
   const AbstractMotor &topLeftMotor;
   const AbstractMotor &topRightMotor;
   const AbstractMotor &bottomRightMotor;
@@ -72,8 +70,6 @@ class XDriveModel : public ChassisModel {
   XDriveModel(const XDriveModelArgs &iparams);
 
   XDriveModel(const XDriveModel &other);
-
-  virtual ~XDriveModel();
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.

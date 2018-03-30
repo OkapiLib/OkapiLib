@@ -18,8 +18,6 @@ class VelPIDControllerArgs : public IterativeVelocityControllerArgs {
 
   VelPIDControllerArgs(const double ikP, const double ikD, const VelMathArgs &iparams);
 
-  virtual ~VelPIDControllerArgs();
-
   const double kP, kD;
   const VelMathArgs params{1800};
 };
@@ -48,8 +46,6 @@ class VelPIDController : public IterativeVelocityController {
    * @param params VelPIDControllerArgs
    */
   VelPIDController(const VelPIDControllerArgs &params);
-
-  virtual ~VelPIDController();
 
   /**
    * Do one iteration of the controller.

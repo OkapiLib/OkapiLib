@@ -28,8 +28,6 @@ class OdomChassisController : public virtual ChassisController {
    */
   OdomChassisController(const OdometryArgs &iparams, const float imoveThreshold = 10);
 
-  virtual ~OdomChassisController();
-
   /**
    * Drives the robot straight to a point in the odom frame.
    *

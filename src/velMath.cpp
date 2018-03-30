@@ -23,6 +23,8 @@ VelMath::VelMath(const VelMathArgs &iparams)
   : ticksPerRev(iparams.ticksPerRev), filter(iparams.alpha, iparams.beta) {
 }
 
+VelMath::~VelMath() = default;
+
 double VelMath::step(const double inewPos) {
   const uint32_t now = millis();
 

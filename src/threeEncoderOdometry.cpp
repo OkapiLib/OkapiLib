@@ -14,15 +14,11 @@ ThreeEncoderOdometryArgs::ThreeEncoderOdometryArgs(const SkidSteerModel &iparams
   : OdometryArgs(iparams, iscale, iturnScale), middleScale(imiddleScale) {
 }
 
-ThreeEncoderOdometryArgs::~ThreeEncoderOdometryArgs() = default;
-
 ThreeEncoderOdometry::ThreeEncoderOdometry(const ThreeEncoderSkidSteerModel &imodel,
                                            const double iscale, const double iturnScale,
                                            const double imiddleScale)
   : Odometry(imodel, iscale, iturnScale), middleScale(imiddleScale), model(imodel) {
 }
-
-ThreeEncoderOdometry::~ThreeEncoderOdometry() = default;
 
 void ThreeEncoderOdometry::loop() {
   uint32_t now = millis();

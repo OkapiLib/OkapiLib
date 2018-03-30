@@ -23,8 +23,6 @@ class SkidSteerModelArgs : public ChassisModelArgs {
   SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
                      const double imaxOutput = 100);
 
-  virtual ~SkidSteerModelArgs();
-
   const AbstractMotor &leftSideMotor;
   const AbstractMotor &rightSideMotor;
   const RotarySensor &leftSensor;
@@ -63,8 +61,6 @@ class SkidSteerModel : public ChassisModel {
   SkidSteerModel(const SkidSteerModelArgs &iparams);
 
   SkidSteerModel(const SkidSteerModel &other);
-
-  virtual ~SkidSteerModel();
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.

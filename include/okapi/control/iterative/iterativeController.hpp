@@ -11,13 +11,18 @@
 #include "api.h"
 
 namespace okapi {
-class IterativeControllerArgs {};
+class IterativeControllerArgs {
+  public:
+  virtual ~IterativeControllerArgs();
+};
 
 /**
  * Closed-loop controller that steps iteratively using the step method below.
  */
 class IterativeController {
   public:
+  virtual ~IterativeController();
+
   /**
    * Do one iteration of the controller. Outputs in the range [-1, 1]
    *

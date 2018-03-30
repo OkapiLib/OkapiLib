@@ -71,8 +71,6 @@ class ChassisControllerPID : public virtual ChassisController {
                        const PosPIDControllerArgs &iangleArgs, const double istraightScale = 1,
                        const double iturnScale = 1);
 
-  virtual ~ChassisControllerPID();
-
   /**
    * Drives the robot straight for a distance (using closed-loop control).
    *

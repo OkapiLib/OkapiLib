@@ -16,8 +16,6 @@ class ADIMotor : public ControllerOutput {
   public:
   ADIMotor(const uint8_t iport);
 
-  virtual ~ADIMotor();
-
   /**
    * Set the voltage to the motor.
    *

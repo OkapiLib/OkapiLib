@@ -31,8 +31,6 @@ SkidSteerModelArgs::SkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
     maxOutput(imaxOutput) {
 }
 
-SkidSteerModelArgs::~SkidSteerModelArgs() = default;
-
 SkidSteerModel::SkidSteerModel(const AbstractMotor &ileftSideMotor,
                                const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc,
                                const RotarySensor &irightEnc, const double imaxOutput)
@@ -67,8 +65,6 @@ SkidSteerModel::SkidSteerModel(const SkidSteerModel &other)
     rightSensor(other.rightSensor),
     maxOutput(other.maxOutput) {
 }
-
-SkidSteerModel::~SkidSteerModel() = default;
 
 void SkidSteerModel::forward(const double ispeed) const {
   leftSideMotor.move_velocity(ispeed * maxOutput);

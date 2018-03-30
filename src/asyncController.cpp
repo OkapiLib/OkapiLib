@@ -8,6 +8,8 @@
 #include "okapi/control/async/asyncController.hpp"
 
 namespace okapi {
+AsyncControllerArgs::~AsyncControllerArgs() = default;
+
 AsyncController::~AsyncController() = default;
 
 double AsyncController::getOutput() const {

@@ -31,8 +31,6 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
   OdomChassisControllerPID(const OdometryArgs &iparams, const PosPIDControllerArgs &idistanceArgs,
                            const PosPIDControllerArgs &iangleArgs);
 
-  virtual ~OdomChassisControllerPID();
-
   /**
    * Drives the robot straight to a point in the odom frame.
    *

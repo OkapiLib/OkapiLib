@@ -51,8 +51,6 @@ ChassisControllerPID::ChassisControllerPID(const AbstractMotor &itopLeftMotor,
   setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
 }
 
-ChassisControllerPID::~ChassisControllerPID() = default;
-
 void ChassisControllerPID::moveDistance(const int itarget) {
   const auto encStartVals = model.getSensorVals();
   float distanceElapsed = 0, angleChange = 0, lastDistance = 0;

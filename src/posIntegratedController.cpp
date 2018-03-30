@@ -12,16 +12,12 @@ PosIntegratedControllerArgs::PosIntegratedControllerArgs(const AbstractMotor &im
   : motor(imotor) {
 }
 
-PosIntegratedControllerArgs::~PosIntegratedControllerArgs() = default;
-
 PosIntegratedController::PosIntegratedController(const AbstractMotor &imotor) : motor(imotor) {
 }
 
 PosIntegratedController::PosIntegratedController(const PosIntegratedControllerArgs &iparams)
   : motor(iparams.motor) {
 }
-
-PosIntegratedController::~PosIntegratedController() = default;
 
 void PosIntegratedController::setTarget(const double itarget) {
   motor.move_absolute(itarget + offset, 100);
