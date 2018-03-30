@@ -11,9 +11,9 @@
 
 namespace okapi {
 SkidSteerModelArgs::SkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
-                                           const AbstractMotor &irightSideMotor,
-                                           const RotarySensor &ileftEnc,
-                                           const RotarySensor &irightEnc, const double imaxOutput)
+                                       const AbstractMotor &irightSideMotor,
+                                       const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                                       const double imaxOutput)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
     leftSensor(ileftEnc),
@@ -22,8 +22,8 @@ SkidSteerModelArgs::SkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
 }
 
 SkidSteerModelArgs::SkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
-                                           const AbstractMotor &irightSideMotor,
-                                           const double imaxOutput)
+                                       const AbstractMotor &irightSideMotor,
+                                       const double imaxOutput)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
     leftSensor(std::move(ileftSideMotor.getEncoder())),

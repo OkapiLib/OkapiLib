@@ -14,7 +14,7 @@
 
 namespace okapi {
 PosPIDControllerArgs::PosPIDControllerArgs(const double ikP, const double ikI, const double ikD,
-                                               const double ikBias)
+                                           const double ikBias)
   : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
 }
 

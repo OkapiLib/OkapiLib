@@ -16,7 +16,7 @@ namespace okapi {
 class PosPIDControllerArgs : public IterativePositionControllerArgs {
   public:
   PosPIDControllerArgs(const double ikP, const double ikI, const double ikD,
-                         const double ikBias = 0);
+                       const double ikBias = 0);
 
   virtual ~PosPIDControllerArgs();
 

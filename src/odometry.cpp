@@ -20,7 +20,7 @@ OdomState::OdomState(const double ix, const double iy, const double itheta)
 OdomState::~OdomState() = default;
 
 OdometryArgs::OdometryArgs(const SkidSteerModel &imodel, const double iscale,
-                               const double iturnScale)
+                           const double iturnScale)
   : model(imodel), scale(iscale), turnScale(iturnScale) {
 }
 

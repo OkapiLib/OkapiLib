@@ -9,9 +9,11 @@
 #include "okapi/chassis/model/threeEncoderSkidSteerModel.hpp"
 
 namespace okapi {
-ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs(
-  const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-  const RotarySensor &ileftEnc, const RotarySensor &imiddleEnc, const RotarySensor &irightEnc)
+ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
+                                                               const AbstractMotor &irightSideMotor,
+                                                               const RotarySensor &ileftEnc,
+                                                               const RotarySensor &imiddleEnc,
+                                                               const RotarySensor &irightEnc)
   : SkidSteerModelArgs(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc),
     middleSensor(imiddleEnc) {
 }

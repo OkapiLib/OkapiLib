@@ -14,9 +14,8 @@ namespace okapi {
 class ThreeEncoderSkidSteerModelArgs : public SkidSteerModelArgs {
   public:
   ThreeEncoderSkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
-                                   const AbstractMotor &irightSideMotor,
-                                   const RotarySensor &ileftEnc, const RotarySensor &imiddleEnc,
-                                   const RotarySensor &irightEnc);
+                                 const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc,
+                                 const RotarySensor &imiddleEnc, const RotarySensor &irightEnc);
 
   virtual ~ThreeEncoderSkidSteerModelArgs();
 

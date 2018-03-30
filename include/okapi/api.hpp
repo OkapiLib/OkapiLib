@@ -30,6 +30,7 @@
 #include "okapi/device/motor/motorGroup.hpp"
 #include "okapi/device/rotarysensor/adiEncoder.hpp"
 #include "okapi/device/rotarysensor/integratedEncoder.hpp"
+#include "okapi/device/vision.hpp"
 
 #include "okapi/filter/averageFilter.hpp"
 #include "okapi/filter/demaFilter.hpp"

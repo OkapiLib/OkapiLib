@@ -10,11 +10,11 @@
 
 namespace okapi {
 XDriveModelArgs::XDriveModelArgs(const AbstractMotor &itopLeftMotor,
-                                     const AbstractMotor &itopRightMotor,
-                                     const AbstractMotor &ibottomRightMotor,
-                                     const AbstractMotor &ibottomLeftMotor,
-                                     const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-                                     const double imaxOutput)
+                                 const AbstractMotor &itopRightMotor,
+                                 const AbstractMotor &ibottomRightMotor,
+                                 const AbstractMotor &ibottomLeftMotor,
+                                 const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                                 const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
@@ -25,9 +25,9 @@ XDriveModelArgs::XDriveModelArgs(const AbstractMotor &itopLeftMotor,
 }
 
 XDriveModelArgs::XDriveModelArgs(const AbstractMotor &itopLeftMotor,
-                                     const AbstractMotor &itopRightMotor,
-                                     const AbstractMotor &ibottomRightMotor,
-                                     const AbstractMotor &ibottomLeftMotor, const double imaxOutput)
+                                 const AbstractMotor &itopRightMotor,
+                                 const AbstractMotor &ibottomRightMotor,
+                                 const AbstractMotor &ibottomLeftMotor, const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),

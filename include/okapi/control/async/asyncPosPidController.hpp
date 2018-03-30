@@ -21,7 +21,7 @@ class AsyncPosPIDController;
 class AsyncPosPIDControllerArgs : public AsyncPositionControllerArgs {
   public:
   AsyncPosPIDControllerArgs(ControllerInput &iinput, ControllerOutput &ioutput,
-                              const PosPIDControllerArgs &iparams);
+                            const PosPIDControllerArgs &iparams);
 
   ControllerInput &input;
   ControllerOutput &output;

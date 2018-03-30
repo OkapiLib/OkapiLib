@@ -12,12 +12,11 @@
 
 namespace okapi {
 
-VelPIDControllerArgs::VelPIDControllerArgs(const double ikP, const double ikD)
-  : kP(ikP), kD(ikD) {
+VelPIDControllerArgs::VelPIDControllerArgs(const double ikP, const double ikD) : kP(ikP), kD(ikD) {
 }
 
 VelPIDControllerArgs::VelPIDControllerArgs(const double ikP, const double ikD,
-                                               const VelMathArgs &iparams)
+                                           const VelMathArgs &iparams)
   : kP(ikP), kD(ikD), params(iparams) {
 }
 

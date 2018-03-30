@@ -9,8 +9,8 @@
 
 namespace okapi {
 ThreeEncoderOdometryArgs::ThreeEncoderOdometryArgs(const SkidSteerModel &iparams,
-                                                       const double iscale, const double iturnScale,
-                                                       const double imiddleScale)
+                                                   const double iscale, const double iturnScale,
+                                                   const double imiddleScale)
   : OdometryArgs(iparams, iscale, iturnScale), middleScale(imiddleScale) {
 }
 

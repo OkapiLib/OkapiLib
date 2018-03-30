@@ -9,8 +9,8 @@
 
 namespace okapi {
 AsyncPosPIDControllerArgs::AsyncPosPIDControllerArgs(ControllerInput &iinput,
-                                                         ControllerOutput &ioutput,
-                                                         const PosPIDControllerArgs &iparams)
+                                                     ControllerOutput &ioutput,
+                                                     const PosPIDControllerArgs &iparams)
   : input(iinput), output(ioutput), params(iparams) {
 }
 

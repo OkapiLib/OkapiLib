@@ -15,7 +15,7 @@ namespace okapi {
 class ThreeEncoderOdometryArgs : public OdometryArgs {
   public:
   ThreeEncoderOdometryArgs(const SkidSteerModel &iparams, const double iscale,
-                             const double iturnScale, const double imiddleScale);
+                           const double iturnScale, const double imiddleScale);
 
   virtual ~ThreeEncoderOdometryArgs();
 

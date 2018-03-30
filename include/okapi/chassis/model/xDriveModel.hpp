@@ -16,13 +16,13 @@ namespace okapi {
 class XDriveModelArgs : public ChassisModelArgs {
   public:
   XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
-                    const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-                    const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-                    const double imaxOutput = 100);
+                  const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+                  const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                  const double imaxOutput = 100);
 
   XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
-                    const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-                    const double imaxOutput = 100);
+                  const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+                  const double imaxOutput = 100);
 
   virtual ~XDriveModelArgs();
 

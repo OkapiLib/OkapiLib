@@ -16,12 +16,12 @@ namespace okapi {
 class SkidSteerModelArgs : public ChassisModelArgs {
   public:
   SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                       const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-                       const double imaxOutput = 100);
+                     const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                     const double imaxOutput = 100);
 
   // Create the sensors using the integrated encoder
   SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                       const double imaxOutput = 100);
+                     const double imaxOutput = 100);
 
   virtual ~SkidSteerModelArgs();
 
