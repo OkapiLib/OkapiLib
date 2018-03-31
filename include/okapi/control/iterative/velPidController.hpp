@@ -151,7 +151,7 @@ class VelPIDController : public IterativeVelocityController {
   protected:
   double kP, kD;
   uint32_t lastTime = 0;
-  uint32_t sampleTime = 15;
+  uint32_t sampleTime = 10;
   double error = 0;
   const double errorScale = 4096; // 12 bit ADC scale, good enough for most things
   double lastError = 0;

@@ -143,7 +143,7 @@ class PosPIDController : public IterativePositionController {
   protected:
   double kP, kI, kD, kBias;
   uint32_t lastTime = 0;
-  uint32_t sampleTime = 0;
+  uint32_t sampleTime = 10;
   double target = 0;
   double lastReading = 0;
   double error = 0;

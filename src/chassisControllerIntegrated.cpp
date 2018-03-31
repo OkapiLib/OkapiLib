@@ -83,7 +83,7 @@ void ChassisControllerIntegrated::moveDistance(const int itarget) {
     if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod)
       atTarget = true;
 
-    task_delay_until(&prevWakeTime, 15);
+    task_delay_until(&prevWakeTime, 10);
   }
 }
 

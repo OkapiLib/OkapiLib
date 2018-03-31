@@ -95,7 +95,7 @@ void ChassisControllerPID::moveDistance(const int itarget) {
     if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod)
       atTarget = true;
 
-    task_delay_until(&prevWakeTime, 15);
+    task_delay_until(&prevWakeTime, 10);
   }
 
   model.stop();
@@ -139,7 +139,7 @@ void ChassisControllerPID::turnAngle(float idegTarget) {
     if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod)
       atTarget = true;
 
-    task_delay_until(&prevWakeTime, 15);
+    task_delay_until(&prevWakeTime, 10);
   }
 
   model.stop();
