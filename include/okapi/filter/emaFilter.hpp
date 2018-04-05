@@ -21,7 +21,7 @@ class EmaFilter : public Filter {
   EmaFilter(const double ialpha);
 
   /**
-   * Filters a reading.
+   * Filters a value, like a sensor reading.
    *
    * @param reading new measurement
    * @return filtered result

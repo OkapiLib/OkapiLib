@@ -27,7 +27,7 @@ class OdomState {
 
 class OdometryArgs {
   public:
-  OdometryArgs(const SkidSteerModel &iparams, const double iscale, const double iturnScale);
+  OdometryArgs(const SkidSteerModel &imodel, const double iscale, const double iturnScale);
 
   virtual ~OdometryArgs();
 
@@ -41,7 +41,7 @@ class Odometry {
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
    * relative to the start (assumed to be (0, 0)).
    *
-   * @param imodelArgs ChassisModel for reading sensors
+   * @param imodel ChassisModel for reading sensors
    * @param iscale straight scale
    * @param iturnScale turn scale
    */
@@ -58,7 +58,7 @@ class Odometry {
   virtual ~Odometry();
 
   /**
-   * Set the drive and turn scales.
+   * Sets the drive and turn scales.
    *
    * @param iscale straight scale converting encoder ticks to mm
    * @param iturnScale turn scale converting encoder ticks to radians
@@ -71,7 +71,7 @@ class Odometry {
   virtual void loop();
 
   /**
-   * Tread the input as an Odometry pointer and call loop. Meant to be used to bounce into a
+   * Treat the input as an Odometry pointer and call loop. Meant to be used to bounce into a
    * thread because loop runs forever.
    *
    * @param context pointer to an Odometry object
@@ -79,14 +79,14 @@ class Odometry {
   static void trampoline(void *context);
 
   /**
-   * Get the current state.
+   * Returns the current state.
    *
    * @return current state
    */
   virtual OdomState getState() const;
 
   /**
-   * Set a new state to be the current state.
+   * Sets a new state to be the current state.
    *
    * @param istate new state
    */

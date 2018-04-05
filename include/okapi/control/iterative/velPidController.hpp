@@ -104,6 +104,13 @@ class VelPIDController : public IterativeVelocityController {
   virtual void flipDisable() override;
 
   /**
+   * Get the last set sample time.
+   *
+   * @return sample time
+   */
+  virtual uint32_t getSampleTime() const override;
+
+  /**
    * Do one iteration of velocity calculation.
    *
    * @param inewReading new measurement
@@ -130,23 +137,16 @@ class VelPIDController : public IterativeVelocityController {
   virtual void setFilterGains(const double alpha, const double beta);
 
   /**
-   * Set the number of measurements per revolution. Default is 360.
+   * Sets the number of encoder ticks per revolution. Default is 1800.
    *
    * @param tpr number of measured units per revolution
    */
   virtual void setTicksPerRev(const double tpr);
 
   /**
-   * Get the current velocity.
+   * Returns the current velocity.
    */
   virtual double getVel() const;
-
-  /**
-   * Get the last set sample time.
-   *
-   * @return sample time
-   */
-  virtual uint32_t getSampleTime() const override;
 
   protected:
   double kP, kD;

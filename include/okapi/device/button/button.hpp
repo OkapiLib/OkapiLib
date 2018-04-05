@@ -16,7 +16,7 @@ class Button {
   virtual ~Button();
 
   /**
-   * Return whether the button is current pressed.
+   * Return whether the button is currently pressed.
    **/
   virtual bool isPressed() = 0;
 

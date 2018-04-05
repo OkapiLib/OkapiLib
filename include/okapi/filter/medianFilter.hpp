@@ -17,13 +17,19 @@
 
 namespace okapi {
 /**
- * @param n number of elements in the filter
+ * @param n number of taps in the filter
  */
 template <std::size_t n> class MedianFilter : public Filter {
   public:
   MedianFilter() : middleIndex((((n)&1) ? ((n) / 2) : (((n) / 2) - 1))) {
   }
 
+  /**
+   * Filters a value, like a sensor reading.
+   *
+   * @param ireading new measurement
+   * @return filtered result
+   */
   virtual double filter(const double ireading) override {
     data[index++] = ireading;
     if (index >= n) {
@@ -33,6 +39,11 @@ template <std::size_t n> class MedianFilter : public Filter {
     return kth_smallset();
   }
 
+  /**
+   * Returns the previous output from filter.
+   *
+   * @return the previous output from filter
+   */
   virtual double getOutput() const override {
     return output;
   }

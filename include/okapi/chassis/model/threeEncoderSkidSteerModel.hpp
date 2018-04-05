@@ -15,7 +15,8 @@ class ThreeEncoderSkidSteerModelArgs : public SkidSteerModelArgs {
   public:
   ThreeEncoderSkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
                                  const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc,
-                                 const RotarySensor &imiddleEnc, const RotarySensor &irightEnc);
+                                 const RotarySensor &imiddleEnc, const RotarySensor &irightEnc,
+                                 const double imaxOutput = 100);
 
   const RotarySensor &middleSensor;
 };
@@ -34,7 +35,8 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
    */
   ThreeEncoderSkidSteerModel(const AbstractMotor &ileftSideMotor,
                              const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc,
-                             const RotarySensor &imiddleEnc, const RotarySensor &irightEnc);
+                             const RotarySensor &imiddleEnc, const RotarySensor &irightEnc,
+                             const double imaxOutput = 100);
 
   ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams);
 

@@ -8,12 +8,12 @@
 #include "okapi/device/motor/motor.hpp"
 
 namespace okapi {
-void okapi::Motor::controllerSet(const double ivalue) {
-  move_velocity(ivalue);
-}
-
 IntegratedEncoder okapi::Motor::getEncoder() const {
   return IntegratedEncoder(*this);
+}
+
+void okapi::Motor::controllerSet(const double ivalue) {
+  move_velocity(ivalue);
 }
 
 inline namespace literals {

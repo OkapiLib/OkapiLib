@@ -77,7 +77,7 @@ void opcontrol() {
       test("0.1 : [-1, 1] -> [-2, 2]",
            TEST_BODY(AssertThat, remapRange(0.1, -1, 1, -2, 2), EqualsWithDelta(0.2, 0.0001)));
       test("-0.1 : [-1, 1] -> [2, -2]",
-           TEST_BODY(AssertThat, remapRange(-0.1, -1, 1, -2, 2), EqualsWithDelta(0.2, 0.0001)));
+           TEST_BODY(AssertThat, remapRange(-0.1, -1, 1, 2, -2), EqualsWithDelta(0.2, 0.0001)));
       test("0 : [-1, 1] -> [-5, 2]",
            TEST_BODY(AssertThat, remapRange(0, -1, 1, -5, 2), EqualsWithDelta(-1.5, 0.0001)));
     }

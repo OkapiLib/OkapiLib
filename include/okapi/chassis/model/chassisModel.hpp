@@ -65,10 +65,10 @@ class ChassisModel {
    * @param ithreshold deadband on joystick values
    */
   virtual void tank(const double ileftSpeed, const double irightSpeed,
-                    const double ithreshold = 0) const;
+                    const double ithreshold = 0) const = 0;
 
   /**
-   * Drive the robot with an arcade drive layout.
+   * Drive the robot with an arcade drive layout. Uses voltage mode.
    *
    * @param iySpeed speed on y axis (forward)
    * @param izRotation speed around z axis (up)
