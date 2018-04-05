@@ -8,7 +8,14 @@
 #include "okapi/filter/demaFilter.hpp"
 
 namespace okapi {
+DemaFilterArgs::DemaFilterArgs(const double ialpha, const double ibeta)
+  : alpha(ialpha), beta(ibeta) {
+}
+
 DemaFilter::DemaFilter(const double ialpha, const double ibeta) : alpha(ialpha), beta(ibeta) {
+}
+
+DemaFilter::DemaFilter(const DemaFilterArgs &iargs) : alpha(iargs.alpha), beta(iargs.beta) {
 }
 
 double DemaFilter::filter(const double ireading) {

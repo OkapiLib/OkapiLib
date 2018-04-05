@@ -16,6 +16,8 @@
 #include <cstddef>
 
 namespace okapi {
+template <std::size_t n> class MedianFilterArgs : public FilterArgs {};
+
 /**
  * @param n number of taps in the filter
  */

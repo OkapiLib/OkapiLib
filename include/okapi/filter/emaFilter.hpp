@@ -11,6 +11,13 @@
 #include "okapi/filter/filter.hpp"
 
 namespace okapi {
+class EmaFilterArgs : public FilterArgs {
+  public:
+  EmaFilterArgs(const double ialpha);
+
+  const double alpha;
+};
+
 class EmaFilter : public Filter {
   public:
   /**
@@ -19,6 +26,8 @@ class EmaFilter : public Filter {
    * @param ialpha alpha gain
    */
   EmaFilter(const double ialpha);
+
+  EmaFilter(const EmaFilterArgs &iargs);
 
   /**
    * Filters a value, like a sensor reading.

@@ -8,5 +8,7 @@
 #include "okapi/filter/filter.hpp"
 
 namespace okapi {
+FilterArgs::~FilterArgs() = default;
+
 Filter::~Filter() = default;
 }
