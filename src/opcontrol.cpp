@@ -8,19 +8,19 @@ using namespace okapi;
 void opcontrol() {
   task_delay(100);
 
-  VelMath velMath(1800, 1, 0);
-  MedianFilter<5> medFilt;
-  AverageFilter<5> filt;
-  printf("velocity,current,efficiency,power,temperature,torque,voltage\n");
-  motor_move_velocity(9, 127);
-  while (true) {
-    velMath.step(motor_get_position(7));
-    filt.filter(medFilt.filter(velMath.getVelocity()));
-    printf("%1.2f,%lu,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", filt.getOutput(),
-           motor_get_current_draw(7), motor_get_efficiency(7), motor_get_power(7),
-           motor_get_temperature(7), motor_get_torque(7), motor_get_voltage(7));
-    task_delay(10);
-  }
+  // VelMath velMath(1800, 1, 0);
+  // MedianFilter<5> medFilt;
+  // AverageFilter<5> filt;
+  // printf("velocity,current,efficiency,power,temperature,torque,voltage\n");
+  // motor_move_velocity(9, 127);
+  // while (true) {
+  //   velMath.step(motor_get_position(7));
+  //   filt.filter(medFilt.filter(velMath.getVelocity()));
+  //   printf("%1.2f,%lu,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", filt.getOutput(),
+  //          motor_get_current_draw(7), motor_get_efficiency(7), motor_get_power(7),
+  //          motor_get_temperature(7), motor_get_torque(7), motor_get_voltage(7));
+  //   task_delay(10);
+  // }
 
   // VelMath velMath(1800, 1, 0);
   // double mass = 0;
