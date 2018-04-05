@@ -91,7 +91,7 @@ class PosPIDController : public IterativePositionController {
   virtual void setSampleTime(const uint32_t isampleTime) override;
 
   /**
-   * Set controller output bounds. Default bounds are [-127, 127].
+   * Set controller output bounds. Default bounds are [-1, 1].
    *
    * @param imax max output
    * @param imin min output
@@ -99,7 +99,7 @@ class PosPIDController : public IterativePositionController {
   virtual void setOutputLimits(double imax, double imin) override;
 
   /**
-   * Set integrator bounds. Default bounds are [-127, 127];
+   * Set integrator bounds. Default bounds are [-1, 1].
    *
    * @param imax max integrator value
    * @param imin min integrator value
@@ -164,8 +164,8 @@ class PosPIDController : public IterativePositionController {
 
   // Output bounds
   double output = 0;
-  double outputMax = 0;
-  double outputMin = 0;
+  double outputMax = 1;
+  double outputMin = -1;
 
   // Reset the integrated when the controller crosses 0 or not
   bool shouldResetOnCross = true;

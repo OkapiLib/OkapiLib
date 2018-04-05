@@ -8,8 +8,9 @@
 #include "okapi/control/iterative/motorController.hpp"
 
 namespace okapi {
-MotorController::MotorController(const AbstractMotor &imotor, IterativeController &iptr)
-  : motor(imotor), controller(iptr) {
+MotorController::MotorController(const AbstractMotor &imotor,
+                                 IterativeVelocityController &icontroller)
+  : motor(imotor), controller(icontroller) {
 }
 
 double MotorController::step(const double ireading) {
@@ -34,7 +35,7 @@ double MotorController::getDerivative() const {
   return controller.getDerivative();
 }
 
-void MotorController::setSampleTime(const int isampleTime) {
+void MotorController::setSampleTime(const uint32_t isampleTime) {
   controller.setSampleTime(isampleTime);
 }
 

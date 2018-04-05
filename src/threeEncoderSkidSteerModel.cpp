@@ -13,8 +13,9 @@ ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs(const AbstractMot
                                                                const AbstractMotor &irightSideMotor,
                                                                const RotarySensor &ileftEnc,
                                                                const RotarySensor &imiddleEnc,
-                                                               const RotarySensor &irightEnc)
-  : SkidSteerModelArgs(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc),
+                                                               const RotarySensor &irightEnc,
+                                                               const double imaxOutput)
+  : SkidSteerModelArgs(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxOutput),
     middleSensor(imiddleEnc) {
 }
 
@@ -22,8 +23,10 @@ ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(const AbstractMotor &ilef
                                                        const AbstractMotor &irightSideMotor,
                                                        const RotarySensor &ileftEnc,
                                                        const RotarySensor &imiddleEnc,
-                                                       const RotarySensor &irightEnc)
-  : SkidSteerModel(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc), middleSensor(imiddleEnc) {
+                                                       const RotarySensor &irightEnc,
+                                                       const double imaxOutput)
+  : SkidSteerModel(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxOutput),
+    middleSensor(imiddleEnc) {
 }
 
 ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(

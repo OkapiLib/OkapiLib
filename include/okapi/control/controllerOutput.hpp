@@ -12,8 +12,10 @@ namespace okapi {
 class ControllerOutput {
   public:
   /**
-   * Write the value of the controller output. This method might be automatically called in another
+   * Writes the value of the controller output. This method might be automatically called in another
    * thread by the controller.
+   *
+   * @param ivalue the controller's output
    */
   virtual void controllerSet(const double ivalue) = 0;
 };

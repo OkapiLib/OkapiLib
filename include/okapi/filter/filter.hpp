@@ -14,7 +14,7 @@ class Filter {
   virtual ~Filter();
 
   /**
-   * Filters a reading.
+   * Filters a value, like a sensor reading.
    *
    * @param ireading new measurement
    * @return filtered result

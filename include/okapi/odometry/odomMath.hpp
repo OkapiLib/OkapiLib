@@ -14,11 +14,13 @@
 namespace okapi {
 class DistanceAndAngle {
   public:
-  DistanceAndAngle(const double ilength = 0, const double itheta = 0);
+  DistanceAndAngle();
+  DistanceAndAngle(const double ilength, const double itheta);
 
   virtual ~DistanceAndAngle();
 
-  double length, theta;
+  double length = 0;
+  double theta = 0;
 };
 
 class OdomMath {
@@ -63,7 +65,7 @@ class OdomMath {
    * @return scales in the format {straight scale, turn scale}
    */
   static std::tuple<double, double> guessScales(const double chassisDiam, const double wheelDiam,
-                                                const double ticksPerRev = 360.0);
+                                                const double ticksPerRev = 1800.0);
 
   private:
   OdomMath();

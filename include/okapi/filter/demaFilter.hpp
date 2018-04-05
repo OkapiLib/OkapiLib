@@ -22,7 +22,7 @@ class DemaFilter : public Filter {
   DemaFilter(const double ialpha, const double ibeta);
 
   /**
-   * Filters a reading.
+   * Filters a value, like a sensor reading.
    *
    * @param reading new measurement
    * @return filtered result

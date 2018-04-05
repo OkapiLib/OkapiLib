@@ -80,7 +80,7 @@ class IterativeController {
   virtual void flipDisable();
 
   /**
-   * Get the last set sample time. Default is 15.
+   * Get the last set sample time. Default is 10.
    *
    * @return sample time
    */

@@ -18,7 +18,7 @@ class ADIEncoder : public RotarySensor {
   /**
    * Get the current sensor value.
    *
-   * @return current value, PROS_ERR on fail
+   * @return the current sensor value, or ``PROS_ERR`` on a failure.
    */
   virtual int32_t get() const override;
 
@@ -32,6 +32,8 @@ class ADIEncoder : public RotarySensor {
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in
    * another thread by the controller.
+   *
+   * @return the current sensor value, or ``PROS_ERR`` on a failure.
    */
   virtual double controllerGet() override;
 

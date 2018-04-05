@@ -10,14 +10,15 @@
 #include <cmath>
 
 namespace okapi {
+DistanceAndAngle::DistanceAndAngle() = default;
+
 DistanceAndAngle::DistanceAndAngle(const double ilength, const double itheta)
   : length(ilength), theta(itheta) {
 }
 
 DistanceAndAngle::~DistanceAndAngle() = default;
 
-OdomMath::OdomMath() {
-}
+OdomMath::OdomMath() = default;
 
 OdomMath::~OdomMath() = default;
 
