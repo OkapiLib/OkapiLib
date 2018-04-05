@@ -16,9 +16,9 @@ void opcontrol() {
   while (true) {
     velMath.step(motor_get_position(9));
     filt.filter(medFilt.filter(velMath.getVelocity()));
-    printf("%1.2f,%lu,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", filt.getOutput(),
-           motor_get_current_draw(9), motor_get_efficiency(9), motor_get_power(9),
-           motor_get_temperature(9), motor_get_torque(9), motor_get_voltage(9));
+    printf("%1.2f,%lu,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", filt.getOutput(), motor_get_current_draw(9),
+           motor_get_efficiency(9), motor_get_power(9), motor_get_temperature(9),
+           motor_get_torque(9), motor_get_voltage(9));
     task_delay(10);
   }
 
@@ -72,6 +72,21 @@ void opcontrol() {
       test_printf("Floating point tests");
       test("0.5^1 == 0.5", TEST_BODY(AssertThat, ipow(0.5, 1), EqualsWithDelta(0.5, 0.0001)));
       test("2.5^2 == 6.25", TEST_BODY(AssertThat, ipow(2.5, 2), EqualsWithDelta(6.25, 0.0001)));
+    }
+
+    {
+      test_printf("Testing cutRange");
+
+      test("1 : [-2, 2] -> 0",
+           TEST_BODY(AssertThat, cutRange(1, -2, 2), EqualsWithDelta(0, 0.0001)));
+      test("2 : [-2, 2] -> 0",
+           TEST_BODY(AssertThat, cutRange(2, -2, 2), EqualsWithDelta(0, 0.0001)));
+      test("-2 : [-2, 2] -> 0",
+           TEST_BODY(AssertThat, cutRange(-2, -2, 2), EqualsWithDelta(0, 0.0001)));
+      test("-3 : [-2, 2] -> -3",
+           TEST_BODY(AssertThat, cutRange(-3, -2, 2), EqualsWithDelta(-3, 0.0001)));
+      test("3 : [-2, 2] -> -3",
+           TEST_BODY(AssertThat, cutRange(3, -2, 2), EqualsWithDelta(3, 0.0001)));
     }
 
     {

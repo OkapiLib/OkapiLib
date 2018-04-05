@@ -48,7 +48,7 @@ constexpr double ipow(const double base, const int expo) {
  * @param max upper bound of deadband
  * @return value, or 0 if value was within [min, max]
  */
-constexpr double cut_range(const double value, const double min, const double max) {
+constexpr double cutRange(const double value, const double min, const double max) {
   return std::clamp(value, min, max) == value ? 0 : value;
 }
 
