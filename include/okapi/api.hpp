@@ -20,8 +20,8 @@
 #include "okapi/control/async/asyncVelIntegratedController.hpp"
 #include "okapi/control/controllerInput.hpp"
 #include "okapi/control/controllerOutput.hpp"
+#include "okapi/control/iterative/iterativePosPidController.hpp"
 #include "okapi/control/iterative/motorController.hpp"
-#include "okapi/control/iterative/posPidController.hpp"
 #include "okapi/control/iterative/velPidController.hpp"
 
 #include "okapi/device/adiUltrasonic.hpp"

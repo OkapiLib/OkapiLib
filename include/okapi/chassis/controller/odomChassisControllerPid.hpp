@@ -28,8 +28,10 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
    * @param idistanceArgs distance PID controller params
    * @param iangleArgs angle PID controller params (keeps the robot straight)
    */
-  OdomChassisControllerPID(const OdometryArgs &iparams, const PosPIDControllerArgs &idistanceArgs,
-                           const PosPIDControllerArgs &iangleArgs, const float imoveThreshold = 10);
+  OdomChassisControllerPID(const OdometryArgs &iparams,
+                           const IterativePosPIDControllerArgs &idistanceArgs,
+                           const IterativePosPIDControllerArgs &iangleArgs,
+                           const float imoveThreshold = 10);
 
   /**
    * Drives the robot straight to a point in the odom frame.

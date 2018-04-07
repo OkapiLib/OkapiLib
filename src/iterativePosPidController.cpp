@@ -7,19 +7,19 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/control/iterative/posPidController.hpp"
+#include "okapi/control/iterative/iterativePosPidController.hpp"
 #include "api.h"
 #include <algorithm>
 #include <cmath>
 
 namespace okapi {
-PosPIDControllerArgs::PosPIDControllerArgs(const double ikP, const double ikI, const double ikD,
-                                           const double ikBias)
+IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, const double ikI,
+                                                             const double ikD, const double ikBias)
   : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
 }
 
-PosPIDController::PosPIDController(const double ikP, const double ikI, const double ikD,
-                                   const double ikBias) {
+IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
+                                                     const double ikD, const double ikBias) {
   if (ikI != 0) {
     setIntegralLimits(-1 / ikI, 1 / ikI);
   }
@@ -27,7 +27,7 @@ PosPIDController::PosPIDController(const double ikP, const double ikI, const dou
   setGains(ikP, ikI, ikD, ikBias);
 }
 
-PosPIDController::PosPIDController(const PosPIDControllerArgs &params) {
+IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params) {
   if (params.kI != 0) {
     setIntegralLimits(-1 / params.kI, 1 / params.kI);
   }
@@ -35,23 +35,23 @@ PosPIDController::PosPIDController(const PosPIDControllerArgs &params) {
   setGains(params.kP, params.kI, params.kD, params.kBias);
 }
 
-void PosPIDController::setTarget(const double itarget) {
+void IterativePosPIDController::setTarget(const double itarget) {
   target = itarget;
 }
 
-double PosPIDController::getOutput() const {
+double IterativePosPIDController::getOutput() const {
   return output;
 }
 
-double PosPIDController::getError() const {
+double IterativePosPIDController::getError() const {
   return error;
 }
 
-double PosPIDController::getDerivative() const {
+double IterativePosPIDController::getDerivative() const {
   return derivative;
 }
 
-void PosPIDController::setSampleTime(const uint32_t isampleTime) {
+void IterativePosPIDController::setSampleTime(const uint32_t isampleTime) {
   if (isampleTime > 0) {
     const double ratio = static_cast<double>(isampleTime) / static_cast<double>(sampleTime);
     kI *= ratio;
@@ -60,7 +60,7 @@ void PosPIDController::setSampleTime(const uint32_t isampleTime) {
   }
 }
 
-void PosPIDController::setOutputLimits(double imax, double imin) {
+void IterativePosPIDController::setOutputLimits(double imax, double imin) {
   // Always use larger value as max
   if (imin > imax) {
     const double temp = imax;
@@ -77,7 +77,7 @@ void PosPIDController::setOutputLimits(double imax, double imin) {
   setIntegralLimits(imax, imin);
 }
 
-void PosPIDController::setIntegralLimits(double imax, double imin) {
+void IterativePosPIDController::setIntegralLimits(double imax, double imin) {
   // Always use larger value as max
   if (imin > imax) {
     const double temp = imax;
@@ -91,7 +91,7 @@ void PosPIDController::setIntegralLimits(double imax, double imin) {
   integral = std::clamp(integral, integralMin, integralMax);
 }
 
-double PosPIDController::step(const double inewReading) {
+double IterativePosPIDController::step(const double inewReading) {
   if (isOn) {
     const uint32_t now = millis();
 
@@ -126,8 +126,8 @@ double PosPIDController::step(const double inewReading) {
   return output;
 }
 
-void PosPIDController::setGains(const double ikP, const double ikI, const double ikD,
-                                const double ikBias) {
+void IterativePosPIDController::setGains(const double ikP, const double ikI, const double ikD,
+                                         const double ikBias) {
   const double sampleTimeSec = static_cast<double>(sampleTime) / 1000.0;
   kP = ikP;
   kI = ikI * sampleTimeSec;
@@ -135,7 +135,7 @@ void PosPIDController::setGains(const double ikP, const double ikI, const double
   kBias = ikBias;
 }
 
-void PosPIDController::reset() {
+void IterativePosPIDController::reset() {
   error = 0;
   lastError = 0;
   lastReading = 0;
@@ -143,15 +143,15 @@ void PosPIDController::reset() {
   output = 0;
 }
 
-void PosPIDController::setIntegratorReset(bool iresetOnZero) {
+void IterativePosPIDController::setIntegratorReset(bool iresetOnZero) {
   shouldResetOnCross = iresetOnZero;
 }
 
-void PosPIDController::flipDisable() {
+void IterativePosPIDController::flipDisable() {
   isOn = !isOn;
 }
 
-uint32_t PosPIDController::getSampleTime() const {
+uint32_t IterativePosPIDController::getSampleTime() const {
   return sampleTime;
 }
 } // namespace okapi

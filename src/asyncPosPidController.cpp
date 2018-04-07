@@ -10,12 +10,12 @@
 namespace okapi {
 AsyncPosPIDControllerArgs::AsyncPosPIDControllerArgs(ControllerInput &iinput,
                                                      ControllerOutput &ioutput,
-                                                     const PosPIDControllerArgs &iparams)
+                                                     const IterativePosPIDControllerArgs &iparams)
   : input(iinput), output(ioutput), params(iparams) {
 }
 
 AsyncPosPIDController::AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
-                                             const PosPIDControllerArgs &iparams)
+                                             const IterativePosPIDControllerArgs &iparams)
   : input(iinput), output(ioutput), controller(iparams), task(trampoline, this) {
 }
 

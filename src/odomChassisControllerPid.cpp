@@ -10,10 +10,9 @@
 #include <cmath>
 
 namespace okapi {
-OdomChassisControllerPID::OdomChassisControllerPID(const OdometryArgs &iparams,
-                                                   const PosPIDControllerArgs &idistanceArgs,
-                                                   const PosPIDControllerArgs &iangleArgs,
-                                                   const float imoveThreshold)
+OdomChassisControllerPID::OdomChassisControllerPID(
+  const OdometryArgs &iparams, const IterativePosPIDControllerArgs &idistanceArgs,
+  const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold)
   : ChassisController(iparams.model),
     OdomChassisController(iparams, imoveThreshold),
     ChassisControllerPID(iparams.model, idistanceArgs, iangleArgs) {

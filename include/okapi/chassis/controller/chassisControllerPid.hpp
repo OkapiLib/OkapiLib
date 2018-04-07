@@ -11,7 +11,7 @@
 #include "okapi/chassis/controller/chassisController.hpp"
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
-#include "okapi/control/iterative/posPidController.hpp"
+#include "okapi/control/iterative/iterativePosPidController.hpp"
 
 namespace okapi {
 class ChassisControllerPID : public virtual ChassisController {
@@ -27,9 +27,10 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
    * angle
    */
-  ChassisControllerPID(const ChassisModel &imodel, const PosPIDControllerArgs &idistanceArgs,
-                       const PosPIDControllerArgs &iangleArgs, const double istraightScale = 1,
-                       const double iturnScale = 1);
+  ChassisControllerPID(const ChassisModel &imodel,
+                       const IterativePosPIDControllerArgs &idistanceArgs,
+                       const IterativePosPIDControllerArgs &iangleArgs,
+                       const double istraightScale = 1, const double iturnScale = 1);
 
   /**
    * ChassisController using PID control. This constructor assumes a skid
@@ -45,9 +46,9 @@ class ChassisControllerPID : public virtual ChassisController {
    * angle
    */
   ChassisControllerPID(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                       const PosPIDControllerArgs &idistanceArgs,
-                       const PosPIDControllerArgs &iangleArgs, const double istraightScale = 1,
-                       const double iturnScale = 1);
+                       const IterativePosPIDControllerArgs &idistanceArgs,
+                       const IterativePosPIDControllerArgs &iangleArgs,
+                       const double istraightScale = 1, const double iturnScale = 1);
 
   /**
    * ChassisController using PID control. This constructor assumes an x-drive
@@ -67,9 +68,9 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
                        const AbstractMotor &ibottomRightMotor,
                        const AbstractMotor &ibottomLeftMotor,
-                       const PosPIDControllerArgs &idistanceArgs,
-                       const PosPIDControllerArgs &iangleArgs, const double istraightScale = 1,
-                       const double iturnScale = 1);
+                       const IterativePosPIDControllerArgs &idistanceArgs,
+                       const IterativePosPIDControllerArgs &iangleArgs,
+                       const double istraightScale = 1, const double iturnScale = 1);
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
@@ -86,7 +87,8 @@ class ChassisControllerPID : public virtual ChassisController {
   virtual void turnAngle(float idegTarget) override;
 
   protected:
-  PosPIDController distancePid, anglePid;
+  IterativePosPIDController distancePid;
+  IterativePosPIDController anglePid;
   const double straightScale;
   const double turnScale;
 };

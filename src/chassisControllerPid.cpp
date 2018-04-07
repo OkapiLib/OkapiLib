@@ -11,8 +11,8 @@
 
 namespace okapi {
 ChassisControllerPID::ChassisControllerPID(const ChassisModel &imodel,
-                                           const PosPIDControllerArgs &idistanceArgs,
-                                           const PosPIDControllerArgs &iangleArgs,
+                                           const IterativePosPIDControllerArgs &idistanceArgs,
+                                           const IterativePosPIDControllerArgs &iangleArgs,
                                            const double istraightScale, const double iturnScale)
   : ChassisController(imodel),
     distancePid(idistanceArgs),
@@ -24,8 +24,8 @@ ChassisControllerPID::ChassisControllerPID(const ChassisModel &imodel,
 
 ChassisControllerPID::ChassisControllerPID(const AbstractMotor &ileftSideMotor,
                                            const AbstractMotor &irightSideMotor,
-                                           const PosPIDControllerArgs &idistanceArgs,
-                                           const PosPIDControllerArgs &iangleArgs,
+                                           const IterativePosPIDControllerArgs &idistanceArgs,
+                                           const IterativePosPIDControllerArgs &iangleArgs,
                                            const double istraightScale, const double iturnScale)
   : ChassisController(SkidSteerModel(ileftSideMotor, irightSideMotor)),
     distancePid(idistanceArgs),
@@ -39,8 +39,8 @@ ChassisControllerPID::ChassisControllerPID(const AbstractMotor &itopLeftMotor,
                                            const AbstractMotor &itopRightMotor,
                                            const AbstractMotor &ibottomRightMotor,
                                            const AbstractMotor &ibottomLeftMotor,
-                                           const PosPIDControllerArgs &idistanceArgs,
-                                           const PosPIDControllerArgs &iangleArgs,
+                                           const IterativePosPIDControllerArgs &idistanceArgs,
+                                           const IterativePosPIDControllerArgs &iangleArgs,
                                            const double istraightScale, const double iturnScale)
   : ChassisController(
       XDriveModel(itopLeftMotor, itopRightMotor, ibottomRightMotor, ibottomLeftMotor)),

@@ -13,15 +13,15 @@
 #include "okapi/control/iterative/iterativePositionController.hpp"
 
 namespace okapi {
-class PosPIDControllerArgs : public IterativePositionControllerArgs {
+class IterativePosPIDControllerArgs : public IterativePositionControllerArgs {
   public:
-  PosPIDControllerArgs(const double ikP, const double ikI, const double ikD,
-                       const double ikBias = 0);
+  IterativePosPIDControllerArgs(const double ikP, const double ikI, const double ikD,
+                                const double ikBias = 0);
 
   const double kP, kI, kD, kBias;
 };
 
-class PosPIDController : public IterativePositionController {
+class IterativePosPIDController : public IterativePositionController {
   public:
   /**
    * PID controller.
@@ -31,14 +31,15 @@ class PosPIDController : public IterativePositionController {
    * @param ikD derivative gain
    * @param ikBias controller bias (constant offset added to the output)
    */
-  PosPIDController(const double ikP, const double ikI, const double ikD, const double ikBias = 0);
+  IterativePosPIDController(const double ikP, const double ikI, const double ikD,
+                            const double ikBias = 0);
 
   /**
    * PID controller.
    *
    * @param params PosPIDControllerArgs
    */
-  PosPIDController(const PosPIDControllerArgs &params);
+  IterativePosPIDController(const IterativePosPIDControllerArgs &params);
 
   /**
    * Do one iteration of the controller. Returns the reading in the range [-127, 127] unless the
