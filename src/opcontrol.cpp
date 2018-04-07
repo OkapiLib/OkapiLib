@@ -8,7 +8,9 @@ using namespace okapi;
 void opcontrol() {
   task_delay(100);
 
-  ComposableFilter comFilt(MedianFilter<5>(), DemaFilter(0.2, 0.05));
+  ComposableFilter comFilt;
+  comFilt.addFilter([] { return new MedianFilter<5>(); });
+  comFilt.addFilter([] { return new DemaFilter(0.2, 0.05); });
 
   VelMath velMath(1800, 1, 0);
   MedianFilter<5> medFilt;
@@ -178,7 +180,7 @@ void opcontrol() {
     {
       test_printf("Testing DemaFilter");
 
-      DemaFilter<> filt(0.5, 0.05);
+      DemaFilter filt(0.5, 0.05);
 
       test("DemaFilter i = 0", TEST_BODY(AssertThat, filt.filter(0), EqualsWithDelta(0, 0.0001)));
       test("DemaFilter i = 1",
