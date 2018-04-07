@@ -5,30 +5,32 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/control/async/velIntegratedController.hpp"
+#include "okapi/control/async/asyncVelIntegratedController.hpp"
 
 namespace okapi {
-VelIntegratedControllerArgs::VelIntegratedControllerArgs(const AbstractMotor &imotor)
+AsyncVelIntegratedControllerArgs::AsyncVelIntegratedControllerArgs(const AbstractMotor &imotor)
   : motor(imotor) {
 }
 
-VelIntegratedController::VelIntegratedController(const AbstractMotor &imotor) : motor(imotor) {
+AsyncVelIntegratedController::AsyncVelIntegratedController(const AbstractMotor &imotor)
+  : motor(imotor) {
 }
 
-VelIntegratedController::VelIntegratedController(const VelIntegratedControllerArgs &iparams)
+AsyncVelIntegratedController::AsyncVelIntegratedController(
+  const AsyncVelIntegratedControllerArgs &iparams)
   : motor(iparams.motor) {
 }
 
-void VelIntegratedController::setTarget(const double itarget) {
+void AsyncVelIntegratedController::setTarget(const double itarget) {
   motor.move_velocity(itarget);
   lastTarget = itarget;
 }
 
-double VelIntegratedController::getError() const {
+double AsyncVelIntegratedController::getError() const {
   return lastTarget - motor.get_actual_velocity();
 }
 
-void VelIntegratedController::reset() {
+void AsyncVelIntegratedController::reset() {
   // Don't have to do anything
 }
 } // namespace okapi

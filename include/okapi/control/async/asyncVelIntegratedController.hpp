@@ -13,11 +13,11 @@
 #include "okapi/device/rotarysensor/integratedEncoder.hpp"
 
 namespace okapi {
-class VelIntegratedController;
+class AsyncVelIntegratedController;
 
-class VelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
+class AsyncVelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
   public:
-  VelIntegratedControllerArgs(const AbstractMotor &imotor);
+  AsyncVelIntegratedControllerArgs(const AbstractMotor &imotor);
 
   const AbstractMotor &motor;
 };
@@ -25,11 +25,11 @@ class VelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
 /**
  * Closed-loop controller that uses the V5 motor's onboard control to move.
  */
-class VelIntegratedController : public AsyncVelocityController {
+class AsyncVelIntegratedController : public AsyncVelocityController {
   public:
-  VelIntegratedController(const AbstractMotor &imotor);
+  AsyncVelIntegratedController(const AbstractMotor &imotor);
 
-  VelIntegratedController(const VelIntegratedControllerArgs &iparams);
+  AsyncVelIntegratedController(const AsyncVelIntegratedControllerArgs &iparams);
 
   /**
    * Sets the target for the controller.
