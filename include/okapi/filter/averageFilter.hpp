@@ -13,6 +13,8 @@
 #include <cstddef>
 
 namespace okapi {
+template <std::size_t n> class AverageFilterArgs : public FilterArgs {};
+
 /**
  * @param n number of taps in the filter
  */
