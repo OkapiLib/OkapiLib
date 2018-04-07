@@ -26,8 +26,8 @@ class VelMathArgs {
 class VelMath {
   public:
   /**
-   * Velocity math helper. Calculates filtered velocity. Filters using a 5-tap median filter
-   * and a 3-tap averaging filter.
+   * Velocity math helper. Calculates filtered velocity. Filters using a 3-tap median filter
+   * and a 5-tap averaging filter.
    *
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
    */
@@ -46,27 +46,27 @@ class VelMath {
   virtual ~VelMath();
 
   /**
-   * Calculate new velocity.
+   * Calculates the current velocity and acceleration. Returns the (filtered) velocity.
    *
    * @param inewPos new position
-   * @return new velocity
+   * @return current (filtered) velocity
    */
   virtual double step(const double inewPos);
 
   /**
-   * Set ticks per revolution (or whatever units you are using).
+   * Sets ticks per revolution (or whatever units you are using).
    *
    * @para iTPR ticks per revolution
    */
   virtual void setTicksPerRev(const double iTPR);
 
   /**
-   * Get the last calculated velocity.
+   * Returns the last calculated velocity.
    */
   virtual double getVelocity() const;
 
   /**
-   * Get the last calculated acceleration.
+   * Returns the last calculated acceleration.
    */
   virtual double getAccel() const;
 
