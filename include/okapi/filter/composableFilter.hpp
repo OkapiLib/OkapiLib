@@ -14,6 +14,13 @@
 #include <vector>
 
 namespace okapi {
+class ComposableFilterArgs : public FilterArgs {
+  public:
+  ComposableFilterArgs(const std::initializer_list<std::function<Filter *()>> &ilist);
+
+  const std::initializer_list<std::function<Filter *()>> &list;
+};
+
 class ComposableFilter : public Filter {
   public:
   /**
@@ -28,7 +35,9 @@ class ComposableFilter : public Filter {
    *
    * @param list the lambdas used to allocate filters
    */
-  ComposableFilter(const std::initializer_list<std::function<Filter *()>> &list);
+  ComposableFilter(const std::initializer_list<std::function<Filter *()>> &ilist);
+
+  ComposableFilter(const ComposableFilterArgs &iparams);
 
   virtual ~ComposableFilter();
 

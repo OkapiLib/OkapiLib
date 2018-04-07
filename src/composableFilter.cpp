@@ -8,11 +8,22 @@
 #include "okapi/filter/composableFilter.hpp"
 
 namespace okapi {
+ComposableFilterArgs::ComposableFilterArgs(
+  const std::initializer_list<std::function<Filter *()>> &ilist)
+  : list(ilist) {
+}
+
 ComposableFilter::ComposableFilter() {
 }
 
-ComposableFilter::ComposableFilter(const std::initializer_list<std::function<Filter *()>> &list) {
-  for (auto elem : list) {
+ComposableFilter::ComposableFilter(const std::initializer_list<std::function<Filter *()>> &ilist) {
+  for (auto elem : ilist) {
+    filters.push_back(elem());
+  }
+}
+
+ComposableFilter::ComposableFilter(const ComposableFilterArgs &iparams) {
+  for (auto elem : iparams.list) {
     filters.push_back(elem());
   }
 }
