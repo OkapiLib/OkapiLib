@@ -25,15 +25,17 @@ class ComposableFilter : public Filter {
   public:
   /**
    * A composable filter is a filter that consists of other filters. The input signal is passed
-   * through each filter in sequence. The output of the last filter is the output of this filter.
+   * through each filter in sequence. The final output of this filter is the output of the last
+   * filter.
    */
   ComposableFilter();
 
   /**
    * A composable filter is a filter that consists of other filters. The input signal is passed
-   * through each filter in sequence. The output of the last filter is the output of this filter.
+   * through each filter in sequence. The final output of this filter is the output of the last
+   * filter.
    *
-   * @param list the lambdas used to allocate filters
+   * @param ilist the lambdas used to allocate filters
    */
   ComposableFilter(const std::initializer_list<std::function<Filter *()>> &ilist);
 
@@ -57,11 +59,11 @@ class ComposableFilter : public Filter {
   virtual double getOutput() const;
 
   /**
-   * Add a filter to the end of the sequence.
+   * Adds a filter to the end of the sequence.
    *
-   * @param filterAllocator a lambda called once to allocate a new filter
+   * @param ifilterAllocator a lambda called once to allocate a new filter
    */
-  void addFilter(const std::function<Filter *()> &filterAllocator);
+  virtual void addFilter(const std::function<Filter *()> &ifilterAllocator);
 
   protected:
   std::vector<Filter *> filters;

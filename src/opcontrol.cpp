@@ -8,9 +8,8 @@ using namespace okapi;
 void opcontrol() {
   task_delay(100);
 
-  ComposableFilter comFilt;
-  comFilt.addFilter([] { return new MedianFilter<5>(); });
-  comFilt.addFilter([] { return new DemaFilter(0.2, 0.05); });
+  okapi::ComposableFilter filter(
+    {[] { return new MedianFilter<3>(); }, [] { return new AverageFilter<5>(); }});
 
   VelMath velMath(1800, 1, 0);
   MedianFilter<5> medFilt;
