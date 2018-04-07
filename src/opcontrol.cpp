@@ -8,20 +8,15 @@ using namespace okapi;
 void opcontrol() {
   task_delay(100);
 
-  okapi::ComposableFilter filter(
-    {[] { return new MedianFilter<3>(); }, [] { return new AverageFilter<5>(); }});
-
-  VelMath velMath(1800, 1, 0);
-  MedianFilter<5> medFilt;
-  AverageFilter<5> filt;
+  VelMath velMath(1800, ComposableFilterArgs({[] { return new MedianFilter<3>(); },
+                                              [] { return new AverageFilter<5>(); }}));
   printf("velocity,current,efficiency,power,temperature,torque,voltage\n");
   motor_move_velocity(9, 127);
   while (true) {
     velMath.step(motor_get_position(9));
-    filt.filter(medFilt.filter(velMath.getVelocity()));
-    printf("%1.2f,%lu,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", filt.getOutput(), motor_get_current_draw(9),
-           motor_get_efficiency(9), motor_get_power(9), motor_get_temperature(9),
-           motor_get_torque(9), motor_get_voltage(9));
+    printf("%1.2f,%lu,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", velMath.getVelocity(),
+           motor_get_current_draw(9), motor_get_efficiency(9), motor_get_power(9),
+           motor_get_temperature(9), motor_get_torque(9), motor_get_voltage(9));
     task_delay(10);
   }
 
@@ -239,7 +234,7 @@ void opcontrol() {
       test_printf("Testing VelMath");
 
       // DemaFilter gains 1 and 0 so it returns input signal and no filtering is performed
-      VelMath velMath(360, 1, 0);
+      VelMath velMath(360, ComposableFilterArgs({[] { return new DemaFilter(1, 0); }}));
 
       for (int i = 0; i < 10; i++) {
         task_delay(100); // Delay first so the timestep works for the first iteration

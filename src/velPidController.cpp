@@ -112,10 +112,6 @@ void VelPIDController::flipDisable() {
   isOn = !isOn;
 }
 
-void VelPIDController::setFilterGains(const double alpha, const double beta) {
-  velMath.setGains(alpha, beta);
-}
-
 void VelPIDController::setTicksPerRev(const double tpr) {
   velMath.setTicksPerRev(tpr);
 }

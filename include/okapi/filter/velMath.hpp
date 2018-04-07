@@ -9,34 +9,38 @@
 #define _OKAPI_VELOCITY_HPP_
 
 #include "api.h"
-#include "okapi/filter/demaFilter.hpp"
+#include "okapi/filter/composableFilter.hpp"
 
 namespace okapi {
 class VelMathArgs {
   public:
-  VelMathArgs(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041);
+  VelMathArgs(const double iticksPerRev);
+  VelMathArgs(const double iticksPerRev, const ComposableFilterArgs &ifilterParams);
 
   virtual ~VelMathArgs();
 
-  const double ticksPerRev, alpha, beta;
+  const double ticksPerRev;
+  ComposableFilterArgs filter;
 };
 
 class VelMath {
   public:
   /**
-   * Velocity math helper. Calculates filtered velocity (DemaFilter).
+   * Velocity math helper. Calculates filtered velocity. Filters using a 5-tap median filter
+   * and a 3-tap averaging filter.
    *
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
-   * @param ialpha alpha gain
-   * @param ibeta beta gain
    */
-  VelMath(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041);
+  VelMath(const double iticksPerRev);
 
   /**
-   * Velocity math helper. Calculates filtered velocity (DemaFilter).
+   * Velocity math helper. Calculates filtered velocity.
    *
-   * @param iparams VelMathArgs
+   * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
+   * @param ifilterParams filter to use for filtering the velocity
    */
+  VelMath(const double iticksPerRev, const ComposableFilterArgs &ifilterParams);
+
   VelMath(const VelMathArgs &iparams);
 
   virtual ~VelMath();
@@ -48,14 +52,6 @@ class VelMath {
    * @return new velocity
    */
   virtual double step(const double inewPos);
-
-  /**
-   * Set filter gains.
-   *
-   * @param ialpha alpha gain
-   * @param ibeta beta gain
-   */
-  virtual void setGains(const double ialpha, const double ibeta);
 
   /**
    * Set ticks per revolution (or whatever units you are using).
@@ -81,7 +77,7 @@ class VelMath {
   double lastVel = 0;
   double lastPos = 0;
   double ticksPerRev;
-  DemaFilter filter;
+  ComposableFilter filter;
 };
 } // namespace okapi
 

@@ -7,20 +7,32 @@
  */
 #include "okapi/filter/velMath.hpp"
 #include "api.h"
+#include "okapi/filter/averageFilter.hpp"
+#include "okapi/filter/medianFilter.hpp"
 
 namespace okapi {
-VelMathArgs::VelMathArgs(const double iticksPerRev, const double ialpha, const double ibeta)
-  : ticksPerRev(iticksPerRev), alpha(ialpha), beta(ibeta) {
+VelMathArgs::VelMathArgs(const double iticksPerRev)
+  : ticksPerRev(iticksPerRev),
+    filter({[] { return new MedianFilter<3>(); }, [] { return new AverageFilter<5>(); }}) {
+}
+
+VelMathArgs::VelMathArgs(const double iticksPerRev, const ComposableFilterArgs &ifilterParams)
+  : ticksPerRev(iticksPerRev), filter(ifilterParams) {
 }
 
 VelMathArgs::~VelMathArgs() = default;
 
-VelMath::VelMath(const double iticksPerRev, const double ialpha, const double ibeta)
-  : ticksPerRev(iticksPerRev), filter(ialpha, ibeta) {
+VelMath::VelMath(const double iticksPerRev)
+  : ticksPerRev(iticksPerRev),
+    filter({[] { return new MedianFilter<3>(); }, [] { return new AverageFilter<5>(); }}) {
+}
+
+VelMath::VelMath(const double iticksPerRev, const ComposableFilterArgs &ifilterParams)
+  : ticksPerRev(iticksPerRev), filter(ifilterParams) {
 }
 
 VelMath::VelMath(const VelMathArgs &iparams)
-  : ticksPerRev(iparams.ticksPerRev), filter(iparams.alpha, iparams.beta) {
+  : ticksPerRev(iparams.ticksPerRev), filter(iparams.filter) {
 }
 
 VelMath::~VelMath() = default;
@@ -37,10 +49,6 @@ double VelMath::step(const double inewPos) {
   lastTime = now;
 
   return vel;
-}
-
-void VelMath::setGains(const double ialpha, const double ibeta) {
-  filter.setGains(ialpha, ibeta);
 }
 
 void VelMath::setTicksPerRev(const double iTPR) {
