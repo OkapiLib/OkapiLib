@@ -33,6 +33,7 @@
 #include "okapi/device/vision.hpp"
 
 #include "okapi/filter/averageFilter.hpp"
+#include "okapi/filter/composableFilter.hpp"
 #include "okapi/filter/demaFilter.hpp"
 #include "okapi/filter/ekfFilter.hpp"
 #include "okapi/filter/emaFilter.hpp"

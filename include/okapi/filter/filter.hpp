@@ -9,6 +9,11 @@
 #define _OKAPI_FILTER_HPP_
 
 namespace okapi {
+class FilterArgs {
+  public:
+  virtual ~FilterArgs();
+};
+
 class Filter {
   public:
   virtual ~Filter();

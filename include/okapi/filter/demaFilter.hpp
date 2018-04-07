@@ -9,8 +9,17 @@
 #define OKAPI_DEMAFILTER_HPP_
 
 #include "okapi/filter/filter.hpp"
+#include <ratio>
 
 namespace okapi {
+class DemaFilterArgs : public FilterArgs {
+  public:
+  DemaFilterArgs(const double ialpha, const double ibeta);
+
+  const double alpha;
+  const double beta;
+};
+
 class DemaFilter : public Filter {
   public:
   /**
@@ -20,6 +29,8 @@ class DemaFilter : public Filter {
    * @param ibeta beta gain
    */
   DemaFilter(const double ialpha, const double ibeta);
+
+  DemaFilter(const DemaFilterArgs &iargs);
 
   /**
    * Filters a value, like a sensor reading.
