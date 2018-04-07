@@ -12,11 +12,11 @@
 #include "okapi/device/motor/abstractMotor.hpp"
 
 namespace okapi {
-class PosIntegratedController;
+class AsyncPosIntegratedController;
 
-class PosIntegratedControllerArgs : public AsyncPositionControllerArgs {
+class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
   public:
-  PosIntegratedControllerArgs(const AbstractMotor &imotor);
+  AsyncPosIntegratedControllerArgs(const AbstractMotor &imotor);
 
   const AbstractMotor &motor;
 };
@@ -24,11 +24,11 @@ class PosIntegratedControllerArgs : public AsyncPositionControllerArgs {
 /**
  * Closed-loop controller that uses the V5 motor's onboard control to move.
  */
-class PosIntegratedController : public AsyncPositionController {
+class AsyncPosIntegratedController : public AsyncPositionController {
   public:
-  PosIntegratedController(const AbstractMotor &imotor);
+  AsyncPosIntegratedController(const AbstractMotor &imotor);
 
-  PosIntegratedController(const PosIntegratedControllerArgs &iparams);
+  AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams);
 
   /**
    * Sets the target for the controller.

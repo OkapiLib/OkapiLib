@@ -10,8 +10,8 @@
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
-  const ChassisModel &imodel, const PosIntegratedControllerArgs &ileftControllerArgs,
-  const PosIntegratedControllerArgs &irightControllerArgs, const double istraightScale,
+  const ChassisModel &imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
+  const AsyncPosIntegratedControllerArgs &irightControllerArgs, const double istraightScale,
   const double iturnScale)
   : ChassisController(imodel),
     leftController(ileftControllerArgs),

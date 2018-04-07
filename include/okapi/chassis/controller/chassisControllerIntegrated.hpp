@@ -11,7 +11,7 @@
 #include "okapi/chassis/controller/chassisController.hpp"
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
-#include "okapi/control/async/posIntegratedController.hpp"
+#include "okapi/control/async/asyncPosIntegratedController.hpp"
 
 namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {
@@ -29,8 +29,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * angle
    */
   ChassisControllerIntegrated(const ChassisModel &imodel,
-                              const PosIntegratedControllerArgs &ileftControllerArgs,
-                              const PosIntegratedControllerArgs &irightControllerArgs,
+                              const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
+                              const AsyncPosIntegratedControllerArgs &irightControllerArgs,
                               const double istraightScale = 1, const double iturnScale = 1);
 
   /**
@@ -82,8 +82,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   virtual void turnAngle(float idegTarget) override;
 
   protected:
-  PosIntegratedController leftController;
-  PosIntegratedController rightController;
+  AsyncPosIntegratedController leftController;
+  AsyncPosIntegratedController rightController;
   int lastTarget;
   const double straightScale;
   const double turnScale;
