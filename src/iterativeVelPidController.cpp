@@ -5,47 +5,50 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/control/iterative/velPidController.hpp"
+#include "okapi/control/iterative/iterativeVelPidController.hpp"
 #include "api.h"
 #include <algorithm>
 #include <cmath>
 
 namespace okapi {
 
-VelPIDControllerArgs::VelPIDControllerArgs(const double ikP, const double ikD) : kP(ikP), kD(ikD) {
+IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, const double ikD)
+  : kP(ikP), kD(ikD) {
 }
 
-VelPIDControllerArgs::VelPIDControllerArgs(const double ikP, const double ikD,
-                                           const VelMathArgs &iparams)
+IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, const double ikD,
+                                                             const VelMathArgs &iparams)
   : kP(ikP), kD(ikD), params(iparams) {
 }
 
-VelPIDController::VelPIDController(const double ikP, const double ikD) {
+IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD) {
   setGains(ikP, ikD);
 }
 
-VelPIDController::VelPIDController(const double ikP, const double ikD, const VelMathArgs &iparams)
+IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
+                                                     const VelMathArgs &iparams)
   : velMath(iparams) {
   setGains(ikP, ikD);
 }
 
-VelPIDController::VelPIDController(const VelPIDControllerArgs &params) : velMath(params.params) {
+IterativeVelPIDController::IterativeVelPIDController(const IterativeVelPIDControllerArgs &params)
+  : velMath(params.params) {
   setGains(params.kP, params.kD);
 }
 
-void VelPIDController::setGains(const double ikP, const double ikD) {
+void IterativeVelPIDController::setGains(const double ikP, const double ikD) {
   kP = ikP;
   kD = ikD * static_cast<double>(sampleTime) / 1000.0;
 }
 
-void VelPIDController::setSampleTime(const uint32_t isampleTime) {
+void IterativeVelPIDController::setSampleTime(const uint32_t isampleTime) {
   if (isampleTime > 0) {
     kD /= static_cast<double>(isampleTime) / static_cast<double>(sampleTime);
     sampleTime = isampleTime;
   }
 }
 
-void VelPIDController::setOutputLimits(double imax, double imin) {
+void IterativeVelPIDController::setOutputLimits(double imax, double imin) {
   // Always use larger value as max
   if (imin > imax) {
     const double temp = imax;
@@ -59,11 +62,11 @@ void VelPIDController::setOutputLimits(double imax, double imin) {
   output = std::clamp(output, outputMin, outputMax);
 }
 
-double VelPIDController::stepVel(const double inewReading) {
+double IterativeVelPIDController::stepVel(const double inewReading) {
   return velMath.step(inewReading);
 }
 
-double VelPIDController::step(const double inewReading) {
+double IterativeVelPIDController::step(const double inewReading) {
   if (isOn) {
     const uint32_t now = millis();
     if (now - lastTime >= sampleTime) {
@@ -86,41 +89,41 @@ double VelPIDController::step(const double inewReading) {
   return 0;
 }
 
-void VelPIDController::setTarget(const double itarget) {
+void IterativeVelPIDController::setTarget(const double itarget) {
   target = itarget;
 }
 
-double VelPIDController::getOutput() const {
+double IterativeVelPIDController::getOutput() const {
   return isOn ? output : 0;
 }
 
-double VelPIDController::getError() const {
+double IterativeVelPIDController::getError() const {
   return error;
 }
 
-double VelPIDController::getDerivative() const {
+double IterativeVelPIDController::getDerivative() const {
   return derivative;
 }
 
-void VelPIDController::reset() {
+void IterativeVelPIDController::reset() {
   error = 0;
   lastError = 0;
   output = 0;
 }
 
-void VelPIDController::flipDisable() {
+void IterativeVelPIDController::flipDisable() {
   isOn = !isOn;
 }
 
-void VelPIDController::setTicksPerRev(const double tpr) {
+void IterativeVelPIDController::setTicksPerRev(const double tpr) {
   velMath.setTicksPerRev(tpr);
 }
 
-double VelPIDController::getVel() const {
+double IterativeVelPIDController::getVel() const {
   return velMath.getVelocity();
 }
 
-uint32_t VelPIDController::getSampleTime() const {
+uint32_t IterativeVelPIDController::getSampleTime() const {
   return sampleTime;
 }
 } // namespace okapi

@@ -12,17 +12,17 @@
 #include "okapi/filter/velMath.hpp"
 
 namespace okapi {
-class VelPIDControllerArgs : public IterativeVelocityControllerArgs {
+class IterativeVelPIDControllerArgs : public IterativeVelocityControllerArgs {
   public:
-  VelPIDControllerArgs(const double ikP, const double ikD);
+  IterativeVelPIDControllerArgs(const double ikP, const double ikD);
 
-  VelPIDControllerArgs(const double ikP, const double ikD, const VelMathArgs &iparams);
+  IterativeVelPIDControllerArgs(const double ikP, const double ikD, const VelMathArgs &iparams);
 
   const double kP, kD;
   const VelMathArgs params{1800};
 };
 
-class VelPIDController : public IterativeVelocityController {
+class IterativeVelPIDController : public IterativeVelocityController {
   public:
   /**
    * Velocity PID controller.
@@ -30,7 +30,7 @@ class VelPIDController : public IterativeVelocityController {
    * @param ikP proportional gain
    * @param ikD derivative gain
    */
-  VelPIDController(const double ikP, const double ikD);
+  IterativeVelPIDController(const double ikP, const double ikD);
 
   /**
    * Velocity PID controller.
@@ -38,14 +38,14 @@ class VelPIDController : public IterativeVelocityController {
    * @param ikP proportional gain
    * @param ikD derivative gain
    */
-  VelPIDController(const double ikP, const double ikD, const VelMathArgs &iparams);
+  IterativeVelPIDController(const double ikP, const double ikD, const VelMathArgs &iparams);
 
   /**
    * Velocity PID controller.
    *
    * @param params VelPIDControllerArgs
    */
-  VelPIDController(const VelPIDControllerArgs &params);
+  IterativeVelPIDController(const IterativeVelPIDControllerArgs &params);
 
   /**
    * Do one iteration of the controller.
