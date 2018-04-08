@@ -8,9 +8,18 @@
 #include "okapi/control/iterative/iterativeMotorController.hpp"
 
 namespace okapi {
+IterativeMotorControllerArgs::IterativeMotorControllerArgs(const AbstractMotor &imotor,
+                                                           IterativeVelocityController &icontroller)
+  : motor(imotor), controller(icontroller) {
+}
+
 IterativeMotorController::IterativeMotorController(const AbstractMotor &imotor,
                                                    IterativeVelocityController &icontroller)
   : motor(imotor), controller(icontroller) {
+}
+
+IterativeMotorController::IterativeMotorController(const IterativeMotorControllerArgs &iparams)
+  : motor(iparams.motor), controller(iparams.controller) {
 }
 
 double IterativeMotorController::step(const double ireading) {

@@ -15,9 +15,20 @@
 #include <memory>
 
 namespace okapi {
+class IterativeMotorControllerArgs : public IterativeVelocityControllerArgs {
+  public:
+  IterativeMotorControllerArgs(const AbstractMotor &imotor,
+                               IterativeVelocityController &icontroller);
+
+  const AbstractMotor &motor;
+  IterativeVelocityController &controller;
+};
+
 class IterativeMotorController : public IterativeVelocityController {
   public:
   IterativeMotorController(const AbstractMotor &imotor, IterativeVelocityController &icontroller);
+
+  IterativeMotorController(const IterativeMotorControllerArgs &iparams);
 
   /**
    * Do one iteration of the controller.
