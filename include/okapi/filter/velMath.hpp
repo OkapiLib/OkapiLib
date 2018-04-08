@@ -10,17 +10,18 @@
 
 #include "api.h"
 #include "okapi/filter/composableFilter.hpp"
+#include <memory>
 
 namespace okapi {
 class VelMathArgs {
   public:
   VelMathArgs(const double iticksPerRev);
-  VelMathArgs(const double iticksPerRev, const ComposableFilterArgs &ifilterParams);
+  VelMathArgs(const double iticksPerRev, std::shared_ptr<Filter> ifilter);
 
   virtual ~VelMathArgs();
 
   const double ticksPerRev;
-  ComposableFilterArgs filter;
+  std::shared_ptr<Filter> filter;
 };
 
 class VelMath {
@@ -37,9 +38,9 @@ class VelMath {
    * Velocity math helper. Calculates filtered velocity.
    *
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
-   * @param ifilterParams filter to use for filtering the velocity
+   * @param ifilter filter to use for filtering the velocity
    */
-  VelMath(const double iticksPerRev, const ComposableFilterArgs &ifilterParams);
+  VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter);
 
   VelMath(const VelMathArgs &iparams);
 
@@ -77,7 +78,7 @@ class VelMath {
   double lastVel = 0;
   double lastPos = 0;
   double ticksPerRev;
-  ComposableFilter filter;
+  std::shared_ptr<Filter> filter;
 };
 } // namespace okapi
 

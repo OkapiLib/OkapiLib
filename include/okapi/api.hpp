@@ -11,8 +11,10 @@
 #include "okapi/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/chassis/controller/chassisControllerPid.hpp"
 #include "okapi/chassis/controller/odomChassisController.hpp"
+#include "okapi/chassis/controller/odomChassisControllerIntegrated.hpp"
 #include "okapi/chassis/controller/odomChassisControllerPid.hpp"
 #include "okapi/chassis/model/skidSteerModel.hpp"
+#include "okapi/chassis/model/threeEncoderSkidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
 
 #include "okapi/control/async/asyncPosIntegratedController.hpp"

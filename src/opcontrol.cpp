@@ -8,8 +8,10 @@ using namespace okapi;
 void opcontrol() {
   task_delay(100);
 
-  VelMath velMath(1800, ComposableFilterArgs({[] { return new MedianFilter<3>(); },
-                                              [] { return new AverageFilter<5>(); }}));
+  ComposableFilter testFilter(
+    {std::make_shared<MedianFilter<3>>(), std::make_shared<AverageFilter<5>>()});
+  VelMath velMath(1800, std::make_shared<ComposableFilter>(testFilter));
+
   printf("velocity,current,efficiency,power,temperature,torque,voltage\n");
   motor_move_velocity(9, 127);
   while (true) {
@@ -19,6 +21,12 @@ void opcontrol() {
            motor_get_temperature(9), motor_get_torque(9), motor_get_voltage(9));
     task_delay(10);
   }
+
+  OdomChassisControllerIntegrated occi1(1_m, 2_m, 1.0, 1.0);
+  OdomChassisControllerIntegrated occi2(
+    std::make_shared<SkidSteerModel>(1_m, 2_m, ADIEncoder(1, 2), ADIEncoder(3, 4)), 1.0, 1.0);
+
+  // OdomChassisControllerIntegrated helpMe(1_m, 2_m, 1.0, 1.0);
 
   // VelMath velMath(1800, 1, 0);
   // double mass = 0;
@@ -234,7 +242,7 @@ void opcontrol() {
       test_printf("Testing VelMath");
 
       // DemaFilter gains 1 and 0 so it returns input signal and no filtering is performed
-      VelMath velMath(360, ComposableFilterArgs({[] { return new DemaFilter(1, 0); }}));
+      VelMath velMath(360, std::make_shared<DemaFilter>(1.0, 0.0));
 
       for (int i = 0; i < 10; i++) {
         task_delay(100); // Delay first so the timestep works for the first iteration

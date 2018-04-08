@@ -188,4 +188,12 @@ void SkidSteerModel::setGearing(const motor_gearset_e_t gearset) const {
   leftSideMotor.set_gearing(gearset);
   rightSideMotor.set_gearing(gearset);
 }
+
+const AbstractMotor &SkidSteerModel::getLeftSideMotor() const {
+  return leftSideMotor;
+}
+
+const AbstractMotor &SkidSteerModel::getRightSideMotor() const {
+  return rightSideMotor;
+}
 } // namespace okapi

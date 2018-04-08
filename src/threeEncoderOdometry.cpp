@@ -8,16 +8,16 @@
 #include "okapi/odometry/threeEncoderOdometry.hpp"
 
 namespace okapi {
-ThreeEncoderOdometryArgs::ThreeEncoderOdometryArgs(const SkidSteerModel &imodel,
+ThreeEncoderOdometryArgs::ThreeEncoderOdometryArgs(std::shared_ptr<SkidSteerModel> imodel,
                                                    const double iscale, const double iturnScale,
                                                    const double imiddleScale)
   : OdometryArgs(imodel, iscale, iturnScale), middleScale(imiddleScale) {
 }
 
-ThreeEncoderOdometry::ThreeEncoderOdometry(const ThreeEncoderSkidSteerModel &imodel,
+ThreeEncoderOdometry::ThreeEncoderOdometry(std::shared_ptr<ThreeEncoderSkidSteerModel> imodel,
                                            const double iscale, const double iturnScale,
                                            const double imiddleScale)
-  : Odometry(imodel, iscale, iturnScale), middleScale(imiddleScale), model(imodel) {
+  : Odometry(imodel, iscale, iturnScale), model(imodel), middleScale(imiddleScale) {
 }
 
 void ThreeEncoderOdometry::loop() {
@@ -25,7 +25,7 @@ void ThreeEncoderOdometry::loop() {
   std::valarray<int> newTicks{0, 0, 0}, tickDiff{0, 0, 0};
 
   while (true) {
-    newTicks = model.getSensorVals();
+    newTicks = model->getSensorVals();
     tickDiff = newTicks - lastTicks;
     mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
     lastTicks = newTicks;

@@ -17,23 +17,6 @@ namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {
   public:
   /**
-   * ChassisController using the V5 motor's integrated control. Puts the motors' encoders into tick
-   * units.
-   *
-   * @param imodelArgs ChassisModelArgs
-   * @param ileftControllerArgs left side controller params
-   * @param irightControllerArgs right side controller params
-   * @param istraightScale scale converting your units of choice to encoder ticks, used for
-   * measuring distance
-   * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
-   * angle
-   */
-  ChassisControllerIntegrated(const ChassisModel &imodel,
-                              const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
-                              const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-                              const double istraightScale = 1, const double iturnScale = 1);
-
-  /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
    * steer layout. Puts the motors' encoders into tick units.
    *
@@ -65,6 +48,23 @@ class ChassisControllerIntegrated : public virtual ChassisController {
                               const AbstractMotor &itopRightMotor,
                               const AbstractMotor &ibottomRightMotor,
                               const AbstractMotor &ibottomLeftMotor,
+                              const double istraightScale = 1, const double iturnScale = 1);
+
+  /**
+   * ChassisController using the V5 motor's integrated control. Puts the motors' encoders into tick
+   * units.
+   *
+   * @param imodelArgs ChassisModelArgs
+   * @param ileftControllerArgs left side controller params
+   * @param irightControllerArgs right side controller params
+   * @param istraightScale scale converting your units of choice to encoder ticks, used for
+   * measuring distance
+   * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
+   * angle
+   */
+  ChassisControllerIntegrated(std::shared_ptr<ChassisModel> imodel,
+                              const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
+                              const AsyncPosIntegratedControllerArgs &irightControllerArgs,
                               const double istraightScale = 1, const double iturnScale = 1);
 
   /**

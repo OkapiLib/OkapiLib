@@ -20,15 +20,46 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
    * Odometry based chassis controller that moves using PID control. Spins up a task at the default
    * priority plus 1 for odometry when constructed.
    *
+   * This constructor uses the V5 motor's integrated encoders.
+   *
    * Moves the robot around in the odom frame. Instead of telling the robot to drive forward or
    * turn some amount, you instead tell it to drive to a specific point on the field or turn to
    * a specific angle, relative to its starting position.
    *
-   * @param iparams odometry parameters for the internal odometry math
+   * @param ileftSideMotor left side motor
+   * @param irightSideMotor right side motor
+   * @param iscale straight scale
+   * @param iturnScale turn scale
    * @param idistanceArgs distance PID controller params
    * @param iangleArgs angle PID controller params (keeps the robot straight)
+   * @param imoveThreshold minimum length movement
    */
-  OdomChassisControllerPID(const OdometryArgs &iparams,
+  OdomChassisControllerPID(const AbstractMotor &ileftSideMotor,
+                           const AbstractMotor &irightSideMotor, const double iscale,
+                           const double iturnScale,
+                           const IterativePosPIDControllerArgs &idistanceArgs,
+                           const IterativePosPIDControllerArgs &iangleArgs,
+                           const float imoveThreshold = 10);
+
+  /**
+   * Odometry based chassis controller that moves using PID control. Spins up a task at the default
+   * priority plus 1 for odometry when constructed.
+   *
+   * This constructor uses the encoders from the supplied chassis model.
+   *
+   * Moves the robot around in the odom frame. Instead of telling the robot to drive forward or
+   * turn some amount, you instead tell it to drive to a specific point on the field or turn to
+   * a specific angle, relative to its starting position.
+   *
+   * @param imodel chassis model to use
+   * @param iscale straight scale
+   * @param iturnScale turn scale
+   * @param idistanceArgs distance PID controller params
+   * @param iangleArgs angle PID controller params (keeps the robot straight)
+   * @param imoveThreshold minimum length movement
+   */
+  OdomChassisControllerPID(std::shared_ptr<SkidSteerModel> imodel, const double iscale,
+                           const double iturnScale,
                            const IterativePosPIDControllerArgs &idistanceArgs,
                            const IterativePosPIDControllerArgs &iangleArgs,
                            const float imoveThreshold = 10);

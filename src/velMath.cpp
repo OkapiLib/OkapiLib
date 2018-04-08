@@ -9,26 +9,29 @@
 #include "api.h"
 #include "okapi/filter/averageFilter.hpp"
 #include "okapi/filter/medianFilter.hpp"
+#include <utility>
 
 namespace okapi {
 VelMathArgs::VelMathArgs(const double iticksPerRev)
   : ticksPerRev(iticksPerRev),
-    filter({[] { return new MedianFilter<3>(); }, [] { return new AverageFilter<5>(); }}) {
+    filter(std::make_shared<ComposableFilter>(std::initializer_list<std::shared_ptr<Filter>>(
+      {std::make_shared<MedianFilter<3>>(), std::make_shared<AverageFilter<5>>()}))) {
 }
 
-VelMathArgs::VelMathArgs(const double iticksPerRev, const ComposableFilterArgs &ifilterParams)
-  : ticksPerRev(iticksPerRev), filter(ifilterParams) {
+VelMathArgs::VelMathArgs(const double iticksPerRev, std::shared_ptr<Filter> ifilter)
+  : ticksPerRev(iticksPerRev), filter(ifilter) {
 }
 
 VelMathArgs::~VelMathArgs() = default;
 
 VelMath::VelMath(const double iticksPerRev)
   : ticksPerRev(iticksPerRev),
-    filter({[] { return new MedianFilter<3>(); }, [] { return new AverageFilter<5>(); }}) {
+    filter(std::make_shared<ComposableFilter>(std::initializer_list<std::shared_ptr<Filter>>(
+      {std::make_shared<MedianFilter<3>>(), std::make_shared<AverageFilter<5>>()}))) {
 }
 
-VelMath::VelMath(const double iticksPerRev, const ComposableFilterArgs &ifilterParams)
-  : ticksPerRev(iticksPerRev), filter(ifilterParams) {
+VelMath::VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter)
+  : ticksPerRev(iticksPerRev), filter(ifilter) {
 }
 
 VelMath::VelMath(const VelMathArgs &iparams)
@@ -41,7 +44,7 @@ double VelMath::step(const double inewPos) {
   const uint32_t now = millis();
 
   vel = static_cast<double>((1000 / (now - lastTime))) * (inewPos - lastPos) * (60 / ticksPerRev);
-  vel = filter.filter(vel);
+  vel = filter->filter(vel);
   accel = static_cast<double>((1000 / (now - lastTime))) * (vel - lastVel);
 
   lastVel = vel;

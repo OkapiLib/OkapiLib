@@ -159,6 +159,20 @@ class SkidSteerModel : public ChassisModel {
    */
   virtual void setGearing(const motor_gearset_e_t gearset) const override;
 
+  /**
+   * Returns the left side motor.
+   *
+   * @return the left side motor
+   */
+  const AbstractMotor &getLeftSideMotor() const;
+
+  /**
+   * Returns the left side motor.
+   *
+   * @return the left side motor
+   */
+  const AbstractMotor &getRightSideMotor() const;
+
   protected:
   const AbstractMotor &leftSideMotor;
   const AbstractMotor &rightSideMotor;
