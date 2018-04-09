@@ -25,13 +25,14 @@ class OdomState {
   double theta = 0;
 };
 
-class OdometryParams {
+class OdometryArgs {
   public:
-  OdometryParams(const SkidSteerModel &iparams, const double iscale, const double iturnScale);
+  OdometryArgs(std::shared_ptr<SkidSteerModel> imodel, const double iscale,
+               const double iturnScale);
 
-  virtual ~OdometryParams();
+  virtual ~OdometryArgs();
 
-  const SkidSteerModel &model;
+  std::shared_ptr<SkidSteerModel> model;
   const double scale, turnScale;
 };
 
@@ -41,24 +42,24 @@ class Odometry {
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
    * relative to the start (assumed to be (0, 0)).
    *
-   * @param imodelParams ChassisModel for reading sensors
+   * @param imodel SkidSteerModel for reading sensors
    * @param iscale straight scale
    * @param iturnScale turn scale
    */
-  Odometry(const SkidSteerModel &imodel, const double iscale, const double iturnScale);
+  Odometry(std::shared_ptr<SkidSteerModel> imodel, const double iscale, const double iturnScale);
 
   /**
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
    * relative to the start (assumed to be (0, 0)).
    *
-   * @param iparams OdometryParams
+   * @param iparams OdometryArgs
    */
-  Odometry(const OdometryParams &iparams);
+  Odometry(const OdometryArgs &iparams);
 
   virtual ~Odometry();
 
   /**
-   * Set the drive and turn scales.
+   * Sets the drive and turn scales.
    *
    * @param iscale straight scale converting encoder ticks to mm
    * @param iturnScale turn scale converting encoder ticks to radians
@@ -71,7 +72,7 @@ class Odometry {
   virtual void loop();
 
   /**
-   * Tread the input as an Odometry pointer and call loop. Meant to be used to bounce into a
+   * Treat the input as an Odometry pointer and call loop. Meant to be used to bounce into a
    * thread because loop runs forever.
    *
    * @param context pointer to an Odometry object
@@ -79,27 +80,25 @@ class Odometry {
   static void trampoline(void *context);
 
   /**
-   * Get the current state.
+   * Returns the current state.
    *
    * @return current state
    */
   virtual OdomState getState() const;
 
   /**
-   * Set a new state to be the current state.
+   * Sets a new state to be the current state.
    *
    * @param istate new state
    */
   virtual void setState(const OdomState &istate);
 
   protected:
+  std::shared_ptr<SkidSteerModel> model;
   OdomState state;
   double scale, turnScale;
   std::valarray<int> lastTicks{0, 0};
   double mm = 0;
-
-  private:
-  const SkidSteerModel &model;
 };
 } // namespace okapi
 

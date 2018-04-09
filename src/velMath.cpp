@@ -7,47 +7,62 @@
  */
 #include "okapi/filter/velMath.hpp"
 #include "api.h"
+#include "okapi/filter/averageFilter.hpp"
+#include "okapi/filter/medianFilter.hpp"
+#include <utility>
 
 namespace okapi {
-VelMathParams::VelMathParams(const double iticksPerRev, const double ialpha, const double ibeta)
-  : ticksPerRev(iticksPerRev), alpha(ialpha), beta(ibeta) {
+VelMathArgs::VelMathArgs(const double iticksPerRev)
+  : ticksPerRev(iticksPerRev),
+    filter(std::make_shared<ComposableFilter>(std::initializer_list<std::shared_ptr<Filter>>(
+      {std::make_shared<MedianFilter<3>>(), std::make_shared<AverageFilter<5>>()}))) {
 }
 
-VelMathParams::~VelMathParams() = default;
-
-VelMath::VelMath(const double iticksPerRev, const double ialpha, const double ibeta)
-  : ticksPerRev(iticksPerRev), filter(ialpha, ibeta) {
+VelMathArgs::VelMathArgs(const double iticksPerRev, std::shared_ptr<Filter> ifilter)
+  : ticksPerRev(iticksPerRev), filter(ifilter) {
 }
 
-VelMath::VelMath(const VelMathParams &iparams)
-  : ticksPerRev(iparams.ticksPerRev), filter(iparams.alpha, iparams.beta) {
+VelMathArgs::~VelMathArgs() = default;
+
+VelMath::VelMath(const double iticksPerRev)
+  : ticksPerRev(iticksPerRev),
+    filter(std::make_shared<ComposableFilter>(std::initializer_list<std::shared_ptr<Filter>>(
+      {std::make_shared<MedianFilter<3>>(), std::make_shared<AverageFilter<5>>()}))) {
 }
+
+VelMath::VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter)
+  : ticksPerRev(iticksPerRev), filter(ifilter) {
+}
+
+VelMath::VelMath(const VelMathArgs &iparams)
+  : ticksPerRev(iparams.ticksPerRev), filter(iparams.filter) {
+}
+
+VelMath::~VelMath() = default;
 
 double VelMath::step(const double inewPos) {
   const uint32_t now = millis();
 
   vel = static_cast<double>((1000 / (now - lastTime))) * (inewPos - lastPos) * (60 / ticksPerRev);
-  vel = filter.filter(vel);
+  vel = filter->filter(vel);
+  accel = static_cast<double>((1000 / (now - lastTime))) * (vel - lastVel);
 
+  lastVel = vel;
   lastPos = inewPos;
   lastTime = now;
 
   return vel;
 }
 
-void VelMath::setGains(const double ialpha, const double ibeta) {
-  filter.setGains(ialpha, ibeta);
-}
-
 void VelMath::setTicksPerRev(const double iTPR) {
   ticksPerRev = iTPR;
 }
 
-double VelMath::getOutput() const {
+double VelMath::getVelocity() const {
   return vel;
 }
 
-double VelMath::getDiff() const {
-  return vel - lastVel;
+double VelMath::getAccel() const {
+  return accel;
 }
 } // namespace okapi

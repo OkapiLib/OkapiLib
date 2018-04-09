@@ -8,14 +8,14 @@
 #include "okapi/control/async/asyncPosPidController.hpp"
 
 namespace okapi {
-AsyncPosPIDControllerParams::AsyncPosPIDControllerParams(ControllerInput &iinput,
-                                                         ControllerOutput &ioutput,
-                                                         const PosPIDControllerParams &iparams)
+AsyncPosPIDControllerArgs::AsyncPosPIDControllerArgs(ControllerInput &iinput,
+                                                     ControllerOutput &ioutput,
+                                                     const IterativePosPIDControllerArgs &iparams)
   : input(iinput), output(ioutput), params(iparams) {
 }
 
 AsyncPosPIDController::AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
-                                             const PosPIDControllerParams &iparams)
+                                             const IterativePosPIDControllerArgs &iparams)
   : input(iinput), output(ioutput), controller(iparams), task(trampoline, this) {
 }
 
@@ -24,8 +24,6 @@ AsyncPosPIDController::AsyncPosPIDController(ControllerInput &iinput, Controller
                                              const double ikBias)
   : input(iinput), output(ioutput), controller(ikP, ikI, ikD, ikBias), task(trampoline, this) {
 }
-
-AsyncPosPIDController::~AsyncPosPIDController() = default;
 
 void AsyncPosPIDController::step() {
   while (true) {

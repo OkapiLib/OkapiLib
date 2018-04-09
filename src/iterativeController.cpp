@@ -8,6 +8,10 @@
 #include "okapi/control/iterative/iterativeController.hpp"
 
 namespace okapi {
+IterativeControllerArgs::~IterativeControllerArgs() = default;
+
+IterativeController::~IterativeController() = default;
+
 void IterativeController::setSampleTime(const uint32_t isampleTime) {
 }
 

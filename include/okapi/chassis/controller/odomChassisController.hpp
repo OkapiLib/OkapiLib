@@ -21,14 +21,12 @@ class OdomChassisController : public virtual ChassisController {
    *
    * Moves the robot around in the odom frame. Instead of telling the robot to drive forward or
    * turn some amount, you instead tell it to drive to a specific point on the field or turn to
-   * a specific angle, relative to its starting position.
+   * a specific angle relative to its starting position.
    *
    * @param iparams odometry parameters for the internal odometry math
    * @param imoveThreshold minimum length movement
    */
-  OdomChassisController(const OdometryParams &iparams, const float imoveThreshold = 10);
-
-  virtual ~OdomChassisController();
+  OdomChassisController(const OdometryArgs &iparams, const float imoveThreshold = 10);
 
   /**
    * Drives the robot straight to a point in the odom frame.

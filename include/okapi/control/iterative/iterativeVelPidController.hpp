@@ -12,19 +12,17 @@
 #include "okapi/filter/velMath.hpp"
 
 namespace okapi {
-class VelPIDControllerParams : public IterativeVelocityControllerParams {
+class IterativeVelPIDControllerArgs : public IterativeVelocityControllerArgs {
   public:
-  VelPIDControllerParams(const double ikP, const double ikD);
+  IterativeVelPIDControllerArgs(const double ikP, const double ikD);
 
-  VelPIDControllerParams(const double ikP, const double ikD, const VelMathParams &iparams);
-
-  virtual ~VelPIDControllerParams();
+  IterativeVelPIDControllerArgs(const double ikP, const double ikD, const VelMathArgs &iparams);
 
   const double kP, kD;
-  const VelMathParams params{360};
+  const VelMathArgs params{1800};
 };
 
-class VelPIDController : public IterativeVelocityController {
+class IterativeVelPIDController : public IterativeVelocityController {
   public:
   /**
    * Velocity PID controller.
@@ -32,7 +30,7 @@ class VelPIDController : public IterativeVelocityController {
    * @param ikP proportional gain
    * @param ikD derivative gain
    */
-  VelPIDController(const double ikP, const double ikD);
+  IterativeVelPIDController(const double ikP, const double ikD);
 
   /**
    * Velocity PID controller.
@@ -40,16 +38,14 @@ class VelPIDController : public IterativeVelocityController {
    * @param ikP proportional gain
    * @param ikD derivative gain
    */
-  VelPIDController(const double ikP, const double ikD, const VelMathParams &iparams);
+  IterativeVelPIDController(const double ikP, const double ikD, const VelMathArgs &iparams);
 
   /**
    * Velocity PID controller.
    *
-   * @param params VelPIDControllerParams
+   * @param params VelPIDControllerArgs
    */
-  VelPIDController(const VelPIDControllerParams &params);
-
-  virtual ~VelPIDController();
+  IterativeVelPIDController(const IterativeVelPIDControllerArgs &params);
 
   /**
    * Do one iteration of the controller.
@@ -61,6 +57,8 @@ class VelPIDController : public IterativeVelocityController {
 
   /**
    * Sets the target for the controller.
+   *
+   * @param itarget new target velocity
    */
   virtual void setTarget(const double itarget) override;
 
@@ -106,6 +104,13 @@ class VelPIDController : public IterativeVelocityController {
   virtual void flipDisable() override;
 
   /**
+   * Get the last set sample time.
+   *
+   * @return sample time
+   */
+  virtual uint32_t getSampleTime() const override;
+
+  /**
    * Do one iteration of velocity calculation.
    *
    * @param inewReading new measurement
@@ -123,38 +128,23 @@ class VelPIDController : public IterativeVelocityController {
   virtual void setGains(const double ikP, const double ikD);
 
   /**
-   * Set the gains for the DemaFilter. Defaults are 0.19 and 0.0526,
-   * respectively.
-   *
-   * @param alpha alpha gain
-   * @param beta beta gain
-   */
-  virtual void setFilterGains(const double alpha, const double beta);
-
-  /**
-   * Set the number of measurements per revolution. Default is 360.
+   * Sets the number of encoder ticks per revolution. Default is 1800.
    *
    * @param tpr number of measured units per revolution
    */
   virtual void setTicksPerRev(const double tpr);
 
   /**
-   * Get the current velocity.
+   * Returns the current velocity.
    */
   virtual double getVel() const;
-
-  /**
-   * Get the last set sample time.
-   *
-   * @return sample time
-   */
-  virtual uint32_t getSampleTime() const override;
 
   protected:
   double kP, kD;
   uint32_t lastTime = 0;
-  uint32_t sampleTime = 15;
+  uint32_t sampleTime = 10;
   double error = 0;
+  const double errorScale = 4096; // 12 bit ADC scale, good enough for most things
   double lastError = 0;
   double derivative = 0;
   double target = 0;
@@ -162,7 +152,7 @@ class VelPIDController : public IterativeVelocityController {
   double outputMax = 1;
   double outputMin = -1;
   bool isOn = true;
-  VelMath velMath{360};
+  VelMath velMath{1800};
 };
 } // namespace okapi
 

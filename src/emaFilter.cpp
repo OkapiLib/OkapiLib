@@ -8,7 +8,13 @@
 #include "okapi/filter/emaFilter.hpp"
 
 namespace okapi {
+EmaFilterArgs::EmaFilterArgs(const double ialpha) : alpha(ialpha) {
+}
+
 EmaFilter::EmaFilter(const double ialpha) : alpha(ialpha) {
+}
+
+EmaFilter::EmaFilter(const EmaFilterArgs &iargs) : alpha(iargs.alpha) {
 }
 
 double EmaFilter::filter(const double ireading) {

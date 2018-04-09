@@ -10,15 +10,22 @@
 #include <cmath>
 
 namespace okapi {
-OdomChassisControllerPID::OdomChassisControllerPID(const OdometryParams &iparams,
-                                                   const PosPIDControllerParams &idistanceParams,
-                                                   const PosPIDControllerParams &iangleParams)
-  : ChassisController(iparams.model),
-    OdomChassisController(iparams),
-    ChassisControllerPID(iparams.model, idistanceParams, iangleParams) {
+OdomChassisControllerPID::OdomChassisControllerPID(
+  const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double iscale,
+  const double iturnScale, const IterativePosPIDControllerArgs &idistanceArgs,
+  const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold)
+  : OdomChassisControllerPID(std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor),
+                             iscale, iturnScale, idistanceArgs, iangleArgs, imoveThreshold) {
 }
 
-OdomChassisControllerPID::~OdomChassisControllerPID() = default;
+OdomChassisControllerPID::OdomChassisControllerPID(
+  std::shared_ptr<SkidSteerModel> imodel, const double iscale, const double iturnScale,
+  const IterativePosPIDControllerArgs &idistanceArgs,
+  const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold)
+  : ChassisController(imodel),
+    OdomChassisController(OdometryArgs(imodel, iscale, iturnScale), imoveThreshold),
+    ChassisControllerPID(imodel, idistanceArgs, iangleArgs) {
+}
 
 void OdomChassisControllerPID::driveToPoint(const float ix, const float iy, const bool ibackwards,
                                             const float ioffset) {

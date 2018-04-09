@@ -1,3 +1,34 @@
+# Contributing to OkapiLib
+
+:+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
+
+The following is a set of guidelines for contributing to OkapiLib. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
+
+#### Table Of Contents
+
+[Code of Conduct](#code-of-conduct)
+
+[I don't want to read this whole thing, I just have a question!!!](#i-dont-want-to-read-this-whole-thing-i-just-have-a-question)
+
+[How Can I Contribute?](#how-can-i-contribute)
+  * [Reporting Bugs](#reporting-bugs)
+  * [Suggesting Enhancements](#suggesting-enhancements)
+  * [Your First Code Contribution](#your-first-code-contribution)
+  * [Pull Requests](#pull-requests)
+
+[Styleguides](#styleguides)
+  * [Git Commit Messages](#git-commit-messages)
+  * [Git Branch Naming](#git-branch-naming)
+  * [Code Styleguide](#code-styleguide)
+
+## Code of Conduct
+
+This project and everyone participating in it is governed by OkapiLib's [Code of Conduct](code-of-conduct.md). By participating, you are expected to uphold this code.
+
+## I don't want to read this whole thing I just have a question!!!
+
+You can get help for questions that can't be answered by [OkapiLib's docs](????????????????????) by [filing an issue](???????????????????).
+
 ## How Can I Contribute?
 
 ### Reporting Bugs
@@ -59,8 +90,8 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 
 Unsure where to begin contributing? You can start by looking through these `beginner` and `help-wanted` issues:
 
-* [Beginner issues][beginner] - issues which should only require a few lines of code
-* [Help wanted issues][help-wanted] - issues which should be a bit more involved than `beginner` issues.
+* [Beginner issues][good first issue] - issues which should only require a few lines of code
+* [Help wanted issues][help wanted] - issues which should be a bit more involved than `beginner` issues.
 
 ### Pull Requests
 
@@ -84,24 +115,25 @@ Unsure where to begin contributing? You can start by looking through these `begi
 * Name a new branch according to its purpose in the format: [issue/bug/feature]/[your initials]/[issue number][description]
   * For example, to make a branch to fix Issue #0 about adding a README file, name the branch `issue/ABC/#0_add_readme_file`
 
-### C++ Styleguide
+### Code Styleguide
 
 #### clang-format
 
-OkapiLib uses the program [clang-format](https://clang.llvm.org/docs/ClangFormat.html) to format code to meet a specific style (lightly modified LLVM style). Install the latest version and run `./run_clang-format.sh` to format all project files.
+OkapiLib uses the program [clang-format](https://clang.llvm.org/docs/ClangFormat.html) to format code to meet a specific style (lightly modified LLVM style). Install the latest version and run `./run_clang-format.sh` to format all project files. Atom and VS Code, among other editors, have plugins that add support for running clang-format when you save a file. OkapiLib recommends these plugins so you stay on top of your formatting as you work.
 
 #### cppcheck
 
 OkapiLib uses the program [cppcheck](http://cppcheck.sourceforge.net/) for static analysis. Install the latest version and run `./run_cppcheck.sh` to check all project files.
 
-#### Other points
+#### Other Points
 
 * Every file must include the MPL2.0 header and attributions to applicable authors (first authors placed first).
 * Use [Javadoc-style](https://www.tutorialspoint.com/java/java_documentation.htm) comments on constructors and methods.
 * Name classes and methods using Camel case. Class names should start with a capital letter.
+* Do not prefix member variables with `m_`; instead, prefix parameters with `i`.
 * Do not `using namespace std` or any other namespace as this pollutes the user's namespace.
 * No raw pointers or smart pointers. Use references (preferably `const` references) instead.
-* Use in-class member initializers and default constructors for no-arg constructors where possible
-* Use default arguments instead of method overloading
-* Everything that can be `const` should be
-* Don't optimize for no reason or prematurely optimize
+* Use in-class member initializers and default constructors for no-arg constructors where possible.
+* Use default arguments instead of method overloading.
+* Everything that can be `const` should be.
+* Don't optimize for no reason or prematurely optimize.

@@ -11,13 +11,18 @@
 #include "api.h"
 
 namespace okapi {
-class IterativeControllerParams {};
+class IterativeControllerArgs {
+  public:
+  virtual ~IterativeControllerArgs();
+};
 
 /**
  * Closed-loop controller that steps iteratively using the step method below.
  */
 class IterativeController {
   public:
+  virtual ~IterativeController();
+
   /**
    * Do one iteration of the controller. Outputs in the range [-1, 1]
    *
@@ -28,6 +33,8 @@ class IterativeController {
 
   /**
    * Sets the target for the controller.
+   *
+   * @param itarget new target value
    */
   virtual void setTarget(const double itarget) = 0;
 
@@ -73,7 +80,7 @@ class IterativeController {
   virtual void flipDisable();
 
   /**
-   * Get the last set sample time. Default is 15.
+   * Get the last set sample time. Default is 10.
    *
    * @return sample time
    */

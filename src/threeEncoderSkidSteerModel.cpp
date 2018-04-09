@@ -9,31 +9,32 @@
 #include "okapi/chassis/model/threeEncoderSkidSteerModel.hpp"
 
 namespace okapi {
-ThreeEncoderSkidSteerModelParams::ThreeEncoderSkidSteerModelParams(
-  const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-  const RotarySensor &ileftEnc, const RotarySensor &imiddleEnc, const RotarySensor &irightEnc)
-  : SkidSteerModelParams(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc),
+ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
+                                                               const AbstractMotor &irightSideMotor,
+                                                               const RotarySensor &ileftEnc,
+                                                               const RotarySensor &imiddleEnc,
+                                                               const RotarySensor &irightEnc,
+                                                               const double imaxOutput)
+  : SkidSteerModelArgs(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxOutput),
     middleSensor(imiddleEnc) {
 }
-
-ThreeEncoderSkidSteerModelParams::~ThreeEncoderSkidSteerModelParams() = default;
 
 ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(const AbstractMotor &ileftSideMotor,
                                                        const AbstractMotor &irightSideMotor,
                                                        const RotarySensor &ileftEnc,
                                                        const RotarySensor &imiddleEnc,
-                                                       const RotarySensor &irightEnc)
-  : SkidSteerModel(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc), middleSensor(imiddleEnc) {
+                                                       const RotarySensor &irightEnc,
+                                                       const double imaxOutput)
+  : SkidSteerModel(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxOutput),
+    middleSensor(imiddleEnc) {
 }
 
 ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
-  const ThreeEncoderSkidSteerModelParams &iparams)
+  const ThreeEncoderSkidSteerModelArgs &iparams)
   : SkidSteerModel(iparams.leftSideMotor, iparams.rightSideMotor, iparams.leftSensor,
                    iparams.rightSensor),
     middleSensor(iparams.middleSensor) {
 }
-
-ThreeEncoderSkidSteerModel::~ThreeEncoderSkidSteerModel() = default;
 
 std::valarray<int> ThreeEncoderSkidSteerModel::getSensorVals() const {
   // Return the middle sensor last so this is compatible with SkidSteerModel::getSensorVals()

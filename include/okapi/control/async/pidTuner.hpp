@@ -11,7 +11,7 @@
 
 #include "api.h"
 #include "okapi/chassis/model/chassisModel.hpp"
-#include "okapi/control/iterative/posPidController.hpp"
+#include "okapi/control/iterative/iterativePosPidController.hpp"
 #include <vector>
 
 namespace okapi {
@@ -24,7 +24,7 @@ class PIDTuner {
 
   virtual ~PIDTuner();
 
-  virtual PosPIDControllerParams autotune();
+  virtual IterativePosPIDControllerArgs autotune();
 
   protected:
   static constexpr double inertia = 0.5;   // Particle intertia
@@ -58,8 +58,8 @@ class PIDTuner {
 
   double itae = 0;
   std::vector<particleSet> particles{};
-  PosPIDController leftController{0, 0, 0};
-  PosPIDController rightController{0, 0, 0};
+  IterativePosPIDController leftController{0, 0, 0};
+  IterativePosPIDController rightController{0, 0, 0};
 
   uint32_t moveDistance(const int itarget);
 };

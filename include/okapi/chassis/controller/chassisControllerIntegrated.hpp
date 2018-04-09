@@ -11,28 +11,11 @@
 #include "okapi/chassis/controller/chassisController.hpp"
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
-#include "okapi/control/async/posIntegratedController.hpp"
+#include "okapi/control/async/asyncPosIntegratedController.hpp"
 
 namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {
   public:
-  /**
-   * ChassisController using the V5 motor's integrated control. Puts the motors' encoders into tick
-   * units.
-   *
-   * @param imodelParams ChassisModelParams
-   * @param ileftControllerParams left side controller params
-   * @param irightControllerParams right side controller params
-   * @param istraightScale scale converting your units of choice to encoder ticks, used for
-   * measuring distance
-   * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
-   * angle
-   */
-  ChassisControllerIntegrated(const ChassisModel &imodel,
-                              const PosIntegratedControllerParams &ileftControllerParams,
-                              const PosIntegratedControllerParams &irightControllerParams,
-                              const double istraightScale = 1, const double iturnScale = 1);
-
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
    * steer layout. Puts the motors' encoders into tick units.
@@ -67,7 +50,22 @@ class ChassisControllerIntegrated : public virtual ChassisController {
                               const AbstractMotor &ibottomLeftMotor,
                               const double istraightScale = 1, const double iturnScale = 1);
 
-  virtual ~ChassisControllerIntegrated();
+  /**
+   * ChassisController using the V5 motor's integrated control. Puts the motors' encoders into tick
+   * units.
+   *
+   * @param imodelArgs ChassisModelArgs
+   * @param ileftControllerArgs left side controller params
+   * @param irightControllerArgs right side controller params
+   * @param istraightScale scale converting your units of choice to encoder ticks, used for
+   * measuring distance
+   * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
+   * angle
+   */
+  ChassisControllerIntegrated(std::shared_ptr<ChassisModel> imodel,
+                              const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
+                              const AsyncPosIntegratedControllerArgs &irightControllerArgs,
+                              const double istraightScale = 1, const double iturnScale = 1);
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
@@ -84,8 +82,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   virtual void turnAngle(float idegTarget) override;
 
   protected:
-  PosIntegratedController leftController;
-  PosIntegratedController rightController;
+  AsyncPosIntegratedController leftController;
+  AsyncPosIntegratedController rightController;
   int lastTarget;
   const double straightScale;
   const double turnScale;

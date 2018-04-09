@@ -5,10 +5,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/filter/filter.hpp"
+#ifndef _OKAPI_VISION_HPP_
+#define _OKAPI_VISION_HPP_
+
+#include "api.h"
 
 namespace okapi {
-FilterArgs::~FilterArgs() = default;
+using pros::Vision;
+} // namespace okapi
 
-Filter::~Filter() = default;
-}
+#endif

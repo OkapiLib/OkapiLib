@@ -8,11 +8,68 @@ using namespace okapi;
 void opcontrol() {
   task_delay(100);
 
+  // ChassisControllerIntegrated cci1(1_m, 2_m);
+  // ChassisControllerIntegrated cci2(MotorGroup<2>({1_m, 2_rm}), MotorGroup<2>({3_m, 4_rm}));
+
+  // ComposableFilter testFilter(
+  //   {std::make_shared<MedianFilter<3>>(), std::make_shared<AverageFilter<5>>()});
+  // VelMath velMath(1800, std::make_shared<ComposableFilter>(testFilter));
+
+  // printf("velocity,current,efficiency,power,temperature,torque,voltage\n");
+  // motor_move_velocity(9, 127);
+  // while (true) {
+  //   velMath.step(motor_get_position(9));
+  //   printf("%1.2f,%lu,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", velMath.getVelocity(),
+  //          motor_get_current_draw(9), motor_get_efficiency(9), motor_get_power(9),
+  //          motor_get_temperature(9), motor_get_torque(9), motor_get_voltage(9));
+  //   task_delay(10);
+  // }
+
+  // OdomChassisControllerIntegrated occi1(1_m, 2_m, 1.0, 1.0);
+  // OdomChassisControllerIntegrated occi2(
+  //   std::make_shared<SkidSteerModel>(1_m, 2_m, ADIEncoder(1, 2), ADIEncoder(3, 4)), 1.0, 1.0);
+
+  // OdomChassisControllerIntegrated helpMe(1_m, 2_m, 1.0, 1.0);
+
+  // VelMath velMath(1800, 1, 0);
+  // double mass = 0;
+  // double accel = 0;
+  // const double wheelDiam = 3.75;
+  // double torque = 0;
+  // double force = 0;
+  // printf("request,velocity,filter\n");
+  // MedianFilter<5> medFilt;
+  // AverageFilter<5> filt;
+  // double req = 0;
+  // double increment = 1;
+  // while (true) {
+  //   torque = motor_get_torque(8);
+  //
+  //   const double pos = motor_get_position(8);
+  //   velMath.step(pos);
+  //   filt.filter(medFilt.filter(velMath.getVelocity()));
+  //   accel = velMath.getAccel();
+  //
+  //   force = torque / (wheelDiam / 2.0);
+  //   req += increment;
+  //   if (req > 100) {
+  //     req = 0;
+  //     increment = 0;
+  //   }
+  //   motor_move_velocity(8, (int)req);
+  //
+  //   mass = force / accel;
+  //   // printf("%1.2f,%1.2f\n", mass, accel);
+  //   printf("%1.2f,%1.2f,\n", req, velMath.getVelocity());
+  //   task_delay(10);
+  // }
+
   {
     using namespace snowhouse;
 
     {
       test_printf("Testing ipow");
+
       test_printf("Integer tests");
       test("0^0 == 1", TEST_BODY(AssertThat, ipow(0, 0), Equals(1)));
       test("0^1 == 0", TEST_BODY(AssertThat, ipow(0, 1), Equals(0)));
@@ -24,6 +81,34 @@ void opcontrol() {
       test_printf("Floating point tests");
       test("0.5^1 == 0.5", TEST_BODY(AssertThat, ipow(0.5, 1), EqualsWithDelta(0.5, 0.0001)));
       test("2.5^2 == 6.25", TEST_BODY(AssertThat, ipow(2.5, 2), EqualsWithDelta(6.25, 0.0001)));
+    }
+
+    {
+      test_printf("Testing cutRange");
+
+      test("1 : [-2, 2] -> 0",
+           TEST_BODY(AssertThat, cutRange(1, -2, 2), EqualsWithDelta(0, 0.0001)));
+      test("2 : [-2, 2] -> 0",
+           TEST_BODY(AssertThat, cutRange(2, -2, 2), EqualsWithDelta(0, 0.0001)));
+      test("-2 : [-2, 2] -> 0",
+           TEST_BODY(AssertThat, cutRange(-2, -2, 2), EqualsWithDelta(0, 0.0001)));
+      test("-3 : [-2, 2] -> -3",
+           TEST_BODY(AssertThat, cutRange(-3, -2, 2), EqualsWithDelta(-3, 0.0001)));
+      test("3 : [-2, 2] -> -3",
+           TEST_BODY(AssertThat, cutRange(3, -2, 2), EqualsWithDelta(3, 0.0001)));
+    }
+
+    {
+      test_printf("Testing remapRange");
+
+      test("0 : [-1, 1] -> [-2, 2]",
+           TEST_BODY(AssertThat, remapRange(0, -1, 1, -2, 2), EqualsWithDelta(0, 0.0001)));
+      test("0.1 : [-1, 1] -> [-2, 2]",
+           TEST_BODY(AssertThat, remapRange(0.1, -1, 1, -2, 2), EqualsWithDelta(0.2, 0.0001)));
+      test("-0.1 : [-1, 1] -> [2, -2]",
+           TEST_BODY(AssertThat, remapRange(-0.1, -1, 1, 2, -2), EqualsWithDelta(0.2, 0.0001)));
+      test("0 : [-1, 1] -> [-5, 2]",
+           TEST_BODY(AssertThat, remapRange(0, -1, 1, -5, 2), EqualsWithDelta(-1.5, 0.0001)));
     }
 
     {
@@ -138,6 +223,25 @@ void opcontrol() {
     }
 
     {
+      test_printf("Testing ComposableFilter");
+
+      ComposableFilter filt(
+        {std::make_shared<AverageFilter<3>>(), std::make_shared<AverageFilter<3>>()});
+
+      test("ComposableFilter i = 1",
+           TEST_BODY(AssertThat, filt.filter(1), EqualsWithDelta(0.1111, 0.0001)));
+      test("ComposableFilter i = 2",
+           TEST_BODY(AssertThat, filt.filter(2), EqualsWithDelta(0.4444, 0.0001)));
+      test("ComposableFilter i = 3",
+           TEST_BODY(AssertThat, filt.filter(3), EqualsWithDelta(1.1111, 0.0001)));
+
+      for (int i = 4; i < 10; i++) {
+        test("ComposableFilter i = " + std::to_string(i),
+             TEST_BODY(AssertThat, filt.filter(i), EqualsWithDelta(i - 2, 0.0001)));
+      }
+    }
+
+    {
       test_printf("Testing Rate");
 
       Rate rate;
@@ -160,14 +264,19 @@ void opcontrol() {
       test_printf("Testing VelMath");
 
       // DemaFilter gains 1 and 0 so it returns input signal and no filtering is performed
-      VelMath velMath(360, 1, 0);
-      Rate rate;
+      VelMath velMath(360, std::make_shared<DemaFilter>(1.0, 0.0));
 
       for (int i = 0; i < 10; i++) {
-        rate.delayHz(10); // Delay first so the timestep works for the first iteration
-        // 10 ticks per 100 ms should be ~16.67 rpm
-        test("VelMath " + std::to_string(i),
-             TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(16.67, 0.01)));
+        task_delay(100); // Delay first so the timestep works for the first iteration
+
+        if (i == 0) {
+          test("VelMath " + std::to_string(i),
+               TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(0, 0.01)));
+        } else {
+          // 10 ticks per 100 ms should be ~16.67 rpm
+          test("VelMath " + std::to_string(i),
+               TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(16.67, 0.01)));
+        }
       }
     }
 
@@ -225,21 +334,21 @@ void opcontrol() {
     ChassisControllerPID controller1(
       SkidSteerModel(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}), leftEncoder,
                      rightEncoder),
-      PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
+      PosPIDControllerArgs(0, 0, 0), PosPIDControllerArgs(0, 0, 0));
 
     ChassisControllerPID controller2(XDriveModel(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder),
-                                     PosPIDControllerParams(0, 0, 0),
-                                     PosPIDControllerParams(0, 0, 0));
+                                     PosPIDControllerArgs(0, 0, 0),
+                                     PosPIDControllerArgs(0, 0, 0));
 
     // An "odometry" chassis controller adds an odometry layer running in another task which keeps
     // track of the position of the robot in the odom frame. This means that you can tell the robot
     // to move to an arbitrary point on the field, or turn to an absolute angle (i.e., "turn to 90
     // degrees" will always put the robot facing east relative to the starting position)
     OdomChassisControllerPID controller3(
-      OdometryParams(SkidSteerModel(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
+      OdometryArgs(SkidSteerModel(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
                                     leftEncoder, rightEncoder),
                      0, 0),
-      PosPIDControllerParams(0, 0, 0), PosPIDControllerParams(0, 0, 0));
+      PosPIDControllerArgs(0, 0, 0), PosPIDControllerArgs(0, 0, 0));
 
     controller3.driveToPoint(0, 0); // Drive to (0, 0) on the field
     controller3.turnToAngle(0);     // Turn to 0 degrees
@@ -252,20 +361,20 @@ void opcontrol() {
     PosIntegratedController posI1(1_m);
 
     Motor tempMotor = 1_m;
-    AsyncPosPIDController apospid1(leftEncoder, tempMotor, PosPIDControllerParams(0, 0, 0));
+    AsyncPosPIDController apospid1(leftEncoder, tempMotor, PosPIDControllerArgs(0, 0, 0));
     AsyncPosPIDController apospid2(leftEncoder, tempMotor, 0, 0, 0);
 
     PosPIDController pid2(0, 0, 0);
     PosPIDController pid3(0, 0, 0, 0);
-    PosPIDController pid4(PosPIDControllerParams(0, 0, 0));
-    PosPIDController pid5(PosPIDControllerParams(0, 0, 0, 0));
+    PosPIDController pid4(PosPIDControllerArgs(0, 0, 0));
+    PosPIDController pid5(PosPIDControllerArgs(0, 0, 0, 0));
 
     VelMath velMath1(0);
     VelMath velMath2(0, 0);
     VelMath velMath3(0, 0, 0);
 
     VelPIDController velPid1(0, 0);
-    VelPIDController velPid2(VelPIDControllerParams(0, 0));
+    VelPIDController velPid2(VelPIDControllerArgs(0, 0));
 
     ADIEncoder quad1(0, 0);
     ADIEncoder quad2(0, 0, true);

@@ -11,43 +11,28 @@
 #include "okapi/chassis/controller/chassisController.hpp"
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
-#include "okapi/control/iterative/posPidController.hpp"
+#include "okapi/control/iterative/iterativePosPidController.hpp"
 
 namespace okapi {
 class ChassisControllerPID : public virtual ChassisController {
   public:
-  /**
-   * ChassisController using PID control. Puts the motors into encoder tick units.
-   *
-   * @param imodelParams ChassisModelParams
-   * @param idistanceParams distance PID controller params
-   * @param iangleParams angle PID controller params (keeps the robot straight)
-   * @param istraightScale scale converting your units of choice to encoder ticks, used for
-   * measuring distance
-   * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
-   * angle
-   */
-  ChassisControllerPID(const ChassisModel &imodel, const PosPIDControllerParams &idistanceParams,
-                       const PosPIDControllerParams &iangleParams, const double istraightScale = 1,
-                       const double iturnScale = 1);
-
   /**
    * ChassisController using PID control. This constructor assumes a skid
    * steer layout. Puts the motors into encoder tick units.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
-   * @param idistanceParams distance PID controller params
-   * @param iangleParams angle PID controller params (keeps the robot straight)
+   * @param idistanceArgs distance PID controller params
+   * @param iangleArgs angle PID controller params (keeps the robot straight)
    * @param istraightScale scale converting your units of choice to encoder ticks, used for
    * measuring distance
    * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
    * angle
    */
   ChassisControllerPID(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                       const PosPIDControllerParams &idistanceParams,
-                       const PosPIDControllerParams &iangleParams, const double istraightScale = 1,
-                       const double iturnScale = 1);
+                       const IterativePosPIDControllerArgs &idistanceArgs,
+                       const IterativePosPIDControllerArgs &iangleArgs,
+                       const double istraightScale = 1, const double iturnScale = 1);
 
   /**
    * ChassisController using PID control. This constructor assumes an x-drive
@@ -57,8 +42,8 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param itopRightMotor top right motor
    * @param ibottomRightMotor bottom right motor
    * @param ibottomLeftMotor bottom left motor
-   * @param idistanceParams distance PID controller params
-   * @param iangleParams angle PID controller params (keeps the robot straight)
+   * @param idistanceArgs distance PID controller params
+   * @param iangleArgs angle PID controller params (keeps the robot straight)
    * @param istraightScale scale converting your units of choice to encoder ticks, used for
    * measuring distance
    * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
@@ -67,11 +52,25 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
                        const AbstractMotor &ibottomRightMotor,
                        const AbstractMotor &ibottomLeftMotor,
-                       const PosPIDControllerParams &idistanceParams,
-                       const PosPIDControllerParams &iangleParams, const double istraightScale = 1,
-                       const double iturnScale = 1);
+                       const IterativePosPIDControllerArgs &idistanceArgs,
+                       const IterativePosPIDControllerArgs &iangleArgs,
+                       const double istraightScale = 1, const double iturnScale = 1);
 
-  virtual ~ChassisControllerPID();
+  /**
+   * ChassisController using PID control. Puts the motors into encoder tick units.
+   *
+   * @param imodelArgs ChassisModelArgs
+   * @param idistanceArgs distance PID controller params
+   * @param iangleArgs angle PID controller params (keeps the robot straight)
+   * @param istraightScale scale converting your units of choice to encoder ticks, used for
+   * measuring distance
+   * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
+   * angle
+   */
+  ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
+                       const IterativePosPIDControllerArgs &idistanceArgs,
+                       const IterativePosPIDControllerArgs &iangleArgs,
+                       const double istraightScale = 1, const double iturnScale = 1);
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
@@ -88,7 +87,8 @@ class ChassisControllerPID : public virtual ChassisController {
   virtual void turnAngle(float idegTarget) override;
 
   protected:
-  PosPIDController distancePid, anglePid;
+  IterativePosPIDController distancePid;
+  IterativePosPIDController anglePid;
   const double straightScale;
   const double turnScale;
 };

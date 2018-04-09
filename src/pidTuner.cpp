@@ -35,7 +35,7 @@ PIDTuner::PIDTuner(const ChassisModel &imodel, const uint32_t itimeout, const in
 
 PIDTuner::~PIDTuner() = default;
 
-PosPIDControllerParams PIDTuner::autotune() {
+IterativePosPIDControllerArgs PIDTuner::autotune() {
   std::random_device rd;  // Random seed
   std::mt19937 gen(rd()); // Mersenne twister
   std::uniform_real_distribution<double> dist(0, 1);
@@ -138,7 +138,7 @@ PosPIDControllerParams PIDTuner::autotune() {
     }
   }
 
-  return PosPIDControllerParams(global.kP.best, global.kI.best, global.kD.best);
+  return IterativePosPIDControllerArgs(global.kP.best, global.kI.best, global.kD.best);
 }
 
 uint32_t PIDTuner::moveDistance(const int itarget) {

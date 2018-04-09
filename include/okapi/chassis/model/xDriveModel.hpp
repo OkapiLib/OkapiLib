@@ -13,18 +13,16 @@
 #include "okapi/device/rotarysensor/rotarySensor.hpp"
 
 namespace okapi {
-class XDriveModelParams : public ChassisModelParams {
+class XDriveModelArgs : public ChassisModelArgs {
   public:
-  XDriveModelParams(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
-                    const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-                    const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-                    const double imaxOutput = 100);
+  XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
+                  const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+                  const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                  const double imaxOutput = 100);
 
-  XDriveModelParams(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
-                    const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-                    const double imaxOutput = 100);
-
-  virtual ~XDriveModelParams();
+  XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
+                  const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+                  const double imaxOutput = 100);
 
   const AbstractMotor &topLeftMotor;
   const AbstractMotor &topRightMotor;
@@ -69,11 +67,9 @@ class XDriveModel : public ChassisModel {
               const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
               const double imaxOutput = 100);
 
-  XDriveModel(const XDriveModelParams &iparams);
+  XDriveModel(const XDriveModelArgs &iparams);
 
   XDriveModel(const XDriveModel &other);
-
-  virtual ~XDriveModel();
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.

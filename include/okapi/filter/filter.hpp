@@ -9,12 +9,17 @@
 #define _OKAPI_FILTER_HPP_
 
 namespace okapi {
+class FilterArgs {
+  public:
+  virtual ~FilterArgs();
+};
+
 class Filter {
   public:
   virtual ~Filter();
 
   /**
-   * Filters a reading.
+   * Filters a value, like a sensor reading.
    *
    * @param ireading new measurement
    * @return filtered result

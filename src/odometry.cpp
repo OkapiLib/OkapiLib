@@ -19,19 +19,20 @@ OdomState::OdomState(const double ix, const double iy, const double itheta)
 
 OdomState::~OdomState() = default;
 
-OdometryParams::OdometryParams(const SkidSteerModel &imodel, const double iscale,
-                               const double iturnScale)
+OdometryArgs::OdometryArgs(std::shared_ptr<SkidSteerModel> imodel, const double iscale,
+                           const double iturnScale)
   : model(imodel), scale(iscale), turnScale(iturnScale) {
 }
 
-OdometryParams::~OdometryParams() = default;
+OdometryArgs::~OdometryArgs() = default;
 
-Odometry::Odometry(const SkidSteerModel &imodel, const double iscale, const double iturnScale)
-  : scale(iscale), turnScale(iturnScale), lastTicks{0, 0}, mm(0), model(imodel) {
+Odometry::Odometry(std::shared_ptr<SkidSteerModel> imodel, const double iscale,
+                   const double iturnScale)
+  : model(imodel), scale(iscale), turnScale(iturnScale), lastTicks{0, 0}, mm(0) {
 }
 
-Odometry::Odometry(const OdometryParams &iparams)
-  : scale(iparams.scale), turnScale(iparams.turnScale), model(iparams.model) {
+Odometry::Odometry(const OdometryArgs &iparams)
+  : model(iparams.model), scale(iparams.scale), turnScale(iparams.turnScale) {
 }
 
 Odometry::~Odometry() = default;
@@ -46,7 +47,7 @@ void Odometry::loop() {
   std::valarray<int> newTicks{0, 0}, tickDiff{0, 0};
 
   while (true) {
-    newTicks = model.getSensorVals();
+    newTicks = model->getSensorVals();
     tickDiff = newTicks - lastTicks;
     mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
     lastTicks = newTicks;
@@ -60,7 +61,7 @@ void Odometry::loop() {
     state.x += mm * std::cos(state.theta);
     state.y += mm * std::sin(state.theta);
 
-    task_delay_until(&now, 15);
+    task_delay_until(&now, 10);
   }
 }
 

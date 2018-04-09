@@ -5,21 +5,18 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_VELINTEGRATEDCONTROLLER_HPP_
-#define _OKAPI_VELINTEGRATEDCONTROLLER_HPP_
+#ifndef _OKAPI_POSINTEGRATEDCONTROLLER_HPP_
+#define _OKAPI_POSINTEGRATEDCONTROLLER_HPP_
 
-#include "okapi/control/async/asyncVelocityController.hpp"
+#include "okapi/control/async/asyncPositionController.hpp"
 #include "okapi/device/motor/abstractMotor.hpp"
-#include "okapi/device/rotarysensor/integratedEncoder.hpp"
 
 namespace okapi {
-class VelIntegratedController;
+class AsyncPosIntegratedController;
 
-class VelIntegratedControllerParams : public AsyncVelocityControllerParams {
+class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
   public:
-  VelIntegratedControllerParams(const AbstractMotor &imotor);
-
-  virtual ~VelIntegratedControllerParams();
+  AsyncPosIntegratedControllerArgs(const AbstractMotor &imotor);
 
   const AbstractMotor &motor;
 };
@@ -27,13 +24,11 @@ class VelIntegratedControllerParams : public AsyncVelocityControllerParams {
 /**
  * Closed-loop controller that uses the V5 motor's onboard control to move.
  */
-class VelIntegratedController : public AsyncVelocityController {
+class AsyncPosIntegratedController : public AsyncPositionController {
   public:
-  VelIntegratedController(const AbstractMotor &imotor);
+  AsyncPosIntegratedController(const AbstractMotor &imotor);
 
-  VelIntegratedController(const VelIntegratedControllerParams &iparams);
-
-  virtual ~VelIntegratedController();
+  AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams);
 
   /**
    * Sets the target for the controller.
@@ -54,6 +49,7 @@ class VelIntegratedController : public AsyncVelocityController {
   protected:
   const AbstractMotor &motor;
   double lastTarget = 0;
+  double offset = 0;
 };
 } // namespace okapi
 

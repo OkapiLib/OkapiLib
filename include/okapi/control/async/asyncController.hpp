@@ -11,7 +11,10 @@
 #include "api.h"
 
 namespace okapi {
-class AsyncControllerParams {};
+class AsyncControllerArgs {
+  public:
+  virtual ~AsyncControllerArgs();
+};
 
 class AsyncController {
   public:

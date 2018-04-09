@@ -11,8 +11,6 @@ namespace okapi {
 ADIMotor::ADIMotor(const uint8_t iport) : motor(iport) {
 }
 
-ADIMotor::~ADIMotor() = default;
-
 void ADIMotor::move_voltage(const int32_t ivoltage) const {
   motor.value_set(ivoltage);
 }

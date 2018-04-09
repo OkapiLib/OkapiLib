@@ -13,17 +13,15 @@
 #include "okapi/device/rotarysensor/rotarySensor.hpp"
 
 namespace okapi {
-class SkidSteerModelParams : public ChassisModelParams {
+class SkidSteerModelArgs : public ChassisModelArgs {
   public:
-  SkidSteerModelParams(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                       const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-                       const double imaxOutput = 100);
+  SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
+                     const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                     const double imaxOutput = 100);
 
   // Create the sensors using the integrated encoder
-  SkidSteerModelParams(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                       const double imaxOutput = 100);
-
-  virtual ~SkidSteerModelParams();
+  SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
+                     const double imaxOutput = 100);
 
   const AbstractMotor &leftSideMotor;
   const AbstractMotor &rightSideMotor;
@@ -60,11 +58,9 @@ class SkidSteerModel : public ChassisModel {
   SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
                  const double imaxOutput = 100);
 
-  SkidSteerModel(const SkidSteerModelParams &iparams);
+  SkidSteerModel(const SkidSteerModelArgs &iparams);
 
   SkidSteerModel(const SkidSteerModel &other);
-
-  virtual ~SkidSteerModel();
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.
@@ -162,6 +158,20 @@ class SkidSteerModel : public ChassisModel {
    * @param gearset new motor gearset
    */
   virtual void setGearing(const motor_gearset_e_t gearset) const override;
+
+  /**
+   * Returns the left side motor.
+   *
+   * @return the left side motor
+   */
+  const AbstractMotor &getLeftSideMotor() const;
+
+  /**
+   * Returns the left side motor.
+   *
+   * @return the left side motor
+   */
+  const AbstractMotor &getRightSideMotor() const;
 
   protected:
   const AbstractMotor &leftSideMotor;

@@ -9,12 +9,12 @@
 #include <utility>
 
 namespace okapi {
-XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
-                                     const AbstractMotor &itopRightMotor,
-                                     const AbstractMotor &ibottomRightMotor,
-                                     const AbstractMotor &ibottomLeftMotor,
-                                     const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-                                     const double imaxOutput)
+XDriveModelArgs::XDriveModelArgs(const AbstractMotor &itopLeftMotor,
+                                 const AbstractMotor &itopRightMotor,
+                                 const AbstractMotor &ibottomRightMotor,
+                                 const AbstractMotor &ibottomLeftMotor,
+                                 const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                                 const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
@@ -24,10 +24,10 @@ XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
     maxOutput(imaxOutput) {
 }
 
-XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
-                                     const AbstractMotor &itopRightMotor,
-                                     const AbstractMotor &ibottomRightMotor,
-                                     const AbstractMotor &ibottomLeftMotor, const double imaxOutput)
+XDriveModelArgs::XDriveModelArgs(const AbstractMotor &itopLeftMotor,
+                                 const AbstractMotor &itopRightMotor,
+                                 const AbstractMotor &ibottomRightMotor,
+                                 const AbstractMotor &ibottomLeftMotor, const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
@@ -36,8 +36,6 @@ XDriveModelParams::XDriveModelParams(const AbstractMotor &itopLeftMotor,
     rightSensor(std::move(itopRightMotor.getEncoder())),
     maxOutput(imaxOutput) {
 }
-
-XDriveModelParams::~XDriveModelParams() = default;
 
 XDriveModel::XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
                          const AbstractMotor &ibottomRightMotor,
@@ -64,7 +62,7 @@ XDriveModel::XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor
     maxOutput(imaxOutput) {
 }
 
-XDriveModel::XDriveModel(const XDriveModelParams &iparams)
+XDriveModel::XDriveModel(const XDriveModelArgs &iparams)
   : topLeftMotor(iparams.topLeftMotor),
     topRightMotor(iparams.topRightMotor),
     bottomRightMotor(iparams.bottomRightMotor),
@@ -83,8 +81,6 @@ XDriveModel::XDriveModel(const XDriveModel &other)
     rightSensor(other.rightSensor),
     maxOutput(other.maxOutput) {
 }
-
-XDriveModel::~XDriveModel() = default;
 
 void XDriveModel::forward(const double ispeed) const {
   topLeftMotor.move_velocity(ispeed * maxOutput);

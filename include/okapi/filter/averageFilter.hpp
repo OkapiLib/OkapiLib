@@ -13,6 +13,8 @@
 #include <cstddef>
 
 namespace okapi {
+template <std::size_t n> class AverageFilterArgs : public FilterArgs {};
+
 /**
  * @param n number of taps in the filter
  */
@@ -23,8 +25,12 @@ template <std::size_t n> class AverageFilter : public Filter {
    */
   AverageFilter() = default;
 
-  virtual ~AverageFilter() = default;
-
+  /**
+   * Filters a value, like a sensor reading.
+   *
+   * @param ireading new measurement
+   * @return filtered result
+   */
   virtual double filter(const double ireading) override {
     data[index++] = ireading;
     if (index >= n) {
@@ -39,6 +45,11 @@ template <std::size_t n> class AverageFilter : public Filter {
     return output;
   }
 
+  /**
+   * Returns the previous output from filter.
+   *
+   * @return the previous output from filter
+   */
   virtual double getOutput() const override {
     return output;
   }

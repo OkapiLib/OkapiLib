@@ -9,76 +9,76 @@
 #define _OKAPI_VELOCITY_HPP_
 
 #include "api.h"
-#include "okapi/filter/demaFilter.hpp"
+#include "okapi/filter/composableFilter.hpp"
+#include <memory>
 
 namespace okapi {
-class VelMathParams {
+class VelMathArgs {
   public:
-  VelMathParams(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041);
+  VelMathArgs(const double iticksPerRev);
+  VelMathArgs(const double iticksPerRev, std::shared_ptr<Filter> ifilter);
 
-  virtual ~VelMathParams();
+  virtual ~VelMathArgs();
 
-  const double ticksPerRev, alpha, beta;
+  const double ticksPerRev;
+  std::shared_ptr<Filter> filter;
 };
 
 class VelMath {
   public:
   /**
-   * Velocity math helper. Calculates filtered velocity (DemaFilter).
+   * Velocity math helper. Calculates filtered velocity. Filters using a 3-tap median filter
+   * and a 5-tap averaging filter.
    *
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
-   * @param ialpha alpha gain
-   * @param ibeta beta gain
    */
-  VelMath(const double iticksPerRev, const double ialpha = 0.19, const double ibeta = 0.041);
+  VelMath(const double iticksPerRev);
 
   /**
-   * Velocity math helper. Calculates filtered velocity (DemaFilter).
+   * Velocity math helper. Calculates filtered velocity.
    *
-   * @param iparams VelMathParams
+   * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
+   * @param ifilter filter to use for filtering the velocity
    */
-  VelMath(const VelMathParams &iparams);
+  VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter);
+
+  VelMath(const VelMathArgs &iparams);
+
+  virtual ~VelMath();
 
   /**
-   * Calculate new velocity.
+   * Calculates the current velocity and acceleration. Returns the (filtered) velocity.
    *
    * @param inewPos new position
-   * @return new velocity
+   * @return current (filtered) velocity
    */
   virtual double step(const double inewPos);
 
   /**
-   * Set filter gains.
-   *
-   * @param ialpha alpha gain
-   * @param ibeta beta gain
-   */
-  virtual void setGains(const double ialpha, const double ibeta);
-
-  /**
-   * Set ticks per revolution (or whatever units you are using).
+   * Sets ticks per revolution (or whatever units you are using).
    *
    * @para iTPR ticks per revolution
    */
   virtual void setTicksPerRev(const double iTPR);
 
   /**
-   * Get the last calculated output.
+   * Returns the last calculated velocity.
    */
-  virtual double getOutput() const;
+  virtual double getVelocity() const;
 
   /**
-   * Get the difference between the last output and the output before that.
+   * Returns the last calculated acceleration.
    */
-  virtual double getDiff() const;
+  virtual double getAccel() const;
 
   protected:
   uint32_t lastTime = 0;
   double vel = 0;
+  double accel = 0;
   double lastVel = 0;
   double lastPos = 0;
   double ticksPerRev;
-  DemaFilter filter;
+  std::shared_ptr<Filter> filter;
 };
 } // namespace okapi
 

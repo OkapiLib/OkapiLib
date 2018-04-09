@@ -14,7 +14,7 @@
 namespace okapi {
 class AsyncPositionController;
 
-class AsyncPositionControllerParams : public AsyncControllerParams {};
+class AsyncPositionControllerArgs : public AsyncControllerArgs {};
 
 class AsyncPositionController : public AsyncController {};
 } // namespace okapi

@@ -17,17 +17,19 @@ class Motor : public AbstractMotor {
   using AbstractMotor::AbstractMotor;
 
   /**
-   * Write the value of the controller output. This method might be automatically called in another
-   * thread by the controller.
-   */
-  virtual void controllerSet(const double ivalue) override;
-
-  /**
    * Get the encoder associated with this motor.
    *
    * @return encoder for this motor
    */
   virtual IntegratedEncoder getEncoder() const override;
+
+  /**
+   * Writes the value of the controller output. This method might be automatically called in another
+   * thread by the controller.
+   *
+   * @param ivalue the controller's output
+   */
+  virtual void controllerSet(const double ivalue) override;
 };
 
 inline namespace literals {

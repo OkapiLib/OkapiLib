@@ -8,5 +8,7 @@
 #include "okapi/chassis/model/chassisModel.hpp"
 
 namespace okapi {
-ChassisModelParams::~ChassisModelParams() = default;
-}
+ChassisModelArgs::~ChassisModelArgs() = default;
+
+ChassisModel::~ChassisModel() = default;
+} // namespace okapi

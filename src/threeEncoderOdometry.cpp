@@ -8,28 +8,24 @@
 #include "okapi/odometry/threeEncoderOdometry.hpp"
 
 namespace okapi {
-ThreeEncoderOdometryParams::ThreeEncoderOdometryParams(const SkidSteerModel &iparams,
-                                                       const double iscale, const double iturnScale,
-                                                       const double imiddleScale)
-  : OdometryParams(iparams, iscale, iturnScale), middleScale(imiddleScale) {
+ThreeEncoderOdometryArgs::ThreeEncoderOdometryArgs(std::shared_ptr<SkidSteerModel> imodel,
+                                                   const double iscale, const double iturnScale,
+                                                   const double imiddleScale)
+  : OdometryArgs(imodel, iscale, iturnScale), middleScale(imiddleScale) {
 }
 
-ThreeEncoderOdometryParams::~ThreeEncoderOdometryParams() = default;
-
-ThreeEncoderOdometry::ThreeEncoderOdometry(const ThreeEncoderSkidSteerModel &imodel,
+ThreeEncoderOdometry::ThreeEncoderOdometry(std::shared_ptr<ThreeEncoderSkidSteerModel> imodel,
                                            const double iscale, const double iturnScale,
                                            const double imiddleScale)
-  : Odometry(imodel, iscale, iturnScale), middleScale(imiddleScale), model(imodel) {
+  : Odometry(imodel, iscale, iturnScale), model(imodel), middleScale(imiddleScale) {
 }
-
-ThreeEncoderOdometry::~ThreeEncoderOdometry() = default;
 
 void ThreeEncoderOdometry::loop() {
   uint32_t now = millis();
   std::valarray<int> newTicks{0, 0, 0}, tickDiff{0, 0, 0};
 
   while (true) {
-    newTicks = model.getSensorVals();
+    newTicks = model->getSensorVals();
     tickDiff = newTicks - lastTicks;
     mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
     lastTicks = newTicks;
@@ -43,7 +39,7 @@ void ThreeEncoderOdometry::loop() {
     state.x += mm * std::cos(state.theta) + (tickDiff[2] * middleScale) * std::sin(state.theta);
     state.y += mm * std::sin(state.theta) + (tickDiff[2] * middleScale) * std::cos(state.theta);
 
-    task_delay_until(&now, 15);
+    task_delay_until(&now, 10);
   }
 }
 

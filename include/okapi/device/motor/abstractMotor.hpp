@@ -22,7 +22,7 @@ class AbstractMotor : public pros::Motor, public ControllerOutput {
   virtual ~AbstractMotor();
 
   /**
-   * Get the encoder associated with this motor.
+   * Returns the encoder associated with this motor.
    *
    * @return encoder for this motor
    */

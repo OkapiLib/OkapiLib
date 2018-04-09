@@ -38,7 +38,7 @@ class EKFFilter : public Filter {
   EKFFilter(const double iQ = 0.0001, const double iR = ipow(0.2, 2));
 
   /**
-   * Filters a reading. Assumes the control input is zero.
+   * Filters a value, like a sensor reading. Assumes the control input is zero.
    *
    * @param ireading new measurement
    * @return filtered result

@@ -8,15 +8,13 @@
 #include "okapi/chassis/controller/odomChassisController.hpp"
 
 namespace okapi {
-OdomChassisController::OdomChassisController(const OdometryParams &iparams,
+OdomChassisController::OdomChassisController(const OdometryArgs &iparams,
                                              const float imoveThreshold)
   : ChassisController(iparams.model),
     moveThreshold(imoveThreshold),
     odom(iparams),
     task((task_fn_t)Odometry::trampoline, &odom, TASK_PRIORITY_DEFAULT + 1) {
 }
-
-OdomChassisController::~OdomChassisController() = default;
 
 OdomState OdomChassisController::getState() const {
   return odom.getState();

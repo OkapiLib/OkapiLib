@@ -13,17 +13,15 @@
 #include "okapi/control/iterative/iterativePositionController.hpp"
 
 namespace okapi {
-class PosPIDControllerParams : public IterativePositionControllerParams {
+class IterativePosPIDControllerArgs : public IterativePositionControllerArgs {
   public:
-  PosPIDControllerParams(const double ikP, const double ikI, const double ikD,
-                         const double ikBias = 0);
-
-  virtual ~PosPIDControllerParams();
+  IterativePosPIDControllerArgs(const double ikP, const double ikI, const double ikD,
+                                const double ikBias = 0);
 
   const double kP, kI, kD, kBias;
 };
 
-class PosPIDController : public IterativePositionController {
+class IterativePosPIDController : public IterativePositionController {
   public:
   /**
    * PID controller.
@@ -33,16 +31,15 @@ class PosPIDController : public IterativePositionController {
    * @param ikD derivative gain
    * @param ikBias controller bias (constant offset added to the output)
    */
-  PosPIDController(const double ikP, const double ikI, const double ikD, const double ikBias = 0);
+  IterativePosPIDController(const double ikP, const double ikI, const double ikD,
+                            const double ikBias = 0);
 
   /**
    * PID controller.
    *
-   * @param params PosPIDControllerParams
+   * @param params PosPIDControllerArgs
    */
-  PosPIDController(const PosPIDControllerParams &params);
-
-  virtual ~PosPIDController();
+  IterativePosPIDController(const IterativePosPIDControllerArgs &params);
 
   /**
    * Do one iteration of the controller. Returns the reading in the range [-127, 127] unless the
@@ -55,6 +52,8 @@ class PosPIDController : public IterativePositionController {
 
   /**
    * Sets the target for the controller.
+   *
+   * @param itarget new target position
    */
   virtual void setTarget(const double itarget) override;
 
@@ -93,7 +92,7 @@ class PosPIDController : public IterativePositionController {
   virtual void setSampleTime(const uint32_t isampleTime) override;
 
   /**
-   * Set controller output bounds. Default bounds are [-127, 127].
+   * Set controller output bounds. Default bounds are [-1, 1].
    *
    * @param imax max output
    * @param imin min output
@@ -101,12 +100,21 @@ class PosPIDController : public IterativePositionController {
   virtual void setOutputLimits(double imax, double imin) override;
 
   /**
-   * Set integrator bounds. Default bounds are [-127, 127];
+   * Set integrator bounds. Default bounds are [-1, 1].
    *
    * @param imax max integrator value
    * @param imin min integrator value
    */
   virtual void setIntegralLimits(double imax, double imin);
+
+  /**
+   * Set the error sum bounds. Default bounds are [500, 1250]. Error will only be added to the
+   * integral term when its absolute value between these bounds of either side of the target.
+   *
+   * @param imax max error value that will be summed
+   * @param imin min error value that will be summed
+   */
+  virtual void setErrorSumLimits(const double imax, const double imin);
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps gains and limits from
@@ -136,19 +144,33 @@ class PosPIDController : public IterativePositionController {
   protected:
   double kP, kI, kD, kBias;
   uint32_t lastTime = 0;
-  uint32_t sampleTime = 0;
+  uint32_t sampleTime = 10;
   double target = 0;
   double lastReading = 0;
   double error = 0;
   double lastError = 0;
+  // 12 bit ADC scale, good enough for most things
+  const double errorScale = 4096;
+
+  // Integral bounds
   double integral = 0;
   double integralMax = 1;
   double integralMin = -1;
+
+  // Error will only be added to the integral term within these bounds on either side of the target
+  double errorSumMin = 500;
+  double errorSumMax = 1250;
+
   double derivative = 0;
+
+  // Output bounds
   double output = 0;
-  double outputMax = 0;
-  double outputMin = 0;
+  double outputMax = 1;
+  double outputMin = -1;
+
+  // Reset the integrated when the controller crosses 0 or not
   bool shouldResetOnCross = true;
+
   bool isOn = true;
 };
 } // namespace okapi

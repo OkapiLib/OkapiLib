@@ -12,31 +12,29 @@
 #include "okapi/control/async/asyncPositionController.hpp"
 #include "okapi/control/controllerInput.hpp"
 #include "okapi/control/controllerOutput.hpp"
-#include "okapi/control/iterative/posPidController.hpp"
+#include "okapi/control/iterative/iterativePosPidController.hpp"
 #include "okapi/device/motor/abstractMotor.hpp"
 
 namespace okapi {
 class AsyncPosPIDController;
 
-class AsyncPosPIDControllerParams : public AsyncPositionControllerParams {
+class AsyncPosPIDControllerArgs : public AsyncPositionControllerArgs {
   public:
-  AsyncPosPIDControllerParams(ControllerInput &iinput, ControllerOutput &ioutput,
-                              const PosPIDControllerParams &iparams);
+  AsyncPosPIDControllerArgs(ControllerInput &iinput, ControllerOutput &ioutput,
+                            const IterativePosPIDControllerArgs &iparams);
 
   ControllerInput &input;
   ControllerOutput &output;
-  const PosPIDControllerParams &params;
+  const IterativePosPIDControllerArgs &params;
 };
 
 class AsyncPosPIDController : public AsyncPositionController {
   public:
   AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
-                        const PosPIDControllerParams &iparams);
+                        const IterativePosPIDControllerArgs &iparams);
 
   AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput, const double ikP,
                         const double ikI, const double ikD, const double ikBias = 0);
-
-  virtual ~AsyncPosPIDController();
 
   /**
    * Sets the target for the controller.
@@ -82,7 +80,7 @@ class AsyncPosPIDController : public AsyncPositionController {
   protected:
   ControllerInput &input;
   ControllerOutput &output;
-  PosPIDController controller;
+  IterativePosPIDController controller;
   uint32_t prevTime = 0;
   pros::Task task;
 

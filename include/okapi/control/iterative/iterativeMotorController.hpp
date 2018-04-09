@@ -15,9 +15,20 @@
 #include <memory>
 
 namespace okapi {
-class MotorController : public IterativeVelocityController {
+class IterativeMotorControllerArgs : public IterativeVelocityControllerArgs {
   public:
-  MotorController(const AbstractMotor &imotor, IterativeController &iptr);
+  IterativeMotorControllerArgs(const AbstractMotor &imotor,
+                               IterativeVelocityController &icontroller);
+
+  const AbstractMotor &motor;
+  IterativeVelocityController &controller;
+};
+
+class IterativeMotorController : public IterativeVelocityController {
+  public:
+  IterativeMotorController(const AbstractMotor &imotor, IterativeVelocityController &icontroller);
+
+  IterativeMotorController(const IterativeMotorControllerArgs &iparams);
 
   /**
    * Do one iteration of the controller.
@@ -25,34 +36,34 @@ class MotorController : public IterativeVelocityController {
    * @param inewReading new measurement
    * @return controller output
    */
-  virtual double step(const double ireading);
+  virtual double step(const double ireading) override;
 
   /**
    * Sets the target for the controller.
    */
-  virtual void setTarget(const double itarget);
+  virtual void setTarget(const double itarget) override;
 
   /**
    * Returns the last calculated output of the controller.
    */
-  virtual double getOutput() const;
+  virtual double getOutput() const override;
 
   /**
    * Returns the last error of the controller.
    */
-  virtual double getError() const;
+  virtual double getError() const override;
 
   /**
    * Returns the last derivative (change in error) of the controller.
    */
-  virtual double getDerivative() const;
+  virtual double getDerivative() const override;
 
   /**
    * Set time between loops in ms.
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const int isampleTime);
+  virtual void setSampleTime(const uint32_t isampleTime) override;
 
   /**
    * Set controller output bounds.
@@ -60,29 +71,29 @@ class MotorController : public IterativeVelocityController {
    * @param imax max output
    * @param imin min output
    */
-  virtual void setOutputLimits(double imax, double imin);
+  virtual void setOutputLimits(double imax, double imin) override;
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
-  virtual void reset();
+  virtual void reset() override;
 
   /**
    * Change whether the controll is off or on.
    */
-  virtual void flipDisable();
+  virtual void flipDisable() override;
 
   /**
    * Get the last set sample time.
    *
    * @return sample time
    */
-  virtual uint32_t getSampleTime() const;
+  virtual uint32_t getSampleTime() const override;
 
   protected:
   const AbstractMotor &motor;
-  IterativeController &controller;
+  IterativeVelocityController &controller;
 };
 } // namespace okapi
 

@@ -10,10 +10,10 @@
 #include <utility>
 
 namespace okapi {
-SkidSteerModelParams::SkidSteerModelParams(const AbstractMotor &ileftSideMotor,
-                                           const AbstractMotor &irightSideMotor,
-                                           const RotarySensor &ileftEnc,
-                                           const RotarySensor &irightEnc, const double imaxOutput)
+SkidSteerModelArgs::SkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
+                                       const AbstractMotor &irightSideMotor,
+                                       const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                                       const double imaxOutput)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
     leftSensor(ileftEnc),
@@ -21,17 +21,15 @@ SkidSteerModelParams::SkidSteerModelParams(const AbstractMotor &ileftSideMotor,
     maxOutput(imaxOutput) {
 }
 
-SkidSteerModelParams::SkidSteerModelParams(const AbstractMotor &ileftSideMotor,
-                                           const AbstractMotor &irightSideMotor,
-                                           const double imaxOutput)
+SkidSteerModelArgs::SkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
+                                       const AbstractMotor &irightSideMotor,
+                                       const double imaxOutput)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
     leftSensor(std::move(ileftSideMotor.getEncoder())),
     rightSensor(std::move(irightSideMotor.getEncoder())),
     maxOutput(imaxOutput) {
 }
-
-SkidSteerModelParams::~SkidSteerModelParams() = default;
 
 SkidSteerModel::SkidSteerModel(const AbstractMotor &ileftSideMotor,
                                const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc,
@@ -52,7 +50,7 @@ SkidSteerModel::SkidSteerModel(const AbstractMotor &ileftSideMotor,
     maxOutput(imaxOutput) {
 }
 
-SkidSteerModel::SkidSteerModel(const SkidSteerModelParams &iparams)
+SkidSteerModel::SkidSteerModel(const SkidSteerModelArgs &iparams)
   : leftSideMotor(iparams.leftSideMotor),
     rightSideMotor(iparams.rightSideMotor),
     leftSensor(iparams.leftSensor),
@@ -67,8 +65,6 @@ SkidSteerModel::SkidSteerModel(const SkidSteerModel &other)
     rightSensor(other.rightSensor),
     maxOutput(other.maxOutput) {
 }
-
-SkidSteerModel::~SkidSteerModel() = default;
 
 void SkidSteerModel::forward(const double ispeed) const {
   leftSideMotor.move_velocity(ispeed * maxOutput);
@@ -191,5 +187,13 @@ void SkidSteerModel::setEncoderUnits(const motor_encoder_units_e_t units) const 
 void SkidSteerModel::setGearing(const motor_gearset_e_t gearset) const {
   leftSideMotor.set_gearing(gearset);
   rightSideMotor.set_gearing(gearset);
+}
+
+const AbstractMotor &SkidSteerModel::getLeftSideMotor() const {
+  return leftSideMotor;
+}
+
+const AbstractMotor &SkidSteerModel::getRightSideMotor() const {
+  return rightSideMotor;
 }
 } // namespace okapi
