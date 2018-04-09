@@ -30,9 +30,18 @@ ComposableFilter::ComposableFilter(const ComposableFilterArgs &iparams) {
 }
 
 double ComposableFilter::filter(const double ireading) {
-  for (auto &&filt : filters) {
-    filt->filter(ireading);
+  if (filters.size() <= 0) {
+    return 0;
   }
+
+  // Initial sensor reading
+  filters.front()->filter(ireading);
+
+  // Propagate signal
+  for (std::size_t i = 1; i < filters.size(); i++) {
+    filters[i]->filter(filters[i - 1]->getOutput());
+  }
+
   return filters.back()->getOutput();
 }
 
@@ -43,4 +52,4 @@ double ComposableFilter::getOutput() const {
 void ComposableFilter::addFilter(std::shared_ptr<Filter> ifilter) {
   filters.push_back(ifilter);
 }
-}
+} // namespace okapi
