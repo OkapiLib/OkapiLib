@@ -27,11 +27,12 @@ class OdomState {
 
 class OdometryArgs {
   public:
-  OdometryArgs(const SkidSteerModel &imodel, const double iscale, const double iturnScale);
+  OdometryArgs(std::shared_ptr<SkidSteerModel> imodel, const double iscale,
+               const double iturnScale);
 
   virtual ~OdometryArgs();
 
-  const SkidSteerModel &model;
+  std::shared_ptr<SkidSteerModel> model;
   const double scale, turnScale;
 };
 
@@ -41,11 +42,11 @@ class Odometry {
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
    * relative to the start (assumed to be (0, 0)).
    *
-   * @param imodel ChassisModel for reading sensors
+   * @param imodel SkidSteerModel for reading sensors
    * @param iscale straight scale
    * @param iturnScale turn scale
    */
-  Odometry(const SkidSteerModel &imodel, const double iscale, const double iturnScale);
+  Odometry(std::shared_ptr<SkidSteerModel> imodel, const double iscale, const double iturnScale);
 
   /**
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
@@ -93,13 +94,11 @@ class Odometry {
   virtual void setState(const OdomState &istate);
 
   protected:
+  std::shared_ptr<SkidSteerModel> model;
   OdomState state;
   double scale, turnScale;
   std::valarray<int> lastTicks{0, 0};
   double mm = 0;
-
-  private:
-  const SkidSteerModel &model;
 };
 } // namespace okapi
 

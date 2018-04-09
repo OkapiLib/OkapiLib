@@ -10,7 +10,7 @@
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
-  const ChassisModel &imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
+  std::shared_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
   const AsyncPosIntegratedControllerArgs &irightControllerArgs, const double istraightScale,
   const double iturnScale)
   : ChassisController(imodel),
@@ -26,7 +26,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(const AbstractMotor &il
                                                          const AbstractMotor &irightSideMotor,
                                                          const double istraightScale,
                                                          const double iturnScale)
-  : ChassisController(SkidSteerModel(ileftSideMotor, irightSideMotor)),
+  : ChassisController(std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor)),
     leftController(ileftSideMotor),
     rightController(irightSideMotor),
     lastTarget(0),
@@ -41,8 +41,8 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(const AbstractMotor &it
                                                          const AbstractMotor &ibottomLeftMotor,
                                                          const double istraightScale,
                                                          const double iturnScale)
-  : ChassisController(
-      XDriveModel(itopLeftMotor, itopRightMotor, ibottomRightMotor, ibottomLeftMotor)),
+  : ChassisController(std::make_shared<XDriveModel>(itopLeftMotor, itopRightMotor,
+                                                    ibottomRightMotor, ibottomLeftMotor)),
     leftController(itopLeftMotor),
     rightController(itopRightMotor),
     lastTarget(0),
@@ -58,7 +58,7 @@ void ChassisControllerIntegrated::moveDistance(const int itarget) {
   const int atTargetDistance = 15;
   const int threshold = 2;
 
-  const auto encStartVals = model.getSensorVals();
+  const auto encStartVals = model->getSensorVals();
   std::valarray<int> encVals{0, 0};
 
   Timer atTargetTimer;
@@ -69,7 +69,7 @@ void ChassisControllerIntegrated::moveDistance(const int itarget) {
   rightController.setTarget(newTarget);
 
   while (!atTarget) {
-    encVals = model.getSensorVals() - encStartVals;
+    encVals = model->getSensorVals() - encStartVals;
     distanceElapsed = static_cast<int>((encVals[0] + encVals[1]) / 2.0);
 
     if (abs(itarget - distanceElapsed) <= atTargetDistance &&

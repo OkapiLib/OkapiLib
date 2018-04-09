@@ -14,7 +14,7 @@
 namespace okapi {
 class ThreeEncoderOdometryArgs : public OdometryArgs {
   public:
-  ThreeEncoderOdometryArgs(const SkidSteerModel &imodel, const double iscale,
+  ThreeEncoderOdometryArgs(std::shared_ptr<SkidSteerModel> imodel, const double iscale,
                            const double iturnScale, const double imiddleScale);
 
   const double middleScale;
@@ -32,7 +32,7 @@ class ThreeEncoderOdometry : public Odometry {
    * @param imiddleScale turn scale for the middle encoder (mounted perpendicular to the two side
    * encoders)
    */
-  ThreeEncoderOdometry(const ThreeEncoderSkidSteerModel &imodel, const double iscale,
+  ThreeEncoderOdometry(std::shared_ptr<ThreeEncoderSkidSteerModel> imodel, const double iscale,
                        const double iturnScale, const double imiddleScale);
 
   /**
@@ -49,10 +49,8 @@ class ThreeEncoderOdometry : public Odometry {
   static void trampoline(void *context);
 
   protected:
+  std::shared_ptr<ThreeEncoderSkidSteerModel> model;
   const double middleScale;
-
-  private:
-  const ThreeEncoderSkidSteerModel &model;
 };
 } // namespace okapi
 

@@ -11,14 +11,15 @@
 #include "okapi/filter/filter.hpp"
 #include <functional>
 #include <initializer_list>
+#include <memory>
 #include <vector>
 
 namespace okapi {
 class ComposableFilterArgs : public FilterArgs {
   public:
-  ComposableFilterArgs(const std::initializer_list<std::function<Filter *()>> &ilist);
+  ComposableFilterArgs(const std::initializer_list<std::shared_ptr<Filter>> &ilist);
 
-  const std::initializer_list<std::function<Filter *()>> &list;
+  const std::initializer_list<std::shared_ptr<Filter>> &list;
 };
 
 class ComposableFilter : public Filter {
@@ -37,11 +38,9 @@ class ComposableFilter : public Filter {
    *
    * @param ilist the lambdas used to allocate filters
    */
-  ComposableFilter(const std::initializer_list<std::function<Filter *()>> &ilist);
+  ComposableFilter(const std::initializer_list<std::shared_ptr<Filter>> &ilist);
 
   ComposableFilter(const ComposableFilterArgs &iparams);
-
-  virtual ~ComposableFilter();
 
   /**
    * Filters a value, like a sensor reading.
@@ -61,12 +60,12 @@ class ComposableFilter : public Filter {
   /**
    * Adds a filter to the end of the sequence.
    *
-   * @param ifilterAllocator a lambda called once to allocate a new filter
+   * @param ifilter the filter to add
    */
-  virtual void addFilter(const std::function<Filter *()> &ifilterAllocator);
+  virtual void addFilter(std::shared_ptr<Filter> ifilter);
 
   protected:
-  std::vector<Filter *> filters;
+  std::vector<std::shared_ptr<Filter>> filters;
   double output = 0;
 };
 }

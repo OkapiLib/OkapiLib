@@ -9,6 +9,7 @@
 #define _OKAPI_CHASSISCONTROLLER_HPP_
 
 #include "okapi/chassis/model/chassisModel.hpp"
+#include <memory>
 #include <valarray>
 
 namespace okapi {
@@ -21,7 +22,7 @@ class ChassisController {
    *
    * @param imodel underlying ChassisModel
    */
-  ChassisController(const ChassisModel &imodel);
+  ChassisController(std::shared_ptr<ChassisModel> imodel);
 
   virtual ~ChassisController();
 
@@ -137,7 +138,7 @@ class ChassisController {
   virtual void setGearing(const motor_gearset_e_t gearset) const;
 
   protected:
-  const ChassisModel &model;
+  std::shared_ptr<ChassisModel> model;
 };
 } // namespace okapi
 

@@ -17,22 +17,6 @@ namespace okapi {
 class ChassisControllerPID : public virtual ChassisController {
   public:
   /**
-   * ChassisController using PID control. Puts the motors into encoder tick units.
-   *
-   * @param imodelArgs ChassisModelArgs
-   * @param idistanceArgs distance PID controller params
-   * @param iangleArgs angle PID controller params (keeps the robot straight)
-   * @param istraightScale scale converting your units of choice to encoder ticks, used for
-   * measuring distance
-   * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
-   * angle
-   */
-  ChassisControllerPID(const ChassisModel &imodel,
-                       const IterativePosPIDControllerArgs &idistanceArgs,
-                       const IterativePosPIDControllerArgs &iangleArgs,
-                       const double istraightScale = 1, const double iturnScale = 1);
-
-  /**
    * ChassisController using PID control. This constructor assumes a skid
    * steer layout. Puts the motors into encoder tick units.
    *
@@ -68,6 +52,22 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
                        const AbstractMotor &ibottomRightMotor,
                        const AbstractMotor &ibottomLeftMotor,
+                       const IterativePosPIDControllerArgs &idistanceArgs,
+                       const IterativePosPIDControllerArgs &iangleArgs,
+                       const double istraightScale = 1, const double iturnScale = 1);
+
+  /**
+   * ChassisController using PID control. Puts the motors into encoder tick units.
+   *
+   * @param imodelArgs ChassisModelArgs
+   * @param idistanceArgs distance PID controller params
+   * @param iangleArgs angle PID controller params (keeps the robot straight)
+   * @param istraightScale scale converting your units of choice to encoder ticks, used for
+   * measuring distance
+   * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
+   * angle
+   */
+  ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
                        const double istraightScale = 1, const double iturnScale = 1);
