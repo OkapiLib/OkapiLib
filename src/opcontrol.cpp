@@ -8,6 +8,9 @@ using namespace okapi;
 void opcontrol() {
   task_delay(100);
 
+  // ChassisControllerIntegrated cci1(1_m, 2_m);
+  // ChassisControllerIntegrated cci2(MotorGroup<2>({1_m, 2_rm}), MotorGroup<2>({3_m, 4_rm}));
+
   // ComposableFilter testFilter(
   //   {std::make_shared<MedianFilter<3>>(), std::make_shared<AverageFilter<5>>()});
   // VelMath velMath(1800, std::make_shared<ComposableFilter>(testFilter));
