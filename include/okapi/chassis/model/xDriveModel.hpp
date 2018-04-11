@@ -18,11 +18,11 @@ class XDriveModelArgs : public ChassisModelArgs {
   XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
                   const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
                   const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-                  const double imaxOutput = 100);
+                  const double imaxOutput = 127);
 
   XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
                   const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-                  const double imaxOutput = 100);
+                  const double imaxOutput = 127);
 
   const AbstractMotor &topLeftMotor;
   const AbstractMotor &topRightMotor;
@@ -49,7 +49,7 @@ class XDriveModel : public ChassisModel {
   XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
               const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
               const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-              const double imaxOutput = 100);
+              const double imaxOutput = 127);
 
   /**
    * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
@@ -65,7 +65,7 @@ class XDriveModel : public ChassisModel {
    */
   XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
               const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-              const double imaxOutput = 100);
+              const double imaxOutput = 127);
 
   XDriveModel(const XDriveModelArgs &iparams);
 

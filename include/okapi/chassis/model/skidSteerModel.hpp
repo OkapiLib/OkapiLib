@@ -17,11 +17,11 @@ class SkidSteerModelArgs : public ChassisModelArgs {
   public:
   SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
                      const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-                     const double imaxOutput = 100);
+                     const double imaxOutput = 127);
 
   // Create the sensors using the integrated encoder
   SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                     const double imaxOutput = 100);
+                     const double imaxOutput = 127);
 
   const AbstractMotor &leftSideMotor;
   const AbstractMotor &rightSideMotor;
@@ -43,7 +43,7 @@ class SkidSteerModel : public ChassisModel {
    */
   SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
                  const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-                 const double imaxOutput = 100);
+                 const double imaxOutput = 127);
 
   /**
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
@@ -56,7 +56,7 @@ class SkidSteerModel : public ChassisModel {
    * @param irightSideMotor right side motor
    */
   SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                 const double imaxOutput = 100);
+                 const double imaxOutput = 127);
 
   SkidSteerModel(const SkidSteerModelArgs &iparams);
 
