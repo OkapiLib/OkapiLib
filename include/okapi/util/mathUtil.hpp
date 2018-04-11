@@ -22,6 +22,7 @@ static constexpr double ime269TPR = 240.448;
 static constexpr double imev5TPR = 1800.0;
 static constexpr double quadEncoderTPR = 360.0;
 static constexpr double pi = 3.14159265358979323846;
+static constexpr double gravity = 9.80665;
 
 /**
  * Integer power function. Computes base^expo.

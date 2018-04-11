@@ -9,7 +9,7 @@
 #ifndef _OKAPI_PIDTUNER_HPP_
 #define _OKAPI_PIDTUNER_HPP_
 
-#include "okapi/util/mathUtil.hpp"
+#include <functional>
 
 namespace okapi {
 class FlywheelSimulator {
@@ -32,6 +32,21 @@ class FlywheelSimulator {
   double step();
 
   /**
+   * Sets the torque function used to calculate the torque due to external forces. This torque gets
+   * summed with the input torque.
+   *
+   * For example, the default torque function has the torque due to gravity vary as the link swings:
+   * [](double angle, double mass, double linkLen) {
+   *   return (linkLen * std::cos(angle)) * (mass * -9.81);
+   * }
+   *
+   * @param itorqueFunc the torque function. The return value is the torque due to external forces.
+   * The first parameter is the angle, the second parameter is the mass, and the third parameter is
+   * the link length.
+   */
+  void setExternalTorqueFunction(std::function<double(double, double, double)> itorqueFunc);
+
+  /**
    * Set the input torque. The input will be bounded by the max torque.
    *
    * @param itorque new input torque
@@ -44,6 +59,13 @@ class FlywheelSimulator {
    * @param imaxTorque new maximum torque
    */
   void setMaxTorque(const double imaxTorque);
+
+  /**
+   * Sets the current angle.
+   *
+   * @param iangle new angle
+   **/
+  void setAngle(const double iangle);
 
   /**
    * Sets the mass (kg).
@@ -113,9 +135,10 @@ class FlywheelSimulator {
   double muDynamic;       // N*m
   double timestep;        // sec
   double I = 0;           // moment of inertia
+  std::function<double(double, double, double)> torqueFunc;
 
   const double minTimestep = 0.000001; // 1 us
 };
-}
+} // namespace okapi
 
 #endif

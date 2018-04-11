@@ -25,6 +25,7 @@
 #include "okapi/control/iterative/iterativeMotorController.hpp"
 #include "okapi/control/iterative/iterativePosPidController.hpp"
 #include "okapi/control/iterative/iterativeVelPidController.hpp"
+#include "okapi/control/util/flywheelSimulator.hpp"
 #include "okapi/control/util/pidTuner.hpp"
 
 #include "okapi/device/adiUltrasonic.hpp"
