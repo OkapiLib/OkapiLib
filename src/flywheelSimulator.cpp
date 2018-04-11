@@ -6,7 +6,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
 #include "okapi/control/util/flywheelSimulator.hpp"
+#include "okapi/util/mathUtil.hpp"
 #include <cmath>
 
 namespace okapi {
@@ -18,14 +20,16 @@ FlywheelSimulator::FlywheelSimulator(const double imass, const double ilinkLen,
     muStatic(imuStatic),
     muDynamic(imuDynamic),
     timestep(itimestep),
-    I(mass * ipow(linkLen, 2)) {
+    I(mass * ipow(linkLen, 2)),
+    torqueFunc([](double angle, double mass, double linkLen) {
+      return (linkLen * std::cos(angle)) * (mass * -1 * gravity);
+    }) {
 }
 
 FlywheelSimulator::~FlywheelSimulator() = default;
 
 double FlywheelSimulator::step() {
-  const double torqueGravity = (linkLen * std::cos(angle)) * (mass * -9.81);
-  double torqueTotal = torqueGravity + inputTorque;
+  double torqueTotal = inputTorque + torqueFunc(angle, mass, linkLen);
 
   if (omega == 0 && muStatic > std::fabs(torqueTotal)) {
     torqueTotal = 0;
@@ -59,6 +63,11 @@ double FlywheelSimulator::step() {
   return angle;
 }
 
+void FlywheelSimulator::setExternalTorqueFunction(
+  std::function<double(double, double, double)> itorqueFunc) {
+  torqueFunc = itorqueFunc;
+}
+
 void FlywheelSimulator::setTorque(const double itorque) {
   if (std::fabs(itorque) <= std::fabs(maxTorque)) {
     inputTorque = itorque;
@@ -69,6 +78,10 @@ void FlywheelSimulator::setTorque(const double itorque) {
 
 void FlywheelSimulator::setMaxTorque(const double imaxTorque) {
   maxTorque = imaxTorque;
+}
+
+void FlywheelSimulator::setAngle(const double iangle) {
+  angle = iangle;
 }
 
 void FlywheelSimulator::setMass(const double imass) {
@@ -122,4 +135,4 @@ double FlywheelSimulator::getOmega() const {
 double FlywheelSimulator::getAcceleration() const {
   return accel;
 }
-}
+} // namespace okapi

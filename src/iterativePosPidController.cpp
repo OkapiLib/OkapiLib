@@ -91,6 +91,11 @@ void IterativePosPIDController::setIntegralLimits(double imax, double imin) {
   integral = std::clamp(integral, integralMin, integralMax);
 }
 
+void IterativePosPIDController::setErrorSumLimits(const double imax, const double imin) {
+  errorSumMax = imax;
+  errorSumMin = imin;
+}
+
 double IterativePosPIDController::step(const double inewReading) {
   if (isOn) {
     const uint32_t now = millis();
@@ -149,6 +154,10 @@ void IterativePosPIDController::setIntegratorReset(bool iresetOnZero) {
 
 void IterativePosPIDController::flipDisable() {
   isOn = !isOn;
+}
+
+void IterativePosPIDController::setErrorScale(const double ierrorScale) {
+  errorScale = ierrorScale;
 }
 
 uint32_t IterativePosPIDController::getSampleTime() const {

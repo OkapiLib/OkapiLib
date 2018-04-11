@@ -8,6 +8,23 @@ using namespace okapi;
 void opcontrol() {
   task_delay(100);
 
+  FlywheelSimulator sim(0.01, 1, 0.5, 0.3, 0.05);
+  sim.setExternalTorqueFunction(
+    [](double angle, double mass, double linkLen) { return (mass * -1 * gravity); });
+
+  IterativePosPIDController controller(0.01, 0, 0);
+  controller.setTarget(radianToDegree * 1.5);
+  controller.setErrorScale(1);
+
+  for (int i = 0; i < 1000000; i++) {
+    sim.setTorque(controller.step(radianToDegree * sim.getAngle() * 20));
+    sim.step();
+    printf("%10.10f,%10.10f\n", sim.getAngle(), controller.getOutput());
+    task_delay(10);
+  }
+
+  return;
+
   // ChassisControllerIntegrated cci1(1_m, 2_m);
   // ChassisControllerIntegrated cci2(MotorGroup<2>({1_m, 2_rm}), MotorGroup<2>({3_m, 4_rm}));
 
@@ -278,6 +295,26 @@ void opcontrol() {
                TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(16.67, 0.01)));
         }
       }
+    }
+
+    {
+      test_printf("Testing FlywheelSimulator");
+
+      // Default values
+      FlywheelSimulator sim(0.01, 1, 0.5, 0.3, 0.005);
+      sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) {
+        return (linkLen * std::cos(angle)) * (mass * -1 * gravity);
+      });
+      sim.setTorque(10);
+
+      sim.step();
+
+      test("FlywheelSimulator i = 0 angle",
+           TEST_BODY(AssertThat, sim.getAngle(), EqualsWithDelta(0.0001237742, 0.00000001)));
+      test("FlywheelSimulator i = 0 omega",
+           TEST_BODY(AssertThat, sim.getOmega(), EqualsWithDelta(0.0247548337, 0.00000001)));
+      test("FlywheelSimulator i = 0 accel",
+           TEST_BODY(AssertThat, sim.getAcceleration(), EqualsWithDelta(990.19335, 0.0001)));
     }
 
     test_print_report();
