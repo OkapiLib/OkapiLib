@@ -8,22 +8,76 @@ using namespace okapi;
 void opcontrol() {
   task_delay(100);
 
-  FlywheelSimulator sim(0.01, 1, 0.5, 0.3, 0.05);
-  sim.setExternalTorqueFunction(
-    [](double angle, double mass, double linkLen) { return (mass * -1 * gravity); });
+  // Chassis Controller - lets us drive the robot around with open- or closed-loop control
+  okapi::ChassisControllerIntegrated robotChassisController(1_m, 10_m);
 
-  IterativePosPIDController controller(0.01, 0, 0);
-  controller.setTarget(radianToDegree * 1.5);
-  controller.setErrorScale(1);
+  // Joystick to read analog values for tank or arcade control
+  pros::Controller controller(CONTROLLER_MASTER);
 
-  for (int i = 0; i < 1000000; i++) {
-    sim.setTorque(controller.step(radianToDegree * sim.getAngle() * 20));
-    sim.step();
-    printf("%10.10f,%10.10f\n", sim.getAngle(), controller.getOutput());
+  // Arm related objects
+  okapi::ADIButton armLimitButton('H');
+  okapi::ControllerButton armUpButton(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A);
+  okapi::ControllerButton armDownButton(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_B);
+  okapi::Motor armMotor = 8_m;
+
+  // Button to run our sample autonomous routine
+  okapi::ControllerButton runAutoButton(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X);
+
+  while (true) {
+    // Tank drive. We divide the joystick values by 127.0 to scale them down to range of [-1, 1] as
+    // OkapiLib expects.
+    robotChassisController.tank(controller.get_analog(ANALOG_LEFT_X) / 127.0,
+                                controller.get_analog(ANALOG_RIGHT_X) / 127.0);
+
+    // Arcade drive. We divide the joystick values by 127.0 to scale them down to range of [-1, 1]
+    // as OkapiLib expects.
+    robotChassisController.arcade(controller.get_analog(ANALOG_LEFT_X) / 127.0,
+                                  controller.get_analog(ANALOG_LEFT_Y) / 127.0);
+
+    // Don't power the arm if it is all the way down
+    if (armLimitButton.isPressed()) {
+      armMotor.move_voltage(0);
+    } else {
+      // Else, the arm isn't all the way down
+      if (armUpButton.isPressed()) {
+        armMotor.move_voltage(127);
+      } else if (armDownButton.isPressed()) {
+        armMotor.move_voltage(-127);
+      } else {
+        armMotor.move_voltage(0);
+      }
+    }
+
+    // Run the test autonomous routine if we press the button
+    if (runAutoButton.changedToPressed()) {
+      // Drive the robot in a square pattern using closed-loop control
+      for (int i = 0; i < 4; i++) {
+        robotChassisController.moveDistance(2116); // Drive forward 12 inches
+        robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
+      }
+    }
+
+    // Wait and give up the time we don't need to other tasks.
+    // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
     task_delay(10);
   }
 
-  return;
+  // FlywheelSimulator sim(0.01, 1, 0.5, 0.3, 0.05);
+  // sim.setExternalTorqueFunction(
+  //   [](double angle, double mass, double linkLen) { return (mass * -1 * gravity); });
+  //
+  // IterativePosPIDController controller(0.01, 0, 0);
+  // controller.setTarget(radianToDegree * 1.5);
+  // controller.setErrorScale(1);
+  //
+  // for (int i = 0; i < 1000000; i++) {
+  //   sim.setTorque(controller.step(radianToDegree * sim.getAngle() * 20));
+  //   sim.step();
+  //   printf("%10.10f,%10.10f\n", sim.getAngle(), controller.getOutput());
+  //   task_delay(10);
+  // }
+  //
+  // return;
 
   // ChassisControllerIntegrated cci1(1_m, 2_m);
   // ChassisControllerIntegrated cci2(MotorGroup<2>({1_m, 2_rm}), MotorGroup<2>({3_m, 4_rm}));
