@@ -22,7 +22,7 @@ class Controller {
    *
    * @return true if the controller is connected
    */
-  bool isConnected();
+  virtual bool isConnected();
 
   /**
    * Returns the current analog reading for the channel in the range [-1, 1]. Returns 0 if the
@@ -31,7 +31,7 @@ class Controller {
    * @param ichannel the channel to read
    * @return the value of that channel in the range [-1, 1]
    */
-  float getAnalog(const controller_analog_e_t ichannel);
+  virtual float getAnalog(const controller_analog_e_t ichannel);
 
   /**
    * Returns whether the digital button is currently pressed. Returns false if the controller is
@@ -40,7 +40,7 @@ class Controller {
    * @param ibutton the button to check
    * @return true if the button is pressed, false if the controller is not connected
    */
-  bool getDigital(const controller_digital_e_t ibutton);
+  virtual bool getDigital(const controller_digital_e_t ibutton);
 
   protected:
   pros::Controller controller;
