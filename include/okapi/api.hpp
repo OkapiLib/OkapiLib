@@ -31,6 +31,7 @@
 #include "okapi/device/adiUltrasonic.hpp"
 #include "okapi/device/button/adiButton.hpp"
 #include "okapi/device/button/controllerButton.hpp"
+#include "okapi/device/controller.hpp"
 #include "okapi/device/motor/motor.hpp"
 #include "okapi/device/motor/motorGroup.hpp"
 #include "okapi/device/rotarysensor/adiEncoder.hpp"
