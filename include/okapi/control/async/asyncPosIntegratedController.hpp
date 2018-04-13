@@ -9,6 +9,7 @@
 #define _OKAPI_POSINTEGRATEDCONTROLLER_HPP_
 
 #include "okapi/control/async/asyncPositionController.hpp"
+#include "okapi/control/util/settledUtil.hpp"
 #include "okapi/device/motor/abstractMotor.hpp"
 
 namespace okapi {
@@ -41,6 +42,14 @@ class AsyncPosIntegratedController : public AsyncPositionController {
   virtual double getError() const override;
 
   /**
+   * Returns whether the controller has settled at the target. Determining what settling means is
+   * implementation-dependent.
+   *
+   * @return whether the controller is settled
+   */
+  virtual bool isSettled() override;
+
+  /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
@@ -50,6 +59,7 @@ class AsyncPosIntegratedController : public AsyncPositionController {
   const AbstractMotor &motor;
   double lastTarget = 0;
   double offset = 0;
+  SettledUtil settledUtil;
 };
 } // namespace okapi
 

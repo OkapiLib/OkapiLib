@@ -9,6 +9,7 @@
 #define _OKAPI_VELINTEGRATEDCONTROLLER_HPP_
 
 #include "okapi/control/async/asyncVelocityController.hpp"
+#include "okapi/control/util/settledUtil.hpp"
 #include "okapi/device/motor/abstractMotor.hpp"
 #include "okapi/device/rotarysensor/integratedEncoder.hpp"
 
@@ -42,6 +43,14 @@ class AsyncVelIntegratedController : public AsyncVelocityController {
   virtual double getError() const override;
 
   /**
+   * Returns whether the controller has settled at the target. Determining what settling means is
+   * implementation-dependent.
+   *
+   * @return whether the controller is settled
+   */
+  virtual bool isSettled() override;
+
+  /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
@@ -50,6 +59,7 @@ class AsyncVelIntegratedController : public AsyncVelocityController {
   protected:
   const AbstractMotor &motor;
   double lastTarget = 0;
+  SettledUtil settledUtil;
 };
 } // namespace okapi
 

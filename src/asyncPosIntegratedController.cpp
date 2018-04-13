@@ -30,6 +30,10 @@ double AsyncPosIntegratedController::getError() const {
   return lastTarget - motor.get_position();
 }
 
+bool AsyncPosIntegratedController::isSettled() {
+  return settledUtil.isSettled(getError());
+}
+
 void AsyncPosIntegratedController::reset() {
   // Save the current target as an offset for the new targets so the current target becomes a
   // "zero position"

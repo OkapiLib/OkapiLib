@@ -44,6 +44,10 @@ double IterativeMotorController::getDerivative() const {
   return controller.getDerivative();
 }
 
+bool IterativeMotorController::isSettled() {
+  return controller.isSettled();
+}
+
 void IterativeMotorController::setSampleTime(const uint32_t isampleTime) {
   controller.setSampleTime(isampleTime);
 }

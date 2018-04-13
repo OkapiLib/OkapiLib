@@ -30,6 +30,10 @@ double AsyncVelIntegratedController::getError() const {
   return lastTarget - motor.get_actual_velocity();
 }
 
+bool AsyncVelIntegratedController::isSettled() {
+  return settledUtil.isSettled(getError());
+}
+
 void AsyncVelIntegratedController::reset() {
   // Don't have to do anything
 }

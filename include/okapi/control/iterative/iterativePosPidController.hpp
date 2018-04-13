@@ -11,6 +11,7 @@
 #define _OKAPI_PID_HPP_
 
 #include "okapi/control/iterative/iterativePositionController.hpp"
+#include "okapi/control/util/settledUtil.hpp"
 
 namespace okapi {
 class IterativePosPIDControllerArgs : public IterativePositionControllerArgs {
@@ -72,6 +73,14 @@ class IterativePosPIDController : public IterativePositionController {
    * Returns the last derivative (change in error) of the controller.
    */
   virtual double getDerivative() const override;
+
+  /**
+   * Returns whether the controller has settled at the target. Determining what settling means is
+   * implementation-dependent.
+   *
+   * @return whether the controller is settled
+   */
+  virtual bool isSettled() override;
 
   /**
    * Set controller gains.
@@ -180,6 +189,8 @@ class IterativePosPIDController : public IterativePositionController {
   bool shouldResetOnCross = true;
 
   bool isOn = true;
+
+  SettledUtil settledUtil;
 };
 } // namespace okapi
 

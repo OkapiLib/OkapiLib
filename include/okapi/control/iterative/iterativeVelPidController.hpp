@@ -9,6 +9,7 @@
 #define _OKAPI_VELPID_HPP_
 
 #include "okapi/control/iterative/iterativeVelocityController.hpp"
+#include "okapi/control/util/settledUtil.hpp"
 #include "okapi/filter/velMath.hpp"
 
 namespace okapi {
@@ -76,6 +77,14 @@ class IterativeVelPIDController : public IterativeVelocityController {
    * Returns the last derivative (change in error) of the controller.
    */
   virtual double getDerivative() const override;
+
+  /**
+   * Returns whether the controller has settled at the target. Determining what settling means is
+   * implementation-dependent.
+   *
+   * @return whether the controller is settled
+   */
+  virtual bool isSettled() override;
 
   /**
    * Set time between loops in ms.
@@ -153,6 +162,7 @@ class IterativeVelPIDController : public IterativeVelocityController {
   double outputMin = -1;
   bool isOn = true;
   VelMath velMath{1800};
+  SettledUtil settledUtil;
 };
 } // namespace okapi
 
