@@ -59,6 +59,14 @@ class IterativeMotorController : public IterativeVelocityController {
   virtual double getDerivative() const override;
 
   /**
+   * Returns whether the controller has settled at the target. Determining what settling means is
+   * implementation-dependent.
+   *
+   * @return whether the controller is settled
+   */
+  virtual bool isSettled() override;
+
+  /**
    * Set time between loops in ms.
    *
    * @param isampleTime time between loops in ms

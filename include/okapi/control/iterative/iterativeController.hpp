@@ -54,6 +54,14 @@ class IterativeController {
   virtual double getDerivative() const = 0;
 
   /**
+   * Returns whether the controller has settled at the target. Determining what settling means is
+   * implementation-dependent.
+   *
+   * @return whether the controller is settled
+   */
+  virtual bool isSettled() = 0;
+
+  /**
    * Set time between loops in ms.
    *
    * @param isampleTime time between loops in ms
