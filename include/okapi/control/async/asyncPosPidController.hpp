@@ -52,6 +52,14 @@ class AsyncPosPIDController : public AsyncPositionController {
   virtual double getError() const override;
 
   /**
+   * Returns whether the controller has settled at the target. Determining what settling means is
+   * implementation-dependent.
+   *
+   * @return whether the controller is settled
+   */
+  virtual bool isSettled() override;
+
+  /**
    * Set time between loops in ms. Default does nothing.
    *
    * @param isampleTime time between loops in ms

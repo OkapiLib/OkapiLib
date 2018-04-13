@@ -105,6 +105,10 @@ double IterativeVelPIDController::getDerivative() const {
   return derivative;
 }
 
+bool IterativeVelPIDController::isSettled() {
+  return settledUtil.isSettled(error);
+}
+
 void IterativeVelPIDController::reset() {
   error = 0;
   lastError = 0;

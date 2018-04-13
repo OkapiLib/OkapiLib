@@ -48,6 +48,10 @@ double AsyncPosPIDController::getError() const {
   return controller.getError();
 }
 
+bool AsyncPosPIDController::isSettled() {
+  return controller.isSettled();
+}
+
 void AsyncPosPIDController::setSampleTime(const uint32_t isampleTime) {
   controller.setSampleTime(isampleTime);
 }

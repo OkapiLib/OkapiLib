@@ -51,6 +51,10 @@ double IterativePosPIDController::getDerivative() const {
   return derivative;
 }
 
+bool IterativePosPIDController::isSettled() {
+  return settledUtil.isSettled(error);
+}
+
 void IterativePosPIDController::setSampleTime(const uint32_t isampleTime) {
   if (isampleTime > 0) {
     const double ratio = static_cast<double>(isampleTime) / static_cast<double>(sampleTime);
