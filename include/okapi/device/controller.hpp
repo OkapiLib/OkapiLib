@@ -25,6 +25,16 @@ class Controller {
   virtual bool isConnected();
 
   /**
+   * Returns the full connection state of the controller.
+   *  0 = disconnected
+   *  1 = tethered
+   *  2 = VEXnet
+   *
+   * @return the connection state of the controller
+   */
+  virtual int32_t getConnectionState();
+
+  /**
    * Returns the current analog reading for the channel in the range [-1, 1]. Returns 0 if the
    * controller is not connected.
    *
