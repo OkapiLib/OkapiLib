@@ -313,6 +313,17 @@ void opcontrol() {
     }
 
     {
+      test_printf("Testing PassthroughFilter");
+
+      PassthroughFilter filt;
+
+      for (int i = 0; i < 5; i++) {
+        test("PassthroughFilter i = " + std::to_string(i),
+             TEST_BODY(AssertThat, filt.filter(i), EqualsWithDelta(i, 0.0001)));
+      }
+    }
+
+    {
       test_printf("Testing Rate");
 
       Rate rate;
