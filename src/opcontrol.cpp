@@ -17,12 +17,12 @@ void opcontrol() {
 
   // Arm related objects
   okapi::ADIButton armLimitButton('H');
-  okapi::ControllerButton armUpButton(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A);
-  okapi::ControllerButton armDownButton(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_B);
+  okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
+  okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
   okapi::Motor armMotor = 8_m;
 
   // Button to run our sample autonomous routine
-  okapi::ControllerButton runAutoButton(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X);
+  okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
 
   while (true) {
     // Tank drive with left and right sticks
