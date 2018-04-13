@@ -26,9 +26,7 @@ SettledUtil::SettledUtil(const double iatTargetError, const double iatTargetDeri
 SettledUtil::~SettledUtil() = default;
 
 bool SettledUtil::isSettled(const double ierror) {
-  if (std::fabs(ierror) <= atTargetError) {
-    atTargetTimer.placeHardMark();
-  } else if (std::fabs(ierror - lastError) <= atTargetDerivative) {
+  if (std::fabs(ierror) <= atTargetError || std::fabs(ierror - lastError) <= atTargetDerivative) {
     atTargetTimer.placeHardMark();
   } else {
     atTargetTimer.clearHardMark();
