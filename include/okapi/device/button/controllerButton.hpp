@@ -13,7 +13,9 @@
 namespace okapi {
 class ControllerButton : public Button {
   public:
-  ControllerButton(controller_id_e_t icontroller, controller_digital_e_t ibtn,
+  ControllerButton(const controller_digital_e_t ibtn, const bool iinverted = false);
+
+  ControllerButton(const controller_id_e_t icontroller, const controller_digital_e_t ibtn,
                    const bool iinverted = false);
 
   /**
@@ -41,7 +43,7 @@ class ControllerButton : public Button {
 
   protected:
   pros::Controller controller;
-  controller_digital_e_t btn;
+  const controller_digital_e_t btn;
   const bool inverted;
   bool wasPressedLast = false;
 

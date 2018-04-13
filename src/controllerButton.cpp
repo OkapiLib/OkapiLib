@@ -8,8 +8,12 @@
 #include "okapi/device/button/controllerButton.hpp"
 
 namespace okapi {
-ControllerButton::ControllerButton(controller_id_e_t icontroller, controller_digital_e_t ibtn,
-                                   const bool iinverted)
+ControllerButton::ControllerButton(const controller_digital_e_t ibtn, const bool iinverted)
+  : controller(E_CONTROLLER_MASTER), btn(ibtn), inverted(iinverted) {
+}
+
+ControllerButton::ControllerButton(const controller_id_e_t icontroller,
+                                   const controller_digital_e_t ibtn, const bool iinverted)
   : controller(icontroller), btn(ibtn), inverted(iinverted) {
 }
 
