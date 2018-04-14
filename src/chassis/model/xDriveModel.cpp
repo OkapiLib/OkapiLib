@@ -83,10 +83,10 @@ XDriveModel::XDriveModel(const XDriveModel &other)
 }
 
 void XDriveModel::forward(const double ispeed) const {
-  topLeftMotor.move_velocity(ispeed * maxOutput);
-  topRightMotor.move_velocity(ispeed * maxOutput);
-  bottomRightMotor.move_velocity(ispeed * maxOutput);
-  bottomLeftMotor.move_velocity(ispeed * maxOutput);
+  topLeftMotor.moveVelocity(ispeed * maxOutput);
+  topRightMotor.moveVelocity(ispeed * maxOutput);
+  bottomRightMotor.moveVelocity(ispeed * maxOutput);
+  bottomLeftMotor.moveVelocity(ispeed * maxOutput);
 }
 
 void XDriveModel::driveVector(const double iySpeed, const double izRotation) const {
@@ -103,24 +103,24 @@ void XDriveModel::driveVector(const double iySpeed, const double izRotation) con
     rightOutput /= maxInputMag;
   }
 
-  topLeftMotor.move_velocity(leftOutput * maxOutput);
-  topRightMotor.move_velocity(rightOutput * maxOutput);
-  bottomRightMotor.move_velocity(rightOutput * maxOutput);
-  bottomLeftMotor.move_velocity(leftOutput * maxOutput);
+  topLeftMotor.moveVelocity(leftOutput * maxOutput);
+  topRightMotor.moveVelocity(rightOutput * maxOutput);
+  bottomRightMotor.moveVelocity(rightOutput * maxOutput);
+  bottomLeftMotor.moveVelocity(leftOutput * maxOutput);
 }
 
 void XDriveModel::rotate(const double ispeed) const {
-  topLeftMotor.move_velocity(ispeed * maxOutput);
-  topRightMotor.move_velocity(-1 * ispeed * maxOutput);
-  bottomRightMotor.move_velocity(-1 * ispeed * maxOutput);
-  bottomLeftMotor.move_velocity(ispeed * maxOutput);
+  topLeftMotor.moveVelocity(ispeed * maxOutput);
+  topRightMotor.moveVelocity(-1 * ispeed * maxOutput);
+  bottomRightMotor.moveVelocity(-1 * ispeed * maxOutput);
+  bottomLeftMotor.moveVelocity(ispeed * maxOutput);
 }
 
 void XDriveModel::stop() const {
-  topLeftMotor.move_velocity(0);
-  topRightMotor.move_velocity(0);
-  bottomRightMotor.move_velocity(0);
-  bottomLeftMotor.move_velocity(0);
+  topLeftMotor.moveVelocity(0);
+  topRightMotor.moveVelocity(0);
+  bottomRightMotor.moveVelocity(0);
+  bottomLeftMotor.moveVelocity(0);
 }
 
 void XDriveModel::tank(const double ileftSpeed, const double irightSpeed,
@@ -137,10 +137,10 @@ void XDriveModel::tank(const double ileftSpeed, const double irightSpeed,
     rightSpeed = 0;
   }
 
-  topLeftMotor.move_voltage(leftSpeed * maxOutput);
-  topRightMotor.move_voltage(rightSpeed * maxOutput);
-  bottomRightMotor.move_voltage(rightSpeed * maxOutput);
-  bottomLeftMotor.move_voltage(leftSpeed * maxOutput);
+  topLeftMotor.moveVoltage(leftSpeed * maxOutput);
+  topRightMotor.moveVoltage(rightSpeed * maxOutput);
+  bottomRightMotor.moveVoltage(rightSpeed * maxOutput);
+  bottomLeftMotor.moveVoltage(leftSpeed * maxOutput);
 }
 
 void XDriveModel::arcade(const double iySpeed, const double izRotation,
@@ -182,10 +182,10 @@ void XDriveModel::arcade(const double iySpeed, const double izRotation,
   leftOutput = std::clamp(leftOutput, -1.0, 1.0);
   rightOutput = std::clamp(rightOutput, -1.0, 1.0);
 
-  topLeftMotor.move_voltage(leftOutput * maxOutput);
-  topRightMotor.move_voltage(rightOutput * maxOutput);
-  bottomRightMotor.move_voltage(rightOutput * maxOutput);
-  bottomLeftMotor.move_voltage(leftOutput * maxOutput);
+  topLeftMotor.moveVoltage(leftOutput * maxOutput);
+  topRightMotor.moveVoltage(rightOutput * maxOutput);
+  bottomRightMotor.moveVoltage(rightOutput * maxOutput);
+  bottomLeftMotor.moveVoltage(leftOutput * maxOutput);
 }
 
 void XDriveModel::xArcade(const double ixSpeed, const double iySpeed, const double izRotation,
@@ -205,20 +205,20 @@ void XDriveModel::xArcade(const double ixSpeed, const double iySpeed, const doub
     zRotation = 0;
   }
 
-  topLeftMotor.move_voltage(ySpeed + xSpeed + zRotation);
-  topRightMotor.move_voltage(ySpeed - xSpeed - zRotation);
-  bottomRightMotor.move_voltage(ySpeed + xSpeed - zRotation);
-  bottomLeftMotor.move_voltage(ySpeed - xSpeed + zRotation);
+  topLeftMotor.moveVoltage(ySpeed + xSpeed + zRotation);
+  topRightMotor.moveVoltage(ySpeed - xSpeed - zRotation);
+  bottomRightMotor.moveVoltage(ySpeed + xSpeed - zRotation);
+  bottomLeftMotor.moveVoltage(ySpeed - xSpeed + zRotation);
 }
 
 void XDriveModel::left(const double ispeed) const {
-  topLeftMotor.move_velocity(ispeed * maxOutput);
-  bottomLeftMotor.move_velocity(ispeed * maxOutput);
+  topLeftMotor.moveVelocity(ispeed * maxOutput);
+  bottomLeftMotor.moveVelocity(ispeed * maxOutput);
 }
 
 void XDriveModel::right(const double ispeed) const {
-  topRightMotor.move_velocity(ispeed * maxOutput);
-  bottomRightMotor.move_velocity(ispeed * maxOutput);
+  topRightMotor.moveVelocity(ispeed * maxOutput);
+  bottomRightMotor.moveVelocity(ispeed * maxOutput);
 }
 
 std::valarray<int> XDriveModel::getSensorVals() const {
@@ -231,23 +231,23 @@ void XDriveModel::resetSensors() const {
 }
 
 void XDriveModel::setBrakeMode(const motor_brake_mode_e_t mode) const {
-  topLeftMotor.set_brake_mode(mode);
-  topRightMotor.set_brake_mode(mode);
-  bottomRightMotor.set_brake_mode(mode);
-  bottomLeftMotor.set_brake_mode(mode);
+  topLeftMotor.setBrakeMode(mode);
+  topRightMotor.setBrakeMode(mode);
+  bottomRightMotor.setBrakeMode(mode);
+  bottomLeftMotor.setBrakeMode(mode);
 }
 
 void XDriveModel::setEncoderUnits(const motor_encoder_units_e_t units) const {
-  topLeftMotor.set_encoder_units(units);
-  topRightMotor.set_encoder_units(units);
-  bottomRightMotor.set_encoder_units(units);
-  bottomLeftMotor.set_encoder_units(units);
+  topLeftMotor.setEncoderUnits(units);
+  topRightMotor.setEncoderUnits(units);
+  bottomRightMotor.setEncoderUnits(units);
+  bottomLeftMotor.setEncoderUnits(units);
 }
 
 void XDriveModel::setGearing(const motor_gearset_e_t gearset) const {
-  topLeftMotor.set_gearing(gearset);
-  topRightMotor.set_gearing(gearset);
-  bottomRightMotor.set_gearing(gearset);
-  bottomLeftMotor.set_gearing(gearset);
+  topLeftMotor.setGearing(gearset);
+  topRightMotor.setGearing(gearset);
+  bottomRightMotor.setGearing(gearset);
+  bottomLeftMotor.setGearing(gearset);
 }
 } // namespace okapi
