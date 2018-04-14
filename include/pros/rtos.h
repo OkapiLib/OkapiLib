@@ -1,10 +1,13 @@
 /**
- * pros/rtos.h - PROS API header provides high-level user functionality
+ * \file pros/rtos.h
  *
- * Contains declarations for the PROS RTOS kernel for use by typical
+ * \brief Contains declarations for the PROS RTOS kernel for use by typical
  * VEX programmers.
  *
- * See https://pros.cs.purdue.edu/v5/tutorials/multitasking to learn more.
+ * This file should not be modified by users, since it gets replaced whenever
+ * a kernel upgrade occurs.
+ *
+ * Visit https://pros.cs.purdue.edu/v5/tutorials/topical/multitasking to learn more.
  *
  * Copyright (c) 2017-2018, Purdue University ACM SIGBots.
  * All rights reservered.
@@ -16,10 +19,6 @@
 
 #ifndef _PROS_RTOS_H_
 #define _PROS_RTOS_H_
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 // The highest priority that can be assigned to a task. Beware of deadlock.
 #define TASK_PRIORITY_MAX 16
@@ -74,15 +73,21 @@ typedef void* mutex_t;
  */
 #define CURRENT_TASK ((task_t)NULL)
 
+#ifdef __cplusplus
+extern "C" {
+namespace pros {
+namespace c {
+#endif
+
 /**
- * Returns the number of milliseconds since PROS initialized.
+ * Gets the number of milliseconds since PROS initialized.
  *
  * \return The number of milliseconds since PROS initialized
  */
 uint32_t millis(void);
 
 /**
- * Create a new task and add it to the list of tasks that are ready to run.
+ * Creates a new task and add it to the list of tasks that are ready to run.
  *
  * \param function
  *        Pointer to the task entry function
@@ -108,14 +113,11 @@ uint32_t millis(void);
  *         referenced. If an error occurred, NULL will be returned and errno
  *         can be checked for hints as to why task_create failed.
  */
-task_t task_create(task_fn_t function,
-                   void* const parameters,
-                   uint32_t prio,
-                   const uint16_t stack_depth,
+task_t task_create(task_fn_t function, void* const parameters, uint32_t prio, const uint16_t stack_depth,
                    const char* const name);
 
 /**
- * Remove a task from the RTOS real time kernel's management.  The task being
+ * Removes a task from the RTOS real time kernel's management.  The task being
  * deleted will be removed from all ready, blocked, suspended and event lists.
  *
  * Memory dynamically allocated by the task is not automatically freed, and
@@ -128,7 +130,7 @@ task_t task_create(task_fn_t function,
 void task_delete(task_t task);
 
 /**
- * Delay a task for a given number of milliseconds.
+ * Delays a task for a given number of milliseconds.
  *
  * This is not the best method to have a task execute code at predefined
  * intervals, as the delay time is measured from when the delay is requested.
@@ -139,10 +141,10 @@ void task_delete(task_t task);
  */
 void task_delay(const uint32_t milliseconds);
 
-#define delay(milliseconds) task_delay(milliseconds)
+void delay(const uint32_t milliseconds);
 
 /**
- * Delay a task until a specified time.  This function can be used by periodic
+ * Delays a task until a specified time.  This function can be used by periodic
  * tasks to ensure a constant execution frequency.
  *
  * The task will be woken up at the time *prev_time + delta, and *prev_time will
@@ -156,7 +158,7 @@ void task_delay(const uint32_t milliseconds);
 void task_delay_until(uint32_t* const prev_time, const uint32_t delta);
 
 /**
- * Obtains the priority of the specified task.
+ * Gets the priority of the specified task.
  *
  * \param task
  *        The task to check
@@ -180,7 +182,7 @@ uint32_t task_get_priority(task_t task);
 void task_set_priority(task_t task, uint32_t prio);
 
 /**
- * Obtains the state of the specified task.
+ * Gets the state of the specified task.
  *
  * \param task
  *        The task to check
@@ -206,7 +208,7 @@ void task_suspend(task_t task);
 void task_resume(task_t task);
 
 /**
- * Returns the number of tasks the kernel is currently managing, including all
+ * Gets the number of tasks the kernel is currently managing, including all
  * ready, blocked, or suspended tasks. A task that has been deleted, but not yet
  * reaped by the idle task will also be included in the count. Tasks recently
  * created may take one context switch to be counted.
@@ -216,7 +218,7 @@ void task_resume(task_t task);
 uint32_t task_get_count(void);
 
 /**
- * Obtains the name of the specified task.
+ * Gets the name of the specified task.
  *
  * \param task
  *        The task to check
@@ -226,7 +228,7 @@ uint32_t task_get_count(void);
 char* task_get_name(task_t task);
 
 /**
- * Obtains a task handle from the specified name
+ * Gets a task handle from the specified name
  *
  * The operation takes a relatively long time and should be used sparingly.
  *
@@ -240,10 +242,10 @@ task_t task_get_by_name(const char* name);
 /**
  * Sends a simple notification to task and increments the notification counter.
  *
- * See https://pros.cs.purdue.edu/v5/tutorials/notifications for details.
+ * See https://pros.cs.purdue.edu/v5/tutorials/topical/notifications for details.
  *
  * \param task
- *			  The task to notify
+ *        The task to notify
  *
  * \return Always returns true.
  */
@@ -254,7 +256,7 @@ uint32_t task_notify(task_t task);
  * retrieve the value of the notification in the target task before modifying
  * the notification value.
  *
- * See https://pros.cs.purdue.edu/v5/tutorials/notifications for details.
+ * See https://pros.cs.purdue.edu/v5/tutorials/topical/notifications for details.
  *
  * \param task
  *        The task to notify
@@ -274,9 +276,9 @@ uint32_t task_notify(task_t task);
 uint32_t task_notify_ext(task_t task, uint32_t value, notify_action_e_t action, uint32_t* prev_value);
 
 /**
- * Wait for a notification to be nonzero
+ * Waits for a notification to be nonzero.
  *
- * See https://pros.cs.purdue.edu/v5/tutorials/notifications for details.
+ * See https://pros.cs.purdue.edu/v5/tutorials/topical/notifications for details.
  *
  * \param clear_on_exit
  *        If true (1), then the notification value is cleared.
@@ -293,7 +295,7 @@ uint32_t task_notify_take(bool clear_on_exit, uint32_t timeout);
 /**
  * Clears the notification for a task.
  *
- * See https://pros.cs.purdue.edu/v5/tutorials/notifications for details.
+ * See https://pros.cs.purdue.edu/v5/tutorials/topical/notifications for details.
  *
  * \param task
  *        The task to clear
@@ -303,9 +305,9 @@ uint32_t task_notify_take(bool clear_on_exit, uint32_t timeout);
 bool task_notify_clear(task_t task);
 
 /**
- * Creates a mutex
+ * Creates a mutex.
  *
- * See https://pros.cs.purdue.edu/v5/tutorials/multitasking#mutexes for details.
+ * See https://pros.cs.purdue.edu/v5/tutorials/topical/multitasking#mutexes for details.
  *
  * \return A handle to a newly created mutex. If an error occurred, NULL will be
  *			   returned and errno can be checked for hints as to
@@ -317,7 +319,7 @@ mutex_t mutex_create(void);
  * Takes and locks a mutex, waiting for up to a certain number of milliseconds
  * before timing out.
  *
- * See https://pros.cs.purdue.edu/v5/tutorials/multitasking#mutexes for details.
+ * See https://pros.cs.purdue.edu/v5/tutorials/topical/multitasking#mutexes for details.
  *
  * \param mutex
  *        Mutex to attempt to lock.
@@ -334,7 +336,7 @@ bool mutex_take(mutex_t mutex, uint32_t timeout);
 /**
  * Unlocks a mutex.
  *
- * See https://pros.cs.purdue.edu/v5/tutorials/multitasking#mutexes for details.
+ * See https://pros.cs.purdue.edu/v5/tutorials/topical/multitasking#mutexes for details.
  *
  * \param mutex
  *        Mutex to unlock.
@@ -346,6 +348,8 @@ bool mutex_take(mutex_t mutex, uint32_t timeout);
 bool mutex_give(mutex_t mutex);
 
 #ifdef __cplusplus
+}
+}
 }
 #endif
 

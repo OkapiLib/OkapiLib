@@ -102,7 +102,7 @@ void IterativePosPIDController::setErrorSumLimits(const double imax, const doubl
 
 double IterativePosPIDController::step(const double inewReading) {
   if (isOn) {
-    const uint32_t now = millis();
+    const uint32_t now = pros::millis();
 
     if (now - lastTime >= sampleTime) {
       error = (target - inewReading) / errorScale;
