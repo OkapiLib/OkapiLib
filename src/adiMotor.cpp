@@ -12,10 +12,10 @@ ADIMotor::ADIMotor(const uint8_t iport) : motor(iport) {
 }
 
 void ADIMotor::move_voltage(const int32_t ivoltage) const {
-  motor.value_set(ivoltage);
+  motor.set_value(ivoltage);
 }
 
 void ADIMotor::controllerSet(const double ivalue) {
-  motor.value_set(ivalue);
+  motor.set_value(ivalue);
 }
 } // namespace okapi

@@ -33,7 +33,7 @@ bool ADIButton::changedToReleased() {
 }
 
 bool ADIButton::currentlyPressed() {
-  const int32_t state = btn.value_get();
+  const int32_t state = btn.get_value();
   const bool pressed = state != 0 && state != PROS_ERR;
   return inverted ? !pressed : pressed;
 }

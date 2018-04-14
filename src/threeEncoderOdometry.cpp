@@ -21,7 +21,7 @@ ThreeEncoderOdometry::ThreeEncoderOdometry(std::shared_ptr<ThreeEncoderSkidSteer
 }
 
 void ThreeEncoderOdometry::loop() {
-  uint32_t now = millis();
+  uint32_t now = pros::millis();
   std::valarray<int> newTicks{0, 0, 0}, tickDiff{0, 0, 0};
 
   while (true) {
@@ -39,7 +39,7 @@ void ThreeEncoderOdometry::loop() {
     state.x += mm * std::cos(state.theta) + (tickDiff[2] * middleScale) * std::sin(state.theta);
     state.y += mm * std::sin(state.theta) + (tickDiff[2] * middleScale) * std::cos(state.theta);
 
-    task_delay_until(&now, 10);
+    pros::c::task_delay_until(&now, 10);
   }
 }
 

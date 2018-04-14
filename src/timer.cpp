@@ -8,13 +8,13 @@
 #include "okapi/util/timer.hpp"
 
 namespace okapi {
-Timer::Timer() : firstCalled(millis()) {
+Timer::Timer() : firstCalled(pros::millis()) {
 }
 
 Timer::~Timer() = default;
 
 uint32_t Timer::getDt() {
-  const uint32_t currTime = millis();
+  const uint32_t currTime = pros::millis();
   const uint32_t dt = currTime - lastCalled;
   lastCalled = currTime;
   return dt;
@@ -25,16 +25,16 @@ uint32_t Timer::getStartingTime() const {
 }
 
 uint32_t Timer::getDtFromStart() const {
-  return millis() - firstCalled;
+  return pros::millis() - firstCalled;
 }
 
 void Timer::placeMark() {
-  mark = millis();
+  mark = pros::millis();
 }
 
 void Timer::placeHardMark() {
   if (hardMark == 0)
-    hardMark = millis();
+    hardMark = pros::millis();
 }
 
 uint32_t Timer::clearHardMark() {
@@ -44,18 +44,18 @@ uint32_t Timer::clearHardMark() {
 }
 
 uint32_t Timer::getDtFromMark() const {
-  return millis() - mark;
+  return pros::millis() - mark;
 }
 
 uint32_t Timer::getDtFromHardMark() const {
-  return hardMark == 0 ? 0 : millis() - hardMark;
+  return hardMark == 0 ? 0 : pros::millis() - hardMark;
 }
 
 bool Timer::repeat(const uint32_t ms) {
   if (repeatMark == 0)
-    repeatMark = millis();
+    repeatMark = pros::millis();
 
-  if (millis() - repeatMark >= ms) {
+  if (pros::millis() - repeatMark >= ms) {
     repeatMark = 0;
     return true;
   }

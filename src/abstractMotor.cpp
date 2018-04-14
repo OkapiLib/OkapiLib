@@ -11,7 +11,7 @@ namespace okapi {
 AbstractMotor::AbstractMotor(const uint8_t port, const bool reverse,
                              const motor_encoder_units_e_t encoder_units,
                              const motor_gearset_e_t gearset)
-  : pros::Motor::Motor(port, reverse, encoder_units, gearset) {
+  : pros::Motor::Motor(port, gearset, reverse, encoder_units) {
 }
 
 AbstractMotor::~AbstractMotor() = default;

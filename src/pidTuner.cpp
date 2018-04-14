@@ -144,7 +144,7 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
 uint32_t PIDTuner::moveDistance(const int itarget) {
   const auto encStartVals = model.getSensorVals();
   float distanceElapsed = 0, lastDistance = 0;
-  uint32_t prevWakeTime = millis();
+  uint32_t prevWakeTime = pros::millis();
 
   leftController.reset();
   rightController.reset();
@@ -184,13 +184,13 @@ uint32_t PIDTuner::moveDistance(const int itarget) {
       atTarget = true;
     }
 
-    task_delay_until(&prevWakeTime, 15);
+    pros::c::task_delay_until(&prevWakeTime, 15);
   }
 
   auto settleTime = atTargetTimer.getDtFromStart();
 
   model.stop();
-  task_delay(1000); // Let the robot settle
+  pros::c::task_delay(1000); // Let the robot settle
   return settleTime;
 }
 } // namespace okapi

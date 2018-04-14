@@ -53,7 +53,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(const AbstractMotor &it
 
 void ChassisControllerIntegrated::moveDistance(const int itarget) {
   int distanceElapsed = 0, lastDistance = 0;
-  uint32_t prevWakeTime = millis();
+  uint32_t prevWakeTime = pros::millis();
   bool atTarget = false;
   const int atTargetDistance = 15;
   const int threshold = 2;
@@ -83,7 +83,7 @@ void ChassisControllerIntegrated::moveDistance(const int itarget) {
     if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod)
       atTarget = true;
 
-    task_delay_until(&prevWakeTime, 10);
+    pros::c::task_delay_until(&prevWakeTime, 10);
   }
 }
 

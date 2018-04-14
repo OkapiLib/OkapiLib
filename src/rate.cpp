@@ -15,11 +15,11 @@ Rate::~Rate() = default;
 void Rate::delayHz(const uint32_t ihz) {
   if (lastTime == 0) {
     // First call
-    lastTime = millis();
-    task_delay(static_cast<float>(1000) / ihz);
+    lastTime = pros::millis();
+    pros::c::task_delay(static_cast<float>(1000) / ihz);
   } else {
     // Subsequent call
-    task_delay_until(&lastTime, static_cast<float>(1000) / ihz);
+    pros::c::task_delay_until(&lastTime, static_cast<float>(1000) / ihz);
   }
 }
 } // namespace okapi

@@ -43,7 +43,7 @@ void Odometry::setScales(const double iscale, const double iturnScale) {
 }
 
 void Odometry::loop() {
-  uint32_t now = millis();
+  uint32_t now = pros::millis();
   std::valarray<int> newTicks{0, 0}, tickDiff{0, 0};
 
   while (true) {
@@ -61,7 +61,7 @@ void Odometry::loop() {
     state.x += mm * std::cos(state.theta);
     state.y += mm * std::sin(state.theta);
 
-    task_delay_until(&now, 10);
+    pros::c::task_delay_until(&now, 10);
   }
 }
 

@@ -15,7 +15,7 @@ ADIUltrasonic::ADIUltrasonic(const uint8_t iportTop, const uint8_t iportBottom)
 ADIUltrasonic::~ADIUltrasonic() = default;
 
 int32_t ADIUltrasonic::get() {
-  return filter.filter(ultra.value_get());
+  return filter.filter(ultra.get_value());
 }
 
 double ADIUltrasonic::controllerGet() {
