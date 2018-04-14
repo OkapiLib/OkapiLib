@@ -52,6 +52,9 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(const AbstractMotor &it
 }
 
 void ChassisControllerIntegrated::moveDistance(const int itarget) {
+  leftController.reset();
+  rightController.reset();
+
   int distanceElapsed = 0, lastDistance = 0;
   uint32_t prevWakeTime = pros::millis();
   bool atTarget = false;

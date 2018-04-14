@@ -126,17 +126,14 @@ class Motor : public AbstractMotor, public pros::Motor {
   virtual double getActualVelocity() const override;
 
   /**
-   * Sets the position for the motor in its encoder units.
-   *
-   * This will be the future reference point for the motor's "absolute" position.
+   * Sets the "absolute" zero position of the motor to its current position.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
-   * @param iposition The new reference position in its encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setZeroPosition(const double iposition) const override;
+  virtual std::int32_t tarePosition() const override;
 
   /**
    * Sets one of motor_brake_mode_e_t to the motor.

@@ -26,6 +26,8 @@ AsyncPosPIDController::AsyncPosPIDController(ControllerInput &iinput, Controller
 }
 
 void AsyncPosPIDController::step() {
+  uint32_t prevTime = 0;
+
   while (true) {
     output.controllerSet(controller.step(input.controllerGet()));
     task.delay_until(&prevTime, controller.getSampleTime());

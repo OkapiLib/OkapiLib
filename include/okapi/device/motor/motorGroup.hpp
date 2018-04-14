@@ -175,20 +175,17 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
   }
 
   /**
-   * Sets the position for the motor in its encoder units.
-   *
-   * This will be the future reference point for the motor's "absolute" position.
+   * Sets the "absolute" zero position of the motor to its current position.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
-   * @param iposition The new reference position in its encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setZeroPosition(const double iposition) const override {
+  virtual std::int32_t tarePosition() const override {
     auto out = 1;
     for (size_t i = 0; i < motorNum; i++) {
-      const auto errorCode = motors[i].set_zero_position(iposition);
+      const auto errorCode = motors[i].tare_position();
       if (errorCode != 1) {
         out = errorCode;
       }
