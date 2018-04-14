@@ -58,7 +58,6 @@ class AsyncPosIntegratedController : public AsyncPositionController {
   protected:
   const AbstractMotor &motor;
   double lastTarget = 0;
-  double offset = 0;
   SettledUtil settledUtil;
 };
 } // namespace okapi

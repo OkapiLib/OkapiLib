@@ -89,7 +89,6 @@ class AsyncPosPIDController : public AsyncPositionController {
   ControllerInput &input;
   ControllerOutput &output;
   IterativePosPIDController controller;
-  uint32_t prevTime = 0;
   pros::Task task;
 
   static void trampoline(void *context);

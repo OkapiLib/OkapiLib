@@ -45,8 +45,8 @@ double Motor::getActualVelocity() const {
   return get_actual_velocity();
 }
 
-std::int32_t Motor::setZeroPosition(const double iposition) const {
-  return set_zero_position(iposition);
+std::int32_t Motor::tarePosition() const {
+  return tare_position();
 }
 
 std::int32_t Motor::setBrakeMode(const motor_brake_mode_e_t imode) const {

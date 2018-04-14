@@ -22,7 +22,7 @@ AsyncPosIntegratedController::AsyncPosIntegratedController(
 }
 
 void AsyncPosIntegratedController::setTarget(const double itarget) {
-  motor.moveAbsolute(itarget + offset, 100);
+  motor.moveRelative(itarget, 127);
   lastTarget = itarget;
 }
 
@@ -35,8 +35,6 @@ bool AsyncPosIntegratedController::isSettled() {
 }
 
 void AsyncPosIntegratedController::reset() {
-  // Save the current target as an offset for the new targets so the current target becomes a
-  // "zero position"
-  offset = lastTarget;
+  motor.tarePosition();
 }
 } // namespace okapi
