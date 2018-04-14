@@ -25,8 +25,10 @@
 #include "okapi/control/iterative/iterativeMotorVelocityController.hpp"
 #include "okapi/control/iterative/iterativePosPidController.hpp"
 #include "okapi/control/iterative/iterativeVelPidController.hpp"
+#include "okapi/control/util/controllerRunner.hpp"
 #include "okapi/control/util/flywheelSimulator.hpp"
 #include "okapi/control/util/pidTuner.hpp"
+#include "okapi/control/util/settledUtil.hpp"
 
 #include "okapi/device/adiUltrasonic.hpp"
 #include "okapi/device/button/adiButton.hpp"

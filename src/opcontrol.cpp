@@ -505,5 +505,14 @@ void opcontrol() {
                    0, 0);
 
     Timer timer1();
+
+    ControllerRunner controllerRunner;
+    AsyncPosIntegratedController testControllerRunnerController1(1_m);
+    IterativePosPIDController testControllerRunnerController2(0, 0, 0);
+    Motor controllerRunnerMotor = 1_m;
+    controllerRunner.runUntilSettled(0, testControllerRunnerController1);
+    controllerRunner.runUntilSettled(0, testControllerRunnerController2, controllerRunnerMotor);
+    controllerRunner.runUntilAtTarget(0, testControllerRunnerController1);
+    controllerRunner.runUntilAtTarget(0, testControllerRunnerController2, controllerRunnerMotor);
   }
 }
