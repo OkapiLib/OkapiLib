@@ -55,6 +55,6 @@ class Controller {
   protected:
   pros::Controller controller;
 };
-}
+} // namespace okapi
 
 #endif

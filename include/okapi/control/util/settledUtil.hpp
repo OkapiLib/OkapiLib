@@ -58,6 +58,6 @@ class SettledUtil {
   Timer atTargetTimer;
   double lastError = 0;
 };
-}
+} // namespace okapi
 
 #endif

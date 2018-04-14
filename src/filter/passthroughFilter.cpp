@@ -19,4 +19,4 @@ double PassthroughFilter::filter(const double ireading) {
 double PassthroughFilter::getOutput() const {
   return lastOutput;
 }
-}
+} // namespace okapi

@@ -29,4 +29,4 @@ float Controller::getAnalog(const controller_analog_e_t ichannel) {
 bool Controller::getDigital(const controller_digital_e_t ibutton) {
   return controller.get_digital(ibutton) == 1;
 }
-}
+} // namespace okapi
