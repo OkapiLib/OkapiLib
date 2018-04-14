@@ -27,8 +27,8 @@ class Motor : public AbstractMotor, public pros::Motor {
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
-   * @param position The absolute position to move to in the motor's encoder units
-   * @param velocity The maximum allowable velocity for the movement in RPM
+   * @param iposition The absolute position to move to in the motor's encoder units
+   * @param ivelocity The maximum allowable velocity for the movement in RPM
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
   virtual std::int32_t moveAbsolute(const double iposition,
@@ -166,7 +166,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
-   * @param units The new motor encoder units
+   * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
   virtual std::int32_t setEncoderUnits(const motor_encoder_units_e_t iunits) const override;
