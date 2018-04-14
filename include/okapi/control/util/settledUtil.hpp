@@ -24,23 +24,6 @@ class SettledUtil {
   SettledUtil(const double iatTargetError = 50, const double iatTargetDerivative = 5,
               const uint32_t iatTargetTime = 250);
 
-  /**
-   * A utility class to determine if a control loop has settled based on error. A control loop is
-   * settled if the error is within atTargetError for atTargetTime.
-   *
-   * @param iatTargetTime minimum time within atTargetError to be considered settled
-   */
-  SettledUtil(const uint32_t iatTargetTime);
-
-  /**
-   * A utility class to determine if a control loop has settled based on error. A control loop is
-   * settled if the error is within atTargetError for atTargetTime.
-   *
-   * @param iatTargetError minimum error to be considered settled
-   * @param iatTargetDerivative minimum error derivative to be considered settled
-   */
-  SettledUtil(const double iatTargetError, const double iatTargetDerivative);
-
   virtual ~SettledUtil();
 
   /**
