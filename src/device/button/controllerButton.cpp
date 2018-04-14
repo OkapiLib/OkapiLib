@@ -9,12 +9,12 @@
 
 namespace okapi {
 ControllerButton::ControllerButton(const controller_digital_e_t ibtn, const bool iinverted)
-  : controller(E_CONTROLLER_MASTER), btn(ibtn), inverted(iinverted) {
+  : controllerID(E_CONTROLLER_MASTER), btn(ibtn), inverted(iinverted) {
 }
 
 ControllerButton::ControllerButton(const controller_id_e_t icontroller,
                                    const controller_digital_e_t ibtn, const bool iinverted)
-  : controller(icontroller), btn(ibtn), inverted(iinverted) {
+  : controllerID(icontroller), btn(ibtn), inverted(iinverted) {
 }
 
 bool ControllerButton::isPressed() {
@@ -38,7 +38,7 @@ bool ControllerButton::changedToReleased() {
 }
 
 bool ControllerButton::currentlyPressed() {
-  const bool pressed = controller.get_digital(btn) != 0;
+  const bool pressed = pros::c::controller_get_digital(controllerID, btn) != 0;
   return inverted ? !pressed : pressed;
 }
 } // namespace okapi

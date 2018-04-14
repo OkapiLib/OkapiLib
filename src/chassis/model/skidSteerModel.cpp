@@ -152,6 +152,7 @@ void SkidSteerModel::arcade(const double iySpeed, const double izRotation,
       rightOutput = ySpeed - zRotation;
     }
   }
+  printf("%1.2f,%1.2f\n", leftOutput, std::clamp(leftOutput, -1.0, 1.0) * maxOutput);
 
   leftSideMotor.moveVoltage(std::clamp(leftOutput, -1.0, 1.0) * maxOutput);
   rightSideMotor.moveVoltage(std::clamp(rightOutput, -1.0, 1.0) * maxOutput);

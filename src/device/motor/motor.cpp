@@ -87,7 +87,7 @@ okapi::Motor operator"" _m(const unsigned long long iport) {
 }
 
 okapi::Motor operator"" _rm(const unsigned long long iport) {
-  return okapi::Motor(static_cast<uint8_t>(iport));
+  return okapi::Motor(static_cast<uint8_t>(iport), true);
 }
 } // namespace literals
 } // namespace okapi

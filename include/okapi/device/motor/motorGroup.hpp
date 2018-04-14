@@ -18,6 +18,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
   public:
   MotorGroup(const std::array<okapi::Motor, motorNum> &imotors)
     : AbstractMotor(imotors[0]), motors(imotors) {
+    printf("group\n");
   }
 
   /**
@@ -88,6 +89,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
   virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const override {
+    printf("velocity: %d\n", ivelocity);
     auto out = 1;
     for (size_t i = 0; i < motorNum; i++) {
       const auto errorCode = motors[i].move_velocity(ivelocity);
@@ -109,6 +111,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
   virtual std::int32_t moveVoltage(const std::int16_t ivoltage) const override {
+    printf("voltage: %d\n", ivoltage);
     auto out = 1;
     for (size_t i = 0; i < motorNum; i++) {
       const auto errorCode = motors[i].move_voltage(ivoltage);
