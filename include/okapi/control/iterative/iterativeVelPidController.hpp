@@ -153,7 +153,6 @@ class IterativeVelPIDController : public IterativeVelocityController {
   uint32_t lastTime = 0;
   uint32_t sampleTime = 10;
   double error = 0;
-  const double errorScale = 4096; // 12 bit ADC scale, good enough for most things
   double lastError = 0;
   double derivative = 0;
   double target = 0;
