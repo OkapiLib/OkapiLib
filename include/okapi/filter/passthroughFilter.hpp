@@ -38,6 +38,6 @@ class PassthroughFilter : public Filter {
   protected:
   double lastOutput = 0;
 };
-}
+} // namespace okapi
 
 #endif

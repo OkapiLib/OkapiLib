@@ -40,4 +40,4 @@ bool SettledUtil::isSettled(const double ierror) {
 
   return false;
 }
-}
+} // namespace okapi

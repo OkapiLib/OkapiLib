@@ -68,6 +68,6 @@ class ComposableFilter : public Filter {
   std::vector<std::shared_ptr<Filter>> filters;
   double output = 0;
 };
-}
+} // namespace okapi
 
 #endif
