@@ -90,6 +90,17 @@ class AbstractMotor : public ControllerOutput {
   virtual double getTargetPosition() const = 0;
 
   /**
+   * Gets the absolute position of the motor in its encoder units.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @return The motor's absolute position in its encoder units or PROS_ERR_F if the operation
+   * failed, setting errno.
+   */
+  virtual double getPosition() const = 0;
+
+  /**
    * Gets the velocity commanded to the motor by the user.
    *
    * This function uses the following values of errno when an error state is reached:
@@ -101,6 +112,17 @@ class AbstractMotor : public ControllerOutput {
   virtual std::int32_t getTargetVelocity() const = 0;
 
   /**
+   * Gets the actual velocity of the motor.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @return The motor's actual velocity in motor_encoder_units_e_t per second or PROS_ERR_F if the
+   * operation failed, setting errno.
+   */
+  virtual double getActualVelocity() const = 0;
+
+  /**
    * Sets the position for the motor in its encoder units.
    *
    * This will be the future reference point for the motor's "absolute" position.
@@ -108,10 +130,78 @@ class AbstractMotor : public ControllerOutput {
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
-   * @param position The new reference position in its encoder units
+   * @param iposition The new reference position in its encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setZeroPosition(const double position) const = 0;
+  virtual std::int32_t setZeroPosition(const double iposition) const = 0;
+
+  /**
+   * Sets one of motor_brake_mode_e_t to the motor.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @param imode The motor_brake_mode_e_t to set for the motor
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t setBrakeMode(const motor_brake_mode_e_t imode) const = 0;
+
+  /**
+   * Sets the current limit for the motor in mA.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @param ilimit The new current limit in mA
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const = 0;
+
+  /**
+   * Sets one of motor_encoder_units_e_t for the motor encoder.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @param units The new motor encoder units
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t setEncoderUnits(const motor_encoder_units_e_t iunits) const = 0;
+
+  /**
+   * Sets one of motor_gearset_e_t for the motor.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @param igearset The new motor gearset
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t setGearing(const motor_gearset_e_t igearset) const = 0;
+
+  /**
+   * Sets the reverse flag for the motor.
+   *
+   * This will invert its movements and the values returned for its position.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @param ireverse True reverses the motor, false is default
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t setReversed(const bool ireverse) const = 0;
+
+  /**
+   * Sets the voltage limit for the motor in Volts.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @param ilimit The new voltage limit in Volts
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t setVoltageLimit(const std::int32_t ilimit) const = 0;
 
   /**
    * Returns the encoder associated with this motor.
