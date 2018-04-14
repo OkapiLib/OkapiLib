@@ -9,6 +9,7 @@
 #define _OKAPI_ASYNCCONTROLLER_HPP_
 
 #include "api.h"
+#include "okapi/control/closedLoopController.hpp"
 
 namespace okapi {
 class AsyncControllerArgs {
@@ -16,32 +17,18 @@ class AsyncControllerArgs {
   virtual ~AsyncControllerArgs();
 };
 
-class AsyncController {
+/**
+ * Closed-loop controller that steps on its own in another thread and automatically writes to the
+ * output.
+ */
+class AsyncController : public ClosedLoopController {
   public:
   virtual ~AsyncController();
-
-  /**
-   * Sets the target for the controller.
-   */
-  virtual void setTarget(const double itarget) = 0;
 
   /**
    * Returns the last calculated output of the controller. Default is 0.
    */
   virtual double getOutput() const;
-
-  /**
-   * Returns the last error of the controller.
-   */
-  virtual double getError() const = 0;
-
-  /**
-   * Returns whether the controller has settled at the target. Determining what settling means is
-   * implementation-dependent.
-   *
-   * @return whether the controller is settled
-   */
-  virtual bool isSettled() = 0;
 
   /**
    * Set time between loops in ms. Default does nothing.
