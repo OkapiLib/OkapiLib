@@ -386,9 +386,9 @@ void opcontrol() {
     test_print_report();
   }
 
-  /*while (true) {
+  while (true) {
     ADIButton btn(2);
-    ControllerButton btn2(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A);
+    ControllerButton btn2(E_CONTROLLER_DIGITAL_A);
     btn.isPressed();
     btn.changed();
     btn.changedToPressed();
@@ -435,49 +435,48 @@ void opcontrol() {
     XDriveModel xmodel2(1_m, 2_m, 3_m, 4_m); // Using integrated encoders
 
     ChassisControllerPID controller1(
-      SkidSteerModel(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}), leftEncoder,
-                     rightEncoder),
-      PosPIDControllerArgs(0, 0, 0), PosPIDControllerArgs(0, 0, 0));
+      std::make_shared<SkidSteerModel>(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
+                                       leftEncoder, rightEncoder),
+      IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
 
-    ChassisControllerPID controller2(XDriveModel(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder),
-                                     PosPIDControllerArgs(0, 0, 0),
-                                     PosPIDControllerArgs(0, 0, 0));
+    ChassisControllerPID controller2(
+      std::make_shared<XDriveModel>(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder),
+      IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
 
     // An "odometry" chassis controller adds an odometry layer running in another task which keeps
     // track of the position of the robot in the odom frame. This means that you can tell the robot
     // to move to an arbitrary point on the field, or turn to an absolute angle (i.e., "turn to 90
     // degrees" will always put the robot facing east relative to the starting position)
     OdomChassisControllerPID controller3(
-      OdometryArgs(SkidSteerModel(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
-                                    leftEncoder, rightEncoder),
-                     0, 0),
-      PosPIDControllerArgs(0, 0, 0), PosPIDControllerArgs(0, 0, 0));
+      std::make_shared<SkidSteerModel>(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}),
+                                       leftEncoder, rightEncoder),
+      0, 0, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
 
     controller3.driveToPoint(0, 0); // Drive to (0, 0) on the field
     controller3.turnToAngle(0);     // Turn to 0 degrees
 
-    PosPIDController pid1(0, 0, 0); // PID controller
-    MotorController mc1(1_m, pid1); // Motor controller with one motor and the PID controller
-    MotorController mc2(MotorGroup<2>({1_m, 2_m}),
-                        pid1); // Motor controller with two motors and the PID controller
+    IterativePosPIDController pid1(0, 0, 0); // PID controller
+    IterativeVelPIDController tempvelpid1(0, 0);
+    IterativeMotorController mc1(1_m, tempvelpid1);
+    IterativeMotorController mc2(MotorGroup<2>({1_m, 2_m}), tempvelpid1);
 
-    PosIntegratedController posI1(1_m);
+    AsyncPosIntegratedController posI1(1_m);
 
     Motor tempMotor = 1_m;
-    AsyncPosPIDController apospid1(leftEncoder, tempMotor, PosPIDControllerArgs(0, 0, 0));
+    AsyncPosPIDController apospid1(leftEncoder, tempMotor, IterativePosPIDControllerArgs(0, 0, 0));
     AsyncPosPIDController apospid2(leftEncoder, tempMotor, 0, 0, 0);
 
-    PosPIDController pid2(0, 0, 0);
-    PosPIDController pid3(0, 0, 0, 0);
-    PosPIDController pid4(PosPIDControllerArgs(0, 0, 0));
-    PosPIDController pid5(PosPIDControllerArgs(0, 0, 0, 0));
+    IterativePosPIDController pid2(0, 0, 0);
+    IterativePosPIDController pid3(0, 0, 0, 0);
+    IterativePosPIDController pid4(IterativePosPIDControllerArgs(0, 0, 0));
+    IterativePosPIDController pid5(IterativePosPIDControllerArgs(0, 0, 0, 0));
 
     VelMath velMath1(0);
     VelMath velMath2(0, 0);
-    VelMath velMath3(0, 0, 0);
+    VelMath velMath3(0, std::make_shared<DemaFilter>(0.0, 0.0));
 
-    VelPIDController velPid1(0, 0);
-    VelPIDController velPid2(VelPIDControllerArgs(0, 0));
+    IterativeVelPIDController velPid1(0, 0);
+    IterativeVelPIDController velPid2(IterativeVelPIDControllerArgs(0, 0));
 
     ADIEncoder quad1(0, 0);
     ADIEncoder quad2(0, 0, true);
@@ -502,10 +501,11 @@ void opcontrol() {
       printf("%d: %1.2f\n", i, avgFilt1.filter(i));
     }
 
-    Odometry odom1(SkidSteerModel(MotorGroup<2>({1_m, 2_m}), MotorGroup<2>({3_m, 4_m}), leftEncoder,
-                                  rightEncoder),
+    Odometry odom1(std::make_shared<SkidSteerModel>(MotorGroup<2>({1_m, 2_m}),
+                                                    MotorGroup<2>({3_m, 4_m}), leftEncoder,
+                                                    rightEncoder),
                    0, 0);
 
     Timer timer1();
-  }*/
+  }
 }
