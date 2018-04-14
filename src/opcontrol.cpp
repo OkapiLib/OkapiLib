@@ -381,6 +381,29 @@ void opcontrol() {
            TEST_BODY(AssertThat, sim.getAcceleration(), EqualsWithDelta(990.19335, 0.0001)));
     }
 
+    {
+      test_printf("Testing IterativePosPIDController");
+
+      // Default values
+      FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.005);
+      sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
+
+      IterativePosPIDController controller(0.004, 0, 0);
+      controller.setTarget(45);
+      for (size_t i = 0; i < 2000; i++) {
+        controller.step(sim.getAngle() * radianToDegree);
+        sim.setTorque(controller.getOutput());
+        sim.step();
+      }
+
+      test("IterativePosPIDController should settle after 2000 iterations (simulator angle is "
+           "correct)",
+           TEST_BODY(AssertThat, sim.getAngle(), EqualsWithDelta(45 * degreeToRadian, 0.01)));
+      test("IterativePosPIDController should settle after 2000 iterations (controller error is "
+           "correct)",
+           TEST_BODY(AssertThat, controller.getError(), EqualsWithDelta(0, 0.01)));
+    }
+
     test_print_report();
   }
 

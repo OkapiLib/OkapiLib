@@ -16,13 +16,6 @@ SettledUtil::SettledUtil(const double iatTargetError, const double iatTargetDeri
     atTargetTime(iatTargetTime) {
 }
 
-SettledUtil::SettledUtil(const uint32_t iatTargetTime) : atTargetTime(iatTargetTime) {
-}
-
-SettledUtil::SettledUtil(const double iatTargetError, const double iatTargetDerivative)
-  : atTargetError(iatTargetError), atTargetDerivative(iatTargetDerivative) {
-}
-
 SettledUtil::~SettledUtil() = default;
 
 bool SettledUtil::isSettled(const double ierror) {
