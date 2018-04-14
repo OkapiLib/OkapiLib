@@ -6,6 +6,8 @@
 using namespace okapi;
 
 void opcontrol() {
+  using namespace pros::c;
+
   task_delay(100);
 
   // Chassis Controller - lets us drive the robot around with open- or closed-loop control
@@ -26,12 +28,12 @@ void opcontrol() {
 
   while (true) {
     // Tank drive with left and right sticks
-    robotChassisController.tank(controller.getAnalog(ANALOG_LEFT_X),
-                                controller.getAnalog(ANALOG_RIGHT_X));
+    robotChassisController.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                                controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
 
     // Arcade drive with the left stick
-    robotChassisController.arcade(controller.getAnalog(ANALOG_LEFT_X),
-                                  controller.getAnalog(ANALOG_LEFT_Y));
+    robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                                  controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
 
     // Don't power the arm if it is all the way down
     if (armLimitButton.isPressed()) {
@@ -58,7 +60,7 @@ void opcontrol() {
 
     // Wait and give up the time we don't need to other tasks.
     // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-    task_delay(10);
+    pros::c::task_delay(10);
   }
 
   // FlywheelSimulator sim(0.01, 1, 0.5, 0.3, 0.05);
@@ -326,17 +328,17 @@ void opcontrol() {
       test_printf("Testing Rate");
 
       Rate rate;
-      uint32_t lastTime = millis();
+      uint32_t lastTime = pros::millis();
 
       for (int i = 0; i < 10; i++) {
         rate.delayHz(10);
 
         // Static cast so the compiler doesn't complain about comparing signed and unsigned values
         test("Rate " + std::to_string(i),
-             TEST_BODY(AssertThat, static_cast<double>(millis() - lastTime),
+             TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
                        EqualsWithDelta(100, 10)));
 
-        lastTime = millis();
+        lastTime = pros::millis();
         task_delay(50); // Emulate some computation
       }
     }

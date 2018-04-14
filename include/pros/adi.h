@@ -1,23 +1,22 @@
 /**
  * \file pros/adi.h
  *
- * \brief Prototypes for interfacing with the ADI.
+ * \brief Prototypes and functions for interfacing with the ADI.
  *
- * This file contains the header info for the functions used to modify the
- * status of the ADI ports.
+ * Visit https://pros.cs.purdue.edu/v5/tutorials/topical/adi to learn more.
  *
- * \copyright (c) 2017-2018, Purdue University ACM SIGBots.
+ * This file should not be modified by users, since it gets replaced whenever
+ * a kernel upgrade occurs.
+ *
+ * Copyright (c) 2017-2018, Purdue University ACM SIGBots.
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
 #ifndef _PROS_ADI_H_
 #define _PROS_ADI_H_
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 /**
  * Represents the port type for an ADI port.
@@ -71,26 +70,51 @@ typedef enum adi_port_config_e {
 
 #define NUM_ADI_PORTS 8
 
-/*
- * For the following functions:
- * If they don't need a return value (e.g. a setter):
- * 		They will return PROS_ERR upon failure and 1 upons success
- * If they should return a bool (e.g. motor_get_temp_limit_flag):
- *		They will return 1 for true, 0 for false, and PROS_ERR upon failure
- * If they should return a 32-bit integer (e.g. a getter):
- *		They will return their value. If an error occurs, they will return
- *		PROS_ERR. If their actual return value should be PROS_ERR (INT32_MAX)
- *		then they will set errno = 0 to indicate no error has occured.
- * If they should return a double (e.g. a getter):
- *		They will return their value, or PROS_ERROR_F upon failure
+#ifdef __cplusplus
+extern "C" {
+namespace pros {
+namespace c {
+#endif
+
+/******************************************************************************/
+/**                         General ADI Use Functions                        **/
+/**                                                                          **/
+/**       These functions allow for interaction with any ADI port type       **/
+/******************************************************************************/
+
+/**
+ * Gets the configuration for the given ADI port.
  *
- * Upon returning PROS_ERR or PROS_ERR_F, errno will be set to indicate the
- * type of error. Again, some functions may return PROS_ERR as a valid value;
- * in this case, errno will be set to 0
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range.
+ *
+ * \param port
+ *        The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to return
+ *        the configuration
+ *
+ * \return The ADI configuration for the given port
  */
+adi_port_config_e_t adi_port_get_config(uint8_t port);
+
+/**
+ * Gets the value for the given ADI port.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range.
+ *
+ * \param port
+ *        The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which the value
+ *        will be returned
+ *
+ * \return The value stored for the given port
+ */
+int32_t adi_port_get_value(uint8_t port);
 
 /**
  * Configures an ADI port to act as a given sensor type.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range.
  *
  * \param port
  *        The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
@@ -99,23 +123,16 @@ typedef enum adi_port_config_e {
  *
  * \return 1 if the operation was successful, PROS_ERR otherwise
  */
-int32_t adi_port_config_set(uint8_t port, adi_port_config_e_t type);
+int32_t adi_port_set_config(uint8_t port, adi_port_config_e_t type);
 
 /**
- * Returns the configuration for the given ADI port
+ * Sets the value for the given ADI port.
  *
- * \param port
- *        The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to return
- *        the configuration
- *
- * \return The ADI configuration for the given port
- */
-adi_port_config_e_t adi_port_config_get(uint8_t port);
-
-/**
- * Sets the value for the given ADI port
  * This only works on ports configured as outputs, and the behavior will change
- * depending on the configuration of the port
+ * depending on the configuration of the port.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range.
  *
  * \param port
  *        The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which the value
@@ -125,18 +142,13 @@ adi_port_config_e_t adi_port_config_get(uint8_t port);
  *
  * \return 1 if the operation was successful, PROS_ERR otherwise
  */
-int32_t adi_value_set(uint8_t port, int32_t value);
+int32_t adi_port_set_value(uint8_t port, int32_t value);
 
-/**
- * Returns the value for the given ADI port
- *
- * \param port
- *        The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which the value
- *        will be returned
- *
- * \return The value stored for the given port
- */
-int32_t adi_value_get(uint8_t port);
+/******************************************************************************/
+/**                      PROS 2 Compatibility Functions                      **/
+/**                                                                          **/
+/**     These functions provide similar functionality to the PROS 2 API      **/
+/******************************************************************************/
 
 /**
  * Used for adi_digital_write() to specify a logic HIGH state to output.
@@ -170,16 +182,20 @@ int32_t adi_value_get(uint8_t port);
 #define OUTPUT_ANALOG 0x03
 
 /**
- * Calibrates the analog sensor on the specified channel.
+ * Calibrates the analog sensor on the specified port and returns the new calibration value.
  *
  * This method assumes that the true sensor value is not actively changing at this time and
  * computes an average from approximately 500 samples, 1 ms apart, for a 0.5 s period of
  * calibration. The average value thus calculated is returned and stored for later calls to the
- * analog_read_calibrated() and analog_read_calibrated_HR() functions. These functions will return
+ * adi_analog_read_calibrated() and adi_analog_read_calibrated_HR() functions. These functions will
+ * return
  * the difference between this value and the current sensor value when called.
  *
  * Do not use this function when the sensor value might be unstable
  * (gyro rotation, accelerometer movement).
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be an analog input.
  *
  * \param port
  *        The ADI port to calibrate (from 1-8, 'a'-'h', 'A'-'H')
@@ -187,57 +203,73 @@ int32_t adi_value_get(uint8_t port);
  * \return The average sensor value computed by this function
  */
 int32_t adi_analog_calibrate(uint8_t port);
+
 /**
- * Reads an analog input channel and returns the 12-bit value.
+ * Gets the 12-bit value of the specified port.
  *
  * The value returned is undefined if the analog pin has been switched to a different mode.
  * This function is Wiring-compatible with the exception of the larger output range. The
  * meaning of the returned value varies depending on the sensor attached.
  *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be an analog input.
+ *
  * \param port
- *        The ADI port to calibrate (from 1-8, 'a'-'h', 'A'-'H')
+ *        The ADI port (from 1-8, 'a'-'h', 'A'-'H') for which the value will be returned
  *
  * \return The analog sensor value, where a value of 0 reflects an input voltage of nearly 0 V
  * and a value of 4095 reflects an input voltage of nearly 5 V
  */
 int32_t adi_analog_read(uint8_t port);
+
 /**
- * Reads the calibrated value of an analog input channel.
+ * Gets the 12 bit calibrated value of an analog input port.
  *
- * The adi_analog_calibrate() function must be run first on that channel. This function is
+ * The adi_analog_calibrate() function must be run first. This function is
  * inappropriate for sensor values intended for integration, as round-off error can accumulate
- * causing drift over time. Use analogReadCalibratedHR() instead.
+ * causing drift over time. Use adi_analog_read_calibrated_HR() instead.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be an analog input.
  *
  * \param port
- *        The ADI port to read (from 1-8, 'a'-'h', 'A'-'H')
+ *        The ADI port (from 1-8, 'a'-'h', 'A'-'H') for which the value will be returned
  *
  * \return The difference of the sensor value from its calibrated default from -4095 to 4095
  */
 int32_t adi_analog_read_calibrated(uint8_t port);
+
 /**
- * Reads the calibrated value of an analog input channel 1-8 with enhanced precision.
+ * Gets the 16 bit calibrated value of an analog input port.
  *
  * The adi_analog_calibrate() function must be run first. This is intended for integrated sensor
  * values such as gyros and accelerometers to reduce drift due to round-off, and should not be
  * used on a sensor such as a line tracker or potentiometer.
  *
  * The value returned actually has 16 bits of "precision", even though the ADC only reads
- * 12 bits, so that errors induced by the average value being between two values come out
- * in the wash when integrated over time. Think of the value as the true value times 16.
+ * 12 bits, so that error induced by the average value being between two values when integrated over
+ * time
+ * is trivial. Think of the value as the true value times 16.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be an analog input.
  *
  * \param port
- *        The ADI port to read (from 1-8, 'a'-'h', 'A'-'H')
+ *        The ADI port (from 1-8, 'a'-'h', 'A'-'H') for which the value will be returned
  *
  * \return The difference of the sensor value from its calibrated default from -16384 to 16384
  */
 int32_t adi_analog_read_calibrated_HR(uint8_t port);
+
 /**
- * Gets the digital value (1 or 0) of a pin configured as a digital input.
+ * Gets the digital value (1 or 0) of a port configured as a digital input.
  *
- * If the pin is configured as some other mode, the digital value which reflects the current
- * state of the pin is returned, which may or may not differ from the currently set value. The
- * return value is undefined for pins configured as Analog inputs, or for ports in use by a
- * Communications interface. This function is Wiring-compatible.
+ * If the port is configured as some other mode, the digital value which reflects the current
+ * state of the poprt is returned, which may or may not differ from the currently set value. The
+ * return value is undefined for ports configured as any mode other than a Digital Input.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be a digital input.
  *
  * \param port
  *        The ADI port to read (from 1-8, 'a'-'h', 'A'-'H')
@@ -245,8 +277,9 @@ int32_t adi_analog_read_calibrated_HR(uint8_t port);
  * \return True if the pin is HIGH, or false if it is LOW
  */
 int32_t adi_digital_read(uint8_t port);
+
 /**
- * Returns a rising-edge case for a digital button press.
+ * Gets a rising-edge case for a digital button press.
  *
  * This function is not thread-safe.
  * Multiple tasks polling a single button may return different results under the
@@ -256,19 +289,24 @@ int32_t adi_digital_read(uint8_t port);
  * use-case for this function is to call inside opcontrol to detect new button
  * presses, and not in any other tasks.
  *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be a digital input.
+ *
  * \param port
  *        The ADI port to read (from 1-8, 'a'-'h', 'A'-'H')
  *
- * \return 1 if the button on the controller is pressed and had not been pressed
+ * \return 1 if the button is pressed and had not been pressed
  *         the last time this function was called, 0 otherwise.
  */
 int32_t adi_digital_get_new_press(uint8_t port);
 
 /**
- * Sets the digital value (1 or 0) of a pin configured as a digital output.
+ * Sets the digital value (1 or 0) of a port configured as a digital output.
  *
- * If the pin is configured as some other mode, behavior is undefined. This function is
- * Wiring-compatible.
+ * If the port is configured as some other mode, behavior is undefined.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be a digital output.
  *
  * \param port
  *        The ADI port to read (from 1-8, 'a'-'h', 'A'-'H')
@@ -279,8 +317,12 @@ int32_t adi_digital_get_new_press(uint8_t port);
  * \return 1 if the operation was successful, PROS_ERR otherwise
  */
 int32_t adi_digital_write(uint8_t port, const bool value);
+
 /**
- * Configures the pin as an input or output with a variety of settings.
+ * Configures the port as an input or output with a variety of settings.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range.
  *
  * \param port
  *        The ADI port to read (from 1-8, 'a'-'h', 'A'-'H')
@@ -294,6 +336,9 @@ int32_t adi_pin_mode(uint8_t port, uint8_t mode);
 /**
  * Sets the speed of the motor on the given port.
  *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be a motor.
+ *
  * \param port
  *        The ADI port to set (from 1-8, 'a'-'h', 'A'-'H')
  * \param speed
@@ -303,8 +348,12 @@ int32_t adi_pin_mode(uint8_t port, uint8_t mode);
  * \return 1 if the operation was successful, PROS_ERR otherwise
  */
 int32_t adi_motor_set(uint8_t port, int8_t speed);
+
 /**
- * Returns the last set speed of the motor on the given port.
+ * Gets the last set speed of the motor on the given port.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be a motor.
  *
  * \param port
  *        The ADI port to get (from 1-8, 'a'-'h', 'A'-'H')
@@ -312,8 +361,12 @@ int32_t adi_motor_set(uint8_t port, int8_t speed);
  * \return The last set speed of the motor on the given port
  */
 int32_t adi_motor_get(uint8_t port);
+
 /**
  * Stops the motor on the given port.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be a motor.
  *
  * \param port
  *        The ADI port to set (from 1-8, 'a'-'h', 'A'-'H')
@@ -335,14 +388,21 @@ typedef int32_t adi_encoder_t;
  *
  * There are 360 ticks in one revolution.
  *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be an encoder.
+ *
  * \param enc
  *        The adi_encoder_t object from adi_encoder_init() to read
  *
  * \return The signed and cumulative number of counts since the last start or reset
  */
 int32_t adi_encoder_get(adi_encoder_t enc);
+
 /**
- * Initializes and enables a quadrature encoder on two digital ports.
+ * Creates an encoder object and configures the specified ports accordingly.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be an encoder.
  *
  * \param port_top
  *        The "top" wire from the encoder sensor with the removable cover side UP
@@ -354,11 +414,15 @@ int32_t adi_encoder_get(adi_encoder_t enc);
  * \return An adi_encoder_t object to be stored and used for later calls to encoder functions
  */
 adi_encoder_t adi_encoder_init(uint8_t port_top, uint8_t port_bottom, const bool reverse);
+
 /**
- * Resets the encoder to zero.
+ * Sets the encoder value to zero.
  *
  * It is safe to use this method while an encoder is enabled. It is not necessary to call this
  * method before stopping or starting an encoder.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be an encoder.
  *
  * \param enc
  *        The adi_encoder_t object from adi_encoder_init() to reset
@@ -366,8 +430,12 @@ adi_encoder_t adi_encoder_init(uint8_t port_top, uint8_t port_bottom, const bool
  * \return 1 if the operation was successful, PROS_ERR otherwise
  */
 int32_t adi_encoder_reset(adi_encoder_t enc);
+
 /**
- * Stops and disables the encoder.
+ * Disables the encoder and voids the configuration on its ports.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be an encoder.
  *
  * \param enc
  *        The adi_encoder_t object from adi_encoder_init() to stop
@@ -391,14 +459,21 @@ typedef int32_t adi_ultrasonic_t;
  * return value is undefined. Round and fluffy objects can cause inaccurate values to be
  * returned.
  *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be an ultrasonic.
+ *
  * \param ult
  *        The adi_ultrasonic_t object from adi_ultrasonic_init() to read
  *
  * \return The distance to the nearest object in centimeters
  */
 int32_t adi_ultrasonic_get(adi_ultrasonic_t ult);
+
 /**
- * Initializes an ultrasonic sensor on the specified ADI ports.
+ * Creates an ultrasonic object and configures the specified ports accordingly.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be an ultrasonic.
  *
  * \param port_echo
  *        The port connected to the yellow INPUT cable. This should be in port
@@ -410,8 +485,12 @@ int32_t adi_ultrasonic_get(adi_ultrasonic_t ult);
  * \return An adi_ultrasonic_t object to be stored and used for later calls to ultrasonic functions
  */
 adi_ultrasonic_t adi_ultrasonic_init(uint8_t port_echo, uint8_t port_ping);
+
 /**
- * Stops and disables the ultrasonic sensor.
+ * Disables the ultrasonic sensor and voids the configuration on its ports.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The port number is out of range or the port is not configured to be an ultrasonic.
  *
  * \param ult
  *        The adi_ultrasonic_t object from adi_ultrasonic_init() to stop
@@ -422,6 +501,8 @@ int32_t adi_ultrasonic_shutdown(adi_ultrasonic_t ult);
 
 #ifdef __cplusplus
 }
+}
+}
 #endif
 
-#endif
+#endif  // _PROS_ADI_H_

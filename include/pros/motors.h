@@ -1,21 +1,22 @@
 /**
- * \file vdml_motors.h
+ * \file pros/motors.h
  *
- * \brief Contains prototypes for the motor-related thread-safe wrapper
- * functions.
+ * Contains prototypes for the Smart Motor-related functions.
  *
- * This file contains the header info for the functions used to modify the
- * status of vex motors.
+ * This file should not be modified by users, since it gets replaced whenever
+ * a kernel upgrade occurs.
  *
- * \copyright (c) 2017-2018, Purdue University ACM SIGBots.
+ * Visit https://pros.cs.purdue.edu/v5/tutorials/topical/motors to learn more.
+ *
+ * Copyright (c) 2017-2018, Purdue University ACM SIGBots.
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
- * LIcense, v. 2.0. If a copy of the MPL was not distributed with this
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-#ifndef VDML_MOTORS_H
-#define VDML_MOTORS_H
+#ifndef _PROS_MOTORS_H_
+#define _PROS_MOTORS_H_
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -31,38 +32,42 @@ extern "C" {
 /******************************************************************************/
 
 /**
- * \brief Sets the velocity for the motor from -128 to 127.
+ * Sets the voltage for the motor from -127 to 127.
  *
- * This velocity corresponds to different actual speeds depending on the gearset
- * used for the motor. The velocity is held with PID to ensure consistent speed,
- * as opposed to setting the motor's voltage.
+ * This is designed to map easily to the input from the controller's analog
+ * stick for simple opcontrol use. The actual behavior of the motor is analogous
+ * to use of motor_move_voltage(), or motorSet() from the PROS 2 API.
  *
- * \note This function is equivalent to motor_set_target_velocity and motor_move_velocity
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
- * \param velocity
- *        The new motor velocity from -127 to 127
+ * \param voltage
+ *        The new motor voltage from -127 to 127
  *
  * \return 1 if the operation was successful or PROS_ERR if the operation failed,
  *         setting errno.
  */
-int32_t motor_set(uint8_t port, const int16_t velocity);
+int32_t motor_move(uint8_t port, const int8_t voltage);
 
 /**
- * \brief Sets the target absolute position for the motor to move to.
+ * Sets the target absolute position for the motor to move to.
  *
  * This movement is relative to the position of the motor when initialized or
- * the position when it was most recently reset with motor_reset_zero_position.
+ * the position when it was most recently reset with motor_set_zero_position().
  *
- * \note This function is equivalent to motor_set_absolute_target_position
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
  * \param position
  *        The absolute position to move to in the motor's encoder units
  * \param velocity
- *        The maximum allowable velocity for the movement
+ *        The maximum allowable velocity for the movement in RPM
  *
  * \return 1 if the operation was successful or PROS_ERR if the operation failed,
  *         setting errno.
@@ -70,20 +75,22 @@ int32_t motor_set(uint8_t port, const int16_t velocity);
 int32_t motor_move_absolute(uint8_t port, const double position, const int32_t velocity);
 
 /**
- * \brief Sets the relative target position for the motor to move to.
+ * Sets the relative target position for the motor to move to.
  *
  * This movement is relative to the current position of the motor as given in
- * motor_get_position. Providing 10.0 as the position parameter would result in the motor
+ * motor_get_position(). Providing 10.0 as the position parameter would result in the motor
  * moving clockwise 10 units, no matter what the current position is.
  *
- * \note This function is equivalent to motor_set_relative_target_position
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
  * \param position
  *        The relative position to move to in the motor's encoder units
  * \param velocity
- *        The maximum allowable velocity for the movement
+ *        The maximum allowable velocity for the movement in RPM
  *
  * \return 1 if the operation was successful or PROS_ERR if the operation failed,
  *         setting errno.
@@ -91,18 +98,23 @@ int32_t motor_move_absolute(uint8_t port, const double position, const int32_t v
 int32_t motor_move_relative(uint8_t port, const double position, const int32_t velocity);
 
 /**
- * \brief Sets the velocity for the motor from -128 to 127.
+ * Sets the velocity for the motor.
  *
  * This velocity corresponds to different actual speeds depending on the gearset
- * used for the motor. The velocity is held with PID to ensure consistent speed,
- * as opposed to setting the motor's voltage.
+ * used for the motor. This results in a range of +-100 for E_MOTOR_GEARSET_36,
+ * +-200 for E_MOTOR_GEARSET_18, and +-600 for E_MOTOR_GEARSET_6. The velocity
+ * is held with PID to ensure consistent speed, as opposed to setting the motor's
+ * voltage.
  *
- * \note This function is equivalent to motor_set_target_velocity and motor_set
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
  * \param velocity
- *        The new motor velocity from -127 to 127
+ *        The new motor velocity from +-100, +-200, or +-600 depending on the motor's
+ *        gearset
  *
  * \return 1 if the operation was successful or PROS_ERR if the operation failed,
  *         setting errno.
@@ -110,17 +122,16 @@ int32_t motor_move_relative(uint8_t port, const double position, const int32_t v
 int32_t motor_move_velocity(uint8_t port, const int16_t velocity);
 
 /**
- * \brief Sets the voltage for the motor from -128 to 127.
+ * Sets the voltage for the motor from -127 to 127.
  *
- * This voltage is controlled by PWM, and does not immediately correspond to
- * the value returned by motor_get_voltage (which is in Volts)
- *
- * \note This function is equivalent to motor_set_target_voltage
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
  * \param voltage
- *        The new PWM value from -127 to 127
+ *        The new voltage value from -127 to 127
  *
  * \return 1 if the operation was successful or PROS_ERR if the operation failed,
  *         setting errno.
@@ -128,85 +139,11 @@ int32_t motor_move_velocity(uint8_t port, const int16_t velocity);
 int32_t motor_move_voltage(uint8_t port, const int16_t voltage);
 
 /**
- * \brief Sets the target absolute position for the motor to move to.
+ * Gets the target position set for the motor by the user.
  *
- * This movement is relative to the position of the motor when initialized or
- * the position when it was most recently reset with motor_reset_zero_position.
- *
- * \note This function is equivalent to motor_move_absolute
- *
- * \param port
- *        The V5 port number from 1-21
- * \param position
- *        The absolute position to move to in the motor's encoder units
- * \param velocity
- *        The maximum allowable velocity for the movement
- *
- * \return 1 if the operation was successful or PROS_ERR if the operation failed,
- *         setting errno.
- */
-int32_t motor_set_absolute_target_position(uint8_t port, const double position, const int32_t velocity);
-
-/**
- * \brief Sets the relative target position for the motor to move to.
- *
- * This movement is relative to the current position of the motor as given in
- * motor_get_position. Providing 10.0 as the position parameter would result in the motor
- * moving clockwise 10 units, no matter what the current position is.
- *
- * \note This function is equivalent to motor_move_relative
- *
- * \param port
- *        The V5 port number from 1-21
- * \param position
- *        The relative position to move to in the motor's encoder units
- * \param velocity
- *        The maximum allowable velocity for the movement
- *
- * \return 1 if the operation was successful or PROS_ERR if the operation failed,
- *         setting errno.
- */
-int32_t motor_set_relative_target_position(uint8_t port, const double position, const int32_t velocity);
-
-/**
- * \brief Sets the velocity for the motor from -128 to 127.
- *
- * This velocity corresponds to different actual speeds depending on the gearset
- * used for the motor. The velocity is held with PID to ensure consistent speed,
- * as opposed to setting the motor's voltage.
- *
- * \note This function is equivalent to motor_move_velocity and motor_set
- *
- * \param port
- *        The V5 port number from 1-21
- * \param velocity
- *        The new motor velocity from -127 to 127
- *
- * \return 1 if the operation was successful or PROS_ERR if the operation failed,
- *         setting errno.
- */
-int32_t motor_set_target_velocity(uint8_t port, const int16_t velocity);
-
-/**
- * \brief Sets the voltage for the motor from -128 to 127.
- *
- * This voltage is controlled by PWM, and does not immediately correspond to
- * the value returned by motor_get_voltage (which is in Volts)
- *
- * \note This function is equivalent to motor_move_voltage
- *
- * \param port
- *        The V5 port number from 1-21
- * \param voltage
- *        The new PWM value from -127 to 127
- *
- * \return 1 if the operation was successful or PROS_ERR if the operation failed,
- *         setting errno.
- */
-int32_t motor_set_target_voltage(uint8_t port, const int16_t voltage);
-
-/**
- * \brief Gets the target position set for the motor by the user
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -217,13 +154,17 @@ int32_t motor_set_target_voltage(uint8_t port, const int16_t voltage);
 double motor_get_target_position(uint8_t port);
 
 /**
- * \brief Gets the velocity commanded to the motor by the user
+ * Gets the velocity commanded to the motor by the user.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
  *
- * \return The commanded motor velocity from -128 to 127 or PROS_ERR if the
- *         operation failed, setting errno.
+ * \return The commanded motor velocity from +-100, +-200, or +-600, or PROS_ERR
+ *         if the operation failed, setting errno.
  */
 int32_t motor_get_target_velocity(uint8_t port);
 
@@ -232,8 +173,13 @@ int32_t motor_get_target_velocity(uint8_t port);
 /**                                                                          **/
 /**    These functions allow programmers to collect telemetry from motors    **/
 /******************************************************************************/
+
 /**
- * \brief Gets the actual velocity of the motor
+ * Gets the actual velocity of the motor.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -244,7 +190,11 @@ int32_t motor_get_target_velocity(uint8_t port);
 double motor_get_actual_velocity(uint8_t port);
 
 /**
- * \brief Gets the current drawn by the motor in mA
+ * Gets the current drawn by the motor in mA.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -255,7 +205,11 @@ double motor_get_actual_velocity(uint8_t port);
 int32_t motor_get_current_draw(uint8_t port);
 
 /**
- * \brief Gets the direction of movement for the motor
+ * Gets the direction of movement for the motor.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -267,11 +221,15 @@ int32_t motor_get_current_draw(uint8_t port);
 int32_t motor_get_direction(uint8_t port);
 
 /**
- * \brief Gets the efficiency of the motor in percent
+ * Gets the efficiency of the motor in percent.
  *
  * An efficiency of 100% means that the motor is moving electrically while
  * drawing no electrical power, and an efficiency of 0% means that the motor
  * is drawing power but not moving.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -282,7 +240,11 @@ int32_t motor_get_direction(uint8_t port);
 double motor_get_efficiency(uint8_t port);
 
 /**
- * \brief Detect if the motor is drawing over its current limit
+ * Checks if the motor is drawing over its current limit.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -294,7 +256,11 @@ double motor_get_efficiency(uint8_t port);
 int32_t motor_is_over_current(uint8_t port);
 
 /**
- * \brief Gets the temperature limit flag for the motor
+ * Checks if the motor's temperature is above its limit.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -306,25 +272,29 @@ int32_t motor_is_over_current(uint8_t port);
 int32_t motor_is_over_temp(uint8_t port);
 
 /**
- * \brief Gets the zero velocity flag for the motor
+ * Checks if the motor is stopped.
  *
  * \note Although this function forwards data from the motor, the motor presently
- * does not provide any value. This function returns PROS_ERR with errno set to ENOSYS
+ * does not provide any value. This function returns PROS_ERR with errno set to ENOSYS.
+ *
  * \param port
  *        The V5 port number from 1-21
+ *
  * \return 1 if the motor is not moving, 0 if the motor is moving, or PROS_ERR
  *         if the operation failed, setting errno
  */
 int32_t motor_is_stopped(uint32_t port);
 
 /**
- * \brief Gets the zero position flag for the motor
+ * Checks if the motor is at its zero position.
  *
  * \note Although this function forwards data from the motor, the motor presently
- * does not provide any value. This function returns PROS_ERR with errno set to ENOSYS
+ * does not provide any value. This function returns PROS_ERR with errno set to ENOSYS.
+ *
  *
  * \param port
  *        The V5 port number from 1-21
+ *
  * \return 1 if the motor is at zero absolute position, 0 if the motor has
  *         moved from its absolute zero, or PROS_ERR if the operation failed,
  *         setting errno
@@ -332,7 +302,11 @@ int32_t motor_is_stopped(uint32_t port);
 int32_t motor_get_zero_position_flag(uint32_t port);
 
 /**
- * \brief Gets the faults experienced by the motor
+ * Gets the faults experienced by the motor.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -343,7 +317,11 @@ int32_t motor_get_zero_position_flag(uint32_t port);
 uint32_t motor_get_faults(uint8_t port);
 
 /**
- * \brief Gets the flags set by the motor's operation
+ * Gets the flags set by the motor's operation.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -354,7 +332,11 @@ uint32_t motor_get_faults(uint8_t port);
 uint32_t motor_get_flags(uint8_t port);
 
 /**
- * \brief Gets the raw encoder count of the motor at a given timestamp
+ * Gets the raw encoder count of the motor at a given timestamp.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -368,7 +350,11 @@ uint32_t motor_get_flags(uint8_t port);
 int32_t motor_get_raw_position(uint8_t port, uint32_t* const timestamp);
 
 /**
- * \brief Gets the absolute position of the motor in its encoder units.
+ * Gets the absolute position of the motor in its encoder units.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -379,7 +365,11 @@ int32_t motor_get_raw_position(uint8_t port, uint32_t* const timestamp);
 double motor_get_position(uint8_t port);
 
 /**
- * \brief Gets the power drawn by the motor in Watts
+ * Gets the power drawn by the motor in Watts.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -390,7 +380,11 @@ double motor_get_position(uint8_t port);
 double motor_get_power(uint8_t port);
 
 /**
- * \brief Gets the temperature of the motor in degrees Celsius
+ * Gets the temperature of the motor in degrees Celsius.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -401,7 +395,11 @@ double motor_get_power(uint8_t port);
 double motor_get_temperature(uint8_t port);
 
 /**
- * \brief Gets the torque generated by the motor in Newton Metres (Nm)
+ * Gets the torque generated by the motor in Newton Metres (Nm).
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -412,7 +410,11 @@ double motor_get_temperature(uint8_t port);
 double motor_get_torque(uint8_t port);
 
 /**
- * \brief Gets the voltage delivered to the motor in V
+ * Gets the voltage delivered to the motor in V.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -459,9 +461,13 @@ typedef enum motor_gearset_e {
 } motor_gearset_e_t;
 
 /**
- * \brief Sets the position for the motor in its encoder units.
+ * Sets the position for the motor in its encoder units.
  *
  * This will be the future reference point for the motor's "absolute" position.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -471,12 +477,14 @@ typedef enum motor_gearset_e {
  * \return 1 if the operation was successful or PROS_ERR if the operation failed,
  *         setting errno.
  */
-int32_t motor_reset_position(uint8_t port, const double position);
+int32_t motor_set_zero_position(uint8_t port, const double position);
 
 /**
- * \brief Sets the "absolute" zero position of the motor to its current position.
+ * Sets the "absolute" zero position of the motor to its current position.
  *
- * This call is roughly equivalent to calling motor_reset_position(port, 0);
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -484,10 +492,14 @@ int32_t motor_reset_position(uint8_t port, const double position);
  * \return 1 if the operation was successful or PROS_ERR if the operation failed,
  *           setting errno.
  */
-int32_t motor_reset_zero_position(uint8_t port);
+int32_t motor_tare_position(uint8_t port);
 
 /**
- * \brief Sets one of motor_brake_mode_e_t to the motor
+ * Sets one of motor_brake_mode_e_t to the motor.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -500,7 +512,11 @@ int32_t motor_reset_zero_position(uint8_t port);
 int32_t motor_set_brake_mode(uint8_t port, const motor_brake_mode_e_t mode);
 
 /**
- * \brief Sets the current limit for the motor in mA
+ * Sets the current limit for the motor in mA.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -513,7 +529,11 @@ int32_t motor_set_brake_mode(uint8_t port, const motor_brake_mode_e_t mode);
 int32_t motor_set_current_limit(uint8_t port, const int32_t limit);
 
 /**
- * \brief Sets one of motor_encoder_units_e_t for the motor encoder
+ * Sets one of motor_encoder_units_e_t for the motor encoder.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -526,7 +546,11 @@ int32_t motor_set_current_limit(uint8_t port, const int32_t limit);
 int32_t motor_set_encoder_units(uint8_t port, const motor_encoder_units_e_t units);
 
 /**
- * \brief Sets one of motor_gearset_e_t for the motor
+ * Sets one of motor_gearset_e_t for the motor.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -539,9 +563,13 @@ int32_t motor_set_encoder_units(uint8_t port, const motor_encoder_units_e_t unit
 int32_t motor_set_gearing(uint8_t port, const motor_gearset_e_t gearset);
 
 /**
- * \brief Sets the reverse flag for the motor.
+ * Sets the reverse flag for the motor.
  *
  * This will invert its movements and the values returned for its position.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -551,10 +579,14 @@ int32_t motor_set_gearing(uint8_t port, const motor_gearset_e_t gearset);
  * \return 1 if the operation was successful or PROS_ERR if the operation failed,
  *         setting errno.
  */
-int32_t motor_set_reverse(uint8_t port, const bool reverse);
+int32_t motor_set_reversed(uint8_t port, const bool reverse);
 
 /**
- * \brief Sets the voltage limit for the motor in Volts
+ * Sets the voltage limit for the motor in Volts.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -567,7 +599,11 @@ int32_t motor_set_reverse(uint8_t port, const bool reverse);
 int32_t motor_set_voltage_limit(uint8_t port, const int32_t limit);
 
 /**
- * \brief Gets the brake mode of the motor
+ * Gets the brake mode that was set for the motor.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -578,9 +614,13 @@ int32_t motor_set_voltage_limit(uint8_t port, const int32_t limit);
 motor_brake_mode_e_t motor_get_brake_mode(uint8_t port);
 
 /**
- * \brief Gets the current limit for the motor in mA
+ * Gets the current limit for the motor in mA.
  *
  * The default value is 2500 mA.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -591,7 +631,11 @@ motor_brake_mode_e_t motor_get_brake_mode(uint8_t port);
 int32_t motor_get_current_limit(uint8_t port);
 
 /**
- * \brief Gets the encoder units set for the motor
+ * Gets the encoder units that were set for the motor.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -602,7 +646,11 @@ int32_t motor_get_current_limit(uint8_t port);
 motor_encoder_units_e_t motor_get_encoder_units(uint8_t port);
 
 /**
- * \brief Gets the gearset that was set for the motor
+ * Gets the gearset that was set for the motor.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -613,7 +661,11 @@ motor_encoder_units_e_t motor_get_encoder_units(uint8_t port);
 motor_gearset_e_t motor_get_gearing(uint8_t port);
 
 /**
- * \brief Gets the operation direction of the motor as set by the user
+ * Gets the operation direction of the motor as set by the user.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -621,12 +673,17 @@ motor_gearset_e_t motor_get_gearing(uint8_t port);
  * \return 1 if the motor has been reversed and 0 if the motor was not reversed,
  *         or PROS_ERR if the operation failed, setting errno.
  */
-int32_t motor_get_reverse(uint8_t port);
+int32_t motor_is_reversed(uint8_t port);
 
 /**
- * \brief Gets the voltage limit set by the user
+ * Gets the voltage limit set by the user.
  *
- * Default value is 0V, which I presume means that the limit does not exist.
+ * Default value is 0V, which means that there is no software limitation imposed
+ * on the voltage.
+ *
+ * This function uses the following values of errno when an error state is reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -640,4 +697,4 @@ int32_t motor_get_voltage_limit(uint8_t port);
 }
 #endif
 
-#endif
+#endif  // _PROS_MOTORS_H_
