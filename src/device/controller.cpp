@@ -23,7 +23,12 @@ int32_t Controller::getConnectionState() {
 }
 
 float Controller::getAnalog(const controller_analog_e_t ichannel) {
-  return controller.get_analog(ichannel) / 127.0;
+  const auto val = controller.get_analog(ichannel);
+  if (val == PROS_ERR) {
+    return 0;
+  }
+
+  return val / 127.0;
 }
 
 bool Controller::getDigital(const controller_digital_e_t ibutton) {

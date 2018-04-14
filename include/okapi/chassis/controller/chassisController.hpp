@@ -95,14 +95,14 @@ class ChassisController {
    *
    * @param ipower motor power
    */
-  virtual void left(const int ispeed) const;
+  virtual void left(const double ispeed) const;
 
   /**
    * Power the right side motors.
    *
    * @param ipower motor power
    */
-  virtual void right(const int ispeed) const;
+  virtual void right(const double ispeed) const;
 
   /**
    * Read the sensors.

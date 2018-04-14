@@ -41,11 +41,11 @@ void ChassisController::arcade(const double iySpeed, const double izRotation,
   model->arcade(iySpeed, izRotation, ithreshold);
 }
 
-void ChassisController::left(const int ispeed) const {
+void ChassisController::left(const double ispeed) const {
   model->left(ispeed);
 }
 
-void ChassisController::right(const int ispeed) const {
+void ChassisController::right(const double ispeed) const {
   model->right(ispeed);
 }
 
