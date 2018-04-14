@@ -6,9 +6,7 @@
 using namespace okapi;
 
 void opcontrol() {
-  using namespace pros::c;
-
-  task_delay(100);
+  pros::c::task_delay(100);
 
   // Chassis Controller - lets us drive the robot around with open- or closed-loop control
   okapi::ChassisControllerIntegrated robotChassisController(1_m, 10_m);
@@ -339,7 +337,7 @@ void opcontrol() {
                        EqualsWithDelta(100, 10)));
 
         lastTime = pros::millis();
-        task_delay(50); // Emulate some computation
+        pros::c::task_delay(50); // Emulate some computation
       }
     }
 
@@ -350,7 +348,7 @@ void opcontrol() {
       VelMath velMath(360, std::make_shared<DemaFilter>(1.0, 0.0));
 
       for (int i = 0; i < 10; i++) {
-        task_delay(100); // Delay first so the timestep works for the first iteration
+        pros::c::task_delay(100); // Delay first so the timestep works for the first iteration
 
         if (i == 0) {
           test("VelMath " + std::to_string(i),
@@ -386,7 +384,7 @@ void opcontrol() {
     test_print_report();
   }
 
-  while (true) {
+  {
     ADIButton btn(2);
     ControllerButton btn2(E_CONTROLLER_DIGITAL_A);
     btn.isPressed();
