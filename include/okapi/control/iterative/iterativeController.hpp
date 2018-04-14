@@ -9,6 +9,7 @@
 #define _OKAPI_ITERATIVECONTROLLER_HPP_
 
 #include "api.h"
+#include "okapi/control/closedLoopController.hpp"
 
 namespace okapi {
 class IterativeControllerArgs {
@@ -19,7 +20,7 @@ class IterativeControllerArgs {
 /**
  * Closed-loop controller that steps iteratively using the step method below.
  */
-class IterativeController {
+class IterativeController : public ClosedLoopController {
   public:
   virtual ~IterativeController();
 
@@ -32,34 +33,14 @@ class IterativeController {
   virtual double step(const double ireading) = 0;
 
   /**
-   * Sets the target for the controller.
-   *
-   * @param itarget new target value
-   */
-  virtual void setTarget(const double itarget) = 0;
-
-  /**
    * Returns the last calculated output of the controller.
    */
   virtual double getOutput() const = 0;
 
   /**
-   * Returns the last error of the controller.
-   */
-  virtual double getError() const = 0;
-
-  /**
    * Returns the last derivative (change in error) of the controller.
    */
   virtual double getDerivative() const = 0;
-
-  /**
-   * Returns whether the controller has settled at the target. Determining what settling means is
-   * implementation-dependent.
-   *
-   * @return whether the controller is settled
-   */
-  virtual bool isSettled() = 0;
 
   /**
    * Set time between loops in ms.
