@@ -5,8 +5,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ITERATIVEMOTORCONTROLLER_HPP_
-#define _OKAPI_ITERATIVEMOTORCONTROLLER_HPP_
+#ifndef _OKAPI_ITERATIVEMOTORVELOCITYCONTROLLER_HPP_
+#define _OKAPI_ITERATIVEMOTORVELOCITYCONTROLLER_HPP_
 
 #include "api.h"
 #include "okapi/control/iterative/iterativeVelocityController.hpp"
@@ -15,20 +15,21 @@
 #include <memory>
 
 namespace okapi {
-class IterativeMotorControllerArgs : public IterativeVelocityControllerArgs {
+class IterativeMotorVelocityControllerArgs : public IterativeVelocityControllerArgs {
   public:
-  IterativeMotorControllerArgs(const AbstractMotor &imotor,
-                               IterativeVelocityController &icontroller);
+  IterativeMotorVelocityControllerArgs(const AbstractMotor &imotor,
+                                       std::shared_ptr<IterativeVelocityController> icontroller);
 
   const AbstractMotor &motor;
-  IterativeVelocityController &controller;
+  std::shared_ptr<IterativeVelocityController> controller;
 };
 
-class IterativeMotorController : public IterativeVelocityController {
+class IterativeMotorVelocityController : public IterativeVelocityController {
   public:
-  IterativeMotorController(const AbstractMotor &imotor, IterativeVelocityController &icontroller);
+  IterativeMotorVelocityController(const AbstractMotor &imotor,
+                                   std::shared_ptr<IterativeVelocityController> icontroller);
 
-  IterativeMotorController(const IterativeMotorControllerArgs &iparams);
+  IterativeMotorVelocityController(const IterativeMotorVelocityControllerArgs &iparams);
 
   /**
    * Do one iteration of the controller.
@@ -101,7 +102,7 @@ class IterativeMotorController : public IterativeVelocityController {
 
   protected:
   const AbstractMotor &motor;
-  IterativeVelocityController &controller;
+  std::shared_ptr<IterativeVelocityController> controller;
 };
 } // namespace okapi
 

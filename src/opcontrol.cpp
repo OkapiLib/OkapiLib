@@ -456,9 +456,9 @@ void opcontrol() {
     controller3.turnToAngle(0);     // Turn to 0 degrees
 
     IterativePosPIDController pid1(0, 0, 0); // PID controller
-    IterativeVelPIDController tempvelpid1(0, 0);
-    IterativeMotorController mc1(1_m, tempvelpid1);
-    IterativeMotorController mc2(MotorGroup<2>({1_m, 2_m}), tempvelpid1);
+    IterativeMotorVelocityController mc1(1_m, std::make_shared<IterativeVelPIDController>(0, 0));
+    IterativeMotorVelocityController mc2(MotorGroup<2>({1_m, 2_m}),
+                                         std::make_shared<IterativeVelPIDController>(0, 0));
 
     AsyncPosIntegratedController posI1(1_m);
 
