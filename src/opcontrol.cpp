@@ -514,5 +514,8 @@ void opcontrol() {
     controllerRunner.runUntilSettled(0, testControllerRunnerController2, controllerRunnerMotor);
     controllerRunner.runUntilAtTarget(0, testControllerRunnerController1);
     controllerRunner.runUntilAtTarget(0, testControllerRunnerController2, controllerRunnerMotor);
+
+    SettledUtil settledUtil1;
+    settledUtil1.isSettled(0);
   }
 }
