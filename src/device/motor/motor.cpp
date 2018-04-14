@@ -8,6 +8,11 @@
 #include "okapi/device/motor/motor.hpp"
 
 namespace okapi {
+Motor::Motor(const uint8_t port, const bool reverse, const motor_encoder_units_e_t encoder_units,
+             const motor_gearset_e_t gearset)
+  : pros::Motor(port, gearset, reverse, encoder_units) {
+}
+
 IntegratedEncoder okapi::Motor::getEncoder() const {
   return IntegratedEncoder(*this);
 }

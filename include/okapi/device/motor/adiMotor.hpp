@@ -21,7 +21,7 @@ class ADIMotor : public ControllerOutput {
    *
    * @param ivoltage voltage
    */
-  virtual void move_voltage(const int32_t ivoltage) const;
+  virtual void moveVoltage(const int32_t ivoltage) const;
 
   /**
    * Writes the value of the controller output. This method might be automatically called in another
