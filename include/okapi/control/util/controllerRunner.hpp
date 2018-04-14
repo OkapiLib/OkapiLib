@@ -20,13 +20,43 @@ class ControllerRunner {
 
   virtual ~ControllerRunner();
 
+  /**
+   * Runs the controller until it has settled.
+   *
+   * @param itarget the new target
+   * @param icontroller the controller to run
+   * @return the error when settled
+   */
   virtual double runUntilSettled(const double itarget, AsyncController &icontroller);
 
+  /**
+   * Runs the controller until it has settled.
+   *
+   * @param itarget the new target
+   * @param icontroller the controller to run
+   * @param ioutput the output to write to
+   * @return the error when settled
+   */
   virtual double runUntilSettled(const double itarget, IterativeController &icontroller,
                                  ControllerOutput &ioutput);
 
+  /**
+   * Runs the controller until it has reached its target, but not necessarily settled.
+   *
+   * @param itarget the new target
+   * @param icontroller the controller to run
+   * @return the error when settled
+   */
   virtual double runUntilAtTarget(const double itarget, AsyncController &icontroller);
 
+  /**
+   * Runs the controller until it has reached its target, but not necessarily settled.
+   *
+   * @param itarget the new target
+   * @param icontroller the controller to run
+   * @param ioutput the output to write to
+   * @return the error when settled
+   */
   virtual double runUntilAtTarget(const double itarget, IterativeController &icontroller,
                                   ControllerOutput &ioutput);
 };
