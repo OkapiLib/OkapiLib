@@ -54,7 +54,7 @@ ChassisControllerPID::ChassisControllerPID(const AbstractMotor &itopLeftMotor,
 void ChassisControllerPID::moveDistance(const int itarget) {
   const auto encStartVals = model->getSensorVals();
   float distanceElapsed = 0, angleChange = 0, lastDistance = 0;
-  uint32_t prevWakeTime = millis();
+  uint32_t prevWakeTime = pros::millis();
 
   const double newTarget = itarget * straightScale;
 
@@ -95,7 +95,7 @@ void ChassisControllerPID::moveDistance(const int itarget) {
     if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod)
       atTarget = true;
 
-    task_delay_until(&prevWakeTime, 10);
+    pros::c::task_delay_until(&prevWakeTime, 10);
   }
 
   model->stop();
@@ -104,7 +104,7 @@ void ChassisControllerPID::moveDistance(const int itarget) {
 void ChassisControllerPID::turnAngle(float idegTarget) {
   const auto encStartVals = model->getSensorVals();
   float angleChange = 0, lastAngle = 0;
-  uint32_t prevWakeTime = millis();
+  uint32_t prevWakeTime = pros::millis();
 
   const float newTarget = idegTarget * turnScale;
 
@@ -139,7 +139,7 @@ void ChassisControllerPID::turnAngle(float idegTarget) {
     if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod)
       atTarget = true;
 
-    task_delay_until(&prevWakeTime, 10);
+    pros::c::task_delay_until(&prevWakeTime, 10);
   }
 
   model->stop();
