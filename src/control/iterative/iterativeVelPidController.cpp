@@ -71,7 +71,7 @@ double IterativeVelPIDController::step(const double inewReading) {
     const uint32_t now = pros::millis();
     if (now - lastTime >= sampleTime) {
       stepVel(inewReading);
-      error = (target - velMath.getVelocity()) / errorScale;
+      error = target - velMath.getVelocity();
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
       derivative = velMath.getAccel();

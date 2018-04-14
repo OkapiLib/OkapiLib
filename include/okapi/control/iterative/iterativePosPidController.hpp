@@ -144,14 +144,6 @@ class IterativePosPIDController : public IterativePositionController {
   virtual void flipDisable() override;
 
   /**
-   * Sets the error scale. The error is divided by this amount to provide an approximate
-   * "percentage error".
-   *
-   * @param ierrorScale new error scale
-   */
-  virtual void setErrorScale(const double ierrorScale);
-
-  /**
    * Get the last set sample time.
    *
    * @return sample time
@@ -166,8 +158,6 @@ class IterativePosPIDController : public IterativePositionController {
   double lastReading = 0;
   double error = 0;
   double lastError = 0;
-  // 12 bit ADC scale, good enough for most things
-  double errorScale = 4096;
 
   // Integral bounds
   double integral = 0;

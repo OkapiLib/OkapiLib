@@ -105,7 +105,7 @@ double IterativePosPIDController::step(const double inewReading) {
     const uint32_t now = pros::millis();
 
     if (now - lastTime >= sampleTime) {
-      error = (target - inewReading) / errorScale;
+      error = target - inewReading;
 
       if ((fabs(error) < target - errorSumMin && fabs(error) > target - errorSumMax) ||
           (fabs(error) > target + errorSumMin && fabs(error) < target + errorSumMax)) {
@@ -158,10 +158,6 @@ void IterativePosPIDController::setIntegratorReset(bool iresetOnZero) {
 
 void IterativePosPIDController::flipDisable() {
   isOn = !isOn;
-}
-
-void IterativePosPIDController::setErrorScale(const double ierrorScale) {
-  errorScale = ierrorScale;
 }
 
 uint32_t IterativePosPIDController::getSampleTime() const {
