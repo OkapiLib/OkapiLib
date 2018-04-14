@@ -22,12 +22,12 @@ AsyncPosIntegratedController::AsyncPosIntegratedController(
 }
 
 void AsyncPosIntegratedController::setTarget(const double itarget) {
-  motor.move_absolute(itarget + offset, 100);
+  motor.moveAbsolute(itarget + offset, 100);
   lastTarget = itarget;
 }
 
 double AsyncPosIntegratedController::getError() const {
-  return lastTarget - motor.get_position();
+  return lastTarget - motor.getPosition();
 }
 
 bool AsyncPosIntegratedController::isSettled() {

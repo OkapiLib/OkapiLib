@@ -22,12 +22,12 @@ AsyncVelIntegratedController::AsyncVelIntegratedController(
 }
 
 void AsyncVelIntegratedController::setTarget(const double itarget) {
-  motor.move_velocity(itarget);
+  motor.moveVelocity(itarget);
   lastTarget = itarget;
 }
 
 double AsyncVelIntegratedController::getError() const {
-  return lastTarget - motor.get_actual_velocity();
+  return lastTarget - motor.getActualVelocity();
 }
 
 bool AsyncVelIntegratedController::isSettled() {

@@ -67,8 +67,8 @@ SkidSteerModel::SkidSteerModel(const SkidSteerModel &other)
 }
 
 void SkidSteerModel::forward(const double ispeed) const {
-  leftSideMotor.move_velocity(ispeed * maxOutput);
-  rightSideMotor.move_velocity(ispeed * maxOutput);
+  leftSideMotor.moveVelocity(ispeed * maxOutput);
+  rightSideMotor.moveVelocity(ispeed * maxOutput);
 }
 
 void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) const {
@@ -85,18 +85,18 @@ void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) 
     rightOutput /= maxInputMag;
   }
 
-  leftSideMotor.move_velocity(leftOutput * maxOutput);
-  rightSideMotor.move_velocity(rightOutput * maxOutput);
+  leftSideMotor.moveVelocity(leftOutput * maxOutput);
+  rightSideMotor.moveVelocity(rightOutput * maxOutput);
 }
 
 void SkidSteerModel::rotate(const double ispeed) const {
-  leftSideMotor.move_velocity(ispeed * maxOutput);
-  rightSideMotor.move_velocity(-1 * ispeed * maxOutput);
+  leftSideMotor.moveVelocity(ispeed * maxOutput);
+  rightSideMotor.moveVelocity(-1 * ispeed * maxOutput);
 }
 
 void SkidSteerModel::stop() const {
-  leftSideMotor.move_velocity(0);
-  rightSideMotor.move_velocity(0);
+  leftSideMotor.moveVelocity(0);
+  rightSideMotor.moveVelocity(0);
 }
 
 void SkidSteerModel::tank(const double ileftSpeed, const double irightSpeed,
@@ -113,8 +113,8 @@ void SkidSteerModel::tank(const double ileftSpeed, const double irightSpeed,
     rightSpeed = 0;
   }
 
-  leftSideMotor.move_voltage(leftSpeed * maxOutput);
-  rightSideMotor.move_voltage(rightSpeed * maxOutput);
+  leftSideMotor.moveVoltage(leftSpeed * maxOutput);
+  rightSideMotor.moveVoltage(rightSpeed * maxOutput);
 }
 
 void SkidSteerModel::arcade(const double iySpeed, const double izRotation,
@@ -153,16 +153,16 @@ void SkidSteerModel::arcade(const double iySpeed, const double izRotation,
     }
   }
 
-  leftSideMotor.move_voltage(std::clamp(leftOutput, -1.0, 1.0) * maxOutput);
-  rightSideMotor.move_voltage(std::clamp(rightOutput, -1.0, 1.0) * maxOutput);
+  leftSideMotor.moveVoltage(std::clamp(leftOutput, -1.0, 1.0) * maxOutput);
+  rightSideMotor.moveVoltage(std::clamp(rightOutput, -1.0, 1.0) * maxOutput);
 }
 
 void SkidSteerModel::left(const double ispeed) const {
-  leftSideMotor.move_velocity(ispeed * maxOutput);
+  leftSideMotor.moveVelocity(ispeed * maxOutput);
 }
 
 void SkidSteerModel::right(const double ispeed) const {
-  rightSideMotor.move_velocity(ispeed * maxOutput);
+  rightSideMotor.moveVelocity(ispeed * maxOutput);
 }
 
 std::valarray<int> SkidSteerModel::getSensorVals() const {
@@ -175,18 +175,18 @@ void SkidSteerModel::resetSensors() const {
 }
 
 void SkidSteerModel::setBrakeMode(const motor_brake_mode_e_t mode) const {
-  leftSideMotor.set_brake_mode(mode);
-  rightSideMotor.set_brake_mode(mode);
+  leftSideMotor.setBrakeMode(mode);
+  rightSideMotor.setBrakeMode(mode);
 }
 
 void SkidSteerModel::setEncoderUnits(const motor_encoder_units_e_t units) const {
-  leftSideMotor.set_encoder_units(units);
-  rightSideMotor.set_encoder_units(units);
+  leftSideMotor.setEncoderUnits(units);
+  rightSideMotor.setEncoderUnits(units);
 }
 
 void SkidSteerModel::setGearing(const motor_gearset_e_t gearset) const {
-  leftSideMotor.set_gearing(gearset);
-  rightSideMotor.set_gearing(gearset);
+  leftSideMotor.setGearing(gearset);
+  rightSideMotor.setGearing(gearset);
 }
 
 const AbstractMotor &SkidSteerModel::getLeftSideMotor() const {

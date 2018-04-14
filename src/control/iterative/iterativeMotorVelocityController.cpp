@@ -25,7 +25,7 @@ IterativeMotorVelocityController::IterativeMotorVelocityController(
 
 double IterativeMotorVelocityController::step(const double ireading) {
   controller->step(ireading);
-  motor.move_velocity(static_cast<int>(controller->getOutput()));
+  motor.moveVelocity(static_cast<int>(controller->getOutput()));
   return controller->getOutput();
 }
 
