@@ -34,8 +34,8 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
    * @param iangleArgs angle PID controller params (keeps the robot straight)
    * @param imoveThreshold minimum length movement
    */
-  OdomChassisControllerPID(const AbstractMotor &ileftSideMotor,
-                           const AbstractMotor &irightSideMotor, const double iscale,
+  OdomChassisControllerPID(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                           std::shared_ptr<AbstractMotor> irightSideMotor, const double iscale,
                            const double iturnScale,
                            const IterativePosPIDControllerArgs &idistanceArgs,
                            const IterativePosPIDControllerArgs &iangleArgs,

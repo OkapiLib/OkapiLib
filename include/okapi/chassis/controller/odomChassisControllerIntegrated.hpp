@@ -33,9 +33,10 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
    * @param iturnScale turn scale
    * @param imoveThreshold minimum length movement
    */
-  OdomChassisControllerIntegrated(const AbstractMotor &ileftSideMotor,
-                                  const AbstractMotor &irightSideMotor, const double iscale,
-                                  const double iturnScale, const float imoveThreshold = 10);
+  OdomChassisControllerIntegrated(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                                  std::shared_ptr<AbstractMotor> irightSideMotor,
+                                  const double iscale, const double iturnScale,
+                                  const float imoveThreshold = 10);
 
   /**
    * Odometry based chassis controller that moves using the V5 motor's integrated control. Spins up
@@ -99,9 +100,10 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
 
   private:
   OdomChassisControllerIntegrated(std::shared_ptr<SkidSteerModel> imodel,
-                                  const AbstractMotor &ileftSideMotor,
-                                  const AbstractMotor &irightSideMotor, const double iscale,
-                                  const double iturnScale, const float imoveThreshold);
+                                  std::shared_ptr<AbstractMotor> ileftSideMotor,
+                                  std::shared_ptr<AbstractMotor> irightSideMotor,
+                                  const double iscale, const double iturnScale,
+                                  const float imoveThreshold);
 };
 } // namespace okapi
 

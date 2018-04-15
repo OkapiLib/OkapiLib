@@ -15,42 +15,29 @@
 namespace okapi {
 class XDriveModelArgs : public ChassisModelArgs {
   public:
-  XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
-                  const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-                  const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+  XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
+                  std::shared_ptr<AbstractMotor> itopRightMotor,
+                  std::shared_ptr<AbstractMotor> ibottomRightMotor,
+                  std::shared_ptr<AbstractMotor> ibottomLeftMotor, const double imaxOutput = 127);
+
+  XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
+                  std::shared_ptr<AbstractMotor> itopRightMotor,
+                  std::shared_ptr<AbstractMotor> ibottomRightMotor,
+                  std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+                  std::shared_ptr<RotarySensor> ileftEnc, std::shared_ptr<RotarySensor> irightEnc,
                   const double imaxOutput = 127);
 
-  XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
-                  const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-                  const double imaxOutput = 127);
-
-  const AbstractMotor &topLeftMotor;
-  const AbstractMotor &topRightMotor;
-  const AbstractMotor &bottomRightMotor;
-  const AbstractMotor &bottomLeftMotor;
-  const RotarySensor &leftSensor;
-  const RotarySensor &rightSensor;
+  std::shared_ptr<AbstractMotor> topLeftMotor;
+  std::shared_ptr<AbstractMotor> topRightMotor;
+  std::shared_ptr<AbstractMotor> bottomRightMotor;
+  std::shared_ptr<AbstractMotor> bottomLeftMotor;
+  std::shared_ptr<RotarySensor> leftSensor;
+  std::shared_ptr<RotarySensor> rightSensor;
   const double maxOutput;
 };
 
 class XDriveModel : public ChassisModel {
   public:
-  /**
-   * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
-   * +127, the robot should move forward in a straight line.
-   *
-   * @param itopLeftMotor top left motor
-   * @param itopRightMotor top right motor
-   * @param ibottomRightMotor bottom right motor
-   * @param ibottomLeftMotor bottom left motor
-   * @param ileftEnc Left side encoder
-   * @param irightEnc Right side encoder
-   */
-  XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
-              const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-              const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-              const double imaxOutput = 127);
-
   /**
    * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
    * +127, the robot should move forward in a straight line.
@@ -63,8 +50,27 @@ class XDriveModel : public ChassisModel {
    * @param ibottomRightMotor bottom right motor
    * @param ibottomLeftMotor bottom left motor
    */
-  XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
-              const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+  XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
+              std::shared_ptr<AbstractMotor> itopRightMotor,
+              std::shared_ptr<AbstractMotor> ibottomRightMotor,
+              std::shared_ptr<AbstractMotor> ibottomLeftMotor, const double imaxOutput = 127);
+
+  /**
+   * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
+   * +127, the robot should move forward in a straight line.
+   *
+   * @param itopLeftMotor top left motor
+   * @param itopRightMotor top right motor
+   * @param ibottomRightMotor bottom right motor
+   * @param ibottomLeftMotor bottom left motor
+   * @param ileftEnc Left side encoder
+   * @param irightEnc Right side encoder
+   */
+  XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
+              std::shared_ptr<AbstractMotor> itopRightMotor,
+              std::shared_ptr<AbstractMotor> ibottomRightMotor,
+              std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+              std::shared_ptr<RotarySensor> ileftEnc, std::shared_ptr<RotarySensor> irightEnc,
               const double imaxOutput = 127);
 
   XDriveModel(const XDriveModelArgs &iparams);
@@ -180,12 +186,12 @@ class XDriveModel : public ChassisModel {
   virtual void setGearing(const motor_gearset_e_t gearset) const override;
 
   protected:
-  const AbstractMotor &topLeftMotor;
-  const AbstractMotor &topRightMotor;
-  const AbstractMotor &bottomRightMotor;
-  const AbstractMotor &bottomLeftMotor;
-  const RotarySensor &leftSensor;
-  const RotarySensor &rightSensor;
+  std::shared_ptr<AbstractMotor> topLeftMotor;
+  std::shared_ptr<AbstractMotor> topRightMotor;
+  std::shared_ptr<AbstractMotor> bottomRightMotor;
+  std::shared_ptr<AbstractMotor> bottomLeftMotor;
+  std::shared_ptr<RotarySensor> leftSensor;
+  std::shared_ptr<RotarySensor> rightSensor;
   const double maxOutput;
 };
 } // namespace okapi

@@ -11,8 +11,8 @@
 
 namespace okapi {
 OdomChassisControllerPID::OdomChassisControllerPID(
-  const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double iscale,
-  const double iturnScale, const IterativePosPIDControllerArgs &idistanceArgs,
+  std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
+  const double iscale, const double iturnScale, const IterativePosPIDControllerArgs &idistanceArgs,
   const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold)
   : OdomChassisControllerPID(std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor),
                              iscale, iturnScale, idistanceArgs, iangleArgs, imoveThreshold) {

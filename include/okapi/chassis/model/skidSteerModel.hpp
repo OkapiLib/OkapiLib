@@ -15,23 +15,37 @@
 namespace okapi {
 class SkidSteerModelArgs : public ChassisModelArgs {
   public:
-  SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                     const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-                     const double imaxOutput = 127);
-
   // Create the sensors using the integrated encoder
-  SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                     const double imaxOutput = 127);
+  SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                     std::shared_ptr<AbstractMotor> irightSideMotor, const double imaxOutput = 127);
 
-  const AbstractMotor &leftSideMotor;
-  const AbstractMotor &rightSideMotor;
-  const RotarySensor &leftSensor;
-  const RotarySensor &rightSensor;
+  SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                     std::shared_ptr<AbstractMotor> irightSideMotor,
+                     std::shared_ptr<RotarySensor> ileftEnc,
+                     std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput = 127);
+
+  std::shared_ptr<AbstractMotor> leftSideMotor;
+  std::shared_ptr<AbstractMotor> rightSideMotor;
+  std::shared_ptr<RotarySensor> leftSensor;
+  std::shared_ptr<RotarySensor> rightSensor;
   const double maxOutput;
 };
 
 class SkidSteerModel : public ChassisModel {
   public:
+  /**
+  * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
+  * motors are powered +127, the robot should move forward in a straight line.
+  *
+  * This constructor infers the two sensors from the left and right motors (using the integrated
+  * encoders).
+  *
+  * @param ileftSideMotor left side motor
+  * @param irightSideMotor right side motor
+  */
+  SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                 std::shared_ptr<AbstractMotor> irightSideMotor, const double imaxOutput = 127);
+
   /**
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
    * motors are powered +127, the robot should move forward in a straight line.
@@ -41,21 +55,9 @@ class SkidSteerModel : public ChassisModel {
    * @param ileftEnc  left side encoder
    * @param irightEnc right side encoder
    */
-  SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                 const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-                 const double imaxOutput = 127);
-
-  /**
-   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-   * motors are powered +127, the robot should move forward in a straight line.
-   *
-   * This constructor infers the two sensors from the left and right motors (using the integrated
-   * encoders).
-   *
-   * @param ileftSideMotor left side motor
-   * @param irightSideMotor right side motor
-   */
-  SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
+  SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                 std::shared_ptr<AbstractMotor> irightSideMotor,
+                 std::shared_ptr<RotarySensor> ileftEnc, std::shared_ptr<RotarySensor> irightEnc,
                  const double imaxOutput = 127);
 
   SkidSteerModel(const SkidSteerModelArgs &iparams);
@@ -164,20 +166,20 @@ class SkidSteerModel : public ChassisModel {
    *
    * @return the left side motor
    */
-  const AbstractMotor &getLeftSideMotor() const;
+  std::shared_ptr<AbstractMotor> getLeftSideMotor() const;
 
   /**
    * Returns the left side motor.
    *
    * @return the left side motor
    */
-  const AbstractMotor &getRightSideMotor() const;
+  std::shared_ptr<AbstractMotor> getRightSideMotor() const;
 
   protected:
-  const AbstractMotor &leftSideMotor;
-  const AbstractMotor &rightSideMotor;
-  const RotarySensor &leftSensor;
-  const RotarySensor &rightSensor;
+  std::shared_ptr<AbstractMotor> leftSideMotor;
+  std::shared_ptr<AbstractMotor> rightSideMotor;
+  std::shared_ptr<RotarySensor> leftSensor;
+  std::shared_ptr<RotarySensor> rightSensor;
   const double maxOutput;
 };
 } // namespace okapi

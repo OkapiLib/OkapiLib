@@ -22,8 +22,8 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
   setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
 }
 
-ChassisControllerPID::ChassisControllerPID(const AbstractMotor &ileftSideMotor,
-                                           const AbstractMotor &irightSideMotor,
+ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                                           std::shared_ptr<AbstractMotor> irightSideMotor,
                                            const IterativePosPIDControllerArgs &idistanceArgs,
                                            const IterativePosPIDControllerArgs &iangleArgs,
                                            const double istraightScale, const double iturnScale)
@@ -35,10 +35,10 @@ ChassisControllerPID::ChassisControllerPID(const AbstractMotor &ileftSideMotor,
   setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
 }
 
-ChassisControllerPID::ChassisControllerPID(const AbstractMotor &itopLeftMotor,
-                                           const AbstractMotor &itopRightMotor,
-                                           const AbstractMotor &ibottomRightMotor,
-                                           const AbstractMotor &ibottomLeftMotor,
+ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> itopLeftMotor,
+                                           std::shared_ptr<AbstractMotor> itopRightMotor,
+                                           std::shared_ptr<AbstractMotor> ibottomRightMotor,
+                                           std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                                            const IterativePosPIDControllerArgs &idistanceArgs,
                                            const IterativePosPIDControllerArgs &iangleArgs,
                                            const double istraightScale, const double iturnScale)

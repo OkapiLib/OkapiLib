@@ -22,10 +22,27 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
   setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
 }
 
-ChassisControllerIntegrated::ChassisControllerIntegrated(const AbstractMotor &ileftSideMotor,
-                                                         const AbstractMotor &irightSideMotor,
+ChassisControllerIntegrated::ChassisControllerIntegrated(Motor ileftSideMotor,
+                                                         Motor irightSideMotor,
                                                          const double istraightScale,
                                                          const double iturnScale)
+  : ChassisControllerIntegrated(std::make_shared<Motor>(ileftSideMotor),
+                                std::make_shared<Motor>(irightSideMotor), istraightScale,
+                                iturnScale) {
+}
+
+ChassisControllerIntegrated::ChassisControllerIntegrated(MotorGroup ileftSideMotor,
+                                                         MotorGroup irightSideMotor,
+                                                         const double istraightScale,
+                                                         const double iturnScale)
+  : ChassisControllerIntegrated(std::make_shared<MotorGroup>(ileftSideMotor),
+                                std::make_shared<MotorGroup>(irightSideMotor), istraightScale,
+                                iturnScale) {
+}
+
+ChassisControllerIntegrated::ChassisControllerIntegrated(
+  std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
+  const double istraightScale, const double iturnScale)
   : ChassisController(std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor)),
     leftController(ileftSideMotor),
     rightController(irightSideMotor),
@@ -35,12 +52,10 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(const AbstractMotor &il
   setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
 }
 
-ChassisControllerIntegrated::ChassisControllerIntegrated(const AbstractMotor &itopLeftMotor,
-                                                         const AbstractMotor &itopRightMotor,
-                                                         const AbstractMotor &ibottomRightMotor,
-                                                         const AbstractMotor &ibottomLeftMotor,
-                                                         const double istraightScale,
-                                                         const double iturnScale)
+ChassisControllerIntegrated::ChassisControllerIntegrated(
+  std::shared_ptr<AbstractMotor> itopLeftMotor, std::shared_ptr<AbstractMotor> itopRightMotor,
+  std::shared_ptr<AbstractMotor> ibottomRightMotor, std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+  const double istraightScale, const double iturnScale)
   : ChassisController(std::make_shared<XDriveModel>(itopLeftMotor, itopRightMotor,
                                                     ibottomRightMotor, ibottomLeftMotor)),
     leftController(itopLeftMotor),

@@ -13,12 +13,14 @@
 namespace okapi {
 class ThreeEncoderSkidSteerModelArgs : public SkidSteerModelArgs {
   public:
-  ThreeEncoderSkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
-                                 const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc,
-                                 const RotarySensor &imiddleEnc, const RotarySensor &irightEnc,
+  ThreeEncoderSkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                                 std::shared_ptr<AbstractMotor> irightSideMotor,
+                                 std::shared_ptr<RotarySensor> ileftEnc,
+                                 std::shared_ptr<RotarySensor> imiddleEnc,
+                                 std::shared_ptr<RotarySensor> irightEnc,
                                  const double imaxOutput = 127);
 
-  const RotarySensor &middleSensor;
+  std::shared_ptr<RotarySensor> middleSensor;
 };
 
 class ThreeEncoderSkidSteerModel : public SkidSteerModel {
@@ -33,9 +35,11 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
    * @param imiddleEnc middle encoder (mounted perpendicular to the left and right side encoders)
    * @param irightEnc right side encoder
    */
-  ThreeEncoderSkidSteerModel(const AbstractMotor &ileftSideMotor,
-                             const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc,
-                             const RotarySensor &imiddleEnc, const RotarySensor &irightEnc,
+  ThreeEncoderSkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                             std::shared_ptr<AbstractMotor> irightSideMotor,
+                             std::shared_ptr<RotarySensor> ileftEnc,
+                             std::shared_ptr<RotarySensor> imiddleEnc,
+                             std::shared_ptr<RotarySensor> irightEnc,
                              const double imaxOutput = 127);
 
   ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams);
@@ -48,7 +52,7 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
   virtual std::valarray<int> getSensorVals() const override;
 
   protected:
-  const RotarySensor &middleSensor;
+  std::shared_ptr<RotarySensor> middleSensor;
 };
 } // namespace okapi
 
