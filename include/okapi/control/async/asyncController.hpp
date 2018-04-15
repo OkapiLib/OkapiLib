@@ -35,7 +35,7 @@ class AsyncController : public ClosedLoopController {
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime);
+  virtual void setSampleTime(const std::uint32_t isampleTime);
 
   /**
    * Set controller output bounds. Default does nothing.

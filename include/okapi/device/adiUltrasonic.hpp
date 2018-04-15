@@ -15,7 +15,7 @@
 namespace okapi {
 class ADIUltrasonic : public ControllerInput {
   public:
-  ADIUltrasonic(const uint8_t iportTop, const uint8_t iportBottom);
+  ADIUltrasonic(const std::uint8_t iportTop, const std::uint8_t iportBottom);
 
   virtual ~ADIUltrasonic();
 
@@ -24,7 +24,7 @@ class ADIUltrasonic : public ControllerInput {
    *
    * @return current value, PROS_ERR on fail
    */
-  virtual int32_t get();
+  virtual std::int32_t get();
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in

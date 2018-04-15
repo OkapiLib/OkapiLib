@@ -71,7 +71,7 @@ void ChassisControllerIntegrated::moveDistance(const int itarget) {
   rightController.reset();
 
   int distanceElapsed = 0, lastDistance = 0;
-  uint32_t prevWakeTime = pros::millis();
+  std::uint32_t prevWakeTime = pros::millis();
   bool atTarget = false;
   const int atTargetDistance = 15;
   const int threshold = 2;
@@ -80,7 +80,7 @@ void ChassisControllerIntegrated::moveDistance(const int itarget) {
   std::valarray<int> encVals{0, 0};
 
   Timer atTargetTimer;
-  const uint32_t timeoutPeriod = 250;
+  const std::uint32_t timeoutPeriod = 250;
 
   const double newTarget = (itarget + lastTarget) * straightScale;
   leftController.setTarget(newTarget);

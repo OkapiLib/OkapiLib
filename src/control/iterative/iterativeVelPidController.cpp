@@ -41,7 +41,7 @@ void IterativeVelPIDController::setGains(const double ikP, const double ikD) {
   kD = ikD * static_cast<double>(sampleTime) / 1000.0;
 }
 
-void IterativeVelPIDController::setSampleTime(const uint32_t isampleTime) {
+void IterativeVelPIDController::setSampleTime(const std::uint32_t isampleTime) {
   if (isampleTime > 0) {
     kD /= static_cast<double>(isampleTime) / static_cast<double>(sampleTime);
     sampleTime = isampleTime;
@@ -68,7 +68,7 @@ double IterativeVelPIDController::stepVel(const double inewReading) {
 
 double IterativeVelPIDController::step(const double inewReading) {
   if (isOn) {
-    const uint32_t now = pros::millis();
+    const std::uint32_t now = pros::millis();
     if (now - lastTime >= sampleTime) {
       stepVel(inewReading);
       error = target - velMath.getVelocity();
@@ -127,7 +127,7 @@ double IterativeVelPIDController::getVel() const {
   return velMath.getVelocity();
 }
 
-uint32_t IterativeVelPIDController::getSampleTime() const {
+std::uint32_t IterativeVelPIDController::getSampleTime() const {
   return sampleTime;
 }
 } // namespace okapi

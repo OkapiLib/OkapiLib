@@ -47,7 +47,7 @@ class IterativeController : public ClosedLoopController {
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime);
+  virtual void setSampleTime(const std::uint32_t isampleTime);
 
   /**
    * Set controller output bounds.
@@ -73,7 +73,7 @@ class IterativeController : public ClosedLoopController {
    *
    * @return sample time
    */
-  virtual uint32_t getSampleTime() const;
+  virtual std::uint32_t getSampleTime() const;
 };
 } // namespace okapi
 

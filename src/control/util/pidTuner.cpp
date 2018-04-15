@@ -13,8 +13,8 @@
 #include <random>
 
 namespace okapi {
-PIDTuner::PIDTuner(std::shared_ptr<ChassisModel> imodel, const uint32_t itimeout,
-                   const int32_t igoal, const double ikPMin, const double ikPMax,
+PIDTuner::PIDTuner(std::shared_ptr<ChassisModel> imodel, const std::uint32_t itimeout,
+                   const std::int32_t igoal, const double ikPMin, const double ikPMax,
                    const double ikIMin, const double ikIMax, const double ikDMin,
                    const double ikDMax, const size_t inumIterations, const size_t inumParticles,
                    const double ikSettle, const double ikITAE)
@@ -141,10 +141,10 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
   return IterativePosPIDControllerArgs(global.kP.best, global.kI.best, global.kD.best);
 }
 
-uint32_t PIDTuner::moveDistance(const int itarget) {
+std::uint32_t PIDTuner::moveDistance(const int itarget) {
   const auto encStartVals = model->getSensorVals();
   float distanceElapsed = 0, lastDistance = 0;
-  uint32_t prevWakeTime = pros::millis();
+  std::uint32_t prevWakeTime = pros::millis();
 
   leftController.reset();
   rightController.reset();

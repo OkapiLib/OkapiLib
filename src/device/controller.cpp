@@ -14,11 +14,11 @@ Controller::Controller(const controller_id_e_t iid) : controller(iid) {
 Controller::~Controller() = default;
 
 bool Controller::isConnected() {
-  const int32_t state = controller.is_connected();
+  const std::int32_t state = controller.is_connected();
   return state == 1 || state == 2;
 }
 
-int32_t Controller::getConnectionState() {
+std::int32_t Controller::getConnectionState() {
   return controller.is_connected();
 }
 

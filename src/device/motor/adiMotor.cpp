@@ -8,10 +8,10 @@
 #include "okapi/device/motor/adiMotor.hpp"
 
 namespace okapi {
-ADIMotor::ADIMotor(const uint8_t iport) : motor(iport) {
+ADIMotor::ADIMotor(const std::uint8_t iport) : motor(iport) {
 }
 
-void ADIMotor::moveVoltage(const int32_t ivoltage) const {
+void ADIMotor::moveVoltage(const std::int32_t ivoltage) const {
   motor.set_value(ivoltage);
 }
 

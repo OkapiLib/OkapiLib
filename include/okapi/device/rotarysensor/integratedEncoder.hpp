@@ -25,14 +25,14 @@ class IntegratedEncoder : public RotarySensor {
    *
    * @return the current sensor value, or ``PROS_ERR`` on a failure.
    */
-  virtual int32_t get() const override;
+  virtual std::int32_t get() const override;
 
   /**
    * Reset the sensor to zero.
    *
    * @return 1 on suceess, PROS_ERR on fail
    */
-  virtual int32_t reset() const override;
+  virtual std::int32_t reset() const override;
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in
