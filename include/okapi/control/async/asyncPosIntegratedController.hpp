@@ -10,16 +10,17 @@
 
 #include "okapi/control/async/asyncPositionController.hpp"
 #include "okapi/control/util/settledUtil.hpp"
-#include "okapi/device/motor/abstractMotor.hpp"
+#include "okapi/device/motor/motor.hpp"
+#include "okapi/device/motor/motorGroup.hpp"
 
 namespace okapi {
 class AsyncPosIntegratedController;
 
 class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
   public:
-  AsyncPosIntegratedControllerArgs(const AbstractMotor &imotor);
+  AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
 
-  const AbstractMotor &motor;
+  std::shared_ptr<AbstractMotor> motor;
 };
 
 /**
@@ -27,7 +28,11 @@ class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
  */
 class AsyncPosIntegratedController : public AsyncPositionController {
   public:
-  AsyncPosIntegratedController(const AbstractMotor &imotor);
+  AsyncPosIntegratedController(Motor imotor);
+
+  AsyncPosIntegratedController(MotorGroup imotor);
+
+  AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor);
 
   AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams);
 
@@ -56,7 +61,7 @@ class AsyncPosIntegratedController : public AsyncPositionController {
   virtual void reset() override;
 
   protected:
-  const AbstractMotor &motor;
+  std::shared_ptr<AbstractMotor> motor;
   double lastTarget = 0;
   SettledUtil settledUtil;
 };

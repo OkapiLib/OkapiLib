@@ -11,8 +11,8 @@
 
 namespace okapi {
 OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
-  const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double iscale,
-  const double iturnScale, const float imoveThreshold)
+  std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
+  const double iscale, const double iturnScale, const float imoveThreshold)
   : OdomChassisControllerIntegrated(
       std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor), ileftSideMotor,
       irightSideMotor, iscale, iturnScale, imoveThreshold) {
@@ -26,8 +26,8 @@ OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
 }
 
 OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
-  std::shared_ptr<SkidSteerModel> imodel, const AbstractMotor &ileftSideMotor,
-  const AbstractMotor &irightSideMotor, const double iscale, const double iturnScale,
+  std::shared_ptr<SkidSteerModel> imodel, std::shared_ptr<AbstractMotor> ileftSideMotor,
+  std::shared_ptr<AbstractMotor> irightSideMotor, const double iscale, const double iturnScale,
   const float imoveThreshold)
   : OdomChassisControllerIntegrated(
       imodel, iscale, iturnScale, AsyncPosIntegratedControllerArgs(ileftSideMotor),

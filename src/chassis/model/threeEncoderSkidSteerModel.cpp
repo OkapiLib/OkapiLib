@@ -9,22 +9,18 @@
 #include "okapi/chassis/model/threeEncoderSkidSteerModel.hpp"
 
 namespace okapi {
-ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
-                                                               const AbstractMotor &irightSideMotor,
-                                                               const RotarySensor &ileftEnc,
-                                                               const RotarySensor &imiddleEnc,
-                                                               const RotarySensor &irightEnc,
-                                                               const double imaxOutput)
+ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs(
+  std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
+  std::shared_ptr<RotarySensor> ileftEnc, std::shared_ptr<RotarySensor> imiddleEnc,
+  std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput)
   : SkidSteerModelArgs(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxOutput),
     middleSensor(imiddleEnc) {
 }
 
-ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(const AbstractMotor &ileftSideMotor,
-                                                       const AbstractMotor &irightSideMotor,
-                                                       const RotarySensor &ileftEnc,
-                                                       const RotarySensor &imiddleEnc,
-                                                       const RotarySensor &irightEnc,
-                                                       const double imaxOutput)
+ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
+  std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
+  std::shared_ptr<RotarySensor> ileftEnc, std::shared_ptr<RotarySensor> imiddleEnc,
+  std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput)
   : SkidSteerModel(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxOutput),
     middleSensor(imiddleEnc) {
 }
@@ -38,6 +34,6 @@ ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
 
 std::valarray<int> ThreeEncoderSkidSteerModel::getSensorVals() const {
   // Return the middle sensor last so this is compatible with SkidSteerModel::getSensorVals()
-  return std::valarray<int>{leftSensor.get(), rightSensor.get(), middleSensor.get()};
+  return std::valarray<int>{leftSensor->get(), rightSensor->get(), middleSensor->get()};
 }
 } // namespace okapi

@@ -8,11 +8,20 @@
 #include "okapi/control/async/asyncPosIntegratedController.hpp"
 
 namespace okapi {
-AsyncPosIntegratedControllerArgs::AsyncPosIntegratedControllerArgs(const AbstractMotor &imotor)
+AsyncPosIntegratedControllerArgs::AsyncPosIntegratedControllerArgs(
+  std::shared_ptr<AbstractMotor> imotor)
   : motor(imotor) {
 }
 
-AsyncPosIntegratedController::AsyncPosIntegratedController(const AbstractMotor &imotor)
+AsyncPosIntegratedController::AsyncPosIntegratedController(Motor imotor)
+  : AsyncPosIntegratedController(std::make_shared<Motor>(imotor)) {
+}
+
+AsyncPosIntegratedController::AsyncPosIntegratedController(MotorGroup imotor)
+  : AsyncPosIntegratedController(std::make_shared<MotorGroup>(imotor)) {
+}
+
+AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor)
   : motor(imotor) {
 }
 
@@ -22,12 +31,12 @@ AsyncPosIntegratedController::AsyncPosIntegratedController(
 }
 
 void AsyncPosIntegratedController::setTarget(const double itarget) {
-  motor.moveRelative(itarget, 127);
+  motor->moveRelative(itarget, 127);
   lastTarget = itarget;
 }
 
 double AsyncPosIntegratedController::getError() const {
-  return lastTarget - motor.getPosition();
+  return lastTarget - motor->getPosition();
 }
 
 bool AsyncPosIntegratedController::isSettled() {
@@ -35,6 +44,6 @@ bool AsyncPosIntegratedController::isSettled() {
 }
 
 void AsyncPosIntegratedController::reset() {
-  motor.tarePosition();
+  motor->tarePosition();
 }
 } // namespace okapi

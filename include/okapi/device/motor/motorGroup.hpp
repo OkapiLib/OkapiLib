@@ -10,16 +10,13 @@
 
 #include "okapi/device/motor/abstractMotor.hpp"
 #include "okapi/device/motor/motor.hpp"
-#include <array>
 #include <initializer_list>
+#include <vector>
 
 namespace okapi {
-template <size_t motorNum> class MotorGroup : public AbstractMotor {
+class MotorGroup : public AbstractMotor {
   public:
-  MotorGroup(const std::array<okapi::Motor, motorNum> &imotors)
-    : AbstractMotor(imotors[0]), motors(imotors) {
-    printf("group\n");
-  }
+  MotorGroup(const std::initializer_list<Motor> &imotors);
 
   /**
    * Sets the target absolute position for the motor to move to.
@@ -35,16 +32,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
   virtual std::int32_t moveAbsolute(const double iposition,
-                                    const std::int32_t ivelocity) const override {
-    auto out = 1;
-    for (size_t i = 0; i < motorNum; i++) {
-      const auto errorCode = motors[i].move_absolute(iposition, ivelocity);
-      if (errorCode != 1) {
-        out = errorCode;
-      }
-    }
-    return out;
-  }
+                                    const std::int32_t ivelocity) const override;
 
   /**
    * Sets the relative target position for the motor to move to.
@@ -61,16 +49,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
   virtual std::int32_t moveRelative(const double iposition,
-                                    const std::int32_t ivelocity) const override {
-    auto out = 1;
-    for (size_t i = 0; i < motorNum; i++) {
-      const auto errorCode = motors[i].move_relative(iposition, ivelocity);
-      if (errorCode != 1) {
-        out = errorCode;
-      }
-    }
-    return out;
-  }
+                                    const std::int32_t ivelocity) const override;
 
   /**
    * Sets the velocity for the motor.
@@ -88,17 +67,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const override {
-    printf("velocity: %d\n", ivelocity);
-    auto out = 1;
-    for (size_t i = 0; i < motorNum; i++) {
-      const auto errorCode = motors[i].move_velocity(ivelocity);
-      if (errorCode != 1) {
-        out = errorCode;
-      }
-    }
-    return out;
-  }
+  virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const override;
 
   /**
    * Sets the voltage for the motor from -127 to 127.
@@ -110,17 +79,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @param ivoltage The new voltage value from -127 to 127
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveVoltage(const std::int16_t ivoltage) const override {
-    printf("voltage: %d\n", ivoltage);
-    auto out = 1;
-    for (size_t i = 0; i < motorNum; i++) {
-      const auto errorCode = motors[i].move_voltage(ivoltage);
-      if (errorCode != 1) {
-        out = errorCode;
-      }
-    }
-    return out;
-  }
+  virtual std::int32_t moveVoltage(const std::int16_t ivoltage) const override;
 
   /**
    * Gets the target position set for the motor by the user.
@@ -131,9 +90,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @return The target position in its encoder units or PROS_ERR_F if the operation failed,
    * setting errno.
    */
-  virtual double getTargetPosition() const override {
-    return motors[0].get_target_position();
-  }
+  virtual double getTargetPosition() const override;
 
   /**
    * Gets the absolute position of the motor in its encoder units.
@@ -144,9 +101,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @return The motor's absolute position in its encoder units or PROS_ERR_F if the operation
    * failed, setting errno.
    */
-  virtual double getPosition() const override {
-    return motors[0].get_position();
-  }
+  virtual double getPosition() const override;
 
   /**
    * Gets the velocity commanded to the motor by the user.
@@ -157,9 +112,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @return The commanded motor velocity from +-100, +-200, or +-600, or PROS_ERR if the operation
    * failed, setting errno.
    */
-  virtual std::int32_t getTargetVelocity() const override {
-    return motors[0].get_target_velocity();
-  }
+  virtual std::int32_t getTargetVelocity() const override;
 
   /**
    * Gets the actual velocity of the motor.
@@ -170,9 +123,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @return The motor's actual velocity in motor_encoder_units_e_t per second or PROS_ERR_F if the
    * operation failed, setting errno.
    */
-  virtual double getActualVelocity() const override {
-    return motors[0].get_actual_velocity();
-  }
+  virtual double getActualVelocity() const override;
 
   /**
    * Sets the "absolute" zero position of the motor to its current position.
@@ -182,16 +133,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    *
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t tarePosition() const override {
-    auto out = 1;
-    for (size_t i = 0; i < motorNum; i++) {
-      const auto errorCode = motors[i].tare_position();
-      if (errorCode != 1) {
-        out = errorCode;
-      }
-    }
-    return out;
-  }
+  virtual std::int32_t tarePosition() const override;
 
   /**
    * Sets one of motor_brake_mode_e_t to the motor.
@@ -202,16 +144,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @param imode The motor_brake_mode_e_t to set for the motor
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setBrakeMode(const motor_brake_mode_e_t imode) const override {
-    auto out = 1;
-    for (size_t i = 0; i < motorNum; i++) {
-      const auto errorCode = motors[i].set_brake_mode(imode);
-      if (errorCode != 1) {
-        out = errorCode;
-      }
-    }
-    return out;
-  }
+  virtual std::int32_t setBrakeMode(const motor_brake_mode_e_t imode) const override;
 
   /**
    * Sets the current limit for the motor in mA.
@@ -222,16 +155,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @param ilimit The new current limit in mA
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const override {
-    auto out = 1;
-    for (size_t i = 0; i < motorNum; i++) {
-      const auto errorCode = motors[i].set_current_limit(ilimit);
-      if (errorCode != 1) {
-        out = errorCode;
-      }
-    }
-    return out;
-  }
+  virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const override;
 
   /**
    * Sets one of motor_encoder_units_e_t for the motor encoder.
@@ -242,16 +166,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setEncoderUnits(const motor_encoder_units_e_t iunits) const override {
-    auto out = 1;
-    for (size_t i = 0; i < motorNum; i++) {
-      const auto errorCode = motors[i].set_encoder_units(iunits);
-      if (errorCode != 1) {
-        out = errorCode;
-      }
-    }
-    return out;
-  }
+  virtual std::int32_t setEncoderUnits(const motor_encoder_units_e_t iunits) const override;
 
   /**
    * Sets one of motor_gearset_e_t for the motor.
@@ -262,16 +177,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @param igearset The new motor gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setGearing(const motor_gearset_e_t igearset) const override {
-    auto out = 1;
-    for (size_t i = 0; i < motorNum; i++) {
-      const auto errorCode = motors[i].set_gearing(igearset);
-      if (errorCode != 1) {
-        out = errorCode;
-      }
-    }
-    return out;
-  }
+  virtual std::int32_t setGearing(const motor_gearset_e_t igearset) const override;
 
   /**
    * Sets the reverse flag for the motor.
@@ -284,16 +190,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @param ireverse True reverses the motor, false is default
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setReversed(const bool ireverse) const override {
-    auto out = 1;
-    for (size_t i = 0; i < motorNum; i++) {
-      const auto errorCode = motors[i].set_reversed(ireverse);
-      if (errorCode != 1) {
-        out = errorCode;
-      }
-    }
-    return out;
-  }
+  virtual std::int32_t setReversed(const bool ireverse) const override;
 
   /**
    * Sets the voltage limit for the motor in Volts.
@@ -304,16 +201,7 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    * @param ilimit The new voltage limit in Volts
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setVoltageLimit(const std::int32_t ilimit) const override {
-    auto out = 1;
-    for (size_t i = 0; i < motorNum; i++) {
-      const auto errorCode = motors[i].set_voltage_limit(ilimit);
-      if (errorCode != 1) {
-        out = errorCode;
-      }
-    }
-    return out;
-  }
+  virtual std::int32_t setVoltageLimit(const std::int32_t ilimit) const override;
 
   /**
    * Writes the value of the controller output. This method might be automatically called in another
@@ -321,23 +209,17 @@ template <size_t motorNum> class MotorGroup : public AbstractMotor {
    *
    * @param ivalue the controller's output
    */
-  virtual void controllerSet(const double ivalue) override {
-    for (size_t i = 0; i < motorNum; i++) {
-      motors[i].move_velocity(ivalue);
-    }
-  }
+  virtual void controllerSet(const double ivalue) override;
 
   /**
    * Get the encoder associated with this motor.
    *
    * @return encoder for this motor
    */
-  virtual IntegratedEncoder getEncoder() const override {
-    return motors[0].getEncoder();
-  }
+  virtual IntegratedEncoder getEncoder() const override;
 
   protected:
-  const std::array<okapi::Motor, motorNum> motors;
+  std::vector<Motor> motors;
 };
 } // namespace okapi
 
