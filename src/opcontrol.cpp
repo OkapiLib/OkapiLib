@@ -363,10 +363,12 @@ void constructorTests() {
   { AsyncPosIntegratedController posI1(1_m); }
 
   {
-    ADIEncoder enc(1, 2, true);
-    Motor tempMotor = 1_m;
-    AsyncPosPIDController apospid1(enc, tempMotor, IterativePosPIDControllerArgs(0, 0, 0));
-    AsyncPosPIDController apospid2(enc, tempMotor, 0, 0, 0);
+    AsyncPosPIDController apospid1(std::make_shared<ADIEncoder>(1, 2, true),
+                                   std::make_shared<Motor>(1_m),
+                                   IterativePosPIDControllerArgs(0, 0, 0));
+
+    AsyncPosPIDController apospid2(std::make_shared<ADIEncoder>(1, 2, true),
+                                   std::make_shared<Motor>(1_m), 0, 0, 0);
   }
 
   {
@@ -511,14 +513,17 @@ void opcontrol() {
     printf("loop\n");
     robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
                                   controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
+
     if (btn1.changedToPressed()) {
       printf("move distance\n");
       robotChassisController.moveDistance(1800);
     }
+
     if (btn2.changedToPressed()) {
       printf("turn angle\n");
       robotChassisController.turnAngle(1800);
     }
+
     pros::c::task_delay(100);
   }
 }

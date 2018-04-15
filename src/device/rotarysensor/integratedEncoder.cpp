@@ -8,7 +8,7 @@
 #include "okapi/device/rotarysensor/integratedEncoder.hpp"
 
 namespace okapi {
-IntegratedEncoder::IntegratedEncoder(const pros::Motor &imotor) : motor(imotor) {
+IntegratedEncoder::IntegratedEncoder(pros::Motor imotor) : motor(imotor) {
 }
 
 int32_t IntegratedEncoder::get() const {

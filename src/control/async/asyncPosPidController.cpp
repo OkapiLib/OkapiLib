@@ -8,18 +8,20 @@
 #include "okapi/control/async/asyncPosPidController.hpp"
 
 namespace okapi {
-AsyncPosPIDControllerArgs::AsyncPosPIDControllerArgs(ControllerInput &iinput,
-                                                     ControllerOutput &ioutput,
+AsyncPosPIDControllerArgs::AsyncPosPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
+                                                     std::shared_ptr<ControllerOutput> ioutput,
                                                      const IterativePosPIDControllerArgs &iparams)
   : input(iinput), output(ioutput), params(iparams) {
 }
 
-AsyncPosPIDController::AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
+AsyncPosPIDController::AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
+                                             std::shared_ptr<ControllerOutput> ioutput,
                                              const IterativePosPIDControllerArgs &iparams)
   : input(iinput), output(ioutput), controller(iparams), task(trampoline, this) {
 }
 
-AsyncPosPIDController::AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
+AsyncPosPIDController::AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
+                                             std::shared_ptr<ControllerOutput> ioutput,
                                              const double ikP, const double ikI, const double ikD,
                                              const double ikBias)
   : input(iinput), output(ioutput), controller(ikP, ikI, ikD, ikBias), task(trampoline, this) {
@@ -29,7 +31,7 @@ void AsyncPosPIDController::step() {
   uint32_t prevTime = 0;
 
   while (true) {
-    output.controllerSet(controller.step(input.controllerGet()));
+    output->controllerSet(controller.step(input->controllerGet()));
     task.delay_until(&prevTime, controller.getSampleTime());
   }
 }

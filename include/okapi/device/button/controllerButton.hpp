@@ -42,8 +42,7 @@ class ControllerButton : public Button {
   virtual bool changedToReleased() override;
 
   protected:
-  // pros::Controller controller;
-  const controller_id_e_t controllerID;
+  pros::Controller controller;
   const controller_digital_e_t btn;
   const bool inverted;
   bool wasPressedLast = false;

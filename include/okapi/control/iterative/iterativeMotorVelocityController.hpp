@@ -11,22 +11,30 @@
 #include "api.h"
 #include "okapi/control/iterative/iterativeVelocityController.hpp"
 #include "okapi/device/motor/abstractMotor.hpp"
+#include "okapi/device/motor/motor.hpp"
+#include "okapi/device/motor/motorGroup.hpp"
 #include <array>
 #include <memory>
 
 namespace okapi {
 class IterativeMotorVelocityControllerArgs : public IterativeVelocityControllerArgs {
   public:
-  IterativeMotorVelocityControllerArgs(const AbstractMotor &imotor,
+  IterativeMotorVelocityControllerArgs(std::shared_ptr<AbstractMotor> imotor,
                                        std::shared_ptr<IterativeVelocityController> icontroller);
 
-  const AbstractMotor &motor;
+  std::shared_ptr<AbstractMotor> motor;
   std::shared_ptr<IterativeVelocityController> controller;
 };
 
 class IterativeMotorVelocityController : public IterativeVelocityController {
   public:
-  IterativeMotorVelocityController(const AbstractMotor &imotor,
+  IterativeMotorVelocityController(Motor imotor,
+                                   std::shared_ptr<IterativeVelocityController> icontroller);
+
+  IterativeMotorVelocityController(MotorGroup imotor,
+                                   std::shared_ptr<IterativeVelocityController> icontroller);
+
+  IterativeMotorVelocityController(std::shared_ptr<AbstractMotor> imotor,
                                    std::shared_ptr<IterativeVelocityController> icontroller);
 
   IterativeMotorVelocityController(const IterativeMotorVelocityControllerArgs &iparams);
@@ -101,7 +109,7 @@ class IterativeMotorVelocityController : public IterativeVelocityController {
   virtual uint32_t getSampleTime() const override;
 
   protected:
-  const AbstractMotor &motor;
+  std::shared_ptr<AbstractMotor> motor;
   std::shared_ptr<IterativeVelocityController> controller;
 };
 } // namespace okapi

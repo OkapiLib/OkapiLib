@@ -11,16 +11,19 @@
 #include "okapi/control/async/asyncVelocityController.hpp"
 #include "okapi/control/util/settledUtil.hpp"
 #include "okapi/device/motor/abstractMotor.hpp"
+#include "okapi/device/motor/motor.hpp"
+#include "okapi/device/motor/motorGroup.hpp"
 #include "okapi/device/rotarysensor/integratedEncoder.hpp"
+#include <memory>
 
 namespace okapi {
 class AsyncVelIntegratedController;
 
 class AsyncVelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
   public:
-  AsyncVelIntegratedControllerArgs(const AbstractMotor &imotor);
+  AsyncVelIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
 
-  const AbstractMotor &motor;
+  std::shared_ptr<AbstractMotor> motor;
 };
 
 /**
@@ -28,7 +31,11 @@ class AsyncVelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
  */
 class AsyncVelIntegratedController : public AsyncVelocityController {
   public:
-  AsyncVelIntegratedController(const AbstractMotor &imotor);
+  AsyncVelIntegratedController(Motor imotor);
+
+  AsyncVelIntegratedController(MotorGroup imotor);
+
+  AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor);
 
   AsyncVelIntegratedController(const AsyncVelIntegratedControllerArgs &iparams);
 
@@ -57,7 +64,7 @@ class AsyncVelIntegratedController : public AsyncVelocityController {
   virtual void reset() override;
 
   protected:
-  const AbstractMotor &motor;
+  std::shared_ptr<AbstractMotor> motor;
   double lastTarget = 0;
   SettledUtil settledUtil;
 };
