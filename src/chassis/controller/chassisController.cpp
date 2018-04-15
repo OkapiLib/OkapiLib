@@ -49,7 +49,7 @@ void ChassisController::right(const double ispeed) const {
   model->right(ispeed);
 }
 
-std::valarray<int> ChassisController::getSensorVals() const {
+std::valarray<std::int32_t> ChassisController::getSensorVals() const {
   return model->getSensorVals();
 }
 

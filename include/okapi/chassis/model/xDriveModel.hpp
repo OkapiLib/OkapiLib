@@ -191,7 +191,7 @@ class XDriveModel : public ChassisModel {
    *
    * @return sensor readings in the format {left, right}
    */
-  virtual std::valarray<int> getSensorVals() const override;
+  virtual std::valarray<std::int32_t> getSensorVals() const override;
 
   /**
    * Reset the sensors to their zero point.
