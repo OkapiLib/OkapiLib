@@ -158,7 +158,7 @@ std::uint32_t PIDTuner::moveDistance(const int itarget) {
   Timer atTargetTimer;
   const int timeoutPeriod = 250;
 
-  std::valarray<int> encVals{0, 0};
+  std::valarray<std::int32_t> encVals;
 
   while (!atTarget) {
     encVals = model->getSensorVals() - encStartVals;

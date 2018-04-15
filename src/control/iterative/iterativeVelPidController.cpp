@@ -119,6 +119,14 @@ void IterativeVelPIDController::flipDisable() {
   isOn = !isOn;
 }
 
+void IterativeVelPIDController::flipDisable(const bool iisDisabled) {
+  isOn = !iisDisabled;
+}
+
+bool IterativeVelPIDController::isDisabled() const {
+  return !isOn;
+}
+
 void IterativeVelPIDController::setTicksPerRev(const double tpr) {
   velMath.setTicksPerRev(tpr);
 }

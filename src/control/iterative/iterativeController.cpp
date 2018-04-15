@@ -18,12 +18,6 @@ void IterativeController::setSampleTime(const std::uint32_t isampleTime) {
 void IterativeController::setOutputLimits(double imax, double imin) {
 }
 
-void IterativeController::reset() {
-}
-
-void IterativeController::flipDisable() {
-}
-
 std::uint32_t IterativeController::getSampleTime() const {
   return 15;
 }

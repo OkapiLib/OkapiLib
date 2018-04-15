@@ -52,49 +52,23 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> itopLe
 }
 
 void ChassisControllerPID::moveDistance(const int itarget) {
-  const auto encStartVals = model->getSensorVals();
-  float distanceElapsed = 0, angleChange = 0, lastDistance = 0;
-  std::uint32_t prevWakeTime = pros::millis();
-
-  const double newTarget = itarget * straightScale;
-
   distancePid.reset();
   anglePid.reset();
-  distancePid.setTarget(static_cast<float>(newTarget));
-  anglePid.setTarget(0);
 
-  bool atTarget = false;
-  const int atTargetDistance = 15;
-  const int threshold = 2;
+  const double newTarget = itarget * straightScale;
+  distancePid.setTarget(newTarget);
+  anglePid.setTarget(newTarget);
 
-  Timer atTargetTimer;
+  std::uint32_t prevWakeTime = pros::millis();
+  const auto encStartVals = model->getSensorVals();
+  std::valarray<std::int32_t> encVals;
+  float distanceElapsed = 0, angleChange = 0;
 
-  const int timeoutPeriod = 250;
-
-  std::valarray<int> encVals{0, 0};
-  float distOutput, angleOutput;
-
-  while (!atTarget) {
+  while (!distancePid.isSettled() && !anglePid.isSettled()) {
     encVals = model->getSensorVals() - encStartVals;
     distanceElapsed = static_cast<float>((encVals[0] + encVals[1])) / 2.0;
     angleChange = static_cast<float>(encVals[1] - encVals[0]);
-
-    distOutput = distancePid.step(distanceElapsed);
-    angleOutput = anglePid.step(angleChange);
-    model->driveVector(static_cast<int>(distOutput * 127), static_cast<int>(angleOutput * 127));
-
-    if (abs(newTarget - static_cast<int>(distanceElapsed)) <= atTargetDistance)
-      atTargetTimer.placeHardMark();
-    else if (abs(static_cast<int>(distanceElapsed) - static_cast<int>(lastDistance)) <= threshold)
-      atTargetTimer.placeHardMark();
-    else
-      atTargetTimer.clearHardMark();
-
-    lastDistance = distanceElapsed;
-
-    if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod)
-      atTarget = true;
-
+    model->driveVector(distancePid.step(distanceElapsed), anglePid.step(angleChange));
     pros::c::task_delay_until(&prevWakeTime, 10);
   }
 
@@ -102,43 +76,20 @@ void ChassisControllerPID::moveDistance(const int itarget) {
 }
 
 void ChassisControllerPID::turnAngle(float idegTarget) {
-  const auto encStartVals = model->getSensorVals();
-  float angleChange = 0, lastAngle = 0;
-  std::uint32_t prevWakeTime = pros::millis();
-
-  const float newTarget = idegTarget * turnScale;
-
   anglePid.reset();
-  anglePid.setTarget(static_cast<float>(newTarget));
 
-  bool atTarget = false;
-  const int atTargetAngle = 10;
-  const int threshold = 2;
+  const double newTarget = idegTarget * turnScale;
+  anglePid.setTarget(newTarget);
 
-  Timer atTargetTimer;
+  std::uint32_t prevWakeTime = pros::millis();
+  const auto encStartVals = model->getSensorVals();
+  std::valarray<std::int32_t> encVals;
+  float angleChange = 0;
 
-  const int timeoutPeriod = 250;
-
-  std::valarray<int> encVals{0, 0};
-
-  while (!atTarget) {
+  while (!anglePid.isSettled()) {
     encVals = model->getSensorVals() - encStartVals;
     angleChange = static_cast<float>(encVals[1] - encVals[0]);
-
-    model->rotate(static_cast<int>(anglePid.step(angleChange) * 127));
-
-    if (fabs(newTarget - angleChange) <= atTargetAngle)
-      atTargetTimer.placeHardMark();
-    else if (fabs(angleChange - lastAngle) <= threshold)
-      atTargetTimer.placeHardMark();
-    else
-      atTargetTimer.clearHardMark();
-
-    lastAngle = angleChange;
-
-    if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod)
-      atTarget = true;
-
+    model->rotate(anglePid.step(angleChange));
     pros::c::task_delay_until(&prevWakeTime, 10);
   }
 
