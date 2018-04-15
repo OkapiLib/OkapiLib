@@ -32,7 +32,7 @@ class Controller {
    *
    * @return the connection state of the controller
    */
-  virtual int32_t getConnectionState();
+  virtual std::int32_t getConnectionState();
 
   /**
    * Returns the current analog reading for the channel in the range [-1, 1]. Returns 0 if the

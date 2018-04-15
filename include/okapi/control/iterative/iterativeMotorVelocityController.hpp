@@ -80,7 +80,7 @@ class IterativeMotorVelocityController : public IterativeVelocityController {
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime) override;
+  virtual void setSampleTime(const std::uint32_t isampleTime) override;
 
   /**
    * Set controller output bounds.
@@ -106,7 +106,7 @@ class IterativeMotorVelocityController : public IterativeVelocityController {
    *
    * @return sample time
    */
-  virtual uint32_t getSampleTime() const override;
+  virtual std::uint32_t getSampleTime() const override;
 
   protected:
   std::shared_ptr<AbstractMotor> motor;

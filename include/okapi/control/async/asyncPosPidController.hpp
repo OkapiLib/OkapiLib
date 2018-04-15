@@ -68,7 +68,7 @@ class AsyncPosPIDController : public AsyncPositionController {
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime) override;
+  virtual void setSampleTime(const std::uint32_t isampleTime) override;
 
   /**
    * Set controller output bounds. Default does nothing.

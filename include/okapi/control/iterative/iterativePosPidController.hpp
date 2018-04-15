@@ -98,7 +98,7 @@ class IterativePosPIDController : public IterativePositionController {
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime) override;
+  virtual void setSampleTime(const std::uint32_t isampleTime) override;
 
   /**
    * Set controller output bounds. Default bounds are [-1, 1].
@@ -148,12 +148,12 @@ class IterativePosPIDController : public IterativePositionController {
    *
    * @return sample time
    */
-  virtual uint32_t getSampleTime() const override;
+  virtual std::uint32_t getSampleTime() const override;
 
   protected:
   double kP, kI, kD, kBias;
-  uint32_t lastTime = 0;
-  uint32_t sampleTime = 10;
+  std::uint32_t lastTime = 0;
+  std::uint32_t sampleTime = 10;
   double target = 0;
   double lastReading = 0;
   double error = 0;

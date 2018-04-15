@@ -43,7 +43,7 @@ void Odometry::setScales(const double iscale, const double iturnScale) {
 }
 
 void Odometry::loop() {
-  uint32_t now = pros::millis();
+  std::uint32_t now = pros::millis();
   std::valarray<int> newTicks{0, 0}, tickDiff{0, 0};
 
   while (true) {

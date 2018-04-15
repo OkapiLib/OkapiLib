@@ -21,7 +21,7 @@ ThreeEncoderOdometry::ThreeEncoderOdometry(std::shared_ptr<ThreeEncoderSkidSteer
 }
 
 void ThreeEncoderOdometry::loop() {
-  uint32_t now = pros::millis();
+  std::uint32_t now = pros::millis();
   std::valarray<int> newTicks{0, 0, 0}, tickDiff{0, 0, 0};
 
   while (true) {

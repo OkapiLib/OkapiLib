@@ -55,7 +55,7 @@ bool IterativePosPIDController::isSettled() {
   return settledUtil.isSettled(error);
 }
 
-void IterativePosPIDController::setSampleTime(const uint32_t isampleTime) {
+void IterativePosPIDController::setSampleTime(const std::uint32_t isampleTime) {
   if (isampleTime > 0) {
     const double ratio = static_cast<double>(isampleTime) / static_cast<double>(sampleTime);
     kI *= ratio;
@@ -102,7 +102,7 @@ void IterativePosPIDController::setErrorSumLimits(const double imax, const doubl
 
 double IterativePosPIDController::step(const double inewReading) {
   if (isOn) {
-    const uint32_t now = pros::millis();
+    const std::uint32_t now = pros::millis();
 
     if (now - lastTime >= sampleTime) {
       error = target - inewReading;
@@ -160,7 +160,7 @@ void IterativePosPIDController::flipDisable() {
   isOn = !isOn;
 }
 
-uint32_t IterativePosPIDController::getSampleTime() const {
+std::uint32_t IterativePosPIDController::getSampleTime() const {
   return sampleTime;
 }
 } // namespace okapi

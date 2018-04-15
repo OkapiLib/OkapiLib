@@ -28,7 +28,7 @@ AsyncPosPIDController::AsyncPosPIDController(std::shared_ptr<ControllerInput> ii
 }
 
 void AsyncPosPIDController::step() {
-  uint32_t prevTime = 0;
+  std::uint32_t prevTime = 0;
 
   while (true) {
     output->controllerSet(controller.step(input->controllerGet()));
@@ -56,7 +56,7 @@ bool AsyncPosPIDController::isSettled() {
   return controller.isSettled();
 }
 
-void AsyncPosPIDController::setSampleTime(const uint32_t isampleTime) {
+void AsyncPosPIDController::setSampleTime(const std::uint32_t isampleTime) {
   controller.setSampleTime(isampleTime);
 }
 

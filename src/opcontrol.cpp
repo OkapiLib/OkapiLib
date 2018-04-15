@@ -290,6 +290,8 @@ void constructorTests() {
   {
     ADIEncoder leftEncoder(1, 2, true);
     ADIEncoder rightEncoder(3, 4);
+    ADIEncoder test('A', 'B');
+    ADIEncoder test2('a', 'b');
     leftEncoder.get();
   }
 

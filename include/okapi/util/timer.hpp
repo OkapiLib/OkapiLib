@@ -22,21 +22,21 @@ class Timer {
    *
    * @return The time passed in ms since the previous call of this function
    */
-  virtual uint32_t getDt();
+  virtual std::uint32_t getDt();
 
   /**
    * Returns the time the timer was first constructed.
    *
    * @return The time the timer was first constructed
    */
-  virtual uint32_t getStartingTime() const;
+  virtual std::uint32_t getStartingTime() const;
 
   /**
    * Returns the time since the timer was first constructed.
    *
    * @return The time since the timer was first constructed
    */
-  virtual uint32_t getDtFromStart() const;
+  virtual std::uint32_t getDtFromStart() const;
 
   /**
    * Place a time marker. Placing another marker will overwrite the previous one.
@@ -54,21 +54,21 @@ class Timer {
    *
    * @return The old hard marker
    */
-  virtual uint32_t clearHardMark();
+  virtual std::uint32_t clearHardMark();
 
   /**
    * Returns the time since the time marker.
    *
    * @return The time since the time marker
    */
-  virtual uint32_t getDtFromMark() const;
+  virtual std::uint32_t getDtFromMark() const;
 
   /**
    * Returns the time since the hard time marker.
    *
    * @return The time since the hard time marker
    */
-  virtual uint32_t getDtFromHardMark() const;
+  virtual std::uint32_t getDtFromHardMark() const;
 
   /**
    * Returns true when the input time period has passed, then resets. Meant to be used in loops
@@ -78,14 +78,14 @@ class Timer {
    * @return true when the input time period has passed, false after reading true until the
    *   period has passed again
    */
-  virtual bool repeat(const uint32_t ms);
+  virtual bool repeat(const std::uint32_t ms);
 
   protected:
-  uint32_t firstCalled;
-  uint32_t lastCalled = 0;
-  uint32_t mark = 0;
-  uint32_t hardMark = 0;
-  uint32_t repeatMark = 0;
+  std::uint32_t firstCalled;
+  std::uint32_t lastCalled = 0;
+  std::uint32_t mark = 0;
+  std::uint32_t hardMark = 0;
+  std::uint32_t repeatMark = 0;
 };
 } // namespace okapi
 

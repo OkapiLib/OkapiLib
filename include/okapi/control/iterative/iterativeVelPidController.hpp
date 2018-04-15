@@ -91,7 +91,7 @@ class IterativeVelPIDController : public IterativeVelocityController {
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime) override;
+  virtual void setSampleTime(const std::uint32_t isampleTime) override;
 
   /**
    * Set controller output bounds.
@@ -117,7 +117,7 @@ class IterativeVelPIDController : public IterativeVelocityController {
    *
    * @return sample time
    */
-  virtual uint32_t getSampleTime() const override;
+  virtual std::uint32_t getSampleTime() const override;
 
   /**
    * Do one iteration of velocity calculation.
@@ -150,8 +150,8 @@ class IterativeVelPIDController : public IterativeVelocityController {
 
   protected:
   double kP, kD;
-  uint32_t lastTime = 0;
-  uint32_t sampleTime = 10;
+  std::uint32_t lastTime = 0;
+  std::uint32_t sampleTime = 10;
   double error = 0;
   double lastError = 0;
   double derivative = 0;
