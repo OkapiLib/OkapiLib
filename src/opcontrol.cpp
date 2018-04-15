@@ -278,127 +278,164 @@ void runHeadlessUnitTests() {
 void constructorTests() {
   using namespace okapi;
 
-  ADIButton btn(2);
-  ControllerButton btn2(E_CONTROLLER_DIGITAL_A);
-  btn.isPressed();
-  btn.changed();
-  btn.changedToPressed();
-  btn.changedToReleased();
-
-  ADIEncoder leftEncoder(1, 2, true);
-  ADIEncoder rightEncoder(3, 4);
-  leftEncoder.get();
-
-  ADIUltrasonic ultra1(1, 2);
-  ultra1.get();
-
-  Motor mtr = 1_m;
-  Motor r_mtr = 2_rm;
-
-  ChassisControllerIntegrated int1(1_m,  // One motor on left side
-                                   2_m); // One motor on right side
-
-  ChassisControllerIntegrated int2(MotorGroup({1_m, 2_m, 3_m}), // Three motors on left side
-                                   MotorGroup({4_m, 5_m}));     // Two motors on right side
-
-  int1.moveDistance(0); // Closed-loop control
-  int1.turnAngle(0);    // Closed-loop control
-
-  int1.forward(0);                  // Open-loop control
-  int1.rotate(0);                   // Open-loop control
-  int1.driveVector(0, 0);           // Open-loop control
-  int1.tank(0, 0);                  // Tank drive
-  int1.arcade(0, 0);                // Arcade drive
-  int1.left(0);                     // Left drive side
-  int1.right(0);                    // Right drive side
-  int1.stop();                      // Stop motors
-  auto vals = int1.getSensorVals(); // Read left and right sensors
-  int1.resetSensors();              // Set sensors to 0
-
-  ChassisControllerPID controller1(
-    std::make_shared<SkidSteerModel>(MotorGroup({1_m, 2_m}), MotorGroup({3_m, 4_m}), leftEncoder,
-                                     rightEncoder),
-    IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
-
-  ChassisControllerPID controller2(
-    std::make_shared<XDriveModel>(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder),
-    IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
-
-  // An "odometry" chassis controller adds an odometry layer running in another task which keeps
-  // track of the position of the robot in the odom frame. This means that you can tell the robot to
-  // move to an arbitrary point on the field, or turn to an absolute angle (i.e., "turn to 90
-  // degrees" will always put the robot facing east relative to the starting position)
-  OdomChassisControllerPID controller3(
-    std::make_shared<SkidSteerModel>(MotorGroup({1_m, 2_m}), MotorGroup({3_m, 4_m}), leftEncoder,
-                                     rightEncoder),
-    0, 0, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
-
-  controller3.driveToPoint(0, 0); // Drive to (0, 0) on the field
-  controller3.turnToAngle(0);     // Turn to 0 degrees
-
-  IterativePosPIDController pid1(0, 0, 0); // PID controller
-  IterativeMotorVelocityController mc1(1_m, std::make_shared<IterativeVelPIDController>(0, 0));
-  IterativeMotorVelocityController mc2(MotorGroup({1_m, 2_m}),
-                                       std::make_shared<IterativeVelPIDController>(0, 0));
-
-  AsyncPosIntegratedController posI1(1_m);
-
-  Motor tempMotor = 1_m;
-  AsyncPosPIDController apospid1(leftEncoder, tempMotor, IterativePosPIDControllerArgs(0, 0, 0));
-  AsyncPosPIDController apospid2(leftEncoder, tempMotor, 0, 0, 0);
-
-  IterativePosPIDController pid2(0, 0, 0);
-  IterativePosPIDController pid3(0, 0, 0, 0);
-  IterativePosPIDController pid4(IterativePosPIDControllerArgs(0, 0, 0));
-  IterativePosPIDController pid5(IterativePosPIDControllerArgs(0, 0, 0, 0));
-
-  VelMath velMath1(0);
-  VelMath velMath2(0, 0);
-  VelMath velMath3(0, std::make_shared<DemaFilter>(0.0, 0.0));
-
-  IterativeVelPIDController velPid1(0, 0);
-  IterativeVelPIDController velPid2(IterativeVelPIDControllerArgs(0, 0));
-
-  ADIEncoder quad1(0, 0);
-  ADIEncoder quad2(0, 0, true);
-
-  MotorGroup mg1({1_m, 2_m});
-
-  AverageFilter<2> avgFilt1;
-  avgFilt1.filter(0);
-  avgFilt1.getOutput();
-
-  DemaFilter demaFilt1(0, 0);
-
-  EKFFilter ekfFilter1;
-  EKFFilter ekfFilter2(0);
-  EKFFilter ekfFilter3(0, 0);
-
-  EmaFilter emaFilt1(0);
-
-  MedianFilter<5> medianFilt1;
-
-  for (int i = 0; i < 10; i++) {
-    printf("%d: %1.2f\n", i, avgFilt1.filter(i));
+  {
+    ADIButton btn(2);
+    ControllerButton btn2(E_CONTROLLER_DIGITAL_A);
+    btn.isPressed();
+    btn.changed();
+    btn.changedToPressed();
+    btn.changedToReleased();
   }
 
-  Odometry odom1(std::make_shared<SkidSteerModel>(MotorGroup({1_m, 2_m}), MotorGroup({3_m, 4_m}),
-                                                  leftEncoder, rightEncoder),
-                 0, 0);
+  {
+    ADIEncoder leftEncoder(1, 2, true);
+    ADIEncoder rightEncoder(3, 4);
+    leftEncoder.get();
+  }
 
-  Timer timer1();
+  {
+    ADIUltrasonic ultra1(1, 2);
+    ultra1.get();
+  }
 
-  ControllerRunner controllerRunner;
-  AsyncPosIntegratedController testControllerRunnerController1(1_m);
-  IterativePosPIDController testControllerRunnerController2(0, 0, 0);
-  Motor controllerRunnerMotor = 1_m;
-  controllerRunner.runUntilSettled(0, testControllerRunnerController1);
-  controllerRunner.runUntilSettled(0, testControllerRunnerController2, controllerRunnerMotor);
-  controllerRunner.runUntilAtTarget(0, testControllerRunnerController1);
-  controllerRunner.runUntilAtTarget(0, testControllerRunnerController2, controllerRunnerMotor);
+  {
+    Motor mtr = 1_m;
+    Motor r_mtr = 2_rm;
+  }
+  {
+    ADIEncoder leftEncoder(1, 2, true);
+    ADIEncoder rightEncoder(3, 4);
+    ChassisControllerIntegrated int1(1_m,  // One motor on left side
+                                     2_m); // One motor on right side
 
-  SettledUtil settledUtil1;
-  settledUtil1.isSettled(0);
+    ChassisControllerIntegrated int2(MotorGroup({1_m, 2_m, 3_m}), // Three motors on left side
+                                     MotorGroup({4_m, 5_m}));     // Two motors on right side
+
+    int1.moveDistance(0); // Closed-loop control
+    int1.turnAngle(0);    // Closed-loop control
+
+    int1.forward(0);                  // Open-loop control
+    int1.rotate(0);                   // Open-loop control
+    int1.driveVector(0, 0);           // Open-loop control
+    int1.tank(0, 0);                  // Tank drive
+    int1.arcade(0, 0);                // Arcade drive
+    int1.left(0);                     // Left drive side
+    int1.right(0);                    // Right drive side
+    int1.stop();                      // Stop motors
+    auto vals = int1.getSensorVals(); // Read left and right sensors
+    int1.resetSensors();              // Set sensors to 0
+
+    ChassisControllerPID controller1(
+      std::make_shared<SkidSteerModel>(MotorGroup({1_m, 2_m}), MotorGroup({3_m, 4_m}), leftEncoder,
+                                       rightEncoder),
+      IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
+
+    ChassisControllerPID controller2(
+      std::make_shared<XDriveModel>(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder),
+      IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
+  }
+
+  {
+    ADIEncoder leftEncoder(1, 2, true);
+    ADIEncoder rightEncoder(3, 4);
+
+    // An "odometry" chassis controller adds an odometry layer running in another task which keeps
+    // track of the position of the robot in the odom frame. This means that you can tell the robot
+    // to
+    // move to an arbitrary point on the field, or turn to an absolute angle (i.e., "turn to 90
+    // degrees" will always put the robot facing east relative to the starting position)
+    OdomChassisControllerPID controller3(
+      std::make_shared<SkidSteerModel>(MotorGroup({1_m, 2_m}), MotorGroup({3_m, 4_m}), leftEncoder,
+                                       rightEncoder),
+      0, 0, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
+
+    controller3.driveToPoint(0, 0); // Drive to (0, 0) on the field
+    controller3.turnToAngle(0);     // Turn to 0 degrees
+  }
+
+  {
+    IterativePosPIDController pid1(0, 0, 0); // PID controller
+    IterativeMotorVelocityController mc1(1_m, std::make_shared<IterativeVelPIDController>(0, 0));
+    IterativeMotorVelocityController mc2(MotorGroup({1_m, 2_m}),
+                                         std::make_shared<IterativeVelPIDController>(0, 0));
+  }
+
+  { AsyncPosIntegratedController posI1(1_m); }
+
+  {
+    ADIEncoder enc(1, 2, true);
+    Motor tempMotor = 1_m;
+    AsyncPosPIDController apospid1(enc, tempMotor, IterativePosPIDControllerArgs(0, 0, 0));
+    AsyncPosPIDController apospid2(enc, tempMotor, 0, 0, 0);
+  }
+
+  {
+    IterativePosPIDController pid2(0, 0, 0);
+    IterativePosPIDController pid3(0, 0, 0, 0);
+    IterativePosPIDController pid4(IterativePosPIDControllerArgs(0, 0, 0));
+    IterativePosPIDController pid5(IterativePosPIDControllerArgs(0, 0, 0, 0));
+  }
+
+  {
+    VelMath velMath1(0);
+    VelMath velMath2(0, 0);
+    VelMath velMath3(0, std::make_shared<DemaFilter>(0.0, 0.0));
+  }
+
+  {
+    IterativeVelPIDController velPid1(0, 0);
+    IterativeVelPIDController velPid2(IterativeVelPIDControllerArgs(0, 0));
+  }
+
+  {
+    ADIEncoder quad1(0, 0);
+    ADIEncoder quad2(0, 0, true);
+  }
+
+  { MotorGroup mg1({1_m, 2_m}); }
+
+  {
+    AverageFilter<2> avgFilt1;
+    avgFilt1.filter(0);
+    avgFilt1.getOutput();
+  }
+
+  { DemaFilter demaFilt1(0, 0); }
+
+  {
+    EKFFilter ekfFilter1;
+    EKFFilter ekfFilter2(0);
+    EKFFilter ekfFilter3(0, 0);
+  }
+
+  { EmaFilter emaFilt1(0); }
+
+  { MedianFilter<5> medianFilt1; }
+
+  {
+    ADIEncoder enc(0, 0);
+    Odometry odom1(
+      std::make_shared<SkidSteerModel>(MotorGroup({1_m, 2_m}), MotorGroup({3_m, 4_m}), enc, enc), 0,
+      0);
+  }
+
+  { Timer timer1(); }
+
+  {
+    ControllerRunner controllerRunner;
+    AsyncPosIntegratedController testControllerRunnerController1(1_m);
+    IterativePosPIDController testControllerRunnerController2(0, 0, 0);
+    Motor controllerRunnerMotor = 1_m;
+    controllerRunner.runUntilSettled(0, testControllerRunnerController1);
+    controllerRunner.runUntilSettled(0, testControllerRunnerController2, controllerRunnerMotor);
+    controllerRunner.runUntilAtTarget(0, testControllerRunnerController1);
+    controllerRunner.runUntilAtTarget(0, testControllerRunnerController2, controllerRunnerMotor);
+  }
+
+  {
+    SettledUtil settledUtil1;
+    settledUtil1.isSettled(0);
+  }
 }
 
 void clawbotTutorial() {
