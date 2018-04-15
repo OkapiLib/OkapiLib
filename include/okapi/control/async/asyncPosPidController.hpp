@@ -85,9 +85,18 @@ class AsyncPosPIDController : public AsyncPositionController {
   virtual void reset() override;
 
   /**
-   * Change whether the controll is off or on. Default does nothing.
+   * Changes whether the controll is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
    */
   virtual void flipDisable() override;
+
+  /**
+   * Sets whether the controller is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
+   *
+   * @param iisDisabled whether the controller is disabled
+   */
+  virtual void flipDisable(const bool iisDisabled) override;
 
   protected:
   std::shared_ptr<ControllerInput> input;
