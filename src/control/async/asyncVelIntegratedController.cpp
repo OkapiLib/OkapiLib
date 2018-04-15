@@ -8,11 +8,20 @@
 #include "okapi/control/async/asyncVelIntegratedController.hpp"
 
 namespace okapi {
-AsyncVelIntegratedControllerArgs::AsyncVelIntegratedControllerArgs(const AbstractMotor &imotor)
+AsyncVelIntegratedControllerArgs::AsyncVelIntegratedControllerArgs(
+  std::shared_ptr<AbstractMotor> imotor)
   : motor(imotor) {
 }
 
-AsyncVelIntegratedController::AsyncVelIntegratedController(const AbstractMotor &imotor)
+AsyncVelIntegratedController::AsyncVelIntegratedController(Motor imotor)
+  : AsyncVelIntegratedController(std::make_shared<Motor>(imotor)) {
+}
+
+AsyncVelIntegratedController::AsyncVelIntegratedController(MotorGroup imotor)
+  : AsyncVelIntegratedController(std::make_shared<MotorGroup>(imotor)) {
+}
+
+AsyncVelIntegratedController::AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor)
   : motor(imotor) {
 }
 
@@ -22,12 +31,12 @@ AsyncVelIntegratedController::AsyncVelIntegratedController(
 }
 
 void AsyncVelIntegratedController::setTarget(const double itarget) {
-  motor.moveVelocity(itarget);
+  motor->moveVelocity(itarget);
   lastTarget = itarget;
 }
 
 double AsyncVelIntegratedController::getError() const {
-  return lastTarget - motor.getActualVelocity();
+  return lastTarget - motor->getActualVelocity();
 }
 
 bool AsyncVelIntegratedController::isSettled() {

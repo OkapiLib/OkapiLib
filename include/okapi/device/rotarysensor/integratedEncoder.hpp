@@ -18,7 +18,7 @@ class IntegratedEncoder : public RotarySensor {
    *
    * @param imotor motor
    */
-  IntegratedEncoder(const pros::Motor &imotor);
+  IntegratedEncoder(pros::Motor imotor);
 
   /**
    * Get the current sensor value.
@@ -43,7 +43,7 @@ class IntegratedEncoder : public RotarySensor {
   virtual double controllerGet() override;
 
   protected:
-  const pros::Motor &motor;
+  pros::Motor motor;
 };
 } // namespace okapi
 

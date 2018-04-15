@@ -14,26 +14,30 @@
 #include "okapi/control/controllerOutput.hpp"
 #include "okapi/control/iterative/iterativePosPidController.hpp"
 #include "okapi/device/motor/abstractMotor.hpp"
+#include <memory>
 
 namespace okapi {
 class AsyncPosPIDController;
 
 class AsyncPosPIDControllerArgs : public AsyncPositionControllerArgs {
   public:
-  AsyncPosPIDControllerArgs(ControllerInput &iinput, ControllerOutput &ioutput,
+  AsyncPosPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
+                            std::shared_ptr<ControllerOutput> ioutput,
                             const IterativePosPIDControllerArgs &iparams);
 
-  ControllerInput &input;
-  ControllerOutput &output;
+  std::shared_ptr<ControllerInput> input;
+  std::shared_ptr<ControllerOutput> output;
   const IterativePosPIDControllerArgs &params;
 };
 
 class AsyncPosPIDController : public AsyncPositionController {
   public:
-  AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
+  AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
+                        std::shared_ptr<ControllerOutput> ioutput,
                         const IterativePosPIDControllerArgs &iparams);
 
-  AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput, const double ikP,
+  AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
+                        std::shared_ptr<ControllerOutput> ioutput, const double ikP,
                         const double ikI, const double ikD, const double ikBias = 0);
 
   /**
@@ -86,8 +90,8 @@ class AsyncPosPIDController : public AsyncPositionController {
   virtual void flipDisable() override;
 
   protected:
-  ControllerInput &input;
-  ControllerOutput &output;
+  std::shared_ptr<ControllerInput> input;
+  std::shared_ptr<ControllerOutput> output;
   IterativePosPIDController controller;
   pros::Task task;
 

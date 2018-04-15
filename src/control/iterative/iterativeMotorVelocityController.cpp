@@ -9,12 +9,22 @@
 
 namespace okapi {
 IterativeMotorVelocityControllerArgs::IterativeMotorVelocityControllerArgs(
-  const AbstractMotor &imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+  std::shared_ptr<AbstractMotor> imotor, std::shared_ptr<IterativeVelocityController> icontroller)
   : motor(imotor), controller(icontroller) {
 }
 
 IterativeMotorVelocityController::IterativeMotorVelocityController(
-  const AbstractMotor &imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+  Motor imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+  : IterativeMotorVelocityController(std::make_shared<Motor>(imotor), icontroller) {
+}
+
+IterativeMotorVelocityController::IterativeMotorVelocityController(
+  MotorGroup imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+  : IterativeMotorVelocityController(std::make_shared<MotorGroup>(imotor), icontroller) {
+}
+
+IterativeMotorVelocityController::IterativeMotorVelocityController(
+  std::shared_ptr<AbstractMotor> imotor, std::shared_ptr<IterativeVelocityController> icontroller)
   : motor(imotor), controller(icontroller) {
 }
 
@@ -25,7 +35,7 @@ IterativeMotorVelocityController::IterativeMotorVelocityController(
 
 double IterativeMotorVelocityController::step(const double ireading) {
   controller->step(ireading);
-  motor.moveVelocity(static_cast<int>(controller->getOutput()));
+  motor->moveVelocity(static_cast<int>(controller->getOutput()));
   return controller->getOutput();
 }
 
