@@ -245,8 +245,8 @@ void XDriveModel::right(const double ispeed) const {
   bottomRightMotor->moveVelocity(ispeed * maxOutput);
 }
 
-std::valarray<int> XDriveModel::getSensorVals() const {
-  return std::valarray<int>{leftSensor->get(), rightSensor->get()};
+std::valarray<std::int32_t> XDriveModel::getSensorVals() const {
+  return std::valarray<std::int32_t>{leftSensor->get(), rightSensor->get()};
 }
 
 void XDriveModel::resetSensors() const {

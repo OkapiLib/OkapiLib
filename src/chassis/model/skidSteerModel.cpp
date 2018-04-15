@@ -190,8 +190,8 @@ void SkidSteerModel::right(const double ispeed) const {
   rightSideMotor->moveVelocity(ispeed * maxOutput);
 }
 
-std::valarray<int> SkidSteerModel::getSensorVals() const {
-  return std::valarray<int>{leftSensor->get(), rightSensor->get()};
+std::valarray<std::int32_t> SkidSteerModel::getSensorVals() const {
+  return std::valarray<std::int32_t>{leftSensor->get(), rightSensor->get()};
 }
 
 void SkidSteerModel::resetSensors() const {

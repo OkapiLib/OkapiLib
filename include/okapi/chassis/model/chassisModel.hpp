@@ -96,7 +96,7 @@ class ChassisModel {
    *
    * @return sensor readings (format is implementation dependent)
    */
-  virtual std::valarray<int> getSensorVals() const = 0;
+  virtual std::valarray<std::int32_t> getSensorVals() const = 0;
 
   /**
    * Reset the sensors to their zero point.
