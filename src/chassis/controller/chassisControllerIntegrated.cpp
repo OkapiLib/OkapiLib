@@ -97,12 +97,9 @@ void ChassisControllerIntegrated::turnAngle(float idegTarget) {
   leftController.setTarget(newTarget);
   rightController.setTarget(-1 * newTarget);
 
-  SettledUtil leftControllerSettled;
-  SettledUtil rightControllerSettled;
   std::uint32_t prevWakeTime = pros::millis();
 
-  while (!leftControllerSettled.isSettled(leftController.getError()) &&
-         !rightControllerSettled.isSettled(rightController.getError())) {
+  while (!leftController.isSettled() && !rightController.isSettled()) {
     pros::c::task_delay_until(&prevWakeTime, 10);
   }
 

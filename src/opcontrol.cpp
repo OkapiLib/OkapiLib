@@ -505,11 +505,14 @@ void opcontrol() {
 
   MotorGroup leftMotors({19_m, 20_m});
   MotorGroup rightMotors({13_rm, 14_rm});
+  Motor armMotor = 15_m;
+
   ChassisControllerIntegrated robotChassisController(leftMotors, rightMotors);
 
   Controller controller;
   ControllerButton btn1(E_CONTROLLER_DIGITAL_A);
   ControllerButton btn2(E_CONTROLLER_DIGITAL_B);
+  ControllerButton btn3(E_CONTROLLER_DIGITAL_Y);
 
   while (true) {
     printf("loop\n");
@@ -524,6 +527,11 @@ void opcontrol() {
     if (btn2.changedToPressed()) {
       printf("turn angle\n");
       robotChassisController.turnAngle(1800);
+    }
+
+    if (btn3.changedToPressed()) {
+      printf("move arm\n");
+      armMotor.moveRelative(-10, 127);
     }
 
     pros::c::task_delay(100);
