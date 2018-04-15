@@ -31,7 +31,12 @@ AsyncVelIntegratedController::AsyncVelIntegratedController(
 }
 
 void AsyncVelIntegratedController::setTarget(const double itarget) {
-  motor->moveVelocity(itarget);
+  hasFirstTarget = true;
+
+  if (!controllerIsDisabled) {
+    motor->moveVelocity(itarget);
+  }
+
   lastTarget = itarget;
 }
 
@@ -44,6 +49,30 @@ bool AsyncVelIntegratedController::isSettled() {
 }
 
 void AsyncVelIntegratedController::reset() {
-  // Don't have to do anything
+  hasFirstTarget = false;
+}
+
+void AsyncVelIntegratedController::flipDisable() {
+  controllerIsDisabled = !controllerIsDisabled;
+  resumeMovement();
+}
+
+void AsyncVelIntegratedController::flipDisable(const bool iisDisabled) {
+  controllerIsDisabled = iisDisabled;
+  resumeMovement();
+}
+
+bool AsyncVelIntegratedController::isDisabled() const {
+  return controllerIsDisabled;
+}
+
+void AsyncVelIntegratedController::resumeMovement() {
+  if (controllerIsDisabled) {
+    motor->moveVoltage(0);
+  } else {
+    if (hasFirstTarget) {
+      setTarget(lastTarget);
+    }
+  }
 }
 } // namespace okapi

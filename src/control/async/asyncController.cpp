@@ -21,7 +21,4 @@ void AsyncController::setSampleTime(const std::uint32_t isampleTime) {
 
 void AsyncController::setOutputLimits(double imax, double imin) {
 }
-
-void AsyncController::flipDisable() {
-}
 } // namespace okapi

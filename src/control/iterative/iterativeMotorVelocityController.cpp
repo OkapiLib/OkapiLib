@@ -75,6 +75,14 @@ void IterativeMotorVelocityController::flipDisable() {
   controller->flipDisable();
 }
 
+void IterativeMotorVelocityController::flipDisable(const bool iisDisabled) {
+  controller->flipDisable(iisDisabled);
+}
+
+bool IterativeMotorVelocityController::isDisabled() const {
+  return controller->isDisabled();
+}
+
 std::uint32_t IterativeMotorVelocityController::getSampleTime() const {
   return controller->getSampleTime();
 }

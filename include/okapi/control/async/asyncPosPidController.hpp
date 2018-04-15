@@ -98,6 +98,13 @@ class AsyncPosPIDController : public AsyncPositionController {
    */
   virtual void flipDisable(const bool iisDisabled) override;
 
+  /**
+   * Returns whether the controller is currently disabled.
+   *
+   * @return whether the controller is currently disabled
+   */
+  virtual bool isDisabled() const override;
+
   protected:
   std::shared_ptr<ControllerInput> input;
   std::shared_ptr<ControllerOutput> output;

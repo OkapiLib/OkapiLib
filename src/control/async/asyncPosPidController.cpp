@@ -73,7 +73,12 @@ void AsyncPosPIDController::reset() {
 void AsyncPosPIDController::flipDisable() {
   controller.flipDisable();
 }
+
 void AsyncPosPIDController::flipDisable(const bool iisDisabled) {
   controller.flipDisable(iisDisabled);
+}
+
+bool AsyncPosPIDController::isDisabled() const {
+  return controller.isDisabled();
 }
 } // namespace okapi
