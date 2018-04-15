@@ -49,6 +49,7 @@ bool AsyncPosIntegratedController::isSettled() {
 }
 
 void AsyncPosIntegratedController::reset() {
+  motor->tarePosition();
   hasFirstTarget = false;
 }
 
