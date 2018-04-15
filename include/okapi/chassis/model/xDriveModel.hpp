@@ -10,6 +10,9 @@
 
 #include "okapi/chassis/model/chassisModel.hpp"
 #include "okapi/device/motor/abstractMotor.hpp"
+#include "okapi/device/motor/motor.hpp"
+#include "okapi/device/motor/motorGroup.hpp"
+#include "okapi/device/rotarysensor/adiEncoder.hpp"
 #include "okapi/device/rotarysensor/rotarySensor.hpp"
 
 namespace okapi {
@@ -38,6 +41,37 @@ class XDriveModelArgs : public ChassisModelArgs {
 
 class XDriveModel : public ChassisModel {
   public:
+  /**
+   * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
+   * +127, the robot should move forward in a straight line.
+   *
+   * This constructor infers the two sensors from the top left and top right motors (using the
+   * integrated encoders).
+   *
+   * @param itopLeftMotor top left motor
+   * @param itopRightMotor top right motor
+   * @param ibottomRightMotor bottom right motor
+   * @param ibottomLeftMotor bottom left motor
+   */
+  XDriveModel(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
+              Motor ibottomLeftMotor, const double imaxOutput = 127);
+
+  /**
+   * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
+   * +127, the robot should move forward in a straight line.
+   *
+   * This constructor infers the two sensors from the top left and top right motors (using the
+   * integrated encoders).
+   *
+   * @param itopLeftMotor top left motor
+   * @param itopRightMotor top right motor
+   * @param ibottomRightMotor bottom right motor
+   * @param ibottomLeftMotor bottom left motor
+   */
+  XDriveModel(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
+              Motor ibottomLeftMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
+              const double imaxOutput = 127);
+
   /**
    * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
    * +127, the robot should move forward in a straight line.

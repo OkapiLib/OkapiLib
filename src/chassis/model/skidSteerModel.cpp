@@ -34,6 +34,24 @@ SkidSteerModelArgs::SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideM
     maxOutput(imaxOutput) {
 }
 
+SkidSteerModel::SkidSteerModel(Motor ileftSideMotor, Motor irightSideMotor, const double imaxOutput)
+  : SkidSteerModel(std::make_shared<Motor>(ileftSideMotor),
+                   std::make_shared<Motor>(irightSideMotor), imaxOutput) {
+}
+
+SkidSteerModel::SkidSteerModel(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+                               const double imaxOutput)
+  : SkidSteerModel(std::make_shared<MotorGroup>(ileftSideMotor),
+                   std::make_shared<MotorGroup>(irightSideMotor), imaxOutput) {
+}
+
+SkidSteerModel::SkidSteerModel(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+                               ADIEncoder ileftEnc, ADIEncoder irightEnc, const double imaxOutput)
+  : SkidSteerModel(
+      std::make_shared<MotorGroup>(ileftSideMotor), std::make_shared<MotorGroup>(irightSideMotor),
+      std::make_shared<ADIEncoder>(ileftEnc), std::make_shared<ADIEncoder>(irightEnc), imaxOutput) {
+}
+
 SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                std::shared_ptr<AbstractMotor> irightSideMotor,
                                std::shared_ptr<RotarySensor> ileftEnc,
