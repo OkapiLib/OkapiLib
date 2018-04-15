@@ -44,17 +44,6 @@ class AsyncController : public ClosedLoopController {
    * @param imin min output
    */
   virtual void setOutputLimits(double imax, double imin);
-
-  /**
-   * Resets the controller so it can start from 0 again properly. Keeps configuration from
-   * before.
-   */
-  virtual void reset() = 0;
-
-  /**
-   * Change whether the controll is off or on. Default does nothing.
-   */
-  virtual void flipDisable();
 };
 } // namespace okapi
 

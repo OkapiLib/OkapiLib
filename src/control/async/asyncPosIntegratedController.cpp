@@ -31,7 +31,12 @@ AsyncPosIntegratedController::AsyncPosIntegratedController(
 }
 
 void AsyncPosIntegratedController::setTarget(const double itarget) {
-  motor->moveRelative(itarget, 127);
+  hasFirstTarget = true;
+
+  if (!controllerIsDisabled) {
+    motor->moveRelative(itarget, 127);
+  }
+
   lastTarget = itarget;
 }
 
@@ -44,6 +49,30 @@ bool AsyncPosIntegratedController::isSettled() {
 }
 
 void AsyncPosIntegratedController::reset() {
-  motor->tarePosition();
+  hasFirstTarget = false;
+}
+
+void AsyncPosIntegratedController::flipDisable() {
+  controllerIsDisabled = !controllerIsDisabled;
+  resumeMovement();
+}
+
+void AsyncPosIntegratedController::flipDisable(const bool iisDisabled) {
+  controllerIsDisabled = iisDisabled;
+  resumeMovement();
+}
+
+bool AsyncPosIntegratedController::isDisabled() const {
+  return controllerIsDisabled;
+}
+
+void AsyncPosIntegratedController::resumeMovement() {
+  if (!controllerIsDisabled) {
+    motor->moveVoltage(0);
+  } else {
+    if (hasFirstTarget) {
+      setTarget(lastTarget);
+    }
+  }
 }
 } // namespace okapi

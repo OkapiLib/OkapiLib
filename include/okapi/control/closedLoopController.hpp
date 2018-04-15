@@ -37,6 +37,33 @@ class ClosedLoopController {
    * @return whether the controller is settled
    */
   virtual bool isSettled() = 0;
+
+  /**
+   * Resets the controller so it can start from 0 again properly. Keeps configuration from
+   * before.
+   */
+  virtual void reset() = 0;
+
+  /**
+   * Changes whether the controll is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
+   */
+  virtual void flipDisable() = 0;
+
+  /**
+   * Sets whether the controller is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
+   *
+   * @param iisDisabled whether the controller is disabled
+   */
+  virtual void flipDisable(const bool iisDisabled) = 0;
+
+  /**
+   * Returns whether the controller is currently disabled.
+   *
+   * @return whether the controller is currently disabled
+   */
+  virtual bool isDisabled() const = 0;
 };
 }
 

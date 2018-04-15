@@ -58,17 +58,6 @@ class IterativeController : public ClosedLoopController {
   virtual void setOutputLimits(double imax, double imin);
 
   /**
-   * Resets the controller so it can start from 0 again properly. Keeps configuration from
-   * before.
-   */
-  virtual void reset();
-
-  /**
-   * Change whether the controll is off or on.
-   */
-  virtual void flipDisable();
-
-  /**
    * Get the last set sample time. Default is 10.
    *
    * @return sample time

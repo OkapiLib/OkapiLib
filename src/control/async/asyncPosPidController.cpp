@@ -31,7 +31,9 @@ void AsyncPosPIDController::step() {
   std::uint32_t prevTime = 0;
 
   while (true) {
-    output->controllerSet(controller.step(input->controllerGet()));
+    if (!controller.isDisabled()) {
+      output->controllerSet(controller.step(input->controllerGet()));
+    }
     task.delay_until(&prevTime, controller.getSampleTime());
   }
 }
@@ -70,5 +72,8 @@ void AsyncPosPIDController::reset() {
 
 void AsyncPosPIDController::flipDisable() {
   controller.flipDisable();
+}
+void AsyncPosPIDController::flipDisable(const bool iisDisabled) {
+  controller.flipDisable(iisDisabled);
 }
 } // namespace okapi

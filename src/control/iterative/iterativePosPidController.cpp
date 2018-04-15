@@ -160,6 +160,14 @@ void IterativePosPIDController::flipDisable() {
   isOn = !isOn;
 }
 
+void IterativePosPIDController::flipDisable(const bool iisDisabled) {
+  isOn = !iisDisabled;
+}
+
+bool IterativePosPIDController::isDisabled() const {
+  return !isOn;
+}
+
 std::uint32_t IterativePosPIDController::getSampleTime() const {
   return sampleTime;
 }

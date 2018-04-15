@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/chassis/controller/chassisControllerIntegrated.hpp"
+#include "okapi/control/util/settledUtil.hpp"
 #include "okapi/util/timer.hpp"
 
 namespace okapi {
@@ -69,49 +70,43 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
 void ChassisControllerIntegrated::moveDistance(const int itarget) {
   leftController.reset();
   rightController.reset();
+  leftController.flipDisable(false);
+  rightController.flipDisable(false);
 
-  int distanceElapsed = 0, lastDistance = 0;
-  std::uint32_t prevWakeTime = pros::millis();
-  bool atTarget = false;
-  const int atTargetDistance = 15;
-  const int threshold = 2;
-
-  const auto encStartVals = model->getSensorVals();
-  std::valarray<int> encVals{0, 0};
-
-  Timer atTargetTimer;
-  const std::uint32_t timeoutPeriod = 250;
-
-  const double newTarget = (itarget + lastTarget) * straightScale;
+  const double newTarget = itarget * straightScale;
   leftController.setTarget(newTarget);
   rightController.setTarget(newTarget);
 
-  while (!atTarget) {
-    encVals = model->getSensorVals() - encStartVals;
-    distanceElapsed = static_cast<int>((encVals[0] + encVals[1]) / 2.0);
+  std::uint32_t prevWakeTime = pros::millis();
 
-    if (abs(itarget - distanceElapsed) <= atTargetDistance &&
-        abs(distanceElapsed - lastDistance) <= threshold)
-      atTargetTimer.placeHardMark();
-    else
-      atTargetTimer.clearHardMark();
-
-    lastDistance = distanceElapsed;
-
-    if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod)
-      atTarget = true;
-
+  while (!leftController.isSettled() && !rightController.isSettled()) {
     pros::c::task_delay_until(&prevWakeTime, 10);
   }
+
+  leftController.flipDisable(true);
+  rightController.flipDisable(true);
 }
 
 void ChassisControllerIntegrated::turnAngle(float idegTarget) {
-  lastTarget = 0;
   leftController.reset();
   rightController.reset();
+  leftController.flipDisable(false);
+  rightController.flipDisable(false);
 
   const double newTarget = idegTarget * turnScale;
   leftController.setTarget(newTarget);
   rightController.setTarget(-1 * newTarget);
+
+  SettledUtil leftControllerSettled;
+  SettledUtil rightControllerSettled;
+  std::uint32_t prevWakeTime = pros::millis();
+
+  while (!leftControllerSettled.isSettled(leftController.getError()) &&
+         !rightControllerSettled.isSettled(rightController.getError())) {
+    pros::c::task_delay_until(&prevWakeTime, 10);
+  }
+
+  leftController.flipDisable(true);
+  rightController.flipDisable(true);
 }
 } // namespace okapi

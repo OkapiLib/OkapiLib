@@ -60,10 +60,39 @@ class AsyncPosIntegratedController : public AsyncPositionController {
    */
   virtual void reset() override;
 
+  /**
+   * Changes whether the controll is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
+   */
+  virtual void flipDisable() override;
+
+  /**
+   * Sets whether the controller is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
+   *
+   * @param iisDisabled whether the controller is disabled
+   */
+  virtual void flipDisable(const bool iisDisabled) override;
+
+  /**
+   * Returns whether the controller is currently disabled.
+   *
+   * @return whether the controller is currently disabled
+   */
+  virtual bool isDisabled() const override;
+
   protected:
   std::shared_ptr<AbstractMotor> motor;
   double lastTarget = 0;
+  bool controllerIsDisabled = false;
+  bool hasFirstTarget = false;
   SettledUtil settledUtil;
+
+  /**
+   * Resumes moving after the controller is reset. Should not cause movement if the controller is
+   * turned off, reset, and turned back on.
+   */
+  virtual void resumeMovement();
 };
 } // namespace okapi
 
