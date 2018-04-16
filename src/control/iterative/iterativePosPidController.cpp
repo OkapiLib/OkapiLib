@@ -118,15 +118,16 @@ double IterativePosPIDController::step(const double inewReading) {
 
       integral = std::clamp(integral, integralMin, integralMax);
 
-      derivative =
-        inewReading -
-        lastReading; // Derivative over measurement to eliminate derivative kick on setpoint change
+      // Derivative over measurement to eliminate derivative kick on setpoint change
+      derivative = inewReading - lastReading;
 
       output = std::clamp(kP * error + integral - kD * derivative + kBias, outputMin, outputMax);
 
       lastReading = inewReading;
       lastError = error;
       lastTime = now; // Important that we only assign lastTime if dt >= sampleTime
+
+      settledUtil.isSettled(error);
     }
   } else {
     output = 0; // Controller is off so write 0

@@ -81,6 +81,8 @@ double IterativeVelPIDController::step(const double inewReading) {
 
       lastError = error;
       lastTime = now; // Important that we only assign lastTime if dt >= sampleTime
+
+      settledUtil.isSettled(error);
     }
 
     return output;
