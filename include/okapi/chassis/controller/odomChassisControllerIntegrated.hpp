@@ -33,6 +33,44 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
    * @param iturnScale turn scale
    * @param imoveThreshold minimum length movement
    */
+  OdomChassisControllerIntegrated(Motor ileftSideMotor, Motor irightSideMotor, const double iscale,
+                                  const double iturnScale, const float imoveThreshold = 10);
+
+  /**
+   * Odometry based chassis controller that moves using the V5 motor's integrated control. Spins up
+   * a task at the default priority plus 1 for odometry when constructed.
+   *
+   * This constructor uses the V5 motor's integrated encoders.
+   *
+   * Moves the robot around in the odom frame. Instead of telling the robot to drive forward or
+   * turn some amount, you instead tell it to drive to a specific point on the field or turn to
+   * a specific angle, relative to its starting position.
+   *
+   * @param ileftSideMotor left side motor
+   * @param irightSideMotor right side motor
+   * @param iscale straight scale
+   * @param iturnScale turn scale
+   * @param imoveThreshold minimum length movement
+   */
+  OdomChassisControllerIntegrated(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+                                  const double iscale, const double iturnScale,
+                                  const float imoveThreshold = 10);
+  /**
+   * Odometry based chassis controller that moves using the V5 motor's integrated control. Spins up
+   * a task at the default priority plus 1 for odometry when constructed.
+   *
+   * This constructor uses the V5 motor's integrated encoders.
+   *
+   * Moves the robot around in the odom frame. Instead of telling the robot to drive forward or
+   * turn some amount, you instead tell it to drive to a specific point on the field or turn to
+   * a specific angle, relative to its starting position.
+   *
+   * @param ileftSideMotor left side motor
+   * @param irightSideMotor right side motor
+   * @param iscale straight scale
+   * @param iturnScale turn scale
+   * @param imoveThreshold minimum length movement
+   */
   OdomChassisControllerIntegrated(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                   std::shared_ptr<AbstractMotor> irightSideMotor,
                                   const double iscale, const double iturnScale,

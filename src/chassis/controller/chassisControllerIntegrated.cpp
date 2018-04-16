@@ -10,19 +10,6 @@
 #include "okapi/util/timer.hpp"
 
 namespace okapi {
-ChassisControllerIntegrated::ChassisControllerIntegrated(
-  std::shared_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
-  const AsyncPosIntegratedControllerArgs &irightControllerArgs, const double istraightScale,
-  const double iturnScale)
-  : ChassisController(imodel),
-    leftController(ileftControllerArgs),
-    rightController(irightControllerArgs),
-    lastTarget(0),
-    straightScale(istraightScale),
-    turnScale(iturnScale) {
-  setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
-}
-
 ChassisControllerIntegrated::ChassisControllerIntegrated(Motor ileftSideMotor,
                                                          Motor irightSideMotor,
                                                          const double istraightScale,
@@ -61,6 +48,19 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
                                                     ibottomRightMotor, ibottomLeftMotor)),
     leftController(itopLeftMotor),
     rightController(itopRightMotor),
+    lastTarget(0),
+    straightScale(istraightScale),
+    turnScale(iturnScale) {
+  setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
+}
+
+ChassisControllerIntegrated::ChassisControllerIntegrated(
+  std::shared_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
+  const AsyncPosIntegratedControllerArgs &irightControllerArgs, const double istraightScale,
+  const double iturnScale)
+  : ChassisController(imodel),
+    leftController(ileftControllerArgs),
+    rightController(irightControllerArgs),
     lastTarget(0),
     straightScale(istraightScale),
     turnScale(iturnScale) {

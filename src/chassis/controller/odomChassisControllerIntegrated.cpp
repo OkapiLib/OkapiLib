@@ -10,6 +10,26 @@
 #include <cmath>
 
 namespace okapi {
+OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(Motor ileftSideMotor,
+                                                                 Motor irightSideMotor,
+                                                                 const double iscale,
+                                                                 const double iturnScale,
+                                                                 const float imoveThreshold)
+  : OdomChassisControllerIntegrated(std::make_shared<Motor>(ileftSideMotor),
+                                    std::make_shared<Motor>(irightSideMotor), iscale, iturnScale,
+                                    imoveThreshold) {
+}
+
+OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(MotorGroup ileftSideMotor,
+                                                                 MotorGroup irightSideMotor,
+                                                                 const double iscale,
+                                                                 const double iturnScale,
+                                                                 const float imoveThreshold)
+  : OdomChassisControllerIntegrated(std::make_shared<MotorGroup>(ileftSideMotor),
+                                    std::make_shared<MotorGroup>(irightSideMotor), iscale,
+                                    iturnScale, imoveThreshold) {
+}
+
 OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
   std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
   const double iscale, const double iturnScale, const float imoveThreshold)
