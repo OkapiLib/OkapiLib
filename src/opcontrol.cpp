@@ -526,7 +526,7 @@ void opcontrol() {
 
     if (btn2.changedToPressed()) {
       printf("turn angle\n");
-      robotChassisController.turnAngle(1800);
+      robotChassisController.turnAngle(1512);
     }
 
     if (btn3.changedToPressed()) {
