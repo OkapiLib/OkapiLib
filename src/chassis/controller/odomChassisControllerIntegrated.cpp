@@ -72,11 +72,11 @@ void OdomChassisControllerIntegrated::driveToPoint(const float ix, const float i
     daa.length *= -1;
   }
 
-  if (std::abs(daa.theta) > 1) {
+  if (std::fabs(daa.theta) > 1) {
     ChassisControllerIntegrated::turnAngle(daa.theta);
   }
 
-  if (std::abs(daa.length - ioffset) > moveThreshold) {
+  if (std::fabs(daa.length - ioffset) > moveThreshold) {
     ChassisControllerIntegrated::moveDistance(static_cast<int>(daa.length - ioffset));
   }
 }

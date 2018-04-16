@@ -499,6 +499,50 @@ void clawbotTutorial() {
   }
 }
 
+void odomChassisControllerTest() {
+  using namespace okapi;
+
+  MotorGroup leftMotors({19_m, 20_m});
+  MotorGroup rightMotors({13_rm, 14_rm});
+
+  OdomChassisControllerIntegrated robotChassisController(
+    leftMotors, rightMotors, 143.239449 * inchToMM, 16.875 * degreeToRadian);
+
+  Controller controller;
+  ControllerButton btn1(E_CONTROLLER_DIGITAL_A);
+  ControllerButton btn2(E_CONTROLLER_DIGITAL_B);
+  ControllerButton btn3(E_CONTROLLER_DIGITAL_Y);
+  ControllerButton btn4(E_CONTROLLER_DIGITAL_X);
+
+  while (true) {
+    printf("loop\n");
+    robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                                  controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
+
+    if (btn1.changedToPressed()) {
+      printf("move distance\n");
+      robotChassisController.moveDistance(12);
+    }
+
+    if (btn2.changedToPressed()) {
+      printf("turn angle\n");
+      robotChassisController.turnAngle(90);
+    }
+
+    if (btn3.changedToPressed()) {
+      printf("move arm\n");
+      robotChassisController.driveToPoint(0, 0);
+    }
+
+    if (btn4.changedToPressed()) {
+      printf("autonomous routine\n");
+      robotChassisController.turnToAngle(90);
+    }
+
+    pros::c::task_delay(100);
+  }
+}
+
 void opcontrol() {
   using namespace okapi;
   pros::c::task_delay(100);
