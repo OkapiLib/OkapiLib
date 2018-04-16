@@ -513,6 +513,7 @@ void opcontrol() {
   ControllerButton btn1(E_CONTROLLER_DIGITAL_A);
   ControllerButton btn2(E_CONTROLLER_DIGITAL_B);
   ControllerButton btn3(E_CONTROLLER_DIGITAL_Y);
+  ControllerButton btn4(E_CONTROLLER_DIGITAL_X);
 
   while (true) {
     printf("loop\n");
@@ -532,6 +533,14 @@ void opcontrol() {
     if (btn3.changedToPressed()) {
       printf("move arm\n");
       armMotor.moveRelative(-10, 127);
+    }
+
+    if (btn4.changedToPressed()) {
+      printf("autonomous routine\n");
+      for (int i = 0; i < 4; i++) {
+        robotChassisController.moveDistance(12);
+        robotChassisController.turnAngle(90);
+      }
     }
 
     pros::c::task_delay(100);
