@@ -10,8 +10,6 @@
 namespace okapi {
 AsyncControllerArgs::~AsyncControllerArgs() = default;
 
-AsyncController::~AsyncController() = default;
-
 double AsyncController::getOutput() const {
   return 0;
 }

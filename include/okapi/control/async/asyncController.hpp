@@ -23,8 +23,6 @@ class AsyncControllerArgs {
  */
 class AsyncController : public ClosedLoopController {
   public:
-  virtual ~AsyncController();
-
   /**
    * Returns the last calculated output of the controller. Default is 0.
    */
