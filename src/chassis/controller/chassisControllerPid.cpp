@@ -10,16 +10,22 @@
 #include <cmath>
 
 namespace okapi {
-ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
+ChassisControllerPID::ChassisControllerPID(Motor ileftSideMotor, Motor irightSideMotor,
                                            const IterativePosPIDControllerArgs &idistanceArgs,
                                            const IterativePosPIDControllerArgs &iangleArgs,
                                            const double istraightScale, const double iturnScale)
-  : ChassisController(imodel),
-    distancePid(idistanceArgs),
-    anglePid(iangleArgs),
-    straightScale(istraightScale),
-    turnScale(iturnScale) {
-  setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
+  : ChassisControllerPID(std::make_shared<Motor>(ileftSideMotor),
+                         std::make_shared<Motor>(irightSideMotor), idistanceArgs, iangleArgs,
+                         istraightScale, iturnScale) {
+}
+
+ChassisControllerPID::ChassisControllerPID(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+                                           const IterativePosPIDControllerArgs &idistanceArgs,
+                                           const IterativePosPIDControllerArgs &iangleArgs,
+                                           const double istraightScale, const double iturnScale)
+  : ChassisControllerPID(std::make_shared<MotorGroup>(ileftSideMotor),
+                         std::make_shared<MotorGroup>(irightSideMotor), idistanceArgs, iangleArgs,
+                         istraightScale, iturnScale) {
 }
 
 ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> ileftSideMotor,
@@ -44,6 +50,18 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> itopLe
                                            const double istraightScale, const double iturnScale)
   : ChassisController(std::make_shared<XDriveModel>(itopLeftMotor, itopRightMotor,
                                                     ibottomRightMotor, ibottomLeftMotor)),
+    distancePid(idistanceArgs),
+    anglePid(iangleArgs),
+    straightScale(istraightScale),
+    turnScale(iturnScale) {
+  setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
+}
+
+ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
+                                           const IterativePosPIDControllerArgs &idistanceArgs,
+                                           const IterativePosPIDControllerArgs &iangleArgs,
+                                           const double istraightScale, const double iturnScale)
+  : ChassisController(imodel),
     distancePid(idistanceArgs),
     anglePid(iangleArgs),
     straightScale(istraightScale),
