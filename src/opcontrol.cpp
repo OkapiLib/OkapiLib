@@ -507,7 +507,7 @@ void opcontrol() {
   MotorGroup rightMotors({13_rm, 14_rm});
   Motor armMotor = 15_m;
 
-  ChassisControllerIntegrated robotChassisController(leftMotors, rightMotors);
+  ChassisControllerIntegrated robotChassisController(leftMotors, rightMotors, 143.239449, 16.875);
 
   Controller controller;
   ControllerButton btn1(E_CONTROLLER_DIGITAL_A);
@@ -521,12 +521,12 @@ void opcontrol() {
 
     if (btn1.changedToPressed()) {
       printf("move distance\n");
-      robotChassisController.moveDistance(1800);
+      robotChassisController.moveDistance(12);
     }
 
     if (btn2.changedToPressed()) {
       printf("turn angle\n");
-      robotChassisController.turnAngle(1512);
+      robotChassisController.turnAngle(90);
     }
 
     if (btn3.changedToPressed()) {
