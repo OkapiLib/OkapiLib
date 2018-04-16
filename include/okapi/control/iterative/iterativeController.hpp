@@ -22,8 +22,6 @@ class IterativeControllerArgs {
  */
 class IterativeController : public ClosedLoopController {
   public:
-  virtual ~IterativeController();
-
   /**
    * Do one iteration of the controller. Outputs in the range [-1, 1]
    *
