@@ -34,7 +34,7 @@ void AsyncPosIntegratedController::setTarget(const double itarget) {
   hasFirstTarget = true;
 
   if (!controllerIsDisabled) {
-    motor->moveRelative(itarget, 127);
+    motor->moveAbsolute(itarget, 127);
   }
 
   lastTarget = itarget;
@@ -49,7 +49,6 @@ bool AsyncPosIntegratedController::isSettled() {
 }
 
 void AsyncPosIntegratedController::reset() {
-  motor->tarePosition();
   hasFirstTarget = false;
 }
 
