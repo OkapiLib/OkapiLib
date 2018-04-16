@@ -519,6 +519,9 @@ void odomChassisControllerTest() {
     robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
                                   controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
 
+    const auto state = robotChassisController.getState();
+    printf("state: x: %1.2f, y: %1.2f, theta: %1.2f\n", state.x, state.y, state.theta);
+
     if (btn1.changedToPressed()) {
       printf("move distance\n");
       robotChassisController.moveDistance(12);
