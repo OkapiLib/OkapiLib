@@ -505,8 +505,8 @@ void odomChassisControllerTest() {
   MotorGroup leftMotors({19_m, 20_m});
   MotorGroup rightMotors({13_rm, 14_rm});
 
-  OdomChassisControllerIntegrated robotChassisController(
-    leftMotors, rightMotors, 143.239449 * inchToMM, 16.875 * degreeToRadian);
+  OdomChassisControllerIntegrated robotChassisController(leftMotors, rightMotors, 0.176358584,
+                                                         0.334183607 / 100);
 
   Controller controller;
   ControllerButton btn1(E_CONTROLLER_DIGITAL_A);
@@ -520,7 +520,8 @@ void odomChassisControllerTest() {
                                   controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
 
     const auto state = robotChassisController.getState();
-    printf("state: x: %1.2f, y: %1.2f, theta: %1.2f\n", state.x, state.y, state.theta);
+    printf("state: x: %1.2f, y: %1.2f, theta: %1.2f\n", state.x * mmToInch, state.y * mmToInch,
+           state.theta * radianToDegree);
 
     if (btn1.changedToPressed()) {
       printf("move distance\n");
@@ -550,6 +551,8 @@ void opcontrol() {
   using namespace okapi;
   pros::c::task_delay(100);
 
+  odomChassisControllerTest();
+
   MotorGroup leftMotors({19_m, 20_m});
   MotorGroup rightMotors({13_rm, 14_rm});
   Motor armMotor = 15_m;
@@ -563,7 +566,7 @@ void opcontrol() {
   ControllerButton btn4(E_CONTROLLER_DIGITAL_X);
 
   while (true) {
-    printf("loop\n");
+    // printf("loop\n");
     robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
                                   controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
 
@@ -590,6 +593,6 @@ void opcontrol() {
       }
     }
 
-    pros::c::task_delay(100);
+    pros::c::task_delay(10);
   }
 }

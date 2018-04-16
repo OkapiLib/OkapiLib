@@ -74,8 +74,9 @@ void ChassisControllerIntegrated::moveDistance(const int itarget) {
   rightController.flipDisable(false);
 
   const double newTarget = itarget * straightScale;
-  leftController.setTarget(newTarget);
-  rightController.setTarget(newTarget);
+  const auto enc = getSensorVals();
+  leftController.setTarget(newTarget + enc[0]);
+  rightController.setTarget(newTarget + enc[1]);
 
   std::uint32_t prevWakeTime = pros::millis();
 
@@ -94,8 +95,9 @@ void ChassisControllerIntegrated::turnAngle(float idegTarget) {
   rightController.flipDisable(false);
 
   const double newTarget = idegTarget * turnScale;
-  leftController.setTarget(newTarget);
-  rightController.setTarget(-1 * newTarget);
+  const auto enc = getSensorVals();
+  leftController.setTarget(newTarget + enc[0]);
+  rightController.setTarget(-1 * newTarget + enc[1]);
 
   std::uint32_t prevWakeTime = pros::millis();
 
