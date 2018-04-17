@@ -53,14 +53,14 @@ void Odometry::loop() {
 
     mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
 
-    state.theta += (static_cast<double>(tickDiff[1] - tickDiff[0]) / 2.0) * turnScale;
+    state.theta += (tickDiff[1] - tickDiff[0]) * turnScale;
     if (state.theta > 180)
       state.theta -= 360;
     else if (state.theta < -180)
       state.theta += 360;
 
-    state.x += mm * std::cos(state.theta);
-    state.y += mm * std::sin(state.theta);
+    state.x += mm * std::cos(state.theta * degreeToRadian);
+    state.y += mm * std::sin(state.theta * degreeToRadian);
 
     pros::c::task_delay_until(&now, 10);
   }
