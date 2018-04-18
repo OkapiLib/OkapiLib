@@ -97,7 +97,7 @@ class IterativeMotorVelocityController : public IterativeVelocityController {
   virtual void reset() override;
 
   /**
-   * Changes whether the controll is off or on. Turning the controller on after it was off will
+   * Changes whether the controller is off or on. Turning the controller on after it was off will
    * cause the controller to move to its last set target, unless it was reset in that time.
    */
   virtual void flipDisable() override;

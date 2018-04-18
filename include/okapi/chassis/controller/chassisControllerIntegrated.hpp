@@ -47,6 +47,23 @@ class ChassisControllerIntegrated : public virtual ChassisController {
                               const double istraightScale = 1, const double iturnScale = 1);
 
   /**
+   * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
+   * layout. Puts the motors' encoders into tick units.
+   *
+   * @param itopLeftMotor top left motor
+   * @param itopRightMotor top right motor
+   * @param ibottomRightMotor bottom right motor
+   * @param ibottomLeftMotor bottom left motor
+   * @param istraightScale scale converting your units of choice to encoder ticks, used for
+   * measuring distance
+   * @param iturnScale scale converting your units of choice to encoder ticks, used for measuring
+   * angle
+   */
+  ChassisControllerIntegrated(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
+                              Motor ibottomLeftMotor, const double istraightScale = 1,
+                              const double iturnScale = 1);
+
+  /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
    * steer layout. Puts the motors' encoders into tick units.
    *
