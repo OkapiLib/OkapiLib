@@ -219,6 +219,34 @@ class XDriveModel : public ChassisModel {
    */
   virtual void setGearing(const motor_gearset_e_t gearset) const override;
 
+  /**
+   * Returns the top left motor.
+   *
+   * @return the top left motor
+   */
+  std::shared_ptr<AbstractMotor> getTopLeftMotor() const;
+
+  /**
+   * Returns the top right motor.
+   *
+   * @return the top right motor
+   */
+  std::shared_ptr<AbstractMotor> getTopRightMotor() const;
+
+  /**
+   * Returns the bottom right motor.
+   *
+   * @return the bottom right motor
+   */
+  std::shared_ptr<AbstractMotor> getBottomRightMotor() const;
+
+  /**
+   * Returns the bottom left motor.
+   *
+   * @return the bottom left motor
+   */
+  std::shared_ptr<AbstractMotor> getBottomLeftMotor() const;
+
   protected:
   std::shared_ptr<AbstractMotor> topLeftMotor;
   std::shared_ptr<AbstractMotor> topRightMotor;

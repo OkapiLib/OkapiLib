@@ -274,4 +274,20 @@ void XDriveModel::setGearing(const motor_gearset_e_t gearset) const {
   bottomRightMotor->setGearing(gearset);
   bottomLeftMotor->setGearing(gearset);
 }
+
+std::shared_ptr<AbstractMotor> XDriveModel::getTopLeftMotor() const {
+  return topLeftMotor;
+}
+
+std::shared_ptr<AbstractMotor> XDriveModel::getTopRightMotor() const {
+  return topRightMotor;
+}
+
+std::shared_ptr<AbstractMotor> XDriveModel::getBottomRightMotor() const {
+  return bottomRightMotor;
+}
+
+std::shared_ptr<AbstractMotor> XDriveModel::getBottomLeftMotor() const {
+  return bottomLeftMotor;
+}
 } // namespace okapi
