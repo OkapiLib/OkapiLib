@@ -16,10 +16,12 @@ void Rate::delayHz(const std::uint32_t ihz) {
   if (lastTime == 0) {
     // First call
     lastTime = pros::millis();
-    pros::c::task_delay(static_cast<float>(1000) / ihz);
+    pros::c::task_delay(
+      static_cast<std::uint32_t>(static_cast<double>(1000) / static_cast<double>(ihz)));
   } else {
     // Subsequent call
-    pros::c::task_delay_until(&lastTime, static_cast<float>(1000) / ihz);
+    pros::c::task_delay_until(
+      &lastTime, static_cast<std::uint32_t>(static_cast<double>(1000) / static_cast<double>(ihz)));
   }
 }
 } // namespace okapi

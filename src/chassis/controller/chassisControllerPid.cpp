@@ -91,12 +91,12 @@ void ChassisControllerPID::moveDistance(const int itarget) {
   std::uint32_t prevWakeTime = pros::millis();
   const auto encStartVals = model->getSensorVals();
   std::valarray<std::int32_t> encVals;
-  float distanceElapsed = 0, angleChange = 0;
+  double distanceElapsed = 0, angleChange = 0;
 
   while (!distancePid.isSettled() && !anglePid.isSettled()) {
     encVals = model->getSensorVals() - encStartVals;
-    distanceElapsed = static_cast<float>((encVals[0] + encVals[1])) / 2.0;
-    angleChange = static_cast<float>(encVals[1] - encVals[0]);
+    distanceElapsed = static_cast<double>((encVals[0] + encVals[1])) / 2.0;
+    angleChange = static_cast<double>(encVals[1] - encVals[0]);
     model->driveVector(distancePid.step(distanceElapsed), anglePid.step(angleChange));
     pros::c::task_delay_until(&prevWakeTime, 10);
   }
@@ -113,11 +113,11 @@ void ChassisControllerPID::turnAngle(float idegTarget) {
   std::uint32_t prevWakeTime = pros::millis();
   const auto encStartVals = model->getSensorVals();
   std::valarray<std::int32_t> encVals;
-  float angleChange = 0;
+  double angleChange = 0;
 
   while (!anglePid.isSettled()) {
     encVals = model->getSensorVals() - encStartVals;
-    angleChange = static_cast<float>(encVals[1] - encVals[0]);
+    angleChange = static_cast<double>(encVals[1] - encVals[0]);
     model->rotate(anglePid.step(angleChange));
     pros::c::task_delay_until(&prevWakeTime, 10);
   }

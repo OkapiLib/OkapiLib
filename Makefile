@@ -6,7 +6,7 @@ ASMEXTS:=s S
 CXXEXTS:=cpp c++ cc
 
 
-WARNFLAGS+=-Wall -Wmissing-include-dirs -Wextra -Wno-implicit-fallthrough -pedantic -Wconversion
+WARNFLAGS+=-Wall -Wextra -Wno-implicit-fallthrough -pedantic #-Wconversion #-Wmissing-include-dirs
 EXTRA_CFLAGS=
 EXTRA_CXXFLAGS=
 
