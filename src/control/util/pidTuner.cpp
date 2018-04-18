@@ -143,13 +143,13 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
 
 std::uint32_t PIDTuner::moveDistance(const int itarget) {
   const auto encStartVals = model->getSensorVals();
-  float distanceElapsed = 0, lastDistance = 0;
+  double distanceElapsed = 0, lastDistance = 0;
   std::uint32_t prevWakeTime = pros::millis();
 
   leftController.reset();
   rightController.reset();
-  leftController.setTarget(static_cast<float>(itarget));
-  rightController.setTarget(static_cast<float>(itarget));
+  leftController.setTarget(static_cast<double>(itarget));
+  rightController.setTarget(static_cast<double>(itarget));
 
   bool atTarget = false;
   const int atTargetDistance = 15;
@@ -162,16 +162,16 @@ std::uint32_t PIDTuner::moveDistance(const int itarget) {
 
   while (!atTarget) {
     encVals = model->getSensorVals() - encStartVals;
-    distanceElapsed = static_cast<float>((encVals[0] + encVals[1])) / 2.0;
-    itae += ((atTargetTimer.getDtFromStart() * abs(itarget - distanceElapsed)) /
-             (divisor * abs(itarget)));
+    distanceElapsed = static_cast<double>(encVals[0] + encVals[1]) / 2.0;
+    itae += ((atTargetTimer.getDtFromStart() * std::abs(itarget - distanceElapsed)) /
+             (divisor * std::abs(itarget)));
 
     model->left(leftController.step(distanceElapsed));
     model->right(rightController.step(distanceElapsed));
 
-    if (abs(itarget - static_cast<int>(distanceElapsed)) <= atTargetDistance) {
+    if (std::abs(itarget - static_cast<int>(distanceElapsed)) <= atTargetDistance) {
       atTargetTimer.placeHardMark();
-    } else if (abs(static_cast<int>(distanceElapsed) - static_cast<int>(lastDistance)) <=
+    } else if (std::abs(static_cast<int>(distanceElapsed) - static_cast<int>(lastDistance)) <=
                threshold) {
       atTargetTimer.placeHardMark();
     } else {

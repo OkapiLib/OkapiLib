@@ -52,7 +52,7 @@ template <std::size_t n> class MedianFilter : public Filter {
 
   protected:
   std::array<double, n> data{0};
-  double index = 0;
+  std::size_t index = 0;
   double output = 0;
   const size_t middleIndex;
 

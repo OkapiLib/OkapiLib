@@ -104,7 +104,7 @@ void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) 
 
   double leftOutput = ySpeed + zRotation;
   double rightOutput = ySpeed - zRotation;
-  const double maxInputMag = std::max(abs(ySpeed), abs(zRotation));
+  const double maxInputMag = std::max<double>(std::abs(ySpeed), std::abs(zRotation));
   if (maxInputMag > 1) {
     leftOutput /= maxInputMag;
     rightOutput /= maxInputMag;

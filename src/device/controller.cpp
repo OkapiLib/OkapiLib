@@ -28,7 +28,7 @@ float Controller::getAnalog(const controller_analog_e_t ichannel) {
     return 0;
   }
 
-  return val / 127.0;
+  return static_cast<float>(val) / static_cast<float>(127);
 }
 
 bool Controller::getDigital(const controller_digital_e_t ibutton) {
