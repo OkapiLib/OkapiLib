@@ -12,6 +12,7 @@
 
 #include "okapi/control/iterative/iterativePositionController.hpp"
 #include "okapi/control/util/settledUtil.hpp"
+#include <memory>
 
 namespace okapi {
 class IterativePosPIDControllerArgs : public IterativePositionControllerArgs {
@@ -41,6 +42,13 @@ class IterativePosPIDController : public IterativePositionController {
    * @param params PosPIDControllerArgs
    */
   IterativePosPIDController(const IterativePosPIDControllerArgs &params);
+
+  /**
+   * This constructor is meant for unit testing.
+   */
+  IterativePosPIDController(const double ikP, const double ikI, const double ikD,
+                            const double ikBias, std::shared_ptr<Timer> iloopDtTimer,
+                            std::shared_ptr<SettledUtil> isettledUtil);
 
   /**
    * Do one iteration of the controller. Returns the reading in the range [-127, 127] unless the
@@ -168,7 +176,6 @@ class IterativePosPIDController : public IterativePositionController {
 
   protected:
   double kP, kI, kD, kBias;
-  std::uint32_t lastTime = 0;
   std::uint32_t sampleTime = 10;
   double target = 0;
   double lastReading = 0;
@@ -196,7 +203,8 @@ class IterativePosPIDController : public IterativePositionController {
 
   bool isOn = true;
 
-  SettledUtil settledUtil;
+  std::shared_ptr<Timer> loopDtTimer;
+  std::shared_ptr<SettledUtil> settledUtil;
 };
 } // namespace okapi
 

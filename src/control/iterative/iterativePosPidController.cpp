@@ -19,20 +19,26 @@ IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, c
 }
 
 IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
-                                                     const double ikD, const double ikBias) {
+                                                     const double ikD, const double ikBias)
+  : IterativePosPIDController(ikP, ikI, ikD, ikBias, std::make_shared<Timer>(),
+                              std::make_shared<SettledUtil>()) {
+}
+
+IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params)
+  : IterativePosPIDController(params.kP, params.kI, params.kD, params.kBias,
+                              std::make_shared<Timer>(), std::make_shared<SettledUtil>()) {
+}
+
+IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
+                                                     const double ikD, const double ikBias,
+                                                     std::shared_ptr<Timer> iloopDtTimer,
+                                                     std::shared_ptr<SettledUtil> isettledUtil)
+  : loopDtTimer(std::move(iloopDtTimer)), settledUtil(std::move(isettledUtil)) {
   if (ikI != 0) {
     setIntegralLimits(-1 / ikI, 1 / ikI);
   }
   setOutputLimits(-1, 1);
   setGains(ikP, ikI, ikD, ikBias);
-}
-
-IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params) {
-  if (params.kI != 0) {
-    setIntegralLimits(-1 / params.kI, 1 / params.kI);
-  }
-  setOutputLimits(-1, 1);
-  setGains(params.kP, params.kI, params.kD, params.kBias);
 }
 
 void IterativePosPIDController::setTarget(const double itarget) {
@@ -52,7 +58,7 @@ double IterativePosPIDController::getDerivative() const {
 }
 
 bool IterativePosPIDController::isSettled() {
-  return settledUtil.isSettled(error);
+  return settledUtil->isSettled(error);
 }
 
 void IterativePosPIDController::setSampleTime(const std::uint32_t isampleTime) {
@@ -102,9 +108,9 @@ void IterativePosPIDController::setErrorSumLimits(const double imax, const doubl
 
 double IterativePosPIDController::step(const double inewReading) {
   if (isOn) {
-    const std::uint32_t now = pros::millis();
+    loopDtTimer->placeHardMark();
 
-    if (now - lastTime >= sampleTime) {
+    if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
       error = target - inewReading;
 
       if ((fabs(error) < target - errorSumMin && fabs(error) > target - errorSumMax) ||
@@ -125,9 +131,9 @@ double IterativePosPIDController::step(const double inewReading) {
 
       lastReading = inewReading;
       lastError = error;
-      lastTime = now; // Important that we only assign lastTime if dt >= sampleTime
+      loopDtTimer->clearHardMark(); // Important that we only clear if dt >= sampleTime
 
-      settledUtil.isSettled(error);
+      settledUtil->isSettled(error);
     }
   } else {
     output = 0; // Controller is off so write 0
