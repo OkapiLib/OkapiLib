@@ -33,4 +33,8 @@ bool SettledUtil::isSettled(const double ierror) {
 
   return false;
 }
+
+void SettledUtil::reset() {
+  atTargetTimer.clearHardMark();
+}
 } // namespace okapi

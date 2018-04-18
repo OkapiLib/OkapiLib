@@ -50,6 +50,7 @@ bool AsyncPosIntegratedController::isSettled() {
 
 void AsyncPosIntegratedController::reset() {
   hasFirstTarget = false;
+  settledUtil.reset();
 }
 
 void AsyncPosIntegratedController::flipDisable() {

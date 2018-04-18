@@ -34,6 +34,11 @@ class SettledUtil {
    */
   virtual bool isSettled(const double ierror);
 
+  /**
+   * Resets the "at target" timer.
+   */
+  virtual void reset();
+
   protected:
   double atTargetError = 50;
   double atTargetDerivative = 5;
