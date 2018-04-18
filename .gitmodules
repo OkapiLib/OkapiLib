@@ -2,9 +2,6 @@
 	path = include/okapi/snowhouse
 	url = https://github.com/banditcpp/snowhouse
 	branch = headers-only
-[submodule "include/okapi/--force"]
-	path = include/okapi/--force
-	url = https://github.com/eranpeer/FakeIt.git
 [submodule "include/okapi/FakeIt"]
 	path = include/okapi/FakeIt
 	url = https://github.com/eranpeer/FakeIt.git
