@@ -85,7 +85,7 @@ void ChassisControllerIntegrated::moveDistance(const int itarget) {
   rightController.flipDisable(false);
 
   const double newTarget = itarget * straightScale;
-  const auto enc = getSensorVals();
+  const auto enc = model->getSensorVals();
   leftController.setTarget(newTarget + enc[0]);
   rightController.setTarget(newTarget + enc[1]);
 
@@ -106,7 +106,7 @@ void ChassisControllerIntegrated::turnAngle(float idegTarget) {
   rightController.flipDisable(false);
 
   const double newTarget = idegTarget * turnScale;
-  const auto enc = getSensorVals();
+  const auto enc = model->getSensorVals();
   leftController.setTarget(newTarget + enc[0]);
   rightController.setTarget(-1 * newTarget + enc[1]);
 
