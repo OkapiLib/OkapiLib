@@ -14,7 +14,7 @@
 namespace okapi {
 class ADIMotor : public ControllerOutput {
   public:
-  ADIMotor(const std::uint8_t iport);
+  ADIMotor(const std::uint8_t iport, const bool ireverse = false);
 
   /**
    * Set the voltage to the motor.
@@ -33,6 +33,7 @@ class ADIMotor : public ControllerOutput {
 
   protected:
   const pros::ADIMotor motor;
+  const std::int8_t reversed;
 };
 } // namespace okapi
 

@@ -28,6 +28,17 @@ ChassisControllerPID::ChassisControllerPID(MotorGroup ileftSideMotor, MotorGroup
                          istraightScale, iturnScale) {
 }
 
+ChassisControllerPID::ChassisControllerPID(Motor itopLeftMotor, Motor itopRightMotor,
+                                           Motor ibottomRightMotor, Motor ibottomLeftMotor,
+                                           const IterativePosPIDControllerArgs &idistanceArgs,
+                                           const IterativePosPIDControllerArgs &iangleArgs,
+                                           const double istraightScale, const double iturnScale)
+  : ChassisControllerPID(
+      std::make_shared<Motor>(itopLeftMotor), std::make_shared<Motor>(itopRightMotor),
+      std::make_shared<Motor>(ibottomRightMotor), std::make_shared<Motor>(ibottomLeftMotor),
+      idistanceArgs, iangleArgs, istraightScale, iturnScale) {
+}
+
 ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                            std::shared_ptr<AbstractMotor> irightSideMotor,
                                            const IterativePosPIDControllerArgs &idistanceArgs,

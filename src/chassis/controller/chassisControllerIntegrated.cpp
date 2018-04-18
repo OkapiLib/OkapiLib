@@ -28,6 +28,17 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(MotorGroup ileftSideMot
                                 iturnScale) {
 }
 
+ChassisControllerIntegrated::ChassisControllerIntegrated(Motor itopLeftMotor, Motor itopRightMotor,
+                                                         Motor ibottomRightMotor,
+                                                         Motor ibottomLeftMotor,
+                                                         const double istraightScale,
+                                                         const double iturnScale)
+  : ChassisControllerIntegrated(
+      std::make_shared<Motor>(itopLeftMotor), std::make_shared<Motor>(itopRightMotor),
+      std::make_shared<Motor>(ibottomRightMotor), std::make_shared<Motor>(ibottomLeftMotor),
+      istraightScale, iturnScale) {
+}
+
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
   const double istraightScale, const double iturnScale)
