@@ -264,7 +264,6 @@ void runHeadlessUnitTests() {
     IterativePosPIDController controller(0.004, 0, 0, 0, std::make_shared<Timer>(mockTimerInstance),
                                          std::make_shared<SettledUtil>());
     controller.setTarget(45);
-    uint32_t lastTime = 0;
     for (size_t i = 0; i < 2000; i++) {
       controller.step(sim.getAngle() * radianToDegree);
       sim.setTorque(controller.getOutput());
