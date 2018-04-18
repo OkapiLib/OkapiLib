@@ -10,9 +10,6 @@
 
 #include "okapi/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/chassis/controller/chassisControllerPid.hpp"
-#include "okapi/chassis/controller/odomChassisController.hpp"
-#include "okapi/chassis/controller/odomChassisControllerIntegrated.hpp"
-#include "okapi/chassis/controller/odomChassisControllerPid.hpp"
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/threeEncoderSkidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
@@ -48,9 +45,6 @@
 #include "okapi/filter/medianFilter.hpp"
 #include "okapi/filter/passthroughFilter.hpp"
 #include "okapi/filter/velMath.hpp"
-
-#include "okapi/odometry/odomMath.hpp"
-#include "okapi/odometry/odometry.hpp"
 
 #include "okapi/util/mathUtil.hpp"
 #include "okapi/util/rate.hpp"
