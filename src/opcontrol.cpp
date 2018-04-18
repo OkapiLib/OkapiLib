@@ -338,24 +338,6 @@ void constructorTests() {
   }
 
   {
-    ADIEncoder leftEncoder(1, 2, true);
-    ADIEncoder rightEncoder(3, 4);
-
-    // An "odometry" chassis controller adds an odometry layer running in another task which keeps
-    // track of the position of the robot in the odom frame. This means that you can tell the robot
-    // to
-    // move to an arbitrary point on the field, or turn to an absolute angle (i.e., "turn to 90
-    // degrees" will always put the robot facing east relative to the starting position)
-    OdomChassisControllerPID controller3(
-      std::make_shared<SkidSteerModel>(MotorGroup({1_m, 2_m}), MotorGroup({3_m, 4_m}), leftEncoder,
-                                       rightEncoder),
-      0, 0, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
-
-    controller3.driveToPoint(0, 0); // Drive to (0, 0) on the field
-    controller3.turnToAngle(0);     // Turn to 0 degrees
-  }
-
-  {
     IterativePosPIDController pid1(0, 0, 0); // PID controller
     IterativeMotorVelocityController mc1(1_m, std::make_shared<IterativeVelPIDController>(0, 0));
     IterativeMotorVelocityController mc2(MotorGroup({1_m, 2_m}),
@@ -415,13 +397,6 @@ void constructorTests() {
   { EmaFilter emaFilt1(0); }
 
   { MedianFilter<5> medianFilt1; }
-
-  {
-    ADIEncoder enc(0, 0);
-    Odometry odom1(
-      std::make_shared<SkidSteerModel>(MotorGroup({1_m, 2_m}), MotorGroup({3_m, 4_m}), enc, enc), 0,
-      0);
-  }
 
   { Timer timer1(); }
 
@@ -499,59 +474,9 @@ void clawbotTutorial() {
   }
 }
 
-void odomChassisControllerTest() {
-  using namespace okapi;
-
-  MotorGroup leftMotors({19_m, 20_m});
-  MotorGroup rightMotors({13_rm, 14_rm});
-
-  OdomChassisControllerIntegrated robotChassisController(leftMotors, rightMotors, 0.176358584,
-                                                         0.334183607 / 100);
-
-  Controller controller;
-  ControllerButton btn1(E_CONTROLLER_DIGITAL_A);
-  ControllerButton btn2(E_CONTROLLER_DIGITAL_B);
-  ControllerButton btn3(E_CONTROLLER_DIGITAL_Y);
-  ControllerButton btn4(E_CONTROLLER_DIGITAL_X);
-
-  while (true) {
-    printf("loop\n");
-    robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                                  controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
-
-    const auto state = robotChassisController.getState();
-    printf("state: x: %1.2f, y: %1.2f, theta: %1.2f\n", state.x * mmToInch, state.y * mmToInch,
-           state.theta * radianToDegree);
-
-    if (btn1.changedToPressed()) {
-      printf("move distance\n");
-      robotChassisController.moveDistance(12);
-    }
-
-    if (btn2.changedToPressed()) {
-      printf("turn angle\n");
-      robotChassisController.turnAngle(90);
-    }
-
-    if (btn3.changedToPressed()) {
-      printf("move arm\n");
-      robotChassisController.driveToPoint(0, 0);
-    }
-
-    if (btn4.changedToPressed()) {
-      printf("autonomous routine\n");
-      robotChassisController.turnToAngle(90);
-    }
-
-    pros::c::task_delay(100);
-  }
-}
-
 void opcontrol() {
   using namespace okapi;
   pros::c::task_delay(100);
-
-  odomChassisControllerTest();
 
   MotorGroup leftMotors({19_m, 20_m});
   MotorGroup rightMotors({13_rm, 14_rm});
