@@ -10,7 +10,7 @@
 
 namespace okapi {
 SettledUtil::SettledUtil(const double iatTargetError, const double iatTargetDerivative,
-                         const uint32_t iatTargetTime)
+                         const std::uint32_t iatTargetTime)
   : atTargetError(iatTargetError),
     atTargetDerivative(iatTargetDerivative),
     atTargetTime(iatTargetTime) {

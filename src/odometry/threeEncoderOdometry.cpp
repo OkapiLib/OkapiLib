@@ -21,14 +21,15 @@ ThreeEncoderOdometry::ThreeEncoderOdometry(std::shared_ptr<ThreeEncoderSkidSteer
 }
 
 void ThreeEncoderOdometry::loop() {
-  uint32_t now = pros::millis();
-  std::valarray<int> newTicks{0, 0, 0}, tickDiff{0, 0, 0};
+  std::uint32_t now = pros::millis();
+  std::valarray<std::int32_t> newTicks{0, 0, 0}, tickDiff{0, 0, 0};
 
   while (true) {
     newTicks = model->getSensorVals();
     tickDiff = newTicks - lastTicks;
-    mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
     lastTicks = newTicks;
+
+    mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
 
     state.theta += (static_cast<double>(tickDiff[1] - tickDiff[0]) / 2.0) * turnScale;
     if (state.theta > 180)

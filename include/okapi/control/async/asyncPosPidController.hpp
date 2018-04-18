@@ -14,26 +14,30 @@
 #include "okapi/control/controllerOutput.hpp"
 #include "okapi/control/iterative/iterativePosPidController.hpp"
 #include "okapi/device/motor/abstractMotor.hpp"
+#include <memory>
 
 namespace okapi {
 class AsyncPosPIDController;
 
 class AsyncPosPIDControllerArgs : public AsyncPositionControllerArgs {
   public:
-  AsyncPosPIDControllerArgs(ControllerInput &iinput, ControllerOutput &ioutput,
+  AsyncPosPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
+                            std::shared_ptr<ControllerOutput> ioutput,
                             const IterativePosPIDControllerArgs &iparams);
 
-  ControllerInput &input;
-  ControllerOutput &output;
+  std::shared_ptr<ControllerInput> input;
+  std::shared_ptr<ControllerOutput> output;
   const IterativePosPIDControllerArgs &params;
 };
 
 class AsyncPosPIDController : public AsyncPositionController {
   public:
-  AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput,
+  AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
+                        std::shared_ptr<ControllerOutput> ioutput,
                         const IterativePosPIDControllerArgs &iparams);
 
-  AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput, const double ikP,
+  AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
+                        std::shared_ptr<ControllerOutput> ioutput, const double ikP,
                         const double ikI, const double ikD, const double ikBias = 0);
 
   /**
@@ -64,7 +68,7 @@ class AsyncPosPIDController : public AsyncPositionController {
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime) override;
+  virtual void setSampleTime(const std::uint32_t isampleTime) override;
 
   /**
    * Set controller output bounds. Default does nothing.
@@ -81,15 +85,30 @@ class AsyncPosPIDController : public AsyncPositionController {
   virtual void reset() override;
 
   /**
-   * Change whether the controll is off or on. Default does nothing.
+   * Changes whether the controll is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
    */
   virtual void flipDisable() override;
 
+  /**
+   * Sets whether the controller is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
+   *
+   * @param iisDisabled whether the controller is disabled
+   */
+  virtual void flipDisable(const bool iisDisabled) override;
+
+  /**
+   * Returns whether the controller is currently disabled.
+   *
+   * @return whether the controller is currently disabled
+   */
+  virtual bool isDisabled() const override;
+
   protected:
-  ControllerInput &input;
-  ControllerOutput &output;
+  std::shared_ptr<ControllerInput> input;
+  std::shared_ptr<ControllerOutput> output;
   IterativePosPIDController controller;
-  uint32_t prevTime = 0;
   pros::Task task;
 
   static void trampoline(void *context);

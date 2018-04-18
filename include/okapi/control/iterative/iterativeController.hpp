@@ -22,8 +22,6 @@ class IterativeControllerArgs {
  */
 class IterativeController : public ClosedLoopController {
   public:
-  virtual ~IterativeController();
-
   /**
    * Do one iteration of the controller. Outputs in the range [-1, 1]
    *
@@ -47,7 +45,7 @@ class IterativeController : public ClosedLoopController {
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime);
+  virtual void setSampleTime(const std::uint32_t isampleTime);
 
   /**
    * Set controller output bounds.
@@ -58,22 +56,11 @@ class IterativeController : public ClosedLoopController {
   virtual void setOutputLimits(double imax, double imin);
 
   /**
-   * Resets the controller so it can start from 0 again properly. Keeps configuration from
-   * before.
-   */
-  virtual void reset();
-
-  /**
-   * Change whether the controll is off or on.
-   */
-  virtual void flipDisable();
-
-  /**
    * Get the last set sample time. Default is 10.
    *
    * @return sample time
    */
-  virtual uint32_t getSampleTime() const;
+  virtual std::uint32_t getSampleTime() const;
 };
 } // namespace okapi
 

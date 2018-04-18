@@ -9,56 +9,80 @@
 #include <utility>
 
 namespace okapi {
-XDriveModelArgs::XDriveModelArgs(const AbstractMotor &itopLeftMotor,
-                                 const AbstractMotor &itopRightMotor,
-                                 const AbstractMotor &ibottomRightMotor,
-                                 const AbstractMotor &ibottomLeftMotor,
-                                 const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+XDriveModelArgs::XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
+                                 std::shared_ptr<AbstractMotor> itopRightMotor,
+                                 std::shared_ptr<AbstractMotor> ibottomRightMotor,
+                                 std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+                                 std::shared_ptr<RotarySensor> ileftEnc,
+                                 std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput)
+  : topLeftMotor(itopLeftMotor),
+    topRightMotor(itopRightMotor),
+    bottomRightMotor(ibottomRightMotor),
+    bottomLeftMotor(ibottomLeftMotor),
+    leftSensor(ileftEnc),
+    rightSensor(irightEnc),
+    maxOutput(imaxOutput) {
+}
+
+XDriveModelArgs::XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
+                                 std::shared_ptr<AbstractMotor> itopRightMotor,
+                                 std::shared_ptr<AbstractMotor> ibottomRightMotor,
+                                 std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                                  const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
     bottomLeftMotor(ibottomLeftMotor),
+    leftSensor(std::make_shared<IntegratedEncoder>(
+      itopLeftMotor->getEncoder())), // Maybe need to use std::move
+    rightSensor(std::make_shared<IntegratedEncoder>(
+      itopRightMotor->getEncoder())), // Maybe need to use std::move
+    maxOutput(imaxOutput) {
+}
+
+XDriveModel::XDriveModel(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
+                         Motor ibottomLeftMotor, const double imaxOutput)
+  : XDriveModel(std::make_shared<Motor>(itopLeftMotor), std::make_shared<Motor>(itopRightMotor),
+                std::make_shared<Motor>(ibottomRightMotor),
+                std::make_shared<Motor>(ibottomLeftMotor), imaxOutput) {
+}
+
+XDriveModel::XDriveModel(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
+                         Motor ibottomLeftMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
+                         const double imaxOutput)
+  : XDriveModel(std::make_shared<Motor>(itopLeftMotor), std::make_shared<Motor>(itopRightMotor),
+                std::make_shared<Motor>(ibottomRightMotor),
+                std::make_shared<Motor>(ibottomLeftMotor), std::make_shared<ADIEncoder>(ileftEnc),
+                std::make_shared<ADIEncoder>(irightEnc), imaxOutput) {
+}
+
+XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
+                         std::shared_ptr<AbstractMotor> itopRightMotor,
+                         std::shared_ptr<AbstractMotor> ibottomRightMotor,
+                         std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+                         std::shared_ptr<RotarySensor> ileftEnc,
+                         std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput)
+  : topLeftMotor(itopLeftMotor),
+    topRightMotor(itopRightMotor),
+    bottomRightMotor(ibottomRightMotor),
+    bottomLeftMotor(ibottomLeftMotor),
     leftSensor(ileftEnc),
     rightSensor(irightEnc),
     maxOutput(imaxOutput) {
 }
 
-XDriveModelArgs::XDriveModelArgs(const AbstractMotor &itopLeftMotor,
-                                 const AbstractMotor &itopRightMotor,
-                                 const AbstractMotor &ibottomRightMotor,
-                                 const AbstractMotor &ibottomLeftMotor, const double imaxOutput)
+XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
+                         std::shared_ptr<AbstractMotor> itopRightMotor,
+                         std::shared_ptr<AbstractMotor> ibottomRightMotor,
+                         std::shared_ptr<AbstractMotor> ibottomLeftMotor, const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
     bottomLeftMotor(ibottomLeftMotor),
-    leftSensor(std::move(itopLeftMotor.getEncoder())),
-    rightSensor(std::move(itopRightMotor.getEncoder())),
-    maxOutput(imaxOutput) {
-}
-
-XDriveModel::XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
-                         const AbstractMotor &ibottomRightMotor,
-                         const AbstractMotor &ibottomLeftMotor, const RotarySensor &ileftEnc,
-                         const RotarySensor &irightEnc, const double imaxOutput)
-  : topLeftMotor(itopLeftMotor),
-    topRightMotor(itopRightMotor),
-    bottomRightMotor(ibottomRightMotor),
-    bottomLeftMotor(ibottomLeftMotor),
-    leftSensor(ileftEnc),
-    rightSensor(irightEnc),
-    maxOutput(imaxOutput) {
-}
-
-XDriveModel::XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor,
-                         const AbstractMotor &ibottomRightMotor,
-                         const AbstractMotor &ibottomLeftMotor, const double imaxOutput)
-  : topLeftMotor(itopLeftMotor),
-    topRightMotor(itopRightMotor),
-    bottomRightMotor(ibottomRightMotor),
-    bottomLeftMotor(ibottomLeftMotor),
-    leftSensor(std::move(itopLeftMotor.getEncoder())),
-    rightSensor(std::move(itopRightMotor.getEncoder())),
+    leftSensor(std::make_shared<IntegratedEncoder>(
+      itopLeftMotor->getEncoder())), // Maybe need to use std::move
+    rightSensor(std::make_shared<IntegratedEncoder>(
+      itopRightMotor->getEncoder())), // Maybe need to use std::move
     maxOutput(imaxOutput) {
 }
 
@@ -83,10 +107,10 @@ XDriveModel::XDriveModel(const XDriveModel &other)
 }
 
 void XDriveModel::forward(const double ispeed) const {
-  topLeftMotor.moveVelocity(ispeed * maxOutput);
-  topRightMotor.moveVelocity(ispeed * maxOutput);
-  bottomRightMotor.moveVelocity(ispeed * maxOutput);
-  bottomLeftMotor.moveVelocity(ispeed * maxOutput);
+  topLeftMotor->moveVelocity(ispeed * maxOutput);
+  topRightMotor->moveVelocity(ispeed * maxOutput);
+  bottomRightMotor->moveVelocity(ispeed * maxOutput);
+  bottomLeftMotor->moveVelocity(ispeed * maxOutput);
 }
 
 void XDriveModel::driveVector(const double iySpeed, const double izRotation) const {
@@ -103,24 +127,24 @@ void XDriveModel::driveVector(const double iySpeed, const double izRotation) con
     rightOutput /= maxInputMag;
   }
 
-  topLeftMotor.moveVelocity(leftOutput * maxOutput);
-  topRightMotor.moveVelocity(rightOutput * maxOutput);
-  bottomRightMotor.moveVelocity(rightOutput * maxOutput);
-  bottomLeftMotor.moveVelocity(leftOutput * maxOutput);
+  topLeftMotor->moveVelocity(leftOutput * maxOutput);
+  topRightMotor->moveVelocity(rightOutput * maxOutput);
+  bottomRightMotor->moveVelocity(rightOutput * maxOutput);
+  bottomLeftMotor->moveVelocity(leftOutput * maxOutput);
 }
 
 void XDriveModel::rotate(const double ispeed) const {
-  topLeftMotor.moveVelocity(ispeed * maxOutput);
-  topRightMotor.moveVelocity(-1 * ispeed * maxOutput);
-  bottomRightMotor.moveVelocity(-1 * ispeed * maxOutput);
-  bottomLeftMotor.moveVelocity(ispeed * maxOutput);
+  topLeftMotor->moveVelocity(ispeed * maxOutput);
+  topRightMotor->moveVelocity(-1 * ispeed * maxOutput);
+  bottomRightMotor->moveVelocity(-1 * ispeed * maxOutput);
+  bottomLeftMotor->moveVelocity(ispeed * maxOutput);
 }
 
 void XDriveModel::stop() const {
-  topLeftMotor.moveVelocity(0);
-  topRightMotor.moveVelocity(0);
-  bottomRightMotor.moveVelocity(0);
-  bottomLeftMotor.moveVelocity(0);
+  topLeftMotor->moveVelocity(0);
+  topRightMotor->moveVelocity(0);
+  bottomRightMotor->moveVelocity(0);
+  bottomLeftMotor->moveVelocity(0);
 }
 
 void XDriveModel::tank(const double ileftSpeed, const double irightSpeed,
@@ -137,10 +161,10 @@ void XDriveModel::tank(const double ileftSpeed, const double irightSpeed,
     rightSpeed = 0;
   }
 
-  topLeftMotor.moveVoltage(leftSpeed * maxOutput);
-  topRightMotor.moveVoltage(rightSpeed * maxOutput);
-  bottomRightMotor.moveVoltage(rightSpeed * maxOutput);
-  bottomLeftMotor.moveVoltage(leftSpeed * maxOutput);
+  topLeftMotor->moveVoltage(leftSpeed * maxOutput);
+  topRightMotor->moveVoltage(rightSpeed * maxOutput);
+  bottomRightMotor->moveVoltage(rightSpeed * maxOutput);
+  bottomLeftMotor->moveVoltage(leftSpeed * maxOutput);
 }
 
 void XDriveModel::arcade(const double iySpeed, const double izRotation,
@@ -182,10 +206,10 @@ void XDriveModel::arcade(const double iySpeed, const double izRotation,
   leftOutput = std::clamp(leftOutput, -1.0, 1.0);
   rightOutput = std::clamp(rightOutput, -1.0, 1.0);
 
-  topLeftMotor.moveVoltage(leftOutput * maxOutput);
-  topRightMotor.moveVoltage(rightOutput * maxOutput);
-  bottomRightMotor.moveVoltage(rightOutput * maxOutput);
-  bottomLeftMotor.moveVoltage(leftOutput * maxOutput);
+  topLeftMotor->moveVoltage(leftOutput * maxOutput);
+  topRightMotor->moveVoltage(rightOutput * maxOutput);
+  bottomRightMotor->moveVoltage(rightOutput * maxOutput);
+  bottomLeftMotor->moveVoltage(leftOutput * maxOutput);
 }
 
 void XDriveModel::xArcade(const double ixSpeed, const double iySpeed, const double izRotation,
@@ -205,49 +229,49 @@ void XDriveModel::xArcade(const double ixSpeed, const double iySpeed, const doub
     zRotation = 0;
   }
 
-  topLeftMotor.moveVoltage(ySpeed + xSpeed + zRotation);
-  topRightMotor.moveVoltage(ySpeed - xSpeed - zRotation);
-  bottomRightMotor.moveVoltage(ySpeed + xSpeed - zRotation);
-  bottomLeftMotor.moveVoltage(ySpeed - xSpeed + zRotation);
+  topLeftMotor->moveVoltage(ySpeed + xSpeed + zRotation);
+  topRightMotor->moveVoltage(ySpeed - xSpeed - zRotation);
+  bottomRightMotor->moveVoltage(ySpeed + xSpeed - zRotation);
+  bottomLeftMotor->moveVoltage(ySpeed - xSpeed + zRotation);
 }
 
 void XDriveModel::left(const double ispeed) const {
-  topLeftMotor.moveVelocity(ispeed * maxOutput);
-  bottomLeftMotor.moveVelocity(ispeed * maxOutput);
+  topLeftMotor->moveVelocity(ispeed * maxOutput);
+  bottomLeftMotor->moveVelocity(ispeed * maxOutput);
 }
 
 void XDriveModel::right(const double ispeed) const {
-  topRightMotor.moveVelocity(ispeed * maxOutput);
-  bottomRightMotor.moveVelocity(ispeed * maxOutput);
+  topRightMotor->moveVelocity(ispeed * maxOutput);
+  bottomRightMotor->moveVelocity(ispeed * maxOutput);
 }
 
-std::valarray<int> XDriveModel::getSensorVals() const {
-  return std::valarray<int>{leftSensor.get(), rightSensor.get()};
+std::valarray<std::int32_t> XDriveModel::getSensorVals() const {
+  return std::valarray<std::int32_t>{leftSensor->get(), rightSensor->get()};
 }
 
 void XDriveModel::resetSensors() const {
-  leftSensor.reset();
-  rightSensor.reset();
+  leftSensor->reset();
+  rightSensor->reset();
 }
 
 void XDriveModel::setBrakeMode(const motor_brake_mode_e_t mode) const {
-  topLeftMotor.setBrakeMode(mode);
-  topRightMotor.setBrakeMode(mode);
-  bottomRightMotor.setBrakeMode(mode);
-  bottomLeftMotor.setBrakeMode(mode);
+  topLeftMotor->setBrakeMode(mode);
+  topRightMotor->setBrakeMode(mode);
+  bottomRightMotor->setBrakeMode(mode);
+  bottomLeftMotor->setBrakeMode(mode);
 }
 
 void XDriveModel::setEncoderUnits(const motor_encoder_units_e_t units) const {
-  topLeftMotor.setEncoderUnits(units);
-  topRightMotor.setEncoderUnits(units);
-  bottomRightMotor.setEncoderUnits(units);
-  bottomLeftMotor.setEncoderUnits(units);
+  topLeftMotor->setEncoderUnits(units);
+  topRightMotor->setEncoderUnits(units);
+  bottomRightMotor->setEncoderUnits(units);
+  bottomLeftMotor->setEncoderUnits(units);
 }
 
 void XDriveModel::setGearing(const motor_gearset_e_t gearset) const {
-  topLeftMotor.setGearing(gearset);
-  topRightMotor.setGearing(gearset);
-  bottomRightMotor.setGearing(gearset);
-  bottomLeftMotor.setGearing(gearset);
+  topLeftMotor->setGearing(gearset);
+  topRightMotor->setGearing(gearset);
+  bottomRightMotor->setGearing(gearset);
+  bottomLeftMotor->setGearing(gearset);
 }
 } // namespace okapi

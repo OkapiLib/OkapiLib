@@ -9,12 +9,22 @@
 
 namespace okapi {
 IterativeMotorVelocityControllerArgs::IterativeMotorVelocityControllerArgs(
-  const AbstractMotor &imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+  std::shared_ptr<AbstractMotor> imotor, std::shared_ptr<IterativeVelocityController> icontroller)
   : motor(imotor), controller(icontroller) {
 }
 
 IterativeMotorVelocityController::IterativeMotorVelocityController(
-  const AbstractMotor &imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+  Motor imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+  : IterativeMotorVelocityController(std::make_shared<Motor>(imotor), icontroller) {
+}
+
+IterativeMotorVelocityController::IterativeMotorVelocityController(
+  MotorGroup imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+  : IterativeMotorVelocityController(std::make_shared<MotorGroup>(imotor), icontroller) {
+}
+
+IterativeMotorVelocityController::IterativeMotorVelocityController(
+  std::shared_ptr<AbstractMotor> imotor, std::shared_ptr<IterativeVelocityController> icontroller)
   : motor(imotor), controller(icontroller) {
 }
 
@@ -25,7 +35,7 @@ IterativeMotorVelocityController::IterativeMotorVelocityController(
 
 double IterativeMotorVelocityController::step(const double ireading) {
   controller->step(ireading);
-  motor.moveVelocity(static_cast<int>(controller->getOutput()));
+  motor->moveVelocity(static_cast<int>(controller->getOutput()));
   return controller->getOutput();
 }
 
@@ -49,7 +59,7 @@ bool IterativeMotorVelocityController::isSettled() {
   return controller->isSettled();
 }
 
-void IterativeMotorVelocityController::setSampleTime(const uint32_t isampleTime) {
+void IterativeMotorVelocityController::setSampleTime(const std::uint32_t isampleTime) {
   controller->setSampleTime(isampleTime);
 }
 
@@ -65,7 +75,15 @@ void IterativeMotorVelocityController::flipDisable() {
   controller->flipDisable();
 }
 
-uint32_t IterativeMotorVelocityController::getSampleTime() const {
+void IterativeMotorVelocityController::flipDisable(const bool iisDisabled) {
+  controller->flipDisable(iisDisabled);
+}
+
+bool IterativeMotorVelocityController::isDisabled() const {
+  return controller->isDisabled();
+}
+
+std::uint32_t IterativeMotorVelocityController::getSampleTime() const {
   return controller->getSampleTime();
 }
 } // namespace okapi

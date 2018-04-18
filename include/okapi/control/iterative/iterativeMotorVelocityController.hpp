@@ -11,22 +11,30 @@
 #include "api.h"
 #include "okapi/control/iterative/iterativeVelocityController.hpp"
 #include "okapi/device/motor/abstractMotor.hpp"
+#include "okapi/device/motor/motor.hpp"
+#include "okapi/device/motor/motorGroup.hpp"
 #include <array>
 #include <memory>
 
 namespace okapi {
 class IterativeMotorVelocityControllerArgs : public IterativeVelocityControllerArgs {
   public:
-  IterativeMotorVelocityControllerArgs(const AbstractMotor &imotor,
+  IterativeMotorVelocityControllerArgs(std::shared_ptr<AbstractMotor> imotor,
                                        std::shared_ptr<IterativeVelocityController> icontroller);
 
-  const AbstractMotor &motor;
+  std::shared_ptr<AbstractMotor> motor;
   std::shared_ptr<IterativeVelocityController> controller;
 };
 
 class IterativeMotorVelocityController : public IterativeVelocityController {
   public:
-  IterativeMotorVelocityController(const AbstractMotor &imotor,
+  IterativeMotorVelocityController(Motor imotor,
+                                   std::shared_ptr<IterativeVelocityController> icontroller);
+
+  IterativeMotorVelocityController(MotorGroup imotor,
+                                   std::shared_ptr<IterativeVelocityController> icontroller);
+
+  IterativeMotorVelocityController(std::shared_ptr<AbstractMotor> imotor,
                                    std::shared_ptr<IterativeVelocityController> icontroller);
 
   IterativeMotorVelocityController(const IterativeMotorVelocityControllerArgs &iparams);
@@ -72,7 +80,7 @@ class IterativeMotorVelocityController : public IterativeVelocityController {
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime) override;
+  virtual void setSampleTime(const std::uint32_t isampleTime) override;
 
   /**
    * Set controller output bounds.
@@ -89,19 +97,35 @@ class IterativeMotorVelocityController : public IterativeVelocityController {
   virtual void reset() override;
 
   /**
-   * Change whether the controll is off or on.
+   * Changes whether the controll is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
    */
   virtual void flipDisable() override;
+
+  /**
+   * Sets whether the controller is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
+   *
+   * @param iisDisabled whether the controller is disabled
+   */
+  virtual void flipDisable(const bool iisDisabled) override;
+
+  /**
+   * Returns whether the controller is currently disabled.
+   *
+   * @return whether the controller is currently disabled
+   */
+  virtual bool isDisabled() const override;
 
   /**
    * Get the last set sample time.
    *
    * @return sample time
    */
-  virtual uint32_t getSampleTime() const override;
+  virtual std::uint32_t getSampleTime() const override;
 
   protected:
-  const AbstractMotor &motor;
+  std::shared_ptr<AbstractMotor> motor;
   std::shared_ptr<IterativeVelocityController> controller;
 };
 } // namespace okapi

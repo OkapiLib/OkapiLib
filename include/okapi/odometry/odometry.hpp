@@ -97,7 +97,7 @@ class Odometry {
   std::shared_ptr<SkidSteerModel> model;
   OdomState state;
   double scale, turnScale;
-  std::valarray<int> lastTicks{0, 0};
+  std::valarray<std::int32_t> lastTicks{0, 0};
   double mm = 0;
 };
 } // namespace okapi

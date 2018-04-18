@@ -12,7 +12,7 @@ Rate::Rate() = default;
 
 Rate::~Rate() = default;
 
-void Rate::delayHz(const uint32_t ihz) {
+void Rate::delayHz(const std::uint32_t ihz) {
   if (lastTime == 0) {
     // First call
     lastTime = pros::millis();

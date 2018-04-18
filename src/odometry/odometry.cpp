@@ -43,23 +43,24 @@ void Odometry::setScales(const double iscale, const double iturnScale) {
 }
 
 void Odometry::loop() {
-  uint32_t now = pros::millis();
-  std::valarray<int> newTicks{0, 0}, tickDiff{0, 0};
+  std::uint32_t now = pros::millis();
+  std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0};
 
   while (true) {
     newTicks = model->getSensorVals();
     tickDiff = newTicks - lastTicks;
-    mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
     lastTicks = newTicks;
 
-    state.theta += (static_cast<double>(tickDiff[1] - tickDiff[0]) / 2.0) * turnScale;
+    mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
+
+    state.theta += (tickDiff[1] - tickDiff[0]) * turnScale;
     if (state.theta > 180)
       state.theta -= 360;
     else if (state.theta < -180)
       state.theta += 360;
 
-    state.x += mm * std::cos(state.theta);
-    state.y += mm * std::sin(state.theta);
+    state.x += mm * std::cos(state.theta * degreeToRadian);
+    state.y += mm * std::sin(state.theta * degreeToRadian);
 
     pros::c::task_delay_until(&now, 10);
   }

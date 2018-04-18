@@ -95,21 +95,21 @@ class ChassisController {
    *
    * @param ipower motor power
    */
-  virtual void left(const int ispeed) const;
+  virtual void left(const double ispeed) const;
 
   /**
    * Power the right side motors.
    *
    * @param ipower motor power
    */
-  virtual void right(const int ispeed) const;
+  virtual void right(const double ispeed) const;
 
   /**
    * Read the sensors.
    *
    * @return sensor readings in the format {left, right}
    */
-  virtual std::valarray<int> getSensorVals() const;
+  virtual std::valarray<std::int32_t> getSensorVals() const;
 
   /**
    * Reset the sensors to their zero point.

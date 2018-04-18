@@ -10,18 +10,13 @@
 namespace okapi {
 AsyncControllerArgs::~AsyncControllerArgs() = default;
 
-AsyncController::~AsyncController() = default;
-
 double AsyncController::getOutput() const {
   return 0;
 }
 
-void AsyncController::setSampleTime(const uint32_t isampleTime) {
+void AsyncController::setSampleTime(const std::uint32_t isampleTime) {
 }
 
 void AsyncController::setOutputLimits(double imax, double imin) {
-}
-
-void AsyncController::flipDisable() {
 }
 } // namespace okapi

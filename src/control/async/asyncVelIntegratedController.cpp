@@ -8,11 +8,20 @@
 #include "okapi/control/async/asyncVelIntegratedController.hpp"
 
 namespace okapi {
-AsyncVelIntegratedControllerArgs::AsyncVelIntegratedControllerArgs(const AbstractMotor &imotor)
+AsyncVelIntegratedControllerArgs::AsyncVelIntegratedControllerArgs(
+  std::shared_ptr<AbstractMotor> imotor)
   : motor(imotor) {
 }
 
-AsyncVelIntegratedController::AsyncVelIntegratedController(const AbstractMotor &imotor)
+AsyncVelIntegratedController::AsyncVelIntegratedController(Motor imotor)
+  : AsyncVelIntegratedController(std::make_shared<Motor>(imotor)) {
+}
+
+AsyncVelIntegratedController::AsyncVelIntegratedController(MotorGroup imotor)
+  : AsyncVelIntegratedController(std::make_shared<MotorGroup>(imotor)) {
+}
+
+AsyncVelIntegratedController::AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor)
   : motor(imotor) {
 }
 
@@ -22,12 +31,17 @@ AsyncVelIntegratedController::AsyncVelIntegratedController(
 }
 
 void AsyncVelIntegratedController::setTarget(const double itarget) {
-  motor.moveVelocity(itarget);
+  hasFirstTarget = true;
+
+  if (!controllerIsDisabled) {
+    motor->moveVelocity(itarget);
+  }
+
   lastTarget = itarget;
 }
 
 double AsyncVelIntegratedController::getError() const {
-  return lastTarget - motor.getActualVelocity();
+  return lastTarget - motor->getActualVelocity();
 }
 
 bool AsyncVelIntegratedController::isSettled() {
@@ -35,6 +49,30 @@ bool AsyncVelIntegratedController::isSettled() {
 }
 
 void AsyncVelIntegratedController::reset() {
-  // Don't have to do anything
+  hasFirstTarget = false;
+}
+
+void AsyncVelIntegratedController::flipDisable() {
+  controllerIsDisabled = !controllerIsDisabled;
+  resumeMovement();
+}
+
+void AsyncVelIntegratedController::flipDisable(const bool iisDisabled) {
+  controllerIsDisabled = iisDisabled;
+  resumeMovement();
+}
+
+bool AsyncVelIntegratedController::isDisabled() const {
+  return controllerIsDisabled;
+}
+
+void AsyncVelIntegratedController::resumeMovement() {
+  if (controllerIsDisabled) {
+    motor->moveVoltage(0);
+  } else {
+    if (hasFirstTarget) {
+      setTarget(lastTarget);
+    }
+  }
 }
 } // namespace okapi

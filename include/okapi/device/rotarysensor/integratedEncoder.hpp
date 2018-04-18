@@ -18,21 +18,21 @@ class IntegratedEncoder : public RotarySensor {
    *
    * @param imotor motor
    */
-  IntegratedEncoder(const pros::Motor &imotor);
+  IntegratedEncoder(pros::Motor imotor);
 
   /**
    * Get the current sensor value.
    *
    * @return the current sensor value, or ``PROS_ERR`` on a failure.
    */
-  virtual int32_t get() const override;
+  virtual std::int32_t get() const override;
 
   /**
    * Reset the sensor to zero.
    *
    * @return 1 on suceess, PROS_ERR on fail
    */
-  virtual int32_t reset() const override;
+  virtual std::int32_t reset() const override;
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in
@@ -43,7 +43,7 @@ class IntegratedEncoder : public RotarySensor {
   virtual double controllerGet() override;
 
   protected:
-  const pros::Motor &motor;
+  pros::Motor motor;
 };
 } // namespace okapi
 

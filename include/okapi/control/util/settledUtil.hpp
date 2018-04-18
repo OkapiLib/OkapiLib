@@ -22,7 +22,7 @@ class SettledUtil {
    * @param iatTargetTime minimum time within atTargetError to be considered settled
    */
   SettledUtil(const double iatTargetError = 50, const double iatTargetDerivative = 5,
-              const uint32_t iatTargetTime = 250);
+              const std::uint32_t iatTargetTime = 250);
 
   virtual ~SettledUtil();
 
@@ -37,7 +37,7 @@ class SettledUtil {
   protected:
   double atTargetError = 50;
   double atTargetDerivative = 5;
-  uint32_t atTargetTime = 250;
+  std::uint32_t atTargetTime = 250;
   Timer atTargetTimer;
   double lastError = 0;
 };

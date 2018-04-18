@@ -11,16 +11,19 @@
 #include "okapi/control/async/asyncVelocityController.hpp"
 #include "okapi/control/util/settledUtil.hpp"
 #include "okapi/device/motor/abstractMotor.hpp"
+#include "okapi/device/motor/motor.hpp"
+#include "okapi/device/motor/motorGroup.hpp"
 #include "okapi/device/rotarysensor/integratedEncoder.hpp"
+#include <memory>
 
 namespace okapi {
 class AsyncVelIntegratedController;
 
 class AsyncVelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
   public:
-  AsyncVelIntegratedControllerArgs(const AbstractMotor &imotor);
+  AsyncVelIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
 
-  const AbstractMotor &motor;
+  std::shared_ptr<AbstractMotor> motor;
 };
 
 /**
@@ -28,7 +31,11 @@ class AsyncVelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
  */
 class AsyncVelIntegratedController : public AsyncVelocityController {
   public:
-  AsyncVelIntegratedController(const AbstractMotor &imotor);
+  AsyncVelIntegratedController(Motor imotor);
+
+  AsyncVelIntegratedController(MotorGroup imotor);
+
+  AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor);
 
   AsyncVelIntegratedController(const AsyncVelIntegratedControllerArgs &iparams);
 
@@ -56,10 +63,35 @@ class AsyncVelIntegratedController : public AsyncVelocityController {
    */
   virtual void reset() override;
 
+  /**
+   * Changes whether the controll is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
+   */
+  virtual void flipDisable() override;
+
+  /**
+   * Sets whether the controller is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
+   *
+   * @param iisDisabled whether the controller is disabled
+   */
+  virtual void flipDisable(const bool iisDisabled) override;
+
+  /**
+   * Returns whether the controller is currently disabled.
+   *
+   * @return whether the controller is currently disabled
+   */
+  virtual bool isDisabled() const override;
+
   protected:
-  const AbstractMotor &motor;
+  std::shared_ptr<AbstractMotor> motor;
   double lastTarget = 0;
+  bool controllerIsDisabled = false;
+  bool hasFirstTarget = false;
   SettledUtil settledUtil;
+
+  virtual void resumeMovement();
 };
 } // namespace okapi
 

@@ -10,9 +10,29 @@
 #include <cmath>
 
 namespace okapi {
+OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(Motor ileftSideMotor,
+                                                                 Motor irightSideMotor,
+                                                                 const double iscale,
+                                                                 const double iturnScale,
+                                                                 const float imoveThreshold)
+  : OdomChassisControllerIntegrated(std::make_shared<Motor>(ileftSideMotor),
+                                    std::make_shared<Motor>(irightSideMotor), iscale, iturnScale,
+                                    imoveThreshold) {
+}
+
+OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(MotorGroup ileftSideMotor,
+                                                                 MotorGroup irightSideMotor,
+                                                                 const double iscale,
+                                                                 const double iturnScale,
+                                                                 const float imoveThreshold)
+  : OdomChassisControllerIntegrated(std::make_shared<MotorGroup>(ileftSideMotor),
+                                    std::make_shared<MotorGroup>(irightSideMotor), iscale,
+                                    iturnScale, imoveThreshold) {
+}
+
 OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
-  const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double iscale,
-  const double iturnScale, const float imoveThreshold)
+  std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
+  const double iscale, const double iturnScale, const float imoveThreshold)
   : OdomChassisControllerIntegrated(
       std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor), ileftSideMotor,
       irightSideMotor, iscale, iturnScale, imoveThreshold) {
@@ -26,8 +46,8 @@ OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
 }
 
 OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
-  std::shared_ptr<SkidSteerModel> imodel, const AbstractMotor &ileftSideMotor,
-  const AbstractMotor &irightSideMotor, const double iscale, const double iturnScale,
+  std::shared_ptr<SkidSteerModel> imodel, std::shared_ptr<AbstractMotor> ileftSideMotor,
+  std::shared_ptr<AbstractMotor> irightSideMotor, const double iscale, const double iturnScale,
   const float imoveThreshold)
   : OdomChassisControllerIntegrated(
       imodel, iscale, iturnScale, AsyncPosIntegratedControllerArgs(ileftSideMotor),
@@ -52,11 +72,11 @@ void OdomChassisControllerIntegrated::driveToPoint(const float ix, const float i
     daa.length *= -1;
   }
 
-  if (std::abs(daa.theta) > 1) {
+  if (std::fabs(daa.theta) > 1) {
     ChassisControllerIntegrated::turnAngle(daa.theta);
   }
 
-  if (std::abs(daa.length - ioffset) > moveThreshold) {
+  if (std::fabs(daa.length - ioffset) > moveThreshold) {
     ChassisControllerIntegrated::moveDistance(static_cast<int>(daa.length - ioffset));
   }
 }

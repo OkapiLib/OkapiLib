@@ -51,6 +51,7 @@ class ThreeEncoderOdometry : public Odometry {
   protected:
   std::shared_ptr<ThreeEncoderSkidSteerModel> model;
   const double middleScale;
+  std::valarray<std::int32_t> lastTicks{0, 0, 0};
 };
 } // namespace okapi
 

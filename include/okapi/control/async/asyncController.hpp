@@ -23,8 +23,6 @@ class AsyncControllerArgs {
  */
 class AsyncController : public ClosedLoopController {
   public:
-  virtual ~AsyncController();
-
   /**
    * Returns the last calculated output of the controller. Default is 0.
    */
@@ -35,7 +33,7 @@ class AsyncController : public ClosedLoopController {
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime);
+  virtual void setSampleTime(const std::uint32_t isampleTime);
 
   /**
    * Set controller output bounds. Default does nothing.
@@ -44,17 +42,6 @@ class AsyncController : public ClosedLoopController {
    * @param imin min output
    */
   virtual void setOutputLimits(double imax, double imin);
-
-  /**
-   * Resets the controller so it can start from 0 again properly. Keeps configuration from
-   * before.
-   */
-  virtual void reset() = 0;
-
-  /**
-   * Change whether the controll is off or on. Default does nothing.
-   */
-  virtual void flipDisable();
 };
 } // namespace okapi
 

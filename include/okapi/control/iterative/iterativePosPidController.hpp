@@ -98,7 +98,7 @@ class IterativePosPIDController : public IterativePositionController {
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime) override;
+  virtual void setSampleTime(const std::uint32_t isampleTime) override;
 
   /**
    * Set controller output bounds. Default bounds are [-1, 1].
@@ -139,21 +139,37 @@ class IterativePosPIDController : public IterativePositionController {
   virtual void setIntegratorReset(bool iresetOnZero);
 
   /**
-   * Change whether the controll is off or on.
+   * Changes whether the controll is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
    */
   virtual void flipDisable() override;
+
+  /**
+   * Sets whether the controller is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
+   *
+   * @param iisDisabled whether the controller is disabled
+   */
+  virtual void flipDisable(const bool iisDisabled) override;
+
+  /**
+   * Returns whether the controller is currently disabled.
+   *
+   * @return whether the controller is currently disabled
+   */
+  virtual bool isDisabled() const override;
 
   /**
    * Get the last set sample time.
    *
    * @return sample time
    */
-  virtual uint32_t getSampleTime() const override;
+  virtual std::uint32_t getSampleTime() const override;
 
   protected:
   double kP, kI, kD, kBias;
-  uint32_t lastTime = 0;
-  uint32_t sampleTime = 10;
+  std::uint32_t lastTime = 0;
+  std::uint32_t sampleTime = 10;
   double target = 0;
   double lastReading = 0;
   double error = 0;

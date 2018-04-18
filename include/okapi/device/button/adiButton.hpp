@@ -13,7 +13,7 @@
 namespace okapi {
 class ADIButton : public Button {
   public:
-  ADIButton(const uint8_t iport, const bool iinverted = false);
+  ADIButton(const std::uint8_t iport, const bool iinverted = false);
 
   /**
    * Return whether the button is current pressed.
@@ -40,7 +40,7 @@ class ADIButton : public Button {
 
   protected:
   pros::ADIButton btn;
-  uint8_t port;
+  std::uint8_t port;
   const bool inverted;
   bool wasPressedLast = false;
 

@@ -11,8 +11,26 @@
 
 namespace okapi {
 OdomChassisControllerPID::OdomChassisControllerPID(
-  const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double iscale,
+  Motor ileftSideMotor, Motor irightSideMotor, const double iscale, const double iturnScale,
+  const IterativePosPIDControllerArgs &idistanceArgs,
+  const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold)
+  : OdomChassisControllerPID(std::make_shared<Motor>(ileftSideMotor),
+                             std::make_shared<Motor>(irightSideMotor), iscale, iturnScale,
+                             idistanceArgs, iangleArgs, imoveThreshold) {
+}
+
+OdomChassisControllerPID::OdomChassisControllerPID(
+  MotorGroup ileftSideMotor, MotorGroup irightSideMotor, const double iscale,
   const double iturnScale, const IterativePosPIDControllerArgs &idistanceArgs,
+  const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold)
+  : OdomChassisControllerPID(std::make_shared<MotorGroup>(ileftSideMotor),
+                             std::make_shared<MotorGroup>(irightSideMotor), iscale, iturnScale,
+                             idistanceArgs, iangleArgs, imoveThreshold) {
+}
+
+OdomChassisControllerPID::OdomChassisControllerPID(
+  std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
+  const double iscale, const double iturnScale, const IterativePosPIDControllerArgs &idistanceArgs,
   const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold)
   : OdomChassisControllerPID(std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor),
                              iscale, iturnScale, idistanceArgs, iangleArgs, imoveThreshold) {

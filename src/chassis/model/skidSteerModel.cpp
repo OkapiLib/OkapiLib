@@ -10,9 +10,10 @@
 #include <utility>
 
 namespace okapi {
-SkidSteerModelArgs::SkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
-                                       const AbstractMotor &irightSideMotor,
-                                       const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+SkidSteerModelArgs::SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                                       std::shared_ptr<AbstractMotor> irightSideMotor,
+                                       std::shared_ptr<RotarySensor> ileftEnc,
+                                       std::shared_ptr<RotarySensor> irightEnc,
                                        const double imaxOutput)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
@@ -21,19 +22,40 @@ SkidSteerModelArgs::SkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
     maxOutput(imaxOutput) {
 }
 
-SkidSteerModelArgs::SkidSteerModelArgs(const AbstractMotor &ileftSideMotor,
-                                       const AbstractMotor &irightSideMotor,
+SkidSteerModelArgs::SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                                       std::shared_ptr<AbstractMotor> irightSideMotor,
                                        const double imaxOutput)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
-    leftSensor(std::move(ileftSideMotor.getEncoder())),
-    rightSensor(std::move(irightSideMotor.getEncoder())),
+    leftSensor(std::make_shared<IntegratedEncoder>(
+      ileftSideMotor->getEncoder())), // Maybe need to use std::move
+    rightSensor(std::make_shared<IntegratedEncoder>(
+      irightSideMotor->getEncoder())), // Maybe need to use std::move
     maxOutput(imaxOutput) {
 }
 
-SkidSteerModel::SkidSteerModel(const AbstractMotor &ileftSideMotor,
-                               const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc,
-                               const RotarySensor &irightEnc, const double imaxOutput)
+SkidSteerModel::SkidSteerModel(Motor ileftSideMotor, Motor irightSideMotor, const double imaxOutput)
+  : SkidSteerModel(std::make_shared<Motor>(ileftSideMotor),
+                   std::make_shared<Motor>(irightSideMotor), imaxOutput) {
+}
+
+SkidSteerModel::SkidSteerModel(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+                               const double imaxOutput)
+  : SkidSteerModel(std::make_shared<MotorGroup>(ileftSideMotor),
+                   std::make_shared<MotorGroup>(irightSideMotor), imaxOutput) {
+}
+
+SkidSteerModel::SkidSteerModel(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+                               ADIEncoder ileftEnc, ADIEncoder irightEnc, const double imaxOutput)
+  : SkidSteerModel(
+      std::make_shared<MotorGroup>(ileftSideMotor), std::make_shared<MotorGroup>(irightSideMotor),
+      std::make_shared<ADIEncoder>(ileftEnc), std::make_shared<ADIEncoder>(irightEnc), imaxOutput) {
+}
+
+SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                               std::shared_ptr<AbstractMotor> irightSideMotor,
+                               std::shared_ptr<RotarySensor> ileftEnc,
+                               std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
     leftSensor(ileftEnc),
@@ -41,12 +63,15 @@ SkidSteerModel::SkidSteerModel(const AbstractMotor &ileftSideMotor,
     maxOutput(imaxOutput) {
 }
 
-SkidSteerModel::SkidSteerModel(const AbstractMotor &ileftSideMotor,
-                               const AbstractMotor &irightSideMotor, const double imaxOutput)
+SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                               std::shared_ptr<AbstractMotor> irightSideMotor,
+                               const double imaxOutput)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
-    leftSensor(std::move(ileftSideMotor.getEncoder())),
-    rightSensor(std::move(irightSideMotor.getEncoder())),
+    leftSensor(std::make_shared<IntegratedEncoder>(
+      ileftSideMotor->getEncoder())), // Maybe need to use std::move
+    rightSensor(std::make_shared<IntegratedEncoder>(
+      irightSideMotor->getEncoder())), // Maybe need to use std::move
     maxOutput(imaxOutput) {
 }
 
@@ -67,8 +92,8 @@ SkidSteerModel::SkidSteerModel(const SkidSteerModel &other)
 }
 
 void SkidSteerModel::forward(const double ispeed) const {
-  leftSideMotor.moveVelocity(ispeed * maxOutput);
-  rightSideMotor.moveVelocity(ispeed * maxOutput);
+  leftSideMotor->moveVelocity(ispeed * maxOutput);
+  rightSideMotor->moveVelocity(ispeed * maxOutput);
 }
 
 void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) const {
@@ -85,18 +110,18 @@ void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) 
     rightOutput /= maxInputMag;
   }
 
-  leftSideMotor.moveVelocity(leftOutput * maxOutput);
-  rightSideMotor.moveVelocity(rightOutput * maxOutput);
+  leftSideMotor->moveVelocity(leftOutput * maxOutput);
+  rightSideMotor->moveVelocity(rightOutput * maxOutput);
 }
 
 void SkidSteerModel::rotate(const double ispeed) const {
-  leftSideMotor.moveVelocity(ispeed * maxOutput);
-  rightSideMotor.moveVelocity(-1 * ispeed * maxOutput);
+  leftSideMotor->moveVelocity(ispeed * maxOutput);
+  rightSideMotor->moveVelocity(-1 * ispeed * maxOutput);
 }
 
 void SkidSteerModel::stop() const {
-  leftSideMotor.moveVelocity(0);
-  rightSideMotor.moveVelocity(0);
+  leftSideMotor->moveVelocity(0);
+  rightSideMotor->moveVelocity(0);
 }
 
 void SkidSteerModel::tank(const double ileftSpeed, const double irightSpeed,
@@ -113,8 +138,8 @@ void SkidSteerModel::tank(const double ileftSpeed, const double irightSpeed,
     rightSpeed = 0;
   }
 
-  leftSideMotor.moveVoltage(leftSpeed * maxOutput);
-  rightSideMotor.moveVoltage(rightSpeed * maxOutput);
+  leftSideMotor->moveVoltage(leftSpeed * maxOutput);
+  rightSideMotor->moveVoltage(rightSpeed * maxOutput);
 }
 
 void SkidSteerModel::arcade(const double iySpeed, const double izRotation,
@@ -153,47 +178,47 @@ void SkidSteerModel::arcade(const double iySpeed, const double izRotation,
     }
   }
 
-  leftSideMotor.moveVoltage(std::clamp(leftOutput, -1.0, 1.0) * maxOutput);
-  rightSideMotor.moveVoltage(std::clamp(rightOutput, -1.0, 1.0) * maxOutput);
+  leftSideMotor->moveVoltage(std::clamp(leftOutput, -1.0, 1.0) * maxOutput);
+  rightSideMotor->moveVoltage(std::clamp(rightOutput, -1.0, 1.0) * maxOutput);
 }
 
 void SkidSteerModel::left(const double ispeed) const {
-  leftSideMotor.moveVelocity(ispeed * maxOutput);
+  leftSideMotor->moveVelocity(ispeed * maxOutput);
 }
 
 void SkidSteerModel::right(const double ispeed) const {
-  rightSideMotor.moveVelocity(ispeed * maxOutput);
+  rightSideMotor->moveVelocity(ispeed * maxOutput);
 }
 
-std::valarray<int> SkidSteerModel::getSensorVals() const {
-  return std::valarray<int>{leftSensor.get(), rightSensor.get()};
+std::valarray<std::int32_t> SkidSteerModel::getSensorVals() const {
+  return std::valarray<std::int32_t>{leftSensor->get(), rightSensor->get()};
 }
 
 void SkidSteerModel::resetSensors() const {
-  leftSensor.reset();
-  rightSensor.reset();
+  leftSensor->reset();
+  rightSensor->reset();
 }
 
 void SkidSteerModel::setBrakeMode(const motor_brake_mode_e_t mode) const {
-  leftSideMotor.setBrakeMode(mode);
-  rightSideMotor.setBrakeMode(mode);
+  leftSideMotor->setBrakeMode(mode);
+  rightSideMotor->setBrakeMode(mode);
 }
 
 void SkidSteerModel::setEncoderUnits(const motor_encoder_units_e_t units) const {
-  leftSideMotor.setEncoderUnits(units);
-  rightSideMotor.setEncoderUnits(units);
+  leftSideMotor->setEncoderUnits(units);
+  rightSideMotor->setEncoderUnits(units);
 }
 
 void SkidSteerModel::setGearing(const motor_gearset_e_t gearset) const {
-  leftSideMotor.setGearing(gearset);
-  rightSideMotor.setGearing(gearset);
+  leftSideMotor->setGearing(gearset);
+  rightSideMotor->setGearing(gearset);
 }
 
-const AbstractMotor &SkidSteerModel::getLeftSideMotor() const {
+std::shared_ptr<AbstractMotor> SkidSteerModel::getLeftSideMotor() const {
   return leftSideMotor;
 }
 
-const AbstractMotor &SkidSteerModel::getRightSideMotor() const {
+std::shared_ptr<AbstractMotor> SkidSteerModel::getRightSideMotor() const {
   return rightSideMotor;
 }
 } // namespace okapi

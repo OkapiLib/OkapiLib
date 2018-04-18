@@ -91,7 +91,7 @@ class IterativeVelPIDController : public IterativeVelocityController {
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const uint32_t isampleTime) override;
+  virtual void setSampleTime(const std::uint32_t isampleTime) override;
 
   /**
    * Set controller output bounds.
@@ -108,16 +108,32 @@ class IterativeVelPIDController : public IterativeVelocityController {
   virtual void reset() override;
 
   /**
-   * Change whether the controll is off or on.
+   * Changes whether the controll is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
    */
   virtual void flipDisable() override;
+
+  /**
+   * Sets whether the controller is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
+   *
+   * @param iisDisabled whether the controller is disabled
+   */
+  virtual void flipDisable(const bool iisDisabled) override;
+
+  /**
+   * Returns whether the controller is currently disabled.
+   *
+   * @return whether the controller is currently disabled
+   */
+  virtual bool isDisabled() const override;
 
   /**
    * Get the last set sample time.
    *
    * @return sample time
    */
-  virtual uint32_t getSampleTime() const override;
+  virtual std::uint32_t getSampleTime() const override;
 
   /**
    * Do one iteration of velocity calculation.
@@ -150,8 +166,8 @@ class IterativeVelPIDController : public IterativeVelocityController {
 
   protected:
   double kP, kD;
-  uint32_t lastTime = 0;
-  uint32_t sampleTime = 10;
+  std::uint32_t lastTime = 0;
+  std::uint32_t sampleTime = 10;
   double error = 0;
   double lastError = 0;
   double derivative = 0;

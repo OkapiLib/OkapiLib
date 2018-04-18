@@ -14,16 +14,21 @@ Controller::Controller(const controller_id_e_t iid) : controller(iid) {
 Controller::~Controller() = default;
 
 bool Controller::isConnected() {
-  const int32_t state = controller.is_connected();
+  const std::int32_t state = controller.is_connected();
   return state == 1 || state == 2;
 }
 
-int32_t Controller::getConnectionState() {
+std::int32_t Controller::getConnectionState() {
   return controller.is_connected();
 }
 
 float Controller::getAnalog(const controller_analog_e_t ichannel) {
-  return controller.get_analog(ichannel) / 127.0;
+  const auto val = controller.get_analog(ichannel);
+  if (val == PROS_ERR) {
+    return 0;
+  }
+
+  return val / 127.0;
 }
 
 bool Controller::getDigital(const controller_digital_e_t ibutton) {
