@@ -7,6 +7,7 @@
 void runHeadlessUnitTests() {
   using namespace okapi;
   using namespace snowhouse;
+  using namespace fakeit;
 
   {
     test_printf("Testing ipow");
@@ -255,14 +256,19 @@ void runHeadlessUnitTests() {
     FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
     sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
 
-    IterativePosPIDController controller(0.004, 0, 0);
+    Timer t;
+    Mock<Timer> mockTimer(t);
+    When(Method(mockTimer, getDt)).Return(10);
+    Timer &mockTimerInstance = mockTimer.get();
+
+    IterativePosPIDController controller(0.004, 0, 0, 0, std::make_shared<Timer>(mockTimerInstance),
+                                         std::make_shared<SettledUtil>());
     controller.setTarget(45);
     uint32_t lastTime = 0;
     for (size_t i = 0; i < 2000; i++) {
       controller.step(sim.getAngle() * radianToDegree);
       sim.setTorque(controller.getOutput());
       sim.step();
-      pros::c::task_delay_until(&lastTime, 10);
     }
 
     test("IterativePosPIDController should settle after 2000 iterations (simulator angle is "
@@ -276,13 +282,14 @@ void runHeadlessUnitTests() {
   test_print_report();
 }
 
-struct SomeInterface {
-  virtual int foo(int) = 0;
-  virtual int bar(int, int) = 0;
-};
-
 void testFakeIt() {
   using namespace fakeit;
+
+  struct SomeInterface {
+    virtual int foo(int) = 0;
+    virtual int bar(int, int) = 0;
+  };
+
   Mock<SomeInterface> mock;
   // Stub a method to return a value once
   When(Method(mock, foo)).Return(1);
