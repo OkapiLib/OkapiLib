@@ -17,6 +17,17 @@ ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs(
     middleSensor(imiddleEnc) {
 }
 
+ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(MotorGroup ileftSideMotor,
+                                                       MotorGroup irightSideMotor,
+                                                       ADIEncoder ileftEnc, ADIEncoder imiddleEnc,
+                                                       ADIEncoder irightEnc,
+                                                       const double imaxOutput)
+  : ThreeEncoderSkidSteerModel(
+      std::make_shared<MotorGroup>(ileftSideMotor), std::make_shared<MotorGroup>(irightSideMotor),
+      std::make_shared<ADIEncoder>(ileftEnc), std::make_shared<ADIEncoder>(imiddleEnc),
+      std::make_shared<ADIEncoder>(irightEnc), imaxOutput) {
+}
+
 ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
   std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
   std::shared_ptr<RotarySensor> ileftEnc, std::shared_ptr<RotarySensor> imiddleEnc,
