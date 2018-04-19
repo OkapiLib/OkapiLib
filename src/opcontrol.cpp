@@ -321,14 +321,6 @@ void runHeadlessUnitTests() {
   {
     test_printf("Testing IterativeMotorVelocityController");
 
-    class MockTimer : public Timer {
-      public:
-      using Timer::Timer;
-      virtual std::uint32_t getDtFromHardMark() const override {
-        return 10;
-      }
-    };
-
     class MockMotor : public Motor {
       public:
       MockMotor() : Motor(1) {
@@ -340,27 +332,39 @@ void runHeadlessUnitTests() {
       mutable std::int16_t lastVelocity;
     };
 
+    class MockIterativeVelPIDController : public IterativeVelPIDController {
+      public:
+      MockIterativeVelPIDController() : IterativeVelPIDController(0, 0) {
+      }
+      virtual double step(const double inewReading) override {
+        return inewReading;
+      }
+    };
+
     auto motor = std::make_shared<MockMotor>();
 
-    IterativeMotorVelocityController controller(
-      motor, std::make_shared<IterativeVelPIDController>(
-               1, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                                               std::make_unique<MockTimer>()),
-               std::make_unique<MockTimer>(), std::make_unique<SettledUtil>()));
+    IterativeMotorVelocityController controller(motor,
+                                                std::make_shared<MockIterativeVelPIDController>());
 
-    FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
-    sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
+    controller.step(0);
+    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
+         "* 127 1",
+         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(0 * 127, 0.01)));
 
-    const double target = 10;
-    controller.setTarget(target);
-    for (size_t i = 0; i < 2000; i++) {
-      controller.step(sim.getAngle() * radianToDegree);
-      sim.setTorque(controller.getOutput() * sim.getMaxTorque());
-      sim.step();
-    }
+    controller.step(0.5);
+    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
+         "* 127 2",
+         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(0.5 * 127, 0.01)));
 
-    test("IterativeMotorVelocityController should set the motor velocity to the target velocity",
-         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(target, 0.01)));
+    controller.step(1);
+    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
+         "* 127 3",
+         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(1 * 127, 0.01)));
+
+    controller.step(-0.5);
+    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
+         "* 127 4",
+         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(-0.5 * 127, 0.01)));
   }
 
   test_print_report();
