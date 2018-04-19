@@ -81,8 +81,9 @@ double IterativeVelPIDController::stepVel(const double inewReading) {
 
 double IterativeVelPIDController::step(const double inewReading) {
   if (isOn) {
-    const std::uint32_t now = pros::millis();
-    if (now - lastTime >= sampleTime) {
+    loopDtTimer->placeHardMark();
+
+    if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
       stepVel(inewReading);
       error = target - velMath->getVelocity();
 
@@ -93,7 +94,7 @@ double IterativeVelPIDController::step(const double inewReading) {
       output = std::clamp(output, outputMin, outputMax);
 
       lastError = error;
-      lastTime = now; // Important that we only assign lastTime if dt >= sampleTime
+      loopDtTimer->clearHardMark(); // Important that we only clear if dt >= sampleTime
 
       settledUtil->isSettled(error);
     }
@@ -101,7 +102,7 @@ double IterativeVelPIDController::step(const double inewReading) {
     return output;
   }
 
-  return 0;
+  return 0; // Can't set output to zero because the entire loop in an integral
 }
 
 void IterativeVelPIDController::setTarget(const double itarget) {
