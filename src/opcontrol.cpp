@@ -3,14 +3,6 @@
 #include "okapi/api.hpp"
 #include "okapi/test/testRunner.hpp"
 
-class MockTimer : public okapi::Timer {
-  public:
-  using okapi::Timer::Timer;
-  virtual std::uint32_t getDtFromHardMark() const override {
-    return 10;
-  }
-};
-
 void runHeadlessUnitTests() {
   using namespace okapi;
   using namespace snowhouse;
@@ -257,6 +249,14 @@ void runHeadlessUnitTests() {
 
   {
     test_printf("Testing IterativePosPIDController");
+
+    class MockTimer : public okapi::Timer {
+      public:
+      using okapi::Timer::Timer;
+      virtual std::uint32_t getDtFromHardMark() const override {
+        return 10;
+      }
+    };
 
     // Default values
     FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
