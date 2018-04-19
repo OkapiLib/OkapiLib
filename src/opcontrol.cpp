@@ -124,6 +124,62 @@ void testIterativeControllers() {
   }
 }
 
+void testAsyncControllers() {
+  using namespace okapi;
+  using namespace snowhouse;
+
+  {
+    test_printf("Testing AsyncPosIntegratedController");
+
+    class MockMotor : public Motor {
+      public:
+      MockMotor() : Motor(1) {
+      }
+
+      virtual std::int32_t moveAbsolute(const double iposition,
+                                        const std::int32_t ivelocity) const override {
+        lastPosition = iposition;
+        return 1;
+      }
+
+      virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const override {
+        lastVelocity = ivelocity;
+        return 1;
+      }
+
+      virtual double getPosition() const override {
+        return 0;
+      }
+
+      mutable std::int16_t lastVelocity;
+      mutable std::int16_t lastPosition;
+    };
+
+    auto motor = std::make_shared<MockMotor>();
+
+    AsyncPosIntegratedController controller(motor);
+
+    controller.setTarget(100);
+    test("Should be on by default", TEST_BODY(AssertThat, motor->lastPosition, Equals(100)));
+
+    controller.flipDisable();
+    test("Disabling the controller should turn the motor off",
+         TEST_BODY(AssertThat, motor->lastVelocity, Equals(0)));
+
+    controller.flipDisable();
+    test("Re-enabling the controller should move the motor to the previous target",
+         TEST_BODY(AssertThat, motor->lastPosition, Equals(100)));
+
+    controller.flipDisable();
+    controller.reset();
+    test("Resetting the controller should not change the current target",
+         TEST_BODY(AssertThat, motor->lastVelocity, Equals(0)));
+    controller.flipDisable();
+    test("Re-enabling the controller after a reset should not move the motor",
+         TEST_BODY(AssertThat, motor->lastPosition, Equals(0)));
+  }
+}
+
 void testControlUtils() {
   using namespace okapi;
   using namespace snowhouse;
@@ -151,6 +207,7 @@ void testControlUtils() {
 void runHeadlessControllerTests() {
   testControlUtils();
   testIterativeControllers();
+  testAsyncControllers();
 }
 
 void testUtils() {
