@@ -47,7 +47,7 @@ class IterativePosPIDController : public IterativePositionController {
    * This constructor is meant for unit testing.
    */
   IterativePosPIDController(const double ikP, const double ikI, const double ikD,
-                            const double ikBias, std::shared_ptr<Timer> iloopDtTimer,
+                            const double ikBias, std::unique_ptr<Timer> iloopDtTimer,
                             std::shared_ptr<SettledUtil> isettledUtil);
 
   /**
@@ -203,7 +203,7 @@ class IterativePosPIDController : public IterativePositionController {
 
   bool isOn = true;
 
-  std::shared_ptr<Timer> loopDtTimer;
+  std::unique_ptr<Timer> loopDtTimer;
   std::shared_ptr<SettledUtil> settledUtil;
 };
 } // namespace okapi

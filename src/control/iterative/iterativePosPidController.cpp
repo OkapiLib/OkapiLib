@@ -20,18 +20,18 @@ IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, c
 
 IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
                                                      const double ikD, const double ikBias)
-  : IterativePosPIDController(ikP, ikI, ikD, ikBias, std::make_shared<Timer>(),
+  : IterativePosPIDController(ikP, ikI, ikD, ikBias, std::make_unique<Timer>(),
                               std::make_shared<SettledUtil>()) {
 }
 
 IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params)
   : IterativePosPIDController(params.kP, params.kI, params.kD, params.kBias,
-                              std::make_shared<Timer>(), std::make_shared<SettledUtil>()) {
+                              std::make_unique<Timer>(), std::make_shared<SettledUtil>()) {
 }
 
 IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
                                                      const double ikD, const double ikBias,
-                                                     std::shared_ptr<Timer> iloopDtTimer,
+                                                     std::unique_ptr<Timer> iloopDtTimer,
                                                      std::shared_ptr<SettledUtil> isettledUtil)
   : loopDtTimer(std::move(iloopDtTimer)), settledUtil(std::move(isettledUtil)) {
   if (ikI != 0) {
