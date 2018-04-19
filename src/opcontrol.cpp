@@ -1,13 +1,19 @@
 #include "api.h"
 
-#include "okapi/FakeIt/single_header/standalone/fakeit.hpp"
 #include "okapi/api.hpp"
 #include "okapi/test/testRunner.hpp"
+
+class MockTimer : public okapi::Timer {
+  public:
+  using okapi::Timer::Timer;
+  virtual std::uint32_t getDtFromHardMark() const override {
+    return 10;
+  }
+};
 
 void runHeadlessUnitTests() {
   using namespace okapi;
   using namespace snowhouse;
-  using namespace fakeit;
 
   {
     test_printf("Testing ipow");
@@ -256,12 +262,7 @@ void runHeadlessUnitTests() {
     FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
     sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
 
-    Timer t;
-    Mock<Timer> mockTimer(t);
-    When(Method(mockTimer, getDt)).Return(10);
-    Timer &mockTimerInstance = mockTimer.get();
-
-    IterativePosPIDController controller(0.004, 0, 0, 0, std::make_shared<Timer>(mockTimerInstance),
+    IterativePosPIDController controller(0.004, 0, 0, 0, std::make_unique<MockTimer>(),
                                          std::make_shared<SettledUtil>());
     controller.setTarget(45);
     for (size_t i = 0; i < 2000; i++) {
@@ -279,33 +280,6 @@ void runHeadlessUnitTests() {
   }
 
   test_print_report();
-}
-
-void testFakeIt() {
-  using namespace fakeit;
-
-  struct SomeInterface {
-    virtual int foo(int) = 0;
-    virtual int bar(int, int) = 0;
-  };
-
-  Mock<SomeInterface> mock;
-  // Stub a method to return a value once
-  When(Method(mock, foo)).Return(1);
-
-  // Stub multiple return values (The next two lines do exactly the same)
-  When(Method(mock, foo)).Return(1, 2, 3);
-  When(Method(mock, foo)).Return(1).Return(2).Return(3);
-
-  // Return the same value many times (56 in this example)
-  When(Method(mock, foo)).Return(56_Times(1));
-
-  // Return many values many times (First 100 calls will return 1, next 200 calls will return 2)
-  When(Method(mock, foo)).Return(100_Times(1), 200_Times(2));
-
-  // Always return a value (The next two lines do exactly the same)
-  When(Method(mock, foo)).AlwaysReturn(1);
-  Method(mock, foo) = 1;
 }
 
 void constructorTests() {
@@ -510,6 +484,9 @@ void clawbotTutorial() {
 void opcontrol() {
   using namespace okapi;
   pros::c::task_delay(100);
+
+  runHeadlessUnitTests();
+  return;
 
   MotorGroup leftMotors({19_m, 20_m});
   MotorGroup rightMotors({13_rm, 14_rm});
