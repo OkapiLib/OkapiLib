@@ -210,9 +210,9 @@ void runHeadlessUnitTests() {
   {
     test_printf("Testing VelMath");
 
-    class MockTimer : public okapi::Timer {
+    class MockTimer : public Timer {
       public:
-      using okapi::Timer::Timer;
+      using Timer::Timer;
       virtual std::uint32_t getDt() override {
         return 10;
       }
@@ -235,13 +235,12 @@ void runHeadlessUnitTests() {
   {
     test_printf("Testing FlywheelSimulator");
 
-    // Default values
     FlywheelSimulator sim(0.01, 1, 0.5, 0.3, 0.005);
     sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) {
       return (linkLen * std::cos(angle)) * (mass * -1 * gravity);
     });
-    sim.setTorque(10);
 
+    sim.setTorque(10);
     sim.step();
 
     test("FlywheelSimulator i = 0 angle",
@@ -255,15 +254,14 @@ void runHeadlessUnitTests() {
   {
     test_printf("Testing IterativePosPIDController");
 
-    class MockTimer : public okapi::Timer {
+    class MockTimer : public Timer {
       public:
-      using okapi::Timer::Timer;
+      using Timer::Timer;
       virtual std::uint32_t getDtFromHardMark() const override {
         return 10;
       }
     };
 
-    // Default values
     FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
     sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
 
@@ -274,7 +272,7 @@ void runHeadlessUnitTests() {
     controller.setTarget(target);
     for (size_t i = 0; i < 2000; i++) {
       controller.step(sim.getAngle() * radianToDegree);
-      sim.setTorque(controller.getOutput());
+      sim.setTorque(controller.getOutput() * sim.getMaxTorque());
       sim.step();
     }
 
@@ -289,15 +287,14 @@ void runHeadlessUnitTests() {
   {
     test_printf("Testing IterativeVelPIDController");
 
-    class MockTimer : public okapi::Timer {
+    class MockTimer : public Timer {
       public:
-      using okapi::Timer::Timer;
+      using Timer::Timer;
       virtual std::uint32_t getDtFromHardMark() const override {
         return 10;
       }
     };
 
-    // Default values
     FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
     sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
 
@@ -309,7 +306,7 @@ void runHeadlessUnitTests() {
     controller.setTarget(target);
     for (size_t i = 0; i < 2000; i++) {
       controller.step(sim.getAngle() * radianToDegree);
-      sim.setTorque(controller.getOutput());
+      sim.setTorque(controller.getOutput() * sim.getMaxTorque());
       sim.step();
     }
 
@@ -319,6 +316,51 @@ void runHeadlessUnitTests() {
     test("IterativeVelPIDController should settle after 2000 iterations (controller error is "
          "correct)",
          TEST_BODY(AssertThat, controller.getError(), EqualsWithDelta(0, 0.01)));
+  }
+
+  {
+    test_printf("Testing IterativeMotorVelocityController");
+
+    class MockTimer : public Timer {
+      public:
+      using Timer::Timer;
+      virtual std::uint32_t getDtFromHardMark() const override {
+        return 10;
+      }
+    };
+
+    class MockMotor : public Motor {
+      public:
+      MockMotor() : Motor(1) {
+      }
+      virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const override {
+        lastVelocity = ivelocity;
+        return 1;
+      }
+      mutable std::int16_t lastVelocity;
+    };
+
+    auto motor = std::make_shared<MockMotor>();
+
+    IterativeMotorVelocityController controller(
+      motor, std::make_shared<IterativeVelPIDController>(
+               1, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                                               std::make_unique<MockTimer>()),
+               std::make_unique<MockTimer>(), std::make_unique<SettledUtil>()));
+
+    FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
+    sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
+
+    const double target = 10;
+    controller.setTarget(target);
+    for (size_t i = 0; i < 2000; i++) {
+      controller.step(sim.getAngle() * radianToDegree);
+      sim.setTorque(controller.getOutput() * sim.getMaxTorque());
+      sim.step();
+    }
+
+    test("IterativeMotorVelocityController should set the motor velocity to the target velocity",
+         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(target, 0.01)));
   }
 
   test_print_report();
