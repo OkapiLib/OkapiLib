@@ -210,12 +210,17 @@ void runHeadlessUnitTests() {
   {
     test_printf("Testing VelMath");
 
-    // DemaFilter gains 1 and 0 so it returns input signal and no filtering is performed
-    VelMath velMath(360, std::make_shared<DemaFilter>(1.0, 0.0));
+    class MockTimer : public okapi::Timer {
+      public:
+      using okapi::Timer::Timer;
+      virtual std::uint32_t getDt() override {
+        return 10;
+      }
+    };
+
+    VelMath velMath(360, std::make_shared<PassthroughFilter>(), std::make_unique<MockTimer>());
 
     for (int i = 0; i < 10; i++) {
-      pros::c::task_delay(100); // Delay first so the timestep works for the first iteration
-
       if (i == 0) {
         test("VelMath " + std::to_string(i),
              TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(0, 0.01)));
