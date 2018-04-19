@@ -49,13 +49,18 @@ void testIterativeControllers() {
       virtual std::uint32_t getDtFromHardMark() const override {
         return 10;
       }
+      virtual std::uint32_t getDt() override {
+        return 10;
+      }
     };
 
     FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativeVelPIDController controller(
-      0.004, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>()),
+      0.000015, 0,
+      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                                std::make_unique<MockTimer>()),
       std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
 
     const double target = 10;
@@ -68,7 +73,7 @@ void testIterativeControllers() {
 
     test("IterativeVelPIDController should settle after 2000 iterations (simulator omega is "
          "correct)",
-         TEST_BODY(AssertThat, sim.getOmega(), EqualsWithDelta(target * degreeToRadian, 0.01)));
+         TEST_BODY(AssertThat, sim.getOmega(), EqualsWithDelta(1.04719755, 0.01)));
     test("IterativeVelPIDController should settle after 2000 iterations (controller error is "
          "correct)",
          TEST_BODY(AssertThat, controller.getError(), EqualsWithDelta(0, 0.01)));
@@ -110,7 +115,7 @@ void testIterativeControllers() {
     controller.step(0.5);
     test("IterativeMotorVelocityController should set the motor velocity to the controller output "
          "* 127 2",
-         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(0.5 * 127, 0.01)));
+         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(63, 0.01)));
 
     controller.step(1);
     test("IterativeMotorVelocityController should set the motor velocity to the controller output "
@@ -120,7 +125,7 @@ void testIterativeControllers() {
     controller.step(-0.5);
     test("IterativeMotorVelocityController should set the motor velocity to the controller output "
          "* 127 4",
-         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(-0.5 * 127, 0.01)));
+         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(-63, 0.01)));
   }
 }
 
@@ -174,8 +179,9 @@ void testAsyncControllers() {
     test("Resetting the controller should not change the current target",
          TEST_BODY(AssertThat, motor->lastVoltage, Equals(0)));
     controller.flipDisable();
+    motor->lastPosition = 1337; // Sample value to check it doesn't change
     test("Re-enabling the controller after a reset should not move the motor",
-         TEST_BODY(AssertThat, motor->lastPosition, Equals(0)));
+         TEST_BODY(AssertThat, motor->lastPosition, Equals(1337)));
   }
 
   {
@@ -224,8 +230,9 @@ void testAsyncControllers() {
     test("Resetting the controller should not change the current target",
          TEST_BODY(AssertThat, motor->lastVoltage, Equals(0)));
     controller.flipDisable();
+    motor->lastVelocity = 1337; // Sample value to check it doesn't change
     test("Re-enabling the controller after a reset should not move the motor",
-         TEST_BODY(AssertThat, motor->lastVelocity, Equals(0)));
+         TEST_BODY(AssertThat, motor->lastVelocity, Equals(1337)));
   }
 }
 
@@ -492,7 +499,7 @@ void testFilters() {
       } else {
         // 10 ticks per 100 ms should be ~16.67 rpm
         test("VelMath " + std::to_string(i),
-             TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(16.67, 0.01)));
+             TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(166.67, 0.01)));
       }
     }
   }
