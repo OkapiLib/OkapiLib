@@ -263,8 +263,10 @@ void runHeadlessUnitTests() {
     sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
 
     IterativePosPIDController controller(0.004, 0, 0, 0, std::make_unique<MockTimer>(),
-                                         std::make_shared<SettledUtil>());
-    controller.setTarget(45);
+                                         std::make_unique<SettledUtil>());
+
+    const double target = 45;
+    controller.setTarget(target);
     for (size_t i = 0; i < 2000; i++) {
       controller.step(sim.getAngle() * radianToDegree);
       sim.setTorque(controller.getOutput());
@@ -273,8 +275,43 @@ void runHeadlessUnitTests() {
 
     test("IterativePosPIDController should settle after 2000 iterations (simulator angle is "
          "correct)",
-         TEST_BODY(AssertThat, sim.getAngle(), EqualsWithDelta(45 * degreeToRadian, 0.01)));
+         TEST_BODY(AssertThat, sim.getAngle(), EqualsWithDelta(target * degreeToRadian, 0.01)));
     test("IterativePosPIDController should settle after 2000 iterations (controller error is "
+         "correct)",
+         TEST_BODY(AssertThat, controller.getError(), EqualsWithDelta(0, 0.01)));
+  }
+
+  {
+    test_printf("Testing IterativeVelPIDController");
+
+    class MockTimer : public okapi::Timer {
+      public:
+      using okapi::Timer::Timer;
+      virtual std::uint32_t getDtFromHardMark() const override {
+        return 10;
+      }
+    };
+
+    // Default values
+    FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
+    sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
+
+    IterativeVelPIDController controller(
+      0.004, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>()),
+      std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
+
+    const double target = 10;
+    controller.setTarget(target);
+    for (size_t i = 0; i < 2000; i++) {
+      controller.step(sim.getAngle() * radianToDegree);
+      sim.setTorque(controller.getOutput());
+      sim.step();
+    }
+
+    test("IterativeVelPIDController should settle after 2000 iterations (simulator omega is "
+         "correct)",
+         TEST_BODY(AssertThat, sim.getOmega(), EqualsWithDelta(target * degreeToRadian, 0.01)));
+    test("IterativeVelPIDController should settle after 2000 iterations (controller error is "
          "correct)",
          TEST_BODY(AssertThat, controller.getError(), EqualsWithDelta(0, 0.01)));
   }
