@@ -25,31 +25,36 @@ VelMathArgs::VelMathArgs(const double iticksPerRev, std::shared_ptr<Filter> ifil
 VelMathArgs::~VelMathArgs() = default;
 
 VelMath::VelMath(const double iticksPerRev)
-  : ticksPerRev(iticksPerRev),
-    filter(std::make_shared<ComposableFilter>(std::initializer_list<std::shared_ptr<Filter>>(
-      {std::make_shared<MedianFilter<3>>(), std::make_shared<AverageFilter<5>>()}))) {
+  : VelMath(iticksPerRev,
+            std::make_shared<ComposableFilter>(std::initializer_list<std::shared_ptr<Filter>>(
+              {std::make_shared<MedianFilter<3>>(), std::make_shared<AverageFilter<5>>()})),
+            std::make_unique<Timer>()) {
 }
 
 VelMath::VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter)
-  : ticksPerRev(iticksPerRev), filter(ifilter) {
+  : VelMath(iticksPerRev, ifilter, std::make_unique<Timer>()) {
 }
 
 VelMath::VelMath(const VelMathArgs &iparams)
-  : ticksPerRev(iparams.ticksPerRev), filter(iparams.filter) {
+  : VelMath(iparams.ticksPerRev, iparams.filter, std::make_unique<Timer>()) {
+}
+
+VelMath::VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter,
+                 std::unique_ptr<Timer> iloopDtTimer)
+  : ticksPerRev(iticksPerRev), loopDtTimer(std::move(iloopDtTimer)), filter(ifilter) {
 }
 
 VelMath::~VelMath() = default;
 
 double VelMath::step(const double inewPos) {
-  const std::uint32_t now = pros::millis();
+  const double dt = static_cast<double>(1000.0 / loopDtTimer->getDt());
 
-  vel = static_cast<double>((1000 / (now - lastTime))) * (inewPos - lastPos) * (60 / ticksPerRev);
+  vel = dt * (inewPos - lastPos) * (60 / ticksPerRev);
   vel = filter->filter(vel);
-  accel = static_cast<double>((1000 / (now - lastTime))) * (vel - lastVel);
+  accel = dt * (vel - lastVel);
 
   lastVel = vel;
   lastPos = inewPos;
-  lastTime = now;
 
   return vel;
 }

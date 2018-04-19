@@ -82,8 +82,8 @@ class Timer {
 
   protected:
   std::uint32_t firstCalled;
-  std::uint32_t lastCalled = 0;
-  std::uint32_t mark = 0;
+  std::uint32_t lastCalled;
+  std::uint32_t mark;
   std::uint32_t hardMark = 0;
   std::uint32_t repeatMark = 0;
 };
