@@ -21,19 +21,32 @@ IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, c
   : kP(ikP), kD(ikD), params(iparams) {
 }
 
-IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD) {
-  setGains(ikP, ikD);
+IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD)
+  : IterativeVelPIDController(ikP, ikD, std::make_unique<VelMath>(1800), std::make_unique<Timer>(),
+                              std::make_unique<SettledUtil>()) {
 }
 
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
                                                      const VelMathArgs &iparams)
-  : velMath(iparams) {
-  setGains(ikP, ikD);
+  : IterativeVelPIDController(ikP, ikD, std::make_unique<VelMath>(iparams),
+                              std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
 }
 
-IterativeVelPIDController::IterativeVelPIDController(const IterativeVelPIDControllerArgs &params)
-  : velMath(params.params) {
-  setGains(params.kP, params.kD);
+IterativeVelPIDController::IterativeVelPIDController(const IterativeVelPIDControllerArgs &iparams)
+  : IterativeVelPIDController(iparams.kP, iparams.kD, std::make_unique<VelMath>(iparams.params),
+                              std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
+}
+
+// std::make_unique<Timer>(), std::make_unique<SettledUtil>()
+
+IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
+                                                     std::unique_ptr<VelMath> ivelMath,
+                                                     std::unique_ptr<Timer> iloopDtTimer,
+                                                     std::unique_ptr<SettledUtil> isettledUtil)
+  : velMath(std::move(ivelMath)),
+    loopDtTimer(std::move(iloopDtTimer)),
+    settledUtil(std::move(isettledUtil)) {
+  setGains(ikP, ikD);
 }
 
 void IterativeVelPIDController::setGains(const double ikP, const double ikD) {
@@ -63,7 +76,7 @@ void IterativeVelPIDController::setOutputLimits(double imax, double imin) {
 }
 
 double IterativeVelPIDController::stepVel(const double inewReading) {
-  return velMath.step(inewReading);
+  return velMath->step(inewReading);
 }
 
 double IterativeVelPIDController::step(const double inewReading) {
@@ -71,10 +84,10 @@ double IterativeVelPIDController::step(const double inewReading) {
     const std::uint32_t now = pros::millis();
     if (now - lastTime >= sampleTime) {
       stepVel(inewReading);
-      error = target - velMath.getVelocity();
+      error = target - velMath->getVelocity();
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
-      derivative = velMath.getAccel();
+      derivative = velMath->getAccel();
 
       output += kP * error - kD * derivative;
       output = std::clamp(output, outputMin, outputMax);
@@ -82,7 +95,7 @@ double IterativeVelPIDController::step(const double inewReading) {
       lastError = error;
       lastTime = now; // Important that we only assign lastTime if dt >= sampleTime
 
-      settledUtil.isSettled(error);
+      settledUtil->isSettled(error);
     }
 
     return output;
@@ -108,7 +121,7 @@ double IterativeVelPIDController::getDerivative() const {
 }
 
 bool IterativeVelPIDController::isSettled() {
-  return settledUtil.isSettled(error);
+  return settledUtil->isSettled(error);
 }
 
 void IterativeVelPIDController::reset() {
@@ -130,11 +143,11 @@ bool IterativeVelPIDController::isDisabled() const {
 }
 
 void IterativeVelPIDController::setTicksPerRev(const double tpr) {
-  velMath.setTicksPerRev(tpr);
+  velMath->setTicksPerRev(tpr);
 }
 
 double IterativeVelPIDController::getVel() const {
-  return velMath.getVelocity();
+  return velMath->getVelocity();
 }
 
 std::uint32_t IterativeVelPIDController::getSampleTime() const {

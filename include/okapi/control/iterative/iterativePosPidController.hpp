@@ -48,7 +48,7 @@ class IterativePosPIDController : public IterativePositionController {
    */
   IterativePosPIDController(const double ikP, const double ikI, const double ikD,
                             const double ikBias, std::unique_ptr<Timer> iloopDtTimer,
-                            std::shared_ptr<SettledUtil> isettledUtil);
+                            std::unique_ptr<SettledUtil> isettledUtil);
 
   /**
    * Do one iteration of the controller. Returns the reading in the range [-127, 127] unless the
@@ -204,7 +204,7 @@ class IterativePosPIDController : public IterativePositionController {
   bool isOn = true;
 
   std::unique_ptr<Timer> loopDtTimer;
-  std::shared_ptr<SettledUtil> settledUtil;
+  std::unique_ptr<SettledUtil> settledUtil;
 };
 } // namespace okapi
 

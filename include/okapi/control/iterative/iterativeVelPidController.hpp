@@ -49,6 +49,13 @@ class IterativeVelPIDController : public IterativeVelocityController {
   IterativeVelPIDController(const IterativeVelPIDControllerArgs &params);
 
   /**
+   * This constructor is meant for unit testing.
+   */
+  IterativeVelPIDController(const double ikP, const double ikD, std::unique_ptr<VelMath> ivelMath,
+                            std::unique_ptr<Timer> iloopDtTimer,
+                            std::unique_ptr<SettledUtil> isettledUtil);
+
+  /**
    * Do one iteration of the controller.
    *
    * @param inewReading new measurement
@@ -176,8 +183,10 @@ class IterativeVelPIDController : public IterativeVelocityController {
   double outputMax = 1;
   double outputMin = -1;
   bool isOn = true;
-  VelMath velMath{1800};
-  SettledUtil settledUtil;
+
+  std::unique_ptr<VelMath> velMath;
+  std::unique_ptr<Timer> loopDtTimer;
+  std::unique_ptr<SettledUtil> settledUtil;
 };
 } // namespace okapi
 
