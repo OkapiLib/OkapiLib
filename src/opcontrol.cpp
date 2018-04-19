@@ -3,7 +3,157 @@
 #include "okapi/api.hpp"
 #include "okapi/test/testRunner.hpp"
 
-void runHeadlessUnitTests() {
+void testIterativeControllers() {
+  using namespace okapi;
+  using namespace snowhouse;
+
+  {
+    test_printf("Testing IterativePosPIDController");
+
+    class MockTimer : public Timer {
+      public:
+      using Timer::Timer;
+      virtual std::uint32_t getDtFromHardMark() const override {
+        return 10;
+      }
+    };
+
+    FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
+    sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
+
+    IterativePosPIDController controller(0.004, 0, 0, 0, std::make_unique<MockTimer>(),
+                                         std::make_unique<SettledUtil>());
+
+    const double target = 45;
+    controller.setTarget(target);
+    for (size_t i = 0; i < 2000; i++) {
+      controller.step(sim.getAngle() * radianToDegree);
+      sim.setTorque(controller.getOutput() * sim.getMaxTorque());
+      sim.step();
+    }
+
+    test("IterativePosPIDController should settle after 2000 iterations (simulator angle is "
+         "correct)",
+         TEST_BODY(AssertThat, sim.getAngle(), EqualsWithDelta(target * degreeToRadian, 0.01)));
+    test("IterativePosPIDController should settle after 2000 iterations (controller error is "
+         "correct)",
+         TEST_BODY(AssertThat, controller.getError(), EqualsWithDelta(0, 0.01)));
+  }
+
+  {
+    test_printf("Testing IterativeVelPIDController");
+
+    class MockTimer : public Timer {
+      public:
+      using Timer::Timer;
+      virtual std::uint32_t getDtFromHardMark() const override {
+        return 10;
+      }
+    };
+
+    FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
+    sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
+
+    IterativeVelPIDController controller(
+      0.004, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>()),
+      std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
+
+    const double target = 10;
+    controller.setTarget(target);
+    for (size_t i = 0; i < 2000; i++) {
+      controller.step(sim.getAngle() * radianToDegree);
+      sim.setTorque(controller.getOutput() * sim.getMaxTorque());
+      sim.step();
+    }
+
+    test("IterativeVelPIDController should settle after 2000 iterations (simulator omega is "
+         "correct)",
+         TEST_BODY(AssertThat, sim.getOmega(), EqualsWithDelta(target * degreeToRadian, 0.01)));
+    test("IterativeVelPIDController should settle after 2000 iterations (controller error is "
+         "correct)",
+         TEST_BODY(AssertThat, controller.getError(), EqualsWithDelta(0, 0.01)));
+  }
+
+  {
+    test_printf("Testing IterativeMotorVelocityController");
+
+    class MockMotor : public Motor {
+      public:
+      MockMotor() : Motor(1) {
+      }
+      virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const override {
+        lastVelocity = ivelocity;
+        return 1;
+      }
+      mutable std::int16_t lastVelocity;
+    };
+
+    class MockIterativeVelPIDController : public IterativeVelPIDController {
+      public:
+      MockIterativeVelPIDController() : IterativeVelPIDController(0, 0) {
+      }
+      virtual double step(const double inewReading) override {
+        return inewReading;
+      }
+    };
+
+    auto motor = std::make_shared<MockMotor>();
+
+    IterativeMotorVelocityController controller(motor,
+                                                std::make_shared<MockIterativeVelPIDController>());
+
+    controller.step(0);
+    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
+         "* 127 1",
+         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(0 * 127, 0.01)));
+
+    controller.step(0.5);
+    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
+         "* 127 2",
+         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(0.5 * 127, 0.01)));
+
+    controller.step(1);
+    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
+         "* 127 3",
+         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(1 * 127, 0.01)));
+
+    controller.step(-0.5);
+    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
+         "* 127 4",
+         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(-0.5 * 127, 0.01)));
+  }
+}
+
+void testControlUtils() {
+  using namespace okapi;
+  using namespace snowhouse;
+
+  {
+    test_printf("Testing FlywheelSimulator");
+
+    FlywheelSimulator sim(0.01, 1, 0.5, 0.3, 0.005);
+    sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) {
+      return (linkLen * std::cos(angle)) * (mass * -1 * gravity);
+    });
+
+    sim.setTorque(10);
+    sim.step();
+
+    test("FlywheelSimulator i = 0 angle",
+         TEST_BODY(AssertThat, sim.getAngle(), EqualsWithDelta(0.0001237742, 0.00000001)));
+    test("FlywheelSimulator i = 0 omega",
+         TEST_BODY(AssertThat, sim.getOmega(), EqualsWithDelta(0.0247548337, 0.00000001)));
+    test("FlywheelSimulator i = 0 accel",
+         TEST_BODY(AssertThat, sim.getAcceleration(), EqualsWithDelta(990.19335, 0.0001)));
+  }
+}
+
+void runHeadlessControllerTests() {
+  testControlUtils();
+  testIterativeControllers();
+}
+
+void testUtils() {
   using namespace okapi;
   using namespace snowhouse;
 
@@ -48,6 +198,34 @@ void runHeadlessUnitTests() {
     test("0 : [-1, 1] -> [-5, 2]",
          TEST_BODY(AssertThat, remapRange(0, -1, 1, -5, 2), EqualsWithDelta(-1.5, 0.0001)));
   }
+
+  {
+    test_printf("Testing Rate");
+
+    Rate rate;
+    uint32_t lastTime = pros::millis();
+
+    for (int i = 0; i < 10; i++) {
+      rate.delayHz(10);
+
+      // Static cast so the compiler doesn't complain about comparing signed and unsigned values
+      test("Rate " + std::to_string(i),
+           TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
+                     EqualsWithDelta(100, 10)));
+
+      lastTime = pros::millis();
+      pros::c::task_delay(50); // Emulate some computation
+    }
+  }
+}
+
+void runHeadlessUtilTests() {
+  testUtils();
+}
+
+void testFilters() {
+  using namespace okapi;
+  using namespace snowhouse;
 
   {
     test_printf("Testing AverageFilter");
@@ -189,25 +367,6 @@ void runHeadlessUnitTests() {
   }
 
   {
-    test_printf("Testing Rate");
-
-    Rate rate;
-    uint32_t lastTime = pros::millis();
-
-    for (int i = 0; i < 10; i++) {
-      rate.delayHz(10);
-
-      // Static cast so the compiler doesn't complain about comparing signed and unsigned values
-      test("Rate " + std::to_string(i),
-           TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
-                     EqualsWithDelta(100, 10)));
-
-      lastTime = pros::millis();
-      pros::c::task_delay(50); // Emulate some computation
-    }
-  }
-
-  {
     test_printf("Testing VelMath");
 
     class MockTimer : public Timer {
@@ -231,141 +390,18 @@ void runHeadlessUnitTests() {
       }
     }
   }
+}
 
-  {
-    test_printf("Testing FlywheelSimulator");
+void runHeadlessFilterTests() {
+  testFilters();
+}
 
-    FlywheelSimulator sim(0.01, 1, 0.5, 0.3, 0.005);
-    sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) {
-      return (linkLen * std::cos(angle)) * (mass * -1 * gravity);
-    });
+void runHeadlessTests() {
+  using namespace okapi;
 
-    sim.setTorque(10);
-    sim.step();
-
-    test("FlywheelSimulator i = 0 angle",
-         TEST_BODY(AssertThat, sim.getAngle(), EqualsWithDelta(0.0001237742, 0.00000001)));
-    test("FlywheelSimulator i = 0 omega",
-         TEST_BODY(AssertThat, sim.getOmega(), EqualsWithDelta(0.0247548337, 0.00000001)));
-    test("FlywheelSimulator i = 0 accel",
-         TEST_BODY(AssertThat, sim.getAcceleration(), EqualsWithDelta(990.19335, 0.0001)));
-  }
-
-  {
-    test_printf("Testing IterativePosPIDController");
-
-    class MockTimer : public Timer {
-      public:
-      using Timer::Timer;
-      virtual std::uint32_t getDtFromHardMark() const override {
-        return 10;
-      }
-    };
-
-    FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
-    sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
-
-    IterativePosPIDController controller(0.004, 0, 0, 0, std::make_unique<MockTimer>(),
-                                         std::make_unique<SettledUtil>());
-
-    const double target = 45;
-    controller.setTarget(target);
-    for (size_t i = 0; i < 2000; i++) {
-      controller.step(sim.getAngle() * radianToDegree);
-      sim.setTorque(controller.getOutput() * sim.getMaxTorque());
-      sim.step();
-    }
-
-    test("IterativePosPIDController should settle after 2000 iterations (simulator angle is "
-         "correct)",
-         TEST_BODY(AssertThat, sim.getAngle(), EqualsWithDelta(target * degreeToRadian, 0.01)));
-    test("IterativePosPIDController should settle after 2000 iterations (controller error is "
-         "correct)",
-         TEST_BODY(AssertThat, controller.getError(), EqualsWithDelta(0, 0.01)));
-  }
-
-  {
-    test_printf("Testing IterativeVelPIDController");
-
-    class MockTimer : public Timer {
-      public:
-      using Timer::Timer;
-      virtual std::uint32_t getDtFromHardMark() const override {
-        return 10;
-      }
-    };
-
-    FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
-    sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
-
-    IterativeVelPIDController controller(
-      0.004, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>()),
-      std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
-
-    const double target = 10;
-    controller.setTarget(target);
-    for (size_t i = 0; i < 2000; i++) {
-      controller.step(sim.getAngle() * radianToDegree);
-      sim.setTorque(controller.getOutput() * sim.getMaxTorque());
-      sim.step();
-    }
-
-    test("IterativeVelPIDController should settle after 2000 iterations (simulator omega is "
-         "correct)",
-         TEST_BODY(AssertThat, sim.getOmega(), EqualsWithDelta(target * degreeToRadian, 0.01)));
-    test("IterativeVelPIDController should settle after 2000 iterations (controller error is "
-         "correct)",
-         TEST_BODY(AssertThat, controller.getError(), EqualsWithDelta(0, 0.01)));
-  }
-
-  {
-    test_printf("Testing IterativeMotorVelocityController");
-
-    class MockMotor : public Motor {
-      public:
-      MockMotor() : Motor(1) {
-      }
-      virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const override {
-        lastVelocity = ivelocity;
-        return 1;
-      }
-      mutable std::int16_t lastVelocity;
-    };
-
-    class MockIterativeVelPIDController : public IterativeVelPIDController {
-      public:
-      MockIterativeVelPIDController() : IterativeVelPIDController(0, 0) {
-      }
-      virtual double step(const double inewReading) override {
-        return inewReading;
-      }
-    };
-
-    auto motor = std::make_shared<MockMotor>();
-
-    IterativeMotorVelocityController controller(motor,
-                                                std::make_shared<MockIterativeVelPIDController>());
-
-    controller.step(0);
-    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
-         "* 127 1",
-         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(0 * 127, 0.01)));
-
-    controller.step(0.5);
-    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
-         "* 127 2",
-         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(0.5 * 127, 0.01)));
-
-    controller.step(1);
-    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
-         "* 127 3",
-         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(1 * 127, 0.01)));
-
-    controller.step(-0.5);
-    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
-         "* 127 4",
-         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(-0.5 * 127, 0.01)));
-  }
+  runHeadlessUtilTests();
+  runHeadlessFilterTests();
+  runHeadlessControllerTests();
 
   test_print_report();
 }
@@ -573,7 +609,7 @@ void opcontrol() {
   using namespace okapi;
   pros::c::task_delay(100);
 
-  runHeadlessUnitTests();
+  runHeadlessTests();
   return;
 
   MotorGroup leftMotors({19_m, 20_m});
