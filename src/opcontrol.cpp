@@ -509,12 +509,141 @@ void runHeadlessFilterTests() {
   testFilters();
 }
 
+void testChassisModels() {
+  using namespace okapi;
+  using namespace snowhouse;
+
+  {
+    test_printf("Testing SkidSteerModel");
+
+    class MockMotor : public Motor {
+      public:
+      MockMotor() : Motor(1) {
+      }
+      virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const override {
+        lastVelocity = ivelocity;
+        return 1;
+      }
+      virtual std::int32_t moveVoltage(const std::int16_t ivoltage) const override {
+        lastVoltage = ivoltage;
+        return 1;
+      }
+      mutable std::int16_t lastVelocity;
+      mutable std::int16_t lastVoltage;
+    };
+
+    auto leftMotor = std::make_shared<MockMotor>();
+    auto rightMotor = std::make_shared<MockMotor>();
+    SkidSteerModel model(leftMotor, rightMotor, 127);
+
+    model.forward(0.5);
+    test("SkidSteerModel forward should power all motors forward", [&]() {
+      AssertThat(leftMotor->lastVelocity, Equals(63));
+      AssertThat(rightMotor->lastVelocity, Equals(63));
+    });
+
+    model.forward(10);
+    test("SkidSteerModel forward should bound its input", [&]() {
+      AssertThat(leftMotor->lastVelocity, Equals(127));
+      AssertThat(rightMotor->lastVelocity, Equals(127));
+    });
+
+    model.rotate(0.5);
+    test("SkidSteerModel rotate should power left motors positive and right motors negative",
+         [&]() {
+           AssertThat(leftMotor->lastVelocity, Equals(63));
+           AssertThat(rightMotor->lastVelocity, Equals(-63));
+         });
+
+    model.rotate(10);
+    test("SkidSteerModel rotate should bound its input", [&]() {
+      AssertThat(leftMotor->lastVelocity, Equals(127));
+      AssertThat(rightMotor->lastVelocity, Equals(-127));
+    });
+
+    model.driveVector(0.25, 0.25);
+    test("SkidSteerModel driveVector should make a swing turn", [&]() {
+      AssertThat(leftMotor->lastVelocity, Equals(63));
+      AssertThat(rightMotor->lastVelocity, Equals(0));
+    });
+
+    model.driveVector(0.9, 0.25);
+    test("SkidSteerModel driveVector should make a bounded swing turn", [&]() {
+      AssertThat(leftMotor->lastVelocity, Equals(127));
+      AssertThat(rightMotor->lastVelocity, Equals(71));
+    });
+
+    leftMotor->lastVelocity = 100;
+    rightMotor->lastVelocity = 100;
+    model.stop();
+    test("SkidSteerModel stop should set the motors to 0", [&]() {
+      AssertThat(leftMotor->lastVelocity, Equals(0));
+      AssertThat(rightMotor->lastVelocity, Equals(0));
+    });
+
+    model.left(0.5);
+    test("SkidSteerModel left should set the left motors",
+         [&]() { AssertThat(leftMotor->lastVelocity, Equals(63)); });
+
+    model.right(0.5);
+    test("SkidSteerModel right should set the right motors",
+         [&]() { AssertThat(rightMotor->lastVelocity, Equals(63)); });
+
+    model.tank(0.5, 0.5);
+    test("SkidSteerModel tank should set the left and right voltages", [&]() {
+      AssertThat(leftMotor->lastVoltage, Equals(63));
+      AssertThat(rightMotor->lastVoltage, Equals(63));
+    });
+
+    model.tank(10, 10);
+    test("SkidSteerModel tank should bound its inputs", [&]() {
+      AssertThat(leftMotor->lastVoltage, Equals(127));
+      AssertThat(rightMotor->lastVoltage, Equals(127));
+    });
+
+    model.tank(0.2, 0.2, 0.5);
+    test("SkidSteerModel tank should apply threshold", [&]() {
+      AssertThat(leftMotor->lastVoltage, Equals(0));
+      AssertThat(rightMotor->lastVoltage, Equals(0));
+    });
+
+    model.arcade(0.5, 0);
+    test("SkidSteerModel arcade should move the robot forward", [&]() {
+      AssertThat(leftMotor->lastVoltage, Equals(63));
+      AssertThat(rightMotor->lastVoltage, Equals(63));
+    });
+
+    model.arcade(0, 0.5);
+    test("SkidSteerModel arcade should turn the robot", [&]() {
+      AssertThat(leftMotor->lastVoltage, Equals(63));
+      AssertThat(rightMotor->lastVoltage, Equals(-63));
+    });
+
+    model.arcade(10, 0);
+    test("SkidSteerModel arcade should bound its inputs", [&]() {
+      AssertThat(leftMotor->lastVoltage, Equals(127));
+      AssertThat(rightMotor->lastVoltage, Equals(127));
+    });
+
+    model.arcade(0.2, 0, 0.5);
+    test("SkidSteerModel arcade should apply threshold", [&]() {
+      AssertThat(leftMotor->lastVoltage, Equals(0));
+      AssertThat(rightMotor->lastVoltage, Equals(0));
+    });
+  }
+}
+
+void runHeadlessChassisModelTests() {
+  testChassisModels();
+}
+
 void runHeadlessTests() {
   using namespace okapi;
 
   runHeadlessUtilTests();
   runHeadlessFilterTests();
   runHeadlessControllerTests();
+  runHeadlessChassisModelTests();
 
   test_print_report();
 }
