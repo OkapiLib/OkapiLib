@@ -10,13 +10,13 @@
 namespace okapi {
 IterativeControllerArgs::~IterativeControllerArgs() = default;
 
-void IterativeController::setSampleTime(const std::uint32_t isampleTime) {
+void IterativeController::setSampleTime(const std::uint32_t) {
 }
 
-void IterativeController::setOutputLimits(double imax, double imin) {
+void IterativeController::setOutputLimits(double, double) {
 }
 
 std::uint32_t IterativeController::getSampleTime() const {
-  return 15;
+  return 10;
 }
 } // namespace okapi

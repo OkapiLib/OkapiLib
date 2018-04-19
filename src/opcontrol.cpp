@@ -19,7 +19,7 @@ void testIterativeControllers() {
     };
 
     FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
-    sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
+    sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativePosPIDController controller(0.004, 0, 0, 0, std::make_unique<MockTimer>(),
                                          std::make_unique<SettledUtil>());
@@ -52,7 +52,7 @@ void testIterativeControllers() {
     };
 
     FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
-    sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) { return 0; });
+    sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativeVelPIDController controller(
       0.004, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>()),
@@ -136,8 +136,7 @@ void testAsyncControllers() {
       MockMotor() : Motor(1) {
       }
 
-      virtual std::int32_t moveAbsolute(const double iposition,
-                                        const std::int32_t ivelocity) const override {
+      virtual std::int32_t moveAbsolute(const double iposition, const std::int32_t) const override {
         lastPosition = iposition;
         return 1;
       }
