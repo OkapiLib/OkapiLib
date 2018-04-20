@@ -14,9 +14,9 @@ double AsyncController::getOutput() const {
   return 0;
 }
 
-void AsyncController::setSampleTime(const std::uint32_t isampleTime) {
+void AsyncController::setSampleTime(const std::uint32_t) {
 }
 
-void AsyncController::setOutputLimits(double imax, double imin) {
+void AsyncController::setOutputLimits(double, double) {
 }
 } // namespace okapi

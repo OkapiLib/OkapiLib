@@ -92,8 +92,9 @@ SkidSteerModel::SkidSteerModel(const SkidSteerModel &other)
 }
 
 void SkidSteerModel::forward(const double ispeed) const {
-  leftSideMotor->moveVelocity(ispeed * maxOutput);
-  rightSideMotor->moveVelocity(ispeed * maxOutput);
+  const double speed = std::clamp(ispeed, -1.0, 1.0);
+  leftSideMotor->moveVelocity(speed * maxOutput);
+  rightSideMotor->moveVelocity(speed * maxOutput);
 }
 
 void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) const {
@@ -104,7 +105,7 @@ void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) 
 
   double leftOutput = ySpeed + zRotation;
   double rightOutput = ySpeed - zRotation;
-  const double maxInputMag = std::max<double>(std::abs(ySpeed), std::abs(zRotation));
+  const double maxInputMag = std::max<double>(std::abs(leftOutput), std::abs(rightOutput));
   if (maxInputMag > 1) {
     leftOutput /= maxInputMag;
     rightOutput /= maxInputMag;
@@ -115,8 +116,9 @@ void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) 
 }
 
 void SkidSteerModel::rotate(const double ispeed) const {
-  leftSideMotor->moveVelocity(ispeed * maxOutput);
-  rightSideMotor->moveVelocity(-1 * ispeed * maxOutput);
+  const double speed = std::clamp(ispeed, -1.0, 1.0);
+  leftSideMotor->moveVelocity(speed * maxOutput);
+  rightSideMotor->moveVelocity(-1 * speed * maxOutput);
 }
 
 void SkidSteerModel::stop() const {

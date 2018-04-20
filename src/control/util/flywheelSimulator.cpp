@@ -135,4 +135,8 @@ double FlywheelSimulator::getOmega() const {
 double FlywheelSimulator::getAcceleration() const {
   return accel;
 }
+
+double FlywheelSimulator::getMaxTorque() const {
+  return maxTorque;
+}
 } // namespace okapi

@@ -123,6 +123,13 @@ class FlywheelSimulator {
    */
   double getAcceleration() const;
 
+  /**
+   * Returns the maximum torque input.
+   *
+   * @return the max torque input
+   */
+  double getMaxTorque() const;
+
   protected:
   double inputTorque = 0; // N*m
   double maxTorque = 20;  // N*m

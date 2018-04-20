@@ -10,6 +10,7 @@
 
 #include "api.h"
 #include "okapi/filter/composableFilter.hpp"
+#include "okapi/util/timer.hpp"
 #include <memory>
 
 namespace okapi {
@@ -38,11 +39,17 @@ class VelMath {
    * Velocity math helper. Calculates filtered velocity.
    *
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
-   * @param ifilter filter to use for filtering the velocity
+   * @param ifilter filter used for filtering the calculated velocity
    */
   VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter);
 
   VelMath(const VelMathArgs &iparams);
+
+  /**
+   * This constructor is meant for unit testing.
+   */
+  VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter,
+          std::unique_ptr<Timer> iloopDtTimer);
 
   virtual ~VelMath();
 
@@ -72,12 +79,13 @@ class VelMath {
   virtual double getAccel() const;
 
   protected:
-  uint32_t lastTime = 0;
   double vel = 0;
   double accel = 0;
   double lastVel = 0;
   double lastPos = 0;
   double ticksPerRev;
+
+  std::unique_ptr<Timer> loopDtTimer;
   std::shared_ptr<Filter> filter;
 };
 } // namespace okapi
