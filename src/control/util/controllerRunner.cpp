@@ -64,4 +64,4 @@ double ControllerRunner::runUntilAtTarget(const double itarget, IterativeControl
 
   return icontroller.getError();
 }
-}
+} // namespace okapi
