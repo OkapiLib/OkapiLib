@@ -65,6 +65,6 @@ class ClosedLoopController {
    */
   virtual bool isDisabled() const = 0;
 };
-}
+} // namespace okapi
 
 #endif

@@ -37,53 +37,53 @@ class SkidSteerModelArgs : public ChassisModelArgs {
 class SkidSteerModel : public ChassisModel {
   public:
   /**
-  * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-  * motors are powered +127, the robot should move forward in a straight line.
-  *
-  * This constructor infers the two sensors from the left and right motors (using the integrated
-  * encoders).
-  *
-  * @param ileftSideMotor left side motor
-  * @param irightSideMotor right side motor
-  */
+   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
+   * motors are powered +127, the robot should move forward in a straight line.
+   *
+   * This constructor infers the two sensors from the left and right motors (using the integrated
+   * encoders).
+   *
+   * @param ileftSideMotor left side motor
+   * @param irightSideMotor right side motor
+   */
   SkidSteerModel(Motor ileftSideMotor, Motor irightSideMotor, const double imaxOutput = 127);
 
   /**
-  * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-  * motors are powered +127, the robot should move forward in a straight line.
-  *
-  * This constructor infers the two sensors from the left and right motors (using the integrated
-  * encoders).
-  *
-  * @param ileftSideMotor left side motor
-  * @param irightSideMotor right side motor
-  */
+   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
+   * motors are powered +127, the robot should move forward in a straight line.
+   *
+   * This constructor infers the two sensors from the left and right motors (using the integrated
+   * encoders).
+   *
+   * @param ileftSideMotor left side motor
+   * @param irightSideMotor right side motor
+   */
   SkidSteerModel(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                  const double imaxOutput = 127);
 
   /**
-  * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-  * motors are powered +127, the robot should move forward in a straight line.
-  *
-  * This constructor infers the two sensors from the left and right motors (using the integrated
-  * encoders).
-  *
-  * @param ileftSideMotor left side motor
-  * @param irightSideMotor right side motor
-  */
+   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
+   * motors are powered +127, the robot should move forward in a straight line.
+   *
+   * This constructor infers the two sensors from the left and right motors (using the integrated
+   * encoders).
+   *
+   * @param ileftSideMotor left side motor
+   * @param irightSideMotor right side motor
+   */
   SkidSteerModel(MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc,
                  ADIEncoder irightEnc, const double imaxOutput = 127);
 
   /**
-  * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-  * motors are powered +127, the robot should move forward in a straight line.
-  *
-  * This constructor infers the two sensors from the left and right motors (using the integrated
-  * encoders).
-  *
-  * @param ileftSideMotor left side motor
-  * @param irightSideMotor right side motor
-  */
+   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
+   * motors are powered +127, the robot should move forward in a straight line.
+   *
+   * This constructor infers the two sensors from the left and right motors (using the integrated
+   * encoders).
+   *
+   * @param ileftSideMotor left side motor
+   * @param irightSideMotor right side motor
+   */
   SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                  std::shared_ptr<AbstractMotor> irightSideMotor, const double imaxOutput = 127);
 

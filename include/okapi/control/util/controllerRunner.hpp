@@ -60,6 +60,6 @@ class ControllerRunner {
   virtual double runUntilAtTarget(const double itarget, IterativeController &icontroller,
                                   ControllerOutput &ioutput);
 };
-}
+} // namespace okapi
 
 #endif
