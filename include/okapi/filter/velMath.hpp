@@ -39,7 +39,7 @@ class VelMath {
    * Velocity math helper. Calculates filtered velocity.
    *
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
-   * @param ifilter filter to use for filtering the velocity
+   * @param ifilter filter used for filtering the calculated velocity
    */
   VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter);
 
