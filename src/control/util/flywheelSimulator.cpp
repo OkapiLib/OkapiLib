@@ -29,6 +29,15 @@ FlywheelSimulator::FlywheelSimulator(const double imass, const double ilinkLen,
 FlywheelSimulator::~FlywheelSimulator() = default;
 
 double FlywheelSimulator::step() {
+  return stepImpl();
+}
+
+double FlywheelSimulator::step(const double itorque) {
+  setTorque(itorque);
+  return stepImpl();
+}
+
+double FlywheelSimulator::stepImpl() {
   double torqueTotal = inputTorque + torqueFunc(angle, mass, linkLen);
 
   if (omega == 0 && muStatic > std::fabs(torqueTotal)) {
