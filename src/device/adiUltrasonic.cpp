@@ -9,13 +9,18 @@
 
 namespace okapi {
 ADIUltrasonic::ADIUltrasonic(const uint8_t iportTop, const uint8_t iportBottom)
-  : ultra(iportBottom, iportTop) {
+  : ADIUltrasonic(iportTop, iportBottom, std::make_unique<MedianFilter<5>>()) {
+}
+
+ADIUltrasonic::ADIUltrasonic(const std::uint8_t iportTop, const std::uint8_t iportBottom,
+                             std::unique_ptr<Filter> ifilter)
+  : ultra(iportBottom, iportTop), filter(std::move(ifilter)) {
 }
 
 ADIUltrasonic::~ADIUltrasonic() = default;
 
 std::int32_t ADIUltrasonic::get() {
-  return static_cast<std::int32_t>(filter.filter(ultra.get_value()));
+  return static_cast<std::int32_t>(filter->filter(ultra.get_value()));
 }
 
 double ADIUltrasonic::controllerGet() {
