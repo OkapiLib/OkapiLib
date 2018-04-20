@@ -107,10 +107,11 @@ XDriveModel::XDriveModel(const XDriveModel &other)
 }
 
 void XDriveModel::forward(const double ispeed) const {
-  topLeftMotor->moveVelocity(ispeed * maxOutput);
-  topRightMotor->moveVelocity(ispeed * maxOutput);
-  bottomRightMotor->moveVelocity(ispeed * maxOutput);
-  bottomLeftMotor->moveVelocity(ispeed * maxOutput);
+  const double speed = std::clamp(ispeed, -1.0, 1.0);
+  topLeftMotor->moveVelocity(speed * maxOutput);
+  topRightMotor->moveVelocity(speed * maxOutput);
+  bottomRightMotor->moveVelocity(speed * maxOutput);
+  bottomLeftMotor->moveVelocity(speed * maxOutput);
 }
 
 void XDriveModel::driveVector(const double iySpeed, const double izRotation) const {
@@ -121,7 +122,7 @@ void XDriveModel::driveVector(const double iySpeed, const double izRotation) con
 
   double leftOutput = ySpeed + zRotation;
   double rightOutput = ySpeed - zRotation;
-  const double maxInputMag = std::max<double>(std::abs(ySpeed), std::abs(zRotation));
+  const double maxInputMag = std::max<double>(std::abs(leftOutput), std::abs(rightOutput));
   if (maxInputMag > 1) {
     leftOutput /= maxInputMag;
     rightOutput /= maxInputMag;
@@ -134,10 +135,11 @@ void XDriveModel::driveVector(const double iySpeed, const double izRotation) con
 }
 
 void XDriveModel::rotate(const double ispeed) const {
-  topLeftMotor->moveVelocity(ispeed * maxOutput);
-  topRightMotor->moveVelocity(-1 * ispeed * maxOutput);
-  bottomRightMotor->moveVelocity(-1 * ispeed * maxOutput);
-  bottomLeftMotor->moveVelocity(ispeed * maxOutput);
+  const double speed = std::clamp(ispeed, -1.0, 1.0);
+  topLeftMotor->moveVelocity(speed * maxOutput);
+  topRightMotor->moveVelocity(-1 * speed * maxOutput);
+  bottomRightMotor->moveVelocity(-1 * speed * maxOutput);
+  bottomLeftMotor->moveVelocity(speed * maxOutput);
 }
 
 void XDriveModel::stop() const {

@@ -58,8 +58,9 @@ void testIterativeControllers() {
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativeVelPIDController controller(
-      0.000015, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                                             std::make_unique<MockTimer>()),
+      0.000015, 0,
+      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                                std::make_unique<MockTimer>()),
       std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
 
     const double target = 10;
@@ -732,57 +733,57 @@ void testXDriveModel() {
   model.tank(0.5, 0.5);
   test("XDriveModel tank should set the left and right voltages", [&]() {
     AssertThat(topLeftMotor->lastVelocity, Equals(63));
-    AssertThat(topRightMotor->lastVelocity, Equals(63));
-    AssertThat(bottomRightMotor->lastVelocity, Equals(63));
-    AssertThat(bottomLeftMotor->lastVelocity, Equals(63));
+    AssertThat(topRightMotor->lastVoltage, Equals(63));
+    AssertThat(bottomRightMotor->lastVoltage, Equals(63));
+    AssertThat(bottomLeftMotor->lastVoltage, Equals(63));
   });
 
   model.tank(10, 10);
   test("XDriveModel tank should bound its inputs", [&]() {
-    AssertThat(topLeftMotor->lastVelocity, Equals(127));
-    AssertThat(topRightMotor->lastVelocity, Equals(127));
-    AssertThat(bottomRightMotor->lastVelocity, Equals(127));
-    AssertThat(bottomLeftMotor->lastVelocity, Equals(127));
+    AssertThat(topLeftMotor->lastVoltage, Equals(127));
+    AssertThat(topRightMotor->lastVoltage, Equals(127));
+    AssertThat(bottomRightMotor->lastVoltage, Equals(127));
+    AssertThat(bottomLeftMotor->lastVoltage, Equals(127));
   });
 
   model.tank(0.2, 0.2, 0.5);
   test("XDriveModel tank should apply threshold", [&]() {
-    AssertThat(topLeftMotor->lastVelocity, Equals(0));
-    AssertThat(topRightMotor->lastVelocity, Equals(0));
-    AssertThat(bottomRightMotor->lastVelocity, Equals(0));
-    AssertThat(bottomLeftMotor->lastVelocity, Equals(0));
+    AssertThat(topLeftMotor->lastVoltage, Equals(0));
+    AssertThat(topRightMotor->lastVoltage, Equals(0));
+    AssertThat(bottomRightMotor->lastVoltage, Equals(0));
+    AssertThat(bottomLeftMotor->lastVoltage, Equals(0));
   });
 
   model.arcade(0.5, 0);
   test("XDriveModel arcade should move the robot forward", [&]() {
-    AssertThat(topLeftMotor->lastVelocity, Equals(63));
-    AssertThat(topRightMotor->lastVelocity, Equals(63));
-    AssertThat(bottomRightMotor->lastVelocity, Equals(63));
-    AssertThat(bottomLeftMotor->lastVelocity, Equals(63));
+    AssertThat(topLeftMotor->lastVoltage, Equals(63));
+    AssertThat(topRightMotor->lastVoltage, Equals(63));
+    AssertThat(bottomRightMotor->lastVoltage, Equals(63));
+    AssertThat(bottomLeftMotor->lastVoltage, Equals(63));
   });
 
   model.arcade(0, 0.5);
   test("XDriveModel arcade should turn the robot", [&]() {
-    AssertThat(topLeftMotor->lastVelocity, Equals(63));
-    AssertThat(topRightMotor->lastVelocity, Equals(-63));
-    AssertThat(bottomRightMotor->lastVelocity, Equals(-63));
-    AssertThat(bottomLeftMotor->lastVelocity, Equals(63));
+    AssertThat(topLeftMotor->lastVoltage, Equals(63));
+    AssertThat(topRightMotor->lastVoltage, Equals(-63));
+    AssertThat(bottomRightMotor->lastVoltage, Equals(-63));
+    AssertThat(bottomLeftMotor->lastVoltage, Equals(63));
   });
 
   model.arcade(10, 0);
   test("XDriveModel arcade should bound its inputs", [&]() {
-    AssertThat(topLeftMotor->lastVelocity, Equals(127));
-    AssertThat(topRightMotor->lastVelocity, Equals(127));
-    AssertThat(bottomRightMotor->lastVelocity, Equals(127));
-    AssertThat(bottomLeftMotor->lastVelocity, Equals(127));
+    AssertThat(topLeftMotor->lastVoltage, Equals(127));
+    AssertThat(topRightMotor->lastVoltage, Equals(127));
+    AssertThat(bottomRightMotor->lastVoltage, Equals(127));
+    AssertThat(bottomLeftMotor->lastVoltage, Equals(127));
   });
 
   model.arcade(0.2, 0, 0.5);
   test("XDriveModel arcade should apply threshold", [&]() {
-    AssertThat(topLeftMotor->lastVelocity, Equals(0));
-    AssertThat(topRightMotor->lastVelocity, Equals(0));
-    AssertThat(bottomRightMotor->lastVelocity, Equals(0));
-    AssertThat(bottomLeftMotor->lastVelocity, Equals(0));
+    AssertThat(topLeftMotor->lastVoltage, Equals(0));
+    AssertThat(topRightMotor->lastVoltage, Equals(0));
+    AssertThat(bottomRightMotor->lastVoltage, Equals(0));
+    AssertThat(bottomLeftMotor->lastVoltage, Equals(0));
   });
 }
 
