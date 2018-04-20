@@ -35,8 +35,7 @@ void testIterativeControllers() {
     controller.setTarget(target);
     for (size_t i = 0; i < 2000; i++) {
       controller.step(sim.getAngle() * radianToDegree);
-      sim.setTorque(controller.getOutput() * sim.getMaxTorque());
-      sim.step();
+      sim.step(controller.getOutput() * sim.getMaxTorque());
     }
 
     test("IterativePosPIDController should settle after 2000 iterations (simulator angle is "
@@ -74,8 +73,7 @@ void testIterativeControllers() {
     controller.setTarget(target);
     for (size_t i = 0; i < 2000; i++) {
       controller.step(sim.getAngle() * radianToDegree);
-      sim.setTorque(controller.getOutput() * sim.getMaxTorque());
-      sim.step();
+      sim.step(controller.getOutput() * sim.getMaxTorque());
     }
 
     test("IterativeVelPIDController should settle after 2000 iterations (simulator omega is "
