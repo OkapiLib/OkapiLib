@@ -1,10 +1,3 @@
-/**
- * @author Ryan Benasutti, WPI
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- */
 #include "api.h"
 
 #include "okapi/api.hpp"
@@ -35,7 +28,8 @@ void testIterativeControllers() {
     controller.setTarget(target);
     for (size_t i = 0; i < 2000; i++) {
       controller.step(sim.getAngle() * radianToDegree);
-      sim.step(controller.getOutput() * sim.getMaxTorque());
+      sim.setTorque(controller.getOutput() * sim.getMaxTorque());
+      sim.step();
     }
 
     test("IterativePosPIDController should settle after 2000 iterations (simulator angle is "
@@ -72,7 +66,8 @@ void testIterativeControllers() {
     controller.setTarget(target);
     for (size_t i = 0; i < 2000; i++) {
       controller.step(sim.getAngle() * radianToDegree);
-      sim.step(controller.getOutput() * sim.getMaxTorque());
+      sim.setTorque(controller.getOutput() * sim.getMaxTorque());
+      sim.step();
     }
 
     test("IterativeVelPIDController should settle after 2000 iterations (simulator omega is "
@@ -748,57 +743,57 @@ void testXDriveModel() {
   model.tank(0.5, 0.5);
   test("XDriveModel tank should set the left and right voltages", [&]() {
     AssertThat(topLeftMotor->lastVelocity, Equals(63));
-    AssertThat(topRightMotor->lastVoltage, Equals(63));
-    AssertThat(bottomRightMotor->lastVoltage, Equals(63));
-    AssertThat(bottomLeftMotor->lastVoltage, Equals(63));
+    AssertThat(topRightMotor->lastVelocity, Equals(63));
+    AssertThat(bottomRightMotor->lastVelocity, Equals(63));
+    AssertThat(bottomLeftMotor->lastVelocity, Equals(63));
   });
 
   model.tank(10, 10);
   test("XDriveModel tank should bound its inputs", [&]() {
-    AssertThat(topLeftMotor->lastVoltage, Equals(127));
-    AssertThat(topRightMotor->lastVoltage, Equals(127));
-    AssertThat(bottomRightMotor->lastVoltage, Equals(127));
-    AssertThat(bottomLeftMotor->lastVoltage, Equals(127));
+    AssertThat(topLeftMotor->lastVelocity, Equals(127));
+    AssertThat(topRightMotor->lastVelocity, Equals(127));
+    AssertThat(bottomRightMotor->lastVelocity, Equals(127));
+    AssertThat(bottomLeftMotor->lastVelocity, Equals(127));
   });
 
   model.tank(0.2, 0.2, 0.5);
   test("XDriveModel tank should apply threshold", [&]() {
-    AssertThat(topLeftMotor->lastVoltage, Equals(0));
-    AssertThat(topRightMotor->lastVoltage, Equals(0));
-    AssertThat(bottomRightMotor->lastVoltage, Equals(0));
-    AssertThat(bottomLeftMotor->lastVoltage, Equals(0));
+    AssertThat(topLeftMotor->lastVelocity, Equals(0));
+    AssertThat(topRightMotor->lastVelocity, Equals(0));
+    AssertThat(bottomRightMotor->lastVelocity, Equals(0));
+    AssertThat(bottomLeftMotor->lastVelocity, Equals(0));
   });
 
   model.arcade(0.5, 0);
   test("XDriveModel arcade should move the robot forward", [&]() {
-    AssertThat(topLeftMotor->lastVoltage, Equals(63));
-    AssertThat(topRightMotor->lastVoltage, Equals(63));
-    AssertThat(bottomRightMotor->lastVoltage, Equals(63));
-    AssertThat(bottomLeftMotor->lastVoltage, Equals(63));
+    AssertThat(topLeftMotor->lastVelocity, Equals(63));
+    AssertThat(topRightMotor->lastVelocity, Equals(63));
+    AssertThat(bottomRightMotor->lastVelocity, Equals(63));
+    AssertThat(bottomLeftMotor->lastVelocity, Equals(63));
   });
 
   model.arcade(0, 0.5);
   test("XDriveModel arcade should turn the robot", [&]() {
-    AssertThat(topLeftMotor->lastVoltage, Equals(63));
-    AssertThat(topRightMotor->lastVoltage, Equals(-63));
-    AssertThat(bottomRightMotor->lastVoltage, Equals(-63));
-    AssertThat(bottomLeftMotor->lastVoltage, Equals(63));
+    AssertThat(topLeftMotor->lastVelocity, Equals(63));
+    AssertThat(topRightMotor->lastVelocity, Equals(-63));
+    AssertThat(bottomRightMotor->lastVelocity, Equals(-63));
+    AssertThat(bottomLeftMotor->lastVelocity, Equals(63));
   });
 
   model.arcade(10, 0);
   test("XDriveModel arcade should bound its inputs", [&]() {
-    AssertThat(topLeftMotor->lastVoltage, Equals(127));
-    AssertThat(topRightMotor->lastVoltage, Equals(127));
-    AssertThat(bottomRightMotor->lastVoltage, Equals(127));
-    AssertThat(bottomLeftMotor->lastVoltage, Equals(127));
+    AssertThat(topLeftMotor->lastVelocity, Equals(127));
+    AssertThat(topRightMotor->lastVelocity, Equals(127));
+    AssertThat(bottomRightMotor->lastVelocity, Equals(127));
+    AssertThat(bottomLeftMotor->lastVelocity, Equals(127));
   });
 
   model.arcade(0.2, 0, 0.5);
   test("XDriveModel arcade should apply threshold", [&]() {
-    AssertThat(topLeftMotor->lastVoltage, Equals(0));
-    AssertThat(topRightMotor->lastVoltage, Equals(0));
-    AssertThat(bottomRightMotor->lastVoltage, Equals(0));
-    AssertThat(bottomLeftMotor->lastVoltage, Equals(0));
+    AssertThat(topLeftMotor->lastVelocity, Equals(0));
+    AssertThat(topRightMotor->lastVelocity, Equals(0));
+    AssertThat(bottomRightMotor->lastVelocity, Equals(0));
+    AssertThat(bottomLeftMotor->lastVelocity, Equals(0));
   });
 }
 
@@ -914,6 +909,34 @@ void testButtons() {
 
 void runHeadlessDeviceTests() {
   testButtons();
+}
+
+void testOdometry() {
+  using namespace okapi;
+  using namespace snowhouse;
+
+  test_printf("Testing Odometry");
+
+  class MockModel : public SkidSteerModel {
+    public:
+    MockModel() : SkidSteerModel(1_m, 2_m) {
+    }
+
+    virtual std::valarray<std::int32_t> getSensorVals() const override {
+      return std::valarray<std::int32_t>{leftEnc, rightEnc};
+    }
+
+    void setSensorVals(std::int32_t left, std::int32_t right) {
+      leftEnc = left;
+      rightEnc = right;
+    }
+
+    std::int32_t leftEnc = 0;
+    std::int32_t rightEnc = 0;
+  };
+
+  auto model = std::make_shared<MockModel>();
+  Odometry odom(model, 143.239449, 16.875);
 }
 
 void runHeadlessTests() {
