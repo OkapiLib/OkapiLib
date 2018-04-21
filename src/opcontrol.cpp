@@ -25,7 +25,7 @@ void testIterativeControllers() {
       }
     };
 
-    FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
+    FlywheelSimulator sim;
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativePosPIDController controller(0.004, 0, 0, 0, std::make_unique<MockTimer>(),
@@ -60,13 +60,12 @@ void testIterativeControllers() {
       }
     };
 
-    FlywheelSimulator sim(0.01, 1, 0.1, 0.9, 0.01);
+    FlywheelSimulator sim;
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativeVelPIDController controller(
-      0.000015, 0,
-      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                                std::make_unique<MockTimer>()),
+      0.000015, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                                             std::make_unique<MockTimer>()),
       std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
 
     const double target = 10;
@@ -248,12 +247,9 @@ void testControlUtils() {
   {
     test_printf("Testing FlywheelSimulator");
 
-    FlywheelSimulator sim(0.01, 1, 0.5, 0.3, 0.005);
-    sim.setExternalTorqueFunction([](double angle, double mass, double linkLen) {
-      return (linkLen * std::cos(angle)) * (mass * -1 * gravity);
-    });
+    FlywheelSimulator sim;
 
-    sim.setTorque(10);
+    sim.setTorque(0.3);
     sim.step();
 
     test("FlywheelSimulator i = 0 angle",
