@@ -47,15 +47,35 @@ constexpr double ipow(const double base, const int expo) {
 }
 
 /**
- * Cut out a range from the number. The new range of the input number will be
- * (-inf, min]U[max, +inf).
+ * Cuts out a range from the number. The new range of the input number will be
+ * (-inf, min]U[max, +inf). If value sits equally between min and max, max will be returned.
  *
  * @param value number to bound
- * @param min lower bound of deadband
- * @param max upper bound of deadband
- * @return value, or 0 if value was within [min, max]
+ * @param min lower bound of range
+ * @param max upper bound of range
+ * @return the remapped value
  */
 constexpr double cutRange(const double value, const double min, const double max) {
+  const double middle = max - ((max - min) / 2);
+
+  if (value > min && value < middle) {
+    return min;
+  } else if (value <= max && value >= middle) {
+    return max;
+  }
+
+  return value;
+}
+
+/**
+ * Deadbands a range of the number. Returns the input value, or 0 if it is in the range [min, max].
+ *
+ * @param value number to deadband
+ * @param min lower bound of deadband
+ * @param max upper bound of deadband
+ * @return value, or 0 if it is in the range [min, max]
+ */
+constexpr double deadband(const double value, const double min, const double max) {
   return std::clamp(value, min, max) == value ? 0 : value;
 }
 
