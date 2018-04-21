@@ -16,7 +16,7 @@ class AsyncVelocityController;
 
 class AsyncVelocityControllerArgs : public AsyncControllerArgs {};
 
-class AsyncVelocityController : public AsyncController {};
+class AsyncVelocityController : virtual public AsyncController {};
 } // namespace okapi
 
 #endif

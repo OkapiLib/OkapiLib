@@ -15,7 +15,7 @@
 #include <memory>
 
 namespace okapi {
-class AsyncWrapper : public AsyncController {
+class AsyncWrapper : virtual public AsyncController {
   public:
   AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
                std::unique_ptr<IterativeController> icontroller);

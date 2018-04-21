@@ -14,7 +14,6 @@
 #include "okapi/control/controllerInput.hpp"
 #include "okapi/control/controllerOutput.hpp"
 #include "okapi/control/iterative/iterativePosPidController.hpp"
-#include "okapi/device/motor/abstractMotor.hpp"
 #include <memory>
 
 namespace okapi {
@@ -31,7 +30,7 @@ class AsyncPosPIDControllerArgs : public AsyncPositionControllerArgs {
   const IterativePosPIDControllerArgs &params;
 };
 
-class AsyncPosPIDController : public AsyncWrapper {
+class AsyncPosPIDController : public AsyncWrapper, public AsyncPositionController {
   public:
   AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
                         std::shared_ptr<ControllerOutput> ioutput,

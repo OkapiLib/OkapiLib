@@ -1043,6 +1043,18 @@ void constructorTests() {
     SettledUtil settledUtil1;
     settledUtil1.isSettled(0);
   }
+
+  {
+    auto mtr = 1_m;
+    AsyncVelPIDController con(std::make_shared<IntegratedEncoder>(mtr),
+                              std::make_shared<Motor>(mtr), 0, 0);
+  }
+
+  {
+    auto mtr = 1_m;
+    AsyncWrapper wrapper(std::make_shared<IntegratedEncoder>(mtr), std::make_shared<Motor>(mtr),
+                         std::make_unique<IterativePosPIDController>(0, 0, 0));
+  }
 }
 
 void opcontrol() {
