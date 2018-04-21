@@ -64,8 +64,9 @@ void testIterativeControllers() {
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativeVelPIDController controller(
-      0.000015, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                                             std::make_unique<MockTimer>()),
+      0.000015, 0,
+      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                                std::make_unique<MockTimer>()),
       std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
 
     const double target = 10;
@@ -807,16 +808,21 @@ void testButtons() {
 
   class MockButton : public Button {
     public:
-    using Button::currentlyPressed;
+    bool currentlyPressed() override {
+      printf("???\n");
+      return false;
+    }
   };
 
   {
     test_printf("Testing Button");
 
     {
-      Mock<MockButton> mockFactory;
+      MockButton spyMe;
+      Mock<MockButton> mockFactory(spyMe);
       When(Method(mockFactory, currentlyPressed)).Return(false).Return(true).Return(false);
-      auto &btn = mockFactory.get();
+      Spy(Method(mockFactory, isPressed));
+      MockButton &btn = mockFactory.get();
 
       test("Button isPressed should be false",
            TEST_BODY(AssertThat, btn.isPressed(), Equals(false)));
@@ -826,14 +832,16 @@ void testButtons() {
     }
 
     {
-      Mock<MockButton> mockFactory;
+      MockButton spyMe;
+      Mock<MockButton> mockFactory(spyMe);
       When(Method(mockFactory, currentlyPressed))
         .Return(false)
         .Return(true)
         .Return(true)
         .Return(false)
         .Return(false);
-      auto &btn = mockFactory.get();
+      Spy(Method(mockFactory, changed));
+      MockButton &btn = mockFactory.get();
 
       test("Button changed should be false", TEST_BODY(AssertThat, btn.changed(), Equals(false)));
       test("Button changed should be true", TEST_BODY(AssertThat, btn.changed(), Equals(true)));
@@ -843,14 +851,17 @@ void testButtons() {
     }
 
     {
-      Mock<MockButton> mockFactory;
+      MockButton spyMe;
+      Mock<MockButton> mockFactory(spyMe);
       When(Method(mockFactory, currentlyPressed))
         .Return(false)
         .Return(true)
         .Return(true)
         .Return(false)
         .Return(false);
-      auto &btn = mockFactory.get();
+      Spy(Method(mockFactory, changed));
+      Spy(Method(mockFactory, changedToPressed));
+      MockButton &btn = mockFactory.get();
 
       test("Button changedToPressed should be false",
            TEST_BODY(AssertThat, btn.changedToPressed(), Equals(false)));
@@ -865,14 +876,17 @@ void testButtons() {
     }
 
     {
-      Mock<MockButton> mockFactory;
+      MockButton spyMe;
+      Mock<MockButton> mockFactory(spyMe);
       When(Method(mockFactory, currentlyPressed))
         .Return(false)
         .Return(true)
         .Return(true)
         .Return(false)
         .Return(false);
-      auto &btn = mockFactory.get();
+      Spy(Method(mockFactory, changed));
+      Spy(Method(mockFactory, changedToReleased));
+      MockButton &btn = mockFactory.get();
 
       test("Button changedToReleased should be false",
            TEST_BODY(AssertThat, btn.changedToReleased(), Equals(false)));
@@ -895,6 +909,7 @@ void runHeadlessDeviceTests() {
 void runHeadlessTests() {
   using namespace okapi;
 
+  runHeadlessDeviceTests();
   runHeadlessUtilTests();
   runHeadlessFilterTests();
   runHeadlessControllerTests();
