@@ -23,11 +23,11 @@ class AsyncPosPIDControllerArgs : public AsyncPositionControllerArgs {
   public:
   AsyncPosPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
                             std::shared_ptr<ControllerOutput> ioutput,
-                            const IterativePosPIDControllerArgs &iparams);
+                            const IterativePosPIDControllerArgs iparams);
 
   std::shared_ptr<ControllerInput> input;
   std::shared_ptr<ControllerOutput> output;
-  const IterativePosPIDControllerArgs &params;
+  const IterativePosPIDControllerArgs params;
 };
 
 class AsyncPosPIDController : public AsyncWrapper, public AsyncPositionController {

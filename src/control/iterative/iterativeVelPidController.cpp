@@ -13,11 +13,11 @@
 namespace okapi {
 
 IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, const double ikD)
-  : kP(ikP), kD(ikD) {
+  : kP(ikP), kD(ikD), params(1800) {
 }
 
 IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, const double ikD,
-                                                             const VelMathArgs &iparams)
+                                                             const VelMathArgs iparams)
   : kP(ikP), kD(ikD), params(iparams) {
 }
 
