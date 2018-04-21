@@ -9,7 +9,7 @@
 #define _OKAPI_TESTRUNNER_HPP_
 
 #include "api.h"
-#include "okapi/snowhouse/snowhouse.h"
+#include "test/snowhouse/snowhouse.h"
 #include <functional>
 #include <string>
 

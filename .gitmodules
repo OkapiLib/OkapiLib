@@ -1,4 +1,4 @@
 [submodule "include/okapi/snowhouse"]
-	path = include/okapi/snowhouse
+	path = include/test/snowhouse
 	url = https://github.com/banditcpp/snowhouse
 	branch = headers-only
