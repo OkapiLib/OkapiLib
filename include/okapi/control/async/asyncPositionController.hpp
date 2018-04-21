@@ -16,7 +16,7 @@ class AsyncPositionController;
 
 class AsyncPositionControllerArgs : public AsyncControllerArgs {};
 
-class AsyncPositionController : public AsyncController {};
+class AsyncPositionController : virtual public AsyncController {};
 } // namespace okapi
 
 #endif

@@ -17,6 +17,7 @@
 #include "okapi/control/async/asyncPosIntegratedController.hpp"
 #include "okapi/control/async/asyncPosPidController.hpp"
 #include "okapi/control/async/asyncVelIntegratedController.hpp"
+#include "okapi/control/async/asyncVelPidController.hpp"
 #include "okapi/control/controllerInput.hpp"
 #include "okapi/control/controllerOutput.hpp"
 #include "okapi/control/iterative/iterativeMotorVelocityController.hpp"
