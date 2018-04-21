@@ -8,7 +8,7 @@
 #include "api.h"
 
 #include "okapi/api.hpp"
-#include "okapi/test/testRunner.hpp"
+#include "test/testRunner.hpp"
 
 void testIterativeControllers() {
   using namespace okapi;
