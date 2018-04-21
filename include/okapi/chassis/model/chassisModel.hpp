@@ -16,8 +16,6 @@
 #include <vector>
 
 namespace okapi {
-class ChassisModel;
-
 class ChassisModelArgs {
   public:
   virtual ~ChassisModelArgs();

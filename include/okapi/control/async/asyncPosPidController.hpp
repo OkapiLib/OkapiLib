@@ -17,8 +17,6 @@
 #include <memory>
 
 namespace okapi {
-class AsyncPosPIDController;
-
 class AsyncPosPIDControllerArgs : public AsyncPositionControllerArgs {
   public:
   AsyncPosPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
@@ -33,12 +31,12 @@ class AsyncPosPIDControllerArgs : public AsyncPositionControllerArgs {
 class AsyncPosPIDController : public AsyncWrapper, public AsyncPositionController {
   public:
   AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
-                        std::shared_ptr<ControllerOutput> ioutput,
-                        const IterativePosPIDControllerArgs &iparams);
-
-  AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
                         std::shared_ptr<ControllerOutput> ioutput, const double ikP,
                         const double ikI, const double ikD, const double ikBias = 0);
+
+  AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
+                        std::shared_ptr<ControllerOutput> ioutput,
+                        const IterativePosPIDControllerArgs &iparams);
 };
 } // namespace okapi
 

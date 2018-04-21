@@ -12,8 +12,6 @@
 #include <memory>
 
 namespace okapi {
-class AsyncVelocityController;
-
 class AsyncVelocityControllerArgs : public AsyncControllerArgs {};
 
 class AsyncVelocityController : virtual public AsyncController {};
