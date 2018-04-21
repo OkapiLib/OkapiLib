@@ -98,7 +98,7 @@ void ChassisControllerPID::moveDistance(const int itarget) {
     distanceElapsed = static_cast<double>((encVals[0] + encVals[1])) / 2.0;
     angleChange = static_cast<double>(encVals[1] - encVals[0]);
     model->driveVector(distancePid.step(distanceElapsed), anglePid.step(angleChange));
-    pros::c::task_delay_until(&prevWakeTime, 10);
+    pros::Task::delay_until(&prevWakeTime, 10);
   }
 
   model->stop();
@@ -119,7 +119,7 @@ void ChassisControllerPID::turnAngle(float idegTarget) {
     encVals = model->getSensorVals() - encStartVals;
     angleChange = static_cast<double>(encVals[1] - encVals[0]);
     model->rotate(anglePid.step(angleChange));
-    pros::c::task_delay_until(&prevWakeTime, 10);
+    pros::Task::delay_until(&prevWakeTime, 10);
   }
 
   model->stop();

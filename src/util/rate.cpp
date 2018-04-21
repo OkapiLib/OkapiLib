@@ -16,11 +16,11 @@ void Rate::delayHz(const std::uint32_t ihz) {
   if (lastTime == 0) {
     // First call
     lastTime = pros::millis();
-    pros::c::task_delay(
+    pros::Task::delay(
       static_cast<std::uint32_t>(static_cast<double>(1000) / static_cast<double>(ihz)));
   } else {
     // Subsequent call
-    pros::c::task_delay_until(
+    pros::Task::delay_until(
       &lastTime, static_cast<std::uint32_t>(static_cast<double>(1000) / static_cast<double>(ihz)));
   }
 }

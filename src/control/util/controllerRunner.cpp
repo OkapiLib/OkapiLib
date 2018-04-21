@@ -29,7 +29,7 @@ double ControllerRunner::runUntilSettled(const double itarget, IterativeControll
 
   while (!icontroller.isSettled()) {
     ioutput.controllerSet(icontroller.getOutput());
-    pros::c::task_delay(10);
+    pros::Task::delay(10);
   }
 
   return icontroller.getError();
@@ -42,7 +42,7 @@ double ControllerRunner::runUntilAtTarget(const double itarget, AsyncController 
   double lastError = error;
   while (error != 0 && std::copysign(1.0, error) == std::copysign(1.0, lastError)) {
     lastError = error;
-    pros::c::task_delay(10);
+    pros::Task::delay(10);
     error = icontroller.getError();
   }
 
@@ -58,7 +58,7 @@ double ControllerRunner::runUntilAtTarget(const double itarget, IterativeControl
   while (error != 0 && std::copysign(1.0, error) == std::copysign(1.0, lastError)) {
     ioutput.controllerSet(icontroller.getOutput());
     lastError = error;
-    pros::c::task_delay(10);
+    pros::Task::delay(10);
     error = icontroller.getError();
   }
 

@@ -92,7 +92,7 @@ void ChassisControllerIntegrated::moveDistance(const int itarget) {
   std::uint32_t prevWakeTime = pros::millis();
 
   while (!leftController.isSettled() && !rightController.isSettled()) {
-    pros::c::task_delay_until(&prevWakeTime, 10);
+    pros::Task::delay_until(&prevWakeTime, 10);
   }
 
   leftController.flipDisable(true);
@@ -113,7 +113,7 @@ void ChassisControllerIntegrated::turnAngle(float idegTarget) {
   std::uint32_t prevWakeTime = pros::millis();
 
   while (!leftController.isSettled() && !rightController.isSettled()) {
-    pros::c::task_delay_until(&prevWakeTime, 10);
+    pros::Task::delay_until(&prevWakeTime, 10);
   }
 
   leftController.flipDisable(true);

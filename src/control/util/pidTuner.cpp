@@ -184,13 +184,13 @@ std::uint32_t PIDTuner::moveDistance(const int itarget) {
       atTarget = true;
     }
 
-    pros::c::task_delay_until(&prevWakeTime, 15);
+    pros::Task::delay_until(&prevWakeTime, 15);
   }
 
   auto settleTime = atTargetTimer.getDtFromStart();
 
   model->stop();
-  pros::c::task_delay(1000); // Let the robot settle
+  pros::Task::delay(1000); // Let the robot settle
   return settleTime;
 }
 } // namespace okapi
