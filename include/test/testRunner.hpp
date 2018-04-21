@@ -9,6 +9,7 @@
 #define _OKAPI_TESTRUNNER_HPP_
 
 #include "api.h"
+#include "test/FakeIt/single_header/standalone/fakeit.hpp"
 #include "test/snowhouse/snowhouse/snowhouse.h"
 #include <functional>
 #include <string>

@@ -801,9 +801,115 @@ void runHeadlessChassisModelTests() {
   testChassisModels();
 }
 
+void testButtons() {
+  using namespace okapi;
+  using namespace snowhouse;
+  using namespace fakeit;
+
+  class MockButton : public Button {
+    public:
+    bool currentlyPressed() override {
+      printf("???\n");
+      return false;
+    }
+  };
+
+  {
+    test_printf("Testing Button");
+
+    {
+      MockButton spyMe;
+      Mock<MockButton> mockFactory(spyMe);
+      When(Method(mockFactory, currentlyPressed)).Return(false).Return(true).Return(false);
+      Spy(Method(mockFactory, isPressed));
+      MockButton &btn = mockFactory.get();
+
+      test("Button isPressed should be false",
+           TEST_BODY(AssertThat, btn.isPressed(), Equals(false)));
+      test("Button isPressed should be true", TEST_BODY(AssertThat, btn.isPressed(), Equals(true)));
+      test("Button isPressed should be false",
+           TEST_BODY(AssertThat, btn.isPressed(), Equals(false)));
+    }
+
+    {
+      MockButton spyMe;
+      Mock<MockButton> mockFactory(spyMe);
+      When(Method(mockFactory, currentlyPressed))
+        .Return(false)
+        .Return(true)
+        .Return(true)
+        .Return(false)
+        .Return(false);
+      Spy(Method(mockFactory, changed));
+      MockButton &btn = mockFactory.get();
+
+      test("Button changed should be false", TEST_BODY(AssertThat, btn.changed(), Equals(false)));
+      test("Button changed should be true", TEST_BODY(AssertThat, btn.changed(), Equals(true)));
+      test("Button changed should be false", TEST_BODY(AssertThat, btn.changed(), Equals(false)));
+      test("Button changed should be true", TEST_BODY(AssertThat, btn.changed(), Equals(true)));
+      test("Button changed should be false", TEST_BODY(AssertThat, btn.changed(), Equals(false)));
+    }
+
+    {
+      MockButton spyMe;
+      Mock<MockButton> mockFactory(spyMe);
+      When(Method(mockFactory, currentlyPressed))
+        .Return(false)
+        .Return(true)
+        .Return(true)
+        .Return(false)
+        .Return(false);
+      Spy(Method(mockFactory, changed));
+      Spy(Method(mockFactory, changedToPressed));
+      MockButton &btn = mockFactory.get();
+
+      test("Button changedToPressed should be false",
+           TEST_BODY(AssertThat, btn.changedToPressed(), Equals(false)));
+      test("Button changedToPressed should be true",
+           TEST_BODY(AssertThat, btn.changedToPressed(), Equals(true)));
+      test("Button changedToPressed should be false",
+           TEST_BODY(AssertThat, btn.changedToPressed(), Equals(false)));
+      test("Button changedToPressed should be true",
+           TEST_BODY(AssertThat, btn.changedToPressed(), Equals(false)));
+      test("Button changedToPressed should be false",
+           TEST_BODY(AssertThat, btn.changedToPressed(), Equals(false)));
+    }
+
+    {
+      MockButton spyMe;
+      Mock<MockButton> mockFactory(spyMe);
+      When(Method(mockFactory, currentlyPressed))
+        .Return(false)
+        .Return(true)
+        .Return(true)
+        .Return(false)
+        .Return(false);
+      Spy(Method(mockFactory, changed));
+      Spy(Method(mockFactory, changedToReleased));
+      MockButton &btn = mockFactory.get();
+
+      test("Button changedToReleased should be false",
+           TEST_BODY(AssertThat, btn.changedToReleased(), Equals(false)));
+      test("Button changedToReleased should be true",
+           TEST_BODY(AssertThat, btn.changedToReleased(), Equals(false)));
+      test("Button changedToReleased should be false",
+           TEST_BODY(AssertThat, btn.changedToReleased(), Equals(false)));
+      test("Button changedToReleased should be true",
+           TEST_BODY(AssertThat, btn.changedToReleased(), Equals(true)));
+      test("Button changedToReleased should be false",
+           TEST_BODY(AssertThat, btn.changedToReleased(), Equals(false)));
+    }
+  }
+}
+
+void runHeadlessDeviceTests() {
+  testButtons();
+}
+
 void runHeadlessTests() {
   using namespace okapi;
 
+  runHeadlessDeviceTests();
   runHeadlessUtilTests();
   runHeadlessFilterTests();
   runHeadlessControllerTests();

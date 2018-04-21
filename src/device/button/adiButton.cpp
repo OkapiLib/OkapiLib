@@ -9,27 +9,7 @@
 
 namespace okapi {
 ADIButton::ADIButton(const uint8_t iport, const bool iinverted)
-  : btn(iport), port(iport), inverted(iinverted) {
-}
-
-bool ADIButton::isPressed() {
-  wasPressedLast = currentlyPressed();
-  return wasPressedLast;
-}
-
-bool ADIButton::changed() {
-  const bool pressed = currentlyPressed();
-  const bool out = pressed ^ wasPressedLast;
-  wasPressedLast = pressed;
-  return out;
-}
-
-bool ADIButton::changedToPressed() {
-  return changed() && wasPressedLast;
-}
-
-bool ADIButton::changedToReleased() {
-  return changed() && !wasPressedLast;
+  : Button(iinverted), btn(iport), port(iport) {
 }
 
 bool ADIButton::currentlyPressed() {
