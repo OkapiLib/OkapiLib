@@ -9,32 +9,12 @@
 
 namespace okapi {
 ControllerButton::ControllerButton(const controller_digital_e_t ibtn, const bool iinverted)
-  : controller(E_CONTROLLER_MASTER), btn(ibtn), inverted(iinverted) {
+  : Button(iinverted), controller(E_CONTROLLER_MASTER), btn(ibtn) {
 }
 
 ControllerButton::ControllerButton(const controller_id_e_t icontroller,
                                    const controller_digital_e_t ibtn, const bool iinverted)
-  : controller(icontroller), btn(ibtn), inverted(iinverted) {
-}
-
-bool ControllerButton::isPressed() {
-  wasPressedLast = currentlyPressed();
-  return wasPressedLast;
-}
-
-bool ControllerButton::changed() {
-  const bool pressed = currentlyPressed();
-  const bool out = pressed ^ wasPressedLast;
-  wasPressedLast = pressed;
-  return out;
-}
-
-bool ControllerButton::changedToPressed() {
-  return changed() && wasPressedLast;
-}
-
-bool ControllerButton::changedToReleased() {
-  return changed() && !wasPressedLast;
+  : Button(iinverted), controller(icontroller), btn(ibtn) {
 }
 
 bool ControllerButton::currentlyPressed() {
