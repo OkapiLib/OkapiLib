@@ -12,8 +12,6 @@
 #include <memory>
 
 namespace okapi {
-class AsyncPositionController;
-
 class AsyncPositionControllerArgs : public AsyncControllerArgs {};
 
 class AsyncPositionController : virtual public AsyncController {};

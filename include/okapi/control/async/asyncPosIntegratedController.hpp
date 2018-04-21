@@ -14,8 +14,6 @@
 #include "okapi/device/motor/motorGroup.hpp"
 
 namespace okapi {
-class AsyncPosIntegratedController;
-
 class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
   public:
   AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);

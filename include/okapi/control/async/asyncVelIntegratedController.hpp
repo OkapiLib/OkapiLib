@@ -17,8 +17,6 @@
 #include <memory>
 
 namespace okapi {
-class AsyncVelIntegratedController;
-
 class AsyncVelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
   public:
   AsyncVelIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
