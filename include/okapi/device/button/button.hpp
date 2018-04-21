@@ -13,30 +13,38 @@
 namespace okapi {
 class Button {
   public:
+  Button(const bool iinverted = false);
+
   virtual ~Button();
 
   /**
    * Return whether the button is currently pressed.
    **/
-  virtual bool isPressed() = 0;
+  virtual bool isPressed();
 
   /**
    * Return whether the state of the button changed since the last time this method was
    * called.
    **/
-  virtual bool changed() = 0;
+  virtual bool changed();
 
   /**
    * Return whether the state of the button changed to being pressed since the last time this method
    * was called.
    **/
-  virtual bool changedToPressed() = 0;
+  virtual bool changedToPressed();
 
   /**
    * Return whether the state of the button to being not pressed changed since the last time this
    * method was called.
    **/
-  virtual bool changedToReleased() = 0;
+  virtual bool changedToReleased();
+
+  protected:
+  const bool inverted;
+  bool wasPressedLast = false;
+
+  virtual bool currentlyPressed() = 0;
 };
 } // namespace okapi
 
