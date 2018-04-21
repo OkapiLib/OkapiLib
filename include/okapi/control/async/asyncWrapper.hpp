@@ -17,6 +17,14 @@
 namespace okapi {
 class AsyncWrapper : virtual public AsyncController {
   public:
+  /**
+   * A wrapper class that transforms an IterativeController into an AsyncController by running it in
+   * another task. The input controller will act like an AsyncController.
+   *
+   * @param iinput controller input, passed to the IterativeController
+   * @param ioutput controller output, written to from the IterativeController
+   * @param icontroller the controller to use
+   */
   AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
                std::unique_ptr<IterativeController> icontroller);
 
