@@ -62,7 +62,7 @@ void Odometry::loop() {
     state.x += mm * std::cos(state.theta * degreeToRadian);
     state.y += mm * std::sin(state.theta * degreeToRadian);
 
-    pros::c::task_delay_until(&now, 10);
+    pros::Task::delay_until(&now, 10);
   }
 }
 

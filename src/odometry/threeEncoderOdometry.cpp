@@ -40,7 +40,7 @@ void ThreeEncoderOdometry::loop() {
     state.x += mm * std::cos(state.theta) + (tickDiff[2] * middleScale) * std::sin(state.theta);
     state.y += mm * std::sin(state.theta) + (tickDiff[2] * middleScale) * std::cos(state.theta);
 
-    pros::c::task_delay_until(&now, 10);
+    pros::Task::delay_until(&now, 10);
   }
 }
 
