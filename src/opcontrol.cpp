@@ -64,9 +64,8 @@ void testIterativeControllers() {
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativeVelPIDController controller(
-      0.000015, 0,
-      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                                std::make_unique<MockTimer>()),
+      0.000015, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                                             std::make_unique<MockTimer>()),
       std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
 
     const double target = 10;
@@ -332,7 +331,7 @@ void testUtils() {
                      EqualsWithDelta(100, 10)));
 
       lastTime = pros::millis();
-      pros::c::task_delay(50); // Emulate some computation
+      pros::Task::delay(50); // Emulate some computation
     }
   }
 }
@@ -954,66 +953,9 @@ void constructorTests() {
   }
 }
 
-void clawbotTutorial() {
-  using namespace okapi::literals;
-
-  // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-  okapi::ChassisControllerIntegrated robotChassisController(1_m, 10_m);
-
-  // Joystick to read analog values for tank or arcade control
-  // Master controller by default
-  okapi::Controller controller;
-
-  // Arm related objects
-  okapi::ADIButton armLimitButton('H');
-  okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
-  okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
-  okapi::Motor armMotor = 8_m;
-
-  // Button to run our sample autonomous routine
-  okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
-
-  while (true) {
-    // Tank drive with left and right sticks
-    robotChassisController.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                                controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
-
-    // Arcade drive with the left stick
-    robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                                  controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
-
-    // Don't power the arm if it is all the way down
-    if (armLimitButton.isPressed()) {
-      armMotor.move_voltage(0);
-    } else {
-      // Else, the arm isn't all the way down
-      if (armUpButton.isPressed()) {
-        armMotor.move_voltage(127);
-      } else if (armDownButton.isPressed()) {
-        armMotor.move_voltage(-127);
-      } else {
-        armMotor.move_voltage(0);
-      }
-    }
-
-    // Run the test autonomous routine if we press the button
-    if (runAutoButton.changedToPressed()) {
-      // Drive the robot in a square pattern using closed-loop control
-      for (int i = 0; i < 4; i++) {
-        robotChassisController.moveDistance(2116); // Drive forward 12 inches
-        robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
-      }
-    }
-
-    // Wait and give up the time we don't need to other tasks.
-    // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-    pros::c::task_delay(10);
-  }
-}
-
 void opcontrol() {
   using namespace okapi;
-  pros::c::task_delay(100);
+  pros::Task::delay(100);
 
   runHeadlessTests();
   return;
@@ -1058,6 +1000,6 @@ void opcontrol() {
       }
     }
 
-    pros::c::task_delay(10);
+    pros::Task::delay(10);
   }
 }
