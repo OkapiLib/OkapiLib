@@ -64,8 +64,9 @@ void testIterativeControllers() {
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativeVelPIDController controller(
-      0.000015, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                                             std::make_unique<MockTimer>()),
+      0.000015, 0,
+      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                                std::make_unique<MockTimer>()),
       std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
 
     const double target = 10;
