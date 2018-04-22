@@ -9,7 +9,8 @@
 #define _OKAPI_CHASSISCONTROLLER_HPP_
 
 #include "okapi/chassis/model/chassisModel.hpp"
-#include "okapi/units/RQuantity.hpp"
+#include "okapi/units/QAngle.hpp"
+#include "okapi/units/QLength.hpp"
 #include <memory>
 #include <valarray>
 
