@@ -131,12 +131,12 @@ void SkidSteerModel::tank(const double ileftSpeed, const double irightSpeed,
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   double leftSpeed = std::clamp(ileftSpeed, -1.0, 1.0);
-  if (fabs(leftSpeed) < ithreshold) {
+  if (std::abs(leftSpeed) < ithreshold) {
     leftSpeed = 0;
   }
 
   double rightSpeed = std::clamp(irightSpeed, -1.0, 1.0);
-  if (fabs(rightSpeed) < ithreshold) {
+  if (std::abs(rightSpeed) < ithreshold) {
     rightSpeed = 0;
   }
 
@@ -149,16 +149,16 @@ void SkidSteerModel::arcade(const double iySpeed, const double izRotation,
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   double ySpeed = std::clamp(iySpeed, -1.0, 1.0);
-  if (fabs(ySpeed) < ithreshold) {
+  if (std::abs(ySpeed) < ithreshold) {
     ySpeed = 0;
   }
 
   double zRotation = std::clamp(izRotation, -1.0, 1.0);
-  if (fabs(zRotation) < ithreshold) {
+  if (std::abs(zRotation) < ithreshold) {
     zRotation = 0;
   }
 
-  double maxInput = std::copysign(std::max(fabs(ySpeed), fabs(zRotation)), ySpeed);
+  double maxInput = std::copysign(std::max(std::abs(ySpeed), std::abs(zRotation)), ySpeed);
   double leftOutput = 0;
   double rightOutput = 0;
 

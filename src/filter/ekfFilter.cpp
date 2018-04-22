@@ -31,11 +31,6 @@ double EKFFilter::filter(const double ireading, const double icontrol) {
   return xHat;
 }
 
-/**
- * Returns the previous output from filter.
- *
- * @return the previous output from filter
- */
 double EKFFilter::getOutput() const {
   return xHat;
 }

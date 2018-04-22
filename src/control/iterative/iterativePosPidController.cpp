@@ -113,12 +113,12 @@ double IterativePosPIDController::step(const double inewReading) {
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
       error = target - inewReading;
 
-      if ((fabs(error) < target - errorSumMin && fabs(error) > target - errorSumMax) ||
-          (fabs(error) > target + errorSumMin && fabs(error) < target + errorSumMax)) {
+      if ((std::abs(error) < target - errorSumMin && std::abs(error) > target - errorSumMax) ||
+          (std::abs(error) > target + errorSumMin && std::abs(error) < target + errorSumMax)) {
         integral += kI * error; // Eliminate integral kick while realtime tuning
       }
 
-      if (shouldResetOnCross && copysign(1.0, error) != copysign(1.0, lastError)) {
+      if (shouldResetOnCross && std::copysign(1.0, error) != std::copysign(1.0, lastError)) {
         integral = 0;
       }
 
