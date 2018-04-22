@@ -48,9 +48,10 @@
 #include "okapi/filter/passthroughFilter.hpp"
 #include "okapi/filter/velMath.hpp"
 
-#include "okapi/units/degree.hpp"
-#include "okapi/units/meter.hpp"
-#include "okapi/units/rpm.hpp"
+// #include "okapi/units/degree.hpp"
+// #include "okapi/units/meter.hpp"
+// #include "okapi/units/rpm.hpp"
+#include "okapi/units/RQuantity.hpp"
 
 #include "okapi/util/mathUtil.hpp"
 #include "okapi/util/rate.hpp"

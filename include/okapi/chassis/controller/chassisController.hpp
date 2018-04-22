@@ -9,8 +9,7 @@
 #define _OKAPI_CHASSISCONTROLLER_HPP_
 
 #include "okapi/chassis/model/chassisModel.hpp"
-#include "okapi/units/degree.hpp"
-#include "okapi/units/meter.hpp"
+#include "okapi/units/RQuantity.hpp"
 #include <memory>
 #include <valarray>
 
@@ -33,14 +32,14 @@ class ChassisController {
    *
    * @param itarget distance to travel
    */
-  virtual void moveDistance(const Meter itarget) = 0;
+  virtual void moveDistance(const QLength itarget) = 0;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for
    */
-  virtual void turnAngle(const Degree idegTarget) = 0;
+  virtual void turnAngle(const QAngle idegTarget) = 0;
 
   /**
    * Drive the robot forwards (using open-loop control).

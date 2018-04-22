@@ -81,13 +81,13 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
   setEncoderUnits(E_MOTOR_ENCODER_DEGREES);
 }
 
-void ChassisControllerIntegrated::moveDistance(const Meter itarget) {
+void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
   leftController.reset();
   rightController.reset();
   leftController.flipDisable(false);
   rightController.flipDisable(false);
 
-  const double newTarget = itarget.toMeters() * straightScale;
+  const double newTarget = itarget.convert(meter) * straightScale;
   const auto enc = model->getSensorVals();
   leftController.setTarget(newTarget + enc[0]);
   rightController.setTarget(newTarget + enc[1]);
@@ -102,13 +102,13 @@ void ChassisControllerIntegrated::moveDistance(const Meter itarget) {
   rightController.flipDisable(true);
 }
 
-void ChassisControllerIntegrated::turnAngle(const Degree idegTarget) {
+void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
   leftController.reset();
   rightController.reset();
   leftController.flipDisable(false);
   rightController.flipDisable(false);
 
-  const double newTarget = idegTarget.toDegrees() * turnScale;
+  const double newTarget = idegTarget.convert(degree) * turnScale;
   const auto enc = model->getSensorVals();
   leftController.setTarget(newTarget + enc[0]);
   rightController.setTarget(-1 * newTarget + enc[1]);

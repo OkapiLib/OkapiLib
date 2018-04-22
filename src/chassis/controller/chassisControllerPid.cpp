@@ -89,11 +89,11 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
   setEncoderUnits(E_MOTOR_ENCODER_DEGREES);
 }
 
-void ChassisControllerPID::moveDistance(const Meter itarget) {
+void ChassisControllerPID::moveDistance(const QLength itarget) {
   distancePid.reset();
   anglePid.reset();
 
-  const double newTarget = itarget.toMeters() * straightScale;
+  const double newTarget = itarget.convert(meter) * straightScale;
   distancePid.setTarget(newTarget);
   anglePid.setTarget(newTarget);
 
@@ -113,10 +113,10 @@ void ChassisControllerPID::moveDistance(const Meter itarget) {
   model->stop();
 }
 
-void ChassisControllerPID::turnAngle(const Degree idegTarget) {
+void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
   anglePid.reset();
 
-  const double newTarget = idegTarget.toDegrees() * turnScale;
+  const double newTarget = idegTarget.convert(degree) * turnScale;
   anglePid.setTarget(newTarget);
 
   std::uint32_t prevWakeTime = pros::millis();
