@@ -102,6 +102,6 @@ class AsyncWrapper : virtual public AsyncController {
   static void trampoline(void *context);
   void loop();
 };
-}
+} // namespace okapi
 
 #endif

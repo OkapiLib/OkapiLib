@@ -71,7 +71,7 @@ constexpr Degree operator"" _deg(const long double idegrees) {
 constexpr Degree operator"" _rad(const long double iradians) {
   return Degree(iradians * 0.01745329252);
 }
-}
-}
+} // namespace units
+} // namespace okapi
 
 #endif

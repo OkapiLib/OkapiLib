@@ -32,4 +32,4 @@ bool Button::changedToPressed() {
 bool Button::changedToReleased() {
   return changed() && !wasPressedLast;
 }
-}
+} // namespace okapi

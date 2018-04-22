@@ -69,4 +69,4 @@ void AsyncWrapper::flipDisable(const bool iisDisabled) {
 bool AsyncWrapper::isDisabled() const {
   return controller->isDisabled();
 }
-}
+} // namespace okapi

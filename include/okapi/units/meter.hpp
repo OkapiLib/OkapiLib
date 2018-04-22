@@ -107,7 +107,7 @@ constexpr Meter operator"" _ft(const long double ifeet) {
 constexpr Meter operator"" _in(const long double iinches) {
   return Meter(iinches * 0.0254);
 }
-}
-}
+} // namespace units
+} // namespace okapi
 
 #endif

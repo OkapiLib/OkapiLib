@@ -71,7 +71,7 @@ constexpr RPM operator"" _rpm(const long double iRPMs) {
 constexpr RPM operator"" _dps(const long double iradians) {
   return RPM(iradians * 0.166666667);
 }
-}
-}
+} // namespace units
+} // namespace okapi
 
 #endif
