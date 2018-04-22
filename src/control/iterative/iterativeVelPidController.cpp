@@ -17,7 +17,7 @@ IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, c
 }
 
 IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, const double ikD,
-                                                             const VelMathArgs iparams)
+                                                             const VelMathArgs &iparams)
   : kP(ikP), kD(ikD), params(iparams) {
 }
 

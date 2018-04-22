@@ -21,7 +21,7 @@ class AsyncVelPIDControllerArgs : public AsyncVelocityControllerArgs {
   public:
   AsyncVelPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
                             std::shared_ptr<ControllerOutput> ioutput,
-                            const IterativeVelPIDControllerArgs iparams);
+                            const IterativeVelPIDControllerArgs &iparams);
 
   std::shared_ptr<ControllerInput> input;
   std::shared_ptr<ControllerOutput> output;

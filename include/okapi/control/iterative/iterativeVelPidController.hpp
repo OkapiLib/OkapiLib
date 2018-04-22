@@ -17,7 +17,7 @@ class IterativeVelPIDControllerArgs : public IterativeVelocityControllerArgs {
   public:
   IterativeVelPIDControllerArgs(const double ikP, const double ikD);
 
-  IterativeVelPIDControllerArgs(const double ikP, const double ikD, const VelMathArgs iparams);
+  IterativeVelPIDControllerArgs(const double ikP, const double ikD, const VelMathArgs &iparams);
 
   const double kP, kD;
   const VelMathArgs params;

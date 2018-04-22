@@ -10,7 +10,7 @@
 namespace okapi {
 AsyncVelPIDControllerArgs::AsyncVelPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
                                                      std::shared_ptr<ControllerOutput> ioutput,
-                                                     const IterativeVelPIDControllerArgs iparams)
+                                                     const IterativeVelPIDControllerArgs &iparams)
   : input(iinput), output(ioutput), params(iparams) {
 }
 

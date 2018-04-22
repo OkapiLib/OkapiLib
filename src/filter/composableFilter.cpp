@@ -10,7 +10,7 @@
 
 namespace okapi {
 ComposableFilterArgs::ComposableFilterArgs(
-  const std::initializer_list<std::shared_ptr<Filter>> ilist)
+  const std::initializer_list<std::shared_ptr<Filter>> &ilist)
   : list(ilist) {
 }
 

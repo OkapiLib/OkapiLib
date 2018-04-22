@@ -17,7 +17,7 @@
 namespace okapi {
 class ComposableFilterArgs : public FilterArgs {
   public:
-  ComposableFilterArgs(const std::initializer_list<std::shared_ptr<Filter>> ilist);
+  ComposableFilterArgs(const std::initializer_list<std::shared_ptr<Filter>> &ilist);
 
   const std::initializer_list<std::shared_ptr<Filter>> list;
 };
