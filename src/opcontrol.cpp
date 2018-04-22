@@ -961,11 +961,10 @@ void constructorTests() {
   {
     ADIEncoder leftEncoder(1, 2, true);
     ADIEncoder rightEncoder(3, 4);
-    ChassisControllerIntegrated int1(1_mtr,  // One motor on left side
-                                     2_mtr); // One motor on right side
-
-    ChassisControllerIntegrated int2(MotorGroup({1_mtr, 2_mtr, 3_mtr}), // Three motors on left side
-                                     MotorGroup({4_mtr, 5_mtr}));       // Two motors on right side
+    ChassisControllerIntegrated int1(1_mtr, 2_mtr);
+    ChassisControllerIntegrated int2(MotorGroup({1_mtr, 2_mtr, 3_mtr}), MotorGroup({4_mtr, 5_mtr}));
+    ChassisControllerIntegrated int3(1, 2);
+    ChassisControllerIntegrated int4({1, 2, 3}, {-4, -5});
 
     int1.moveDistance(0); // Closed-loop control
     int1.turnAngle(0);    // Closed-loop control
@@ -992,9 +991,12 @@ void constructorTests() {
   }
 
   {
-    IterativePosPIDController pid1(0, 0, 0); // PID controller
+    IterativePosPIDController pid1(0, 0, 0);
     IterativeMotorVelocityController mc1(1_mtr, std::make_shared<IterativeVelPIDController>(0, 0));
     IterativeMotorVelocityController mc2(MotorGroup({1_mtr, 2_mtr}),
+                                         std::make_shared<IterativeVelPIDController>(0, 0));
+    IterativeMotorVelocityController mc3(1, std::make_shared<IterativeVelPIDController>(0, 0));
+    IterativeMotorVelocityController mc4({1, -2},
                                          std::make_shared<IterativeVelPIDController>(0, 0));
   }
 

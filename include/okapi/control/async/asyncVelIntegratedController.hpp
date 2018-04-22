@@ -25,7 +25,8 @@ class AsyncVelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
 };
 
 /**
- * Closed-loop controller that uses the V5 motor's onboard control to move.
+ * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are whatever
+ * units the motor is in.
  */
 class AsyncVelIntegratedController : public AsyncVelocityController {
   public:

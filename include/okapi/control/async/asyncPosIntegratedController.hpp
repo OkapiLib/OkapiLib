@@ -22,7 +22,8 @@ class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
 };
 
 /**
- * Closed-loop controller that uses the V5 motor's onboard control to move.
+ * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are whatever
+ * units the motor is in.
  */
 class AsyncPosIntegratedController : public AsyncPositionController {
   public:
