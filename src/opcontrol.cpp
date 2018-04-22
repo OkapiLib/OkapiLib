@@ -954,17 +954,18 @@ void constructorTests() {
   }
 
   {
-    Motor mtr = 1_m;
-    Motor r_mtr = 2_rm;
+    Motor mtr = 1_mtr;
+    Motor r_mtr = 2_rmtr;
   }
+
   {
     ADIEncoder leftEncoder(1, 2, true);
     ADIEncoder rightEncoder(3, 4);
-    ChassisControllerIntegrated int1(1_m,  // One motor on left side
-                                     2_m); // One motor on right side
+    ChassisControllerIntegrated int1(1_mtr,  // One motor on left side
+                                     2_mtr); // One motor on right side
 
-    ChassisControllerIntegrated int2(MotorGroup({1_m, 2_m, 3_m}), // Three motors on left side
-                                     MotorGroup({4_m, 5_m}));     // Two motors on right side
+    ChassisControllerIntegrated int2(MotorGroup({1_mtr, 2_mtr, 3_mtr}), // Three motors on left side
+                                     MotorGroup({4_mtr, 5_mtr}));       // Two motors on right side
 
     int1.moveDistance(0); // Closed-loop control
     int1.turnAngle(0);    // Closed-loop control
@@ -981,31 +982,31 @@ void constructorTests() {
     int1.resetSensors();              // Set sensors to 0
 
     ChassisControllerPID controller1(
-      std::make_shared<SkidSteerModel>(MotorGroup({1_m, 2_m}), MotorGroup({3_m, 4_m}), leftEncoder,
-                                       rightEncoder),
+      std::make_shared<SkidSteerModel>(MotorGroup({1_mtr, 2_mtr}), MotorGroup({3_mtr, 4_mtr}),
+                                       leftEncoder, rightEncoder),
       IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
 
     ChassisControllerPID controller2(
-      std::make_shared<XDriveModel>(1_m, 2_m, 3_m, 4_m, leftEncoder, rightEncoder),
+      std::make_shared<XDriveModel>(1_mtr, 2_mtr, 3_mtr, 4_mtr, leftEncoder, rightEncoder),
       IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
   }
 
   {
     IterativePosPIDController pid1(0, 0, 0); // PID controller
-    IterativeMotorVelocityController mc1(1_m, std::make_shared<IterativeVelPIDController>(0, 0));
-    IterativeMotorVelocityController mc2(MotorGroup({1_m, 2_m}),
+    IterativeMotorVelocityController mc1(1_mtr, std::make_shared<IterativeVelPIDController>(0, 0));
+    IterativeMotorVelocityController mc2(MotorGroup({1_mtr, 2_mtr}),
                                          std::make_shared<IterativeVelPIDController>(0, 0));
   }
 
-  { AsyncPosIntegratedController posI1(1_m); }
+  { AsyncPosIntegratedController posI1(1_mtr); }
 
   {
     AsyncPosPIDController apospid1(std::make_shared<ADIEncoder>(1, 2, true),
-                                   std::make_shared<Motor>(1_m),
+                                   std::make_shared<Motor>(1_mtr),
                                    IterativePosPIDControllerArgs(0, 0, 0));
 
     AsyncPosPIDController apospid2(std::make_shared<ADIEncoder>(1, 2, true),
-                                   std::make_shared<Motor>(1_m), 0, 0, 0);
+                                   std::make_shared<Motor>(1_mtr), 0, 0, 0);
   }
 
   {
@@ -1031,7 +1032,7 @@ void constructorTests() {
     ADIEncoder quad2(0, 0, true);
   }
 
-  { MotorGroup mg1({1_m, 2_m}); }
+  { MotorGroup mg1({1_mtr, 2_mtr}); }
 
   {
     AverageFilter<2> avgFilt1;
@@ -1055,9 +1056,9 @@ void constructorTests() {
 
   {
     ControllerRunner controllerRunner;
-    AsyncPosIntegratedController testControllerRunnerController1(1_m);
+    AsyncPosIntegratedController testControllerRunnerController1(1_mtr);
     IterativePosPIDController testControllerRunnerController2(0, 0, 0);
-    Motor controllerRunnerMotor = 1_m;
+    Motor controllerRunnerMotor = 1_mtr;
     controllerRunner.runUntilSettled(0, testControllerRunnerController1);
     controllerRunner.runUntilSettled(0, testControllerRunnerController2, controllerRunnerMotor);
     controllerRunner.runUntilAtTarget(0, testControllerRunnerController1);
@@ -1070,13 +1071,13 @@ void constructorTests() {
   }
 
   {
-    auto mtr = 1_m;
+    auto mtr = 1_mtr;
     AsyncVelPIDController con(std::make_shared<IntegratedEncoder>(mtr),
                               std::make_shared<Motor>(mtr), 0, 0);
   }
 
   {
-    auto mtr = 1_m;
+    auto mtr = 1_mtr;
     AsyncWrapper wrapper(std::make_shared<IntegratedEncoder>(mtr), std::make_shared<Motor>(mtr),
                          std::make_unique<IterativePosPIDController>(0, 0, 0));
   }
@@ -1089,11 +1090,12 @@ void opcontrol() {
   runHeadlessTests();
   return;
 
-  MotorGroup leftMotors({19_m, 20_m});
-  MotorGroup rightMotors({13_rm, 14_rm});
-  Motor armMotor = 15_m;
+  MotorGroup leftMotors({19_mtr, 20_mtr});
+  MotorGroup rightMotors({13_rmtr, 14_rmtr});
+  Motor armMotor = 15_mtr;
 
-  ChassisControllerIntegrated robotChassisController(leftMotors, rightMotors, 143.239449, 16.875);
+  ChassisControllerIntegrated robotChassisController({19, 20}, {-13, -14}, E_MOTOR_GEARSET_36,
+                                                     1127.86968, 2.8745);
 
   Controller controller;
   ControllerButton btn1(E_CONTROLLER_DIGITAL_A);
@@ -1108,12 +1110,12 @@ void opcontrol() {
 
     if (btn1.changedToPressed()) {
       printf("move distance\n");
-      robotChassisController.moveDistance(12);
+      robotChassisController.moveDistance(12.0_in);
     }
 
     if (btn2.changedToPressed()) {
       printf("turn angle\n");
-      robotChassisController.turnAngle(90);
+      robotChassisController.turnAngle(90.0_deg);
     }
 
     if (btn3.changedToPressed()) {

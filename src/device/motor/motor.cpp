@@ -6,10 +6,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/device/motor/motor.hpp"
+#include <cmath>
 
 namespace okapi {
-Motor::Motor(const uint8_t port, const bool reverse, const motor_encoder_units_e_t encoder_units,
-             const motor_gearset_e_t gearset)
+Motor::Motor(const std::int8_t port) : Motor(std::abs(port), port < 0, E_MOTOR_GEARSET_36) {
+}
+
+Motor::Motor(const std::uint8_t port, const bool reverse, const motor_gearset_e_t gearset,
+             const motor_encoder_units_e_t encoder_units)
   : pros::Motor(port, gearset, reverse, encoder_units) {
 }
 
@@ -82,12 +86,12 @@ void Motor::controllerSet(const double ivalue) {
 }
 
 inline namespace literals {
-okapi::Motor operator"" _m(const unsigned long long iport) {
-  return okapi::Motor(static_cast<uint8_t>(iport));
+okapi::Motor operator"" _mtr(const unsigned long long iport) {
+  return okapi::Motor(static_cast<uint8_t>(iport), false, E_MOTOR_GEARSET_36);
 }
 
-okapi::Motor operator"" _rm(const unsigned long long iport) {
-  return okapi::Motor(static_cast<uint8_t>(iport), true);
+okapi::Motor operator"" _rmtr(const unsigned long long iport) {
+  return okapi::Motor(static_cast<uint8_t>(iport), true, E_MOTOR_GEARSET_36);
 }
 } // namespace literals
 } // namespace okapi

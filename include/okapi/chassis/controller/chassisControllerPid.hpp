@@ -21,7 +21,7 @@ class ChassisControllerPID : public virtual ChassisController {
   public:
   /**
    * ChassisController using PID control. This constructor assumes a skid
-   * steer layout. Puts the motors into encoder tick units.
+   * steer layout. Puts the motors into encoder degree units.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
@@ -35,11 +35,12 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(Motor ileftSideMotor, Motor irightSideMotor,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
+                       const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
                        const double istraightScale = 1, const double iturnScale = 1);
 
   /**
    * ChassisController using PID control. This constructor assumes a skid
-   * steer layout. Puts the motors into encoder tick units.
+   * steer layout. Puts the motors into encoder degree units.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
@@ -53,11 +54,12 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
+                       const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
                        const double istraightScale = 1, const double iturnScale = 1);
 
   /**
    * ChassisController using PID control. This constructor assumes a skid
-   * steer layout. Puts the motors into encoder tick units.
+   * steer layout. Puts the motors into encoder degree units.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
@@ -71,11 +73,12 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
                        Motor ibottomLeftMotor, const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
+                       const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
                        const double istraightScale = 1, const double iturnScale = 1);
 
   /**
    * ChassisController using PID control. This constructor assumes a skid
-   * steer layout. Puts the motors into encoder tick units.
+   * steer layout. Puts the motors into encoder degree units.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
@@ -90,11 +93,12 @@ class ChassisControllerPID : public virtual ChassisController {
                        std::shared_ptr<AbstractMotor> irightSideMotor,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
+                       const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
                        const double istraightScale = 1, const double iturnScale = 1);
 
   /**
    * ChassisController using PID control. This constructor assumes an x-drive
-   * layout. Puts the motors into encoder tick units.
+   * layout. Puts the motors into encoder degree units.
    *
    * @param itopLeftMotor top left motor
    * @param itopRightMotor top right motor
@@ -113,10 +117,11 @@ class ChassisControllerPID : public virtual ChassisController {
                        std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
+                       const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
                        const double istraightScale = 1, const double iturnScale = 1);
 
   /**
-   * ChassisController using PID control. Puts the motors into encoder tick units.
+   * ChassisController using PID control. Puts the motors into encoder degree units.
    *
    * @param imodelArgs ChassisModelArgs
    * @param idistanceArgs distance PID controller params
@@ -129,6 +134,7 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
+                       const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
                        const double istraightScale = 1, const double iturnScale = 1);
 
   /**
@@ -136,14 +142,14 @@ class ChassisControllerPID : public virtual ChassisController {
    *
    * @param itarget distance to travel
    */
-  virtual void moveDistance(const int itarget) override;
+  virtual void moveDistance(const Meter itarget) override;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for
    */
-  virtual void turnAngle(float idegTarget) override;
+  virtual void turnAngle(const Degree idegTarget) override;
 
   protected:
   IterativePosPIDController distancePid;
