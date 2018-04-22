@@ -23,11 +23,11 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(Motor ileftSideMotor,
 ChassisControllerIntegrated::ChassisControllerIntegrated(MotorGroup ileftSideMotor,
                                                          MotorGroup irightSideMotor,
                                                          const motor_gearset_e_t igearset,
-                                                         const double istraightScale,
+                                                         const QLength istraightScale,
                                                          const double iturnScale)
   : ChassisControllerIntegrated(std::make_shared<MotorGroup>(ileftSideMotor),
                                 std::make_shared<MotorGroup>(irightSideMotor), igearset,
-                                istraightScale, iturnScale) {
+                                (360_deg / istraightScale.convert(meter)).getValue(), iturnScale) {
 }
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(

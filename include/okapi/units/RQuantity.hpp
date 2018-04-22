@@ -145,15 +145,4 @@ constexpr long double operator"" _pi(unsigned long long int x) {
 // Conversion macro, which utilizes the string literals
 #define ConvertTo(_x, _y) (_x).convert(1.0_##_y)
 
-// Typesafe mathematical operations:
-// ---------------------------------
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<std::ratio_divide<M, std::ratio<2>>, std::ratio_divide<L, std::ratio<2>>,
-                    std::ratio_divide<T, std::ratio<2>>, std::ratio_divide<A, std::ratio<2>>>
-Qsqrt(const RQuantity<M, L, T, A> &num) {
-  return RQuantity<std::ratio_divide<M, std::ratio<2>>, std::ratio_divide<L, std::ratio<2>>,
-                   std::ratio_divide<T, std::ratio<2>>, std::ratio_divide<A, std::ratio<2>>>(
-    sqrt(num.getValue()));
-}
-
 #endif

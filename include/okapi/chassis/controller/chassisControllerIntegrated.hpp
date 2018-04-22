@@ -46,7 +46,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   ChassisControllerIntegrated(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                               const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
-                              const double istraightScale = 1, const double iturnScale = 1);
+                              const QLength istraightScale = meter, const double iturnScale = 1);
 
   /**
    * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
