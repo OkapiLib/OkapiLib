@@ -10,7 +10,7 @@
 
 #include "api.h"
 #include "test/FakeIt/single_header/standalone/fakeit.hpp"
-#include "test/snowhouse/snowhouse/snowhouse.h"
+#include "test/snowhouse/snowhouse.h"
 #include <functional>
 #include <string>
 
