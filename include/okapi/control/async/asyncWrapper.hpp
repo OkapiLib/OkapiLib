@@ -54,9 +54,9 @@ class AsyncWrapper : virtual public AsyncController {
   /**
    * Set time between loops in ms. Default does nothing.
    *
-   * @param isampleTime time between loops in ms
+   * @param isampleTime time between loops
    */
-  virtual void setSampleTime(const std::uint32_t isampleTime) override;
+  virtual void setSampleTime(const QTime isampleTime) override;
 
   /**
    * Set controller output bounds. Default does nothing.
