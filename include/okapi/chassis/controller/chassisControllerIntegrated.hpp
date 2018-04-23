@@ -25,10 +25,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
-   * @param istraightScale scale converting your units of choice to degrees, used for
-   * measuring distance
-   * @param iturnScale scale converting your units of choice to degrees, used for measuring
-   * angle
+   * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(Motor ileftSideMotor, Motor irightSideMotor,
                               const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
@@ -40,10 +37,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
-   * @param istraightScale scale converting your units of choice to degrees, used for
-   * measuring distance
-   * @param iturnScale scale converting your units of choice to degrees, used for measuring
-   * angle
+   * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                               const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
@@ -57,10 +51,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param itopRightMotor top right motor
    * @param ibottomRightMotor bottom right motor
    * @param ibottomLeftMotor bottom left motor
-   * @param istraightScale scale converting your units of choice to degrees, used for
-   * measuring distance
-   * @param iturnScale scale converting your units of choice to degrees, used for measuring
-   * angle
+   * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
                               Motor ibottomLeftMotor,
@@ -73,10 +64,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
-   * @param istraightScale scale converting your units of choice to degrees, used for
-   * measuring distance
-   * @param iturnScale scale converting your units of choice to degrees, used for measuring
-   * angle
+   * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(std::shared_ptr<AbstractMotor> ileftSideMotor,
                               std::shared_ptr<AbstractMotor> irightSideMotor,
@@ -91,10 +79,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param itopRightMotor top right motor
    * @param ibottomRightMotor bottom right motor
    * @param ibottomLeftMotor bottom left motor
-   * @param istraightScale scale converting your units of choice to degrees, used for
-   * measuring distance
-   * @param iturnScale scale converting your units of choice to degrees, used for measuring
-   * angle
+   * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(std::shared_ptr<AbstractMotor> itopLeftMotor,
                               std::shared_ptr<AbstractMotor> itopRightMotor,
@@ -109,10 +94,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param imodelArgs ChassisModelArgs
    * @param ileftControllerArgs left side controller params
    * @param irightControllerArgs right side controller params
-   * @param istraightScale scale converting your units of choice to degrees, used for
-   * measuring distance
-   * @param iturnScale scale converting your units of choice to degrees, used for measuring
-   * angle
+   * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(std::shared_ptr<ChassisModel> imodel,
                               const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
