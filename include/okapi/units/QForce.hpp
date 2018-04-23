@@ -20,7 +20,7 @@
 
 QUANTITY_TYPE(1, 1, -2, 0, QForce)
 
-constexpr QForce newton(1.0);
+constexpr QForce newton = (kg * meter) / (second * second);
 constexpr QForce poundforce = pound * G;
 constexpr QForce kilopond = kg * G;
 

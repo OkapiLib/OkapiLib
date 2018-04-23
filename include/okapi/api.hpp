@@ -63,6 +63,7 @@
 #include "okapi/units/QPressure.hpp"
 #include "okapi/units/QSpeed.hpp"
 #include "okapi/units/QTime.hpp"
+#include "okapi/units/QTorque.hpp"
 #include "okapi/units/QVolume.hpp"
 
 #include "okapi/util/mathUtil.hpp"
