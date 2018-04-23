@@ -19,6 +19,7 @@ void runHeadlessTests() {
   runHeadlessFilterTests();
   runHeadlessControllerTests();
   runHeadlessChassisModelTests();
+  runHeadlessChassisControllerTests();
 
   test_print_report();
 }

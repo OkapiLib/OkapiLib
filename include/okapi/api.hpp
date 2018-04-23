@@ -10,6 +10,7 @@
 
 #include "okapi/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/chassis/controller/chassisControllerPid.hpp"
+#include "okapi/chassis/controller/chassisScales.hpp"
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/threeEncoderSkidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
