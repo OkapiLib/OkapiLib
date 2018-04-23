@@ -19,13 +19,13 @@
 template <typename MassDim, typename LengthDim, typename TimeDim, typename AngleDim>
 class RQuantity {
   public:
-  constexpr RQuantity() : value(0.0) {
+  explicit constexpr RQuantity() : value(0.0) {
   }
 
-  constexpr RQuantity(double val) : value(val) {
+  explicit constexpr RQuantity(double val) : value(val) {
   }
 
-  constexpr RQuantity(long double val) : value(static_cast<double>(val)) {
+  explicit constexpr RQuantity(long double val) : value(static_cast<double>(val)) {
   }
 
   // The intrinsic operations for a quantity with a unit is addition and subtraction

@@ -192,8 +192,7 @@ void opcontrol() {
   Motor armMotor = 15_mtr;
 
   ChassisControllerIntegrated robotChassisController({19, 20}, {-13, -14}, E_MOTOR_GEARSET_36,
-                                                     4 * pi * inch,
-                                                     2.8745); // 1127.86968
+                                                     {4_in, 11.5_in});
 
   Controller controller;
   ControllerButton btn1(E_CONTROLLER_DIGITAL_A);

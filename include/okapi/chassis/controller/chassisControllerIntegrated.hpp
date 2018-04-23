@@ -9,6 +9,7 @@
 #define _OKAPI_CHASSISCONTROLLERINTEGRATED_HPP_
 
 #include "okapi/chassis/controller/chassisController.hpp"
+#include "okapi/chassis/controller/chassisScales.hpp"
 #include "okapi/chassis/model/skidSteerModel.hpp"
 #include "okapi/chassis/model/xDriveModel.hpp"
 #include "okapi/control/async/asyncPosIntegratedController.hpp"
@@ -31,7 +32,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   ChassisControllerIntegrated(Motor ileftSideMotor, Motor irightSideMotor,
                               const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
-                              const double istraightScale = 1, const double iturnScale = 1);
+                              const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -46,7 +47,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   ChassisControllerIntegrated(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                               const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
-                              const QLength istraightScale = meter, const double iturnScale = 1);
+                              const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
@@ -64,7 +65,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   ChassisControllerIntegrated(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
                               Motor ibottomLeftMotor,
                               const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
-                              const double istraightScale = 1, const double iturnScale = 1);
+                              const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -80,7 +81,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   ChassisControllerIntegrated(std::shared_ptr<AbstractMotor> ileftSideMotor,
                               std::shared_ptr<AbstractMotor> irightSideMotor,
                               const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
-                              const double istraightScale = 1, const double iturnScale = 1);
+                              const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
@@ -100,7 +101,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
                               std::shared_ptr<AbstractMotor> ibottomRightMotor,
                               std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                               const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
-                              const double istraightScale = 1, const double iturnScale = 1);
+                              const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using the V5 motor's integrated control. Puts the motors into degree units.
@@ -117,7 +118,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
                               const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
                               const AsyncPosIntegratedControllerArgs &irightControllerArgs,
                               const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
-                              const double istraightScale = 1, const double iturnScale = 1);
+                              const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
