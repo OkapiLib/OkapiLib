@@ -47,7 +47,7 @@ class ChassisScales {
   ChassisScales(const std::initializer_list<QLength> &iwheelbase) {
     std::vector<QLength> vec(iwheelbase);
     straight = 360 / (vec.at(0).convert(meter) * 1_pi);
-    turn = (360 / vec.at(0).convert(meter)) * vec.at(1).convert(meter);
+    turn = vec.at(1).convert(meter) / vec.at(0).convert(meter);
   }
 
   virtual ~ChassisScales() = default;
@@ -55,6 +55,6 @@ class ChassisScales {
   double straight;
   double turn;
 };
-}
+} // namespace okapi
 
 #endif

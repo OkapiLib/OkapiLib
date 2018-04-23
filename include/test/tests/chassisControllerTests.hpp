@@ -29,7 +29,7 @@ void testChassisScales() {
     ChassisScales scales({4_in, 11.5_in});
     test("ChassisScales should calculate scales from wheelbase", [&]() {
       AssertThat(scales.straight, EqualsWithDelta(1127.86968, 0.0001));
-      AssertThat(scales.turn, EqualsWithDelta(2.8745, 0.0001));
+      AssertThat(scales.turn, EqualsWithDelta(2.875, 0.001));
     });
   }
 }
