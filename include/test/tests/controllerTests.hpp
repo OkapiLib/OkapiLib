@@ -21,8 +21,8 @@ void testIterativeControllers() {
     class MockTimer : public Timer {
       public:
       using Timer::Timer;
-      virtual std::uint32_t getDtFromHardMark() const override {
-        return 10;
+      virtual QTime getDtFromHardMark() const override {
+        return 10_ms;
       }
     };
 
@@ -53,11 +53,11 @@ void testIterativeControllers() {
     class MockTimer : public Timer {
       public:
       using Timer::Timer;
-      virtual std::uint32_t getDtFromHardMark() const override {
-        return 10;
+      virtual QTime getDtFromHardMark() const override {
+        return 10_ms;
       }
-      virtual std::uint32_t getDt() override {
-        return 10;
+      virtual QTime getDt() override {
+        return 10_ms;
       }
     };
 

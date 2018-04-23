@@ -12,17 +12,18 @@
 #include "api.h"
 #include "okapi/chassis/model/chassisModel.hpp"
 #include "okapi/control/iterative/iterativePosPidController.hpp"
+#include "okapi/units/QTime.hpp"
 #include <memory>
 #include <vector>
 
 namespace okapi {
 class PIDTuner {
   public:
-  PIDTuner(std::shared_ptr<ChassisModel> imodel, const std::uint32_t itimeout,
-           const std::int32_t igoal, const double ikPMin, const double ikPMax, const double ikIMin,
-           const double ikIMax, const double ikDMin, const double ikDMax,
-           const std::size_t inumIterations = 5, const std::size_t inumParticles = 16,
-           const double ikSettle = 1, const double ikITAE = 2);
+  PIDTuner(std::shared_ptr<ChassisModel> imodel, const QTime itimeout, const std::int32_t igoal,
+           const double ikPMin, const double ikPMax, const double ikIMin, const double ikIMax,
+           const double ikDMin, const double ikDMax, const std::size_t inumIterations = 5,
+           const std::size_t inumParticles = 16, const double ikSettle = 1,
+           const double ikITAE = 2);
 
   virtual ~PIDTuner();
 
@@ -45,7 +46,7 @@ class PIDTuner {
   };
 
   std::shared_ptr<ChassisModel> model;
-  const std::uint32_t timeout;
+  const QTime timeout;
   const std::int32_t goal;
   const double kPMin;
   const double kPMax;

@@ -8,57 +8,61 @@
 #include "okapi/util/timer.hpp"
 
 namespace okapi {
-Timer::Timer() : firstCalled(pros::millis()), lastCalled(firstCalled), mark(firstCalled) {
+Timer::Timer() : firstCalled(millis()), lastCalled(firstCalled), mark(firstCalled) {
 }
 
 Timer::~Timer() = default;
 
-std::uint32_t Timer::getDt() {
-  const std::uint32_t currTime = pros::millis();
-  const std::uint32_t dt = currTime - lastCalled;
+QTime Timer::millis() {
+  return pros::millis() * millisecond;
+}
+
+QTime Timer::getDt() {
+  const QTime currTime = millis();
+  const QTime dt = currTime - lastCalled;
   lastCalled = currTime;
   return dt;
 }
 
-std::uint32_t Timer::getStartingTime() const {
+QTime Timer::getStartingTime() const {
   return firstCalled;
 }
 
-std::uint32_t Timer::getDtFromStart() const {
-  return pros::millis() - firstCalled;
+QTime Timer::getDtFromStart() const {
+  return millis() - firstCalled;
 }
 
 void Timer::placeMark() {
-  mark = pros::millis();
+  mark = millis();
 }
 
 void Timer::placeHardMark() {
-  if (hardMark == 0)
-    hardMark = pros::millis();
+  if (hardMark == 0_ms)
+    hardMark = millis();
 }
 
-std::uint32_t Timer::clearHardMark() {
-  const long old = hardMark;
-  hardMark = 0;
+QTime Timer::clearHardMark() {
+  const QTime old = hardMark;
+  hardMark = 0_ms;
   return old;
 }
 
-std::uint32_t Timer::getDtFromMark() const {
-  return pros::millis() - mark;
+QTime Timer::getDtFromMark() const {
+  return millis() - mark;
 }
 
-std::uint32_t Timer::getDtFromHardMark() const {
-  return hardMark == 0 ? 0 : pros::millis() - hardMark;
+QTime Timer::getDtFromHardMark() const {
+  return hardMark == 0_ms ? 0_ms : millis() - hardMark;
 }
 
-bool Timer::repeat(const std::uint32_t ms) {
-  if (repeatMark == 0) {
-    repeatMark = pros::millis();
+bool Timer::repeat(const QTime time) {
+  if (repeatMark == 0_ms) {
+    repeatMark = millis();
     return false;
   }
 
-  if (pros::millis() - repeatMark >= ms) {
-    repeatMark = 0;
+  if (millis() - repeatMark >= time) {
+    repeatMark = 0_ms;
     return true;
   }
 

@@ -13,7 +13,7 @@
 #include <random>
 
 namespace okapi {
-PIDTuner::PIDTuner(std::shared_ptr<ChassisModel> imodel, const std::uint32_t itimeout,
+PIDTuner::PIDTuner(std::shared_ptr<ChassisModel> imodel, const QTime itimeout,
                    const std::int32_t igoal, const double ikPMin, const double ikPMax,
                    const double ikIMin, const double ikIMax, const double ikDMin,
                    const double ikDMax, const size_t inumIterations, const size_t inumParticles,
@@ -156,15 +156,16 @@ std::uint32_t PIDTuner::moveDistance(const int itarget) {
   const int threshold = 2;
 
   Timer atTargetTimer;
-  const int timeoutPeriod = 250;
+  const QTime timeoutPeriod = 250_ms;
 
   std::valarray<std::int32_t> encVals;
 
   while (!atTarget) {
     encVals = model->getSensorVals() - encStartVals;
     distanceElapsed = static_cast<double>(encVals[0] + encVals[1]) / 2.0;
-    itae += ((atTargetTimer.getDtFromStart() * std::abs(itarget - distanceElapsed)) /
-             (divisor * std::abs(itarget)));
+    itae +=
+      ((atTargetTimer.getDtFromStart().convert(millisecond) * std::abs(itarget - distanceElapsed)) /
+       (divisor * std::abs(itarget)));
 
     model->left(leftController.step(distanceElapsed));
     model->right(rightController.step(distanceElapsed));
@@ -191,6 +192,6 @@ std::uint32_t PIDTuner::moveDistance(const int itarget) {
 
   model->stop();
   pros::Task::delay(1000); // Let the robot settle
-  return settleTime;
+  return settleTime.convert(millisecond);
 }
 } // namespace okapi

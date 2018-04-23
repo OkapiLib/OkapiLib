@@ -9,6 +9,7 @@
 #define _OKAPI_TIMER_HPP_
 
 #include "api.h"
+#include "okapi/units/QTime.hpp"
 
 namespace okapi {
 class Timer {
@@ -17,26 +18,28 @@ class Timer {
 
   virtual ~Timer();
 
+  static QTime millis();
+
   /**
    * Returns the time passed in ms since the previous call of this function.
    *
    * @return The time passed in ms since the previous call of this function
    */
-  virtual std::uint32_t getDt();
+  virtual QTime getDt();
 
   /**
    * Returns the time the timer was first constructed.
    *
    * @return The time the timer was first constructed
    */
-  virtual std::uint32_t getStartingTime() const;
+  virtual QTime getStartingTime() const;
 
   /**
    * Returns the time since the timer was first constructed.
    *
    * @return The time since the timer was first constructed
    */
-  virtual std::uint32_t getDtFromStart() const;
+  virtual QTime getDtFromStart() const;
 
   /**
    * Place a time marker. Placing another marker will overwrite the previous one.
@@ -54,38 +57,38 @@ class Timer {
    *
    * @return The old hard marker
    */
-  virtual std::uint32_t clearHardMark();
+  virtual QTime clearHardMark();
 
   /**
    * Returns the time since the time marker.
    *
    * @return The time since the time marker
    */
-  virtual std::uint32_t getDtFromMark() const;
+  virtual QTime getDtFromMark() const;
 
   /**
    * Returns the time since the hard time marker.
    *
    * @return The time since the hard time marker
    */
-  virtual std::uint32_t getDtFromHardMark() const;
+  virtual QTime getDtFromHardMark() const;
 
   /**
    * Returns true when the input time period has passed, then resets. Meant to be used in loops
-   * to run an action every so many ms without blocking.
+   * to run an action every time period without blocking.
    *
-   * @param ms time period
+   * @param time time period
    * @return true when the input time period has passed, false after reading true until the
    *   period has passed again
    */
-  virtual bool repeat(const std::uint32_t ms);
+  virtual bool repeat(const QTime time);
 
   protected:
-  std::uint32_t firstCalled;
-  std::uint32_t lastCalled;
-  std::uint32_t mark;
-  std::uint32_t hardMark = 0;
-  std::uint32_t repeatMark = 0;
+  QTime firstCalled;
+  QTime lastCalled;
+  QTime mark;
+  QTime hardMark;
+  QTime repeatMark;
 };
 } // namespace okapi
 

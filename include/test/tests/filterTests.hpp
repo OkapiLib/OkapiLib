@@ -160,8 +160,8 @@ void testFilters() {
     class MockTimer : public Timer {
       public:
       using Timer::Timer;
-      virtual std::uint32_t getDt() override {
-        return 10;
+      virtual QTime getDt() override {
+        return 10_ms;
       }
     };
 
