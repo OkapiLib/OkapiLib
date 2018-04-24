@@ -37,23 +37,23 @@ constexpr QTorque operator"" _inLb(unsigned long long int x) {
   return static_cast<double>(x) * inchPound;
 }
 
-// constexpr QForce operator"" _n(long double x) {
-//   return QForce(x);
-// }
-// constexpr QForce operator"" _n(unsigned long long int x) {
-//   return QForce(static_cast<double>(x));
-// }
-// constexpr QForce operator"" _lbf(long double x) {
-//   return static_cast<double>(x) * poundforce;
-// }
-// constexpr QForce operator"" _lbf(unsigned long long int x) {
-//   return static_cast<double>(x) * poundforce;
-// }
-// constexpr QForce operator"" _kp(long double x) {
-//   return static_cast<double>(x) * kilopond;
-// }
-// constexpr QForce operator"" _kp(unsigned long long int x) {
-//   return static_cast<double>(x) * kilopond;
-// }
+  // constexpr QForce operator"" _n(long double x) {
+  //   return QForce(x);
+  // }
+  // constexpr QForce operator"" _n(unsigned long long int x) {
+  //   return QForce(static_cast<double>(x));
+  // }
+  // constexpr QForce operator"" _lbf(long double x) {
+  //   return static_cast<double>(x) * poundforce;
+  // }
+  // constexpr QForce operator"" _lbf(unsigned long long int x) {
+  //   return static_cast<double>(x) * poundforce;
+  // }
+  // constexpr QForce operator"" _kp(long double x) {
+  //   return static_cast<double>(x) * kilopond;
+  // }
+  // constexpr QForce operator"" _kp(unsigned long long int x) {
+  //   return static_cast<double>(x) * kilopond;
+  // }
 
 #endif
