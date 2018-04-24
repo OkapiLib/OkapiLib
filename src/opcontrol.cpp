@@ -185,14 +185,14 @@ void opcontrol() {
   using namespace okapi;
   pros::Task::delay(100);
 
-  runHeadlessTests();
-  return;
+  // runHeadlessTests();
+  // return;
 
   MotorGroup leftMotors({19_mtr, 20_mtr});
   MotorGroup rightMotors({13_rmtr, 14_rmtr});
   Motor armMotor = 15_mtr;
 
-  ChassisControllerIntegrated robotChassisController({19, 20}, {-13, -14}, E_MOTOR_GEARSET_36,
+  ChassisControllerIntegrated robotChassisController({19, 20}, {-14}, E_MOTOR_GEARSET_36,
                                                      {4_in, 11.5_in});
 
   Controller controller;
