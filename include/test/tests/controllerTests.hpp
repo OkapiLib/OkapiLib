@@ -21,8 +21,8 @@ void testIterativeControllers() {
     class MockTimer : public Timer {
       public:
       using Timer::Timer;
-      virtual std::uint32_t getDtFromHardMark() const override {
-        return 10;
+      virtual QTime getDtFromHardMark() const override {
+        return 10_ms;
       }
     };
 
@@ -53,11 +53,11 @@ void testIterativeControllers() {
     class MockTimer : public Timer {
       public:
       using Timer::Timer;
-      virtual std::uint32_t getDtFromHardMark() const override {
-        return 10;
+      virtual QTime getDtFromHardMark() const override {
+        return 10_ms;
       }
-      virtual std::uint32_t getDt() override {
-        return 10;
+      virtual QTime getDt() override {
+        return 10_ms;
       }
     };
 
@@ -65,8 +65,9 @@ void testIterativeControllers() {
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativeVelPIDController controller(
-      0.000015, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                                             std::make_unique<MockTimer>()),
+      0.000015, 0,
+      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                                std::make_unique<MockTimer>()),
       std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
 
     const double target = 10;

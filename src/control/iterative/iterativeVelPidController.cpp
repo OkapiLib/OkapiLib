@@ -51,12 +51,13 @@ IterativeVelPIDController::IterativeVelPIDController(const double ikP, const dou
 
 void IterativeVelPIDController::setGains(const double ikP, const double ikD) {
   kP = ikP;
-  kD = ikD * static_cast<double>(sampleTime) / 1000.0;
+  kD = ikD * sampleTime.convert(second);
 }
 
-void IterativeVelPIDController::setSampleTime(const std::uint32_t isampleTime) {
-  if (isampleTime > 0) {
-    kD /= static_cast<double>(isampleTime) / static_cast<double>(sampleTime);
+void IterativeVelPIDController::setSampleTime(const QTime isampleTime) {
+  if (isampleTime > 0_ms) {
+    kD /= static_cast<double>(isampleTime.convert(millisecond)) /
+          static_cast<double>(sampleTime.convert(millisecond));
     sampleTime = isampleTime;
   }
 }
@@ -75,7 +76,7 @@ void IterativeVelPIDController::setOutputLimits(double imax, double imin) {
   output = std::clamp(output, outputMin, outputMax);
 }
 
-double IterativeVelPIDController::stepVel(const double inewReading) {
+QAngularSpeed IterativeVelPIDController::stepVel(const double inewReading) {
   return velMath->step(inewReading);
 }
 
@@ -85,10 +86,10 @@ double IterativeVelPIDController::step(const double inewReading) {
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
       stepVel(inewReading);
-      error = target - velMath->getVelocity();
+      error = target - velMath->getVelocity().convert(rpm);
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
-      derivative = velMath->getAccel();
+      derivative = velMath->getAccel().getValue();
 
       output += kP * error - kD * derivative;
       output = std::clamp(output, outputMin, outputMax);
@@ -147,11 +148,11 @@ void IterativeVelPIDController::setTicksPerRev(const double tpr) {
   velMath->setTicksPerRev(tpr);
 }
 
-double IterativeVelPIDController::getVel() const {
+QAngularSpeed IterativeVelPIDController::getVel() const {
   return velMath->getVelocity();
 }
 
-std::uint32_t IterativeVelPIDController::getSampleTime() const {
+QTime IterativeVelPIDController::getSampleTime() const {
   return sampleTime;
 }
 } // namespace okapi

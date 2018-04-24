@@ -8,6 +8,7 @@
 #ifndef _OKAPI_SETTLEDUTIL_HPP_
 #define _OKAPI_SETTLEDUTIL_HPP_
 
+#include "okapi/units/QTime.hpp"
 #include "okapi/util/timer.hpp"
 
 namespace okapi {
@@ -22,7 +23,7 @@ class SettledUtil {
    * @param iatTargetTime minimum time within atTargetError to be considered settled
    */
   SettledUtil(const double iatTargetError = 50, const double iatTargetDerivative = 5,
-              const std::uint32_t iatTargetTime = 250);
+              const QTime iatTargetTime = 250_ms);
 
   virtual ~SettledUtil();
 
@@ -42,7 +43,7 @@ class SettledUtil {
   protected:
   double atTargetError = 50;
   double atTargetDerivative = 5;
-  std::uint32_t atTargetTime = 250;
+  QTime atTargetTime = 250_ms;
   Timer atTargetTimer;
   double lastError = 0;
 };

@@ -8,6 +8,7 @@
 #ifndef _OKAPI_ALLHEADLESSTESTS_HPP_
 #define _OKAPI_ALLHEADLESSTESTS_HPP_
 
+#include "test/tests/chassisControllerTests.hpp"
 #include "test/tests/chassisModelTests.hpp"
 #include "test/tests/controllerTests.hpp"
 #include "test/tests/deviceTests.hpp"

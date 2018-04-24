@@ -19,6 +19,7 @@ void runHeadlessTests() {
   runHeadlessFilterTests();
   runHeadlessControllerTests();
   runHeadlessChassisModelTests();
+  runHeadlessChassisControllerTests();
 
   test_print_report();
 }
@@ -61,8 +62,8 @@ void constructorTests() {
     ChassisControllerIntegrated int3(1, 2);
     ChassisControllerIntegrated int4({1, 2, 3}, {-4, -5});
 
-    int1.moveDistance(0); // Closed-loop control
-    int1.turnAngle(0);    // Closed-loop control
+    int1.moveDistance(0_in); // Closed-loop control
+    int1.turnAngle(0_deg);   // Closed-loop control
 
     int1.forward(0);                  // Open-loop control
     int1.rotate(0);                   // Open-loop control
@@ -184,15 +185,15 @@ void opcontrol() {
   using namespace okapi;
   pros::Task::delay(100);
 
-  runHeadlessTests();
-  return;
+  // runHeadlessTests();
+  // return;
 
   MotorGroup leftMotors({19_mtr, 20_mtr});
   MotorGroup rightMotors({13_rmtr, 14_rmtr});
   Motor armMotor = 15_mtr;
 
-  ChassisControllerIntegrated robotChassisController({19, 20}, {-13, -14}, E_MOTOR_GEARSET_36,
-                                                     1127.86968, 2.8745);
+  ChassisControllerIntegrated robotChassisController({19, 20}, {-14}, E_MOTOR_GEARSET_36,
+                                                     {4_in, 11.5_in});
 
   Controller controller;
   ControllerButton btn1(E_CONTROLLER_DIGITAL_A);
@@ -207,12 +208,12 @@ void opcontrol() {
 
     if (btn1.changedToPressed()) {
       printf("move distance\n");
-      robotChassisController.moveDistance(12.0_in);
+      robotChassisController.moveDistance(12_in);
     }
 
     if (btn2.changedToPressed()) {
       printf("turn angle\n");
-      robotChassisController.turnAngle(90.0_deg);
+      robotChassisController.turnAngle(90_deg);
     }
 
     if (btn3.changedToPressed()) {
@@ -223,8 +224,8 @@ void opcontrol() {
     if (btn4.changedToPressed()) {
       printf("autonomous routine\n");
       for (int i = 0; i < 4; i++) {
-        robotChassisController.moveDistance(12);
-        robotChassisController.turnAngle(90);
+        robotChassisController.moveDistance(12_in);
+        robotChassisController.turnAngle(90_deg);
       }
     }
 

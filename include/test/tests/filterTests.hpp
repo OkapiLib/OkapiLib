@@ -160,8 +160,8 @@ void testFilters() {
     class MockTimer : public Timer {
       public:
       using Timer::Timer;
-      virtual std::uint32_t getDt() override {
-        return 10;
+      virtual QTime getDt() override {
+        return 10_ms;
       }
     };
 
@@ -170,11 +170,12 @@ void testFilters() {
     for (int i = 0; i < 10; i++) {
       if (i == 0) {
         test("VelMath " + std::to_string(i),
-             TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(0, 0.01)));
+             TEST_BODY(AssertThat, velMath.step(i * 10).convert(rpm), EqualsWithDelta(0, 0.01)));
       } else {
         // 10 ticks per 100 ms should be ~16.67 rpm
-        test("VelMath " + std::to_string(i),
-             TEST_BODY(AssertThat, velMath.step(i * 10), EqualsWithDelta(166.67, 0.01)));
+        test(
+          "VelMath " + std::to_string(i),
+          TEST_BODY(AssertThat, velMath.step(i * 10).convert(rpm), EqualsWithDelta(166.67, 0.01)));
       }
     }
   }

@@ -19,7 +19,7 @@ class FlywheelSimulator {
    * rotates (by default, you can set a new torque function with setExternalTorqueFunction()).
    */
   FlywheelSimulator(const double imass = 0.01, const double ilinkLen = 1,
-                    const double imuStatic = 0.5, const double imuDynamic = 0.3,
+                    const double imuStatic = 0.2, const double imuDynamic = 0.15,
                     const double itimestep = 0.01);
 
   virtual ~FlywheelSimulator();

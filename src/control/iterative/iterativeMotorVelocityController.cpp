@@ -58,7 +58,7 @@ bool IterativeMotorVelocityController::isSettled() {
   return controller->isSettled();
 }
 
-void IterativeMotorVelocityController::setSampleTime(const std::uint32_t isampleTime) {
+void IterativeMotorVelocityController::setSampleTime(const QTime isampleTime) {
   controller->setSampleTime(isampleTime);
 }
 
@@ -82,7 +82,7 @@ bool IterativeMotorVelocityController::isDisabled() const {
   return controller->isDisabled();
 }
 
-std::uint32_t IterativeMotorVelocityController::getSampleTime() const {
+QTime IterativeMotorVelocityController::getSampleTime() const {
   return controller->getSampleTime();
 }
 } // namespace okapi
