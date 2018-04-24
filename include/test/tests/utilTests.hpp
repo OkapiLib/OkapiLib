@@ -78,7 +78,7 @@ void testUtils() {
     uint32_t lastTime = pros::millis();
 
     for (int i = 0; i < 10; i++) {
-      rate.delayHz(10);
+      rate.delayHz(10_Hz);
 
       // Static cast so the compiler doesn't complain about comparing signed and unsigned values
       test("Rate " + std::to_string(i),
