@@ -28,7 +28,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(Motor ileftSideMotor, Motor irightSideMotor,
-                              const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
+                              const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
                               const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -40,7 +40,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                              const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
+                              const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
                               const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -55,7 +55,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   ChassisControllerIntegrated(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
                               Motor ibottomLeftMotor,
-                              const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
+                              const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
                               const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -68,7 +68,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   ChassisControllerIntegrated(std::shared_ptr<AbstractMotor> ileftSideMotor,
                               std::shared_ptr<AbstractMotor> irightSideMotor,
-                              const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
+                              const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
                               const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -85,7 +85,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
                               std::shared_ptr<AbstractMotor> itopRightMotor,
                               std::shared_ptr<AbstractMotor> ibottomRightMotor,
                               std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                              const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
+                              const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
                               const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -99,7 +99,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   ChassisControllerIntegrated(std::shared_ptr<ChassisModel> imodel,
                               const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
                               const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-                              const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
+                              const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
                               const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**

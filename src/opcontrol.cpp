@@ -192,7 +192,7 @@ void opcontrol() {
   MotorGroup rightMotors({13_rmtr, 14_rmtr});
   Motor armMotor = 15_mtr;
 
-  ChassisControllerIntegrated robotChassisController({19, 20}, {-14}, E_MOTOR_GEARSET_36,
+  ChassisControllerIntegrated robotChassisController({19, 20}, {-14}, pros::c::E_MOTOR_GEARSET_36,
                                                      {4_in, 11.5_in});
 
   Controller controller;

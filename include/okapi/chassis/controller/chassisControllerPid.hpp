@@ -33,7 +33,7 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(Motor ileftSideMotor, Motor irightSideMotor,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
-                       const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
+                       const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
                        const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -49,7 +49,7 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
-                       const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
+                       const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
                        const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -65,7 +65,7 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
                        Motor ibottomLeftMotor, const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
-                       const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
+                       const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
                        const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -82,7 +82,7 @@ class ChassisControllerPID : public virtual ChassisController {
                        std::shared_ptr<AbstractMotor> irightSideMotor,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
-                       const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
+                       const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
                        const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -103,7 +103,7 @@ class ChassisControllerPID : public virtual ChassisController {
                        std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
-                       const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
+                       const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
                        const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -117,7 +117,7 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
-                       const motor_gearset_e_t igearset = E_MOTOR_GEARSET_36,
+                       const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
                        const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**

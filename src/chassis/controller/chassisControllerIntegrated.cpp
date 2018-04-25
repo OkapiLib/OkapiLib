@@ -12,7 +12,7 @@
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(Motor ileftSideMotor,
                                                          Motor irightSideMotor,
-                                                         const motor_gearset_e_t igearset,
+                                                         const pros::c::motor_gearset_e_t igearset,
                                                          const ChassisScales &iscales)
   : ChassisControllerIntegrated(std::make_shared<Motor>(ileftSideMotor),
                                 std::make_shared<Motor>(irightSideMotor), igearset, iscales) {
@@ -20,7 +20,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(Motor ileftSideMotor,
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(MotorGroup ileftSideMotor,
                                                          MotorGroup irightSideMotor,
-                                                         const motor_gearset_e_t igearset,
+                                                         const pros::c::motor_gearset_e_t igearset,
                                                          const ChassisScales &iscales)
   : ChassisControllerIntegrated(std::make_shared<MotorGroup>(ileftSideMotor),
                                 std::make_shared<MotorGroup>(irightSideMotor), igearset, iscales) {
@@ -29,7 +29,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(MotorGroup ileftSideMot
 ChassisControllerIntegrated::ChassisControllerIntegrated(Motor itopLeftMotor, Motor itopRightMotor,
                                                          Motor ibottomRightMotor,
                                                          Motor ibottomLeftMotor,
-                                                         const motor_gearset_e_t igearset,
+                                                         const pros::c::motor_gearset_e_t igearset,
                                                          const ChassisScales &iscales)
   : ChassisControllerIntegrated(std::make_shared<Motor>(itopLeftMotor),
                                 std::make_shared<Motor>(itopRightMotor),
@@ -39,7 +39,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(Motor itopLeftMotor, Mo
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
-  const motor_gearset_e_t igearset, const ChassisScales &iscales)
+  const pros::c::motor_gearset_e_t igearset, const ChassisScales &iscales)
   : ChassisController(std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor)),
     leftController(ileftSideMotor),
     rightController(irightSideMotor),
@@ -53,7 +53,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<AbstractMotor> itopLeftMotor, std::shared_ptr<AbstractMotor> itopRightMotor,
   std::shared_ptr<AbstractMotor> ibottomRightMotor, std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-  const motor_gearset_e_t igearset, const ChassisScales &iscales)
+  const pros::c::motor_gearset_e_t igearset, const ChassisScales &iscales)
   : ChassisController(std::make_shared<XDriveModel>(itopLeftMotor, itopRightMotor,
                                                     ibottomRightMotor, ibottomLeftMotor)),
     leftController(itopLeftMotor),
@@ -67,7 +67,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
-  const AsyncPosIntegratedControllerArgs &irightControllerArgs, const motor_gearset_e_t igearset,
+  const AsyncPosIntegratedControllerArgs &irightControllerArgs, const pros::c::motor_gearset_e_t igearset,
   const ChassisScales &iscales)
   : ChassisController(imodel),
     leftController(ileftControllerArgs),

@@ -87,11 +87,11 @@ void Motor::controllerSet(const double ivalue) {
 
 inline namespace literals {
 okapi::Motor operator"" _mtr(const unsigned long long iport) {
-  return okapi::Motor(static_cast<uint8_t>(iport), false, E_MOTOR_GEARSET_36);
+  return okapi::Motor(static_cast<uint8_t>(iport), false, pros::c::E_MOTOR_GEARSET_36);
 }
 
 okapi::Motor operator"" _rmtr(const unsigned long long iport) {
-  return okapi::Motor(static_cast<uint8_t>(iport), true, E_MOTOR_GEARSET_36);
+  return okapi::Motor(static_cast<uint8_t>(iport), true, pros::c::E_MOTOR_GEARSET_36);
 }
 } // namespace literals
 } // namespace okapi
