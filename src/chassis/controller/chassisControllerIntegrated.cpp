@@ -47,7 +47,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
 }
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(
@@ -62,7 +62,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
 }
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(
@@ -76,7 +76,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
 }
 
 void ChassisControllerIntegrated::moveDistance(const QLength itarget) {

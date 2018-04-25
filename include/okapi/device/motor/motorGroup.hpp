@@ -144,7 +144,7 @@ class MotorGroup : public AbstractMotor {
    * @param imode The motor_brake_mode_e_t to set for the motor
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setBrakeMode(const motor_brake_mode_e_t imode) const override;
+  virtual std::int32_t setBrakeMode(const pros::c::motor_brake_mode_e_t imode) const override;
 
   /**
    * Sets the current limit for the motor in mA.
@@ -166,7 +166,7 @@ class MotorGroup : public AbstractMotor {
    * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setEncoderUnits(const motor_encoder_units_e_t iunits) const override;
+  virtual std::int32_t setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const override;
 
   /**
    * Sets one of motor_gearset_e_t for the motor.
@@ -177,7 +177,7 @@ class MotorGroup : public AbstractMotor {
    * @param igearset The new motor gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setGearing(const motor_gearset_e_t igearset) const override;
+  virtual std::int32_t setGearing(const pros::c::motor_gearset_e_t igearset) const override;
 
   /**
    * Sets the reverse flag for the motor.

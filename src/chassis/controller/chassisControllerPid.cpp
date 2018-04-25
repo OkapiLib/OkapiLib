@@ -54,7 +54,7 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> ileftS
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
 }
 
 ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> itopLeftMotor,
@@ -72,7 +72,7 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> itopLe
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
 }
 
 ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
@@ -86,7 +86,7 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
 }
 
 void ChassisControllerPID::moveDistance(const QLength itarget) {

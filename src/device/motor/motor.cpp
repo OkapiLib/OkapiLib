@@ -9,11 +9,11 @@
 #include <cmath>
 
 namespace okapi {
-Motor::Motor(const std::int8_t port) : Motor(std::abs(port), port < 0, E_MOTOR_GEARSET_36) {
+Motor::Motor(const std::int8_t port) : Motor(std::abs(port), port < 0, pros::c::E_MOTOR_GEARSET_36) {
 }
 
-Motor::Motor(const std::uint8_t port, const bool reverse, const motor_gearset_e_t gearset,
-             const motor_encoder_units_e_t encoder_units)
+Motor::Motor(const std::uint8_t port, const bool reverse, const pros::c::motor_gearset_e_t gearset,
+             const pros::c::motor_encoder_units_e_t encoder_units)
   : pros::Motor(port, gearset, reverse, encoder_units) {
 }
 
@@ -53,7 +53,7 @@ std::int32_t Motor::tarePosition() const {
   return tare_position();
 }
 
-std::int32_t Motor::setBrakeMode(const motor_brake_mode_e_t imode) const {
+std::int32_t Motor::setBrakeMode(const pros::c::motor_brake_mode_e_t imode) const {
   return set_brake_mode(imode);
 }
 
@@ -61,11 +61,11 @@ std::int32_t Motor::setCurrentLimit(const std::int32_t ilimit) const {
   return set_current_limit(ilimit);
 }
 
-std::int32_t Motor::setEncoderUnits(const motor_encoder_units_e_t iunits) const {
+std::int32_t Motor::setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const {
   return set_encoder_units(iunits);
 }
 
-std::int32_t Motor::setGearing(const motor_gearset_e_t igearset) const {
+std::int32_t Motor::setGearing(const pros::c::motor_gearset_e_t igearset) const {
   return set_gearing(igearset);
 }
 
