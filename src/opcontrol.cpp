@@ -185,8 +185,8 @@ void opcontrol() {
   using namespace okapi;
   pros::Task::delay(100);
 
-  // runHeadlessTests();
-  // return;
+  runHeadlessTests();
+  return;
 
   MotorGroup leftMotors({19_mtr, 20_mtr});
   MotorGroup rightMotors({13_rmtr, 14_rmtr});
