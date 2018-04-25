@@ -12,7 +12,7 @@ BINDIR=$(ROOT)/bin
 SRCDIR=$(ROOT)/src
 INCDIR=$(ROOT)/include
 
-WARNFLAGS+=
+WARNFLAGS+=-Wall -Wextra -Wno-implicit-fallthrough -pedantic # -Wconversion #-Wmissing-include-dirs
 EXTRA_CFLAGS=
 EXTRA_CXXFLAGS=
 
