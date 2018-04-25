@@ -8,4 +8,4 @@ okapilib-template.zip
 *.gch
 compile_commands.json
 cquery_log.txt
-
+okapilib@*.zip
