@@ -191,6 +191,7 @@ void opcontrol() {
   MotorGroup leftMotors({19_mtr, 20_mtr});
   MotorGroup rightMotors({13_rmtr, 14_rmtr});
   Motor armMotor = 15_mtr;
+  armMotor.move(10);
 
   ChassisControllerIntegrated robotChassisController({19, 20}, {-14}, pros::c::E_MOTOR_GEARSET_36,
                                                      {4_in, 11.5_in});

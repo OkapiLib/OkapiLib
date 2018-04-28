@@ -21,8 +21,9 @@ class Motor : public AbstractMotor, public pros::Motor {
    */
   Motor(const std::int8_t port);
 
-  explicit Motor(const std::uint8_t port, const bool reverse, const pros::c::motor_gearset_e_t gearset,
-                 const pros::c::motor_encoder_units_e_t encoder_units = pros::c::E_MOTOR_ENCODER_DEGREES);
+  explicit Motor(
+    const std::uint8_t port, const bool reverse, const pros::c::motor_gearset_e_t gearset,
+    const pros::c::motor_encoder_units_e_t encoder_units = pros::c::E_MOTOR_ENCODER_DEGREES);
 
   /**
    * Sets the target absolute position for the motor to move to.
@@ -172,7 +173,8 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const override;
+  virtual std::int32_t
+  setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const override;
 
   /**
    * Sets one of motor_gearset_e_t for the motor.

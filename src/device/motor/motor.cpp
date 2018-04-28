@@ -9,7 +9,8 @@
 #include <cmath>
 
 namespace okapi {
-Motor::Motor(const std::int8_t port) : Motor(std::abs(port), port < 0, pros::c::E_MOTOR_GEARSET_36) {
+Motor::Motor(const std::int8_t port)
+  : Motor(std::abs(port), port < 0, pros::c::E_MOTOR_GEARSET_36) {
 }
 
 Motor::Motor(const std::uint8_t port, const bool reverse, const pros::c::motor_gearset_e_t gearset,

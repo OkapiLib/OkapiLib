@@ -55,6 +55,17 @@ std::int32_t MotorGroup::moveVoltage(const std::int16_t ivoltage) const {
   return out;
 }
 
+std::int32_t MotorGroup::move(const std::int8_t ivoltage) const {
+  auto out = 1;
+  for (auto &&elem : motors) {
+    const auto errorCode = elem.pros::Motor::move(ivoltage);
+    if (errorCode != 1) {
+      out = errorCode;
+    }
+  }
+  return out;
+}
+
 double MotorGroup::getTargetPosition() const {
   return motors[0].getTargetPosition();
 }

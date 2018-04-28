@@ -82,6 +82,18 @@ class MotorGroup : public AbstractMotor {
   virtual std::int32_t moveVoltage(const std::int16_t ivoltage) const override;
 
   /**
+   * Sets the voltage for the motor from -127 to 127.
+   *
+   * This function uses the following values of errno when an error state is
+   * reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @param voltage The new motor voltage from -127 to 127
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t move(const std::int8_t ivoltage) const;
+
+  /**
    * Gets the target position set for the motor by the user.
    *
    * This function uses the following values of errno when an error state is reached:
@@ -166,7 +178,8 @@ class MotorGroup : public AbstractMotor {
    * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const override;
+  virtual std::int32_t
+  setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const override;
 
   /**
    * Sets one of motor_gearset_e_t for the motor.
