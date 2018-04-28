@@ -128,11 +128,25 @@ class ChassisControllerPID : public virtual ChassisController {
   virtual void moveDistance(const QLength itarget) override;
 
   /**
+  * Drives the robot straight for a distance (using closed-loop control).
+  *
+  * @param itarget distance to travel in meters
+  */
+  virtual void moveDistance(const double itarget) override;
+
+  /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for
    */
   virtual void turnAngle(const QAngle idegTarget) override;
+
+  /**
+   * Turns the robot clockwise in place (using closed-loop control).
+   *
+   * @param idegTarget angle to turn for in degrees
+   */
+  virtual void turnAngle(const double idegTarget) override;
 
   protected:
   IterativePosPIDController distancePid;

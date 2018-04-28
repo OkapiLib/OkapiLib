@@ -113,6 +113,10 @@ void ChassisControllerPID::moveDistance(const QLength itarget) {
   model->stop();
 }
 
+void ChassisControllerPID::moveDistance(const double itarget) {
+  moveDistance(itarget * meter);
+}
+
 void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
   anglePid.reset();
 
@@ -132,5 +136,9 @@ void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
   }
 
   model->stop();
+}
+
+void ChassisControllerPID::turnAngle(const double idegTarget) {
+  turnAngle(idegTarget * degree);
 }
 } // namespace okapi

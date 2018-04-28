@@ -36,11 +36,25 @@ class ChassisController {
   virtual void moveDistance(const QLength itarget) = 0;
 
   /**
+   * Drives the robot straight for a distance (using closed-loop control).
+   *
+   * @param itarget distance to travel in meters
+   */
+  virtual void moveDistance(const double itarget) = 0;
+
+  /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for
    */
   virtual void turnAngle(const QAngle idegTarget) = 0;
+
+  /**
+   * Turns the robot clockwise in place (using closed-loop control).
+   *
+   * @param idegTarget angle to turn for in degrees
+   */
+  virtual void turnAngle(const double idegTarget) = 0;
 
   /**
    * Drive the robot forwards (using open-loop control).

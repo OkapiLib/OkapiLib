@@ -67,8 +67,8 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
-  const AsyncPosIntegratedControllerArgs &irightControllerArgs, const pros::c::motor_gearset_e_t igearset,
-  const ChassisScales &iscales)
+  const AsyncPosIntegratedControllerArgs &irightControllerArgs,
+  const pros::c::motor_gearset_e_t igearset, const ChassisScales &iscales)
   : ChassisController(imodel),
     leftController(ileftControllerArgs),
     rightController(irightControllerArgs),
@@ -100,6 +100,10 @@ void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
   rightController.flipDisable(true);
 }
 
+void ChassisControllerIntegrated::moveDistance(const double itarget) {
+  moveDistance(itarget * meter);
+}
+
 void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
   leftController.reset();
   rightController.reset();
@@ -119,5 +123,9 @@ void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
 
   leftController.flipDisable(true);
   rightController.flipDisable(true);
+}
+
+void ChassisControllerIntegrated::turnAngle(const double idegTarget) {
+  turnAngle(idegTarget * degree);
 }
 } // namespace okapi

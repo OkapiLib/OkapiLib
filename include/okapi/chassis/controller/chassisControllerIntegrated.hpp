@@ -27,9 +27,10 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param irightSideMotor right side motor
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerIntegrated(Motor ileftSideMotor, Motor irightSideMotor,
-                              const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                              const ChassisScales &iscales = ChassisScales({1, 1}));
+  ChassisControllerIntegrated(
+    Motor ileftSideMotor, Motor irightSideMotor,
+    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+    const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -39,9 +40,10 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param irightSideMotor right side motor
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerIntegrated(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                              const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                              const ChassisScales &iscales = ChassisScales({1, 1}));
+  ChassisControllerIntegrated(
+    MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+    const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
@@ -53,10 +55,10 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param ibottomLeftMotor bottom left motor
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerIntegrated(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
-                              Motor ibottomLeftMotor,
-                              const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                              const ChassisScales &iscales = ChassisScales({1, 1}));
+  ChassisControllerIntegrated(
+    Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
+    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+    const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -66,10 +68,10 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param irightSideMotor right side motor
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerIntegrated(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                              std::shared_ptr<AbstractMotor> irightSideMotor,
-                              const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                              const ChassisScales &iscales = ChassisScales({1, 1}));
+  ChassisControllerIntegrated(
+    std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
+    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+    const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
@@ -81,12 +83,12 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param ibottomLeftMotor bottom left motor
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerIntegrated(std::shared_ptr<AbstractMotor> itopLeftMotor,
-                              std::shared_ptr<AbstractMotor> itopRightMotor,
-                              std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                              std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                              const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                              const ChassisScales &iscales = ChassisScales({1, 1}));
+  ChassisControllerIntegrated(
+    std::shared_ptr<AbstractMotor> itopLeftMotor, std::shared_ptr<AbstractMotor> itopRightMotor,
+    std::shared_ptr<AbstractMotor> ibottomRightMotor,
+    std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+    const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using the V5 motor's integrated control. Puts the motors into degree units.
@@ -96,11 +98,12 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param irightControllerArgs right side controller params
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerIntegrated(std::shared_ptr<ChassisModel> imodel,
-                              const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
-                              const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-                              const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                              const ChassisScales &iscales = ChassisScales({1, 1}));
+  ChassisControllerIntegrated(
+    std::shared_ptr<ChassisModel> imodel,
+    const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
+    const AsyncPosIntegratedControllerArgs &irightControllerArgs,
+    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+    const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
@@ -110,11 +113,25 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   virtual void moveDistance(const QLength itarget) override;
 
   /**
+  * Drives the robot straight for a distance (using closed-loop control).
+  *
+  * @param itarget distance to travel in meters
+  */
+  virtual void moveDistance(const double itarget) override;
+
+  /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for
    */
   virtual void turnAngle(const QAngle idegTarget) override;
+
+  /**
+   * Turns the robot clockwise in place (using closed-loop control).
+   *
+   * @param idegTarget angle to turn for in degrees
+   */
+  virtual void turnAngle(const double idegTarget) override;
 
   protected:
   AsyncPosIntegratedController leftController;
