@@ -132,7 +132,7 @@ OkapiLib uses the program [cppcheck](http://cppcheck.sourceforge.net/) for stati
 * Name classes and methods using Camel case. Class names should start with a capital letter.
 * Do not prefix member variables with `m_`; instead, prefix parameters with `i`.
 * Do not `using namespace std` or any other namespace as this pollutes the user's namespace.
-* No raw pointers or smart pointers. Use references (preferably `const` references) instead.
+* No raw pointers. Use references (preferably `const` references) instead. If you need to pass an abstract class and can't use a reference, use a smart pointer.
 * Use in-class member initializers and default constructors for no-arg constructors where possible.
 * Use default arguments instead of method overloading.
 * Everything that can be `const` should be.
