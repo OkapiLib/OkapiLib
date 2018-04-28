@@ -21,8 +21,8 @@
 
 QUANTITY_TYPE(1, -1, -2, 0, QPressure)
 
-constexpr QPressure Pascal(1.0);
-constexpr QPressure bar = 100000 * Pascal;
+constexpr QPressure pascal(1.0);
+constexpr QPressure bar = 100000 * pascal;
 constexpr QPressure psi = pound * G / inch2;
 
 constexpr QPressure operator"" _Pa(long double x) {
