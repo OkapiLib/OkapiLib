@@ -13,7 +13,7 @@ namespace okapi {
 ChassisControllerPID::ChassisControllerPID(Motor ileftSideMotor, Motor irightSideMotor,
                                            const IterativePosPIDControllerArgs &idistanceArgs,
                                            const IterativePosPIDControllerArgs &iangleArgs,
-                                           const motor_gearset_e_t igearset,
+                                           const pros::c::motor_gearset_e_t igearset,
                                            const ChassisScales &iscales)
   : ChassisControllerPID(std::make_shared<Motor>(ileftSideMotor),
                          std::make_shared<Motor>(irightSideMotor), idistanceArgs, iangleArgs,
@@ -23,7 +23,7 @@ ChassisControllerPID::ChassisControllerPID(Motor ileftSideMotor, Motor irightSid
 ChassisControllerPID::ChassisControllerPID(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                                            const IterativePosPIDControllerArgs &idistanceArgs,
                                            const IterativePosPIDControllerArgs &iangleArgs,
-                                           const motor_gearset_e_t igearset,
+                                           const pros::c::motor_gearset_e_t igearset,
                                            const ChassisScales &iscales)
   : ChassisControllerPID(std::make_shared<MotorGroup>(ileftSideMotor),
                          std::make_shared<MotorGroup>(irightSideMotor), idistanceArgs, iangleArgs,
@@ -34,7 +34,7 @@ ChassisControllerPID::ChassisControllerPID(Motor itopLeftMotor, Motor itopRightM
                                            Motor ibottomRightMotor, Motor ibottomLeftMotor,
                                            const IterativePosPIDControllerArgs &idistanceArgs,
                                            const IterativePosPIDControllerArgs &iangleArgs,
-                                           const motor_gearset_e_t igearset,
+                                           const pros::c::motor_gearset_e_t igearset,
                                            const ChassisScales &iscales)
   : ChassisControllerPID(
       std::make_shared<Motor>(itopLeftMotor), std::make_shared<Motor>(itopRightMotor),
@@ -46,7 +46,7 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> ileftS
                                            std::shared_ptr<AbstractMotor> irightSideMotor,
                                            const IterativePosPIDControllerArgs &idistanceArgs,
                                            const IterativePosPIDControllerArgs &iangleArgs,
-                                           const motor_gearset_e_t igearset,
+                                           const pros::c::motor_gearset_e_t igearset,
                                            const ChassisScales &iscales)
   : ChassisController(std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor)),
     distancePid(idistanceArgs),
@@ -54,7 +54,7 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> ileftS
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
 }
 
 ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> itopLeftMotor,
@@ -63,7 +63,7 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> itopLe
                                            std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                                            const IterativePosPIDControllerArgs &idistanceArgs,
                                            const IterativePosPIDControllerArgs &iangleArgs,
-                                           const motor_gearset_e_t igearset,
+                                           const pros::c::motor_gearset_e_t igearset,
                                            const ChassisScales &iscales)
   : ChassisController(std::make_shared<XDriveModel>(itopLeftMotor, itopRightMotor,
                                                     ibottomRightMotor, ibottomLeftMotor)),
@@ -72,13 +72,13 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> itopLe
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
 }
 
 ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                                            const IterativePosPIDControllerArgs &idistanceArgs,
                                            const IterativePosPIDControllerArgs &iangleArgs,
-                                           const motor_gearset_e_t igearset,
+                                           const pros::c::motor_gearset_e_t igearset,
                                            const ChassisScales &iscales)
   : ChassisController(imodel),
     distancePid(idistanceArgs),
@@ -86,7 +86,7 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
 }
 
 void ChassisControllerPID::moveDistance(const QLength itarget) {

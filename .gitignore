@@ -6,3 +6,6 @@ program
 okapilib-template.zip
 .clang/
 *.gch
+compile_commands.json
+cquery_log.txt
+okapilib@*.zip
