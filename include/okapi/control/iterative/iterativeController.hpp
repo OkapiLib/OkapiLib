@@ -42,7 +42,7 @@ class IterativeController : public ClosedLoopController {
   virtual double getDerivative() const = 0;
 
   /**
-   * Set time between loops in ms.
+   * Set time between loops.
    *
    * @param isampleTime time between loops
    */

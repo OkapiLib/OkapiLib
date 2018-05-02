@@ -25,6 +25,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
+   * @param igearset motor internal gearset
    * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(
@@ -38,6 +39,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
+   * @param igearset motor internal gearset
    * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(
@@ -53,6 +55,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param itopRightMotor top right motor
    * @param ibottomRightMotor bottom right motor
    * @param ibottomLeftMotor bottom left motor
+   * @param igearset motor internal gearset
    * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(
@@ -66,6 +69,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
+   * @param igearset motor internal gearset
    * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(
@@ -81,6 +85,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param itopRightMotor top right motor
    * @param ibottomRightMotor bottom right motor
    * @param ibottomLeftMotor bottom left motor
+   * @param igearset motor internal gearset
    * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(
@@ -96,6 +101,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param imodelArgs ChassisModelArgs
    * @param ileftControllerArgs left side controller params
    * @param irightControllerArgs right side controller params
+   * @param igearset motor internal gearset
    * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(

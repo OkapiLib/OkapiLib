@@ -52,7 +52,7 @@ class AsyncWrapper : virtual public AsyncController {
   virtual bool isSettled() override;
 
   /**
-   * Set time between loops in ms. Default does nothing.
+   * Set time between loops. Default does nothing.
    *
    * @param isampleTime time between loops
    */
