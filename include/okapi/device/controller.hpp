@@ -9,6 +9,7 @@
 #define _OKAPI_CONTROLLER_HPP_
 
 #include "api.h"
+#include "okapi/device/button/controllerButton.hpp"
 
 namespace okapi {
 class Controller {
@@ -51,6 +52,8 @@ class Controller {
    * @return true if the button is pressed, false if the controller is not connected
    */
   virtual bool getDigital(const controller_digital_e_t ibutton);
+
+  virtual ControllerButton operator[](const controller_digital_e_t ibtn);
 
   protected:
   pros::Controller controller;
