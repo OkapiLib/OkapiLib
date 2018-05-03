@@ -9,6 +9,7 @@
 #define _OKAPI_TIMER_HPP_
 
 #include "api.h"
+#include "okapi/units/QFrequency.hpp"
 #include "okapi/units/QTime.hpp"
 
 namespace okapi {
@@ -82,6 +83,16 @@ class Timer {
    *   period has passed again
    */
   virtual bool repeat(const QTime time);
+
+  /**
+   * Returns true when the input time period has passed, then resets. Meant to be used in loops
+   * to run an action every time period without blocking.
+   *
+   * @param frequency the repeat frequency
+   * @return true when the input time period has passed, false after reading true until the
+   *   period has passed again
+   */
+  virtual bool repeat(const QFrequency frequency);
 
   protected:
   QTime firstCalled;

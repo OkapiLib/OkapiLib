@@ -68,4 +68,8 @@ bool Timer::repeat(const QTime time) {
 
   return false;
 }
+
+bool Timer::repeat(const QFrequency frequency) {
+  return repeat(QTime(1 / frequency.convert(Hz)));
+}
 } // namespace okapi
