@@ -28,6 +28,11 @@ void constructorTests() {
   using namespace okapi;
 
   {
+    Controller help;
+    ControllerButton btn = help[E_CONTROLLER_DIGITAL_A];
+  }
+
+  {
     ADIButton btn(2);
     ControllerButton btn2(E_CONTROLLER_DIGITAL_A);
     btn.isPressed();
