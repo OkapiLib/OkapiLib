@@ -105,6 +105,10 @@ void constructorTests() {
 
     AsyncPosPIDController apospid2(std::make_shared<ADIEncoder>(1, 2, true),
                                    std::make_shared<Motor>(1_mtr), 0, 0, 0);
+
+    AsyncPosPIDController apospid3(std::make_shared<FilteredControllerInput<ADIEncoder, EmaFilter>>(
+                                     ADIEncoder(1, 2), EmaFilter(0.2)),
+                                   std::make_shared<Motor>(1_mtr), 0, 0, 0);
   }
 
   {
