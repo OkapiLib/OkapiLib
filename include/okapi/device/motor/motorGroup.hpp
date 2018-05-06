@@ -233,6 +233,7 @@ class MotorGroup : public AbstractMotor {
 
   protected:
   std::vector<Motor> motors;
+  std::size_t index = 0;
 };
 } // namespace okapi
 

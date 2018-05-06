@@ -9,6 +9,44 @@
 
 namespace okapi {
 MotorGroup::MotorGroup(const std::initializer_list<Motor> &imotors) : motors(imotors) {
+  auto readSample = [&](int i) -> double {
+    double sample;
+    bool done = false;
+    int tryAgainCounter = 0;
+
+    do {
+      sample = motors[i].getPosition();
+
+      if (sample == PROS_ERR_F) {
+        // If there was an error, check errno
+        switch (errno) {
+        case ENODEV: // Unplugged
+        case EINVAL: // Invalid port number
+          done = true;
+          break;
+        case EACCES: // Resource currently being used
+        default:
+          pros::Task::delay(10); // Wait for resource to be available
+          tryAgainCounter++;
+          break;
+        }
+      } else {
+        // No error means the sample was fine
+        done = true;
+      }
+    } while (!done && tryAgainCounter < 5);
+
+    return sample;
+  };
+
+  // Find a motor that works
+  for (std::size_t i = 0; i < motors.size(); i++) {
+    // If the sample did not error we found a good motor
+    if (readSample(i) != PROS_ERR_F) {
+      index = i;
+      break;
+    }
+  }
 }
 
 std::int32_t MotorGroup::moveAbsolute(const double iposition, const std::int32_t ivelocity) const {
@@ -67,19 +105,19 @@ std::int32_t MotorGroup::move(const std::int8_t ivoltage) const {
 }
 
 double MotorGroup::getTargetPosition() const {
-  return motors[0].getTargetPosition();
+  return motors[index].getTargetPosition();
 }
 
 double MotorGroup::getPosition() const {
-  return motors[0].getPosition();
+  return motors[index].getPosition();
 }
 
 std::int32_t MotorGroup::getTargetVelocity() const {
-  return motors[0].getTargetVelocity();
+  return motors[index].getTargetVelocity();
 }
 
 double MotorGroup::getActualVelocity() const {
-  return motors[0].getActualVelocity();
+  return motors[index].getActualVelocity();
 }
 
 std::int32_t MotorGroup::tarePosition() const {
@@ -166,6 +204,6 @@ void MotorGroup::controllerSet(const double ivalue) {
 }
 
 IntegratedEncoder MotorGroup::getEncoder() const {
-  return motors[0].getEncoder();
+  return motors[index].getEncoder();
 }
 } // namespace okapi
