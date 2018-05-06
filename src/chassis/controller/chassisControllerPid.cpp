@@ -90,14 +90,6 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
 }
 
 void ChassisControllerPID::moveDistance(const QLength itarget) {
-  const auto encStartVals = model->getSensorVals();
-
-  // Exit if there was an error
-  // TODO: Waiting on a more specific error code
-  if ((encStartVals[0] == PROS_ERR_F || encStartVals[1] == PROS_ERR_F) && errno == EINVAL) {
-    return;
-  }
-
   distancePid.reset();
   anglePid.reset();
 
@@ -106,6 +98,7 @@ void ChassisControllerPID::moveDistance(const QLength itarget) {
   anglePid.setTarget(newTarget);
 
   std::uint32_t prevWakeTime = pros::millis();
+  const auto encStartVals = model->getSensorVals();
   std::valarray<std::int32_t> encVals;
   double distanceElapsed = 0, angleChange = 0;
 
@@ -125,20 +118,13 @@ void ChassisControllerPID::moveDistance(const double itarget) {
 }
 
 void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
-  const auto encStartVals = model->getSensorVals();
-
-  // Exit if there was an error
-  // TODO: Waiting on a more specific error code
-  if ((encStartVals[0] == PROS_ERR_F || encStartVals[1] == PROS_ERR_F) && errno == EINVAL) {
-    return;
-  }
-
   anglePid.reset();
 
   const double newTarget = idegTarget.convert(degree) * turnScale;
   anglePid.setTarget(newTarget);
 
   std::uint32_t prevWakeTime = pros::millis();
+  const auto encStartVals = model->getSensorVals();
   std::valarray<std::int32_t> encVals;
   double angleChange = 0;
 
