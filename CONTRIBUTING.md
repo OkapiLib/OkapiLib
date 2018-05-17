@@ -112,6 +112,8 @@ Unsure where to begin contributing? You can start by looking through these `begi
 
 ### Git Branch Naming
 
+* This proejct uses Git flow. If you are not familiar, look here: http://nvie.com/posts/a-successful-git-branching-model/
+  * If Git flow looks difficult or confusing, you can download [GitKraken](https://www.gitkraken.com/) and it will handle branching/merging for you ([tutorial here](https://support.gitkraken.com/git-workflows-and-extensions/git-flow)).
 * Name a new branch according to its purpose in the format: [issue/bug/feature]/[your initials]/[issue number][description]
   * For example, to make a branch to fix Issue #0 about adding a README file, name the branch `issue/ABC/#0_add_readme_file`
 
