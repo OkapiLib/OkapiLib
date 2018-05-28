@@ -20,8 +20,11 @@
 #define PROS_VISION_H_
 
 #define VISION_OBJECT_ERR_SIG 255
-#define VISION_FOV_WIDTH 319
-#define VISION_FOV_HEIGHT 199
+// Parameters given by VEX
+#define VISION_FOV_WIDTH 316
+#define VISION_FOV_HEIGHT 212
+
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -144,7 +147,7 @@ vision_object_s_t vision_get_by_size(uint8_t port, const uint32_t size_id);
  *         size_id, or PROS_ERR if an error occurred.
  */
 vision_object_s_t vision_get_by_sig(uint8_t port, const uint32_t size_id,
-                                    const uint8_t sig_id);
+                                    const uint32_t sig_id);
 
 /**
  * Gets the exposure parameter of the Vision Sensor.
@@ -203,6 +206,9 @@ int32_t vision_get_white_balance(uint8_t port);
  *
  * \param port
  *        The V5 port number from 1-21
+ * \param size_id
+ *        The object to read from a list roughly ordered by object size
+ *        (0 is the largest item, 1 is the second largest, etc.)
  * \param object_count
  *        The number of objects to read
  * \param[out] object_arr
@@ -244,7 +250,7 @@ int32_t vision_read_by_size(uint8_t port, const uint32_t size_id,
  *         Returns PROS_ERR if the port was invalid or an error occurred.
  */
 int32_t vision_read_by_sig(uint8_t port, const uint32_t size_id,
-                           const uint8_t sig_id, const uint32_t object_count,
+                           const uint32_t sig_id, const uint32_t object_count,
                            vision_object_s_t *const object_arr);
 
 /**
@@ -308,6 +314,8 @@ int32_t vision_set_led(uint8_t port, const int32_t rgb);
  *
  * \param port
  * 		    The V5 port number from 1-21
+ * \param rgb
+ *        The new RGB white balance setting of the sensor
  *
  * \return 1 if no errors occurred, PROS_ERR otherwise
  */
