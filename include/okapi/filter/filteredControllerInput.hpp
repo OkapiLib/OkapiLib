@@ -16,6 +16,13 @@ namespace okapi {
 template <typename InputType, typename FilterType>
 class FilteredControllerInput : public ControllerInput {
   public:
+  /**
+   * A filtered controller input. Applies a filter to the controller input. Useful if you want to
+   * place a filter between a control input and a control loop.
+   *
+   * @param iinput ControllerInput type
+   * @param ifilter Filter type
+   */
   FilteredControllerInput(InputType iinput, FilterType ifilter)
     : input(std::make_unique<InputType>(iinput)), filter(std::make_unique<FilterType>(ifilter)) {
   }
@@ -26,7 +33,7 @@ class FilteredControllerInput : public ControllerInput {
    *
    * @return the current sensor value, or ``PROS_ERR`` on a failure.
    */
-  virtual double controllerGet() {
+  virtual double controllerGet() override {
     return filter->filter(input->controllerGet());
   }
 
