@@ -42,6 +42,24 @@ class ChassisScales {
    * constructor like so:
    *   ChassisScales scales({4_in, 11.5_in});
    *
+   *                             Wheel diameter
+   *
+   *                              +-+
+   *                              | |
+   *                              v v
+   *
+   *                     +--->    ===             ===
+   *                     |         +               +
+   *                     |        ++---------------++
+   *                     |        |                 |
+   *    Wheelbase Width  |        |                 |
+   *                     |        |                 |
+   *                     |        |                 |
+   *                     |        ++---------------++
+   *                     |         +               +
+   *                     +--->    ===             ===
+   *
+   *
    * @param  iwheelbase {wheel diameter, wheelbase width}
    */
   ChassisScales(const std::initializer_list<QLength> &iwheelbase) {
