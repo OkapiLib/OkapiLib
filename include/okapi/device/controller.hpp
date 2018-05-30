@@ -53,9 +53,16 @@ class Controller {
    */
   virtual bool getDigital(const controller_digital_e_t ibutton);
 
+  /**
+   * Returns a ControllerButton for the given button on this controller.
+   *
+   * @param ibtn the button
+   * @return a ControllerButton on this controller
+   */
   virtual ControllerButton operator[](const controller_digital_e_t ibtn);
 
   protected:
+  const controller_id_e_t id;
   pros::Controller controller;
 };
 } // namespace okapi

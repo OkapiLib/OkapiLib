@@ -8,7 +8,7 @@
 #include "okapi/device/controller.hpp"
 
 namespace okapi {
-Controller::Controller(const controller_id_e_t iid) : controller(iid) {
+Controller::Controller(const controller_id_e_t iid) : id(iid), controller(iid) {
 }
 
 Controller::~Controller() = default;
@@ -36,6 +36,6 @@ bool Controller::getDigital(const controller_digital_e_t ibutton) {
 }
 
 ControllerButton Controller::operator[](const controller_digital_e_t ibtn) {
-  return ControllerButton(ibtn);
+  return ControllerButton(id, ibtn);
 }
 } // namespace okapi
