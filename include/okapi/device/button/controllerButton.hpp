@@ -11,7 +11,7 @@
 #include "okapi/device/button/button.hpp"
 
 namespace okapi {
-class ControllerButton : public Button {
+class ControllerButton : public AbstractButton {
   public:
   ControllerButton(const controller_digital_e_t ibtn, const bool iinverted = false);
 
