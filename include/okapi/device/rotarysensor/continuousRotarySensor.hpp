@@ -5,23 +5,21 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ROTARYSENSOR_HPP_
-#define _OKAPI_ROTARYSENSOR_HPP_
+#ifndef _OKAPI_CONTINUOUSROTARYSENSOR_HPP_
+#define _OKAPI_CONTINUOUSROTARYSENSOR_HPP_
 
 #include "api.h"
-#include "okapi/control/controllerInput.hpp"
+#include "okapi/device/rotarysensor/rotarySensor.hpp"
 
 namespace okapi {
-class RotarySensor : public ControllerInput {
+class ContinuousRotarySensor : public RotarySensor {
   public:
-  virtual ~RotarySensor();
-
   /**
-   * Get the current sensor value.
+   * Reset the sensor to zero.
    *
-   * @return the current sensor value, or ``PROS_ERR`` on a failure.
+   * @return 1 on suceess, PROS_ERR on fail
    */
-  virtual std::int32_t get() const = 0;
+  virtual std::int32_t reset() const = 0;
 };
 } // namespace okapi
 

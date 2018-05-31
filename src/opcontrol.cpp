@@ -45,6 +45,13 @@ void constructorTests() {
   }
 
   {
+    Potentiometer pot1(1);
+    Potentiometer pot2('a');
+    Potentiometer pot3('A');
+    pot1.get();
+  }
+
+  {
     ADIUltrasonic ultra1(1, 2);
     ultra1.get();
   }

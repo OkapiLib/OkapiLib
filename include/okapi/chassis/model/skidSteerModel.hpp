@@ -13,7 +13,7 @@
 #include "okapi/device/motor/motor.hpp"
 #include "okapi/device/motor/motorGroup.hpp"
 #include "okapi/device/rotarysensor/adiEncoder.hpp"
-#include "okapi/device/rotarysensor/rotarySensor.hpp"
+#include "okapi/device/rotarysensor/continuousRotarySensor.hpp"
 
 namespace okapi {
 class SkidSteerModelArgs : public ChassisModelArgs {
@@ -24,13 +24,14 @@ class SkidSteerModelArgs : public ChassisModelArgs {
 
   SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
                      std::shared_ptr<AbstractMotor> irightSideMotor,
-                     std::shared_ptr<RotarySensor> ileftEnc,
-                     std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput = 127);
+                     std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                     std::shared_ptr<ContinuousRotarySensor> irightEnc,
+                     const double imaxOutput = 127);
 
   std::shared_ptr<AbstractMotor> leftSideMotor;
   std::shared_ptr<AbstractMotor> rightSideMotor;
-  std::shared_ptr<RotarySensor> leftSensor;
-  std::shared_ptr<RotarySensor> rightSensor;
+  std::shared_ptr<ContinuousRotarySensor> leftSensor;
+  std::shared_ptr<ContinuousRotarySensor> rightSensor;
   const double maxOutput;
 };
 
@@ -98,8 +99,8 @@ class SkidSteerModel : public ChassisModel {
    */
   SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                  std::shared_ptr<AbstractMotor> irightSideMotor,
-                 std::shared_ptr<RotarySensor> ileftEnc, std::shared_ptr<RotarySensor> irightEnc,
-                 const double imaxOutput = 127);
+                 std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                 std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput = 127);
 
   SkidSteerModel(const SkidSteerModelArgs &iparams);
 
@@ -219,8 +220,8 @@ class SkidSteerModel : public ChassisModel {
   protected:
   std::shared_ptr<AbstractMotor> leftSideMotor;
   std::shared_ptr<AbstractMotor> rightSideMotor;
-  std::shared_ptr<RotarySensor> leftSensor;
-  std::shared_ptr<RotarySensor> rightSensor;
+  std::shared_ptr<ContinuousRotarySensor> leftSensor;
+  std::shared_ptr<ContinuousRotarySensor> rightSensor;
   const double maxOutput;
 };
 } // namespace okapi
