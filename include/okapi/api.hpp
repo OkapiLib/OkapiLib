@@ -37,7 +37,7 @@
 #include "okapi/device/motor/motor.hpp"
 #include "okapi/device/motor/motorGroup.hpp"
 #include "okapi/device/rotarysensor/adiEncoder.hpp"
-#include "okapi/device/rotarysensor/continuousRotarysensor.hpp"
+#include "okapi/device/rotarysensor/continuousRotarySensor.hpp"
 #include "okapi/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/device/rotarysensor/potentiometer.hpp"
 #include "okapi/device/rotarysensor/rotarysensor.hpp"
