@@ -36,7 +36,7 @@ class ComposableFilter : public Filter {
    * through each filter in sequence. The final output of this filter is the output of the last
    * filter.
    *
-   * @param ilist the lambdas used to allocate filters
+   * @param ilist the filters to use in sequence
    */
   ComposableFilter(const std::initializer_list<std::shared_ptr<Filter>> &ilist);
 

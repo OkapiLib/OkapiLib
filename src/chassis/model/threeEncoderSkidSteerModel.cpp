@@ -10,8 +10,9 @@
 namespace okapi {
 ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs(
   std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
-  std::shared_ptr<RotarySensor> ileftEnc, std::shared_ptr<RotarySensor> imiddleEnc,
-  std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput)
+  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+  std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
+  std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput)
   : SkidSteerModelArgs(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxOutput),
     middleSensor(imiddleEnc) {
 }
@@ -29,8 +30,9 @@ ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(MotorGroup ileftSideMotor
 
 ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
   std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
-  std::shared_ptr<RotarySensor> ileftEnc, std::shared_ptr<RotarySensor> imiddleEnc,
-  std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput)
+  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+  std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
+  std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput)
   : SkidSteerModel(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxOutput),
     middleSensor(imiddleEnc) {
 }

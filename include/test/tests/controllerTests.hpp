@@ -65,9 +65,8 @@ void testIterativeControllers() {
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativeVelPIDController controller(
-      0.000015, 0,
-      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                                std::make_unique<MockTimer>()),
+      0.000015, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                                             std::make_unique<MockTimer>()),
       std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
 
     const double target = 10;
@@ -255,11 +254,37 @@ void testControlUtils() {
     sim.step();
 
     test("FlywheelSimulator i = 0 angle",
-         TEST_BODY(AssertThat, sim.getAngle(), EqualsWithDelta(0.0001237742, 0.00000001)));
+         TEST_BODY(AssertThat, sim.getAngle(), EqualsWithDelta(0.000020193, 0.00000005)));
     test("FlywheelSimulator i = 0 omega",
-         TEST_BODY(AssertThat, sim.getOmega(), EqualsWithDelta(0.0247548337, 0.00000001)));
+         TEST_BODY(AssertThat, sim.getOmega(), EqualsWithDelta(0.0020193, 0.000005)));
     test("FlywheelSimulator i = 0 accel",
-         TEST_BODY(AssertThat, sim.getAcceleration(), EqualsWithDelta(990.19335, 0.0001)));
+         TEST_BODY(AssertThat, sim.getAcceleration(), EqualsWithDelta(20.193, 0.0005)));
+  }
+}
+
+void testFilteredControllerInput() {
+  using namespace okapi;
+  using namespace snowhouse;
+
+  {
+    test_printf("Testing FilteredControllerInput");
+
+    class MockControllerInput : public ControllerInput {
+      public:
+      MockControllerInput() = default;
+      double controllerGet() override {
+        return 1;
+      }
+    };
+
+    MockControllerInput mockInput;
+    PassthroughFilter filter;
+    FilteredControllerInput<MockControllerInput, PassthroughFilter> input(mockInput, filter);
+
+    for (int i = 0; i < 10; i++) {
+      auto testName = "FilteredControllerInput i = " + std::to_string(i);
+      test(testName, TEST_BODY(AssertThat, input.controllerGet(), EqualsWithDelta(1, 0.0001)));
+    }
   }
 }
 
@@ -267,6 +292,7 @@ void runHeadlessControllerTests() {
   testControlUtils();
   testIterativeControllers();
   testAsyncControllers();
+  testFilteredControllerInput();
 }
 
 #endif

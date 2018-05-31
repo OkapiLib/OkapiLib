@@ -112,6 +112,8 @@ Unsure where to begin contributing? You can start by looking through these `begi
 
 ### Git Branch Naming
 
+* This project uses Git flow. If you are not familiar, look here: http://nvie.com/posts/a-successful-git-branching-model/
+  * If Git flow looks difficult or confusing, you can download [GitKraken](https://www.gitkraken.com/) and it will handle branching/merging for you ([tutorial here](https://support.gitkraken.com/git-workflows-and-extensions/git-flow)).
 * Name a new branch according to its purpose in the format: [issue/bug/feature]/[your initials]/[issue number][description]
   * For example, to make a branch to fix Issue #0 about adding a README file, name the branch `issue/ABC/#0_add_readme_file`
 
@@ -125,7 +127,7 @@ OkapiLib uses the program [clang-format](https://clang.llvm.org/docs/ClangFormat
 
 OkapiLib uses the program [cppcheck](http://cppcheck.sourceforge.net/) for static analysis. Install the latest version and run `./run_cppcheck.sh` to check all project files.
 
-#### Other Points
+### Other Points
 
 * Every file must include the MPL2.0 header and attributions to applicable authors (first authors placed first).
 * Use [Javadoc-style](https://www.tutorialspoint.com/java/java_documentation.htm) comments on constructors and methods.
