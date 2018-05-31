@@ -13,7 +13,7 @@
 #include "okapi/device/motor/motor.hpp"
 #include "okapi/device/motor/motorGroup.hpp"
 #include "okapi/device/rotarysensor/adiEncoder.hpp"
-#include "okapi/device/rotarysensor/continuousRotarysensor.hpp"
+#include "okapi/device/rotarysensor/continuousRotarySensor.hpp"
 
 namespace okapi {
 class SkidSteerModelArgs : public ChassisModelArgs {
