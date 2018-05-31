@@ -9,12 +9,12 @@
 
 namespace okapi {
 ControllerButton::ControllerButton(const controller_digital_e_t ibtn, const bool iinverted)
-  : Button(iinverted), controller(E_CONTROLLER_MASTER), btn(ibtn) {
+  : AbstractButton(iinverted), controller(E_CONTROLLER_MASTER), btn(ibtn) {
 }
 
 ControllerButton::ControllerButton(const controller_id_e_t icontroller,
                                    const controller_digital_e_t ibtn, const bool iinverted)
-  : Button(iinverted), controller(icontroller), btn(ibtn) {
+  : AbstractButton(iinverted), controller(icontroller), btn(ibtn) {
 }
 
 bool ControllerButton::currentlyPressed() {
