@@ -28,10 +28,10 @@ class FilteredControllerInput : public ControllerInput {
   }
 
   /**
-   * Get the sensor value for use in a control loop. This method might be automatically called in
+   * Gets the sensor value for use in a control loop. This method might be automatically called in
    * another thread by the controller.
    *
-   * @return the current sensor value, or ``PROS_ERR`` on a failure.
+   * @return the current filtered sensor value.
    */
   virtual double controllerGet() override {
     return filter->filter(input->controllerGet());
