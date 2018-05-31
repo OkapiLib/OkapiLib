@@ -15,12 +15,12 @@ class ThreeEncoderSkidSteerModelArgs : public SkidSteerModelArgs {
   public:
   ThreeEncoderSkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                  std::shared_ptr<AbstractMotor> irightSideMotor,
-                                 std::shared_ptr<RotarySensor> ileftEnc,
-                                 std::shared_ptr<RotarySensor> imiddleEnc,
-                                 std::shared_ptr<RotarySensor> irightEnc,
+                                 std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                                 std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
+                                 std::shared_ptr<ContinuousRotarySensor> irightEnc,
                                  const double imaxOutput = 127);
 
-  std::shared_ptr<RotarySensor> middleSensor;
+  std::shared_ptr<ContinuousRotarySensor> middleSensor;
 };
 
 class ThreeEncoderSkidSteerModel : public SkidSteerModel {
@@ -51,9 +51,9 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
    */
   ThreeEncoderSkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                              std::shared_ptr<AbstractMotor> irightSideMotor,
-                             std::shared_ptr<RotarySensor> ileftEnc,
-                             std::shared_ptr<RotarySensor> imiddleEnc,
-                             std::shared_ptr<RotarySensor> irightEnc,
+                             std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                             std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
+                             std::shared_ptr<ContinuousRotarySensor> irightEnc,
                              const double imaxOutput = 127);
 
   ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams);
@@ -66,7 +66,7 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
   virtual std::valarray<std::int32_t> getSensorVals() const override;
 
   protected:
-  std::shared_ptr<RotarySensor> middleSensor;
+  std::shared_ptr<ContinuousRotarySensor> middleSensor;
 };
 } // namespace okapi
 
