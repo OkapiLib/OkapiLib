@@ -9,7 +9,7 @@
 
 namespace okapi {
 ADIButton::ADIButton(const uint8_t iport, const bool iinverted)
-  : Button(iinverted), btn(iport), port(iport) {
+  : AbstractButton(iinverted), btn(iport), port(iport) {
 }
 
 bool ADIButton::currentlyPressed() {
