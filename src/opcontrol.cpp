@@ -141,7 +141,11 @@ void constructorTests() {
     ADIEncoder quad2(0, 0, true);
   }
 
-  { MotorGroup mg1({1_mtr, 2_mtr}); }
+  {
+    MotorGroup mg1({1_mtr, 2_mtr});
+    MotorGroup mg2({1, -2});
+    MotorGroup mg3({Motor(1), Motor(2)});
+  }
 
   {
     AverageFilter<2> avgFilt1;
