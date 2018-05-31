@@ -39,6 +39,7 @@
 #include "okapi/device/rotarysensor/adiEncoder.hpp"
 #include "okapi/device/rotarysensor/continuousRotarysensor.hpp"
 #include "okapi/device/rotarysensor/integratedEncoder.hpp"
+#include "okapi/device/rotarysensor/potentiometer.hpp"
 #include "okapi/device/rotarysensor/rotarysensor.hpp"
 #include "okapi/device/vision.hpp"
 
