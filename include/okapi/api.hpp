@@ -40,7 +40,7 @@
 #include "okapi/device/rotarysensor/continuousRotarySensor.hpp"
 #include "okapi/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/device/rotarysensor/potentiometer.hpp"
-#include "okapi/device/rotarysensor/rotarysensor.hpp"
+#include "okapi/device/rotarysensor/rotarySensor.hpp"
 #include "okapi/device/vision.hpp"
 
 #include "okapi/filter/averageFilter.hpp"
