@@ -13,8 +13,9 @@ XDriveModelArgs::XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
                                  std::shared_ptr<AbstractMotor> itopRightMotor,
                                  std::shared_ptr<AbstractMotor> ibottomRightMotor,
                                  std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                                 std::shared_ptr<RotarySensor> ileftEnc,
-                                 std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput)
+                                 std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                                 std::shared_ptr<ContinuousRotarySensor> irightEnc,
+                                 const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
@@ -60,8 +61,8 @@ XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
                          std::shared_ptr<AbstractMotor> itopRightMotor,
                          std::shared_ptr<AbstractMotor> ibottomRightMotor,
                          std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                         std::shared_ptr<RotarySensor> ileftEnc,
-                         std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput)
+                         std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                         std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
@@ -122,8 +123,8 @@ void XDriveModel::driveVector(const double iySpeed, const double izRotation) con
 
   double leftOutput = ySpeed + zRotation;
   double rightOutput = ySpeed - zRotation;
-  const double maxInputMag = std::max<double>(std::abs(leftOutput), std::abs(rightOutput));
-  if (maxInputMag > 1) {
+  if (const double maxInputMag = std::max<double>(std::abs(leftOutput), std::abs(rightOutput));
+      maxInputMag > 1) {
     leftOutput /= maxInputMag;
     rightOutput /= maxInputMag;
   }
@@ -154,12 +155,12 @@ void XDriveModel::tank(const double ileftSpeed, const double irightSpeed,
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   double leftSpeed = std::clamp(ileftSpeed, -1.0, 1.0);
-  if (fabs(leftSpeed) < ithreshold) {
+  if (std::abs(leftSpeed) < ithreshold) {
     leftSpeed = 0;
   }
 
   double rightSpeed = std::clamp(irightSpeed, -1.0, 1.0);
-  if (fabs(rightSpeed) < ithreshold) {
+  if (std::abs(rightSpeed) < ithreshold) {
     rightSpeed = 0;
   }
 
@@ -174,16 +175,16 @@ void XDriveModel::arcade(const double iySpeed, const double izRotation,
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   double ySpeed = std::clamp(iySpeed, -1.0, 1.0);
-  if (fabs(ySpeed) < ithreshold) {
+  if (std::abs(ySpeed) < ithreshold) {
     ySpeed = 0;
   }
 
   double zRotation = std::clamp(izRotation, -1.0, 1.0);
-  if (fabs(zRotation) < ithreshold) {
+  if (std::abs(zRotation) < ithreshold) {
     zRotation = 0;
   }
 
-  double maxInput = std::copysign(std::max(fabs(ySpeed), fabs(zRotation)), ySpeed);
+  double maxInput = std::copysign(std::max(std::abs(ySpeed), std::abs(zRotation)), ySpeed);
   double leftOutput = 0;
   double rightOutput = 0;
 
@@ -217,17 +218,17 @@ void XDriveModel::arcade(const double iySpeed, const double izRotation,
 void XDriveModel::xArcade(const double ixSpeed, const double iySpeed, const double izRotation,
                           const double ithreshold) const {
   double xSpeed = std::clamp(ixSpeed, -1.0, 1.0);
-  if (fabs(xSpeed) < ithreshold) {
+  if (std::abs(xSpeed) < ithreshold) {
     xSpeed = 0;
   }
 
   double ySpeed = std::clamp(iySpeed, -1.0, 1.0);
-  if (fabs(ySpeed) < ithreshold) {
+  if (std::abs(ySpeed) < ithreshold) {
     ySpeed = 0;
   }
 
   double zRotation = std::clamp(izRotation, -1.0, 1.0);
-  if (fabs(zRotation) < ithreshold) {
+  if (std::abs(zRotation) < ithreshold) {
     zRotation = 0;
   }
 
@@ -256,21 +257,21 @@ void XDriveModel::resetSensors() const {
   rightSensor->reset();
 }
 
-void XDriveModel::setBrakeMode(const motor_brake_mode_e_t mode) const {
+void XDriveModel::setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const {
   topLeftMotor->setBrakeMode(mode);
   topRightMotor->setBrakeMode(mode);
   bottomRightMotor->setBrakeMode(mode);
   bottomLeftMotor->setBrakeMode(mode);
 }
 
-void XDriveModel::setEncoderUnits(const motor_encoder_units_e_t units) const {
+void XDriveModel::setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const {
   topLeftMotor->setEncoderUnits(units);
   topRightMotor->setEncoderUnits(units);
   bottomRightMotor->setEncoderUnits(units);
   bottomLeftMotor->setEncoderUnits(units);
 }
 
-void XDriveModel::setGearing(const motor_gearset_e_t gearset) const {
+void XDriveModel::setGearing(const pros::c::motor_gearset_e_t gearset) const {
   topLeftMotor->setGearing(gearset);
   topRightMotor->setGearing(gearset);
   bottomRightMotor->setGearing(gearset);

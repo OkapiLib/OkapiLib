@@ -11,11 +11,11 @@
 #include "api.h"
 
 namespace okapi {
-class Button {
+class AbstractButton {
   public:
-  Button(const bool iinverted = false);
+  AbstractButton(const bool iinverted = false);
 
-  virtual ~Button();
+  virtual ~AbstractButton();
 
   /**
    * Return whether the button is currently pressed.

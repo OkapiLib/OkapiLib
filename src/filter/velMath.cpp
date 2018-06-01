@@ -46,12 +46,11 @@ VelMath::VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter,
 
 VelMath::~VelMath() = default;
 
-double VelMath::step(const double inewPos) {
-  const double dt = static_cast<double>(1000.0 / loopDtTimer->getDt());
+QAngularSpeed VelMath::step(const double inewPos) {
+  const QTime dt = loopDtTimer->getDt();
 
-  vel = dt * (inewPos - lastPos) * (60 / ticksPerRev);
-  vel = filter->filter(vel);
-  accel = dt * (vel - lastVel);
+  vel = filter->filter(((inewPos - lastPos) * (60 / ticksPerRev)) / dt.convert(second)) * rpm;
+  accel = (vel - lastVel) / dt;
 
   lastVel = vel;
   lastPos = inewPos;
@@ -63,11 +62,11 @@ void VelMath::setTicksPerRev(const double iTPR) {
   ticksPerRev = iTPR;
 }
 
-double VelMath::getVelocity() const {
+QAngularSpeed VelMath::getVelocity() const {
   return vel;
 }
 
-double VelMath::getAccel() const {
+QAngularAcceleration VelMath::getAccel() const {
   return accel;
 }
 } // namespace okapi

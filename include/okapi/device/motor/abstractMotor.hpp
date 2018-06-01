@@ -52,7 +52,7 @@ class AbstractMotor : public ControllerOutput {
    * Sets the velocity for the motor.
    *
    * This velocity corresponds to different actual speeds depending on the gearset
-   * used for the motor. This results in a range of +-100 for E_MOTOR_GEARSET_36,
+   * used for the motor. This results in a range of +-100 for pros::c::E_MOTOR_GEARSET_36,
    * +-200 for E_MOTOR_GEARSET_18, and +-600 for E_MOTOR_GEARSET_6. The velocity
    * is held with PID to ensure consistent speed, as opposed to setting the motor's
    * voltage.
@@ -140,7 +140,7 @@ class AbstractMotor : public ControllerOutput {
    * @param imode The motor_brake_mode_e_t to set for the motor
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setBrakeMode(const motor_brake_mode_e_t imode) const = 0;
+  virtual std::int32_t setBrakeMode(const pros::c::motor_brake_mode_e_t imode) const = 0;
 
   /**
    * Sets the current limit for the motor in mA.
@@ -162,7 +162,7 @@ class AbstractMotor : public ControllerOutput {
    * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setEncoderUnits(const motor_encoder_units_e_t iunits) const = 0;
+  virtual std::int32_t setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const = 0;
 
   /**
    * Sets one of motor_gearset_e_t for the motor.
@@ -173,7 +173,7 @@ class AbstractMotor : public ControllerOutput {
    * @param igearset The new motor gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setGearing(const motor_gearset_e_t igearset) const = 0;
+  virtual std::int32_t setGearing(const pros::c::motor_gearset_e_t igearset) const = 0;
 
   /**
    * Sets the reverse flag for the motor.

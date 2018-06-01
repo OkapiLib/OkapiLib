@@ -38,7 +38,7 @@ void test(const std::string &iname, std::function<void()> ifunc) {
 void test_print_report() {
   printf(TEST_PRINT_GRN "%d tests finished," TEST_PRINT_RESET " took: %1.2f seconds\n",
          testPassCount + testFailCount,
-         (testLengthTimer.getDtFromHardMark() - testLengthTimer.getDtFromMark()) / 1000.0);
+         (testLengthTimer.getDtFromHardMark() - testLengthTimer.getDtFromMark()).convert(second));
   printf(TEST_PRINT_GRN "%d tests passed" TEST_PRINT_RESET "\n", testPassCount);
   printf(TEST_PRINT_RED "%d tests failed" TEST_PRINT_RESET "\n", testFailCount);
   if (testFailLog.size() > 0) {

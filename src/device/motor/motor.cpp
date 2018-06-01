@@ -6,10 +6,15 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/device/motor/motor.hpp"
+#include <cmath>
 
 namespace okapi {
-Motor::Motor(const uint8_t port, const bool reverse, const motor_encoder_units_e_t encoder_units,
-             const motor_gearset_e_t gearset)
+Motor::Motor(const std::int8_t port)
+  : Motor(std::abs(port), port < 0, pros::c::E_MOTOR_GEARSET_36) {
+}
+
+Motor::Motor(const std::uint8_t port, const bool reverse, const pros::c::motor_gearset_e_t gearset,
+             const pros::c::motor_encoder_units_e_t encoder_units)
   : pros::Motor(port, gearset, reverse, encoder_units) {
 }
 
@@ -49,7 +54,7 @@ std::int32_t Motor::tarePosition() const {
   return tare_position();
 }
 
-std::int32_t Motor::setBrakeMode(const motor_brake_mode_e_t imode) const {
+std::int32_t Motor::setBrakeMode(const pros::c::motor_brake_mode_e_t imode) const {
   return set_brake_mode(imode);
 }
 
@@ -57,11 +62,11 @@ std::int32_t Motor::setCurrentLimit(const std::int32_t ilimit) const {
   return set_current_limit(ilimit);
 }
 
-std::int32_t Motor::setEncoderUnits(const motor_encoder_units_e_t iunits) const {
+std::int32_t Motor::setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const {
   return set_encoder_units(iunits);
 }
 
-std::int32_t Motor::setGearing(const motor_gearset_e_t igearset) const {
+std::int32_t Motor::setGearing(const pros::c::motor_gearset_e_t igearset) const {
   return set_gearing(igearset);
 }
 
@@ -82,12 +87,12 @@ void Motor::controllerSet(const double ivalue) {
 }
 
 inline namespace literals {
-okapi::Motor operator"" _m(const unsigned long long iport) {
-  return okapi::Motor(static_cast<uint8_t>(iport));
+okapi::Motor operator"" _mtr(const unsigned long long iport) {
+  return okapi::Motor(static_cast<uint8_t>(iport), false, pros::c::E_MOTOR_GEARSET_36);
 }
 
-okapi::Motor operator"" _rm(const unsigned long long iport) {
-  return okapi::Motor(static_cast<uint8_t>(iport), true);
+okapi::Motor operator"" _rmtr(const unsigned long long iport) {
+  return okapi::Motor(static_cast<uint8_t>(iport), true, pros::c::E_MOTOR_GEARSET_36);
 }
 } // namespace literals
 } // namespace okapi

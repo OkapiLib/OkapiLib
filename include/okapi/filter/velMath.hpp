@@ -10,6 +10,9 @@
 
 #include "api.h"
 #include "okapi/filter/composableFilter.hpp"
+#include "okapi/units/QAngularAcceleration.hpp"
+#include "okapi/units/QAngularSpeed.hpp"
+#include "okapi/units/QTime.hpp"
 #include "okapi/util/timer.hpp"
 #include <memory>
 
@@ -59,7 +62,7 @@ class VelMath {
    * @param inewPos new position
    * @return current (filtered) velocity
    */
-  virtual double step(const double inewPos);
+  virtual QAngularSpeed step(const double inewPos);
 
   /**
    * Sets ticks per revolution (or whatever units you are using).
@@ -71,17 +74,17 @@ class VelMath {
   /**
    * Returns the last calculated velocity.
    */
-  virtual double getVelocity() const;
+  virtual QAngularSpeed getVelocity() const;
 
   /**
    * Returns the last calculated acceleration.
    */
-  virtual double getAccel() const;
+  virtual QAngularAcceleration getAccel() const;
 
   protected:
-  double vel = 0;
-  double accel = 0;
-  double lastVel = 0;
+  QAngularSpeed vel;
+  QAngularAcceleration accel;
+  QAngularSpeed lastVel;
   double lastPos = 0;
   double ticksPerRev;
 

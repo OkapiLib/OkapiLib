@@ -52,11 +52,11 @@ class AsyncWrapper : virtual public AsyncController {
   virtual bool isSettled() override;
 
   /**
-   * Set time between loops in ms. Default does nothing.
+   * Set time between loops. Default does nothing.
    *
-   * @param isampleTime time between loops in ms
+   * @param isampleTime time between loops
    */
-  virtual void setSampleTime(const std::uint32_t isampleTime) override;
+  virtual void setSampleTime(const QTime isampleTime) override;
 
   /**
    * Set controller output bounds. Default does nothing.
@@ -102,6 +102,6 @@ class AsyncWrapper : virtual public AsyncController {
   static void trampoline(void *context);
   void loop();
 };
-}
+} // namespace okapi
 
 #endif

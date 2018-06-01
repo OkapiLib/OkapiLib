@@ -61,9 +61,10 @@ bool IterativePosPIDController::isSettled() {
   return settledUtil->isSettled(error);
 }
 
-void IterativePosPIDController::setSampleTime(const std::uint32_t isampleTime) {
-  if (isampleTime > 0) {
-    const double ratio = static_cast<double>(isampleTime) / static_cast<double>(sampleTime);
+void IterativePosPIDController::setSampleTime(const QTime isampleTime) {
+  if (isampleTime > 0_ms) {
+    const double ratio = static_cast<double>(isampleTime.convert(millisecond)) /
+                         static_cast<double>(sampleTime.convert(millisecond));
     kI *= ratio;
     kD /= ratio;
     sampleTime = isampleTime;
@@ -113,12 +114,12 @@ double IterativePosPIDController::step(const double inewReading) {
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
       error = target - inewReading;
 
-      if ((fabs(error) < target - errorSumMin && fabs(error) > target - errorSumMax) ||
-          (fabs(error) > target + errorSumMin && fabs(error) < target + errorSumMax)) {
+      if ((std::abs(error) < target - errorSumMin && std::abs(error) > target - errorSumMax) ||
+          (std::abs(error) > target + errorSumMin && std::abs(error) < target + errorSumMax)) {
         integral += kI * error; // Eliminate integral kick while realtime tuning
       }
 
-      if (shouldResetOnCross && copysign(1.0, error) != copysign(1.0, lastError)) {
+      if (shouldResetOnCross && std::copysign(1.0, error) != std::copysign(1.0, lastError)) {
         integral = 0;
       }
 
@@ -144,7 +145,7 @@ double IterativePosPIDController::step(const double inewReading) {
 
 void IterativePosPIDController::setGains(const double ikP, const double ikI, const double ikD,
                                          const double ikBias) {
-  const double sampleTimeSec = static_cast<double>(sampleTime) / 1000.0;
+  const double sampleTimeSec = sampleTime.convert(second);
   kP = ikP;
   kI = ikI * sampleTimeSec;
   kD = ikD * sampleTimeSec;
@@ -175,7 +176,7 @@ bool IterativePosPIDController::isDisabled() const {
   return !isOn;
 }
 
-std::uint32_t IterativePosPIDController::getSampleTime() const {
+QTime IterativePosPIDController::getSampleTime() const {
   return sampleTime;
 }
 } // namespace okapi

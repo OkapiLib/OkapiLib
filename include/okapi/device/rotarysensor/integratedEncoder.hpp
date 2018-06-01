@@ -8,10 +8,10 @@
 #ifndef _OKAPI_INTEGRATEDENCODER_HPP_
 #define _OKAPI_INTEGRATEDENCODER_HPP_
 
-#include "okapi/device/rotarysensor/rotarySensor.hpp"
+#include "okapi/device/rotarysensor/continuousRotarySensor.hpp"
 
 namespace okapi {
-class IntegratedEncoder : public RotarySensor {
+class IntegratedEncoder : public ContinuousRotarySensor {
   public:
   /**
    * Integrated motor encoder. Uses the encoder inside the V5 motor.

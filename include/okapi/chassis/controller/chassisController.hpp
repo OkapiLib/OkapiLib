@@ -9,6 +9,8 @@
 #define _OKAPI_CHASSISCONTROLLER_HPP_
 
 #include "okapi/chassis/model/chassisModel.hpp"
+#include "okapi/units/QAngle.hpp"
+#include "okapi/units/QLength.hpp"
 #include <memory>
 #include <valarray>
 
@@ -31,14 +33,28 @@ class ChassisController {
    *
    * @param itarget distance to travel
    */
-  virtual void moveDistance(const int itarget) = 0;
+  virtual void moveDistance(const QLength itarget) = 0;
+
+  /**
+   * Drives the robot straight for a distance (using closed-loop control).
+   *
+   * @param itarget distance to travel in meters
+   */
+  virtual void moveDistance(const double itarget) = 0;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for
    */
-  virtual void turnAngle(const float idegTarget) = 0;
+  virtual void turnAngle(const QAngle idegTarget) = 0;
+
+  /**
+   * Turns the robot clockwise in place (using closed-loop control).
+   *
+   * @param idegTarget angle to turn for in degrees
+   */
+  virtual void turnAngle(const double idegTarget) = 0;
 
   /**
    * Drive the robot forwards (using open-loop control).
@@ -121,21 +137,21 @@ class ChassisController {
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(const motor_brake_mode_e_t mode) const;
+  virtual void setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(const motor_encoder_units_e_t units) const;
+  virtual void setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(const motor_gearset_e_t gearset) const;
+  virtual void setGearing(const pros::c::motor_gearset_e_t gearset) const;
 
   protected:
   std::shared_ptr<ChassisModel> model;

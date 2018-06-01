@@ -17,7 +17,7 @@ class IterativeVelPIDControllerArgs : public IterativeVelocityControllerArgs {
   public:
   IterativeVelPIDControllerArgs(const double ikP, const double ikD);
 
-  IterativeVelPIDControllerArgs(const double ikP, const double ikD, const VelMathArgs iparams);
+  IterativeVelPIDControllerArgs(const double ikP, const double ikD, const VelMathArgs &iparams);
 
   const double kP, kD;
   const VelMathArgs params;
@@ -96,9 +96,9 @@ class IterativeVelPIDController : public IterativeVelocityController {
   /**
    * Set time between loops in ms.
    *
-   * @param isampleTime time between loops in ms
+   * @param isampleTime time between loops
    */
-  virtual void setSampleTime(const std::uint32_t isampleTime) override;
+  virtual void setSampleTime(const QTime isampleTime) override;
 
   /**
    * Set controller output bounds.
@@ -140,7 +140,7 @@ class IterativeVelPIDController : public IterativeVelocityController {
    *
    * @return sample time
    */
-  virtual std::uint32_t getSampleTime() const override;
+  virtual QTime getSampleTime() const override;
 
   /**
    * Do one iteration of velocity calculation.
@@ -148,7 +148,7 @@ class IterativeVelPIDController : public IterativeVelocityController {
    * @param inewReading new measurement
    * @return filtered velocity
    */
-  virtual double stepVel(const double inewReading);
+  virtual QAngularSpeed stepVel(const double inewReading);
 
   /**
    * Set controller gains.
@@ -169,12 +169,12 @@ class IterativeVelPIDController : public IterativeVelocityController {
   /**
    * Returns the current velocity.
    */
-  virtual double getVel() const;
+  virtual QAngularSpeed getVel() const;
 
   protected:
   double kP, kD;
-  std::uint32_t lastTime = 0;
-  std::uint32_t sampleTime = 10;
+  QTime lastTime;
+  QTime sampleTime = 10_ms;
   double error = 0;
   double lastError = 0;
   double derivative = 0;

@@ -12,79 +12,80 @@
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(Motor ileftSideMotor,
                                                          Motor irightSideMotor,
-                                                         const double istraightScale,
-                                                         const double iturnScale)
+                                                         const pros::c::motor_gearset_e_t igearset,
+                                                         const ChassisScales &iscales)
   : ChassisControllerIntegrated(std::make_shared<Motor>(ileftSideMotor),
-                                std::make_shared<Motor>(irightSideMotor), istraightScale,
-                                iturnScale) {
+                                std::make_shared<Motor>(irightSideMotor), igearset, iscales) {
 }
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(MotorGroup ileftSideMotor,
                                                          MotorGroup irightSideMotor,
-                                                         const double istraightScale,
-                                                         const double iturnScale)
+                                                         const pros::c::motor_gearset_e_t igearset,
+                                                         const ChassisScales &iscales)
   : ChassisControllerIntegrated(std::make_shared<MotorGroup>(ileftSideMotor),
-                                std::make_shared<MotorGroup>(irightSideMotor), istraightScale,
-                                iturnScale) {
+                                std::make_shared<MotorGroup>(irightSideMotor), igearset, iscales) {
 }
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(Motor itopLeftMotor, Motor itopRightMotor,
                                                          Motor ibottomRightMotor,
                                                          Motor ibottomLeftMotor,
-                                                         const double istraightScale,
-                                                         const double iturnScale)
-  : ChassisControllerIntegrated(
-      std::make_shared<Motor>(itopLeftMotor), std::make_shared<Motor>(itopRightMotor),
-      std::make_shared<Motor>(ibottomRightMotor), std::make_shared<Motor>(ibottomLeftMotor),
-      istraightScale, iturnScale) {
+                                                         const pros::c::motor_gearset_e_t igearset,
+                                                         const ChassisScales &iscales)
+  : ChassisControllerIntegrated(std::make_shared<Motor>(itopLeftMotor),
+                                std::make_shared<Motor>(itopRightMotor),
+                                std::make_shared<Motor>(ibottomRightMotor),
+                                std::make_shared<Motor>(ibottomLeftMotor), igearset, iscales) {
 }
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
-  const double istraightScale, const double iturnScale)
+  const pros::c::motor_gearset_e_t igearset, const ChassisScales &iscales)
   : ChassisController(std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor)),
     leftController(ileftSideMotor),
     rightController(irightSideMotor),
     lastTarget(0),
-    straightScale(istraightScale),
-    turnScale(iturnScale) {
-  setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
+    straightScale(iscales.straight),
+    turnScale(iscales.turn) {
+  setGearing(igearset);
+  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
 }
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<AbstractMotor> itopLeftMotor, std::shared_ptr<AbstractMotor> itopRightMotor,
   std::shared_ptr<AbstractMotor> ibottomRightMotor, std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-  const double istraightScale, const double iturnScale)
+  const pros::c::motor_gearset_e_t igearset, const ChassisScales &iscales)
   : ChassisController(std::make_shared<XDriveModel>(itopLeftMotor, itopRightMotor,
                                                     ibottomRightMotor, ibottomLeftMotor)),
     leftController(itopLeftMotor),
     rightController(itopRightMotor),
     lastTarget(0),
-    straightScale(istraightScale),
-    turnScale(iturnScale) {
-  setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
+    straightScale(iscales.straight),
+    turnScale(iscales.turn) {
+  setGearing(igearset);
+  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
 }
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
-  const AsyncPosIntegratedControllerArgs &irightControllerArgs, const double istraightScale,
-  const double iturnScale)
+  const AsyncPosIntegratedControllerArgs &irightControllerArgs,
+  const pros::c::motor_gearset_e_t igearset, const ChassisScales &iscales)
   : ChassisController(imodel),
     leftController(ileftControllerArgs),
     rightController(irightControllerArgs),
     lastTarget(0),
-    straightScale(istraightScale),
-    turnScale(iturnScale) {
-  setEncoderUnits(E_MOTOR_ENCODER_COUNTS);
+    straightScale(iscales.straight),
+    turnScale(iscales.turn) {
+  setGearing(igearset);
+  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
 }
 
-void ChassisControllerIntegrated::moveDistance(const int itarget) {
+void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
   leftController.reset();
   rightController.reset();
   leftController.flipDisable(false);
   rightController.flipDisable(false);
 
-  const double newTarget = itarget * straightScale;
+  const double newTarget = itarget.convert(meter) * straightScale;
   const auto enc = model->getSensorVals();
   leftController.setTarget(newTarget + enc[0]);
   rightController.setTarget(newTarget + enc[1]);
@@ -99,13 +100,17 @@ void ChassisControllerIntegrated::moveDistance(const int itarget) {
   rightController.flipDisable(true);
 }
 
-void ChassisControllerIntegrated::turnAngle(float idegTarget) {
+void ChassisControllerIntegrated::moveDistance(const double itarget) {
+  moveDistance(itarget * meter);
+}
+
+void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
   leftController.reset();
   rightController.reset();
   leftController.flipDisable(false);
   rightController.flipDisable(false);
 
-  const double newTarget = idegTarget * turnScale;
+  const double newTarget = idegTarget.convert(degree) * turnScale;
   const auto enc = model->getSensorVals();
   leftController.setTarget(newTarget + enc[0]);
   rightController.setTarget(-1 * newTarget + enc[1]);
@@ -118,5 +123,9 @@ void ChassisControllerIntegrated::turnAngle(float idegTarget) {
 
   leftController.flipDisable(true);
   rightController.flipDisable(true);
+}
+
+void ChassisControllerIntegrated::turnAngle(const double idegTarget) {
+  turnAngle(idegTarget * degree);
 }
 } // namespace okapi

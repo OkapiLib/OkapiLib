@@ -10,6 +10,7 @@
 
 #include "api.h"
 #include "okapi/control/closedLoopController.hpp"
+#include "okapi/units/QTime.hpp"
 
 namespace okapi {
 class AsyncControllerArgs {
@@ -31,9 +32,9 @@ class AsyncController : public ClosedLoopController {
   /**
    * Set time between loops in ms. Default does nothing.
    *
-   * @param isampleTime time between loops in ms
+   * @param isampleTime time between loops
    */
-  virtual void setSampleTime(const std::uint32_t isampleTime);
+  virtual void setSampleTime(const QTime isampleTime);
 
   /**
    * Set controller output bounds. Default does nothing.

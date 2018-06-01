@@ -13,7 +13,7 @@
 #include "okapi/device/motor/motor.hpp"
 #include "okapi/device/motor/motorGroup.hpp"
 #include "okapi/device/rotarysensor/adiEncoder.hpp"
-#include "okapi/device/rotarysensor/rotarySensor.hpp"
+#include "okapi/device/rotarysensor/continuousRotarySensor.hpp"
 
 namespace okapi {
 class SkidSteerModelArgs : public ChassisModelArgs {
@@ -24,13 +24,14 @@ class SkidSteerModelArgs : public ChassisModelArgs {
 
   SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
                      std::shared_ptr<AbstractMotor> irightSideMotor,
-                     std::shared_ptr<RotarySensor> ileftEnc,
-                     std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput = 127);
+                     std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                     std::shared_ptr<ContinuousRotarySensor> irightEnc,
+                     const double imaxOutput = 127);
 
   std::shared_ptr<AbstractMotor> leftSideMotor;
   std::shared_ptr<AbstractMotor> rightSideMotor;
-  std::shared_ptr<RotarySensor> leftSensor;
-  std::shared_ptr<RotarySensor> rightSensor;
+  std::shared_ptr<ContinuousRotarySensor> leftSensor;
+  std::shared_ptr<ContinuousRotarySensor> rightSensor;
   const double maxOutput;
 };
 
@@ -98,8 +99,8 @@ class SkidSteerModel : public ChassisModel {
    */
   SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                  std::shared_ptr<AbstractMotor> irightSideMotor,
-                 std::shared_ptr<RotarySensor> ileftEnc, std::shared_ptr<RotarySensor> irightEnc,
-                 const double imaxOutput = 127);
+                 std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                 std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput = 127);
 
   SkidSteerModel(const SkidSteerModelArgs &iparams);
 
@@ -186,21 +187,21 @@ class SkidSteerModel : public ChassisModel {
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(const motor_brake_mode_e_t mode) const override;
+  virtual void setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const override;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(const motor_encoder_units_e_t units) const override;
+  virtual void setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const override;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(const motor_gearset_e_t gearset) const override;
+  virtual void setGearing(const pros::c::motor_gearset_e_t gearset) const override;
 
   /**
    * Returns the left side motor.
@@ -219,8 +220,8 @@ class SkidSteerModel : public ChassisModel {
   protected:
   std::shared_ptr<AbstractMotor> leftSideMotor;
   std::shared_ptr<AbstractMotor> rightSideMotor;
-  std::shared_ptr<RotarySensor> leftSensor;
-  std::shared_ptr<RotarySensor> rightSensor;
+  std::shared_ptr<ContinuousRotarySensor> leftSensor;
+  std::shared_ptr<ContinuousRotarySensor> rightSensor;
   const double maxOutput;
 };
 } // namespace okapi
