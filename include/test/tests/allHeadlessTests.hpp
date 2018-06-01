@@ -13,6 +13,7 @@
 #include "test/tests/controllerTests.hpp"
 #include "test/tests/deviceTests.hpp"
 #include "test/tests/filterTests.hpp"
+#include "test/tests/odometryTests.hpp"
 #include "test/tests/utilTests.hpp"
 
 #endif
