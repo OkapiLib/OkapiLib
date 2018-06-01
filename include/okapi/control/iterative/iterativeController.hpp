@@ -10,6 +10,7 @@
 
 #include "api.h"
 #include "okapi/control/closedLoopController.hpp"
+#include "okapi/units/QTime.hpp"
 
 namespace okapi {
 class IterativeControllerArgs {
@@ -41,11 +42,11 @@ class IterativeController : public ClosedLoopController {
   virtual double getDerivative() const = 0;
 
   /**
-   * Set time between loops in ms.
+   * Set time between loops.
    *
-   * @param isampleTime time between loops in ms
+   * @param isampleTime time between loops
    */
-  virtual void setSampleTime(const std::uint32_t isampleTime);
+  virtual void setSampleTime(const QTime isampleTime);
 
   /**
    * Set controller output bounds.
@@ -56,11 +57,11 @@ class IterativeController : public ClosedLoopController {
   virtual void setOutputLimits(double imax, double imin);
 
   /**
-   * Get the last set sample time. Default is 10.
+   * Get the last set sample time. Default is 10 milliseconds.
    *
    * @return sample time
    */
-  virtual std::uint32_t getSampleTime() const;
+  virtual QTime getSampleTime() const;
 };
 } // namespace okapi
 

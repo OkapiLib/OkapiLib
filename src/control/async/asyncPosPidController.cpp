@@ -10,7 +10,7 @@
 namespace okapi {
 AsyncPosPIDControllerArgs::AsyncPosPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
                                                      std::shared_ptr<ControllerOutput> ioutput,
-                                                     const IterativePosPIDControllerArgs iparams)
+                                                     const IterativePosPIDControllerArgs &iparams)
   : input(iinput), output(ioutput), params(iparams) {
 }
 

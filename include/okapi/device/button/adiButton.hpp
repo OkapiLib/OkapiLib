@@ -11,7 +11,7 @@
 #include "okapi/device/button/button.hpp"
 
 namespace okapi {
-class ADIButton : public Button {
+class ADIButton : public AbstractButton {
   public:
   ADIButton(const std::uint8_t iport, const bool iinverted = false);
 

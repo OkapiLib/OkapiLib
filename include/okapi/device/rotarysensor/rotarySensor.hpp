@@ -22,13 +22,6 @@ class RotarySensor : public ControllerInput {
    * @return the current sensor value, or ``PROS_ERR`` on a failure.
    */
   virtual std::int32_t get() const = 0;
-
-  /**
-   * Reset the sensor to zero.
-   *
-   * @return 1 on suceess, PROS_ERR on fail
-   */
-  virtual std::int32_t reset() const = 0;
 };
 } // namespace okapi
 

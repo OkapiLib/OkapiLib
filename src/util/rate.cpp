@@ -6,22 +6,21 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/util/rate.hpp"
+#include "okapi/units/QTime.hpp"
 
 namespace okapi {
 Rate::Rate() = default;
 
 Rate::~Rate() = default;
 
-void Rate::delayHz(const std::uint32_t ihz) {
+void Rate::delayHz(const QFrequency ihz) {
   if (lastTime == 0) {
     // First call
     lastTime = pros::millis();
-    pros::Task::delay(
-      static_cast<std::uint32_t>(static_cast<double>(1000) / static_cast<double>(ihz)));
+    pros::Task::delay(1000 / ihz.convert(Hz));
   } else {
     // Subsequent call
-    pros::Task::delay_until(
-      &lastTime, static_cast<std::uint32_t>(static_cast<double>(1000) / static_cast<double>(ihz)));
+    pros::Task::delay_until(&lastTime, 1000 / ihz.convert(Hz));
   }
 }
 } // namespace okapi

@@ -22,7 +22,7 @@ void AsyncWrapper::loop() {
       output->controllerSet(controller->step(input->controllerGet()));
     }
 
-    task.delay_until(&prevTime, controller->getSampleTime());
+    task.delay_until(&prevTime, controller->getSampleTime().convert(millisecond));
   }
 }
 
@@ -46,7 +46,7 @@ bool AsyncWrapper::isSettled() {
   return controller->isSettled();
 }
 
-void AsyncWrapper::setSampleTime(const std::uint32_t isampleTime) {
+void AsyncWrapper::setSampleTime(const QTime isampleTime) {
   controller->setSampleTime(isampleTime);
 }
 
@@ -69,4 +69,4 @@ void AsyncWrapper::flipDisable(const bool iisDisabled) {
 bool AsyncWrapper::isDisabled() const {
   return controller->isDisabled();
 }
-}
+} // namespace okapi

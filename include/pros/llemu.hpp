@@ -18,7 +18,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-
+#if 0
 #ifndef _PROS_LLEMU_HPP_
 #define _PROS_LLEMU_HPP_
 
@@ -59,15 +59,13 @@ bool initialize(void);
  */
 bool shutdown(void);
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
 namespace {
-template <typename T>
-T convert_args(T arg) {
-	return arg;
-}
-const char* convert_args(const std::string& arg) {
-	return arg.c_str();
-}
-}  // namespace
+template <typename T> T convert_args(T arg) { return arg; }
+const char *convert_args(const std::string &arg) { return arg.c_str(); }
+} // namespace
+#pragma GCC diagnostic pop
 
 /**
  * Displays a formatted string on the emulated three-button LCD screen.
@@ -88,8 +86,8 @@ const char* convert_args(const std::string& arg) {
  *         errno values as specified above.
  */
 template <typename... Params>
-bool print(std::int16_t line, const char* fmt, Params... args) {
-	return lcd_print(line, fmt, convert_args(args)...);
+bool print(std::int16_t line, const char *fmt, Params... args) {
+  return pros::c::lcd_print(line, fmt, convert_args(args)...);
 }
 
 /**
@@ -173,7 +171,8 @@ void register_btn1_cb(lcd_btn_cb_fn_t cb);
  *        A callback function of type lcd_btn_cb_fn_t(void (*cb)(void))
  */
 void register_btn2_cb(lcd_btn_cb_fn_t cb);
-}  // namespace lcd
-}  // namespace pros
+} // namespace lcd
+} // namespace pros
 
-#endif  // _PROS_LLEMU_HPP_
+#endif // _PROS_LLEMU_HPP_
+#endif

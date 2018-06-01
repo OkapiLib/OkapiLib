@@ -1,4 +1,4 @@
-TRAVIS-BADGE
+[![Build Status](https://travis-ci.com/Octogonapus/OkapiLibV5.svg?token=AwtpYxh3gE2zE453sfAs&branch=develop)](https://travis-ci.com/Octogonapus/OkapiLibV5)
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 DOWNLOADS-BADGE
 

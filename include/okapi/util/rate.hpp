@@ -9,6 +9,7 @@
 #define _OKAPI_RATE_HPP_
 
 #include "api.h"
+#include "okapi/units/QFrequency.hpp"
 
 namespace okapi {
 class Rate {
@@ -18,13 +19,13 @@ class Rate {
   virtual ~Rate();
 
   /**
-   * Delay the current task such that it runs at the given rate in Hertz. The first delay will
+   * Delay the current task such that it runs at the given frequency. The first delay will
    * run for 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the
    * task.
    *
-   * @param ihz rate in Hertz
+   * @param ihz rate
    */
-  virtual void delayHz(const std::uint32_t ihz);
+  virtual void delayHz(const QFrequency ihz);
 
   protected:
   std::uint32_t lastTime = 0;

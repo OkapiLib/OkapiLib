@@ -14,7 +14,7 @@ double AsyncController::getOutput() const {
   return 0;
 }
 
-void AsyncController::setSampleTime(const std::uint32_t) {
+void AsyncController::setSampleTime(const QTime) {
 }
 
 void AsyncController::setOutputLimits(double, double) {

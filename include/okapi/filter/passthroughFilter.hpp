@@ -26,14 +26,14 @@ class PassthroughFilter : public Filter {
    * @param ireading new measurement
    * @return filtered result
    */
-  virtual double filter(const double ireading) override;
+  double filter(const double ireading) override;
 
   /**
    * Returns the previous output from filter.
    *
    * @return the previous output from filter
    */
-  virtual double getOutput() const override;
+  double getOutput() const override;
 
   protected:
   double lastOutput = 0;
