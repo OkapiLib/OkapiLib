@@ -88,12 +88,12 @@ void constructorTests() {
 
   {
     IterativePosPIDController pid1(0, 0, 0);
-    IterativeMotorVelocityController mc1(1_mtr, std::make_shared<IterativeVelPIDController>(0, 0));
+    IterativeMotorVelocityController mc1(1_mtr, std::make_shared<IterativeVelPIDController>(0, 0, 0));
     IterativeMotorVelocityController mc2(MotorGroup({1_mtr, 2_mtr}),
-                                         std::make_shared<IterativeVelPIDController>(0, 0));
-    IterativeMotorVelocityController mc3(1, std::make_shared<IterativeVelPIDController>(0, 0));
+                                         std::make_shared<IterativeVelPIDController>(0, 0, 0));
+    IterativeMotorVelocityController mc3(1, std::make_shared<IterativeVelPIDController>(0, 0, 0));
     IterativeMotorVelocityController mc4({1, -2},
-                                         std::make_shared<IterativeVelPIDController>(0, 0));
+                                         std::make_shared<IterativeVelPIDController>(0, 0, 0));
   }
 
   { AsyncPosIntegratedController posI1(1_mtr); }
@@ -121,8 +121,8 @@ void constructorTests() {
   }
 
   {
-    IterativeVelPIDController velPid1(0, 0);
-    IterativeVelPIDController velPid2(IterativeVelPIDControllerArgs(0, 0));
+    IterativeVelPIDController velPid1(0, 0, 0);
+    IterativeVelPIDController velPid2(IterativeVelPIDControllerArgs(0, 0, 0));
   }
 
   {
@@ -171,7 +171,7 @@ void constructorTests() {
   {
     auto mtr = 1_mtr;
     AsyncVelPIDController con(std::make_shared<IntegratedEncoder>(mtr),
-                              std::make_shared<Motor>(mtr), 0, 0);
+                              std::make_shared<Motor>(mtr), 0, 0, 0);
   }
 
   {

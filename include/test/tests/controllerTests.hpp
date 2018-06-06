@@ -65,7 +65,7 @@ void testIterativeControllers() {
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativeVelPIDController controller(
-      0.000015, 0,
+      0.000015, 0, 0,
       std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
                                 std::make_unique<MockTimer>()),
       std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
@@ -101,7 +101,7 @@ void testIterativeControllers() {
 
     class MockIterativeVelPIDController : public IterativeVelPIDController {
       public:
-      MockIterativeVelPIDController() : IterativeVelPIDController(0, 0) {
+      MockIterativeVelPIDController() : IterativeVelPIDController(0, 0, 0) {
       }
       virtual double step(const double inewReading) override {
         return inewReading;
