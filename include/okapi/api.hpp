@@ -37,7 +37,10 @@
 #include "okapi/device/motor/motor.hpp"
 #include "okapi/device/motor/motorGroup.hpp"
 #include "okapi/device/rotarysensor/adiEncoder.hpp"
+#include "okapi/device/rotarysensor/continuousRotarySensor.hpp"
 #include "okapi/device/rotarysensor/integratedEncoder.hpp"
+#include "okapi/device/rotarysensor/potentiometer.hpp"
+#include "okapi/device/rotarysensor/rotarySensor.hpp"
 #include "okapi/device/vision.hpp"
 
 #include "okapi/filter/averageFilter.hpp"
@@ -45,6 +48,7 @@
 #include "okapi/filter/demaFilter.hpp"
 #include "okapi/filter/ekfFilter.hpp"
 #include "okapi/filter/emaFilter.hpp"
+#include "okapi/filter/filteredControllerInput.hpp"
 #include "okapi/filter/medianFilter.hpp"
 #include "okapi/filter/passthroughFilter.hpp"
 #include "okapi/filter/velMath.hpp"

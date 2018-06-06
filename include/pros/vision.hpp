@@ -29,8 +29,11 @@ public:
    *
    * \param port
    *        The V5 port number from 1-21
+* \param zero_point
+*        One of vision_zero_e_t to set the (0,0) coordinate for the FOV
    */
-  Vision(std::uint8_t port);
+  Vision(std::uint8_t port,
+         pros::c::vision_zero_e_t zero_point = pros::c::E_VISION_ZERO_TOPLEFT);
 
   /**
    * Clears the vision sensor LED color, reseting it back to its default
@@ -81,7 +84,7 @@ public:
    *         size_id, or PROS_ERR if an error occurred.
    */
   pros::c::vision_object_s_t get_by_sig(const std::uint32_t size_id,
-                                        const std::uint8_t sig_id) const;
+                                        const std::uint32_t sig_id) const;
 
   /**
    * Gets the exposure parameter of the Vision Sensor.
@@ -125,6 +128,9 @@ public:
    * reached:
    * EACCES - Another resource is currently trying to access the port.
    *
+* \param size_id
+*        The object to read from a list roughly ordered by object size
+*        (0 is the largest item, 1 is the second largest, etc.)
    * \param object_count
    *        The number of objects to read
    * \param[out] object_arr
@@ -165,7 +171,7 @@ public:
    *         Returns PROS_ERR if the port was invalid or an error occurred.
    */
   std::int32_t read_by_sig(const std::uint32_t size_id,
-                           const std::uint8_t sig_id,
+                           const std::uint32_t sig_id,
                            const std::uint32_t object_count,
                            pros::c::vision_object_s_t *const object_arr) const;
 
@@ -218,6 +224,9 @@ public:
    * reached:
    * EACCES - Another resource is currently trying to access the port.
    *
+* \param rgb
+*        The new RGB white balance setting of the sensor
+*
    * \return 1 if no errors occurred, PROS_ERR otherwise
    */
   std::int32_t set_white_balance(const std::int32_t rgb) const;

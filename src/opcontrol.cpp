@@ -45,6 +45,13 @@ void constructorTests() {
   }
 
   {
+    Potentiometer pot1(1);
+    Potentiometer pot2('a');
+    Potentiometer pot3('A');
+    pot1.get();
+  }
+
+  {
     ADIUltrasonic ultra1(1, 2);
     ultra1.get();
   }
@@ -105,6 +112,10 @@ void constructorTests() {
 
     AsyncPosPIDController apospid2(std::make_shared<ADIEncoder>(1, 2, true),
                                    std::make_shared<Motor>(1_mtr), 0, 0, 0);
+
+    AsyncPosPIDController apospid3(std::make_shared<FilteredControllerInput<ADIEncoder, EmaFilter>>(
+                                     ADIEncoder(1, 2), EmaFilter(0.2)),
+                                   std::make_shared<Motor>(1_mtr), 0, 0, 0);
   }
 
   {
@@ -130,7 +141,11 @@ void constructorTests() {
     ADIEncoder quad2(0, 0, true);
   }
 
-  { MotorGroup mg1({1_mtr, 2_mtr}); }
+  {
+    MotorGroup mg1({1_mtr, 2_mtr});
+    MotorGroup mg2({1, -2});
+    MotorGroup mg3({Motor(1), Motor(2)});
+  }
 
   {
     AverageFilter<2> avgFilt1;

@@ -12,8 +12,8 @@
 namespace okapi {
 SkidSteerModelArgs::SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                        std::shared_ptr<AbstractMotor> irightSideMotor,
-                                       std::shared_ptr<RotarySensor> ileftEnc,
-                                       std::shared_ptr<RotarySensor> irightEnc,
+                                       std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                                       std::shared_ptr<ContinuousRotarySensor> irightEnc,
                                        const double imaxOutput)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
@@ -54,8 +54,9 @@ SkidSteerModel::SkidSteerModel(MotorGroup ileftSideMotor, MotorGroup irightSideM
 
 SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                std::shared_ptr<AbstractMotor> irightSideMotor,
-                               std::shared_ptr<RotarySensor> ileftEnc,
-                               std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput)
+                               std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                               std::shared_ptr<ContinuousRotarySensor> irightEnc,
+                               const double imaxOutput)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
     leftSensor(ileftEnc),

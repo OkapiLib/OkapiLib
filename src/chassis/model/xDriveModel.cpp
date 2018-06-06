@@ -13,8 +13,9 @@ XDriveModelArgs::XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
                                  std::shared_ptr<AbstractMotor> itopRightMotor,
                                  std::shared_ptr<AbstractMotor> ibottomRightMotor,
                                  std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                                 std::shared_ptr<RotarySensor> ileftEnc,
-                                 std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput)
+                                 std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                                 std::shared_ptr<ContinuousRotarySensor> irightEnc,
+                                 const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
@@ -60,8 +61,8 @@ XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
                          std::shared_ptr<AbstractMotor> itopRightMotor,
                          std::shared_ptr<AbstractMotor> ibottomRightMotor,
                          std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                         std::shared_ptr<RotarySensor> ileftEnc,
-                         std::shared_ptr<RotarySensor> irightEnc, const double imaxOutput)
+                         std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                         std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),

@@ -8,10 +8,10 @@
 #ifndef _OKAPI_ADIENCODER_HPP_
 #define _OKAPI_ADIENCODER_HPP_
 
-#include "okapi/device/rotarysensor/rotarySensor.hpp"
+#include "okapi/device/rotarysensor/continuousRotarySensor.hpp"
 
 namespace okapi {
-class ADIEncoder : public RotarySensor {
+class ADIEncoder : public ContinuousRotarySensor {
   public:
   ADIEncoder(const std::uint8_t iportTop, const std::uint8_t iportBottom,
              const bool ireversed = false);

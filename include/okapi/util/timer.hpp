@@ -19,8 +19,6 @@ class Timer {
 
   virtual ~Timer();
 
-  static QTime millis();
-
   /**
    * Returns the time passed in ms since the previous call of this function.
    *
@@ -100,6 +98,8 @@ class Timer {
   QTime mark;
   QTime hardMark;
   QTime repeatMark;
+
+  static QTime millis();
 };
 } // namespace okapi
 

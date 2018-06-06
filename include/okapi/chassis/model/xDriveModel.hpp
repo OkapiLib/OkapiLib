@@ -13,7 +13,7 @@
 #include "okapi/device/motor/motor.hpp"
 #include "okapi/device/motor/motorGroup.hpp"
 #include "okapi/device/rotarysensor/adiEncoder.hpp"
-#include "okapi/device/rotarysensor/rotarySensor.hpp"
+#include "okapi/device/rotarysensor/continuousRotarySensor.hpp"
 
 namespace okapi {
 class XDriveModelArgs : public ChassisModelArgs {
@@ -27,15 +27,15 @@ class XDriveModelArgs : public ChassisModelArgs {
                   std::shared_ptr<AbstractMotor> itopRightMotor,
                   std::shared_ptr<AbstractMotor> ibottomRightMotor,
                   std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                  std::shared_ptr<RotarySensor> ileftEnc, std::shared_ptr<RotarySensor> irightEnc,
-                  const double imaxOutput = 127);
+                  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                  std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput = 127);
 
   std::shared_ptr<AbstractMotor> topLeftMotor;
   std::shared_ptr<AbstractMotor> topRightMotor;
   std::shared_ptr<AbstractMotor> bottomRightMotor;
   std::shared_ptr<AbstractMotor> bottomLeftMotor;
-  std::shared_ptr<RotarySensor> leftSensor;
-  std::shared_ptr<RotarySensor> rightSensor;
+  std::shared_ptr<ContinuousRotarySensor> leftSensor;
+  std::shared_ptr<ContinuousRotarySensor> rightSensor;
   const double maxOutput;
 };
 
@@ -104,8 +104,8 @@ class XDriveModel : public ChassisModel {
               std::shared_ptr<AbstractMotor> itopRightMotor,
               std::shared_ptr<AbstractMotor> ibottomRightMotor,
               std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-              std::shared_ptr<RotarySensor> ileftEnc, std::shared_ptr<RotarySensor> irightEnc,
-              const double imaxOutput = 127);
+              std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+              std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput = 127);
 
   XDriveModel(const XDriveModelArgs &iparams);
 
@@ -252,8 +252,8 @@ class XDriveModel : public ChassisModel {
   std::shared_ptr<AbstractMotor> topRightMotor;
   std::shared_ptr<AbstractMotor> bottomRightMotor;
   std::shared_ptr<AbstractMotor> bottomLeftMotor;
-  std::shared_ptr<RotarySensor> leftSensor;
-  std::shared_ptr<RotarySensor> rightSensor;
+  std::shared_ptr<ContinuousRotarySensor> leftSensor;
+  std::shared_ptr<ContinuousRotarySensor> rightSensor;
   const double maxOutput;
 };
 } // namespace okapi

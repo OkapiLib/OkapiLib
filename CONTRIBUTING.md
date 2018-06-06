@@ -133,6 +133,7 @@ OkapiLib uses the program [cppcheck](http://cppcheck.sourceforge.net/) for stati
 * Use [Javadoc-style](https://www.tutorialspoint.com/java/java_documentation.htm) comments on constructors and methods.
 * Name classes and methods using Camel case. Class names should start with a capital letter.
 * Do not prefix member variables with `m_`; instead, prefix parameters with `i`.
+* Place protected and private class members at the bottom of the class declaration.
 * Do not `using namespace std` or any other namespace as this pollutes the user's namespace.
 * No raw pointers. Use references (preferably `const` references) instead. If you need to pass an abstract class and can't use a reference, use a smart pointer.
 * Use in-class member initializers and default constructors for no-arg constructors where possible.
