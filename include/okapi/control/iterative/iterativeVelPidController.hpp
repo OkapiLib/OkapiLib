@@ -17,7 +17,8 @@ class IterativeVelPIDControllerArgs : public IterativeVelocityControllerArgs {
   public:
   IterativeVelPIDControllerArgs(const double ikP, const double ikD, const double ikF);
 
-  IterativeVelPIDControllerArgs(const double ikP, const double ikD, const double ikF, const VelMathArgs &iparams);
+  IterativeVelPIDControllerArgs(const double ikP, const double ikD, const double ikF,
+                                const VelMathArgs &iparams);
 
   const double kP, kD, kF;
   const VelMathArgs params;
@@ -39,7 +40,8 @@ class IterativeVelPIDController : public IterativeVelocityController {
    * @param ikP proportional gain
    * @param ikD derivative gain
    */
-  IterativeVelPIDController(const double ikP, const double ikD, const double ikF, const VelMathArgs &iparams);
+  IterativeVelPIDController(const double ikP, const double ikD, const double ikF,
+                            const VelMathArgs &iparams);
 
   /**
    * Velocity PID controller.
@@ -51,8 +53,8 @@ class IterativeVelPIDController : public IterativeVelocityController {
   /**
    * This constructor is meant for unit testing.
    */
-  IterativeVelPIDController(const double ikP, const double ikD, const double ikF, std::unique_ptr<VelMath> ivelMath,
-                            std::unique_ptr<Timer> iloopDtTimer,
+  IterativeVelPIDController(const double ikP, const double ikD, const double ikF,
+                            std::unique_ptr<VelMath> ivelMath, std::unique_ptr<Timer> iloopDtTimer,
                             std::unique_ptr<SettledUtil> isettledUtil);
 
   /**

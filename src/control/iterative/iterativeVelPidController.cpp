@@ -25,8 +25,8 @@ IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, c
 
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
                                                      const double ikF)
-  : IterativeVelPIDController(ikP, ikD, ikF, std::make_unique<VelMath>(1800), std::make_unique<Timer>(),
-                              std::make_unique<SettledUtil>()) {
+  : IterativeVelPIDController(ikP, ikD, ikF, std::make_unique<VelMath>(1800),
+                              std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
 }
 
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
@@ -36,8 +36,9 @@ IterativeVelPIDController::IterativeVelPIDController(const double ikP, const dou
 }
 
 IterativeVelPIDController::IterativeVelPIDController(const IterativeVelPIDControllerArgs &iparams)
-  : IterativeVelPIDController(iparams.kP, iparams.kD, iparams.kF, std::make_unique<VelMath>(iparams.params),
-                              std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
+  : IterativeVelPIDController(iparams.kP, iparams.kD, iparams.kF,
+                              std::make_unique<VelMath>(iparams.params), std::make_unique<Timer>(),
+                              std::make_unique<SettledUtil>()) {
 }
 
 // std::make_unique<Timer>(), std::make_unique<SettledUtil>()
