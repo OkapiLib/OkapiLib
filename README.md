@@ -11,7 +11,7 @@ Documentation is hosted on the PROS website: [OkapiLib Docs](https://pros3.purdu
 
 ## Installing
 
-You can use the PROS CLI to install OkapiLib. In your terminal, inside the project you want to install OkapiLib in, run `pros conduct apply okapilib`. Note that in modern versions of PROS 3, Okapilib will be installed by default in new projects.
+You can use the PROS CLI to install OkapiLib. In your terminal, inside the project you want to install OkapiLib in, run `pros conduct apply okapilib`. Note that in newer (post-beta) versions of PROS 3, Okapilib will be installed by default in new projects.
 
 ## Contributing
 
