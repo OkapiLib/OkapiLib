@@ -95,7 +95,8 @@ void constructorTests() {
 
   {
     IterativePosPIDController pid1(0, 0, 0);
-    IterativeMotorVelocityController mc1(1_mtr, std::make_shared<IterativeVelPIDController>(0, 0, 0));
+    IterativeMotorVelocityController mc1(1_mtr,
+                                         std::make_shared<IterativeVelPIDController>(0, 0, 0));
     IterativeMotorVelocityController mc2(MotorGroup({1_mtr, 2_mtr}),
                                          std::make_shared<IterativeVelPIDController>(0, 0, 0));
     IterativeMotorVelocityController mc3(1, std::make_shared<IterativeVelPIDController>(0, 0, 0));
@@ -199,6 +200,17 @@ void constructorTests() {
 void opcontrol() {
   using namespace okapi;
   pros::Task::delay(100);
+
+  // auto myMotor = 11_mtr;
+  // AsyncVelPIDController apid(std::make_shared<IntegratedEncoder>(myMotor),
+  //                            std::make_shared<Motor>(myMotor), 0.001, 0, 0);
+  //
+  // apid.setTarget(20);
+  //
+  // for (;;) {
+  //   printf("Error: %1.2f, Output: %1.2f\n", apid.getError(), apid.getOutput());
+  //   pros::Task::delay(15);
+  // }
 
   runHeadlessTests();
   return;

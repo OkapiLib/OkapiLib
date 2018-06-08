@@ -60,8 +60,10 @@ void testFilters() {
       auto testName = "MedianFilter i = " + std::to_string(i);
       if (i < 3) {
         test(testName, TEST_BODY(AssertThat, filt.filter(i), EqualsWithDelta(0, 0.0001)));
+        test(testName, TEST_BODY(AssertThat, filt.getOutput(), EqualsWithDelta(0, 0.0001)));
       } else {
         test(testName, TEST_BODY(AssertThat, filt.filter(i), EqualsWithDelta(i - 2, 0.0001)));
+        test(testName, TEST_BODY(AssertThat, filt.getOutput(), EqualsWithDelta(i - 2, 0.0001)));
       }
     }
   }
@@ -72,18 +74,34 @@ void testFilters() {
     EmaFilter filt(0.5);
 
     test("EmaFilter i = 0", TEST_BODY(AssertThat, filt.filter(0), EqualsWithDelta(0, 0.0001)));
+    test("EmaFilter i = 0", TEST_BODY(AssertThat, filt.getOutput(), EqualsWithDelta(0, 0.0001)));
+
     test("EmaFilter i = 1", TEST_BODY(AssertThat, filt.filter(1), EqualsWithDelta(0.5, 0.0001)));
+    test("EmaFilter i = 1", TEST_BODY(AssertThat, filt.getOutput(), EqualsWithDelta(0.5, 0.0001)));
+
     test("EmaFilter i = 2", TEST_BODY(AssertThat, filt.filter(2), EqualsWithDelta(1.25, 0.0001)));
+    test("EmaFilter i = 2", TEST_BODY(AssertThat, filt.getOutput(), EqualsWithDelta(1.25, 0.0001)));
+
     test("EmaFilter i = -3",
          TEST_BODY(AssertThat, filt.filter(-3), EqualsWithDelta(-0.875, 0.0001)));
+    test("EmaFilter i = -3",
+         TEST_BODY(AssertThat, filt.getOutput(), EqualsWithDelta(-0.875, 0.0001)));
 
     EmaFilter filt2(1);
     test("EmaFilter with alpha = 1 should return input signal 1",
          TEST_BODY(AssertThat, filt2.filter(5), EqualsWithDelta(5, 0.0001)));
+    test("EmaFilter with alpha = 1 should return input signal 1",
+         TEST_BODY(AssertThat, filt2.getOutput(), EqualsWithDelta(5, 0.0001)));
+
     test("EmaFilter with alpha = 1 should return input signal 2",
          TEST_BODY(AssertThat, filt2.filter(5), EqualsWithDelta(5, 0.0001)));
+    test("EmaFilter with alpha = 1 should return input signal 2",
+         TEST_BODY(AssertThat, filt2.getOutput(), EqualsWithDelta(5, 0.0001)));
+
     test("EmaFilter with alpha = 1 should return input signal 3",
          TEST_BODY(AssertThat, filt2.filter(5), EqualsWithDelta(5, 0.0001)));
+    test("EmaFilter with alpha = 1 should return input signal 3",
+         TEST_BODY(AssertThat, filt2.getOutput(), EqualsWithDelta(5, 0.0001)));
   }
 
   {

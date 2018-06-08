@@ -19,7 +19,7 @@ void AsyncWrapper::loop() {
 
   while (true) {
     if (!controller->isDisabled()) {
-      output->controllerSet(controller->step(input->controllerGet()));
+      output->controllerSet(127 * controller->step(input->controllerGet()));
     }
 
     task.delay_until(&prevTime, controller->getSampleTime().convert(millisecond));

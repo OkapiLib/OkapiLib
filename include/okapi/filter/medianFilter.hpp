@@ -38,7 +38,8 @@ template <std::size_t n> class MedianFilter : public Filter {
       index = 0;
     }
 
-    return kth_smallset();
+    output = kth_smallset();
+    return output;
   }
 
   /**

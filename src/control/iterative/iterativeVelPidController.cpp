@@ -7,6 +7,8 @@
  */
 #include "okapi/control/iterative/iterativeVelPidController.hpp"
 #include "api.h"
+#include "okapi/filter/averageFilter.hpp"
+#include "okapi/filter/medianFilter.hpp"
 #include <algorithm>
 #include <cmath>
 
@@ -97,7 +99,7 @@ double IterativeVelPIDController::step(const double inewReading) {
       // Derivative over measurement to eliminate derivative kick on setpoint change
       derivative = velMath->getAccel().getValue();
 
-      output = kP * error - kD * derivative;
+      output += kP * error - kD * derivative;
       output = std::clamp(output, outputMin, outputMax);
 
       lastError = error;
