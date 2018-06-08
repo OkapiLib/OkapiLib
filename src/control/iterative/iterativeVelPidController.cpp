@@ -7,8 +7,6 @@
  */
 #include "okapi/control/iterative/iterativeVelPidController.hpp"
 #include "api.h"
-#include "okapi/filter/averageFilter.hpp"
-#include "okapi/filter/medianFilter.hpp"
 #include <algorithm>
 #include <cmath>
 
