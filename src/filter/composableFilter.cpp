@@ -42,7 +42,8 @@ double ComposableFilter::filter(const double ireading) {
     filters[i]->filter(filters[i - 1]->getOutput());
   }
 
-  return filters.back()->getOutput();
+  output = filters.back()->getOutput();
+  return output;
 }
 
 double ComposableFilter::getOutput() const {
