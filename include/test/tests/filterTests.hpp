@@ -57,12 +57,8 @@ void testFilters() {
     MedianFilter<5> filt;
 
     for (int i = 0; i < 10; i++) {
-      auto testName = "MedianFilter i = " + std::to_string(i);
-      if (i < 3) {
-        test(testName, TEST_BODY(AssertThat, filt.filter(i), EqualsWithDelta(0, 0.0001)));
-      } else {
-        test(testName, TEST_BODY(AssertThat, filt.filter(i), EqualsWithDelta(i - 2, 0.0001)));
-      }
+      test("MedianFilter i = " + std::to_string(i),
+           TEST_BODY(AssertThat, filt.filter(i), Equals(i < 3 ? 0 : i - 2)));
     }
   }
 
@@ -71,7 +67,7 @@ void testFilters() {
 
     EmaFilter filt(0.5);
 
-    test("EmaFilter i = 0", TEST_BODY(AssertThat, filt.filter(0), EqualsWithDelta(0, 0.0001)));
+    test("EmaFilter i = 0", TEST_BODY(AssertThat, filt.filter(0), Equals(0)));
     test("EmaFilter i = 1", TEST_BODY(AssertThat, filt.filter(1), EqualsWithDelta(0.5, 0.0001)));
     test("EmaFilter i = 2", TEST_BODY(AssertThat, filt.filter(2), EqualsWithDelta(1.25, 0.0001)));
     test("EmaFilter i = -3",
@@ -91,7 +87,7 @@ void testFilters() {
 
     DemaFilter filt(0.5, 0.05);
 
-    test("DemaFilter i = 0", TEST_BODY(AssertThat, filt.filter(0), EqualsWithDelta(0, 0.0001)));
+    test("DemaFilter i = 0", TEST_BODY(AssertThat, filt.filter(0), Equals(0)));
     test("DemaFilter i = 1", TEST_BODY(AssertThat, filt.filter(1), EqualsWithDelta(0.525, 0.0001)));
     test("DemaFilter i = 2",
          TEST_BODY(AssertThat, filt.filter(2), EqualsWithDelta(1.3244, 0.0001)));
@@ -157,26 +153,42 @@ void testFilters() {
   {
     test_printf("Testing VelMath");
 
-    class MockTimer : public Timer {
-      public:
-      using Timer::Timer;
-      virtual QTime getDt() override {
-        return 10_ms;
-      }
-    };
+    {
+      class MockTimer : public Timer {
+        public:
+        using Timer::Timer;
+        virtual QTime getDt() override {
+          return 10_ms;
+        }
+      };
 
-    VelMath velMath(360, std::make_shared<PassthroughFilter>(), std::make_unique<MockTimer>());
+      VelMath velMath(360, std::make_shared<PassthroughFilter>(), std::make_unique<MockTimer>());
 
-    for (int i = 0; i < 10; i++) {
-      if (i == 0) {
-        test("VelMath " + std::to_string(i),
-             TEST_BODY(AssertThat, velMath.step(i * 10).convert(rpm), EqualsWithDelta(0, 0.01)));
-      } else {
-        // 10 ticks per 100 ms should be ~16.67 rpm
-        test(
-          "VelMath " + std::to_string(i),
-          TEST_BODY(AssertThat, velMath.step(i * 10).convert(rpm), EqualsWithDelta(166.67, 0.01)));
+      for (int i = 0; i < 10; i++) {
+        if (i == 0) {
+          test("VelMath " + std::to_string(i),
+               TEST_BODY(AssertThat, velMath.step(i * 10).convert(rpm), Equals(0)));
+        } else {
+          // 10 ticks per 100 ms should be ~16.67 rpm
+          test("VelMath " + std::to_string(i),
+               TEST_BODY(AssertThat, velMath.step(i * 10).convert(rpm),
+                         EqualsWithDelta(166.67, 0.01)));
+        }
       }
+    }
+
+    {
+      class MockVelMath : public VelMath {
+        public:
+        using VelMath::VelMath;
+        double getTPR() const {
+          return ticksPerRev;
+        }
+      };
+
+      MockVelMath velMath2(0);
+      test("VelMath should use default TPR if given 0",
+           TEST_BODY(AssertThat, velMath2.getTPR(), Equals(imev5TPR)));
     }
   }
 }
