@@ -31,6 +31,3 @@ OkapiLib would like to thank, for their contributions, knowledge, and/or otherwi
  - [The PROS team](https://github.com/purduesigbots)
  - [Jonathan Bayless and Purdue Vex U team BLRS](https://github.com/purduesigbots/libblrs)
  - [Brad Miller and WPIlib](https://github.com/wpilibsuite/allwpilib)
-
-# Contributing
-Take a look at the [contribution guidelines](CONTRIBUTING.MD) if you want to help make OkapiLib better.
