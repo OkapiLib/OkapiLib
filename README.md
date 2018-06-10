@@ -23,7 +23,7 @@ OkapiLib uses [SemVer](semver.org) for versioning. For available versions, see t
 
 ## License
 
-This project is licensed under the Mozilla Public License, version 2.0 - see the [LICENSE.md](LICENSE.md) file for the full license.
+This project is licensed under the Mozilla Public License, version 2.0 - see the [LICENSE](LICENSE) file for the full license.
 
 ## Acknowledgments
 
