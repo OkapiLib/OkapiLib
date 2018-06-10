@@ -37,8 +37,6 @@ IterativeVelPIDController::IterativeVelPIDController(const IterativeVelPIDContro
                               std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
 }
 
-// std::make_unique<Timer>(), std::make_unique<SettledUtil>()
-
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
                                                      std::unique_ptr<VelMath> ivelMath,
                                                      std::unique_ptr<Timer> iloopDtTimer,
