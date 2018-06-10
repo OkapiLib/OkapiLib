@@ -1,13 +1,6 @@
 sudo: required
 dist: trusty
 
-# before_install:
-#   # - wget -O ~/gcc-arm-none-eabi-7-2017-q4-major-linux.tar.bz2 https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2017q4/gcc-arm-none-eabi-7-2017-q4-major-linux.tar.bz2
-#   # - tar -xf ~/gcc-arm-none-eabi-7-2017-q4-major-linux.tar.bz2 -C ~
-#   - sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa -y
-#   - sudo apt-get update -y
-#   - sudo apt-get install -y lib32z1 lib32ncurses5 lib32bz2-1.0 gcc-arm-embedded
-
 cache: packages
 addons:
   apt:
