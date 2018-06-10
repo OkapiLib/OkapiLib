@@ -41,8 +41,6 @@ IterativeVelPIDController::IterativeVelPIDController(const IterativeVelPIDContro
                               std::make_unique<SettledUtil>()) {
 }
 
-// std::make_unique<Timer>(), std::make_unique<SettledUtil>()
-
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
                                                      const double ikF,
                                                      std::unique_ptr<VelMath> ivelMath,

@@ -145,29 +145,45 @@ void testFilters() {
   {
     test_printf("Testing VelMath");
 
-    class MockTimer : public Timer {
-      public:
-      using Timer::Timer;
-      virtual QTime getDt() override {
-        return 10_ms;
-      }
-    };
+    {
+      class MockTimer : public Timer {
+        public:
+        using Timer::Timer;
+        virtual QTime getDt() override {
+          return 10_ms;
+        }
+      };
 
-    VelMath velMath(360, std::make_shared<PassthroughFilter>(), std::make_unique<MockTimer>());
+      VelMath velMath(360, std::make_shared<PassthroughFilter>(), std::make_unique<MockTimer>());
 
-    for (int i = 0; i < 10; i++) {
-      if (i == 0) {
-        test("VelMath " + std::to_string(i), [&]() {
-          AssertThat(velMath.step(i * 10).convert(rpm), EqualsWithDelta(0, 0.01));
-          AssertThat(velMath.getVelocity().convert(rpm), EqualsWithDelta(0, 0.01));
-        });
-      } else {
-        // 10 ticks per 100 ms should be ~16.67 rpm
-        test("VelMath " + std::to_string(i), [&]() {
-          AssertThat(velMath.step(i * 10).convert(rpm), EqualsWithDelta(166.67, 0.01));
-          AssertThat(velMath.getVelocity().convert(rpm), EqualsWithDelta(166.67, 0.01));
-        });
+      for (int i = 0; i < 10; i++) {
+        if (i == 0) {
+          test("VelMath " + std::to_string(i), [&]() {
+            AssertThat(velMath.step(i * 10).convert(rpm), EqualsWithDelta(0, 0.01));
+            AssertThat(velMath.getVelocity().convert(rpm), EqualsWithDelta(0, 0.01));
+          });
+        } else {
+          // 10 ticks per 100 ms should be ~16.67 rpm
+          test("VelMath " + std::to_string(i), [&]() {
+            AssertThat(velMath.step(i * 10).convert(rpm), EqualsWithDelta(166.67, 0.01));
+            AssertThat(velMath.getVelocity().convert(rpm), EqualsWithDelta(166.67, 0.01));
+          });
+        }
       }
+    }
+
+    {
+      class MockVelMath : public VelMath {
+        public:
+        using VelMath::VelMath;
+        double getTPR() const {
+          return ticksPerRev;
+        }
+      };
+
+      MockVelMath velMath2(0);
+      test("VelMath should use default TPR if given 0",
+           TEST_BODY(AssertThat, velMath2.getTPR(), Equals(imev5TPR)));
     }
   }
 }

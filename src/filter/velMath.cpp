@@ -9,17 +9,18 @@
 #include "api.h"
 #include "okapi/filter/averageFilter.hpp"
 #include "okapi/filter/medianFilter.hpp"
+#include "okapi/util/mathUtil.hpp"
 #include <utility>
 
 namespace okapi {
 VelMathArgs::VelMathArgs(const double iticksPerRev)
-  : ticksPerRev(iticksPerRev),
-    filter(std::make_shared<ComposableFilter>(std::initializer_list<std::shared_ptr<Filter>>(
-      {std::make_shared<MedianFilter<5>>(), std::make_shared<AverageFilter<5>>()}))) {
+  : VelMathArgs(iticksPerRev,
+                std::make_shared<ComposableFilter>(std::initializer_list<std::shared_ptr<Filter>>(
+                  {std::make_shared<MedianFilter<3>>(), std::make_shared<AverageFilter<5>>()}))) {
 }
 
 VelMathArgs::VelMathArgs(const double iticksPerRev, std::shared_ptr<Filter> ifilter)
-  : ticksPerRev(iticksPerRev), filter(ifilter) {
+  : ticksPerRev(iticksPerRev == 0 ? imev5TPR : iticksPerRev), filter(ifilter) {
 }
 
 VelMathArgs::~VelMathArgs() = default;
@@ -41,7 +42,9 @@ VelMath::VelMath(const VelMathArgs &iparams)
 
 VelMath::VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter,
                  std::unique_ptr<Timer> iloopDtTimer)
-  : ticksPerRev(iticksPerRev), loopDtTimer(std::move(iloopDtTimer)), filter(ifilter) {
+  : ticksPerRev(iticksPerRev == 0 ? imev5TPR : iticksPerRev),
+    loopDtTimer(std::move(iloopDtTimer)),
+    filter(ifilter) {
 }
 
 VelMath::~VelMath() = default;

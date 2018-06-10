@@ -11,7 +11,7 @@ Documentation is hosted on the PROS website: [OkapiLib Docs](https://pros3.purdu
 
 ## Installing
 
-You can use the PROS CLI to install OkapiLib. In your terminal, inside the project you want to install OkapiLib in, run ????????????
+You can use the PROS CLI to install OkapiLib. In your terminal, inside the project you want to install OkapiLib in, run `pros conduct apply okapilib`. Note that in newer (post-beta) versions of PROS 3, Okapilib will be installed by default in new projects.
 
 ## Contributing
 
@@ -23,7 +23,7 @@ OkapiLib uses [SemVer](semver.org) for versioning. For available versions, see t
 
 ## License
 
-This project is licensed under the Mozilla Public License, version 2.0 - see the [LICENSE.md](LICENSE.md) file for the full license.
+This project is licensed under the Mozilla Public License, version 2.0 - see the [LICENSE](LICENSE) file for the full license.
 
 ## Acknowledgments
 
@@ -31,6 +31,3 @@ OkapiLib would like to thank, for their contributions, knowledge, and/or otherwi
  - [The PROS team](https://github.com/purduesigbots)
  - [Jonathan Bayless and Purdue Vex U team BLRS](https://github.com/purduesigbots/libblrs)
  - [Brad Miller and WPIlib](https://github.com/wpilibsuite/allwpilib)
-
-# Contributing
-Take a look at the [contribution guidelines](CONTRIBUTING.MD) if you want to help make OkapiLib better.
