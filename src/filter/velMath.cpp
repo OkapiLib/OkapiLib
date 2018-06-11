@@ -28,7 +28,7 @@ VelMathArgs::~VelMathArgs() = default;
 VelMath::VelMath(const double iticksPerRev)
   : VelMath(iticksPerRev,
             std::make_shared<ComposableFilter>(std::initializer_list<std::shared_ptr<Filter>>(
-              {std::make_shared<MedianFilter<3>>(), std::make_shared<AverageFilter<5>>()})),
+              {std::make_shared<MedianFilter<5>>(), std::make_shared<AverageFilter<5>>()})),
             std::make_unique<Timer>()) {
 }
 

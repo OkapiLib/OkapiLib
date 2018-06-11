@@ -13,7 +13,7 @@ PassthroughFilter::PassthroughFilter() = default;
 
 double PassthroughFilter::filter(const double ireading) {
   lastOutput = ireading;
-  return ireading;
+  return lastOutput;
 }
 
 double PassthroughFilter::getOutput() const {
