@@ -38,7 +38,7 @@ class ChassisController {
   /**
    * Drives the robot straight for a distance (using closed-loop control).
    *
-   * @param itarget distance to travel in meters
+   * @param itarget distance to travel in motor degrees
    */
   virtual void moveDistance(const double itarget) = 0;
 
@@ -52,7 +52,7 @@ class ChassisController {
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
-   * @param idegTarget angle to turn for in degrees
+   * @param idegTarget angle to turn for in motor degrees
    */
   virtual void turnAngle(const double idegTarget) = 0;
 

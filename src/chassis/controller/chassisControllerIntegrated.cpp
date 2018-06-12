@@ -101,7 +101,8 @@ void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
 }
 
 void ChassisControllerIntegrated::moveDistance(const double itarget) {
-  moveDistance(itarget * meter);
+  // Divide by straightScale so the final result turns back into motor degrees
+  moveDistance((itarget / straightScale) * meter);
 }
 
 void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
@@ -126,6 +127,7 @@ void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
 }
 
 void ChassisControllerIntegrated::turnAngle(const double idegTarget) {
-  turnAngle(idegTarget * degree);
+  // Divide by turnScale so the final result turns back into motor degrees
+  turnAngle((idegTarget / turnScale) * degree);
 }
 } // namespace okapi

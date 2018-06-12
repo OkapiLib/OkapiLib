@@ -41,6 +41,6 @@ class FilteredControllerInput : public ControllerInput {
   std::unique_ptr<InputType> input;
   std::unique_ptr<FilterType> filter;
 };
-}
+} // namespace okapi
 
 #endif

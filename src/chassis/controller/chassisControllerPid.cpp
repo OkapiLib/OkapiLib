@@ -114,7 +114,8 @@ void ChassisControllerPID::moveDistance(const QLength itarget) {
 }
 
 void ChassisControllerPID::moveDistance(const double itarget) {
-  moveDistance(itarget * meter);
+  // Divide by straightScale so the final result turns back into motor degrees
+  moveDistance((itarget / straightScale) * meter);
 }
 
 void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
@@ -139,6 +140,7 @@ void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
 }
 
 void ChassisControllerPID::turnAngle(const double idegTarget) {
-  turnAngle(idegTarget * degree);
+  // Divide by turnScale so the final result turns back into motor degrees
+  turnAngle((idegTarget / turnScale) * degree);
 }
 } // namespace okapi

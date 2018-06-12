@@ -32,7 +32,7 @@ class AsyncVelPIDController : public AsyncWrapper, public AsyncVelocityControlle
   public:
   AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
                         std::shared_ptr<ControllerOutput> ioutput, const double ikP,
-                        const double ikD);
+                        const double ikD, const double ikF);
 
   AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
                         std::shared_ptr<ControllerOutput> ioutput,

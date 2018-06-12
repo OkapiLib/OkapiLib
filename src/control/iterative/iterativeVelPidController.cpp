@@ -12,46 +12,50 @@
 
 namespace okapi {
 
-IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, const double ikD)
-  : kP(ikP), kD(ikD), params(1800) {
+IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, const double ikD,
+                                                             const double ikF)
+  : kP(ikP), kD(ikD), kF(ikF), params(1800) {
 }
 
 IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, const double ikD,
+                                                             const double ikF,
                                                              const VelMathArgs &iparams)
-  : kP(ikP), kD(ikD), params(iparams) {
-}
-
-IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD)
-  : IterativeVelPIDController(ikP, ikD, std::make_unique<VelMath>(1800), std::make_unique<Timer>(),
-                              std::make_unique<SettledUtil>()) {
+  : kP(ikP), kD(ikD), kF(ikF), params(iparams) {
 }
 
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
-                                                     const VelMathArgs &iparams)
-  : IterativeVelPIDController(ikP, ikD, std::make_unique<VelMath>(iparams),
+                                                     const double ikF)
+  : IterativeVelPIDController(ikP, ikD, ikF, std::make_unique<VelMath>(1800),
+                              std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
+}
+
+IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
+                                                     const double ikF, const VelMathArgs &iparams)
+  : IterativeVelPIDController(ikP, ikD, ikF, std::make_unique<VelMath>(iparams),
                               std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
 }
 
 IterativeVelPIDController::IterativeVelPIDController(const IterativeVelPIDControllerArgs &iparams)
-  : IterativeVelPIDController(iparams.kP, iparams.kD, std::make_unique<VelMath>(iparams.params),
-                              std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
+  : IterativeVelPIDController(iparams.kP, iparams.kD, iparams.kF,
+                              std::make_unique<VelMath>(iparams.params), std::make_unique<Timer>(),
+                              std::make_unique<SettledUtil>()) {
 }
 
-// std::make_unique<Timer>(), std::make_unique<SettledUtil>()
-
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
+                                                     const double ikF,
                                                      std::unique_ptr<VelMath> ivelMath,
                                                      std::unique_ptr<Timer> iloopDtTimer,
                                                      std::unique_ptr<SettledUtil> isettledUtil)
   : velMath(std::move(ivelMath)),
     loopDtTimer(std::move(iloopDtTimer)),
     settledUtil(std::move(isettledUtil)) {
-  setGains(ikP, ikD);
+  setGains(ikP, ikD, ikF);
 }
 
-void IterativeVelPIDController::setGains(const double ikP, const double ikD) {
+void IterativeVelPIDController::setGains(const double ikP, const double ikD, const double ikF) {
   kP = ikP;
   kD = ikD * sampleTime.convert(second);
+  kF = ikF;
 }
 
 void IterativeVelPIDController::setSampleTime(const QTime isampleTime) {
@@ -100,7 +104,7 @@ double IterativeVelPIDController::step(const double inewReading) {
       settledUtil->isSettled(error);
     }
 
-    return output;
+    return std::clamp(output + kF * target, outputMin, outputMax);
   }
 
   return 0; // Can't set output to zero because the entire loop in an integral

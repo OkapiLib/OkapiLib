@@ -10,8 +10,12 @@
 namespace okapi {
 AsyncWrapper::AsyncWrapper(std::shared_ptr<ControllerInput> iinput,
                            std::shared_ptr<ControllerOutput> ioutput,
-                           std::unique_ptr<IterativeController> icontroller)
-  : input(iinput), output(ioutput), controller(std::move(icontroller)), task(trampoline, this) {
+                           std::unique_ptr<IterativeController> icontroller, const double iscale)
+  : input(iinput),
+    output(ioutput),
+    controller(std::move(icontroller)),
+    task(trampoline, this),
+    scale(iscale) {
 }
 
 void AsyncWrapper::loop() {
@@ -19,7 +23,7 @@ void AsyncWrapper::loop() {
 
   while (true) {
     if (!controller->isDisabled()) {
-      output->controllerSet(controller->step(input->controllerGet()));
+      output->controllerSet(scale * controller->step(input->controllerGet()));
     }
 
     task.delay_until(&prevTime, controller->getSampleTime().convert(millisecond));
