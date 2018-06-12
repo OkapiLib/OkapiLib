@@ -20,4 +20,4 @@ std::int32_t Potentiometer::get() const {
 double Potentiometer::controllerGet() {
   return get();
 }
-}
+} // namespace okapi
