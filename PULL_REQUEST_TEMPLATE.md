@@ -1,7 +1,3 @@
-### Requirements
-
-* Filling out this template is not required, but is <b>highly encouraged</b> as it helps the maintainers understand your addition, how it impacts Okapilib, and how it helps users.
-
 ### Description of the Change
 
 <!--
