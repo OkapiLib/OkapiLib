@@ -10,3 +10,7 @@ compile_commands.json
 cquery_log.txt
 okapilib@*.zip
 .DS_store
+.cproject
+.idea/
+.project
+.settings/
