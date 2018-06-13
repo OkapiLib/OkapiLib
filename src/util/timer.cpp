@@ -11,9 +11,7 @@ namespace okapi {
 Timer::Timer() : firstCalled(millis()), lastCalled(firstCalled), mark(firstCalled) {
 }
 
-Timer::~Timer() = default;
-
-QTime Timer::millis() {
+QTime Timer::millis() const {
   return pros::millis() * millisecond;
 }
 
