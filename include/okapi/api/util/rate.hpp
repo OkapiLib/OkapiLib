@@ -19,13 +19,20 @@ class Rate {
   virtual ~Rate();
 
   /**
-   * Delay the current task such that it runs at the given frequency. The first delay will
-   * run for 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the
-   * task.
+   * Delay the current task such that it runs at the given frequency. The first delay will run for
+   * 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the task.
    *
-   * @param ihz rate
+   * @param ihz the rate
    */
-  virtual void delayHz(const QFrequency ihz);
+  virtual void delay(const QFrequency ihz);
+
+  /**
+   * Delay the current task such that it runs every ihz ms. The first delay will run for ihz.
+   * Subsequent delays will adjust according to the previous runtime of the task.
+   *
+   * @param ihz the rate in ms
+   */
+  virtual void delay(const int ihz);
 
   protected:
   std::uint32_t lastTime = 0;

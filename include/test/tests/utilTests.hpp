@@ -74,19 +74,44 @@ void testUtils() {
   {
     test_printf("Testing Rate");
 
-    Rate rate;
-    uint32_t lastTime = pros::millis();
+    // Test the overload that takes QFrequency
+    {
+      printf("Testing QFrequency overload\n");
 
-    for (int i = 0; i < 10; i++) {
-      rate.delayHz(10_Hz);
+      Rate rate;
+      uint32_t lastTime = pros::millis();
 
-      // Static cast so the compiler doesn't complain about comparing signed and unsigned values
-      test("Rate " + std::to_string(i),
-           TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
-                     EqualsWithDelta(100, 10)));
+      for (int i = 0; i < 10; i++) {
+        rate.delay(10_Hz);
 
-      lastTime = pros::millis();
-      pros::Task::delay(50); // Emulate some computation
+        // Static cast so the compiler doesn't complain about comparing signed and unsigned values
+        test("Rate " + std::to_string(i),
+             TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
+                       EqualsWithDelta(100, 10)));
+
+        lastTime = pros::millis();
+        pros::Task::delay(50); // Emulate some computation
+      }
+    }
+
+    // Test the overload that takes raw ms
+    {
+      printf("Testing raw ms overload\n");
+
+      Rate rate;
+      uint32_t lastTime = pros::millis();
+
+      for (int i = 0; i < 10; i++) {
+        rate.delay(100);
+
+        // Static cast so the compiler doesn't complain about comparing signed and unsigned values
+        test("Rate " + std::to_string(i),
+             TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
+                       EqualsWithDelta(100, 10)));
+
+        lastTime = pros::millis();
+        pros::Task::delay(50); // Emulate some computation
+      }
     }
   }
 }

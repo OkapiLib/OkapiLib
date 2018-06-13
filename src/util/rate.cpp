@@ -13,14 +13,18 @@ Rate::Rate() = default;
 
 Rate::~Rate() = default;
 
-void Rate::delayHz(const QFrequency ihz) {
+void Rate::delay(const QFrequency ihz) {
+  delay(1000 / ihz.convert(Hz));
+}
+
+void Rate::delay(const int ihz) {
   if (lastTime == 0) {
     // First call
     lastTime = pros::millis();
-    pros::Task::delay(1000 / ihz.convert(Hz));
+    pros::Task::delay(ihz);
   } else {
     // Subsequent call
-    pros::Task::delay_until(&lastTime, 1000 / ihz.convert(Hz));
+    pros::Task::delay_until(&lastTime, ihz);
   }
 }
 } // namespace okapi
