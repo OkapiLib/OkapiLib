@@ -7,8 +7,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-#include "okapi/control/util/flywheelSimulator.hpp"
-#include "okapi/util/mathUtil.hpp"
+#include "okapi/api/control/util/flywheelSimulator.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include <cmath>
 
 namespace okapi {

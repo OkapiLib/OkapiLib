@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-#include "okapi/filter/passthroughFilter.hpp"
+#include "okapi/api/filter/passthroughFilter.hpp"
 
 namespace okapi {
 PassthroughFilter::PassthroughFilter() = default;

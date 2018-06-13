@@ -5,8 +5,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/util/rate.hpp"
-#include "okapi/units/QTime.hpp"
+#include "okapi/api/util/rate.hpp"
+#include "okapi/api/units/QTime.hpp"
 
 namespace okapi {
 Rate::Rate() = default;

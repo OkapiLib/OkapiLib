@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/control/iterative/iterativeMotorVelocityController.hpp"
+#include "okapi/api/control/iterative/iterativeMotorVelocityController.hpp"
 
 namespace okapi {
 IterativeMotorVelocityControllerArgs::IterativeMotorVelocityControllerArgs(

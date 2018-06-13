@@ -5,9 +5,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/chassis/controller/chassisControllerIntegrated.hpp"
-#include "okapi/control/util/settledUtil.hpp"
-#include "okapi/util/timer.hpp"
+#include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
+#include "okapi/api/control/util/settledUtil.hpp"
+#include "okapi/api/util/timer.hpp"
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(Motor ileftSideMotor,

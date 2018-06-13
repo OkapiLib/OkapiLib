@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/device/adiUltrasonic.hpp"
+#include "okapi/api/device/adiUltrasonic.hpp"
 
 namespace okapi {
 ADIUltrasonic::ADIUltrasonic(const uint8_t iportTop, const uint8_t iportBottom)

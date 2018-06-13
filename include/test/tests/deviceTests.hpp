@@ -16,7 +16,7 @@ void testButtons() {
   using namespace snowhouse;
   using namespace fakeit;
 
-  class MockButton : public AbstractButton {
+  class MockButton : public ButtonBase {
     public:
     bool currentlyPressed() override {
       printf("???\n");
