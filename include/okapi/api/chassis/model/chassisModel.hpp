@@ -8,6 +8,7 @@
 #ifndef _OKAPI_CHASSISMODEL_HPP_
 #define _OKAPI_CHASSISMODEL_HPP_
 
+#include "api.h"
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include <array>
 #include <initializer_list>

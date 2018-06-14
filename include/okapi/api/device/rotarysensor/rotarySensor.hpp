@@ -8,8 +8,8 @@
 #ifndef _OKAPI_ROTARYSENSOR_HPP_
 #define _OKAPI_ROTARYSENSOR_HPP_
 
-#include "api.h"
 #include "okapi/api/control/controllerInput.hpp"
+#include "okapi/impl/coreProsAPI.hpp"
 
 namespace okapi {
 class RotarySensor : public ControllerInput {

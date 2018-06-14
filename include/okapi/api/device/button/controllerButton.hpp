@@ -8,6 +8,7 @@
 #ifndef _OKAPI_CONTROLLERBUTTON_HPP_
 #define _OKAPI_CONTROLLERBUTTON_HPP_
 
+#include "api.h"
 #include "okapi/api/device/button/buttonBase.hpp"
 
 namespace okapi {
