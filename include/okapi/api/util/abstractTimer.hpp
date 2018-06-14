@@ -8,7 +8,6 @@
 #ifndef _OKAPI_ABSTRACTTIMER_HPP_
 #define _OKAPI_ABSTRACTTIMER_HPP_
 
-#include "api.h"
 #include "okapi/api/units/QFrequency.hpp"
 #include "okapi/api/units/QTime.hpp"
 

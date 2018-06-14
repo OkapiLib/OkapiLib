@@ -12,11 +12,15 @@
 #include "okapi/api/control/async/asyncController.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativeController.hpp"
+#include "okapi/api/util/abstractRate.hpp"
+#include <memory>
 
 namespace okapi {
 class ControllerRunner {
   public:
   ControllerRunner();
+
+  ControllerRunner(std::unique_ptr<AbstractRate> irate);
 
   virtual ~ControllerRunner();
 
@@ -59,6 +63,9 @@ class ControllerRunner {
    */
   virtual double runUntilAtTarget(const double itarget, IterativeController &icontroller,
                                   ControllerOutput &ioutput);
+
+  protected:
+  std::unique_ptr<AbstractRate> rate;
 };
 } // namespace okapi
 

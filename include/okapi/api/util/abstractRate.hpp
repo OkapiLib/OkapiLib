@@ -5,15 +5,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_RATE_HPP_
-#define _OKAPI_RATE_HPP_
+#ifndef _OKAPI_ABSTRACTRATE_HPP_
+#define _OKAPI_ABSTRACTRATE_HPP_
 
-#include "okapi/api/util/abstractRate.hpp"
+#include "okapi/api/units/QFrequency.hpp"
 
 namespace okapi {
-class Rate : public AbstractRate {
+class AbstractRate {
   public:
-  Rate();
+  virtual ~AbstractRate();
 
   /**
    * Delay the current task such that it runs at the given frequency. The first delay will run for
@@ -21,18 +21,15 @@ class Rate : public AbstractRate {
    *
    * @param ihz the rate
    */
-  virtual void delay(const QFrequency ihz) override;
+  virtual void delay(const QFrequency ihz) = 0;
 
   /**
    * Delay the current task such that it runs every ihz ms. The first delay will run for ihz.
    * Subsequent delays will adjust according to the previous runtime of the task.
    *
-   * @param ims the rate in ms
+   * @param ihz the rate in ms
    */
-  virtual void delay(const int ims) override;
-
-  protected:
-  std::uint32_t lastTime = 0;
+  virtual void delay(const int ihz) = 0;
 };
 } // namespace okapi
 

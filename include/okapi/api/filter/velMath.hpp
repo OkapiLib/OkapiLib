@@ -8,7 +8,6 @@
 #ifndef _OKAPI_VELOCITY_HPP_
 #define _OKAPI_VELOCITY_HPP_
 
-#include "api.h"
 #include "okapi/api/filter/composableFilter.hpp"
 #include "okapi/api/units/QAngularAcceleration.hpp"
 #include "okapi/api/units/QAngularSpeed.hpp"

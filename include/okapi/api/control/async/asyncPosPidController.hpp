@@ -8,7 +8,6 @@
 #ifndef _OKAPI_ASYNCPOSPIDCONTROLLER_HPP_
 #define _OKAPI_ASYNCPOSPIDCONTROLLER_HPP_
 
-#include "api.h"
 #include "okapi/api/control/async/asyncPositionController.hpp"
 #include "okapi/api/control/async/asyncWrapper.hpp"
 #include "okapi/api/control/controllerInput.hpp"

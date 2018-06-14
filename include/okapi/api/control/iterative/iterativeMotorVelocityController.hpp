@@ -8,7 +8,6 @@
 #ifndef _OKAPI_ITERATIVEMOTORVELOCITYCONTROLLER_HPP_
 #define _OKAPI_ITERATIVEMOTORVELOCITYCONTROLLER_HPP_
 
-#include "api.h"
 #include "okapi/api/control/iterative/iterativeVelocityController.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/device/motor/motor.hpp"

@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/util/timer.hpp"
+#include "api.h"
 
 namespace okapi {
 Timer::Timer() : firstCalled(millis()), lastCalled(firstCalled), mark(firstCalled) {

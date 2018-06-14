@@ -6,10 +6,15 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/util/controllerRunner.hpp"
+#include "okapi/api/util/rate.hpp"
 #include <cmath>
 
 namespace okapi {
-ControllerRunner::ControllerRunner() = default;
+ControllerRunner::ControllerRunner() : rate(std::make_unique<Rate>()) {
+}
+
+ControllerRunner::ControllerRunner(std::unique_ptr<AbstractRate> irate) : rate(std::move(irate)) {
+}
 
 ControllerRunner::~ControllerRunner() = default;
 
@@ -17,7 +22,7 @@ double ControllerRunner::runUntilSettled(const double itarget, AsyncController &
   icontroller.setTarget(itarget);
 
   while (!icontroller.isSettled()) {
-    pros::c::task_delay(10);
+    rate->delay(10);
   }
 
   return icontroller.getError();
@@ -29,7 +34,7 @@ double ControllerRunner::runUntilSettled(const double itarget, IterativeControll
 
   while (!icontroller.isSettled()) {
     ioutput.controllerSet(icontroller.getOutput());
-    pros::Task::delay(10);
+    rate->delay(10);
   }
 
   return icontroller.getError();
@@ -42,7 +47,7 @@ double ControllerRunner::runUntilAtTarget(const double itarget, AsyncController 
   double lastError = error;
   while (error != 0 && std::copysign(1.0, error) == std::copysign(1.0, lastError)) {
     lastError = error;
-    pros::Task::delay(10);
+    rate->delay(10);
     error = icontroller.getError();
   }
 
@@ -58,7 +63,7 @@ double ControllerRunner::runUntilAtTarget(const double itarget, IterativeControl
   while (error != 0 && std::copysign(1.0, error) == std::copysign(1.0, lastError)) {
     ioutput.controllerSet(icontroller.getOutput());
     lastError = error;
-    pros::Task::delay(10);
+    rate->delay(10);
     error = icontroller.getError();
   }
 

@@ -8,6 +8,7 @@
 #ifndef _OKAPI_ASYNCWRAPPER_HPP_
 #define _OKAPI_ASYNCWRAPPER_HPP_
 
+#include "api.h"
 #include "okapi/api/control/async/asyncController.hpp"
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"

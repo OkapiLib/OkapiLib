@@ -8,7 +8,6 @@
 #ifndef _OKAPI_ASYNCVELPIDCONTROLLER_HPP_
 #define _OKAPI_ASYNCVELPIDCONTROLLER_HPP_
 
-#include "api.h"
 #include "okapi/api/control/async/asyncVelocityController.hpp"
 #include "okapi/api/control/async/asyncWrapper.hpp"
 #include "okapi/api/control/controllerInput.hpp"

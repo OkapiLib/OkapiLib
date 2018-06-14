@@ -8,7 +8,6 @@
 #ifndef _OKAPI_ASYNCCONTROLLER_HPP_
 #define _OKAPI_ASYNCCONTROLLER_HPP_
 
-#include "api.h"
 #include "okapi/api/control/closedLoopController.hpp"
 #include "okapi/api/units/QTime.hpp"
 
