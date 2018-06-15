@@ -10,38 +10,6 @@
 #include <cmath>
 
 namespace okapi {
-ChassisControllerPID::ChassisControllerPID(Motor ileftSideMotor, Motor irightSideMotor,
-                                           const IterativePosPIDControllerArgs &idistanceArgs,
-                                           const IterativePosPIDControllerArgs &iangleArgs,
-                                           const pros::c::motor_gearset_e_t igearset,
-                                           const ChassisScales &iscales)
-  : ChassisControllerPID(std::make_shared<Motor>(ileftSideMotor),
-                         std::make_shared<Motor>(irightSideMotor), idistanceArgs, iangleArgs,
-                         igearset, iscales) {
-}
-
-ChassisControllerPID::ChassisControllerPID(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                                           const IterativePosPIDControllerArgs &idistanceArgs,
-                                           const IterativePosPIDControllerArgs &iangleArgs,
-                                           const pros::c::motor_gearset_e_t igearset,
-                                           const ChassisScales &iscales)
-  : ChassisControllerPID(std::make_shared<MotorGroup>(ileftSideMotor),
-                         std::make_shared<MotorGroup>(irightSideMotor), idistanceArgs, iangleArgs,
-                         igearset, iscales) {
-}
-
-ChassisControllerPID::ChassisControllerPID(Motor itopLeftMotor, Motor itopRightMotor,
-                                           Motor ibottomRightMotor, Motor ibottomLeftMotor,
-                                           const IterativePosPIDControllerArgs &idistanceArgs,
-                                           const IterativePosPIDControllerArgs &iangleArgs,
-                                           const pros::c::motor_gearset_e_t igearset,
-                                           const ChassisScales &iscales)
-  : ChassisControllerPID(
-      std::make_shared<Motor>(itopLeftMotor), std::make_shared<Motor>(itopRightMotor),
-      std::make_shared<Motor>(ibottomRightMotor), std::make_shared<Motor>(ibottomLeftMotor),
-      idistanceArgs, iangleArgs, igearset, iscales) {
-}
-
 ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                            std::shared_ptr<AbstractMotor> irightSideMotor,
                                            const IterativePosPIDControllerArgs &idistanceArgs,

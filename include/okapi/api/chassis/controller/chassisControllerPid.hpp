@@ -30,54 +30,6 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param iangleArgs angle PID controller params (keeps the robot straight)
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerPID(Motor ileftSideMotor, Motor irightSideMotor,
-                       const IterativePosPIDControllerArgs &idistanceArgs,
-                       const IterativePosPIDControllerArgs &iangleArgs,
-                       const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                       const ChassisScales &iscales = ChassisScales({1, 1}));
-
-  /**
-   * ChassisController using PID control. This constructor assumes a skid
-   * steer layout. Puts the motors into encoder degree units.
-   *
-   * @param ileftSideMotor left side motor
-   * @param irightSideMotor right side motor
-   * @param idistanceArgs distance PID controller params
-   * @param iangleArgs angle PID controller params (keeps the robot straight)
-   * @param iscales see ChassisScales docs
-   */
-  ChassisControllerPID(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                       const IterativePosPIDControllerArgs &idistanceArgs,
-                       const IterativePosPIDControllerArgs &iangleArgs,
-                       const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                       const ChassisScales &iscales = ChassisScales({1, 1}));
-
-  /**
-   * ChassisController using PID control. This constructor assumes a skid
-   * steer layout. Puts the motors into encoder degree units.
-   *
-   * @param ileftSideMotor left side motor
-   * @param irightSideMotor right side motor
-   * @param idistanceArgs distance PID controller params
-   * @param iangleArgs angle PID controller params (keeps the robot straight)
-   * @param iscales see ChassisScales docs
-   */
-  ChassisControllerPID(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
-                       Motor ibottomLeftMotor, const IterativePosPIDControllerArgs &idistanceArgs,
-                       const IterativePosPIDControllerArgs &iangleArgs,
-                       const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                       const ChassisScales &iscales = ChassisScales({1, 1}));
-
-  /**
-   * ChassisController using PID control. This constructor assumes a skid
-   * steer layout. Puts the motors into encoder degree units.
-   *
-   * @param ileftSideMotor left side motor
-   * @param irightSideMotor right side motor
-   * @param idistanceArgs distance PID controller params
-   * @param iangleArgs angle PID controller params (keeps the robot straight)
-   * @param iscales see ChassisScales docs
-   */
   ChassisControllerPID(std::shared_ptr<AbstractMotor> ileftSideMotor,
                        std::shared_ptr<AbstractMotor> irightSideMotor,
                        const IterativePosPIDControllerArgs &idistanceArgs,

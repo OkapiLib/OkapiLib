@@ -8,6 +8,7 @@
 #ifndef _OKAPI_API_HPP_
 #define _OKAPI_API_HPP_
 
+#include "okapi/api/chassis/controller/chassisControllerFactory.hpp"
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"

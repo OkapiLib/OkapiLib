@@ -10,33 +10,6 @@
 #include "okapi/api/util/timer.hpp"
 
 namespace okapi {
-ChassisControllerIntegrated::ChassisControllerIntegrated(Motor ileftSideMotor,
-                                                         Motor irightSideMotor,
-                                                         const pros::c::motor_gearset_e_t igearset,
-                                                         const ChassisScales &iscales)
-  : ChassisControllerIntegrated(std::make_shared<Motor>(ileftSideMotor),
-                                std::make_shared<Motor>(irightSideMotor), igearset, iscales) {
-}
-
-ChassisControllerIntegrated::ChassisControllerIntegrated(MotorGroup ileftSideMotor,
-                                                         MotorGroup irightSideMotor,
-                                                         const pros::c::motor_gearset_e_t igearset,
-                                                         const ChassisScales &iscales)
-  : ChassisControllerIntegrated(std::make_shared<MotorGroup>(ileftSideMotor),
-                                std::make_shared<MotorGroup>(irightSideMotor), igearset, iscales) {
-}
-
-ChassisControllerIntegrated::ChassisControllerIntegrated(Motor itopLeftMotor, Motor itopRightMotor,
-                                                         Motor ibottomRightMotor,
-                                                         Motor ibottomLeftMotor,
-                                                         const pros::c::motor_gearset_e_t igearset,
-                                                         const ChassisScales &iscales)
-  : ChassisControllerIntegrated(std::make_shared<Motor>(itopLeftMotor),
-                                std::make_shared<Motor>(itopRightMotor),
-                                std::make_shared<Motor>(ibottomRightMotor),
-                                std::make_shared<Motor>(ibottomLeftMotor), igearset, iscales) {
-}
-
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
   const pros::c::motor_gearset_e_t igearset, const ChassisScales &iscales)

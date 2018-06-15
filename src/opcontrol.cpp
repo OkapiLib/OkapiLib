@@ -64,10 +64,11 @@ void constructorTests() {
   {
     ADIEncoder leftEncoder(1, 2, true);
     ADIEncoder rightEncoder(3, 4);
-    ChassisControllerIntegrated int1(1_mtr, 2_mtr);
-    ChassisControllerIntegrated int2(MotorGroup({1_mtr, 2_mtr, 3_mtr}), MotorGroup({4_mtr, 5_mtr}));
-    ChassisControllerIntegrated int3(1, 2);
-    ChassisControllerIntegrated int4({1, 2, 3}, {-4, -5});
+    ChassisControllerIntegrated int1 = ChassisControllerFactory::create(1_mtr, 2_mtr);
+    ChassisControllerIntegrated int2 = ChassisControllerFactory::create(
+      MotorGroup({1_mtr, 2_mtr, 3_mtr}), MotorGroup({4_mtr, 5_mtr}));
+    ChassisControllerIntegrated int3 = ChassisControllerFactory::create(1, 2);
+    ChassisControllerIntegrated int4 = ChassisControllerFactory::create({1, 2, 3}, {-4, -5});
 
     int1.moveDistance(0_in); // Closed-loop control
     int1.turnAngle(0_deg);   // Closed-loop control
@@ -220,8 +221,8 @@ void opcontrol() {
   Motor armMotor = 15_mtr;
   armMotor.move(10);
 
-  ChassisControllerIntegrated robotChassisController({19, 20}, {-14}, pros::c::E_MOTOR_GEARSET_36,
-                                                     {4_in, 11.5_in});
+  ChassisControllerIntegrated robotChassisController =
+    ChassisControllerFactory::create({19, 20}, {-14}, pros::c::E_MOTOR_GEARSET_36, {4_in, 11.5_in});
 
   Controller controller;
   ControllerButton btn1(E_CONTROLLER_DIGITAL_A);

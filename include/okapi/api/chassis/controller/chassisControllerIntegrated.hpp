@@ -29,50 +29,6 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(
-    Motor ileftSideMotor, Motor irightSideMotor,
-    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
-
-  /**
-   * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
-   * steer layout. Puts the motors into degree units.
-   *
-   * @param ileftSideMotor left side motor
-   * @param irightSideMotor right side motor
-   * @param igearset motor internal gearset
-   * @param iscales see ChassisScales docs
-   */
-  ChassisControllerIntegrated(
-    MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
-
-  /**
-   * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
-   * layout. Puts the motors into degree units.
-   *
-   * @param itopLeftMotor top left motor
-   * @param itopRightMotor top right motor
-   * @param ibottomRightMotor bottom right motor
-   * @param ibottomLeftMotor bottom left motor
-   * @param igearset motor internal gearset
-   * @param iscales see ChassisScales docs
-   */
-  ChassisControllerIntegrated(
-    Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
-
-  /**
-   * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
-   * steer layout. Puts the motors into degree units.
-   *
-   * @param ileftSideMotor left side motor
-   * @param irightSideMotor right side motor
-   * @param igearset motor internal gearset
-   * @param iscales see ChassisScales docs
-   */
-  ChassisControllerIntegrated(
     std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
     const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
     const ChassisScales &iscales = ChassisScales({1, 1}));
