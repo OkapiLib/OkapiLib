@@ -6,42 +6,54 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/chassis/controller/chassisControllerFactory.hpp"
+#include "okapi/api/chassis/model/skidSteerModel.hpp"
+#include "okapi/api/chassis/model/xDriveModel.hpp"
 
 namespace okapi {
 ChassisControllerIntegrated
 ChassisControllerFactory::create(Motor ileftSideMotor, Motor irightSideMotor,
                                  const AbstractMotor::motorGearset igearset,
                                  const ChassisScales &iscales) {
-  return ChassisControllerIntegrated(std::make_shared<Motor>(ileftSideMotor),
-                                     std::make_shared<Motor>(irightSideMotor), igearset, iscales);
+  auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
+  auto rightMtr = std::make_shared<Motor>(irightSideMotor);
+  return ChassisControllerIntegrated(std::make_shared<SkidSteerModel>(leftMtr, rightMtr),
+                                     AsyncPosIntegratedControllerArgs(leftMtr),
+                                     AsyncPosIntegratedControllerArgs(rightMtr), igearset, iscales);
 }
 
 ChassisControllerIntegrated
 ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                                  const AbstractMotor::motorGearset igearset,
                                  const ChassisScales &iscales) {
-  return ChassisControllerIntegrated(std::make_shared<MotorGroup>(ileftSideMotor),
-                                     std::make_shared<MotorGroup>(irightSideMotor), igearset,
-                                     iscales);
+  auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
+  auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
+  return ChassisControllerIntegrated(std::make_shared<SkidSteerModel>(leftMtr, rightMtr),
+                                     AsyncPosIntegratedControllerArgs(leftMtr),
+                                     AsyncPosIntegratedControllerArgs(rightMtr), igearset, iscales);
 }
 
 ChassisControllerIntegrated
 ChassisControllerFactory::create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
                                  Motor ibottomLeftMotor, const AbstractMotor::motorGearset igearset,
                                  const ChassisScales &iscales) {
-  return ChassisControllerIntegrated(std::make_shared<Motor>(itopLeftMotor),
-                                     std::make_shared<Motor>(itopRightMotor),
-                                     std::make_shared<Motor>(ibottomRightMotor),
-                                     std::make_shared<Motor>(ibottomLeftMotor), igearset, iscales);
+  auto topLeftMtr = std::make_shared<Motor>(itopLeftMotor);
+  auto topRightMtr = std::make_shared<Motor>(itopRightMotor);
+  auto bottomRightMtr = std::make_shared<Motor>(ibottomRightMotor);
+  auto bottomLeftMtr = std::make_shared<Motor>(ibottomLeftMotor);
+  return ChassisControllerIntegrated(
+    std::make_shared<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr),
+    AsyncPosIntegratedControllerArgs(topLeftMtr), AsyncPosIntegratedControllerArgs(topRightMtr),
+    igearset, iscales);
 }
 
 ChassisControllerPID ChassisControllerFactory::create(
   Motor ileftSideMotor, Motor irightSideMotor, const IterativePosPIDControllerArgs &idistanceArgs,
   const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::motorGearset igearset,
   const ChassisScales &iscales) {
-  return ChassisControllerPID(std::make_shared<Motor>(ileftSideMotor),
-                              std::make_shared<Motor>(irightSideMotor), idistanceArgs, iangleArgs,
-                              igearset, iscales);
+  auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
+  auto rightMtr = std::make_shared<Motor>(irightSideMotor);
+  return ChassisControllerPID(std::make_shared<SkidSteerModel>(leftMtr, rightMtr), idistanceArgs,
+                              iangleArgs, igearset, iscales);
 }
 
 ChassisControllerPID
@@ -50,8 +62,9 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSid
                                  const IterativePosPIDControllerArgs &iangleArgs,
                                  const AbstractMotor::motorGearset igearset,
                                  const ChassisScales &iscales) {
-  return ChassisControllerPID(std::make_shared<MotorGroup>(ileftSideMotor),
-                              std::make_shared<MotorGroup>(irightSideMotor), idistanceArgs,
+  auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
+  auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
+  return ChassisControllerPID(std::make_shared<SkidSteerModel>(leftMtr, rightMtr), idistanceArgs,
                               iangleArgs, igearset, iscales);
 }
 
@@ -60,9 +73,12 @@ ChassisControllerPID ChassisControllerFactory::create(
   const IterativePosPIDControllerArgs &idistanceArgs,
   const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::motorGearset igearset,
   const ChassisScales &iscales) {
+  auto topLeftMtr = std::make_shared<Motor>(itopLeftMotor);
+  auto topRightMtr = std::make_shared<Motor>(itopRightMotor);
+  auto bottomRightMtr = std::make_shared<Motor>(ibottomRightMotor);
+  auto bottomLeftMtr = std::make_shared<Motor>(ibottomLeftMotor);
   return ChassisControllerPID(
-    std::make_shared<Motor>(itopLeftMotor), std::make_shared<Motor>(itopRightMotor),
-    std::make_shared<Motor>(ibottomRightMotor), std::make_shared<Motor>(ibottomLeftMotor),
+    std::make_shared<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr),
     idistanceArgs, iangleArgs, igearset, iscales);
 }
 } // namespace okapi

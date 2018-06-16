@@ -41,22 +41,6 @@ XDriveModelArgs::XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
     maxOutput(imaxOutput) {
 }
 
-XDriveModel::XDriveModel(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
-                         Motor ibottomLeftMotor, const double imaxOutput)
-  : XDriveModel(std::make_shared<Motor>(itopLeftMotor), std::make_shared<Motor>(itopRightMotor),
-                std::make_shared<Motor>(ibottomRightMotor),
-                std::make_shared<Motor>(ibottomLeftMotor), imaxOutput) {
-}
-
-XDriveModel::XDriveModel(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
-                         Motor ibottomLeftMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
-                         const double imaxOutput)
-  : XDriveModel(std::make_shared<Motor>(itopLeftMotor), std::make_shared<Motor>(itopRightMotor),
-                std::make_shared<Motor>(ibottomRightMotor),
-                std::make_shared<Motor>(ibottomLeftMotor), std::make_shared<ADIEncoder>(ileftEnc),
-                std::make_shared<ADIEncoder>(irightEnc), imaxOutput) {
-}
-
 XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
                          std::shared_ptr<AbstractMotor> itopRightMotor,
                          std::shared_ptr<AbstractMotor> ibottomRightMotor,

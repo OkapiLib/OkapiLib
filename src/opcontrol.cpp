@@ -83,15 +83,6 @@ void constructorTests() {
     int1.stop();                      // Stop motors
     auto vals = int1.getSensorVals(); // Read left and right sensors
     int1.resetSensors();              // Set sensors to 0
-
-    ChassisControllerPID controller1(
-      std::make_shared<SkidSteerModel>(MotorGroup({1_mtr, 2_mtr}), MotorGroup({3_mtr, 4_mtr}),
-                                       leftEncoder, rightEncoder),
-      IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
-
-    ChassisControllerPID controller2(
-      std::make_shared<XDriveModel>(1_mtr, 2_mtr, 3_mtr, 4_mtr, leftEncoder, rightEncoder),
-      IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
   }
 
   {

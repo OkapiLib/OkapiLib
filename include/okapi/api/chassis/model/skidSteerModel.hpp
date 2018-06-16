@@ -10,9 +10,6 @@
 
 #include "okapi/api/chassis/model/chassisModel.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
-#include "okapi/api/device/motor/motor.hpp"
-#include "okapi/api/device/motor/motorGroup.hpp"
-#include "okapi/api/device/rotarysensor/adiEncoder.hpp"
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
 
 namespace okapi {
@@ -37,44 +34,6 @@ class SkidSteerModelArgs : public ChassisModelArgs {
 
 class SkidSteerModel : public ChassisModel {
   public:
-  /**
-   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-   * motors are powered +127, the robot should move forward in a straight line.
-   *
-   * This constructor infers the two sensors from the left and right motors (using the integrated
-   * encoders).
-   *
-   * @param ileftSideMotor left side motor
-   * @param irightSideMotor right side motor
-   */
-  SkidSteerModel(Motor ileftSideMotor, Motor irightSideMotor, const double imaxOutput = 127);
-
-  /**
-   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-   * motors are powered +127, the robot should move forward in a straight line.
-   *
-   * This constructor infers the two sensors from the left and right motors (using the integrated
-   * encoders).
-   *
-   * @param ileftSideMotor left side motor
-   * @param irightSideMotor right side motor
-   */
-  SkidSteerModel(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                 const double imaxOutput = 127);
-
-  /**
-   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-   * motors are powered +127, the robot should move forward in a straight line.
-   *
-   * This constructor infers the two sensors from the left and right motors (using the integrated
-   * encoders).
-   *
-   * @param ileftSideMotor left side motor
-   * @param irightSideMotor right side motor
-   */
-  SkidSteerModel(MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc,
-                 ADIEncoder irightEnc, const double imaxOutput = 127);
-
   /**
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
    * motors are powered +127, the robot should move forward in a straight line.

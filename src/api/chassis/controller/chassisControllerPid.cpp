@@ -10,39 +10,6 @@
 #include <cmath>
 
 namespace okapi {
-ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                                           std::shared_ptr<AbstractMotor> irightSideMotor,
-                                           const IterativePosPIDControllerArgs &idistanceArgs,
-                                           const IterativePosPIDControllerArgs &iangleArgs,
-                                           const AbstractMotor::motorGearset igearset,
-                                           const ChassisScales &iscales)
-  : ChassisController(std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor)),
-    distancePid(idistanceArgs),
-    anglePid(iangleArgs),
-    straightScale(iscales.straight),
-    turnScale(iscales.turn) {
-  setGearing(igearset);
-  setEncoderUnits(AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_DEGREES);
-}
-
-ChassisControllerPID::ChassisControllerPID(std::shared_ptr<AbstractMotor> itopLeftMotor,
-                                           std::shared_ptr<AbstractMotor> itopRightMotor,
-                                           std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                                           std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                                           const IterativePosPIDControllerArgs &idistanceArgs,
-                                           const IterativePosPIDControllerArgs &iangleArgs,
-                                           const AbstractMotor::motorGearset igearset,
-                                           const ChassisScales &iscales)
-  : ChassisController(std::make_shared<XDriveModel>(itopLeftMotor, itopRightMotor,
-                                                    ibottomRightMotor, ibottomLeftMotor)),
-    distancePid(idistanceArgs),
-    anglePid(iangleArgs),
-    straightScale(iscales.straight),
-    turnScale(iscales.turn) {
-  setGearing(igearset);
-  setEncoderUnits(AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_DEGREES);
-}
-
 ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                                            const IterativePosPIDControllerArgs &idistanceArgs,
                                            const IterativePosPIDControllerArgs &iangleArgs,

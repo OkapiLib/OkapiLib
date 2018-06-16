@@ -11,34 +11,6 @@
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
-  std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
-  const AbstractMotor::motorGearset igearset, const ChassisScales &iscales)
-  : ChassisController(std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor)),
-    leftController(ileftSideMotor),
-    rightController(irightSideMotor),
-    lastTarget(0),
-    straightScale(iscales.straight),
-    turnScale(iscales.turn) {
-  setGearing(igearset);
-  setEncoderUnits(AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_DEGREES);
-}
-
-ChassisControllerIntegrated::ChassisControllerIntegrated(
-  std::shared_ptr<AbstractMotor> itopLeftMotor, std::shared_ptr<AbstractMotor> itopRightMotor,
-  std::shared_ptr<AbstractMotor> ibottomRightMotor, std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-  const AbstractMotor::motorGearset igearset, const ChassisScales &iscales)
-  : ChassisController(std::make_shared<XDriveModel>(itopLeftMotor, itopRightMotor,
-                                                    ibottomRightMotor, ibottomLeftMotor)),
-    leftController(itopLeftMotor),
-    rightController(itopRightMotor),
-    lastTarget(0),
-    straightScale(iscales.straight),
-    turnScale(iscales.turn) {
-  setGearing(igearset);
-  setEncoderUnits(AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_DEGREES);
-}
-
-ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
   const AsyncPosIntegratedControllerArgs &irightControllerArgs,
   const AbstractMotor::motorGearset igearset, const ChassisScales &iscales)

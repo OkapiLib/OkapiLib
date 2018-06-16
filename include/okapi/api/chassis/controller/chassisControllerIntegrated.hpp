@@ -10,45 +10,11 @@
 
 #include "okapi/api/chassis/controller/chassisController.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
-#include "okapi/api/chassis/model/skidSteerModel.hpp"
-#include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
 
 namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {
   public:
-  /**
-   * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
-   * steer layout. Puts the motors into degree units.
-   *
-   * @param ileftSideMotor left side motor
-   * @param irightSideMotor right side motor
-   * @param igearset motor internal gearset
-   * @param iscales see ChassisScales docs
-   */
-  ChassisControllerIntegrated(
-    std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
-
-  /**
-   * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
-   * layout. Puts the motors into degree units.
-   *
-   * @param itopLeftMotor top left motor
-   * @param itopRightMotor top right motor
-   * @param ibottomRightMotor bottom right motor
-   * @param ibottomLeftMotor bottom left motor
-   * @param igearset motor internal gearset
-   * @param iscales see ChassisScales docs
-   */
-  ChassisControllerIntegrated(
-    std::shared_ptr<AbstractMotor> itopLeftMotor, std::shared_ptr<AbstractMotor> itopRightMotor,
-    std::shared_ptr<AbstractMotor> ibottomRightMotor,
-    std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
-
   /**
    * ChassisController using the V5 motor's integrated control. Puts the motors into degree units.
    *
