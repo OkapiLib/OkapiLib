@@ -8,7 +8,6 @@
 #ifndef _OKAPI_ABSTRACTMOTOR_HPP_
 #define _OKAPI_ABSTRACTMOTOR_HPP_
 
-#include "api.h"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/device/rotarysensor/integratedEncoder.hpp"
 

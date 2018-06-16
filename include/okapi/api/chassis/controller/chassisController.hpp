@@ -8,7 +8,6 @@
 #ifndef _OKAPI_CHASSISCONTROLLER_HPP_
 #define _OKAPI_CHASSISCONTROLLER_HPP_
 
-#include "api.h"
 #include "okapi/api/chassis/model/chassisModel.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/units/QAngle.hpp"
