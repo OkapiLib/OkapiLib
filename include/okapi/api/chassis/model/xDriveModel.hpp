@@ -203,21 +203,21 @@ class XDriveModel : public ChassisModel {
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const override;
+  virtual void setBrakeMode(const AbstractMotor::motorBrakeMode mode) const override;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const override;
+  virtual void setEncoderUnits(const AbstractMotor::motorEncoderUnits units) const override;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(const pros::c::motor_gearset_e_t gearset) const override;
+  virtual void setGearing(const AbstractMotor::motorGearset gearset) const override;
 
   /**
    * Returns the top left motor.

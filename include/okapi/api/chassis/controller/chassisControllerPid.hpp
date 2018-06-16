@@ -13,8 +13,6 @@
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
-#include "okapi/api/device/motor/motor.hpp"
-#include "okapi/api/device/motor/motorGroup.hpp"
 #include <memory>
 
 namespace okapi {
@@ -30,12 +28,12 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param iangleArgs angle PID controller params (keeps the robot straight)
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerPID(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                       std::shared_ptr<AbstractMotor> irightSideMotor,
-                       const IterativePosPIDControllerArgs &idistanceArgs,
-                       const IterativePosPIDControllerArgs &iangleArgs,
-                       const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                       const ChassisScales &iscales = ChassisScales({1, 1}));
+  ChassisControllerPID(
+    std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
+    const IterativePosPIDControllerArgs &idistanceArgs,
+    const IterativePosPIDControllerArgs &iangleArgs,
+    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
+    const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using PID control. This constructor assumes an x-drive
@@ -49,14 +47,14 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param iangleArgs angle PID controller params (keeps the robot straight)
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerPID(std::shared_ptr<AbstractMotor> itopLeftMotor,
-                       std::shared_ptr<AbstractMotor> itopRightMotor,
-                       std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                       std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                       const IterativePosPIDControllerArgs &idistanceArgs,
-                       const IterativePosPIDControllerArgs &iangleArgs,
-                       const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                       const ChassisScales &iscales = ChassisScales({1, 1}));
+  ChassisControllerPID(
+    std::shared_ptr<AbstractMotor> itopLeftMotor, std::shared_ptr<AbstractMotor> itopRightMotor,
+    std::shared_ptr<AbstractMotor> ibottomRightMotor,
+    std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+    const IterativePosPIDControllerArgs &idistanceArgs,
+    const IterativePosPIDControllerArgs &iangleArgs,
+    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
+    const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using PID control. Puts the motors into encoder degree units.
@@ -66,11 +64,11 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param iangleArgs angle PID controller params (keeps the robot straight)
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
-                       const IterativePosPIDControllerArgs &idistanceArgs,
-                       const IterativePosPIDControllerArgs &iangleArgs,
-                       const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                       const ChassisScales &iscales = ChassisScales({1, 1}));
+  ChassisControllerPID(
+    std::shared_ptr<ChassisModel> imodel, const IterativePosPIDControllerArgs &idistanceArgs,
+    const IterativePosPIDControllerArgs &iangleArgs,
+    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
+    const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).

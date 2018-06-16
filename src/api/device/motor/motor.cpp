@@ -54,20 +54,47 @@ std::int32_t Motor::tarePosition() const {
   return tare_position();
 }
 
-std::int32_t Motor::setBrakeMode(const pros::c::motor_brake_mode_e_t imode) const {
-  return set_brake_mode(imode);
+std::int32_t Motor::setBrakeMode(const AbstractMotor::motorBrakeMode imode) const {
+  switch (imode) {
+  case AbstractMotor::motorBrakeMode::E_MOTOR_BRAKE_BRAKE:
+    return set_brake_mode(pros::c::E_MOTOR_BRAKE_BRAKE);
+  case AbstractMotor::motorBrakeMode::E_MOTOR_BRAKE_COAST:
+    return set_brake_mode(pros::c::E_MOTOR_BRAKE_COAST);
+  case AbstractMotor::motorBrakeMode::E_MOTOR_BRAKE_HOLD:
+    return set_brake_mode(pros::c::E_MOTOR_BRAKE_HOLD);
+  case AbstractMotor::motorBrakeMode::E_MOTOR_BRAKE_INVALID:
+    return set_brake_mode(pros::c::E_MOTOR_BRAKE_INVALID);
+  }
 }
 
 std::int32_t Motor::setCurrentLimit(const std::int32_t ilimit) const {
   return set_current_limit(ilimit);
 }
 
-std::int32_t Motor::setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const {
-  return set_encoder_units(iunits);
+std::int32_t Motor::setEncoderUnits(const AbstractMotor::motorEncoderUnits iunits) const {
+  switch (iunits) {
+  case AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_COUNTS:
+    return set_encoder_units(pros::c::E_MOTOR_ENCODER_COUNTS);
+  case AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_DEGREES:
+    return set_encoder_units(pros::c::E_MOTOR_ENCODER_DEGREES);
+  case AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_ROTATIONS:
+    return set_encoder_units(pros::c::E_MOTOR_ENCODER_ROTATIONS);
+  case AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_INVALID:
+    return set_encoder_units(pros::c::E_MOTOR_ENCODER_INVALID);
+  }
 }
 
-std::int32_t Motor::setGearing(const pros::c::motor_gearset_e_t igearset) const {
-  return set_gearing(igearset);
+std::int32_t Motor::setGearing(const AbstractMotor::motorGearset igearset) const {
+  switch (igearset) {
+  case AbstractMotor::motorGearset::E_MOTOR_GEARSET_06:
+    return set_gearing(pros::c::E_MOTOR_GEARSET_06);
+  case AbstractMotor::motorGearset::E_MOTOR_GEARSET_18:
+    return set_gearing(pros::c::E_MOTOR_GEARSET_18);
+  case AbstractMotor::motorGearset::E_MOTOR_GEARSET_36:
+    return set_gearing(pros::c::E_MOTOR_GEARSET_36);
+  case AbstractMotor::motorGearset::E_MOTOR_GEARSET_INVALID:
+    return set_gearing(pros::c::E_MOTOR_GEARSET_INVALID);
+  }
 }
 
 std::int32_t Motor::setReversed(const bool ireverse) const {

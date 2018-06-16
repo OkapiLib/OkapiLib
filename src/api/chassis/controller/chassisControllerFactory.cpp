@@ -10,7 +10,7 @@
 namespace okapi {
 ChassisControllerIntegrated
 ChassisControllerFactory::create(Motor ileftSideMotor, Motor irightSideMotor,
-                                 const pros::c::motor_gearset_e_t igearset,
+                                 const AbstractMotor::motorGearset igearset,
                                  const ChassisScales &iscales) {
   return ChassisControllerIntegrated(std::make_shared<Motor>(ileftSideMotor),
                                      std::make_shared<Motor>(irightSideMotor), igearset, iscales);
@@ -18,7 +18,7 @@ ChassisControllerFactory::create(Motor ileftSideMotor, Motor irightSideMotor,
 
 ChassisControllerIntegrated
 ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                                 const pros::c::motor_gearset_e_t igearset,
+                                 const AbstractMotor::motorGearset igearset,
                                  const ChassisScales &iscales) {
   return ChassisControllerIntegrated(std::make_shared<MotorGroup>(ileftSideMotor),
                                      std::make_shared<MotorGroup>(irightSideMotor), igearset,
@@ -27,7 +27,7 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSid
 
 ChassisControllerIntegrated
 ChassisControllerFactory::create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
-                                 Motor ibottomLeftMotor, const pros::c::motor_gearset_e_t igearset,
+                                 Motor ibottomLeftMotor, const AbstractMotor::motorGearset igearset,
                                  const ChassisScales &iscales) {
   return ChassisControllerIntegrated(std::make_shared<Motor>(itopLeftMotor),
                                      std::make_shared<Motor>(itopRightMotor),
@@ -37,7 +37,7 @@ ChassisControllerFactory::create(Motor itopLeftMotor, Motor itopRightMotor, Moto
 
 ChassisControllerPID ChassisControllerFactory::create(
   Motor ileftSideMotor, Motor irightSideMotor, const IterativePosPIDControllerArgs &idistanceArgs,
-  const IterativePosPIDControllerArgs &iangleArgs, const pros::c::motor_gearset_e_t igearset,
+  const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::motorGearset igearset,
   const ChassisScales &iscales) {
   return ChassisControllerPID(std::make_shared<Motor>(ileftSideMotor),
                               std::make_shared<Motor>(irightSideMotor), idistanceArgs, iangleArgs,
@@ -48,7 +48,7 @@ ChassisControllerPID
 ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                                  const IterativePosPIDControllerArgs &idistanceArgs,
                                  const IterativePosPIDControllerArgs &iangleArgs,
-                                 const pros::c::motor_gearset_e_t igearset,
+                                 const AbstractMotor::motorGearset igearset,
                                  const ChassisScales &iscales) {
   return ChassisControllerPID(std::make_shared<MotorGroup>(ileftSideMotor),
                               std::make_shared<MotorGroup>(irightSideMotor), idistanceArgs,
@@ -58,7 +58,7 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSid
 ChassisControllerPID ChassisControllerFactory::create(
   Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
   const IterativePosPIDControllerArgs &idistanceArgs,
-  const IterativePosPIDControllerArgs &iangleArgs, const pros::c::motor_gearset_e_t igearset,
+  const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::motorGearset igearset,
   const ChassisScales &iscales) {
   return ChassisControllerPID(
     std::make_shared<Motor>(itopLeftMotor), std::make_shared<Motor>(itopRightMotor),

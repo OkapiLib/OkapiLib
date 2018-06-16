@@ -221,8 +221,8 @@ void opcontrol() {
   Motor armMotor = 15_mtr;
   armMotor.move(10);
 
-  ChassisControllerIntegrated robotChassisController =
-    ChassisControllerFactory::create({19, 20}, {-14}, pros::c::E_MOTOR_GEARSET_36, {4_in, 11.5_in});
+  ChassisControllerIntegrated robotChassisController = ChassisControllerFactory::create(
+    {19, 20}, {-14}, AbstractMotor::motorGearset::E_MOTOR_GEARSET_36, {4_in, 11.5_in});
 
   Controller controller;
   ControllerButton btn1(E_CONTROLLER_DIGITAL_A);

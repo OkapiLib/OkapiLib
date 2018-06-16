@@ -13,8 +13,6 @@
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
-#include "okapi/api/device/motor/motor.hpp"
-#include "okapi/api/device/motor/motorGroup.hpp"
 
 namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {
@@ -30,7 +28,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   ChassisControllerIntegrated(
     std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
-    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
     const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -48,7 +46,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
     std::shared_ptr<AbstractMotor> itopLeftMotor, std::shared_ptr<AbstractMotor> itopRightMotor,
     std::shared_ptr<AbstractMotor> ibottomRightMotor,
     std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
     const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -64,7 +62,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
     std::shared_ptr<ChassisModel> imodel,
     const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
     const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
     const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**

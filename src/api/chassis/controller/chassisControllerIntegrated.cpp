@@ -12,7 +12,7 @@
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
-  const pros::c::motor_gearset_e_t igearset, const ChassisScales &iscales)
+  const AbstractMotor::motorGearset igearset, const ChassisScales &iscales)
   : ChassisController(std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor)),
     leftController(ileftSideMotor),
     rightController(irightSideMotor),
@@ -20,13 +20,13 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_DEGREES);
 }
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<AbstractMotor> itopLeftMotor, std::shared_ptr<AbstractMotor> itopRightMotor,
   std::shared_ptr<AbstractMotor> ibottomRightMotor, std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-  const pros::c::motor_gearset_e_t igearset, const ChassisScales &iscales)
+  const AbstractMotor::motorGearset igearset, const ChassisScales &iscales)
   : ChassisController(std::make_shared<XDriveModel>(itopLeftMotor, itopRightMotor,
                                                     ibottomRightMotor, ibottomLeftMotor)),
     leftController(itopLeftMotor),
@@ -35,13 +35,13 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_DEGREES);
 }
 
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
   const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-  const pros::c::motor_gearset_e_t igearset, const ChassisScales &iscales)
+  const AbstractMotor::motorGearset igearset, const ChassisScales &iscales)
   : ChassisController(imodel),
     leftController(ileftControllerArgs),
     rightController(irightControllerArgs),
@@ -49,7 +49,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(pros::c::E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_DEGREES);
 }
 
 void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
