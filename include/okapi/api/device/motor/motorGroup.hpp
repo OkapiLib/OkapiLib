@@ -148,12 +148,12 @@ class MotorGroup : public AbstractMotor {
   virtual std::int32_t tarePosition() const override;
 
   /**
-   * Sets one of motor_brake_mode_e_t to the motor.
+   * Sets one of AbstractMotor::motorBrakeMode to the motor.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
-   * @param imode The motor_brake_mode_e_t to set for the motor
+   * @param imode The new motor brake mode to set for the motor
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
   virtual std::int32_t setBrakeMode(const AbstractMotor::motorBrakeMode imode) const override;
@@ -170,7 +170,7 @@ class MotorGroup : public AbstractMotor {
   virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const override;
 
   /**
-   * Sets one of motor_encoder_units_e_t for the motor encoder.
+   * Sets one of AbstractMotor::motorEncoderUnits for the motor encoder.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -182,7 +182,7 @@ class MotorGroup : public AbstractMotor {
   setEncoderUnits(const AbstractMotor::motorEncoderUnits iunits) const override;
 
   /**
-   * Sets one of motor_gearset_e_t for the motor.
+   * Sets one of AbstractMotor::motorGearset for the motor.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.

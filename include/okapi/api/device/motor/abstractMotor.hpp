@@ -166,7 +166,7 @@ class AbstractMotor : public ControllerOutput {
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
-   * @param imode The new brake motor brake mode to set for the motor
+   * @param imode The new motor brake mode to set for the motor
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
   virtual std::int32_t setBrakeMode(const motorBrakeMode imode) const = 0;
