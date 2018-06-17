@@ -11,6 +11,10 @@
 #include "test/testRunner.hpp"
 #include "test/tests/allHeadlessTests.hpp"
 
+void runHeadlessTests();
+
+void constructorTests();
+
 void opcontrol() {
   using namespace okapi;
   pros::Task::delay(100);
