@@ -65,8 +65,9 @@ void testIterativeControllers() {
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativeVelPIDController controller(
-      0.000015, 0, std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                                             std::make_unique<MockTimer>()),
+      0.000015, 0, 0,
+      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                                std::make_unique<MockTimer>()),
       std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
 
     const double target = 10;
@@ -82,6 +83,21 @@ void testIterativeControllers() {
     test("IterativeVelPIDController should settle after 2000 iterations (controller error is "
          "correct)",
          TEST_BODY(AssertThat, controller.getError(), EqualsWithDelta(0, 0.01)));
+
+    IterativeVelPIDController controller2(
+      0, 0, 0.1,
+      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                                std::make_unique<MockTimer>()),
+      std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
+
+    controller2.setTarget(5);
+    for (size_t i = 0; i < 5; i++) {
+      test(
+        "IterativeVelPIDController with feed-forward should output proportional to error and not "
+        "integrate " +
+          std::to_string(i),
+        TEST_BODY(AssertThat, controller2.step(0), EqualsWithDelta(0.5, 0.01)));
+    }
   }
 
   {
@@ -100,7 +116,7 @@ void testIterativeControllers() {
 
     class MockIterativeVelPIDController : public IterativeVelPIDController {
       public:
-      MockIterativeVelPIDController() : IterativeVelPIDController(0, 0) {
+      MockIterativeVelPIDController() : IterativeVelPIDController(0, 0, 0) {
       }
       virtual double step(const double inewReading) override {
         return inewReading;

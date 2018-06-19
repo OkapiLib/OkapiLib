@@ -74,19 +74,94 @@ void testUtils() {
   {
     test_printf("Testing Rate");
 
-    Rate rate;
-    uint32_t lastTime = pros::millis();
+    // Test the overload that takes QFrequency
+    {
+      printf("Testing QFrequency delay overload\n");
 
-    for (int i = 0; i < 10; i++) {
-      rate.delayHz(10_Hz);
+      Rate rate;
+      uint32_t lastTime = pros::millis();
 
-      // Static cast so the compiler doesn't complain about comparing signed and unsigned values
-      test("Rate " + std::to_string(i),
-           TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
-                     EqualsWithDelta(100, 10)));
+      for (int i = 0; i < 10; i++) {
+        rate.delay(10_Hz);
 
-      lastTime = pros::millis();
-      pros::Task::delay(50); // Emulate some computation
+        // Static cast so the compiler doesn't complain about comparing signed and unsigned values
+        test("Rate " + std::to_string(i),
+             TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
+                       EqualsWithDelta(100, 10)));
+
+        lastTime = pros::millis();
+        pros::Task::delay(50); // Emulate some computation
+      }
+    }
+
+    // Test the overload that takes raw ms
+    {
+      printf("Testing raw ms delay overload\n");
+
+      Rate rate;
+      uint32_t lastTime = pros::millis();
+
+      for (int i = 0; i < 10; i++) {
+        rate.delay(100);
+
+        // Static cast so the compiler doesn't complain about comparing signed and unsigned values
+        test("Rate " + std::to_string(i),
+             TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
+                       EqualsWithDelta(100, 10)));
+
+        lastTime = pros::millis();
+        pros::Task::delay(50); // Emulate some computation
+      }
+    }
+  }
+
+  {
+    test_printf("Testing Timer");
+
+    // Test the overload that takes QTime
+    {
+      printf("Testing QTime repeat overload\n");
+
+      Timer timer;
+      uint32_t lastTime = pros::millis();
+      int successCount = 0;
+
+      for (int i = 0; i < 10000 && successCount < 10; i++) {
+        if (timer.repeat(100_ms)) {
+          successCount++;
+
+          // Static cast so the compiler doesn't complain about comparing signed and unsigned values
+          test("Timer " + std::to_string(i),
+               TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
+                         EqualsWithDelta(100, 10)));
+
+          lastTime = pros::millis();
+        }
+        pros::Task::delay(1); // Emulate some computation
+      }
+    }
+
+    // Test the overload that takes QFrequency
+    {
+      printf("Testing QFrequency repeat overload\n");
+
+      Timer timer;
+      uint32_t lastTime = pros::millis();
+      int successCount = 0;
+
+      for (int i = 0; i < 10000 && successCount < 10; i++) {
+        if (timer.repeat(10_Hz)) {
+          successCount++;
+
+          // Static cast so the compiler doesn't complain about comparing signed and unsigned values
+          test("Timer " + std::to_string(i),
+               TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
+                         EqualsWithDelta(100, 10)));
+
+          lastTime = pros::millis();
+        }
+        pros::Task::delay(1); // Emulate some computation
+      }
     }
   }
 }
