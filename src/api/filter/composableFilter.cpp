@@ -13,11 +13,16 @@ ComposableFilterArgs::ComposableFilterArgs(
   const std::initializer_list<std::shared_ptr<Filter>> &ilist)
   : list(ilist) {
 }
-
 ComposableFilter::ComposableFilter() {
 }
 
 ComposableFilter::ComposableFilter(const std::initializer_list<std::shared_ptr<Filter>> &ilist) {
+  for (auto &&elem : ilist) {
+    filters.push_back(elem);
+  }
+}
+
+ComposableFilter::ComposableFilter(const std::vector<std::shared_ptr<Filter>> &ilist) {
   for (auto &&elem : ilist) {
     filters.push_back(elem);
   }

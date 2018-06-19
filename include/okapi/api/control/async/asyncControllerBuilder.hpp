@@ -54,8 +54,8 @@ class AsyncControllerBuilder {
 
   private:
   std::shared_ptr<ControllerInput> m_input;
-  std::vector<std::shared_ptr<Filter>> m_filters;
-  std::vector<std::shared_ptr<IterativeController>> m_controllers;
+  std::vector<std::shared_ptr<Filter>> m_filters{};
+  std::vector<std::shared_ptr<IterativeController>> m_controllers{};
   std::shared_ptr<ControllerOutput> m_output;
 };
 } // namespace okapi

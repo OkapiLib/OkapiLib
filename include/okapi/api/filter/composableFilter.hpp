@@ -40,6 +40,8 @@ class ComposableFilter : public Filter {
    */
   ComposableFilter(const std::initializer_list<std::shared_ptr<Filter>> &ilist);
 
+  ComposableFilter(const std::vector<std::shared_ptr<Filter>> &ilist);
+
   ComposableFilter(const ComposableFilterArgs &iparams);
 
   /**
