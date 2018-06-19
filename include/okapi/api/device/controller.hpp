@@ -9,7 +9,7 @@
 #define _OKAPI_CONTROLLER_HPP_
 
 #include "api.h"
-#include "okapi/device/button/controllerButton.hpp"
+#include "okapi/api/device/button/controllerButton.hpp"
 
 namespace okapi {
 class Controller {
