@@ -8,13 +8,42 @@
 #ifndef _OKAPI_ABSTRACTMOTOR_HPP_
 #define _OKAPI_ABSTRACTMOTOR_HPP_
 
-#include "api.h"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/device/rotarysensor/integratedEncoder.hpp"
 
 namespace okapi {
 class AbstractMotor : public ControllerOutput {
   public:
+  /**
+   * Indicates the 'brake mode' of a motor.
+   */
+  typedef enum {
+    E_MOTOR_BRAKE_COAST = 0, // Motor coasts when stopped, traditional behavior
+    E_MOTOR_BRAKE_BRAKE = 1, // Motor brakes when stopped
+    E_MOTOR_BRAKE_HOLD = 2,  // Motor actively holds position when stopped
+    E_MOTOR_BRAKE_INVALID = INT32_MAX
+  } motorBrakeMode;
+
+  /**
+   * Indicates the units used by the motor encoders.
+   */
+  typedef enum {
+    E_MOTOR_ENCODER_DEGREES = 0,
+    E_MOTOR_ENCODER_ROTATIONS = 1,
+    E_MOTOR_ENCODER_COUNTS = 2,
+    E_MOTOR_ENCODER_INVALID = INT32_MAX
+  } motorEncoderUnits;
+
+  /**
+   * Indicates the internal gear ratio of a motor.
+   */
+  typedef enum {
+    E_MOTOR_GEARSET_36 = 0, // 36:1, 100 RPM, Red gear set
+    E_MOTOR_GEARSET_18 = 1, // 18:1, 200 RPM, Green gear set
+    E_MOTOR_GEARSET_06 = 2, // 6:1, 600 RPM, Blue gear set
+    E_MOTOR_GEARSET_INVALID = INT32_MAX
+  } motorGearset;
+
   virtual ~AbstractMotor();
 
   /**
@@ -132,15 +161,15 @@ class AbstractMotor : public ControllerOutput {
   virtual std::int32_t tarePosition() const = 0;
 
   /**
-   * Sets one of motor_brake_mode_e_t to the motor.
+   * Sets one of motorBrakeMode to the motor.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
-   * @param imode The motor_brake_mode_e_t to set for the motor
+   * @param imode The new motor brake mode to set for the motor
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setBrakeMode(const pros::c::motor_brake_mode_e_t imode) const = 0;
+  virtual std::int32_t setBrakeMode(const motorBrakeMode imode) const = 0;
 
   /**
    * Sets the current limit for the motor in mA.
@@ -154,7 +183,7 @@ class AbstractMotor : public ControllerOutput {
   virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const = 0;
 
   /**
-   * Sets one of motor_encoder_units_e_t for the motor encoder.
+   * Sets one of motorEncoderUnits for the motor encoder.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -162,10 +191,10 @@ class AbstractMotor : public ControllerOutput {
    * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const = 0;
+  virtual std::int32_t setEncoderUnits(const motorEncoderUnits iunits) const = 0;
 
   /**
-   * Sets one of motor_gearset_e_t for the motor.
+   * Sets one of motorGearset for the motor.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -173,7 +202,7 @@ class AbstractMotor : public ControllerOutput {
    * @param igearset The new motor gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setGearing(const pros::c::motor_gearset_e_t igearset) const = 0;
+  virtual std::int32_t setGearing(const motorGearset igearset) const = 0;
 
   /**
    * Sets the reverse flag for the motor.

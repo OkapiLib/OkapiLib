@@ -34,24 +34,6 @@ SkidSteerModelArgs::SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideM
     maxOutput(imaxOutput) {
 }
 
-SkidSteerModel::SkidSteerModel(Motor ileftSideMotor, Motor irightSideMotor, const double imaxOutput)
-  : SkidSteerModel(std::make_shared<Motor>(ileftSideMotor),
-                   std::make_shared<Motor>(irightSideMotor), imaxOutput) {
-}
-
-SkidSteerModel::SkidSteerModel(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                               const double imaxOutput)
-  : SkidSteerModel(std::make_shared<MotorGroup>(ileftSideMotor),
-                   std::make_shared<MotorGroup>(irightSideMotor), imaxOutput) {
-}
-
-SkidSteerModel::SkidSteerModel(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                               ADIEncoder ileftEnc, ADIEncoder irightEnc, const double imaxOutput)
-  : SkidSteerModel(
-      std::make_shared<MotorGroup>(ileftSideMotor), std::make_shared<MotorGroup>(irightSideMotor),
-      std::make_shared<ADIEncoder>(ileftEnc), std::make_shared<ADIEncoder>(irightEnc), imaxOutput) {
-}
-
 SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                std::shared_ptr<AbstractMotor> irightSideMotor,
                                std::shared_ptr<ContinuousRotarySensor> ileftEnc,
@@ -202,17 +184,17 @@ void SkidSteerModel::resetSensors() const {
   rightSensor->reset();
 }
 
-void SkidSteerModel::setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const {
+void SkidSteerModel::setBrakeMode(const AbstractMotor::motorBrakeMode mode) const {
   leftSideMotor->setBrakeMode(mode);
   rightSideMotor->setBrakeMode(mode);
 }
 
-void SkidSteerModel::setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const {
+void SkidSteerModel::setEncoderUnits(const AbstractMotor::motorEncoderUnits units) const {
   leftSideMotor->setEncoderUnits(units);
   rightSideMotor->setEncoderUnits(units);
 }
 
-void SkidSteerModel::setGearing(const pros::c::motor_gearset_e_t gearset) const {
+void SkidSteerModel::setGearing(const AbstractMotor::motorGearset gearset) const {
   leftSideMotor->setGearing(gearset);
   rightSideMotor->setGearing(gearset);
 }

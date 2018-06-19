@@ -11,6 +11,62 @@
 #include "test/testRunner.hpp"
 #include "test/tests/allHeadlessTests.hpp"
 
+void runHeadlessTests();
+
+void constructorTests();
+
+void opcontrol() {
+  using namespace okapi;
+  pros::Task::delay(100);
+
+  runHeadlessTests();
+  return;
+
+  MotorGroup leftMotors({19_mtr, 20_mtr});
+  MotorGroup rightMotors({13_rmtr, 14_rmtr});
+  Motor armMotor = 15_mtr;
+  armMotor.move(10);
+
+  auto chassis = ChassisControllerFactory::create(
+    {19, 20}, {-14}, AbstractMotor::motorGearset::E_MOTOR_GEARSET_36, {4_in, 11.5_in});
+
+  Controller controller;
+  ControllerButton btn1(E_CONTROLLER_DIGITAL_A);
+  ControllerButton btn2(E_CONTROLLER_DIGITAL_B);
+  ControllerButton btn3(E_CONTROLLER_DIGITAL_Y);
+  ControllerButton btn4(E_CONTROLLER_DIGITAL_X);
+
+  while (true) {
+    chassis.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                   controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
+
+    if (btn1.changedToPressed()) {
+      printf("move distance\n");
+      chassis.moveDistance(12_in);
+    }
+
+    if (btn2.changedToPressed()) {
+      printf("turn angle\n");
+      chassis.turnAngle(90_deg);
+    }
+
+    if (btn3.changedToPressed()) {
+      printf("move arm\n");
+      armMotor.moveRelative(-10, 127);
+    }
+
+    if (btn4.changedToPressed()) {
+      printf("autonomous routine\n");
+      for (int i = 0; i < 4; i++) {
+        chassis.moveDistance(12_in);
+        chassis.turnAngle(90_deg);
+      }
+    }
+
+    pros::Task::delay(10);
+  }
+}
+
 void runHeadlessTests() {
   using namespace okapi;
 
@@ -64,10 +120,11 @@ void constructorTests() {
   {
     ADIEncoder leftEncoder(1, 2, true);
     ADIEncoder rightEncoder(3, 4);
-    ChassisControllerIntegrated int1(1_mtr, 2_mtr);
-    ChassisControllerIntegrated int2(MotorGroup({1_mtr, 2_mtr, 3_mtr}), MotorGroup({4_mtr, 5_mtr}));
-    ChassisControllerIntegrated int3(1, 2);
-    ChassisControllerIntegrated int4({1, 2, 3}, {-4, -5});
+    ChassisControllerIntegrated int1 = ChassisControllerFactory::create(1_mtr, 2_mtr);
+    ChassisControllerIntegrated int2 = ChassisControllerFactory::create(
+      MotorGroup({1_mtr, 2_mtr, 3_mtr}), MotorGroup({4_mtr, 5_mtr}));
+    ChassisControllerIntegrated int3 = ChassisControllerFactory::create(1, 2);
+    ChassisControllerIntegrated int4 = ChassisControllerFactory::create({1, 2, 3}, {-4, -5});
 
     int1.moveDistance(0_in); // Closed-loop control
     int1.turnAngle(0_deg);   // Closed-loop control
@@ -82,15 +139,6 @@ void constructorTests() {
     int1.stop();                      // Stop motors
     auto vals = int1.getSensorVals(); // Read left and right sensors
     int1.resetSensors();              // Set sensors to 0
-
-    ChassisControllerPID controller1(
-      std::make_shared<SkidSteerModel>(MotorGroup({1_mtr, 2_mtr}), MotorGroup({3_mtr, 4_mtr}),
-                                       leftEncoder, rightEncoder),
-      IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
-
-    ChassisControllerPID controller2(
-      std::make_shared<XDriveModel>(1_mtr, 2_mtr, 3_mtr, 4_mtr, leftEncoder, rightEncoder),
-      IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
   }
 
   {
@@ -194,69 +242,5 @@ void constructorTests() {
     auto mtr = 1_mtr;
     AsyncWrapper wrapper(std::make_shared<IntegratedEncoder>(mtr), std::make_shared<Motor>(mtr),
                          std::make_unique<IterativePosPIDController>(0, 0, 0));
-  }
-}
-
-void opcontrol() {
-  using namespace okapi;
-  pros::Task::delay(100);
-
-  // auto myMotor = 11_mtr;
-  // AsyncVelPIDController apid(std::make_shared<IntegratedEncoder>(myMotor),
-  //                            std::make_shared<Motor>(myMotor), 0.001, 0, 0);
-  //
-  // apid.setTarget(20);
-  //
-  // for (;;) {
-  //   printf("Error: %1.2f, Output: %1.2f\n", apid.getError(), apid.getOutput());
-  //   pros::Task::delay(15);
-  // }
-
-  runHeadlessTests();
-  return;
-
-  MotorGroup leftMotors({19_mtr, 20_mtr});
-  MotorGroup rightMotors({13_rmtr, 14_rmtr});
-  Motor armMotor = 15_mtr;
-  armMotor.move(10);
-
-  ChassisControllerIntegrated robotChassisController({19, 20}, {-14}, pros::c::E_MOTOR_GEARSET_36,
-                                                     {4_in, 11.5_in});
-
-  Controller controller;
-  ControllerButton btn1(E_CONTROLLER_DIGITAL_A);
-  ControllerButton btn2(E_CONTROLLER_DIGITAL_B);
-  ControllerButton btn3(E_CONTROLLER_DIGITAL_Y);
-  ControllerButton btn4(E_CONTROLLER_DIGITAL_X);
-
-  while (true) {
-    // printf("loop\n");
-    robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                                  controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
-
-    if (btn1.changedToPressed()) {
-      printf("move distance\n");
-      robotChassisController.moveDistance(12_in);
-    }
-
-    if (btn2.changedToPressed()) {
-      printf("turn angle\n");
-      robotChassisController.turnAngle(90_deg);
-    }
-
-    if (btn3.changedToPressed()) {
-      printf("move arm\n");
-      armMotor.moveRelative(-10, 127);
-    }
-
-    if (btn4.changedToPressed()) {
-      printf("autonomous routine\n");
-      for (int i = 0; i < 4; i++) {
-        robotChassisController.moveDistance(12_in);
-        robotChassisController.turnAngle(90_deg);
-      }
-    }
-
-    pros::Task::delay(10);
   }
 }

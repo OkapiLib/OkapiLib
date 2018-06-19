@@ -35,20 +35,6 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
    * @param imiddleEnc middle encoder (mounted perpendicular to the left and right side encoders)
    * @param irightEnc right side encoder
    */
-  ThreeEncoderSkidSteerModel(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                             ADIEncoder ileftEnc, ADIEncoder imiddleEnc, ADIEncoder irightEnc,
-                             const double imaxOutput = 127);
-
-  /**
-   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-   * motors are powered +127, the robot should move forward in a straight line.
-   *
-   * @param ileftSideMotor left side motor
-   * @param irightSideMotor right side motor
-   * @param ileftEnc left side encoder
-   * @param imiddleEnc middle encoder (mounted perpendicular to the left and right side encoders)
-   * @param irightEnc right side encoder
-   */
   ThreeEncoderSkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                              std::shared_ptr<AbstractMotor> irightSideMotor,
                              std::shared_ptr<ContinuousRotarySensor> ileftEnc,

@@ -57,15 +57,15 @@ void ChassisController::resetSensors() const {
   model->resetSensors();
 }
 
-void ChassisController::setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const {
+void ChassisController::setBrakeMode(const AbstractMotor::motorBrakeMode mode) const {
   model->setBrakeMode(mode);
 }
 
-void ChassisController::setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const {
+void ChassisController::setEncoderUnits(const AbstractMotor::motorEncoderUnits units) const {
   model->setEncoderUnits(units);
 }
 
-void ChassisController::setGearing(const pros::c::motor_gearset_e_t gearset) const {
+void ChassisController::setGearing(const AbstractMotor::motorGearset gearset) const {
   model->setGearing(gearset);
 }
 } // namespace okapi

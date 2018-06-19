@@ -10,9 +10,6 @@
 
 #include "okapi/api/chassis/model/chassisModel.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
-#include "okapi/api/device/motor/motor.hpp"
-#include "okapi/api/device/motor/motorGroup.hpp"
-#include "okapi/api/device/rotarysensor/adiEncoder.hpp"
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
 
 namespace okapi {
@@ -41,37 +38,6 @@ class XDriveModelArgs : public ChassisModelArgs {
 
 class XDriveModel : public ChassisModel {
   public:
-  /**
-   * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
-   * +127, the robot should move forward in a straight line.
-   *
-   * This constructor infers the two sensors from the top left and top right motors (using the
-   * integrated encoders).
-   *
-   * @param itopLeftMotor top left motor
-   * @param itopRightMotor top right motor
-   * @param ibottomRightMotor bottom right motor
-   * @param ibottomLeftMotor bottom left motor
-   */
-  XDriveModel(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
-              Motor ibottomLeftMotor, const double imaxOutput = 127);
-
-  /**
-   * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
-   * +127, the robot should move forward in a straight line.
-   *
-   * This constructor infers the two sensors from the top left and top right motors (using the
-   * integrated encoders).
-   *
-   * @param itopLeftMotor top left motor
-   * @param itopRightMotor top right motor
-   * @param ibottomRightMotor bottom right motor
-   * @param ibottomLeftMotor bottom left motor
-   */
-  XDriveModel(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
-              Motor ibottomLeftMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
-              const double imaxOutput = 127);
-
   /**
    * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
    * +127, the robot should move forward in a straight line.
@@ -203,21 +169,21 @@ class XDriveModel : public ChassisModel {
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const override;
+  virtual void setBrakeMode(const AbstractMotor::motorBrakeMode mode) const override;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const override;
+  virtual void setEncoderUnits(const AbstractMotor::motorEncoderUnits units) const override;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(const pros::c::motor_gearset_e_t gearset) const override;
+  virtual void setGearing(const AbstractMotor::motorGearset gearset) const override;
 
   /**
    * Returns the top left motor.

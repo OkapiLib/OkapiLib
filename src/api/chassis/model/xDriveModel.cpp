@@ -41,22 +41,6 @@ XDriveModelArgs::XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
     maxOutput(imaxOutput) {
 }
 
-XDriveModel::XDriveModel(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
-                         Motor ibottomLeftMotor, const double imaxOutput)
-  : XDriveModel(std::make_shared<Motor>(itopLeftMotor), std::make_shared<Motor>(itopRightMotor),
-                std::make_shared<Motor>(ibottomRightMotor),
-                std::make_shared<Motor>(ibottomLeftMotor), imaxOutput) {
-}
-
-XDriveModel::XDriveModel(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
-                         Motor ibottomLeftMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
-                         const double imaxOutput)
-  : XDriveModel(std::make_shared<Motor>(itopLeftMotor), std::make_shared<Motor>(itopRightMotor),
-                std::make_shared<Motor>(ibottomRightMotor),
-                std::make_shared<Motor>(ibottomLeftMotor), std::make_shared<ADIEncoder>(ileftEnc),
-                std::make_shared<ADIEncoder>(irightEnc), imaxOutput) {
-}
-
 XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
                          std::shared_ptr<AbstractMotor> itopRightMotor,
                          std::shared_ptr<AbstractMotor> ibottomRightMotor,
@@ -257,21 +241,21 @@ void XDriveModel::resetSensors() const {
   rightSensor->reset();
 }
 
-void XDriveModel::setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const {
+void XDriveModel::setBrakeMode(const AbstractMotor::motorBrakeMode mode) const {
   topLeftMotor->setBrakeMode(mode);
   topRightMotor->setBrakeMode(mode);
   bottomRightMotor->setBrakeMode(mode);
   bottomLeftMotor->setBrakeMode(mode);
 }
 
-void XDriveModel::setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const {
+void XDriveModel::setEncoderUnits(const AbstractMotor::motorEncoderUnits units) const {
   topLeftMotor->setEncoderUnits(units);
   topRightMotor->setEncoderUnits(units);
   bottomRightMotor->setEncoderUnits(units);
   bottomLeftMotor->setEncoderUnits(units);
 }
 
-void XDriveModel::setGearing(const pros::c::motor_gearset_e_t gearset) const {
+void XDriveModel::setGearing(const AbstractMotor::motorGearset gearset) const {
   topLeftMotor->setGearing(gearset);
   topRightMotor->setGearing(gearset);
   bottomRightMotor->setGearing(gearset);
