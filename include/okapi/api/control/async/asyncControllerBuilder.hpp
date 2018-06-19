@@ -29,26 +29,26 @@ class AsyncControllerBuilder {
 
   virtual ~AsyncControllerBuilder();
 
-  AsyncControllerBuilder input(ADIEncoder iencoder);
-  AsyncControllerBuilder input(IntegratedEncoder iencoder);
-  AsyncControllerBuilder input(MotorGroup imotor);
-  AsyncControllerBuilder input(Potentiometer ipotentiometer);
-  AsyncControllerBuilder input(ADIUltrasonic iultrasonic);
+  AsyncControllerBuilder &input(ADIEncoder iencoder);
+  AsyncControllerBuilder &input(IntegratedEncoder iencoder);
+  AsyncControllerBuilder &input(MotorGroup imotor);
+  AsyncControllerBuilder &input(Potentiometer ipotentiometer);
+  AsyncControllerBuilder &input(ADIUltrasonic iultrasonic);
 
-  AsyncControllerBuilder filter(EmaFilter ifilter);
-  AsyncControllerBuilder filter(DemaFilter ifilter);
-  AsyncControllerBuilder filter(ComposableFilter ifilter);
-  AsyncControllerBuilder filter(std::shared_ptr<Filter> ifilter);
+  AsyncControllerBuilder &filter(EmaFilter ifilter);
+  AsyncControllerBuilder &filter(DemaFilter ifilter);
+  AsyncControllerBuilder &filter(ComposableFilter ifilter);
+  AsyncControllerBuilder &filter(std::shared_ptr<Filter> ifilter);
 
-  AsyncControllerBuilder posPid(const double ikP, const double ikI, const double ikD,
-                                const double ikBias = 0);
+  AsyncControllerBuilder &posPid(const double ikP, const double ikI, const double ikD,
+                                 const double ikBias = 0);
 
-  AsyncControllerBuilder velPid(const double ikP, const double ikD, const double ikF,
-                                const VelMathArgs &iparams);
+  AsyncControllerBuilder &velPid(const double ikP, const double ikD, const double ikF,
+                                 const VelMathArgs &iparams);
 
-  AsyncControllerBuilder output(Motor imotor);
-  AsyncControllerBuilder output(MotorGroup imotor);
-  AsyncControllerBuilder output(std::shared_ptr<AbstractMotor> imotor);
+  AsyncControllerBuilder &output(Motor imotor);
+  AsyncControllerBuilder &output(MotorGroup imotor);
+  AsyncControllerBuilder &output(std::shared_ptr<AbstractMotor> imotor);
 
   std::shared_ptr<AsyncController> build() const;
 

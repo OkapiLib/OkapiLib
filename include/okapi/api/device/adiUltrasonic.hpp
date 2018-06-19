@@ -32,7 +32,7 @@ class ADIUltrasonic : public ControllerInput {
    * @param ifilter the filter to use for filtering measurements
    */
   ADIUltrasonic(const std::uint8_t iportTop, const std::uint8_t iportBottom,
-                std::unique_ptr<Filter> ifilter);
+                std::shared_ptr<Filter> ifilter);
 
   virtual ~ADIUltrasonic();
 
@@ -51,7 +51,7 @@ class ADIUltrasonic : public ControllerInput {
 
   protected:
   pros::ADIUltrasonic ultra;
-  std::unique_ptr<Filter> filter;
+  std::shared_ptr<Filter> filter;
 };
 } // namespace okapi
 
