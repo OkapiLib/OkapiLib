@@ -10,6 +10,7 @@
 
 #include "okapi/api/control/async/asyncController.hpp"
 #include "okapi/api/control/iterative/iterativeController.hpp"
+#include "okapi/api/control/iterative/iterativeLambdaBasedController.hpp"
 #include "okapi/api/device/adiUltrasonic.hpp"
 #include "okapi/api/device/motor/motor.hpp"
 #include "okapi/api/device/motor/motorGroup.hpp"
@@ -46,16 +47,18 @@ class AsyncControllerBuilder {
   AsyncControllerBuilder &velPid(const double ikP, const double ikD, const double ikF,
                                  const VelMathArgs &iparams);
 
+  AsyncControllerBuilder &lambda(std::function<double(double)> istepFunction);
+
   AsyncControllerBuilder &output(Motor imotor);
   AsyncControllerBuilder &output(MotorGroup imotor);
   AsyncControllerBuilder &output(std::shared_ptr<AbstractMotor> imotor);
 
-  std::shared_ptr<AsyncController> build() const;
+  std::unique_ptr<AsyncController> build() const;
 
   private:
   std::shared_ptr<ControllerInput> m_input;
   std::vector<std::shared_ptr<Filter>> m_filters{};
-  std::vector<std::shared_ptr<IterativeController>> m_controllers{};
+  std::vector<std::unique_ptr<IterativeController>> m_controllers{};
   std::shared_ptr<ControllerOutput> m_output;
 };
 } // namespace okapi

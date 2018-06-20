@@ -6,8 +6,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/async/asyncControllerBuilder.hpp"
+#include "okapi/api/control/async/asyncWrapper.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
+#include "okapi/api/filter/filteredControllerInput.hpp"
 
 namespace okapi {
 AsyncControllerBuilder::AsyncControllerBuilder() = default;
@@ -54,14 +56,23 @@ AsyncControllerBuilder &AsyncControllerBuilder::filter(std::shared_ptr<Filter> i
 
 AsyncControllerBuilder &AsyncControllerBuilder::posPid(const double ikP, const double ikI,
                                                        const double ikD, const double ikBias) {
-  m_controllers.push_back(std::make_shared<IterativePosPIDController>(ikP, ikI, ikD, ikBias));
+  m_controllers.push_back(
+    std::move(std::make_unique<IterativePosPIDController>(ikP, ikI, ikD, ikBias)));
   return *this;
 }
 
 AsyncControllerBuilder &AsyncControllerBuilder::velPid(const double ikP, const double ikD,
                                                        const double ikF,
                                                        const VelMathArgs &iparams) {
-  m_controllers.push_back(std::make_shared<IterativeVelPIDController>(ikP, ikD, ikF, iparams));
+  m_controllers.push_back(
+    std::move(std::make_unique<IterativeVelPIDController>(ikP, ikD, ikF, iparams)));
+  return *this;
+}
+
+AsyncControllerBuilder &
+AsyncControllerBuilder::lambda(std::function<double(double)> istepFunction) {
+  m_controllers.push_back(
+    std::move(std::make_unique<IterativeLambdaBasedController>(istepFunction)));
   return *this;
 }
 
@@ -78,9 +89,8 @@ AsyncControllerBuilder &AsyncControllerBuilder::output(std::shared_ptr<AbstractM
   return *this;
 }
 
-std::shared_ptr<AsyncController> AsyncControllerBuilder::build() const {
+std::unique_ptr<AsyncController> AsyncControllerBuilder::build() const {
   auto outFilter = std::make_shared<ComposableFilter>(m_filters);
-
-  return NULL;
+  return std::make_unique<AsyncWrapper>(m_input, m_output, m_controllers[0]);
 }
 } // namespace okapi
