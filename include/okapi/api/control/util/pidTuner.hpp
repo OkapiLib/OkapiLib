@@ -12,6 +12,7 @@
 #include "api.h"
 #include "okapi/api/chassis/model/chassisModel.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
+#include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/units/QTime.hpp"
 #include <memory>
 #include <vector>
@@ -19,8 +20,9 @@
 namespace okapi {
 class PIDTuner {
   public:
-  PIDTuner(std::shared_ptr<ChassisModel> imodel, const QTime itimeout, const std::int32_t igoal,
-           const double ikPMin, const double ikPMax, const double ikIMin, const double ikIMax,
+  PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::shared_ptr<SettledUtil> isettle,
+           const QTime itimeout, const std::int32_t igoal, const double ikPMin,
+           const double ikPMax, const double ikIMin, const double ikIMax,
            const double ikDMin, const double ikDMax, const std::size_t inumIterations = 5,
            const std::size_t inumParticles = 16, const double ikSettle = 1,
            const double ikITAE = 2);
@@ -45,7 +47,8 @@ class PIDTuner {
     double bestError;
   };
 
-  std::shared_ptr<ChassisModel> model;
+  std::shared_ptr<ControllerOutput>output;
+  std::shared_ptr<SettledUtil>settle;
   const QTime timeout;
   const std::int32_t goal;
   const double kPMin;
@@ -59,12 +62,8 @@ class PIDTuner {
   const double kSettle;
   const double kITAE;
 
-  double itae = 0;
   std::vector<particleSet> particles{};
-  IterativePosPIDController leftController{0, 0, 0};
-  IterativePosPIDController rightController{0, 0, 0};
-
-  std::uint32_t moveDistance(const int itarget);
+  IterativePosPIDController testController{0, 0, 0};
 };
 } // namespace okapi
 

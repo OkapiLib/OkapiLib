@@ -83,7 +83,7 @@ IntegratedEncoder Motor::getEncoder() const {
 }
 
 void Motor::controllerSet(const double ivalue) {
-  move_velocity(ivalue);
+  move_voltage(ivalue);
 }
 
 inline namespace literals {

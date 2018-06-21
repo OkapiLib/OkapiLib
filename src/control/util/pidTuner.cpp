@@ -12,13 +12,17 @@
 #include <limits>
 #include <random>
 
+#define LOOP_DELTA 10
+
 namespace okapi {
-PIDTuner::PIDTuner(std::shared_ptr<ChassisModel> imodel, const QTime itimeout,
-                   const std::int32_t igoal, const double ikPMin, const double ikPMax,
-                   const double ikIMin, const double ikIMax, const double ikDMin,
-                   const double ikDMax, const size_t inumIterations, const size_t inumParticles,
-                   const double ikSettle, const double ikITAE)
-  : model(imodel),
+PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::shared_ptr<SettledUtil> isettle,
+           const QTime itimeout, const std::int32_t igoal, const double ikPMin,
+           const double ikPMax, const double ikIMin, const double ikIMax,
+           const double ikDMin, const double ikDMax, const std::size_t inumIterations = 5,
+           const std::size_t inumParticles = 16, const double ikSettle = 1,
+           const double ikITAE = 2)
+  : output(ioutput),
+    settle(isettle),
     timeout(itimeout),
     goal(igoal),
     kPMin(ikPMin),
@@ -69,17 +73,29 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
     bool firstGoal = true;
 
     for (size_t i = 0; i < numParticles; i++) {
-      leftController.setGains(particles[i].kP.pos, particles[i].kI.pos, particles[i].kD.pos);
-      rightController.setGains(particles[i].kP.pos, particles[i].kI.pos, particles[i].kD.pos);
+      testController.setGains(particles[i].kP.pos, particles[i].kI.pos, particles[i].kD.pos);
 
       // Reverse the goal every iteration to stay in the same general area
-      int target = 660;
+      std::int32_t target = goal;
       if (!firstGoal) {
         target *= -1;
       }
       firstGoal = !firstGoal;
 
-      auto settleTime = moveDistance(target); // 16 in on 3" wheels (really 3.125")
+      testController.setTarget(target);
+
+      std::int32_t settleTime = 0, itae = 0;
+			while (!settle.isSettled(testController.getError())) {
+				settleTime += LOOP_DELTA;
+				if (settleTime > timeout)
+					break;
+
+				int error = testController.getError();
+				itae += ((settle_time * abs(error)) / (DIVISOR * abs(fbc->goal))); // sum of the error emphasizing later error
+
+				fbcRunContinuous(fbc);
+				delay(LOOP_DELTA);
+			}
 
       double error = kSettle * settleTime + kITAE * itae;
       if (error < particles[i].bestError) {
