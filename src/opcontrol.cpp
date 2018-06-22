@@ -130,6 +130,14 @@ void constructorTests() {
       MotorGroup({1_mtr, 2_mtr, 3_mtr}), MotorGroup({4_mtr, 5_mtr}));
     ChassisControllerIntegrated int3 = ChassisControllerFactory::create(1, 2);
     ChassisControllerIntegrated int4 = ChassisControllerFactory::create({1, 2, 3}, {-4, -5});
+    ChassisControllerIntegrated int5 =
+      ChassisControllerFactory::create(1, 2, AbstractMotor::gearset::red, {1, 1});
+    ChassisControllerIntegrated int6 =
+      ChassisControllerFactory::create({1, 2}, {3, 4}, AbstractMotor::gearset::red, {1, 1});
+    ChassisControllerIntegrated int7 =
+      ChassisControllerFactory::create({1, 2}, {3, 4}, AbstractMotor::gearset::red * 2, {1, 1});
+    ChassisControllerIntegrated int8 = ChassisControllerFactory::create(
+      {1, 2}, {3, 4}, AbstractMotor::gearset::red * (2 / 3), {1, 1});
 
     int1.moveDistance(0_in); // Closed-loop control
     int1.turnAngle(0_deg);   // Closed-loop control
