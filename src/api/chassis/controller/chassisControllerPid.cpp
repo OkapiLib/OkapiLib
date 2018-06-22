@@ -22,8 +22,8 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   if (igearset.ratio == 0) {
-    throw std::invalid_argument(
-      "The gear ratio cannot be zero! Check if you are using integer division.");
+    throw std::invalid_argument("ChassisControllerPID: The gear ratio cannot be zero! Check if you "
+                                "are using integer division.");
   }
 
   setGearing(igearset.thegearset);

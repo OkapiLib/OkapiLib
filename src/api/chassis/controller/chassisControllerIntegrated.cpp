@@ -22,8 +22,8 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   if (igearset.ratio == 0) {
-    throw std::invalid_argument(
-      "The gear ratio cannot be zero! Check if you are using integer division.");
+    throw std::invalid_argument("ChassisControllerIntegrated: The gear ratio cannot be zero! Check "
+                                "if you are using integer division.");
   }
 
   setGearing(igearset.thegearset);

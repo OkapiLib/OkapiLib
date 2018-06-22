@@ -20,7 +20,7 @@ VelMathArgs::VelMathArgs(const double iticksPerRev)
 }
 
 VelMathArgs::VelMathArgs(const double iticksPerRev, std::shared_ptr<Filter> ifilter)
-  : ticksPerRev(iticksPerRev == 0 ? imev5TPR : iticksPerRev), filter(ifilter) {
+  : ticksPerRev(iticksPerRev), filter(ifilter) {
 }
 
 VelMathArgs::~VelMathArgs() = default;
@@ -42,9 +42,11 @@ VelMath::VelMath(const VelMathArgs &iparams)
 
 VelMath::VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter,
                  std::unique_ptr<Timer> iloopDtTimer)
-  : ticksPerRev(iticksPerRev == 0 ? imev5TPR : iticksPerRev),
-    loopDtTimer(std::move(iloopDtTimer)),
-    filter(ifilter) {
+  : ticksPerRev(iticksPerRev), loopDtTimer(std::move(iloopDtTimer)), filter(ifilter) {
+  if (iticksPerRev == 0) {
+    throw std::invalid_argument(
+      "VelMath: The ticks per revolution cannot be zero! Check if you are using integer division.");
+  }
 }
 
 VelMath::~VelMath() = default;
