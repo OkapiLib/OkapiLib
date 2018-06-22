@@ -63,6 +63,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   AsyncPosIntegratedController leftController;
   AsyncPosIntegratedController rightController;
   int lastTarget;
+  const double gearRatio;
   const double straightScale;
   const double turnScale;
 };

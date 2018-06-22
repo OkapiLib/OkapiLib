@@ -61,6 +61,7 @@ class ChassisControllerPID : public virtual ChassisController {
   protected:
   IterativePosPIDController distancePid;
   IterativePosPIDController anglePid;
+  const double gearRatio;
   const double straightScale;
   const double turnScale;
 };
