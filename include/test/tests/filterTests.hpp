@@ -171,20 +171,6 @@ void testFilters() {
         }
       }
     }
-
-    {
-      class MockVelMath : public VelMath {
-        public:
-        using VelMath::VelMath;
-        double getTPR() const {
-          return ticksPerRev;
-        }
-      };
-
-      MockVelMath velMath2(0);
-      test("VelMath should use default TPR if given 0",
-           TEST_BODY(AssertThat, velMath2.getTPR(), Equals(imev5TPR)));
-    }
   }
 }
 

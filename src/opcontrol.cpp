@@ -19,7 +19,11 @@ void opcontrol() {
   using namespace okapi;
   pros::Task::delay(100);
 
-  runHeadlessTests();
+  auto chassis1 = ChassisControllerFactory::create(-11, 1, AbstractMotor::gearset::red * (1 / 2.0),
+                                                   {2.75_in, 10.5_in});
+  chassis1.moveDistance(6_in);
+
+  // runHeadlessTests();
   return;
 
   MotorGroup leftMotors({19_mtr, 20_mtr});
@@ -27,8 +31,8 @@ void opcontrol() {
   Motor armMotor = 15_mtr;
   armMotor.move(10);
 
-  auto chassis = ChassisControllerFactory::create(
-    {19, 20}, {-14}, AbstractMotor::motorGearset::E_MOTOR_GEARSET_36, {4_in, 11.5_in});
+  auto chassis =
+    ChassisControllerFactory::create({19, 20}, {-14}, AbstractMotor::gearset::red, {4_in, 11.5_in});
 
   Controller controller;
   ControllerButton btn1(E_CONTROLLER_DIGITAL_A);
@@ -130,6 +134,14 @@ void constructorTests() {
       MotorGroup({1_mtr, 2_mtr, 3_mtr}), MotorGroup({4_mtr, 5_mtr}));
     ChassisControllerIntegrated int3 = ChassisControllerFactory::create(1, 2);
     ChassisControllerIntegrated int4 = ChassisControllerFactory::create({1, 2, 3}, {-4, -5});
+    ChassisControllerIntegrated int5 =
+      ChassisControllerFactory::create(1, 2, AbstractMotor::gearset::red, {1, 1});
+    ChassisControllerIntegrated int6 =
+      ChassisControllerFactory::create({1, 2}, {3, 4}, AbstractMotor::gearset::red, {1, 1});
+    ChassisControllerIntegrated int7 =
+      ChassisControllerFactory::create({1, 2}, {3, 4}, AbstractMotor::gearset::red * 2, {1, 1});
+    ChassisControllerIntegrated int8 = ChassisControllerFactory::create(
+      {1, 2}, {3, 4}, AbstractMotor::gearset::red * (2 / 3), {1, 1});
 
     int1.moveDistance(0_in); // Closed-loop control
     int1.turnAngle(0_deg);   // Closed-loop control

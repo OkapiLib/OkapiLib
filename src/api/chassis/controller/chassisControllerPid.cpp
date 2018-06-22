@@ -13,22 +13,28 @@ namespace okapi {
 ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                                            const IterativePosPIDControllerArgs &idistanceArgs,
                                            const IterativePosPIDControllerArgs &iangleArgs,
-                                           const AbstractMotor::motorGearset igearset,
+                                           const AbstractMotor::GearsetRatioPair igearset,
                                            const ChassisScales &iscales)
   : ChassisController(imodel),
     distancePid(idistanceArgs),
     anglePid(iangleArgs),
+    gearRatio(igearset.ratio),
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
-  setGearing(igearset);
-  setEncoderUnits(AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_DEGREES);
+  if (igearset.ratio == 0) {
+    throw std::invalid_argument("ChassisControllerPID: The gear ratio cannot be zero! Check if you "
+                                "are using integer division.");
+  }
+
+  setGearing(igearset.internalGearset);
+  setEncoderUnits(AbstractMotor::encoderUnits::degrees);
 }
 
 void ChassisControllerPID::moveDistance(const QLength itarget) {
   distancePid.reset();
   anglePid.reset();
 
-  const double newTarget = itarget.convert(meter) * straightScale;
+  const double newTarget = itarget.convert(meter) * straightScale * gearRatio;
   distancePid.setTarget(newTarget);
   anglePid.setTarget(newTarget);
 
@@ -56,7 +62,7 @@ void ChassisControllerPID::moveDistance(const double itarget) {
 void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
   anglePid.reset();
 
-  const double newTarget = idegTarget.convert(degree) * turnScale;
+  const double newTarget = idegTarget.convert(degree) * turnScale * gearRatio;
   anglePid.setTarget(newTarget);
 
   std::uint32_t prevWakeTime = pros::millis();
