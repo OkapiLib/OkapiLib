@@ -27,7 +27,7 @@ class AbstractMotor : public ControllerOutput {
   /**
    * Indicates the units used by the motor encoders.
    */
-  enum class encoderUnits : int { degrees = 0, rotations = 1, counts = 2, invalid = INT32_MAX };
+  enum class encoderUnits { degrees = 0, rotations = 1, counts = 2, invalid = INT32_MAX };
 
   /**
    * Indicates the internal gear ratio of a motor.
