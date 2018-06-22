@@ -88,7 +88,7 @@ class AbstractMotor : public ControllerOutput {
    *
    * This velocity corresponds to different actual speeds depending on the gearset
    * used for the motor. This results in a range of +-100 for pros::c::red,
-   * +-200 for green, and +-600 for E_MOTOR_GEARSET_6. The velocity
+   * +-200 for green, and +-600 for blue. The velocity
    * is held with PID to ensure consistent speed, as opposed to setting the motor's
    * voltage.
    *
