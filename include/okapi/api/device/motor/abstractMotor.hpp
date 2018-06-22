@@ -39,6 +39,17 @@ class AbstractMotor : public ControllerOutput {
     invalid = INT32_MAX
   };
 
+  struct GearsetRatioPair {
+    GearsetRatioPair(const gearset igearset, const double iratio = 1)
+      : thegearset(igearset), ratio(iratio) {
+    }
+
+    ~GearsetRatioPair() = default;
+
+    const gearset thegearset;
+    const double ratio = 1;
+  };
+
   virtual ~AbstractMotor();
 
   /**
@@ -230,6 +241,9 @@ class AbstractMotor : public ControllerOutput {
    */
   virtual IntegratedEncoder getEncoder() const = 0;
 };
+
+AbstractMotor::GearsetRatioPair operator*(const AbstractMotor::gearset gearset, const double ratio);
+
 } // namespace okapi
 
 #endif

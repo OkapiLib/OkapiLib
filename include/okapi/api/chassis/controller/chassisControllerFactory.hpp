@@ -25,7 +25,7 @@ class ChassisControllerFactory {
    */
   static ChassisControllerIntegrated
   create(Motor ileftSideMotor, Motor irightSideMotor,
-         const AbstractMotor::gearset igearset = AbstractMotor::gearset::red,
+         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -39,7 +39,7 @@ class ChassisControllerFactory {
    */
   static ChassisControllerIntegrated
   create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-         const AbstractMotor::gearset igearset = AbstractMotor::gearset::red,
+         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -55,7 +55,7 @@ class ChassisControllerFactory {
    */
   static ChassisControllerIntegrated
   create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-         const AbstractMotor::gearset igearset = AbstractMotor::gearset::red,
+         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -72,7 +72,7 @@ class ChassisControllerFactory {
   create(Motor ileftSideMotor, Motor irightSideMotor,
          const IterativePosPIDControllerArgs &idistanceArgs,
          const IterativePosPIDControllerArgs &iangleArgs,
-         const AbstractMotor::gearset igearset = AbstractMotor::gearset::red,
+         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -89,7 +89,7 @@ class ChassisControllerFactory {
   create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
          const IterativePosPIDControllerArgs &idistanceArgs,
          const IterativePosPIDControllerArgs &iangleArgs,
-         const AbstractMotor::gearset igearset = AbstractMotor::gearset::red,
+         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -106,7 +106,7 @@ class ChassisControllerFactory {
   create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
          const IterativePosPIDControllerArgs &idistanceArgs,
          const IterativePosPIDControllerArgs &iangleArgs,
-         const AbstractMotor::gearset igearset = AbstractMotor::gearset::red,
+         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 };
 } // namespace okapi

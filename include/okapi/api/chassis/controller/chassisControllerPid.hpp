@@ -27,7 +27,7 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
-                       const AbstractMotor::gearset igearset = AbstractMotor::gearset::red,
+                       const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
                        const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**

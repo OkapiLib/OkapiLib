@@ -13,14 +13,14 @@ namespace okapi {
 ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                                            const IterativePosPIDControllerArgs &idistanceArgs,
                                            const IterativePosPIDControllerArgs &iangleArgs,
-                                           const AbstractMotor::gearset igearset,
+                                           const AbstractMotor::GearsetRatioPair igearset,
                                            const ChassisScales &iscales)
   : ChassisController(imodel),
     distancePid(idistanceArgs),
     anglePid(iangleArgs),
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
-  setGearing(igearset);
+  setGearing(igearset.thegearset);
   setEncoderUnits(AbstractMotor::encoderUnits::degrees);
 }
 
