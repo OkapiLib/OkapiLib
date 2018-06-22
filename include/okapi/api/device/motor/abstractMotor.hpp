@@ -17,32 +17,27 @@ class AbstractMotor : public ControllerOutput {
   /**
    * Indicates the 'brake mode' of a motor.
    */
-  typedef enum {
-    E_MOTOR_BRAKE_COAST = 0, // Motor coasts when stopped, traditional behavior
-    E_MOTOR_BRAKE_BRAKE = 1, // Motor brakes when stopped
-    E_MOTOR_BRAKE_HOLD = 2,  // Motor actively holds position when stopped
-    E_MOTOR_BRAKE_INVALID = INT32_MAX
-  } brakeMode;
+  enum class brakeMode {
+    coast = 0, // Motor coasts when stopped, traditional behavior
+    brake = 1, // Motor brakes when stopped
+    hold = 2,  // Motor actively holds position when stopped
+    invalid = INT32_MAX
+  };
 
   /**
    * Indicates the units used by the motor encoders.
    */
-  typedef enum {
-    E_MOTOR_ENCODER_DEGREES = 0,
-    E_MOTOR_ENCODER_ROTATIONS = 1,
-    E_MOTOR_ENCODER_COUNTS = 2,
-    E_MOTOR_ENCODER_INVALID = INT32_MAX
-  } encoderUnits;
+  enum class encoderUnits : int { degrees = 0, rotations = 1, counts = 2, invalid = INT32_MAX };
 
   /**
    * Indicates the internal gear ratio of a motor.
    */
-  typedef enum {
-    E_MOTOR_GEARSET_36 = 0, // 36:1, 100 RPM, Red gear set
-    E_MOTOR_GEARSET_18 = 1, // 18:1, 200 RPM, Green gear set
-    E_MOTOR_GEARSET_06 = 2, // 6:1, 600 RPM, Blue gear set
-    E_MOTOR_GEARSET_INVALID = INT32_MAX
-  } gearset;
+  enum class gearset {
+    red = 0,   // 36:1, 100 RPM, Red gear set
+    green = 1, // 18:1, 200 RPM, Green gear set
+    blue = 2,  // 6:1, 600 RPM, Blue gear set
+    invalid = INT32_MAX
+  };
 
   virtual ~AbstractMotor();
 
@@ -81,8 +76,8 @@ class AbstractMotor : public ControllerOutput {
    * Sets the velocity for the motor.
    *
    * This velocity corresponds to different actual speeds depending on the gearset
-   * used for the motor. This results in a range of +-100 for pros::c::E_MOTOR_GEARSET_36,
-   * +-200 for E_MOTOR_GEARSET_18, and +-600 for E_MOTOR_GEARSET_6. The velocity
+   * used for the motor. This results in a range of +-100 for pros::c::red,
+   * +-200 for green, and +-600 for E_MOTOR_GEARSET_6. The velocity
    * is held with PID to ensure consistent speed, as opposed to setting the motor's
    * voltage.
    *

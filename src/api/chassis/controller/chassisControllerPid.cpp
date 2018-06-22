@@ -21,7 +21,7 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(AbstractMotor::encoderUnits::E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(AbstractMotor::encoderUnits::degrees);
 }
 
 void ChassisControllerPID::moveDistance(const QLength itarget) {

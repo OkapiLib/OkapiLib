@@ -55,8 +55,8 @@ class MotorGroup : public AbstractMotor {
    * Sets the velocity for the motor.
    *
    * This velocity corresponds to different actual speeds depending on the gearset
-   * used for the motor. This results in a range of +-100 for pros::c::E_MOTOR_GEARSET_36,
-   * +-200 for E_MOTOR_GEARSET_18, and +-600 for E_MOTOR_GEARSET_6. The velocity
+   * used for the motor. This results in a range of +-100 for pros::c::red,
+   * +-200 for green, and +-600 for E_MOTOR_GEARSET_6. The velocity
    * is held with PID to ensure consistent speed, as opposed to setting the motor's
    * voltage.
    *

@@ -24,11 +24,11 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param iangleArgs angle PID controller params (keeps the robot straight)
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerPID(
-    std::shared_ptr<ChassisModel> imodel, const IterativePosPIDControllerArgs &idistanceArgs,
-    const IterativePosPIDControllerArgs &iangleArgs,
-    const AbstractMotor::gearset igearset = AbstractMotor::gearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
+                       const IterativePosPIDControllerArgs &idistanceArgs,
+                       const IterativePosPIDControllerArgs &iangleArgs,
+                       const AbstractMotor::gearset igearset = AbstractMotor::gearset::red,
+                       const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).

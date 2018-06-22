@@ -21,7 +21,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(AbstractMotor::encoderUnits::E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(AbstractMotor::encoderUnits::degrees);
 }
 
 void ChassisControllerIntegrated::moveDistance(const QLength itarget) {

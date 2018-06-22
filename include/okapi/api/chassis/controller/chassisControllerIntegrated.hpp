@@ -24,12 +24,11 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param igearset motor internal gearset
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerIntegrated(
-    std::shared_ptr<ChassisModel> imodel,
-    const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
-    const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-    const AbstractMotor::gearset igearset = AbstractMotor::gearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  ChassisControllerIntegrated(std::shared_ptr<ChassisModel> imodel,
+                              const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
+                              const AsyncPosIntegratedControllerArgs &irightControllerArgs,
+                              const AbstractMotor::gearset igearset = AbstractMotor::gearset::red,
+                              const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
