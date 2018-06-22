@@ -17,11 +17,13 @@ namespace okapi {
 class ChassisControllerPID : public virtual ChassisController {
   public:
   /**
-   * ChassisController using PID control. Puts the motors into encoder degree units.
+   * ChassisController using PID control. Puts the motors into encoder degree units. Throws a
+   * std::invalid_argument exception if the gear ratio is zero.
    *
    * @param imodelArgs ChassisModelArgs
    * @param idistanceArgs distance PID controller params
    * @param iangleArgs angle PID controller params (keeps the robot straight)
+   * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
   ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
