@@ -41,12 +41,12 @@ class AbstractMotor : public ControllerOutput {
 
   struct GearsetRatioPair {
     GearsetRatioPair(const gearset igearset, const double iratio = 1)
-      : thegearset(igearset), ratio(iratio) {
+      : internalGearset(igearset), ratio(iratio) {
     }
 
     ~GearsetRatioPair() = default;
 
-    const gearset thegearset;
+    const gearset internalGearset;
     const double ratio = 1;
   };
 

@@ -26,7 +26,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
                                 "if you are using integer division.");
   }
 
-  setGearing(igearset.thegearset);
+  setGearing(igearset.internalGearset);
   setEncoderUnits(AbstractMotor::encoderUnits::degrees);
 }
 

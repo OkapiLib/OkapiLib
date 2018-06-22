@@ -26,7 +26,7 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                                 "are using integer division.");
   }
 
-  setGearing(igearset.thegearset);
+  setGearing(igearset.internalGearset);
   setEncoderUnits(AbstractMotor::encoderUnits::degrees);
 }
 
