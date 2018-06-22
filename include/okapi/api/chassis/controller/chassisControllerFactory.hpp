@@ -16,97 +16,107 @@ class ChassisControllerFactory {
   public:
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
-   * steer layout. Puts the motors into degree units.
+   * steer layout. Puts the motors into degree units. Throws a std::invalid_argument exception if
+   * the gear ratio is zero.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
-   * @param igearset motor internal gearset
+   * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static ChassisControllerIntegrated create(
-    Motor ileftSideMotor, Motor irightSideMotor,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  static ChassisControllerIntegrated
+  create(Motor ileftSideMotor, Motor irightSideMotor,
+         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
-   * steer layout. Puts the motors into degree units.
+   * steer layout. Puts the motors into degree units. Throws a std::invalid_argument exception if
+   * the gear ratio is zero.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
-   * @param igearset motor internal gearset
+   * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static ChassisControllerIntegrated create(
-    MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  static ChassisControllerIntegrated
+  create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
-   * layout. Puts the motors into degree units.
+   * layout. Puts the motors into degree units. Throws a std::invalid_argument exception if the gear
+   * ratio is zero.
    *
    * @param itopLeftMotor top left motor
    * @param itopRightMotor top right motor
    * @param ibottomRightMotor bottom right motor
    * @param ibottomLeftMotor bottom left motor
-   * @param igearset motor internal gearset
+   * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static ChassisControllerIntegrated create(
-    Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  static ChassisControllerIntegrated
+  create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
+         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using PID control. This constructor assumes a skid
-   * steer layout. Puts the motors into encoder degree units.
+   * steer layout. Puts the motors into encoder degree units. Throws a std::invalid_argument
+   * exception if the gear ratio is zero.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
    * @param idistanceArgs distance PID controller params
    * @param iangleArgs angle PID controller params (keeps the robot straight)
+   * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static ChassisControllerPID create(
-    Motor ileftSideMotor, Motor irightSideMotor, const IterativePosPIDControllerArgs &idistanceArgs,
-    const IterativePosPIDControllerArgs &iangleArgs,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  static ChassisControllerPID
+  create(Motor ileftSideMotor, Motor irightSideMotor,
+         const IterativePosPIDControllerArgs &idistanceArgs,
+         const IterativePosPIDControllerArgs &iangleArgs,
+         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using PID control. This constructor assumes a skid
-   * steer layout. Puts the motors into encoder degree units.
+   * steer layout. Puts the motors into encoder degree units. Throws a std::invalid_argument
+   * exception if the gear ratio is zero.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
    * @param idistanceArgs distance PID controller params
    * @param iangleArgs angle PID controller params (keeps the robot straight)
+   * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static ChassisControllerPID create(
-    MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-    const IterativePosPIDControllerArgs &idistanceArgs,
-    const IterativePosPIDControllerArgs &iangleArgs,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  static ChassisControllerPID
+  create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+         const IterativePosPIDControllerArgs &idistanceArgs,
+         const IterativePosPIDControllerArgs &iangleArgs,
+         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using PID control. This constructor assumes a skid
-   * steer layout. Puts the motors into encoder degree units.
+   * steer layout. Puts the motors into encoder degree units. Throws a std::invalid_argument
+   * exception if the gear ratio is zero.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
    * @param idistanceArgs distance PID controller params
    * @param iangleArgs angle PID controller params (keeps the robot straight)
+   * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static ChassisControllerPID create(
-    Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-    const IterativePosPIDControllerArgs &idistanceArgs,
-    const IterativePosPIDControllerArgs &iangleArgs,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  static ChassisControllerPID
+  create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
+         const IterativePosPIDControllerArgs &idistanceArgs,
+         const IterativePosPIDControllerArgs &iangleArgs,
+         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         const ChassisScales &iscales = ChassisScales({1, 1}));
 };
 } // namespace okapi
 

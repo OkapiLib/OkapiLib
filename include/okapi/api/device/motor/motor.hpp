@@ -22,8 +22,8 @@ class Motor : public AbstractMotor, public pros::Motor {
   Motor(const std::int8_t port);
 
   explicit Motor(
-    const std::uint8_t port, const bool reverse, const pros::c::motor_gearset_e_t gearset,
-    const pros::c::motor_encoder_units_e_t encoder_units = pros::c::E_MOTOR_ENCODER_DEGREES);
+    const std::uint8_t port, const bool reverse, const AbstractMotor::gearset gearset,
+    const AbstractMotor::encoderUnits encoderUnits = AbstractMotor::encoderUnits::degrees);
 
   /**
    * Sets the target absolute position for the motor to move to.
@@ -62,8 +62,8 @@ class Motor : public AbstractMotor, public pros::Motor {
    * Sets the velocity for the motor.
    *
    * This velocity corresponds to different actual speeds depending on the gearset
-   * used for the motor. This results in a range of +-100 for pros::c::E_MOTOR_GEARSET_36,
-   * +-200 for E_MOTOR_GEARSET_18, and +-600 for E_MOTOR_GEARSET_6. The velocity
+   * used for the motor. This results in a range of +-100 for pros::c::red,
+   * +-200 for green, and +-600 for blue. The velocity
    * is held with PID to ensure consistent speed, as opposed to setting the motor's
    * voltage.
    *
@@ -143,7 +143,7 @@ class Motor : public AbstractMotor, public pros::Motor {
   virtual std::int32_t tarePosition() const override;
 
   /**
-   * Sets one of AbstractMotor::motorBrakeMode to the motor.
+   * Sets one of AbstractMotor::brakeMode to the motor.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -151,7 +151,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param imode The new motor brake mode to set for the motor
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setBrakeMode(const AbstractMotor::motorBrakeMode imode) const override;
+  virtual std::int32_t setBrakeMode(const AbstractMotor::brakeMode imode) const override;
 
   /**
    * Sets the current limit for the motor in mA.
@@ -165,7 +165,7 @@ class Motor : public AbstractMotor, public pros::Motor {
   virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const override;
 
   /**
-   * Sets one of AbstractMotor::motorEncoderUnits for the motor encoder.
+   * Sets one of AbstractMotor::encoderUnits for the motor encoder.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -173,11 +173,10 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t
-  setEncoderUnits(const AbstractMotor::motorEncoderUnits iunits) const override;
+  virtual std::int32_t setEncoderUnits(const AbstractMotor::encoderUnits iunits) const override;
 
   /**
-   * Sets one of AbstractMotor::motorGearset for the motor.
+   * Sets one of AbstractMotor::gearset for the motor.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -185,7 +184,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param igearset The new motor gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setGearing(const AbstractMotor::motorGearset igearset) const override;
+  virtual std::int32_t setGearing(const AbstractMotor::gearset igearset) const override;
 
   /**
    * Sets the reverse flag for the motor.

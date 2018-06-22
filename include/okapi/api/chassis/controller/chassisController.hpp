@@ -138,21 +138,21 @@ class ChassisController {
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(const AbstractMotor::motorBrakeMode mode) const;
+  virtual void setBrakeMode(const AbstractMotor::brakeMode mode) const;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(const AbstractMotor::motorEncoderUnits units) const;
+  virtual void setEncoderUnits(const AbstractMotor::encoderUnits units) const;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(const AbstractMotor::motorGearset gearset) const;
+  virtual void setGearing(const AbstractMotor::gearset gearset) const;
 
   protected:
   std::shared_ptr<ChassisModel> model;

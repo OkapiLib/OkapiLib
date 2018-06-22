@@ -17,32 +17,38 @@ class AbstractMotor : public ControllerOutput {
   /**
    * Indicates the 'brake mode' of a motor.
    */
-  typedef enum {
-    E_MOTOR_BRAKE_COAST = 0, // Motor coasts when stopped, traditional behavior
-    E_MOTOR_BRAKE_BRAKE = 1, // Motor brakes when stopped
-    E_MOTOR_BRAKE_HOLD = 2,  // Motor actively holds position when stopped
-    E_MOTOR_BRAKE_INVALID = INT32_MAX
-  } motorBrakeMode;
+  enum class brakeMode {
+    coast = 0, // Motor coasts when stopped, traditional behavior
+    brake = 1, // Motor brakes when stopped
+    hold = 2,  // Motor actively holds position when stopped
+    invalid = INT32_MAX
+  };
 
   /**
    * Indicates the units used by the motor encoders.
    */
-  typedef enum {
-    E_MOTOR_ENCODER_DEGREES = 0,
-    E_MOTOR_ENCODER_ROTATIONS = 1,
-    E_MOTOR_ENCODER_COUNTS = 2,
-    E_MOTOR_ENCODER_INVALID = INT32_MAX
-  } motorEncoderUnits;
+  enum class encoderUnits { degrees = 0, rotations = 1, counts = 2, invalid = INT32_MAX };
 
   /**
    * Indicates the internal gear ratio of a motor.
    */
-  typedef enum {
-    E_MOTOR_GEARSET_36 = 0, // 36:1, 100 RPM, Red gear set
-    E_MOTOR_GEARSET_18 = 1, // 18:1, 200 RPM, Green gear set
-    E_MOTOR_GEARSET_06 = 2, // 6:1, 600 RPM, Blue gear set
-    E_MOTOR_GEARSET_INVALID = INT32_MAX
-  } motorGearset;
+  enum class gearset {
+    red = 0,   // 36:1, 100 RPM, Red gear set
+    green = 1, // 18:1, 200 RPM, Green gear set
+    blue = 2,  // 6:1, 600 RPM, Blue gear set
+    invalid = INT32_MAX
+  };
+
+  struct GearsetRatioPair {
+    GearsetRatioPair(const gearset igearset, const double iratio = 1)
+      : internalGearset(igearset), ratio(iratio) {
+    }
+
+    ~GearsetRatioPair() = default;
+
+    const gearset internalGearset;
+    const double ratio = 1;
+  };
 
   virtual ~AbstractMotor();
 
@@ -81,8 +87,8 @@ class AbstractMotor : public ControllerOutput {
    * Sets the velocity for the motor.
    *
    * This velocity corresponds to different actual speeds depending on the gearset
-   * used for the motor. This results in a range of +-100 for pros::c::E_MOTOR_GEARSET_36,
-   * +-200 for E_MOTOR_GEARSET_18, and +-600 for E_MOTOR_GEARSET_6. The velocity
+   * used for the motor. This results in a range of +-100 for pros::c::red,
+   * +-200 for green, and +-600 for blue. The velocity
    * is held with PID to ensure consistent speed, as opposed to setting the motor's
    * voltage.
    *
@@ -161,7 +167,7 @@ class AbstractMotor : public ControllerOutput {
   virtual std::int32_t tarePosition() const = 0;
 
   /**
-   * Sets one of motorBrakeMode to the motor.
+   * Sets one of brakeMode to the motor.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -169,7 +175,7 @@ class AbstractMotor : public ControllerOutput {
    * @param imode The new motor brake mode to set for the motor
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setBrakeMode(const motorBrakeMode imode) const = 0;
+  virtual std::int32_t setBrakeMode(const brakeMode imode) const = 0;
 
   /**
    * Sets the current limit for the motor in mA.
@@ -183,7 +189,7 @@ class AbstractMotor : public ControllerOutput {
   virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const = 0;
 
   /**
-   * Sets one of motorEncoderUnits for the motor encoder.
+   * Sets one of encoderUnits for the motor encoder.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -191,10 +197,10 @@ class AbstractMotor : public ControllerOutput {
    * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setEncoderUnits(const motorEncoderUnits iunits) const = 0;
+  virtual std::int32_t setEncoderUnits(const encoderUnits iunits) const = 0;
 
   /**
-   * Sets one of motorGearset for the motor.
+   * Sets one of gearset for the motor.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -202,7 +208,7 @@ class AbstractMotor : public ControllerOutput {
    * @param igearset The new motor gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setGearing(const motorGearset igearset) const = 0;
+  virtual std::int32_t setGearing(const gearset igearset) const = 0;
 
   /**
    * Sets the reverse flag for the motor.
@@ -235,6 +241,9 @@ class AbstractMotor : public ControllerOutput {
    */
   virtual IntegratedEncoder getEncoder() const = 0;
 };
+
+AbstractMotor::GearsetRatioPair operator*(const AbstractMotor::gearset gearset, const double ratio);
+
 } // namespace okapi
 
 #endif

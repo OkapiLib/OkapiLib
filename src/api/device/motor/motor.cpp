@@ -10,12 +10,26 @@
 
 namespace okapi {
 Motor::Motor(const std::int8_t port)
-  : Motor(std::abs(port), port < 0, pros::c::E_MOTOR_GEARSET_36) {
+  : Motor(std::abs(port), port < 0, AbstractMotor::gearset::red) {
 }
 
-Motor::Motor(const std::uint8_t port, const bool reverse, const pros::c::motor_gearset_e_t gearset,
-             const pros::c::motor_encoder_units_e_t encoder_units)
-  : pros::Motor(port, gearset, reverse, encoder_units) {
+Motor::Motor(const std::uint8_t port, const bool reverse, const AbstractMotor::gearset gearset,
+             const AbstractMotor::encoderUnits encoderUnits)
+  : pros::Motor(port,
+                gearset == AbstractMotor::gearset::red
+                  ? pros::c::E_MOTOR_GEARSET_36
+                  : gearset == AbstractMotor::gearset::green
+                      ? pros::c::E_MOTOR_GEARSET_18
+                      : gearset == AbstractMotor::gearset::blue ? pros::c::E_MOTOR_GEARSET_06
+                                                                : pros::c::E_MOTOR_GEARSET_INVALID,
+                reverse,
+                encoderUnits == AbstractMotor::encoderUnits::counts
+                  ? pros::c::E_MOTOR_ENCODER_COUNTS
+                  : encoderUnits == AbstractMotor::encoderUnits::degrees
+                      ? pros::c::E_MOTOR_ENCODER_DEGREES
+                      : encoderUnits == AbstractMotor::encoderUnits::rotations
+                          ? pros::c::E_MOTOR_ENCODER_ROTATIONS
+                          : pros::c::E_MOTOR_ENCODER_INVALID) {
 }
 
 std::int32_t Motor::moveAbsolute(const double iposition, const std::int32_t ivelocity) const {
@@ -54,15 +68,15 @@ std::int32_t Motor::tarePosition() const {
   return tare_position();
 }
 
-std::int32_t Motor::setBrakeMode(const AbstractMotor::motorBrakeMode imode) const {
+std::int32_t Motor::setBrakeMode(const AbstractMotor::brakeMode imode) const {
   switch (imode) {
-  case AbstractMotor::motorBrakeMode::E_MOTOR_BRAKE_BRAKE:
+  case AbstractMotor::brakeMode::brake:
     return set_brake_mode(pros::c::E_MOTOR_BRAKE_BRAKE);
-  case AbstractMotor::motorBrakeMode::E_MOTOR_BRAKE_COAST:
+  case AbstractMotor::brakeMode::coast:
     return set_brake_mode(pros::c::E_MOTOR_BRAKE_COAST);
-  case AbstractMotor::motorBrakeMode::E_MOTOR_BRAKE_HOLD:
+  case AbstractMotor::brakeMode::hold:
     return set_brake_mode(pros::c::E_MOTOR_BRAKE_HOLD);
-  case AbstractMotor::motorBrakeMode::E_MOTOR_BRAKE_INVALID:
+  case AbstractMotor::brakeMode::invalid:
     return set_brake_mode(pros::c::E_MOTOR_BRAKE_INVALID);
   }
 }
@@ -71,28 +85,28 @@ std::int32_t Motor::setCurrentLimit(const std::int32_t ilimit) const {
   return set_current_limit(ilimit);
 }
 
-std::int32_t Motor::setEncoderUnits(const AbstractMotor::motorEncoderUnits iunits) const {
+std::int32_t Motor::setEncoderUnits(const AbstractMotor::encoderUnits iunits) const {
   switch (iunits) {
-  case AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_COUNTS:
+  case AbstractMotor::encoderUnits::counts:
     return set_encoder_units(pros::c::E_MOTOR_ENCODER_COUNTS);
-  case AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_DEGREES:
+  case AbstractMotor::encoderUnits::degrees:
     return set_encoder_units(pros::c::E_MOTOR_ENCODER_DEGREES);
-  case AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_ROTATIONS:
+  case AbstractMotor::encoderUnits::rotations:
     return set_encoder_units(pros::c::E_MOTOR_ENCODER_ROTATIONS);
-  case AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_INVALID:
+  case AbstractMotor::encoderUnits::invalid:
     return set_encoder_units(pros::c::E_MOTOR_ENCODER_INVALID);
   }
 }
 
-std::int32_t Motor::setGearing(const AbstractMotor::motorGearset igearset) const {
+std::int32_t Motor::setGearing(const AbstractMotor::gearset igearset) const {
   switch (igearset) {
-  case AbstractMotor::motorGearset::E_MOTOR_GEARSET_06:
+  case AbstractMotor::gearset::blue:
     return set_gearing(pros::c::E_MOTOR_GEARSET_06);
-  case AbstractMotor::motorGearset::E_MOTOR_GEARSET_18:
+  case AbstractMotor::gearset::green:
     return set_gearing(pros::c::E_MOTOR_GEARSET_18);
-  case AbstractMotor::motorGearset::E_MOTOR_GEARSET_36:
+  case AbstractMotor::gearset::red:
     return set_gearing(pros::c::E_MOTOR_GEARSET_36);
-  case AbstractMotor::motorGearset::E_MOTOR_GEARSET_INVALID:
+  case AbstractMotor::gearset::invalid:
     return set_gearing(pros::c::E_MOTOR_GEARSET_INVALID);
   }
 }
@@ -115,11 +129,11 @@ void Motor::controllerSet(const double ivalue) {
 
 inline namespace literals {
 okapi::Motor operator"" _mtr(const unsigned long long iport) {
-  return okapi::Motor(static_cast<uint8_t>(iport), false, pros::c::E_MOTOR_GEARSET_36);
+  return okapi::Motor(static_cast<uint8_t>(iport), false, AbstractMotor::gearset::red);
 }
 
 okapi::Motor operator"" _rmtr(const unsigned long long iport) {
-  return okapi::Motor(static_cast<uint8_t>(iport), true, pros::c::E_MOTOR_GEARSET_36);
+  return okapi::Motor(static_cast<uint8_t>(iport), true, AbstractMotor::gearset::red);
 }
 } // namespace literals
 } // namespace okapi

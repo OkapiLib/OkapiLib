@@ -9,4 +9,9 @@
 
 namespace okapi {
 AbstractMotor::~AbstractMotor() = default;
+
+AbstractMotor::GearsetRatioPair operator*(const AbstractMotor::gearset gearset,
+                                          const double ratio) {
+  return AbstractMotor::GearsetRatioPair(gearset, ratio);
+}
 } // namespace okapi

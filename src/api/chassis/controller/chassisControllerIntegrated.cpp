@@ -13,15 +13,21 @@ namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
   const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-  const AbstractMotor::motorGearset igearset, const ChassisScales &iscales)
+  const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
   : ChassisController(imodel),
     leftController(ileftControllerArgs),
     rightController(irightControllerArgs),
     lastTarget(0),
+    gearRatio(igearset.ratio),
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
-  setGearing(igearset);
-  setEncoderUnits(AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_DEGREES);
+  if (igearset.ratio == 0) {
+    throw std::invalid_argument("ChassisControllerIntegrated: The gear ratio cannot be zero! Check "
+                                "if you are using integer division.");
+  }
+
+  setGearing(igearset.internalGearset);
+  setEncoderUnits(AbstractMotor::encoderUnits::degrees);
 }
 
 void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
@@ -30,7 +36,7 @@ void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
   leftController.flipDisable(false);
   rightController.flipDisable(false);
 
-  const double newTarget = itarget.convert(meter) * straightScale;
+  const double newTarget = itarget.convert(meter) * straightScale * gearRatio;
   const auto enc = model->getSensorVals();
   leftController.setTarget(newTarget + enc[0]);
   rightController.setTarget(newTarget + enc[1]);
@@ -56,7 +62,7 @@ void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
   leftController.flipDisable(false);
   rightController.flipDisable(false);
 
-  const double newTarget = idegTarget.convert(degree) * turnScale;
+  const double newTarget = idegTarget.convert(degree) * turnScale * gearRatio;
   const auto enc = model->getSensorVals();
   leftController.setTarget(newTarget + enc[0]);
   rightController.setTarget(-1 * newTarget + enc[1]);

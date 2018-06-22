@@ -17,18 +17,20 @@ namespace okapi {
 class ChassisControllerPID : public virtual ChassisController {
   public:
   /**
-   * ChassisController using PID control. Puts the motors into encoder degree units.
+   * ChassisController using PID control. Puts the motors into encoder degree units. Throws a
+   * std::invalid_argument exception if the gear ratio is zero.
    *
    * @param imodelArgs ChassisModelArgs
    * @param idistanceArgs distance PID controller params
    * @param iangleArgs angle PID controller params (keeps the robot straight)
+   * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerPID(
-    std::shared_ptr<ChassisModel> imodel, const IterativePosPIDControllerArgs &idistanceArgs,
-    const IterativePosPIDControllerArgs &iangleArgs,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
+                       const IterativePosPIDControllerArgs &idistanceArgs,
+                       const IterativePosPIDControllerArgs &iangleArgs,
+                       const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+                       const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
@@ -61,6 +63,7 @@ class ChassisControllerPID : public virtual ChassisController {
   protected:
   IterativePosPIDController distancePid;
   IterativePosPIDController anglePid;
+  const double gearRatio;
   const double straightScale;
   const double turnScale;
 };

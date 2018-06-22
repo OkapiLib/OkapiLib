@@ -31,14 +31,16 @@ class VelMath {
   public:
   /**
    * Velocity math helper. Calculates filtered velocity. Filters using a 3-tap median filter
-   * and a 5-tap averaging filter.
+   * and a 5-tap averaging filter. Throws a std::invalid_argument exception if iticksPerRev is
+   * zero.
    *
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
    */
   VelMath(const double iticksPerRev);
 
   /**
-   * Velocity math helper. Calculates filtered velocity.
+   * Velocity math helper. Calculates filtered velocity. Throws a std::invalid_argument exception
+   * if iticksPerRev is zero.
    *
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
    * @param ifilter filter used for filtering the calculated velocity
