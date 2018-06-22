@@ -23,10 +23,10 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset
    * @param iscales see ChassisScales docs
    */
-  static ChassisControllerIntegrated create(
-    Motor ileftSideMotor, Motor irightSideMotor,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  static ChassisControllerIntegrated
+  create(Motor ileftSideMotor, Motor irightSideMotor,
+         const AbstractMotor::gearset igearset = AbstractMotor::gearset::E_MOTOR_GEARSET_36,
+         const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -37,10 +37,10 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset
    * @param iscales see ChassisScales docs
    */
-  static ChassisControllerIntegrated create(
-    MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  static ChassisControllerIntegrated
+  create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+         const AbstractMotor::gearset igearset = AbstractMotor::gearset::E_MOTOR_GEARSET_36,
+         const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using V5 motor's integrated control. This constructor assumes an x-drive
@@ -53,10 +53,10 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset
    * @param iscales see ChassisScales docs
    */
-  static ChassisControllerIntegrated create(
-    Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  static ChassisControllerIntegrated
+  create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
+         const AbstractMotor::gearset igearset = AbstractMotor::gearset::E_MOTOR_GEARSET_36,
+         const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using PID control. This constructor assumes a skid
@@ -68,11 +68,12 @@ class ChassisControllerFactory {
    * @param iangleArgs angle PID controller params (keeps the robot straight)
    * @param iscales see ChassisScales docs
    */
-  static ChassisControllerPID create(
-    Motor ileftSideMotor, Motor irightSideMotor, const IterativePosPIDControllerArgs &idistanceArgs,
-    const IterativePosPIDControllerArgs &iangleArgs,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  static ChassisControllerPID
+  create(Motor ileftSideMotor, Motor irightSideMotor,
+         const IterativePosPIDControllerArgs &idistanceArgs,
+         const IterativePosPIDControllerArgs &iangleArgs,
+         const AbstractMotor::gearset igearset = AbstractMotor::gearset::E_MOTOR_GEARSET_36,
+         const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using PID control. This constructor assumes a skid
@@ -84,12 +85,12 @@ class ChassisControllerFactory {
    * @param iangleArgs angle PID controller params (keeps the robot straight)
    * @param iscales see ChassisScales docs
    */
-  static ChassisControllerPID create(
-    MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-    const IterativePosPIDControllerArgs &idistanceArgs,
-    const IterativePosPIDControllerArgs &iangleArgs,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  static ChassisControllerPID
+  create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+         const IterativePosPIDControllerArgs &idistanceArgs,
+         const IterativePosPIDControllerArgs &iangleArgs,
+         const AbstractMotor::gearset igearset = AbstractMotor::gearset::E_MOTOR_GEARSET_36,
+         const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
    * ChassisController using PID control. This constructor assumes a skid
@@ -101,12 +102,12 @@ class ChassisControllerFactory {
    * @param iangleArgs angle PID controller params (keeps the robot straight)
    * @param iscales see ChassisScales docs
    */
-  static ChassisControllerPID create(
-    Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-    const IterativePosPIDControllerArgs &idistanceArgs,
-    const IterativePosPIDControllerArgs &iangleArgs,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-    const ChassisScales &iscales = ChassisScales({1, 1}));
+  static ChassisControllerPID
+  create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
+         const IterativePosPIDControllerArgs &idistanceArgs,
+         const IterativePosPIDControllerArgs &iangleArgs,
+         const AbstractMotor::gearset igearset = AbstractMotor::gearset::E_MOTOR_GEARSET_36,
+         const ChassisScales &iscales = ChassisScales({1, 1}));
 };
 } // namespace okapi
 

@@ -28,7 +28,7 @@ void opcontrol() {
   armMotor.move(10);
 
   auto chassis = ChassisControllerFactory::create(
-    {19, 20}, {-14}, AbstractMotor::motorGearset::E_MOTOR_GEARSET_36, {4_in, 11.5_in});
+    {19, 20}, {-14}, AbstractMotor::gearset::E_MOTOR_GEARSET_36, {4_in, 11.5_in});
 
   Controller controller;
   ControllerButton btn1(E_CONTROLLER_DIGITAL_A);

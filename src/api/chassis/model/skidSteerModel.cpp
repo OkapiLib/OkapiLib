@@ -184,17 +184,17 @@ void SkidSteerModel::resetSensors() const {
   rightSensor->reset();
 }
 
-void SkidSteerModel::setBrakeMode(const AbstractMotor::motorBrakeMode mode) const {
+void SkidSteerModel::setBrakeMode(const AbstractMotor::brakeMode mode) const {
   leftSideMotor->setBrakeMode(mode);
   rightSideMotor->setBrakeMode(mode);
 }
 
-void SkidSteerModel::setEncoderUnits(const AbstractMotor::motorEncoderUnits units) const {
+void SkidSteerModel::setEncoderUnits(const AbstractMotor::encoderUnits units) const {
   leftSideMotor->setEncoderUnits(units);
   rightSideMotor->setEncoderUnits(units);
 }
 
-void SkidSteerModel::setGearing(const AbstractMotor::motorGearset gearset) const {
+void SkidSteerModel::setGearing(const AbstractMotor::gearset gearset) const {
   leftSideMotor->setGearing(gearset);
   rightSideMotor->setGearing(gearset);
 }

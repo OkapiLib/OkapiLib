@@ -22,7 +22,7 @@ class AbstractMotor : public ControllerOutput {
     E_MOTOR_BRAKE_BRAKE = 1, // Motor brakes when stopped
     E_MOTOR_BRAKE_HOLD = 2,  // Motor actively holds position when stopped
     E_MOTOR_BRAKE_INVALID = INT32_MAX
-  } motorBrakeMode;
+  } brakeMode;
 
   /**
    * Indicates the units used by the motor encoders.
@@ -32,7 +32,7 @@ class AbstractMotor : public ControllerOutput {
     E_MOTOR_ENCODER_ROTATIONS = 1,
     E_MOTOR_ENCODER_COUNTS = 2,
     E_MOTOR_ENCODER_INVALID = INT32_MAX
-  } motorEncoderUnits;
+  } encoderUnits;
 
   /**
    * Indicates the internal gear ratio of a motor.
@@ -42,7 +42,7 @@ class AbstractMotor : public ControllerOutput {
     E_MOTOR_GEARSET_18 = 1, // 18:1, 200 RPM, Green gear set
     E_MOTOR_GEARSET_06 = 2, // 6:1, 600 RPM, Blue gear set
     E_MOTOR_GEARSET_INVALID = INT32_MAX
-  } motorGearset;
+  } gearset;
 
   virtual ~AbstractMotor();
 
@@ -161,7 +161,7 @@ class AbstractMotor : public ControllerOutput {
   virtual std::int32_t tarePosition() const = 0;
 
   /**
-   * Sets one of motorBrakeMode to the motor.
+   * Sets one of brakeMode to the motor.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -169,7 +169,7 @@ class AbstractMotor : public ControllerOutput {
    * @param imode The new motor brake mode to set for the motor
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setBrakeMode(const motorBrakeMode imode) const = 0;
+  virtual std::int32_t setBrakeMode(const brakeMode imode) const = 0;
 
   /**
    * Sets the current limit for the motor in mA.
@@ -183,7 +183,7 @@ class AbstractMotor : public ControllerOutput {
   virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const = 0;
 
   /**
-   * Sets one of motorEncoderUnits for the motor encoder.
+   * Sets one of encoderUnits for the motor encoder.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -191,10 +191,10 @@ class AbstractMotor : public ControllerOutput {
    * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setEncoderUnits(const motorEncoderUnits iunits) const = 0;
+  virtual std::int32_t setEncoderUnits(const encoderUnits iunits) const = 0;
 
   /**
-   * Sets one of motorGearset for the motor.
+   * Sets one of gearset for the motor.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -202,7 +202,7 @@ class AbstractMotor : public ControllerOutput {
    * @param igearset The new motor gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setGearing(const motorGearset igearset) const = 0;
+  virtual std::int32_t setGearing(const gearset igearset) const = 0;
 
   /**
    * Sets the reverse flag for the motor.

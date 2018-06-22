@@ -241,21 +241,21 @@ void XDriveModel::resetSensors() const {
   rightSensor->reset();
 }
 
-void XDriveModel::setBrakeMode(const AbstractMotor::motorBrakeMode mode) const {
+void XDriveModel::setBrakeMode(const AbstractMotor::brakeMode mode) const {
   topLeftMotor->setBrakeMode(mode);
   topRightMotor->setBrakeMode(mode);
   bottomRightMotor->setBrakeMode(mode);
   bottomLeftMotor->setBrakeMode(mode);
 }
 
-void XDriveModel::setEncoderUnits(const AbstractMotor::motorEncoderUnits units) const {
+void XDriveModel::setEncoderUnits(const AbstractMotor::encoderUnits units) const {
   topLeftMotor->setEncoderUnits(units);
   topRightMotor->setEncoderUnits(units);
   bottomRightMotor->setEncoderUnits(units);
   bottomLeftMotor->setEncoderUnits(units);
 }
 
-void XDriveModel::setGearing(const AbstractMotor::motorGearset gearset) const {
+void XDriveModel::setGearing(const AbstractMotor::gearset gearset) const {
   topLeftMotor->setGearing(gearset);
   topRightMotor->setGearing(gearset);
   bottomRightMotor->setGearing(gearset);

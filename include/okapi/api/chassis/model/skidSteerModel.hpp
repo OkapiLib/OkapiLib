@@ -146,21 +146,21 @@ class SkidSteerModel : public ChassisModel {
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(const AbstractMotor::motorBrakeMode mode) const override;
+  virtual void setBrakeMode(const AbstractMotor::brakeMode mode) const override;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(const AbstractMotor::motorEncoderUnits units) const override;
+  virtual void setEncoderUnits(const AbstractMotor::encoderUnits units) const override;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(const AbstractMotor::motorGearset gearset) const override;
+  virtual void setGearing(const AbstractMotor::gearset gearset) const override;
 
   /**
    * Returns the left side motor.

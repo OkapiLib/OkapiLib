@@ -28,7 +28,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
     std::shared_ptr<ChassisModel> imodel,
     const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
     const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
+    const AbstractMotor::gearset igearset = AbstractMotor::gearset::E_MOTOR_GEARSET_36,
     const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**

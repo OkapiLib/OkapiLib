@@ -13,7 +13,7 @@ namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::shared_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
   const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-  const AbstractMotor::motorGearset igearset, const ChassisScales &iscales)
+  const AbstractMotor::gearset igearset, const ChassisScales &iscales)
   : ChassisController(imodel),
     leftController(ileftControllerArgs),
     rightController(irightControllerArgs),
@@ -21,7 +21,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   setGearing(igearset);
-  setEncoderUnits(AbstractMotor::motorEncoderUnits::E_MOTOR_ENCODER_DEGREES);
+  setEncoderUnits(AbstractMotor::encoderUnits::E_MOTOR_ENCODER_DEGREES);
 }
 
 void ChassisControllerIntegrated::moveDistance(const QLength itarget) {

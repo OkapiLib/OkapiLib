@@ -10,10 +10,10 @@
 #include "okapi/api/chassis/model/xDriveModel.hpp"
 
 namespace okapi {
-ChassisControllerIntegrated
-ChassisControllerFactory::create(Motor ileftSideMotor, Motor irightSideMotor,
-                                 const AbstractMotor::motorGearset igearset,
-                                 const ChassisScales &iscales) {
+ChassisControllerIntegrated ChassisControllerFactory::create(Motor ileftSideMotor,
+                                                             Motor irightSideMotor,
+                                                             const AbstractMotor::gearset igearset,
+                                                             const ChassisScales &iscales) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   return ChassisControllerIntegrated(std::make_shared<SkidSteerModel>(leftMtr, rightMtr),
@@ -21,10 +21,10 @@ ChassisControllerFactory::create(Motor ileftSideMotor, Motor irightSideMotor,
                                      AsyncPosIntegratedControllerArgs(rightMtr), igearset, iscales);
 }
 
-ChassisControllerIntegrated
-ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                                 const AbstractMotor::motorGearset igearset,
-                                 const ChassisScales &iscales) {
+ChassisControllerIntegrated ChassisControllerFactory::create(MotorGroup ileftSideMotor,
+                                                             MotorGroup irightSideMotor,
+                                                             const AbstractMotor::gearset igearset,
+                                                             const ChassisScales &iscales) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   return ChassisControllerIntegrated(std::make_shared<SkidSteerModel>(leftMtr, rightMtr),
@@ -34,7 +34,7 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSid
 
 ChassisControllerIntegrated
 ChassisControllerFactory::create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor,
-                                 Motor ibottomLeftMotor, const AbstractMotor::motorGearset igearset,
+                                 Motor ibottomLeftMotor, const AbstractMotor::gearset igearset,
                                  const ChassisScales &iscales) {
   auto topLeftMtr = std::make_shared<Motor>(itopLeftMotor);
   auto topRightMtr = std::make_shared<Motor>(itopRightMotor);
@@ -48,7 +48,7 @@ ChassisControllerFactory::create(Motor itopLeftMotor, Motor itopRightMotor, Moto
 
 ChassisControllerPID ChassisControllerFactory::create(
   Motor ileftSideMotor, Motor irightSideMotor, const IterativePosPIDControllerArgs &idistanceArgs,
-  const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::motorGearset igearset,
+  const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::gearset igearset,
   const ChassisScales &iscales) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
@@ -60,7 +60,7 @@ ChassisControllerPID
 ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                                  const IterativePosPIDControllerArgs &idistanceArgs,
                                  const IterativePosPIDControllerArgs &iangleArgs,
-                                 const AbstractMotor::motorGearset igearset,
+                                 const AbstractMotor::gearset igearset,
                                  const ChassisScales &iscales) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
@@ -71,7 +71,7 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSid
 ChassisControllerPID ChassisControllerFactory::create(
   Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
   const IterativePosPIDControllerArgs &idistanceArgs,
-  const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::motorGearset igearset,
+  const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::gearset igearset,
   const ChassisScales &iscales) {
   auto topLeftMtr = std::make_shared<Motor>(itopLeftMotor);
   auto topRightMtr = std::make_shared<Motor>(itopRightMotor);
