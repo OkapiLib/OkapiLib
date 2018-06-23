@@ -5,10 +5,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ALLHEADLESSTESTS_HPP_
-#define _OKAPI_ALLHEADLESSTESTS_HPP_
+#ifndef _OKAPI_CONTROLTESTS_HPP_
+#define _OKAPI_CONTROLTESTS_HPP_
 
-#include "test/tests/controllerTests.hpp"
-#include "test/tests/utilTests.hpp"
+void testControlUtils();
 
 #endif

@@ -59,6 +59,13 @@ add_executable(OkapiLibV5
         include/okapi/api/util/mathUtil.hpp
         include/okapi/api/coreProsAPI.hpp
         include/test/crossPlatformTestRunner.hpp
+        include/test/tests/api/allApiTests.hpp
+        include/test/tests/api/buttonTests.hpp
+        include/test/tests/api/chassisControllerTests.hpp
+        include/test/tests/api/chassisModelTests.hpp
+        include/test/tests/api/controlTests.hpp
+        include/test/tests/api/filterTests.hpp
+        include/test/tests/api/utilTests.hpp
         src/api/chassis/controller/chassisController.cpp
         src/api/chassis/model/chassisModel.cpp
         src/api/chassis/model/skidSteerModel.cpp
@@ -81,5 +88,11 @@ add_executable(OkapiLibV5
         src/api/filter/velMath.cpp
         src/api/util/abstractRate.cpp
         src/api/util/abstractTimer.cpp
-        src/test/testMain.cpp
-        src/test/crossPlatformTestRunner.cpp)
+        test/buttonTests.cpp
+        test/chassisControllerTests.cpp
+        test/chassisModelTests.cpp
+        test/controlTests.cpp
+        test/crossPlatformTestRunner.cpp
+        test/filterTests.cpp
+        test/testMain.cpp
+        test/utilTests.cpp)

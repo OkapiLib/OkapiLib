@@ -9,7 +9,7 @@
 
 #include "okapi/api.hpp"
 #include "test/testRunner.hpp"
-#include "test/tests/allHeadlessTests.hpp"
+#include "test/tests/impl/allImplTests.hpp"
 
 void runHeadlessTests();
 
