@@ -257,27 +257,6 @@ void testAsyncControllers() {
   }
 }
 
-void testControlUtils() {
-  using namespace okapi;
-  using namespace snowhouse;
-
-  {
-    test_printf("Testing FlywheelSimulator");
-
-    FlywheelSimulator sim;
-
-    sim.setTorque(0.3);
-    sim.step();
-
-    test("FlywheelSimulator i = 0 angle",
-         TEST_BODY(AssertThat, sim.getAngle(), EqualsWithDelta(0.000020193, 0.00000005)));
-    test("FlywheelSimulator i = 0 omega",
-         TEST_BODY(AssertThat, sim.getOmega(), EqualsWithDelta(0.0020193, 0.000005)));
-    test("FlywheelSimulator i = 0 accel",
-         TEST_BODY(AssertThat, sim.getAcceleration(), EqualsWithDelta(20.193, 0.0005)));
-  }
-}
-
 void testFilteredControllerInput() {
   using namespace okapi;
   using namespace snowhouse;

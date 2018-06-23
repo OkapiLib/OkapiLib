@@ -8,8 +8,8 @@
 #include "test/crossPlatformTestRunner.hpp"
 
 namespace okapi {
-static size_t testPassCount = 0;
-static size_t testFailCount = 0;
+static int testPassCount = 0;
+static int testFailCount = 0;
 static std::vector<std::string> testFailLog; // Names of tests that have failed
 
 void test_printf(const std::string &istring) {
@@ -30,11 +30,10 @@ void test(const std::string &iname, std::function<void()> ifunc) {
 }
 
 void test_print_report() {
-  printf(TEST_PRINT_GRN "%d tests finished," TEST_PRINT_RESET "\n",
-         testPassCount + testFailCount);
+  printf(TEST_PRINT_GRN "%d tests finished," TEST_PRINT_RESET "\n", testPassCount + testFailCount);
   printf(TEST_PRINT_GRN "%d tests passed" TEST_PRINT_RESET "\n", testPassCount);
   printf(TEST_PRINT_RED "%d tests failed" TEST_PRINT_RESET "\n", testFailCount);
-  if (testFailLog.size() > 0) {
+  if (!testFailLog.empty()) {
     printf(TEST_PRINT_RED "Failed tests:\n" TEST_PRINT_RESET);
     for (auto &&elem : testFailLog) {
       printf("%s\n", elem.c_str());

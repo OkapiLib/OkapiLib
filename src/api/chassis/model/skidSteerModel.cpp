@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/chassis/model/skidSteerModel.hpp"
+#include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include <algorithm>
 #include <utility>
 

@@ -9,6 +9,9 @@ add_executable(OkapiLibV5
         include/okapi/api/chassis/controller/chassisController.hpp
         include/okapi/api/chassis/controller/chassisScales.hpp
         include/okapi/api/chassis/model/chassisModel.hpp
+        include/okapi/api/chassis/model/skidSteerModel.hpp
+        include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp
+        include/okapi/api/chassis/model/xDriveModel.hpp
         include/okapi/api/control/async/asyncController.hpp
         include/okapi/api/control/async/asyncPositionController.hpp
         include/okapi/api/control/async/asyncVelocityController.hpp
@@ -55,8 +58,12 @@ add_executable(OkapiLibV5
         include/okapi/api/util/abstractTimer.hpp
         include/okapi/api/util/mathUtil.hpp
         include/okapi/api/coreProsAPI.hpp
+        include/test/crossPlatformTestRunner.hpp
         src/api/chassis/controller/chassisController.cpp
         src/api/chassis/model/chassisModel.cpp
+        src/api/chassis/model/skidSteerModel.cpp
+        src/api/chassis/model/threeEncoderSkidSteerModel.cpp
+        src/api/chassis/model/xDriveModel.cpp
         src/api/control/async/asyncController.cpp
         src/api/control/iterative/iterativeController.cpp
         src/api/control/util/flywheelSimulator.cpp
@@ -75,5 +82,4 @@ add_executable(OkapiLibV5
         src/api/util/abstractRate.cpp
         src/api/util/abstractTimer.cpp
         src/test/testMain.cpp
-        include/test/crossPlatformTestRunner.hpp
         src/test/crossPlatformTestRunner.cpp)

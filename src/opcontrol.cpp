@@ -74,12 +74,8 @@ void opcontrol() {
 void runHeadlessTests() {
   using namespace okapi;
 
-  runHeadlessDeviceTests();
   runHeadlessUtilTests();
-  runHeadlessFilterTests();
   runHeadlessControllerTests();
-  runHeadlessChassisModelTests();
-  runHeadlessChassisControllerTests();
 
   test_print_report();
 }

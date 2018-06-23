@@ -8,7 +8,7 @@
 #ifndef _OKAPI_THREEENCODERSKIDSTEERMODEL_HPP_
 #define _OKAPI_THREEENCODERSKIDSTEERMODEL_HPP_
 
-#include "okapi/impl/chassis/model/skidSteerModel.hpp"
+#include "okapi/api/chassis/model/skidSteerModel.hpp"
 
 namespace okapi {
 class ThreeEncoderSkidSteerModelArgs : public SkidSteerModelArgs {
