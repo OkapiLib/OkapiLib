@@ -9,7 +9,7 @@
 #define _OKAPI_ROTARYSENSOR_HPP_
 
 #include "okapi/api/control/controllerInput.hpp"
-#include "okapi/impl/coreProsAPI.hpp"
+#include "okapi/api/coreProsAPI.hpp"
 
 namespace okapi {
 class RotarySensor : public ControllerInput {

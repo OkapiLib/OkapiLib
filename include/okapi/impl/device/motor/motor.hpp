@@ -5,53 +5,25 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ABSTRACTMOTOR_HPP_
-#define _OKAPI_ABSTRACTMOTOR_HPP_
+#ifndef _OKAPI_MOTOR_HPP_
+#define _OKAPI_MOTOR_HPP_
 
-#include "okapi/api/control/controllerOutput.hpp"
-#include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
-#include <memory>
+#include "api.h"
+#include "okapi/api/device/motor/abstractMotor.hpp"
 
 namespace okapi {
-class AbstractMotor : public ControllerOutput {
+class Motor : public AbstractMotor, public pros::Motor {
   public:
   /**
-   * Indicates the 'brake mode' of a motor.
+   * A V5 motor. A negative port number is shorthand for reversing the motor.
+   *
+   * @param port the port number
    */
-  enum class brakeMode {
-    coast = 0, // Motor coasts when stopped, traditional behavior
-    brake = 1, // Motor brakes when stopped
-    hold = 2,  // Motor actively holds position when stopped
-    invalid = INT32_MAX
-  };
+  Motor(const std::int8_t port);
 
-  /**
-   * Indicates the units used by the motor encoders.
-   */
-  enum class encoderUnits { degrees = 0, rotations = 1, counts = 2, invalid = INT32_MAX };
-
-  /**
-   * Indicates the internal gear ratio of a motor.
-   */
-  enum class gearset {
-    red = 0,   // 36:1, 100 RPM, Red gear set
-    green = 1, // 18:1, 200 RPM, Green gear set
-    blue = 2,  // 6:1, 600 RPM, Blue gear set
-    invalid = INT32_MAX
-  };
-
-  struct GearsetRatioPair {
-    GearsetRatioPair(const gearset igearset, const double iratio = 1)
-      : internalGearset(igearset), ratio(iratio) {
-    }
-
-    ~GearsetRatioPair() = default;
-
-    const gearset internalGearset;
-    const double ratio = 1;
-  };
-
-  virtual ~AbstractMotor();
+  explicit Motor(
+    const std::uint8_t port, const bool reverse, const AbstractMotor::gearset gearset,
+    const AbstractMotor::encoderUnits encoderUnits = AbstractMotor::encoderUnits::degrees);
 
   /**
    * Sets the target absolute position for the motor to move to.
@@ -66,7 +38,8 @@ class AbstractMotor : public ControllerOutput {
    * @param ivelocity The maximum allowable velocity for the movement in RPM
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveAbsolute(const double iposition, const std::int32_t ivelocity) const = 0;
+  virtual std::int32_t moveAbsolute(const double iposition,
+                                    const std::int32_t ivelocity) const override;
 
   /**
    * Sets the relative target position for the motor to move to.
@@ -82,7 +55,8 @@ class AbstractMotor : public ControllerOutput {
    * @param ivelocity The maximum allowable velocity for the movement in RPM
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveRelative(const double iposition, const std::int32_t ivelocity) const = 0;
+  virtual std::int32_t moveRelative(const double iposition,
+                                    const std::int32_t ivelocity) const override;
 
   /**
    * Sets the velocity for the motor.
@@ -100,7 +74,7 @@ class AbstractMotor : public ControllerOutput {
    * gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const = 0;
+  virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const override;
 
   /**
    * Sets the voltage for the motor from -127 to 127.
@@ -108,10 +82,11 @@ class AbstractMotor : public ControllerOutput {
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
+   * @param iport The V5 port number from 1-21
    * @param ivoltage The new voltage value from -127 to 127
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveVoltage(const std::int16_t ivoltage) const = 0;
+  virtual std::int32_t moveVoltage(const std::int16_t ivoltage) const override;
 
   /**
    * Gets the target position set for the motor by the user.
@@ -122,7 +97,7 @@ class AbstractMotor : public ControllerOutput {
    * @return The target position in its encoder units or PROS_ERR_F if the operation failed,
    * setting errno.
    */
-  virtual double getTargetPosition() const = 0;
+  virtual double getTargetPosition() const override;
 
   /**
    * Gets the absolute position of the motor in its encoder units.
@@ -133,7 +108,7 @@ class AbstractMotor : public ControllerOutput {
    * @return The motor's absolute position in its encoder units or PROS_ERR_F if the operation
    * failed, setting errno.
    */
-  virtual double getPosition() const = 0;
+  virtual double getPosition() const override;
 
   /**
    * Gets the velocity commanded to the motor by the user.
@@ -144,7 +119,7 @@ class AbstractMotor : public ControllerOutput {
    * @return The commanded motor velocity from +-100, +-200, or +-600, or PROS_ERR if the operation
    * failed, setting errno.
    */
-  virtual std::int32_t getTargetVelocity() const = 0;
+  virtual std::int32_t getTargetVelocity() const override;
 
   /**
    * Gets the actual velocity of the motor.
@@ -155,7 +130,7 @@ class AbstractMotor : public ControllerOutput {
    * @return The motor's actual velocity in motor_encoder_units_e_t per second or PROS_ERR_F if the
    * operation failed, setting errno.
    */
-  virtual double getActualVelocity() const = 0;
+  virtual double getActualVelocity() const override;
 
   /**
    * Sets the "absolute" zero position of the motor to its current position.
@@ -165,10 +140,10 @@ class AbstractMotor : public ControllerOutput {
    *
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t tarePosition() const = 0;
+  virtual std::int32_t tarePosition() const override;
 
   /**
-   * Sets one of brakeMode to the motor.
+   * Sets one of AbstractMotor::brakeMode to the motor.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -176,7 +151,7 @@ class AbstractMotor : public ControllerOutput {
    * @param imode The new motor brake mode to set for the motor
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setBrakeMode(const brakeMode imode) const = 0;
+  virtual std::int32_t setBrakeMode(const AbstractMotor::brakeMode imode) const override;
 
   /**
    * Sets the current limit for the motor in mA.
@@ -187,10 +162,10 @@ class AbstractMotor : public ControllerOutput {
    * @param ilimit The new current limit in mA
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const = 0;
+  virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const override;
 
   /**
-   * Sets one of encoderUnits for the motor encoder.
+   * Sets one of AbstractMotor::encoderUnits for the motor encoder.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -198,10 +173,10 @@ class AbstractMotor : public ControllerOutput {
    * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setEncoderUnits(const encoderUnits iunits) const = 0;
+  virtual std::int32_t setEncoderUnits(const AbstractMotor::encoderUnits iunits) const override;
 
   /**
-   * Sets one of gearset for the motor.
+   * Sets one of AbstractMotor::gearset for the motor.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -209,7 +184,7 @@ class AbstractMotor : public ControllerOutput {
    * @param igearset The new motor gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setGearing(const gearset igearset) const = 0;
+  virtual std::int32_t setGearing(const AbstractMotor::gearset igearset) const override;
 
   /**
    * Sets the reverse flag for the motor.
@@ -222,7 +197,7 @@ class AbstractMotor : public ControllerOutput {
    * @param ireverse True reverses the motor, false is default
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setReversed(const bool ireverse) const = 0;
+  virtual std::int32_t setReversed(const bool ireverse) const override;
 
   /**
    * Sets the voltage limit for the motor in Volts.
@@ -233,18 +208,35 @@ class AbstractMotor : public ControllerOutput {
    * @param ilimit The new voltage limit in Volts
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setVoltageLimit(const std::int32_t ilimit) const = 0;
+  virtual std::int32_t setVoltageLimit(const std::int32_t ilimit) const override;
 
   /**
-   * Returns the encoder associated with this motor.
+   * Get the encoder associated with this motor.
    *
-   * @return the encoder for this motor
+   * @return encoder for this motor
    */
-  virtual std::shared_ptr<ContinuousRotarySensor> getEncoder() const = 0;
+  virtual std::shared_ptr<ContinuousRotarySensor> getEncoder() const override;
+
+  /**
+   * Writes the value of the controller output. This method might be automatically called in another
+   * thread by the controller.
+   *
+   * @param ivalue the controller's output
+   */
+  virtual void controllerSet(const double ivalue) override;
 };
 
-AbstractMotor::GearsetRatioPair operator*(const AbstractMotor::gearset gearset, const double ratio);
+inline namespace literals {
+/**
+ * Non-reversed motor.
+ **/
+okapi::Motor operator"" _mtr(const unsigned long long iport);
 
+/**
+ * Reversed motor.
+ **/
+okapi::Motor operator"" _rmtr(const unsigned long long iport);
+} // namespace literals
 } // namespace okapi
 
 #endif

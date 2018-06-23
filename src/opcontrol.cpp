@@ -191,11 +191,7 @@ void constructorTests() {
     IterativePosPIDController pid5(IterativePosPIDControllerArgs(0, 0, 0, 0));
   }
 
-  {
-    VelMath velMath1(0);
-    VelMath velMath2(0, 0);
-    VelMath velMath3(0, std::make_shared<DemaFilter>(0.0, 0.0));
-  }
+  { VelMath velMath1(0, std::make_shared<DemaFilter>(0.0, 0.0), std::make_unique<Timer>()); }
 
   {
     IterativeVelPIDController velPid1(0, 0, 0);

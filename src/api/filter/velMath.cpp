@@ -6,7 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/filter/velMath.hpp"
-#include "api.h"
 #include "okapi/api/filter/averageFilter.hpp"
 #include "okapi/api/filter/medianFilter.hpp"
 #include "okapi/api/util/mathUtil.hpp"
@@ -25,23 +24,12 @@ VelMathArgs::VelMathArgs(const double iticksPerRev, std::shared_ptr<Filter> ifil
 
 VelMathArgs::~VelMathArgs() = default;
 
-VelMath::VelMath(const double iticksPerRev)
-  : VelMath(iticksPerRev,
-            std::make_shared<ComposableFilter>(std::initializer_list<std::shared_ptr<Filter>>(
-              {std::make_shared<MedianFilter<5>>(), std::make_shared<AverageFilter<5>>()})),
-            std::make_unique<Timer>()) {
-}
-
-VelMath::VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter)
-  : VelMath(iticksPerRev, ifilter, std::make_unique<Timer>()) {
-}
-
-VelMath::VelMath(const VelMathArgs &iparams)
-  : VelMath(iparams.ticksPerRev, iparams.filter, std::make_unique<Timer>()) {
+VelMath::VelMath(const VelMathArgs &iparams, std::unique_ptr<AbstractTimer> iloopDtTimer)
+  : VelMath(iparams.ticksPerRev, iparams.filter, std::move(iloopDtTimer)) {
 }
 
 VelMath::VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter,
-                 std::unique_ptr<Timer> iloopDtTimer)
+                 std::unique_ptr<AbstractTimer> iloopDtTimer)
   : ticksPerRev(iticksPerRev), loopDtTimer(std::move(iloopDtTimer)), filter(ifilter) {
   if (iticksPerRev == 0) {
     throw std::invalid_argument(

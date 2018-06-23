@@ -6,7 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/chassis/controller/chassisController.hpp"
-#include "okapi/api/util/timer.hpp"
 #include <cmath>
 
 namespace okapi {
