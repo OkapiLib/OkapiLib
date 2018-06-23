@@ -9,7 +9,7 @@
 
 #include "okapi/api.hpp"
 #include "test/testRunner.hpp"
-#include "test/tests/allHeadlessTests.hpp"
+#include "test/tests/impl/allImplTests.hpp"
 
 void runHeadlessTests();
 
@@ -19,11 +19,12 @@ void opcontrol() {
   using namespace okapi;
   pros::Task::delay(100);
 
-  auto chassis1 = ChassisControllerFactory::create(-11, 1, AbstractMotor::gearset::red * (1 / 2.0),
-                                                   {2.75_in, 10.5_in});
-  chassis1.moveDistance(6_in);
+  // auto chassis1 = ChassisControllerFactory::create(-11, 1, AbstractMotor::gearset::red * (1
+  // / 2.0),
+  //                                                  {2.75_in, 10.5_in});
+  // chassis1.moveDistance(6_in);
 
-  // runHeadlessTests();
+  runHeadlessTests();
   return;
 
   MotorGroup leftMotors({19_mtr, 20_mtr});
@@ -74,12 +75,8 @@ void opcontrol() {
 void runHeadlessTests() {
   using namespace okapi;
 
-  runHeadlessDeviceTests();
   runHeadlessUtilTests();
-  runHeadlessFilterTests();
   runHeadlessControllerTests();
-  runHeadlessChassisModelTests();
-  runHeadlessChassisControllerTests();
 
   test_print_report();
 }
@@ -192,9 +189,9 @@ void constructorTests() {
   }
 
   {
-    VelMath velMath1(0);
-    VelMath velMath2(0, 0);
-    VelMath velMath3(0, std::make_shared<DemaFilter>(0.0, 0.0));
+    VelMath velMath1(0, std::make_shared<DemaFilter>(0.0, 0.0), std::make_unique<Timer>());
+    VelMath velMath2 = VelMathFactory::create(0);
+    VelMath velMath3 = VelMathFactory::create(0, std::make_shared<EmaFilter>(0.0));
   }
 
   {

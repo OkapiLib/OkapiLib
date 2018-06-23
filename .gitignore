@@ -14,3 +14,4 @@ okapilib@*.zip
 .idea/
 .project
 .settings/
+cmake-build-debug/

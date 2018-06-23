@@ -1,4 +1,4 @@
-/**
+/**impl
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -34,10 +34,8 @@ XDriveModelArgs::XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
     bottomLeftMotor(ibottomLeftMotor),
-    leftSensor(std::make_shared<IntegratedEncoder>(
-      itopLeftMotor->getEncoder())), // Maybe need to use std::move
-    rightSensor(std::make_shared<IntegratedEncoder>(
-      itopRightMotor->getEncoder())), // Maybe need to use std::move
+    leftSensor(itopLeftMotor->getEncoder()),
+    rightSensor(itopRightMotor->getEncoder()),
     maxOutput(imaxOutput) {
 }
 
@@ -64,10 +62,8 @@ XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
     bottomLeftMotor(ibottomLeftMotor),
-    leftSensor(std::make_shared<IntegratedEncoder>(
-      itopLeftMotor->getEncoder())), // Maybe need to use std::move
-    rightSensor(std::make_shared<IntegratedEncoder>(
-      itopRightMotor->getEncoder())), // Maybe need to use std::move
+    leftSensor(itopLeftMotor->getEncoder()),
+    rightSensor(itopRightMotor->getEncoder()),
     maxOutput(imaxOutput) {
 }
 

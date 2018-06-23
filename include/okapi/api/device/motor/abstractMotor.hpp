@@ -9,7 +9,8 @@
 #define _OKAPI_ABSTRACTMOTOR_HPP_
 
 #include "okapi/api/control/controllerOutput.hpp"
-#include "okapi/api/device/rotarysensor/integratedEncoder.hpp"
+#include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
+#include <memory>
 
 namespace okapi {
 class AbstractMotor : public ControllerOutput {
@@ -239,7 +240,7 @@ class AbstractMotor : public ControllerOutput {
    *
    * @return the encoder for this motor
    */
-  virtual IntegratedEncoder getEncoder() const = 0;
+  virtual std::shared_ptr<ContinuousRotarySensor> getEncoder() const = 0;
 };
 
 AbstractMotor::GearsetRatioPair operator*(const AbstractMotor::gearset gearset, const double ratio);
