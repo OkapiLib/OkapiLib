@@ -55,6 +55,7 @@
 #include "okapi/api/filter/medianFilter.hpp"
 #include "okapi/api/filter/passthroughFilter.hpp"
 #include "okapi/api/filter/velMath.hpp"
+#include "okapi/impl/filter/velMathFactory.hpp"
 
 #include "okapi/api/units/QAcceleration.hpp"
 #include "okapi/api/units/QAngle.hpp"
