@@ -284,7 +284,6 @@ void testFilteredControllerInput() {
 }
 
 void runHeadlessControllerTests() {
-  testControlUtils();
   testIterativeControllers();
   testAsyncControllers();
   testFilteredControllerInput();

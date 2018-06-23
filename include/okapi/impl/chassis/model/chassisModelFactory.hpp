@@ -8,9 +8,9 @@
 #ifndef _OKAPI_CHASSISMODELFACTORY_HPP_
 #define _OKAPI_CHASSISMODELFACTORY_HPP_
 
-#include "okapi/impl/chassis/model/skidSteerModel.hpp"
-#include "okapi/impl/chassis/model/threeEncoderSkidSteerModel.hpp"
-#include "okapi/impl/chassis/model/xDriveModel.hpp"
+#include "okapi/api/chassis/model/skidSteerModel.hpp"
+#include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
+#include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"

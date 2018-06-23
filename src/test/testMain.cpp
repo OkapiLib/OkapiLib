@@ -1,3 +1,8 @@
+#ifndef PROS_VERSION_MAJOR
+
+#include "okapi/api/chassis/controller/chassisScales.hpp"
+#include "okapi/api/chassis/model/skidSteerModel.hpp"
+#include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/api/control/util/flywheelSimulator.hpp"
 #include "okapi/api/device/button/buttonBase.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
@@ -11,9 +16,6 @@
 #include "okapi/api/filter/velMath.hpp"
 #include "test/crossPlatformTestRunner.hpp"
 #include <memory>
-#include <okapi/api/chassis/controller/chassisScales.hpp>
-#include <okapi/api/chassis/model/skidSteerModel.hpp>
-#include <okapi/api/chassis/model/xDriveModel.hpp>
 
 using namespace okapi;
 using namespace snowhouse;
@@ -827,3 +829,5 @@ int main() {
 
   return 0;
 }
+
+#endif

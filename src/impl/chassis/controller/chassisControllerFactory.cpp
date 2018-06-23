@@ -6,8 +6,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/chassis/controller/chassisControllerFactory.hpp"
-#include "okapi/impl/chassis/model/skidSteerModel.hpp"
-#include "okapi/impl/chassis/model/xDriveModel.hpp"
+#include "okapi/api/chassis/model/skidSteerModel.hpp"
+#include "okapi/api/chassis/model/xDriveModel.hpp"
 
 namespace okapi {
 ChassisControllerIntegrated
