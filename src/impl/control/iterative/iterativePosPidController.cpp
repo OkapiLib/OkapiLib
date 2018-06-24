@@ -8,6 +8,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/control/iterative/iterativePosPidController.hpp"
+#include "okapi/impl/util/timer.hpp"
 #include <algorithm>
 #include <cmath>
 
@@ -20,17 +21,18 @@ IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, c
 IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
                                                      const double ikD, const double ikBias)
   : IterativePosPIDController(ikP, ikI, ikD, ikBias, std::make_unique<Timer>(),
-                              std::make_unique<SettledUtil>()) {
+                              std::make_unique<SettledUtil>(std::make_unique<Timer>())) {
 }
 
 IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params)
   : IterativePosPIDController(params.kP, params.kI, params.kD, params.kBias,
-                              std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
+                              std::make_unique<Timer>(),
+                              std::make_unique<SettledUtil>(std::make_unique<Timer>())) {
 }
 
 IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
                                                      const double ikD, const double ikBias,
-                                                     std::unique_ptr<Timer> iloopDtTimer,
+                                                     std::unique_ptr<AbstractTimer> iloopDtTimer,
                                                      std::unique_ptr<SettledUtil> isettledUtil)
   : loopDtTimer(std::move(iloopDtTimer)), settledUtil(std::move(isettledUtil)) {
   if (ikI != 0) {

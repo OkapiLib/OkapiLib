@@ -5,29 +5,30 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/control/util/settledUtil.hpp"
+#include "okapi/api/control/util/settledUtil.hpp"
 #include <cmath>
 
 namespace okapi {
-SettledUtil::SettledUtil(const double iatTargetError, const double iatTargetDerivative,
-                         const QTime iatTargetTime)
+SettledUtil::SettledUtil(std::unique_ptr<AbstractTimer> iatTargetTimer, const double iatTargetError,
+                         const double iatTargetDerivative, const QTime iatTargetTime)
   : atTargetError(iatTargetError),
     atTargetDerivative(iatTargetDerivative),
-    atTargetTime(iatTargetTime) {
+    atTargetTime(iatTargetTime),
+    atTargetTimer(std::move(iatTargetTimer)) {
 }
 
 SettledUtil::~SettledUtil() = default;
 
 bool SettledUtil::isSettled(const double ierror) {
   if (std::fabs(ierror) <= atTargetError || std::fabs(ierror - lastError) <= atTargetDerivative) {
-    atTargetTimer.placeHardMark();
+    atTargetTimer->placeHardMark();
   } else {
-    atTargetTimer.clearHardMark();
+    atTargetTimer->clearHardMark();
   }
 
   lastError = ierror;
 
-  if (atTargetTimer.getDtFromHardMark() >= atTargetTime) {
+  if (atTargetTimer->getDtFromHardMark() >= atTargetTime) {
     return true;
   }
 
@@ -35,6 +36,6 @@ bool SettledUtil::isSettled(const double ierror) {
 }
 
 void SettledUtil::reset() {
-  atTargetTimer.clearHardMark();
+  atTargetTimer->clearHardMark();
 }
 } // namespace okapi

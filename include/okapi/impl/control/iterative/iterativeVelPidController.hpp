@@ -9,8 +9,8 @@
 #define _OKAPI_ITERATIVEVELPIDCONTROLLER_HPP_
 
 #include "okapi/api/control/iterative/iterativeVelocityController.hpp"
+#include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/filter/velMath.hpp"
-#include "okapi/impl/control/util/settledUtil.hpp"
 
 namespace okapi {
 class IterativeVelPIDControllerArgs : public IterativeVelocityControllerArgs {
@@ -54,7 +54,8 @@ class IterativeVelPIDController : public IterativeVelocityController {
    * This constructor is meant for unit testing.
    */
   IterativeVelPIDController(const double ikP, const double ikD, const double ikF,
-                            std::unique_ptr<VelMath> ivelMath, std::unique_ptr<Timer> iloopDtTimer,
+                            std::unique_ptr<VelMath> ivelMath,
+                            std::unique_ptr<AbstractTimer> iloopDtTimer,
                             std::unique_ptr<SettledUtil> isettledUtil);
 
   /**
@@ -187,7 +188,7 @@ class IterativeVelPIDController : public IterativeVelocityController {
   bool isOn = true;
 
   std::unique_ptr<VelMath> velMath;
-  std::unique_ptr<Timer> loopDtTimer;
+  std::unique_ptr<AbstractTimer> loopDtTimer;
   std::unique_ptr<SettledUtil> settledUtil;
 };
 } // namespace okapi

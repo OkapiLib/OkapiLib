@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/control/async/asyncVelIntegratedController.hpp"
+#include "okapi/api/control/async/asyncVelIntegratedController.hpp"
 
 namespace okapi {
 AsyncVelIntegratedControllerArgs::AsyncVelIntegratedControllerArgs(
@@ -13,21 +13,14 @@ AsyncVelIntegratedControllerArgs::AsyncVelIntegratedControllerArgs(
   : motor(imotor) {
 }
 
-AsyncVelIntegratedController::AsyncVelIntegratedController(Motor imotor)
-  : AsyncVelIntegratedController(std::make_shared<Motor>(imotor)) {
-}
-
-AsyncVelIntegratedController::AsyncVelIntegratedController(MotorGroup imotor)
-  : AsyncVelIntegratedController(std::make_shared<MotorGroup>(imotor)) {
-}
-
-AsyncVelIntegratedController::AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor)
-  : motor(imotor) {
+AsyncVelIntegratedController::AsyncVelIntegratedController(
+  std::shared_ptr<AbstractMotor> imotor, std::unique_ptr<SettledUtil> isettledUtil)
+  : motor(imotor), settledUtil(std::move(isettledUtil)) {
 }
 
 AsyncVelIntegratedController::AsyncVelIntegratedController(
-  const AsyncVelIntegratedControllerArgs &iparams)
-  : motor(iparams.motor) {
+  const AsyncVelIntegratedControllerArgs &iparams, std::unique_ptr<SettledUtil> isettledUtil)
+  : motor(iparams.motor), settledUtil(std::move(isettledUtil)) {
 }
 
 void AsyncVelIntegratedController::setTarget(const double itarget) {
@@ -45,7 +38,7 @@ double AsyncVelIntegratedController::getError() const {
 }
 
 bool AsyncVelIntegratedController::isSettled() {
-  return settledUtil.isSettled(getError());
+  return settledUtil->isSettled(getError());
 }
 
 void AsyncVelIntegratedController::reset() {

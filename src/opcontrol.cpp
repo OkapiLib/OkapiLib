@@ -166,7 +166,10 @@ void constructorTests() {
                                          std::make_shared<IterativeVelPIDController>(0, 0, 0));
   }
 
-  { AsyncPosIntegratedController posI1(1_mtr); }
+  {
+    AsyncPosIntegratedController posI1(std::make_shared<Motor>(1),
+                                       std::make_unique<SettledUtil>(std::make_unique<Timer>()));
+  }
 
   {
     AsyncPosPIDController apospid1(std::make_shared<ADIEncoder>(1, 2, true),
@@ -232,7 +235,8 @@ void constructorTests() {
 
   {
     ControllerRunner controllerRunner;
-    AsyncPosIntegratedController testControllerRunnerController1(1_mtr);
+    AsyncPosIntegratedController testControllerRunnerController1(
+      std::make_shared<Motor>(1), std::make_unique<SettledUtil>(std::make_unique<Timer>()));
     IterativePosPIDController testControllerRunnerController2(0, 0, 0);
     Motor controllerRunnerMotor = 1_mtr;
     controllerRunner.runUntilSettled(0, testControllerRunnerController1);
@@ -242,7 +246,7 @@ void constructorTests() {
   }
 
   {
-    SettledUtil settledUtil1;
+    SettledUtil settledUtil1(std::make_unique<Timer>());
     settledUtil1.isSettled(0);
   }
 

@@ -6,7 +6,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/chassis/controller/chassisControllerIntegrated.hpp"
-#include "okapi/impl/control/util/settledUtil.hpp"
+#include "api.h"
+#include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/impl/util/timer.hpp"
 
 namespace okapi {
@@ -15,8 +16,8 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
   const AsyncPosIntegratedControllerArgs &irightControllerArgs,
   const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
   : ChassisController(imodel),
-    leftController(ileftControllerArgs),
-    rightController(irightControllerArgs),
+    leftController(ileftControllerArgs, std::make_unique<SettledUtil>(std::make_unique<Timer>())),
+    rightController(irightControllerArgs, std::make_unique<SettledUtil>(std::make_unique<Timer>())),
     lastTarget(0),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),

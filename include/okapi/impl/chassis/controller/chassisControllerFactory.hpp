@@ -10,6 +10,8 @@
 
 #include "okapi/impl/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/impl/chassis/controller/chassisControllerPid.hpp"
+#include "okapi/impl/device/motor/motor.hpp"
+#include "okapi/impl/device/motor/motorGroup.hpp"
 
 namespace okapi {
 class ChassisControllerFactory {

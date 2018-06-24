@@ -30,7 +30,7 @@ void testIterativeControllers() {
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
 
     IterativePosPIDController controller(0.004, 0, 0, 0, std::make_unique<MockTimer>(),
-                                         std::make_unique<SettledUtil>());
+                                         std::make_unique<SettledUtil>(std::make_unique<Timer>()));
 
     const double target = 45;
     controller.setTarget(target);
@@ -68,7 +68,7 @@ void testIterativeControllers() {
       0.000015, 0, 0,
       std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
                                 std::make_unique<MockTimer>()),
-      std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
+      std::make_unique<MockTimer>(), std::make_unique<SettledUtil>(std::make_unique<Timer>()));
 
     const double target = 10;
     controller.setTarget(target);
@@ -88,7 +88,7 @@ void testIterativeControllers() {
       0, 0, 0.1,
       std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
                                 std::make_unique<MockTimer>()),
-      std::make_unique<MockTimer>(), std::make_unique<SettledUtil>());
+      std::make_unique<MockTimer>(), std::make_unique<SettledUtil>(std::make_unique<Timer>()));
 
     controller2.setTarget(5);
     for (size_t i = 0; i < 5; i++) {
@@ -182,7 +182,8 @@ void testAsyncControllers() {
 
     auto motor = std::make_shared<MockMotor>();
 
-    AsyncPosIntegratedController controller(motor);
+    AsyncPosIntegratedController controller(
+      motor, std::make_unique<SettledUtil>(std::make_unique<Timer>()));
 
     controller.setTarget(100);
     test("Should be on by default", TEST_BODY(AssertThat, motor->lastPosition, Equals(100)));
@@ -233,7 +234,8 @@ void testAsyncControllers() {
 
     auto motor = std::make_shared<MockMotor>();
 
-    AsyncVelIntegratedController controller(motor);
+    AsyncVelIntegratedController controller(
+      motor, std::make_unique<SettledUtil>(std::make_unique<Timer>()));
 
     controller.setTarget(100);
     test("Should be on by default", TEST_BODY(AssertThat, motor->lastVelocity, Equals(100)));

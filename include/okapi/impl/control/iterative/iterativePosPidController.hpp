@@ -11,7 +11,7 @@
 #define _OKAPI_ITERATIVEPOSPIDCONTROLLER_HPP_
 
 #include "okapi/api/control/iterative/iterativePositionController.hpp"
-#include "okapi/impl/control/util/settledUtil.hpp"
+#include "okapi/api/control/util/settledUtil.hpp"
 #include <memory>
 
 namespace okapi {
@@ -47,7 +47,7 @@ class IterativePosPIDController : public IterativePositionController {
    * This constructor is meant for unit testing.
    */
   IterativePosPIDController(const double ikP, const double ikI, const double ikD,
-                            const double ikBias, std::unique_ptr<Timer> iloopDtTimer,
+                            const double ikBias, std::unique_ptr<AbstractTimer> iloopDtTimer,
                             std::unique_ptr<SettledUtil> isettledUtil);
 
   /**
@@ -203,7 +203,7 @@ class IterativePosPIDController : public IterativePositionController {
 
   bool isOn = true;
 
-  std::unique_ptr<Timer> loopDtTimer;
+  std::unique_ptr<AbstractTimer> loopDtTimer;
   std::unique_ptr<SettledUtil> settledUtil;
 };
 } // namespace okapi

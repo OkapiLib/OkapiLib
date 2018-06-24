@@ -25,28 +25,29 @@ IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, c
 
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
                                                      const double ikF)
-  : IterativeVelPIDController(ikP, ikD, ikF,
-                              std::make_unique<VelMath>(1800, std::make_unique<Timer>()),
-                              std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
+  : IterativeVelPIDController(
+      ikP, ikD, ikF, std::make_unique<VelMath>(1800, std::make_unique<Timer>()),
+      std::make_unique<Timer>(), std::make_unique<SettledUtil>(std::make_unique<Timer>())) {
 }
 
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
                                                      const double ikF, const VelMathArgs &iparams)
-  : IterativeVelPIDController(ikP, ikD, ikF,
-                              std::make_unique<VelMath>(iparams, std::make_unique<Timer>()),
-                              std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
+  : IterativeVelPIDController(
+      ikP, ikD, ikF, std::make_unique<VelMath>(iparams, std::make_unique<Timer>()),
+      std::make_unique<Timer>(), std::make_unique<SettledUtil>(std::make_unique<Timer>())) {
 }
 
 IterativeVelPIDController::IterativeVelPIDController(const IterativeVelPIDControllerArgs &iparams)
   : IterativeVelPIDController(iparams.kP, iparams.kD, iparams.kF,
                               std::make_unique<VelMath>(iparams.params, std::make_unique<Timer>()),
-                              std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
+                              std::make_unique<Timer>(),
+                              std::make_unique<SettledUtil>(std::make_unique<Timer>())) {
 }
 
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
                                                      const double ikF,
                                                      std::unique_ptr<VelMath> ivelMath,
-                                                     std::unique_ptr<Timer> iloopDtTimer,
+                                                     std::unique_ptr<AbstractTimer> iloopDtTimer,
                                                      std::unique_ptr<SettledUtil> isettledUtil)
   : velMath(std::move(ivelMath)),
     loopDtTimer(std::move(iloopDtTimer)),

@@ -5,18 +5,18 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ASYNCPOSINTEGRATEDCONTROLLER_HPP_
-#define _OKAPI_ASYNCPOSINTEGRATEDCONTROLLER_HPP_
+#ifndef _OKAPI_ASYNCVELINTEGRATEDCONTROLLER_HPP_
+#define _OKAPI_ASYNCVELINTEGRATEDCONTROLLER_HPP_
 
-#include "okapi/api/control/async/asyncPositionController.hpp"
-#include "okapi/impl/control/util/settledUtil.hpp"
-#include "okapi/impl/device/motor/motor.hpp"
-#include "okapi/impl/device/motor/motorGroup.hpp"
+#include "okapi/api/control/async/asyncVelocityController.hpp"
+#include "okapi/api/control/util/settledUtil.hpp"
+#include "okapi/api/device/motor/abstractMotor.hpp"
+#include <memory>
 
 namespace okapi {
-class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
+class AsyncVelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
   public:
-  AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
+  AsyncVelIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
 
   std::shared_ptr<AbstractMotor> motor;
 };
@@ -25,15 +25,13 @@ class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
  * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are whatever
  * units the motor is in.
  */
-class AsyncPosIntegratedController : public AsyncPositionController {
+class AsyncVelIntegratedController : public AsyncVelocityController {
   public:
-  AsyncPosIntegratedController(Motor imotor);
+  AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+                               std::unique_ptr<SettledUtil> isettledUtil);
 
-  AsyncPosIntegratedController(MotorGroup imotor);
-
-  AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor);
-
-  AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams);
+  AsyncVelIntegratedController(const AsyncVelIntegratedControllerArgs &iparams,
+                               std::unique_ptr<SettledUtil> isettledUtil);
 
   /**
    * Sets the target for the controller.
@@ -85,12 +83,8 @@ class AsyncPosIntegratedController : public AsyncPositionController {
   double lastTarget = 0;
   bool controllerIsDisabled = false;
   bool hasFirstTarget = false;
-  SettledUtil settledUtil;
+  std::unique_ptr<SettledUtil> settledUtil;
 
-  /**
-   * Resumes moving after the controller is reset. Should not cause movement if the controller is
-   * turned off, reset, and turned back on.
-   */
   virtual void resumeMovement();
 };
 } // namespace okapi
