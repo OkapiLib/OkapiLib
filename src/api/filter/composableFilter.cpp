@@ -16,7 +16,7 @@ ComposableFilterArgs::ComposableFilterArgs(
 
 ComposableFilter::ComposableFilter() = default;
 
-  ComposableFilter::ComposableFilter(const std::initializer_list<std::shared_ptr<Filter>> &ilist) {
+ComposableFilter::ComposableFilter(const std::initializer_list<std::shared_ptr<Filter>> &ilist) {
   for (auto &&elem : ilist) {
     filters.push_back(elem);
   }

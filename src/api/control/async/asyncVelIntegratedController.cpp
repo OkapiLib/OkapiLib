@@ -27,7 +27,7 @@ void AsyncVelIntegratedController::setTarget(const double itarget) {
   hasFirstTarget = true;
 
   if (!controllerIsDisabled) {
-    motor->moveVelocity((std::int16_t) itarget);
+    motor->moveVelocity((std::int16_t)itarget);
   }
 
   lastTarget = itarget;

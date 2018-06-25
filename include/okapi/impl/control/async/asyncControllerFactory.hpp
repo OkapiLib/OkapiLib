@@ -18,27 +18,104 @@
 namespace okapi {
 class AsyncControllerFactory {
   public:
+  /**
+   * A position controller that uses the V5 motor's onboard control.
+   *
+   * @param imotor controller input (from the integrated encoder) and output
+   */
   static AsyncPosIntegratedController posIntegrated(Motor imotor);
+
+  /**
+   * A position controller that uses the V5 motor's onboard control.
+   *
+   * @param imotor controller input (from the integrated encoder) and output
+   */
   static AsyncPosIntegratedController posIntegrated(MotorGroup imotor);
 
+  /**
+   * A velocity controller that uses the V5 motor's onboard control.
+   *
+   * @param imotor controller input (from the integrated encoder) and output
+   */
   static AsyncVelIntegratedController velIntegrated(Motor imotor);
+
+  /**
+   * A velocity controller that uses the V5 motor's onboard control.
+   *
+   * @param imotor controller input (from the integrated encoder) and output
+   */
   static AsyncVelIntegratedController velIntegrated(MotorGroup imotor);
 
-  static AsyncPosPIDController posPID(Motor imotor, const double ikP, const double ikI,
-                                      const double ikD, const double ikBias = 0);
-  static AsyncPosPIDController posPID(MotorGroup imotor, const double ikP, const double ikI,
-                                      const double ikD, const double ikBias = 0);
-  static AsyncPosPIDController posPID(std::shared_ptr<ControllerInput> iinput,
-                                      std::shared_ptr<ControllerOutput> ioutput, const double ikP,
-                                      const double ikI, const double ikD, const double ikBias = 0);
+  /**
+   * A position controller that uses the PID algorithm.
+   *
+   * @param imotor controller input (from the integrated encoder) and output
+   * @param ikP proportional gain
+   * @param ikI integration gain
+   * @param ikD derivative gain
+   * @param ikBias output bias (a constant added to the output)
+   */
+  static AsyncPosPIDController posPID(Motor imotor, double ikP, double ikI, double ikD,
+                                      double ikBias = 0);
 
-  static AsyncVelPIDController velPID(Motor imotor, const double ikP, const double ikD,
-                                      const double ikF = 0);
-  static AsyncVelPIDController velPID(MotorGroup imotor, const double ikP, const double ikD,
-                                      const double ikF = 0);
+  /**
+   * A position controller that uses the PID algorithm.
+   *
+   * @param imotor controller input (from the integrated encoder) and output
+   * @param ikP proportional gain
+   * @param ikI integration gain
+   * @param ikD derivative gain
+   * @param ikBias output bias (a constant added to the output)
+   */
+  static AsyncPosPIDController posPID(MotorGroup imotor, double ikP, double ikI, double ikD,
+                                      double ikBias = 0);
+
+  /**
+   * A position controller that uses the PID algorithm.
+   *
+   * @param iinput controller input
+   * @param ioutput controller output
+   * @param ikP proportional gain
+   * @param ikI integration gain
+   * @param ikD derivative gain
+   * @param ikBias output bias (a constant added to the output)
+   */
+  static AsyncPosPIDController posPID(std::shared_ptr<ControllerInput> iinput,
+                                      std::shared_ptr<ControllerOutput> ioutput, double ikP,
+                                      double ikI, double ikD, double ikBias = 0);
+
+  /**
+   * A velocity controller that uses the PID algorithm.
+   *
+   * @param imotor controller input (from the integrated encoder) and output
+   * @param ikP proportional gain
+   * @param ikD derivative gain
+   * @param ikF feed-forward gain
+   */
+  static AsyncVelPIDController velPID(Motor imotor, double ikP, double ikD, double ikF = 0);
+
+  /**
+   * A velocity controller that uses the PID algorithm.
+   *
+   * @param imotor controller input (from the integrated encoder) and output
+   * @param ikP proportional gain
+   * @param ikD derivative gain
+   * @param ikF feed-forward gain
+   */
+  static AsyncVelPIDController velPID(MotorGroup imotor, double ikP, double ikD, double ikF = 0);
+
+  /**
+   * A velocity controller that uses the PID algorithm.
+   *
+   * @param iinput controller input
+   * @param ioutput controller output
+   * @param ikP proportional gain
+   * @param ikD derivative gain
+   * @param ikF feed-forward gain
+   */
   static AsyncVelPIDController velPID(std::shared_ptr<ControllerInput> iinput,
-                                      std::shared_ptr<ControllerOutput> ioutput, const double ikP,
-                                      const double ikD, const double ikF = 0);
+                                      std::shared_ptr<ControllerOutput> ioutput, double ikP,
+                                      double ikD, double ikF = 0);
 };
 } // namespace okapi
 

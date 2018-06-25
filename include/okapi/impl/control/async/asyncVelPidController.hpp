@@ -20,7 +20,7 @@ class AsyncVelPIDControllerArgs : public AsyncVelocityControllerArgs {
   public:
   AsyncVelPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
                             std::shared_ptr<ControllerOutput> ioutput,
-                            const IterativeVelPIDControllerArgs &iparams);
+                            IterativeVelPIDControllerArgs &iparams);
 
   std::shared_ptr<ControllerInput> input;
   std::shared_ptr<ControllerOutput> output;
@@ -30,12 +30,12 @@ class AsyncVelPIDControllerArgs : public AsyncVelocityControllerArgs {
 class AsyncVelPIDController : public AsyncWrapper, public AsyncVelocityController {
   public:
   AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
-                        std::shared_ptr<ControllerOutput> ioutput, const double ikP,
-                        const double ikD, const double ikF);
+                        std::shared_ptr<ControllerOutput> ioutput, double ikP, double ikD,
+                        double ikF);
 
   AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
                         std::shared_ptr<ControllerOutput> ioutput,
-                        const IterativeVelPIDControllerArgs &iparams);
+                        IterativeVelPIDControllerArgs &iparams);
 };
 } // namespace okapi
 
