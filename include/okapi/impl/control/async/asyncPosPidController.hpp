@@ -20,7 +20,7 @@ class AsyncPosPIDControllerArgs : public AsyncPositionControllerArgs {
   public:
   AsyncPosPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
                             std::shared_ptr<ControllerOutput> ioutput,
-                            IterativePosPIDControllerArgs &iparams);
+                            const IterativePosPIDControllerArgs &iparams);
 
   std::shared_ptr<ControllerInput> input;
   std::shared_ptr<ControllerOutput> output;
@@ -35,7 +35,7 @@ class AsyncPosPIDController : public AsyncWrapper, public AsyncPositionControlle
 
   AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
                         std::shared_ptr<ControllerOutput> ioutput,
-                        IterativePosPIDControllerArgs &iparams);
+                        const IterativePosPIDControllerArgs &iparams);
 };
 } // namespace okapi
 

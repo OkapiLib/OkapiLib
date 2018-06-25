@@ -16,13 +16,13 @@ AsyncVelPIDControllerArgs::AsyncVelPIDControllerArgs(std::shared_ptr<ControllerI
 
 AsyncVelPIDController::AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
                                              std::shared_ptr<ControllerOutput> ioutput,
-                                             const IterativeVelPIDControllerArgs &iparams)
-  : AsyncWrapper(iinput, ioutput, std::make_unique<IterativeVelPIDController>(iparams)) {
+                                             const double ikP, const double ikD, const double ikF)
+  : AsyncWrapper(iinput, ioutput, std::make_unique<IterativeVelPIDController>(ikP, ikD, ikF)) {
 }
 
 AsyncVelPIDController::AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
                                              std::shared_ptr<ControllerOutput> ioutput,
-                                             const double ikP, const double ikD, const double ikF)
-  : AsyncWrapper(iinput, ioutput, std::make_unique<IterativeVelPIDController>(ikP, ikD, ikF)) {
+                                             const IterativeVelPIDControllerArgs &iparams)
+  : AsyncWrapper(iinput, ioutput, std::make_unique<IterativeVelPIDController>(iparams)) {
 }
 } // namespace okapi

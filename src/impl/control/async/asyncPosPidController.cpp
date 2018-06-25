@@ -16,15 +16,15 @@ AsyncPosPIDControllerArgs::AsyncPosPIDControllerArgs(std::shared_ptr<ControllerI
 
 AsyncPosPIDController::AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
                                              std::shared_ptr<ControllerOutput> ioutput,
-                                             const IterativePosPIDControllerArgs &iparams)
-  : AsyncWrapper(iinput, ioutput, std::make_unique<IterativePosPIDController>(iparams)) {
-}
-
-AsyncPosPIDController::AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
-                                             std::shared_ptr<ControllerOutput> ioutput,
                                              const double ikP, const double ikI, const double ikD,
                                              const double ikBias)
   : AsyncWrapper(iinput, ioutput,
                  std::make_unique<IterativePosPIDController>(ikP, ikI, ikD, ikBias)) {
+}
+
+AsyncPosPIDController::AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
+                                             std::shared_ptr<ControllerOutput> ioutput,
+                                             const IterativePosPIDControllerArgs &iparams)
+  : AsyncWrapper(iinput, ioutput, std::make_unique<IterativePosPIDController>(iparams)) {
 }
 } // namespace okapi
