@@ -33,7 +33,7 @@ class FilteredControllerInput : public ControllerInput {
    *
    * @return the current filtered sensor value.
    */
-  virtual double controllerGet() override {
+  double controllerGet() override {
     return filter->filter(input->controllerGet());
   }
 

@@ -23,8 +23,8 @@ class SettledUtil {
    * @param iatTargetDerivative minimum error derivative to be considered settled
    * @param iatTargetTime minimum time within atTargetError to be considered settled
    */
-  SettledUtil(std::unique_ptr<AbstractTimer> iatTargetTimer, double iatTargetError = 50,
-              double iatTargetDerivative = 5, QTime iatTargetTime = 250_ms);
+  explicit SettledUtil(std::unique_ptr<AbstractTimer> iatTargetTimer, double iatTargetError = 50,
+                       double iatTargetDerivative = 5, QTime iatTargetTime = 250_ms);
 
   virtual ~SettledUtil();
 
@@ -34,7 +34,7 @@ class SettledUtil {
    * @param ierror current error
    * @return whether the controller is settled
    */
-  virtual bool isSettled(const double ierror);
+  virtual bool isSettled(double ierror);
 
   /**
    * Resets the "at target" timer.

@@ -28,11 +28,7 @@ bool SettledUtil::isSettled(const double ierror) {
 
   lastError = ierror;
 
-  if (atTargetTimer->getDtFromHardMark() >= atTargetTime) {
-    return true;
-  }
-
-  return false;
+  return atTargetTimer->getDtFromHardMark() >= atTargetTime;
 }
 
 void SettledUtil::reset() {

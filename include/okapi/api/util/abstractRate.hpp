@@ -21,7 +21,7 @@ class AbstractRate {
    *
    * @param ihz the rate
    */
-  virtual void delay(const QFrequency ihz) = 0;
+  virtual void delay(QFrequency ihz) = 0;
 
   /**
    * Delay the current task such that it runs every ihz ms. The first delay will run for ihz.
@@ -29,7 +29,7 @@ class AbstractRate {
    *
    * @param ihz the rate in ms
    */
-  virtual void delay(const int ihz) = 0;
+  virtual void delay(int ihz) = 0;
 };
 } // namespace okapi
 

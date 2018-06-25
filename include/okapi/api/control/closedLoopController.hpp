@@ -21,7 +21,7 @@ class ClosedLoopController {
    *
    * @param itarget the new target
    */
-  virtual void setTarget(const double itarget) = 0;
+  virtual void setTarget(double itarget) = 0;
 
   /**
    * Returns the last error of the controller.
@@ -56,7 +56,7 @@ class ClosedLoopController {
    *
    * @param iisDisabled whether the controller is disabled
    */
-  virtual void flipDisable(const bool iisDisabled) = 0;
+  virtual void flipDisable(bool iisDisabled) = 0;
 
   /**
    * Returns whether the controller is currently disabled.

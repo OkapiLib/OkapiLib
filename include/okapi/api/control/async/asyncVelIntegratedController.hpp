@@ -16,7 +16,7 @@
 namespace okapi {
 class AsyncVelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
   public:
-  AsyncVelIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
+  explicit AsyncVelIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
 
   std::shared_ptr<AbstractMotor> motor;
 };
@@ -36,12 +36,12 @@ class AsyncVelIntegratedController : public AsyncVelocityController {
   /**
    * Sets the target for the controller.
    */
-  virtual void setTarget(const double itarget) override;
+  void setTarget(double itarget) override;
 
   /**
    * Returns the last error of the controller.
    */
-  virtual double getError() const override;
+  double getError() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
@@ -49,19 +49,19 @@ class AsyncVelIntegratedController : public AsyncVelocityController {
    *
    * @return whether the controller is settled
    */
-  virtual bool isSettled() override;
+  bool isSettled() override;
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
-  virtual void reset() override;
+  void reset() override;
 
   /**
    * Changes whether the controller is off or on. Turning the controller on after it was off will
    * cause the controller to move to its last set target, unless it was reset in that time.
    */
-  virtual void flipDisable() override;
+  void flipDisable() override;
 
   /**
    * Sets whether the controller is off or on. Turning the controller on after it was off will
@@ -69,14 +69,14 @@ class AsyncVelIntegratedController : public AsyncVelocityController {
    *
    * @param iisDisabled whether the controller is disabled
    */
-  virtual void flipDisable(const bool iisDisabled) override;
+  void flipDisable(bool iisDisabled) override;
 
   /**
    * Returns whether the controller is currently disabled.
    *
    * @return whether the controller is currently disabled
    */
-  virtual bool isDisabled() const override;
+  bool isDisabled() const override;
 
   protected:
   std::shared_ptr<AbstractMotor> motor;

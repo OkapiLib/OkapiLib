@@ -35,7 +35,7 @@ class EKFFilter : public Filter {
    * @param iQ process noise covariance
    * @param iR measurement noise covariance
    */
-  EKFFilter(const double iQ = 0.0001, const double iR = ipow(0.2, 2));
+  explicit EKFFilter(double iQ = 0.0001, double iR = ipow(0.2, 2));
 
   /**
    * Filters a value, like a sensor reading. Assumes the control input is zero.
@@ -43,7 +43,7 @@ class EKFFilter : public Filter {
    * @param ireading new measurement
    * @return filtered result
    */
-  virtual double filter(const double ireading) override;
+  double filter(double ireading) override;
 
   /**
    * Filters a reading with a control input.
@@ -52,14 +52,14 @@ class EKFFilter : public Filter {
    * @param icontrol control input
    * @return filtered result
    */
-  virtual double filter(const double ireading, const double icontrol);
+  virtual double filter(double ireading, double icontrol);
 
   /**
    * Returns the previous output from filter.
    *
    * @return the previous output from filter
    */
-  virtual double getOutput() const override;
+  double getOutput() const override;
 
   protected:
   const double Q, R;

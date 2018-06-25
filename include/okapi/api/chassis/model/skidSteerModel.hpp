@@ -17,13 +17,12 @@ class SkidSteerModelArgs : public ChassisModelArgs {
   public:
   // Create the sensors using the integrated encoder
   SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                     std::shared_ptr<AbstractMotor> irightSideMotor, const double imaxOutput = 127);
+                     std::shared_ptr<AbstractMotor> irightSideMotor, double imaxOutput = 127);
 
   SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
                      std::shared_ptr<AbstractMotor> irightSideMotor,
                      std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                     std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                     const double imaxOutput = 127);
+                     std::shared_ptr<ContinuousRotarySensor> irightEnc, double imaxOutput = 127);
 
   std::shared_ptr<AbstractMotor> leftSideMotor;
   std::shared_ptr<AbstractMotor> rightSideMotor;
@@ -45,7 +44,7 @@ class SkidSteerModel : public ChassisModel {
    * @param irightSideMotor right side motor
    */
   SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                 std::shared_ptr<AbstractMotor> irightSideMotor, const double imaxOutput = 127);
+                 std::shared_ptr<AbstractMotor> irightSideMotor, double imaxOutput = 127);
 
   /**
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
@@ -59,9 +58,9 @@ class SkidSteerModel : public ChassisModel {
   SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                  std::shared_ptr<AbstractMotor> irightSideMotor,
                  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                 std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput = 127);
+                 std::shared_ptr<ContinuousRotarySensor> irightEnc, double imaxOutput = 127);
 
-  SkidSteerModel(const SkidSteerModelArgs &iparams);
+  explicit SkidSteerModel(const SkidSteerModelArgs &iparams);
 
   SkidSteerModel(const SkidSteerModel &other);
 
@@ -70,7 +69,7 @@ class SkidSteerModel : public ChassisModel {
    *
    * @param ispeed motor power
    */
-  virtual void forward(const double ispeed) const override;
+  void forward(double ispeed) const override;
 
   /**
    * Drive the robot in an arc (using open-loop control). Uses velocity mode.
@@ -81,19 +80,19 @@ class SkidSteerModel : public ChassisModel {
    * @param iySpeed speed on y axis (forward)
    * @param izRotation speed around z axis (up)
    */
-  virtual void driveVector(const double iySpeed, const double izRotation) const override;
+  void driveVector(double iySpeed, double izRotation) const override;
 
   /**
    * Turn the robot clockwise (using open-loop control). Uses velocity mode.
    *
    * @param ispeed motor power
    */
-  virtual void rotate(const double ispeed) const override;
+  void rotate(double ispeed) const override;
 
   /**
    * Stop the robot (set all the motors to 0). Uses velocity mode.
    */
-  virtual void stop() const override;
+  void stop() const override;
 
   /**
    * Drive the robot with a tank drive layout. Uses voltage mode.
@@ -102,8 +101,7 @@ class SkidSteerModel : public ChassisModel {
    * @param irightSpeed right side speed
    * @param ithreshold deadband on joystick values
    */
-  virtual void tank(const double ileftSpeed, const double irightSpeed,
-                    const double ithreshold = 0) const override;
+  void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const override;
 
   /**
    * Drive the robot with an arcade drive layout. Uses voltage mode.
@@ -112,55 +110,54 @@ class SkidSteerModel : public ChassisModel {
    * @param izRotation speed around z axis (up)
    * @param ithreshold deadband on joystick values
    */
-  virtual void arcade(const double iySpeed, const double izRotation,
-                      const double ithreshold = 0) const override;
+  void arcade(double iySpeed, double izRotation, double ithreshold = 0) const override;
 
   /**
    * Power the left side motors. Uses velocity mode.
    *
    * @param ispeed motor power
    */
-  virtual void left(const double ispeed) const override;
+  void left(double ispeed) const override;
 
   /**
    * Power the right side motors. Uses velocity mode.
    *
    * @param ispeed motor power
    */
-  virtual void right(const double ispeed) const override;
+  void right(double ispeed) const override;
 
   /**
    * Read the sensors.
    *
    * @return sensor readings in the format {left, right}
    */
-  virtual std::valarray<std::int32_t> getSensorVals() const override;
+  std::valarray<std::int32_t> getSensorVals() const override;
 
   /**
    * Reset the sensors to their zero point.
    */
-  virtual void resetSensors() const override;
+  void resetSensors() const override;
 
   /**
    * Set the brake mode for each motor.
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(const AbstractMotor::brakeMode mode) const override;
+  void setBrakeMode(AbstractMotor::brakeMode mode) const override;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(const AbstractMotor::encoderUnits units) const override;
+  void setEncoderUnits(AbstractMotor::encoderUnits units) const override;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(const AbstractMotor::gearset gearset) const override;
+  void setGearing(AbstractMotor::gearset gearset) const override;
 
   /**
    * Returns the left side motor.
