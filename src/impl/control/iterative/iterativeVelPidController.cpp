@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/control/iterative/iterativeVelPidController.hpp"
+#include "okapi/api/filter/averageFilter.hpp"
 #include "okapi/impl/util/timer.hpp"
 #include <algorithm>
 #include <cmath>
@@ -25,9 +26,11 @@ IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, c
 
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
                                                      const double ikF)
-  : IterativeVelPIDController(
-      ikP, ikD, ikF, std::make_unique<VelMath>(1800, std::make_unique<Timer>()),
-      std::make_unique<Timer>(), std::make_unique<SettledUtil>(std::make_unique<Timer>())) {
+  : IterativeVelPIDController(ikP, ikD, ikF,
+                              std::make_unique<VelMath>(1800, std::make_shared<AverageFilter<2>>(),
+                                                        std::make_unique<Timer>()),
+                              std::make_unique<Timer>(),
+                              std::make_unique<SettledUtil>(std::make_unique<Timer>())) {
 }
 
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
