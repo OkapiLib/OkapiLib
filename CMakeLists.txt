@@ -13,12 +13,15 @@ add_executable(OkapiLibV5
         include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp
         include/okapi/api/chassis/model/xDriveModel.hpp
         include/okapi/api/control/async/asyncController.hpp
+        include/okapi/api/control/async/asyncPosIntegratedController.hpp
         include/okapi/api/control/async/asyncPositionController.hpp
+        include/okapi/api/control/async/asyncVelIntegratedController.hpp
         include/okapi/api/control/async/asyncVelocityController.hpp
         include/okapi/api/control/iterative/iterativeController.hpp
         include/okapi/api/control/iterative/iterativePositionController.hpp
         include/okapi/api/control/iterative/iterativeVelocityController.hpp
         include/okapi/api/control/util/flywheelSimulator.hpp
+        include/okapi/api/control/util/settledUtil.hpp
         include/okapi/api/control/closedLoopController.hpp
         include/okapi/api/control/controllerInput.hpp
         include/okapi/api/control/controllerOutput.hpp
@@ -72,8 +75,11 @@ add_executable(OkapiLibV5
         src/api/chassis/model/threeEncoderSkidSteerModel.cpp
         src/api/chassis/model/xDriveModel.cpp
         src/api/control/async/asyncController.cpp
+        src/api/control/async/asyncPosIntegratedController.cpp
+        src/api/control/async/asyncVelIntegratedController.cpp
         src/api/control/iterative/iterativeController.cpp
         src/api/control/util/flywheelSimulator.cpp
+        src/api/control/util/settledUtil.cpp
         src/api/control/closedLoopController.cpp
         src/api/device/button/abstractButton.cpp
         src/api/device/button/buttonBase.cpp
