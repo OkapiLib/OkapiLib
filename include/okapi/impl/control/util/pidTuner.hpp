@@ -12,7 +12,6 @@
 #include "api.h"
 #include "okapi/api/chassis/model/chassisModel.hpp"
 #include "okapi/impl/control/util/settledUtil.hpp"
-#include "okapi/impl/control/util/pidTuner.hpp"
 #include "okapi/api/units/QTime.hpp"
 #include "okapi/impl/control/iterative/iterativePosPidController.hpp"
 #include <memory>
