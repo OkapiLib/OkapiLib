@@ -10,22 +10,21 @@
 #include "okapi/impl/control/util/pidTuner.hpp"
 #include "okapi/impl/util/timer.hpp"
 #include <algorithm>
+#include <cmath>
 #include <limits>
 #include <random>
-#include <cmath>
 
 const QTime loopDelta = 10_ms;
 #define DIVISOR 5
 
 namespace okapi {
-PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::shared_ptr<SettledUtil> isettle,
-           const QTime itimeout, const std::int32_t igoal, const double ikPMin,
-           const double ikPMax, const double ikIMin, const double ikIMax,
-           const double ikDMin, const double ikDMax, const std::size_t inumIterations,
-           const std::size_t inumParticles, const double ikSettle,
-           const double ikITAE)
+PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<SettledUtil> isettle,
+                   const QTime itimeout, const std::int32_t igoal, const double ikPMin,
+                   const double ikPMax, const double ikIMin, const double ikIMax,
+                   const double ikDMin, const double ikDMax, const std::size_t inumIterations,
+                   const std::size_t inumParticles, const double ikSettle, const double ikITAE)
   : output(ioutput),
-    settle(isettle),
+    settle(std::move(isettle)),
     timeout(itimeout),
     goal(igoal),
     kPMin(ikPMin),
@@ -89,17 +88,18 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
 
       QTime settleTime = 0_ms;
       int itae = 0;
-			while (!testController.isSettled()) {
-				settleTime += loopDelta;
-				if (settleTime > timeout)
-					break;
+      while (!testController.isSettled()) {
+        settleTime += loopDelta;
+        if (settleTime > timeout)
+          break;
 
-				int error = testController.getError();
-				itae += (settleTime.convert(millisecond) * abs(error)) / DIVISOR; // sum of the error emphasizing later error
+        int error = testController.getError();
+        itae += (settleTime.convert(millisecond) * abs(error)) /
+                DIVISOR; // sum of the error emphasizing later error
 
-				output->controllerSet(testController.step(error));
-				pros::c::delay(loopDelta.convert(millisecond));
-			}
+        output->controllerSet(testController.step(error));
+        pros::c::delay(loopDelta.convert(millisecond));
+      }
 
       double error = kSettle * settleTime.convert(millisecond) + kITAE * itae;
       if (error < particles[i].bestError) {
@@ -184,7 +184,8 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
 //     encVals = model->getSensorVals() - encStartVals;
 //     distanceElapsed = static_cast<double>(encVals[0] + encVals[1]) / 2.0;
 //     itae +=
-//       ((atTargetTimer.getDtFromStart().convert(millisecond) * std::abs(itarget - distanceElapsed)) /
+//       ((atTargetTimer.getDtFromStart().convert(millisecond) * std::abs(itarget -
+//       distanceElapsed)) /
 //        (divisor * std::abs(itarget)));
 //
 //     model->left(leftController.step(distanceElapsed));

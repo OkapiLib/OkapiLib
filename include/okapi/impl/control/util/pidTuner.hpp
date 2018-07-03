@@ -10,22 +10,21 @@
 #define _OKAPI_PIDTUNER_HPP_
 
 #include "api.h"
-#include "okapi/impl/control/util/settledUtil.hpp"
-#include "okapi/api/units/QTime.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
+#include "okapi/api/units/QTime.hpp"
 #include "okapi/impl/control/iterative/iterativePosPidController.hpp"
+#include "okapi/impl/control/util/settledUtil.hpp"
 #include <memory>
 #include <vector>
 
 namespace okapi {
 class PIDTuner {
   public:
-  PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::shared_ptr<SettledUtil> isettle,
-           const QTime itimeout, const std::int32_t igoal, const double ikPMin,
-           const double ikPMax, const double ikIMin, const double ikIMax,
-           const double ikDMin, const double ikDMax, const std::size_t inumIterations = 5,
-           const std::size_t inumParticles = 16, const double ikSettle = 1,
-           const double ikITAE = 2);
+  PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<SettledUtil> isettle,
+           const QTime itimeout, const std::int32_t igoal, const double ikPMin, const double ikPMax,
+           const double ikIMin, const double ikIMax, const double ikDMin, const double ikDMax,
+           const std::size_t inumIterations = 5, const std::size_t inumParticles = 16,
+           const double ikSettle = 1, const double ikITAE = 2);
 
   virtual ~PIDTuner();
 
@@ -47,8 +46,8 @@ class PIDTuner {
     double bestError;
   };
 
-  std::shared_ptr<ControllerOutput>output;
-  std::shared_ptr<SettledUtil>settle;
+  std::shared_ptr<ControllerOutput> output;
+  std::unique_ptr<SettledUtil> settle;
   const QTime timeout;
   const std::int32_t goal;
   const double kPMin;
