@@ -11,16 +11,18 @@
 #include <algorithm>
 #include <limits>
 #include <random>
+#include <cmath>
 
-#define LOOP_DELTA 10
+const QTime loopDelta = 10_ms;
+#define DIVISOR 5
 
 namespace okapi {
 PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::shared_ptr<SettledUtil> isettle,
            const QTime itimeout, const std::int32_t igoal, const double ikPMin,
            const double ikPMax, const double ikIMin, const double ikIMax,
-           const double ikDMin, const double ikDMax, const std::size_t inumIterations = 5,
-           const std::size_t inumParticles = 16, const double ikSettle = 1,
-           const double ikITAE = 2)
+           const double ikDMin, const double ikDMax, const std::size_t inumIterations,
+           const std::size_t inumParticles, const double ikSettle,
+           const double ikITAE )
   : output(ioutput),
     settle(isettle),
     timeout(itimeout),
@@ -84,20 +86,21 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
 
       testController.setTarget(target);
 
-      std::int32_t settleTime = 0, itae = 0;
-			while (!settle.isSettled(testController.getError())) {
-				settleTime += LOOP_DELTA;
+      QTime settleTime = 0_ms;
+      int itae = 0;
+			while (!testController.isSettled()) {
+				settleTime += loopDelta;
 				if (settleTime > timeout)
 					break;
 
 				int error = testController.getError();
-				itae += ((settle_time * abs(error)) / (DIVISOR * abs(fbc->goal))); // sum of the error emphasizing later error
+				itae += (settleTime.convert(millisecond) * abs(error)) / DIVISOR; // sum of the error emphasizing later error
 
-				fbcRunContinuous(fbc);
-				delay(LOOP_DELTA);
+				output->controllerSet(testController.step(error));
+				pros::c::delay(loopDelta.convert(millisecond));
 			}
 
-      double error = kSettle * settleTime + kITAE * itae;
+      double error = kSettle * settleTime.convert(millisecond) + kITAE * itae;
       if (error < particles[i].bestError) {
         particles[i].kP.best = particles[i].kP.pos;
         particles[i].kI.best = particles[i].kI.pos;
@@ -157,57 +160,57 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
   return IterativePosPIDControllerArgs(global.kP.best, global.kI.best, global.kD.best);
 }
 
-std::uint32_t PIDTuner::moveDistance(const int itarget) {
-  const auto encStartVals = model->getSensorVals();
-  double distanceElapsed = 0, lastDistance = 0;
-  std::uint32_t prevWakeTime = pros::millis();
-
-  leftController.reset();
-  rightController.reset();
-  leftController.setTarget(static_cast<double>(itarget));
-  rightController.setTarget(static_cast<double>(itarget));
-
-  bool atTarget = false;
-  const int atTargetDistance = 15;
-  const int threshold = 2;
-
-  Timer atTargetTimer;
-  const QTime timeoutPeriod = 250_ms;
-
-  std::valarray<std::int32_t> encVals;
-
-  while (!atTarget) {
-    encVals = model->getSensorVals() - encStartVals;
-    distanceElapsed = static_cast<double>(encVals[0] + encVals[1]) / 2.0;
-    itae +=
-      ((atTargetTimer.getDtFromStart().convert(millisecond) * std::abs(itarget - distanceElapsed)) /
-       (divisor * std::abs(itarget)));
-
-    model->left(leftController.step(distanceElapsed));
-    model->right(rightController.step(distanceElapsed));
-
-    if (std::abs(itarget - static_cast<int>(distanceElapsed)) <= atTargetDistance) {
-      atTargetTimer.placeHardMark();
-    } else if (std::abs(static_cast<int>(distanceElapsed) - static_cast<int>(lastDistance)) <=
-               threshold) {
-      atTargetTimer.placeHardMark();
-    } else {
-      atTargetTimer.clearHardMark();
-    }
-
-    lastDistance = distanceElapsed;
-
-    if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod) {
-      atTarget = true;
-    }
-
-    pros::Task::delay_until(&prevWakeTime, 15);
-  }
-
-  auto settleTime = atTargetTimer.getDtFromStart();
-
-  model->stop();
-  pros::Task::delay(1000); // Let the robot settle
-  return settleTime.convert(millisecond);
-}
+// std::uint32_t PIDTuner::moveDistance(const int itarget) {
+//   const auto encStartVals = model->getSensorVals();
+//   double distanceElapsed = 0, lastDistance = 0;
+//   std::uint32_t prevWakeTime = pros::millis();
+//
+//   leftController.reset();
+//   rightController.reset();
+//   leftController.setTarget(static_cast<double>(itarget));
+//   rightController.setTarget(static_cast<double>(itarget));
+//
+//   bool atTarget = false;
+//   const int atTargetDistance = 15;
+//   const int threshold = 2;
+//
+//   Timer atTargetTimer;
+//   const QTime timeoutPeriod = 250_ms;
+//
+//   std::valarray<std::int32_t> encVals;
+//
+//   while (!atTarget) {
+//     encVals = model->getSensorVals() - encStartVals;
+//     distanceElapsed = static_cast<double>(encVals[0] + encVals[1]) / 2.0;
+//     itae +=
+//       ((atTargetTimer.getDtFromStart().convert(millisecond) * std::abs(itarget - distanceElapsed)) /
+//        (divisor * std::abs(itarget)));
+//
+//     model->left(leftController.step(distanceElapsed));
+//     model->right(rightController.step(distanceElapsed));
+//
+//     if (std::abs(itarget - static_cast<int>(distanceElapsed)) <= atTargetDistance) {
+//       atTargetTimer.placeHardMark();
+//     } else if (std::abs(static_cast<int>(distanceElapsed) - static_cast<int>(lastDistance)) <=
+//                threshold) {
+//       atTargetTimer.placeHardMark();
+//     } else {
+//       atTargetTimer.clearHardMark();
+//     }
+//
+//     lastDistance = distanceElapsed;
+//
+//     if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod) {
+//       atTarget = true;
+//     }
+//
+//     pros::Task::delay_until(&prevWakeTime, 15);
+//   }
+//
+//   auto settleTime = atTargetTimer.getDtFromStart();
+//
+//   model->stop();
+//   pros::Task::delay(1000); // Let the robot settle
+//   return settleTime.convert(millisecond);
+// }
 } // namespace okapi
