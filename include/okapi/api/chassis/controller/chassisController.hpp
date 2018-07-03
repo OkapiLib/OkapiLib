@@ -9,6 +9,7 @@
 #define _OKAPI_CHASSISCONTROLLER_HPP_
 
 #include "okapi/api/chassis/model/chassisModel.hpp"
+#include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/units/QAngle.hpp"
 #include "okapi/api/units/QLength.hpp"
 #include <memory>
@@ -137,21 +138,21 @@ class ChassisController {
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const;
+  virtual void setBrakeMode(const AbstractMotor::brakeMode mode) const;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const;
+  virtual void setEncoderUnits(const AbstractMotor::encoderUnits units) const;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(const pros::c::motor_gearset_e_t gearset) const;
+  virtual void setGearing(const AbstractMotor::gearset gearset) const;
 
   protected:
   std::shared_ptr<ChassisModel> model;

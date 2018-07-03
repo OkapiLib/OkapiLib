@@ -8,8 +8,6 @@
 #ifndef _OKAPI_BUTTON_HPP_
 #define _OKAPI_BUTTON_HPP_
 
-#include "api.h"
-
 namespace okapi {
 class AbstractButton {
   public:

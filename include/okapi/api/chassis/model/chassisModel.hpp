@@ -106,21 +106,21 @@ class ChassisModel {
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const = 0;
+  virtual void setBrakeMode(const AbstractMotor::brakeMode mode) const = 0;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const = 0;
+  virtual void setEncoderUnits(const AbstractMotor::encoderUnits units) const = 0;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(const pros::c::motor_gearset_e_t gearset) const = 0;
+  virtual void setGearing(const AbstractMotor::gearset gearset) const = 0;
 };
 } // namespace okapi
 
