@@ -2,10 +2,8 @@
 #include "okapi/api.hpp"
 
 void initialize() {
-  okapi::Motor test (1);
-  okapi::SettledUtil settle;
   auto timer = 5_s;
-  okapi::PIDTuner tuner (&test, &settle,
+  okapi::PIDTuner tuner (std::make_shared<Motor>(1), std::make_shared<SettledUtil>(),
            timer, 1000, 0.1,
            2.0, 0.0001 0.01,
            20.0, 40.0);

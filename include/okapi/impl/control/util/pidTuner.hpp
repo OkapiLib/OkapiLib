@@ -10,9 +10,9 @@
 #define _OKAPI_PIDTUNER_HPP_
 
 #include "api.h"
-#include "okapi/api/chassis/model/chassisModel.hpp"
 #include "okapi/impl/control/util/settledUtil.hpp"
 #include "okapi/api/units/QTime.hpp"
+#include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/impl/control/iterative/iterativePosPidController.hpp"
 #include <memory>
 #include <vector>

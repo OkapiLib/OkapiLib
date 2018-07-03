@@ -6,6 +6,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+// #include "api.h"
 #include "okapi/impl/control/util/pidTuner.hpp"
 #include "okapi/impl/util/timer.hpp"
 #include <algorithm>
@@ -22,7 +23,7 @@ PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::shared_ptr<Se
            const double ikPMax, const double ikIMin, const double ikIMax,
            const double ikDMin, const double ikDMax, const std::size_t inumIterations,
            const std::size_t inumParticles, const double ikSettle,
-           const double ikITAE )
+           const double ikITAE)
   : output(ioutput),
     settle(isettle),
     timeout(itimeout),
