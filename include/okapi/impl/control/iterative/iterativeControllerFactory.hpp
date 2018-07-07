@@ -8,10 +8,10 @@
 #ifndef _OKAPILIB_ITERATIVECONTROLLERFACTORY_HPP_
 #define _OKAPILIB_ITERATIVECONTROLLERFACTORY_HPP_
 
+#include "okapi/api/control/iterative/iterativeMotorVelocityController.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
 #include "okapi/api/util/mathUtil.hpp"
-#include "okapi/impl/control/iterative/iterativeMotorVelocityController.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
 
