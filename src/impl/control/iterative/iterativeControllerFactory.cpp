@@ -7,6 +7,7 @@
  */
 #include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
+#include "okapi/impl/filter/velMathFactory.hpp"
 #include "okapi/impl/util/timer.hpp"
 
 namespace okapi {
@@ -20,7 +21,7 @@ IterativePosPIDController IterativeControllerFactory::posPID(const double ikP, c
 IterativeVelPIDController IterativeControllerFactory::velPID(const double ikP, const double ikD,
                                                              const double ikF,
                                                              const VelMathArgs &iparams) {
-  return IterativeVelPIDController(IterativeVelPIDControllerArgs(ikP, ikD, ikF, iparams),
+  return IterativeVelPIDController(ikP, ikD, ikF, VelMathFactory::createPtr(iparams),
                                    std::make_unique<Timer>(),
                                    std::make_unique<SettledUtil>(std::make_unique<Timer>()));
 }

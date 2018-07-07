@@ -11,9 +11,9 @@
 
 #include "api.h"
 #include "okapi/api/chassis/model/chassisModel.hpp"
+#include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/units/QTime.hpp"
 #include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
-#include "okapi/impl/control/iterative/iterativePosPidController.hpp"
 #include <memory>
 #include <vector>
 

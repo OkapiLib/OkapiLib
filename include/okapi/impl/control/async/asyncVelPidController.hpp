@@ -11,34 +11,16 @@
 #include "okapi/api/control/async/asyncVelocityController.hpp"
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
+#include "okapi/api/control/iterative/iterativeVelPidController.hpp"
 #include "okapi/impl/control/async/asyncWrapper.hpp"
-#include "okapi/impl/control/iterative/iterativeVelPidController.hpp"
 #include <memory>
 
 namespace okapi {
-class AsyncVelPIDControllerArgs : public AsyncVelocityControllerArgs {
-  public:
-  AsyncVelPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
-                            std::shared_ptr<ControllerOutput> ioutput,
-                            const IterativeVelPIDControllerArgs &iparams,
-                            const VelMathArgs &ivelMath);
-
-  std::shared_ptr<ControllerInput> input;
-  std::shared_ptr<ControllerOutput> output;
-  const IterativeVelPIDControllerArgs params;
-  const VelMathArgs &velMath;
-};
-
 class AsyncVelPIDController : public AsyncWrapper, public AsyncVelocityController {
   public:
   AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
                         std::shared_ptr<ControllerOutput> ioutput, double ikP, double ikD,
                         double ikF, std::unique_ptr<VelMath> ivelMath);
-
-  AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
-                        std::shared_ptr<ControllerOutput> ioutput,
-                        const IterativeVelPIDControllerArgs &iparams,
-                        std::unique_ptr<VelMath> ivelMath);
 };
 } // namespace okapi
 

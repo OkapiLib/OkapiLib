@@ -10,7 +10,7 @@
 
 #include "okapi/api/chassis/controller/chassisController.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
-#include "okapi/impl/control/iterative/iterativePosPidController.hpp"
+#include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include <memory>
 
 namespace okapi {
