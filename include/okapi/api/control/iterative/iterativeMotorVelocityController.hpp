@@ -36,27 +36,27 @@ class IterativeMotorVelocityController : public IterativeVelocityController {
    * @param inewReading new measurement
    * @return controller output
    */
-  virtual double step(const double ireading) override;
+  double step(double ireading) override;
 
   /**
    * Sets the target for the controller.
    */
-  virtual void setTarget(const double itarget) override;
+  void setTarget(double itarget) override;
 
   /**
    * Returns the last calculated output of the controller.
    */
-  virtual double getOutput() const override;
+  double getOutput() const override;
 
   /**
    * Returns the last error of the controller.
    */
-  virtual double getError() const override;
+  double getError() const override;
 
   /**
    * Returns the last derivative (change in error) of the controller.
    */
-  virtual double getDerivative() const override;
+  double getDerivative() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
@@ -64,14 +64,14 @@ class IterativeMotorVelocityController : public IterativeVelocityController {
    *
    * @return whether the controller is settled
    */
-  virtual bool isSettled() override;
+  bool isSettled() override;
 
   /**
    * Set time between loops in ms.
    *
    * @param isampleTime time between loops in ms
    */
-  virtual void setSampleTime(const QTime isampleTime) override;
+  void setSampleTime(QTime isampleTime) override;
 
   /**
    * Set controller output bounds.
@@ -79,19 +79,19 @@ class IterativeMotorVelocityController : public IterativeVelocityController {
    * @param imax max output
    * @param imin min output
    */
-  virtual void setOutputLimits(double imax, double imin) override;
+  void setOutputLimits(double imax, double imin) override;
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
-  virtual void reset() override;
+  void reset() override;
 
   /**
    * Changes whether the controller is off or on. Turning the controller on after it was off will
    * cause the controller to move to its last set target, unless it was reset in that time.
    */
-  virtual void flipDisable() override;
+  void flipDisable() override;
 
   /**
    * Sets whether the controller is off or on. Turning the controller on after it was off will
@@ -99,21 +99,21 @@ class IterativeMotorVelocityController : public IterativeVelocityController {
    *
    * @param iisDisabled whether the controller is disabled
    */
-  virtual void flipDisable(const bool iisDisabled) override;
+  void flipDisable(bool iisDisabled) override;
 
   /**
    * Returns whether the controller is currently disabled.
    *
    * @return whether the controller is currently disabled
    */
-  virtual bool isDisabled() const override;
+  bool isDisabled() const override;
 
   /**
    * Get the last set sample time.
    *
    * @return sample time
    */
-  virtual QTime getSampleTime() const override;
+  QTime getSampleTime() const override;
 
   protected:
   std::shared_ptr<AbstractMotor> motor;
