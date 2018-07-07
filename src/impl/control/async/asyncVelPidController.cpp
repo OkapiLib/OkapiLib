@@ -7,6 +7,7 @@
  */
 #include "okapi/impl/control/async/asyncVelPidController.hpp"
 #include "okapi/api/util/mathUtil.hpp"
+#include "okapi/impl/control/util/settledUtilFactory.hpp"
 #include "okapi/impl/util/timer.hpp"
 
 namespace okapi {
@@ -15,8 +16,8 @@ AsyncVelPIDController::AsyncVelPIDController(std::shared_ptr<ControllerInput> ii
                                              const double ikP, const double ikD, const double ikF,
                                              std::unique_ptr<VelMath> ivelMath)
   : AsyncWrapper(iinput, ioutput,
-                 std::make_unique<IterativeVelPIDController>(
-                   ikP, ikD, ikF, std::move(ivelMath), std::make_unique<Timer>(),
-                   std::make_unique<SettledUtil>(std::make_unique<Timer>()))) {
+                 std::make_unique<IterativeVelPIDController>(ikP, ikD, ikF, std::move(ivelMath),
+                                                             std::make_unique<Timer>(),
+                                                             SettledUtilFactory::createPtr())) {
 }
 } // namespace okapi

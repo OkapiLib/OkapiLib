@@ -6,29 +6,28 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/control/async/asyncControllerFactory.hpp"
-#include "okapi/api/control/util/settledUtil.hpp"
+#include "okapi/impl/control/util/settledUtilFactory.hpp"
 #include "okapi/impl/filter/velMathFactory.hpp"
-#include "okapi/impl/util/timer.hpp"
 
 namespace okapi {
 AsyncPosIntegratedController AsyncControllerFactory::posIntegrated(Motor imotor) {
   return AsyncPosIntegratedController(std::make_shared<Motor>(imotor),
-                                      std::make_unique<SettledUtil>(std::make_unique<Timer>()));
+                                      SettledUtilFactory::createPtr());
 }
 
 AsyncPosIntegratedController AsyncControllerFactory::posIntegrated(MotorGroup imotor) {
   return AsyncPosIntegratedController(std::make_shared<MotorGroup>(imotor),
-                                      std::make_unique<SettledUtil>(std::make_unique<Timer>()));
+                                      SettledUtilFactory::createPtr());
 }
 
 AsyncVelIntegratedController AsyncControllerFactory::velIntegrated(Motor imotor) {
   return AsyncVelIntegratedController(std::make_shared<Motor>(imotor),
-                                      std::make_unique<SettledUtil>(std::make_unique<Timer>()));
+                                      SettledUtilFactory::createPtr());
 }
 
 AsyncVelIntegratedController AsyncControllerFactory::velIntegrated(MotorGroup imotor) {
   return AsyncVelIntegratedController(std::make_shared<MotorGroup>(imotor),
-                                      std::make_unique<SettledUtil>(std::make_unique<Timer>()));
+                                      SettledUtilFactory::createPtr());
 }
 
 AsyncPosPIDController AsyncControllerFactory::posPID(Motor imotor, const double ikP,

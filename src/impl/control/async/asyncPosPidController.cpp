@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/control/async/asyncPosPidController.hpp"
+#include "okapi/impl/control/util/settledUtilFactory.hpp"
 #include "okapi/impl/util/timer.hpp"
 
 namespace okapi {
@@ -14,8 +15,8 @@ AsyncPosPIDController::AsyncPosPIDController(std::shared_ptr<ControllerInput> ii
                                              const double ikP, const double ikI, const double ikD,
                                              const double ikBias)
   : AsyncWrapper(iinput, ioutput,
-                 std::make_unique<IterativePosPIDController>(
-                   ikP, ikI, ikD, ikBias, std::make_unique<Timer>(),
-                   std::make_unique<SettledUtil>(std::make_unique<Timer>()))) {
+                 std::make_unique<IterativePosPIDController>(ikP, ikI, ikD, ikBias,
+                                                             std::make_unique<Timer>(),
+                                                             SettledUtilFactory::createPtr())) {
 }
 } // namespace okapi
