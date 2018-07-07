@@ -13,29 +13,8 @@
 #include "okapi/api/filter/velMath.hpp"
 
 namespace okapi {
-class IterativeVelPIDControllerArgs : public IterativeVelocityControllerArgs {
-  public:
-  IterativeVelPIDControllerArgs(const double ikP, const double ikD, const double ikF,
-                                const VelMathArgs &velMathArgs);
-
-  const double kP, kD, kF;
-  const VelMathArgs velMathArgs;
-};
-
 class IterativeVelPIDController : public IterativeVelocityController {
   public:
-  /**
-   * Velocity PID controller.
-   *
-   * @param params VelPIDControllerArgs
-   */
-  IterativeVelPIDController(const IterativeVelPIDControllerArgs &params,
-                            std::unique_ptr<AbstractTimer> iloopDtTimer,
-                            std::unique_ptr<SettledUtil> isettledUtil);
-
-  /**
-   * This constructor is meant for unit testing.
-   */
   IterativeVelPIDController(const double ikP, const double ikD, const double ikF,
                             std::unique_ptr<VelMath> ivelMath,
                             std::unique_ptr<AbstractTimer> iloopDtTimer,

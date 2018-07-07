@@ -5,28 +5,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/control/iterative/iterativeVelPidController.hpp"
+#include "okapi/api/control/iterative/iterativeVelPidController.hpp"
 #include "okapi/api/util/mathUtil.hpp"
-#include "okapi/impl/filter/velMathFactory.hpp"
 #include <algorithm>
 #include <cmath>
 
 namespace okapi {
-
-IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, const double ikD,
-                                                             const double ikF,
-                                                             const VelMathArgs &velMathArgs)
-  : kP(ikP), kD(ikD), kF(ikF), velMathArgs(velMathArgs) {
-}
-
-IterativeVelPIDController::IterativeVelPIDController(const IterativeVelPIDControllerArgs &iparams,
-                                                     std::unique_ptr<AbstractTimer> iloopDtTimer,
-                                                     std::unique_ptr<SettledUtil> isettledUtil)
-  : IterativeVelPIDController(iparams.kP, iparams.kD, iparams.kF,
-                              VelMathFactory::createPtr(iparams.velMathArgs),
-                              std::move(iloopDtTimer), std::move(isettledUtil)) {
-}
-
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
                                                      const double ikF,
                                                      std::unique_ptr<VelMath> ivelMath,
