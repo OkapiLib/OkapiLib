@@ -7,6 +7,7 @@
  */
 #include "okapi/impl/control/async/asyncControllerFactory.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
+#include "okapi/impl/filter/velMathFactory.hpp"
 #include "okapi/impl/util/timer.hpp"
 
 namespace okapi {
@@ -52,20 +53,23 @@ AsyncPosPIDController AsyncControllerFactory::posPID(std::shared_ptr<ControllerI
 }
 
 AsyncVelPIDController AsyncControllerFactory::velPID(Motor imotor, const double ikP,
-                                                     const double ikD, const double ikF) {
-  return AsyncVelPIDController(imotor.getEncoder(), std::make_shared<Motor>(imotor), ikP, ikD, ikF);
+                                                     const double ikD, const double ikF,
+                                                     const double iTPR) {
+  return AsyncVelPIDController(imotor.getEncoder(), std::make_shared<Motor>(imotor), ikP, ikD, ikF,
+                               VelMathFactory::createPtr(iTPR));
 }
 
 AsyncVelPIDController AsyncControllerFactory::velPID(MotorGroup imotor, const double ikP,
-                                                     const double ikD, const double ikF) {
+                                                     const double ikD, const double ikF,
+                                                     const double iTPR) {
   return AsyncVelPIDController(imotor.getEncoder(), std::make_shared<MotorGroup>(imotor), ikP, ikD,
-                               ikF);
+                               ikF, VelMathFactory::createPtr(iTPR));
 }
 
 AsyncVelPIDController AsyncControllerFactory::velPID(std::shared_ptr<ControllerInput> iinput,
                                                      std::shared_ptr<ControllerOutput> ioutput,
                                                      const double ikP, const double ikD,
-                                                     const double ikF) {
-  return AsyncVelPIDController(iinput, ioutput, ikP, ikD, ikF);
+                                                     const double ikF, const double iTPR) {
+  return AsyncVelPIDController(iinput, ioutput, ikP, ikD, ikF, VelMathFactory::createPtr(iTPR));
 }
 } // namespace okapi

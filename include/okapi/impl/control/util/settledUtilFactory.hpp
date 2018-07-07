@@ -9,6 +9,7 @@
 #define _OKAPI_SETTLEDUTILFACTORY_HPP_
 
 #include "okapi/api/control/util/settledUtil.hpp"
+#include <memory>
 
 namespace okapi {
 class SettledUtilFactory {
@@ -23,6 +24,9 @@ class SettledUtilFactory {
    */
   static SettledUtil create(const double iatTargetError = 50, const double iatTargetDerivative = 5,
                             const QTime iatTargetTime = 250_ms);
+  static std::unique_ptr<SettledUtil> createPtr(const double iatTargetError = 50,
+                                                const double iatTargetDerivative = 5,
+                                                const QTime iatTargetTime = 250_ms);
 };
 } // namespace okapi
 

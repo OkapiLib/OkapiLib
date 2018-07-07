@@ -9,8 +9,16 @@
 #include "okapi/impl/util/timer.hpp"
 
 namespace okapi {
-SettledUtil create(const double iatTargetError, const double iatTargetDerivative,
-                   const QTime iatTargetTime) {
+SettledUtil SettledUtilFactory::create(const double iatTargetError,
+                                       const double iatTargetDerivative,
+                                       const QTime iatTargetTime) {
   return SettledUtil(std::make_unique<Timer>(), iatTargetError, iatTargetDerivative, iatTargetTime);
+}
+
+std::unique_ptr<SettledUtil> SettledUtilFactory::createPtr(const double iatTargetError,
+                                                           const double iatTargetDerivative,
+                                                           const QTime iatTargetTime) {
+  return std::make_unique<SettledUtil>(std::make_unique<Timer>(), iatTargetError,
+                                       iatTargetDerivative, iatTargetTime);
 }
 } // namespace okapi

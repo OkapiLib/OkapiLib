@@ -30,7 +30,9 @@ PIDTuner::PIDTuner(std::shared_ptr<ChassisModel> imodel, const QTime itimeout,
     numIterations(inumIterations),
     numParticles(inumParticles),
     kSettle(ikSettle),
-    kITAE(ikITAE) {
+    kITAE(ikITAE),
+    leftController(IterativeControllerFactory::createPosPID(0, 0, 0)),
+    rightController(IterativeControllerFactory::createPosPID(0, 0, 0)) {
 }
 
 PIDTuner::~PIDTuner() = default;

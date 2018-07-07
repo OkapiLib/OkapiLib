@@ -6,45 +6,25 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/control/iterative/iterativeVelPidController.hpp"
-#include "okapi/api/filter/averageFilter.hpp"
-#include "okapi/impl/util/timer.hpp"
+#include "okapi/api/util/mathUtil.hpp"
+#include "okapi/impl/filter/velMathFactory.hpp"
 #include <algorithm>
 #include <cmath>
 
 namespace okapi {
 
 IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, const double ikD,
-                                                             const double ikF)
-  : kP(ikP), kD(ikD), kF(ikF), params(1800) {
-}
-
-IterativeVelPIDControllerArgs::IterativeVelPIDControllerArgs(const double ikP, const double ikD,
                                                              const double ikF,
-                                                             const VelMathArgs &iparams)
-  : kP(ikP), kD(ikD), kF(ikF), params(iparams) {
+                                                             const VelMathArgs &velMathArgs)
+  : kP(ikP), kD(ikD), kF(ikF), velMathArgs(velMathArgs) {
 }
 
-IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
-                                                     const double ikF)
-  : IterativeVelPIDController(ikP, ikD, ikF,
-                              std::make_unique<VelMath>(1800, std::make_shared<AverageFilter<2>>(),
-                                                        std::make_unique<Timer>()),
-                              std::make_unique<Timer>(),
-                              std::make_unique<SettledUtil>(std::make_unique<Timer>())) {
-}
-
-IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
-                                                     const double ikF, const VelMathArgs &iparams)
-  : IterativeVelPIDController(
-      ikP, ikD, ikF, std::make_unique<VelMath>(iparams, std::make_unique<Timer>()),
-      std::make_unique<Timer>(), std::make_unique<SettledUtil>(std::make_unique<Timer>())) {
-}
-
-IterativeVelPIDController::IterativeVelPIDController(const IterativeVelPIDControllerArgs &iparams)
+IterativeVelPIDController::IterativeVelPIDController(const IterativeVelPIDControllerArgs &iparams,
+                                                     std::unique_ptr<AbstractTimer> iloopDtTimer,
+                                                     std::unique_ptr<SettledUtil> isettledUtil)
   : IterativeVelPIDController(iparams.kP, iparams.kD, iparams.kF,
-                              std::make_unique<VelMath>(iparams.params, std::make_unique<Timer>()),
-                              std::make_unique<Timer>(),
-                              std::make_unique<SettledUtil>(std::make_unique<Timer>())) {
+                              VelMathFactory::createPtr(iparams.velMathArgs),
+                              std::move(iloopDtTimer), std::move(isettledUtil)) {
 }
 
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,

@@ -70,8 +70,8 @@ class VelMath {
 
   protected:
   QAngularSpeed vel;
-  QAngularAcceleration accel;
   QAngularSpeed lastVel;
+  QAngularAcceleration accel;
   double lastPos = 0;
   double ticksPerRev;
 

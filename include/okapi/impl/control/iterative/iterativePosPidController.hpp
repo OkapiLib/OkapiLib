@@ -28,20 +28,11 @@ class IterativePosPIDController : public IterativePositionController {
   /**
    * PID controller.
    *
-   * @param ikP proportional gain
-   * @param ikI integral gain
-   * @param ikD derivative gain
-   * @param ikBias controller bias (constant offset added to the output)
-   */
-  IterativePosPIDController(const double ikP, const double ikI, const double ikD,
-                            const double ikBias = 0);
-
-  /**
-   * PID controller.
-   *
    * @param params PosPIDControllerArgs
    */
-  IterativePosPIDController(const IterativePosPIDControllerArgs &params);
+  IterativePosPIDController(const IterativePosPIDControllerArgs &params,
+                            std::unique_ptr<AbstractTimer> iloopDtTimer,
+                            std::unique_ptr<SettledUtil> isettledUtil);
 
   /**
    * This constructor is meant for unit testing.
@@ -67,7 +58,7 @@ class IterativePosPIDController : public IterativePositionController {
   virtual void setTarget(const double itarget) override;
 
   /**
-   * Returns the last calculated output of the controller. Output is in the range [-127, 127]
+   * Returns the last calculated output of the controller. Output is in the range [-1, 1]
    * unless the bounds have been changed with setOutputLimits().
    */
   virtual double getOutput() const override;

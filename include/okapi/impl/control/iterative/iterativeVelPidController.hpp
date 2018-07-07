@@ -15,13 +15,11 @@
 namespace okapi {
 class IterativeVelPIDControllerArgs : public IterativeVelocityControllerArgs {
   public:
-  IterativeVelPIDControllerArgs(const double ikP, const double ikD, const double ikF);
-
   IterativeVelPIDControllerArgs(const double ikP, const double ikD, const double ikF,
-                                const VelMathArgs &iparams);
+                                const VelMathArgs &velMathArgs);
 
   const double kP, kD, kF;
-  const VelMathArgs params;
+  const VelMathArgs velMathArgs;
 };
 
 class IterativeVelPIDController : public IterativeVelocityController {
@@ -29,26 +27,11 @@ class IterativeVelPIDController : public IterativeVelocityController {
   /**
    * Velocity PID controller.
    *
-   * @param ikP proportional gain
-   * @param ikD derivative gain
-   */
-  IterativeVelPIDController(const double ikP, const double ikD, const double ikF);
-
-  /**
-   * Velocity PID controller.
-   *
-   * @param ikP proportional gain
-   * @param ikD derivative gain
-   */
-  IterativeVelPIDController(const double ikP, const double ikD, const double ikF,
-                            const VelMathArgs &iparams);
-
-  /**
-   * Velocity PID controller.
-   *
    * @param params VelPIDControllerArgs
    */
-  IterativeVelPIDController(const IterativeVelPIDControllerArgs &params);
+  IterativeVelPIDController(const IterativeVelPIDControllerArgs &params,
+                            std::unique_ptr<AbstractTimer> iloopDtTimer,
+                            std::unique_ptr<SettledUtil> isettledUtil);
 
   /**
    * This constructor is meant for unit testing.

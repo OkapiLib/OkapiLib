@@ -8,7 +8,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/control/iterative/iterativePosPidController.hpp"
-#include "okapi/impl/util/timer.hpp"
 #include <algorithm>
 #include <cmath>
 
@@ -18,16 +17,11 @@ IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, c
   : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
 }
 
-IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
-                                                     const double ikD, const double ikBias)
-  : IterativePosPIDController(ikP, ikI, ikD, ikBias, std::make_unique<Timer>(),
-                              std::make_unique<SettledUtil>(std::make_unique<Timer>())) {
-}
-
-IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params)
+IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params,
+                                                     std::unique_ptr<AbstractTimer> iloopDtTimer,
+                                                     std::unique_ptr<SettledUtil> isettledUtil)
   : IterativePosPIDController(params.kP, params.kI, params.kD, params.kBias,
-                              std::make_unique<Timer>(),
-                              std::make_unique<SettledUtil>(std::make_unique<Timer>())) {
+                              std::move(iloopDtTimer), std::move(isettledUtil)) {
 }
 
 IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,

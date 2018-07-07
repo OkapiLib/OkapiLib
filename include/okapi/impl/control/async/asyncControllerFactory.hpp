@@ -10,6 +10,7 @@
 
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
 #include "okapi/api/control/async/asyncVelIntegratedController.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include "okapi/impl/control/async/asyncPosPidController.hpp"
 #include "okapi/impl/control/async/asyncVelPidController.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
@@ -92,7 +93,8 @@ class AsyncControllerFactory {
    * @param ikD derivative gain
    * @param ikF feed-forward gain
    */
-  static AsyncVelPIDController velPID(Motor imotor, double ikP, double ikD, double ikF = 0);
+  static AsyncVelPIDController velPID(Motor imotor, double ikP, double ikD, double ikF = 0,
+                                      double iTPR = imev5TPR);
 
   /**
    * A velocity controller that uses the PID algorithm.
@@ -102,7 +104,8 @@ class AsyncControllerFactory {
    * @param ikD derivative gain
    * @param ikF feed-forward gain
    */
-  static AsyncVelPIDController velPID(MotorGroup imotor, double ikP, double ikD, double ikF = 0);
+  static AsyncVelPIDController velPID(MotorGroup imotor, double ikP, double ikD, double ikF = 0,
+                                      double iTPR = imev5TPR);
 
   /**
    * A velocity controller that uses the PID algorithm.
@@ -115,7 +118,7 @@ class AsyncControllerFactory {
    */
   static AsyncVelPIDController velPID(std::shared_ptr<ControllerInput> iinput,
                                       std::shared_ptr<ControllerOutput> ioutput, double ikP,
-                                      double ikD, double ikF = 0);
+                                      double ikD, double ikF = 0, double iTPR = imev5TPR);
 };
 } // namespace okapi
 

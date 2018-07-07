@@ -17,8 +17,10 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                                            const AbstractMotor::GearsetRatioPair igearset,
                                            const ChassisScales &iscales)
   : ChassisController(imodel),
-    distancePid(idistanceArgs),
-    anglePid(iangleArgs),
+    distancePid(idistanceArgs, std::make_unique<Timer>(),
+                std::make_unique<SettledUtil>(std::make_unique<Timer>())),
+    anglePid(iangleArgs, std::make_unique<Timer>(),
+             std::make_unique<SettledUtil>(std::make_unique<Timer>())),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
