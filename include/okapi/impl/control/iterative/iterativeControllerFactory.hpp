@@ -23,8 +23,7 @@ class IterativeControllerFactory {
    * @param ikD derivative gain
    * @param ikBias controller bias (constant offset added to the output)
    */
-  static IterativePosPIDController createPosPID(double ikP, double ikI, double ikD,
-                                                double ikBias = 0);
+  static IterativePosPIDController posPID(double ikP, double ikI, double ikD, double ikBias = 0);
 
   /**
    * Velocity PID controller.
@@ -33,8 +32,8 @@ class IterativeControllerFactory {
    * @param ikD derivative gain
    * @param ikF feed-forward gain
    */
-  static IterativeVelPIDController createVelPID(double ikP, double ikD, double ikF = 0,
-                                                const VelMathArgs &iparams = VelMathArgs(imev5TPR));
+  static IterativeVelPIDController velPID(double ikP, double ikD, double ikF = 0,
+                                          const VelMathArgs &iparams = VelMathArgs(imev5TPR));
 };
 } // namespace okapi
 

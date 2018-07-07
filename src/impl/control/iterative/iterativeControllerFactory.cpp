@@ -10,18 +10,16 @@
 #include "okapi/impl/util/timer.hpp"
 
 namespace okapi {
-IterativePosPIDController IterativeControllerFactory::createPosPID(const double ikP,
-                                                                   const double ikI,
-                                                                   const double ikD,
-                                                                   const double ikBias) {
+IterativePosPIDController IterativeControllerFactory::posPID(const double ikP, const double ikI,
+                                                             const double ikD,
+                                                             const double ikBias) {
   return IterativePosPIDController(ikP, ikI, ikD, ikBias, std::make_unique<Timer>(),
                                    std::make_unique<SettledUtil>(std::make_unique<Timer>()));
 }
 
-IterativeVelPIDController IterativeControllerFactory::createVelPID(const double ikP,
-                                                                   const double ikD,
-                                                                   const double ikF,
-                                                                   const VelMathArgs &iparams) {
+IterativeVelPIDController IterativeControllerFactory::velPID(const double ikP, const double ikD,
+                                                             const double ikF,
+                                                             const VelMathArgs &iparams) {
   return IterativeVelPIDController(IterativeVelPIDControllerArgs(ikP, ikD, ikF, iparams),
                                    std::make_unique<Timer>(),
                                    std::make_unique<SettledUtil>(std::make_unique<Timer>()));
