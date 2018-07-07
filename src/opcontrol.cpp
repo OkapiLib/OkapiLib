@@ -19,11 +19,6 @@ void opcontrol() {
   using namespace okapi;
   pros::Task::delay(100);
 
-  // auto chassis1 = ChassisControllerFactory::create(-11, 1, AbstractMotor::gearset::red * (1
-  // / 2.0),
-  //                                                  {2.75_in, 10.5_in});
-  // chassis1.moveDistance(6_in);
-
   runHeadlessTests();
   return;
 
