@@ -15,8 +15,7 @@
 namespace okapi {
 class IterativeVelPIDController : public IterativeVelocityController {
   public:
-  IterativeVelPIDController(const double ikP, const double ikD, const double ikF,
-                            std::unique_ptr<VelMath> ivelMath,
+  IterativeVelPIDController(double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath,
                             std::unique_ptr<AbstractTimer> iloopDtTimer,
                             std::unique_ptr<SettledUtil> isettledUtil);
 
@@ -26,29 +25,29 @@ class IterativeVelPIDController : public IterativeVelocityController {
    * @param inewReading new measurement
    * @return controller output
    */
-  virtual double step(const double inewReading) override;
+  double step(double inewReading) override;
 
   /**
    * Sets the target for the controller.
    *
    * @param itarget new target velocity
    */
-  virtual void setTarget(const double itarget) override;
+  void setTarget(double itarget) override;
 
   /**
    * Returns the last calculated output of the controller.
    */
-  virtual double getOutput() const override;
+  double getOutput() const override;
 
   /**
    * Returns the last error of the controller.
    */
-  virtual double getError() const override;
+  double getError() const override;
 
   /**
    * Returns the last derivative (change in error) of the controller.
    */
-  virtual double getDerivative() const override;
+  double getDerivative() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
@@ -56,14 +55,14 @@ class IterativeVelPIDController : public IterativeVelocityController {
    *
    * @return whether the controller is settled
    */
-  virtual bool isSettled() override;
+  bool isSettled() override;
 
   /**
    * Set time between loops in ms.
    *
    * @param isampleTime time between loops
    */
-  virtual void setSampleTime(const QTime isampleTime) override;
+  void setSampleTime(QTime isampleTime) override;
 
   /**
    * Set controller output bounds.
@@ -71,19 +70,19 @@ class IterativeVelPIDController : public IterativeVelocityController {
    * @param imax max output
    * @param imin min output
    */
-  virtual void setOutputLimits(double imax, double imin) override;
+  void setOutputLimits(double imax, double imin) override;
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
-  virtual void reset() override;
+  void reset() override;
 
   /**
    * Changes whether the controller is off or on. Turning the controller on after it was off will
    * cause the controller to move to its last set target, unless it was reset in that time.
    */
-  virtual void flipDisable() override;
+  void flipDisable() override;
 
   /**
    * Sets whether the controller is off or on. Turning the controller on after it was off will
@@ -91,21 +90,21 @@ class IterativeVelPIDController : public IterativeVelocityController {
    *
    * @param iisDisabled whether the controller is disabled
    */
-  virtual void flipDisable(const bool iisDisabled) override;
+  void flipDisable(bool iisDisabled) override;
 
   /**
    * Returns whether the controller is currently disabled.
    *
    * @return whether the controller is currently disabled
    */
-  virtual bool isDisabled() const override;
+  bool isDisabled() const override;
 
   /**
    * Get the last set sample time.
    *
    * @return sample time
    */
-  virtual QTime getSampleTime() const override;
+  QTime getSampleTime() const override;
 
   /**
    * Do one iteration of velocity calculation.
@@ -113,7 +112,7 @@ class IterativeVelPIDController : public IterativeVelocityController {
    * @param inewReading new measurement
    * @return filtered velocity
    */
-  virtual QAngularSpeed stepVel(const double inewReading);
+  virtual QAngularSpeed stepVel(double inewReading);
 
   /**
    * Set controller gains.
@@ -122,14 +121,14 @@ class IterativeVelPIDController : public IterativeVelocityController {
    * @param ikD derivative gain
    * @param ikBias controller bias
    */
-  virtual void setGains(const double ikP, const double ikD, const double ikF);
+  virtual void setGains(double ikP, double ikD, double ikF);
 
   /**
    * Sets the number of encoder ticks per revolution. Default is 1800.
    *
    * @param tpr number of measured units per revolution
    */
-  virtual void setTicksPerRev(const double tpr);
+  virtual void setTicksPerRev(double tpr);
 
   /**
    * Returns the current velocity.
@@ -138,10 +137,8 @@ class IterativeVelPIDController : public IterativeVelocityController {
 
   protected:
   double kP, kD, kF;
-  QTime lastTime;
   QTime sampleTime = 10_ms;
   double error = 0;
-  double lastError = 0;
   double derivative = 0;
   double target = 0;
   double output = 0;

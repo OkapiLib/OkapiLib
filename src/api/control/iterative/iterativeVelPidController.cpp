@@ -30,8 +30,7 @@ void IterativeVelPIDController::setGains(const double ikP, const double ikD, con
 
 void IterativeVelPIDController::setSampleTime(const QTime isampleTime) {
   if (isampleTime > 0_ms) {
-    kD /= static_cast<double>(isampleTime.convert(millisecond)) /
-          static_cast<double>(sampleTime.convert(millisecond));
+    kD /= isampleTime.convert(millisecond) / sampleTime.convert(millisecond);
     sampleTime = isampleTime;
   }
 }
@@ -68,7 +67,6 @@ double IterativeVelPIDController::step(const double inewReading) {
       output += kP * error - kD * derivative;
       output = std::clamp(output, outputMin, outputMax);
 
-      lastError = error;
       loopDtTimer->clearHardMark(); // Important that we only clear if dt >= sampleTime
 
       settledUtil->isSettled(error);
@@ -102,7 +100,6 @@ bool IterativeVelPIDController::isSettled() {
 
 void IterativeVelPIDController::reset() {
   error = 0;
-  lastError = 0;
   output = 0;
 }
 

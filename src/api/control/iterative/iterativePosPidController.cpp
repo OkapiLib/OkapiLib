@@ -58,8 +58,7 @@ bool IterativePosPIDController::isSettled() {
 
 void IterativePosPIDController::setSampleTime(const QTime isampleTime) {
   if (isampleTime > 0_ms) {
-    const double ratio = static_cast<double>(isampleTime.convert(millisecond)) /
-                         static_cast<double>(sampleTime.convert(millisecond));
+    const double ratio = isampleTime.convert(millisecond) / sampleTime.convert(millisecond);
     kI *= ratio;
     kD /= ratio;
     sampleTime = isampleTime;

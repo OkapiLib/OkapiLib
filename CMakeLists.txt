@@ -80,6 +80,8 @@ add_executable(OkapiLibV5
         src/api/control/async/asyncPosIntegratedController.cpp
         src/api/control/async/asyncVelIntegratedController.cpp
         src/api/control/iterative/iterativeController.cpp
+        src/api/control/iterative/iterativePosPidController.cpp
+        src/api/control/iterative/iterativeVelPidController.cpp
         src/api/control/util/flywheelSimulator.cpp
         src/api/control/util/settledUtil.cpp
         src/api/control/closedLoopController.cpp
