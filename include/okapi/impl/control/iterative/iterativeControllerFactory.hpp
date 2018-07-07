@@ -11,6 +11,9 @@
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
 #include "okapi/api/util/mathUtil.hpp"
+#include "okapi/impl/control/iterative/iterativeMotorVelocityController.hpp"
+#include "okapi/impl/device/motor/motor.hpp"
+#include "okapi/impl/device/motor/motorGroup.hpp"
 
 namespace okapi {
 class IterativeControllerFactory {
@@ -34,6 +37,48 @@ class IterativeControllerFactory {
    */
   static IterativeVelPIDController velPID(double ikP, double ikD, double ikF = 0,
                                           const VelMathArgs &iparams = VelMathArgs(imev5TPR));
+
+  /**
+   * Velocity PID controller that automatically writes to the motor.
+   *
+   * @param imotor output motor
+   * @param ikP proportional gain
+   * @param ikD derivative gain
+   * @param ikF feed-forward gain
+   */
+  static IterativeMotorVelocityController
+  motorVelocity(Motor imotor, double ikP, double ikD, double ikF = 0,
+                const VelMathArgs &iparams = VelMathArgs(imev5TPR));
+
+  /**
+   * Velocity PID controller that automatically writes to the motor.
+   *
+   * @param imotor output motor
+   * @param ikP proportional gain
+   * @param ikD derivative gain
+   * @param ikF feed-forward gain
+   */
+  static IterativeMotorVelocityController
+  motorVelocity(MotorGroup imotor, double ikP, double ikD, double ikF = 0,
+                const VelMathArgs &iparams = VelMathArgs(imev5TPR));
+
+  /**
+   * Velocity PID controller that automatically writes to the motor.
+   *
+   * @param imotor output motor
+   * @param icontroller controller to use
+   */
+  static IterativeMotorVelocityController
+  motorVelocity(Motor imotor, std::shared_ptr<IterativeVelocityController> icontroller);
+
+  /**
+   * Velocity PID controller that automatically writes to the motor.
+   *
+   * @param imotor output motor
+   * @param icontroller controller to use
+   */
+  static IterativeMotorVelocityController
+  motorVelocity(MotorGroup imotor, std::shared_ptr<IterativeVelocityController> icontroller);
 };
 } // namespace okapi
 

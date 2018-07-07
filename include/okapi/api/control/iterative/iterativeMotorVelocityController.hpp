@@ -10,8 +10,6 @@
 
 #include "okapi/api/control/iterative/iterativeVelocityController.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
-#include "okapi/impl/device/motor/motor.hpp"
-#include "okapi/impl/device/motor/motorGroup.hpp"
 #include <array>
 #include <memory>
 
@@ -27,12 +25,6 @@ class IterativeMotorVelocityControllerArgs : public IterativeVelocityControllerA
 
 class IterativeMotorVelocityController : public IterativeVelocityController {
   public:
-  IterativeMotorVelocityController(Motor imotor,
-                                   std::shared_ptr<IterativeVelocityController> icontroller);
-
-  IterativeMotorVelocityController(MotorGroup imotor,
-                                   std::shared_ptr<IterativeVelocityController> icontroller);
-
   IterativeMotorVelocityController(std::shared_ptr<AbstractMotor> imotor,
                                    std::shared_ptr<IterativeVelocityController> icontroller);
 

@@ -25,4 +25,30 @@ IterativeVelPIDController IterativeControllerFactory::velPID(const double ikP, c
                                    std::make_unique<Timer>(),
                                    std::make_unique<SettledUtil>(std::make_unique<Timer>()));
 }
+
+IterativeMotorVelocityController
+IterativeControllerFactory::motorVelocity(Motor imotor, double ikP, double ikD, double ikF,
+                                          const VelMathArgs &iparams) {
+  return IterativeMotorVelocityController(
+    std::make_shared<Motor>(imotor),
+    std::make_shared<IterativeVelPIDController>(velPID(ikP, ikD, ikF, iparams)));
+}
+
+IterativeMotorVelocityController
+IterativeControllerFactory::motorVelocity(MotorGroup imotor, double ikP, double ikD, double ikF,
+                                          const VelMathArgs &iparams) {
+  return IterativeMotorVelocityController(
+    std::make_shared<MotorGroup>(imotor),
+    std::make_shared<IterativeVelPIDController>(velPID(ikP, ikD, ikF, iparams)));
+}
+
+IterativeMotorVelocityController IterativeControllerFactory::motorVelocity(
+  Motor imotor, std::shared_ptr<IterativeVelocityController> icontroller) {
+  return IterativeMotorVelocityController(std::make_shared<Motor>(imotor), icontroller);
+}
+
+IterativeMotorVelocityController IterativeControllerFactory::motorVelocity(
+  MotorGroup imotor, std::shared_ptr<IterativeVelocityController> icontroller) {
+  return IterativeMotorVelocityController(std::make_shared<MotorGroup>(imotor), icontroller);
+}
 } // namespace okapi

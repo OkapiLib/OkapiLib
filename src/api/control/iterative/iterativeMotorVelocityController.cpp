@@ -5,22 +5,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/control/iterative/iterativeMotorVelocityController.hpp"
+#include "okapi/api/control/iterative/iterativeMotorVelocityController.hpp"
 
 namespace okapi {
 IterativeMotorVelocityControllerArgs::IterativeMotorVelocityControllerArgs(
   std::shared_ptr<AbstractMotor> imotor, std::shared_ptr<IterativeVelocityController> icontroller)
   : motor(imotor), controller(icontroller) {
-}
-
-IterativeMotorVelocityController::IterativeMotorVelocityController(
-  Motor imotor, std::shared_ptr<IterativeVelocityController> icontroller)
-  : IterativeMotorVelocityController(std::make_shared<Motor>(imotor), icontroller) {
-}
-
-IterativeMotorVelocityController::IterativeMotorVelocityController(
-  MotorGroup imotor, std::shared_ptr<IterativeVelocityController> icontroller)
-  : IterativeMotorVelocityController(std::make_shared<MotorGroup>(imotor), icontroller) {
 }
 
 IterativeMotorVelocityController::IterativeMotorVelocityController(
