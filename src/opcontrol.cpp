@@ -71,7 +71,6 @@ void runHeadlessTests() {
   using namespace okapi;
 
   runHeadlessUtilTests();
-  runHeadlessControllerTests();
 
   test_print_report();
 }

@@ -15,5 +15,6 @@
 #include "test/tests/api/chassisModelTests.hpp"
 #include "test/tests/api/chassisControllerTests.hpp"
 #include "test/crossPlatformTestRunner.hpp"
+#include "test/tests/api/controllerTests.hpp"
 
 #endif

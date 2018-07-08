@@ -74,6 +74,7 @@ add_executable(OkapiLibV5
         include/test/tests/api/buttonTests.hpp
         include/test/tests/api/chassisControllerTests.hpp
         include/test/tests/api/chassisModelTests.hpp
+        include/test/tests/api/controllerTests.hpp
         include/test/tests/api/controlTests.hpp
         include/test/tests/api/filterTests.hpp
         include/test/tests/api/utilTests.hpp
@@ -112,8 +113,9 @@ add_executable(OkapiLibV5
         test/buttonTests.cpp
         test/chassisControllerTests.cpp
         test/chassisModelTests.cpp
+        test/controllerTests.cpp
         test/controlTests.cpp
         test/crossPlatformTestRunner.cpp
         test/filterTests.cpp
         test/testMain.cpp
-        test/utilTests.cpp)
+        test/utilTests.cpp include/test/tests/api/implMocks.hpp)
