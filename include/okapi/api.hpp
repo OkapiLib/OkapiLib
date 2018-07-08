@@ -18,7 +18,9 @@
 #include "okapi/impl/chassis/model/chassisModelFactory.hpp"
 
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
+#include "okapi/api/control/async/asyncPosPidController.hpp"
 #include "okapi/api/control/async/asyncVelIntegratedController.hpp"
+#include "okapi/api/control/async/asyncVelPidController.hpp"
 #include "okapi/api/control/async/asyncWrapper.hpp"
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
@@ -28,8 +30,6 @@
 #include "okapi/api/control/util/flywheelSimulator.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/impl/control/async/asyncControllerFactory.hpp"
-#include "okapi/api/control/async/asyncPosPidController.hpp"
-#include "okapi/api/control/async/asyncVelPidController.hpp"
 #include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
 #include "okapi/impl/control/util/controllerRunner.hpp"
 #include "okapi/impl/control/util/pidTuner.hpp"

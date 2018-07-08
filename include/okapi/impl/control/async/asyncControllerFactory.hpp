@@ -9,10 +9,10 @@
 #define _OKAPI_ASYNCCONTROLLERFACTORY_HPP_
 
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
-#include "okapi/api/control/async/asyncVelIntegratedController.hpp"
-#include "okapi/api/util/mathUtil.hpp"
 #include "okapi/api/control/async/asyncPosPidController.hpp"
+#include "okapi/api/control/async/asyncVelIntegratedController.hpp"
 #include "okapi/api/control/async/asyncVelPidController.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
 
