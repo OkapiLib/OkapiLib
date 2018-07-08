@@ -27,11 +27,12 @@
 #include "okapi/api/control/iterative/iterativeMotorVelocityController.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
+#include "okapi/api/control/util/controllerRunner.hpp"
 #include "okapi/api/control/util/flywheelSimulator.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/impl/control/async/asyncControllerFactory.hpp"
 #include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
-#include "okapi/impl/control/util/controllerRunner.hpp"
+#include "okapi/impl/control/util/controllerRunnerFactory.hpp"
 #include "okapi/impl/control/util/pidTuner.hpp"
 #include "okapi/impl/control/util/settledUtilFactory.hpp"
 

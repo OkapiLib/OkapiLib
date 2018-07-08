@@ -27,6 +27,7 @@ add_executable(OkapiLibV5
         include/okapi/api/control/iterative/iterativePosPidController.hpp
         include/okapi/api/control/iterative/iterativeVelocityController.hpp
         include/okapi/api/control/iterative/iterativeVelPidController.hpp
+        include/okapi/api/control/util/controllerRunner.hpp
         include/okapi/api/control/util/flywheelSimulator.hpp
         include/okapi/api/control/util/settledUtil.hpp
         include/okapi/api/control/closedLoopController.hpp
@@ -91,6 +92,7 @@ add_executable(OkapiLibV5
         src/api/control/iterative/iterativeMotorVelocityController.cpp
         src/api/control/iterative/iterativePosPidController.cpp
         src/api/control/iterative/iterativeVelPidController.cpp
+        src/api/control/util/controllerRunner.cpp
         src/api/control/util/flywheelSimulator.cpp
         src/api/control/util/settledUtil.cpp
         src/api/control/closedLoopController.cpp

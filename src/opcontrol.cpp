@@ -188,7 +188,7 @@ void constructorTests() {
   { Timer timer1(); }
 
   {
-    ControllerRunner controllerRunner;
+    auto controllerRunner = ControllerRunnerFactory::create();
     AsyncPosIntegratedController testControllerRunnerController1(
       std::make_shared<Motor>(1), std::make_unique<SettledUtil>(std::make_unique<Timer>()));
   }
