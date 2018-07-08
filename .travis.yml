@@ -27,6 +27,9 @@ matrix:
 language: cpp
 compiler: gcc
 
+before_install:
+  - eval "${MATRIX_EVAL}"
+
 script:
   - make
   - mkdir cmake-build-debug
