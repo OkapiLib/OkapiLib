@@ -6,8 +6,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/tests/api/chassisControllerTests.hpp"
-#include "test/crossPlatformTestRunner.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
+#include "test/crossPlatformTestRunner.hpp"
 
 void testChassisScales() {
   using namespace okapi;

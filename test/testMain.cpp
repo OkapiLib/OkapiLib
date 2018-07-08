@@ -20,5 +20,5 @@ int main() {
 
   test_print_report();
 
-  return 0;
+  return static_cast<int>(test_query_report());
 }

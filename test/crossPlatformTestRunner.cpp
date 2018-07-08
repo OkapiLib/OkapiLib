@@ -40,4 +40,12 @@ void test_print_report() {
     }
   }
 }
+
+TestSuiteResult test_query_report() {
+  if (testFailCount > 0) {
+    return TestSuiteResult::FAIL;
+  }
+
+  return TestSuiteResult::SUCCESS;
+}
 } // namespace okapi

@@ -8,13 +8,14 @@
 #ifndef _OKAPI_ALLAPITESTS_HPP_
 #define _OKAPI_ALLAPITESTS_HPP_
 
-#include "test/tests/api/utilTests.hpp"
-#include "test/tests/api/filterTests.hpp"
+#include "test/crossPlatformTestRunner.hpp"
 #include "test/tests/api/buttonTests.hpp"
-#include "test/tests/api/controlTests.hpp"
-#include "test/tests/api/chassisModelTests.hpp"
 #include "test/tests/api/chassisControllerTests.hpp"
 #include "test/crossPlatformTestRunner.hpp"
 #include "test/tests/api/controllerTests.hpp"
+#include "test/tests/api/chassisModelTests.hpp"
+#include "test/tests/api/controlTests.hpp"
+#include "test/tests/api/filterTests.hpp"
+#include "test/tests/api/utilTests.hpp"
 
 #endif
