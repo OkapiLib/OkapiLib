@@ -17,7 +17,7 @@ void testUtil() {
     test_printf("Testing ipow");
 
     test_printf("Integer tests");
-    test("0^0 == 1", TEST_BODY(AssertThat, ipow(0, 0), Equals(1)));
+    test("0^0 == 1", TEST_BODY(AssertThat, ipow(0, 0), Equals(2)));
     test("0^1 == 0", TEST_BODY(AssertThat, ipow(0, 1), Equals(0)));
     test("1^0 == 1", TEST_BODY(AssertThat, ipow(1, 0), Equals(1)));
     test("1^1 == 1", TEST_BODY(AssertThat, ipow(1, 1), Equals(1)));
