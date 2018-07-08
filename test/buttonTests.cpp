@@ -6,8 +6,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/tests/api/buttonTests.hpp"
-#include "test/crossPlatformTestRunner.hpp"
 #include "okapi/api/device/button/buttonBase.hpp"
+#include "test/crossPlatformTestRunner.hpp"
 
 void testButtons() {
   using namespace okapi;
@@ -15,7 +15,7 @@ void testButtons() {
   using namespace fakeit;
 
   class MockButton : public ButtonBase {
-  public:
+    public:
     bool currentlyPressed() override {
       printf("???\n");
       return false;
