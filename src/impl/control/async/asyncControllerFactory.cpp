@@ -8,6 +8,8 @@
 #include "okapi/impl/control/async/asyncControllerFactory.hpp"
 #include "okapi/impl/control/util/settledUtilFactory.hpp"
 #include "okapi/impl/filter/velMathFactory.hpp"
+#include "okapi/impl/util/rate.hpp"
+#include "okapi/impl/util/timer.hpp"
 
 namespace okapi {
 AsyncPosIntegratedController AsyncControllerFactory::posIntegrated(Motor imotor) {
@@ -33,42 +35,51 @@ AsyncVelIntegratedController AsyncControllerFactory::velIntegrated(MotorGroup im
 AsyncPosPIDController AsyncControllerFactory::posPID(Motor imotor, const double ikP,
                                                      const double ikI, const double ikD,
                                                      const double ikBias) {
-  return AsyncPosPIDController(imotor.getEncoder(), std::make_shared<Motor>(imotor), ikP, ikI, ikD,
-                               ikBias);
+  return AsyncPosPIDController(imotor.getEncoder(), std::make_shared<Motor>(imotor),
+                               std::make_unique<Rate>(), std::make_unique<Timer>(),
+                               SettledUtilFactory::createPtr(), ikP, ikI, ikD, ikBias);
 }
 
 AsyncPosPIDController AsyncControllerFactory::posPID(MotorGroup imotor, const double ikP,
                                                      const double ikI, const double ikD,
                                                      const double ikBias) {
-  return AsyncPosPIDController(imotor.getEncoder(), std::make_shared<MotorGroup>(imotor), ikP, ikI,
-                               ikD, ikBias);
+  return AsyncPosPIDController(imotor.getEncoder(), std::make_shared<MotorGroup>(imotor),
+                               std::make_unique<Rate>(), std::make_unique<Timer>(),
+                               SettledUtilFactory::createPtr(), ikP, ikI, ikD, ikBias);
 }
 
 AsyncPosPIDController AsyncControllerFactory::posPID(std::shared_ptr<ControllerInput> iinput,
                                                      std::shared_ptr<ControllerOutput> ioutput,
                                                      const double ikP, const double ikI,
                                                      const double ikD, const double ikBias) {
-  return AsyncPosPIDController(iinput, ioutput, ikP, ikI, ikD, ikBias);
+  return AsyncPosPIDController(iinput, ioutput, std::make_unique<Rate>(), std::make_unique<Timer>(),
+                               SettledUtilFactory::createPtr(), ikP, ikI, ikD, ikBias);
 }
 
 AsyncVelPIDController AsyncControllerFactory::velPID(Motor imotor, const double ikP,
                                                      const double ikD, const double ikF,
                                                      const double iTPR) {
-  return AsyncVelPIDController(imotor.getEncoder(), std::make_shared<Motor>(imotor), ikP, ikD, ikF,
+  return AsyncVelPIDController(imotor.getEncoder(), std::make_shared<Motor>(imotor),
+                               std::make_unique<Rate>(), std::make_unique<Timer>(),
+                               SettledUtilFactory::createPtr(), ikP, ikD, ikF,
                                VelMathFactory::createPtr(iTPR));
 }
 
 AsyncVelPIDController AsyncControllerFactory::velPID(MotorGroup imotor, const double ikP,
                                                      const double ikD, const double ikF,
                                                      const double iTPR) {
-  return AsyncVelPIDController(imotor.getEncoder(), std::make_shared<MotorGroup>(imotor), ikP, ikD,
-                               ikF, VelMathFactory::createPtr(iTPR));
+  return AsyncVelPIDController(imotor.getEncoder(), std::make_shared<MotorGroup>(imotor),
+                               std::make_unique<Rate>(), std::make_unique<Timer>(),
+                               SettledUtilFactory::createPtr(), ikP, ikD, ikF,
+                               VelMathFactory::createPtr(iTPR));
 }
 
 AsyncVelPIDController AsyncControllerFactory::velPID(std::shared_ptr<ControllerInput> iinput,
                                                      std::shared_ptr<ControllerOutput> ioutput,
                                                      const double ikP, const double ikD,
                                                      const double ikF, const double iTPR) {
-  return AsyncVelPIDController(iinput, ioutput, ikP, ikD, ikF, VelMathFactory::createPtr(iTPR));
+  return AsyncVelPIDController(iinput, ioutput, std::make_unique<Rate>(), std::make_unique<Timer>(),
+                               SettledUtilFactory::createPtr(), ikP, ikD, ikF,
+                               VelMathFactory::createPtr(iTPR));
 }
 } // namespace okapi

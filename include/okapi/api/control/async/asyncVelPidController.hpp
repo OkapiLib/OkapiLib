@@ -9,17 +9,19 @@
 #define _OKAPI_ASYNCVELPIDCONTROLLER_HPP_
 
 #include "okapi/api/control/async/asyncVelocityController.hpp"
+#include "okapi/api/control/async/asyncWrapper.hpp"
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
-#include "okapi/impl/control/async/asyncWrapper.hpp"
 #include <memory>
 
 namespace okapi {
 class AsyncVelPIDController : public AsyncWrapper, public AsyncVelocityController {
   public:
   AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
-                        std::shared_ptr<ControllerOutput> ioutput, double ikP, double ikD,
+                        std::shared_ptr<ControllerOutput> ioutput,
+                        std::unique_ptr<AbstractRate> irate, std::unique_ptr<AbstractTimer> itimer,
+                        std::unique_ptr<SettledUtil> isettledUtil, double ikP, double ikD,
                         double ikF, std::unique_ptr<VelMath> ivelMath);
 };
 } // namespace okapi

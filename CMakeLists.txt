@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(OkapiLibV5)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS -pthread)
 
 include_directories(include)
 
@@ -15,8 +16,11 @@ add_executable(OkapiLibV5
         include/okapi/api/control/async/asyncController.hpp
         include/okapi/api/control/async/asyncPosIntegratedController.hpp
         include/okapi/api/control/async/asyncPositionController.hpp
+        include/okapi/api/control/async/asyncPosPidController.hpp
         include/okapi/api/control/async/asyncVelIntegratedController.hpp
         include/okapi/api/control/async/asyncVelocityController.hpp
+        include/okapi/api/control/async/asyncVelPidController.hpp
+        include/okapi/api/control/async/asyncWrapper.hpp
         include/okapi/api/control/iterative/iterativeController.hpp
         include/okapi/api/control/iterative/iterativeMotorVelocityController.hpp
         include/okapi/api/control/iterative/iterativePositionController.hpp
@@ -79,7 +83,10 @@ add_executable(OkapiLibV5
         src/api/chassis/model/xDriveModel.cpp
         src/api/control/async/asyncController.cpp
         src/api/control/async/asyncPosIntegratedController.cpp
+        src/api/control/async/asyncPosPidController.cpp
         src/api/control/async/asyncVelIntegratedController.cpp
+        src/api/control/async/asyncVelPidController.cpp
+        src/api/control/async/asyncWrapper.cpp
         src/api/control/iterative/iterativeController.cpp
         src/api/control/iterative/iterativeMotorVelocityController.cpp
         src/api/control/iterative/iterativePosPidController.cpp

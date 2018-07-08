@@ -201,7 +201,8 @@ void constructorTests() {
   {
     auto mtr = 1_mtr;
     AsyncVelPIDController con(std::make_shared<IntegratedEncoder>(mtr),
-                              std::make_shared<Motor>(mtr), 0, 0, 0,
+                              std::make_shared<Motor>(mtr), std::make_unique<Rate>(),
+                              std::make_unique<Timer>(), SettledUtilFactory::createPtr(), 0, 0, 0,
                               VelMathFactory::createPtr(imev5TPR));
   }
 
@@ -209,6 +210,7 @@ void constructorTests() {
     auto mtr = 1_mtr;
     AsyncWrapper wrapper(std::make_shared<IntegratedEncoder>(mtr), std::make_shared<Motor>(mtr),
                          std::make_unique<IterativePosPIDController>(
-                           0, 0, 0, 0, std::make_unique<Timer>(), SettledUtilFactory::createPtr()));
+                           0, 0, 0, 0, std::make_unique<Timer>(), SettledUtilFactory::createPtr()),
+                         std::make_unique<Rate>());
   }
 }

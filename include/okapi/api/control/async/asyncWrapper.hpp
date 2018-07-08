@@ -8,11 +8,12 @@
 #ifndef _OKAPI_ASYNCWRAPPER_HPP_
 #define _OKAPI_ASYNCWRAPPER_HPP_
 
-#include "api.h"
 #include "okapi/api/control/async/asyncController.hpp"
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativeController.hpp"
+#include "okapi/api/coreProsAPI.hpp"
+#include "okapi/api/util/abstractRate.hpp"
 #include <memory>
 
 namespace okapi {
@@ -29,7 +30,8 @@ class AsyncWrapper : virtual public AsyncController {
    * @param iscale the scale applied to the controller output
    */
   AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
-               std::unique_ptr<IterativeController> icontroller, double iscale = 127);
+               std::unique_ptr<IterativeController> icontroller,
+               std::unique_ptr<AbstractRate> irate, double iscale = 127);
 
   /**
    * Sets the target for the controller.
@@ -59,7 +61,7 @@ class AsyncWrapper : virtual public AsyncController {
    *
    * @param isampleTime time between loops
    */
-  void setSampleTime(const QTime isampleTime) override;
+  void setSampleTime(QTime isampleTime) override;
 
   /**
    * Set controller output bounds. Default does nothing.
@@ -100,7 +102,8 @@ class AsyncWrapper : virtual public AsyncController {
   std::shared_ptr<ControllerInput> input;
   std::shared_ptr<ControllerOutput> output;
   std::unique_ptr<IterativeController> controller;
-  pros::Task task;
+  std::unique_ptr<AbstractRate> rate;
+  CROSSPLATFORM_THREAD task;
   const double scale = 127;
 
   static void trampoline(void *context);

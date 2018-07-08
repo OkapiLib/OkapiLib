@@ -19,17 +19,33 @@ class Rate : public AbstractRate {
    * Delay the current task such that it runs at the given frequency. The first delay will run for
    * 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the task.
    *
-   * @param ihz the rate
+   * @param ihz the frequency
    */
-  virtual void delay(const QFrequency ihz) override;
+  void delay(QFrequency ihz) override;
 
   /**
-   * Delay the current task such that it runs every ihz ms. The first delay will run for ihz.
-   * Subsequent delays will adjust according to the previous runtime of the task.
+   * Delay the current task such that it runs every ihz ms. The first delay will run for
+   * 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the task.
    *
-   * @param ims the rate in ms
+   * @param ihz the frequency in ms
    */
-  virtual void delay(const int ims) override;
+  void delay(int ihz) override;
+
+  /**
+   * Delay the current task until itime has passed. This method can be used by periodic tasks to
+   * ensure a consistent execution frequency.
+   *
+   * @param itime the time period
+   */
+  void delayUntil(QTime itime) override;
+
+  /**
+   * Delay the current task until itime milliseconds have passed. This method can be used by
+   * periodic tasks to ensure a consistent execution frequency.
+   *
+   * @param ims the time period
+   */
+  void delayUntil(uint32_t ims) override;
 
   protected:
   std::uint32_t lastTime = 0;

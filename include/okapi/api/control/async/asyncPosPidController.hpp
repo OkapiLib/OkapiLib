@@ -9,17 +9,19 @@
 #define _OKAPI_ASYNCPOSPIDCONTROLLER_HPP_
 
 #include "okapi/api/control/async/asyncPositionController.hpp"
+#include "okapi/api/control/async/asyncWrapper.hpp"
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
-#include "okapi/impl/control/async/asyncWrapper.hpp"
 #include <memory>
 
 namespace okapi {
 class AsyncPosPIDController : public AsyncWrapper, public AsyncPositionController {
   public:
   AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
-                        std::shared_ptr<ControllerOutput> ioutput, double ikP, double ikI,
+                        std::shared_ptr<ControllerOutput> ioutput,
+                        std::unique_ptr<AbstractRate> irate, std::unique_ptr<AbstractTimer> itimer,
+                        std::unique_ptr<SettledUtil> isettledUtil, double ikP, double ikI,
                         double ikD, double ikBias = 0);
 };
 } // namespace okapi
