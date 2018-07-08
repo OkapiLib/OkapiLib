@@ -13,7 +13,6 @@ void testControlUtils() {
   using namespace okapi;
   using namespace snowhouse;
 
-
   {
     test_printf("Testing FlywheelSimulator");
 

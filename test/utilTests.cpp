@@ -6,8 +6,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/tests/api/utilTests.hpp"
-#include "test/crossPlatformTestRunner.hpp"
 #include "okapi/api/util/mathUtil.hpp"
+#include "test/crossPlatformTestRunner.hpp"
 
 void testUtil() {
   using namespace okapi;

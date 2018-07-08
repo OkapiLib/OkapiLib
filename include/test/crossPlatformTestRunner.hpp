@@ -30,7 +30,7 @@ namespace okapi {
  *
  * @param istring string to print
  */
-    void test_printf(const std::string &istring);
+void test_printf(const std::string &istring);
 
 /**
  * Run a test. The lambda can have any body, or it can be a sinlge function call. In that case, use
@@ -39,13 +39,13 @@ namespace okapi {
  * @param iname test name (describe what it does)
  * @param ifunc test body
  */
-    void test(const std::string &iname, std::function<void()> ifunc);
+void test(const std::string &iname, std::function<void()> ifunc);
 
 /**
  * Print out a test report detailing how long the tests took to run; how many tests passed; how many
  * tests failed; and if any failed, which ones.
  */
-    void test_print_report();
+void test_print_report();
 } // namespace okapi
 
 #endif
