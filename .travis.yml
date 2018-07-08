@@ -45,6 +45,7 @@ before_install:
 script:
   - make
   - mkdir cmake-build-debug
+  - cd cmake-build-debug
   - cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" OkapiLibV5
   - cmake --build cmake-build-debug --target OkapiLibV5 -- -j 4
   - OkapiLibV5
