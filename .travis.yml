@@ -2,18 +2,49 @@ sudo: required
 dist: trusty
 
 cache: packages
-addons:
-  apt:
-    sources:
-      - sourceline: "ppa:team-gcc-arm-embedded/ppa"
-    packages:
-      - lib32z1
-      - lib32ncurses5
-      - lib32bz2-1.0
-      - gcc-arm-embedded
+
+matrix:
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - sourceline: "ppa:team-gcc-arm-embedded/ppa"
+            - ubuntu-toolchain-r-test
+          packages:
+            - lib32z1
+            - lib32ncurses5
+            - lib32bz2-1.0
+            - gcc-arm-embedded
+            - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+
+    - os: osx
+      osx_image: xcode8
+      addons:
+        apt:
+          sources:
+            - sourceline: "ppa:team-gcc-arm-embedded/ppa"
+          packages:
+            - lib32z1
+            - lib32ncurses5
+            - lib32bz2-1.0
+            - gcc-arm-embedded
+      env:
+        - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
 
 language: cpp
 compiler: gcc
 
+before_install:
+  - eval "${MATRIX_EVAL}"
+  - wget -O cmake.sh https://cmake.org/files/v3.10/cmake-3.10.3-Linux-x86_64.sh
+  - sudo sh cmake.sh --skip-license --exclude-subdir --prefix=/usr/local
+
 script:
   - make
+  - mkdir cmake-build-debug
+  - cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" OkapiLibV5
+  - cmake --build cmake-build-debug --target OkapiLibV5 -- -j 4
+  - OkapiLibV5
