@@ -30,4 +30,5 @@ before_install:
   - eval "${MATRIX_EVAL}"
 
 script:
+  - chmod +x travisScript.sh
   - ./travisScript.sh
