@@ -25,6 +25,9 @@
 #define TEST_BODY(FUNCTION, ...) [&]() { FUNCTION(__VA_ARGS__); }
 
 namespace okapi {
+
+enum class TestSuiteResult { SUCCESS = 0, FAIL = 1 };
+
 /**
  * Print the input string with an underline made from hypens ("-").
  *
@@ -46,6 +49,13 @@ void test(const std::string &iname, std::function<void()> ifunc);
  * tests failed; and if any failed, which ones.
  */
 void test_print_report();
+
+/**
+ * Get the test report for the suite.
+ *
+ * @return the test suite result
+ */
+TestSuiteResult test_query_report();
 } // namespace okapi
 
 #endif
