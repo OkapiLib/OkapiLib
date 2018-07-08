@@ -6,10 +6,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/tests/api/chassisModelTests.hpp"
-#include "test/crossPlatformTestRunner.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
+#include "test/crossPlatformTestRunner.hpp"
 
 void testXDriveModel() {
   using namespace okapi;
@@ -18,7 +18,7 @@ void testXDriveModel() {
   test_printf("Testing XDriveModel");
 
   class MockMotor : public AbstractMotor {
-  public:
+    public:
     void controllerSet(const double ivalue) override {
     }
 
@@ -234,7 +234,7 @@ void testSkidSteerModel() {
   test_printf("Testing SkidSteerModel");
 
   class MockMotor : public AbstractMotor {
-  public:
+    public:
     void controllerSet(const double ivalue) override {
     }
 

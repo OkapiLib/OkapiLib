@@ -13,8 +13,8 @@
 #include "okapi/api/filter/emaFilter.hpp"
 #include "okapi/api/filter/medianFilter.hpp"
 #include "okapi/api/filter/passthroughFilter.hpp"
-#include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/filter/velMath.hpp"
+#include "okapi/api/util/abstractTimer.hpp"
 #include "test/crossPlatformTestRunner.hpp"
 
 void testFilters() {
@@ -39,30 +39,30 @@ void testFilters() {
     for (int i = 0; i < 10; i++) {
       auto testName = "AverageFilter i = " + std::to_string(i);
       switch (i) {
-        case 0: {
-          assertThatFilterAndFilterOutputAreEqual(&filt, i, 0, 0.0001);
-          break;
-        }
+      case 0: {
+        assertThatFilterAndFilterOutputAreEqual(&filt, i, 0, 0.0001);
+        break;
+      }
 
-        case 1: {
-          assertThatFilterAndFilterOutputAreEqual(&filt, i, 0.2, 0.0001);
-          break;
-        }
+      case 1: {
+        assertThatFilterAndFilterOutputAreEqual(&filt, i, 0.2, 0.0001);
+        break;
+      }
 
-        case 2: {
-          assertThatFilterAndFilterOutputAreEqual(&filt, i, 0.6, 0.0001);
-          break;
-        }
+      case 2: {
+        assertThatFilterAndFilterOutputAreEqual(&filt, i, 0.6, 0.0001);
+        break;
+      }
 
-        case 3: {
-          assertThatFilterAndFilterOutputAreEqual(&filt, i, 1.2, 0.0001);
-          break;
-        }
+      case 3: {
+        assertThatFilterAndFilterOutputAreEqual(&filt, i, 1.2, 0.0001);
+        break;
+      }
 
-        default: {
-          assertThatFilterAndFilterOutputAreEqual(&filt, i, i - 2, 0.0001);
-          break;
-        }
+      default: {
+        assertThatFilterAndFilterOutputAreEqual(&filt, i, i - 2, 0.0001);
+        break;
+      }
       }
     }
   }
@@ -153,7 +153,7 @@ void testFilters() {
 
     {
       class MockTimer : public AbstractTimer {
-      public:
+        public:
         QTime millis() const override {
           return QTime();
         }
