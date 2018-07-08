@@ -17,11 +17,13 @@ matrix:
             - g++-7
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+        - ARCH=linux
 
     - os: osx
       osx_image: xcode8
       env:
         - MATRIX_EVAL="brew update && brew install gcc && CC=gcc-7 && CXX=g++-7"
+        - ARCH=osx
 
 language: cpp
 compiler: gcc
