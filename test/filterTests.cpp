@@ -16,6 +16,7 @@
 #include "okapi/api/filter/velMath.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
 #include "test/crossPlatformTestRunner.hpp"
+#include "test/tests/api/implMocks.hpp"
 
 void testFilters() {
   using namespace okapi;
@@ -152,52 +153,8 @@ void testFilters() {
     test_printf("Testing VelMath");
 
     {
-      class MockTimer : public AbstractTimer {
-        public:
-        QTime millis() const override {
-          return QTime();
-        }
-
-        QTime getStartingTime() const override {
-          return QTime();
-        }
-
-        QTime getDtFromStart() const override {
-          return QTime();
-        }
-
-        void placeMark() override {
-        }
-
-        void placeHardMark() override {
-        }
-
-        QTime clearHardMark() override {
-          return second;
-        }
-
-        QTime getDtFromMark() const override {
-          return QTime();
-        }
-
-        QTime getDtFromHardMark() const override {
-          return QTime();
-        }
-
-        bool repeat(const QTime time) override {
-          return false;
-        }
-
-        bool repeat(const QFrequency frequency) override {
-          return false;
-        }
-
-        QTime getDt() override {
-          return 10_ms;
-        }
-      };
-
-      VelMath velMath(360, std::make_shared<PassthroughFilter>(), std::make_unique<MockTimer>());
+      VelMath velMath(360, std::make_shared<PassthroughFilter>(),
+                      std::make_unique<ConstantMockTimer>(10_ms));
 
       for (int i = 0; i < 10; i++) {
         if (i == 0) {

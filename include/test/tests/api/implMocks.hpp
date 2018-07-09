@@ -19,76 +19,39 @@ namespace okapi {
  */
 class MockMotor : public AbstractMotor {
   public:
-  void controllerSet(const double ivalue) override {
-  }
+  void controllerSet(double ivalue) override;
 
-  int32_t moveAbsolute(const double iposition, const std::int32_t ivelocity) const override {
-    lastPosition = (int16_t)iposition;
-    return 0;
-  }
+  int32_t moveAbsolute(double iposition, std::int32_t ivelocity) const override;
 
-  int32_t moveRelative(const double iposition, const std::int32_t ivelocity) const override {
-    lastPosition += iposition;
-    return 0;
-  }
+  int32_t moveRelative(double iposition, std::int32_t ivelocity) const override;
 
-  double getTargetPosition() const override {
-    return 0;
-  }
+  double getTargetPosition() const override;
 
-  double getPosition() const override {
-    return 0;
-  }
+  double getPosition() const override;
 
-  int32_t getTargetVelocity() const override {
-    return 0;
-  }
+  int32_t getTargetVelocity() const override;
 
-  double getActualVelocity() const override {
-    return 0;
-  }
+  double getActualVelocity() const override;
 
-  int32_t tarePosition() const override {
-    return 0;
-  }
+  int32_t tarePosition() const override;
 
-  int32_t setBrakeMode(const brakeMode imode) const override {
-    return 0;
-  }
+  int32_t setBrakeMode(brakeMode imode) const override;
 
-  int32_t setCurrentLimit(const std::int32_t ilimit) const override {
-    return 0;
-  }
+  int32_t setCurrentLimit(std::int32_t ilimit) const override;
 
-  int32_t setEncoderUnits(const encoderUnits iunits) const override {
-    return 0;
-  }
+  int32_t setEncoderUnits(encoderUnits iunits) const override;
 
-  int32_t setGearing(const gearset igearset) const override {
-    return 0;
-  }
+  int32_t setGearing(gearset igearset) const override;
 
-  int32_t setReversed(const bool ireverse) const override {
-    return 0;
-  }
+  int32_t setReversed(bool ireverse) const override;
 
-  int32_t setVoltageLimit(const std::int32_t ilimit) const override {
-    return 0;
-  }
+  int32_t setVoltageLimit(std::int32_t ilimit) const override;
 
-  std::shared_ptr<ContinuousRotarySensor> getEncoder() const override {
-    return std::shared_ptr<ContinuousRotarySensor>();
-  }
+  std::shared_ptr<ContinuousRotarySensor> getEncoder() const override;
 
-  std::int32_t moveVelocity(const std::int16_t ivelocity) const override {
-    lastVelocity = ivelocity;
-    return 1;
-  }
+  std::int32_t moveVelocity(std::int16_t ivelocity) const override;
 
-  std::int32_t moveVoltage(const std::int16_t ivoltage) const override {
-    lastVoltage = ivoltage;
-    return 1;
-  }
+  std::int32_t moveVoltage(std::int16_t ivoltage) const override;
 
   mutable std::int16_t lastVelocity{};
   mutable std::int16_t lastVoltage{};
@@ -100,73 +63,31 @@ class MockMotor : public AbstractMotor {
  */
 class MockTimer : public AbstractTimer {
   public:
-  MockTimer() : firstCalled(millis()), lastCalled(firstCalled), mark(firstCalled) {
-  }
+  MockTimer();
 
-  ~MockTimer() override = default;
+  ~MockTimer() override;
 
-  QTime millis() const override {
-    return std::chrono::duration_cast<std::chrono::milliseconds>(
-             std::chrono::high_resolution_clock::now() - epoch)
-             .count() *
-           millisecond;
-  }
+  QTime millis() const override;
 
-  QTime getDt() override {
-    const QTime currTime = millis();
-    const QTime dt = currTime - lastCalled;
-    lastCalled = currTime;
-    return dt;
-  }
+  QTime getDt() override;
 
-  QTime getStartingTime() const override {
-    return firstCalled;
-  }
+  QTime getStartingTime() const override;
 
-  QTime getDtFromStart() const override {
-    return millis() - firstCalled;
-  }
+  QTime getDtFromStart() const override;
 
-  void placeMark() override {
-    mark = millis();
-  }
+  void placeMark() override;
 
-  void placeHardMark() override {
-    if (hardMark == 0_ms)
-      hardMark = millis();
-  }
+  void placeHardMark() override;
 
-  QTime clearHardMark() override {
-    const QTime old = hardMark;
-    hardMark = 0_ms;
-    return old;
-  }
+  QTime clearHardMark() override;
 
-  QTime getDtFromMark() const override {
-    return millis() - mark;
-  }
+  QTime getDtFromMark() const override;
 
-  QTime getDtFromHardMark() const override {
-    return hardMark == 0_ms ? 0_ms : millis() - hardMark;
-  }
+  QTime getDtFromHardMark() const override;
 
-  bool repeat(const QTime time) override {
-    if (repeatMark == 0_ms) {
-      repeatMark = millis();
-      return false;
-    }
+  bool repeat(QTime time) override;
 
-    if (millis() - repeatMark >= time) {
-      repeatMark = 0_ms;
-      return true;
-    }
-
-    return false;
-  }
-
-  bool repeat(const QFrequency frequency) override {
-    return repeat(QTime(1 / frequency.convert(Hz)));
-  }
+  bool repeat(QFrequency frequency) override;
 
   std::chrono::system_clock::time_point epoch = std::chrono::high_resolution_clock::from_time_t(0);
   QTime firstCalled;
@@ -181,62 +102,38 @@ class MockTimer : public AbstractTimer {
  */
 class ConstantMockTimer : public AbstractTimer {
   public:
-  explicit ConstantMockTimer(const QTime idt) : dtToReturn(idt) {
-  }
+  explicit ConstantMockTimer(QTime idt);
 
-  ~ConstantMockTimer() override = default;
+  ~ConstantMockTimer() override;
 
-  QTime millis() const override {
-    return 0_ms;
-  }
+  QTime millis() const override;
 
-  QTime getDt() override {
-    return dtToReturn;
-  }
+  QTime getDt() override;
 
-  QTime getStartingTime() const override {
-    return 0_ms;
-  }
+  QTime getStartingTime() const override;
 
-  QTime getDtFromStart() const override {
-    return dtToReturn;
-  }
+  QTime getDtFromStart() const override;
 
-  void placeMark() override {
-  }
+  void placeMark() override;
 
-  void placeHardMark() override {
-  }
+  void placeHardMark() override;
 
-  QTime clearHardMark() override {
-    return 0_ms;
-  }
+  QTime clearHardMark() override;
 
-  QTime getDtFromMark() const override {
-    return dtToReturn;
-  }
+  QTime getDtFromMark() const override;
 
-  QTime getDtFromHardMark() const override {
-    return dtToReturn;
-  }
+  QTime getDtFromHardMark() const override;
 
-  bool repeat(QTime time) override {
-    return false;
-  }
+  bool repeat(QTime time) override;
 
-  bool repeat(QFrequency frequency) override {
-    return false;
-  }
+  bool repeat(QFrequency frequency) override;
 
   QTime dtToReturn;
 };
 
-std::unique_ptr<SettledUtil> createSettledUtilPtr(const double iatTargetError = 50,
-                                                  const double iatTargetDerivative = 5,
-                                                  const QTime iatTargetTime = 250_ms) {
-  return std::make_unique<SettledUtil>(std::make_unique<MockTimer>(), iatTargetError,
-                                       iatTargetDerivative, iatTargetTime);
-}
+std::unique_ptr<SettledUtil> createSettledUtilPtr(double iatTargetError = 50,
+                                                  double iatTargetDerivative = 5,
+                                                  QTime iatTargetTime = 250_ms);
 } // namespace okapi
 
 #endif
