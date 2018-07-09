@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/odometry/odometry.hpp"
-#include "api.h"
+#include "okapi/api/odometry/odometry.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include <cmath>
 
@@ -27,8 +26,13 @@ OdometryArgs::OdometryArgs(std::shared_ptr<SkidSteerModel> imodel, const double 
 OdometryArgs::~OdometryArgs() = default;
 
 Odometry::Odometry(std::shared_ptr<SkidSteerModel> imodel, const double iscale,
-                   const double iturnScale)
-  : model(imodel), scale(iscale), turnScale(iturnScale), lastTicks{0, 0}, mm(0) {
+                   const double iturnScale, std::unique_ptr<AbstractRate> irate)
+  : model(imodel),
+    scale(iscale),
+    rate(std::move(irate)),
+    turnScale(iturnScale),
+    lastTicks{0, 0},
+    mm(0) {
 }
 
 Odometry::Odometry(const OdometryArgs &iparams)
@@ -43,7 +47,6 @@ void Odometry::setScales(const double iscale, const double iturnScale) {
 }
 
 void Odometry::loop() {
-  std::uint32_t now = pros::millis();
   std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0};
 
   while (true) {
@@ -62,7 +65,7 @@ void Odometry::loop() {
     state.x += mm * std::cos(state.theta * degreeToRadian);
     state.y += mm * std::sin(state.theta * degreeToRadian);
 
-    pros::Task::delay_until(&now, 10);
+    rate->delayUntil(10);
   }
 }
 

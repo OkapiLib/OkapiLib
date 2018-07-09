@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/odometry/threeEncoderOdometry.hpp"
+#include "okapi/api/odometry/threeEncoderOdometry.hpp"
 
 namespace okapi {
 ThreeEncoderOdometryArgs::ThreeEncoderOdometryArgs(std::shared_ptr<SkidSteerModel> imodel,
@@ -14,14 +14,16 @@ ThreeEncoderOdometryArgs::ThreeEncoderOdometryArgs(std::shared_ptr<SkidSteerMode
   : OdometryArgs(imodel, iscale, iturnScale), middleScale(imiddleScale) {
 }
 
-ThreeEncoderOdometry::ThreeEncoderOdometry(std::shared_ptr<ThreeEncoderSkidSteerModel> imodel,
-                                           const double iscale, const double iturnScale,
-                                           const double imiddleScale)
-  : Odometry(imodel, iscale, iturnScale), model(imodel), middleScale(imiddleScale) {
+ThreeEncoderOdometry::ThreeEncoderOdometry(
+  std::shared_ptr<ThreeEncoderSkidSteerModel> imodel, const double iscale, const double iturnScale,
+  const double imiddleScale, std::function<std::unique_ptr<AbstractRate>(void)> irateSupplier)
+  : Odometry(imodel, iscale, iturnScale, irateSupplier()),
+    model(imodel),
+    rate(irateSupplier()),
+    middleScale(imiddleScale) {
 }
 
 void ThreeEncoderOdometry::loop() {
-  std::uint32_t now = pros::millis();
   std::valarray<std::int32_t> newTicks{0, 0, 0}, tickDiff{0, 0, 0};
 
   while (true) {
@@ -40,7 +42,7 @@ void ThreeEncoderOdometry::loop() {
     state.x += mm * std::cos(state.theta) + (tickDiff[2] * middleScale) * std::sin(state.theta);
     state.y += mm * std::sin(state.theta) + (tickDiff[2] * middleScale) * std::cos(state.theta);
 
-    pros::Task::delay_until(&now, 10);
+    rate->delayUntil(10);
   }
 }
 

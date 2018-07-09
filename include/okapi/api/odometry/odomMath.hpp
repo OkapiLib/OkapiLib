@@ -8,7 +8,7 @@
 #ifndef _OKAPI_ODOMMATH_HPP_
 #define _OKAPI_ODOMMATH_HPP_
 
-#include "okapi/impl/odometry/odometry.hpp"
+#include "okapi/api/odometry/odometry.hpp"
 #include <tuple>
 
 namespace okapi {

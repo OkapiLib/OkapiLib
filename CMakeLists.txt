@@ -48,6 +48,9 @@ add_executable(OkapiLibV5
         include/okapi/api/filter/medianFilter.hpp
         include/okapi/api/filter/passthroughFilter.hpp
         include/okapi/api/filter/velMath.hpp
+        include/okapi/api/odometry/odometry.hpp
+        include/okapi/api/odometry/odomMath.hpp
+        include/okapi/api/odometry/threeEncoderOdometry.hpp
         include/okapi/api/units/QAcceleration.hpp
         include/okapi/api/units/QAngle.hpp
         include/okapi/api/units/QAngularAcceleration.hpp
@@ -108,6 +111,9 @@ add_executable(OkapiLibV5
         src/api/filter/filter.cpp
         src/api/filter/passthroughFilter.cpp
         src/api/filter/velMath.cpp
+        src/api/odometry/odometry.cpp
+        src/api/odometry/odomMath.cpp
+        src/api/odometry/threeEncoderOdometry.cpp
         src/api/util/abstractRate.cpp
         src/api/util/abstractTimer.cpp
         test/buttonTests.cpp
