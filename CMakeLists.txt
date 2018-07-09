@@ -128,5 +128,8 @@ add_executable(OkapiLibV5
         include/test/tests/api/implMocks.hpp
         include/test/tests/api/odometryTests.hpp
         test/implMocks.cpp
-        test/odometryTests.cpp)
-        test/utilTests.cpp include/test/tests/api/implMocks.hpp test/implMocks.cpp include/okapi/api/util/supplier.hpp)
+        test/odometryTests.cpp
+        test/utilTests.cpp
+        include/test/tests/api/implMocks.hpp
+        test/implMocks.cpp
+        include/okapi/api/util/supplier.hpp)

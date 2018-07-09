@@ -11,6 +11,7 @@
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
 #include "okapi/api/odometry/odometry.hpp"
 #include "okapi/api/util/abstractRate.hpp"
+#include "okapi/api/util/supplier.hpp"
 #include <functional>
 
 namespace okapi {
@@ -37,7 +38,7 @@ class ThreeEncoderOdometry : public Odometry {
    */
   ThreeEncoderOdometry(std::shared_ptr<ThreeEncoderSkidSteerModel> imodel, double iscale,
                        double iturnScale, double imiddleScale,
-                       std::function<std::unique_ptr<AbstractRate>(void)> irateSupplier);
+                       const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier);
 
   /**
    * Do odometry math in an infinite loop.

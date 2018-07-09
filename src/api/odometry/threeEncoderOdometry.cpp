@@ -15,11 +15,11 @@ ThreeEncoderOdometryArgs::ThreeEncoderOdometryArgs(std::shared_ptr<SkidSteerMode
 }
 
 ThreeEncoderOdometry::ThreeEncoderOdometry(
-  std::shared_ptr<ThreeEncoderSkidSteerModel> imodel, const double iscale, const double iturnScale,
-  const double imiddleScale, std::function<std::unique_ptr<AbstractRate>(void)> irateSupplier)
-  : Odometry(imodel, iscale, iturnScale, irateSupplier()),
+  std::shared_ptr<ThreeEncoderSkidSteerModel> imodel, double iscale, double iturnScale,
+  double imiddleScale, const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier)
+  : Odometry(imodel, iscale, iturnScale, irateSupplier.get()),
     model(imodel),
-    rate(irateSupplier()),
+    rate(irateSupplier.get()),
     middleScale(imiddleScale) {
 }
 
