@@ -5,9 +5,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/odometry/odometry.hpp"
+#include "okapi/impl/odometry/odometry.hpp"
 #include "api.h"
-#include "okapi/util/mathUtil.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include <cmath>
 
 namespace okapi {

@@ -8,7 +8,7 @@
 #ifndef _OKAPI_ODOMETRY_HPP_
 #define _OKAPI_ODOMETRY_HPP_
 
-#include "okapi/chassis/model/skidSteerModel.hpp"
+#include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include <memory>
 #include <valarray>
 

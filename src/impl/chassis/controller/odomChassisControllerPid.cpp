@@ -5,8 +5,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/chassis/controller/odomChassisControllerPid.hpp"
-#include "okapi/odometry/odomMath.hpp"
+#include "okapi/impl/chassis/controller/odomChassisControllerPid.hpp"
+#include "okapi/impl/odometry/odomMath.hpp"
 #include <cmath>
 
 namespace okapi {

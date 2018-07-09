@@ -8,8 +8,8 @@
 #ifndef _OKAPI_THREEENCODERODOMETRY_HPP_
 #define _OKAPI_THREEENCODERODOMETRY_HPP_
 
-#include "okapi/chassis/model/threeEncoderSkidSteerModel.hpp"
-#include "okapi/odometry/odometry.hpp"
+#include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
+#include "okapi/impl/odometry/odometry.hpp"
 
 namespace okapi {
 class ThreeEncoderOdometryArgs : public OdometryArgs {

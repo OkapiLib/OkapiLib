@@ -2,7 +2,8 @@
 
 #include "okapi/api.hpp"
 #include "test/testRunner.hpp"
-#include "test/tests/impl/allImplTests.hpp"
+#include "test/tests/impl/odometryTests.hpp"
+#include "test/tests/impl/utilTests.hpp"
 
 void runHeadlessTests();
 
@@ -12,7 +13,8 @@ void opcontrol() {
   using namespace okapi;
   pros::Task::delay(100);
 
-  runHeadlessTests();
+  runHeadlessUtilTests();
+  runHeadlessOdometryTests();
   return;
 
   MotorGroup leftMotors({19_mtr, 20_mtr});

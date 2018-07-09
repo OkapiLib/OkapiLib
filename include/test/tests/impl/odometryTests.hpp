@@ -9,7 +9,9 @@
 #define _OKAPI_ODOMETRYTESTS_HPP_
 
 #include "okapi/api.hpp"
+#include "okapi/impl/odometry/odometry.hpp"
 #include "test/testRunner.hpp"
+#include <memory>
 
 void testOdometry() {
   using namespace okapi;
@@ -19,7 +21,7 @@ void testOdometry() {
 
   class MockModel : public SkidSteerModel {
     public:
-    MockModel() : SkidSteerModel(1, 2) {
+    MockModel() : SkidSteerModel(std::make_shared<Motor>(1), std::make_shared<Motor>(2)) {
     }
 
     virtual std::valarray<std::int32_t> getSensorVals() const override {

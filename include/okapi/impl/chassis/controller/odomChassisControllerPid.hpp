@@ -9,9 +9,12 @@
 #define _OKAPI_ODOMCHASSISCONTROLLERPID_HPP_
 
 #include "api.h"
-#include "okapi/chassis/controller/chassisControllerPid.hpp"
-#include "okapi/chassis/controller/odomChassisController.hpp"
-#include "okapi/odometry/odometry.hpp"
+#include "okapi/impl/chassis/controller/chassisControllerPid.hpp"
+#include "okapi/impl/chassis/controller/odomChassisController.hpp"
+#include "okapi/impl/device/motor/motor.hpp"
+#include "okapi/impl/device/motor/motorGroup.hpp"
+#include "okapi/impl/odometry/odometry.hpp"
+#include <memory>
 
 namespace okapi {
 class OdomChassisControllerPID : public OdomChassisController, public ChassisControllerPID {
