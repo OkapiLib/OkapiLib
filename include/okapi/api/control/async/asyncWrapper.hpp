@@ -8,11 +8,12 @@
 #ifndef _OKAPI_ASYNCWRAPPER_HPP_
 #define _OKAPI_ASYNCWRAPPER_HPP_
 
-#include "api.h"
 #include "okapi/api/control/async/asyncController.hpp"
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativeController.hpp"
+#include "okapi/api/coreProsAPI.hpp"
+#include "okapi/api/util/abstractRate.hpp"
 #include <memory>
 
 namespace okapi {
@@ -29,22 +30,23 @@ class AsyncWrapper : virtual public AsyncController {
    * @param iscale the scale applied to the controller output
    */
   AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
-               std::unique_ptr<IterativeController> icontroller, const double iscale = 127);
+               std::unique_ptr<IterativeController> icontroller,
+               std::unique_ptr<AbstractRate> irate, double iscale = 127);
 
   /**
    * Sets the target for the controller.
    */
-  virtual void setTarget(const double itarget) override;
+  void setTarget(double itarget) override;
 
   /**
    * Returns the last calculated output of the controller. Default is 0.
    */
-  virtual double getOutput() const override;
+  double getOutput() const override;
 
   /**
    * Returns the last error of the controller.
    */
-  virtual double getError() const override;
+  double getError() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
@@ -52,14 +54,14 @@ class AsyncWrapper : virtual public AsyncController {
    *
    * @return whether the controller is settled
    */
-  virtual bool isSettled() override;
+  bool isSettled() override;
 
   /**
    * Set time between loops. Default does nothing.
    *
    * @param isampleTime time between loops
    */
-  virtual void setSampleTime(const QTime isampleTime) override;
+  void setSampleTime(QTime isampleTime) override;
 
   /**
    * Set controller output bounds. Default does nothing.
@@ -67,19 +69,19 @@ class AsyncWrapper : virtual public AsyncController {
    * @param imax max output
    * @param imin min output
    */
-  virtual void setOutputLimits(double imax, double imin) override;
+  void setOutputLimits(double imax, double imin) override;
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
-  virtual void reset() override;
+  void reset() override;
 
   /**
    * Changes whether the controller is off or on. Turning the controller on after it was off will
    * cause the controller to move to its last set target, unless it was reset in that time.
    */
-  virtual void flipDisable() override;
+  void flipDisable() override;
 
   /**
    * Sets whether the controller is off or on. Turning the controller on after it was off will
@@ -87,20 +89,21 @@ class AsyncWrapper : virtual public AsyncController {
    *
    * @param iisDisabled whether the controller is disabled
    */
-  virtual void flipDisable(const bool iisDisabled) override;
+  void flipDisable(bool iisDisabled) override;
 
   /**
    * Returns whether the controller is currently disabled.
    *
    * @return whether the controller is currently disabled
    */
-  virtual bool isDisabled() const override;
+  bool isDisabled() const override;
 
   protected:
   std::shared_ptr<ControllerInput> input;
   std::shared_ptr<ControllerOutput> output;
   std::unique_ptr<IterativeController> controller;
-  pros::Task task;
+  std::unique_ptr<AbstractRate> rate;
+  CROSSPLATFORM_THREAD task;
   const double scale = 127;
 
   static void trampoline(void *context);

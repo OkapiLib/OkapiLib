@@ -5,28 +5,29 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/control/async/asyncWrapper.hpp"
+#include "okapi/api/control/async/asyncWrapper.hpp"
+#include "okapi/api/coreProsAPI.hpp"
 
 namespace okapi {
 AsyncWrapper::AsyncWrapper(std::shared_ptr<ControllerInput> iinput,
                            std::shared_ptr<ControllerOutput> ioutput,
-                           std::unique_ptr<IterativeController> icontroller, const double iscale)
+                           std::unique_ptr<IterativeController> icontroller,
+                           std::unique_ptr<AbstractRate> irate, const double iscale)
   : input(iinput),
     output(ioutput),
     controller(std::move(icontroller)),
+    rate(std::move(irate)),
     task(trampoline, this),
     scale(iscale) {
 }
 
 void AsyncWrapper::loop() {
-  std::uint32_t prevTime = 0;
-
   while (true) {
     if (!controller->isDisabled()) {
       output->controllerSet(scale * controller->step(input->controllerGet()));
     }
 
-    task.delay_until(&prevTime, controller->getSampleTime().convert(millisecond));
+    rate->delayUntil(controller->getSampleTime());
   }
 }
 

@@ -9,14 +9,13 @@
 #define _OKAPI_ASYNCPOSINTEGRATEDCONTROLLER_HPP_
 
 #include "okapi/api/control/async/asyncPositionController.hpp"
-#include "okapi/impl/control/util/settledUtil.hpp"
-#include "okapi/impl/device/motor/motor.hpp"
-#include "okapi/impl/device/motor/motorGroup.hpp"
+#include "okapi/api/control/util/settledUtil.hpp"
+#include "okapi/api/device/motor/abstractMotor.hpp"
 
 namespace okapi {
 class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
   public:
-  AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
+  explicit AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
 
   std::shared_ptr<AbstractMotor> motor;
 };
@@ -27,23 +26,21 @@ class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
  */
 class AsyncPosIntegratedController : public AsyncPositionController {
   public:
-  AsyncPosIntegratedController(Motor imotor);
+  AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+                               std::unique_ptr<SettledUtil> isettledUtil);
 
-  AsyncPosIntegratedController(MotorGroup imotor);
-
-  AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor);
-
-  AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams);
+  AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams,
+                               std::unique_ptr<SettledUtil> isettledUtil);
 
   /**
    * Sets the target for the controller.
    */
-  virtual void setTarget(const double itarget) override;
+  void setTarget(double itarget) override;
 
   /**
    * Returns the last error of the controller.
    */
-  virtual double getError() const override;
+  double getError() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
@@ -51,19 +48,19 @@ class AsyncPosIntegratedController : public AsyncPositionController {
    *
    * @return whether the controller is settled
    */
-  virtual bool isSettled() override;
+  bool isSettled() override;
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
-  virtual void reset() override;
+  void reset() override;
 
   /**
    * Changes whether the controller is off or on. Turning the controller on after it was off will
    * cause the controller to move to its last set target, unless it was reset in that time.
    */
-  virtual void flipDisable() override;
+  void flipDisable() override;
 
   /**
    * Sets whether the controller is off or on. Turning the controller on after it was off will
@@ -71,21 +68,21 @@ class AsyncPosIntegratedController : public AsyncPositionController {
    *
    * @param iisDisabled whether the controller is disabled
    */
-  virtual void flipDisable(const bool iisDisabled) override;
+  void flipDisable(bool iisDisabled) override;
 
   /**
    * Returns whether the controller is currently disabled.
    *
    * @return whether the controller is currently disabled
    */
-  virtual bool isDisabled() const override;
+  bool isDisabled() const override;
 
   protected:
   std::shared_ptr<AbstractMotor> motor;
   double lastTarget = 0;
   bool controllerIsDisabled = false;
   bool hasFirstTarget = false;
-  SettledUtil settledUtil;
+  std::unique_ptr<SettledUtil> settledUtil;
 
   /**
    * Resumes moving after the controller is reset. Should not cause movement if the controller is

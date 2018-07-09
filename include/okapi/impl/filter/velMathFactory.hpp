@@ -9,6 +9,7 @@
 #define _OKAPI_VELMATHFACTORY_HPP_
 
 #include "okapi/api/filter/velMath.hpp"
+#include <memory>
 
 namespace okapi {
 class VelMathFactory {
@@ -20,6 +21,7 @@ class VelMathFactory {
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
    */
   static VelMath create(double iticksPerRev);
+  static std::unique_ptr<VelMath> createPtr(double iticksPerRev);
 
   /**
    * Velocity math helper. Calculates filtered velocity. Throws a std::invalid_argument exception
@@ -29,6 +31,8 @@ class VelMathFactory {
    * @param ifilter filter used for filtering the calculated velocity
    */
   static VelMath create(double iticksPerRev, std::shared_ptr<Filter> ifilter);
+  static std::unique_ptr<VelMath> createPtr(double iticksPerRev, std::shared_ptr<Filter> ifilter);
+  static std::unique_ptr<VelMath> createPtr(const VelMathArgs &ivelMathArgs);
 };
 } // namespace okapi
 

@@ -8,7 +8,9 @@
 #ifndef _OKAPI_ABSTRACTRATE_HPP_
 #define _OKAPI_ABSTRACTRATE_HPP_
 
+#include "okapi/api/coreProsAPI.hpp"
 #include "okapi/api/units/QFrequency.hpp"
+#include "okapi/api/units/QTime.hpp"
 
 namespace okapi {
 class AbstractRate {
@@ -19,17 +21,33 @@ class AbstractRate {
    * Delay the current task such that it runs at the given frequency. The first delay will run for
    * 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the task.
    *
-   * @param ihz the rate
+   * @param ihz the frequency
    */
-  virtual void delay(const QFrequency ihz) = 0;
+  virtual void delay(QFrequency ihz) = 0;
 
   /**
-   * Delay the current task such that it runs every ihz ms. The first delay will run for ihz.
-   * Subsequent delays will adjust according to the previous runtime of the task.
+   * Delay the current task such that it runs every ihz ms. The first delay will run for
+   * 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the task.
    *
-   * @param ihz the rate in ms
+   * @param ihz the frequency in ms
    */
-  virtual void delay(const int ihz) = 0;
+  virtual void delay(int ihz) = 0;
+
+  /**
+   * Delay the current task until itime has passed. This method can be used by periodic tasks to
+   * ensure a consistent execution frequency.
+   *
+   * @param itime the time period
+   */
+  virtual void delayUntil(QTime itime) = 0;
+
+  /**
+   * Delay the current task until itime milliseconds have passed. This method can be used by
+   * periodic tasks to ensure a consistent execution frequency.
+   *
+   * @param ims the time period
+   */
+  virtual void delayUntil(uint32_t ims) = 0;
 };
 } // namespace okapi
 

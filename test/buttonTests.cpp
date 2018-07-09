@@ -17,7 +17,6 @@ void testButtons() {
   class MockButton : public ButtonBase {
     public:
     bool currentlyPressed() override {
-      printf("???\n");
       return false;
     }
   };

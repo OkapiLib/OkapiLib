@@ -10,87 +10,13 @@
 #include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "test/crossPlatformTestRunner.hpp"
+#include "test/tests/api/implMocks.hpp"
 
 void testXDriveModel() {
   using namespace okapi;
   using namespace snowhouse;
 
   test_printf("Testing XDriveModel");
-
-  class MockMotor : public AbstractMotor {
-    public:
-    void controllerSet(const double ivalue) override {
-    }
-
-    int32_t moveAbsolute(const double iposition, const std::int32_t ivelocity) const override {
-      return 0;
-    }
-
-    int32_t moveRelative(const double iposition, const std::int32_t ivelocity) const override {
-      return 0;
-    }
-
-    double getTargetPosition() const override {
-      return 0;
-    }
-
-    double getPosition() const override {
-      return 0;
-    }
-
-    int32_t getTargetVelocity() const override {
-      return 0;
-    }
-
-    double getActualVelocity() const override {
-      return 0;
-    }
-
-    int32_t tarePosition() const override {
-      return 0;
-    }
-
-    int32_t setBrakeMode(const brakeMode imode) const override {
-      return 0;
-    }
-
-    int32_t setCurrentLimit(const std::int32_t ilimit) const override {
-      return 0;
-    }
-
-    int32_t setEncoderUnits(const encoderUnits iunits) const override {
-      return 0;
-    }
-
-    int32_t setGearing(const gearset igearset) const override {
-      return 0;
-    }
-
-    int32_t setReversed(const bool ireverse) const override {
-      return 0;
-    }
-
-    int32_t setVoltageLimit(const std::int32_t ilimit) const override {
-      return 0;
-    }
-
-    std::shared_ptr<ContinuousRotarySensor> getEncoder() const override {
-      return std::shared_ptr<ContinuousRotarySensor>();
-    }
-
-    std::int32_t moveVelocity(const std::int16_t ivelocity) const override {
-      lastVelocity = ivelocity;
-      return 1;
-    }
-
-    std::int32_t moveVoltage(const std::int16_t ivoltage) const override {
-      lastVoltage = ivoltage;
-      return 1;
-    }
-
-    mutable std::int16_t lastVelocity{};
-    mutable std::int16_t lastVoltage{};
-  };
 
   auto topLeftMotor = std::make_shared<MockMotor>();
   auto topRightMotor = std::make_shared<MockMotor>();
@@ -232,81 +158,6 @@ void testSkidSteerModel() {
   using namespace snowhouse;
 
   test_printf("Testing SkidSteerModel");
-
-  class MockMotor : public AbstractMotor {
-    public:
-    void controllerSet(const double ivalue) override {
-    }
-
-    int32_t moveAbsolute(const double iposition, const std::int32_t ivelocity) const override {
-      return 0;
-    }
-
-    int32_t moveRelative(const double iposition, const std::int32_t ivelocity) const override {
-      return 0;
-    }
-
-    double getTargetPosition() const override {
-      return 0;
-    }
-
-    double getPosition() const override {
-      return 0;
-    }
-
-    int32_t getTargetVelocity() const override {
-      return 0;
-    }
-
-    double getActualVelocity() const override {
-      return 0;
-    }
-
-    int32_t tarePosition() const override {
-      return 0;
-    }
-
-    int32_t setBrakeMode(const brakeMode imode) const override {
-      return 0;
-    }
-
-    int32_t setCurrentLimit(const std::int32_t ilimit) const override {
-      return 0;
-    }
-
-    int32_t setEncoderUnits(const encoderUnits iunits) const override {
-      return 0;
-    }
-
-    int32_t setGearing(const gearset igearset) const override {
-      return 0;
-    }
-
-    int32_t setReversed(const bool ireverse) const override {
-      return 0;
-    }
-
-    int32_t setVoltageLimit(const std::int32_t ilimit) const override {
-      return 0;
-    }
-
-    std::shared_ptr<ContinuousRotarySensor> getEncoder() const override {
-      return std::shared_ptr<ContinuousRotarySensor>();
-    }
-
-    std::int32_t moveVelocity(const std::int16_t ivelocity) const override {
-      lastVelocity = ivelocity;
-      return 1;
-    }
-
-    std::int32_t moveVoltage(const std::int16_t ivoltage) const override {
-      lastVoltage = ivoltage;
-      return 1;
-    }
-
-    mutable std::int16_t lastVelocity{};
-    mutable std::int16_t lastVoltage{};
-  };
 
   auto leftMotor = std::make_shared<MockMotor>();
   auto rightMotor = std::make_shared<MockMotor>();

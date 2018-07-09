@@ -16,6 +16,7 @@ int main() {
   testButtons();
   testFilters();
   testUtil();
+  testControllers();
 
   test_print_report();
 

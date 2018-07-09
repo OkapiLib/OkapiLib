@@ -11,8 +11,9 @@
 
 #include "api.h"
 #include "okapi/api/chassis/model/chassisModel.hpp"
+#include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/units/QTime.hpp"
-#include "okapi/impl/control/iterative/iterativePosPidController.hpp"
+#include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
 #include <memory>
 #include <vector>
 
@@ -61,8 +62,8 @@ class PIDTuner {
 
   double itae = 0;
   std::vector<particleSet> particles{};
-  IterativePosPIDController leftController{0, 0, 0};
-  IterativePosPIDController rightController{0, 0, 0};
+  IterativePosPIDController leftController;
+  IterativePosPIDController rightController;
 
   std::uint32_t moveDistance(const int itarget);
 };

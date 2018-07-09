@@ -30,7 +30,7 @@ class ChassisModel {
    *
    * @param ipower motor power
    */
-  virtual void forward(const double ispeed) const = 0;
+  virtual void forward(double ispeed) const = 0;
 
   /**
    * Drive the robot in an arc (using open-loop control).
@@ -41,14 +41,14 @@ class ChassisModel {
    * @param iySpeed speed on y axis (forward)
    * @param izRotation speed around z axis (up)
    */
-  virtual void driveVector(const double iySpeed, const double izRotation) const = 0;
+  virtual void driveVector(double iySpeed, double izRotation) const = 0;
 
   /**
    * Turn the robot clockwise (using open-loop control).
    *
    * @param ispeed motor power
    */
-  virtual void rotate(const double ispeed) const = 0;
+  virtual void rotate(double ispeed) const = 0;
 
   /**
    * Stop the robot (set all the motors to 0).
@@ -62,8 +62,7 @@ class ChassisModel {
    * @param irightSpeed right side speed
    * @param ithreshold deadband on joystick values
    */
-  virtual void tank(const double ileftSpeed, const double irightSpeed,
-                    const double ithreshold = 0) const = 0;
+  virtual void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const = 0;
 
   /**
    * Drive the robot with an arcade drive layout. Uses voltage mode.
@@ -72,22 +71,21 @@ class ChassisModel {
    * @param izRotation speed around z axis (up)
    * @param ithreshold deadband on joystick values
    */
-  virtual void arcade(const double iySpeed, const double izRotation,
-                      const double ithreshold = 0) const = 0;
+  virtual void arcade(double iySpeed, double izRotation, double ithreshold = 0) const = 0;
 
   /**
    * Power the left side motors.
    *
    * @param ipower motor power
    */
-  virtual void left(const double ispeed) const = 0;
+  virtual void left(double ispeed) const = 0;
 
   /**
    * Power the right side motors.
    *
    * @param ipower motor power
    */
-  virtual void right(const double ispeed) const = 0;
+  virtual void right(double ispeed) const = 0;
 
   /**
    * Read the sensors.
@@ -106,21 +104,21 @@ class ChassisModel {
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(const AbstractMotor::brakeMode mode) const = 0;
+  virtual void setBrakeMode(AbstractMotor::brakeMode mode) const = 0;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(const AbstractMotor::encoderUnits units) const = 0;
+  virtual void setEncoderUnits(AbstractMotor::encoderUnits units) const = 0;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(const AbstractMotor::gearset gearset) const = 0;
+  virtual void setGearing(AbstractMotor::gearset gearset) const = 0;
 };
 } // namespace okapi
 

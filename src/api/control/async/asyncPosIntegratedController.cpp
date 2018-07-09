@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/control/async/asyncPosIntegratedController.hpp"
+#include "okapi/api/control/async/asyncPosIntegratedController.hpp"
 
 namespace okapi {
 AsyncPosIntegratedControllerArgs::AsyncPosIntegratedControllerArgs(
@@ -13,21 +13,14 @@ AsyncPosIntegratedControllerArgs::AsyncPosIntegratedControllerArgs(
   : motor(imotor) {
 }
 
-AsyncPosIntegratedController::AsyncPosIntegratedController(Motor imotor)
-  : AsyncPosIntegratedController(std::make_shared<Motor>(imotor)) {
-}
-
-AsyncPosIntegratedController::AsyncPosIntegratedController(MotorGroup imotor)
-  : AsyncPosIntegratedController(std::make_shared<MotorGroup>(imotor)) {
-}
-
-AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor)
-  : motor(imotor) {
+AsyncPosIntegratedController::AsyncPosIntegratedController(
+  std::shared_ptr<AbstractMotor> imotor, std::unique_ptr<SettledUtil> isettledUtil)
+  : motor(imotor), settledUtil(std::move(isettledUtil)) {
 }
 
 AsyncPosIntegratedController::AsyncPosIntegratedController(
-  const AsyncPosIntegratedControllerArgs &iparams)
-  : motor(iparams.motor) {
+  const AsyncPosIntegratedControllerArgs &iparams, std::unique_ptr<SettledUtil> isettledUtil)
+  : motor(iparams.motor), settledUtil(std::move(isettledUtil)) {
 }
 
 void AsyncPosIntegratedController::setTarget(const double itarget) {
@@ -45,7 +38,7 @@ double AsyncPosIntegratedController::getError() const {
 }
 
 bool AsyncPosIntegratedController::isSettled() {
-  return settledUtil.isSettled(getError());
+  return settledUtil->isSettled(getError());
 }
 
 void AsyncPosIntegratedController::reset() {

@@ -18,8 +18,8 @@
 namespace okapi {
 class VelMathArgs {
   public:
-  VelMathArgs(const double iticksPerRev);
-  VelMathArgs(const double iticksPerRev, std::shared_ptr<Filter> ifilter);
+  explicit VelMathArgs(double iticksPerRev);
+  VelMathArgs(double iticksPerRev, std::shared_ptr<Filter> ifilter);
 
   virtual ~VelMathArgs();
 
@@ -36,7 +36,7 @@ class VelMath {
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
    * @param ifilter filter used for filtering the calculated velocity
    */
-  VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter,
+  VelMath(double iticksPerRev, std::shared_ptr<Filter> ifilter,
           std::unique_ptr<AbstractTimer> iloopDtTimer);
 
   VelMath(const VelMathArgs &iparams, std::unique_ptr<AbstractTimer> iloopDtTimer);
@@ -49,14 +49,14 @@ class VelMath {
    * @param inewPos new position
    * @return current (filtered) velocity
    */
-  virtual QAngularSpeed step(const double inewPos);
+  virtual QAngularSpeed step(double inewPos);
 
   /**
    * Sets ticks per revolution (or whatever units you are using).
    *
    * @para iTPR ticks per revolution
    */
-  virtual void setTicksPerRev(const double iTPR);
+  virtual void setTicksPerRev(double iTPR);
 
   /**
    * Returns the last calculated velocity.
@@ -70,8 +70,8 @@ class VelMath {
 
   protected:
   QAngularSpeed vel;
-  QAngularAcceleration accel;
   QAngularSpeed lastVel;
+  QAngularAcceleration accel;
   double lastPos = 0;
   double ticksPerRev;
 

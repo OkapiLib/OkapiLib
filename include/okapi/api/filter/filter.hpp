@@ -24,7 +24,7 @@ class Filter {
    * @param ireading new measurement
    * @return filtered result
    */
-  virtual double filter(const double ireading) = 0;
+  virtual double filter(double ireading) = 0;
 
   /**
    * Returns the previous output from filter.

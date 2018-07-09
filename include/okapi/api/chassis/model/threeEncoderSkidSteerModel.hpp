@@ -18,7 +18,7 @@ class ThreeEncoderSkidSteerModelArgs : public SkidSteerModelArgs {
                                  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                                  std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
                                  std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                                 const double imaxOutput = 127);
+                                 double imaxOutput = 127);
 
   std::shared_ptr<ContinuousRotarySensor> middleSensor;
 };
@@ -40,16 +40,16 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
                              std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                              std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
                              std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                             const double imaxOutput = 127);
+                             double imaxOutput = 127);
 
-  ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams);
+  explicit ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams);
 
   /**
    * Read the sensors.
    *
    * @return sensor readings in the format {left, right, middle}
    */
-  virtual std::valarray<std::int32_t> getSensorVals() const override;
+  std::valarray<std::int32_t> getSensorVals() const override;
 
   protected:
   std::shared_ptr<ContinuousRotarySensor> middleSensor;

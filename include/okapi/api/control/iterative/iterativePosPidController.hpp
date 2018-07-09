@@ -11,14 +11,13 @@
 #define _OKAPI_ITERATIVEPOSPIDCONTROLLER_HPP_
 
 #include "okapi/api/control/iterative/iterativePositionController.hpp"
-#include "okapi/impl/control/util/settledUtil.hpp"
+#include "okapi/api/control/util/settledUtil.hpp"
 #include <memory>
 
 namespace okapi {
 class IterativePosPIDControllerArgs : public IterativePositionControllerArgs {
   public:
-  IterativePosPIDControllerArgs(const double ikP, const double ikI, const double ikD,
-                                const double ikBias = 0);
+  IterativePosPIDControllerArgs(double ikP, double ikI, double ikD, double ikBias = 0);
 
   const double kP, kI, kD, kBias;
 };
@@ -26,28 +25,19 @@ class IterativePosPIDControllerArgs : public IterativePositionControllerArgs {
 class IterativePosPIDController : public IterativePositionController {
   public:
   /**
-   * PID controller.
-   *
-   * @param ikP proportional gain
-   * @param ikI integral gain
-   * @param ikD derivative gain
-   * @param ikBias controller bias (constant offset added to the output)
+   * Position PID controller.
    */
-  IterativePosPIDController(const double ikP, const double ikI, const double ikD,
-                            const double ikBias = 0);
+  IterativePosPIDController(double ikP, double ikI, double ikD, double ikBias,
+                            std::unique_ptr<AbstractTimer> iloopDtTimer,
+                            std::unique_ptr<SettledUtil> isettledUtil);
 
   /**
-   * PID controller.
+   * Position PID controller.
    *
    * @param params PosPIDControllerArgs
    */
-  IterativePosPIDController(const IterativePosPIDControllerArgs &params);
-
-  /**
-   * This constructor is meant for unit testing.
-   */
-  IterativePosPIDController(const double ikP, const double ikI, const double ikD,
-                            const double ikBias, std::unique_ptr<Timer> iloopDtTimer,
+  IterativePosPIDController(const IterativePosPIDControllerArgs &params,
+                            std::unique_ptr<AbstractTimer> iloopDtTimer,
                             std::unique_ptr<SettledUtil> isettledUtil);
 
   /**
@@ -57,30 +47,30 @@ class IterativePosPIDController : public IterativePositionController {
    * @param inewReading new measurement
    * @return controller output
    */
-  virtual double step(const double inewReading) override;
+  double step(double inewReading) override;
 
   /**
    * Sets the target for the controller.
    *
    * @param itarget new target position
    */
-  virtual void setTarget(const double itarget) override;
+  void setTarget(double itarget) override;
 
   /**
-   * Returns the last calculated output of the controller. Output is in the range [-127, 127]
+   * Returns the last calculated output of the controller. Output is in the range [-1, 1]
    * unless the bounds have been changed with setOutputLimits().
    */
-  virtual double getOutput() const override;
+  double getOutput() const override;
 
   /**
    * Returns the last error of the controller.
    */
-  virtual double getError() const override;
+  double getError() const override;
 
   /**
    * Returns the last derivative (change in error) of the controller.
    */
-  virtual double getDerivative() const override;
+  double getDerivative() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
@@ -88,7 +78,7 @@ class IterativePosPIDController : public IterativePositionController {
    *
    * @return whether the controller is settled
    */
-  virtual bool isSettled() override;
+  bool isSettled() override;
 
   /**
    * Set controller gains.
@@ -98,15 +88,14 @@ class IterativePosPIDController : public IterativePositionController {
    * @param ikD derivative gain
    * @param ikBias bias (constant offset added to the output)
    */
-  virtual void setGains(const double ikP, const double ikI, const double ikD,
-                        const double ikBias = 0);
+  virtual void setGains(double ikP, double ikI, double ikD, double ikBias = 0);
 
   /**
    * Set time between loops in ms.
    *
    * @param isampleTime time between loops
    */
-  virtual void setSampleTime(const QTime isampleTime) override;
+  void setSampleTime(QTime isampleTime) override;
 
   /**
    * Set controller output bounds. Default bounds are [-1, 1].
@@ -114,7 +103,7 @@ class IterativePosPIDController : public IterativePositionController {
    * @param imax max output
    * @param imin min output
    */
-  virtual void setOutputLimits(double imax, double imin) override;
+  void setOutputLimits(double imax, double imin) override;
 
   /**
    * Set integrator bounds. Default bounds are [-1, 1].
@@ -131,13 +120,13 @@ class IterativePosPIDController : public IterativePositionController {
    * @param imax max error value that will be summed
    * @param imin min error value that will be summed
    */
-  virtual void setErrorSumLimits(const double imax, const double imin);
+  virtual void setErrorSumLimits(double imax, double imin);
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps gains and limits from
    * before.
    */
-  virtual void reset() override;
+  void reset() override;
 
   /**
    * Set whether the integrator should be reset when error is 0 or changes sign.
@@ -150,7 +139,7 @@ class IterativePosPIDController : public IterativePositionController {
    * Changes whether the controller is off or on. Turning the controller on after it was off will
    * cause the controller to move to its last set target, unless it was reset in that time.
    */
-  virtual void flipDisable() override;
+  void flipDisable() override;
 
   /**
    * Sets whether the controller is off or on. Turning the controller on after it was off will
@@ -158,21 +147,21 @@ class IterativePosPIDController : public IterativePositionController {
    *
    * @param iisDisabled whether the controller is disabled
    */
-  virtual void flipDisable(const bool iisDisabled) override;
+  void flipDisable(bool iisDisabled) override;
 
   /**
    * Returns whether the controller is currently disabled.
    *
    * @return whether the controller is currently disabled
    */
-  virtual bool isDisabled() const override;
+  bool isDisabled() const override;
 
   /**
    * Get the last set sample time.
    *
    * @return sample time
    */
-  virtual QTime getSampleTime() const override;
+  QTime getSampleTime() const override;
 
   protected:
   double kP, kI, kD, kBias;
@@ -203,7 +192,7 @@ class IterativePosPIDController : public IterativePositionController {
 
   bool isOn = true;
 
-  std::unique_ptr<Timer> loopDtTimer;
+  std::unique_ptr<AbstractTimer> loopDtTimer;
   std::unique_ptr<SettledUtil> settledUtil;
 };
 } // namespace okapi

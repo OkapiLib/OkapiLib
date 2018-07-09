@@ -10,6 +10,7 @@
 #include "okapi/api/control/util/flywheelSimulator.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include <cmath>
+#include <utility>
 
 namespace okapi {
 FlywheelSimulator::FlywheelSimulator(const double imass, const double ilinkLen,
@@ -74,7 +75,7 @@ double FlywheelSimulator::stepImpl() {
 
 void FlywheelSimulator::setExternalTorqueFunction(
   std::function<double(double, double, double)> itorqueFunc) {
-  torqueFunc = itorqueFunc;
+  torqueFunc = std::move(itorqueFunc);
 }
 
 void FlywheelSimulator::setTorque(const double itorque) {

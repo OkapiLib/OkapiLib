@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.6)
 project(OkapiLibV5)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS -pthread)
 
 include_directories(include)
 
@@ -13,12 +14,22 @@ add_executable(OkapiLibV5
         include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp
         include/okapi/api/chassis/model/xDriveModel.hpp
         include/okapi/api/control/async/asyncController.hpp
+        include/okapi/api/control/async/asyncPosIntegratedController.hpp
         include/okapi/api/control/async/asyncPositionController.hpp
+        include/okapi/api/control/async/asyncPosPidController.hpp
+        include/okapi/api/control/async/asyncVelIntegratedController.hpp
         include/okapi/api/control/async/asyncVelocityController.hpp
+        include/okapi/api/control/async/asyncVelPidController.hpp
+        include/okapi/api/control/async/asyncWrapper.hpp
         include/okapi/api/control/iterative/iterativeController.hpp
+        include/okapi/api/control/iterative/iterativeMotorVelocityController.hpp
         include/okapi/api/control/iterative/iterativePositionController.hpp
+        include/okapi/api/control/iterative/iterativePosPidController.hpp
         include/okapi/api/control/iterative/iterativeVelocityController.hpp
+        include/okapi/api/control/iterative/iterativeVelPidController.hpp
+        include/okapi/api/control/util/controllerRunner.hpp
         include/okapi/api/control/util/flywheelSimulator.hpp
+        include/okapi/api/control/util/settledUtil.hpp
         include/okapi/api/control/closedLoopController.hpp
         include/okapi/api/control/controllerInput.hpp
         include/okapi/api/control/controllerOutput.hpp
@@ -63,6 +74,7 @@ add_executable(OkapiLibV5
         include/test/tests/api/buttonTests.hpp
         include/test/tests/api/chassisControllerTests.hpp
         include/test/tests/api/chassisModelTests.hpp
+        include/test/tests/api/controllerTests.hpp
         include/test/tests/api/controlTests.hpp
         include/test/tests/api/filterTests.hpp
         include/test/tests/api/utilTests.hpp
@@ -72,8 +84,18 @@ add_executable(OkapiLibV5
         src/api/chassis/model/threeEncoderSkidSteerModel.cpp
         src/api/chassis/model/xDriveModel.cpp
         src/api/control/async/asyncController.cpp
+        src/api/control/async/asyncPosIntegratedController.cpp
+        src/api/control/async/asyncPosPidController.cpp
+        src/api/control/async/asyncVelIntegratedController.cpp
+        src/api/control/async/asyncVelPidController.cpp
+        src/api/control/async/asyncWrapper.cpp
         src/api/control/iterative/iterativeController.cpp
+        src/api/control/iterative/iterativeMotorVelocityController.cpp
+        src/api/control/iterative/iterativePosPidController.cpp
+        src/api/control/iterative/iterativeVelPidController.cpp
+        src/api/control/util/controllerRunner.cpp
         src/api/control/util/flywheelSimulator.cpp
+        src/api/control/util/settledUtil.cpp
         src/api/control/closedLoopController.cpp
         src/api/device/button/abstractButton.cpp
         src/api/device/button/buttonBase.cpp
@@ -91,8 +113,9 @@ add_executable(OkapiLibV5
         test/buttonTests.cpp
         test/chassisControllerTests.cpp
         test/chassisModelTests.cpp
+        test/controllerTests.cpp
         test/controlTests.cpp
         test/crossPlatformTestRunner.cpp
         test/filterTests.cpp
         test/testMain.cpp
-        test/utilTests.cpp)
+        test/utilTests.cpp include/test/tests/api/implMocks.hpp test/implMocks.cpp)

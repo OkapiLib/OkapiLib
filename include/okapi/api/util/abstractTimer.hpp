@@ -84,7 +84,7 @@ class AbstractTimer {
    * @return true when the input time period has passed, false after reading true until the
    *   period has passed again
    */
-  virtual bool repeat(const QTime time) = 0;
+  virtual bool repeat(QTime time) = 0;
 
   /**
    * Returns true when the input time period has passed, then resets. Meant to be used in loops
@@ -94,7 +94,7 @@ class AbstractTimer {
    * @return true when the input time period has passed, false after reading true until the
    *   period has passed again
    */
-  virtual bool repeat(const QFrequency frequency) = 0;
+  virtual bool repeat(QFrequency frequency) = 0;
 };
 } // namespace okapi
 

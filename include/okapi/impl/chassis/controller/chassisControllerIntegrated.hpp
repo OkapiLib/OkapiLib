@@ -10,7 +10,7 @@
 
 #include "okapi/api/chassis/controller/chassisController.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
-#include "okapi/impl/control/async/asyncPosIntegratedController.hpp"
+#include "okapi/api/control/async/asyncPosIntegratedController.hpp"
 
 namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {

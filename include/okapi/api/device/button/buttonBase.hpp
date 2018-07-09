@@ -6,30 +6,30 @@
 namespace okapi {
 class ButtonBase : public AbstractButton {
   public:
-  ButtonBase(const bool iinverted = false);
+  explicit ButtonBase(bool iinverted = false);
 
   /**
    * Return whether the button is currently pressed.
    **/
-  virtual bool isPressed() override;
+  bool isPressed() override;
 
   /**
    * Return whether the state of the button changed since the last time this method was
    * called.
    **/
-  virtual bool changed() override;
+  bool changed() override;
 
   /**
    * Return whether the state of the button changed to being pressed since the last time this method
    * was called.
    **/
-  virtual bool changedToPressed() override;
+  bool changedToPressed() override;
 
   /**
    * Return whether the state of the button to being not pressed changed since the last time this
    * method was called.
    **/
-  virtual bool changedToReleased() override;
+  bool changedToReleased() override;
 
   protected:
   const bool inverted;
