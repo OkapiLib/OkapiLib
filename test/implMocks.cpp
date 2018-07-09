@@ -202,4 +202,22 @@ std::unique_ptr<SettledUtil> createSettledUtilPtr(const double iatTargetError,
   return std::make_unique<SettledUtil>(std::make_unique<MockTimer>(), iatTargetError,
                                        iatTargetDerivative, iatTargetTime);
 }
+
+MockRate::MockRate() = default;
+
+void MockRate::delay(QFrequency ihz) {
+  delay(ihz.convert(Hz));
+}
+
+void MockRate::delay(int ihz) {
+  std::this_thread::sleep_for(std::chrono::milliseconds(1000 / ihz));
+}
+
+void MockRate::delayUntil(QTime itime) {
+  delayUntil(itime.convert(millisecond));
+}
+
+void MockRate::delayUntil(uint32_t ims) {
+  std::this_thread::sleep_for(std::chrono::milliseconds(ims));
+}
 } // namespace okapi
