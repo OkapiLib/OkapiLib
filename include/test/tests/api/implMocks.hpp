@@ -10,6 +10,7 @@
 
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
+#include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
 #include <chrono>
 
@@ -127,6 +128,19 @@ class ConstantMockTimer : public AbstractTimer {
   bool repeat(QFrequency frequency) override;
 
   QTime dtToReturn;
+};
+
+class MockRate : public AbstractRate {
+  public:
+  MockRate();
+
+  void delay(QFrequency ihz) override;
+
+  void delay(int ihz) override;
+
+  void delayUntil(QTime itime) override;
+
+  void delayUntil(uint32_t ims) override;
 };
 
 std::unique_ptr<SettledUtil> createSettledUtilPtr(double iatTargetError = 50,
