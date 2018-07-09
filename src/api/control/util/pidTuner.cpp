@@ -6,25 +6,22 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-// #include "api.h"
-#include "okapi/impl/control/util/pidTuner.hpp"
-#include "okapi/impl/util/timer.hpp"
+#include "okapi/api/control/util/pidTuner.hpp"
 #include <algorithm>
 #include <cmath>
 #include <limits>
 #include <random>
 
-const QTime loopDelta = 10_ms;
-#define DIVISOR 5
-
 namespace okapi {
-PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<SettledUtil> isettle,
+PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<AbstractTimer> itimer,
+                   std::unique_ptr<SettledUtil> isettle, std::unique_ptr<AbstractRate> irate,
                    const QTime itimeout, const std::int32_t igoal, const double ikPMin,
                    const double ikPMax, const double ikIMin, const double ikIMax,
                    const double ikDMin, const double ikDMax, const std::size_t inumIterations,
                    const std::size_t inumParticles, const double ikSettle, const double ikITAE)
   : output(ioutput),
     settle(std::move(isettle)),
+    rate(std::move(irate)),
     timeout(itimeout),
     goal(igoal),
     kPMin(ikPMin),
@@ -37,8 +34,7 @@ PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<Se
     numParticles(inumParticles),
     kSettle(ikSettle),
     kITAE(ikITAE),
-    leftController(IterativeControllerFactory::posPID(0, 0, 0)),
-    rightController(IterativeControllerFactory::posPID(0, 0, 0)) {
+    testController(0, 0, 0, 0, std::move(itimer), std::move(isettle)) {
 }
 
 PIDTuner::~PIDTuner() = default;
@@ -49,7 +45,7 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
   std::uniform_real_distribution<double> dist(0, 1);
 
   for (size_t i = 0; i < numParticles; i++) {
-    particleSet set;
+    ParticleSet set{};
     set.kP.pos = kPMin + (kPMax - kPMin) * dist(gen);
     set.kP.vel = set.kP.pos / increment;
     set.kP.best = set.kP.pos;
@@ -65,19 +61,20 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
     set.bestError = std::numeric_limits<double>::max();
   }
 
-  particleSet global;
+  ParticleSet global{};
   global.kP.best = 0;
   global.kI.best = 0;
   global.kD.best = 0;
   global.bestError = std::numeric_limits<double>::max();
 
   // Run the optimization
-  for (size_t i = 0; i < numIterations; i++) {
+  for (size_t iteration = 0; iteration < numIterations; iteration++) {
     // Test constants then calculate fitness function
     bool firstGoal = true;
 
-    for (size_t i = 0; i < numParticles; i++) {
-      testController.setGains(particles[i].kP.pos, particles[i].kI.pos, particles[i].kD.pos);
+    for (size_t particleIndex = 0; particleIndex < numParticles; particleIndex++) {
+      testController.setGains(particles[particleIndex].kP.pos, particles[particleIndex].kI.pos,
+                              particles[particleIndex].kD.pos);
 
       // Reverse the goal every iteration to stay in the same general area
       std::int32_t target = goal;
@@ -95,25 +92,25 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
         if (settleTime > timeout)
           break;
 
-        int error = testController.getError();
-        itae += (settleTime.convert(millisecond) * abs(error)) /
-                DIVISOR; // sum of the error emphasizing later error
+        const double error = testController.getError();
+        // sum of the error emphasizing later error
+        itae += (settleTime.convert(millisecond) * abs((int)error)) / divisor;
 
         output->controllerSet(testController.step(error));
-        pros::c::delay(loopDelta.convert(millisecond));
+        rate->delayUntil(loopDelta);
       }
 
       double error = kSettle * settleTime.convert(millisecond) + kITAE * itae;
-      if (error < particles[i].bestError) {
-        particles[i].kP.best = particles[i].kP.pos;
-        particles[i].kI.best = particles[i].kI.pos;
-        particles[i].kD.best = particles[i].kD.pos;
-        particles[i].bestError = error;
+      if (error < particles[particleIndex].bestError) {
+        particles[particleIndex].kP.best = particles[particleIndex].kP.pos;
+        particles[particleIndex].kI.best = particles[particleIndex].kI.pos;
+        particles[particleIndex].kD.best = particles[particleIndex].kD.pos;
+        particles[particleIndex].bestError = error;
 
         if (error < global.bestError) {
-          global.kP.best = particles[i].kP.pos;
-          global.kI.best = particles[i].kI.pos;
-          global.kD.best = particles[i].kD.pos;
+          global.kP.best = particles[particleIndex].kP.pos;
+          global.kI.best = particles[particleIndex].kI.pos;
+          global.kD.best = particles[particleIndex].kD.pos;
           global.bestError = error;
         }
       }
@@ -162,59 +159,4 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
 
   return IterativePosPIDControllerArgs(global.kP.best, global.kI.best, global.kD.best);
 }
-
-// std::uint32_t PIDTuner::moveDistance(const int itarget) {
-//   const auto encStartVals = model->getSensorVals();
-//   double distanceElapsed = 0, lastDistance = 0;
-//   std::uint32_t prevWakeTime = pros::millis();
-//
-//   leftController.reset();
-//   rightController.reset();
-//   leftController.setTarget(static_cast<double>(itarget));
-//   rightController.setTarget(static_cast<double>(itarget));
-//
-//   bool atTarget = false;
-//   const int atTargetDistance = 15;
-//   const int threshold = 2;
-//
-//   Timer atTargetTimer;
-//   const QTime timeoutPeriod = 250_ms;
-//
-//   std::valarray<std::int32_t> encVals;
-//
-//   while (!atTarget) {
-//     encVals = model->getSensorVals() - encStartVals;
-//     distanceElapsed = static_cast<double>(encVals[0] + encVals[1]) / 2.0;
-//     itae +=
-//       ((atTargetTimer.getDtFromStart().convert(millisecond) * std::abs(itarget -
-//       distanceElapsed)) /
-//        (divisor * std::abs(itarget)));
-//
-//     model->left(leftController.step(distanceElapsed));
-//     model->right(rightController.step(distanceElapsed));
-//
-//     if (std::abs(itarget - static_cast<int>(distanceElapsed)) <= atTargetDistance) {
-//       atTargetTimer.placeHardMark();
-//     } else if (std::abs(static_cast<int>(distanceElapsed) - static_cast<int>(lastDistance)) <=
-//                threshold) {
-//       atTargetTimer.placeHardMark();
-//     } else {
-//       atTargetTimer.clearHardMark();
-//     }
-//
-//     lastDistance = distanceElapsed;
-//
-//     if (atTargetTimer.getDtFromHardMark() >= timeoutPeriod) {
-//       atTarget = true;
-//     }
-//
-//     pros::Task::delay_until(&prevWakeTime, 15);
-//   }
-//
-//   auto settleTime = atTargetTimer.getDtFromStart();
-//
-//   model->stop();
-//   pros::Task::delay(1000); // Let the robot settle
-//   return settleTime.convert(millisecond);
-// }
 } // namespace okapi

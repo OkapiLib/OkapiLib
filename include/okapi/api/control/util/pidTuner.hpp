@@ -10,44 +10,47 @@
 #define _OKAPI_PIDTUNER_HPP_
 
 #include "api.h"
-#include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
+#include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/units/QTime.hpp"
-#include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
+#include "okapi/api/util/abstractRate.hpp"
 #include <memory>
 #include <vector>
 
 namespace okapi {
 class PIDTuner {
   public:
-  PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<SettledUtil> isettle,
-           const QTime itimeout, const std::int32_t igoal, const double ikPMin, const double ikPMax,
-           const double ikIMin, const double ikIMax, const double ikDMin, const double ikDMax,
-           const std::size_t inumIterations = 5, const std::size_t inumParticles = 16,
-           const double ikSettle = 1, const double ikITAE = 2);
+  PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<AbstractTimer> itimer,
+           std::unique_ptr<SettledUtil> isettle, std::unique_ptr<AbstractRate> irate,
+           QTime itimeout, std::int32_t igoal, double ikPMin, double ikPMax, double ikIMin,
+           double ikIMax, double ikDMin, double ikDMax, std::size_t inumIterations = 5,
+           std::size_t inumParticles = 16, double ikSettle = 1, double ikITAE = 2);
 
   virtual ~PIDTuner();
 
   virtual IterativePosPIDControllerArgs autotune();
 
   protected:
-  static constexpr double inertia = 0.5;   // Particle intertia
+  static constexpr double inertia = 0.5;   // Particle inertia
   static constexpr double confSelf = 1.1;  // Self confidence
   static constexpr double confSwarm = 1.2; // Particle swarm confidence
   static constexpr int increment = 5;
   static constexpr int divisor = 5;
+  static constexpr QTime loopDelta = 10_ms; // NOLINT
 
-  struct particle {
+  struct Particle {
     double pos, vel, best;
   };
 
-  struct particleSet {
-    particle kP, kI, kD;
+  struct ParticleSet {
+    Particle kP, kI, kD;
     double bestError;
   };
 
   std::shared_ptr<ControllerOutput> output;
   std::unique_ptr<SettledUtil> settle;
+  std::unique_ptr<AbstractRate> rate;
+
   const QTime timeout;
   const std::int32_t goal;
   const double kPMin;
@@ -61,8 +64,8 @@ class PIDTuner {
   const double kSettle;
   const double kITAE;
 
-  std::vector<particleSet> particles{};
-  IterativePosPIDController testController{0, 0, 0};
+  std::vector<ParticleSet> particles{};
+  IterativePosPIDController testController;
 };
 } // namespace okapi
 
