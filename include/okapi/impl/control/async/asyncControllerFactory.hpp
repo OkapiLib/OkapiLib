@@ -86,7 +86,7 @@ class AsyncControllerFactory {
                                       double ikI, double ikD, double ikBias = 0);
 
   /**
-   * A velocity controller that uses the PID algorithm.
+   * A velocity controller that uses the PD algorithm.
    *
    * @param imotor controller input (from the integrated encoder) and output
    * @param ikP proportional gain
@@ -97,7 +97,7 @@ class AsyncControllerFactory {
                                       double iTPR = imev5TPR);
 
   /**
-   * A velocity controller that uses the PID algorithm.
+   * A velocity controller that uses the PD algorithm.
    *
    * @param imotor controller input (from the integrated encoder) and output
    * @param ikP proportional gain
@@ -108,7 +108,7 @@ class AsyncControllerFactory {
                                       double iTPR = imev5TPR);
 
   /**
-   * A velocity controller that uses the PID algorithm.
+   * A velocity controller that uses the PD algorithm.
    *
    * @param iinput controller input
    * @param ioutput controller output

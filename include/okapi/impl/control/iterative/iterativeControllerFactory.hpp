@@ -19,7 +19,7 @@ namespace okapi {
 class IterativeControllerFactory {
   public:
   /**
-   * PID controller.
+   * Position PID controller.
    *
    * @param ikP proportional gain
    * @param ikI integral gain
@@ -29,7 +29,7 @@ class IterativeControllerFactory {
   static IterativePosPIDController posPID(double ikP, double ikI, double ikD, double ikBias = 0);
 
   /**
-   * Velocity PID controller.
+   * Velocity PD controller.
    *
    * @param ikP proportional gain
    * @param ikD derivative gain
@@ -39,7 +39,7 @@ class IterativeControllerFactory {
                                           const VelMathArgs &iparams = VelMathArgs(imev5TPR));
 
   /**
-   * Velocity PID controller that automatically writes to the motor.
+   * Velocity PD controller that automatically writes to the motor.
    *
    * @param imotor output motor
    * @param ikP proportional gain
@@ -51,7 +51,7 @@ class IterativeControllerFactory {
                 const VelMathArgs &iparams = VelMathArgs(imev5TPR));
 
   /**
-   * Velocity PID controller that automatically writes to the motor.
+   * Velocity PD controller that automatically writes to the motor.
    *
    * @param imotor output motor
    * @param ikP proportional gain
@@ -63,7 +63,7 @@ class IterativeControllerFactory {
                 const VelMathArgs &iparams = VelMathArgs(imev5TPR));
 
   /**
-   * Velocity PID controller that automatically writes to the motor.
+   * Velocity PD controller that automatically writes to the motor.
    *
    * @param imotor output motor
    * @param icontroller controller to use
@@ -72,7 +72,7 @@ class IterativeControllerFactory {
   motorVelocity(Motor imotor, std::shared_ptr<IterativeVelocityController> icontroller);
 
   /**
-   * Velocity PID controller that automatically writes to the motor.
+   * Velocity PD controller that automatically writes to the motor.
    *
    * @param imotor output motor
    * @param icontroller controller to use

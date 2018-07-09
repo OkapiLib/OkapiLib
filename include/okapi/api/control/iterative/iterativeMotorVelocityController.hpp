@@ -25,10 +25,16 @@ class IterativeMotorVelocityControllerArgs : public IterativeVelocityControllerA
 
 class IterativeMotorVelocityController : public IterativeVelocityController {
   public:
+  /**
+   * Velocity controller that automatically writes to the motor.
+   */
   IterativeMotorVelocityController(std::shared_ptr<AbstractMotor> imotor,
                                    std::shared_ptr<IterativeVelocityController> icontroller);
 
-  IterativeMotorVelocityController(const IterativeMotorVelocityControllerArgs &iparams);
+  /**
+   * Velocity controller that automatically writes to the motor.
+   */
+  explicit IterativeMotorVelocityController(const IterativeMotorVelocityControllerArgs &iparams);
 
   /**
    * Do one iteration of the controller.

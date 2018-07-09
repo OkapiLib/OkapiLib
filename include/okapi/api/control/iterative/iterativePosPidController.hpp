@@ -24,19 +24,20 @@ class IterativePosPIDControllerArgs : public IterativePositionControllerArgs {
 
 class IterativePosPIDController : public IterativePositionController {
   public:
+
   /**
-   * PID controller.
-   *
-   * @param params PosPIDControllerArgs
+   * Position PID controller.
    */
-  IterativePosPIDController(const IterativePosPIDControllerArgs &params,
+  IterativePosPIDController(double ikP, double ikI, double ikD, double ikBias,
                             std::unique_ptr<AbstractTimer> iloopDtTimer,
                             std::unique_ptr<SettledUtil> isettledUtil);
 
   /**
-   * This constructor is meant for unit testing.
+   * Position PID controller.
+   *
+   * @param params PosPIDControllerArgs
    */
-  IterativePosPIDController(double ikP, double ikI, double ikD, double ikBias,
+  IterativePosPIDController(const IterativePosPIDControllerArgs &params,
                             std::unique_ptr<AbstractTimer> iloopDtTimer,
                             std::unique_ptr<SettledUtil> isettledUtil);
 

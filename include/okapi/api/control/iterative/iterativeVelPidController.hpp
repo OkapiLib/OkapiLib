@@ -15,6 +15,9 @@
 namespace okapi {
 class IterativeVelPIDController : public IterativeVelocityController {
   public:
+  /**
+   * Velocity PD controller.
+   */
   IterativeVelPIDController(double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath,
                             std::unique_ptr<AbstractTimer> iloopDtTimer,
                             std::unique_ptr<SettledUtil> isettledUtil);
