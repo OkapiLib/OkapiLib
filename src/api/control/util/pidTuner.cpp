@@ -73,8 +73,10 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
     bool firstGoal = true;
 
     for (size_t particleIndex = 0; particleIndex < numParticles; particleIndex++) {
-      testController.setGains(particles[particleIndex].kP.pos, particles[particleIndex].kI.pos,
-                              particles[particleIndex].kD.pos);
+      // TODO: Index out of bounds here (particles is empty at this point)
+      testController.setGains(particles.at(particleIndex).kP.pos,
+                              particles.at(particleIndex).kI.pos,
+                              particles.at(particleIndex).kD.pos);
 
       // Reverse the goal every iteration to stay in the same general area
       std::int32_t target = goal;
@@ -101,16 +103,16 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
       }
 
       double error = kSettle * settleTime.convert(millisecond) + kITAE * itae;
-      if (error < particles[particleIndex].bestError) {
-        particles[particleIndex].kP.best = particles[particleIndex].kP.pos;
-        particles[particleIndex].kI.best = particles[particleIndex].kI.pos;
-        particles[particleIndex].kD.best = particles[particleIndex].kD.pos;
-        particles[particleIndex].bestError = error;
+      if (error < particles.at(particleIndex).bestError) {
+        particles.at(particleIndex).kP.best = particles.at(particleIndex).kP.pos;
+        particles.at(particleIndex).kI.best = particles.at(particleIndex).kI.pos;
+        particles.at(particleIndex).kD.best = particles.at(particleIndex).kD.pos;
+        particles.at(particleIndex).bestError = error;
 
         if (error < global.bestError) {
-          global.kP.best = particles[particleIndex].kP.pos;
-          global.kI.best = particles[particleIndex].kI.pos;
-          global.kD.best = particles[particleIndex].kD.pos;
+          global.kP.best = particles.at(particleIndex).kP.pos;
+          global.kI.best = particles.at(particleIndex).kI.pos;
+          global.kD.best = particles.at(particleIndex).kD.pos;
           global.bestError = error;
         }
       }
@@ -119,41 +121,41 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
     // Update particle trajectories
     for (size_t i = 0; i < numParticles; i++) {
       // Factor in the particles inertia to keep on the same trajectory
-      particles[i].kP.vel *= inertia;
+      particles.at(i).kP.vel *= inertia;
       // Move towards particle's best
-      particles[i].kP.vel +=
-        confSelf * ((particles[i].kP.best - particles[i].kP.pos) / increment) * dist(gen);
+      particles.at(i).kP.vel +=
+        confSelf * ((particles.at(i).kP.best - particles.at(i).kP.pos) / increment) * dist(gen);
       // Move towards swarm's best
-      particles[i].kP.vel +=
-        confSwarm * ((global.kP.best - particles[i].kP.pos) / increment) * dist(gen);
+      particles.at(i).kP.vel +=
+        confSwarm * ((global.kP.best - particles.at(i).kP.pos) / increment) * dist(gen);
       // Kinematics
-      particles[i].kP.pos += particles[i].kP.vel * increment;
+      particles.at(i).kP.pos += particles.at(i).kP.vel * increment;
 
       // Factor in the particles inertia to keep on the same trajectory
-      particles[i].kI.vel *= inertia;
+      particles.at(i).kI.vel *= inertia;
       // Move towards particle's best
-      particles[i].kI.vel +=
-        confSelf * ((particles[i].kI.best - particles[i].kI.pos) / increment) * dist(gen);
+      particles.at(i).kI.vel +=
+        confSelf * ((particles.at(i).kI.best - particles.at(i).kI.pos) / increment) * dist(gen);
       // Move towards swarm's best
-      particles[i].kI.vel +=
-        confSwarm * ((global.kI.best - particles[i].kI.pos) / increment) * dist(gen);
+      particles.at(i).kI.vel +=
+        confSwarm * ((global.kI.best - particles.at(i).kI.pos) / increment) * dist(gen);
       // Kinematics
-      particles[i].kI.pos += particles[i].kI.vel * increment;
+      particles.at(i).kI.pos += particles.at(i).kI.vel * increment;
 
       // Factor in the particles inertia to keep on the same trajectory
-      particles[i].kD.vel *= inertia;
+      particles.at(i).kD.vel *= inertia;
       // Move towards particle's best
-      particles[i].kD.vel +=
-        confSelf * ((particles[i].kD.best - particles[i].kD.pos) / increment) * dist(gen);
+      particles.at(i).kD.vel +=
+        confSelf * ((particles.at(i).kD.best - particles.at(i).kD.pos) / increment) * dist(gen);
       // Move towards swarm's best
-      particles[i].kD.vel +=
-        confSwarm * ((global.kD.best - particles[i].kD.pos) / increment) * dist(gen);
+      particles.at(i).kD.vel +=
+        confSwarm * ((global.kD.best - particles.at(i).kD.pos) / increment) * dist(gen);
       // Kinematics
-      particles[i].kD.pos += particles[i].kD.vel * increment;
+      particles.at(i).kD.pos += particles.at(i).kD.vel * increment;
 
-      particles[i].kP.pos = std::clamp(particles[i].kP.pos, kPMin, kPMax);
-      particles[i].kI.pos = std::clamp(particles[i].kI.pos, kIMin, kIMax);
-      particles[i].kD.pos = std::clamp(particles[i].kD.pos, kDMin, kDMax);
+      particles.at(i).kP.pos = std::clamp(particles.at(i).kP.pos, kPMin, kPMax);
+      particles.at(i).kI.pos = std::clamp(particles.at(i).kI.pos, kIMin, kIMax);
+      particles.at(i).kD.pos = std::clamp(particles.at(i).kD.pos, kDMin, kDMax);
     }
   }
 
