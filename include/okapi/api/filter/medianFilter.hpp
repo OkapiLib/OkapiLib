@@ -19,7 +19,9 @@ namespace okapi {
 class MedianFilterArgs : public FilterArgs {};
 
 /**
- * @param n number of taps in the filter
+ * A filter which returns the median value of list of values.
+ *
+ * @tparam n number of taps in the filter
  */
 template <std::size_t n> class MedianFilter : public Filter {
   public:
