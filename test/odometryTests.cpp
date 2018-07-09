@@ -6,11 +6,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/tests/api/odometryTests.hpp"
-#include "okapi/api.hpp"
 #include "okapi/api/odometry/odometry.hpp"
 #include "test/testRunner.hpp"
-#include <memory>
 #include "test/tests/api/implMocks.hpp"
+#include <memory>
 
 void testOdometry() {
   using namespace okapi;
@@ -19,8 +18,8 @@ void testOdometry() {
   test_printf("Testing Odometry");
 
   class MockModel : public SkidSteerModel {
-  public:
-    MockModel() : SkidSteerModel(std::make_shared<Motor>(1), std::make_shared<Motor>(2)) {
+    public:
+    MockModel() : SkidSteerModel(std::make_shared<MockMotor>(), std::make_shared<MockMotor>()) {
     }
 
     std::valarray<std::int32_t> getSensorVals() const override {

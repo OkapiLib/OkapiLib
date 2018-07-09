@@ -16,8 +16,8 @@
 namespace okapi {
 class ThreeEncoderOdometryArgs : public OdometryArgs {
   public:
-  ThreeEncoderOdometryArgs(std::shared_ptr<SkidSteerModel> imodel,  double iscale,
-                            double iturnScale,  double imiddleScale);
+  ThreeEncoderOdometryArgs(std::shared_ptr<SkidSteerModel> imodel, double iscale, double iturnScale,
+                           double imiddleScale);
 
   const double middleScale;
 };
@@ -35,8 +35,8 @@ class ThreeEncoderOdometry : public Odometry {
    * encoders)
    * @param irateSupplier a supplier of AbstractRate implementations
    */
-  ThreeEncoderOdometry(std::shared_ptr<ThreeEncoderSkidSteerModel> imodel,  double iscale,
-                        double iturnScale,  double imiddleScale,
+  ThreeEncoderOdometry(std::shared_ptr<ThreeEncoderSkidSteerModel> imodel, double iscale,
+                       double iturnScale, double imiddleScale,
                        std::function<std::unique_ptr<AbstractRate>(void)> irateSupplier);
 
   /**

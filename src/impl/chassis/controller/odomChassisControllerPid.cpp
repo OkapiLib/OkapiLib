@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/chassis/controller/odomChassisControllerPid.hpp"
-#include "okapi/impl/odometry/odomMath.hpp"
+#include "okapi/api/odometry/odomMath.hpp"
 #include <cmath>
 
 namespace okapi {

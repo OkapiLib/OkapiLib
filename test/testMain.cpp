@@ -17,6 +17,7 @@ int main() {
   testFilters();
   testUtil();
   testControllers();
+  testOdometry();
 
   test_print_report();
 

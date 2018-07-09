@@ -9,11 +9,11 @@
 #define _OKAPI_ODOMCHASSISCONTROLLERINTEGRATED_HPP_
 
 #include "api.h"
+#include "okapi/api/odometry/odometry.hpp"
 #include "okapi/impl/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/impl/chassis/controller/odomChassisController.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
-#include "okapi/impl/odometry/odometry.hpp"
 #include <memory>
 
 namespace okapi {

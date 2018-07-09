@@ -15,6 +15,7 @@
 #include "test/tests/api/controlTests.hpp"
 #include "test/tests/api/controllerTests.hpp"
 #include "test/tests/api/filterTests.hpp"
+#include "test/tests/api/odometryTests.hpp"
 #include "test/tests/api/utilTests.hpp"
 
 #endif

@@ -17,7 +17,7 @@ namespace okapi {
 class OdomState {
   public:
   OdomState();
-  OdomState( double ix,  double iy,  double itheta);
+  OdomState(double ix, double iy, double itheta);
 
   virtual ~OdomState();
 
@@ -28,8 +28,7 @@ class OdomState {
 
 class OdometryArgs {
   public:
-  OdometryArgs(std::shared_ptr<SkidSteerModel> imodel,  double iscale,
-                double iturnScale);
+  OdometryArgs(std::shared_ptr<SkidSteerModel> imodel, double iscale, double iturnScale);
 
   virtual ~OdometryArgs();
 
@@ -47,7 +46,7 @@ class Odometry {
    * @param iscale straight scale
    * @param iturnScale turn scale
    */
-  Odometry(std::shared_ptr<SkidSteerModel> imodel,  double iscale,  double iturnScale,
+  Odometry(std::shared_ptr<SkidSteerModel> imodel, double iscale, double iturnScale,
            std::unique_ptr<AbstractRate> irate);
 
   /**
@@ -66,7 +65,7 @@ class Odometry {
    * @param iscale straight scale converting encoder ticks to mm
    * @param iturnScale turn scale converting encoder ticks to radians
    */
-  virtual void setScales( double iscale,  double iturnScale);
+  virtual void setScales(double iscale, double iturnScale);
 
   /**
    * Do odometry math in an infinite loop.
