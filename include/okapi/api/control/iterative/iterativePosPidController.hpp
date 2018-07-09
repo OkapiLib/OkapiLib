@@ -24,7 +24,6 @@ class IterativePosPIDControllerArgs : public IterativePositionControllerArgs {
 
 class IterativePosPIDController : public IterativePositionController {
   public:
-
   /**
    * Position PID controller.
    */
