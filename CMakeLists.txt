@@ -124,4 +124,8 @@ add_executable(OkapiLibV5
         test/crossPlatformTestRunner.cpp
         test/filterTests.cpp
         test/testMain.cpp
-        test/utilTests.cpp include/test/tests/api/implMocks.hpp test/implMocks.cpp)
+        test/utilTests.cpp
+        include/test/tests/api/implMocks.hpp
+        include/test/tests/api/odometryTests.hpp
+        test/implMocks.cpp
+        test/odometryTests.cpp)

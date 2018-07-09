@@ -5,13 +5,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ODOMETRYTESTS_HPP_
-#define _OKAPI_ODOMETRYTESTS_HPP_
-
+#include "test/tests/api/odometryTests.hpp"
 #include "okapi/api.hpp"
-#include "okapi/impl/odometry/odometry.hpp"
+#include "okapi/api/odometry/odometry.hpp"
 #include "test/testRunner.hpp"
 #include <memory>
+#include "test/tests/api/implMocks.hpp"
 
 void testOdometry() {
   using namespace okapi;
@@ -20,11 +19,11 @@ void testOdometry() {
   test_printf("Testing Odometry");
 
   class MockModel : public SkidSteerModel {
-    public:
+  public:
     MockModel() : SkidSteerModel(std::make_shared<Motor>(1), std::make_shared<Motor>(2)) {
     }
 
-    virtual std::valarray<std::int32_t> getSensorVals() const override {
+    std::valarray<std::int32_t> getSensorVals() const override {
       return std::valarray<std::int32_t>{leftEnc, rightEnc};
     }
 
@@ -38,11 +37,5 @@ void testOdometry() {
   };
 
   auto model = std::make_shared<MockModel>();
-  Odometry odom(model, 143.239449, 16.875);
+  Odometry odom(model, 143.239449, 16.875, std::make_unique<MockRate>());
 }
-
-void runHeadlessOdometryTests() {
-  testOdometry();
-}
-
-#endif
