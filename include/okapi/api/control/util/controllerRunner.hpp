@@ -1,5 +1,4 @@
 /**
- * @author Kevin Harrington, Common Wealth Robotics
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -18,8 +17,6 @@
 namespace okapi {
 class ControllerRunner {
   public:
-  ControllerRunner();
-
   ControllerRunner(std::unique_ptr<AbstractRate> irate);
 
   virtual ~ControllerRunner();

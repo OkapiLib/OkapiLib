@@ -13,7 +13,7 @@
 namespace okapi {
 class EmaFilterArgs : public FilterArgs {
   public:
-  EmaFilterArgs(const double ialpha);
+  explicit EmaFilterArgs(double ialpha);
 
   const double alpha;
 };
@@ -25,9 +25,9 @@ class EmaFilter : public Filter {
    *
    * @param ialpha alpha gain
    */
-  EmaFilter(const double ialpha);
+  explicit EmaFilter(double ialpha);
 
-  EmaFilter(const EmaFilterArgs &iargs);
+  explicit EmaFilter(const EmaFilterArgs &iargs);
 
   /**
    * Filters a value, like a sensor reading.
@@ -35,21 +35,21 @@ class EmaFilter : public Filter {
    * @param reading new measurement
    * @return filtered result
    */
-  virtual double filter(const double ireading) override;
+  double filter(double ireading) override;
 
   /**
    * Returns the previous output from filter.
    *
    * @return the previous output from filter
    */
-  virtual double getOutput() const override;
+  double getOutput() const override;
 
   /**
    * Set filter gains.
    *
    * @param ialpha alpha gain
    */
-  virtual void setGains(const double ialpha);
+  virtual void setGains(double ialpha);
 
   protected:
   double alpha;

@@ -14,7 +14,7 @@
 namespace okapi {
 class DemaFilterArgs : public FilterArgs {
   public:
-  DemaFilterArgs(const double ialpha, const double ibeta);
+  DemaFilterArgs(double ialpha, double ibeta);
 
   const double alpha;
   const double beta;
@@ -28,9 +28,9 @@ class DemaFilter : public Filter {
    * @param ialpha alpha gain
    * @param ibeta beta gain
    */
-  DemaFilter(const double ialpha, const double ibeta);
+  DemaFilter(double ialpha, double ibeta);
 
-  DemaFilter(const DemaFilterArgs &iargs);
+  explicit DemaFilter(const DemaFilterArgs &iargs);
 
   /**
    * Filters a value, like a sensor reading.
@@ -38,14 +38,14 @@ class DemaFilter : public Filter {
    * @param reading new measurement
    * @return filtered result
    */
-  virtual double filter(const double ireading) override;
+  double filter(double ireading) override;
 
   /**
    * Returns the previous output from filter.
    *
    * @return the previous output from filter
    */
-  virtual double getOutput() const override;
+  double getOutput() const override;
 
   /**
    * Set filter gains.
@@ -53,7 +53,7 @@ class DemaFilter : public Filter {
    * @param ialpha alpha gain
    * @param ibeta beta gain
    */
-  virtual void setGains(const double ialpha, const double ibeta);
+  virtual void setGains(double ialpha, double ibeta);
 
   protected:
   double alpha, beta;

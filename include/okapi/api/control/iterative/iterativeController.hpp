@@ -28,7 +28,7 @@ class IterativeController : public ClosedLoopController {
    * @param inewReading new measurement
    * @return controller [-1, 1]
    */
-  virtual double step(const double ireading) = 0;
+  virtual double step(double ireading) = 0;
 
   /**
    * Returns the last calculated output of the controller.
@@ -45,7 +45,7 @@ class IterativeController : public ClosedLoopController {
    *
    * @param isampleTime time between loops
    */
-  virtual void setSampleTime(const QTime isampleTime);
+  virtual void setSampleTime(QTime isampleTime);
 
   /**
    * Set controller output bounds.

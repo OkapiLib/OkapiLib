@@ -26,7 +26,7 @@ class PassthroughFilter : public Filter {
    * @param ireading new measurement
    * @return filtered result
    */
-  double filter(const double ireading) override;
+  double filter(double ireading) override;
 
   /**
    * Returns the previous output from filter.

@@ -64,7 +64,7 @@ class ChassisScales {
    */
   ChassisScales(const std::initializer_list<QLength> &iwheelbase) {
     std::vector<QLength> vec(iwheelbase);
-    straight = 360 / (vec.at(0).convert(meter) * 1_pi);
+    straight = static_cast<double>(360 / (vec.at(0).convert(meter) * 1_pi));
     turn = vec.at(1).convert(meter) / vec.at(0).convert(meter);
   }
 

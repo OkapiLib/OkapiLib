@@ -25,7 +25,7 @@ class ChassisController {
    *
    * @param imodel underlying ChassisModel
    */
-  ChassisController(std::shared_ptr<ChassisModel> imodel);
+  explicit ChassisController(std::shared_ptr<ChassisModel> imodel);
 
   virtual ~ChassisController();
 
@@ -34,35 +34,35 @@ class ChassisController {
    *
    * @param itarget distance to travel
    */
-  virtual void moveDistance(const QLength itarget) = 0;
+  virtual void moveDistance(QLength itarget) = 0;
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
    *
    * @param itarget distance to travel in motor degrees
    */
-  virtual void moveDistance(const double itarget) = 0;
+  virtual void moveDistance(double itarget) = 0;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for
    */
-  virtual void turnAngle(const QAngle idegTarget) = 0;
+  virtual void turnAngle(QAngle idegTarget) = 0;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for in motor degrees
    */
-  virtual void turnAngle(const double idegTarget) = 0;
+  virtual void turnAngle(double idegTarget) = 0;
 
   /**
    * Drive the robot forwards (using open-loop control).
    *
    * @param ipower motor power
    */
-  virtual void forward(const int ispeed) const;
+  virtual void forward(int ispeed) const;
 
   /**
    * Drive the robot in an arc (using open-loop control).
@@ -73,14 +73,14 @@ class ChassisController {
    * @param iySpeed speed on y axis (forward)
    * @param izRotation speed around z axis (up)
    */
-  virtual void driveVector(const double iySpeed, const double izRotation) const;
+  virtual void driveVector(double iySpeed, double izRotation) const;
 
   /**
    * Turn the robot clockwise (using open-loop control).
    *
    * @param ipower motor power
    */
-  virtual void rotate(const int ispeed) const;
+  virtual void rotate(int ispeed) const;
 
   /**
    * Stop the robot (set all the motors to 0).
@@ -94,8 +94,7 @@ class ChassisController {
    * @param irightSpeed right side speed
    * @param ithreshold deadband on joystick values
    */
-  virtual void tank(const double ileftSpeed, const double irightSpeed,
-                    const double ithreshold = 0) const;
+  virtual void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const;
 
   /**
    * Drive the robot with an arcade drive layout.
@@ -104,22 +103,21 @@ class ChassisController {
    * @param izRotation speed around z axis (up)
    * @param ithreshold deadband on joystick values
    */
-  virtual void arcade(const double iySpeed, const double izRotation,
-                      const double ithreshold = 0) const;
+  virtual void arcade(double iySpeed, double izRotation, double ithreshold = 0) const;
 
   /**
    * Power the left side motors.
    *
    * @param ipower motor power
    */
-  virtual void left(const double ispeed) const;
+  virtual void left(double ispeed) const;
 
   /**
    * Power the right side motors.
    *
    * @param ipower motor power
    */
-  virtual void right(const double ispeed) const;
+  virtual void right(double ispeed) const;
 
   /**
    * Read the sensors.
@@ -138,21 +136,21 @@ class ChassisController {
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(const AbstractMotor::brakeMode mode) const;
+  virtual void setBrakeMode(AbstractMotor::brakeMode mode) const;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(const AbstractMotor::encoderUnits units) const;
+  virtual void setEncoderUnits(AbstractMotor::encoderUnits units) const;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(const AbstractMotor::gearset gearset) const;
+  virtual void setGearing(AbstractMotor::gearset gearset) const;
 
   protected:
   std::shared_ptr<ChassisModel> model;

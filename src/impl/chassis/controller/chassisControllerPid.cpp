@@ -7,6 +7,7 @@
  */
 #include "okapi/impl/chassis/controller/chassisControllerPid.hpp"
 #include "api.h"
+#include "okapi/impl/control/util/settledUtilFactory.hpp"
 #include "okapi/impl/util/timer.hpp"
 #include <cmath>
 
@@ -17,8 +18,8 @@ ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                                            const AbstractMotor::GearsetRatioPair igearset,
                                            const ChassisScales &iscales)
   : ChassisController(imodel),
-    distancePid(idistanceArgs),
-    anglePid(iangleArgs),
+    distancePid(idistanceArgs, std::make_unique<Timer>(), SettledUtilFactory::createPtr()),
+    anglePid(iangleArgs, std::make_unique<Timer>(), SettledUtilFactory::createPtr()),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),
     turnScale(iscales.turn) {

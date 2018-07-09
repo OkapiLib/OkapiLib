@@ -17,7 +17,7 @@ class ControllerOutput {
    *
    * @param ivalue the controller's output
    */
-  virtual void controllerSet(const double ivalue) = 0;
+  virtual void controllerSet(double ivalue) = 0;
 };
 } // namespace okapi
 

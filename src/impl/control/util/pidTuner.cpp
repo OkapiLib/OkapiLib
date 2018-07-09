@@ -36,7 +36,9 @@ PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<Se
     numIterations(inumIterations),
     numParticles(inumParticles),
     kSettle(ikSettle),
-    kITAE(ikITAE) {
+    kITAE(ikITAE),
+    leftController(IterativeControllerFactory::posPID(0, 0, 0)),
+    rightController(IterativeControllerFactory::posPID(0, 0, 0)) {
 }
 
 PIDTuner::~PIDTuner() = default;

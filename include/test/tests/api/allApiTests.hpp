@@ -13,6 +13,7 @@
 #include "test/tests/api/chassisControllerTests.hpp"
 #include "test/tests/api/chassisModelTests.hpp"
 #include "test/tests/api/controlTests.hpp"
+#include "test/tests/api/controllerTests.hpp"
 #include "test/tests/api/filterTests.hpp"
 #include "test/tests/api/utilTests.hpp"
 

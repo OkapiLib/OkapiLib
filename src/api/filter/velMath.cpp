@@ -13,9 +13,7 @@
 
 namespace okapi {
 VelMathArgs::VelMathArgs(const double iticksPerRev)
-  : VelMathArgs(iticksPerRev,
-                std::make_shared<ComposableFilter>(std::initializer_list<std::shared_ptr<Filter>>(
-                  {std::make_shared<MedianFilter<3>>(), std::make_shared<AverageFilter<5>>()}))) {
+  : VelMathArgs(iticksPerRev, std::make_shared<AverageFilter<2>>()) {
 }
 
 VelMathArgs::VelMathArgs(const double iticksPerRev, std::shared_ptr<Filter> ifilter)

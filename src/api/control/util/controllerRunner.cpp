@@ -5,14 +5,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/control/util/controllerRunner.hpp"
-#include "okapi/impl/util/rate.hpp"
+#include "okapi/api/control/util/controllerRunner.hpp"
 #include <cmath>
 
 namespace okapi {
-ControllerRunner::ControllerRunner() : rate(std::make_unique<Rate>()) {
-}
-
 ControllerRunner::ControllerRunner(std::unique_ptr<AbstractRate> irate) : rate(std::move(irate)) {
 }
 

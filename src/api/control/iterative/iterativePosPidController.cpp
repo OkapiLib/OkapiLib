@@ -7,7 +7,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/control/iterative/iterativePosPidController.hpp"
+#include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include <algorithm>
 #include <cmath>
 
@@ -17,20 +17,16 @@ IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, c
   : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
 }
 
-IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
-                                                     const double ikD, const double ikBias)
-  : IterativePosPIDController(ikP, ikI, ikD, ikBias, std::make_unique<Timer>(),
-                              std::make_unique<SettledUtil>()) {
-}
-
-IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params)
+IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params,
+                                                     std::unique_ptr<AbstractTimer> iloopDtTimer,
+                                                     std::unique_ptr<SettledUtil> isettledUtil)
   : IterativePosPIDController(params.kP, params.kI, params.kD, params.kBias,
-                              std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
+                              std::move(iloopDtTimer), std::move(isettledUtil)) {
 }
 
 IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
                                                      const double ikD, const double ikBias,
-                                                     std::unique_ptr<Timer> iloopDtTimer,
+                                                     std::unique_ptr<AbstractTimer> iloopDtTimer,
                                                      std::unique_ptr<SettledUtil> isettledUtil)
   : loopDtTimer(std::move(iloopDtTimer)), settledUtil(std::move(isettledUtil)) {
   if (ikI != 0) {
@@ -62,8 +58,7 @@ bool IterativePosPIDController::isSettled() {
 
 void IterativePosPIDController::setSampleTime(const QTime isampleTime) {
   if (isampleTime > 0_ms) {
-    const double ratio = static_cast<double>(isampleTime.convert(millisecond)) /
-                         static_cast<double>(sampleTime.convert(millisecond));
+    const double ratio = isampleTime.convert(millisecond) / sampleTime.convert(millisecond);
     kI *= ratio;
     kD /= ratio;
     sampleTime = isampleTime;
