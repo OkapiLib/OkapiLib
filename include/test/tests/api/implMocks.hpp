@@ -67,8 +67,6 @@ class MockTimer : public AbstractTimer {
   public:
   MockTimer();
 
-  ~MockTimer() override;
-
   QTime millis() const override;
 
   QTime getDt() override;
@@ -105,8 +103,6 @@ class MockTimer : public AbstractTimer {
 class ConstantMockTimer : public AbstractTimer {
   public:
   explicit ConstantMockTimer(QTime idt);
-
-  ~ConstantMockTimer() override;
 
   QTime millis() const override;
 

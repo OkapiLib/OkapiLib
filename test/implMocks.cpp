@@ -88,8 +88,6 @@ std::int32_t MockMotor::moveVoltage(const std::int16_t ivoltage) const {
 MockTimer::MockTimer() : firstCalled(millis()), lastCalled(firstCalled), mark(firstCalled) {
 }
 
-MockTimer::~MockTimer() = default;
-
 QTime MockTimer::millis() const {
   return std::chrono::duration_cast<std::chrono::milliseconds>(
            std::chrono::high_resolution_clock::now() - epoch)
@@ -155,8 +153,6 @@ bool MockTimer::repeat(const QFrequency frequency) {
 
 ConstantMockTimer::ConstantMockTimer(const QTime idt) : dtToReturn(idt) {
 }
-
-ConstantMockTimer::~ConstantMockTimer() = default;
 
 QTime ConstantMockTimer::millis() const {
   return 0_ms;
