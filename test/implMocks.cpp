@@ -12,6 +12,8 @@
 #include <chrono>
 
 namespace okapi {
+MockMotor::MockMotor() = default;
+
 void MockMotor::controllerSet(const double ivalue) {
 }
 

@@ -19,6 +19,8 @@ namespace okapi {
  */
 class MockMotor : public AbstractMotor {
   public:
+  MockMotor();
+
   void controllerSet(double ivalue) override;
 
   int32_t moveAbsolute(double iposition, std::int32_t ivelocity) const override;
