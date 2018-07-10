@@ -13,6 +13,12 @@
 #include <memory>
 
 namespace okapi {
+/**
+ * A ControllerInput with a filter built in.
+ *
+ * @tparam InputType the type of the ControllerInput
+ * @tparam FilterType the type of the Filter
+ */
 template <typename InputType, typename FilterType>
 class FilteredControllerInput : public ControllerInput {
   public:
