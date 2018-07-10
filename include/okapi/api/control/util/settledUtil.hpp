@@ -17,7 +17,7 @@ class SettledUtil {
   public:
   /**
    * A utility class to determine if a control loop has settled based on error. A control loop is
-   * settled if the error is within atTargetError for atTargetTime.
+   * settled if the error is within atTargetError and atTargetDerivative for atTargetTime.
    *
    * @param iatTargetError minimum error to be considered settled
    * @param iatTargetDerivative minimum error derivative to be considered settled
