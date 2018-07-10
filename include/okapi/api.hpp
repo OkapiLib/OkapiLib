@@ -79,6 +79,7 @@
 #include "okapi/api/units/QVolume.hpp"
 
 #include "okapi/api/util/mathUtil.hpp"
+#include "okapi/api/util/supplier.hpp"
 #include "okapi/impl/util/rate.hpp"
 #include "okapi/impl/util/timer.hpp"
 
