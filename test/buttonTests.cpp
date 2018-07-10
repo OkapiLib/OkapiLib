@@ -8,6 +8,11 @@
 #include "test/tests/api/buttonTests.hpp"
 #include "okapi/api/device/button/buttonBase.hpp"
 #include "test/crossPlatformTestRunner.hpp"
+#include <gtest/gtest.h>
+
+TEST(MainButtonTest, SimpleIsPressedSequence) {
+  EXPECT_EQ(1, 2);
+}
 
 void testButtons() {
   using namespace okapi;

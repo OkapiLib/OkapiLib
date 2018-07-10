@@ -7,18 +7,18 @@
  */
 #include "test/tests/api/allApiTests.hpp"
 
-int main() {
-  using namespace okapi;
-
-  testChassisScales();
-  testChassisModels();
-  testControlUtils();
-  testButtons();
-  testFilters();
-  testUtil();
-  testControllers();
-
-  test_print_report();
-
-  return static_cast<int>(test_query_report());
-}
+//int main() {
+//  using namespace okapi;
+//
+//  testChassisScales();
+//  testChassisModels();
+//  testControlUtils();
+//  testButtons();
+//  testFilters();
+//  testUtil();
+//  testControllers();
+//
+//  test_print_report();
+//
+//  return static_cast<int>(test_query_report());
+//}
