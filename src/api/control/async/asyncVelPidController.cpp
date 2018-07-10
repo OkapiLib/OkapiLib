@@ -9,16 +9,16 @@
 #include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
-AsyncVelPIDController::AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
-                                             std::shared_ptr<ControllerOutput> ioutput,
-                                             std::unique_ptr<AbstractRate> irate,
-                                             std::unique_ptr<AbstractTimer> itimer,
-                                             std::unique_ptr<SettledUtil> isettledUtil,
-                                             const double ikP, const double ikD, const double ikF,
-                                             std::unique_ptr<VelMath> ivelMath)
+AsyncVelPIDController::AsyncVelPIDController(
+  std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
+  const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
+  std::unique_ptr<AbstractTimer> itimer,
+  const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier, const double ikP,
+  const double ikD, const double ikF, std::unique_ptr<VelMath> ivelMath)
   : AsyncWrapper(iinput, ioutput,
-                 std::make_unique<IterativeVelPIDController>(
-                   ikP, ikD, ikF, std::move(ivelMath), std::move(itimer), std::move(isettledUtil)),
-                 std::move(irate)) {
+                 std::make_unique<IterativeVelPIDController>(ikP, ikD, ikF, std::move(ivelMath),
+                                                             std::move(itimer),
+                                                             isettledUtilSupplier.get()),
+                 irateSupplier, isettledUtilSupplier.get()) {
 }
 } // namespace okapi

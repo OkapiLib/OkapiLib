@@ -133,7 +133,8 @@ void testAsyncControllers() {
 
     auto motor = std::make_shared<MockMotor>();
 
-    AsyncPosIntegratedController controller(motor, createSettledUtilPtr());
+    AsyncPosIntegratedController controller(motor, createSettledUtilPtr(),
+                                            std::make_unique<MockRate>());
 
     controller.setTarget(100);
     test("Should be on by default", TEST_BODY(AssertThat, motor->lastPosition, Equals(100)));
@@ -161,7 +162,8 @@ void testAsyncControllers() {
 
     auto motor = std::make_shared<MockMotor>();
 
-    AsyncVelIntegratedController controller(motor, createSettledUtilPtr());
+    AsyncVelIntegratedController controller(motor, createSettledUtilPtr(),
+                                            std::make_unique<MockRate>());
 
     controller.setTarget(100);
     test("Should be on by default", TEST_BODY(AssertThat, motor->lastVelocity, Equals(100)));

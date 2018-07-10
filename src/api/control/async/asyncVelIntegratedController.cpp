@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/async/asyncVelIntegratedController.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
 AsyncVelIntegratedControllerArgs::AsyncVelIntegratedControllerArgs(
@@ -14,13 +15,15 @@ AsyncVelIntegratedControllerArgs::AsyncVelIntegratedControllerArgs(
 }
 
 AsyncVelIntegratedController::AsyncVelIntegratedController(
-  std::shared_ptr<AbstractMotor> imotor, std::unique_ptr<SettledUtil> isettledUtil)
-  : motor(imotor), settledUtil(std::move(isettledUtil)) {
+  std::shared_ptr<AbstractMotor> imotor, std::unique_ptr<SettledUtil> isettledUtil,
+  std::unique_ptr<AbstractRate> irate)
+  : motor(imotor), settledUtil(std::move(isettledUtil)), rate(std::move(irate)) {
 }
 
 AsyncVelIntegratedController::AsyncVelIntegratedController(
-  const AsyncVelIntegratedControllerArgs &iparams, std::unique_ptr<SettledUtil> isettledUtil)
-  : motor(iparams.motor), settledUtil(std::move(isettledUtil)) {
+  const AsyncVelIntegratedControllerArgs &iparams, std::unique_ptr<SettledUtil> isettledUtil,
+  std::unique_ptr<AbstractRate> irate)
+  : motor(iparams.motor), settledUtil(std::move(isettledUtil)), rate(std::move(irate)) {
 }
 
 void AsyncVelIntegratedController::setTarget(const double itarget) {
@@ -66,6 +69,12 @@ void AsyncVelIntegratedController::resumeMovement() {
     if (hasFirstTarget) {
       setTarget(lastTarget);
     }
+  }
+}
+
+void AsyncVelIntegratedController::waitUntilSettled() {
+  while (!settledUtil->isSettled(getError())) {
+    rate->delayUntil(motorUpdateRate);
   }
 }
 } // namespace okapi
