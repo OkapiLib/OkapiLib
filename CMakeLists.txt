@@ -120,4 +120,4 @@ add_executable(OkapiLibV5
         test/crossPlatformTestRunner.cpp
         test/filterTests.cpp
         test/testMain.cpp
-        test/utilTests.cpp include/test/tests/api/implMocks.hpp test/implMocks.cpp)
+        test/utilTests.cpp include/test/tests/api/implMocks.hpp test/implMocks.cpp include/okapi/api/util/supplier.hpp)

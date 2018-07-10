@@ -16,7 +16,9 @@ namespace okapi {
 class AverageFilterArgs : public FilterArgs {};
 
 /**
- * @param n number of taps in the filter
+ * A filter which returns the average of a list of values.
+ *
+ * @tparam n number of taps in the filter
  */
 template <std::size_t n> class AverageFilter : public Filter {
   public:
