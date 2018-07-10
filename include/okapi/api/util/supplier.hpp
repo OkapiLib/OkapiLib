@@ -13,6 +13,7 @@
 namespace okapi {
 /**
  * A supplier of instances of T.
+ *
  * @tparam T the type to supply
  */
 template <typename T> class Supplier {
