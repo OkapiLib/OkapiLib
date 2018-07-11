@@ -8,103 +8,59 @@
 #include "test/tests/api/buttonTests.hpp"
 #include "okapi/api/device/button/buttonBase.hpp"
 #include "test/crossPlatformTestRunner.hpp"
+#include <gtest/gtest.h>
+#include <utility>
 
-void testButtons() {
-  using namespace okapi;
-  using namespace snowhouse;
-  using namespace fakeit;
+using namespace okapi;
+using namespace snowhouse;
+using namespace fakeit;
 
-  class MockButton : public ButtonBase {
-    public:
-    bool currentlyPressed() override {
-      return false;
-    }
-  };
-
-  {
-    test_printf("Testing Button");
-
-    {
-      MockButton spyMe;
-      Mock<MockButton> mockFactory(spyMe);
-      When(Method(mockFactory, currentlyPressed)).Return(false).Return(true).Return(false);
-      Spy(Method(mockFactory, isPressed));
-      MockButton &btn = mockFactory.get();
-
-      test("Button isPressed should be false",
-           TEST_BODY(AssertThat, btn.isPressed(), Equals(false)));
-      test("Button isPressed should be true", TEST_BODY(AssertThat, btn.isPressed(), Equals(true)));
-      test("Button isPressed should be false",
-           TEST_BODY(AssertThat, btn.isPressed(), Equals(false)));
-    }
-
-    {
-      MockButton spyMe;
-      Mock<MockButton> mockFactory(spyMe);
-      When(Method(mockFactory, currentlyPressed))
-        .Return(false)
-        .Return(true)
-        .Return(true)
-        .Return(false)
-        .Return(false);
-      Spy(Method(mockFactory, changed));
-      MockButton &btn = mockFactory.get();
-
-      test("Button changed should be false", TEST_BODY(AssertThat, btn.changed(), Equals(false)));
-      test("Button changed should be true", TEST_BODY(AssertThat, btn.changed(), Equals(true)));
-      test("Button changed should be false", TEST_BODY(AssertThat, btn.changed(), Equals(false)));
-      test("Button changed should be true", TEST_BODY(AssertThat, btn.changed(), Equals(true)));
-      test("Button changed should be false", TEST_BODY(AssertThat, btn.changed(), Equals(false)));
-    }
-
-    {
-      MockButton spyMe;
-      Mock<MockButton> mockFactory(spyMe);
-      When(Method(mockFactory, currentlyPressed))
-        .Return(false)
-        .Return(true)
-        .Return(true)
-        .Return(false)
-        .Return(false);
-      Spy(Method(mockFactory, changed));
-      Spy(Method(mockFactory, changedToPressed));
-      MockButton &btn = mockFactory.get();
-
-      test("Button changedToPressed should be false",
-           TEST_BODY(AssertThat, btn.changedToPressed(), Equals(false)));
-      test("Button changedToPressed should be true",
-           TEST_BODY(AssertThat, btn.changedToPressed(), Equals(true)));
-      test("Button changedToPressed should be false",
-           TEST_BODY(AssertThat, btn.changedToPressed(), Equals(false)));
-      test("Button changedToPressed should be true",
-           TEST_BODY(AssertThat, btn.changedToPressed(), Equals(false)));
-      test("Button changedToPressed should be false",
-           TEST_BODY(AssertThat, btn.changedToPressed(), Equals(false)));
-    }
-
-    {
-      MockButton spyMe;
-      Mock<MockButton> mockFactory(spyMe);
-      When(Method(mockFactory, currentlyPressed))
-        .Return(false)
-        .Return(true)
-        .Return(true)
-        .Return(false)
-        .Return(false);
-      Spy(Method(mockFactory, changed));
-      Spy(Method(mockFactory, changedToReleased));
-      MockButton &btn = mockFactory.get();
-
-      test("Button changedToReleased should be false",
-           TEST_BODY(AssertThat, btn.changedToReleased(), Equals(false)));
-      test("Button changedToReleased should be true",
-           TEST_BODY(AssertThat, btn.changedToReleased(), Equals(false)));
-      test("Button changedToReleased should be false",
-           TEST_BODY(AssertThat, btn.changedToReleased(), Equals(false)));
-      test("Button changedToReleased should be true",
-           TEST_BODY(AssertThat, btn.changedToReleased(), Equals(true)));
-      test("Button changedToReleased should be false",
-           TEST_BODY(AssertThat, btn.changedToReleased(), Equals(false)));
-    }
+class MockButton : public ButtonBase {
+  public:
+  MockButton(std::initializer_list<bool> initializerList) : returnVals(initializerList) {
   }
+
+  bool currentlyPressed() override {
+    return returnVals.at(index++);
+  }
+
+  std::vector<bool> returnVals{};
+  size_t index = 0;
+};
+
+TEST(ButtonBaseTest, IsPressedShouldMirrorCurrentlyPressed) {
+  MockButton btn({false, true, false});
+
+  EXPECT_FALSE(btn.isPressed());
+  EXPECT_TRUE(btn.isPressed());
+  EXPECT_FALSE(btn.isPressed());
+}
+
+class ButtonBaseChangeTest : public ::testing::Test {
+  protected:
+  MockButton btn{false, true, true, false, false};
+};
+
+TEST_F(ButtonBaseChangeTest, ChangeShouldDetectBothEdges) {
+  EXPECT_FALSE(btn.changed());
+  EXPECT_TRUE(btn.changed());
+  EXPECT_FALSE(btn.changed());
+  EXPECT_TRUE(btn.changed());
+  EXPECT_FALSE(btn.changed());
+}
+
+TEST_F(ButtonBaseChangeTest, ChangedToPressedShouldDetectRisingEdges) {
+  EXPECT_FALSE(btn.changedToPressed());
+  EXPECT_TRUE(btn.changedToPressed());
+  EXPECT_FALSE(btn.changedToPressed());
+  EXPECT_FALSE(btn.changedToPressed());
+  EXPECT_FALSE(btn.changedToPressed());
+}
+
+TEST_F(ButtonBaseChangeTest, ChangedToReleasedShouldDetectFallingEdges) {
+  EXPECT_FALSE(btn.changedToReleased());
+  EXPECT_FALSE(btn.changedToReleased());
+  EXPECT_FALSE(btn.changedToReleased());
+  EXPECT_TRUE(btn.changedToReleased());
+  EXPECT_FALSE(btn.changedToReleased());
 }

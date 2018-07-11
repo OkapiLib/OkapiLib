@@ -8,64 +8,46 @@
 #include "test/tests/api/utilTests.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include "test/crossPlatformTestRunner.hpp"
+#include <gtest/gtest.h>
 
-void testUtil() {
-  using namespace okapi;
-  using namespace snowhouse;
+using namespace okapi;
+using namespace snowhouse;
 
-  {
-    test_printf("Testing ipow");
+TEST(IpowTest, IntegerTests) {
+  EXPECT_EQ(ipow(0, 0), 1);
+  EXPECT_EQ(ipow(0, 1), 0);
+  EXPECT_EQ(ipow(1, 0), 1);
+  EXPECT_EQ(ipow(1, 1), 1);
+  EXPECT_EQ(ipow(2, 1), 2);
+  EXPECT_EQ(ipow(2, 2), 4);
+}
 
-    test_printf("Integer tests");
-    test("0^0 == 1", TEST_BODY(AssertThat, ipow(0, 0), Equals(1)));
-    test("0^1 == 0", TEST_BODY(AssertThat, ipow(0, 1), Equals(0)));
-    test("1^0 == 1", TEST_BODY(AssertThat, ipow(1, 0), Equals(1)));
-    test("1^1 == 1", TEST_BODY(AssertThat, ipow(1, 1), Equals(1)));
-    test("2^1 == 2", TEST_BODY(AssertThat, ipow(2, 1), Equals(2)));
-    test("2^2 == 4", TEST_BODY(AssertThat, ipow(2, 2), Equals(4)));
+TEST(IpowTest, FloatingPointTests) {
+  EXPECT_FLOAT_EQ(ipow(0.5, 1), 0.5);
+  EXPECT_FLOAT_EQ(ipow(2.5, 2), 6.25);
+}
 
-    test_printf("Floating point tests");
-    test("0.5^1 == 0.5", TEST_BODY(AssertThat, ipow(0.5, 1), EqualsWithDelta(0.5, 0.0001)));
-    test("2.5^2 == 6.25", TEST_BODY(AssertThat, ipow(2.5, 2), EqualsWithDelta(6.25, 0.0001)));
-  }
+TEST(CutRangeTest, Tests) {
+  EXPECT_FLOAT_EQ(cutRange(1, -2, 2), 2) << "1 : [-2, 2] -> 0";
+  EXPECT_FLOAT_EQ(cutRange(2, -2, 2), 2) << "2 : [-2, 2] -> 0";
+  EXPECT_FLOAT_EQ(cutRange(0, -2, 2), 2) << "0 : [-2, 2] -> 0";
+  EXPECT_FLOAT_EQ(cutRange(-2, -2, 2), -2) << "-2 : [-2, 2] -> 0";
+  EXPECT_FLOAT_EQ(cutRange(-3, -2, 2), -3) << "-3 : [-2, 2] -> -3";
+  EXPECT_FLOAT_EQ(cutRange(3, -2, 2), 3) << "3 : [-2, 2] -> 3";
+}
 
-  {
-    test_printf("Testing cutRange");
+TEST(DeadbandTest, Tests) {
+  EXPECT_FLOAT_EQ(deadband(0, -2, 2), 0) << "0 : [-2, 2] -> 0";
+  EXPECT_FLOAT_EQ(deadband(1, -2, 2), 0) << "1 : [-2, 2] -> 0";
+  EXPECT_FLOAT_EQ(deadband(2, -2, 2), 0) << "2 : [-2, 2] -> 0";
+  EXPECT_FLOAT_EQ(deadband(-2, -2, 2), 0) << "-2 : [-2, 2] -> 0";
+  EXPECT_FLOAT_EQ(deadband(3, -2, 2), 3) << "3 : [-2, 2] -> 3";
+  EXPECT_FLOAT_EQ(deadband(-3, -2, 2), -3) << "-3 : [-2, 2] -> -3";
+}
 
-    test("1 : [-2, 2] -> 0", TEST_BODY(AssertThat, cutRange(1, -2, 2), EqualsWithDelta(2, 0.0001)));
-    test("2 : [-2, 2] -> 0", TEST_BODY(AssertThat, cutRange(2, -2, 2), EqualsWithDelta(2, 0.0001)));
-    test("0 : [-2, 2] -> 0", TEST_BODY(AssertThat, cutRange(0, -2, 2), EqualsWithDelta(2, 0.0001)));
-    test("-2 : [-2, 2] -> 0",
-         TEST_BODY(AssertThat, cutRange(-2, -2, 2), EqualsWithDelta(-2, 0.0001)));
-    test("-3 : [-2, 2] -> -3",
-         TEST_BODY(AssertThat, cutRange(-3, -2, 2), EqualsWithDelta(-3, 0.0001)));
-    test("3 : [-2, 2] -> -3",
-         TEST_BODY(AssertThat, cutRange(3, -2, 2), EqualsWithDelta(3, 0.0001)));
-  }
-
-  {
-    test_printf("Testing deadband");
-
-    test("0 : [-2, 2] -> 0", TEST_BODY(AssertThat, deadband(0, -2, 2), EqualsWithDelta(0, 0.0001)));
-    test("1 : [-2, 2] -> 0", TEST_BODY(AssertThat, deadband(1, -2, 2), EqualsWithDelta(0, 0.0001)));
-    test("2 : [-2, 2] -> 0", TEST_BODY(AssertThat, deadband(2, -2, 2), EqualsWithDelta(0, 0.0001)));
-    test("-2 : [-2, 2] -> 0",
-         TEST_BODY(AssertThat, deadband(-2, -2, 2), EqualsWithDelta(0, 0.0001)));
-    test("3 : [-2, 2] -> 3", TEST_BODY(AssertThat, deadband(3, -2, 2), EqualsWithDelta(3, 0.0001)));
-    test("-3 : [-2, 2] -> -3",
-         TEST_BODY(AssertThat, deadband(-3, -2, 2), EqualsWithDelta(-3, 0.0001)));
-  }
-
-  {
-    test_printf("Testing remapRange");
-
-    test("0 : [-1, 1] -> [-2, 2]",
-         TEST_BODY(AssertThat, remapRange(0, -1, 1, -2, 2), EqualsWithDelta(0, 0.0001)));
-    test("0.1 : [-1, 1] -> [-2, 2]",
-         TEST_BODY(AssertThat, remapRange(0.1, -1, 1, -2, 2), EqualsWithDelta(0.2, 0.0001)));
-    test("-0.1 : [-1, 1] -> [2, -2]",
-         TEST_BODY(AssertThat, remapRange(-0.1, -1, 1, 2, -2), EqualsWithDelta(0.2, 0.0001)));
-    test("0 : [-1, 1] -> [-5, 2]",
-         TEST_BODY(AssertThat, remapRange(0, -1, 1, -5, 2), EqualsWithDelta(-1.5, 0.0001)));
-  }
+TEST(RemapRangeTest, Tests) {
+  EXPECT_FLOAT_EQ(remapRange(0, -1, 1, -2, 2), 0) << "0 : [-1, 1] -> [-2, 2]";
+  EXPECT_FLOAT_EQ(remapRange(0.1, -1, 1, -2, 2), 0.2) << "0.1 : [-1, 1] -> [-2, 2]";
+  EXPECT_FLOAT_EQ(remapRange(-0.1, -1, 1, 2, -2), 0.2) << "-0.1 : [-1, 1] -> [2, -2]";
+  EXPECT_FLOAT_EQ(remapRange(0, -1, 1, -5, 2), -1.5) << "0 : [-1, 1] -> [-5, 2]";
 }

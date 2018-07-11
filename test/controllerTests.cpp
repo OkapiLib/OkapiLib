@@ -12,208 +12,151 @@
 #include "okapi/api/util/mathUtil.hpp"
 #include "test/testRunner.hpp"
 #include "test/tests/api/implMocks.hpp"
+#include <gtest/gtest.h>
 
-void testIterativeControllers() {
-  using namespace okapi;
-  using namespace snowhouse;
+using namespace okapi;
+using namespace snowhouse;
 
-  {
-    test_printf("Testing IterativePosPIDController");
-
-    FlywheelSimulator sim;
+class IterativeControllerTest : public ::testing::Test {
+  protected:
+  virtual void SetUp() {
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
+  }
 
-    IterativePosPIDController controller(0.004, 0, 0, 0, std::make_unique<ConstantMockTimer>(10_ms),
-                                         createSettledUtilPtr());
-
-    const double target = 45;
+  void runSimulation(IterativeController &controller, const double target) {
     controller.setTarget(target);
     for (size_t i = 0; i < 2000; i++) {
       controller.step(sim.getAngle() * radianToDegree);
       sim.step(controller.getOutput() * sim.getMaxTorque());
     }
-
-    test("IterativePosPIDController should have moved", [&]() {
-      AssertThat(sim.getAngle(), Is().Not().EqualTo(0));
-      AssertThat(controller.getError(), Is().Not().EqualTo(0));
-    });
   }
 
-  {
-    test_printf("Testing IterativeVelPIDController");
+  FlywheelSimulator sim;
+};
 
-    FlywheelSimulator sim;
-    sim.setExternalTorqueFunction([](double, double, double) { return 0; });
+TEST_F(IterativeControllerTest, IterativePosPIDControllerTest) {
+  IterativePosPIDController controller(0.004, 0, 0, 0, std::make_unique<ConstantMockTimer>(10_ms),
+                                       createSettledUtilPtr());
 
-    IterativeVelPIDController controller(
-      0.000015, 0, 0,
-      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                                std::make_unique<ConstantMockTimer>(10_ms)),
-      std::make_unique<ConstantMockTimer>(10_ms), createSettledUtilPtr());
+  runSimulation(controller, 45);
 
-    const double target = 10;
-    controller.setTarget(target);
-    for (size_t i = 0; i < 2000; i++) {
-      controller.step(sim.getAngle() * radianToDegree);
-      sim.step(controller.getOutput() * sim.getMaxTorque());
-    }
+  EXPECT_NE(sim.getAngle(), 0);
+  EXPECT_NE(controller.getError(), 0);
+}
 
-    test("IterativeVelPIDController should have moved", [&]() {
-      AssertThat(sim.getOmega(), Is().Not().EqualTo(0));
-      AssertThat(controller.getError(), Is().Not().EqualTo(0));
-    });
+TEST_F(IterativeControllerTest, IterativeVelPIDController) {
+  IterativeVelPIDController controller(
+    0.000015, 0, 0,
+    std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                              std::make_unique<ConstantMockTimer>(10_ms)),
+    std::make_unique<ConstantMockTimer>(10_ms), createSettledUtilPtr());
 
-    IterativeVelPIDController controller2(
-      0, 0, 0.1,
-      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                                std::make_unique<ConstantMockTimer>(10_ms)),
-      std::make_unique<ConstantMockTimer>(10_ms), createSettledUtilPtr());
+  runSimulation(controller, 10);
 
-    controller2.setTarget(5);
-    for (size_t i = 0; i < 5; i++) {
-      test(
-        "IterativeVelPIDController with feed-forward should output proportional to error and not "
-        "integrate " +
-          std::to_string(i),
-        TEST_BODY(AssertThat, controller2.step(0), EqualsWithDelta(0.5, 0.01)));
-    }
-  }
+  EXPECT_NE(sim.getAngle(), 0);
+  EXPECT_NE(controller.getError(), 0);
+}
 
-  {
-    test_printf("Testing IterativeMotorVelocityController");
+TEST_F(IterativeControllerTest, IterativeVelPIDControllerFeedForwardOnly) {
+  IterativeVelPIDController controller(
+    0, 0, 0.1,
+    std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                              std::make_unique<ConstantMockTimer>(10_ms)),
+    std::make_unique<ConstantMockTimer>(10_ms), createSettledUtilPtr());
 
-    class MockIterativeVelPIDController : public IterativeVelPIDController {
-      public:
-      MockIterativeVelPIDController()
-        : IterativeVelPIDController(
-            0, 0, 0,
-            std::make_unique<VelMath>(imev5TPR, std::make_shared<AverageFilter<2>>(),
-                                      std::make_unique<ConstantMockTimer>(10_ms)),
-            std::make_unique<ConstantMockTimer>(10_ms), createSettledUtilPtr()) {
-      }
+  controller.setTarget(5);
 
-      double step(const double inewReading) override {
-        return inewReading;
-      }
-    };
-
-    auto motor = std::make_shared<MockMotor>();
-
-    IterativeMotorVelocityController controller(motor,
-                                                std::make_shared<MockIterativeVelPIDController>());
-
-    controller.step(0);
-    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
-         "* 127 1",
-         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(0 * 127, 0.01)));
-
-    controller.step(0.5);
-    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
-         "* 127 2",
-         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(63, 0.01)));
-
-    controller.step(1);
-    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
-         "* 127 3",
-         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(1 * 127, 0.01)));
-
-    controller.step(-0.5);
-    test("IterativeMotorVelocityController should set the motor velocity to the controller output "
-         "* 127 4",
-         TEST_BODY(AssertThat, motor->lastVelocity, EqualsWithDelta(-63, 0.01)));
+  for (int i = 0; i < 5; i++) {
+    EXPECT_NEAR(controller.step(0), 0.5, 0.01);
   }
 }
 
-void testAsyncControllers() {
-  using namespace okapi;
-  using namespace snowhouse;
+TEST_F(IterativeControllerTest, IterativeMotorVelocityController) {
+  class MockIterativeVelPIDController : public IterativeVelPIDController {
+    public:
+    MockIterativeVelPIDController()
+      : IterativeVelPIDController(
+          0, 0, 0,
+          std::make_unique<VelMath>(imev5TPR, std::make_shared<AverageFilter<2>>(),
+                                    std::make_unique<ConstantMockTimer>(10_ms)),
+          std::make_unique<ConstantMockTimer>(10_ms), createSettledUtilPtr()) {
+    }
 
-  {
-    test_printf("Testing AsyncPosIntegratedController");
+    double step(const double inewReading) override {
+      return inewReading;
+    }
+  };
 
-    auto motor = std::make_shared<MockMotor>();
+  auto motor = std::make_shared<MockMotor>();
 
-    AsyncPosIntegratedController controller(motor, createSettledUtilPtr(),
-                                            std::make_unique<MockRate>());
+  IterativeMotorVelocityController controller(motor,
+                                              std::make_shared<MockIterativeVelPIDController>());
 
+  controller.step(0);
+  EXPECT_NEAR(motor->lastVelocity, 0, 0.01);
+
+  controller.step(0.5);
+  EXPECT_NEAR(motor->lastVelocity, 63, 0.01);
+
+  controller.step(1);
+  EXPECT_NEAR(motor->lastVelocity, 127, 0.01);
+
+  controller.step(-0.5);
+  EXPECT_NEAR(motor->lastVelocity, -63, 0.01);
+}
+
+class AsyncControllerTest : public ::testing::Test {
+  public:
+  void assertControllerFollowsDisableLifecycle(AsyncController &controller,
+                                               std::int16_t &domainValue,
+                                               std::int16_t &voltageValue) {
     controller.setTarget(100);
-    test("Should be on by default", TEST_BODY(AssertThat, motor->lastPosition, Equals(100)));
+    EXPECT_EQ(domainValue, 100) << "Should be on by default.";
 
     controller.flipDisable();
-    test("Disabling the controller should turn the motor off",
-         TEST_BODY(AssertThat, motor->lastVoltage, Equals(0)));
+    EXPECT_EQ(voltageValue, 0) << "Disabling the controller should turn the motor off";
 
     controller.flipDisable();
-    test("Re-enabling the controller should move the motor to the previous target",
-         TEST_BODY(AssertThat, motor->lastPosition, Equals(100)));
+    EXPECT_EQ(domainValue, 100)
+      << "Re-enabling the controller should move the motor to the previous target";
 
     controller.flipDisable();
     controller.reset();
-    test("Resetting the controller should not change the current target",
-         TEST_BODY(AssertThat, motor->lastVoltage, Equals(0)));
+    EXPECT_EQ(voltageValue, 0) << "Resetting the controller should not change the current target";
+
     controller.flipDisable();
-    motor->lastPosition = 1337; // Sample value to check it doesn't change
-    test("Re-enabling the controller after a reset should not move the motor",
-         TEST_BODY(AssertThat, motor->lastPosition, Equals(1337)));
+    domainValue = 1337;            // Sample value to check it doesn't change
+    MockRate().delayUntil(100_ms); // Wait for it to possibly change
+    EXPECT_EQ(domainValue, 1337)
+      << "Re-enabling the controller after a reset should not move the motor";
   }
+};
 
-  {
-    test_printf("Testing AsyncVelIntegratedController");
-
-    auto motor = std::make_shared<MockMotor>();
-
-    AsyncVelIntegratedController controller(motor, createSettledUtilPtr(),
-                                            std::make_unique<MockRate>());
-
-    controller.setTarget(100);
-    test("Should be on by default", TEST_BODY(AssertThat, motor->lastVelocity, Equals(100)));
-
-    controller.flipDisable();
-    test("Disabling the controller should turn the motor off",
-         TEST_BODY(AssertThat, motor->lastVoltage, Equals(0)));
-
-    controller.flipDisable();
-    test("Re-enabling the controller should move the motor to the previous target",
-         TEST_BODY(AssertThat, motor->lastVelocity, Equals(100)));
-
-    controller.flipDisable();
-    controller.reset();
-    test("Resetting the controller should not change the current target",
-         TEST_BODY(AssertThat, motor->lastVoltage, Equals(0)));
-    controller.flipDisable();
-    motor->lastVelocity = 1337; // Sample value to check it doesn't change
-    test("Re-enabling the controller after a reset should not move the motor",
-         TEST_BODY(AssertThat, motor->lastVelocity, Equals(1337)));
-  }
+TEST_F(AsyncControllerTest, AsyncPosIntegratedController) {
+  auto motor = std::make_shared<MockMotor>();
+  AsyncPosIntegratedController controller(motor, createSettledUtilPtr(), std::make_unique<MockRate>());
+  assertControllerFollowsDisableLifecycle(controller, motor->lastPosition, motor->lastVoltage);
 }
 
-void testFilteredControllerInput() {
-  using namespace okapi;
-  using namespace snowhouse;
+TEST_F(AsyncControllerTest, AsyncVelIntegratedController) {
+  auto motor = std::make_shared<MockMotor>();
+  AsyncVelIntegratedController controller(motor, createSettledUtilPtr(), std::make_unique<MockRate>());
+  assertControllerFollowsDisableLifecycle(controller, motor->lastVelocity, motor->lastVoltage);
+}
 
-  {
-    test_printf("Testing FilteredControllerInput");
-
-    class MockControllerInput : public ControllerInput {
-      public:
-      double controllerGet() override {
-        return 1;
-      }
-    };
-
-    MockControllerInput mockInput;
-    PassthroughFilter filter;
-    FilteredControllerInput<MockControllerInput, PassthroughFilter> input(mockInput, filter);
-
-    for (int i = 0; i < 10; i++) {
-      auto testName = "FilteredControllerInput i = " + std::to_string(i);
-      test(testName, TEST_BODY(AssertThat, input.controllerGet(), EqualsWithDelta(1, 0.0001)));
+TEST(FilteredControllerInputTest, InputShouldBePassedThrough) {
+  class MockControllerInput : public ControllerInput {
+    public:
+    double controllerGet() override {
+      return 1;
     }
-  }
-}
+  };
 
-void testControllers() {
-  testIterativeControllers();
-  testAsyncControllers();
-  testFilteredControllerInput();
+  MockControllerInput mockInput;
+  PassthroughFilter filter;
+  FilteredControllerInput<MockControllerInput, PassthroughFilter> input(mockInput, filter);
+
+  for (int i = 0; i < 3; i++) {
+    EXPECT_FLOAT_EQ(input.controllerGet(), 1);
+  }
 }
