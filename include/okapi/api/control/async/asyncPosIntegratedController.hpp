@@ -11,6 +11,7 @@
 #include "okapi/api/control/async/asyncPositionController.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
+#include "okapi/api/util/abstractRate.hpp"
 
 namespace okapi {
 class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
@@ -27,10 +28,12 @@ class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
 class AsyncPosIntegratedController : public AsyncPositionController {
   public:
   AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
-                               std::unique_ptr<SettledUtil> isettledUtil);
+                               std::unique_ptr<SettledUtil> isettledUtil,
+                               std::unique_ptr<AbstractRate> irate);
 
   AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams,
-                               std::unique_ptr<SettledUtil> isettledUtil);
+                               std::unique_ptr<SettledUtil> isettledUtil,
+                               std::unique_ptr<AbstractRate> irate);
 
   /**
    * Sets the target for the controller.
@@ -77,12 +80,19 @@ class AsyncPosIntegratedController : public AsyncPositionController {
    */
   bool isDisabled() const override;
 
+  /**
+   * Blocks the current task until the controller has settled. Determining what settling means is
+   * implementation-dependent.
+   */
+  void waitUntilSettled() override;
+
   protected:
   std::shared_ptr<AbstractMotor> motor;
   double lastTarget = 0;
   bool controllerIsDisabled = false;
   bool hasFirstTarget = false;
   std::unique_ptr<SettledUtil> settledUtil;
+  std::unique_ptr<AbstractRate> rate;
 
   /**
    * Resumes moving after the controller is reset. Should not cause movement if the controller is

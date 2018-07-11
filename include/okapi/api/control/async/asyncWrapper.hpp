@@ -12,8 +12,10 @@
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativeController.hpp"
+#include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/coreProsAPI.hpp"
 #include "okapi/api/util/abstractRate.hpp"
+#include "okapi/api/util/supplier.hpp"
 #include <memory>
 
 namespace okapi {
@@ -27,11 +29,14 @@ class AsyncWrapper : virtual public AsyncController {
    * @param iinput controller input, passed to the IterativeController
    * @param ioutput controller output, written to from the IterativeController
    * @param icontroller the controller to use
+   * @param irateSupplier used for rates used in the main loop and in waitUntilSettled
+   * @param isettledUtil used in waitUntilSettled
    * @param iscale the scale applied to the controller output
    */
   AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
                std::unique_ptr<IterativeController> icontroller,
-               std::unique_ptr<AbstractRate> irate, double iscale = 127);
+               const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
+               std::unique_ptr<SettledUtil> isettledUtil, double iscale = 127);
 
   /**
    * Sets the target for the controller.
@@ -98,11 +103,19 @@ class AsyncWrapper : virtual public AsyncController {
    */
   bool isDisabled() const override;
 
+  /**
+   * Blocks the current task until the controller has settled. Determining what settling means is
+   * implementation-dependent.
+   */
+  void waitUntilSettled() override;
+
   protected:
   std::shared_ptr<ControllerInput> input;
   std::shared_ptr<ControllerOutput> output;
   std::unique_ptr<IterativeController> controller;
-  std::unique_ptr<AbstractRate> rate;
+  std::unique_ptr<AbstractRate> loopRate;
+  std::unique_ptr<AbstractRate> settledRate;
+  std::unique_ptr<SettledUtil> settledUtil;
   CROSSPLATFORM_THREAD task;
   const double scale = 127;
 

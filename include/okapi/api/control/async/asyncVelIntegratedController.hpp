@@ -11,6 +11,7 @@
 #include "okapi/api/control/async/asyncVelocityController.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
+#include "okapi/api/util/abstractRate.hpp"
 #include <memory>
 
 namespace okapi {
@@ -28,10 +29,12 @@ class AsyncVelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
 class AsyncVelIntegratedController : public AsyncVelocityController {
   public:
   AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor,
-                               std::unique_ptr<SettledUtil> isettledUtil);
+                               std::unique_ptr<SettledUtil> isettledUtil,
+                               std::unique_ptr<AbstractRate> irate);
 
   AsyncVelIntegratedController(const AsyncVelIntegratedControllerArgs &iparams,
-                               std::unique_ptr<SettledUtil> isettledUtil);
+                               std::unique_ptr<SettledUtil> isettledUtil,
+                               std::unique_ptr<AbstractRate> irate);
 
   /**
    * Sets the target for the controller.
@@ -78,12 +81,19 @@ class AsyncVelIntegratedController : public AsyncVelocityController {
    */
   bool isDisabled() const override;
 
+  /**
+   * Blocks the current task until the controller has settled. Determining what settling means is
+   * implementation-dependent.
+   */
+  void waitUntilSettled() override;
+
   protected:
   std::shared_ptr<AbstractMotor> motor;
   double lastTarget = 0;
   bool controllerIsDisabled = false;
   bool hasFirstTarget = false;
   std::unique_ptr<SettledUtil> settledUtil;
+  std::unique_ptr<AbstractRate> rate;
 
   virtual void resumeMovement();
 };

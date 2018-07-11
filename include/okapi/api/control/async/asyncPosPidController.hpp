@@ -20,9 +20,10 @@ class AsyncPosPIDController : public AsyncWrapper, public AsyncPositionControlle
   public:
   AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
                         std::shared_ptr<ControllerOutput> ioutput,
-                        std::unique_ptr<AbstractRate> irate, std::unique_ptr<AbstractTimer> itimer,
-                        std::unique_ptr<SettledUtil> isettledUtil, double ikP, double ikI,
-                        double ikD, double ikBias = 0);
+                        const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
+                        std::unique_ptr<AbstractTimer> itimer,
+                        const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
+                        double ikP, double ikI, double ikD, double ikBias = 0);
 };
 } // namespace okapi
 
