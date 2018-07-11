@@ -5,21 +5,21 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/chassis/controller/chassisControllerPid.hpp"
-#include "api.h"
-#include "okapi/impl/control/util/settledUtilFactory.hpp"
-#include "okapi/impl/util/timer.hpp"
+#include "okapi/api/chassis/controller/chassisControllerPid.hpp"
 #include <cmath>
 
 namespace okapi {
-ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
-                                           const IterativePosPIDControllerArgs &idistanceArgs,
-                                           const IterativePosPIDControllerArgs &iangleArgs,
-                                           const AbstractMotor::GearsetRatioPair igearset,
-                                           const ChassisScales &iscales)
-  : ChassisController(imodel),
-    distancePid(idistanceArgs, std::make_unique<Timer>(), SettledUtilFactory::createPtr()),
-    anglePid(iangleArgs, std::make_unique<Timer>(), SettledUtilFactory::createPtr()),
+ChassisControllerPID::ChassisControllerPID(
+  const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
+  const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier,
+  std::unique_ptr<AbstractRate> irate, std::unique_ptr<ChassisModel> imodel,
+  const IterativePosPIDControllerArgs &idistanceArgs,
+  const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::GearsetRatioPair igearset,
+  const ChassisScales &iscales)
+  : ChassisController(std::move(imodel)),
+    rate(std::move(irate)),
+    distancePid(idistanceArgs, itimerSupplier.get(), isettledUtilSupplier.get()),
+    anglePid(iangleArgs, itimerSupplier.get(), isettledUtilSupplier.get()),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
@@ -40,7 +40,6 @@ void ChassisControllerPID::moveDistance(const QLength itarget) {
   distancePid.setTarget(newTarget);
   anglePid.setTarget(newTarget);
 
-  std::uint32_t prevWakeTime = pros::millis();
   const auto encStartVals = model->getSensorVals();
   std::valarray<std::int32_t> encVals;
   double distanceElapsed = 0, angleChange = 0;
@@ -50,7 +49,7 @@ void ChassisControllerPID::moveDistance(const QLength itarget) {
     distanceElapsed = static_cast<double>((encVals[0] + encVals[1])) / 2.0;
     angleChange = static_cast<double>(encVals[1] - encVals[0]);
     model->driveVector(distancePid.step(distanceElapsed), anglePid.step(angleChange));
-    pros::Task::delay_until(&prevWakeTime, 10);
+    rate->delayUntil(10_ms);
   }
 
   model->stop();
@@ -67,7 +66,6 @@ void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
   const double newTarget = idegTarget.convert(degree) * turnScale * gearRatio;
   anglePid.setTarget(newTarget);
 
-  std::uint32_t prevWakeTime = pros::millis();
   const auto encStartVals = model->getSensorVals();
   std::valarray<std::int32_t> encVals;
   double angleChange = 0;
@@ -76,7 +74,7 @@ void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
     encVals = model->getSensorVals() - encStartVals;
     angleChange = static_cast<double>(encVals[1] - encVals[0]);
     model->rotate(anglePid.step(angleChange));
-    pros::Task::delay_until(&prevWakeTime, 10);
+    rate->delayUntil(10_ms);
   }
 
   model->stop();

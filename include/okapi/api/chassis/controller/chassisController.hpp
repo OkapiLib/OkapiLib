@@ -25,7 +25,7 @@ class ChassisController {
    *
    * @param imodel underlying ChassisModel
    */
-  explicit ChassisController(std::shared_ptr<ChassisModel> imodel);
+  explicit ChassisController(std::unique_ptr<ChassisModel> imodel);
 
   virtual ~ChassisController();
 
@@ -153,7 +153,7 @@ class ChassisController {
   virtual void setGearing(AbstractMotor::gearset gearset) const;
 
   protected:
-  std::shared_ptr<ChassisModel> model;
+  std::unique_ptr<ChassisModel> model;
 };
 } // namespace okapi
 
