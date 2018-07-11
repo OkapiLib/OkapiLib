@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/chassis/controller/chassisControllerPid.hpp"
+#include "okapi/api/chassis/controller/chassisControllerPid.hpp"
 #include <cmath>
 
 namespace okapi {
@@ -40,7 +40,6 @@ void ChassisControllerPID::moveDistance(const QLength itarget) {
   distancePid.setTarget(newTarget);
   anglePid.setTarget(newTarget);
 
-  std::uint32_t prevWakeTime = pros::millis();
   const auto encStartVals = model->getSensorVals();
   std::valarray<std::int32_t> encVals;
   double distanceElapsed = 0, angleChange = 0;
@@ -67,7 +66,6 @@ void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
   const double newTarget = idegTarget.convert(degree) * turnScale * gearRatio;
   anglePid.setTarget(newTarget);
 
-  std::uint32_t prevWakeTime = pros::millis();
   const auto encStartVals = model->getSensorVals();
   std::valarray<std::int32_t> encVals;
   double angleChange = 0;

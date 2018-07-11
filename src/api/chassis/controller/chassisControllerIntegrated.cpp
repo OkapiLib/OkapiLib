@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/chassis/controller/chassisControllerIntegrated.hpp"
+#include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
@@ -42,8 +42,6 @@ void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
   leftController.setTarget(newTarget + enc[0]);
   rightController.setTarget(newTarget + enc[1]);
 
-  std::uint32_t prevWakeTime = pros::millis();
-
   while (!leftController.isSettled() && !rightController.isSettled()) {
     rate->delayUntil(10_ms);
   }
@@ -67,8 +65,6 @@ void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
   const auto enc = model->getSensorVals();
   leftController.setTarget(newTarget + enc[0]);
   rightController.setTarget(-1 * newTarget + enc[1]);
-
-  std::uint32_t prevWakeTime = pros::millis();
 
   while (!leftController.isSettled() && !rightController.isSettled()) {
     rate->delayUntil(10_ms);
