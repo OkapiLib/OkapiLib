@@ -33,7 +33,7 @@ ChassisControllerFactory::create(Motor ileftSideMotor, Motor irightSideMotor,
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   return ChassisControllerIntegrated(createSettledUtilSupplier(), createRateSupplier(),
-                                     std::make_shared<SkidSteerModel>(leftMtr, rightMtr),
+                                     std::make_unique<SkidSteerModel>(leftMtr, rightMtr),
                                      AsyncPosIntegratedControllerArgs(leftMtr),
                                      AsyncPosIntegratedControllerArgs(rightMtr), igearset, iscales);
 }
@@ -45,7 +45,7 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSid
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   return ChassisControllerIntegrated(createSettledUtilSupplier(), createRateSupplier(),
-                                     std::make_shared<SkidSteerModel>(leftMtr, rightMtr),
+                                     std::make_unique<SkidSteerModel>(leftMtr, rightMtr),
                                      AsyncPosIntegratedControllerArgs(leftMtr),
                                      AsyncPosIntegratedControllerArgs(rightMtr), igearset, iscales);
 }
@@ -59,7 +59,7 @@ ChassisControllerIntegrated ChassisControllerFactory::create(
   auto bottomLeftMtr = std::make_shared<Motor>(ibottomLeftMotor);
   return ChassisControllerIntegrated(
     createSettledUtilSupplier(), createRateSupplier(),
-    std::make_shared<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr),
+    std::make_unique<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr),
     AsyncPosIntegratedControllerArgs(topLeftMtr), AsyncPosIntegratedControllerArgs(topRightMtr),
     igearset, iscales);
 }
@@ -72,7 +72,7 @@ ChassisControllerPID ChassisControllerFactory::create(
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   return ChassisControllerPID(createSettledUtilSupplier(), createTimerSupplier(),
                               std::make_unique<Rate>(),
-                              std::make_shared<SkidSteerModel>(leftMtr, rightMtr), idistanceArgs,
+                              std::make_unique<SkidSteerModel>(leftMtr, rightMtr), idistanceArgs,
                               iangleArgs, igearset, iscales);
 }
 
@@ -86,7 +86,7 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSid
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   return ChassisControllerPID(createSettledUtilSupplier(), createTimerSupplier(),
                               std::make_unique<Rate>(),
-                              std::make_shared<SkidSteerModel>(leftMtr, rightMtr), idistanceArgs,
+                              std::make_unique<SkidSteerModel>(leftMtr, rightMtr), idistanceArgs,
                               iangleArgs, igearset, iscales);
 }
 
@@ -101,7 +101,7 @@ ChassisControllerPID ChassisControllerFactory::create(
   auto bottomLeftMtr = std::make_shared<Motor>(ibottomLeftMotor);
   return ChassisControllerPID(
     createSettledUtilSupplier(), createTimerSupplier(), std::make_unique<Rate>(),
-    std::make_shared<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr),
+    std::make_unique<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr),
     idistanceArgs, iangleArgs, igearset, iscales);
 }
 } // namespace okapi
