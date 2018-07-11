@@ -42,6 +42,8 @@ include_directories(include)
 
 add_executable(OkapiLibV5
         include/okapi/api/chassis/controller/chassisController.hpp
+        include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp
+        include/okapi/api/chassis/controller/chassisControllerPid.hpp
         include/okapi/api/chassis/controller/chassisScales.hpp
         include/okapi/api/chassis/model/chassisModel.hpp
         include/okapi/api/chassis/model/skidSteerModel.hpp
@@ -113,6 +115,8 @@ add_executable(OkapiLibV5
         include/test/tests/api/filterTests.hpp
         include/test/tests/api/utilTests.hpp
         src/api/chassis/controller/chassisController.cpp
+        src/api/chassis/controller/chassisControllerIntegrated.cpp
+        src/api/chassis/controller/chassisControllerPid.cpp
         src/api/chassis/model/chassisModel.cpp
         src/api/chassis/model/skidSteerModel.cpp
         src/api/chassis/model/threeEncoderSkidSteerModel.cpp
