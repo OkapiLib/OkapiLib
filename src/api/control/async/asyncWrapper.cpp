@@ -7,28 +7,35 @@
  */
 #include "okapi/api/control/async/asyncWrapper.hpp"
 #include "okapi/api/coreProsAPI.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
 AsyncWrapper::AsyncWrapper(std::shared_ptr<ControllerInput> iinput,
                            std::shared_ptr<ControllerOutput> ioutput,
                            std::unique_ptr<IterativeController> icontroller,
-                           std::unique_ptr<AbstractRate> irate, const double iscale)
+                           const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
+                           std::unique_ptr<SettledUtil> isettledUtil, const double iscale)
   : input(iinput),
     output(ioutput),
     controller(std::move(icontroller)),
-    rate(std::move(irate)),
+    loopRate(std::move(irateSupplier.get())),
+    settledRate(std::move(irateSupplier.get())),
+    settledUtil(std::move(isettledUtil)),
     task(trampoline, this),
     scale(iscale) {
 }
 
 void AsyncWrapper::loop() {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
   while (true) {
     if (!controller->isDisabled()) {
       output->controllerSet(scale * controller->step(input->controllerGet()));
     }
 
-    rate->delayUntil(controller->getSampleTime());
+    loopRate->delayUntil(controller->getSampleTime());
   }
+#pragma clang diagnostic pop
 }
 
 void AsyncWrapper::trampoline(void *context) {
@@ -73,5 +80,11 @@ void AsyncWrapper::flipDisable(const bool iisDisabled) {
 
 bool AsyncWrapper::isDisabled() const {
   return controller->isDisabled();
+}
+
+void AsyncWrapper::waitUntilSettled() {
+  while (!settledUtil->isSettled(getError())) {
+    loopRate->delayUntil(motorUpdateRate);
+  }
 }
 } // namespace okapi

@@ -8,6 +8,7 @@
 #include "okapi/impl/chassis/controller/chassisControllerIntegrated.hpp"
 #include "api.h"
 #include "okapi/impl/control/util/settledUtilFactory.hpp"
+#include "okapi/impl/util/rate.hpp"
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
@@ -15,8 +16,8 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
   const AsyncPosIntegratedControllerArgs &irightControllerArgs,
   const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
   : ChassisController(imodel),
-    leftController(ileftControllerArgs, SettledUtilFactory::createPtr()),
-    rightController(irightControllerArgs, SettledUtilFactory::createPtr()),
+    leftController(ileftControllerArgs, SettledUtilFactory::createPtr(), std::make_unique<Rate>()),
+    rightController(irightControllerArgs, SettledUtilFactory::createPtr(), std::make_unique<Rate>()),
     lastTarget(0),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),
