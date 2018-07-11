@@ -8,13 +8,13 @@
 #ifndef _OKAPI_API_HPP_
 #define _OKAPI_API_HPP_
 
+#include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
+#include "okapi/api/chassis/controller/chassisControllerPid.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
 #include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/impl/chassis/controller/chassisControllerFactory.hpp"
-#include "okapi/impl/chassis/controller/chassisControllerIntegrated.hpp"
-#include "okapi/impl/chassis/controller/chassisControllerPid.hpp"
 #include "okapi/impl/chassis/model/chassisModelFactory.hpp"
 
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"

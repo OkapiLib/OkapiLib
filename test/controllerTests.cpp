@@ -134,13 +134,15 @@ class AsyncControllerTest : public ::testing::Test {
 
 TEST_F(AsyncControllerTest, AsyncPosIntegratedController) {
   auto motor = std::make_shared<MockMotor>();
-  AsyncPosIntegratedController controller(motor, createSettledUtilPtr(), std::make_unique<MockRate>());
+  AsyncPosIntegratedController controller(motor, createSettledUtilPtr(),
+                                          std::make_unique<MockRate>());
   assertControllerFollowsDisableLifecycle(controller, motor->lastPosition, motor->lastVoltage);
 }
 
 TEST_F(AsyncControllerTest, AsyncVelIntegratedController) {
   auto motor = std::make_shared<MockMotor>();
-  AsyncVelIntegratedController controller(motor, createSettledUtilPtr(), std::make_unique<MockRate>());
+  AsyncVelIntegratedController controller(motor, createSettledUtilPtr(),
+                                          std::make_unique<MockRate>());
   assertControllerFollowsDisableLifecycle(controller, motor->lastVelocity, motor->lastVoltage);
 }
 
