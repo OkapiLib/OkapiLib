@@ -17,7 +17,8 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
   const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
   : ChassisController(imodel),
     leftController(ileftControllerArgs, SettledUtilFactory::createPtr(), std::make_unique<Rate>()),
-    rightController(irightControllerArgs, SettledUtilFactory::createPtr(), std::make_unique<Rate>()),
+    rightController(irightControllerArgs, SettledUtilFactory::createPtr(),
+                    std::make_unique<Rate>()),
     lastTarget(0),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),
