@@ -8,26 +8,19 @@
 #include "test/tests/api/chassisControllerTests.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "test/crossPlatformTestRunner.hpp"
+#include <gtest/gtest.h>
 
-void testChassisScales() {
-  using namespace okapi;
-  using namespace snowhouse;
+using namespace okapi;
+using namespace snowhouse;
 
-  test_printf("Testing ChassisScales");
+TEST(ChassisScalesTest, RawScales) {
+  ChassisScales scales({0.5, 0.3});
+  EXPECT_FLOAT_EQ(scales.straight, 0.5);
+  EXPECT_FLOAT_EQ(scales.turn, 0.3);
+}
 
-  {
-    ChassisScales scales({0.5, 0.3});
-    test("ChassisScales should accept raw scales", [&]() {
-      AssertThat(scales.straight, Equals(0.5));
-      AssertThat(scales.turn, Equals(0.3));
-    });
-  }
-
-  {
-    ChassisScales scales({4_in, 11.5_in});
-    test("ChassisScales should calculate scales from wheelbase", [&]() {
-      AssertThat(scales.straight, EqualsWithDelta(1127.86968, 0.0001));
-      AssertThat(scales.turn, EqualsWithDelta(2.875, 0.001));
-    });
-  }
+TEST(ChassisScalesTest, ScalesFromWheelbase) {
+  ChassisScales scales({4_in, 11.5_in});
+  EXPECT_FLOAT_EQ(scales.straight, 1127.8696);
+  EXPECT_FLOAT_EQ(scales.turn, 2.875);
 }
