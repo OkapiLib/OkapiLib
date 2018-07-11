@@ -17,159 +17,140 @@
 #include "okapi/api/util/abstractTimer.hpp"
 #include "test/crossPlatformTestRunner.hpp"
 #include "test/tests/api/implMocks.hpp"
+#include <gtest/gtest.h>
 
-void testFilters() {
-  using namespace okapi;
-  using namespace snowhouse;
+using namespace okapi;
+using namespace snowhouse;
 
-  auto assertThatFilterAndFilterOutputAreEqual = [](okapi::Filter *filt, double input, double value,
-                                                    double delta) {
-    auto text = "Assert that filter and filter output are equal and correct for input = " +
-                std::to_string(input);
-    test(text, [&]() {
-      AssertThat(filt->filter(input), EqualsWithDelta(value, delta));
-      AssertThat(filt->getOutput(), EqualsWithDelta(value, delta));
-    });
-  };
+void assertThatFilterAndFilterOutputAreEqual(Filter &filter, double input, double value) {
+  EXPECT_NEAR(filter.filter(input), value, 0.0001);
+  EXPECT_NEAR(filter.getOutput(), value, 0.0001);
+}
 
-  {
-    test_printf("Testing AverageFilter");
+TEST(AverageFilterTest, OutputTest) {
+  AverageFilter<5> filter;
 
-    AverageFilter<5> filt;
+  for (int i = 0; i < 10; i++) {
+    switch (i) {
+    case 0: {
+      assertThatFilterAndFilterOutputAreEqual(filter, i, 0);
+      break;
+    }
 
-    for (int i = 0; i < 10; i++) {
-      auto testName = "AverageFilter i = " + std::to_string(i);
-      switch (i) {
-      case 0: {
-        assertThatFilterAndFilterOutputAreEqual(&filt, i, 0, 0.0001);
-        break;
-      }
+    case 1: {
+      assertThatFilterAndFilterOutputAreEqual(filter, i, 0.2);
+      break;
+    }
 
-      case 1: {
-        assertThatFilterAndFilterOutputAreEqual(&filt, i, 0.2, 0.0001);
-        break;
-      }
+    case 2: {
+      assertThatFilterAndFilterOutputAreEqual(filter, i, 0.6);
+      break;
+    }
 
-      case 2: {
-        assertThatFilterAndFilterOutputAreEqual(&filt, i, 0.6, 0.0001);
-        break;
-      }
+    case 3: {
+      assertThatFilterAndFilterOutputAreEqual(filter, i, 1.2);
+      break;
+    }
 
-      case 3: {
-        assertThatFilterAndFilterOutputAreEqual(&filt, i, 1.2, 0.0001);
-        break;
-      }
-
-      default: {
-        assertThatFilterAndFilterOutputAreEqual(&filt, i, i - 2, 0.0001);
-        break;
-      }
-      }
+    default: {
+      assertThatFilterAndFilterOutputAreEqual(filter, i, i - 2);
+      break;
+    }
     }
   }
+}
 
-  {
-    test_printf("Testing MedianFilter");
+TEST(MedianFilterTest, OutputTest) {
+  MedianFilter<5> filter;
 
-    MedianFilter<5> filt;
-
-    for (int i = 0; i < 10; i++) {
-      auto testName = "MedianFilter i = " + std::to_string(i);
-      if (i < 3) {
-        assertThatFilterAndFilterOutputAreEqual(&filt, i, 0, 0.0001);
-      } else {
-        assertThatFilterAndFilterOutputAreEqual(&filt, i, i - 2, 0.0001);
-      }
+  for (int i = 0; i < 10; i++) {
+    auto testName = "MedianFilter i = " + std::to_string(i);
+    if (i < 3) {
+      assertThatFilterAndFilterOutputAreEqual(filter, i, 0);
+    } else {
+      assertThatFilterAndFilterOutputAreEqual(filter, i, i - 2);
     }
   }
+}
 
-  {
-    test_printf("Testing EmaFilter");
+TEST(EmaFilterTest, FloatingPointGainOutputTest) {
+  EmaFilter filter(0.5);
 
-    EmaFilter filt(0.5);
-    assertThatFilterAndFilterOutputAreEqual(&filt, 0, 0, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt, 1, 0.5, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt, 2, 1.25, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt, -3, -0.875, 0.0001);
+  assertThatFilterAndFilterOutputAreEqual(filter, 0, 0);
+  assertThatFilterAndFilterOutputAreEqual(filter, 1, 0.5);
+  assertThatFilterAndFilterOutputAreEqual(filter, 2, 1.25);
+  assertThatFilterAndFilterOutputAreEqual(filter, -3, -0.875);
+}
 
-    EmaFilter filt2(1);
-    assertThatFilterAndFilterOutputAreEqual(&filt2, 5, 5, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt2, 6, 6, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt2, 7, 7, 0.0001);
+TEST(EmaFilterTest, IntegerGainOutputTest) {
+  EmaFilter filter(1);
+
+  assertThatFilterAndFilterOutputAreEqual(filter, 5, 5);
+  assertThatFilterAndFilterOutputAreEqual(filter, 6, 6);
+  assertThatFilterAndFilterOutputAreEqual(filter, 7, 7);
+}
+
+TEST(DemaFilterTest, FloatingPointGainOutputTest) {
+  DemaFilter filter(0.5, 0.05);
+
+  assertThatFilterAndFilterOutputAreEqual(filter, 0, 0);
+  assertThatFilterAndFilterOutputAreEqual(filter, 1, 0.525);
+  assertThatFilterAndFilterOutputAreEqual(filter, 2, 1.3244);
+  assertThatFilterAndFilterOutputAreEqual(filter, 2, 1.7409);
+  assertThatFilterAndFilterOutputAreEqual(filter, 2, 1.9557);
+}
+
+TEST(DemaFilterTest, IntegerGainOutputTest) {
+  DemaFilter filter(1, 0);
+
+  assertThatFilterAndFilterOutputAreEqual(filter, 5, 5);
+  assertThatFilterAndFilterOutputAreEqual(filter, 6, 6);
+  assertThatFilterAndFilterOutputAreEqual(filter, 7, 7);
+}
+
+TEST(EKFFilterTest, OutputTest) {
+  EKFFilter filter(0.0001, ipow(0.2, 2));
+
+  assertThatFilterAndFilterOutputAreEqual(filter, 0, 0);
+  assertThatFilterAndFilterOutputAreEqual(filter, 0.5, 0.2454);
+  assertThatFilterAndFilterOutputAreEqual(filter, -0.5, -0.0008);
+  assertThatFilterAndFilterOutputAreEqual(filter, 0.5, 0.1242);
+  assertThatFilterAndFilterOutputAreEqual(filter, 0, 0.0992);
+}
+
+TEST(ComposableFilterTest, OutputTest) {
+  ComposableFilter filter(
+    {std::make_shared<AverageFilter<3>>(), std::make_shared<AverageFilter<3>>()});
+
+  assertThatFilterAndFilterOutputAreEqual(filter, 1, 0.1111);
+  assertThatFilterAndFilterOutputAreEqual(filter, 2, 0.4444);
+  assertThatFilterAndFilterOutputAreEqual(filter, 3, 1.1111);
+
+  for (int i = 4; i < 10; i++) {
+    assertThatFilterAndFilterOutputAreEqual(filter, i, i - 2);
   }
+}
 
-  {
-    test_printf("Testing DemaFilter");
+TEST(PassthroughFilterTest, OutputTest) {
+  PassthroughFilter filter;
 
-    DemaFilter filt(0.5, 0.05);
-
-    assertThatFilterAndFilterOutputAreEqual(&filt, 0, 0, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt, 1, 0.525, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt, 2, 1.3244, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt, 2, 1.7410, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt, 2, 1.9557, 0.0001);
-
-    DemaFilter filt2(1, 0);
-    assertThatFilterAndFilterOutputAreEqual(&filt2, 5, 5, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt2, 6, 6, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt2, 7, 7, 0.0001);
+  for (int i = 0; i < 5; i++) {
+    assertThatFilterAndFilterOutputAreEqual(filter, i, i);
   }
+}
 
-  {
-    test_printf("Testing EKFFilter");
+TEST(VelMathTest, OutputTest) {
+  VelMath velMath(360, std::make_shared<PassthroughFilter>(),
+                  std::make_unique<ConstantMockTimer>(10_ms));
 
-    EKFFilter filt(0.0001, ipow(0.2, 2));
-    assertThatFilterAndFilterOutputAreEqual(&filt, 0, 0, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt, 0.5, 0.2454, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt, -0.5, -0.0008, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt, 0.5, 0.1242, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt, 0, 0.0992, 0.0001);
-  }
-
-  {
-    test_printf("Testing ComposableFilter");
-
-    ComposableFilter filt(
-      {std::make_shared<AverageFilter<3>>(), std::make_shared<AverageFilter<3>>()});
-    assertThatFilterAndFilterOutputAreEqual(&filt, 1, 0.1111, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt, 2, 0.4444, 0.0001);
-    assertThatFilterAndFilterOutputAreEqual(&filt, 3, 1.1111, 0.0001);
-
-    for (int i = 4; i < 10; i++) {
-      assertThatFilterAndFilterOutputAreEqual(&filt, i, i - 2, 0.0001);
-    }
-  }
-
-  {
-    test_printf("Testing PassthroughFilter");
-
-    PassthroughFilter filt;
-    for (int i = 0; i < 5; i++) {
-      assertThatFilterAndFilterOutputAreEqual(&filt, i, i, 0.0001);
-    }
-  }
-
-  {
-    test_printf("Testing VelMath");
-
-    {
-      VelMath velMath(360, std::make_shared<PassthroughFilter>(),
-                      std::make_unique<ConstantMockTimer>(10_ms));
-
-      for (int i = 0; i < 10; i++) {
-        if (i == 0) {
-          test("VelMath " + std::to_string(i), [&]() {
-            AssertThat(velMath.step(i * 10).convert(rpm), EqualsWithDelta(0, 0.01));
-            AssertThat(velMath.getVelocity().convert(rpm), EqualsWithDelta(0, 0.01));
-          });
-        } else {
-          // 10 ticks per 100 ms should be ~16.67 rpm
-          test("VelMath " + std::to_string(i), [&]() {
-            AssertThat(velMath.step(i * 10).convert(rpm), EqualsWithDelta(166.67, 0.01));
-            AssertThat(velMath.getVelocity().convert(rpm), EqualsWithDelta(166.67, 0.01));
-          });
-        }
-      }
+  for (int i = 0; i < 10; i++) {
+    if (i == 0) {
+      EXPECT_NEAR(velMath.step(i * 10).convert(rpm), 0, 0.01);
+      EXPECT_NEAR(velMath.getVelocity().convert(rpm), 0, 0.01);
+    } else {
+      // 10 ticks per 10 ms should be ~166.67 rpm
+      EXPECT_NEAR(velMath.step(i * 10).convert(rpm), 166.67, 0.01);
+      EXPECT_NEAR(velMath.getVelocity().convert(rpm), 166.67, 0.01);
     }
   }
 }

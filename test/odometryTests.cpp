@@ -10,15 +10,14 @@
 #include "test/testRunner.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <memory>
+#include <gtest/gtest.h>
 
-void testOdometry() {
-  using namespace okapi;
-  using namespace snowhouse;
+using namespace okapi;
+using namespace snowhouse;
 
-  test_printf("Testing Odometry");
-
+TEST(OdometryTest, BasicTest) {
   class MockModel : public SkidSteerModel {
-    public:
+  public:
     MockModel() : SkidSteerModel(std::make_shared<MockMotor>(), std::make_shared<MockMotor>()) {
     }
 
