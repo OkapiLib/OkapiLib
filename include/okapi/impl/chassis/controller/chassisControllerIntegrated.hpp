@@ -11,6 +11,7 @@
 #include "okapi/api/chassis/controller/chassisController.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
+#include "okapi/api/util/supplier.hpp"
 
 namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {
@@ -26,6 +27,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(
+    const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
+    const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
     std::shared_ptr<ChassisModel> imodel,
     const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
     const AsyncPosIntegratedControllerArgs &irightControllerArgs,
@@ -61,6 +64,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   virtual void turnAngle(const double idegTarget) override;
 
   protected:
+  std::unique_ptr<AbstractRate> rate;
   AsyncPosIntegratedController leftController;
   AsyncPosIntegratedController rightController;
   int lastTarget;

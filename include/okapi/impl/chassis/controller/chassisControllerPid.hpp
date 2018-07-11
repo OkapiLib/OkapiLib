@@ -11,6 +11,8 @@
 #include "okapi/api/chassis/controller/chassisController.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
+#include "okapi/api/util/abstractRate.hpp"
+#include "okapi/api/util/supplier.hpp"
 #include <memory>
 
 namespace okapi {
@@ -26,7 +28,9 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
+  ChassisControllerPID(const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
+                       const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier,
+                       std::unique_ptr<AbstractRate> irate, std::shared_ptr<ChassisModel> imodel,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
                        const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
@@ -61,6 +65,7 @@ class ChassisControllerPID : public virtual ChassisController {
   virtual void turnAngle(const double idegTarget) override;
 
   protected:
+  std::unique_ptr<AbstractRate> rate;
   IterativePosPIDController distancePid;
   IterativePosPIDController anglePid;
   const double gearRatio;

@@ -6,19 +6,18 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/chassis/controller/chassisControllerIntegrated.hpp"
-#include "api.h"
-#include "okapi/impl/control/util/settledUtilFactory.hpp"
-#include "okapi/impl/util/rate.hpp"
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
+  const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
+  const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
   std::shared_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
   const AsyncPosIntegratedControllerArgs &irightControllerArgs,
   const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
   : ChassisController(imodel),
-    leftController(ileftControllerArgs, SettledUtilFactory::createPtr(), std::make_unique<Rate>()),
-    rightController(irightControllerArgs, SettledUtilFactory::createPtr(),
-                    std::make_unique<Rate>()),
+    rate(std::move(irateSupplier.get())),
+    leftController(ileftControllerArgs, isettledUtilSupplier.get(), irateSupplier.get()),
+    rightController(irightControllerArgs, isettledUtilSupplier.get(), irateSupplier.get()),
     lastTarget(0),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),
@@ -46,7 +45,7 @@ void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
   std::uint32_t prevWakeTime = pros::millis();
 
   while (!leftController.isSettled() && !rightController.isSettled()) {
-    pros::Task::delay_until(&prevWakeTime, 10);
+    rate->delayUntil(10_ms);
   }
 
   leftController.flipDisable(true);
@@ -72,7 +71,7 @@ void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
   std::uint32_t prevWakeTime = pros::millis();
 
   while (!leftController.isSettled() && !rightController.isSettled()) {
-    pros::Task::delay_until(&prevWakeTime, 10);
+    rate->delayUntil(10_ms);
   }
 
   leftController.flipDisable(true);

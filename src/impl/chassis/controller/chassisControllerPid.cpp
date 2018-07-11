@@ -6,20 +6,20 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/chassis/controller/chassisControllerPid.hpp"
-#include "api.h"
-#include "okapi/impl/control/util/settledUtilFactory.hpp"
-#include "okapi/impl/util/timer.hpp"
 #include <cmath>
 
 namespace okapi {
-ChassisControllerPID::ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
-                                           const IterativePosPIDControllerArgs &idistanceArgs,
-                                           const IterativePosPIDControllerArgs &iangleArgs,
-                                           const AbstractMotor::GearsetRatioPair igearset,
-                                           const ChassisScales &iscales)
+ChassisControllerPID::ChassisControllerPID(
+  const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
+  const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier,
+  std::unique_ptr<AbstractRate> irate, std::shared_ptr<ChassisModel> imodel,
+  const IterativePosPIDControllerArgs &idistanceArgs,
+  const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::GearsetRatioPair igearset,
+  const ChassisScales &iscales)
   : ChassisController(imodel),
-    distancePid(idistanceArgs, std::make_unique<Timer>(), SettledUtilFactory::createPtr()),
-    anglePid(iangleArgs, std::make_unique<Timer>(), SettledUtilFactory::createPtr()),
+    rate(std::move(irate)),
+    distancePid(idistanceArgs, itimerSupplier.get(), isettledUtilSupplier.get()),
+    anglePid(iangleArgs, itimerSupplier.get(), isettledUtilSupplier.get()),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
@@ -50,7 +50,7 @@ void ChassisControllerPID::moveDistance(const QLength itarget) {
     distanceElapsed = static_cast<double>((encVals[0] + encVals[1])) / 2.0;
     angleChange = static_cast<double>(encVals[1] - encVals[0]);
     model->driveVector(distancePid.step(distanceElapsed), anglePid.step(angleChange));
-    pros::Task::delay_until(&prevWakeTime, 10);
+    rate->delayUntil(10_ms);
   }
 
   model->stop();
@@ -76,7 +76,7 @@ void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
     encVals = model->getSensorVals() - encStartVals;
     angleChange = static_cast<double>(encVals[1] - encVals[0]);
     model->rotate(anglePid.step(angleChange));
-    pros::Task::delay_until(&prevWakeTime, 10);
+    rate->delayUntil(10_ms);
   }
 
   model->stop();
