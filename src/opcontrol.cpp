@@ -26,10 +26,9 @@ void opcontrol() {
   pros::c::lcd_print(2, "here");
 
   auto timer = 5_s;
-  okapi::PIDTuner tuner(std::make_shared<okapi::Motor>(1), std::make_unique<Timer>(),
-                        SettledUtilFactory::createPtr(), std::make_unique<Rate>(), timer, 1000, 0.1,
-                        2.0, 0.0001, 0.01, 20.0, 40.0);
-  okapi::IterativePosPIDControllerArgs args = tuner.autotune();
+  PIDTuner tuner = PIDTunerFactory::create(std::make_shared<okapi::Motor>(1)->getEncoder(), std::make_shared<okapi::Motor>(1), timer, 5000, 0.1,
+                        200.0, 0.0001, 0.01, 20.0, 40.0);
+  IterativePosPIDControllerArgs args = tuner.autotune();
   printf("%f %f %f\n", args.kP, args.kI, args.kD);
 
   runHeadlessTests();

@@ -14,16 +14,19 @@
 #include "api.h"
 
 namespace okapi {
-PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<AbstractTimer> itimer,
-                   std::unique_ptr<SettledUtil> isettle, std::unique_ptr<AbstractRate> irate,
-                   const QTime itimeout, const std::int32_t igoal, const double ikPMin,
-                   const double ikPMax, const double ikIMin, const double ikIMax,
-                   const double ikDMin, const double ikDMax, const std::size_t inumIterations,
-                   const std::size_t inumParticles, const double ikSettle, const double ikITAE)
-  : output(ioutput),
-    timer(std::move(itimer)),
-    settle(std::move(isettle)),
-    rate(std::move(irate)),
+  PIDTuner::PIDTuner(std::shared_ptr<ControllerInput> iinput,
+           std::shared_ptr<ControllerOutput> ioutput,
+           const Supplier<std::unique_ptr<AbstractTimer>> &itimer,
+           const Supplier<std::unique_ptr<SettledUtil>> &isettle,
+           const Supplier<std::unique_ptr<AbstractRate>> &irate,
+           QTime itimeout, std::int32_t igoal, double ikPMin, double ikPMax, double ikIMin,
+           double ikIMax, double ikDMin, double ikDMax, std::int32_t inumIterations,
+           std::int32_t inumParticles, double ikSettle, double ikITAE)
+  : input(iinput),
+    output(ioutput),
+    timer(itimer.get()),
+    settle(isettle.get()),
+    rate(irate.get()),
     timeout(itimeout),
     goal(igoal),
     kPMin(ikPMin),
@@ -36,6 +39,7 @@ PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<Ab
     numParticles(inumParticles),
     kSettle(ikSettle),
     kITAE(ikITAE) {
+    particles.resize(numParticles);
 }
 
 PIDTuner::~PIDTuner() = default;
@@ -47,8 +51,9 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
 
   IterativePosPIDController testController (0, 0, 0, 0, std::move(timer), std::move(settle));
 
-  for (size_t i = 0; i < numParticles; i++) {
+  for (int i = 0; i < numParticles; i++) {
     ParticleSet set{};
+    set = particles.at(i);
     set.kP.pos = kPMin + (kPMax - kPMin) * dist(gen);
     set.kP.vel = set.kP.pos / increment;
     set.kP.best = set.kP.pos;
@@ -71,11 +76,11 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
   global.bestError = std::numeric_limits<double>::max();
 
   // Run the optimization
-  for (size_t iteration = 0; iteration < numIterations; iteration++) {
+  for (int iteration = 0; iteration < numIterations; iteration++) {
     // Test constants then calculate fitness function
     bool firstGoal = true;
 
-    for (size_t particleIndex = 0; particleIndex < numParticles; particleIndex++) {
+    for (int particleIndex = 0; particleIndex < numParticles; particleIndex++) {
       // TODO: Index out of bounds here (particles is empty at this point)
       testController.setGains(particles.at(particleIndex).kP.pos,
                               particles.at(particleIndex).kI.pos,
@@ -97,12 +102,13 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
         settleTime += loopDelta;
         if (settleTime > timeout)
           break;
-
+        const int cmd = testController.step(input->controllerGet());
+        pros::c::lcd_print(3, "out: %d in %d", cmd, input->controllerGet());
         const double error = testController.getError();
         // sum of the error emphasizing later error
         itae += (settleTime.convert(millisecond) * abs((int)error)) / divisor;
 
-        output->controllerSet(testController.step(error));
+        output->controllerSet(cmd);
         rate->delayUntil(loopDelta);
       }
 
@@ -123,7 +129,7 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
     }
 
     // Update particle trajectories
-    for (size_t i = 0; i < numParticles; i++) {
+    for (int i = 0; i < numParticles; i++) {
       // Factor in the particles inertia to keep on the same trajectory
       particles.at(i).kP.vel *= inertia;
       // Move towards particle's best
