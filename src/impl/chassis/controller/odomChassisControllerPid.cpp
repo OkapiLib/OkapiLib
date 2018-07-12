@@ -37,7 +37,7 @@ OdomChassisControllerPID::OdomChassisControllerPID(
 }
 
 OdomChassisControllerPID::OdomChassisControllerPID(
-  std::shared_ptr<SkidSteerModel> imodel, const double iscale, const double iturnScale,
+  std::unique_ptr<SkidSteerModel> imodel, const double iscale, const double iturnScale,
   const IterativePosPIDControllerArgs &idistanceArgs,
   const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold)
   : ChassisController(imodel),

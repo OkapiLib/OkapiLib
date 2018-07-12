@@ -10,7 +10,7 @@
 
 #include "api.h"
 #include "okapi/api/odometry/odometry.hpp"
-#include "okapi/impl/chassis/controller/chassisControllerPid.hpp"
+#include "okapi/api/chassis/controller/chassisControllerPid.hpp"
 #include "okapi/impl/chassis/controller/odomChassisController.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
@@ -108,7 +108,7 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
    * @param iangleArgs angle PID controller params (keeps the robot straight)
    * @param imoveThreshold minimum length movement
    */
-  OdomChassisControllerPID(std::shared_ptr<SkidSteerModel> imodel, const double iscale,
+  OdomChassisControllerPID(std::unique_ptr<SkidSteerModel> imodel, const double iscale,
                            const double iturnScale,
                            const IterativePosPIDControllerArgs &idistanceArgs,
                            const IterativePosPIDControllerArgs &iangleArgs,

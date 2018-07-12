@@ -10,7 +10,7 @@
 
 #include "api.h"
 #include "okapi/api/odometry/odometry.hpp"
-#include "okapi/impl/chassis/controller/chassisControllerIntegrated.hpp"
+#include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/impl/chassis/controller/odomChassisController.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
@@ -94,7 +94,7 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
    * @param iturnScale turn scale
    * @param imoveThreshold minimum length movement
    */
-  OdomChassisControllerIntegrated(std::shared_ptr<SkidSteerModel> imodel, const double iscale,
+  OdomChassisControllerIntegrated(std::unique_ptr<SkidSteerModel> imodel, const double iscale,
                                   const double iturnScale, const float imoveThreshold = 10);
 
   /**
@@ -115,7 +115,7 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
    * ChassisControllerIntegrated
    * @param imoveThreshold minimum length movement
    */
-  OdomChassisControllerIntegrated(std::shared_ptr<SkidSteerModel> imodel, const double iscale,
+  OdomChassisControllerIntegrated(std::unique_ptr<SkidSteerModel> imodel, const double iscale,
                                   const double iturnScale,
                                   const AsyncPosIntegratedControllerArgs &ileftControllerParams,
                                   const AsyncPosIntegratedControllerArgs &irightControllerParams,
@@ -140,7 +140,7 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
   virtual void turnToAngle(const float iangle) override;
 
   private:
-  OdomChassisControllerIntegrated(std::shared_ptr<SkidSteerModel> imodel,
+  OdomChassisControllerIntegrated(std::unique_ptr<SkidSteerModel> imodel,
                                   std::shared_ptr<AbstractMotor> ileftSideMotor,
                                   std::shared_ptr<AbstractMotor> irightSideMotor,
                                   const double iscale, const double iturnScale,

@@ -8,6 +8,8 @@
 #include "okapi/impl/chassis/controller/odomChassisControllerIntegrated.hpp"
 #include "okapi/api/odometry/odomMath.hpp"
 #include <cmath>
+#include "okapi/impl/control/util/settledUtilFactory.hpp"
+#include "okapi/impl/util/rate.hpp"
 
 namespace okapi {
 OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(Motor ileftSideMotor,
@@ -34,33 +36,35 @@ OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
   std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
   const double iscale, const double iturnScale, const float imoveThreshold)
   : OdomChassisControllerIntegrated(
-      std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor), ileftSideMotor,
+      std::make_unique<SkidSteerModel>(ileftSideMotor, irightSideMotor), ileftSideMotor,
       irightSideMotor, iscale, iturnScale, imoveThreshold) {
 }
 
 OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
-  std::shared_ptr<SkidSteerModel> imodel, const double iscale, const double iturnScale,
+  std::unique_ptr<SkidSteerModel> imodel, const double iscale, const double iturnScale,
   const float imoveThreshold)
-  : OdomChassisControllerIntegrated(imodel, imodel->getLeftSideMotor(), imodel->getRightSideMotor(),
+  : OdomChassisControllerIntegrated(std::move(imodel), imodel->getLeftSideMotor(), imodel->getRightSideMotor(),
                                     iscale, iturnScale, imoveThreshold) {
 }
 
 OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
-  std::shared_ptr<SkidSteerModel> imodel, std::shared_ptr<AbstractMotor> ileftSideMotor,
+  std::unique_ptr<SkidSteerModel> imodel, std::shared_ptr<AbstractMotor> ileftSideMotor,
   std::shared_ptr<AbstractMotor> irightSideMotor, const double iscale, const double iturnScale,
   const float imoveThreshold)
   : OdomChassisControllerIntegrated(
-      imodel, iscale, iturnScale, AsyncPosIntegratedControllerArgs(ileftSideMotor),
+      std::move(imodel), iscale, iturnScale, AsyncPosIntegratedControllerArgs(ileftSideMotor),
       AsyncPosIntegratedControllerArgs(irightSideMotor), imoveThreshold) {
 }
 
 OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
-  std::shared_ptr<SkidSteerModel> imodel, const double iscale, const double iturnScale,
+  std::unique_ptr<SkidSteerModel> imodel, const double iscale, const double iturnScale,
   const AsyncPosIntegratedControllerArgs &ileftControllerParams,
   const AsyncPosIntegratedControllerArgs &irightControllerParams, const double imoveThreshold)
   : ChassisController(imodel),
     OdomChassisController(OdometryArgs(imodel, iscale, iturnScale), imoveThreshold),
-    ChassisControllerIntegrated(imodel, ileftControllerParams, irightControllerParams) {
+    ChassisControllerIntegrated(Supplier<std::unique_ptr<SettledUtil>>([](){ return SettledUtilFactory::create(); }),
+                                Supplier<std::unique_ptr<AbstractRate>>([](){ return std::make_unique<Rate>(); }),
+                                imodel, ileftControllerParams, irightControllerParams) {
 }
 
 void OdomChassisControllerIntegrated::driveToPoint(const float ix, const float iy,
