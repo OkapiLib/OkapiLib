@@ -45,7 +45,7 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
   std::mt19937 gen(rd()); // Mersenne twister
   std::uniform_real_distribution<double> dist(0, 1);
 
-  IterativePosPIDController testController (0, 0, 0, 0, timer, settle);
+  IterativePosPIDController testController (0, 0, 0, 0, std::move(timer), std::move(settle));
 
   for (size_t i = 0; i < numParticles; i++) {
     ParticleSet set{};
