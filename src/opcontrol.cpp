@@ -18,6 +18,8 @@ void constructorTests();
 void opcontrol() {
   using namespace okapi;
   pros::Task::delay(100);
+  pros::c::lcd_initialize();
+  pros::c::lcd_print(2, "here");
 
   auto timer = 5_s;
   okapi::PIDTuner tuner(std::make_shared<okapi::Motor>(1), std::make_unique<Timer>(),

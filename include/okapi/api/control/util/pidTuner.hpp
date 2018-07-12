@@ -48,6 +48,7 @@ class PIDTuner {
   };
 
   std::shared_ptr<ControllerOutput> output;
+  std::unique_ptr<AbstractTimer> timer;
   std::unique_ptr<SettledUtil> settle;
   std::unique_ptr<AbstractRate> rate;
 
@@ -65,7 +66,6 @@ class PIDTuner {
   const double kITAE;
 
   std::vector<ParticleSet> particles{};
-  IterativePosPIDController testController;
 };
 } // namespace okapi
 

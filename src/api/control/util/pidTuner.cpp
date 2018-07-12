@@ -11,6 +11,7 @@
 #include <cmath>
 #include <limits>
 #include <random>
+#include "api.h"
 
 namespace okapi {
 PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<AbstractTimer> itimer,
@@ -20,6 +21,7 @@ PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<Ab
                    const double ikDMin, const double ikDMax, const std::size_t inumIterations,
                    const std::size_t inumParticles, const double ikSettle, const double ikITAE)
   : output(ioutput),
+    timer(std::move(itimer)),
     settle(std::move(isettle)),
     rate(std::move(irate)),
     timeout(itimeout),
@@ -33,8 +35,7 @@ PIDTuner::PIDTuner(std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<Ab
     numIterations(inumIterations),
     numParticles(inumParticles),
     kSettle(ikSettle),
-    kITAE(ikITAE),
-    testController(0, 0, 0, 0, std::move(itimer), std::move(isettle)) {
+    kITAE(ikITAE) {
 }
 
 PIDTuner::~PIDTuner() = default;
@@ -43,6 +44,8 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
   std::random_device rd;  // Random seed
   std::mt19937 gen(rd()); // Mersenne twister
   std::uniform_real_distribution<double> dist(0, 1);
+
+  IterativePosPIDController testController (0, 0, 0, 0, timer, settle);
 
   for (size_t i = 0; i < numParticles; i++) {
     ParticleSet set{};
@@ -89,6 +92,7 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
 
       QTime settleTime = 0_ms;
       int itae = 0;
+      pros::c::lcd_print(1, "here");
       while (!testController.isSettled()) {
         settleTime += loopDelta;
         if (settleTime > timeout)
