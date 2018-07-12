@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
 AsyncPosIntegratedControllerArgs::AsyncPosIntegratedControllerArgs(
@@ -14,13 +15,15 @@ AsyncPosIntegratedControllerArgs::AsyncPosIntegratedControllerArgs(
 }
 
 AsyncPosIntegratedController::AsyncPosIntegratedController(
-  std::shared_ptr<AbstractMotor> imotor, std::unique_ptr<SettledUtil> isettledUtil)
-  : motor(imotor), settledUtil(std::move(isettledUtil)) {
+  std::shared_ptr<AbstractMotor> imotor, std::unique_ptr<SettledUtil> isettledUtil,
+  std::unique_ptr<AbstractRate> irate)
+  : motor(imotor), settledUtil(std::move(isettledUtil)), rate(std::move(irate)) {
 }
 
 AsyncPosIntegratedController::AsyncPosIntegratedController(
-  const AsyncPosIntegratedControllerArgs &iparams, std::unique_ptr<SettledUtil> isettledUtil)
-  : motor(iparams.motor), settledUtil(std::move(isettledUtil)) {
+  const AsyncPosIntegratedControllerArgs &iparams, std::unique_ptr<SettledUtil> isettledUtil,
+  std::unique_ptr<AbstractRate> irate)
+  : motor(iparams.motor), settledUtil(std::move(isettledUtil)), rate(std::move(irate)) {
 }
 
 void AsyncPosIntegratedController::setTarget(const double itarget) {
@@ -67,6 +70,12 @@ void AsyncPosIntegratedController::resumeMovement() {
     if (hasFirstTarget) {
       setTarget(lastTarget);
     }
+  }
+}
+
+void AsyncPosIntegratedController::waitUntilSettled() {
+  while (!settledUtil->isSettled(getError())) {
+    rate->delayUntil(motorUpdateRate);
   }
 }
 } // namespace okapi

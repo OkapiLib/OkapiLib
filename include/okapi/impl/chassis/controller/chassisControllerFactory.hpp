@@ -8,8 +8,8 @@
 #ifndef _OKAPI_CHASSISCONTROLLERFACTORY_HPP_
 #define _OKAPI_CHASSISCONTROLLERFACTORY_HPP_
 
-#include "okapi/impl/chassis/controller/chassisControllerIntegrated.hpp"
-#include "okapi/impl/chassis/controller/chassisControllerPid.hpp"
+#include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
+#include "okapi/api/chassis/controller/chassisControllerPid.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
 

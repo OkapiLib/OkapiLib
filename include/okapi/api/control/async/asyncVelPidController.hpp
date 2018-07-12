@@ -20,9 +20,11 @@ class AsyncVelPIDController : public AsyncWrapper, public AsyncVelocityControlle
   public:
   AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
                         std::shared_ptr<ControllerOutput> ioutput,
-                        std::unique_ptr<AbstractRate> irate, std::unique_ptr<AbstractTimer> itimer,
-                        std::unique_ptr<SettledUtil> isettledUtil, double ikP, double ikD,
-                        double ikF, std::unique_ptr<VelMath> ivelMath);
+                        const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
+                        std::unique_ptr<AbstractTimer> itimer,
+                        const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
+                        const double ikP, const double ikD, const double ikF,
+                        std::unique_ptr<VelMath> ivelMath);
 };
 } // namespace okapi
 

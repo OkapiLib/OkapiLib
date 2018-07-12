@@ -42,6 +42,12 @@ class AsyncController : public ClosedLoopController {
    * @param imin min output
    */
   virtual void setOutputLimits(double imax, double imin);
+
+  /**
+   * Blocks the current task until the controller has settled. Determining what settling means is
+   * implementation-dependent.
+   */
+  virtual void waitUntilSettled() = 0;
 };
 } // namespace okapi
 

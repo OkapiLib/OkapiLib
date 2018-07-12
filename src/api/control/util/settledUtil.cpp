@@ -20,7 +20,7 @@ SettledUtil::SettledUtil(std::unique_ptr<AbstractTimer> iatTargetTimer, const do
 SettledUtil::~SettledUtil() = default;
 
 bool SettledUtil::isSettled(const double ierror) {
-  if (std::fabs(ierror) <= atTargetError || std::fabs(ierror - lastError) <= atTargetDerivative) {
+  if (std::fabs(ierror) <= atTargetError && std::fabs(ierror - lastError) <= atTargetDerivative) {
     atTargetTimer->placeHardMark();
   } else {
     atTargetTimer->clearHardMark();

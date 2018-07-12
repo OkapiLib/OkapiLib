@@ -5,18 +5,19 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/chassis/controller/chassisControllerIntegrated.hpp"
-#include "api.h"
-#include "okapi/impl/control/util/settledUtilFactory.hpp"
+#include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
-  std::shared_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
+  const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
+  const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
+  std::unique_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
   const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-  const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
-  : ChassisController(imodel),
-    leftController(ileftControllerArgs, SettledUtilFactory::createPtr()),
-    rightController(irightControllerArgs, SettledUtilFactory::createPtr()),
+  AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
+  : ChassisController(std::move(imodel)),
+    rate(std::move(irateSupplier.get())),
+    leftController(ileftControllerArgs, isettledUtilSupplier.get(), irateSupplier.get()),
+    rightController(irightControllerArgs, isettledUtilSupplier.get(), irateSupplier.get()),
     lastTarget(0),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),
@@ -41,10 +42,8 @@ void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
   leftController.setTarget(newTarget + enc[0]);
   rightController.setTarget(newTarget + enc[1]);
 
-  std::uint32_t prevWakeTime = pros::millis();
-
   while (!leftController.isSettled() && !rightController.isSettled()) {
-    pros::Task::delay_until(&prevWakeTime, 10);
+    rate->delayUntil(10_ms);
   }
 
   leftController.flipDisable(true);
@@ -67,10 +66,8 @@ void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
   leftController.setTarget(newTarget + enc[0]);
   rightController.setTarget(-1 * newTarget + enc[1]);
 
-  std::uint32_t prevWakeTime = pros::millis();
-
   while (!leftController.isSettled() && !rightController.isSettled()) {
-    pros::Task::delay_until(&prevWakeTime, 10);
+    rate->delayUntil(10_ms);
   }
 
   leftController.flipDisable(true);

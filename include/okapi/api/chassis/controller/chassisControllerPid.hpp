@@ -11,6 +11,8 @@
 #include "okapi/api/chassis/controller/chassisController.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
+#include "okapi/api/util/abstractRate.hpp"
+#include "okapi/api/util/supplier.hpp"
 #include <memory>
 
 namespace okapi {
@@ -26,10 +28,12 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
+  ChassisControllerPID(const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
+                       const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier,
+                       std::unique_ptr<AbstractRate> irate, std::unique_ptr<ChassisModel> imodel,
                        const IterativePosPIDControllerArgs &idistanceArgs,
                        const IterativePosPIDControllerArgs &iangleArgs,
-                       const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+                       AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
                        const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -37,30 +41,31 @@ class ChassisControllerPID : public virtual ChassisController {
    *
    * @param itarget distance to travel
    */
-  virtual void moveDistance(const QLength itarget) override;
+  void moveDistance(QLength itarget) override;
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
    *
    * @param itarget distance to travel in motor degrees
    */
-  virtual void moveDistance(const double itarget) override;
+  void moveDistance(double itarget) override;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for
    */
-  virtual void turnAngle(const QAngle idegTarget) override;
+  void turnAngle(QAngle idegTarget) override;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for in motor degrees
    */
-  virtual void turnAngle(const double idegTarget) override;
+  void turnAngle(double idegTarget) override;
 
   protected:
+  std::unique_ptr<AbstractRate> rate;
   IterativePosPIDController distancePid;
   IterativePosPIDController anglePid;
   const double gearRatio;
