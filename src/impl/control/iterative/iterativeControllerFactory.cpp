@@ -6,23 +6,21 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
-#include "okapi/impl/control/util/settledUtilFactory.hpp"
 #include "okapi/impl/filter/velMathFactory.hpp"
-#include "okapi/impl/util/timer.hpp"
+#include "okapi/impl/util/timeUtilFactory.hpp"
 
 namespace okapi {
 IterativePosPIDController IterativeControllerFactory::posPID(const double ikP, const double ikI,
                                                              const double ikD,
                                                              const double ikBias) {
-  return IterativePosPIDController(ikP, ikI, ikD, ikBias, std::make_unique<Timer>(),
-                                   SettledUtilFactory::createPtr());
+  return IterativePosPIDController(ikP, ikI, ikD, ikBias, TimeUtilFactory::create());
 }
 
 IterativeVelPIDController IterativeControllerFactory::velPID(const double ikP, const double ikD,
                                                              const double ikF,
                                                              const VelMathArgs &iparams) {
   return IterativeVelPIDController(ikP, ikD, ikF, VelMathFactory::createPtr(iparams),
-                                   std::make_unique<Timer>(), SettledUtilFactory::createPtr());
+                                   TimeUtilFactory::create());
 }
 
 IterativeMotorVelocityController

@@ -196,13 +196,6 @@ bool ConstantMockTimer::repeat(QFrequency frequency) {
   return false;
 }
 
-std::unique_ptr<SettledUtil> createSettledUtilPtr(const double iatTargetError,
-                                                  const double iatTargetDerivative,
-                                                  const QTime iatTargetTime) {
-  return std::make_unique<SettledUtil>(std::make_unique<MockTimer>(), iatTargetError,
-                                       iatTargetDerivative, iatTargetTime);
-}
-
 MockRate::MockRate() = default;
 
 void MockRate::delay(QFrequency ihz) {
@@ -219,5 +212,26 @@ void MockRate::delayUntil(QTime itime) {
 
 void MockRate::delayUntil(uint32_t ims) {
   std::this_thread::sleep_for(std::chrono::milliseconds(ims));
+}
+
+std::unique_ptr<SettledUtil> createSettledUtilPtr(const double iatTargetError,
+                                                  const double iatTargetDerivative,
+                                                  const QTime iatTargetTime) {
+  return std::make_unique<SettledUtil>(std::make_unique<MockTimer>(), iatTargetError,
+                                       iatTargetDerivative, iatTargetTime);
+}
+
+TimeUtil createTimeUtil() {
+  return TimeUtil(
+    Supplier<std::unique_ptr<AbstractTimer>>([]() { return std::make_unique<MockTimer>(); }),
+    Supplier<std::unique_ptr<AbstractRate>>([]() { return std::make_unique<MockRate>(); }),
+    Supplier<std::unique_ptr<SettledUtil>>([]() { return createSettledUtilPtr(); }));
+}
+
+TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier) {
+  return TimeUtil(itimerSupplier, Supplier<std::unique_ptr<AbstractRate>>([]() {
+                    return std::make_unique<MockRate>();
+                  }),
+                  Supplier<std::unique_ptr<SettledUtil>>([]() { return createSettledUtilPtr(); }));
 }
 } // namespace okapi

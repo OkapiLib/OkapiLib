@@ -36,8 +36,10 @@ class IterativeControllerTest : public ::testing::Test {
 };
 
 TEST_F(IterativeControllerTest, IterativePosPIDControllerTest) {
-  IterativePosPIDController controller(0.004, 0, 0, 0, std::make_unique<ConstantMockTimer>(10_ms),
-                                       createSettledUtilPtr());
+  IterativePosPIDController controller(
+    0.004, 0, 0, 0, createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>([]() {
+      return std::make_unique<ConstantMockTimer>(10_ms);
+    })));
 
   runSimulation(controller, 45);
 
@@ -50,7 +52,8 @@ TEST_F(IterativeControllerTest, IterativeVelPIDController) {
     0.000015, 0, 0,
     std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
                               std::make_unique<ConstantMockTimer>(10_ms)),
-    std::make_unique<ConstantMockTimer>(10_ms), createSettledUtilPtr());
+    createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
+      []() { return std::make_unique<ConstantMockTimer>(10_ms); })));
 
   runSimulation(controller, 10);
 
@@ -63,7 +66,8 @@ TEST_F(IterativeControllerTest, IterativeVelPIDControllerFeedForwardOnly) {
     0, 0, 0.1,
     std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
                               std::make_unique<ConstantMockTimer>(10_ms)),
-    std::make_unique<ConstantMockTimer>(10_ms), createSettledUtilPtr());
+    createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
+      []() { return std::make_unique<ConstantMockTimer>(10_ms); })));
 
   controller.setTarget(5);
 
@@ -80,7 +84,8 @@ TEST_F(IterativeControllerTest, IterativeMotorVelocityController) {
           0, 0, 0,
           std::make_unique<VelMath>(imev5TPR, std::make_shared<AverageFilter<2>>(),
                                     std::make_unique<ConstantMockTimer>(10_ms)),
-          std::make_unique<ConstantMockTimer>(10_ms), createSettledUtilPtr()) {
+          createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
+            []() { return std::make_unique<ConstantMockTimer>(10_ms); }))) {
     }
 
     double step(const double inewReading) override {
@@ -135,15 +140,13 @@ class AsyncControllerTest : public ::testing::Test {
 
 TEST_F(AsyncControllerTest, AsyncPosIntegratedController) {
   auto motor = std::make_shared<MockMotor>();
-  AsyncPosIntegratedController controller(motor, createSettledUtilPtr(),
-                                          std::make_unique<MockRate>());
+  AsyncPosIntegratedController controller(motor, createTimeUtil());
   assertControllerFollowsDisableLifecycle(controller, motor->lastPosition, motor->lastVoltage);
 }
 
 TEST_F(AsyncControllerTest, AsyncVelIntegratedController) {
   auto motor = std::make_shared<MockMotor>();
-  AsyncVelIntegratedController controller(motor, createSettledUtilPtr(),
-                                          std::make_unique<MockRate>());
+  AsyncVelIntegratedController controller(motor, createTimeUtil());
   assertControllerFollowsDisableLifecycle(controller, motor->lastVelocity, motor->lastVoltage);
 }
 

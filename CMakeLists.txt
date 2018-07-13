@@ -105,6 +105,7 @@ add_executable(OkapiLibV5
         include/okapi/api/util/abstractRate.hpp
         include/okapi/api/util/abstractTimer.hpp
         include/okapi/api/util/mathUtil.hpp
+        include/okapi/api/util/supplier.hpp
         include/okapi/api/coreProsAPI.hpp
         include/test/crossPlatformTestRunner.hpp
         include/test/tests/api/allApiTests.hpp
@@ -160,7 +161,8 @@ add_executable(OkapiLibV5
         test/utilTests.cpp
         include/test/tests/api/implMocks.hpp
         test/implMocks.cpp
-        include/okapi/api/util/supplier.hpp)
+        src/api/util/timeUtil.cpp
+        include/okapi/api/util/timeUtil.hpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)

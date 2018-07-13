@@ -11,6 +11,7 @@
 #include "okapi/api/control/iterative/iterativeVelocityController.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/filter/velMath.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
 class IterativeVelPIDController : public IterativeVelocityController {
@@ -19,8 +20,7 @@ class IterativeVelPIDController : public IterativeVelocityController {
    * Velocity PD controller.
    */
   IterativeVelPIDController(double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath,
-                            std::unique_ptr<AbstractTimer> iloopDtTimer,
-                            std::unique_ptr<SettledUtil> isettledUtil);
+                            const TimeUtil &itimeUtil);
 
   /**
    * Do one iteration of the controller.

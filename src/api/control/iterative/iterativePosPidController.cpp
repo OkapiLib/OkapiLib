@@ -19,17 +19,15 @@ IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, c
 }
 
 IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params,
-                                                     std::unique_ptr<AbstractTimer> iloopDtTimer,
-                                                     std::unique_ptr<SettledUtil> isettledUtil)
-  : IterativePosPIDController(params.kP, params.kI, params.kD, params.kBias,
-                              std::move(iloopDtTimer), std::move(isettledUtil)) {
+                                                     const TimeUtil &itimeUtil)
+  : IterativePosPIDController(params.kP, params.kI, params.kD, params.kBias, itimeUtil) {
 }
 
 IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
                                                      const double ikD, const double ikBias,
-                                                     std::unique_ptr<AbstractTimer> iloopDtTimer,
-                                                     std::unique_ptr<SettledUtil> isettledUtil)
-  : loopDtTimer(std::move(iloopDtTimer)), settledUtil(std::move(isettledUtil)) {
+                                                     const TimeUtil &itimeUtil)
+  : loopDtTimer(std::move(itimeUtil.getTimer())),
+    settledUtil(std::move(itimeUtil.getSettledUtil())) {
   if (ikI != 0) {
     setIntegralLimits(-1 / ikI, 1 / ikI);
   }

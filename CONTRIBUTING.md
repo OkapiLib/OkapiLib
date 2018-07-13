@@ -27,7 +27,7 @@ This project and everyone participating in it is governed by OkapiLib's [Code of
 
 ## I don't want to read this whole thing I just have a question!!!
 
-You can get help for questions that can't be answered by [OkapiLib's docs](????????????????????) by [filing an issue](???????????????????).
+You can get help for questions that can't be answered by [OkapiLib's docs](https://pros.cs.purdue.edu/v5/okapi/index.html) by [filing an issue](???????????????????).
 
 ## How Can I Contribute?
 
@@ -99,6 +99,7 @@ Unsure where to begin contributing? You can start by looking through these `begi
 * Title the pull request [issue number][description]
  * For example, `Issue #0: Add a readme file`
 * End all files with a newline
+* Follow the [style guide](#code-styleguide)
 
 ## Styleguides
 

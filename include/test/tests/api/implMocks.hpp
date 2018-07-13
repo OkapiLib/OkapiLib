@@ -12,6 +12,7 @@
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include <chrono>
 
 namespace okapi {
@@ -146,6 +147,10 @@ class MockRate : public AbstractRate {
 std::unique_ptr<SettledUtil> createSettledUtilPtr(double iatTargetError = 50,
                                                   double iatTargetDerivative = 5,
                                                   QTime iatTargetTime = 250_ms);
+
+TimeUtil createTimeUtil();
+
+TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier);
 } // namespace okapi
 
 #endif

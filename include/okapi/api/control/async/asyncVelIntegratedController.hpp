@@ -9,9 +9,8 @@
 #define _OKAPI_ASYNCVELINTEGRATEDCONTROLLER_HPP_
 
 #include "okapi/api/control/async/asyncVelocityController.hpp"
-#include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
-#include "okapi/api/util/abstractRate.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include <memory>
 
 namespace okapi {
@@ -28,13 +27,10 @@ class AsyncVelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
  */
 class AsyncVelIntegratedController : public AsyncVelocityController {
   public:
-  AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor,
-                               std::unique_ptr<SettledUtil> isettledUtil,
-                               std::unique_ptr<AbstractRate> irate);
+  AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor, const TimeUtil &itimeUtil);
 
   AsyncVelIntegratedController(const AsyncVelIntegratedControllerArgs &iparams,
-                               std::unique_ptr<SettledUtil> isettledUtil,
-                               std::unique_ptr<AbstractRate> irate);
+                               const TimeUtil &itimeUtil);
 
   /**
    * Sets the target for the controller.

@@ -14,16 +14,18 @@ AsyncPosIntegratedControllerArgs::AsyncPosIntegratedControllerArgs(
   : motor(imotor) {
 }
 
-AsyncPosIntegratedController::AsyncPosIntegratedController(
-  std::shared_ptr<AbstractMotor> imotor, std::unique_ptr<SettledUtil> isettledUtil,
-  std::unique_ptr<AbstractRate> irate)
-  : motor(imotor), settledUtil(std::move(isettledUtil)), rate(std::move(irate)) {
+AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+                                                           const TimeUtil &itimeUtil)
+  : motor(imotor),
+    settledUtil(std::move(itimeUtil.getSettledUtil())),
+    rate(std::move(itimeUtil.getRate())) {
 }
 
 AsyncPosIntegratedController::AsyncPosIntegratedController(
-  const AsyncPosIntegratedControllerArgs &iparams, std::unique_ptr<SettledUtil> isettledUtil,
-  std::unique_ptr<AbstractRate> irate)
-  : motor(iparams.motor), settledUtil(std::move(isettledUtil)), rate(std::move(irate)) {
+  const AsyncPosIntegratedControllerArgs &iparams, const TimeUtil &itimeUtil)
+  : motor(iparams.motor),
+    settledUtil(std::move(itimeUtil.getSettledUtil())),
+    rate(std::move(itimeUtil.getRate())) {
 }
 
 void AsyncPosIntegratedController::setTarget(const double itarget) {
