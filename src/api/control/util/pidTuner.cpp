@@ -99,16 +99,15 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
         if (settleTime > timeout)
           break;
 
-        testController.step(input->controllerGet());
-        const int cmd = testController.getOutput();
+        const double inputVal = input->controllerGet();
+        const double outputVal = testController.step(inputVal);
         const double error = testController.getError();
         count++;
-        pros::c::lcd_print(3, "out: %d in %lf err %lf c %d", cmd, input->controllerGet(), error,
-                           count);
+        pros::c::lcd_print(3, "out: %d in %lf err %lf c %d", outputVal, inputVal, error, count);
         // sum of the error emphasizing later error
         itae += (settleTime.convert(millisecond) * abs((int)error)) / divisor;
 
-        output->controllerSet(cmd);
+        output->controllerSet(outputVal);
         rate->delayUntil(loopDelta);
       }
 
