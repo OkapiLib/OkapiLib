@@ -7,26 +7,22 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/util/pidTuner.hpp"
+#include "api.h"
 #include <algorithm>
 #include <cmath>
 #include <limits>
 #include <random>
-#include "api.h"
 
 namespace okapi {
-  PIDTuner::PIDTuner(std::shared_ptr<ControllerInput> iinput,
-           std::shared_ptr<ControllerOutput> ioutput,
-           const Supplier<std::unique_ptr<AbstractTimer>> itimer,
-           const Supplier<std::unique_ptr<SettledUtil>> isettle,
-           const Supplier<std::unique_ptr<AbstractRate>> &irate,
-           QTime itimeout, std::int32_t igoal, double ikPMin, double ikPMax, double ikIMin,
-           double ikIMax, double ikDMin, double ikDMax, std::int32_t inumIterations,
-           std::int32_t inumParticles, double ikSettle, double ikITAE)
+PIDTuner::PIDTuner(std::shared_ptr<ControllerInput> iinput,
+                   std::shared_ptr<ControllerOutput> ioutput, const TimeUtil &itimeUtil,
+                   QTime itimeout, std::int32_t igoal, double ikPMin, double ikPMax, double ikIMin,
+                   double ikIMax, double ikDMin, double ikDMax, std::int32_t inumIterations,
+                   std::int32_t inumParticles, double ikSettle, double ikITAE)
   : input(iinput),
     output(ioutput),
-    timerSupplier(itimer),
-    settleSupplier(isettle),
-    rate(irate.get()),
+    timeUtil(itimeUtil),
+    rate(std::move(itimeUtil.getRate())),
     timeout(itimeout),
     goal(igoal),
     kPMin(ikPMin),
@@ -39,7 +35,7 @@ namespace okapi {
     numParticles(inumParticles),
     kSettle(ikSettle),
     kITAE(ikITAE) {
-    particles.resize(numParticles);
+  particles.resize(numParticles);
 }
 
 PIDTuner::~PIDTuner() = default;
@@ -49,7 +45,7 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
   std::mt19937 gen(rd()); // Mersenne twister
   std::uniform_real_distribution<double> dist(0, 1);
 
-  IterativePosPIDController testController (0, 0, 0, 0, timerSupplier.get(), settleSupplier.get());
+  IterativePosPIDController testController(0, 0, 0, 0, timeUtil);
 
   for (int i = 0; i < numParticles; i++) {
     ParticleSet set{};
@@ -107,7 +103,8 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
         const int cmd = testController.getOutput();
         const double error = testController.getError();
         count++;
-        pros::c::lcd_print(3, "out: %d in %lf err %lf c %d", cmd, input->controllerGet(), error, count);
+        pros::c::lcd_print(3, "out: %d in %lf err %lf c %d", cmd, input->controllerGet(), error,
+                           count);
         // sum of the error emphasizing later error
         itae += (settleTime.convert(millisecond) * abs((int)error)) / divisor;
 

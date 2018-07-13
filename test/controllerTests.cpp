@@ -170,9 +170,7 @@ TEST(FilteredControllerInputTest, InputShouldBePassedThrough) {
 TEST(PIDTunerTest, BasicTest) {
   auto motor = std::make_shared<MockMotor>();
 
-  PIDTuner pidTuner(motor, Supplier<std::unique_ptr<AbstractTimer>>([]() { return std::make_unique<MockTimer>(); }),
-                   Supplier<std::unique_ptr<SettledUtil>>([]() { return SettledUtilFactory::createPtr(); }), Supplier<std::unique_ptr<AbstractRate>>([]() { return std::make_unique<MockRate>(); }),
-                    std::make_unique<MockRate>(), 5_s, 1000, 0.1, 2.0, 0.0001, 0.01, 20.0, 40.0);
+  PIDTuner pidTuner(motor->getEncoder(), motor, createTimeUtil(), 5_s, 1000, 0.1, 2.0, 0.0001, 0.01, 20.0, 40.0);
 
   auto out = pidTuner.autotune();
   printf("kP: %1.2f, kI: %1.2f, kD: %1.2f\n", out.kP, out.kI, out.kD);
