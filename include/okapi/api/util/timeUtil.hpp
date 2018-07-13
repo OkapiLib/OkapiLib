@@ -30,6 +30,12 @@ class TimeUtil {
 
   std::unique_ptr<SettledUtil> getSettledUtil() const;
 
+  const Supplier<std::unique_ptr<AbstractTimer>> getTimerSupplier() const;
+
+  const Supplier<std::unique_ptr<AbstractRate>> getRateSupplier() const;
+
+  const Supplier<std::unique_ptr<SettledUtil>> getSettledUtilSupplier() const;
+
   protected:
   Supplier<std::unique_ptr<AbstractTimer>> timerSupplier;
   Supplier<std::unique_ptr<AbstractRate>> rateSupplier;

@@ -27,4 +27,16 @@ std::unique_ptr<AbstractRate> TimeUtil::getRate() const {
 std::unique_ptr<SettledUtil> TimeUtil::getSettledUtil() const {
   return settledUtilSupplier.get();
 }
+
+const Supplier<std::unique_ptr<AbstractTimer>> TimeUtil::getTimerSupplier() const {
+  return timerSupplier;
+}
+
+const Supplier<std::unique_ptr<AbstractRate>> TimeUtil::getRateSupplier() const {
+  return rateSupplier;
+}
+
+const Supplier<std::unique_ptr<SettledUtil>> TimeUtil::getSettledUtilSupplier() const {
+  return settledUtilSupplier;
+}
 } // namespace okapi

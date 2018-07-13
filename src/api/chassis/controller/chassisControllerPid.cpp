@@ -9,17 +9,16 @@
 #include <cmath>
 
 namespace okapi {
-ChassisControllerPID::ChassisControllerPID(
-  const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
-  const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier,
-  std::unique_ptr<AbstractRate> irate, std::unique_ptr<ChassisModel> imodel,
-  const IterativePosPIDControllerArgs &idistanceArgs,
-  const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::GearsetRatioPair igearset,
-  const ChassisScales &iscales)
+ChassisControllerPID::ChassisControllerPID(const TimeUtil &itimeUtil,
+                                           std::unique_ptr<ChassisModel> imodel,
+                                           const IterativePosPIDControllerArgs &idistanceArgs,
+                                           const IterativePosPIDControllerArgs &iangleArgs,
+                                           const AbstractMotor::GearsetRatioPair igearset,
+                                           const ChassisScales &iscales)
   : ChassisController(std::move(imodel)),
-    rate(std::move(irate)),
-    distancePid(idistanceArgs, itimerSupplier.get(), isettledUtilSupplier.get()),
-    anglePid(iangleArgs, itimerSupplier.get(), isettledUtilSupplier.get()),
+    rate(std::move(itimeUtil.getRate())),
+    distancePid(idistanceArgs, itimeUtil),
+    anglePid(iangleArgs, itimeUtil),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),
     turnScale(iscales.turn) {

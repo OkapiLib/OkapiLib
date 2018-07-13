@@ -14,11 +14,10 @@ namespace okapi {
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
                                                      const double ikF,
                                                      std::unique_ptr<VelMath> ivelMath,
-                                                     std::unique_ptr<AbstractTimer> iloopDtTimer,
-                                                     std::unique_ptr<SettledUtil> isettledUtil)
+                                                     const TimeUtil &itimeUtil)
   : velMath(std::move(ivelMath)),
-    loopDtTimer(std::move(iloopDtTimer)),
-    settledUtil(std::move(isettledUtil)) {
+    loopDtTimer(std::move(itimeUtil.getTimer())),
+    settledUtil(std::move(itimeUtil.getSettledUtil())) {
   setGains(ikP, ikD, ikF);
 }
 

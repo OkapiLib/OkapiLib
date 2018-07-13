@@ -13,16 +13,14 @@
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include <memory>
 
 namespace okapi {
 class AsyncPosPIDController : public AsyncWrapper, public AsyncPositionController {
   public:
   AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
-                        std::shared_ptr<ControllerOutput> ioutput,
-                        const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
-                        std::unique_ptr<AbstractTimer> itimer,
-                        const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
+                        std::shared_ptr<ControllerOutput> ioutput, const TimeUtil &itimeUtil,
                         double ikP, double ikI, double ikD, double ikBias = 0);
 };
 } // namespace okapi

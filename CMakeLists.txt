@@ -158,7 +158,9 @@ add_executable(OkapiLibV5
         test/filterTests.cpp
         test/utilTests.cpp
         include/test/tests/api/implMocks.hpp
-        test/implMocks.cpp include/okapi/api/util/timeUtil.cpp include/okapi/api/util/timeUtil.hpp include/okapi/impl/util/timeUtilFactory.cpp include/okapi/impl/util/timeUtilFactory.hpp)
+        test/implMocks.cpp
+        src/api/util/timeUtil.cpp
+        include/okapi/api/util/timeUtil.hpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)
