@@ -15,6 +15,7 @@
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/units/QTime.hpp"
 #include "okapi/api/util/abstractRate.hpp"
+#include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/supplier.hpp"
 #include <memory>
 #include <vector>
@@ -24,8 +25,8 @@ class PIDTuner {
   public:
   PIDTuner(std::shared_ptr<ControllerInput> iinput,
            std::shared_ptr<ControllerOutput> ioutput,
-           const Supplier<std::unique_ptr<AbstractTimer>> &itimer,
-           const Supplier<std::unique_ptr<SettledUtil>> &isettle,
+           const Supplier<std::unique_ptr<AbstractTimer>> itimer,
+           const Supplier<std::unique_ptr<SettledUtil>> isettle,
            const Supplier<std::unique_ptr<AbstractRate>> &irate,
            QTime itimeout, std::int32_t igoal, double ikPMin, double ikPMax, double ikIMin,
            double ikIMax, double ikDMin, double ikDMax, std::int32_t inumIterations = 5,
@@ -54,9 +55,10 @@ class PIDTuner {
 
   std::shared_ptr<ControllerInput> input;
   std::shared_ptr<ControllerOutput> output;
-  std::unique_ptr<AbstractTimer> timer;
-  std::unique_ptr<SettledUtil> settle;
+  Supplier<std::unique_ptr<AbstractTimer>> timerSupplier;
+  Supplier<std::unique_ptr<SettledUtil>> settleSupplier;
   std::unique_ptr<AbstractRate> rate;
+  std::unique_ptr<IterativePosPIDController> testController;
 
   const QTime timeout;
   const std::int32_t goal;

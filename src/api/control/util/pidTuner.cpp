@@ -16,16 +16,16 @@
 namespace okapi {
   PIDTuner::PIDTuner(std::shared_ptr<ControllerInput> iinput,
            std::shared_ptr<ControllerOutput> ioutput,
-           const Supplier<std::unique_ptr<AbstractTimer>> &itimer,
-           const Supplier<std::unique_ptr<SettledUtil>> &isettle,
+           const Supplier<std::unique_ptr<AbstractTimer>> itimer,
+           const Supplier<std::unique_ptr<SettledUtil>> isettle,
            const Supplier<std::unique_ptr<AbstractRate>> &irate,
            QTime itimeout, std::int32_t igoal, double ikPMin, double ikPMax, double ikIMin,
            double ikIMax, double ikDMin, double ikDMax, std::int32_t inumIterations,
            std::int32_t inumParticles, double ikSettle, double ikITAE)
   : input(iinput),
     output(ioutput),
-    timer(itimer.get()),
-    settle(isettle.get()),
+    timerSupplier(itimer),
+    settleSupplier(isettle),
     rate(irate.get()),
     timeout(itimeout),
     goal(igoal),
@@ -49,12 +49,13 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
   std::mt19937 gen(rd()); // Mersenne twister
   std::uniform_real_distribution<double> dist(0, 1);
 
-  IterativePosPIDController testController (0, 0, 0, 0, std::move(timer), std::move(settle));
+  IterativePosPIDController testController (0, 0, 0, 0, timerSupplier.get(), settleSupplier.get());
 
   for (int i = 0; i < numParticles; i++) {
     ParticleSet set{};
     set = particles.at(i);
     set.kP.pos = kPMin + (kPMax - kPMin) * dist(gen);
+    pros::c::lcd_print(6, "kP %lf", set.kP.pos);
     set.kP.vel = set.kP.pos / increment;
     set.kP.best = set.kP.pos;
 
@@ -81,7 +82,6 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
     bool firstGoal = true;
 
     for (int particleIndex = 0; particleIndex < numParticles; particleIndex++) {
-      // TODO: Index out of bounds here (particles is empty at this point)
       testController.setGains(particles.at(particleIndex).kP.pos,
                               particles.at(particleIndex).kI.pos,
                               particles.at(particleIndex).kD.pos);
@@ -97,14 +97,17 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
 
       QTime settleTime = 0_ms;
       int itae = 0;
-      pros::c::lcd_print(1, "here");
+      int count = 0;
       while (!testController.isSettled()) {
         settleTime += loopDelta;
         if (settleTime > timeout)
           break;
-        const int cmd = testController.step(input->controllerGet());
-        pros::c::lcd_print(3, "out: %d in %d", cmd, input->controllerGet());
+
+        testController.step(input->controllerGet());
+        const int cmd = testController.getOutput();
         const double error = testController.getError();
+        count++;
+        pros::c::lcd_print(3, "out: %d in %lf err %lf c %d", cmd, input->controllerGet(), error, count);
         // sum of the error emphasizing later error
         itae += (settleTime.convert(millisecond) * abs((int)error)) / divisor;
 

@@ -24,9 +24,9 @@ void opcontrol() {
   pros::Task::delay(100);
   pros::c::lcd_initialize();
   pros::c::lcd_print(2, "here");
-
+  std::shared_ptr<AbstractMotor> testMotor = std::make_shared<okapi::Motor>(1);
   auto timer = 5_s;
-  PIDTuner tuner = PIDTunerFactory::create(std::make_shared<okapi::Motor>(1)->getEncoder(), std::make_shared<okapi::Motor>(1), timer, 5000, 0.1,
+  PIDTuner tuner = PIDTunerFactory::create(testMotor->getEncoder(), testMotor, timer, 5000, 0.1,
                         200.0, 0.0001, 0.01, 20.0, 40.0);
   IterativePosPIDControllerArgs args = tuner.autotune();
   printf("%f %f %f\n", args.kP, args.kI, args.kD);

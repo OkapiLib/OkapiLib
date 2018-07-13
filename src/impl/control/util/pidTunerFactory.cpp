@@ -10,6 +10,7 @@
 #include "okapi/impl/util/timer.hpp"
 #include "okapi/impl/util/rate.hpp"
 #include "okapi/impl/control/util/settledUtilFactory.hpp"
+#include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
 
 namespace okapi {
 PIDTuner PIDTunerFactory::create(std::shared_ptr<ControllerInput> iinput,

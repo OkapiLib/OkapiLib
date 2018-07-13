@@ -10,6 +10,7 @@
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include <algorithm>
 #include <cmath>
+#include "api.h"
 
 namespace okapi {
 IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, const double ikI,
@@ -108,6 +109,7 @@ double IterativePosPIDController::step(const double inewReading) {
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
       error = target - inewReading;
 
+
       if ((std::abs(error) < target - errorSumMin && std::abs(error) > target - errorSumMax) ||
           (std::abs(error) > target + errorSumMin && std::abs(error) < target + errorSumMax)) {
         integral += kI * error; // Eliminate integral kick while realtime tuning
@@ -121,6 +123,8 @@ double IterativePosPIDController::step(const double inewReading) {
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
       derivative = inewReading - lastReading;
+
+      pros::c::lcd_print(4, "here: %lf", kP);
 
       output = std::clamp(kP * error + integral - kD * derivative + kBias, outputMin, outputMax);
 
