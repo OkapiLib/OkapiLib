@@ -8,13 +8,14 @@
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include <cmath>
+#include <type_traits>
 
 namespace okapi {
 Motor::Motor(const std::int8_t port)
   : Motor(std::abs(port), port < 0, AbstractMotor::gearset::red) {
 }
 
-Motor::Motor(const std::uint8_t port, const bool reverse, const AbstractMotor::gearset gearset,
+Motor::Motor(const std::uint8_t port, const bool reverse, const AbstractMotor::gearset igearset,
              const AbstractMotor::encoderUnits encoderUnits)
   : pros::Motor(port,
                 gearset == AbstractMotor::gearset::red
@@ -30,7 +31,8 @@ Motor::Motor(const std::uint8_t port, const bool reverse, const AbstractMotor::g
                       ? pros::c::E_MOTOR_ENCODER_DEGREES
                       : encoderUnits == AbstractMotor::encoderUnits::rotations
                           ? pros::c::E_MOTOR_ENCODER_ROTATIONS
-                          : pros::c::E_MOTOR_ENCODER_INVALID) {
+                          : pros::c::E_MOTOR_ENCODER_INVALID),
+    gearset(igearset) {
 }
 
 std::int32_t Motor::moveAbsolute(const double iposition, const std::int32_t ivelocity) const {
@@ -124,8 +126,12 @@ std::shared_ptr<ContinuousRotarySensor> Motor::getEncoder() const {
   return std::make_shared<IntegratedEncoder>(*this);
 }
 
+template <typename E> constexpr auto toUnderlyingType(E e) noexcept {
+  return static_cast<std::underlying_type_t<E>>(e);
+}
+
 void Motor::controllerSet(const double ivalue) {
-  move_velocity(ivalue);
+  move_velocity(ivalue * toUnderlyingType(gearset));
 }
 
 inline namespace literals {

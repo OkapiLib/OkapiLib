@@ -14,15 +14,14 @@ AsyncWrapper::AsyncWrapper(std::shared_ptr<ControllerInput> iinput,
                            std::shared_ptr<ControllerOutput> ioutput,
                            std::unique_ptr<IterativeController> icontroller,
                            const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
-                           std::unique_ptr<SettledUtil> isettledUtil, const double iscale)
+                           std::unique_ptr<SettledUtil> isettledUtil)
   : input(iinput),
     output(ioutput),
     controller(std::move(icontroller)),
     loopRate(std::move(irateSupplier.get())),
     settledRate(std::move(irateSupplier.get())),
     settledUtil(std::move(isettledUtil)),
-    task(trampoline, this),
-    scale(iscale) {
+    task(trampoline, this) {
 }
 
 void AsyncWrapper::loop() {
@@ -30,7 +29,7 @@ void AsyncWrapper::loop() {
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
   while (true) {
     if (!controller->isDisabled()) {
-      output->controllerSet(scale * controller->step(input->controllerGet()));
+      output->controllerSet(controller->step(input->controllerGet()));
     }
 
     loopRate->delayUntil(controller->getSampleTime());

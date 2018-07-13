@@ -17,6 +17,6 @@ void ADIMotor::moveVoltage(const std::int32_t ivoltage) const {
 }
 
 void ADIMotor::controllerSet(const double ivalue) {
-  motor.set_value(ivalue * reversed);
+  motor.set_value(ivalue * reversed * 127);
 }
 } // namespace okapi
