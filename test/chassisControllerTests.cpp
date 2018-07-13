@@ -5,7 +5,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "test/tests/api/chassisControllerTests.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "test/crossPlatformTestRunner.hpp"
 #include <gtest/gtest.h>

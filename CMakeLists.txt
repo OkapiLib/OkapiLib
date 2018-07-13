@@ -107,14 +107,7 @@ add_executable(OkapiLibV5
         include/okapi/api/util/supplier.hpp
         include/okapi/api/coreProsAPI.hpp
         include/test/crossPlatformTestRunner.hpp
-        include/test/tests/api/allApiTests.hpp
-        include/test/tests/api/buttonTests.hpp
-        include/test/tests/api/chassisControllerTests.hpp
-        include/test/tests/api/chassisModelTests.hpp
-        include/test/tests/api/controllerTests.hpp
-        include/test/tests/api/controlTests.hpp
-        include/test/tests/api/filterTests.hpp
-        include/test/tests/api/utilTests.hpp
+        include/test/tests/api/implMocks.hpp
         src/api/chassis/controller/chassisController.cpp
         src/api/chassis/controller/chassisControllerIntegrated.cpp
         src/api/chassis/controller/chassisControllerPid.cpp
@@ -157,7 +150,7 @@ add_executable(OkapiLibV5
         test/crossPlatformTestRunner.cpp
         test/filterTests.cpp
         test/utilTests.cpp
-        include/test/tests/api/implMocks.hpp
+        test/unitTests.cpp
         test/implMocks.cpp
         src/api/util/timeUtil.cpp
         include/okapi/api/util/timeUtil.hpp)
