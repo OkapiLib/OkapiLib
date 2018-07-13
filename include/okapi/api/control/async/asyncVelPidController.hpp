@@ -13,18 +13,15 @@
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include <memory>
 
 namespace okapi {
 class AsyncVelPIDController : public AsyncWrapper, public AsyncVelocityController {
   public:
   AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
-                        std::shared_ptr<ControllerOutput> ioutput,
-                        const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
-                        std::unique_ptr<AbstractTimer> itimer,
-                        const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
-                        const double ikP, const double ikD, const double ikF,
-                        std::unique_ptr<VelMath> ivelMath);
+                        std::shared_ptr<ControllerOutput> ioutput, const TimeUtil &itimeUtil,
+                        double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath);
 };
 } // namespace okapi
 
