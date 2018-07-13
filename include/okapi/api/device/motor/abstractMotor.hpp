@@ -34,9 +34,9 @@ class AbstractMotor : public ControllerOutput {
    * Indicates the internal gear ratio of a motor.
    */
   enum class gearset {
-    red = 0,   // 36:1, 100 RPM, Red gear set
-    green = 1, // 18:1, 200 RPM, Green gear set
-    blue = 2,  // 6:1, 600 RPM, Blue gear set
+    red = 100,   // 36:1, 100 RPM, Red gear set
+    green = 200, // 18:1, 200 RPM, Green gear set
+    blue = 600,  // 6:1,  600 RPM, Blue gear set
     invalid = INT32_MAX
   };
 
