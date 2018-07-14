@@ -1,8 +1,13 @@
 cmake_minimum_required(VERSION 3.6)
 project(OkapiLibV5)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -pthread)
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
+if(CMAKE_COMPILER_IS_GNUCXX)
+    include(CodeCoverage)
+    setup_target_for_coverage(${PROJECT_NAME}_coverage tests coverage)
+endif()
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -Wall -Wextra -Wshadow -Wnull-dereference -pthread -g -O0 -fprofile-arcs -ftest-coverage")
 
 enable_testing()
 
@@ -107,16 +112,10 @@ add_executable(OkapiLibV5
         include/okapi/api/util/abstractRate.hpp
         include/okapi/api/util/abstractTimer.hpp
         include/okapi/api/util/mathUtil.hpp
+        include/okapi/api/util/supplier.hpp
         include/okapi/api/coreProsAPI.hpp
         include/test/crossPlatformTestRunner.hpp
-        include/test/tests/api/allApiTests.hpp
-        include/test/tests/api/buttonTests.hpp
-        include/test/tests/api/chassisControllerTests.hpp
-        include/test/tests/api/chassisModelTests.hpp
-        include/test/tests/api/controllerTests.hpp
-        include/test/tests/api/controlTests.hpp
-        include/test/tests/api/filterTests.hpp
-        include/test/tests/api/utilTests.hpp
+        include/test/tests/api/implMocks.hpp
         src/api/chassis/controller/chassisController.cpp
         src/api/chassis/controller/chassisControllerIntegrated.cpp
         src/api/chassis/controller/chassisControllerPid.cpp
@@ -159,14 +158,15 @@ add_executable(OkapiLibV5
         test/chassisModelTests.cpp
         test/controllerTests.cpp
         test/controlTests.cpp
-        test/crossPlatformTestRunner.cpp
         test/filterTests.cpp
         test/implMocks.cpp
         include/test/tests/api/odometryTests.hpp
         test/odometryTests.cpp
         test/utilTests.cpp
-        include/test/tests/api/implMocks.hpp
-        include/okapi/api/util/supplier.hpp)
+        test/unitTests.cpp
+        test/implMocks.cpp
+        src/api/util/timeUtil.cpp
+        include/okapi/api/util/timeUtil.hpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)

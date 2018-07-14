@@ -5,7 +5,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "test/tests/api/filterTests.hpp"
 #include "okapi/api/filter/averageFilter.hpp"
 #include "okapi/api/filter/composableFilter.hpp"
 #include "okapi/api/filter/demaFilter.hpp"

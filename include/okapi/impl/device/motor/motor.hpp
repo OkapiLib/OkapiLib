@@ -22,7 +22,7 @@ class Motor : public AbstractMotor, public pros::Motor {
   Motor(const std::int8_t port);
 
   explicit Motor(
-    const std::uint8_t port, const bool reverse, const AbstractMotor::gearset gearset,
+    const std::uint8_t port, const bool reverse, const AbstractMotor::gearset igearset,
     const AbstractMotor::encoderUnits encoderUnits = AbstractMotor::encoderUnits::degrees);
 
   /**
@@ -219,11 +219,14 @@ class Motor : public AbstractMotor, public pros::Motor {
 
   /**
    * Writes the value of the controller output. This method might be automatically called in another
-   * thread by the controller.
+   * thread by the controller. The range of input values is expected to be [-1, 1].
    *
-   * @param ivalue the controller's output
+   * @param ivalue the controller's output in the range [-1, 1]
    */
   virtual void controllerSet(const double ivalue) override;
+
+  protected:
+  AbstractMotor::gearset gearset;
 };
 
 inline namespace literals {

@@ -9,15 +9,14 @@
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
-  const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
-  const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
-  std::unique_ptr<ChassisModel> imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
+  const TimeUtil &itimeUtil, std::unique_ptr<ChassisModel> imodel,
+  const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
   const AsyncPosIntegratedControllerArgs &irightControllerArgs,
   AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
   : ChassisController(std::move(imodel)),
-    rate(std::move(irateSupplier.get())),
-    leftController(ileftControllerArgs, isettledUtilSupplier.get(), irateSupplier.get()),
-    rightController(irightControllerArgs, isettledUtilSupplier.get(), irateSupplier.get()),
+    rate(std::move(itimeUtil.getRate())),
+    leftController(ileftControllerArgs, itimeUtil),
+    rightController(irightControllerArgs, itimeUtil),
     lastTarget(0),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),

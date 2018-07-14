@@ -1,6 +1,14 @@
-#include "test/tests/api/controllerTests.hpp"
+/**
+ * @author Ryan Benasutti, WPI
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
+#include "okapi/api/control/async/asyncPosPidController.hpp"
 #include "okapi/api/control/async/asyncVelIntegratedController.hpp"
+#include "okapi/api/control/async/asyncVelPidController.hpp"
 #include "okapi/api/control/iterative/iterativeMotorVelocityController.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
@@ -35,8 +43,10 @@ class IterativeControllerTest : public ::testing::Test {
 };
 
 TEST_F(IterativeControllerTest, IterativePosPIDControllerTest) {
-  IterativePosPIDController controller(0.004, 0, 0, 0, std::make_unique<ConstantMockTimer>(10_ms),
-                                       createSettledUtilPtr());
+  IterativePosPIDController controller(
+    0.004, 0, 0, 0, createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>([]() {
+      return std::make_unique<ConstantMockTimer>(10_ms);
+    })));
 
   runSimulation(controller, 45);
 
@@ -49,7 +59,8 @@ TEST_F(IterativeControllerTest, IterativeVelPIDController) {
     0.000015, 0, 0,
     std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
                               std::make_unique<ConstantMockTimer>(10_ms)),
-    std::make_unique<ConstantMockTimer>(10_ms), createSettledUtilPtr());
+    createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
+      []() { return std::make_unique<ConstantMockTimer>(10_ms); })));
 
   runSimulation(controller, 10);
 
@@ -62,7 +73,8 @@ TEST_F(IterativeControllerTest, IterativeVelPIDControllerFeedForwardOnly) {
     0, 0, 0.1,
     std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
                               std::make_unique<ConstantMockTimer>(10_ms)),
-    std::make_unique<ConstantMockTimer>(10_ms), createSettledUtilPtr());
+    createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
+      []() { return std::make_unique<ConstantMockTimer>(10_ms); })));
 
   controller.setTarget(5);
 
@@ -79,7 +91,8 @@ TEST_F(IterativeControllerTest, IterativeMotorVelocityController) {
           0, 0, 0,
           std::make_unique<VelMath>(imev5TPR, std::make_shared<AverageFilter<2>>(),
                                     std::make_unique<ConstantMockTimer>(10_ms)),
-          std::make_unique<ConstantMockTimer>(10_ms), createSettledUtilPtr()) {
+          createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
+            []() { return std::make_unique<ConstantMockTimer>(10_ms); }))) {
     }
 
     double step(const double inewReading) override {
@@ -107,43 +120,58 @@ TEST_F(IterativeControllerTest, IterativeMotorVelocityController) {
 
 class AsyncControllerTest : public ::testing::Test {
   public:
-  void assertControllerFollowsDisableLifecycle(AsyncController &controller,
+  void assertControllerFollowsDisableLifecycle(AsyncController &&controller,
                                                std::int16_t &domainValue,
                                                std::int16_t &voltageValue) {
+    EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled at the start.";
+
     controller.setTarget(100);
     EXPECT_EQ(domainValue, 100) << "Should be on by default.";
 
     controller.flipDisable();
+    EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after flipDisable";
     EXPECT_EQ(voltageValue, 0) << "Disabling the controller should turn the motor off";
 
     controller.flipDisable();
+    EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled after flipDisable";
     EXPECT_EQ(domainValue, 100)
       << "Re-enabling the controller should move the motor to the previous target";
 
     controller.flipDisable();
+    EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after flipDisable";
     controller.reset();
+    EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after reset";
     EXPECT_EQ(voltageValue, 0) << "Resetting the controller should not change the current target";
 
     controller.flipDisable();
+    EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled after flipDisable";
     domainValue = 1337;            // Sample value to check it doesn't change
     MockRate().delayUntil(100_ms); // Wait for it to possibly change
     EXPECT_EQ(domainValue, 1337)
       << "Re-enabling the controller after a reset should not move the motor";
   }
+
+  void assertControllerFollowsTargetLifecycle(AsyncController &&controller) {
+    EXPECT_DOUBLE_EQ(0, controller.getError()) << "Should start with 0 error";
+    controller.setTarget(100);
+    EXPECT_DOUBLE_EQ(100, controller.getError());
+    controller.setTarget(0);
+    EXPECT_DOUBLE_EQ(0, controller.getError());
+  }
 };
 
 TEST_F(AsyncControllerTest, AsyncPosIntegratedController) {
   auto motor = std::make_shared<MockMotor>();
-  AsyncPosIntegratedController controller(motor, createSettledUtilPtr(),
-                                          std::make_unique<MockRate>());
-  assertControllerFollowsDisableLifecycle(controller, motor->lastPosition, motor->lastVoltage);
+  assertControllerFollowsDisableLifecycle(AsyncPosIntegratedController(motor, createTimeUtil()),
+                                          motor->lastPosition, motor->lastVoltage);
+  assertControllerFollowsTargetLifecycle(AsyncPosIntegratedController(motor, createTimeUtil()));
 }
 
 TEST_F(AsyncControllerTest, AsyncVelIntegratedController) {
   auto motor = std::make_shared<MockMotor>();
-  AsyncVelIntegratedController controller(motor, createSettledUtilPtr(),
-                                          std::make_unique<MockRate>());
-  assertControllerFollowsDisableLifecycle(controller, motor->lastVelocity, motor->lastVoltage);
+  assertControllerFollowsDisableLifecycle(AsyncVelIntegratedController(motor, createTimeUtil()),
+                                          motor->lastVelocity, motor->lastVoltage);
+  assertControllerFollowsTargetLifecycle(AsyncVelIntegratedController(motor, createTimeUtil()));
 }
 
 TEST(FilteredControllerInputTest, InputShouldBePassedThrough) {

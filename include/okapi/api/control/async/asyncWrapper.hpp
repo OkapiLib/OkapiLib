@@ -36,7 +36,7 @@ class AsyncWrapper : virtual public AsyncController {
   AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
                std::unique_ptr<IterativeController> icontroller,
                const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
-               std::unique_ptr<SettledUtil> isettledUtil, double iscale = 127);
+               std::unique_ptr<SettledUtil> isettledUtil);
 
   /**
    * Sets the target for the controller.
@@ -117,7 +117,6 @@ class AsyncWrapper : virtual public AsyncController {
   std::unique_ptr<AbstractRate> settledRate;
   std::unique_ptr<SettledUtil> settledUtil;
   CROSSPLATFORM_THREAD task;
-  const double scale = 127;
 
   static void trampoline(void *context);
   void loop();

@@ -5,7 +5,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "test/tests/api/utilTests.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include "test/crossPlatformTestRunner.hpp"
 #include <gtest/gtest.h>
@@ -28,21 +27,21 @@ TEST(IpowTest, FloatingPointTests) {
 }
 
 TEST(CutRangeTest, Tests) {
-  EXPECT_FLOAT_EQ(cutRange(1, -2, 2), 2) << "1 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(cutRange(2, -2, 2), 2) << "2 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(cutRange(0, -2, 2), 2) << "0 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(cutRange(-2, -2, 2), -2) << "-2 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(cutRange(-3, -2, 2), -3) << "-3 : [-2, 2] -> -3";
-  EXPECT_FLOAT_EQ(cutRange(3, -2, 2), 3) << "3 : [-2, 2] -> 3";
+  EXPECT_DOUBLE_EQ(cutRange(1, -2, 2), 2) << "1 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(cutRange(2, -2, 2), 2) << "2 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(cutRange(0, -2, 2), 2) << "0 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(cutRange(-2, -2, 2), -2) << "-2 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(cutRange(-3, -2, 2), -3) << "-3 : [-2, 2] -> -3";
+  EXPECT_DOUBLE_EQ(cutRange(3, -2, 2), 3) << "3 : [-2, 2] -> 3";
 }
 
 TEST(DeadbandTest, Tests) {
-  EXPECT_FLOAT_EQ(deadband(0, -2, 2), 0) << "0 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(deadband(1, -2, 2), 0) << "1 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(deadband(2, -2, 2), 0) << "2 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(deadband(-2, -2, 2), 0) << "-2 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(deadband(3, -2, 2), 3) << "3 : [-2, 2] -> 3";
-  EXPECT_FLOAT_EQ(deadband(-3, -2, 2), -3) << "-3 : [-2, 2] -> -3";
+  EXPECT_DOUBLE_EQ(deadband(0, -2, 2), 0) << "0 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(deadband(1, -2, 2), 0) << "1 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(deadband(2, -2, 2), 0) << "2 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(deadband(-2, -2, 2), 0) << "-2 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(deadband(3, -2, 2), 3) << "3 : [-2, 2] -> 3";
+  EXPECT_DOUBLE_EQ(deadband(-3, -2, 2), -3) << "-3 : [-2, 2] -> -3";
 }
 
 TEST(RemapRangeTest, Tests) {

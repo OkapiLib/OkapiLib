@@ -12,6 +12,7 @@
 
 #include "okapi/api/control/iterative/iterativePositionController.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include <memory>
 
 namespace okapi {
@@ -28,17 +29,14 @@ class IterativePosPIDController : public IterativePositionController {
    * Position PID controller.
    */
   IterativePosPIDController(double ikP, double ikI, double ikD, double ikBias,
-                            std::unique_ptr<AbstractTimer> iloopDtTimer,
-                            std::unique_ptr<SettledUtil> isettledUtil);
+                            const TimeUtil &itimeUtil);
 
   /**
    * Position PID controller.
    *
    * @param params PosPIDControllerArgs
    */
-  IterativePosPIDController(const IterativePosPIDControllerArgs &params,
-                            std::unique_ptr<AbstractTimer> iloopDtTimer,
-                            std::unique_ptr<SettledUtil> isettledUtil);
+  IterativePosPIDController(const IterativePosPIDControllerArgs &params, const TimeUtil &itimeUtil);
 
   /**
    * Do one iteration of the controller. Returns the reading in the range [-127, 127] unless the

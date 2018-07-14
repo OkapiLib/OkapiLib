@@ -14,16 +14,18 @@ AsyncVelIntegratedControllerArgs::AsyncVelIntegratedControllerArgs(
   : motor(imotor) {
 }
 
-AsyncVelIntegratedController::AsyncVelIntegratedController(
-  std::shared_ptr<AbstractMotor> imotor, std::unique_ptr<SettledUtil> isettledUtil,
-  std::unique_ptr<AbstractRate> irate)
-  : motor(imotor), settledUtil(std::move(isettledUtil)), rate(std::move(irate)) {
+AsyncVelIntegratedController::AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+                                                           const TimeUtil &itimeUtil)
+  : motor(imotor),
+    settledUtil(std::move(itimeUtil.getSettledUtil())),
+    rate(std::move(itimeUtil.getRate())) {
 }
 
 AsyncVelIntegratedController::AsyncVelIntegratedController(
-  const AsyncVelIntegratedControllerArgs &iparams, std::unique_ptr<SettledUtil> isettledUtil,
-  std::unique_ptr<AbstractRate> irate)
-  : motor(iparams.motor), settledUtil(std::move(isettledUtil)), rate(std::move(irate)) {
+  const AsyncVelIntegratedControllerArgs &iparams, const TimeUtil &itimeUtil)
+  : motor(iparams.motor),
+    settledUtil(std::move(itimeUtil.getSettledUtil())),
+    rate(std::move(itimeUtil.getRate())) {
 }
 
 void AsyncVelIntegratedController::setTarget(const double itarget) {

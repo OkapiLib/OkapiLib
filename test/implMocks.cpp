@@ -12,9 +12,22 @@
 #include <chrono>
 
 namespace okapi {
+double MockContinuousRotarySensor::controllerGet() {
+  return 0;
+}
+
+int32_t MockContinuousRotarySensor::reset() const {
+  return 0;
+}
+
+int32_t MockContinuousRotarySensor::get() const {
+  return 0;
+}
+
 MockMotor::MockMotor() = default;
 
 void MockMotor::controllerSet(const double ivalue) {
+  moveVelocity((int16_t)ivalue);
 }
 
 int32_t MockMotor::moveAbsolute(const double iposition, const std::int32_t ivelocity) const {
@@ -72,7 +85,7 @@ int32_t MockMotor::setVoltageLimit(const std::int32_t ilimit) const {
 }
 
 std::shared_ptr<ContinuousRotarySensor> MockMotor::getEncoder() const {
-  return std::shared_ptr<ContinuousRotarySensor>();
+  return std::shared_ptr<MockContinuousRotarySensor>();
 }
 
 std::int32_t MockMotor::moveVelocity(const std::int16_t ivelocity) const {
@@ -196,13 +209,6 @@ bool ConstantMockTimer::repeat(QFrequency frequency) {
   return false;
 }
 
-std::unique_ptr<SettledUtil> createSettledUtilPtr(const double iatTargetError,
-                                                  const double iatTargetDerivative,
-                                                  const QTime iatTargetTime) {
-  return std::make_unique<SettledUtil>(std::make_unique<MockTimer>(), iatTargetError,
-                                       iatTargetDerivative, iatTargetTime);
-}
-
 MockRate::MockRate() = default;
 
 void MockRate::delay(QFrequency ihz) {
@@ -219,5 +225,26 @@ void MockRate::delayUntil(QTime itime) {
 
 void MockRate::delayUntil(uint32_t ims) {
   std::this_thread::sleep_for(std::chrono::milliseconds(ims));
+}
+
+std::unique_ptr<SettledUtil> createSettledUtilPtr(const double iatTargetError,
+                                                  const double iatTargetDerivative,
+                                                  const QTime iatTargetTime) {
+  return std::make_unique<SettledUtil>(std::make_unique<MockTimer>(), iatTargetError,
+                                       iatTargetDerivative, iatTargetTime);
+}
+
+TimeUtil createTimeUtil() {
+  return TimeUtil(
+    Supplier<std::unique_ptr<AbstractTimer>>([]() { return std::make_unique<MockTimer>(); }),
+    Supplier<std::unique_ptr<AbstractRate>>([]() { return std::make_unique<MockRate>(); }),
+    Supplier<std::unique_ptr<SettledUtil>>([]() { return createSettledUtilPtr(); }));
+}
+
+TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier) {
+  return TimeUtil(itimerSupplier, Supplier<std::unique_ptr<AbstractRate>>([]() {
+                    return std::make_unique<MockRate>();
+                  }),
+                  Supplier<std::unique_ptr<SettledUtil>>([]() { return createSettledUtilPtr(); }));
 }
 } // namespace okapi
