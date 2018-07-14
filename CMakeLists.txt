@@ -166,7 +166,7 @@ add_executable(OkapiLibV5
         test/unitTests.cpp
         test/implMocks.cpp
         src/api/util/timeUtil.cpp
-        include/okapi/api/util/timeUtil.hpp)
+        include/okapi/api/util/timeUtil.hpp include/okapi/api/chassis/model/readOnlyChassisModel.hpp src/api/chassis/model/readOnlyChassisModel.cpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)

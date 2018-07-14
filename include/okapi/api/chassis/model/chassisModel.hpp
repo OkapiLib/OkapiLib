@@ -8,11 +8,11 @@
 #ifndef _OKAPI_CHASSISMODEL_HPP_
 #define _OKAPI_CHASSISMODEL_HPP_
 
+#include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include <array>
 #include <initializer_list>
 #include <memory>
-#include <valarray>
 #include <vector>
 
 namespace okapi {
@@ -21,9 +21,16 @@ class ChassisModelArgs {
   virtual ~ChassisModelArgs();
 };
 
-class ChassisModel {
+/**
+ * A version of the ReadOnlyChassisModel that also supports write methods, such as setting motor
+ * speed. Because this class can write to motors, there can only be one owner and as such copying
+ * is disabled.
+ */
+class ChassisModel : public ReadOnlyChassisModel {
   public:
-  virtual ~ChassisModel();
+  ChassisModel() = default;
+  ChassisModel(const ChassisModel &) = delete;
+  ChassisModel &operator=(const ChassisModel &) = delete;
 
   /**
    * Drive the robot forwards (using open-loop control).
@@ -86,13 +93,6 @@ class ChassisModel {
    * @param ipower motor power
    */
   virtual void right(double ispeed) const = 0;
-
-  /**
-   * Read the sensors.
-   *
-   * @return sensor readings (format is implementation dependent)
-   */
-  virtual std::valarray<std::int32_t> getSensorVals() const = 0;
 
   /**
    * Reset the sensors to their zero point.
