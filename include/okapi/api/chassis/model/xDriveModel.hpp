@@ -75,8 +75,6 @@ class XDriveModel : public ChassisModel {
 
   explicit XDriveModel(const XDriveModelArgs &iparams);
 
-  XDriveModel(const XDriveModel &other);
-
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.
    *
