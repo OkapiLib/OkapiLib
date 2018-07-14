@@ -18,45 +18,43 @@ OdomState::OdomState(const double ix, const double iy, const double itheta)
 
 OdomState::~OdomState() = default;
 
-OdometryArgs::OdometryArgs(std::shared_ptr<SkidSteerModel> imodel, const double iscale,
-                           const double iturnScale)
-  : model(imodel), scale(iscale), turnScale(iturnScale) {
+OdometryArgs::OdometryArgs(std::shared_ptr<ReadOnlyChassisModel> imodel, const ChassisScales &ichassisScales)
+  : model(imodel), chassisScales(ichassisScales) {
 }
 
 OdometryArgs::~OdometryArgs() = default;
 
-Odometry::Odometry(std::shared_ptr<SkidSteerModel> imodel, const double iscale,
-                   const double iturnScale, std::unique_ptr<AbstractRate> irate)
+Odometry::Odometry(std::shared_ptr<ReadOnlyChassisModel> imodel, const ChassisScales &ichassisScales, std::unique_ptr<AbstractRate> irate)
   : model(imodel),
-    scale(iscale),
     rate(std::move(irate)),
-    turnScale(iturnScale),
+    chassisScales(ichassisScales),
     lastTicks{0, 0},
     mm(0) {
 }
 
 Odometry::Odometry(const OdometryArgs &iparams)
-  : model(iparams.model), scale(iparams.scale), turnScale(iparams.turnScale) {
+  : model(iparams.model), chassisScales(iparams.chassisScales) {
 }
 
 Odometry::~Odometry() = default;
 
-void Odometry::setScales(const double iscale, const double iturnScale) {
-  scale = iscale;
-  turnScale = iturnScale;
+void Odometry::setScales(const ChassisScales &ichassisScales) {
+  chassisScales = ichassisScales;
 }
 
 void Odometry::loop() {
   std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0};
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
   while (true) {
     newTicks = model->getSensorVals();
     tickDiff = newTicks - lastTicks;
     lastTicks = newTicks;
 
-    mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
+    mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * chassisScales.straight;
 
-    state.theta += (tickDiff[1] - tickDiff[0]) * turnScale;
+    state.theta += (tickDiff[1] - tickDiff[0]) * chassisScales.turn;
     if (state.theta > 180)
       state.theta -= 360;
     else if (state.theta < -180)
@@ -67,6 +65,7 @@ void Odometry::loop() {
 
     rate->delayUntil(10);
   }
+#pragma clang diagnostic pop
 }
 
 void Odometry::trampoline(void *context) {

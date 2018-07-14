@@ -11,6 +11,7 @@
 #include "test/tests/api/implMocks.hpp"
 #include <memory>
 #include <gtest/gtest.h>
+#include "okapi/api/chassis/model/skidSteerModel.hpp"
 
 using namespace okapi;
 using namespace snowhouse;

@@ -14,6 +14,7 @@
 #include "okapi/impl/chassis/controller/odomChassisController.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
+#include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include <memory>
 
 namespace okapi {

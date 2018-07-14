@@ -15,7 +15,7 @@ namespace okapi {
 class DistanceAndAngle {
   public:
   DistanceAndAngle();
-  DistanceAndAngle(const double ilength, const double itheta);
+  DistanceAndAngle(double ilength, double itheta);
 
   virtual ~DistanceAndAngle();
 
@@ -33,7 +33,7 @@ class OdomMath {
    * @param istate odometry state
    * @return distance between the points
    */
-  static double computeDistanceToPoint(const double ix, const double iy, const OdomState &istate);
+  static double computeDistanceToPoint(double ix, double iy, const OdomState &istate);
 
   /**
    * Computes the angle from the given Odometry state to the given point.
@@ -43,7 +43,7 @@ class OdomMath {
    * @param istate odometry state
    * @return angle to the point
    */
-  static double computeAngleToPoint(const double ix, const double iy, const OdomState &istate);
+  static double computeAngleToPoint(double ix, double iy, const OdomState &istate);
 
   /**
    * Computes the distance and angle from the given Odometry state to the given point.
@@ -53,7 +53,7 @@ class OdomMath {
    * @param istate odometry state
    * @return distance and angle to the point
    */
-  static DistanceAndAngle computeDistanceAndAngleToPoint(const double ix, const double iy,
+  static DistanceAndAngle computeDistanceAndAngleToPoint(double ix, double iy,
                                                          const OdomState &istate);
 
   /**
@@ -64,8 +64,8 @@ class OdomMath {
    * @param ticksPerRev ticks per revolution (default is 360)
    * @return scales in the format {straight scale, turn scale}
    */
-  static std::tuple<double, double> guessScales(const double chassisDiam, const double wheelDiam,
-                                                const double ticksPerRev = 1800.0);
+  static std::tuple<double, double> guessScales(double chassisDiam, double wheelDiam,
+                                                double ticksPerRev = 1800.0);
 
   private:
   OdomMath();

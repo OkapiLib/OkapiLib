@@ -26,7 +26,7 @@ class OdomChassisController : public virtual ChassisController {
    * @param iparams odometry parameters for the internal odometry math
    * @param imoveThreshold minimum length movement
    */
-  OdomChassisController(const OdometryArgs &iparams, const float imoveThreshold = 10);
+  OdomChassisController(std::unique_ptr<SkidSteerModel> imodel, const ChassisScales &ichassisScales, const float imoveThreshold = 10);
 
   /**
    * Drives the robot straight to a point in the odom frame.

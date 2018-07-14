@@ -8,10 +8,11 @@
 #ifndef _OKAPI_ODOMETRY_HPP_
 #define _OKAPI_ODOMETRY_HPP_
 
-#include "okapi/api/chassis/model/skidSteerModel.hpp"
+#include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
 #include "okapi/api/util/abstractRate.hpp"
 #include <memory>
 #include <valarray>
+#include "okapi/api/chassis/controller/chassisScales.hpp"
 
 namespace okapi {
 class OdomState {
@@ -28,12 +29,12 @@ class OdomState {
 
 class OdometryArgs {
   public:
-  OdometryArgs(std::shared_ptr<SkidSteerModel> imodel, double iscale, double iturnScale);
+  OdometryArgs(std::shared_ptr<ReadOnlyChassisModel> imodel, const ChassisScales &ichassisScales);
 
   virtual ~OdometryArgs();
 
-  std::shared_ptr<SkidSteerModel> model;
-  const double scale, turnScale;
+  std::shared_ptr<ReadOnlyChassisModel> model;
+  ChassisScales chassisScales;
 };
 
 class Odometry {
@@ -46,7 +47,7 @@ class Odometry {
    * @param iscale straight scale
    * @param iturnScale turn scale
    */
-  Odometry(std::shared_ptr<SkidSteerModel> imodel, double iscale, double iturnScale,
+  Odometry(std::shared_ptr<ReadOnlyChassisModel> imodel, const ChassisScales &ichassisScales,
            std::unique_ptr<AbstractRate> irate);
 
   /**
@@ -61,11 +62,8 @@ class Odometry {
 
   /**
    * Sets the drive and turn scales.
-   *
-   * @param iscale straight scale converting encoder ticks to mm
-   * @param iturnScale turn scale converting encoder ticks to radians
    */
-  virtual void setScales(double iscale, double iturnScale);
+  virtual void setScales(const ChassisScales &ichassisScales);
 
   /**
    * Do odometry math in an infinite loop.
@@ -95,10 +93,10 @@ class Odometry {
   virtual void setState(const OdomState &istate);
 
   protected:
-  std::shared_ptr<SkidSteerModel> model;
+  std::shared_ptr<ReadOnlyChassisModel> model;
   std::unique_ptr<AbstractRate> rate;
   OdomState state;
-  double scale, turnScale;
+  ChassisScales chassisScales;
   std::valarray<std::int32_t> lastTicks{0, 0};
   double mm = 0;
 };

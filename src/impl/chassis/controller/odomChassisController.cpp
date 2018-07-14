@@ -8,9 +8,9 @@
 #include "okapi/impl/chassis/controller/odomChassisController.hpp"
 
 namespace okapi {
-OdomChassisController::OdomChassisController(const OdometryArgs &iparams,
+OdomChassisController::OdomChassisController(std::unique_ptr<SkidSteerModel> imodel,
                                              const float imoveThreshold)
-  : ChassisController(iparams.model),
+  : ChassisController(std::move(imodel)),
     moveThreshold(imoveThreshold),
     odom(iparams),
     task((task_fn_t)Odometry::trampoline, &odom, TASK_PRIORITY_DEFAULT + 1) {

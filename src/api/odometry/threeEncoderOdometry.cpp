@@ -8,14 +8,14 @@
 #include "okapi/api/odometry/threeEncoderOdometry.hpp"
 
 namespace okapi {
-ThreeEncoderOdometryArgs::ThreeEncoderOdometryArgs(std::shared_ptr<SkidSteerModel> imodel,
+ThreeEncoderOdometryArgs::ThreeEncoderOdometryArgs(std::shared_ptr<ReadOnlyChassisModel> imodel,
                                                    const double iscale, const double iturnScale,
                                                    const double imiddleScale)
   : OdometryArgs(imodel, iscale, iturnScale), middleScale(imiddleScale) {
 }
 
 ThreeEncoderOdometry::ThreeEncoderOdometry(
-  std::shared_ptr<ThreeEncoderSkidSteerModel> imodel, double iscale, double iturnScale,
+  std::shared_ptr<ReadOnlyChassisModel> imodel, double iscale, double iturnScale,
   double imiddleScale, const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier)
   : Odometry(imodel, iscale, iturnScale, irateSupplier.get()),
     model(imodel),
@@ -26,6 +26,8 @@ ThreeEncoderOdometry::ThreeEncoderOdometry(
 void ThreeEncoderOdometry::loop() {
   std::valarray<std::int32_t> newTicks{0, 0, 0}, tickDiff{0, 0, 0};
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
   while (true) {
     newTicks = model->getSensorVals();
     tickDiff = newTicks - lastTicks;
@@ -44,6 +46,7 @@ void ThreeEncoderOdometry::loop() {
 
     rate->delayUntil(10);
   }
+#pragma clang diagnostic pop
 }
 
 void ThreeEncoderOdometry::trampoline(void *context) {
