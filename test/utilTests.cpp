@@ -22,8 +22,8 @@ TEST(IpowTest, IntegerTests) {
 }
 
 TEST(IpowTest, FloatingPointTests) {
-  EXPECT_DOUBLE_EQ(ipow(0.5, 1), 0.5);
-  EXPECT_DOUBLE_EQ(ipow(2.5, 2), 6.25);
+  EXPECT_FLOAT_EQ(ipow(0.5, 1), 0.5);
+  EXPECT_FLOAT_EQ(ipow(2.5, 2), 6.25);
 }
 
 TEST(CutRangeTest, Tests) {
@@ -45,8 +45,8 @@ TEST(DeadbandTest, Tests) {
 }
 
 TEST(RemapRangeTest, Tests) {
-  EXPECT_DOUBLE_EQ(remapRange(0, -1, 1, -2, 2), 0) << "0 : [-1, 1] -> [-2, 2]";
-  EXPECT_DOUBLE_EQ(remapRange(0.1, -1, 1, -2, 2), 0.2) << "0.1 : [-1, 1] -> [-2, 2]";
-  EXPECT_DOUBLE_EQ(remapRange(-0.1, -1, 1, 2, -2), 0.2) << "-0.1 : [-1, 1] -> [2, -2]";
-  EXPECT_DOUBLE_EQ(remapRange(0, -1, 1, -5, 2), -1.5) << "0 : [-1, 1] -> [-5, 2]";
+  EXPECT_FLOAT_EQ(remapRange(0, -1, 1, -2, 2), 0) << "0 : [-1, 1] -> [-2, 2]";
+  EXPECT_FLOAT_EQ(remapRange(0.1, -1, 1, -2, 2), 0.2) << "0.1 : [-1, 1] -> [-2, 2]";
+  EXPECT_FLOAT_EQ(remapRange(-0.1, -1, 1, 2, -2), 0.2) << "-0.1 : [-1, 1] -> [2, -2]";
+  EXPECT_FLOAT_EQ(remapRange(0, -1, 1, -5, 2), -1.5) << "0 : [-1, 1] -> [-5, 2]";
 }

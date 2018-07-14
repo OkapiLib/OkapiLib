@@ -20,6 +20,6 @@ TEST(ChassisScalesTest, RawScales) {
 
 TEST(ChassisScalesTest, ScalesFromWheelbase) {
   ChassisScales scales({4_in, 11.5_in});
-  EXPECT_DOUBLE_EQ(scales.straight, 1127.8696);
-  EXPECT_DOUBLE_EQ(scales.turn, 2.875);
+  EXPECT_FLOAT_EQ(scales.straight, 1127.8696);
+  EXPECT_FLOAT_EQ(scales.turn, 2.875);
 }
