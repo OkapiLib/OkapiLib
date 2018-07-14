@@ -225,7 +225,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    */
   virtual void controllerSet(const double ivalue) override;
 
-protected:
+  protected:
   AbstractMotor::gearset gearset;
 };
 

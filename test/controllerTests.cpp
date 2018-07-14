@@ -6,7 +6,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
+#include "okapi/api/control/async/asyncPosPidController.hpp"
 #include "okapi/api/control/async/asyncVelIntegratedController.hpp"
+#include "okapi/api/control/async/asyncVelPidController.hpp"
 #include "okapi/api/control/iterative/iterativeMotorVelocityController.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
@@ -160,13 +162,15 @@ class AsyncControllerTest : public ::testing::Test {
 
 TEST_F(AsyncControllerTest, AsyncPosIntegratedController) {
   auto motor = std::make_shared<MockMotor>();
-  assertControllerFollowsDisableLifecycle(AsyncPosIntegratedController(motor, createTimeUtil()), motor->lastPosition, motor->lastVoltage);
+  assertControllerFollowsDisableLifecycle(AsyncPosIntegratedController(motor, createTimeUtil()),
+                                          motor->lastPosition, motor->lastVoltage);
   assertControllerFollowsTargetLifecycle(AsyncPosIntegratedController(motor, createTimeUtil()));
 }
 
 TEST_F(AsyncControllerTest, AsyncVelIntegratedController) {
   auto motor = std::make_shared<MockMotor>();
-  assertControllerFollowsDisableLifecycle(AsyncVelIntegratedController(motor, createTimeUtil()), motor->lastVelocity, motor->lastVoltage);
+  assertControllerFollowsDisableLifecycle(AsyncVelIntegratedController(motor, createTimeUtil()),
+                                          motor->lastVelocity, motor->lastVoltage);
   assertControllerFollowsTargetLifecycle(AsyncVelIntegratedController(motor, createTimeUtil()));
 }
 
