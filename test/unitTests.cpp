@@ -9,7 +9,6 @@
 #include "test/crossPlatformTestRunner.hpp"
 #include <gtest/gtest.h>
 
-using namespace okapi;
 using namespace snowhouse;
 
 TEST(UnitTests, TimeAddition) {
