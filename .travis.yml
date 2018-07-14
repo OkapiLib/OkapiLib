@@ -16,6 +16,7 @@ matrix:
             - lib32bz2-1.0
             - gcc-arm-embedded
             - g++-7
+            - lcov
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
@@ -26,9 +27,16 @@ before_install:
   - eval "${MATRIX_EVAL}"
 
 script:
-  - make
+  - make # run the cross-compiler
   - mkdir cmake-build-debug
   - cd cmake-build-debug
-  - cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
-  - cmake --build . --target OkapiLibV5 -- -j 2
-  - ./OkapiLibV5
+  - cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" .. # .. is now the source dir
+  - cmake --build . --target OkapiLibV5 -- -j 2 # . is the build dir
+  - ./OkapiLibV5 # run the tests
+
+after_success:
+  - lcov --directory . --capture --output-file coverage.info # capture coverage info
+  - lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter out system
+  - lcov --list coverage.info # debug info
+  # Uploading report to CodeCov
+  - bash <(curl -s https://codecov.io/bash) -t $CODECOV_KEY || echo "Codecov did not collect coverage reports"
