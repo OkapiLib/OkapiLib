@@ -22,31 +22,31 @@ TEST(IpowTest, IntegerTests) {
 }
 
 TEST(IpowTest, FloatingPointTests) {
-  EXPECT_FLOAT_EQ(ipow(0.5, 1), 0.5);
-  EXPECT_FLOAT_EQ(ipow(2.5, 2), 6.25);
+  EXPECT_DOUBLE_EQ(ipow(0.5, 1), 0.5);
+  EXPECT_DOUBLE_EQ(ipow(2.5, 2), 6.25);
 }
 
 TEST(CutRangeTest, Tests) {
-  EXPECT_FLOAT_EQ(cutRange(1, -2, 2), 2) << "1 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(cutRange(2, -2, 2), 2) << "2 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(cutRange(0, -2, 2), 2) << "0 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(cutRange(-2, -2, 2), -2) << "-2 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(cutRange(-3, -2, 2), -3) << "-3 : [-2, 2] -> -3";
-  EXPECT_FLOAT_EQ(cutRange(3, -2, 2), 3) << "3 : [-2, 2] -> 3";
+  EXPECT_DOUBLE_EQ(cutRange(1, -2, 2), 2) << "1 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(cutRange(2, -2, 2), 2) << "2 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(cutRange(0, -2, 2), 2) << "0 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(cutRange(-2, -2, 2), -2) << "-2 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(cutRange(-3, -2, 2), -3) << "-3 : [-2, 2] -> -3";
+  EXPECT_DOUBLE_EQ(cutRange(3, -2, 2), 3) << "3 : [-2, 2] -> 3";
 }
 
 TEST(DeadbandTest, Tests) {
-  EXPECT_FLOAT_EQ(deadband(0, -2, 2), 0) << "0 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(deadband(1, -2, 2), 0) << "1 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(deadband(2, -2, 2), 0) << "2 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(deadband(-2, -2, 2), 0) << "-2 : [-2, 2] -> 0";
-  EXPECT_FLOAT_EQ(deadband(3, -2, 2), 3) << "3 : [-2, 2] -> 3";
-  EXPECT_FLOAT_EQ(deadband(-3, -2, 2), -3) << "-3 : [-2, 2] -> -3";
+  EXPECT_DOUBLE_EQ(deadband(0, -2, 2), 0) << "0 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(deadband(1, -2, 2), 0) << "1 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(deadband(2, -2, 2), 0) << "2 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(deadband(-2, -2, 2), 0) << "-2 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(deadband(3, -2, 2), 3) << "3 : [-2, 2] -> 3";
+  EXPECT_DOUBLE_EQ(deadband(-3, -2, 2), -3) << "-3 : [-2, 2] -> -3";
 }
 
 TEST(RemapRangeTest, Tests) {
-  EXPECT_FLOAT_EQ(remapRange(0, -1, 1, -2, 2), 0) << "0 : [-1, 1] -> [-2, 2]";
-  EXPECT_FLOAT_EQ(remapRange(0.1, -1, 1, -2, 2), 0.2) << "0.1 : [-1, 1] -> [-2, 2]";
-  EXPECT_FLOAT_EQ(remapRange(-0.1, -1, 1, 2, -2), 0.2) << "-0.1 : [-1, 1] -> [2, -2]";
-  EXPECT_FLOAT_EQ(remapRange(0, -1, 1, -5, 2), -1.5) << "0 : [-1, 1] -> [-5, 2]";
+  EXPECT_DOUBLE_EQ(remapRange(0, -1, 1, -2, 2), 0) << "0 : [-1, 1] -> [-2, 2]";
+  EXPECT_DOUBLE_EQ(remapRange(0.1, -1, 1, -2, 2), 0.2) << "0.1 : [-1, 1] -> [-2, 2]";
+  EXPECT_DOUBLE_EQ(remapRange(-0.1, -1, 1, 2, -2), 0.2) << "-0.1 : [-1, 1] -> [2, -2]";
+  EXPECT_DOUBLE_EQ(remapRange(0, -1, 1, -5, 2), -1.5) << "0 : [-1, 1] -> [-5, 2]";
 }

@@ -14,12 +14,12 @@ using namespace snowhouse;
 
 TEST(ChassisScalesTest, RawScales) {
   ChassisScales scales({0.5, 0.3});
-  EXPECT_FLOAT_EQ(scales.straight, 0.5);
-  EXPECT_FLOAT_EQ(scales.turn, 0.3);
+  EXPECT_DOUBLE_EQ(scales.straight, 0.5);
+  EXPECT_DOUBLE_EQ(scales.turn, 0.3);
 }
 
 TEST(ChassisScalesTest, ScalesFromWheelbase) {
   ChassisScales scales({4_in, 11.5_in});
-  EXPECT_FLOAT_EQ(scales.straight, 1127.8696);
-  EXPECT_FLOAT_EQ(scales.turn, 2.875);
+  EXPECT_DOUBLE_EQ(scales.straight, 1127.8696);
+  EXPECT_DOUBLE_EQ(scales.turn, 2.875);
 }

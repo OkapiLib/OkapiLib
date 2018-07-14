@@ -14,12 +14,12 @@ using namespace snowhouse;
 TEST(UnitTests, TimeAddition) {
   QTime start = 0_ms;
 
-  EXPECT_FLOAT_EQ((start + 1_ms).convert(millisecond), (1_ms).convert(millisecond));
+  EXPECT_DOUBLE_EQ((start + 1_ms).convert(millisecond), (1_ms).convert(millisecond));
 }
 
 TEST(UnitTests, TimeAssignmentAddition) {
   QTime start = 0_ms;
   start += 1_ms;
 
-  EXPECT_FLOAT_EQ(start.convert(millisecond), (1_ms).convert(millisecond));
+  EXPECT_DOUBLE_EQ(start.convert(millisecond), (1_ms).convert(millisecond));
 }
