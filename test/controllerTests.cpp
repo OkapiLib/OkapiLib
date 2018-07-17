@@ -13,6 +13,7 @@
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
 #include "okapi/api/control/util/flywheelSimulator.hpp"
+#include "okapi/api/control/util/pidTuner.hpp"
 #include "okapi/api/filter/averageFilter.hpp"
 #include "okapi/api/filter/filteredControllerInput.hpp"
 #include "okapi/api/filter/passthroughFilter.hpp"
@@ -189,4 +190,62 @@ TEST(FilteredControllerInputTest, InputShouldBePassedThrough) {
   for (int i = 0; i < 3; i++) {
     EXPECT_FLOAT_EQ(input.controllerGet(), 1);
   }
+}
+
+TEST(PIDTunerTest, ConstructorShouldNotSegfault) {
+  auto output = std::make_shared<MockMotor>();
+  auto input = output->getEncoder();
+  PIDTuner pidTuner(input, output, createTimeUtil(), 1_s, 100, 0, 10, 0, 10, 0, 10);
+}
+
+class SimulatedSystem : public ControllerInput, public ControllerOutput {
+  public:
+  SimulatedSystem(FlywheelSimulator &simulator) : simulator(simulator), thread(trampoline, this) {
+  }
+
+  virtual ~SimulatedSystem() = default;
+
+  double controllerGet() override {
+    return simulator.getAngle();
+  }
+
+  void controllerSet(double ivalue) override {
+    simulator.setTorque(ivalue);
+  }
+
+  void step() {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
+    while (!shouldJoin) {
+      simulator.step();
+      rate.delayUntil(10_ms);
+    }
+#pragma clang diagnostic pop
+  }
+
+  static void trampoline(void *system) {
+    static_cast<SimulatedSystem *>(system)->step();
+  }
+
+  void join() {
+    shouldJoin = true;
+    thread.join();
+  }
+
+  FlywheelSimulator &simulator;
+  std::thread thread;
+  MockRate rate{};
+  bool shouldJoin = false;
+};
+
+TEST(PIDTunerTest, AutotuneShouldNotSegfault) {
+  FlywheelSimulator simulator;
+  simulator.setExternalTorqueFunction([](double, double, double) { return 0; });
+
+  auto system = std::make_shared<SimulatedSystem>(simulator);
+
+  PIDTuner pidTuner(system, system, createTimeUtil(), 100_ms, 100, 0, 10, 0, 10, 0, 10);
+  auto result = pidTuner.autotune();
+
+  system->join(); // gtest will cause a SIGABRT if we don't join manually first
 }
