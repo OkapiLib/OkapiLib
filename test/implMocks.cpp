@@ -10,6 +10,7 @@
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
 #include <chrono>
+#include <memory>
 
 namespace okapi {
 double MockContinuousRotarySensor::controllerGet() {
@@ -85,7 +86,7 @@ int32_t MockMotor::setVoltageLimit(const std::int32_t ilimit) const {
 }
 
 std::shared_ptr<ContinuousRotarySensor> MockMotor::getEncoder() const {
-  return std::shared_ptr<MockContinuousRotarySensor>();
+  return std::make_shared<MockContinuousRotarySensor>();
 }
 
 std::int32_t MockMotor::moveVelocity(const std::int16_t ivelocity) const {

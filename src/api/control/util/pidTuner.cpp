@@ -34,6 +34,7 @@ PIDTuner::PIDTuner(std::shared_ptr<ControllerInput> iinput,
     numParticles(inumParticles),
     kSettle(ikSettle),
     kITAE(ikITAE) {
+  input = iinput;
 }
 
 PIDTuner::~PIDTuner() = default;
@@ -83,6 +84,7 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
       if (!firstGoal) {
         target *= -1;
       }
+
       firstGoal = !firstGoal;
 
       testController.setTarget(target);
@@ -105,6 +107,7 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
         output->controllerSet(outputVal);
         rate->delayUntil(loopDelta);
       }
+
       output->controllerSet(0);
       testController.reset();
 
