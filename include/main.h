@@ -33,6 +33,7 @@
  *            The okapi namespace will export all symbols inside the pros namespace.
  */
 // using namespace pros;
+// using namespace okapi;
 
 /**
  * You should add more #includes here

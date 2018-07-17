@@ -13,7 +13,6 @@
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
 #include "okapi/api/control/util/flywheelSimulator.hpp"
-#include "okapi/api/control/util/pidTuner.hpp"
 #include "okapi/api/filter/averageFilter.hpp"
 #include "okapi/api/filter/filteredControllerInput.hpp"
 #include "okapi/api/filter/passthroughFilter.hpp"
