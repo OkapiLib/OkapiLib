@@ -198,46 +198,6 @@ TEST(PIDTunerTest, ConstructorShouldNotSegfault) {
   PIDTuner pidTuner(input, output, createTimeUtil(), 1_s, 100, 0, 10, 0, 10, 0, 10);
 }
 
-class SimulatedSystem : public ControllerInput, public ControllerOutput {
-  public:
-  SimulatedSystem(FlywheelSimulator &simulator) : simulator(simulator), thread(trampoline, this) {
-  }
-
-  virtual ~SimulatedSystem() = default;
-
-  double controllerGet() override {
-    return simulator.getAngle();
-  }
-
-  void controllerSet(double ivalue) override {
-    simulator.setTorque(ivalue);
-  }
-
-  void step() {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
-    while (!shouldJoin) {
-      simulator.step();
-      rate.delayUntil(10_ms);
-    }
-#pragma clang diagnostic pop
-  }
-
-  static void trampoline(void *system) {
-    static_cast<SimulatedSystem *>(system)->step();
-  }
-
-  void join() {
-    shouldJoin = true;
-    thread.join();
-  }
-
-  FlywheelSimulator &simulator;
-  std::thread thread;
-  MockRate rate{};
-  bool shouldJoin = false;
-};
-
 TEST(PIDTunerTest, AutotuneShouldNotSegfault) {
   FlywheelSimulator simulator;
   simulator.setExternalTorqueFunction([](double, double, double) { return 0; });

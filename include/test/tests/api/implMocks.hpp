@@ -8,6 +8,7 @@
 #ifndef _OKAPI_IMPLMOCKS_HPP_
 #define _OKAPI_IMPLMOCKS_HPP_
 
+#include "okapi/api/control/util/flywheelSimulator.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
@@ -162,6 +163,28 @@ std::unique_ptr<SettledUtil> createSettledUtilPtr(double iatTargetError = 50,
 TimeUtil createTimeUtil();
 
 TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier);
+
+class SimulatedSystem : public ControllerInput, public ControllerOutput {
+  public:
+  SimulatedSystem(FlywheelSimulator &simulator);
+
+  virtual ~SimulatedSystem();
+
+  double controllerGet() override;
+
+  void controllerSet(double ivalue) override;
+
+  void step();
+
+  static void trampoline(void *system);
+
+  void join();
+
+  FlywheelSimulator &simulator;
+  std::thread thread;
+  MockRate rate{};
+  bool shouldJoin = false;
+};
 } // namespace okapi
 
 #endif

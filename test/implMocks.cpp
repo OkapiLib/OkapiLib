@@ -248,4 +248,38 @@ TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSu
                   }),
                   Supplier<std::unique_ptr<SettledUtil>>([]() { return createSettledUtilPtr(); }));
 }
+
+SimulatedSystem::SimulatedSystem(FlywheelSimulator &simulator)
+  : simulator(simulator), thread(trampoline, this) {
+}
+
+SimulatedSystem::~SimulatedSystem() = default;
+
+double SimulatedSystem::controllerGet() {
+  return simulator.getAngle();
+}
+
+void SimulatedSystem::controllerSet(double ivalue) {
+  simulator.setTorque(ivalue);
+}
+
+void SimulatedSystem::step() {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
+  while (!shouldJoin) {
+    simulator.step();
+    rate.delayUntil(10_ms);
+  }
+#pragma clang diagnostic pop
+}
+
+void SimulatedSystem::trampoline(void *system) {
+  static_cast<SimulatedSystem *>(system)->step();
+}
+
+void SimulatedSystem::join() {
+  shouldJoin = true;
+  thread.join();
+}
+
 } // namespace okapi
