@@ -9,7 +9,6 @@
 #ifndef _OKAPI_PIDTUNER_HPP_
 #define _OKAPI_PIDTUNER_HPP_
 
-#include "api.h"
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
@@ -52,7 +51,6 @@ class PIDTuner {
   std::shared_ptr<ControllerOutput> output;
   TimeUtil timeUtil;
   std::unique_ptr<AbstractRate> rate;
-  std::unique_ptr<IterativePosPIDController> testController;
 
   const QTime timeout;
   const std::int32_t goal;

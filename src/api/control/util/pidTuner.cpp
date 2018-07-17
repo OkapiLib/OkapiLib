@@ -46,7 +46,7 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
   IterativePosPIDController testController(0, 0, 0, 0, timeUtil);
   std::vector<ParticleSet> particles;
   for (int i = 0; i < numParticles; i++) {
-    ParticleSet set;
+    ParticleSet set{};
     set.kP.pos = kPMin + (kPMax - kPMin) * dist(gen);
     set.kP.vel = set.kP.pos / increment;
     set.kP.best = set.kP.pos;
@@ -73,7 +73,7 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
   for (int iteration = 0; iteration < numIterations; iteration++) {
     bool firstGoal = true;
 
-    for (int particleIndex = 0; particleIndex < numParticles; particleIndex++) {
+    for (std::size_t particleIndex = 0; particleIndex < numParticles; particleIndex++) {
       testController.setGains(particles.at(particleIndex).kP.pos,
                               particles.at(particleIndex).kI.pos,
                               particles.at(particleIndex).kD.pos);
@@ -125,7 +125,7 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
     }
 
     // Update particle trajectories
-    for (int i = 0; i < numParticles; i++) {
+    for (std::size_t i = 0; i < numParticles; i++) {
       // Factor in the particles inertia to keep on the same trajectory
       particles.at(i).kP.vel *= inertia;
       // Move towards particle's best
