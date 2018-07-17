@@ -10,7 +10,6 @@
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include <algorithm>
 #include <cmath>
-#include "api.h"
 
 namespace okapi {
 IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, const double ikI,
@@ -106,7 +105,6 @@ double IterativePosPIDController::step(const double inewReading) {
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
       error = target - inewReading;
-
 
       if ((std::abs(error) < target - errorSumMin && std::abs(error) > target - errorSumMax) ||
           (std::abs(error) > target + errorSumMin && std::abs(error) < target + errorSumMax)) {

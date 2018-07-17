@@ -7,7 +7,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/util/pidTuner.hpp"
-#include "api.h"
 #include <algorithm>
 #include <cmath>
 #include <limits>
@@ -72,7 +71,6 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
 
   // Run the optimization
   for (int iteration = 0; iteration < numIterations; iteration++) {
-    // Test constants then calculate fitness function
     bool firstGoal = true;
 
     for (int particleIndex = 0; particleIndex < numParticles; particleIndex++) {
@@ -88,11 +86,11 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
       firstGoal = !firstGoal;
 
       testController.setTarget(target);
-      timeUtil.getSettledUtil()->reset();
       const double start_val = input->controllerGet();
 
       QTime settleTime = 0_ms;
       int itae = 0;
+      // Test constants then calculate fitness function
       while (!testController.isSettled()) {
         settleTime += loopDelta;
         if (settleTime > timeout)
