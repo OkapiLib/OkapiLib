@@ -37,7 +37,7 @@ class PIDTuner {
   static constexpr double confSwarm = 1.2; // Particle swarm confidence
   static constexpr int increment = 5;
   static constexpr int divisor = 5;
-  static constexpr QTime loopDelta = 100_ms; // NOLINT
+  static constexpr QTime loopDelta = 10_ms; // NOLINT
 
   struct Particle {
     double pos, vel, best;
