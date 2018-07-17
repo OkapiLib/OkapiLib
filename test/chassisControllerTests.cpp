@@ -14,8 +14,8 @@ using namespace snowhouse;
 
 TEST(ChassisScalesTest, RawScales) {
   ChassisScales scales({0.5, 0.3});
-  EXPECT_FLOAT_EQ(scales.straight, 0.5);
-  EXPECT_FLOAT_EQ(scales.turn, 0.3);
+  EXPECT_DOUBLE_EQ(scales.straight, 0.5);
+  EXPECT_DOUBLE_EQ(scales.turn, 0.3);
 }
 
 TEST(ChassisScalesTest, ScalesFromWheelbase) {

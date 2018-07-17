@@ -10,12 +10,23 @@
 
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
+#include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <chrono>
 
 namespace okapi {
+
+class MockContinuousRotarySensor : public ContinuousRotarySensor {
+  public:
+  double controllerGet() override;
+
+  int32_t reset() const override;
+
+  int32_t get() const override;
+};
+
 /**
  * A motor mock that saves the last set position, velocity, and voltage.
  */
