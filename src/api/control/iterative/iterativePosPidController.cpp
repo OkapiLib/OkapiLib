@@ -122,8 +122,6 @@ double IterativePosPIDController::step(const double inewReading) {
       // Derivative over measurement to eliminate derivative kick on setpoint change
       derivative = inewReading - lastReading;
 
-      pros::c::lcd_print(4, "here: %lf", kP);
-
       output = std::clamp(kP * error + integral - kD * derivative + kBias, outputMin, outputMax);
 
       lastReading = inewReading;

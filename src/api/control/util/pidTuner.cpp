@@ -35,7 +35,6 @@ PIDTuner::PIDTuner(std::shared_ptr<ControllerInput> iinput,
     numParticles(inumParticles),
     kSettle(ikSettle),
     kITAE(ikITAE) {
-  particles.resize(numParticles);
 }
 
 PIDTuner::~PIDTuner() = default;
@@ -46,12 +45,10 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
   std::uniform_real_distribution<double> dist(0, 1);
 
   IterativePosPIDController testController(0, 0, 0, 0, timeUtil);
-
+  std::vector<ParticleSet> particles;
   for (int i = 0; i < numParticles; i++) {
-    ParticleSet set{};
-    set = particles.at(i);
+    ParticleSet set;
     set.kP.pos = kPMin + (kPMax - kPMin) * dist(gen);
-    pros::c::lcd_print(6, "kP %lf", set.kP.pos);
     set.kP.vel = set.kP.pos / increment;
     set.kP.best = set.kP.pos;
 
@@ -64,6 +61,7 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
     set.kD.best = set.kD.pos;
 
     set.bestError = std::numeric_limits<double>::max();
+    particles.push_back(set);
   }
 
   ParticleSet global{};
@@ -90,26 +88,27 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
       firstGoal = !firstGoal;
 
       testController.setTarget(target);
+      timeUtil.getSettledUtil()->reset();
+      const double start_val = input->controllerGet();
 
       QTime settleTime = 0_ms;
       int itae = 0;
-      int count = 0;
       while (!testController.isSettled()) {
         settleTime += loopDelta;
         if (settleTime > timeout)
           break;
 
-        const double inputVal = input->controllerGet();
+        const double inputVal = input->controllerGet() - start_val;
         const double outputVal = testController.step(inputVal);
         const double error = testController.getError();
-        count++;
-        pros::c::lcd_print(3, "out: %d in %lf err %lf c %d", outputVal, inputVal, error, count);
         // sum of the error emphasizing later error
         itae += (settleTime.convert(millisecond) * abs((int)error)) / divisor;
 
         output->controllerSet(outputVal);
         rate->delayUntil(loopDelta);
       }
+      output->controllerSet(0);
+      testController.reset();
 
       double error = kSettle * settleTime.convert(millisecond) + kITAE * itae;
       if (error < particles.at(particleIndex).bestError) {

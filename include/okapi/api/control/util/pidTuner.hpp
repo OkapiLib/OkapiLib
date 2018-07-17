@@ -37,7 +37,7 @@ class PIDTuner {
   static constexpr double confSwarm = 1.2; // Particle swarm confidence
   static constexpr int increment = 5;
   static constexpr int divisor = 5;
-  static constexpr QTime loopDelta = 10_ms; // NOLINT
+  static constexpr QTime loopDelta = 100_ms; // NOLINT
 
   struct Particle {
     double pos, vel, best;
@@ -66,8 +66,6 @@ class PIDTuner {
   const std::int32_t numParticles;
   const double kSettle;
   const double kITAE;
-
-  std::vector<ParticleSet> particles{};
 };
 } // namespace okapi
 
