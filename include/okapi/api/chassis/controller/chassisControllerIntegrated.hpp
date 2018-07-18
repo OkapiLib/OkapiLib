@@ -34,6 +34,23 @@ class ChassisControllerIntegrated : public virtual ChassisController {
     const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
+   * ChassisController using the V5 motor's integrated control. Puts the motors into degree units.
+   * Throws a std::invalid_argument exception if the gear ratio is zero.
+   *
+   * @param imodelArgs ChassisModelArgs
+   * @param ileftControllerArgs left side controller params
+   * @param irightControllerArgs right side controller params
+   * @param igearset motor internal gearset and gear ratio
+   * @param iscales see ChassisScales docs
+   */
+  ChassisControllerIntegrated(
+    const TimeUtil &itimeUtil, std::unique_ptr<ChassisModel> imodel,
+    std::unique_ptr<AsyncPosIntegratedController> ileftController,
+    std::unique_ptr<AsyncPosIntegratedController> irightController,
+    AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+    const ChassisScales &iscales = ChassisScales({1, 1}));
+
+  /**
    * Drives the robot straight for a distance (using closed-loop control).
    *
    * @param itarget distance to travel
@@ -63,8 +80,8 @@ class ChassisControllerIntegrated : public virtual ChassisController {
 
   protected:
   std::unique_ptr<AbstractRate> rate;
-  AsyncPosIntegratedController leftController;
-  AsyncPosIntegratedController rightController;
+  std::unique_ptr<AsyncPosIntegratedController> leftController;
+  std::unique_ptr<AsyncPosIntegratedController> rightController;
   int lastTarget;
   const double gearRatio;
   const double straightScale;

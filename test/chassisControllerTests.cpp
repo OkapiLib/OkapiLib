@@ -5,8 +5,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+#include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
+#include "okapi/api/chassis/controller/chassisControllerPid.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
+#include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "test/crossPlatformTestRunner.hpp"
+#include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 
 using namespace okapi;
@@ -22,4 +26,41 @@ TEST(ChassisScalesTest, ScalesFromWheelbase) {
   ChassisScales scales({4_in, 11.5_in});
   EXPECT_FLOAT_EQ(scales.straight, 1127.8696);
   EXPECT_FLOAT_EQ(scales.turn, 2.875);
+}
+
+class ChassisControllerIntegratedTest : public ::testing::Test {
+  protected:
+  void SetUp() override {
+    leftMotor = new MockMotor();
+    rightMotor = new MockMotor();
+    leftController = new MockAsyncController();
+    rightController = new MockAsyncController();
+    model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
+                               std::unique_ptr<AbstractMotor>(rightMotor));
+    controller = new ChassisControllerIntegrated(
+      createTimeUtil(), std::unique_ptr<ChassisModel>(model),
+      std::unique_ptr<AsyncPosIntegratedController>(leftController),
+      std::unique_ptr<AsyncPosIntegratedController>(rightController));
+  }
+
+  void TearDown() override {
+    delete controller;
+  }
+
+  ChassisController *controller;
+  MockMotor *leftMotor;
+  MockMotor *rightMotor;
+  MockAsyncController *leftController;
+  MockAsyncController *rightController;
+  SkidSteerModel *model;
+};
+
+TEST_F(ChassisControllerIntegratedTest, MoveDistanceLifecycleTest) {
+  controller->moveDistance(100);
+
+  EXPECT_DOUBLE_EQ(leftController->target, 100);
+  EXPECT_DOUBLE_EQ(rightController->target, 100);
+
+  EXPECT_TRUE(leftController->disabled);
+  EXPECT_TRUE(rightController->disabled);
 }

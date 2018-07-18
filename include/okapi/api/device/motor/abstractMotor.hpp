@@ -1,4 +1,6 @@
 /**
+  std::unique_ptr<ChassisModel> model =
+    std::make_unique<SkidSteerModel>(leftMotor, rightMotor);
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public

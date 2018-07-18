@@ -282,4 +282,46 @@ void SimulatedSystem::join() {
   thread.join();
 }
 
+double MockAsyncController::getOutput() const {
+  return output;
+}
+
+void MockAsyncController::setSampleTime(QTime isampleTime) {
+  sampleTime = isampleTime;
+}
+
+void MockAsyncController::setOutputLimits(double imax, double imin) {
+  maxOutput = imax;
+  minOutput = imin;
+}
+
+void MockAsyncController::waitUntilSettled() {
+}
+
+void MockAsyncController::setTarget(double itarget) {
+  target = itarget;
+}
+
+double MockAsyncController::getError() const {
+  return 0;
+}
+
+bool MockAsyncController::isSettled() {
+  return true;
+}
+
+void MockAsyncController::reset() {
+}
+
+void MockAsyncController::flipDisable() {
+  disabled = !disabled;
+}
+
+void MockAsyncController::flipDisable(bool iisDisabled) {
+  disabled = iisDisabled;
+}
+
+bool MockAsyncController::isDisabled() const {
+  return disabled;
+}
 } // namespace okapi
