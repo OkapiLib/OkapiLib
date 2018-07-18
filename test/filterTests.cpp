@@ -89,6 +89,15 @@ TEST(EmaFilterTest, IntegerGainOutputTest) {
   assertThatFilterAndFilterOutputAreEqual(filter, 7, 7);
 }
 
+TEST(EmaFilterTest, SetGainsTest) {
+  EmaFilter filter(0);
+  filter.setGains(1);
+
+  assertThatFilterAndFilterOutputAreEqual(filter, 5, 5);
+  assertThatFilterAndFilterOutputAreEqual(filter, 6, 6);
+  assertThatFilterAndFilterOutputAreEqual(filter, 7, 7);
+}
+
 TEST(DemaFilterTest, FloatingPointGainOutputTest) {
   DemaFilter filter(0.5, 0.05);
 
@@ -107,6 +116,15 @@ TEST(DemaFilterTest, IntegerGainOutputTest) {
   assertThatFilterAndFilterOutputAreEqual(filter, 7, 7);
 }
 
+TEST(DemaFilterTest, SetGainsTest) {
+  DemaFilter filter(0, 1);
+  filter.setGains(1, 0);
+
+  assertThatFilterAndFilterOutputAreEqual(filter, 5, 5);
+  assertThatFilterAndFilterOutputAreEqual(filter, 6, 6);
+  assertThatFilterAndFilterOutputAreEqual(filter, 7, 7);
+}
+
 TEST(EKFFilterTest, OutputTest) {
   EKFFilter filter(0.0001, ipow(0.2, 2));
 
@@ -117,10 +135,7 @@ TEST(EKFFilterTest, OutputTest) {
   assertThatFilterAndFilterOutputAreEqual(filter, 0, 0.0992);
 }
 
-TEST(ComposableFilterTest, OutputTest) {
-  ComposableFilter filter(
-    {std::make_shared<AverageFilter<3>>(), std::make_shared<AverageFilter<3>>()});
-
+void testComposableFilterFunctionality(ComposableFilter &filter) {
   assertThatFilterAndFilterOutputAreEqual(filter, 1, 0.1111);
   assertThatFilterAndFilterOutputAreEqual(filter, 2, 0.4444);
   assertThatFilterAndFilterOutputAreEqual(filter, 3, 1.1111);
@@ -128,6 +143,24 @@ TEST(ComposableFilterTest, OutputTest) {
   for (int i = 4; i < 10; i++) {
     assertThatFilterAndFilterOutputAreEqual(filter, i, i - 2);
   }
+}
+
+TEST(ComposableFilterTest, OutputTest) {
+  ComposableFilter filter(
+    {std::make_shared<AverageFilter<3>>(), std::make_shared<AverageFilter<3>>()});
+
+  testComposableFilterFunctionality(filter);
+}
+
+TEST(ComposableFilterTest, AddingAFilterIsEquivalentToCtorParam) {
+  ComposableFilter filter(
+    {std::make_shared<AverageFilter<3>>(), std::make_shared<AverageFilter<3>>()});
+
+  ComposableFilter filterWithAdd({std::make_shared<AverageFilter<3>>()});
+  filterWithAdd.addFilter(std::make_shared<AverageFilter<3>>());
+
+  testComposableFilterFunctionality(filter);
+  testComposableFilterFunctionality(filterWithAdd);
 }
 
 TEST(PassthroughFilterTest, OutputTest) {
@@ -138,10 +171,7 @@ TEST(PassthroughFilterTest, OutputTest) {
   }
 }
 
-TEST(VelMathTest, OutputTest) {
-  VelMath velMath(360, std::make_shared<PassthroughFilter>(),
-                  std::make_unique<ConstantMockTimer>(10_ms));
-
+void testVelMathFunctionality(VelMath &velMath) {
   for (int i = 0; i < 10; i++) {
     if (i == 0) {
       EXPECT_NEAR(velMath.step(i * 10).convert(rpm), 0, 0.01);
@@ -152,4 +182,25 @@ TEST(VelMathTest, OutputTest) {
       EXPECT_NEAR(velMath.getVelocity().convert(rpm), 166.67, 0.01);
     }
   }
+}
+
+TEST(VelMathTest, OutputTest) {
+  VelMath velMath(360, std::make_shared<PassthroughFilter>(),
+                  std::make_unique<ConstantMockTimer>(10_ms));
+
+  testVelMathFunctionality(velMath);
+}
+
+TEST(VelMathTest, SetTPRTest) {
+  VelMath velMath(1, std::make_shared<PassthroughFilter>(),
+                  std::make_unique<ConstantMockTimer>(10_ms));
+  velMath.setTicksPerRev(360);
+
+  testVelMathFunctionality(velMath);
+}
+
+TEST(VelMathTest, ZeroTPRThrowsException) {
+  EXPECT_THROW(
+    VelMath(0, std::make_shared<PassthroughFilter>(), std::make_unique<ConstantMockTimer>(10_ms)),
+    std::invalid_argument);
 }
