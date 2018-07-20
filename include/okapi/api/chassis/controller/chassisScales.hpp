@@ -12,6 +12,7 @@
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/units/RQuantity.hpp"
 #include <initializer_list>
+#include <stdexcept>
 #include <vector>
 
 namespace okapi {
@@ -25,11 +26,7 @@ class ChassisScales {
    *
    * @param  iscales {straight scale, turn scale}
    */
-  ChassisScales(const std::initializer_list<double> &iscales) {
-    std::vector<double> vec(iscales);
-    straight = vec.at(0);
-    turn = vec.at(1);
-  }
+  ChassisScales(const std::initializer_list<double> &iscales);
 
   /**
    * The two scales a Chassis Controller needs to do all of its closed-loop control. First index is
@@ -62,16 +59,14 @@ class ChassisScales {
    *
    * @param  iwheelbase {wheel diameter, wheelbase width}
    */
-  ChassisScales(const std::initializer_list<QLength> &iwheelbase) {
-    std::vector<QLength> vec(iwheelbase);
-    straight = static_cast<double>(360 / (vec.at(0).convert(meter) * 1_pi));
-    turn = vec.at(1).convert(meter) / vec.at(0).convert(meter);
-  }
+  ChassisScales(const std::initializer_list<QLength> &iwheelbase);
 
-  virtual ~ChassisScales() = default;
+  double straight{0};
+  double turn{0};
+  double middle{0};
 
-  double straight;
-  double turn;
+  protected:
+  void validateInput(std::size_t inputSize);
 };
 } // namespace okapi
 

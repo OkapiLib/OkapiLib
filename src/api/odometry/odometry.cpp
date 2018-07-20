@@ -18,18 +18,16 @@ OdomState::OdomState(const double ix, const double iy, const double itheta)
 
 OdomState::~OdomState() = default;
 
-OdometryArgs::OdometryArgs(std::shared_ptr<ReadOnlyChassisModel> imodel, const ChassisScales &ichassisScales)
+OdometryArgs::OdometryArgs(std::shared_ptr<ReadOnlyChassisModel> imodel,
+                           const ChassisScales &ichassisScales)
   : model(imodel), chassisScales(ichassisScales) {
 }
 
 OdometryArgs::~OdometryArgs() = default;
 
-Odometry::Odometry(std::shared_ptr<ReadOnlyChassisModel> imodel, const ChassisScales &ichassisScales, std::unique_ptr<AbstractRate> irate)
-  : model(imodel),
-    rate(std::move(irate)),
-    chassisScales(ichassisScales),
-    lastTicks{0, 0},
-    mm(0) {
+Odometry::Odometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
+                   const ChassisScales &ichassisScales, std::unique_ptr<AbstractRate> irate)
+  : model(imodel), rate(std::move(irate)), chassisScales(ichassisScales), lastTicks{0, 0}, mm(0) {
 }
 
 Odometry::Odometry(const OdometryArgs &iparams)

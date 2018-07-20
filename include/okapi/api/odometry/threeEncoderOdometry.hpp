@@ -15,14 +15,6 @@
 #include <functional>
 
 namespace okapi {
-class ThreeEncoderOdometryArgs : public OdometryArgs {
-  public:
-  ThreeEncoderOdometryArgs(std::shared_ptr<ReadOnlyChassisModel> imodel, double iscale,
-                           double iturnScale, double imiddleScale);
-
-  const double middleScale;
-};
-
 class ThreeEncoderOdometry : public Odometry {
   public:
   /**
@@ -30,14 +22,11 @@ class ThreeEncoderOdometry : public Odometry {
    * relative to the start (assumed to be (0, 0)).
    *
    * @param imodelArgs ChassisModel for reading sensors
-   * @param iscale straight scale
-   * @param iturnScale turn scale
-   * @param imiddleScale turn scale for the middle encoder (mounted perpendicular to the two side
-   * encoders)
+   * @param ichassisScales See ChassisScales docs (the middle wheel scale is the third member)
    * @param irateSupplier a supplier of AbstractRate implementations
    */
-  ThreeEncoderOdometry(std::shared_ptr<ReadOnlyChassisModel> imodel, double iscale,
-                       double iturnScale, double imiddleScale,
+  ThreeEncoderOdometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
+                       const ChassisScales &ichassisScales,
                        const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier);
 
   /**
@@ -56,7 +45,6 @@ class ThreeEncoderOdometry : public Odometry {
   protected:
   std::shared_ptr<ReadOnlyChassisModel> model;
   std::unique_ptr<AbstractRate> rate;
-  const double middleScale;
   std::valarray<std::int32_t> lastTicks{0, 0, 0};
 };
 } // namespace okapi

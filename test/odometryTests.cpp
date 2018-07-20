@@ -6,19 +6,19 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/tests/api/odometryTests.hpp"
+#include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/odometry/odometry.hpp"
 #include "test/testRunner.hpp"
 #include "test/tests/api/implMocks.hpp"
-#include <memory>
 #include <gtest/gtest.h>
-#include "okapi/api/chassis/model/skidSteerModel.hpp"
+#include <memory>
 
 using namespace okapi;
 using namespace snowhouse;
 
 TEST(OdometryTest, BasicTest) {
   class MockModel : public SkidSteerModel {
-  public:
+    public:
     MockModel() : SkidSteerModel(std::make_shared<MockMotor>(), std::make_shared<MockMotor>()) {
     }
 

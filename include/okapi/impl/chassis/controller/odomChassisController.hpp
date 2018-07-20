@@ -10,6 +10,7 @@
 
 #include "api.h"
 #include "okapi/api/chassis/controller/chassisController.hpp"
+#include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/odometry/odometry.hpp"
 
 namespace okapi {
@@ -26,7 +27,8 @@ class OdomChassisController : public virtual ChassisController {
    * @param iparams odometry parameters for the internal odometry math
    * @param imoveThreshold minimum length movement
    */
-  OdomChassisController(std::unique_ptr<SkidSteerModel> imodel, const ChassisScales &ichassisScales, const float imoveThreshold = 10);
+  OdomChassisController(std::shared_ptr<SkidSteerModel> imodel, std::unique_ptr<Odometry> iodometry,
+                        const float imoveThreshold = 10);
 
   /**
    * Drives the robot straight to a point in the odom frame.
@@ -70,7 +72,7 @@ class OdomChassisController : public virtual ChassisController {
 
   protected:
   float moveThreshold; // Minimum length movement
-  Odometry odom;
+  std::unique_ptr<Odometry> odom;
   pros::Task task;
 };
 } // namespace okapi

@@ -7,47 +7,22 @@
  */
 #include "okapi/impl/chassis/controller/odomChassisControllerPid.hpp"
 #include "okapi/api/odometry/odomMath.hpp"
+#include "okapi/impl/util/timeUtilFactory.hpp"
 #include <cmath>
 
 namespace okapi {
 OdomChassisControllerPID::OdomChassisControllerPID(
-  Motor ileftSideMotor, Motor irightSideMotor, const double iscale, const double iturnScale,
-  const IterativePosPIDControllerArgs &idistanceArgs,
-  const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold)
-  : OdomChassisControllerPID(std::make_shared<Motor>(ileftSideMotor),
-                             std::make_shared<Motor>(irightSideMotor), iscale, iturnScale,
-                             idistanceArgs, iangleArgs, imoveThreshold) {
-}
-
-OdomChassisControllerPID::OdomChassisControllerPID(
-  MotorGroup ileftSideMotor, MotorGroup irightSideMotor, const double iscale,
-  const double iturnScale, const IterativePosPIDControllerArgs &idistanceArgs,
-  const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold)
-  : OdomChassisControllerPID(std::make_shared<MotorGroup>(ileftSideMotor),
-                             std::make_shared<MotorGroup>(irightSideMotor), iscale, iturnScale,
-                             idistanceArgs, iangleArgs, imoveThreshold) {
-}
-
-OdomChassisControllerPID::OdomChassisControllerPID(
-  std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
-  const double iscale, const double iturnScale, const IterativePosPIDControllerArgs &idistanceArgs,
-  const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold)
-  : OdomChassisControllerPID(std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor),
-                             iscale, iturnScale, idistanceArgs, iangleArgs, imoveThreshold) {
-}
-
-OdomChassisControllerPID::OdomChassisControllerPID(
-  std::unique_ptr<SkidSteerModel> imodel, const double iscale, const double iturnScale,
+  std::shared_ptr<SkidSteerModel> imodel, std::unique_ptr<Odometry> iodometry,
   const IterativePosPIDControllerArgs &idistanceArgs,
   const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold)
   : ChassisController(imodel),
-    OdomChassisController(OdometryArgs(imodel, iscale, iturnScale), imoveThreshold),
-    ChassisControllerPID(imodel, idistanceArgs, iangleArgs) {
+    OdomChassisController(imodel, std::move(iodometry), imoveThreshold),
+    ChassisControllerPID(TimeUtilFactory::create(), imodel, idistanceArgs, iangleArgs) {
 }
 
 void OdomChassisControllerPID::driveToPoint(const float ix, const float iy, const bool ibackwards,
                                             const float ioffset) {
-  DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom.getState());
+  DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom->getState());
 
   if (ibackwards) {
     daa.theta += 180;
@@ -64,6 +39,6 @@ void OdomChassisControllerPID::driveToPoint(const float ix, const float iy, cons
 }
 
 void OdomChassisControllerPID::turnToAngle(const float iangle) {
-  ChassisControllerPID::turnAngle(iangle - odom.getState().theta);
+  ChassisControllerPID::turnAngle(iangle - odom->getState().theta);
 }
 } // namespace okapi

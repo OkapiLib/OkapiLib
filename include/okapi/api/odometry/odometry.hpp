@@ -8,11 +8,11 @@
 #ifndef _OKAPI_ODOMETRY_HPP_
 #define _OKAPI_ODOMETRY_HPP_
 
+#include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
 #include "okapi/api/util/abstractRate.hpp"
 #include <memory>
 #include <valarray>
-#include "okapi/api/chassis/controller/chassisScales.hpp"
 
 namespace okapi {
 class OdomState {

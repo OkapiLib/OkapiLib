@@ -8,19 +8,12 @@
 #include "okapi/api/odometry/threeEncoderOdometry.hpp"
 
 namespace okapi {
-ThreeEncoderOdometryArgs::ThreeEncoderOdometryArgs(std::shared_ptr<ReadOnlyChassisModel> imodel,
-                                                   const double iscale, const double iturnScale,
-                                                   const double imiddleScale)
-  : OdometryArgs(imodel, iscale, iturnScale), middleScale(imiddleScale) {
-}
-
 ThreeEncoderOdometry::ThreeEncoderOdometry(
-  std::shared_ptr<ReadOnlyChassisModel> imodel, double iscale, double iturnScale,
-  double imiddleScale, const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier)
-  : Odometry(imodel, iscale, iturnScale, irateSupplier.get()),
+  std::shared_ptr<ReadOnlyChassisModel> imodel, const ChassisScales &ichassisScales,
+  const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier)
+  : Odometry(imodel, ichassisScales, irateSupplier.get()),
     model(imodel),
-    rate(irateSupplier.get()),
-    middleScale(imiddleScale) {
+    rate(irateSupplier.get()) {
 }
 
 void ThreeEncoderOdometry::loop() {
@@ -33,16 +26,18 @@ void ThreeEncoderOdometry::loop() {
     tickDiff = newTicks - lastTicks;
     lastTicks = newTicks;
 
-    mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * scale;
+    mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * chassisScales.straight;
 
-    state.theta += (static_cast<double>(tickDiff[1] - tickDiff[0]) / 2.0) * turnScale;
+    state.theta += (static_cast<double>(tickDiff[1] - tickDiff[0]) / 2.0) * chassisScales.turn;
     if (state.theta > 180)
       state.theta -= 360;
     else if (state.theta < -180)
       state.theta += 360;
 
-    state.x += mm * std::cos(state.theta) + (tickDiff[2] * middleScale) * std::sin(state.theta);
-    state.y += mm * std::sin(state.theta) + (tickDiff[2] * middleScale) * std::cos(state.theta);
+    state.x +=
+      mm * std::cos(state.theta) + (tickDiff[2] * chassisScales.middle) * std::sin(state.theta);
+    state.y +=
+      mm * std::sin(state.theta) + (tickDiff[2] * chassisScales.middle) * std::cos(state.theta);
 
     rate->delayUntil(10);
   }
