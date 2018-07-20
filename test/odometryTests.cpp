@@ -36,5 +36,5 @@ TEST(OdometryTest, BasicTest) {
   };
 
   auto model = std::make_shared<MockModel>();
-  Odometry odom(model, 143.239449, 16.875, std::make_unique<MockRate>());
+  Odometry odom(model, ChassisScales({4_in, 11.5_in}), std::make_unique<MockRate>());
 }

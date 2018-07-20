@@ -23,3 +23,11 @@ TEST(ChassisScalesTest, ScalesFromWheelbase) {
   EXPECT_FLOAT_EQ(scales.straight, 1127.8696);
   EXPECT_FLOAT_EQ(scales.turn, 2.875);
 }
+
+TEST(ChassisScalesTest, TooFewDoubleParamsThrowsException) {
+  EXPECT_THROW(ChassisScales({0}), std::invalid_argument);
+}
+
+TEST(ChassisScalesTest, TooFewUnitsParamsThrowsException) {
+  EXPECT_THROW(ChassisScales({1_in}), std::invalid_argument);
+}
