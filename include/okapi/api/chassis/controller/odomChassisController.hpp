@@ -8,9 +8,9 @@
 #ifndef _OKAPI_ODOMCHASSISCONTROLLER_HPP_
 #define _OKAPI_ODOMCHASSISCONTROLLER_HPP_
 
-#include "okapi/api/coreProsAPI.hpp"
 #include "okapi/api/chassis/controller/chassisController.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
+#include "okapi/api/coreProsAPI.hpp"
 #include "okapi/api/odometry/odometry.hpp"
 
 namespace okapi {
@@ -28,7 +28,7 @@ class OdomChassisController : public virtual ChassisController {
    * @param imoveThreshold minimum length movement
    */
   OdomChassisController(std::shared_ptr<SkidSteerModel> imodel, std::unique_ptr<Odometry> iodometry,
-                        const float imoveThreshold = 10);
+                        float imoveThreshold = 10);
 
   /**
    * Drives the robot straight to a point in the odom frame.
@@ -38,15 +38,14 @@ class OdomChassisController : public virtual ChassisController {
    * @param ibackwards whether to drive to the target point backwards
    * @param ioffset offset from target point in the direction pointing towards the robot
    */
-  virtual void driveToPoint(const float ix, const float iy, const bool ibackwards = false,
-                            const float ioffset = 0) = 0;
+  virtual void driveToPoint(float ix, float iy, bool ibackwards = false, float ioffset = 0) = 0;
 
   /**
    * Turns the robot to face an angle in the odom frame.
    *
    * @param iangle angle to turn to
    */
-  virtual void turnToAngle(const float iangle) = 0;
+  virtual void turnToAngle(float iangle) = 0;
 
   /**
    * Passthrough to internal Odometry object.
@@ -68,7 +67,7 @@ class OdomChassisController : public virtual ChassisController {
    *
    * @param imoveThreshold new move threshold
    */
-  virtual void setMoveThreshold(const float imoveThreshold);
+  virtual void setMoveThreshold(float imoveThreshold);
 
   protected:
   float moveThreshold; // Minimum length movement
