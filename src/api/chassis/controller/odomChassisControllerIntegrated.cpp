@@ -5,26 +5,24 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/chassis/controller/odomChassisControllerIntegrated.hpp"
+#include "okapi/api/chassis/controller/odomChassisControllerIntegrated.hpp"
 #include "okapi/api/odometry/odomMath.hpp"
-#include "okapi/impl/control/util/settledUtilFactory.hpp"
-#include "okapi/impl/util/rate.hpp"
-#include "okapi/impl/util/timeUtilFactory.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include <cmath>
 
 namespace okapi {
-OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
+OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(const TimeUtil &itimeUtil,
   std::shared_ptr<SkidSteerModel> imodel, std::unique_ptr<Odometry> iodometry,
   const AsyncPosIntegratedControllerArgs &ileftControllerParams,
   const AsyncPosIntegratedControllerArgs &irightControllerParams, const double imoveThreshold)
   : ChassisController(imodel),
     OdomChassisController(imodel, std::move(iodometry), imoveThreshold),
-    ChassisControllerIntegrated(TimeUtilFactory::create(), imodel, ileftControllerParams,
+    ChassisControllerIntegrated(itimeUtil, imodel, ileftControllerParams,
                                 irightControllerParams) {
 }
 
-void OdomChassisControllerIntegrated::driveToPoint(const float ix, const float iy,
-                                                   const bool ibackwards, const float ioffset) {
+void OdomChassisControllerIntegrated::driveToPoint(const double ix, const double iy,
+                                                   const bool ibackwards, const double ioffset) {
   DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom->getState());
 
   if (ibackwards) {
@@ -41,7 +39,7 @@ void OdomChassisControllerIntegrated::driveToPoint(const float ix, const float i
   }
 }
 
-void OdomChassisControllerIntegrated::turnToAngle(const float iangle) {
+void OdomChassisControllerIntegrated::turnToAngle(const double iangle) {
   ChassisControllerIntegrated::turnAngle(iangle - odom->getState().theta);
 }
 } // namespace okapi

@@ -51,6 +51,7 @@ add_executable(OkapiLibV5
         include/okapi/api/chassis/controller/chassisControllerPid.hpp
         include/okapi/api/chassis/controller/chassisScales.hpp
         include/okapi/api/chassis/controller/odomChassisController.hpp
+        include/okapi/api/chassis/controller/odomChassisControllerIntegrated.hpp
         include/okapi/api/chassis/model/chassisModel.hpp
         include/okapi/api/chassis/model/skidSteerModel.hpp
         include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp
@@ -121,6 +122,7 @@ add_executable(OkapiLibV5
         src/api/chassis/controller/chassisControllerIntegrated.cpp
         src/api/chassis/controller/chassisControllerPid.cpp
         src/api/chassis/controller/odomChassisController.cpp
+        src/api/chassis/controller/odomChassisControllerIntegrated.cpp
         src/api/chassis/model/chassisModel.cpp
         src/api/chassis/model/skidSteerModel.cpp
         src/api/chassis/model/threeEncoderSkidSteerModel.cpp

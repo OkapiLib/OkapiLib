@@ -10,7 +10,7 @@
 namespace okapi {
 OdomChassisController::OdomChassisController(std::shared_ptr<SkidSteerModel> imodel,
                                              std::unique_ptr<Odometry> iodometry,
-                                             const float imoveThreshold)
+                                             const double imoveThreshold)
   : ChassisController(imodel),
     moveThreshold(imoveThreshold),
     odom(std::move(iodometry)),
@@ -25,7 +25,7 @@ void OdomChassisController::setState(const OdomState &istate) {
   odom->setState(istate);
 }
 
-void OdomChassisController::setMoveThreshold(const float imoveThreshold) {
+void OdomChassisController::setMoveThreshold(const double imoveThreshold) {
   moveThreshold = imoveThreshold;
 }
 } // namespace okapi
