@@ -8,13 +8,10 @@
 #ifndef _OKAPI_ODOMCHASSISCONTROLLERPID_HPP_
 #define _OKAPI_ODOMCHASSISCONTROLLERPID_HPP_
 
-#include "api.h"
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"
+#include "okapi/api/chassis/controller/odomChassisController.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/odometry/odometry.hpp"
-#include "okapi/api/chassis/controller/odomChassisController.hpp"
-#include "okapi/impl/device/motor/motor.hpp"
-#include "okapi/impl/device/motor/motorGroup.hpp"
 #include <memory>
 
 namespace okapi {
@@ -37,11 +34,11 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
    * @param iangleArgs angle PID controller params (keeps the robot straight)
    * @param imoveThreshold minimum length movement
    */
-  OdomChassisControllerPID(std::shared_ptr<SkidSteerModel> imodel,
+  OdomChassisControllerPID(const TimeUtil &itimeUtil, std::shared_ptr<SkidSteerModel> imodel,
                            std::unique_ptr<Odometry> iodometry,
                            const IterativePosPIDControllerArgs &idistanceArgs,
                            const IterativePosPIDControllerArgs &iangleArgs,
-                           const float imoveThreshold = 10);
+                           double imoveThreshold = 10);
 
   /**
    * Drives the robot straight to a point in the odom frame.
@@ -51,15 +48,14 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
    * @param ibackwards whether to drive to the target point backwards
    * @param ioffset offset from target point in the direction pointing towards the robot
    */
-  virtual void driveToPoint(const float ix, const float iy, const bool ibackwards = false,
-                            const float ioffset = 0) override;
+  void driveToPoint(double ix, double iy, bool ibackwards = false, double ioffset = 0) override;
 
   /**
    * Turns the robot to face an angle in the odom frame.
    *
    * @param iangle angle to turn to
    */
-  virtual void turnToAngle(const float iangle) override;
+  void turnToAngle(double iangle) override;
 };
 } // namespace okapi
 

@@ -5,23 +5,22 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/impl/chassis/controller/odomChassisControllerPid.hpp"
+#include "okapi/api/chassis/controller/odomChassisControllerPid.hpp"
 #include "okapi/api/odometry/odomMath.hpp"
-#include "okapi/impl/util/timeUtilFactory.hpp"
 #include <cmath>
 
 namespace okapi {
 OdomChassisControllerPID::OdomChassisControllerPID(
-  std::shared_ptr<SkidSteerModel> imodel, std::unique_ptr<Odometry> iodometry,
-  const IterativePosPIDControllerArgs &idistanceArgs,
-  const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold)
+  const TimeUtil &itimeUtil, std::shared_ptr<SkidSteerModel> imodel,
+  std::unique_ptr<Odometry> iodometry, const IterativePosPIDControllerArgs &idistanceArgs,
+  const IterativePosPIDControllerArgs &iangleArgs, const double imoveThreshold)
   : ChassisController(imodel),
     OdomChassisController(imodel, std::move(iodometry), imoveThreshold),
-    ChassisControllerPID(TimeUtilFactory::create(), imodel, idistanceArgs, iangleArgs) {
+    ChassisControllerPID(itimeUtil, imodel, idistanceArgs, iangleArgs) {
 }
 
-void OdomChassisControllerPID::driveToPoint(const float ix, const float iy, const bool ibackwards,
-                                            const float ioffset) {
+void OdomChassisControllerPID::driveToPoint(const double ix, const double iy, const bool ibackwards,
+                                            const double ioffset) {
   DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom->getState());
 
   if (ibackwards) {
@@ -38,7 +37,7 @@ void OdomChassisControllerPID::driveToPoint(const float ix, const float iy, cons
   }
 }
 
-void OdomChassisControllerPID::turnToAngle(const float iangle) {
+void OdomChassisControllerPID::turnToAngle(const double iangle) {
   ChassisControllerPID::turnAngle(iangle - odom->getState().theta);
 }
 } // namespace okapi

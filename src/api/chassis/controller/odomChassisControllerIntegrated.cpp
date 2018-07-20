@@ -7,18 +7,17 @@
  */
 #include "okapi/api/chassis/controller/odomChassisControllerIntegrated.hpp"
 #include "okapi/api/odometry/odomMath.hpp"
-#include "okapi/api/util/timeUtil.hpp"
 #include <cmath>
 
 namespace okapi {
-OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(const TimeUtil &itimeUtil,
-  std::shared_ptr<SkidSteerModel> imodel, std::unique_ptr<Odometry> iodometry,
+OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
+  const TimeUtil &itimeUtil, std::shared_ptr<SkidSteerModel> imodel,
+  std::unique_ptr<Odometry> iodometry,
   const AsyncPosIntegratedControllerArgs &ileftControllerParams,
   const AsyncPosIntegratedControllerArgs &irightControllerParams, const double imoveThreshold)
   : ChassisController(imodel),
     OdomChassisController(imodel, std::move(iodometry), imoveThreshold),
-    ChassisControllerIntegrated(itimeUtil, imodel, ileftControllerParams,
-                                irightControllerParams) {
+    ChassisControllerIntegrated(itimeUtil, imodel, ileftControllerParams, irightControllerParams) {
 }
 
 void OdomChassisControllerIntegrated::driveToPoint(const double ix, const double iy,
