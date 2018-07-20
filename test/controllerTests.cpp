@@ -13,6 +13,7 @@
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
 #include "okapi/api/control/util/flywheelSimulator.hpp"
+#include "okapi/api/control/util/pidTuner.hpp"
 #include "okapi/api/filter/averageFilter.hpp"
 #include "okapi/api/filter/filteredControllerInput.hpp"
 #include "okapi/api/filter/passthroughFilter.hpp"
@@ -189,4 +190,22 @@ TEST(FilteredControllerInputTest, InputShouldBePassedThrough) {
   for (int i = 0; i < 3; i++) {
     EXPECT_FLOAT_EQ(input.controllerGet(), 1);
   }
+}
+
+TEST(PIDTunerTest, ConstructorShouldNotSegfault) {
+  auto output = std::make_shared<MockMotor>();
+  auto input = output->getEncoder();
+  PIDTuner pidTuner(input, output, createTimeUtil(), 1_s, 100, 0, 10, 0, 10, 0, 10);
+}
+
+TEST(PIDTunerTest, AutotuneShouldNotSegfault) {
+  FlywheelSimulator simulator;
+  simulator.setExternalTorqueFunction([](double, double, double) { return 0; });
+
+  auto system = std::make_shared<SimulatedSystem>(simulator);
+
+  PIDTuner pidTuner(system, system, createTimeUtil(), 100_ms, 100, 0, 10, 0, 10, 0, 10);
+  auto result = pidTuner.autotune();
+
+  system->join(); // gtest will cause a SIGABRT if we don't join manually first
 }

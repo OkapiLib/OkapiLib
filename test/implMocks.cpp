@@ -10,6 +10,7 @@
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
 #include <chrono>
+#include <memory>
 
 namespace okapi {
 double MockContinuousRotarySensor::controllerGet() {
@@ -85,7 +86,7 @@ int32_t MockMotor::setVoltageLimit(const std::int32_t ilimit) const {
 }
 
 std::shared_ptr<ContinuousRotarySensor> MockMotor::getEncoder() const {
-  return std::shared_ptr<MockContinuousRotarySensor>();
+  return std::make_shared<MockContinuousRotarySensor>();
 }
 
 std::int32_t MockMotor::moveVelocity(const std::int16_t ivelocity) const {
@@ -247,4 +248,38 @@ TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSu
                   }),
                   Supplier<std::unique_ptr<SettledUtil>>([]() { return createSettledUtilPtr(); }));
 }
+
+SimulatedSystem::SimulatedSystem(FlywheelSimulator &simulator)
+  : simulator(simulator), thread(trampoline, this) {
+}
+
+SimulatedSystem::~SimulatedSystem() = default;
+
+double SimulatedSystem::controllerGet() {
+  return simulator.getAngle();
+}
+
+void SimulatedSystem::controllerSet(double ivalue) {
+  simulator.setTorque(ivalue);
+}
+
+void SimulatedSystem::step() {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
+  while (!shouldJoin) {
+    simulator.step();
+    rate.delayUntil(10_ms);
+  }
+#pragma clang diagnostic pop
+}
+
+void SimulatedSystem::trampoline(void *system) {
+  static_cast<SimulatedSystem *>(system)->step();
+}
+
+void SimulatedSystem::join() {
+  shouldJoin = true;
+  thread.join();
+}
+
 } // namespace okapi
