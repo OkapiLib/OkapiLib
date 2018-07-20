@@ -62,14 +62,6 @@ SkidSteerModel::SkidSteerModel(const SkidSteerModelArgs &iparams)
     maxOutput(iparams.maxOutput) {
 }
 
-SkidSteerModel::SkidSteerModel(const SkidSteerModel &other)
-  : leftSideMotor(other.leftSideMotor),
-    rightSideMotor(other.rightSideMotor),
-    leftSensor(other.leftSensor),
-    rightSensor(other.rightSensor),
-    maxOutput(other.maxOutput) {
-}
-
 void SkidSteerModel::forward(const double ispeed) const {
   const double speed = std::clamp(ispeed, -1.0, 1.0);
   leftSideMotor->moveVelocity(speed * maxOutput);

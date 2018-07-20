@@ -62,8 +62,6 @@ class SkidSteerModel : public ChassisModel {
 
   explicit SkidSteerModel(const SkidSteerModelArgs &iparams);
 
-  SkidSteerModel(const SkidSteerModel &other);
-
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.
    *
