@@ -77,16 +77,6 @@ XDriveModel::XDriveModel(const XDriveModelArgs &iparams)
     maxOutput(iparams.maxOutput) {
 }
 
-XDriveModel::XDriveModel(const XDriveModel &other)
-  : topLeftMotor(other.topLeftMotor),
-    topRightMotor(other.topRightMotor),
-    bottomRightMotor(other.bottomRightMotor),
-    bottomLeftMotor(other.bottomLeftMotor),
-    leftSensor(other.leftSensor),
-    rightSensor(other.rightSensor),
-    maxOutput(other.maxOutput) {
-}
-
 void XDriveModel::forward(const double ispeed) const {
   const double speed = std::clamp(ispeed, -1.0, 1.0);
   topLeftMotor->moveVelocity(speed * maxOutput);
