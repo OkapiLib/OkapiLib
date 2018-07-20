@@ -59,6 +59,7 @@ void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
 
   leftController->flipDisable(true);
   rightController->flipDisable(true);
+  model->stop();
 }
 
 void ChassisControllerIntegrated::moveDistance(const double itarget) {
@@ -83,6 +84,7 @@ void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
 
   leftController->flipDisable(true);
   rightController->flipDisable(true);
+  model->stop();
 }
 
 void ChassisControllerIntegrated::turnAngle(const double idegTarget) {

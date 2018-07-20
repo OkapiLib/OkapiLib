@@ -17,6 +17,7 @@
 #include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <chrono>
+#include <okapi/api/control/iterative/iterativePosPidController.hpp>
 
 namespace okapi {
 
@@ -214,6 +215,52 @@ class MockAsyncController : public AsyncPosIntegratedController {
   void flipDisable(bool iisDisabled) override;
 
   bool isDisabled() const override;
+
+  double output{0};
+  QTime sampleTime = 10_ms;
+  double maxOutput{1};
+  double minOutput{-1};
+  double target{0};
+  bool disabled{false};
+};
+
+class MockIterativeController : public IterativePosPIDController {
+  public:
+  MockIterativeController();
+
+  double step(double inewReading) override;
+
+  void setTarget(double itarget) override;
+
+  double getOutput() const override;
+
+  double getError() const override;
+
+  double getDerivative() const override;
+
+  bool isSettled() override;
+
+  void setGains(double ikP, double ikI, double ikD, double ikBias) override;
+
+  void setSampleTime(QTime isampleTime) override;
+
+  void setOutputLimits(double imax, double imin) override;
+
+  void setIntegralLimits(double imax, double imin) override;
+
+  void setErrorSumLimits(double imax, double imin) override;
+
+  void reset() override;
+
+  void setIntegratorReset(bool iresetOnZero) override;
+
+  void flipDisable() override;
+
+  void flipDisable(bool iisDisabled) override;
+
+  bool isDisabled() const override;
+
+  QTime getSampleTime() const override;
 
   double output{0};
   QTime sampleTime = 10_ms;

@@ -31,6 +31,7 @@ TEST(ChassisScalesTest, ScalesFromWheelbase) {
 class ChassisControllerIntegratedTest : public ::testing::Test {
   protected:
   void SetUp() override {
+    scales = new ChassisScales({2, 2});
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
     leftController = new MockAsyncController();
@@ -40,13 +41,16 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
     controller = new ChassisControllerIntegrated(
       createTimeUtil(), std::unique_ptr<ChassisModel>(model),
       std::unique_ptr<AsyncPosIntegratedController>(leftController),
-      std::unique_ptr<AsyncPosIntegratedController>(rightController));
+      std::unique_ptr<AsyncPosIntegratedController>(rightController), AbstractMotor::gearset::red,
+      *scales);
   }
 
   void TearDown() override {
+    delete scales;
     delete controller;
   }
 
+  ChassisScales *scales;
   ChassisController *controller;
   MockMotor *leftMotor;
   MockMotor *rightMotor;
@@ -55,11 +59,72 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
   SkidSteerModel *model;
 };
 
-TEST_F(ChassisControllerIntegratedTest, MoveDistanceLifecycleTest) {
+TEST_F(ChassisControllerIntegratedTest, MoveDistanceRawUnitsTest) {
   controller->moveDistance(100);
 
   EXPECT_DOUBLE_EQ(leftController->target, 100);
   EXPECT_DOUBLE_EQ(rightController->target, 100);
+
+  EXPECT_TRUE(leftController->disabled);
+  EXPECT_TRUE(rightController->disabled);
+}
+
+TEST_F(ChassisControllerIntegratedTest, MoveDistanceUnitsTest) {
+  controller->moveDistance(1_m);
+
+  EXPECT_DOUBLE_EQ(leftController->target, 2);
+  EXPECT_DOUBLE_EQ(rightController->target, 2);
+
+  EXPECT_TRUE(leftController->disabled);
+  EXPECT_TRUE(rightController->disabled);
+}
+
+class ChassisControllerPIDTest : public ::testing::Test {
+  protected:
+  void SetUp() override {
+    scales = new ChassisScales({2, 2});
+    leftMotor = new MockMotor();
+    rightMotor = new MockMotor();
+    leftController = new MockIterativeController();
+    rightController = new MockIterativeController();
+    model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
+                               std::unique_ptr<AbstractMotor>(rightMotor));
+    controller =
+      new ChassisControllerPID(createTimeUtil(), std::unique_ptr<ChassisModel>(model),
+                               std::unique_ptr<IterativePosPIDController>(leftController),
+                               std::unique_ptr<IterativePosPIDController>(rightController),
+                               AbstractMotor::gearset::red, *scales);
+  }
+
+  void TearDown() override {
+    delete scales;
+    delete controller;
+  }
+
+  ChassisScales *scales;
+  ChassisController *controller;
+  MockMotor *leftMotor;
+  MockMotor *rightMotor;
+  MockIterativeController *leftController;
+  MockIterativeController *rightController;
+  SkidSteerModel *model;
+};
+
+TEST_F(ChassisControllerPIDTest, MoveDistanceRawUnitsTest) {
+  controller->moveDistance(100);
+
+  EXPECT_DOUBLE_EQ(leftController->target, 100);
+  EXPECT_DOUBLE_EQ(rightController->target, 100);
+
+  EXPECT_TRUE(leftController->disabled);
+  EXPECT_TRUE(rightController->disabled);
+}
+
+TEST_F(ChassisControllerPIDTest, MoveDistanceUnitsTest) {
+  controller->moveDistance(1_m);
+
+  EXPECT_DOUBLE_EQ(leftController->target, 2);
+  EXPECT_DOUBLE_EQ(rightController->target, 2);
 
   EXPECT_TRUE(leftController->disabled);
   EXPECT_TRUE(rightController->disabled);
