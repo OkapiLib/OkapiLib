@@ -8,7 +8,7 @@
 #ifndef _OKAPI_ODOMCHASSISCONTROLLER_HPP_
 #define _OKAPI_ODOMCHASSISCONTROLLER_HPP_
 
-#include "api.h"
+#include "okapi/api/coreProsAPI.hpp"
 #include "okapi/api/chassis/controller/chassisController.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/odometry/odometry.hpp"
@@ -73,7 +73,7 @@ class OdomChassisController : public virtual ChassisController {
   protected:
   float moveThreshold; // Minimum length movement
   std::unique_ptr<Odometry> odom;
-  pros::Task task;
+  CROSSPLATFORM_THREAD task;
 };
 } // namespace okapi
 

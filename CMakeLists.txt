@@ -50,6 +50,7 @@ add_executable(OkapiLibV5
         include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp
         include/okapi/api/chassis/controller/chassisControllerPid.hpp
         include/okapi/api/chassis/controller/chassisScales.hpp
+        include/okapi/api/chassis/controller/odomChassisController.hpp
         include/okapi/api/chassis/model/chassisModel.hpp
         include/okapi/api/chassis/model/skidSteerModel.hpp
         include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp
@@ -119,6 +120,7 @@ add_executable(OkapiLibV5
         src/api/chassis/controller/chassisController.cpp
         src/api/chassis/controller/chassisControllerIntegrated.cpp
         src/api/chassis/controller/chassisControllerPid.cpp
+        src/api/chassis/controller/odomChassisController.cpp
         src/api/chassis/model/chassisModel.cpp
         src/api/chassis/model/skidSteerModel.cpp
         src/api/chassis/model/threeEncoderSkidSteerModel.cpp
@@ -166,7 +168,10 @@ add_executable(OkapiLibV5
         test/unitTests.cpp
         test/implMocks.cpp
         src/api/util/timeUtil.cpp
-        include/okapi/api/util/timeUtil.hpp include/okapi/api/chassis/model/readOnlyChassisModel.hpp src/api/chassis/model/readOnlyChassisModel.cpp src/api/chassis/controller/chassisScales.cpp)
+        include/okapi/api/util/timeUtil.hpp
+        include/okapi/api/chassis/model/readOnlyChassisModel.hpp
+        src/api/chassis/model/readOnlyChassisModel.cpp
+        src/api/chassis/controller/chassisScales.cpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)
