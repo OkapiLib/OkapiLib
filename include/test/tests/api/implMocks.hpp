@@ -270,11 +270,6 @@ class MockIterativeController : public IterativePosPIDController {
   double target{0};
   bool disabled{false};
 };
-
-// class MockSkidSteerModel : public SkidSteerModel {
-// public:
-//
-//};
 } // namespace okapi
 
 #endif
