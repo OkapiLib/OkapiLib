@@ -10,7 +10,6 @@
 #include <gtest/gtest.h>
 
 using namespace okapi;
-using namespace snowhouse;
 
 TEST(FlywheelSimulatorTest, BasicTest) {
   FlywheelSimulator sim;

@@ -19,7 +19,6 @@
 #include <gtest/gtest.h>
 
 using namespace okapi;
-using namespace snowhouse;
 
 void assertThatFilterAndFilterOutputAreEqual(Filter &filter, double input, double value) {
   EXPECT_NEAR(filter.filter(input), value, 0.0001);

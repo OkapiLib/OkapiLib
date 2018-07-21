@@ -11,7 +11,6 @@
 #include <utility>
 
 using namespace okapi;
-using namespace snowhouse;
 using namespace fakeit;
 
 class MockButton : public ButtonBase {

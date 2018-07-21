@@ -15,7 +15,6 @@
 #include <memory>
 
 using namespace okapi;
-using namespace snowhouse;
 
 class MockModel : public SkidSteerModel {
   public:

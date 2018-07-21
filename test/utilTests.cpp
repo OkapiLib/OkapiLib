@@ -10,7 +10,6 @@
 #include <gtest/gtest.h>
 
 using namespace okapi;
-using namespace snowhouse;
 
 TEST(IpowTest, IntegerTests) {
   EXPECT_EQ(ipow(0, 0), 1);

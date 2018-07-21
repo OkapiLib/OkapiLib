@@ -24,7 +24,6 @@
 #include <gtest/gtest.h>
 
 using namespace okapi;
-using namespace snowhouse;
 
 class IterativeControllerTest : public ::testing::Test {
   protected:

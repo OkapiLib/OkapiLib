@@ -13,7 +13,6 @@
 #include <gtest/gtest.h>
 
 using namespace okapi;
-using namespace snowhouse;
 
 class XDriveModelTest : public ::testing::Test {
   public:

@@ -9,8 +9,6 @@
 #include "test/crossPlatformTestRunner.hpp"
 #include <gtest/gtest.h>
 
-using namespace snowhouse;
-
 TEST(UnitTests, TimeAddition) {
   QTime start = 0_ms;
 
