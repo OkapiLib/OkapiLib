@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/testRunner.hpp"
-#include "okapi/util/timer.hpp"
+#include "okapi/impl/util/timer.hpp"
 
 namespace okapi {
 static size_t testPassCount = 0;
