@@ -12,9 +12,9 @@ namespace okapi {
 /**
  * An abstract closed-loop controller.
  *
- * @tparam T The target/input type.
+ * @tparam INPUT The target/input type.
  */
-template <typename T> class ClosedLoopController {
+template <typename INPUT, typename ERROR> class ClosedLoopController {
   public:
   virtual ~ClosedLoopController() = default;
 
@@ -23,14 +23,14 @@ template <typename T> class ClosedLoopController {
    *
    * @param itarget the new target
    */
-  virtual void setTarget(T itarget) = 0;
+  virtual void setTarget(INPUT itarget) = 0;
 
   /**
    * Returns the last error of the controller.
    *
    * @return the last error
    */
-  virtual double getError() const = 0;
+  virtual ERROR getError() const = 0;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is

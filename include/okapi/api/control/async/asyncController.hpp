@@ -21,7 +21,7 @@ class AsyncControllerArgs {
  * Closed-loop controller that steps on its own in another thread and automatically writes to the
  * output.
  */
-class AsyncController : public ClosedLoopController<double> {
+class AsyncController : public ClosedLoopController<double, double> {
   public:
   /**
    * Returns the last calculated output of the controller. Default is 0.

@@ -20,7 +20,7 @@ class IterativeControllerArgs {
 /**
  * Closed-loop controller that steps iteratively using the step method below.
  */
-class IterativeController : public ClosedLoopController<double> {
+class IterativeController : public ClosedLoopController<double, double> {
   public:
   /**
    * Do one iteration of the controller. Outputs in the range [-1, 1]
