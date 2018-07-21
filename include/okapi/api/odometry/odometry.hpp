@@ -71,6 +71,12 @@ class Odometry {
   virtual void loop();
 
   /**
+   * Do one odometry step. Do not use this and loop in combination, only one may be used per
+   * Odometry object. It is recommended to use loop.
+   */
+  virtual void step();
+
+  /**
    * Treat the input as an Odometry pointer and call loop. Meant to be used to bounce into a
    * thread because loop runs forever.
    *
@@ -97,7 +103,7 @@ class Odometry {
   std::unique_ptr<AbstractRate> rate;
   OdomState state;
   ChassisScales chassisScales;
-  std::valarray<std::int32_t> lastTicks{0, 0};
+  std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0}, lastTicks{0, 0};
   double mm = 0;
 };
 } // namespace okapi

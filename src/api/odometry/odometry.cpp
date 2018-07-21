@@ -41,29 +41,30 @@ void Odometry::setScales(const ChassisScales &ichassisScales) {
 }
 
 void Odometry::loop() {
-  std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0};
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
   while (true) {
-    newTicks = model->getSensorVals();
-    tickDiff = newTicks - lastTicks;
-    lastTicks = newTicks;
-
-    mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * chassisScales.straight;
-
-    state.theta += (tickDiff[1] - tickDiff[0]) * chassisScales.turn;
-    if (state.theta > 180)
-      state.theta -= 360;
-    else if (state.theta < -180)
-      state.theta += 360;
-
-    state.x += mm * std::cos(state.theta * degreeToRadian);
-    state.y += mm * std::sin(state.theta * degreeToRadian);
-
+    step();
     rate->delayUntil(10);
   }
 #pragma clang diagnostic pop
+}
+
+void Odometry::step() {
+  newTicks = model->getSensorVals();
+  tickDiff = newTicks - lastTicks;
+  lastTicks = newTicks;
+
+  mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * chassisScales.straight;
+
+  state.theta += ((tickDiff[0] - tickDiff[1]) / 2.0) * chassisScales.turn;
+  if (state.theta > 180)
+    state.theta -= 360;
+  else if (state.theta < -180)
+    state.theta += 360;
+
+  state.x += mm * std::cos(state.theta * degreeToRadian);
+  state.y += mm * std::sin(state.theta * degreeToRadian);
 }
 
 void Odometry::trampoline(void *context) {

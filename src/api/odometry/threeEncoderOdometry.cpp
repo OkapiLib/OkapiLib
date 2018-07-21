@@ -8,40 +8,31 @@
 #include "okapi/api/odometry/threeEncoderOdometry.hpp"
 
 namespace okapi {
-ThreeEncoderOdometry::ThreeEncoderOdometry(
-  std::shared_ptr<ReadOnlyChassisModel> imodel, const ChassisScales &ichassisScales,
-  const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier)
-  : Odometry(imodel, ichassisScales, irateSupplier.get()),
+ThreeEncoderOdometry::ThreeEncoderOdometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
+                                           const ChassisScales &ichassisScales,
+                                           const TimeUtil &itimeUtil)
+  : Odometry(imodel, ichassisScales, itimeUtil.getRate()),
     model(imodel),
-    rate(irateSupplier.get()) {
+    rate(itimeUtil.getRate()) {
 }
 
-void ThreeEncoderOdometry::loop() {
-  std::valarray<std::int32_t> newTicks{0, 0, 0}, tickDiff{0, 0, 0};
+void ThreeEncoderOdometry::step() {
+  newTicks = model->getSensorVals();
+  tickDiff = newTicks - lastTicks;
+  lastTicks = newTicks;
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
-  while (true) {
-    newTicks = model->getSensorVals();
-    tickDiff = newTicks - lastTicks;
-    lastTicks = newTicks;
+  mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * chassisScales.straight;
 
-    mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * chassisScales.straight;
+  state.theta += ((tickDiff[0] - tickDiff[1]) / 2.0) * chassisScales.turn;
+  if (state.theta > 180)
+    state.theta -= 360;
+  else if (state.theta < -180)
+    state.theta += 360;
 
-    state.theta += (static_cast<double>(tickDiff[1] - tickDiff[0]) / 2.0) * chassisScales.turn;
-    if (state.theta > 180)
-      state.theta -= 360;
-    else if (state.theta < -180)
-      state.theta += 360;
-
-    state.x +=
-      mm * std::cos(state.theta) + (tickDiff[2] * chassisScales.middle) * std::sin(state.theta);
-    state.y +=
-      mm * std::sin(state.theta) + (tickDiff[2] * chassisScales.middle) * std::cos(state.theta);
-
-    rate->delayUntil(10);
-  }
-#pragma clang diagnostic pop
+  state.x +=
+    mm * std::cos(state.theta) + (tickDiff[2] * chassisScales.middle) * std::sin(state.theta);
+  state.y +=
+    mm * std::sin(state.theta) + (tickDiff[2] * chassisScales.middle) * std::cos(state.theta);
 }
 
 void ThreeEncoderOdometry::trampoline(void *context) {

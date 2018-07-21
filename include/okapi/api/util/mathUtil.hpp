@@ -15,7 +15,7 @@ namespace okapi {
 static constexpr double analogInToV = 286.0;
 static constexpr double inchToMM = 25.4;
 static constexpr double mmToInch = 0.0393700787;
-static constexpr double degreeToRadian = 0.01745;
+static constexpr double degreeToRadian = 0.01745329252;
 static constexpr double radianToDegree = 57.2957795;
 static constexpr double imeTorqueTPR = 627.2;
 static constexpr double imeSpeedTPR = 392.0;

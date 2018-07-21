@@ -10,8 +10,7 @@
 
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
 #include "okapi/api/odometry/odometry.hpp"
-#include "okapi/api/util/abstractRate.hpp"
-#include "okapi/api/util/supplier.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include <functional>
 
 namespace okapi {
@@ -26,13 +25,12 @@ class ThreeEncoderOdometry : public Odometry {
    * @param irateSupplier a supplier of AbstractRate implementations
    */
   ThreeEncoderOdometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
-                       const ChassisScales &ichassisScales,
-                       const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier);
+                       const ChassisScales &ichassisScales, const TimeUtil &itimeUtil);
 
   /**
    * Do odometry math in an infinite loop.
    */
-  void loop() override;
+  void step() override;
 
   /**
    * Tread the input as a ThreeEncoderOdometry pointer and call loop. Meant to be used to bounce
@@ -45,7 +43,7 @@ class ThreeEncoderOdometry : public Odometry {
   protected:
   std::shared_ptr<ReadOnlyChassisModel> model;
   std::unique_ptr<AbstractRate> rate;
-  std::valarray<std::int32_t> lastTicks{0, 0, 0};
+  std::valarray<std::int32_t> newTicks{0, 0, 0}, tickDiff{0, 0, 0}, lastTicks{0, 0, 0};
 };
 } // namespace okapi
 

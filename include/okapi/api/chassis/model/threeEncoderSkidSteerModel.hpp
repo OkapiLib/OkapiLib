@@ -15,6 +15,11 @@ class ThreeEncoderSkidSteerModelArgs : public SkidSteerModelArgs {
   public:
   ThreeEncoderSkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                  std::shared_ptr<AbstractMotor> irightSideMotor,
+                                 std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
+                                 double imaxOutput = 127);
+
+  ThreeEncoderSkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                                 std::shared_ptr<AbstractMotor> irightSideMotor,
                                  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                                  std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
                                  std::shared_ptr<ContinuousRotarySensor> irightEnc,
@@ -25,6 +30,19 @@ class ThreeEncoderSkidSteerModelArgs : public SkidSteerModelArgs {
 
 class ThreeEncoderSkidSteerModel : public SkidSteerModel {
   public:
+  /**
+   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
+   * motors are powered +127, the robot should move forward in a straight line.
+   *
+   * @param ileftSideMotor left side motor
+   * @param irightSideMotor right side motor
+   * @param imiddleEnc middle encoder (mounted perpendicular to the left and right side encoders)
+   */
+  ThreeEncoderSkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                             std::shared_ptr<AbstractMotor> irightSideMotor,
+                             std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
+                             double imaxOutput = 127);
+
   /**
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
    * motors are powered +127, the robot should move forward in a straight line.
