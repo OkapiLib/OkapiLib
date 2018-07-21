@@ -13,8 +13,8 @@ SRCDIR=$(ROOT)/src
 INCDIR=$(ROOT)/include
 
 WARNFLAGS+=-Wall -Wextra -Wno-implicit-fallthrough -pedantic # -Wconversion #-Wmissing-include-dirs
-EXTRA_CFLAGS=-D THREADS_PROS
-EXTRA_CXXFLAGS=-D THREADS_PROS
+EXTRA_CFLAGS=
+EXTRA_CXXFLAGS=
 
 # Set this to 1 to add additional rules to compile your project as a PROS library template
 IS_LIBRARY:=1
