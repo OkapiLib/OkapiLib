@@ -45,7 +45,14 @@ class IterativeController : public ClosedLoopController<double> {
    *
    * @param isampleTime time between loops
    */
-  virtual void setSampleTime(QTime isampleTime);
+  virtual void setSampleTime(QTime isampleTime) = 0;
+
+  /**
+   * Get the last set sample time.
+   *
+   * @return sample time
+   */
+  virtual QTime getSampleTime() const = 0;
 
   /**
    * Set controller output bounds.
@@ -53,14 +60,7 @@ class IterativeController : public ClosedLoopController<double> {
    * @param imax max output
    * @param imin min output
    */
-  virtual void setOutputLimits(double imax, double imin);
-
-  /**
-   * Get the last set sample time. Default is 10 milliseconds.
-   *
-   * @return sample time
-   */
-  virtual QTime getSampleTime() const;
+  virtual void setOutputLimits(double imax, double imin) = 0;
 };
 } // namespace okapi
 
