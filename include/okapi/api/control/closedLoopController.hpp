@@ -11,17 +11,19 @@
 namespace okapi {
 /**
  * An abstract closed-loop controller.
+ *
+ * @tparam T The target/input type.
  */
-class ClosedLoopController {
+template <typename T> class ClosedLoopController {
   public:
-  virtual ~ClosedLoopController();
+  virtual ~ClosedLoopController() = default;
 
   /**
    * Sets the target for the controller.
    *
    * @param itarget the new target
    */
-  virtual void setTarget(double itarget) = 0;
+  virtual void setTarget(T itarget) = 0;
 
   /**
    * Returns the last error of the controller.
