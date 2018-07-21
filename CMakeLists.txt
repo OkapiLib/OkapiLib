@@ -135,7 +135,6 @@ add_executable(OkapiLibV5
         src/api/control/util/flywheelSimulator.cpp
         src/api/control/util/pidTuner.cpp
         src/api/control/util/settledUtil.cpp
-        src/api/control/closedLoopController.cpp
         src/api/device/button/abstractButton.cpp
         src/api/device/button/buttonBase.cpp
         src/api/device/motor/abstractMotor.cpp
