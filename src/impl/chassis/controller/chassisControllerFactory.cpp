@@ -11,7 +11,6 @@
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
 namespace okapi {
-
 ChassisControllerIntegrated
 ChassisControllerFactory::create(Motor ileftSideMotor, Motor irightSideMotor,
                                  const AbstractMotor::GearsetRatioPair igearset,
@@ -75,6 +74,33 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSid
 }
 
 ChassisControllerPID ChassisControllerFactory::create(
+  MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
+  const IterativePosPIDControllerArgs &idistanceArgs,
+  const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::GearsetRatioPair igearset,
+  const ChassisScales &iscales) {
+  auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
+  auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
+  return ChassisControllerPID(
+    TimeUtilFactory::create(),
+    std::make_unique<SkidSteerModel>(leftMtr, rightMtr, std::make_shared<ADIEncoder>(ileftEnc),
+                                     std::make_shared<ADIEncoder>(irightEnc)),
+    idistanceArgs, iangleArgs, igearset, iscales);
+}
+
+ChassisControllerPID ChassisControllerFactory::create(
+  std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
+  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+  std::shared_ptr<ContinuousRotarySensor> irightEnc,
+  const IterativePosPIDControllerArgs &idistanceArgs,
+  const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::GearsetRatioPair igearset,
+  const ChassisScales &iscales) {
+  return ChassisControllerPID(
+    TimeUtilFactory::create(),
+    std::make_unique<SkidSteerModel>(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc),
+    idistanceArgs, iangleArgs, igearset, iscales);
+}
+
+ChassisControllerPID ChassisControllerFactory::create(
   Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
   const IterativePosPIDControllerArgs &idistanceArgs,
   const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::GearsetRatioPair igearset,
@@ -87,5 +113,38 @@ ChassisControllerPID ChassisControllerFactory::create(
     TimeUtilFactory::create(),
     std::make_unique<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr),
     idistanceArgs, iangleArgs, igearset, iscales);
+}
+
+ChassisControllerPID ChassisControllerFactory::create(
+  Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
+  ADIEncoder itopLeftEnc, ADIEncoder itopRightEnc,
+  const IterativePosPIDControllerArgs &idistanceArgs,
+  const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::GearsetRatioPair igearset,
+  const ChassisScales &iscales) {
+  auto topLeftMtr = std::make_shared<Motor>(itopLeftMotor);
+  auto topRightMtr = std::make_shared<Motor>(itopRightMotor);
+  auto bottomRightMtr = std::make_shared<Motor>(ibottomRightMotor);
+  auto bottomLeftMtr = std::make_shared<Motor>(ibottomLeftMotor);
+  return ChassisControllerPID(
+    TimeUtilFactory::create(),
+    std::make_unique<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr,
+                                  std::make_shared<ADIEncoder>(itopLeftEnc),
+                                  std::make_shared<ADIEncoder>(itopRightEnc)),
+    idistanceArgs, iangleArgs, igearset, iscales);
+}
+
+ChassisControllerPID ChassisControllerFactory::create(
+  std::shared_ptr<AbstractMotor> itopLeftMotor, std::shared_ptr<AbstractMotor> itopRightMotor,
+  std::shared_ptr<AbstractMotor> ibottomRightMotor, std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+  std::shared_ptr<ContinuousRotarySensor> itopLeftEnc,
+  std::shared_ptr<ContinuousRotarySensor> itopRightEnc,
+  const IterativePosPIDControllerArgs &idistanceArgs,
+  const IterativePosPIDControllerArgs &iangleArgs, const AbstractMotor::GearsetRatioPair igearset,
+  const ChassisScales &iscales) {
+  return ChassisControllerPID(TimeUtilFactory::create(),
+                              std::make_unique<XDriveModel>(itopLeftMotor, itopRightMotor,
+                                                            ibottomRightMotor, ibottomLeftMotor,
+                                                            itopLeftEnc, itopRightEnc),
+                              idistanceArgs, iangleArgs, igearset, iscales);
 }
 } // namespace okapi
