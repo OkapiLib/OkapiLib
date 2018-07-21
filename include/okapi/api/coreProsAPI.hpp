@@ -8,12 +8,12 @@
 #include <cstdio>
 #include <cstdlib>
 
-#ifdef THREADS_PROS
-#include "api.h"
-#define CROSSPLATFORM_THREAD pros::Task
-#else
+#ifdef THREADS_STD
 #include <thread>
 #define CROSSPLATFORM_THREAD std::thread
+#else
+#include "api.h"
+#define CROSSPLATFORM_THREAD pros::Task
 #endif
 
 #endif
