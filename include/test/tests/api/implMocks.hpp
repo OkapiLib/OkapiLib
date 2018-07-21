@@ -8,7 +8,9 @@
 #ifndef _OKAPI_IMPLMOCKS_HPP_
 #define _OKAPI_IMPLMOCKS_HPP_
 
+#include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
+#include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/util/flywheelSimulator.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
@@ -17,7 +19,6 @@
 #include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <chrono>
-#include <okapi/api/control/iterative/iterativePosPidController.hpp>
 
 namespace okapi {
 
@@ -269,6 +270,11 @@ class MockIterativeController : public IterativePosPIDController {
   double target{0};
   bool disabled{false};
 };
+
+// class MockSkidSteerModel : public SkidSteerModel {
+// public:
+//
+//};
 } // namespace okapi
 
 #endif

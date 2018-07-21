@@ -28,6 +28,13 @@ TEST(ChassisScalesTest, ScalesFromWheelbase) {
   EXPECT_FLOAT_EQ(scales.turn, 2.875);
 }
 
+void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor) {
+  EXPECT_DOUBLE_EQ(leftMotor->lastVoltage, 0);
+  EXPECT_DOUBLE_EQ(leftMotor->lastVelocity, 0);
+  EXPECT_DOUBLE_EQ(rightMotor->lastVoltage, 0);
+  EXPECT_DOUBLE_EQ(rightMotor->lastVelocity, 0);
+}
+
 class ChassisControllerIntegratedTest : public ::testing::Test {
   protected:
   void SetUp() override {
@@ -67,6 +74,8 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceRawUnitsTest) {
 
   EXPECT_TRUE(leftController->disabled);
   EXPECT_TRUE(rightController->disabled);
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceUnitsTest) {
@@ -77,6 +86,8 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceUnitsTest) {
 
   EXPECT_TRUE(leftController->disabled);
   EXPECT_TRUE(rightController->disabled);
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
 class ChassisControllerPIDTest : public ::testing::Test {
@@ -118,6 +129,8 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceRawUnitsTest) {
 
   EXPECT_TRUE(leftController->disabled);
   EXPECT_TRUE(rightController->disabled);
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
 TEST_F(ChassisControllerPIDTest, MoveDistanceUnitsTest) {
@@ -128,4 +141,6 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceUnitsTest) {
 
   EXPECT_TRUE(leftController->disabled);
   EXPECT_TRUE(rightController->disabled);
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
