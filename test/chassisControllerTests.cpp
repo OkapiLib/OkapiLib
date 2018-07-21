@@ -90,20 +90,44 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceUnitsTest) {
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
+TEST_F(ChassisControllerIntegratedTest, TurnAngleRawUnitsTest) {
+  controller->turnAngle(100);
+
+  EXPECT_DOUBLE_EQ(leftController->target, 100);
+  EXPECT_DOUBLE_EQ(rightController->target, -100);
+
+  EXPECT_TRUE(leftController->disabled);
+  EXPECT_TRUE(rightController->disabled);
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
+TEST_F(ChassisControllerIntegratedTest, TurnAngleUnitsTest) {
+  controller->turnAngle(45_deg);
+
+  EXPECT_DOUBLE_EQ(leftController->target, 90);
+  EXPECT_DOUBLE_EQ(rightController->target, -90);
+
+  EXPECT_TRUE(leftController->disabled);
+  EXPECT_TRUE(rightController->disabled);
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
 class ChassisControllerPIDTest : public ::testing::Test {
   protected:
   void SetUp() override {
     scales = new ChassisScales({2, 2});
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
-    leftController = new MockIterativeController();
-    rightController = new MockIterativeController();
+    distanceController = new MockIterativeController();
+    angleController = new MockIterativeController();
     model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
                                std::unique_ptr<AbstractMotor>(rightMotor));
     controller =
       new ChassisControllerPID(createTimeUtil(), std::unique_ptr<ChassisModel>(model),
-                               std::unique_ptr<IterativePosPIDController>(leftController),
-                               std::unique_ptr<IterativePosPIDController>(rightController),
+                               std::unique_ptr<IterativePosPIDController>(distanceController),
+                               std::unique_ptr<IterativePosPIDController>(angleController),
                                AbstractMotor::gearset::red, *scales);
   }
 
@@ -116,19 +140,19 @@ class ChassisControllerPIDTest : public ::testing::Test {
   ChassisController *controller;
   MockMotor *leftMotor;
   MockMotor *rightMotor;
-  MockIterativeController *leftController;
-  MockIterativeController *rightController;
+  MockIterativeController *distanceController;
+  MockIterativeController *angleController;
   SkidSteerModel *model;
 };
 
 TEST_F(ChassisControllerPIDTest, MoveDistanceRawUnitsTest) {
   controller->moveDistance(100);
 
-  EXPECT_DOUBLE_EQ(leftController->target, 100);
-  EXPECT_DOUBLE_EQ(rightController->target, 100);
+  EXPECT_DOUBLE_EQ(distanceController->target, 100);
+  EXPECT_DOUBLE_EQ(angleController->target, 100);
 
-  EXPECT_TRUE(leftController->disabled);
-  EXPECT_TRUE(rightController->disabled);
+  EXPECT_TRUE(distanceController->disabled);
+  EXPECT_TRUE(angleController->disabled);
 
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
@@ -136,11 +160,27 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceRawUnitsTest) {
 TEST_F(ChassisControllerPIDTest, MoveDistanceUnitsTest) {
   controller->moveDistance(1_m);
 
-  EXPECT_DOUBLE_EQ(leftController->target, 2);
-  EXPECT_DOUBLE_EQ(rightController->target, 2);
+  EXPECT_DOUBLE_EQ(distanceController->target, 2);
+  EXPECT_DOUBLE_EQ(angleController->target, 2);
 
-  EXPECT_TRUE(leftController->disabled);
-  EXPECT_TRUE(rightController->disabled);
+  EXPECT_TRUE(distanceController->disabled);
+  EXPECT_TRUE(angleController->disabled);
 
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
+TEST_F(ChassisControllerPIDTest, TurnAngleRawUnitsTest) {
+  controller->turnAngle(100);
+
+  EXPECT_DOUBLE_EQ(angleController->target, 100);
+  EXPECT_TRUE(angleController->disabled);
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
+TEST_F(ChassisControllerPIDTest, TurnAngleUnitsTest) {
+  controller->turnAngle(45_deg);
+
+  EXPECT_DOUBLE_EQ(angleController->target, 90);
+  EXPECT_TRUE(angleController->disabled);
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
