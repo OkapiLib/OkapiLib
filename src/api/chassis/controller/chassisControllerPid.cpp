@@ -15,10 +15,9 @@ ChassisControllerPID::ChassisControllerPID(const TimeUtil &itimeUtil,
                                            const IterativePosPIDControllerArgs &iangleArgs,
                                            const AbstractMotor::GearsetRatioPair igearset,
                                            const ChassisScales &iscales)
-  : ChassisControllerPID(itimeUtil, imodel,
-                         std::make_unique<IterativePosPIDController>(idistanceArgs, itimeUtil),
-                         std::make_unique<IterativePosPIDController>(iangleArgs, itimeUtil),
-                         igearset, iscales) {
+  : ChassisControllerPID(
+      itimeUtil, imodel, std::make_unique<IterativePosPIDController>(idistanceArgs, itimeUtil),
+      std::make_unique<IterativePosPIDController>(iangleArgs, itimeUtil), igearset, iscales) {
 }
 
 ChassisControllerPID::ChassisControllerPID(
