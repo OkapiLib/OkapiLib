@@ -149,7 +149,7 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceRawUnitsTest) {
   controller->moveDistance(100);
 
   EXPECT_DOUBLE_EQ(distanceController->target, 100);
-  EXPECT_DOUBLE_EQ(angleController->target, 100);
+  EXPECT_DOUBLE_EQ(angleController->target, 0);
 
   EXPECT_TRUE(distanceController->disabled);
   EXPECT_TRUE(angleController->disabled);
@@ -161,7 +161,7 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceUnitsTest) {
   controller->moveDistance(1_m);
 
   EXPECT_DOUBLE_EQ(distanceController->target, 2);
-  EXPECT_DOUBLE_EQ(angleController->target, 2);
+  EXPECT_DOUBLE_EQ(angleController->target, 0);
 
   EXPECT_TRUE(distanceController->disabled);
   EXPECT_TRUE(angleController->disabled);

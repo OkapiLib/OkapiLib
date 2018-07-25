@@ -102,8 +102,7 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
 
   const double newTarget = itarget.convert(meter) * straightScale * gearRatio;
   distancePid->setTarget(newTarget);
-  anglePid->setTarget(newTarget);
-}
+  anglePid->setTarget(0);
 
 void ChassisControllerPID::moveDistanceAsync(const double itarget) {
   // Divide by straightScale so the final result turns back into motor degrees
