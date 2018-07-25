@@ -65,6 +65,20 @@ class ChassisControllerPID : public virtual ChassisController {
   void moveDistance(double itarget) override;
 
   /**
+   * Sets the target distance for the robot to drive straight (using closed-loop control).
+   *
+   * @param itarget distance to travel
+   */
+  void moveDistanceAsync(QLength itarget);
+
+  /**
+   * Sets the target distance for the robot to drive straight (using closed-loop control).
+   *
+   * @param itarget distance to travel in motor degrees
+   */
+  void moveDistanceAsync(double itarget);
+
+  /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for
@@ -78,6 +92,25 @@ class ChassisControllerPID : public virtual ChassisController {
    */
   void turnAngle(double idegTarget) override;
 
+  /**
+   * Sets the target angle for the robot to turn clockwise in place (using closed-loop control).
+   *
+   * @param idegTarget angle to turn for
+   */
+  void turnAngleAsync(QAngle idegTarget);
+
+  /**
+   * Sets the target angle for the robot to turn clockwise in place (using closed-loop control).
+   *
+   * @param idegTarget angle to turn for in motor degrees
+   */
+  void turnAngleAsync(double idegTarget);
+
+  /**
+   * Delays until the currently executing movement completes.
+   */
+  void waitUntilSettled();
+
   protected:
   std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<IterativePosPIDController> distancePid;
@@ -85,6 +118,13 @@ class ChassisControllerPID : public virtual ChassisController {
   const double gearRatio;
   const double straightScale;
   const double turnScale;
+  CROSSPLATFORM_THREAD task;
+
+  static void trampoline(void *context);
+  void loop();
+
+  typedef enum { distance, angle } modeType;
+  modeType mode;
 };
 } // namespace okapi
 
