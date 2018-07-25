@@ -50,7 +50,7 @@ void ChassisControllerPID::moveDistance(const QLength itarget) {
 
   const double newTarget = itarget.convert(meter) * straightScale * gearRatio;
   distancePid->setTarget(newTarget);
-  anglePid->setTarget(newTarget);
+  anglePid->setTarget(0);
 
   const auto encStartVals = model->getSensorVals();
   std::valarray<std::int32_t> encVals;
