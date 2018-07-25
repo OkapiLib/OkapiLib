@@ -57,6 +57,10 @@ void ChassisControllerPID::loop() {
       encVals = 0;
       distanceElapsed = 0;
       angleChange = 0;
+
+      distancePid->reset();
+      anglePid->reset();
+      model->stop();
     }
 
     switch (mode) {
