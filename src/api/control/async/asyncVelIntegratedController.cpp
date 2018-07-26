@@ -48,6 +48,7 @@ bool AsyncVelIntegratedController::isSettled() {
 
 void AsyncVelIntegratedController::reset() {
   hasFirstTarget = false;
+  settledUtil->reset();
 }
 
 void AsyncVelIntegratedController::flipDisable() {
