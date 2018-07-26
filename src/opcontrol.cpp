@@ -23,17 +23,6 @@ void opcontrol() {
   using namespace okapi;
   pros::Task::delay(100);
 
-  auto chassis =
-    ChassisControllerFactory::create({-11, -20}, {10}, AbstractMotor::gearset::red, {4_in, 11.5_in});
-  auto asyncMotor = AsyncControllerFactory::posIntegrated(2);
-
-  chassis.moveDistanceAsync(1_m);
-  // auto asyncRight = AsyncControllerFactory::posIntegrated({2, 10});
-  // asyncRight.setTarget(1000);
-  asyncMotor.setTarget(1000);
-  // asyncRight.waitUntilSettled();
-  chassis.waitUntilSettled();
-
   runHeadlessTests();
   return;
 
@@ -42,8 +31,8 @@ void opcontrol() {
   Motor armMotor = 15_mtr;
   armMotor.move(10);
 
-  // auto chassis =
-    // ChassisControllerFactory::create({19, 20}, {-14}, AbstractMotor::gearset::red, {4_in, 11.5_in});
+  auto chassis =
+    ChassisControllerFactory::create({19, 20}, {-14}, AbstractMotor::gearset::red, {4_in, 11.5_in});
 
   Controller controller;
   ControllerButton btn1(E_CONTROLLER_DIGITAL_A);
