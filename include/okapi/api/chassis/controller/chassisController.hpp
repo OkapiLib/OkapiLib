@@ -48,14 +48,14 @@ class ChassisController {
    *
    * @param itarget distance to travel
    */
-  virtual void moveDistanceAsync(QLength itarget);
+  virtual void moveDistanceAsync(QLength itarget) = 0;
 
   /**
    * Sets the target distance for the robot to drive straight (using closed-loop control).
    *
    * @param itarget distance to travel in motor degrees
    */
-  virtual void moveDistanceAsync(double itarget);
+  virtual void moveDistanceAsync(double itarget) = 0;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
@@ -76,19 +76,19 @@ class ChassisController {
    *
    * @param idegTarget angle to turn for
    */
-  virtual void turnAngleAsync(QAngle idegTarget);
+  virtual void turnAngleAsync(QAngle idegTarget) = 0;
 
   /**
    * Sets the target angle for the robot to turn clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for in motor degrees
    */
-  virtual void turnAngleAsync(double idegTarget);
+  virtual void turnAngleAsync(double idegTarget) = 0;
 
   /**
    * Delays until the currently executing movement completes.
    */
-  virtual void waitUntilSettled();
+  virtual void waitUntilSettled() = 0;
 
   /**
    * Drive the robot forwards (using open-loop control).
