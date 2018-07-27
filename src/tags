@@ -1,0 +1,437 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ADIButton	impl/device/button/adiButton.cpp	/^ADIButton::ADIButton(const uint8_t iport, const bool iinverted)$/;"	f	class:okapi::ADIButton
+ADIEncoder	impl/device/rotarysensor/adiEncoder.cpp	/^ADIEncoder::ADIEncoder(const std::uint8_t iportTop, const std::uint8_t iportBottom,$/;"	f	class:okapi::ADIEncoder
+ADIMotor	impl/device/motor/adiMotor.cpp	/^ADIMotor::ADIMotor(const std::uint8_t iport, const bool ireverse)$/;"	f	class:okapi::ADIMotor
+ADIUltrasonic	impl/device/adiUltrasonic.cpp	/^ADIUltrasonic::ADIUltrasonic(const std::uint8_t iportTop, const std::uint8_t iportBottom,$/;"	f	class:okapi::ADIUltrasonic
+ADIUltrasonic	impl/device/adiUltrasonic.cpp	/^ADIUltrasonic::ADIUltrasonic(const uint8_t iportTop, const uint8_t iportBottom)$/;"	f	class:okapi::ADIUltrasonic
+AsyncPosIntegratedController	api/control/async/asyncPosIntegratedController.cpp	/^AsyncPosIntegratedController::AsyncPosIntegratedController($/;"	f	class:okapi::AsyncPosIntegratedController
+AsyncPosIntegratedController	api/control/async/asyncPosIntegratedController.cpp	/^AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,$/;"	f	class:okapi::AsyncPosIntegratedController
+AsyncPosIntegratedControllerArgs	api/control/async/asyncPosIntegratedController.cpp	/^AsyncPosIntegratedControllerArgs::AsyncPosIntegratedControllerArgs($/;"	f	class:okapi::AsyncPosIntegratedControllerArgs
+AsyncPosPIDController	api/control/async/asyncPosPidController.cpp	/^AsyncPosPIDController::AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,$/;"	f	class:okapi::AsyncPosPIDController
+AsyncVelIntegratedController	api/control/async/asyncVelIntegratedController.cpp	/^AsyncVelIntegratedController::AsyncVelIntegratedController($/;"	f	class:okapi::AsyncVelIntegratedController
+AsyncVelIntegratedController	api/control/async/asyncVelIntegratedController.cpp	/^AsyncVelIntegratedController::AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor,$/;"	f	class:okapi::AsyncVelIntegratedController
+AsyncVelIntegratedControllerArgs	api/control/async/asyncVelIntegratedController.cpp	/^AsyncVelIntegratedControllerArgs::AsyncVelIntegratedControllerArgs($/;"	f	class:okapi::AsyncVelIntegratedControllerArgs
+AsyncVelPIDController	api/control/async/asyncVelPidController.cpp	/^AsyncVelPIDController::AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,$/;"	f	class:okapi::AsyncVelPIDController
+AsyncWrapper	api/control/async/asyncWrapper.cpp	/^AsyncWrapper::AsyncWrapper(std::shared_ptr<ControllerInput> iinput,$/;"	f	class:okapi::AsyncWrapper
+ButtonBase	api/device/button/buttonBase.cpp	/^ButtonBase::ButtonBase(const bool iinverted) : inverted(iinverted) {$/;"	f	class:okapi::ButtonBase
+ChassisController	api/chassis/controller/chassisController.cpp	/^ChassisController::ChassisController(std::unique_ptr<ChassisModel> imodel)$/;"	f	class:okapi::ChassisController
+ChassisControllerIntegrated	api/chassis/controller/chassisControllerIntegrated.cpp	/^ChassisControllerIntegrated::ChassisControllerIntegrated($/;"	f	class:okapi::ChassisControllerIntegrated
+ChassisControllerPID	api/chassis/controller/chassisControllerPid.cpp	/^ChassisControllerPID::ChassisControllerPID($/;"	f	class:okapi::ChassisControllerPID
+ChassisControllerPID	api/chassis/controller/chassisControllerPid.cpp	/^ChassisControllerPID::ChassisControllerPID(const TimeUtil &itimeUtil,$/;"	f	class:okapi::ChassisControllerPID
+ComposableFilter	api/filter/composableFilter.cpp	/^ComposableFilter::ComposableFilter(const ComposableFilterArgs &iparams) {$/;"	f	class:okapi::ComposableFilter
+ComposableFilter	api/filter/composableFilter.cpp	/^ComposableFilter::ComposableFilter(const std::initializer_list<std::shared_ptr<Filter>> &ilist) {$/;"	f	class:okapi::ComposableFilter
+ComposableFilterArgs	api/filter/composableFilter.cpp	/^ComposableFilterArgs::ComposableFilterArgs($/;"	f	class:okapi::ComposableFilterArgs
+Controller	impl/device/controller.cpp	/^Controller::Controller(const controller_id_e_t iid) : id(iid), controller(iid) {$/;"	f	class:okapi::Controller
+ControllerButton	impl/device/button/controllerButton.cpp	/^ControllerButton::ControllerButton(const controller_digital_e_t ibtn, const bool iinverted)$/;"	f	class:okapi::ControllerButton
+ControllerButton	impl/device/button/controllerButton.cpp	/^ControllerButton::ControllerButton(const controller_id_e_t icontroller,$/;"	f	class:okapi::ControllerButton
+ControllerRunner	api/control/util/controllerRunner.cpp	/^ControllerRunner::ControllerRunner(std::unique_ptr<AbstractRate> irate) : rate(std::move(irate)) {$/;"	f	class:okapi::ControllerRunner
+DemaFilter	api/filter/demaFilter.cpp	/^DemaFilter::DemaFilter(const DemaFilterArgs &iargs) : alpha(iargs.alpha), beta(iargs.beta) {$/;"	f	class:okapi::DemaFilter
+DemaFilter	api/filter/demaFilter.cpp	/^DemaFilter::DemaFilter(const double ialpha, const double ibeta) : alpha(ialpha), beta(ibeta) {$/;"	f	class:okapi::DemaFilter
+DemaFilterArgs	api/filter/demaFilter.cpp	/^DemaFilterArgs::DemaFilterArgs(const double ialpha, const double ibeta)$/;"	f	class:okapi::DemaFilterArgs
+EKFFilter	api/filter/ekfFilter.cpp	/^EKFFilter::EKFFilter(const double iQ, const double iR) : Q(iQ), R(iR) {$/;"	f	class:okapi::EKFFilter
+EmaFilter	api/filter/emaFilter.cpp	/^EmaFilter::EmaFilter(const EmaFilterArgs &iargs) : alpha(iargs.alpha) {$/;"	f	class:okapi::EmaFilter
+EmaFilter	api/filter/emaFilter.cpp	/^EmaFilter::EmaFilter(const double ialpha) : alpha(ialpha) {$/;"	f	class:okapi::EmaFilter
+EmaFilterArgs	api/filter/emaFilter.cpp	/^EmaFilterArgs::EmaFilterArgs(const double ialpha) : alpha(ialpha) {$/;"	f	class:okapi::EmaFilterArgs
+FlywheelSimulator	api/control/util/flywheelSimulator.cpp	/^FlywheelSimulator::FlywheelSimulator(const double imass, const double ilinkLen,$/;"	f	class:okapi::FlywheelSimulator
+IntegratedEncoder	impl/device/rotarysensor/integratedEncoder.cpp	/^IntegratedEncoder::IntegratedEncoder(pros::Motor imotor) : motor(imotor) {$/;"	f	class:okapi::IntegratedEncoder
+IterativeMotorVelocityController	api/control/iterative/iterativeMotorVelocityController.cpp	/^IterativeMotorVelocityController::IterativeMotorVelocityController($/;"	f	class:okapi::IterativeMotorVelocityController
+IterativeMotorVelocityControllerArgs	api/control/iterative/iterativeMotorVelocityController.cpp	/^IterativeMotorVelocityControllerArgs::IterativeMotorVelocityControllerArgs($/;"	f	class:okapi::IterativeMotorVelocityControllerArgs
+IterativePosPIDController	api/control/iterative/iterativePosPidController.cpp	/^IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params,$/;"	f	class:okapi::IterativePosPIDController
+IterativePosPIDController	api/control/iterative/iterativePosPidController.cpp	/^IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,$/;"	f	class:okapi::IterativePosPIDController
+IterativePosPIDControllerArgs	api/control/iterative/iterativePosPidController.cpp	/^IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, const double ikI,$/;"	f	class:okapi::IterativePosPIDControllerArgs
+IterativeVelPIDController	api/control/iterative/iterativeVelPidController.cpp	/^IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,$/;"	f	class:okapi::IterativeVelPIDController
+Motor	impl/device/motor/motor.cpp	/^Motor::Motor(const std::int8_t port)$/;"	f	class:okapi::Motor
+Motor	impl/device/motor/motor.cpp	/^Motor::Motor(const std::uint8_t port, const bool reverse, const AbstractMotor::gearset igearset,$/;"	f	class:okapi::Motor
+MotorGroup	impl/device/motor/motorGroup.cpp	/^MotorGroup::MotorGroup(const std::initializer_list<Motor> &imotors) : motors(imotors) {$/;"	f	class:okapi::MotorGroup
+PIDTuner	api/control/util/pidTuner.cpp	/^PIDTuner::PIDTuner(std::shared_ptr<ControllerInput> iinput,$/;"	f	class:okapi::PIDTuner
+Potentiometer	impl/device/rotarysensor/potentiometer.cpp	/^Potentiometer::Potentiometer(const std::uint8_t iport) : pot(iport) {$/;"	f	class:okapi::Potentiometer
+SettledUtil	api/control/util/settledUtil.cpp	/^SettledUtil::SettledUtil(std::unique_ptr<AbstractTimer> iatTargetTimer, const double iatTargetError,$/;"	f	class:okapi::SettledUtil
+SkidSteerModel	api/chassis/model/skidSteerModel.cpp	/^SkidSteerModel::SkidSteerModel(const SkidSteerModelArgs &iparams)$/;"	f	class:okapi::SkidSteerModel
+SkidSteerModel	api/chassis/model/skidSteerModel.cpp	/^SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,$/;"	f	class:okapi::SkidSteerModel
+SkidSteerModelArgs	api/chassis/model/skidSteerModel.cpp	/^SkidSteerModelArgs::SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,$/;"	f	class:okapi::SkidSteerModelArgs
+ThreeEncoderSkidSteerModel	api/chassis/model/threeEncoderSkidSteerModel.cpp	/^ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel($/;"	f	class:okapi::ThreeEncoderSkidSteerModel
+ThreeEncoderSkidSteerModelArgs	api/chassis/model/threeEncoderSkidSteerModel.cpp	/^ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs($/;"	f	class:okapi::ThreeEncoderSkidSteerModelArgs
+TimeUtil	api/util/timeUtil.cpp	/^TimeUtil::TimeUtil(const okapi::Supplier<std::unique_ptr<okapi::AbstractTimer>> &timerSupplier,$/;"	f	class:okapi::TimeUtil
+Timer	impl/util/timer.cpp	/^Timer::Timer() : firstCalled(millis()), lastCalled(firstCalled), mark(firstCalled) {$/;"	f	class:okapi::Timer
+VelMath	api/filter/velMath.cpp	/^VelMath::VelMath(const VelMathArgs &iparams, std::unique_ptr<AbstractTimer> iloopDtTimer)$/;"	f	class:okapi::VelMath
+VelMath	api/filter/velMath.cpp	/^VelMath::VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter,$/;"	f	class:okapi::VelMath
+VelMathArgs	api/filter/velMath.cpp	/^VelMathArgs::VelMathArgs(const double iticksPerRev)$/;"	f	class:okapi::VelMathArgs
+VelMathArgs	api/filter/velMath.cpp	/^VelMathArgs::VelMathArgs(const double iticksPerRev, std::shared_ptr<Filter> ifilter)$/;"	f	class:okapi::VelMathArgs
+XDriveModel	api/chassis/model/xDriveModel.cpp	/^XDriveModel::XDriveModel(const XDriveModelArgs &iparams)$/;"	f	class:okapi::XDriveModel
+XDriveModel	api/chassis/model/xDriveModel.cpp	/^XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,$/;"	f	class:okapi::XDriveModel
+XDriveModelArgs	api/chassis/model/xDriveModel.cpp	/^XDriveModelArgs::XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,$/;"	f	class:okapi::XDriveModelArgs
+_mtr	impl/device/motor/motor.cpp	/^okapi::Motor operator"" _mtr(const unsigned long long iport) {$/;"	f	namespace:okapi::literals
+_rmtr	impl/device/motor/motor.cpp	/^okapi::Motor operator"" _rmtr(const unsigned long long iport) {$/;"	f	namespace:okapi::literals
+addFilter	api/filter/composableFilter.cpp	/^void ComposableFilter::addFilter(std::shared_ptr<Filter> ifilter) {$/;"	f	class:okapi::ComposableFilter
+arcade	api/chassis/controller/chassisController.cpp	/^void ChassisController::arcade(const double iySpeed, const double izRotation,$/;"	f	class:okapi::ChassisController
+arcade	api/chassis/model/skidSteerModel.cpp	/^void SkidSteerModel::arcade(const double iySpeed, const double izRotation,$/;"	f	class:okapi::SkidSteerModel
+arcade	api/chassis/model/xDriveModel.cpp	/^void XDriveModel::arcade(const double iySpeed, const double izRotation,$/;"	f	class:okapi::XDriveModel
+autonomous	autonomous.cpp	/^void autonomous() {$/;"	f
+autotune	api/control/util/pidTuner.cpp	/^IterativePosPIDControllerArgs PIDTuner::autotune() {$/;"	f	class:okapi::PIDTuner
+changed	api/device/button/buttonBase.cpp	/^bool ButtonBase::changed() {$/;"	f	class:okapi::ButtonBase
+changedToPressed	api/device/button/buttonBase.cpp	/^bool ButtonBase::changedToPressed() {$/;"	f	class:okapi::ButtonBase
+changedToReleased	api/device/button/buttonBase.cpp	/^bool ButtonBase::changedToReleased() {$/;"	f	class:okapi::ButtonBase
+clearHardMark	impl/util/timer.cpp	/^QTime Timer::clearHardMark() {$/;"	f	class:okapi::Timer
+competition_initialize	initialize.cpp	/^void competition_initialize() {$/;"	f
+controllerGet	impl/device/adiUltrasonic.cpp	/^double ADIUltrasonic::controllerGet() {$/;"	f	class:okapi::ADIUltrasonic
+controllerGet	impl/device/rotarysensor/adiEncoder.cpp	/^double ADIEncoder::controllerGet() {$/;"	f	class:okapi::ADIEncoder
+controllerGet	impl/device/rotarysensor/integratedEncoder.cpp	/^double IntegratedEncoder::controllerGet() {$/;"	f	class:okapi::IntegratedEncoder
+controllerGet	impl/device/rotarysensor/potentiometer.cpp	/^double Potentiometer::controllerGet() {$/;"	f	class:okapi::Potentiometer
+controllerSet	impl/device/motor/adiMotor.cpp	/^void ADIMotor::controllerSet(const double ivalue) {$/;"	f	class:okapi::ADIMotor
+controllerSet	impl/device/motor/motor.cpp	/^void Motor::controllerSet(const double ivalue) {$/;"	f	class:okapi::Motor
+controllerSet	impl/device/motor/motorGroup.cpp	/^void MotorGroup::controllerSet(const double ivalue) {$/;"	f	class:okapi::MotorGroup
+create	impl/chassis/controller/chassisControllerFactory.cpp	/^ChassisControllerFactory::create(Motor ileftSideMotor, Motor irightSideMotor,$/;"	f	class:okapi::ChassisControllerFactory
+create	impl/chassis/controller/chassisControllerFactory.cpp	/^ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,$/;"	f	class:okapi::ChassisControllerFactory
+create	impl/chassis/controller/chassisControllerFactory.cpp	/^ChassisControllerIntegrated ChassisControllerFactory::create($/;"	f	class:okapi::ChassisControllerFactory
+create	impl/chassis/controller/chassisControllerFactory.cpp	/^ChassisControllerPID ChassisControllerFactory::create($/;"	f	class:okapi::ChassisControllerFactory
+create	impl/chassis/model/chassisModelFactory.cpp	/^SkidSteerModel ChassisModelFactory::create(Motor ileftSideMotor, Motor irightSideMotor,$/;"	f	class:okapi::ChassisModelFactory
+create	impl/chassis/model/chassisModelFactory.cpp	/^SkidSteerModel ChassisModelFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,$/;"	f	class:okapi::ChassisModelFactory
+create	impl/chassis/model/chassisModelFactory.cpp	/^ThreeEncoderSkidSteerModel ChassisModelFactory::create(Motor ileftSideMotor, Motor irightSideMotor,$/;"	f	class:okapi::ChassisModelFactory
+create	impl/chassis/model/chassisModelFactory.cpp	/^ThreeEncoderSkidSteerModel ChassisModelFactory::create(MotorGroup ileftSideMotor,$/;"	f	class:okapi::ChassisModelFactory
+create	impl/chassis/model/chassisModelFactory.cpp	/^XDriveModel ChassisModelFactory::create(Motor itopLeftMotor, Motor itopRightMotor,$/;"	f	class:okapi::ChassisModelFactory
+create	impl/control/util/controllerRunnerFactory.cpp	/^ControllerRunner ControllerRunnerFactory::create() {$/;"	f	class:okapi::ControllerRunnerFactory
+create	impl/control/util/pidTunerFactory.cpp	/^PIDTuner PIDTunerFactory::create(std::shared_ptr<ControllerInput> iinput,$/;"	f	class:okapi::PIDTunerFactory
+create	impl/control/util/settledUtilFactory.cpp	/^SettledUtil SettledUtilFactory::create(const double iatTargetError,$/;"	f	class:okapi::SettledUtilFactory
+create	impl/filter/velMathFactory.cpp	/^VelMath VelMathFactory::create(const double iticksPerRev) {$/;"	f	class:okapi::VelMathFactory
+create	impl/filter/velMathFactory.cpp	/^VelMath VelMathFactory::create(const double iticksPerRev, std::shared_ptr<Filter> ifilter) {$/;"	f	class:okapi::VelMathFactory
+create	impl/util/timeUtilFactory.cpp	/^TimeUtil TimeUtilFactory::create() {$/;"	f	class:okapi::TimeUtilFactory
+createPtr	impl/control/util/pidTunerFactory.cpp	/^PIDTunerFactory::createPtr(std::shared_ptr<ControllerInput> iinput,$/;"	f	class:okapi::PIDTunerFactory
+createPtr	impl/control/util/settledUtilFactory.cpp	/^std::unique_ptr<SettledUtil> SettledUtilFactory::createPtr(const double iatTargetError,$/;"	f	class:okapi::SettledUtilFactory
+createPtr	impl/filter/velMathFactory.cpp	/^std::unique_ptr<VelMath> VelMathFactory::createPtr(const VelMathArgs &ivelMathArgs) {$/;"	f	class:okapi::VelMathFactory
+createPtr	impl/filter/velMathFactory.cpp	/^std::unique_ptr<VelMath> VelMathFactory::createPtr(const double iticksPerRev) {$/;"	f	class:okapi::VelMathFactory
+createPtr	impl/filter/velMathFactory.cpp	/^std::unique_ptr<VelMath> VelMathFactory::createPtr(const double iticksPerRev,$/;"	f	class:okapi::VelMathFactory
+currentlyPressed	impl/device/button/adiButton.cpp	/^bool ADIButton::currentlyPressed() {$/;"	f	class:okapi::ADIButton
+currentlyPressed	impl/device/button/controllerButton.cpp	/^bool ControllerButton::currentlyPressed() {$/;"	f	class:okapi::ControllerButton
+delay	impl/util/rate.cpp	/^void Rate::delay(const QFrequency ihz) {$/;"	f	class:okapi::Rate
+delay	impl/util/rate.cpp	/^void Rate::delay(const int ihz) {$/;"	f	class:okapi::Rate
+delayUntil	impl/util/rate.cpp	/^void Rate::delayUntil(const QTime itime) {$/;"	f	class:okapi::Rate
+delayUntil	impl/util/rate.cpp	/^void Rate::delayUntil(const uint32_t ims) {$/;"	f	class:okapi::Rate
+disabled	initialize.cpp	/^void disabled() {$/;"	f
+driveVector	api/chassis/controller/chassisController.cpp	/^void ChassisController::driveVector(const double iySpeed, const double izRotation) const {$/;"	f	class:okapi::ChassisController
+driveVector	api/chassis/model/skidSteerModel.cpp	/^void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) const {$/;"	f	class:okapi::SkidSteerModel
+driveVector	api/chassis/model/xDriveModel.cpp	/^void XDriveModel::driveVector(const double iySpeed, const double izRotation) const {$/;"	f	class:okapi::XDriveModel
+filter	api/filter/composableFilter.cpp	/^double ComposableFilter::filter(const double ireading) {$/;"	f	class:okapi::ComposableFilter
+filter	api/filter/demaFilter.cpp	/^double DemaFilter::filter(const double ireading) {$/;"	f	class:okapi::DemaFilter
+filter	api/filter/ekfFilter.cpp	/^double EKFFilter::filter(const double ireading) {$/;"	f	class:okapi::EKFFilter
+filter	api/filter/ekfFilter.cpp	/^double EKFFilter::filter(const double ireading, const double icontrol) {$/;"	f	class:okapi::EKFFilter
+filter	api/filter/emaFilter.cpp	/^double EmaFilter::filter(const double ireading) {$/;"	f	class:okapi::EmaFilter
+filter	api/filter/passthroughFilter.cpp	/^double PassthroughFilter::filter(const double ireading) {$/;"	f	class:okapi::PassthroughFilter
+flipDisable	api/control/async/asyncPosIntegratedController.cpp	/^void AsyncPosIntegratedController::flipDisable() {$/;"	f	class:okapi::AsyncPosIntegratedController
+flipDisable	api/control/async/asyncPosIntegratedController.cpp	/^void AsyncPosIntegratedController::flipDisable(const bool iisDisabled) {$/;"	f	class:okapi::AsyncPosIntegratedController
+flipDisable	api/control/async/asyncVelIntegratedController.cpp	/^void AsyncVelIntegratedController::flipDisable() {$/;"	f	class:okapi::AsyncVelIntegratedController
+flipDisable	api/control/async/asyncVelIntegratedController.cpp	/^void AsyncVelIntegratedController::flipDisable(const bool iisDisabled) {$/;"	f	class:okapi::AsyncVelIntegratedController
+flipDisable	api/control/async/asyncWrapper.cpp	/^void AsyncWrapper::flipDisable() {$/;"	f	class:okapi::AsyncWrapper
+flipDisable	api/control/async/asyncWrapper.cpp	/^void AsyncWrapper::flipDisable(const bool iisDisabled) {$/;"	f	class:okapi::AsyncWrapper
+flipDisable	api/control/iterative/iterativeMotorVelocityController.cpp	/^void IterativeMotorVelocityController::flipDisable() {$/;"	f	class:okapi::IterativeMotorVelocityController
+flipDisable	api/control/iterative/iterativeMotorVelocityController.cpp	/^void IterativeMotorVelocityController::flipDisable(const bool iisDisabled) {$/;"	f	class:okapi::IterativeMotorVelocityController
+flipDisable	api/control/iterative/iterativePosPidController.cpp	/^void IterativePosPIDController::flipDisable() {$/;"	f	class:okapi::IterativePosPIDController
+flipDisable	api/control/iterative/iterativePosPidController.cpp	/^void IterativePosPIDController::flipDisable(const bool iisDisabled) {$/;"	f	class:okapi::IterativePosPIDController
+flipDisable	api/control/iterative/iterativeVelPidController.cpp	/^void IterativeVelPIDController::flipDisable() {$/;"	f	class:okapi::IterativeVelPIDController
+flipDisable	api/control/iterative/iterativeVelPidController.cpp	/^void IterativeVelPIDController::flipDisable(const bool iisDisabled) {$/;"	f	class:okapi::IterativeVelPIDController
+forward	api/chassis/controller/chassisController.cpp	/^void ChassisController::forward(const int ispeed) const {$/;"	f	class:okapi::ChassisController
+forward	api/chassis/model/skidSteerModel.cpp	/^void SkidSteerModel::forward(const double ispeed) const {$/;"	f	class:okapi::SkidSteerModel
+forward	api/chassis/model/xDriveModel.cpp	/^void XDriveModel::forward(const double ispeed) const {$/;"	f	class:okapi::XDriveModel
+get	impl/device/adiUltrasonic.cpp	/^std::int32_t ADIUltrasonic::get() {$/;"	f	class:okapi::ADIUltrasonic
+get	impl/device/rotarysensor/adiEncoder.cpp	/^std::int32_t ADIEncoder::get() const {$/;"	f	class:okapi::ADIEncoder
+get	impl/device/rotarysensor/integratedEncoder.cpp	/^std::int32_t IntegratedEncoder::get() const {$/;"	f	class:okapi::IntegratedEncoder
+get	impl/device/rotarysensor/potentiometer.cpp	/^std::int32_t Potentiometer::get() const {$/;"	f	class:okapi::Potentiometer
+getAccel	api/filter/velMath.cpp	/^QAngularAcceleration VelMath::getAccel() const {$/;"	f	class:okapi::VelMath
+getAcceleration	api/control/util/flywheelSimulator.cpp	/^double FlywheelSimulator::getAcceleration() const {$/;"	f	class:okapi::FlywheelSimulator
+getActualVelocity	impl/device/motor/motor.cpp	/^double Motor::getActualVelocity() const {$/;"	f	class:okapi::Motor
+getActualVelocity	impl/device/motor/motorGroup.cpp	/^double MotorGroup::getActualVelocity() const {$/;"	f	class:okapi::MotorGroup
+getAnalog	impl/device/controller.cpp	/^float Controller::getAnalog(const controller_analog_e_t ichannel) {$/;"	f	class:okapi::Controller
+getAngle	api/control/util/flywheelSimulator.cpp	/^double FlywheelSimulator::getAngle() const {$/;"	f	class:okapi::FlywheelSimulator
+getBottomLeftMotor	api/chassis/model/xDriveModel.cpp	/^std::shared_ptr<AbstractMotor> XDriveModel::getBottomLeftMotor() const {$/;"	f	class:okapi::XDriveModel
+getBottomRightMotor	api/chassis/model/xDriveModel.cpp	/^std::shared_ptr<AbstractMotor> XDriveModel::getBottomRightMotor() const {$/;"	f	class:okapi::XDriveModel
+getConnectionState	impl/device/controller.cpp	/^std::int32_t Controller::getConnectionState() {$/;"	f	class:okapi::Controller
+getDerivative	api/control/iterative/iterativeMotorVelocityController.cpp	/^double IterativeMotorVelocityController::getDerivative() const {$/;"	f	class:okapi::IterativeMotorVelocityController
+getDerivative	api/control/iterative/iterativePosPidController.cpp	/^double IterativePosPIDController::getDerivative() const {$/;"	f	class:okapi::IterativePosPIDController
+getDerivative	api/control/iterative/iterativeVelPidController.cpp	/^double IterativeVelPIDController::getDerivative() const {$/;"	f	class:okapi::IterativeVelPIDController
+getDigital	impl/device/controller.cpp	/^bool Controller::getDigital(const controller_digital_e_t ibutton) {$/;"	f	class:okapi::Controller
+getDt	impl/util/timer.cpp	/^QTime Timer::getDt() {$/;"	f	class:okapi::Timer
+getDtFromHardMark	impl/util/timer.cpp	/^QTime Timer::getDtFromHardMark() const {$/;"	f	class:okapi::Timer
+getDtFromMark	impl/util/timer.cpp	/^QTime Timer::getDtFromMark() const {$/;"	f	class:okapi::Timer
+getDtFromStart	impl/util/timer.cpp	/^QTime Timer::getDtFromStart() const {$/;"	f	class:okapi::Timer
+getEncoder	impl/device/motor/motor.cpp	/^std::shared_ptr<ContinuousRotarySensor> Motor::getEncoder() const {$/;"	f	class:okapi::Motor
+getEncoder	impl/device/motor/motorGroup.cpp	/^std::shared_ptr<ContinuousRotarySensor> MotorGroup::getEncoder() const {$/;"	f	class:okapi::MotorGroup
+getError	api/control/async/asyncPosIntegratedController.cpp	/^double AsyncPosIntegratedController::getError() const {$/;"	f	class:okapi::AsyncPosIntegratedController
+getError	api/control/async/asyncVelIntegratedController.cpp	/^double AsyncVelIntegratedController::getError() const {$/;"	f	class:okapi::AsyncVelIntegratedController
+getError	api/control/async/asyncWrapper.cpp	/^double AsyncWrapper::getError() const {$/;"	f	class:okapi::AsyncWrapper
+getError	api/control/iterative/iterativeMotorVelocityController.cpp	/^double IterativeMotorVelocityController::getError() const {$/;"	f	class:okapi::IterativeMotorVelocityController
+getError	api/control/iterative/iterativePosPidController.cpp	/^double IterativePosPIDController::getError() const {$/;"	f	class:okapi::IterativePosPIDController
+getError	api/control/iterative/iterativeVelPidController.cpp	/^double IterativeVelPIDController::getError() const {$/;"	f	class:okapi::IterativeVelPIDController
+getLeftSideMotor	api/chassis/model/skidSteerModel.cpp	/^std::shared_ptr<AbstractMotor> SkidSteerModel::getLeftSideMotor() const {$/;"	f	class:okapi::SkidSteerModel
+getMaxTorque	api/control/util/flywheelSimulator.cpp	/^double FlywheelSimulator::getMaxTorque() const {$/;"	f	class:okapi::FlywheelSimulator
+getOmega	api/control/util/flywheelSimulator.cpp	/^double FlywheelSimulator::getOmega() const {$/;"	f	class:okapi::FlywheelSimulator
+getOutput	api/control/async/asyncController.cpp	/^double AsyncController::getOutput() const {$/;"	f	class:okapi::AsyncController
+getOutput	api/control/async/asyncWrapper.cpp	/^double AsyncWrapper::getOutput() const {$/;"	f	class:okapi::AsyncWrapper
+getOutput	api/control/iterative/iterativeMotorVelocityController.cpp	/^double IterativeMotorVelocityController::getOutput() const {$/;"	f	class:okapi::IterativeMotorVelocityController
+getOutput	api/control/iterative/iterativePosPidController.cpp	/^double IterativePosPIDController::getOutput() const {$/;"	f	class:okapi::IterativePosPIDController
+getOutput	api/control/iterative/iterativeVelPidController.cpp	/^double IterativeVelPIDController::getOutput() const {$/;"	f	class:okapi::IterativeVelPIDController
+getOutput	api/filter/composableFilter.cpp	/^double ComposableFilter::getOutput() const {$/;"	f	class:okapi::ComposableFilter
+getOutput	api/filter/demaFilter.cpp	/^double DemaFilter::getOutput() const {$/;"	f	class:okapi::DemaFilter
+getOutput	api/filter/ekfFilter.cpp	/^double EKFFilter::getOutput() const {$/;"	f	class:okapi::EKFFilter
+getOutput	api/filter/emaFilter.cpp	/^double EmaFilter::getOutput() const {$/;"	f	class:okapi::EmaFilter
+getOutput	api/filter/passthroughFilter.cpp	/^double PassthroughFilter::getOutput() const {$/;"	f	class:okapi::PassthroughFilter
+getPosition	impl/device/motor/motor.cpp	/^double Motor::getPosition() const {$/;"	f	class:okapi::Motor
+getPosition	impl/device/motor/motorGroup.cpp	/^double MotorGroup::getPosition() const {$/;"	f	class:okapi::MotorGroup
+getRate	api/util/timeUtil.cpp	/^std::unique_ptr<AbstractRate> TimeUtil::getRate() const {$/;"	f	class:okapi::TimeUtil
+getRateSupplier	api/util/timeUtil.cpp	/^const Supplier<std::unique_ptr<AbstractRate>> TimeUtil::getRateSupplier() const {$/;"	f	class:okapi::TimeUtil
+getRightSideMotor	api/chassis/model/skidSteerModel.cpp	/^std::shared_ptr<AbstractMotor> SkidSteerModel::getRightSideMotor() const {$/;"	f	class:okapi::SkidSteerModel
+getSampleTime	api/control/iterative/iterativeMotorVelocityController.cpp	/^QTime IterativeMotorVelocityController::getSampleTime() const {$/;"	f	class:okapi::IterativeMotorVelocityController
+getSampleTime	api/control/iterative/iterativePosPidController.cpp	/^QTime IterativePosPIDController::getSampleTime() const {$/;"	f	class:okapi::IterativePosPIDController
+getSampleTime	api/control/iterative/iterativeVelPidController.cpp	/^QTime IterativeVelPIDController::getSampleTime() const {$/;"	f	class:okapi::IterativeVelPIDController
+getSensorVals	api/chassis/controller/chassisController.cpp	/^std::valarray<std::int32_t> ChassisController::getSensorVals() const {$/;"	f	class:okapi::ChassisController
+getSensorVals	api/chassis/model/skidSteerModel.cpp	/^std::valarray<std::int32_t> SkidSteerModel::getSensorVals() const {$/;"	f	class:okapi::SkidSteerModel
+getSensorVals	api/chassis/model/threeEncoderSkidSteerModel.cpp	/^std::valarray<std::int32_t> ThreeEncoderSkidSteerModel::getSensorVals() const {$/;"	f	class:okapi::ThreeEncoderSkidSteerModel
+getSensorVals	api/chassis/model/xDriveModel.cpp	/^std::valarray<std::int32_t> XDriveModel::getSensorVals() const {$/;"	f	class:okapi::XDriveModel
+getSettledUtil	api/util/timeUtil.cpp	/^std::unique_ptr<SettledUtil> TimeUtil::getSettledUtil() const {$/;"	f	class:okapi::TimeUtil
+getSettledUtilSupplier	api/util/timeUtil.cpp	/^const Supplier<std::unique_ptr<SettledUtil>> TimeUtil::getSettledUtilSupplier() const {$/;"	f	class:okapi::TimeUtil
+getStartingTime	impl/util/timer.cpp	/^QTime Timer::getStartingTime() const {$/;"	f	class:okapi::Timer
+getTargetPosition	impl/device/motor/motor.cpp	/^double Motor::getTargetPosition() const {$/;"	f	class:okapi::Motor
+getTargetPosition	impl/device/motor/motorGroup.cpp	/^double MotorGroup::getTargetPosition() const {$/;"	f	class:okapi::MotorGroup
+getTargetVelocity	impl/device/motor/motor.cpp	/^std::int32_t Motor::getTargetVelocity() const {$/;"	f	class:okapi::Motor
+getTargetVelocity	impl/device/motor/motorGroup.cpp	/^std::int32_t MotorGroup::getTargetVelocity() const {$/;"	f	class:okapi::MotorGroup
+getTimer	api/util/timeUtil.cpp	/^std::unique_ptr<AbstractTimer> TimeUtil::getTimer() const {$/;"	f	class:okapi::TimeUtil
+getTimerSupplier	api/util/timeUtil.cpp	/^const Supplier<std::unique_ptr<AbstractTimer>> TimeUtil::getTimerSupplier() const {$/;"	f	class:okapi::TimeUtil
+getTopLeftMotor	api/chassis/model/xDriveModel.cpp	/^std::shared_ptr<AbstractMotor> XDriveModel::getTopLeftMotor() const {$/;"	f	class:okapi::XDriveModel
+getTopRightMotor	api/chassis/model/xDriveModel.cpp	/^std::shared_ptr<AbstractMotor> XDriveModel::getTopRightMotor() const {$/;"	f	class:okapi::XDriveModel
+getVel	api/control/iterative/iterativeVelPidController.cpp	/^QAngularSpeed IterativeVelPIDController::getVel() const {$/;"	f	class:okapi::IterativeVelPIDController
+getVelocity	api/filter/velMath.cpp	/^QAngularSpeed VelMath::getVelocity() const {$/;"	f	class:okapi::VelMath
+initialize	initialize.cpp	/^void initialize() {$/;"	f
+isConnected	impl/device/controller.cpp	/^bool Controller::isConnected() {$/;"	f	class:okapi::Controller
+isDisabled	api/control/async/asyncPosIntegratedController.cpp	/^bool AsyncPosIntegratedController::isDisabled() const {$/;"	f	class:okapi::AsyncPosIntegratedController
+isDisabled	api/control/async/asyncVelIntegratedController.cpp	/^bool AsyncVelIntegratedController::isDisabled() const {$/;"	f	class:okapi::AsyncVelIntegratedController
+isDisabled	api/control/async/asyncWrapper.cpp	/^bool AsyncWrapper::isDisabled() const {$/;"	f	class:okapi::AsyncWrapper
+isDisabled	api/control/iterative/iterativeMotorVelocityController.cpp	/^bool IterativeMotorVelocityController::isDisabled() const {$/;"	f	class:okapi::IterativeMotorVelocityController
+isDisabled	api/control/iterative/iterativePosPidController.cpp	/^bool IterativePosPIDController::isDisabled() const {$/;"	f	class:okapi::IterativePosPIDController
+isDisabled	api/control/iterative/iterativeVelPidController.cpp	/^bool IterativeVelPIDController::isDisabled() const {$/;"	f	class:okapi::IterativeVelPIDController
+isPressed	api/device/button/buttonBase.cpp	/^bool ButtonBase::isPressed() {$/;"	f	class:okapi::ButtonBase
+isSettled	api/control/async/asyncPosIntegratedController.cpp	/^bool AsyncPosIntegratedController::isSettled() {$/;"	f	class:okapi::AsyncPosIntegratedController
+isSettled	api/control/async/asyncVelIntegratedController.cpp	/^bool AsyncVelIntegratedController::isSettled() {$/;"	f	class:okapi::AsyncVelIntegratedController
+isSettled	api/control/async/asyncWrapper.cpp	/^bool AsyncWrapper::isSettled() {$/;"	f	class:okapi::AsyncWrapper
+isSettled	api/control/iterative/iterativeMotorVelocityController.cpp	/^bool IterativeMotorVelocityController::isSettled() {$/;"	f	class:okapi::IterativeMotorVelocityController
+isSettled	api/control/iterative/iterativePosPidController.cpp	/^bool IterativePosPIDController::isSettled() {$/;"	f	class:okapi::IterativePosPIDController
+isSettled	api/control/iterative/iterativeVelPidController.cpp	/^bool IterativeVelPIDController::isSettled() {$/;"	f	class:okapi::IterativeVelPIDController
+isSettled	api/control/util/settledUtil.cpp	/^bool SettledUtil::isSettled(const double ierror) {$/;"	f	class:okapi::SettledUtil
+left	api/chassis/controller/chassisController.cpp	/^void ChassisController::left(const double ispeed) const {$/;"	f	class:okapi::ChassisController
+left	api/chassis/model/skidSteerModel.cpp	/^void SkidSteerModel::left(const double ispeed) const {$/;"	f	class:okapi::SkidSteerModel
+left	api/chassis/model/xDriveModel.cpp	/^void XDriveModel::left(const double ispeed) const {$/;"	f	class:okapi::XDriveModel
+literals	impl/device/motor/motor.cpp	/^inline namespace literals {$/;"	n	namespace:okapi	file:
+loop	api/control/async/asyncWrapper.cpp	/^void AsyncWrapper::loop() {$/;"	f	class:okapi::AsyncWrapper
+millis	impl/util/timer.cpp	/^QTime Timer::millis() const {$/;"	f	class:okapi::Timer
+motorVelocity	impl/control/iterative/iterativeControllerFactory.cpp	/^IterativeControllerFactory::motorVelocity(Motor imotor, double ikP, double ikD, double ikF,$/;"	f	class:okapi::IterativeControllerFactory
+motorVelocity	impl/control/iterative/iterativeControllerFactory.cpp	/^IterativeControllerFactory::motorVelocity(MotorGroup imotor, double ikP, double ikD, double ikF,$/;"	f	class:okapi::IterativeControllerFactory
+motorVelocity	impl/control/iterative/iterativeControllerFactory.cpp	/^IterativeMotorVelocityController IterativeControllerFactory::motorVelocity($/;"	f	class:okapi::IterativeControllerFactory
+move	impl/device/motor/motorGroup.cpp	/^std::int32_t MotorGroup::move(const std::int8_t ivoltage) const {$/;"	f	class:okapi::MotorGroup
+moveAbsolute	impl/device/motor/motor.cpp	/^std::int32_t Motor::moveAbsolute(const double iposition, const std::int32_t ivelocity) const {$/;"	f	class:okapi::Motor
+moveAbsolute	impl/device/motor/motorGroup.cpp	/^std::int32_t MotorGroup::moveAbsolute(const double iposition, const std::int32_t ivelocity) const {$/;"	f	class:okapi::MotorGroup
+moveDistance	api/chassis/controller/chassisControllerIntegrated.cpp	/^void ChassisControllerIntegrated::moveDistance(const QLength itarget) {$/;"	f	class:okapi::ChassisControllerIntegrated
+moveDistance	api/chassis/controller/chassisControllerIntegrated.cpp	/^void ChassisControllerIntegrated::moveDistance(const double itarget) {$/;"	f	class:okapi::ChassisControllerIntegrated
+moveDistance	api/chassis/controller/chassisControllerPid.cpp	/^void ChassisControllerPID::moveDistance(const QLength itarget) {$/;"	f	class:okapi::ChassisControllerPID
+moveDistance	api/chassis/controller/chassisControllerPid.cpp	/^void ChassisControllerPID::moveDistance(const double itarget) {$/;"	f	class:okapi::ChassisControllerPID
+moveRelative	impl/device/motor/motor.cpp	/^std::int32_t Motor::moveRelative(const double iposition, const std::int32_t ivelocity) const {$/;"	f	class:okapi::Motor
+moveRelative	impl/device/motor/motorGroup.cpp	/^std::int32_t MotorGroup::moveRelative(const double iposition, const std::int32_t ivelocity) const {$/;"	f	class:okapi::MotorGroup
+moveVelocity	impl/device/motor/motor.cpp	/^std::int32_t Motor::moveVelocity(const std::int16_t ivelocity) const {$/;"	f	class:okapi::Motor
+moveVelocity	impl/device/motor/motorGroup.cpp	/^std::int32_t MotorGroup::moveVelocity(const std::int16_t ivelocity) const {$/;"	f	class:okapi::MotorGroup
+moveVoltage	impl/device/motor/adiMotor.cpp	/^void ADIMotor::moveVoltage(const std::int32_t ivoltage) const {$/;"	f	class:okapi::ADIMotor
+moveVoltage	impl/device/motor/motor.cpp	/^std::int32_t Motor::moveVoltage(const std::int16_t ivoltage) const {$/;"	f	class:okapi::Motor
+moveVoltage	impl/device/motor/motorGroup.cpp	/^std::int32_t MotorGroup::moveVoltage(const std::int16_t ivoltage) const {$/;"	f	class:okapi::MotorGroup
+okapi	api/chassis/controller/chassisController.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/chassis/controller/chassisControllerIntegrated.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/chassis/controller/chassisControllerPid.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/chassis/model/chassisModel.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/chassis/model/readOnlyChassisModel.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/chassis/model/skidSteerModel.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/chassis/model/threeEncoderSkidSteerModel.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/chassis/model/xDriveModel.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/async/asyncController.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/async/asyncPosIntegratedController.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/async/asyncPosPidController.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/async/asyncVelIntegratedController.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/async/asyncVelPidController.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/async/asyncWrapper.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/iterative/iterativeController.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/iterative/iterativeMotorVelocityController.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/iterative/iterativePosPidController.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/iterative/iterativeVelPidController.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/util/controllerRunner.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/util/flywheelSimulator.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/util/pidTuner.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/control/util/settledUtil.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/device/button/abstractButton.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/device/button/buttonBase.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/device/motor/abstractMotor.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/device/rotarysensor/rotarySensor.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/filter/composableFilter.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/filter/demaFilter.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/filter/ekfFilter.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/filter/emaFilter.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/filter/filter.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/filter/passthroughFilter.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/filter/velMath.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/util/abstractRate.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/util/abstractTimer.cpp	/^namespace okapi {$/;"	n	file:
+okapi	api/util/timeUtil.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/chassis/controller/chassisControllerFactory.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/chassis/model/chassisModelFactory.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/control/async/asyncControllerFactory.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/control/iterative/iterativeControllerFactory.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/control/util/controllerRunnerFactory.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/control/util/pidTunerFactory.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/control/util/settledUtilFactory.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/device/adiUltrasonic.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/device/button/adiButton.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/device/button/controllerButton.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/device/controller.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/device/motor/adiMotor.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/device/motor/motor.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/device/motor/motorGroup.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/device/rotarysensor/adiEncoder.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/device/rotarysensor/integratedEncoder.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/device/rotarysensor/potentiometer.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/filter/velMathFactory.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/util/rate.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/util/timeUtilFactory.cpp	/^namespace okapi {$/;"	n	file:
+okapi	impl/util/timer.cpp	/^namespace okapi {$/;"	n	file:
+okapi	test/testRunner.cpp	/^namespace okapi {$/;"	n	file:
+opcontrol	opcontrol.cpp	/^void opcontrol() {$/;"	f
+operator *	api/device/motor/abstractMotor.cpp	/^AbstractMotor::GearsetRatioPair operator*(const AbstractMotor::gearset gearset,$/;"	f	namespace:okapi
+operator []	impl/device/controller.cpp	/^ControllerButton Controller::operator[](const controller_digital_e_t ibtn) {$/;"	f	class:okapi::Controller
+placeHardMark	impl/util/timer.cpp	/^void Timer::placeHardMark() {$/;"	f	class:okapi::Timer
+placeMark	impl/util/timer.cpp	/^void Timer::placeMark() {$/;"	f	class:okapi::Timer
+posIntegrated	impl/control/async/asyncControllerFactory.cpp	/^AsyncPosIntegratedController AsyncControllerFactory::posIntegrated(Motor imotor) {$/;"	f	class:okapi::AsyncControllerFactory
+posIntegrated	impl/control/async/asyncControllerFactory.cpp	/^AsyncPosIntegratedController AsyncControllerFactory::posIntegrated(MotorGroup imotor) {$/;"	f	class:okapi::AsyncControllerFactory
+posPID	impl/control/async/asyncControllerFactory.cpp	/^AsyncPosPIDController AsyncControllerFactory::posPID(Motor imotor, ADIEncoder ienc,$/;"	f	class:okapi::AsyncControllerFactory
+posPID	impl/control/async/asyncControllerFactory.cpp	/^AsyncPosPIDController AsyncControllerFactory::posPID(Motor imotor, const double ikP,$/;"	f	class:okapi::AsyncControllerFactory
+posPID	impl/control/async/asyncControllerFactory.cpp	/^AsyncPosPIDController AsyncControllerFactory::posPID(MotorGroup imotor, ADIEncoder ienc,$/;"	f	class:okapi::AsyncControllerFactory
+posPID	impl/control/async/asyncControllerFactory.cpp	/^AsyncPosPIDController AsyncControllerFactory::posPID(MotorGroup imotor, const double ikP,$/;"	f	class:okapi::AsyncControllerFactory
+posPID	impl/control/async/asyncControllerFactory.cpp	/^AsyncPosPIDController AsyncControllerFactory::posPID(std::shared_ptr<ControllerInput> iinput,$/;"	f	class:okapi::AsyncControllerFactory
+posPID	impl/control/iterative/iterativeControllerFactory.cpp	/^IterativePosPIDController IterativeControllerFactory::posPID(const double ikP, const double ikI,$/;"	f	class:okapi::IterativeControllerFactory
+repeat	impl/util/timer.cpp	/^bool Timer::repeat(const QFrequency frequency) {$/;"	f	class:okapi::Timer
+repeat	impl/util/timer.cpp	/^bool Timer::repeat(const QTime time) {$/;"	f	class:okapi::Timer
+reset	api/control/async/asyncPosIntegratedController.cpp	/^void AsyncPosIntegratedController::reset() {$/;"	f	class:okapi::AsyncPosIntegratedController
+reset	api/control/async/asyncVelIntegratedController.cpp	/^void AsyncVelIntegratedController::reset() {$/;"	f	class:okapi::AsyncVelIntegratedController
+reset	api/control/async/asyncWrapper.cpp	/^void AsyncWrapper::reset() {$/;"	f	class:okapi::AsyncWrapper
+reset	api/control/iterative/iterativeMotorVelocityController.cpp	/^void IterativeMotorVelocityController::reset() {$/;"	f	class:okapi::IterativeMotorVelocityController
+reset	api/control/iterative/iterativePosPidController.cpp	/^void IterativePosPIDController::reset() {$/;"	f	class:okapi::IterativePosPIDController
+reset	api/control/iterative/iterativeVelPidController.cpp	/^void IterativeVelPIDController::reset() {$/;"	f	class:okapi::IterativeVelPIDController
+reset	api/control/util/settledUtil.cpp	/^void SettledUtil::reset() {$/;"	f	class:okapi::SettledUtil
+reset	impl/device/rotarysensor/adiEncoder.cpp	/^std::int32_t ADIEncoder::reset() const {$/;"	f	class:okapi::ADIEncoder
+reset	impl/device/rotarysensor/integratedEncoder.cpp	/^std::int32_t IntegratedEncoder::reset() const {$/;"	f	class:okapi::IntegratedEncoder
+resetSensors	api/chassis/controller/chassisController.cpp	/^void ChassisController::resetSensors() const {$/;"	f	class:okapi::ChassisController
+resetSensors	api/chassis/model/skidSteerModel.cpp	/^void SkidSteerModel::resetSensors() const {$/;"	f	class:okapi::SkidSteerModel
+resetSensors	api/chassis/model/xDriveModel.cpp	/^void XDriveModel::resetSensors() const {$/;"	f	class:okapi::XDriveModel
+resumeMovement	api/control/async/asyncPosIntegratedController.cpp	/^void AsyncPosIntegratedController::resumeMovement() {$/;"	f	class:okapi::AsyncPosIntegratedController
+resumeMovement	api/control/async/asyncVelIntegratedController.cpp	/^void AsyncVelIntegratedController::resumeMovement() {$/;"	f	class:okapi::AsyncVelIntegratedController
+right	api/chassis/controller/chassisController.cpp	/^void ChassisController::right(const double ispeed) const {$/;"	f	class:okapi::ChassisController
+right	api/chassis/model/skidSteerModel.cpp	/^void SkidSteerModel::right(const double ispeed) const {$/;"	f	class:okapi::SkidSteerModel
+right	api/chassis/model/xDriveModel.cpp	/^void XDriveModel::right(const double ispeed) const {$/;"	f	class:okapi::XDriveModel
+rotate	api/chassis/controller/chassisController.cpp	/^void ChassisController::rotate(const int ispeed) const {$/;"	f	class:okapi::ChassisController
+rotate	api/chassis/model/skidSteerModel.cpp	/^void SkidSteerModel::rotate(const double ispeed) const {$/;"	f	class:okapi::SkidSteerModel
+rotate	api/chassis/model/xDriveModel.cpp	/^void XDriveModel::rotate(const double ispeed) const {$/;"	f	class:okapi::XDriveModel
+runHeadlessTests	opcontrol.cpp	/^void runHeadlessTests() {$/;"	f
+runUntilAtTarget	api/control/util/controllerRunner.cpp	/^double ControllerRunner::runUntilAtTarget(const double itarget, AsyncController &icontroller) {$/;"	f	class:okapi::ControllerRunner
+runUntilAtTarget	api/control/util/controllerRunner.cpp	/^double ControllerRunner::runUntilAtTarget(const double itarget, IterativeController &icontroller,$/;"	f	class:okapi::ControllerRunner
+runUntilSettled	api/control/util/controllerRunner.cpp	/^double ControllerRunner::runUntilSettled(const double itarget, AsyncController &icontroller) {$/;"	f	class:okapi::ControllerRunner
+runUntilSettled	api/control/util/controllerRunner.cpp	/^double ControllerRunner::runUntilSettled(const double itarget, IterativeController &icontroller,$/;"	f	class:okapi::ControllerRunner
+setAngle	api/control/util/flywheelSimulator.cpp	/^void FlywheelSimulator::setAngle(const double iangle) {$/;"	f	class:okapi::FlywheelSimulator
+setBrakeMode	api/chassis/controller/chassisController.cpp	/^void ChassisController::setBrakeMode(const AbstractMotor::brakeMode mode) const {$/;"	f	class:okapi::ChassisController
+setBrakeMode	api/chassis/model/skidSteerModel.cpp	/^void SkidSteerModel::setBrakeMode(const AbstractMotor::brakeMode mode) const {$/;"	f	class:okapi::SkidSteerModel
+setBrakeMode	api/chassis/model/xDriveModel.cpp	/^void XDriveModel::setBrakeMode(const AbstractMotor::brakeMode mode) const {$/;"	f	class:okapi::XDriveModel
+setBrakeMode	impl/device/motor/motor.cpp	/^std::int32_t Motor::setBrakeMode(const AbstractMotor::brakeMode imode) const {$/;"	f	class:okapi::Motor
+setBrakeMode	impl/device/motor/motorGroup.cpp	/^std::int32_t MotorGroup::setBrakeMode(const AbstractMotor::brakeMode imode) const {$/;"	f	class:okapi::MotorGroup
+setCurrentLimit	impl/device/motor/motor.cpp	/^std::int32_t Motor::setCurrentLimit(const std::int32_t ilimit) const {$/;"	f	class:okapi::Motor
+setCurrentLimit	impl/device/motor/motorGroup.cpp	/^std::int32_t MotorGroup::setCurrentLimit(const std::int32_t ilimit) const {$/;"	f	class:okapi::MotorGroup
+setDynamicFriction	api/control/util/flywheelSimulator.cpp	/^void FlywheelSimulator::setDynamicFriction(const double imuDynamic) {$/;"	f	class:okapi::FlywheelSimulator
+setEncoderUnits	api/chassis/controller/chassisController.cpp	/^void ChassisController::setEncoderUnits(const AbstractMotor::encoderUnits units) const {$/;"	f	class:okapi::ChassisController
+setEncoderUnits	api/chassis/model/skidSteerModel.cpp	/^void SkidSteerModel::setEncoderUnits(const AbstractMotor::encoderUnits units) const {$/;"	f	class:okapi::SkidSteerModel
+setEncoderUnits	api/chassis/model/xDriveModel.cpp	/^void XDriveModel::setEncoderUnits(const AbstractMotor::encoderUnits units) const {$/;"	f	class:okapi::XDriveModel
+setEncoderUnits	impl/device/motor/motor.cpp	/^std::int32_t Motor::setEncoderUnits(const AbstractMotor::encoderUnits iunits) const {$/;"	f	class:okapi::Motor
+setEncoderUnits	impl/device/motor/motorGroup.cpp	/^std::int32_t MotorGroup::setEncoderUnits(const AbstractMotor::encoderUnits iunits) const {$/;"	f	class:okapi::MotorGroup
+setErrorSumLimits	api/control/iterative/iterativePosPidController.cpp	/^void IterativePosPIDController::setErrorSumLimits(const double imax, const double imin) {$/;"	f	class:okapi::IterativePosPIDController
+setExternalTorqueFunction	api/control/util/flywheelSimulator.cpp	/^void FlywheelSimulator::setExternalTorqueFunction($/;"	f	class:okapi::FlywheelSimulator
+setGains	api/control/iterative/iterativePosPidController.cpp	/^void IterativePosPIDController::setGains(const double ikP, const double ikI, const double ikD,$/;"	f	class:okapi::IterativePosPIDController
+setGains	api/control/iterative/iterativeVelPidController.cpp	/^void IterativeVelPIDController::setGains(const double ikP, const double ikD, const double ikF) {$/;"	f	class:okapi::IterativeVelPIDController
+setGains	api/filter/demaFilter.cpp	/^void DemaFilter::setGains(const double ialpha, const double ibeta) {$/;"	f	class:okapi::DemaFilter
+setGains	api/filter/emaFilter.cpp	/^void EmaFilter::setGains(const double ialpha) {$/;"	f	class:okapi::EmaFilter
+setGearing	api/chassis/controller/chassisController.cpp	/^void ChassisController::setGearing(const AbstractMotor::gearset gearset) const {$/;"	f	class:okapi::ChassisController
+setGearing	api/chassis/model/skidSteerModel.cpp	/^void SkidSteerModel::setGearing(const AbstractMotor::gearset gearset) const {$/;"	f	class:okapi::SkidSteerModel
+setGearing	api/chassis/model/xDriveModel.cpp	/^void XDriveModel::setGearing(const AbstractMotor::gearset gearset) const {$/;"	f	class:okapi::XDriveModel
+setGearing	impl/device/motor/motor.cpp	/^std::int32_t Motor::setGearing(const AbstractMotor::gearset igearset) const {$/;"	f	class:okapi::Motor
+setGearing	impl/device/motor/motorGroup.cpp	/^std::int32_t MotorGroup::setGearing(const AbstractMotor::gearset igearset) const {$/;"	f	class:okapi::MotorGroup
+setIntegralLimits	api/control/iterative/iterativePosPidController.cpp	/^void IterativePosPIDController::setIntegralLimits(double imax, double imin) {$/;"	f	class:okapi::IterativePosPIDController
+setIntegratorReset	api/control/iterative/iterativePosPidController.cpp	/^void IterativePosPIDController::setIntegratorReset(bool iresetOnZero) {$/;"	f	class:okapi::IterativePosPIDController
+setLinkLength	api/control/util/flywheelSimulator.cpp	/^void FlywheelSimulator::setLinkLength(const double ilinkLen) {$/;"	f	class:okapi::FlywheelSimulator
+setMass	api/control/util/flywheelSimulator.cpp	/^void FlywheelSimulator::setMass(const double imass) {$/;"	f	class:okapi::FlywheelSimulator
+setMaxTorque	api/control/util/flywheelSimulator.cpp	/^void FlywheelSimulator::setMaxTorque(const double imaxTorque) {$/;"	f	class:okapi::FlywheelSimulator
+setOutputLimits	api/control/async/asyncController.cpp	/^void AsyncController::setOutputLimits(double, double) {$/;"	f	class:okapi::AsyncController
+setOutputLimits	api/control/async/asyncWrapper.cpp	/^void AsyncWrapper::setOutputLimits(double imax, double imin) {$/;"	f	class:okapi::AsyncWrapper
+setOutputLimits	api/control/iterative/iterativeMotorVelocityController.cpp	/^void IterativeMotorVelocityController::setOutputLimits(double imax, double imin) {$/;"	f	class:okapi::IterativeMotorVelocityController
+setOutputLimits	api/control/iterative/iterativePosPidController.cpp	/^void IterativePosPIDController::setOutputLimits(double imax, double imin) {$/;"	f	class:okapi::IterativePosPIDController
+setOutputLimits	api/control/iterative/iterativeVelPidController.cpp	/^void IterativeVelPIDController::setOutputLimits(double imax, double imin) {$/;"	f	class:okapi::IterativeVelPIDController
+setReversed	impl/device/motor/motor.cpp	/^std::int32_t Motor::setReversed(const bool ireverse) const {$/;"	f	class:okapi::Motor
+setReversed	impl/device/motor/motorGroup.cpp	/^std::int32_t MotorGroup::setReversed(const bool ireverse) const {$/;"	f	class:okapi::MotorGroup
+setSampleTime	api/control/async/asyncController.cpp	/^void AsyncController::setSampleTime(const QTime) {$/;"	f	class:okapi::AsyncController
+setSampleTime	api/control/async/asyncWrapper.cpp	/^void AsyncWrapper::setSampleTime(const QTime isampleTime) {$/;"	f	class:okapi::AsyncWrapper
+setSampleTime	api/control/iterative/iterativeMotorVelocityController.cpp	/^void IterativeMotorVelocityController::setSampleTime(const QTime isampleTime) {$/;"	f	class:okapi::IterativeMotorVelocityController
+setSampleTime	api/control/iterative/iterativePosPidController.cpp	/^void IterativePosPIDController::setSampleTime(const QTime isampleTime) {$/;"	f	class:okapi::IterativePosPIDController
+setSampleTime	api/control/iterative/iterativeVelPidController.cpp	/^void IterativeVelPIDController::setSampleTime(const QTime isampleTime) {$/;"	f	class:okapi::IterativeVelPIDController
+setStaticFriction	api/control/util/flywheelSimulator.cpp	/^void FlywheelSimulator::setStaticFriction(const double imuStatic) {$/;"	f	class:okapi::FlywheelSimulator
+setTarget	api/control/async/asyncPosIntegratedController.cpp	/^void AsyncPosIntegratedController::setTarget(const double itarget) {$/;"	f	class:okapi::AsyncPosIntegratedController
+setTarget	api/control/async/asyncVelIntegratedController.cpp	/^void AsyncVelIntegratedController::setTarget(const double itarget) {$/;"	f	class:okapi::AsyncVelIntegratedController
+setTarget	api/control/async/asyncWrapper.cpp	/^void AsyncWrapper::setTarget(const double itarget) {$/;"	f	class:okapi::AsyncWrapper
+setTarget	api/control/iterative/iterativeMotorVelocityController.cpp	/^void IterativeMotorVelocityController::setTarget(const double itarget) {$/;"	f	class:okapi::IterativeMotorVelocityController
+setTarget	api/control/iterative/iterativePosPidController.cpp	/^void IterativePosPIDController::setTarget(const double itarget) {$/;"	f	class:okapi::IterativePosPIDController
+setTarget	api/control/iterative/iterativeVelPidController.cpp	/^void IterativeVelPIDController::setTarget(const double itarget) {$/;"	f	class:okapi::IterativeVelPIDController
+setTicksPerRev	api/control/iterative/iterativeVelPidController.cpp	/^void IterativeVelPIDController::setTicksPerRev(const double tpr) {$/;"	f	class:okapi::IterativeVelPIDController
+setTicksPerRev	api/filter/velMath.cpp	/^void VelMath::setTicksPerRev(const double iTPR) {$/;"	f	class:okapi::VelMath
+setTimestep	api/control/util/flywheelSimulator.cpp	/^void FlywheelSimulator::setTimestep(const double itimestep) {$/;"	f	class:okapi::FlywheelSimulator
+setTorque	api/control/util/flywheelSimulator.cpp	/^void FlywheelSimulator::setTorque(const double itorque) {$/;"	f	class:okapi::FlywheelSimulator
+setVoltageLimit	impl/device/motor/motor.cpp	/^std::int32_t Motor::setVoltageLimit(const std::int32_t ilimit) const {$/;"	f	class:okapi::Motor
+setVoltageLimit	impl/device/motor/motorGroup.cpp	/^std::int32_t MotorGroup::setVoltageLimit(const std::int32_t ilimit) const {$/;"	f	class:okapi::MotorGroup
+step	api/control/iterative/iterativeMotorVelocityController.cpp	/^double IterativeMotorVelocityController::step(const double ireading) {$/;"	f	class:okapi::IterativeMotorVelocityController
+step	api/control/iterative/iterativePosPidController.cpp	/^double IterativePosPIDController::step(const double inewReading) {$/;"	f	class:okapi::IterativePosPIDController
+step	api/control/iterative/iterativeVelPidController.cpp	/^double IterativeVelPIDController::step(const double inewReading) {$/;"	f	class:okapi::IterativeVelPIDController
+step	api/control/util/flywheelSimulator.cpp	/^double FlywheelSimulator::step() {$/;"	f	class:okapi::FlywheelSimulator
+step	api/control/util/flywheelSimulator.cpp	/^double FlywheelSimulator::step(const double itorque) {$/;"	f	class:okapi::FlywheelSimulator
+step	api/filter/velMath.cpp	/^QAngularSpeed VelMath::step(const double inewPos) {$/;"	f	class:okapi::VelMath
+stepImpl	api/control/util/flywheelSimulator.cpp	/^double FlywheelSimulator::stepImpl() {$/;"	f	class:okapi::FlywheelSimulator
+stepVel	api/control/iterative/iterativeVelPidController.cpp	/^QAngularSpeed IterativeVelPIDController::stepVel(const double inewReading) {$/;"	f	class:okapi::IterativeVelPIDController
+stop	api/chassis/controller/chassisController.cpp	/^void ChassisController::stop() const {$/;"	f	class:okapi::ChassisController
+stop	api/chassis/model/skidSteerModel.cpp	/^void SkidSteerModel::stop() const {$/;"	f	class:okapi::SkidSteerModel
+stop	api/chassis/model/xDriveModel.cpp	/^void XDriveModel::stop() const {$/;"	f	class:okapi::XDriveModel
+tank	api/chassis/controller/chassisController.cpp	/^void ChassisController::tank(const double ileftSpeed, const double irightSpeed,$/;"	f	class:okapi::ChassisController
+tank	api/chassis/model/skidSteerModel.cpp	/^void SkidSteerModel::tank(const double ileftSpeed, const double irightSpeed,$/;"	f	class:okapi::SkidSteerModel
+tank	api/chassis/model/xDriveModel.cpp	/^void XDriveModel::tank(const double ileftSpeed, const double irightSpeed,$/;"	f	class:okapi::XDriveModel
+tarePosition	impl/device/motor/motor.cpp	/^std::int32_t Motor::tarePosition() const {$/;"	f	class:okapi::Motor
+tarePosition	impl/device/motor/motorGroup.cpp	/^std::int32_t MotorGroup::tarePosition() const {$/;"	f	class:okapi::MotorGroup
+test	test/testRunner.cpp	/^void test(const std::string &iname, std::function<void()> ifunc) {$/;"	f	namespace:okapi
+testFailCount	test/testRunner.cpp	/^static size_t testFailCount = 0;$/;"	m	namespace:okapi	file:
+testFailLog	test/testRunner.cpp	/^static std::vector<std::string> testFailLog; \/\/ Names of tests that have failed$/;"	m	namespace:okapi	file:
+testLengthTimer	test/testRunner.cpp	/^static Timer testLengthTimer;                \/\/ Time since the first test$/;"	m	namespace:okapi	file:
+testPassCount	test/testRunner.cpp	/^static size_t testPassCount = 0;$/;"	m	namespace:okapi	file:
+test_print_report	test/testRunner.cpp	/^void test_print_report() {$/;"	f	namespace:okapi
+test_printf	test/testRunner.cpp	/^void test_printf(const std::string &istring) {$/;"	f	namespace:okapi
+trampoline	api/control/async/asyncWrapper.cpp	/^void AsyncWrapper::trampoline(void *context) {$/;"	f	class:okapi::AsyncWrapper
+turnAngle	api/chassis/controller/chassisControllerIntegrated.cpp	/^void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {$/;"	f	class:okapi::ChassisControllerIntegrated
+turnAngle	api/chassis/controller/chassisControllerIntegrated.cpp	/^void ChassisControllerIntegrated::turnAngle(const double idegTarget) {$/;"	f	class:okapi::ChassisControllerIntegrated
+turnAngle	api/chassis/controller/chassisControllerPid.cpp	/^void ChassisControllerPID::turnAngle(const QAngle idegTarget) {$/;"	f	class:okapi::ChassisControllerPID
+turnAngle	api/chassis/controller/chassisControllerPid.cpp	/^void ChassisControllerPID::turnAngle(const double idegTarget) {$/;"	f	class:okapi::ChassisControllerPID
+velIntegrated	impl/control/async/asyncControllerFactory.cpp	/^AsyncVelIntegratedController AsyncControllerFactory::velIntegrated(Motor imotor) {$/;"	f	class:okapi::AsyncControllerFactory
+velIntegrated	impl/control/async/asyncControllerFactory.cpp	/^AsyncVelIntegratedController AsyncControllerFactory::velIntegrated(MotorGroup imotor) {$/;"	f	class:okapi::AsyncControllerFactory
+velPID	impl/control/async/asyncControllerFactory.cpp	/^AsyncVelPIDController AsyncControllerFactory::velPID(Motor imotor, ADIEncoder ienc,$/;"	f	class:okapi::AsyncControllerFactory
+velPID	impl/control/async/asyncControllerFactory.cpp	/^AsyncVelPIDController AsyncControllerFactory::velPID(Motor imotor, const double ikP,$/;"	f	class:okapi::AsyncControllerFactory
+velPID	impl/control/async/asyncControllerFactory.cpp	/^AsyncVelPIDController AsyncControllerFactory::velPID(MotorGroup imotor, ADIEncoder ienc,$/;"	f	class:okapi::AsyncControllerFactory
+velPID	impl/control/async/asyncControllerFactory.cpp	/^AsyncVelPIDController AsyncControllerFactory::velPID(MotorGroup imotor, const double ikP,$/;"	f	class:okapi::AsyncControllerFactory
+velPID	impl/control/async/asyncControllerFactory.cpp	/^AsyncVelPIDController AsyncControllerFactory::velPID(std::shared_ptr<ControllerInput> iinput,$/;"	f	class:okapi::AsyncControllerFactory
+velPID	impl/control/iterative/iterativeControllerFactory.cpp	/^IterativeVelPIDController IterativeControllerFactory::velPID(const double ikP, const double ikD,$/;"	f	class:okapi::IterativeControllerFactory
+waitUntilSettled	api/control/async/asyncPosIntegratedController.cpp	/^void AsyncPosIntegratedController::waitUntilSettled() {$/;"	f	class:okapi::AsyncPosIntegratedController
+waitUntilSettled	api/control/async/asyncVelIntegratedController.cpp	/^void AsyncVelIntegratedController::waitUntilSettled() {$/;"	f	class:okapi::AsyncVelIntegratedController
+waitUntilSettled	api/control/async/asyncWrapper.cpp	/^void AsyncWrapper::waitUntilSettled() {$/;"	f	class:okapi::AsyncWrapper
+xArcade	api/chassis/model/xDriveModel.cpp	/^void XDriveModel::xArcade(const double ixSpeed, const double iySpeed, const double izRotation,$/;"	f	class:okapi::XDriveModel
