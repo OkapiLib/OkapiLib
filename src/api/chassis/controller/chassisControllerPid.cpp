@@ -152,6 +152,7 @@ void ChassisControllerPID::waitUntilSettled() {
   switch (mode) {
     case distance:
       while (!distancePid->isSettled() && !anglePid->isSettled()) {
+        if (mode == angle) waitUntilSettled();
         rate->delayUntil(10_ms);
       }
 
@@ -161,6 +162,7 @@ void ChassisControllerPID::waitUntilSettled() {
       break;
     case angle:
       while (!anglePid->isSettled()) {
+        if (mode == distance) waitUntilSettled();
         rate->delayUntil(10_ms);
       }
 
