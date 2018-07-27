@@ -93,8 +93,8 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceUnitsTest) {
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceAsyncRawUnitsTest) {
   controller->moveDistanceAsync(100);
 
-  EXPECT_TRUE(leftController->disabled);
-  EXPECT_TRUE(rightController->disabled);
+  EXPECT_FALSE(leftController->disabled);
+  EXPECT_FALSE(rightController->disabled);
 
   EXPECT_DOUBLE_EQ(leftController->target, 100);
   EXPECT_DOUBLE_EQ(rightController->target, 100);
@@ -113,8 +113,8 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceAsyncRawUnitsTest) {
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceAsyncUnitsTest) {
   controller->moveDistanceAsync(1_m);
 
-  EXPECT_TRUE(leftController->disabled);
-  EXPECT_TRUE(rightController->disabled);
+  EXPECT_FALSE(leftController->disabled);
+  EXPECT_FALSE(rightController->disabled);
 
   EXPECT_DOUBLE_EQ(leftController->target, 2);
   EXPECT_DOUBLE_EQ(rightController->target, 2);
@@ -160,8 +160,8 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleAsyncRawUnitsTest) {
   EXPECT_DOUBLE_EQ(leftController->target, 100);
   EXPECT_DOUBLE_EQ(rightController->target, -100);
 
-  EXPECT_TRUE(leftController->disabled);
-  EXPECT_TRUE(rightController->disabled);
+  EXPECT_FALSE(leftController->disabled);
+  EXPECT_FALSE(rightController->disabled);
 
   controller->waitUntilSettled();
 
@@ -180,8 +180,8 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleAsyncUnitsTest) {
   EXPECT_DOUBLE_EQ(leftController->target, 90);
   EXPECT_DOUBLE_EQ(rightController->target, -90);
 
-  EXPECT_TRUE(leftController->disabled);
-  EXPECT_TRUE(rightController->disabled);
+  EXPECT_FALSE(leftController->disabled);
+  EXPECT_FALSE(rightController->disabled);
 
   controller->waitUntilSettled();
 
