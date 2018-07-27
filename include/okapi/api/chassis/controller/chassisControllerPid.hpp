@@ -69,14 +69,14 @@ class ChassisControllerPID : public virtual ChassisController {
    *
    * @param itarget distance to travel
    */
-  void moveDistanceAsync(QLength itarget);
+  void moveDistanceAsync(QLength itarget) override;
 
   /**
    * Sets the target distance for the robot to drive straight (using closed-loop control).
    *
    * @param itarget distance to travel in motor degrees
    */
-  void moveDistanceAsync(double itarget);
+  void moveDistanceAsync(double itarget) override;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
@@ -97,19 +97,19 @@ class ChassisControllerPID : public virtual ChassisController {
    *
    * @param idegTarget angle to turn for
    */
-  void turnAngleAsync(QAngle idegTarget);
+  void turnAngleAsync(QAngle idegTarget) override;
 
   /**
    * Sets the target angle for the robot to turn clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for in motor degrees
    */
-  void turnAngleAsync(double idegTarget);
+  void turnAngleAsync(double idegTarget) override;
 
   /**
    * Delays until the currently executing movement completes.
    */
-  void waitUntilSettled();
+  void waitUntilSettled() override;
 
   protected:
   std::unique_ptr<AbstractRate> rate;
