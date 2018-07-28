@@ -7,7 +7,6 @@
  */
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"
 #include <cmath>
-#include <okapi/api/chassis/controller/chassisControllerPid.hpp>
 
 namespace okapi {
 ChassisControllerPID::ChassisControllerPID(const TimeUtil &itimeUtil,

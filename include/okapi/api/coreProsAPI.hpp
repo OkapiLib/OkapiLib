@@ -14,7 +14,7 @@
 #define CROSSPLATFORM_THREAD_T std::thread
 #else
 #include "api.h"
-#define CROSSPLATFORM_THREAD_T pros::c::task_t
+#define CROSSPLATFORM_THREAD_T task_t
 #endif
 
 class CrossplatformThread {
@@ -24,7 +24,8 @@ class CrossplatformThread {
 #ifdef THREADS_STD
       thread(ptr, params)
 #else
-      thread(pros::c::task_create(ptr, params))
+      thread(pros::c::task_create(ptr, params, TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT,
+                                  "OkapiLibCrossplatformTask"))
 #endif
   {
   }
@@ -33,7 +34,7 @@ class CrossplatformThread {
 #ifdef THREADS_STD
     thread.join();
 #else
-    task_delete(thread);
+    pros::c::task_delete(thread);
 #endif
   }
 
