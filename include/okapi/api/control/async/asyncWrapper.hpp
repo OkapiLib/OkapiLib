@@ -116,7 +116,7 @@ class AsyncWrapper : virtual public AsyncController {
   std::unique_ptr<AbstractRate> loopRate;
   std::unique_ptr<AbstractRate> settledRate;
   std::unique_ptr<SettledUtil> settledUtil;
-  CROSSPLATFORM_THREAD task;
+  CrossplatformThread task;
 
   static void trampoline(void *context);
   void loop();

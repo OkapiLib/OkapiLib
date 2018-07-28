@@ -249,6 +249,13 @@ TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSu
                   Supplier<std::unique_ptr<SettledUtil>>([]() { return createSettledUtilPtr(); }));
 }
 
+TimeUtil createTimeUtil(const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier) {
+  return TimeUtil(
+    Supplier<std::unique_ptr<AbstractTimer>>([]() { return std::make_unique<MockTimer>(); }),
+    Supplier<std::unique_ptr<AbstractRate>>([]() { return std::make_unique<MockRate>(); }),
+    isettledUtilSupplier);
+}
+
 SimulatedSystem::SimulatedSystem(FlywheelSimulator &simulator)
   : simulator(simulator), thread(trampoline, this) {
 }
@@ -307,7 +314,7 @@ double MockAsyncController::getError() const {
 }
 
 bool MockAsyncController::isSettled() {
-  return true;
+  return isSettledOverride;
 }
 
 void MockAsyncController::reset() {
@@ -350,7 +357,7 @@ double MockIterativeController::getDerivative() const {
 }
 
 bool MockIterativeController::isSettled() {
-  return true;
+  return isSettledOverride;
 }
 
 void MockIterativeController::setGains(double ikP, double ikI, double ikD, double ikBias) {

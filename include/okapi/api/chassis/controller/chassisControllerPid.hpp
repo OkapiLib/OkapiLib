@@ -50,6 +50,8 @@ class ChassisControllerPID : public virtual ChassisController {
                        AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
                        const ChassisScales &iscales = ChassisScales({1, 1}));
 
+  ~ChassisControllerPID();
+
   /**
    * Drives the robot straight for a distance (using closed-loop control).
    *
@@ -118,10 +120,15 @@ class ChassisControllerPID : public virtual ChassisController {
   const double gearRatio;
   const double straightScale;
   const double turnScale;
-  CROSSPLATFORM_THREAD task;
+  CrossplatformThread task;
+  bool doneLooping{true};
+  bool dtorCalled{false};
 
   static void trampoline(void *context);
   void loop();
+
+  bool waitForDistanceSettled();
+  bool waitForAngleSettled();
 
   typedef enum { distance, angle } modeType;
   modeType mode;

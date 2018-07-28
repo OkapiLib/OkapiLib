@@ -41,10 +41,13 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
     scales = new ChassisScales({2, 2});
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
+
     leftController = new MockAsyncController();
     rightController = new MockAsyncController();
+
     model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
                                std::unique_ptr<AbstractMotor>(rightMotor));
+
     controller = new ChassisControllerIntegrated(
       createTimeUtil(), std::unique_ptr<ChassisModel>(model),
       std::unique_ptr<AsyncPosIntegratedController>(leftController),
@@ -93,16 +96,13 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceUnitsTest) {
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceAsyncRawUnitsTest) {
   controller->moveDistanceAsync(100);
 
+  EXPECT_DOUBLE_EQ(leftController->target, 100);
+  EXPECT_DOUBLE_EQ(rightController->target, 100);
+
   EXPECT_FALSE(leftController->disabled);
   EXPECT_FALSE(rightController->disabled);
 
-  EXPECT_DOUBLE_EQ(leftController->target, 100);
-  EXPECT_DOUBLE_EQ(rightController->target, 100);
-
   controller->waitUntilSettled();
-
-  EXPECT_DOUBLE_EQ(leftController->target, 100);
-  EXPECT_DOUBLE_EQ(rightController->target, 100);
 
   EXPECT_TRUE(leftController->disabled);
   EXPECT_TRUE(rightController->disabled);
@@ -113,11 +113,11 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceAsyncRawUnitsTest) {
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceAsyncUnitsTest) {
   controller->moveDistanceAsync(1_m);
 
-  EXPECT_FALSE(leftController->disabled);
-  EXPECT_FALSE(rightController->disabled);
-
   EXPECT_DOUBLE_EQ(leftController->target, 2);
   EXPECT_DOUBLE_EQ(rightController->target, 2);
+
+  EXPECT_FALSE(leftController->disabled);
+  EXPECT_FALSE(rightController->disabled);
 
   controller->waitUntilSettled();
 
@@ -165,9 +165,6 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleAsyncRawUnitsTest) {
 
   controller->waitUntilSettled();
 
-  EXPECT_DOUBLE_EQ(leftController->target, 100);
-  EXPECT_DOUBLE_EQ(rightController->target, -100);
-
   EXPECT_TRUE(leftController->disabled);
   EXPECT_TRUE(rightController->disabled);
 
@@ -185,9 +182,6 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleAsyncUnitsTest) {
 
   controller->waitUntilSettled();
 
-  EXPECT_DOUBLE_EQ(leftController->target, 90);
-  EXPECT_DOUBLE_EQ(rightController->target, -90);
-
   EXPECT_TRUE(leftController->disabled);
   EXPECT_TRUE(rightController->disabled);
 
@@ -200,10 +194,13 @@ class ChassisControllerPIDTest : public ::testing::Test {
     scales = new ChassisScales({2, 2});
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
+
     distanceController = new MockIterativeController();
     angleController = new MockIterativeController();
+
     model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
                                std::unique_ptr<AbstractMotor>(rightMotor));
+
     controller =
       new ChassisControllerPID(createTimeUtil(), std::unique_ptr<ChassisModel>(model),
                                std::unique_ptr<IterativePosPIDController>(distanceController),
@@ -260,9 +257,6 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceAsyncRawUnitsTest) {
 
   controller->waitUntilSettled();
 
-  EXPECT_DOUBLE_EQ(distanceController->target, 100);
-  EXPECT_DOUBLE_EQ(angleController->target, 0);
-
   EXPECT_TRUE(distanceController->disabled);
   EXPECT_TRUE(angleController->disabled);
 
@@ -280,9 +274,6 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceAsyncUnitsTest) {
 
   controller->waitUntilSettled();
 
-  EXPECT_DOUBLE_EQ(distanceController->target, 2);
-  EXPECT_DOUBLE_EQ(angleController->target, 0);
-
   EXPECT_TRUE(distanceController->disabled);
   EXPECT_TRUE(angleController->disabled);
 
@@ -293,8 +284,9 @@ TEST_F(ChassisControllerPIDTest, TurnAngleRawUnitsTest) {
   controller->turnAngle(100);
 
   EXPECT_DOUBLE_EQ(angleController->target, 100);
+
   EXPECT_TRUE(angleController->disabled);
-  EXPECT_TRUE(distanceController->disabled);
+
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
@@ -302,8 +294,9 @@ TEST_F(ChassisControllerPIDTest, TurnAngleUnitsTest) {
   controller->turnAngle(45_deg);
 
   EXPECT_DOUBLE_EQ(angleController->target, 90);
+
   EXPECT_TRUE(angleController->disabled);
-  EXPECT_TRUE(distanceController->disabled);
+
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
@@ -311,14 +304,13 @@ TEST_F(ChassisControllerPIDTest, TurnAngleAsyncRawUnitsTest) {
   controller->turnAngleAsync(100);
 
   EXPECT_DOUBLE_EQ(angleController->target, 100);
+
   EXPECT_FALSE(angleController->disabled);
-  EXPECT_TRUE(distanceController->disabled);
 
   controller->waitUntilSettled();
 
-  EXPECT_DOUBLE_EQ(angleController->target, 100);
   EXPECT_TRUE(angleController->disabled);
-  EXPECT_TRUE(distanceController->disabled);
+
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
@@ -326,13 +318,12 @@ TEST_F(ChassisControllerPIDTest, TurnAngleAsyncUnitsTest) {
   controller->turnAngleAsync(45_deg);
 
   EXPECT_DOUBLE_EQ(angleController->target, 90);
+
   EXPECT_FALSE(angleController->disabled);
-  EXPECT_TRUE(distanceController->disabled);
 
   controller->waitUntilSettled();
 
-  EXPECT_DOUBLE_EQ(angleController->target, 90);
   EXPECT_TRUE(angleController->disabled);
-  EXPECT_TRUE(distanceController->disabled);
+
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }

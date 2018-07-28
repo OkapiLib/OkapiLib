@@ -167,6 +167,8 @@ TimeUtil createTimeUtil();
 
 TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier);
 
+TimeUtil createTimeUtil(const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier);
+
 class SimulatedSystem : public ControllerInput, public ControllerOutput {
   public:
   SimulatedSystem(FlywheelSimulator &simulator);
@@ -193,6 +195,10 @@ class MockAsyncController : public AsyncPosIntegratedController {
   public:
   MockAsyncController()
     : AsyncPosIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
+  }
+
+  MockAsyncController(const TimeUtil &itimeUtil)
+    : AsyncPosIntegratedController(std::make_shared<MockMotor>(), itimeUtil) {
   }
 
   double getOutput() const override;
@@ -223,6 +229,7 @@ class MockAsyncController : public AsyncPosIntegratedController {
   double minOutput{-1};
   double target{0};
   bool disabled{false};
+  bool isSettledOverride{true};
 };
 
 class MockIterativeController : public IterativePosPIDController {
@@ -269,6 +276,19 @@ class MockIterativeController : public IterativePosPIDController {
   double minOutput{-1};
   double target{0};
   bool disabled{false};
+  bool isSettledOverride{true};
+};
+
+class MockSettledUtil : public SettledUtil {
+  public:
+  MockSettledUtil() : SettledUtil(std::make_unique<MockTimer>()) {
+  }
+
+  bool isSettled(double) override {
+    return isSettledOverride;
+  }
+
+  bool isSettledOverride{true};
 };
 } // namespace okapi
 

@@ -7,6 +7,7 @@
  */
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"
 #include <cmath>
+#include <okapi/api/chassis/controller/chassisControllerPid.hpp>
 
 namespace okapi {
 ChassisControllerPID::ChassisControllerPID(const TimeUtil &itimeUtil,
@@ -43,6 +44,10 @@ ChassisControllerPID::ChassisControllerPID(
   setEncoderUnits(AbstractMotor::encoderUnits::degrees);
 }
 
+ChassisControllerPID::~ChassisControllerPID() {
+  dtorCalled = true;
+}
+
 void ChassisControllerPID::loop() {
   auto encStartVals = model->getSensorVals();
   std::valarray<std::int32_t> encVals;
@@ -51,43 +56,42 @@ void ChassisControllerPID::loop() {
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
-  while (true) {
-    if (mode != pastMode) {
-      encStartVals = model->getSensorVals();
-      encVals = 0;
-      distanceElapsed = 0;
-      angleChange = 0;
+  while (!dtorCalled) {
+    /**
+     * doneLooping is set to false by moveDistanceAsync and turnAngleAsync and then set to true by
+     * waitUntilSettled
+     */
+    if (!doneLooping) {
+      if (mode != pastMode) {
+        encStartVals = model->getSensorVals();
+        encVals = 0;
 
-      distancePid->reset();
-      anglePid->reset();
-      model->stop();
-    }
+        distancePid->reset();
+        anglePid->reset();
+        model->stop();
+      }
 
-    switch (mode) {
-    case distance:
-      if (!distancePid->isSettled() && !anglePid->isSettled()) {
+      switch (mode) {
+      case distance:
         encVals = model->getSensorVals() - encStartVals;
         distanceElapsed = static_cast<double>((encVals[0] + encVals[1])) / 2.0;
         angleChange = static_cast<double>(encVals[1] - encVals[0]);
         model->driveVector(distancePid->step(distanceElapsed), anglePid->step(angleChange));
-      }
-      else
-        model->stop();
-      break;
-    case angle:
-      if (!anglePid->isSettled()) {
+
+        break;
+      case angle:
         encVals = model->getSensorVals() - encStartVals;
         angleChange = static_cast<double>(encVals[1] - encVals[0]);
         model->rotate(anglePid->step(angleChange));
+
+        break;
+      default:
+        break;
       }
-      else
-        model->stop();
-      break;
-    default:
-      break;
+
+      pastMode = mode;
     }
 
-    pastMode = mode;
     rate->delayUntil(10_ms);
   }
 #pragma clang diagnostic pop
@@ -149,28 +153,76 @@ void ChassisControllerPID::turnAngle(const double idegTarget) {
 }
 
 void ChassisControllerPID::waitUntilSettled() {
-  switch (mode) {
+  bool completelySettled = false;
+
+  while (!completelySettled) {
+    switch (mode) {
     case distance:
-      while (!distancePid->isSettled() && !anglePid->isSettled()) {
-        if (mode == angle) waitUntilSettled();
-        rate->delayUntil(10_ms);
+      completelySettled = waitForDistanceSettled();
+
+      // Only disable the controllers and stop if we are totally settled and won't try again
+      if (completelySettled) {
+        doneLooping = true;
+        distancePid->flipDisable(true);
+        anglePid->flipDisable(true);
+        model->stop();
       }
 
-      distancePid->flipDisable(true);
-      anglePid->flipDisable(true);
-      model->stop();
       break;
+
     case angle:
-      while (!anglePid->isSettled()) {
-        if (mode == distance) waitUntilSettled();
-        rate->delayUntil(10_ms);
+      completelySettled = waitForAngleSettled();
+
+      // Only disable the controllers and stop if we are totally settled and won't try again
+      if (completelySettled) {
+        doneLooping = true;
+        anglePid->flipDisable(true);
+        model->stop();
       }
 
-      anglePid->flipDisable(true);
-      model->stop();
       break;
+
     default:
       break;
+    }
   }
+}
+
+/**
+ * Wait for the distance setup (distancePid and anglePid) to settle.
+ *
+ * @return true if done settling; false if settling should be tried again
+ */
+bool ChassisControllerPID::waitForDistanceSettled() {
+  while (!(distancePid->isSettled() && anglePid->isSettled())) {
+    if (mode == angle) {
+      // False will cause the loop to re-enter the switch
+      return false;
+    }
+
+    rate->delayUntil(10_ms);
+  }
+
+  // True will cause the loop to exit
+  return true;
+}
+
+/**
+ * Wait for the angle setup (anglePid) to settle.
+ *
+ * @return true if done settling; false if settling should be tried again
+ */
+bool ChassisControllerPID::waitForAngleSettled() {
+  while (!anglePid->isSettled()) {
+    if (mode == distance) {
+      // False will cause the loop to re-enter the switch
+      return false;
+    }
+
+    rate->delayUntil(10_ms);
+  }
+
+  // True will cause the loop to exit
+  return true;
 }
 } // namespace okapi

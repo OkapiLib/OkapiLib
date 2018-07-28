@@ -97,7 +97,7 @@ void ChassisControllerIntegrated::turnAngleAsync(const double idegTarget) {
 }
 
 void ChassisControllerIntegrated::waitUntilSettled() {
-  while (!leftController->isSettled() && !rightController->isSettled()) {
+  while (!(leftController->isSettled() && rightController->isSettled())) {
     rate->delayUntil(10_ms);
   }
 
