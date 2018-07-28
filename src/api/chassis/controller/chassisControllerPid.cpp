@@ -53,8 +53,6 @@ void ChassisControllerPID::loop() {
   double distanceElapsed = 0, angleChange = 0;
   modeType pastMode = distance;
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
   while (!dtorCalled) {
     /**
      * doneLooping is set to false by moveDistanceAsync and turnAngleAsync and then set to true by
@@ -63,7 +61,6 @@ void ChassisControllerPID::loop() {
     if (!doneLooping) {
       if (mode != pastMode) {
         encStartVals = model->getSensorVals();
-        encVals = 0;
 
         distancePid->reset();
         anglePid->reset();
@@ -93,7 +90,6 @@ void ChassisControllerPID::loop() {
 
     rate->delayUntil(10_ms);
   }
-#pragma clang diagnostic pop
 }
 
 void ChassisControllerPID::trampoline(void *context) {
@@ -110,6 +106,8 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   const double newTarget = itarget.convert(meter) * straightScale * gearRatio;
   distancePid->setTarget(newTarget);
   anglePid->setTarget(0);
+
+  doneLooping = false;
 }
 
 void ChassisControllerPID::moveDistanceAsync(const double itarget) {
@@ -130,10 +128,13 @@ void ChassisControllerPID::moveDistance(const double itarget) {
 void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   anglePid->reset();
   anglePid->flipDisable(false);
+  distancePid->flipDisable(true);
   mode = angle;
 
   const double newTarget = idegTarget.convert(degree) * turnScale * gearRatio;
   anglePid->setTarget(newTarget);
+
+  doneLooping = false;
 }
 
 void ChassisControllerPID::turnAngleAsync(const double idegTarget) {
