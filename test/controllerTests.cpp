@@ -22,6 +22,7 @@
 #include "test/testRunner.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
+#include <limits>
 
 using namespace okapi;
 using namespace snowhouse;
@@ -208,4 +209,32 @@ TEST(PIDTunerTest, AutotuneShouldNotSegfault) {
   auto result = pidTuner.autotune();
 
   system->join(); // gtest will cause a SIGABRT if we don't join manually first
+}
+
+TEST(SettledUtilTest, MaxDoubleError) {
+  MockRate rate;
+  SettledUtil settledUtil(std::make_unique<MockTimer>(), std::numeric_limits<double>::max(), 5,
+                          250_ms);
+  EXPECT_FALSE(settledUtil.isSettled(1000));
+  EXPECT_FALSE(settledUtil.isSettled(1000));
+  rate.delayUntil(300_ms);
+  EXPECT_TRUE(settledUtil.isSettled(1000));
+}
+
+TEST(SettledUtilTest, MaxDoubleDerivative) {
+  MockRate rate;
+  SettledUtil settledUtil(std::make_unique<MockTimer>(), 50, std::numeric_limits<double>::max(),
+                          250_ms);
+  EXPECT_FALSE(settledUtil.isSettled(1000));
+  EXPECT_FALSE(settledUtil.isSettled(0));
+  rate.delayUntil(300_ms);
+  EXPECT_TRUE(settledUtil.isSettled(0));
+}
+
+TEST(SettledUtilTest, ZeroTime) {
+  MockRate rate;
+  SettledUtil settledUtil(std::make_unique<MockTimer>(), 50, 5, 0_ms);
+  EXPECT_FALSE(settledUtil.isSettled(60));
+  EXPECT_FALSE(settledUtil.isSettled(55));
+  EXPECT_TRUE(settledUtil.isSettled(50));
 }

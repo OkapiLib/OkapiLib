@@ -165,6 +165,10 @@ bool MockTimer::repeat(const QFrequency frequency) {
   return repeat(QTime(1 / frequency.convert(Hz)));
 }
 
+QTime MockTimer::clearMark() {
+  return 0_ms;
+}
+
 ConstantMockTimer::ConstantMockTimer(const QTime idt) : dtToReturn(idt) {
 }
 
@@ -208,6 +212,10 @@ bool ConstantMockTimer::repeat(QTime time) {
 
 bool ConstantMockTimer::repeat(QFrequency frequency) {
   return false;
+}
+
+QTime ConstantMockTimer::clearMark() {
+  return 0_ms;
 }
 
 MockRate::MockRate() = default;
