@@ -49,6 +49,13 @@ class Timer : public AbstractTimer {
   virtual void placeMark() override;
 
   /**
+   * Clears the marker.
+   *
+   * @return The old marker
+   */
+  virtual QTime clearMark() override;
+
+  /**
    * Place a hard time marker. Placing another hard marker will not overwrite the previous one;
    * instead, call clearHardMark() and then place another.
    */

@@ -35,6 +35,12 @@ void Timer::placeMark() {
   mark = millis();
 }
 
+QTime Timer::clearMark() {
+  const QTime old = mark;
+  mark = 0_ms;
+  return old;
+}
+
 void Timer::placeHardMark() {
   if (hardMark == 0_ms)
     hardMark = millis();
@@ -47,7 +53,7 @@ QTime Timer::clearHardMark() {
 }
 
 QTime Timer::getDtFromMark() const {
-  return millis() - mark;
+  return mark == 0_ms ? 0_ms : millis() - mark;
 }
 
 QTime Timer::getDtFromHardMark() const {

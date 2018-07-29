@@ -21,6 +21,15 @@ SettledUtil::~SettledUtil() = default;
 
 bool SettledUtil::isSettled(const double ierror) {
   if (std::fabs(ierror) <= atTargetError && std::fabs(ierror - lastError) <= atTargetDerivative) {
+    /**
+     * Timer::getDtFromhardMark() returns 0_ms if there is no hard mark set, so this needs to be
+     * special-cased. Setting atTargetTime to 0_ms means that the user wants to exit immediately
+     * when in range of the target.
+     */
+    if (atTargetTime == 0_ms) {
+      return true;
+    }
+
     atTargetTimer->placeHardMark();
   } else {
     atTargetTimer->clearHardMark();
@@ -28,7 +37,7 @@ bool SettledUtil::isSettled(const double ierror) {
 
   lastError = ierror;
 
-  return atTargetTimer->getDtFromHardMark() >= atTargetTime;
+  return atTargetTimer->getDtFromHardMark() > atTargetTime;
 }
 
 void SettledUtil::reset() {
