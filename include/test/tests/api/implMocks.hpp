@@ -94,6 +94,8 @@ class MockTimer : public AbstractTimer {
 
   void placeMark() override;
 
+  QTime clearMark() override;
+
   void placeHardMark() override;
 
   QTime clearHardMark() override;
@@ -130,6 +132,8 @@ class ConstantMockTimer : public AbstractTimer {
   QTime getDtFromStart() const override;
 
   void placeMark() override;
+
+  QTime clearMark() override;
 
   void placeHardMark() override;
 
