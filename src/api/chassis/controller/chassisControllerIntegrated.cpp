@@ -43,6 +43,16 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
 }
 
 void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
+  moveDistanceAsync(itarget);
+  waitUntilSettled();
+}
+
+void ChassisControllerIntegrated::moveDistance(const double itarget) {
+  // Divide by straightScale so the final result turns back into motor degrees
+  moveDistance((itarget / straightScale) * meter);
+}
+
+void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
   leftController->reset();
   rightController->reset();
   leftController->flipDisable(false);
@@ -52,22 +62,24 @@ void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
   const auto enc = model->getSensorVals();
   leftController->setTarget(newTarget + enc[0]);
   rightController->setTarget(newTarget + enc[1]);
-
-  while (!leftController->isSettled() && !rightController->isSettled()) {
-    rate->delayUntil(10_ms);
-  }
-
-  leftController->flipDisable(true);
-  rightController->flipDisable(true);
-  model->stop();
 }
 
-void ChassisControllerIntegrated::moveDistance(const double itarget) {
+void ChassisControllerIntegrated::moveDistanceAsync(const double itarget) {
   // Divide by straightScale so the final result turns back into motor degrees
-  moveDistance((itarget / straightScale) * meter);
+  moveDistanceAsync((itarget / straightScale) * meter);
 }
 
 void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
+  turnAngleAsync(idegTarget);
+  waitUntilSettled();
+}
+
+void ChassisControllerIntegrated::turnAngle(const double idegTarget) {
+  // Divide by turnScale so the final result turns back into motor degrees
+  turnAngle((idegTarget / turnScale) * degree);
+}
+
+void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
   leftController->reset();
   rightController->reset();
   leftController->flipDisable(false);
@@ -77,18 +89,20 @@ void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
   const auto enc = model->getSensorVals();
   leftController->setTarget(newTarget + enc[0]);
   rightController->setTarget(-1 * newTarget + enc[1]);
+}
 
-  while (!leftController->isSettled() && !rightController->isSettled()) {
+void ChassisControllerIntegrated::turnAngleAsync(const double idegTarget) {
+  // Divide by turnScale so the final result turns back into motor degrees
+  turnAngleAsync((idegTarget / turnScale) * degree);
+}
+
+void ChassisControllerIntegrated::waitUntilSettled() {
+  while (!(leftController->isSettled() && rightController->isSettled())) {
     rate->delayUntil(10_ms);
   }
 
   leftController->flipDisable(true);
   rightController->flipDisable(true);
   model->stop();
-}
-
-void ChassisControllerIntegrated::turnAngle(const double idegTarget) {
-  // Divide by turnScale so the final result turns back into motor degrees
-  turnAngle((idegTarget / turnScale) * degree);
 }
 } // namespace okapi
