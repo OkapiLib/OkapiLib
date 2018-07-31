@@ -238,6 +238,52 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleThenMoveDistanceAsyncTest) {
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
+TEST_F(ChassisControllerIntegratedTest, MoveDistanceAndWaitTest) {
+  controller->moveDistance(100);
+  controller->waitUntilSettled();
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
+TEST_F(ChassisControllerIntegratedTest, MoveDistanceGetPushedAndWaitTest) {
+  controller->moveDistance(100);
+
+  // First bump
+  leftMotor->encoder->value = 500;
+  rightMotor->encoder->value = 500;
+  controller->waitUntilSettled();
+
+  // Second bump
+  leftMotor->encoder->value = 1000;
+  rightMotor->encoder->value = 1000;
+  controller->waitUntilSettled();
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
+TEST_F(ChassisControllerIntegratedTest, TurnAngleAndWaitTest) {
+  controller->turnAngle(100);
+  controller->waitUntilSettled();
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
+TEST_F(ChassisControllerIntegratedTest, TurnAngleGetPushedAndWaitTest) {
+  controller->turnAngle(100);
+
+  // First bump
+  leftMotor->encoder->value = 500;
+  rightMotor->encoder->value = 500;
+  controller->waitUntilSettled();
+
+  // Second bump
+  leftMotor->encoder->value = 1000;
+  rightMotor->encoder->value = 1000;
+  controller->waitUntilSettled();
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
 class ChassisControllerPIDTest : public ::testing::Test {
   protected:
   void SetUp() override {
@@ -422,6 +468,52 @@ TEST_F(ChassisControllerPIDTest, TurnAngleThenMoveDistanceAsyncTest) {
 
   EXPECT_TRUE(distanceController->disabled);
   EXPECT_TRUE(angleController->disabled);
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
+TEST_F(ChassisControllerPIDTest, MoveDistanceAndWaitTest) {
+  controller->moveDistance(100);
+  controller->waitUntilSettled();
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
+TEST_F(ChassisControllerPIDTest, MoveDistanceGetBumpedAndWaitTest) {
+  controller->moveDistance(100);
+
+  // First bump
+  leftMotor->encoder->value = 500;
+  rightMotor->encoder->value = 500;
+  controller->waitUntilSettled();
+
+  // Second bump
+  leftMotor->encoder->value = 1000;
+  rightMotor->encoder->value = 1000;
+  controller->waitUntilSettled();
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
+TEST_F(ChassisControllerPIDTest, TurnAngleAndWaitTest) {
+  controller->turnAngle(100);
+  controller->waitUntilSettled();
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
+TEST_F(ChassisControllerPIDTest, TurnAngleGetBumpedAndWaitTest) {
+  controller->turnAngle(100);
+
+  // First bump
+  leftMotor->encoder->value = 500;
+  rightMotor->encoder->value = 500;
+  controller->waitUntilSettled();
+
+  // Second bump
+  leftMotor->encoder->value = 1000;
+  rightMotor->encoder->value = 1000;
+  controller->waitUntilSettled();
 
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
