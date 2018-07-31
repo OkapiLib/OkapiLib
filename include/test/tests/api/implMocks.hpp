@@ -26,7 +26,7 @@ class MockContinuousRotarySensor : public ContinuousRotarySensor {
   public:
   double controllerGet() override;
 
-  int32_t reset() const override;
+  int32_t reset() override;
 
   int32_t get() const override;
 
