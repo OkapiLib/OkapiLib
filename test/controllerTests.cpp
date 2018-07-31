@@ -176,6 +176,46 @@ TEST_F(AsyncControllerTest, AsyncVelIntegratedController) {
   assertControllerFollowsTargetLifecycle(AsyncVelIntegratedController(motor, createTimeUtil()));
 }
 
+void assertControllerIsSettledWhenDisabled(ClosedLoopController<double, double> &controller) {
+  controller.setTarget(100);
+  EXPECT_FALSE(controller.isSettled());
+
+  controller.flipDisable();
+  EXPECT_TRUE(controller.isSettled());
+}
+
+TEST(IterativePosPIDControllerTest, SettledWhenDisabled) {
+  IterativePosPIDController controller(
+    0.004, 0, 0, 0, createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>([]() {
+      return std::make_unique<ConstantMockTimer>(10_ms);
+    })));
+
+  assertControllerIsSettledWhenDisabled(controller);
+}
+
+TEST(IterativeVelPIDControllerTest, SettledWhenDisabled) {
+  IterativeVelPIDController controller(
+    0, 0, 0.1,
+    std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                              std::make_unique<ConstantMockTimer>(10_ms)),
+    createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
+      []() { return std::make_unique<ConstantMockTimer>(10_ms); })));
+
+  assertControllerIsSettledWhenDisabled(controller);
+}
+
+TEST(AsyncPosIntegratedControllerTest, SettledWhenDisabled) {
+  AsyncPosIntegratedController controller(std::make_shared<MockMotor>(), createTimeUtil());
+
+  assertControllerIsSettledWhenDisabled(controller);
+}
+
+TEST(AsyncVelIntegratedControllerTest, SettledWhenDisabled) {
+  AsyncVelIntegratedController controller(std::make_shared<MockMotor>(), createTimeUtil());
+
+  assertControllerIsSettledWhenDisabled(controller);
+}
+
 TEST(FilteredControllerInputTest, InputShouldBePassedThrough) {
   class MockControllerInput : public ControllerInput {
     public:
