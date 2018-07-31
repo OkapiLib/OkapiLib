@@ -14,18 +14,20 @@
 
 namespace okapi {
 double MockContinuousRotarySensor::controllerGet() {
-  return 0;
+  return value;
 }
 
 int32_t MockContinuousRotarySensor::reset() const {
+  value = 0;
   return 0;
 }
 
 int32_t MockContinuousRotarySensor::get() const {
-  return 0;
+  return value;
 }
 
-MockMotor::MockMotor() = default;
+MockMotor::MockMotor() : encoder(std::make_shared<MockContinuousRotarySensor>()) {
+}
 
 void MockMotor::controllerSet(const double ivalue) {
   moveVelocity((int16_t)ivalue);
@@ -46,7 +48,7 @@ double MockMotor::getTargetPosition() const {
 }
 
 double MockMotor::getPosition() const {
-  return 0;
+  return encoder->get();
 }
 
 int32_t MockMotor::getTargetVelocity() const {
@@ -86,7 +88,7 @@ int32_t MockMotor::setVoltageLimit(const std::int32_t ilimit) const {
 }
 
 std::shared_ptr<ContinuousRotarySensor> MockMotor::getEncoder() const {
-  return std::make_shared<MockContinuousRotarySensor>();
+  return encoder;
 }
 
 std::int32_t MockMotor::moveVelocity(const std::int16_t ivelocity) const {
