@@ -17,7 +17,7 @@ std::int32_t ADIEncoder::get() const {
   return enc.get_value();
 }
 
-std::int32_t ADIEncoder::reset() const {
+std::int32_t ADIEncoder::reset() {
   return enc.reset();
 }
 

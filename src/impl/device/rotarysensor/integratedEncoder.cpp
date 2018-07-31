@@ -15,7 +15,7 @@ std::int32_t IntegratedEncoder::get() const {
   return motor.get_position();
 }
 
-std::int32_t IntegratedEncoder::reset() const {
+std::int32_t IntegratedEncoder::reset() {
   return motor.tare_position();
 }
 

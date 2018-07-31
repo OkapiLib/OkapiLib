@@ -27,9 +27,9 @@ class ADIEncoder : public ContinuousRotarySensor {
   /**
    * Reset the sensor to zero.
    *
-   * @return 1 on suceess, PROS_ERR on fail
+   * @return 1 on success, PROS_ERR on fail
    */
-  virtual std::int32_t reset() const override;
+  virtual std::int32_t reset() override;
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in

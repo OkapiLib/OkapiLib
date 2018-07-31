@@ -17,7 +17,7 @@ double MockContinuousRotarySensor::controllerGet() {
   return value;
 }
 
-int32_t MockContinuousRotarySensor::reset() const {
+int32_t MockContinuousRotarySensor::reset() {
   value = 0;
   return 0;
 }
