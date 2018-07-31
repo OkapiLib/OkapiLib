@@ -74,6 +74,8 @@ class IterativePosPIDController : public IterativePositionController {
    * Returns whether the controller has settled at the target. Determining what settling means is
    * implementation-dependent.
    *
+   * If the controller is disabled, this method must return true.
+   *
    * @return whether the controller is settled
    */
   bool isSettled() override;

@@ -50,6 +50,13 @@ class AbstractTimer {
   virtual void placeMark() = 0;
 
   /**
+   * Clears the marker.
+   *
+   * @return The old marker
+   */
+  virtual QTime clearMark() = 0;
+
+  /**
    * Place a hard time marker. Placing another hard marker will not overwrite the previous one;
    * instead, call clearHardMark() and then place another.
    */
@@ -63,14 +70,14 @@ class AbstractTimer {
   virtual QTime clearHardMark() = 0;
 
   /**
-   * Returns the time since the time marker.
+   * Returns the time since the time marker. Returns 0_ms if there is no marker.
    *
    * @return The time since the time marker
    */
   virtual QTime getDtFromMark() const = 0;
 
   /**
-   * Returns the time since the hard time marker.
+   * Returns the time since the hard time marker. Returns 0_ms if there is no hard marker set.
    *
    * @return The time since the hard time marker
    */

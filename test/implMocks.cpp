@@ -14,18 +14,20 @@
 
 namespace okapi {
 double MockContinuousRotarySensor::controllerGet() {
-  return 0;
+  return value;
 }
 
-int32_t MockContinuousRotarySensor::reset() const {
+int32_t MockContinuousRotarySensor::reset() {
+  value = 0;
   return 0;
 }
 
 int32_t MockContinuousRotarySensor::get() const {
-  return 0;
+  return value;
 }
 
-MockMotor::MockMotor() = default;
+MockMotor::MockMotor() : encoder(std::make_shared<MockContinuousRotarySensor>()) {
+}
 
 void MockMotor::controllerSet(const double ivalue) {
   moveVelocity((int16_t)ivalue);
@@ -46,7 +48,7 @@ double MockMotor::getTargetPosition() const {
 }
 
 double MockMotor::getPosition() const {
-  return 0;
+  return encoder->get();
 }
 
 int32_t MockMotor::getTargetVelocity() const {
@@ -86,7 +88,7 @@ int32_t MockMotor::setVoltageLimit(const std::int32_t ilimit) const {
 }
 
 std::shared_ptr<ContinuousRotarySensor> MockMotor::getEncoder() const {
-  return std::make_shared<MockContinuousRotarySensor>();
+  return encoder;
 }
 
 std::int32_t MockMotor::moveVelocity(const std::int16_t ivelocity) const {
@@ -165,6 +167,10 @@ bool MockTimer::repeat(const QFrequency frequency) {
   return repeat(QTime(1 / frequency.convert(Hz)));
 }
 
+QTime MockTimer::clearMark() {
+  return 0_ms;
+}
+
 ConstantMockTimer::ConstantMockTimer(const QTime idt) : dtToReturn(idt) {
 }
 
@@ -210,6 +216,10 @@ bool ConstantMockTimer::repeat(QFrequency frequency) {
   return false;
 }
 
+QTime ConstantMockTimer::clearMark() {
+  return 0_ms;
+}
+
 MockRate::MockRate() = default;
 
 void MockRate::delay(QFrequency ihz) {
@@ -247,6 +257,13 @@ TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSu
                     return std::make_unique<MockRate>();
                   }),
                   Supplier<std::unique_ptr<SettledUtil>>([]() { return createSettledUtilPtr(); }));
+}
+
+TimeUtil createTimeUtil(const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier) {
+  return TimeUtil(
+    Supplier<std::unique_ptr<AbstractTimer>>([]() { return std::make_unique<MockTimer>(); }),
+    Supplier<std::unique_ptr<AbstractRate>>([]() { return std::make_unique<MockRate>(); }),
+    isettledUtilSupplier);
 }
 
 SimulatedSystem::SimulatedSystem(FlywheelSimulator &simulator)
@@ -307,7 +324,7 @@ double MockAsyncController::getError() const {
 }
 
 bool MockAsyncController::isSettled() {
-  return true;
+  return isSettledOverride;
 }
 
 void MockAsyncController::reset() {
@@ -350,7 +367,7 @@ double MockIterativeController::getDerivative() const {
 }
 
 bool MockIterativeController::isSettled() {
-  return true;
+  return isSettledOverride;
 }
 
 void MockIterativeController::setGains(double ikP, double ikI, double ikD, double ikBias) {

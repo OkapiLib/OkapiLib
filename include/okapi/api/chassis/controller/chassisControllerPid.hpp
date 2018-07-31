@@ -50,6 +50,8 @@ class ChassisControllerPID : public virtual ChassisController {
                        AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
                        const ChassisScales &iscales = ChassisScales({1, 1}));
 
+  ~ChassisControllerPID();
+
   /**
    * Drives the robot straight for a distance (using closed-loop control).
    *
@@ -65,6 +67,20 @@ class ChassisControllerPID : public virtual ChassisController {
   void moveDistance(double itarget) override;
 
   /**
+   * Sets the target distance for the robot to drive straight (using closed-loop control).
+   *
+   * @param itarget distance to travel
+   */
+  void moveDistanceAsync(QLength itarget) override;
+
+  /**
+   * Sets the target distance for the robot to drive straight (using closed-loop control).
+   *
+   * @param itarget distance to travel in motor degrees
+   */
+  void moveDistanceAsync(double itarget) override;
+
+  /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for
@@ -78,6 +94,25 @@ class ChassisControllerPID : public virtual ChassisController {
    */
   void turnAngle(double idegTarget) override;
 
+  /**
+   * Sets the target angle for the robot to turn clockwise in place (using closed-loop control).
+   *
+   * @param idegTarget angle to turn for
+   */
+  void turnAngleAsync(QAngle idegTarget) override;
+
+  /**
+   * Sets the target angle for the robot to turn clockwise in place (using closed-loop control).
+   *
+   * @param idegTarget angle to turn for in motor degrees
+   */
+  void turnAngleAsync(double idegTarget) override;
+
+  /**
+   * Delays until the currently executing movement completes.
+   */
+  void waitUntilSettled() override;
+
   protected:
   std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<IterativePosPIDController> distancePid;
@@ -85,6 +120,18 @@ class ChassisControllerPID : public virtual ChassisController {
   const double gearRatio;
   const double straightScale;
   const double turnScale;
+  CrossplatformThread task;
+  bool doneLooping{true};
+  bool dtorCalled{false};
+
+  static void trampoline(void *context);
+  void loop();
+
+  bool waitForDistanceSettled();
+  bool waitForAngleSettled();
+
+  typedef enum { distance, angle } modeType;
+  modeType mode;
 };
 } // namespace okapi
 

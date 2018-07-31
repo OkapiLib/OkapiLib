@@ -7,7 +7,7 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     setup_target_for_coverage(${PROJECT_NAME}_coverage tests coverage)
 endif()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -Wall -Wextra -Wshadow -Wnull-dereference -pthread -g -O0 -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -Wall -Wextra -Wshadow -Wnull-dereference -pthread -g -O0 -fprofile-arcs -ftest-coverage -D THREADS_STD")
 
 enable_testing()
 
@@ -144,7 +144,6 @@ add_executable(OkapiLibV5
         src/api/control/util/flywheelSimulator.cpp
         src/api/control/util/pidTuner.cpp
         src/api/control/util/settledUtil.cpp
-        src/api/control/closedLoopController.cpp
         src/api/device/button/abstractButton.cpp
         src/api/device/button/buttonBase.cpp
         src/api/device/motor/abstractMotor.cpp

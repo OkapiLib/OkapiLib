@@ -15,6 +15,7 @@
 #include "okapi/api/util/mathUtil.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
+#include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
 
 namespace okapi {
 class AsyncControllerFactory {
@@ -62,6 +63,19 @@ class AsyncControllerFactory {
   /**
    * A position controller that uses the PID algorithm.
    *
+   * @param imotor controller output
+   * @param ienc controller input
+   * @param ikP proportional gain
+   * @param ikI integration gain
+   * @param ikD derivative gain
+   * @param ikBias output bias (a constant added to the output)
+   */
+  static AsyncPosPIDController posPID(Motor imotor, ADIEncoder ienc, double ikP, double ikI,
+                                      double ikD, double ikBias = 0);
+
+  /**
+   * A position controller that uses the PID algorithm.
+   *
    * @param imotor controller input (from the integrated encoder) and output
    * @param ikP proportional gain
    * @param ikI integration gain
@@ -70,6 +84,19 @@ class AsyncControllerFactory {
    */
   static AsyncPosPIDController posPID(MotorGroup imotor, double ikP, double ikI, double ikD,
                                       double ikBias = 0);
+
+  /**
+   * A position controller that uses the PID algorithm.
+   *
+   * @param imotor controller output
+   * @param ienc controller input
+   * @param ikP proportional gain
+   * @param ikI integration gain
+   * @param ikD derivative gain
+   * @param ikBias output bias (a constant added to the output)
+   */
+  static AsyncPosPIDController posPID(MotorGroup imotor, ADIEncoder ienc, double ikP, double ikI,
+                                      double ikD, double ikBias = 0);
 
   /**
    * A position controller that uses the PID algorithm.
@@ -99,6 +126,18 @@ class AsyncControllerFactory {
   /**
    * A velocity controller that uses the PD algorithm.
    *
+   * @param imotor controller output
+   * @param ienc controller input
+   * @param ikP proportional gain
+   * @param ikD derivative gain
+   * @param ikF feed-forward gain
+   */
+  static AsyncVelPIDController velPID(Motor imotor, ADIEncoder ienc, double ikP, double ikD,
+                                      double ikF = 0, double iTPR = imev5TPR);
+
+  /**
+   * A velocity controller that uses the PD algorithm.
+   *
    * @param imotor controller input (from the integrated encoder) and output
    * @param ikP proportional gain
    * @param ikD derivative gain
@@ -106,6 +145,18 @@ class AsyncControllerFactory {
    */
   static AsyncVelPIDController velPID(MotorGroup imotor, double ikP, double ikD, double ikF = 0,
                                       double iTPR = imev5TPR);
+
+  /**
+   * A velocity controller that uses the PD algorithm.
+   *
+   * @param imotor controller output
+   * @param ienc controller input
+   * @param ikP proportional gain
+   * @param ikD derivative gain
+   * @param ikF feed-forward gain
+   */
+  static AsyncVelPIDController velPID(MotorGroup imotor, ADIEncoder ienc, double ikP, double ikD,
+                                      double ikF = 0, double iTPR = imev5TPR);
 
   /**
    * A velocity controller that uses the PD algorithm.

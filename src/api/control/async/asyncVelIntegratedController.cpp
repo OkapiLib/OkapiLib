@@ -43,11 +43,12 @@ double AsyncVelIntegratedController::getError() const {
 }
 
 bool AsyncVelIntegratedController::isSettled() {
-  return settledUtil->isSettled(getError());
+  return isDisabled() ? true : settledUtil->isSettled(getError());
 }
 
 void AsyncVelIntegratedController::reset() {
   hasFirstTarget = false;
+  settledUtil->reset();
 }
 
 void AsyncVelIntegratedController::flipDisable() {

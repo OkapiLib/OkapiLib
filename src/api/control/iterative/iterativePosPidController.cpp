@@ -51,7 +51,7 @@ double IterativePosPIDController::getDerivative() const {
 }
 
 bool IterativePosPIDController::isSettled() {
-  return settledUtil->isSettled(error);
+  return isDisabled() ? true : settledUtil->isSettled(error);
 }
 
 void IterativePosPIDController::setSampleTime(const QTime isampleTime) {

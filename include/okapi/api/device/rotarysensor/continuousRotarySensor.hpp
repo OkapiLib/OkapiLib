@@ -18,7 +18,7 @@ class ContinuousRotarySensor : public RotarySensor {
    *
    * @return 1 on success, PROS_ERR on fail
    */
-  virtual std::int32_t reset() const = 0;
+  virtual std::int32_t reset() = 0;
 };
 } // namespace okapi
 

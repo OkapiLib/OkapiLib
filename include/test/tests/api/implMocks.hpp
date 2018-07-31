@@ -26,9 +26,11 @@ class MockContinuousRotarySensor : public ContinuousRotarySensor {
   public:
   double controllerGet() override;
 
-  int32_t reset() const override;
+  int32_t reset() override;
 
   int32_t get() const override;
+
+  mutable std::int32_t value{0};
 };
 
 /**
@@ -72,6 +74,7 @@ class MockMotor : public AbstractMotor {
 
   std::int32_t moveVoltage(std::int16_t ivoltage) const override;
 
+  std::shared_ptr<MockContinuousRotarySensor> encoder;
   mutable std::int16_t lastVelocity{};
   mutable std::int16_t lastVoltage{};
   mutable std::int16_t lastPosition{};
@@ -93,6 +96,8 @@ class MockTimer : public AbstractTimer {
   QTime getDtFromStart() const override;
 
   void placeMark() override;
+
+  QTime clearMark() override;
 
   void placeHardMark() override;
 
@@ -131,6 +136,8 @@ class ConstantMockTimer : public AbstractTimer {
 
   void placeMark() override;
 
+  QTime clearMark() override;
+
   void placeHardMark() override;
 
   QTime clearHardMark() override;
@@ -167,6 +174,8 @@ TimeUtil createTimeUtil();
 
 TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier);
 
+TimeUtil createTimeUtil(const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier);
+
 class SimulatedSystem : public ControllerInput, public ControllerOutput {
   public:
   SimulatedSystem(FlywheelSimulator &simulator);
@@ -193,6 +202,10 @@ class MockAsyncController : public AsyncPosIntegratedController {
   public:
   MockAsyncController()
     : AsyncPosIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
+  }
+
+  MockAsyncController(const TimeUtil &itimeUtil)
+    : AsyncPosIntegratedController(std::make_shared<MockMotor>(), itimeUtil) {
   }
 
   double getOutput() const override;
@@ -223,6 +236,7 @@ class MockAsyncController : public AsyncPosIntegratedController {
   double minOutput{-1};
   double target{0};
   bool disabled{false};
+  bool isSettledOverride{true};
 };
 
 class MockIterativeController : public IterativePosPIDController {
@@ -269,6 +283,19 @@ class MockIterativeController : public IterativePosPIDController {
   double minOutput{-1};
   double target{0};
   bool disabled{false};
+  bool isSettledOverride{true};
+};
+
+class MockSettledUtil : public SettledUtil {
+  public:
+  MockSettledUtil() : SettledUtil(std::make_unique<MockTimer>()) {
+  }
+
+  bool isSettled(double) override {
+    return isSettledOverride;
+  }
+
+  bool isSettledOverride{true};
 };
 } // namespace okapi
 
