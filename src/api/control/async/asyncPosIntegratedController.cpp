@@ -43,7 +43,7 @@ double AsyncPosIntegratedController::getError() const {
 }
 
 bool AsyncPosIntegratedController::isSettled() {
-  return settledUtil->isSettled(getError());
+  return isDisabled() ? true : settledUtil->isSettled(getError());
 }
 
 void AsyncPosIntegratedController::reset() {
