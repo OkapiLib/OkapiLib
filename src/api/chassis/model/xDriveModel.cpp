@@ -113,7 +113,7 @@ void XDriveModel::rotate(const double ispeed) const {
   bottomLeftMotor->moveVelocity(speed * maxOutput);
 }
 
-void XDriveModel::stop() const {
+void XDriveModel::stop() {
   topLeftMotor->moveVelocity(0);
   topRightMotor->moveVelocity(0);
   bottomRightMotor->moveVelocity(0);

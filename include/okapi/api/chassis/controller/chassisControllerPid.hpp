@@ -113,6 +113,11 @@ class ChassisControllerPID : public virtual ChassisController {
    */
   void waitUntilSettled() override;
 
+  /**
+   * Stop the robot (set all the motors to 0).
+   */
+  void stop() override;
+
   protected:
   std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<IterativePosPIDController> distancePid;
@@ -129,6 +134,7 @@ class ChassisControllerPID : public virtual ChassisController {
 
   bool waitForDistanceSettled();
   bool waitForAngleSettled();
+  void stopAfterSettled();
 
   typedef enum { distance, angle } modeType;
   modeType mode;

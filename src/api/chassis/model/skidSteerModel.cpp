@@ -92,7 +92,7 @@ void SkidSteerModel::rotate(const double ispeed) const {
   rightSideMotor->moveVelocity(-1 * speed * maxOutput);
 }
 
-void SkidSteerModel::stop() const {
+void SkidSteerModel::stop() {
   leftSideMotor->moveVelocity(0);
   rightSideMotor->moveVelocity(0);
 }
