@@ -20,18 +20,10 @@ class ChassisScales {
   public:
   /**
    * The two scales a Chassis Controller needs to do all of its closed-loop control. First index is
-   * the straight scale, second index is the turn scale. The straight scale converts motor degrees
-   * to meters and the turn scale converts motor degrees to robot turn degrees. Read the clawbot
-   * programming tutorial for more information behind the meaning of these two numbers.
-   *
-   * @param  iscales {straight scale, turn scale}
-   */
-  ChassisScales(const std::initializer_list<double> &iscales);
-
-  /**
-   * The two scales a Chassis Controller needs to do all of its closed-loop control. First index is
    * the wheel diameter, second index is the wheelbase width. Read the clawbot programming tutorial
    * for more information behind the meaning of these two numbers.
+   *
+   * The middle scale can be set directly after calling the constructor if it is needed.
    *
    * The wheelbase diameter is the center-to-center distance between the wheels (center-to-center
    * meaning the width between the centers of both wheels). For example, if you are using four inch
@@ -61,6 +53,8 @@ class ChassisScales {
    */
   ChassisScales(const std::initializer_list<QLength> &iwheelbase);
 
+  QLength wheelDiameter{0_m};
+  QLength wheelbaseWidth{0_m};
   double straight{0};
   double turn{0};
   double middle{0};

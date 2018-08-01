@@ -8,26 +8,15 @@
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 
 namespace okapi {
-
-ChassisScales::ChassisScales(const std::initializer_list<double> &iscales) {
-  validateInput(iscales.size());
-
-  std::vector<double> vec(iscales);
-  straight = vec.at(0);
-  turn = vec.at(1);
-
-  if (iscales.size() >= 3) {
-    middle = vec.at(2);
-  }
-}
-
 ChassisScales::ChassisScales(const std::initializer_list<QLength> &iwheelbase) {
   validateInput(iwheelbase.size());
 
   std::vector<QLength> vec(iwheelbase);
-  straight = static_cast<double>(360 / (vec.at(0).convert(meter) * 1_pi));
-  turn = vec.at(1).convert(meter) / vec.at(0).convert(meter);
-  // TODO: RGB: What would the middle scale be?
+  wheelDiameter = vec.at(0);
+  wheelbaseWidth = vec.at(1);
+
+  straight = static_cast<double>(360 / (wheelDiameter.convert(meter) * 1_pi));
+  turn = wheelbaseWidth.convert(meter) / wheelDiameter.convert(meter);
 }
 
 void ChassisScales::validateInput(std::size_t inputSize) {
