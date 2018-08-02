@@ -18,12 +18,14 @@
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/units/RQuantity.hpp"
 
+namespace okapi {
 QUANTITY_TYPE(1, 2, -2, 0, QTorque)
 
 constexpr QTorque newtonMeter = newton * meter;
 constexpr QTorque footPound = 1.355817948 * newtonMeter;
 constexpr QTorque inchPound = 0.083333333 * footPound;
 
+inline namespace literals {
 constexpr QTorque operator"" _nM(long double x) {
   return QTorque(x);
 }
@@ -42,5 +44,7 @@ constexpr QTorque operator"" _ftLb(long double x) {
 constexpr QTorque operator"" _ftLb(unsigned long long int x) {
   return static_cast<double>(x) * footPound;
 }
+} // namespace literals
+} // namespace okapi
 
 #endif

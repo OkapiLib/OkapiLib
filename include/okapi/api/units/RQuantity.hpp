@@ -16,6 +16,7 @@
 
 #include <ratio>
 
+namespace okapi {
 template <typename MassDim, typename LengthDim, typename TimeDim, typename AngleDim>
 class RQuantity {
   public:
@@ -135,12 +136,15 @@ constexpr bool operator>(const RQuantity<M, L, T, A> &lhs, const RQuantity<M, L,
   return (lhs.getValue() > rhs.getValue());
 }
 
+inline namespace literals {
 constexpr long double operator"" _pi(long double x) {
   return static_cast<double>(x) * 3.1415926535897932384626433832795;
 }
 constexpr long double operator"" _pi(unsigned long long int x) {
   return static_cast<double>(x) * 3.1415926535897932384626433832795;
 }
+} // namespace literals
+} // namespace okapi
 
 // Conversion macro, which utilizes the string literals
 #define ConvertTo(_x, _y) (_x).convert(1.0_##_y)
