@@ -18,6 +18,8 @@
 #include "okapi/api/units/QTime.hpp"
 #include "okapi/api/units/RQuantity.hpp"
 
-QUANTITY_TYPE(0, 1, -3, 0, QJerk)
+namespace okapi{
+  QUANTITY_TYPE(0, 1, -3, 0, QJerk)
+}
 
 #endif

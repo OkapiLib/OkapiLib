@@ -16,51 +16,54 @@
 
 #include "okapi/api/units/RQuantity.hpp"
 
-QUANTITY_TYPE(1, 0, 0, 0, QMass)
+namespace okapi{
+  QUANTITY_TYPE(1, 0, 0, 0, QMass)
 
-constexpr QMass kg(1.0); // SI base unit
-constexpr QMass gramme = 0.001 * kg;
-constexpr QMass tonne = 1000 * kg;
-constexpr QMass ounce = 0.028349523125 * kg;
-constexpr QMass pound = 16 * ounce;
-constexpr QMass stone = 14 * pound;
+  constexpr QMass kg(1.0); // SI base unit
+  constexpr QMass gramme = 0.001 * kg;
+  constexpr QMass tonne = 1000 * kg;
+  constexpr QMass ounce = 0.028349523125 * kg;
+  constexpr QMass pound = 16 * ounce;
+  constexpr QMass stone = 14 * pound;
 
-// literals for mass units
-constexpr QMass operator"" _kg(long double x) {
-  return QMass(x);
-}
-constexpr QMass operator"" _g(long double x) {
-  return static_cast<double>(x) * gramme;
-}
-constexpr QMass operator"" _t(long double x) {
-  return static_cast<double>(x) * tonne;
-}
-constexpr QMass operator"" _oz(long double x) {
-  return static_cast<double>(x) * ounce;
-}
-constexpr QMass operator"" _lb(long double x) {
-  return static_cast<double>(x) * pound;
-}
-constexpr QMass operator"" _st(long double x) {
-  return static_cast<double>(x) * stone;
-}
-constexpr QMass operator"" _kg(unsigned long long int x) {
-  return QMass(static_cast<double>(x));
-}
-constexpr QMass operator"" _g(unsigned long long int x) {
-  return static_cast<double>(x) * gramme;
-}
-constexpr QMass operator"" _t(unsigned long long int x) {
-  return static_cast<double>(x) * tonne;
-}
-constexpr QMass operator"" _oz(unsigned long long int x) {
-  return static_cast<double>(x) * ounce;
-}
-constexpr QMass operator"" _lb(unsigned long long int x) {
-  return static_cast<double>(x) * pound;
-}
-constexpr QMass operator"" _st(unsigned long long int x) {
-  return static_cast<double>(x) * stone;
+  inline namespace okapi{
+    constexpr QMass operator"" _kg(long double x) {
+      return QMass(x);
+    }
+    constexpr QMass operator"" _g(long double x) {
+      return static_cast<double>(x) * gramme;
+    }
+    constexpr QMass operator"" _t(long double x) {
+      return static_cast<double>(x) * tonne;
+    }
+    constexpr QMass operator"" _oz(long double x) {
+      return static_cast<double>(x) * ounce;
+    }
+    constexpr QMass operator"" _lb(long double x) {
+      return static_cast<double>(x) * pound;
+    }
+    constexpr QMass operator"" _st(long double x) {
+      return static_cast<double>(x) * stone;
+    }
+    constexpr QMass operator"" _kg(unsigned long long int x) {
+      return QMass(static_cast<double>(x));
+    }
+    constexpr QMass operator"" _g(unsigned long long int x) {
+      return static_cast<double>(x) * gramme;
+    }
+    constexpr QMass operator"" _t(unsigned long long int x) {
+      return static_cast<double>(x) * tonne;
+    }
+    constexpr QMass operator"" _oz(unsigned long long int x) {
+      return static_cast<double>(x) * ounce;
+    }
+    constexpr QMass operator"" _lb(unsigned long long int x) {
+      return static_cast<double>(x) * pound;
+    }
+    constexpr QMass operator"" _st(unsigned long long int x) {
+      return static_cast<double>(x) * stone;
+    }
+  }
 }
 
 #endif

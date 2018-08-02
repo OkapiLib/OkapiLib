@@ -16,15 +16,19 @@
 
 #include "okapi/api/units/RQuantity.hpp"
 
-QUANTITY_TYPE(0, 0, -1, 0, QFrequency)
+namespace okapi {
+  QUANTITY_TYPE(0, 0, -1, 0, QFrequency)
 
-constexpr QFrequency Hz(1.0);
+  constexpr QFrequency Hz(1.0);
 
-constexpr QFrequency operator"" _Hz(long double x) {
-  return QFrequency(x);
-}
-constexpr QFrequency operator"" _Hz(unsigned long long int x) {
-  return QFrequency(static_cast<long double>(x));
+  inline namespace literals{
+    constexpr QFrequency operator"" _Hz(long double x) {
+      return QFrequency(x);
+    }
+    constexpr QFrequency operator"" _Hz(unsigned long long int x) {
+      return QFrequency(static_cast<long double>(x));
+    }
+  }
 }
 
 #endif

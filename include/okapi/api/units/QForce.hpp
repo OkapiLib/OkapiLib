@@ -18,29 +18,33 @@
 #include "okapi/api/units/QMass.hpp"
 #include "okapi/api/units/RQuantity.hpp"
 
-QUANTITY_TYPE(1, 1, -2, 0, QForce)
+namespace okapi {
+  QUANTITY_TYPE(1, 1, -2, 0, QForce)
 
-constexpr QForce newton = (kg * meter) / (second * second);
-constexpr QForce poundforce = pound * G;
-constexpr QForce kilopond = kg * G;
+  constexpr QForce newton = (kg * meter) / (second * second);
+  constexpr QForce poundforce = pound * G;
+  constexpr QForce kilopond = kg * G;
 
-constexpr QForce operator"" _n(long double x) {
-  return QForce(x);
-}
-constexpr QForce operator"" _n(unsigned long long int x) {
-  return QForce(static_cast<double>(x));
-}
-constexpr QForce operator"" _lbf(long double x) {
-  return static_cast<double>(x) * poundforce;
-}
-constexpr QForce operator"" _lbf(unsigned long long int x) {
-  return static_cast<double>(x) * poundforce;
-}
-constexpr QForce operator"" _kp(long double x) {
-  return static_cast<double>(x) * kilopond;
-}
-constexpr QForce operator"" _kp(unsigned long long int x) {
-  return static_cast<double>(x) * kilopond;
+  inline namespace literals{
+    constexpr QForce operator"" _n(long double x) {
+      return QForce(x);
+    }
+    constexpr QForce operator"" _n(unsigned long long int x) {
+      return QForce(static_cast<double>(x));
+    }
+    constexpr QForce operator"" _lbf(long double x) {
+      return static_cast<double>(x) * poundforce;
+    }
+    constexpr QForce operator"" _lbf(unsigned long long int x) {
+      return static_cast<double>(x) * poundforce;
+    }
+    constexpr QForce operator"" _kp(long double x) {
+      return static_cast<double>(x) * kilopond;
+    }
+    constexpr QForce operator"" _kp(unsigned long long int x) {
+      return static_cast<double>(x) * kilopond;
+    }
+  }
 }
 
 #endif

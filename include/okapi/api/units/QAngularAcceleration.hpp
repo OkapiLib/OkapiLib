@@ -16,6 +16,8 @@
 
 #include "okapi/api/units/RQuantity.hpp"
 
-QUANTITY_TYPE(0, 0, -2, 1, QAngularAcceleration)
+namespace okapi{
+  QUANTITY_TYPE(0, 0, -2, 1, QAngularAcceleration)
+}
 
 #endif

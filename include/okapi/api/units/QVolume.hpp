@@ -18,16 +18,18 @@
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/units/RQuantity.hpp"
 
-QUANTITY_TYPE(0, 3, 0, 0, QVolume)
+namespace okapi{
+  QUANTITY_TYPE(0, 3, 0, 0, QVolume)
 
-constexpr QVolume kilometer3 = kilometer2 * kilometer;
-constexpr QVolume meter3 = meter2 * meter;
-constexpr QVolume decimeter3 = decimeter2 * decimeter;
-constexpr QVolume centimeter3 = centimeter2 * centimeter;
-constexpr QVolume millimeter3 = millimeter2 * millimeter;
-constexpr QVolume inch3 = inch2 * inch;
-constexpr QVolume foot3 = foot2 * foot;
-constexpr QVolume mile3 = mile2 * mile;
-constexpr QVolume litre = decimeter3;
+  constexpr QVolume kilometer3 = kilometer2 * kilometer;
+  constexpr QVolume meter3 = meter2 * meter;
+  constexpr QVolume decimeter3 = decimeter2 * decimeter;
+  constexpr QVolume centimeter3 = centimeter2 * centimeter;
+  constexpr QVolume millimeter3 = millimeter2 * millimeter;
+  constexpr QVolume inch3 = inch2 * inch;
+  constexpr QVolume foot3 = foot2 * foot;
+  constexpr QVolume mile3 = mile2 * mile;
+  constexpr QVolume litre = decimeter3;
+}
 
 #endif
