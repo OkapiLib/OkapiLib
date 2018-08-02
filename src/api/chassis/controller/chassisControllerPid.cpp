@@ -71,13 +71,13 @@ void ChassisControllerPID::loop() {
       case distance:
         encVals = model->getSensorVals() - encStartVals;
         distanceElapsed = static_cast<double>((encVals[0] + encVals[1])) / 2.0;
-        angleChange = static_cast<double>(encVals[1] - encVals[0]);
+        angleChange = static_cast<double>(encVals[0] - encVals[1]);
         model->driveVector(distancePid->step(distanceElapsed), anglePid->step(angleChange));
 
         break;
       case angle:
         encVals = model->getSensorVals() - encStartVals;
-        angleChange = static_cast<double>(encVals[1] - encVals[0]);
+        angleChange = static_cast<double>(encVals[0] - encVals[1]);
         model->rotate(anglePid->step(angleChange));
 
         break;
