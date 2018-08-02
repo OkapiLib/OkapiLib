@@ -60,7 +60,7 @@ class ChassisModel : public ReadOnlyChassisModel {
   /**
    * Stop the robot (set all the motors to 0).
    */
-  virtual void stop() const = 0;
+  virtual void stop() = 0;
 
   /**
    * Drive the robot with a tank drive layout. Uses voltage mode.

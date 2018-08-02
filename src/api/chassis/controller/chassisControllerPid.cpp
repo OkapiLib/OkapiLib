@@ -162,10 +162,7 @@ void ChassisControllerPID::waitUntilSettled() {
 
       // Only disable the controllers and stop if we are totally settled and won't try again
       if (completelySettled) {
-        doneLooping = true;
-        distancePid->flipDisable(true);
-        anglePid->flipDisable(true);
-        model->stop();
+        stopAfterSettled();
       }
 
       break;
@@ -175,9 +172,7 @@ void ChassisControllerPID::waitUntilSettled() {
 
       // Only disable the controllers and stop if we are totally settled and won't try again
       if (completelySettled) {
-        doneLooping = true;
-        anglePid->flipDisable(true);
-        model->stop();
+        stopAfterSettled();
       }
 
       break;
@@ -224,5 +219,30 @@ bool ChassisControllerPID::waitForAngleSettled() {
 
   // True will cause the loop to exit
   return true;
+}
+
+void ChassisControllerPID::stopAfterSettled() {
+  switch (mode) {
+  case distance:
+    doneLooping = true;
+    distancePid->flipDisable(true);
+    anglePid->flipDisable(true);
+    model->stop();
+    break;
+
+  case angle:
+    doneLooping = true;
+    anglePid->flipDisable(true);
+    model->stop();
+    break;
+
+  default:
+    break;
+  }
+}
+
+void ChassisControllerPID::stop() {
+  stopAfterSettled();
+  ChassisController::stop();
 }
 } // namespace okapi

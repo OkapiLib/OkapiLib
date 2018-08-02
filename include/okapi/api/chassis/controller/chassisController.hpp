@@ -118,7 +118,7 @@ class ChassisController {
   /**
    * Stop the robot (set all the motors to 0).
    */
-  virtual void stop() const;
+  virtual void stop();
 
   /**
    * Drive the robot with a tank drive layout. Uses voltage mode.

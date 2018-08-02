@@ -105,4 +105,11 @@ void ChassisControllerIntegrated::waitUntilSettled() {
   rightController->flipDisable(true);
   model->stop();
 }
+
+void ChassisControllerIntegrated::stop() {
+  leftController->flipDisable(true);
+  rightController->flipDisable(true);
+
+  ChassisController::stop();
+}
 } // namespace okapi

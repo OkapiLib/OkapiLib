@@ -103,7 +103,7 @@ class XDriveModel : public ChassisModel {
   /**
    * Stop the robot (set all the motors to 0). Uses velocity mode.
    */
-  void stop() const override;
+  void stop() override;
 
   /**
    * Drive the robot with a tank drive layout. Uses voltage mode.

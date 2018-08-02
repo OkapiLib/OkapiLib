@@ -111,6 +111,11 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   void waitUntilSettled() override;
 
+  /**
+   * Stop the robot (set all the motors to 0).
+   */
+  void stop() override;
+
   protected:
   std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<AsyncPosIntegratedController> leftController;
