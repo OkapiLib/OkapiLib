@@ -26,6 +26,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::unique_ptr<AsyncPosIntegratedController> irightController,
   AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
   : ChassisController(std::move(imodel)),
+    logger(Logger::instance()),
     rate(std::move(itimeUtil.getRate())),
     leftController(std::move(ileftController)),
     rightController(std::move(irightController)),
@@ -53,6 +54,7 @@ void ChassisControllerIntegrated::moveDistance(const double itarget) {
 }
 
 void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
+  logger->info("moveDistanceAsync start");
   leftController->reset();
   rightController->reset();
   leftController->flipDisable(false);
@@ -62,6 +64,7 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
   const auto enc = model->getSensorVals();
   leftController->setTarget(newTarget + enc[0]);
   rightController->setTarget(newTarget + enc[1]);
+  logger->info("moveDistanceAsync end");
 }
 
 void ChassisControllerIntegrated::moveDistanceAsync(const double itarget) {
@@ -97,13 +100,16 @@ void ChassisControllerIntegrated::turnAngleAsync(const double idegTarget) {
 }
 
 void ChassisControllerIntegrated::waitUntilSettled() {
+  logger->info("waitUntilSettled start");
   while (!(leftController->isSettled() && rightController->isSettled())) {
+    logger->info("waitUntilSettled check");
     rate->delayUntil(10_ms);
   }
 
   leftController->flipDisable(true);
   rightController->flipDisable(true);
   model->stop();
+  logger->info("waitUntilSettled stop");
 }
 
 void ChassisControllerIntegrated::stop() {

@@ -10,6 +10,7 @@
 
 #include <algorithm>
 #include <cstdint>
+#include <type_traits>
 
 namespace okapi {
 static constexpr double analogInToV = 286.0;
@@ -92,6 +93,13 @@ constexpr double deadband(const double value, const double min, const double max
 constexpr double remapRange(const double value, const double oldMin, const double oldMax,
                             const double newMin, const double newMax) {
   return (value - oldMin) * ((newMax - newMin) / (oldMax - oldMin)) + newMin;
+}
+
+/**
+ * Converts an enum to its value type.
+ */
+template <typename E> constexpr auto toUnderlyingType(E e) noexcept {
+  return static_cast<std::underlying_type_t<E>>(e);
 }
 } // namespace okapi
 
