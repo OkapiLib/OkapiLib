@@ -30,11 +30,11 @@ class Logger {
   /**
    * Get the logger instance.
    */
-  static Logger *instance();
+  static Logger *instance() noexcept;
 
   /**
    * Set a new logging level. Log statements above this level will be disabled. For example, if the
-   * level is set to LogLevel::warn, then LogLevel::warn and Loglevel::error will be enabled, but
+   * level is set to LogLevel::warn, then LogLevel::warn and LogLevel::error will be enabled, but
    * LogLevel::info and LogLevel::debug will be disabled.
    */
   static void setLogLevel(LogLevel level) noexcept;

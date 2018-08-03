@@ -17,7 +17,7 @@ FILE *Logger::logfile;
 
 Logger::Logger() = default;
 
-Logger *Logger::instance() {
+Logger *Logger::instance() noexcept {
   if (!s_instance) {
     s_instance = new Logger();
   }
