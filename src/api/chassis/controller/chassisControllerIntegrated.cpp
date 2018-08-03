@@ -35,6 +35,8 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     straightScale(iscales.straight),
     turnScale(iscales.turn) {
   if (igearset.ratio == 0) {
+    logger->error("ChassisControllerIntegrated: The gear ratio cannot be zero! Check if you are "
+                  "using integer division.");
     throw std::invalid_argument("ChassisControllerIntegrated: The gear ratio cannot be zero! Check "
                                 "if you are using integer division.");
   }
@@ -54,17 +56,22 @@ void ChassisControllerIntegrated::moveDistance(const double itarget) {
 }
 
 void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
-  logger->info("moveDistanceAsync start");
+  logger->info("ChassisControllerIntegrated: moving " + std::to_string(itarget.convert(meter)) +
+               " meters");
+
   leftController->reset();
   rightController->reset();
   leftController->flipDisable(false);
   rightController->flipDisable(false);
 
   const double newTarget = itarget.convert(meter) * straightScale * gearRatio;
+
+  logger->info("ChassisControllerIntegrated: moving " + std::to_string(newTarget) +
+               " motor degrees");
+
   const auto enc = model->getSensorVals();
   leftController->setTarget(newTarget + enc[0]);
   rightController->setTarget(newTarget + enc[1]);
-  logger->info("moveDistanceAsync end");
 }
 
 void ChassisControllerIntegrated::moveDistanceAsync(const double itarget) {
@@ -83,12 +90,19 @@ void ChassisControllerIntegrated::turnAngle(const double idegTarget) {
 }
 
 void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
+  logger->info("ChassisControllerIntegrated: turning " +
+               std::to_string(idegTarget.convert(degree)) + " degrees");
+
   leftController->reset();
   rightController->reset();
   leftController->flipDisable(false);
   rightController->flipDisable(false);
 
   const double newTarget = idegTarget.convert(degree) * turnScale * gearRatio;
+
+  logger->info("ChassisControllerIntegrated: turning " + std::to_string(newTarget) +
+               " motor degrees");
+
   const auto enc = model->getSensorVals();
   leftController->setTarget(newTarget + enc[0]);
   rightController->setTarget(-1 * newTarget + enc[1]);
@@ -100,16 +114,16 @@ void ChassisControllerIntegrated::turnAngleAsync(const double idegTarget) {
 }
 
 void ChassisControllerIntegrated::waitUntilSettled() {
-  logger->info("waitUntilSettled start");
+  logger->info("ChassisControllerIntegrated: Waiting to settle");
   while (!(leftController->isSettled() && rightController->isSettled())) {
-    logger->info("waitUntilSettled check");
     rate->delayUntil(10_ms);
   }
 
   leftController->flipDisable(true);
   rightController->flipDisable(true);
   model->stop();
-  logger->info("waitUntilSettled stop");
+
+  logger->info("ChassisControllerIntegrated: Done waiting to settle");
 }
 
 void ChassisControllerIntegrated::stop() {
