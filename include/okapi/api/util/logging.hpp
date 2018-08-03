@@ -16,10 +16,9 @@ class Logger {
   public:
   enum class LogLevel { off = 0, info = 3, warn = 2, error = 1 };
 
-  static Logger *instance();
-
   /**
-   * A Logger.
+   * Initializes the logger. If the logger is not initialized when logging methods are called,
+   * nothing will be logged.
    *
    * @param itimer A timer used to get the current time for log statements.
    * @param logfileName The name of the log file to open.
@@ -28,6 +27,16 @@ class Logger {
   static void initialize(std::unique_ptr<AbstractTimer> itimer, std::string_view filename,
                          LogLevel level) noexcept;
 
+  /**
+   * Get the logger instance.
+   */
+  static Logger *instance();
+
+  /**
+   * Set a new logging level. Log statements above this level will be disabled. For example, if the
+   * level is set to LogLevel::warn, then LogLevel::warn and Loglevel::error will be enabled, but
+   * LogLevel::info will be disabled.
+   */
   static void setLogLevel(LogLevel level) noexcept;
 
   void info(std::string_view message) const noexcept;
@@ -35,6 +44,11 @@ class Logger {
   void warn(std::string_view message) const noexcept;
 
   void error(std::string_view message) const noexcept;
+
+  /**
+   * Closes the connection to the log file.
+   */
+  void close() noexcept;
 
   private:
   static Logger *s_instance;

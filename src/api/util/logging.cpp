@@ -54,4 +54,9 @@ void Logger::error(std::string_view message) const noexcept {
             message.data());
   }
 }
+
+void Logger::close() noexcept {
+  fclose(logfile);
+  logfile = nullptr;
+}
 } // namespace okapi
