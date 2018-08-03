@@ -34,6 +34,13 @@ void Logger::setLogLevel(Logger::LogLevel level) noexcept {
   logLevel = level;
 }
 
+void Logger::debug(std::string_view message) const noexcept {
+  if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info) && logfile && timer) {
+    fprintf(logfile, "%ld DEBUG: %s\n", static_cast<long>(timer->millis().convert(millisecond)),
+            message.data());
+  }
+}
+
 void Logger::info(std::string_view message) const noexcept {
   if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info) && logfile && timer) {
     fprintf(logfile, "%ld INFO: %s\n", static_cast<long>(timer->millis().convert(millisecond)),

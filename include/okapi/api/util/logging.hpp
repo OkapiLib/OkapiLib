@@ -14,7 +14,7 @@
 namespace okapi {
 class Logger {
   public:
-  enum class LogLevel { off = 0, info = 3, warn = 2, error = 1 };
+  enum class LogLevel { off = 0, debug = 4, info = 3, warn = 2, error = 1 };
 
   /**
    * Initializes the logger. If the logger is not initialized when logging methods are called,
@@ -35,9 +35,11 @@ class Logger {
   /**
    * Set a new logging level. Log statements above this level will be disabled. For example, if the
    * level is set to LogLevel::warn, then LogLevel::warn and Loglevel::error will be enabled, but
-   * LogLevel::info will be disabled.
+   * LogLevel::info and LogLevel::debug will be disabled.
    */
   static void setLogLevel(LogLevel level) noexcept;
+
+  void debug(std::string_view message) const noexcept;
 
   void info(std::string_view message) const noexcept;
 
