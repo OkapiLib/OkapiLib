@@ -12,6 +12,7 @@
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativeController.hpp"
 #include "okapi/api/util/abstractRate.hpp"
+#include "okapi/api/util/logging.hpp"
 #include <memory>
 
 namespace okapi {
@@ -62,6 +63,7 @@ class ControllerRunner {
                                   ControllerOutput &ioutput);
 
   protected:
+  Logger *logger;
   std::unique_ptr<AbstractRate> rate;
 };
 } // namespace okapi
