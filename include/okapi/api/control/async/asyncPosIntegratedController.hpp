@@ -10,6 +10,7 @@
 
 #include "okapi/api/control/async/asyncPositionController.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
+#include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
@@ -85,6 +86,7 @@ class AsyncPosIntegratedController : public AsyncPositionController {
   void waitUntilSettled() override;
 
   protected:
+  Logger *logger;
   std::shared_ptr<AbstractMotor> motor;
   double lastTarget = 0;
   bool controllerIsDisabled = false;

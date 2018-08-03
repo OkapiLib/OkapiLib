@@ -18,7 +18,8 @@ PIDTuner::PIDTuner(std::shared_ptr<ControllerInput> iinput,
                    QTime itimeout, std::int32_t igoal, double ikPMin, double ikPMax, double ikIMin,
                    double ikIMax, double ikDMin, double ikDMax, std::int32_t inumIterations,
                    std::int32_t inumParticles, double ikSettle, double ikITAE)
-  : input(iinput),
+  : logger(Logger::instance()),
+    input(iinput),
     output(ioutput),
     timeUtil(itimeUtil),
     rate(std::move(itimeUtil.getRate())),
@@ -72,9 +73,12 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
 
   // Run the optimization
   for (int iteration = 0; iteration < numIterations; iteration++) {
+    logger->info("PIDTuner: Iteration number " + std::to_string(iteration));
     bool firstGoal = true;
 
     for (std::size_t particleIndex = 0; particleIndex < numParticles; particleIndex++) {
+      logger->info("PIDTuner: Particle number " + std::to_string(particleIndex));
+
       testController.setGains(particles.at(particleIndex).kP.pos,
                               particles.at(particleIndex).kI.pos,
                               particles.at(particleIndex).kD.pos);
@@ -111,7 +115,10 @@ IterativePosPIDControllerArgs PIDTuner::autotune() {
       output->controllerSet(0);
       testController.reset();
 
-      double error = kSettle * settleTime.convert(millisecond) + kITAE * itae;
+      const double error = kSettle * settleTime.convert(millisecond) + kITAE * itae;
+
+      logger->info("PIDTuner: New error is " + std::to_string(error));
+
       if (error < particles.at(particleIndex).bestError) {
         particles.at(particleIndex).kP.best = particles.at(particleIndex).kP.pos;
         particles.at(particleIndex).kI.best = particles.at(particleIndex).kI.pos;

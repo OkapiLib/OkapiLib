@@ -6,9 +6,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/device/motor/motor.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include <cmath>
-#include <type_traits>
 
 namespace okapi {
 Motor::Motor(const std::int8_t port)
@@ -124,10 +124,6 @@ std::int32_t Motor::setVoltageLimit(const std::int32_t ilimit) const {
 
 std::shared_ptr<ContinuousRotarySensor> Motor::getEncoder() const {
   return std::make_shared<IntegratedEncoder>(*this);
-}
-
-template <typename E> constexpr auto toUnderlyingType(E e) noexcept {
-  return static_cast<std::underlying_type_t<E>>(e);
 }
 
 void Motor::controllerSet(const double ivalue) {

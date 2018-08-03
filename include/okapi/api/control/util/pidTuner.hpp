@@ -13,6 +13,7 @@
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/units/QTime.hpp"
+#include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <memory>
 #include <vector>
@@ -47,6 +48,7 @@ class PIDTuner {
     double bestError;
   };
 
+  Logger *logger;
   std::shared_ptr<ControllerInput> input;
   std::shared_ptr<ControllerOutput> output;
   TimeUtil timeUtil;

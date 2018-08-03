@@ -25,7 +25,8 @@ IterativePosPIDController::IterativePosPIDController(const IterativePosPIDContro
 IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
                                                      const double ikD, const double ikBias,
                                                      const TimeUtil &itimeUtil)
-  : loopDtTimer(std::move(itimeUtil.getTimer())),
+  : logger(Logger::instance()),
+    loopDtTimer(std::move(itimeUtil.getTimer())),
     settledUtil(std::move(itimeUtil.getSettledUtil())) {
   if (ikI != 0) {
     setIntegralLimits(-1 / ikI, 1 / ikI);
@@ -35,6 +36,7 @@ IterativePosPIDController::IterativePosPIDController(const double ikP, const dou
 }
 
 void IterativePosPIDController::setTarget(const double itarget) {
+  logger->info("IterativePosPIDController: Set target to " + std::to_string(itarget));
   target = itarget;
 }
 
@@ -145,6 +147,7 @@ void IterativePosPIDController::setGains(const double ikP, const double ikI, con
 }
 
 void IterativePosPIDController::reset() {
+  logger->info("IterativePosPIDController: Reset");
   error = 0;
   lastError = 0;
   lastReading = 0;
@@ -161,6 +164,7 @@ void IterativePosPIDController::flipDisable() {
 }
 
 void IterativePosPIDController::flipDisable(const bool iisDisabled) {
+  logger->info("IterativePosPIDController: flipDisable " + std::to_string(iisDisabled));
   isOn = !iisDisabled;
 }
 

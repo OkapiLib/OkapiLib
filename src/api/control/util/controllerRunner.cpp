@@ -9,23 +9,29 @@
 #include <cmath>
 
 namespace okapi {
-ControllerRunner::ControllerRunner(std::unique_ptr<AbstractRate> irate) : rate(std::move(irate)) {
+ControllerRunner::ControllerRunner(std::unique_ptr<AbstractRate> irate)
+  : logger(Logger::instance()), rate(std::move(irate)) {
 }
 
 ControllerRunner::~ControllerRunner() = default;
 
 double ControllerRunner::runUntilSettled(const double itarget, AsyncController &icontroller) {
+  logger->info("ControllerRunner: runUntilSettled(AsyncController): Set target to " +
+               std::to_string(itarget));
   icontroller.setTarget(itarget);
 
   while (!icontroller.isSettled()) {
     rate->delay(10);
   }
 
+  logger->info("ControllerRunner: runUntilSettled(AsyncController): Done waiting to settle");
   return icontroller.getError();
 }
 
 double ControllerRunner::runUntilSettled(const double itarget, IterativeController &icontroller,
                                          ControllerOutput &ioutput) {
+  logger->info("ControllerRunner: runUntilSettled(IterativeController): Set target to " +
+               std::to_string(itarget));
   icontroller.setTarget(itarget);
 
   while (!icontroller.isSettled()) {
@@ -33,10 +39,13 @@ double ControllerRunner::runUntilSettled(const double itarget, IterativeControll
     rate->delay(10);
   }
 
+  logger->info("ControllerRunner: runUntilSettled(IterativeController): Done waiting to settle");
   return icontroller.getError();
 }
 
 double ControllerRunner::runUntilAtTarget(const double itarget, AsyncController &icontroller) {
+  logger->info("ControllerRunner: runUntilAtTarget(AsyncController): Set target to " +
+               std::to_string(itarget));
   icontroller.setTarget(itarget);
 
   double error = icontroller.getError();
@@ -47,11 +56,14 @@ double ControllerRunner::runUntilAtTarget(const double itarget, AsyncController 
     error = icontroller.getError();
   }
 
+  logger->info("ControllerRunner: runUntilAtTarget(AsyncController): Done waiting to settle");
   return icontroller.getError();
 }
 
 double ControllerRunner::runUntilAtTarget(const double itarget, IterativeController &icontroller,
                                           ControllerOutput &ioutput) {
+  logger->info("ControllerRunner: runUntilAtTarget(IterativeController): Set target to " +
+               std::to_string(itarget));
   icontroller.setTarget(itarget);
 
   double error = icontroller.getError();
@@ -63,6 +75,7 @@ double ControllerRunner::runUntilAtTarget(const double itarget, IterativeControl
     error = icontroller.getError();
   }
 
+  logger->info("ControllerRunner: runUntilAtTarget(IterativeController): Done waiting to settle");
   return icontroller.getError();
 }
 } // namespace okapi

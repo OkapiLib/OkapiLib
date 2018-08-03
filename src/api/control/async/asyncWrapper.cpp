@@ -15,7 +15,8 @@ AsyncWrapper::AsyncWrapper(std::shared_ptr<ControllerInput> iinput,
                            std::unique_ptr<IterativeController> icontroller,
                            const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
                            std::unique_ptr<SettledUtil> isettledUtil)
-  : input(iinput),
+  : logger(Logger::instance()),
+    input(iinput),
     output(ioutput),
     controller(std::move(icontroller)),
     loopRate(std::move(irateSupplier.get())),
@@ -42,6 +43,7 @@ void AsyncWrapper::trampoline(void *context) {
 }
 
 void AsyncWrapper::setTarget(const double itarget) {
+  logger->info("AsyncWrapper: Set target to " + std::to_string(itarget));
   controller->setTarget(itarget);
 }
 
@@ -66,6 +68,7 @@ void AsyncWrapper::setOutputLimits(double imax, double imin) {
 }
 
 void AsyncWrapper::reset() {
+  logger->info("AsyncWrapper: Reset");
   controller->reset();
 }
 
@@ -74,6 +77,7 @@ void AsyncWrapper::flipDisable() {
 }
 
 void AsyncWrapper::flipDisable(const bool iisDisabled) {
+  logger->info("AsyncWrapper: flipDisable " + std::to_string(iisDisabled));
   controller->flipDisable(iisDisabled);
 }
 
@@ -82,8 +86,10 @@ bool AsyncWrapper::isDisabled() const {
 }
 
 void AsyncWrapper::waitUntilSettled() {
+  logger->info("AsyncWrapper: Waiting to settle");
   while (!settledUtil->isSettled(getError())) {
     loopRate->delayUntil(motorUpdateRate);
   }
+  logger->info("AsyncWrapper: Done waiting to settle");
 }
 } // namespace okapi

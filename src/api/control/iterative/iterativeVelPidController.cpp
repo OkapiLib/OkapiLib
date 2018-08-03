@@ -15,7 +15,8 @@ IterativeVelPIDController::IterativeVelPIDController(const double ikP, const dou
                                                      const double ikF,
                                                      std::unique_ptr<VelMath> ivelMath,
                                                      const TimeUtil &itimeUtil)
-  : velMath(std::move(ivelMath)),
+  : logger(Logger::instance()),
+    velMath(std::move(ivelMath)),
     loopDtTimer(std::move(itimeUtil.getTimer())),
     settledUtil(std::move(itimeUtil.getSettledUtil())) {
   setGains(ikP, ikD, ikF);
@@ -78,6 +79,7 @@ double IterativeVelPIDController::step(const double inewReading) {
 }
 
 void IterativeVelPIDController::setTarget(const double itarget) {
+  logger->info("IterativeVelPIDController: Set target to " + std::to_string(itarget));
   target = itarget;
 }
 
@@ -98,6 +100,7 @@ bool IterativeVelPIDController::isSettled() {
 }
 
 void IterativeVelPIDController::reset() {
+  logger->info("IterativeVelPIDController: Reset");
   error = 0;
   output = 0;
 }
@@ -107,6 +110,7 @@ void IterativeVelPIDController::flipDisable() {
 }
 
 void IterativeVelPIDController::flipDisable(const bool iisDisabled) {
+  logger->info("IterativeVelPIDController: flipDisable " + std::to_string(iisDisabled));
   isOn = !iisDisabled;
 }
 

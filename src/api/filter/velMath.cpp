@@ -28,8 +28,13 @@ VelMath::VelMath(const VelMathArgs &iparams, std::unique_ptr<AbstractTimer> iloo
 
 VelMath::VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter,
                  std::unique_ptr<AbstractTimer> iloopDtTimer)
-  : ticksPerRev(iticksPerRev), loopDtTimer(std::move(iloopDtTimer)), filter(ifilter) {
+  : logger(Logger::instance()),
+    ticksPerRev(iticksPerRev),
+    loopDtTimer(std::move(iloopDtTimer)),
+    filter(ifilter) {
   if (iticksPerRev == 0) {
+    logger->error(
+      "VelMath: The ticks per revolution cannot be zero! Check if you are using integer division.");
     throw std::invalid_argument(
       "VelMath: The ticks per revolution cannot be zero! Check if you are using integer division.");
   }

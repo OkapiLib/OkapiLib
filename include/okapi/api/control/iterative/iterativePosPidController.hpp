@@ -12,6 +12,7 @@
 
 #include "okapi/api/control/iterative/iterativePositionController.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
+#include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <memory>
 
@@ -164,6 +165,7 @@ class IterativePosPIDController : public IterativePositionController {
   QTime getSampleTime() const override;
 
   protected:
+  Logger *logger;
   double kP, kI, kD, kBias;
   QTime sampleTime = 10_ms;
   double target = 0;

@@ -29,6 +29,8 @@ AsyncVelIntegratedController::AsyncVelIntegratedController(
 }
 
 void AsyncVelIntegratedController::setTarget(const double itarget) {
+  logger->info("AsyncVelIntegratedController: Set target to " + std::to_string(itarget));
+
   hasFirstTarget = true;
 
   if (!controllerIsDisabled) {
@@ -47,6 +49,7 @@ bool AsyncVelIntegratedController::isSettled() {
 }
 
 void AsyncVelIntegratedController::reset() {
+  logger->info("AsyncVelIntegratedController: Reset");
   hasFirstTarget = false;
   settledUtil->reset();
 }
@@ -57,6 +60,7 @@ void AsyncVelIntegratedController::flipDisable() {
 }
 
 void AsyncVelIntegratedController::flipDisable(const bool iisDisabled) {
+  logger->info("AsyncVelIntegratedController: flipDisable " + std::to_string(iisDisabled));
   controllerIsDisabled = iisDisabled;
   resumeMovement();
 }
@@ -76,8 +80,10 @@ void AsyncVelIntegratedController::resumeMovement() {
 }
 
 void AsyncVelIntegratedController::waitUntilSettled() {
+  logger->info("AsyncVelIntegratedController: Waiting to settle");
   while (!settledUtil->isSettled(getError())) {
     rate->delayUntil(motorUpdateRate);
   }
+  logger->info("AsyncVelIntegratedController: Done waiting to settle");
 }
 } // namespace okapi
