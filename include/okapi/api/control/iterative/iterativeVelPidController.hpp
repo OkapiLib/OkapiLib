@@ -11,6 +11,7 @@
 #include "okapi/api/control/iterative/iterativeVelocityController.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/filter/velMath.hpp"
+#include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
@@ -141,6 +142,7 @@ class IterativeVelPIDController : public IterativeVelocityController {
   virtual QAngularSpeed getVel() const;
 
   protected:
+  Logger *logger;
   double kP, kD, kF;
   QTime sampleTime = 10_ms;
   double error = 0;

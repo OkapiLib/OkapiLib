@@ -51,6 +51,7 @@ bool AsyncPosIntegratedController::isSettled() {
 }
 
 void AsyncPosIntegratedController::reset() {
+  logger->info("AsyncPosIntegratedController: Reset");
   hasFirstTarget = false;
   settledUtil->reset();
 }

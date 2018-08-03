@@ -49,6 +49,7 @@ bool AsyncVelIntegratedController::isSettled() {
 }
 
 void AsyncVelIntegratedController::reset() {
+  logger->info("AsyncVelIntegratedController: Reset");
   hasFirstTarget = false;
   settledUtil->reset();
 }
