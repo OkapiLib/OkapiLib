@@ -44,6 +44,7 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 include_directories(include)
+include_directories(include/pathfinder)
 
 add_executable(OkapiLibV5
         include/okapi/api/chassis/controller/chassisController.hpp
@@ -161,4 +162,4 @@ add_executable(OkapiLibV5
         include/okapi/api/util/timeUtil.hpp include/okapi/api/chassis/model/readOnlyChassisModel.hpp src/api/chassis/model/readOnlyChassisModel.cpp include/okapi/api/util/logging.hpp src/api/util/logging.cpp)
 
 # Link against gtest
-target_link_libraries(OkapiLibV5 gtest_main)
+target_link_libraries(OkapiLibV5 gtest_main ${CMAKE_SOURCE_DIR}/firmware/libpathfinder.so)
