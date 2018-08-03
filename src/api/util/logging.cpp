@@ -15,6 +15,8 @@ std::unique_ptr<AbstractTimer> Logger::timer;
 Logger::LogLevel Logger::logLevel;
 FILE *Logger::logfile;
 
+Logger::Logger() = default;
+
 Logger *Logger::instance() {
   if (!s_instance) {
     s_instance = new Logger();

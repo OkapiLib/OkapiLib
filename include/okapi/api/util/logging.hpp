@@ -53,6 +53,7 @@ class Logger {
   void close() noexcept;
 
   private:
+  Logger();
   static Logger *s_instance;
   static std::unique_ptr<AbstractTimer> timer;
   static LogLevel logLevel;
