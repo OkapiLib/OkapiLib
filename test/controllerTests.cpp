@@ -307,9 +307,10 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
 };
 
 TEST_F(AsyncMotionProfileControllerTest, BasicTest) {
-  controller->generatePath({AsyncMotionProfileController::Point{0_m, 0_m, 0_deg},
-                            AsyncMotionProfileController::Point{3_ft, 0_m, 45_deg}},
+  controller->generatePath({Point{0_m, 0_m, 0_deg},
+                            Point{3_ft, 0_m, 45_deg}},
                            "A");
 
-  controller->executePath("A");
+  controller->setTarget("A");
+  controller->waitUntilSettled();
 }

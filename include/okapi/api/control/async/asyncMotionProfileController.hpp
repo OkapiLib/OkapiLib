@@ -22,14 +22,22 @@ extern "C" {
 }
 
 namespace okapi {
-class AsyncMotionProfileController {
-  public:
-  struct Point {
-    QLength x;    // X coordinate relative to the start of the movement
-    QLength y;    // Y coordinate relative to the start of the movement
-    QAngle theta; // Exit angle relative to the start of the movement
-  };
+struct Point {
+  QLength x;    // X coordinate relative to the start of the movement
+  QLength y;    // Y coordinate relative to the start of the movement
+  QAngle theta; // Exit angle relative to the start of the movement
 
+  Point operator+(const Point &other) const {
+    return Point{x + other.x, y + other.y, theta + other.theta};
+  }
+
+  Point operator-(const Point &other) const {
+    return Point{x - other.x, y - other.y, theta - other.theta};
+  }
+};
+
+class AsyncMotionProfileController : public AsyncPositionController<std::string, Point> {
+  public:
   /**
    * An Async Controller which generates and follows 2D motion profiles.
    *
@@ -43,7 +51,7 @@ class AsyncMotionProfileController {
                                double imaxJerk, std::shared_ptr<SkidSteerModel> imodel,
                                QLength iwidth);
 
-  ~AsyncMotionProfileController();
+  ~AsyncMotionProfileController() override;
 
   /**
    * Generates a path which intersects the given waypoints and saves it internally with a key of
@@ -60,13 +68,28 @@ class AsyncMotionProfileController {
    *
    * @param ipathId A unique identifier for the path, previously passed to generatePath().
    */
-  void executePath(std::string ipathId);
+  void setTarget(std::string ipathId) override;
+
+  void waitUntilSettled() override;
+
+  Point getError() const override;
+
+  bool isSettled() override;
+
+  void reset() override;
+
+  void flipDisable() override;
+
+  void flipDisable(bool iisDisabled) override;
+
+  bool isDisabled() const override;
 
   protected:
   struct TrajectoryPair {
     Segment *left;
     Segment *right;
     int length;
+    Point finalPosition;
   };
 
   std::map<std::string, TrajectoryPair> paths{};
@@ -78,12 +101,12 @@ class AsyncMotionProfileController {
   std::unique_ptr<AbstractRate> rate;
   Logger *logger;
 
-  QTime sampleTime{1_ms};
-
   CrossplatformThread task;
   bool dtorCalled{false};
   std::string currentPath;
+  Point currentPosition{0_m, 0_m, 0_deg};
   bool isRunning{false};
+  bool disabled{false};
 
   static void trampoline(void *context);
   void loop();

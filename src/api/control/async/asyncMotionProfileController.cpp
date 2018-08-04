@@ -74,22 +74,25 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
     paths.erase(ipathId);
   }
 
-  paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length});
+  const auto lastWaypoint = points.back();
+  paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length,
+                                        Point{lastWaypoint.x * meter, lastWaypoint.y * meter,
+                                              lastWaypoint.angle * radian}});
   logger->info("AsyncMotionProfileController: Completely done generating path");
 }
 
-void AsyncMotionProfileController::executePath(std::string ipathId) {
+void AsyncMotionProfileController::setTarget(std::string ipathId) {
   currentPath = ipathId;
   isRunning = true;
 }
 
 void AsyncMotionProfileController::loop() {
   while (!dtorCalled) {
-    if (isRunning) {
+    if (!disabled && isRunning) {
       logger->info("AsyncMotionProfileController: Running with path: " + currentPath);
       const auto path = paths.at(currentPath);
 
-      for (int i = 0; i < path.length; ++i) {
+      for (int i = 0; i < path.length && !disabled; ++i) {
         model->left(path.left[i].velocity / maxVel);
         model->right(path.right[i].velocity / maxVel);
         rate->delayUntil(1_ms);
@@ -106,5 +109,38 @@ void AsyncMotionProfileController::trampoline(void *context) {
   if (context) {
     static_cast<AsyncMotionProfileController *>(context)->loop();
   }
+}
+
+void AsyncMotionProfileController::waitUntilSettled() {
+  logger->info("AsyncMotionProfileController: Waiting to settle");
+
+  while (isRunning) {
+    rate->delayUntil(10_ms);
+  }
+
+  logger->info("AsyncMotionProfileController: Done waiting to settle");
+}
+
+Point AsyncMotionProfileController::getError() const {
+  return paths.at(currentPath).finalPosition - currentPosition;
+}
+
+bool AsyncMotionProfileController::isSettled() {
+  return !isRunning;
+}
+
+void AsyncMotionProfileController::reset() {
+}
+
+void AsyncMotionProfileController::flipDisable() {
+  disabled = !disabled;
+}
+
+void AsyncMotionProfileController::flipDisable(bool iisDisabled) {
+  disabled = iisDisabled;
+}
+
+bool AsyncMotionProfileController::isDisabled() const {
+  return disabled;
 }
 } // namespace okapi
