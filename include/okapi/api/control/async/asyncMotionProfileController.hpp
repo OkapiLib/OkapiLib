@@ -70,18 +70,54 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    */
   void setTarget(std::string ipathId) override;
 
+  /**
+   * Blocks the current task until the controller has settled. This controller is settled when
+   * it has finished following a path. If no path is being followed, it is settled.
+   */
   void waitUntilSettled() override;
 
+  /**
+   * Returns the last error of the controller.
+   *
+   * @return the last error
+   */
   Point getError() const override;
 
+  /**
+   * Returns whether the controller has settled at the target. Determining what settling means is
+   * implementation-dependent.
+   *
+   * If the controller is disabled, this method must return true.
+   *
+   * @return whether the controller is settled
+   */
   bool isSettled() override;
 
+  /**
+   * Resets the controller so it can start from 0 again properly. Keeps configuration from
+   * before.
+   */
   void reset() override;
 
+  /**
+   * Changes whether the controller is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
+   */
   void flipDisable() override;
 
+  /**
+   * Sets whether the controller is off or on. Turning the controller on after it was off will
+   * cause the controller to move to its last set target, unless it was reset in that time.
+   *
+   * @param iisDisabled whether the controller is disabled
+   */
   void flipDisable(bool iisDisabled) override;
 
+  /**
+   * Returns whether the controller is currently disabled.
+   *
+   * @return whether the controller is currently disabled
+   */
   bool isDisabled() const override;
 
   protected:
