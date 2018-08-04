@@ -21,20 +21,18 @@ using namespace okapi;
 using namespace snowhouse;
 
 TEST(PathfinderTest, BasicTest) {
-  int POINT_LENGTH = 3;
+  int POINT_LENGTH = 2;
 
   auto *points = (Waypoint *)malloc(sizeof(Waypoint) * POINT_LENGTH);
 
-  Waypoint p1 = {-4, -1, d2r(45)}; // Waypoint @ x=-4, y=-1, exit angle=45 degrees
-  Waypoint p2 = {-1, 2, 0};        // Waypoint @ x=-1, y= 2, exit angle= 0 radians
-  Waypoint p3 = {2, 4, 0};         // Waypoint @ x= 2, y= 4, exit angle= 0 radians
+  Waypoint p1 = {0, 0, 0};
+  Waypoint p2 = {0.9144, 0, d2r(45)};
   points[0] = p1;
   points[1] = p2;
-  points[2] = p3;
 
   TrajectoryCandidate candidate;
-  pathfinder_prepare(points, POINT_LENGTH, FIT_HERMITE_CUBIC, PATHFINDER_SAMPLES_HIGH, 0.001, 15.0,
-                     10.0, 60.0, &candidate);
+  pathfinder_prepare(points, POINT_LENGTH, FIT_HERMITE_CUBIC, PATHFINDER_SAMPLES_FAST, 0.001, 1.0,
+                     2.0, 10.0, &candidate);
 
   int length = candidate.length;
   auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
@@ -44,12 +42,21 @@ TEST(PathfinderTest, BasicTest) {
   auto *leftTrajectory = (Segment *)malloc(sizeof(Segment) * length);
   auto *rightTrajectory = (Segment *)malloc(sizeof(Segment) * length);
 
-  double wheelbase_width = 0.6;
+  double wheelbase_width = 0.2794;
 
   pathfinder_modify_tank(trajectory, length, leftTrajectory, rightTrajectory, wheelbase_width);
 
-  // Do something with the trajectories...
+  auto outFile = fopen("pathfinder_result.csv", "w");
+  fputs("left position,left velocity,left acceleration,right position,right velocity,right "
+        "acceleration\n",
+        outFile);
+  for (int i = 0; i < length; ++i) {
+    fprintf(outFile, "%1.2f,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", leftTrajectory[i].position,
+            leftTrajectory[i].velocity, leftTrajectory[i].acceleration, rightTrajectory[i].position,
+            rightTrajectory[i].velocity, rightTrajectory[i].acceleration);
+  }
 
+  fclose(outFile);
   free(trajectory);
 }
 
