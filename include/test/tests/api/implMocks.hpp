@@ -74,6 +74,34 @@ class MockMotor : public AbstractMotor {
 
   std::int32_t moveVoltage(std::int16_t ivoltage) const override;
 
+  int32_t getCurrentDraw() const override;
+
+  int32_t getDirection() const override;
+
+  double getEfficiency() const override;
+
+  int32_t isOverCurrent() const override;
+
+  int32_t isOverTemp() const override;
+
+  int32_t isStopped() const override;
+
+  int32_t getZeroPositionFlag() const override;
+
+  uint32_t getFaults() const override;
+
+  uint32_t getFlags() const override;
+
+  int32_t getRawPosition(std::uint32_t *timestamp) const override;
+
+  double getPower() const override;
+
+  double getTemperature() const override;
+
+  double getTorque() const override;
+
+  int32_t getVoltage() const override;
+
   std::shared_ptr<MockContinuousRotarySensor> encoder;
   mutable std::int16_t lastVelocity{};
   mutable std::int16_t lastVoltage{};

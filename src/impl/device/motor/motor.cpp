@@ -59,6 +59,10 @@ double Motor::getPosition() const {
   return get_position();
 }
 
+std::int32_t Motor::tarePosition() const {
+  return tare_position();
+}
+
 std::int32_t Motor::getTargetVelocity() const {
   return get_target_velocity();
 }
@@ -67,8 +71,60 @@ double Motor::getActualVelocity() const {
   return get_actual_velocity();
 }
 
-std::int32_t Motor::tarePosition() const {
-  return tare_position();
+std::int32_t Motor::getCurrentDraw() const {
+  return get_current_draw();
+}
+
+std::int32_t Motor::getDirection() const {
+  return get_direction();
+}
+
+double Motor::getEfficiency() const {
+  return get_efficiency();
+}
+
+std::int32_t Motor::isOverCurrent() const {
+  return is_over_current();
+}
+
+std::int32_t Motor::isOverTemp() const {
+  return is_over_temp();
+}
+
+std::int32_t Motor::isStopped() const {
+  return is_stopped();
+}
+
+std::int32_t Motor::getZeroPositionFlag() const {
+  return get_zero_position_flag();
+}
+
+uint32_t Motor::getFaults() const {
+  return get_faults();
+}
+
+uint32_t Motor::getFlags() const {
+  return get_flags();
+}
+
+std::int32_t Motor::getRawPosition(std::uint32_t *timestamp) const {
+  return get_raw_position(timestamp);
+}
+
+double Motor::getPower() const {
+  return get_power();
+}
+
+double Motor::getTemperature() const {
+  return get_temperature();
+}
+
+double Motor::getTorque() const {
+  return get_torque();
+}
+
+std::int32_t Motor::getVoltage() const {
+  return get_voltage();
 }
 
 std::int32_t Motor::setBrakeMode(const AbstractMotor::brakeMode imode) const {
