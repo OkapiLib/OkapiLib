@@ -19,6 +19,7 @@
 #include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <chrono>
+#include <gtest/gtest.h>
 
 namespace okapi {
 
@@ -289,6 +290,8 @@ class MockSettledUtil : public SettledUtil {
 
   bool isSettledOverride{true};
 };
+
+void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor);
 } // namespace okapi
 
 #endif

@@ -282,10 +282,7 @@ TEST(SettledUtilTest, ZeroTime) {
 
 class AsyncMotionProfileControllerTest : public ::testing::Test {
   protected:
-  virtual void SetUp() {
-    Logger::initialize(std::make_unique<MockTimer>(), "Log_AsyncMotionProfileControllerTest.txt",
-                       Logger::LogLevel::debug);
-
+  void SetUp() override {
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
 
@@ -296,8 +293,8 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
                                                   std::shared_ptr<SkidSteerModel>(model), 10.5_in);
   }
 
-  virtual void TearDown() {
-    free(controller);
+  void TearDown() override {
+    delete controller;
   }
 
   MockMotor *leftMotor;
@@ -306,11 +303,19 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
   AsyncMotionProfileController *controller;
 };
 
-TEST_F(AsyncMotionProfileControllerTest, BasicTest) {
-  controller->generatePath({Point{0_m, 0_m, 0_deg},
-                            Point{3_ft, 0_m, 45_deg}},
-                           "A");
+TEST_F(AsyncMotionProfileControllerTest, MotorsAreStoppedAfterSettling) {
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 45_deg}}, "A");
 
   controller->setTarget("A");
   controller->waitUntilSettled();
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
+TEST_F(AsyncMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 45_deg}}, "A");
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 2_ft, 45_deg}}, "A");
+
+  controller->setTarget("A");
+  controller->waitUntilSettled();
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }

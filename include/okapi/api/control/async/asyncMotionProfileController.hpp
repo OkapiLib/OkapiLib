@@ -93,17 +93,17 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   };
 
   std::map<std::string, TrajectoryPair> paths{};
-  double maxVel;
-  double maxAccel;
-  double maxJerk;
+  double maxVel{0};
+  double maxAccel{0};
+  double maxJerk{0};
   std::shared_ptr<SkidSteerModel> model;
-  QLength width;
+  QLength width{11_in};
   std::unique_ptr<AbstractRate> rate;
   Logger *logger;
 
   CrossplatformThread task;
   bool dtorCalled{false};
-  std::string currentPath;
+  std::string currentPath{""};
   Point currentPosition{0_m, 0_m, 0_deg};
   bool isRunning{false};
   bool disabled{false};

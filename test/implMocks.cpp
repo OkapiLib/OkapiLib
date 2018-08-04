@@ -394,4 +394,11 @@ bool MockIterativeController::isDisabled() const {
 QTime MockIterativeController::getSampleTime() const {
   return sampleTime;
 }
+
+void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor) {
+  EXPECT_DOUBLE_EQ(leftMotor->lastVoltage, 0);
+  EXPECT_DOUBLE_EQ(leftMotor->lastVelocity, 0);
+  EXPECT_DOUBLE_EQ(rightMotor->lastVoltage, 0);
+  EXPECT_DOUBLE_EQ(rightMotor->lastVelocity, 0);
+}
 } // namespace okapi
