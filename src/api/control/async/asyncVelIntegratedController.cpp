@@ -9,21 +9,9 @@
 #include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
-AsyncVelIntegratedControllerArgs::AsyncVelIntegratedControllerArgs(
-  std::shared_ptr<AbstractMotor> imotor)
-  : motor(imotor) {
-}
-
 AsyncVelIntegratedController::AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor,
                                                            const TimeUtil &itimeUtil)
   : motor(imotor),
-    settledUtil(std::move(itimeUtil.getSettledUtil())),
-    rate(std::move(itimeUtil.getRate())) {
-}
-
-AsyncVelIntegratedController::AsyncVelIntegratedController(
-  const AsyncVelIntegratedControllerArgs &iparams, const TimeUtil &itimeUtil)
-  : motor(iparams.motor),
     settledUtil(std::move(itimeUtil.getSettledUtil())),
     rate(std::move(itimeUtil.getRate())) {
 }

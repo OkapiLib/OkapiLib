@@ -17,15 +17,15 @@
 #include <memory>
 
 namespace okapi {
-class IterativePosPIDControllerArgs : public IterativePositionControllerArgs {
+class IterativePosPIDController : public IterativePositionController<double, double> {
   public:
-  IterativePosPIDControllerArgs(double ikP, double ikI, double ikD, double ikBias = 0);
+  struct Gains {
+    double kP;
+    double kI;
+    double kD;
+    double kBias;
+  };
 
-  const double kP, kI, kD, kBias;
-};
-
-class IterativePosPIDController : public IterativePositionController {
-  public:
   /**
    * Position PID controller.
    */
@@ -34,13 +34,11 @@ class IterativePosPIDController : public IterativePositionController {
 
   /**
    * Position PID controller.
-   *
-   * @param params PosPIDControllerArgs
    */
-  IterativePosPIDController(const IterativePosPIDControllerArgs &params, const TimeUtil &itimeUtil);
+  IterativePosPIDController(const Gains &igains, const TimeUtil &itimeUtil);
 
   /**
-   * Do one iteration of the controller. Returns the reading in the range [-127, 127] unless the
+   * Do one iteration of the controller. Returns the reading in the range [-1, 1] unless the
    * bounds have been changed with setOutputLimits().
    *
    * @param inewReading new measurement
@@ -65,11 +63,6 @@ class IterativePosPIDController : public IterativePositionController {
    * Returns the last error of the controller.
    */
   double getError() const override;
-
-  /**
-   * Returns the last derivative (change in error) of the controller.
-   */
-  double getDerivative() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is

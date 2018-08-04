@@ -22,7 +22,7 @@ int32_t MockContinuousRotarySensor::reset() {
   return 0;
 }
 
-int32_t MockContinuousRotarySensor::get() const {
+double MockContinuousRotarySensor::get() const {
   return value;
 }
 
@@ -301,19 +301,6 @@ void SimulatedSystem::join() {
   thread.join();
 }
 
-double MockAsyncController::getOutput() const {
-  return output;
-}
-
-void MockAsyncController::setSampleTime(QTime isampleTime) {
-  sampleTime = isampleTime;
-}
-
-void MockAsyncController::setOutputLimits(double imax, double imin) {
-  maxOutput = imax;
-  minOutput = imin;
-}
-
 void MockAsyncController::waitUntilSettled() {
 }
 
@@ -361,10 +348,6 @@ double MockIterativeController::getOutput() const {
 }
 
 double MockIterativeController::getError() const {
-  return 0;
-}
-
-double MockIterativeController::getDerivative() const {
   return 0;
 }
 

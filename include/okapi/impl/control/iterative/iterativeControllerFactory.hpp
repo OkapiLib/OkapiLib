@@ -69,7 +69,8 @@ class IterativeControllerFactory {
    * @param icontroller controller to use
    */
   static IterativeMotorVelocityController
-  motorVelocity(Motor imotor, std::shared_ptr<IterativeVelocityController> icontroller);
+  motorVelocity(Motor imotor,
+                std::shared_ptr<IterativeVelocityController<double, double>> icontroller);
 
   /**
    * Velocity PD controller that automatically writes to the motor.
@@ -78,7 +79,8 @@ class IterativeControllerFactory {
    * @param icontroller controller to use
    */
   static IterativeMotorVelocityController
-  motorVelocity(MotorGroup imotor, std::shared_ptr<IterativeVelocityController> icontroller);
+  motorVelocity(MotorGroup imotor,
+                std::shared_ptr<IterativeVelocityController<double, double>> icontroller);
 };
 } // namespace okapi
 

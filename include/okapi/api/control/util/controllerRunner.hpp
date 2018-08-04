@@ -16,11 +16,11 @@
 #include <memory>
 
 namespace okapi {
-class ControllerRunner {
+template <typename I, typename O> class ControllerRunner {
   public:
-  ControllerRunner(std::unique_ptr<AbstractRate> irate);
-
-  virtual ~ControllerRunner();
+  ControllerRunner(std::unique_ptr<AbstractRate> irate)
+    : logger(Logger::instance()), rate(std::move(irate)) {
+  }
 
   /**
    * Runs the controller until it has settled.
@@ -29,7 +29,18 @@ class ControllerRunner {
    * @param icontroller the controller to run
    * @return the error when settled
    */
-  virtual double runUntilSettled(const double itarget, AsyncController &icontroller);
+  virtual O runUntilSettled(const I itarget, AsyncController<I, O> &icontroller) {
+    logger->info("ControllerRunner: runUntilSettled(AsyncController): Set target to " +
+                 std::to_string(itarget));
+    icontroller.setTarget(itarget);
+
+    while (!icontroller.isSettled()) {
+      rate->delay(10);
+    }
+
+    logger->info("ControllerRunner: runUntilSettled(AsyncController): Done waiting to settle");
+    return icontroller.getError();
+  }
 
   /**
    * Runs the controller until it has settled.
@@ -39,8 +50,20 @@ class ControllerRunner {
    * @param ioutput the output to write to
    * @return the error when settled
    */
-  virtual double runUntilSettled(const double itarget, IterativeController &icontroller,
-                                 ControllerOutput &ioutput);
+  virtual O runUntilSettled(const I itarget, IterativeController<I, O> &icontroller,
+                            ControllerOutput<O> &ioutput) {
+    logger->info("ControllerRunner: runUntilSettled(IterativeController): Set target to " +
+                 std::to_string(itarget));
+    icontroller.setTarget(itarget);
+
+    while (!icontroller.isSettled()) {
+      ioutput.controllerSet(icontroller.getOutput());
+      rate->delay(10);
+    }
+
+    logger->info("ControllerRunner: runUntilSettled(IterativeController): Done waiting to settle");
+    return icontroller.getError();
+  }
 
   /**
    * Runs the controller until it has reached its target, but not necessarily settled.
@@ -49,7 +72,22 @@ class ControllerRunner {
    * @param icontroller the controller to run
    * @return the error when settled
    */
-  virtual double runUntilAtTarget(const double itarget, AsyncController &icontroller);
+  virtual O runUntilAtTarget(const I itarget, AsyncController<I, O> &icontroller) {
+    logger->info("ControllerRunner: runUntilAtTarget(AsyncController): Set target to " +
+                 std::to_string(itarget));
+    icontroller.setTarget(itarget);
+
+    double error = icontroller.getError();
+    double lastError = error;
+    while (error != 0 && std::copysign(1.0, error) == std::copysign(1.0, lastError)) {
+      lastError = error;
+      rate->delay(10);
+      error = icontroller.getError();
+    }
+
+    logger->info("ControllerRunner: runUntilAtTarget(AsyncController): Done waiting to settle");
+    return icontroller.getError();
+  }
 
   /**
    * Runs the controller until it has reached its target, but not necessarily settled.
@@ -59,8 +97,24 @@ class ControllerRunner {
    * @param ioutput the output to write to
    * @return the error when settled
    */
-  virtual double runUntilAtTarget(const double itarget, IterativeController &icontroller,
-                                  ControllerOutput &ioutput);
+  virtual O runUntilAtTarget(const I itarget, IterativeController<I, O> &icontroller,
+                             ControllerOutput<O> &ioutput) {
+    logger->info("ControllerRunner: runUntilAtTarget(IterativeController): Set target to " +
+                 std::to_string(itarget));
+    icontroller.setTarget(itarget);
+
+    double error = icontroller.getError();
+    double lastError = error;
+    while (error != 0 && std::copysign(1.0, error) == std::copysign(1.0, lastError)) {
+      ioutput.controllerSet(icontroller.getOutput());
+      lastError = error;
+      rate->delay(10);
+      error = icontroller.getError();
+    }
+
+    logger->info("ControllerRunner: runUntilAtTarget(IterativeController): Done waiting to settle");
+    return icontroller.getError();
+  }
 
   protected:
   Logger *logger;

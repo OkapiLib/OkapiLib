@@ -57,10 +57,10 @@ AsyncPosPIDController AsyncControllerFactory::posPID(MotorGroup imotor, const do
                                TimeUtilFactory::create(), ikP, ikI, ikD, ikBias);
 }
 
-AsyncPosPIDController AsyncControllerFactory::posPID(std::shared_ptr<ControllerInput> iinput,
-                                                     std::shared_ptr<ControllerOutput> ioutput,
-                                                     const double ikP, const double ikI,
-                                                     const double ikD, const double ikBias) {
+AsyncPosPIDController
+AsyncControllerFactory::posPID(std::shared_ptr<ControllerInput<double>> iinput,
+                               std::shared_ptr<ControllerOutput<double>> ioutput, const double ikP,
+                               const double ikI, const double ikD, const double ikBias) {
   return AsyncPosPIDController(iinput, ioutput, TimeUtilFactory::create(), ikP, ikI, ikD, ikBias);
 }
 
@@ -96,10 +96,10 @@ AsyncVelPIDController AsyncControllerFactory::velPID(MotorGroup imotor, ADIEncod
                                ikD, ikF, VelMathFactory::createPtr(iTPR));
 }
 
-AsyncVelPIDController AsyncControllerFactory::velPID(std::shared_ptr<ControllerInput> iinput,
-                                                     std::shared_ptr<ControllerOutput> ioutput,
-                                                     const double ikP, const double ikD,
-                                                     const double ikF, const double iTPR) {
+AsyncVelPIDController
+AsyncControllerFactory::velPID(std::shared_ptr<ControllerInput<double>> iinput,
+                               std::shared_ptr<ControllerOutput<double>> ioutput, const double ikP,
+                               const double ikD, const double ikF, const double iTPR) {
   return AsyncVelPIDController(iinput, ioutput, TimeUtilFactory::create(), ikP, ikD, ikF,
                                VelMathFactory::createPtr(iTPR));
 }

@@ -122,17 +122,13 @@ add_executable(OkapiLibV5
         src/api/chassis/model/skidSteerModel.cpp
         src/api/chassis/model/threeEncoderSkidSteerModel.cpp
         src/api/chassis/model/xDriveModel.cpp
-        src/api/control/async/asyncController.cpp
         src/api/control/async/asyncPosIntegratedController.cpp
         src/api/control/async/asyncPosPidController.cpp
         src/api/control/async/asyncVelIntegratedController.cpp
         src/api/control/async/asyncVelPidController.cpp
-        src/api/control/async/asyncWrapper.cpp
-        src/api/control/iterative/iterativeController.cpp
         src/api/control/iterative/iterativeMotorVelocityController.cpp
         src/api/control/iterative/iterativePosPidController.cpp
         src/api/control/iterative/iterativeVelPidController.cpp
-        src/api/control/util/controllerRunner.cpp
         src/api/control/util/flywheelSimulator.cpp
         src/api/control/util/pidTuner.cpp
         src/api/control/util/settledUtil.cpp
@@ -174,7 +170,9 @@ add_executable(OkapiLibV5
         src/pathfinder/followers/distance.c
         src/pathfinder/followers/encoder.c
         src/pathfinder/modifiers/swerve.c
-        src/pathfinder/modifiers/tank.c)
+        src/pathfinder/modifiers/tank.c
+        include/okapi/api/control/async/asyncMotionProfileController.hpp
+        src/api/control/async/asyncMotionProfileController.cpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)

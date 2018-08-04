@@ -40,12 +40,12 @@ IterativeControllerFactory::motorVelocity(MotorGroup imotor, double ikP, double 
 }
 
 IterativeMotorVelocityController IterativeControllerFactory::motorVelocity(
-  Motor imotor, std::shared_ptr<IterativeVelocityController> icontroller) {
+  Motor imotor, std::shared_ptr<IterativeVelocityController<double, double>> icontroller) {
   return IterativeMotorVelocityController(std::make_shared<Motor>(imotor), icontroller);
 }
 
 IterativeMotorVelocityController IterativeControllerFactory::motorVelocity(
-  MotorGroup imotor, std::shared_ptr<IterativeVelocityController> icontroller) {
+  MotorGroup imotor, std::shared_ptr<IterativeVelocityController<double, double>> icontroller) {
   return IterativeMotorVelocityController(std::make_shared<MotorGroup>(imotor), icontroller);
 }
 } // namespace okapi

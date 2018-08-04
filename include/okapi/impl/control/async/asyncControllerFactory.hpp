@@ -108,8 +108,8 @@ class AsyncControllerFactory {
    * @param ikD derivative gain
    * @param ikBias output bias (a constant added to the output)
    */
-  static AsyncPosPIDController posPID(std::shared_ptr<ControllerInput> iinput,
-                                      std::shared_ptr<ControllerOutput> ioutput, double ikP,
+  static AsyncPosPIDController posPID(std::shared_ptr<ControllerInput<double>> iinput,
+                                      std::shared_ptr<ControllerOutput<double>> ioutput, double ikP,
                                       double ikI, double ikD, double ikBias = 0);
 
   /**
@@ -167,8 +167,8 @@ class AsyncControllerFactory {
    * @param ikD derivative gain
    * @param ikF feed-forward gain
    */
-  static AsyncVelPIDController velPID(std::shared_ptr<ControllerInput> iinput,
-                                      std::shared_ptr<ControllerOutput> ioutput, double ikP,
+  static AsyncVelPIDController velPID(std::shared_ptr<ControllerInput<double>> iinput,
+                                      std::shared_ptr<ControllerOutput<double>> ioutput, double ikP,
                                       double ikD, double ikF = 0, double iTPR = imev5TPR);
 };
 } // namespace okapi

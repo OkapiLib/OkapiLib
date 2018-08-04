@@ -12,16 +12,6 @@
 #include <cmath>
 
 namespace okapi {
-IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, const double ikI,
-                                                             const double ikD, const double ikBias)
-  : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
-}
-
-IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params,
-                                                     const TimeUtil &itimeUtil)
-  : IterativePosPIDController(params.kP, params.kI, params.kD, params.kBias, itimeUtil) {
-}
-
 IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
                                                      const double ikD, const double ikBias,
                                                      const TimeUtil &itimeUtil)
@@ -35,6 +25,10 @@ IterativePosPIDController::IterativePosPIDController(const double ikP, const dou
   setGains(ikP, ikI, ikD, ikBias);
 }
 
+IterativePosPIDController::IterativePosPIDController(const Gains &igains, const TimeUtil &itimeUtil)
+  : IterativePosPIDController(igains.kP, igains.kI, igains.kD, igains.kBias, itimeUtil) {
+}
+
 void IterativePosPIDController::setTarget(const double itarget) {
   logger->info("IterativePosPIDController: Set target to " + std::to_string(itarget));
   target = itarget;
@@ -46,10 +40,6 @@ double IterativePosPIDController::getOutput() const {
 
 double IterativePosPIDController::getError() const {
   return error;
-}
-
-double IterativePosPIDController::getDerivative() const {
-  return derivative;
 }
 
 bool IterativePosPIDController::isSettled() {

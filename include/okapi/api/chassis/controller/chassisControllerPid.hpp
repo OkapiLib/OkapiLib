@@ -24,22 +24,6 @@ class ChassisControllerPID : public virtual ChassisController {
    * std::invalid_argument exception if the gear ratio is zero.
    *
    * @param imodelArgs ChassisModelArgs
-   * @param idistanceArgs distance PID controller params
-   * @param iangleArgs angle PID controller params (keeps the robot straight)
-   * @param igearset motor internal gearset and gear ratio
-   * @param iscales see ChassisScales docs
-   */
-  ChassisControllerPID(const TimeUtil &itimeUtil, std::unique_ptr<ChassisModel> imodel,
-                       const IterativePosPIDControllerArgs &idistanceArgs,
-                       const IterativePosPIDControllerArgs &iangleArgs,
-                       AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-                       const ChassisScales &iscales = ChassisScales({1, 1}));
-
-  /**
-   * ChassisController using PID control. Puts the motors into encoder degree units. Throws a
-   * std::invalid_argument exception if the gear ratio is zero.
-   *
-   * @param imodelArgs ChassisModelArgs
    * @param idistanceController distance PID controller
    * @param iangleController angle PID controller (keeps the robot straight)
    * @param igearset motor internal gearset and gear ratio
@@ -51,7 +35,7 @@ class ChassisControllerPID : public virtual ChassisController {
                        AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
                        const ChassisScales &iscales = ChassisScales({1, 1}));
 
-  ~ChassisControllerPID();
+  ~ChassisControllerPID() override;
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).

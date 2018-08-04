@@ -28,7 +28,7 @@ class MockContinuousRotarySensor : public ContinuousRotarySensor {
 
   int32_t reset() override;
 
-  int32_t get() const override;
+  double get() const override;
 
   mutable std::int32_t value{0};
 };
@@ -176,9 +176,9 @@ TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSu
 
 TimeUtil createTimeUtil(const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier);
 
-class SimulatedSystem : public ControllerInput, public ControllerOutput {
+class SimulatedSystem : public ControllerInput<double>, public ControllerOutput<double> {
   public:
-  SimulatedSystem(FlywheelSimulator &simulator);
+  explicit SimulatedSystem(FlywheelSimulator &simulator);
 
   virtual ~SimulatedSystem();
 
@@ -204,15 +204,9 @@ class MockAsyncController : public AsyncPosIntegratedController {
     : AsyncPosIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
   }
 
-  MockAsyncController(const TimeUtil &itimeUtil)
+  explicit MockAsyncController(const TimeUtil &itimeUtil)
     : AsyncPosIntegratedController(std::make_shared<MockMotor>(), itimeUtil) {
   }
-
-  double getOutput() const override;
-
-  void setSampleTime(QTime isampleTime) override;
-
-  void setOutputLimits(double imax, double imin) override;
 
   void waitUntilSettled() override;
 
@@ -250,8 +244,6 @@ class MockIterativeController : public IterativePosPIDController {
   double getOutput() const override;
 
   double getError() const override;
-
-  double getDerivative() const override;
 
   bool isSettled() override;
 

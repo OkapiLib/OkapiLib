@@ -91,10 +91,6 @@ double IterativeVelPIDController::getError() const {
   return error;
 }
 
-double IterativeVelPIDController::getDerivative() const {
-  return derivative;
-}
-
 bool IterativeVelPIDController::isSettled() {
   return isDisabled() ? true : settledUtil->isSettled(error);
 }

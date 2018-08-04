@@ -14,27 +14,14 @@
 #include <memory>
 
 namespace okapi {
-class IterativeMotorVelocityControllerArgs : public IterativeVelocityControllerArgs {
-  public:
-  IterativeMotorVelocityControllerArgs(std::shared_ptr<AbstractMotor> imotor,
-                                       std::shared_ptr<IterativeVelocityController> icontroller);
-
-  std::shared_ptr<AbstractMotor> motor;
-  std::shared_ptr<IterativeVelocityController> controller;
-};
-
-class IterativeMotorVelocityController : public IterativeVelocityController {
+class IterativeMotorVelocityController : public IterativeVelocityController<double, double> {
   public:
   /**
    * Velocity controller that automatically writes to the motor.
    */
-  IterativeMotorVelocityController(std::shared_ptr<AbstractMotor> imotor,
-                                   std::shared_ptr<IterativeVelocityController> icontroller);
-
-  /**
-   * Velocity controller that automatically writes to the motor.
-   */
-  explicit IterativeMotorVelocityController(const IterativeMotorVelocityControllerArgs &iparams);
+  IterativeMotorVelocityController(
+    std::shared_ptr<AbstractMotor> imotor,
+    std::shared_ptr<IterativeVelocityController<double, double>> icontroller);
 
   /**
    * Do one iteration of the controller.
@@ -58,11 +45,6 @@ class IterativeMotorVelocityController : public IterativeVelocityController {
    * Returns the last error of the controller.
    */
   double getError() const override;
-
-  /**
-   * Returns the last derivative (change in error) of the controller.
-   */
-  double getDerivative() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
@@ -123,7 +105,7 @@ class IterativeMotorVelocityController : public IterativeVelocityController {
 
   protected:
   std::shared_ptr<AbstractMotor> motor;
-  std::shared_ptr<IterativeVelocityController> controller;
+  std::shared_ptr<IterativeVelocityController<double, double>> controller;
 };
 } // namespace okapi
 

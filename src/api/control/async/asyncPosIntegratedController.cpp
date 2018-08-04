@@ -9,23 +9,10 @@
 #include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
-AsyncPosIntegratedControllerArgs::AsyncPosIntegratedControllerArgs(
-  std::shared_ptr<AbstractMotor> imotor)
-  : motor(imotor) {
-}
-
 AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
                                                            const TimeUtil &itimeUtil)
   : logger(Logger::instance()),
     motor(imotor),
-    settledUtil(std::move(itimeUtil.getSettledUtil())),
-    rate(std::move(itimeUtil.getRate())) {
-}
-
-AsyncPosIntegratedController::AsyncPosIntegratedController(
-  const AsyncPosIntegratedControllerArgs &iparams, const TimeUtil &itimeUtil)
-  : logger(Logger::instance()),
-    motor(iparams.motor),
     settledUtil(std::move(itimeUtil.getSettledUtil())),
     rate(std::move(itimeUtil.getRate())) {
 }

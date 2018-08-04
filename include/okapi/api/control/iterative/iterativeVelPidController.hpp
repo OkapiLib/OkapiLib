@@ -15,7 +15,7 @@
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
-class IterativeVelPIDController : public IterativeVelocityController {
+class IterativeVelPIDController : public IterativeVelocityController<double, double> {
   public:
   /**
    * Velocity PD controller.
@@ -47,11 +47,6 @@ class IterativeVelPIDController : public IterativeVelocityController {
    * Returns the last error of the controller.
    */
   double getError() const override;
-
-  /**
-   * Returns the last derivative (change in error) of the controller.
-   */
-  double getDerivative() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is

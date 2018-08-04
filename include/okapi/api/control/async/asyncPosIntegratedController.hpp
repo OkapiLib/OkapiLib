@@ -14,23 +14,13 @@
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
-class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
-  public:
-  explicit AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
-
-  std::shared_ptr<AbstractMotor> motor;
-};
-
 /**
  * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are whatever
  * units the motor is in.
  */
-class AsyncPosIntegratedController : public AsyncPositionController {
+class AsyncPosIntegratedController : public AsyncPositionController<double, double> {
   public:
   AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor, const TimeUtil &itimeUtil);
-
-  AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams,
-                               const TimeUtil &itimeUtil);
 
   /**
    * Sets the target for the controller.
