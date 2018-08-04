@@ -43,8 +43,10 @@ TEST_F(LoggerTest, OffLevel) {
   char *line = nullptr;
   size_t len;
 
+  fputs("EMPTY_FILE", logFile);
+
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "");
+  EXPECT_STREQ(line, "EMPTY_FILE");
 
   if (line) {
     free(line);
