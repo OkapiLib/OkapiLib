@@ -8,6 +8,7 @@
 #ifndef _OKAPI_ASYNCCONTROLLERFACTORY_HPP_
 #define _OKAPI_ASYNCCONTROLLERFACTORY_HPP_
 
+#include "okapi/api/control/async/asyncMotionProfileController.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
 #include "okapi/api/control/async/asyncPosPidController.hpp"
 #include "okapi/api/control/async/asyncVelIntegratedController.hpp"
@@ -170,6 +171,20 @@ class AsyncControllerFactory {
   static AsyncVelPIDController velPID(std::shared_ptr<ControllerInput<double>> iinput,
                                       std::shared_ptr<ControllerOutput<double>> ioutput, double ikP,
                                       double ikD, double ikF = 0, double iTPR = imev5TPR);
+
+  /**
+   * A controller which generates and follows 2D motion profiles.
+   *
+   * @param imaxVel The maximum possible velocity.
+   * @param imaxAccel The maximum possible acceleration.
+   * @param imaxJerk The maximum possible jerk.
+   * @param imodel The chassis model to control.
+   * @param iwidth The chassis wheelbase width.
+   */
+  static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel,
+                                                    double imaxJerk,
+                                                    std::shared_ptr<SkidSteerModel> imodel,
+                                                    QLength iwidth);
 };
 } // namespace okapi
 

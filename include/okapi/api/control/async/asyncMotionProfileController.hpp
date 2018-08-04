@@ -64,7 +64,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
 
   /**
    * Executes a path with the given ID. If there is no path matching the ID, the method will
-   * return.
+   * return. Any targets set while a path is being followed will be ignored.
    *
    * @param ipathId A unique identifier for the path, previously passed to generatePath().
    */
@@ -98,7 +98,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   double maxJerk{0};
   std::shared_ptr<SkidSteerModel> model;
   QLength width{11_in};
-  std::unique_ptr<AbstractRate> rate;
+  TimeUtil timeUtil;
   Logger *logger;
 
   CrossplatformThread task;

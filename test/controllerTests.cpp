@@ -319,3 +319,13 @@ TEST_F(AsyncMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
   controller->waitUntilSettled();
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
+
+TEST_F(AsyncMotionProfileControllerTest, CrashesTheBrain) {
+  // This test crashes the brain
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 0_deg},
+                            Point{3_ft, 1_ft, 0_deg}, Point{2_ft, 1_ft, 0_deg},
+                            Point{1_ft, 1_m, 0_deg}, Point{1_ft, 0_m, 0_deg}},
+                           "A");
+  controller->setTarget("A");
+  controller->waitUntilSettled();
+}

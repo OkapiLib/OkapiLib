@@ -8,17 +8,15 @@
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
 
 namespace okapi {
-AsyncMotionProfileController::AsyncMotionProfileController(const TimeUtil &itimeUtil,
-                                                           double imaxVel, double imaxAccel,
-                                                           double imaxJerk,
-                                                           std::shared_ptr<SkidSteerModel> imodel,
-                                                           QLength iwidth)
+AsyncMotionProfileController::AsyncMotionProfileController(
+  const TimeUtil &itimeUtil, const double imaxVel, const double imaxAccel, const double imaxJerk,
+  std::shared_ptr<SkidSteerModel> imodel, QLength iwidth)
   : maxVel(imaxVel),
     maxAccel(imaxAccel),
     maxJerk(imaxJerk),
     model(imodel),
     width(iwidth),
-    rate(std::move(itimeUtil.getRate())),
+    timeUtil(itimeUtil),
     logger(Logger::instance()),
     task(trampoline, this) {
 }
@@ -87,15 +85,28 @@ void AsyncMotionProfileController::setTarget(std::string ipathId) {
 }
 
 void AsyncMotionProfileController::loop() {
+  auto rate = timeUtil.getRate();
+
   while (!dtorCalled) {
     if (!disabled && isRunning) {
       logger->info("AsyncMotionProfileController: Running with path: " + currentPath);
-      const auto path = paths.at(currentPath);
+      auto path = paths.find(currentPath);
 
-      for (int i = 0; i < path.length && !disabled; ++i) {
-        model->left(path.left[i].velocity / maxVel);
-        model->right(path.right[i].velocity / maxVel);
-        rate->delayUntil(1_ms);
+      if (path == paths.end()) {
+        logger->warn(
+          "AsyncMotionProfileController: Target was set to non-existent path with name: " +
+          currentPath);
+      } else {
+        logger->debug("AsyncMotionProfileController: Path length is " +
+                      std::to_string(path->second.length));
+
+        for (int i = 0; i < path->second.length && !disabled; ++i) {
+          model->left(path->second.left[i].velocity / maxVel);
+          model->right(path->second.right[i].velocity / maxVel);
+          rate->delayUntil(1_ms);
+        }
+
+        logger->info("AsyncMotionProfileController: Done moving");
       }
 
       isRunning = false;
@@ -114,6 +125,7 @@ void AsyncMotionProfileController::trampoline(void *context) {
 void AsyncMotionProfileController::waitUntilSettled() {
   logger->info("AsyncMotionProfileController: Waiting to settle");
 
+  auto rate = timeUtil.getRate();
   while (isRunning) {
     rate->delayUntil(10_ms);
   }
