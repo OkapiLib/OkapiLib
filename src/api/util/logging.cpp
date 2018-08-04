@@ -32,6 +32,13 @@ void Logger::initialize(std::unique_ptr<AbstractTimer> itimer, std::string_view 
   logLevel = level;
 }
 
+void Logger::initialize(std::unique_ptr<AbstractTimer> itimer, FILE *file,
+                        Logger::LogLevel level) noexcept {
+  timer = std::move(itimer);
+  logfile = file;
+  logLevel = level;
+}
+
 void Logger::setLogLevel(Logger::LogLevel level) noexcept {
   logLevel = level;
 }

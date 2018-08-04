@@ -28,6 +28,17 @@ class Logger {
                          LogLevel level) noexcept;
 
   /**
+   * Initializes the logger. If the logger is not initialized when logging methods are called,
+   * nothing will be logged.
+   *
+   * @param itimer A timer used to get the current time for log statements.
+   * @param logfileName The name of the log file to open.
+   * @param level The log level. Log statements above this level will be disabled.
+   */
+  static void initialize(std::unique_ptr<AbstractTimer> itimer, FILE *file,
+                         LogLevel level) noexcept;
+
+  /**
    * Get the logger instance.
    */
   static Logger *instance() noexcept;
