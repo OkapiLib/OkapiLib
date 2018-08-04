@@ -72,7 +72,7 @@ class OdomChassisController : public virtual ChassisController {
   protected:
   double moveThreshold; // Minimum length movement
   std::unique_ptr<Odometry> odom;
-  CROSSPLATFORM_THREAD task;
+  CrossplatformThread task;
 };
 } // namespace okapi
 

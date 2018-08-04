@@ -9,6 +9,9 @@
 #include "test/crossPlatformTestRunner.hpp"
 #include <gtest/gtest.h>
 
+using namespace snowhouse;
+
+namespace okapi {
 TEST(UnitTests, TimeAddition) {
   QTime start = 0_ms;
 
@@ -21,3 +24,4 @@ TEST(UnitTests, TimeAssignmentAddition) {
 
   EXPECT_DOUBLE_EQ(start.convert(millisecond), (1_ms).convert(millisecond));
 }
+} // namespace okapi

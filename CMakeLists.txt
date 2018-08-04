@@ -173,10 +173,8 @@ add_executable(OkapiLibV5
         test/unitTests.cpp
         test/implMocks.cpp
         src/api/util/timeUtil.cpp
-        include/okapi/api/util/timeUtil.hpp
-        include/okapi/api/chassis/model/readOnlyChassisModel.hpp
-        src/api/chassis/model/readOnlyChassisModel.cpp
-        src/api/chassis/controller/chassisScales.cpp)
+        src/api/chassis/controller/chassisScales.cpp
+        include/okapi/api/util/timeUtil.hpp include/okapi/api/chassis/model/readOnlyChassisModel.hpp src/api/chassis/model/readOnlyChassisModel.cpp include/okapi/api/util/logging.hpp src/api/util/logging.cpp test/loggerTests.cpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)

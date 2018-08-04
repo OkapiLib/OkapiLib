@@ -291,6 +291,24 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleGetPushedAndWaitTest) {
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
+TEST_F(ChassisControllerIntegratedTest, MoveDistanceAndStopTest) {
+  controller->moveDistanceAsync(100);
+  controller->stop();
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+  EXPECT_TRUE(leftController->isDisabled());
+  EXPECT_TRUE(rightController->isDisabled());
+}
+
+TEST_F(ChassisControllerIntegratedTest, TurnAngleAndStopTest) {
+  controller->turnAngleAsync(100);
+  controller->stop();
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+  EXPECT_TRUE(leftController->isDisabled());
+  EXPECT_TRUE(rightController->isDisabled());
+}
+
 class ChassisControllerPIDTest : public ::testing::Test {
   protected:
   void SetUp() override {
@@ -523,4 +541,21 @@ TEST_F(ChassisControllerPIDTest, TurnAngleGetBumpedAndWaitTest) {
   controller->waitUntilSettled();
 
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+}
+
+TEST_F(ChassisControllerPIDTest, MoveDistanceAndStopTest) {
+  controller->moveDistanceAsync(100);
+  controller->stop();
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+}
+
+TEST_F(ChassisControllerPIDTest, TurnAngleAndStopTest) {
+  controller->turnAngleAsync(100);
+  controller->stop();
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+  EXPECT_TRUE(angleController->isDisabled());
 }

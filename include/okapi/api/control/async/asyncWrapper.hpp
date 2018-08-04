@@ -15,6 +15,7 @@
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/coreProsAPI.hpp"
 #include "okapi/api/util/abstractRate.hpp"
+#include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/supplier.hpp"
 #include <memory>
 
@@ -112,6 +113,7 @@ class AsyncWrapper : virtual public AsyncController {
   void waitUntilSettled() override;
 
   protected:
+  Logger *logger;
   std::shared_ptr<ControllerInput> input;
   std::shared_ptr<ControllerOutput> output;
   std::unique_ptr<IterativeController> controller;

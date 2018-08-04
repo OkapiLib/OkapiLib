@@ -11,6 +11,7 @@
 #include "okapi/api/units/QAngle.hpp"
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/units/RQuantity.hpp"
+#include "okapi/api/util/logging.hpp"
 #include <initializer_list>
 #include <stdexcept>
 #include <vector>
@@ -53,6 +54,16 @@ class ChassisScales {
    */
   ChassisScales(const std::initializer_list<QLength> &iwheelbase);
 
+  /**
+   * The two scales a Chassis Controller needs to do all of its closed-loop control. First index is
+   * the straight scale, second index is the turn scale. The straight scale converts motor degrees
+   * to meters and the turn scale converts motor degrees to robot turn degrees. Read the clawbot
+   * programming tutorial for more information behind the meaning of these two numbers.
+   *
+   * @param  iscales {straight scale, turn scale}
+   */
+  ChassisScales(const std::initializer_list<double> &iscales);
+
   QLength wheelDiameter{0_m};
   QLength wheelbaseWidth{0_m};
   double straight{0};
@@ -61,6 +72,8 @@ class ChassisScales {
 
   protected:
   void validateInput(std::size_t inputSize);
+
+  Logger *logger;
 };
 } // namespace okapi
 

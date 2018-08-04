@@ -13,6 +13,7 @@
 #include "okapi/api/units/QAngularSpeed.hpp"
 #include "okapi/api/units/QTime.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
+#include "okapi/api/util/logging.hpp"
 #include <memory>
 
 namespace okapi {
@@ -69,6 +70,7 @@ class VelMath {
   virtual QAngularAcceleration getAccel() const;
 
   protected:
+  Logger *logger;
   QAngularSpeed vel;
   QAngularSpeed lastVel;
   QAngularAcceleration accel;

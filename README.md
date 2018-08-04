@@ -28,7 +28,7 @@ This project is licensed under the Mozilla Public License, version 2.0 - see the
 
 ## Acknowledgments
 
-OkapiLib would like to thank, for their contributions, knowledge, and/or otherwise,
+The OkapiLib team would like to thank, for their contributions, knowledge, and/or otherwise,
  - [The PROS team](https://github.com/purduesigbots)
  - [Jonathan Bayless and Purdue Vex U team BLRS](https://github.com/purduesigbots/libblrs)
  - [Brad Miller and WPIlib](https://github.com/wpilibsuite/allwpilib)

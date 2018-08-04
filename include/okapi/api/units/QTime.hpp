@@ -16,6 +16,7 @@
 
 #include "okapi/api/units/RQuantity.hpp"
 
+namespace okapi {
 QUANTITY_TYPE(0, 0, 1, 0, QTime)
 
 constexpr QTime second(1.0); // SI base unit
@@ -24,6 +25,7 @@ constexpr QTime minute = 60 * second;
 constexpr QTime hour = 60 * minute;
 constexpr QTime day = 24 * hour;
 
+inline namespace literals {
 constexpr QTime operator"" _s(long double x) {
   return QTime(x);
 }
@@ -54,5 +56,7 @@ constexpr QTime operator"" _h(unsigned long long int x) {
 constexpr QTime operator"" _day(unsigned long long int x) {
   return static_cast<double>(x) * day;
 }
+} // namespace literals
+} // namespace okapi
 
 #endif

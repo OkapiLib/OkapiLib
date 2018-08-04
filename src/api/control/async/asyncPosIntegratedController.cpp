@@ -16,19 +16,23 @@ AsyncPosIntegratedControllerArgs::AsyncPosIntegratedControllerArgs(
 
 AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
                                                            const TimeUtil &itimeUtil)
-  : motor(imotor),
+  : logger(Logger::instance()),
+    motor(imotor),
     settledUtil(std::move(itimeUtil.getSettledUtil())),
     rate(std::move(itimeUtil.getRate())) {
 }
 
 AsyncPosIntegratedController::AsyncPosIntegratedController(
   const AsyncPosIntegratedControllerArgs &iparams, const TimeUtil &itimeUtil)
-  : motor(iparams.motor),
+  : logger(Logger::instance()),
+    motor(iparams.motor),
     settledUtil(std::move(itimeUtil.getSettledUtil())),
     rate(std::move(itimeUtil.getRate())) {
 }
 
 void AsyncPosIntegratedController::setTarget(const double itarget) {
+  logger->info("AsyncPosIntegratedController: Set target to " + std::to_string(itarget));
+
   hasFirstTarget = true;
 
   if (!controllerIsDisabled) {
@@ -47,6 +51,7 @@ bool AsyncPosIntegratedController::isSettled() {
 }
 
 void AsyncPosIntegratedController::reset() {
+  logger->info("AsyncPosIntegratedController: Reset");
   hasFirstTarget = false;
   settledUtil->reset();
 }
@@ -57,6 +62,7 @@ void AsyncPosIntegratedController::flipDisable() {
 }
 
 void AsyncPosIntegratedController::flipDisable(const bool iisDisabled) {
+  logger->info("AsyncPosIntegratedController: flipDisable " + std::to_string(iisDisabled));
   controllerIsDisabled = iisDisabled;
   resumeMovement();
 }
@@ -76,8 +82,10 @@ void AsyncPosIntegratedController::resumeMovement() {
 }
 
 void AsyncPosIntegratedController::waitUntilSettled() {
+  logger->info("AsyncPosIntegratedController: Waiting to settle");
   while (!settledUtil->isSettled(getError())) {
     rate->delayUntil(motorUpdateRate);
   }
+  logger->info("AsyncPosIntegratedController: Done waiting to settle");
 }
 } // namespace okapi

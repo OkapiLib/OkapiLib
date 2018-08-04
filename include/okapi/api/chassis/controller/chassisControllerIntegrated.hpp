@@ -11,6 +11,7 @@
 #include "okapi/api/chassis/controller/chassisController.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
+#include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
@@ -111,7 +112,13 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   void waitUntilSettled() override;
 
+  /**
+   * Stop the robot (set all the motors to 0).
+   */
+  void stop() override;
+
   protected:
+  Logger *logger;
   std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<AsyncPosIntegratedController> leftController;
   std::unique_ptr<AsyncPosIntegratedController> rightController;

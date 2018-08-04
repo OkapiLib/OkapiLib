@@ -26,7 +26,7 @@ void ChassisController::rotate(const int ispeed) const {
   model->rotate(ispeed);
 }
 
-void ChassisController::stop() const {
+void ChassisController::stop() {
   model->stop();
 }
 
