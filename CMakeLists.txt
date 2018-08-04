@@ -164,7 +164,17 @@ add_executable(OkapiLibV5
         src/api/chassis/model/readOnlyChassisModel.cpp
         include/okapi/api/util/logging.hpp
         src/api/util/logging.cpp
-        test/loggerTests.cpp)
+        test/loggerTests.cpp
+        src/pathfinder/generator.c
+        src/pathfinder/io.c
+        src/pathfinder/mathutil.c
+        src/pathfinder/spline.c
+        src/pathfinder/trajectory.c
+        src/pathfinder/fit/hermite.c
+        src/pathfinder/followers/distance.c
+        src/pathfinder/followers/encoder.c
+        src/pathfinder/modifiers/swerve.c
+        src/pathfinder/modifiers/tank.c)
 
 # Link against gtest
-target_link_libraries(OkapiLibV5 gtest_main ${CMAKE_SOURCE_DIR}/firmware/libpathfinder.so)
+target_link_libraries(OkapiLibV5 gtest_main)

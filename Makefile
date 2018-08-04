@@ -13,8 +13,8 @@ SRCDIR=$(ROOT)/src
 INCDIR=$(ROOT)/include
 
 WARNFLAGS+=-Wall -Wextra -Wno-implicit-fallthrough -pedantic # -Wconversion #-Wmissing-include-dirs
-EXTRA_CFLAGS=
-EXTRA_CXXFLAGS=-I include/pathfinder
+EXTRA_CFLAGS=-I $(INCDIR)/pathfinder/include
+EXTRA_CXXFLAGS=-I $(INCDIR)/pathfinder/include
 
 # Set this to 1 to add additional rules to compile your project as a PROS library template
 IS_LIBRARY:=1
@@ -24,7 +24,7 @@ EXCLUDE_SRC_FROM_LIB=$(SRCDIR)/test/testRunner.cpp
 EXCLUDE_SRC_FROM_LIB+=$(SRCDIR)/test/testMain.cpp
 EXCLUDE_SRC_FROM_LIB+=$(SRCDIR)/test/crossPlatformTestRunner.cpp
 # this line excludes opcontrol.c and similar files
-EXCLUDE_SRC_FROM_LIB+= $(foreach file, $(SRCDIR)/opcontrol $(SRCDIR)/initialize $(SRCDIR)/autonomous,$(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
+EXCLUDE_SRC_FROM_LIB+= $(foreach file, $(SRCDIR)/opcontrol $(SRCDIR)/initialize $(SRCDIR)/autonomous $(SRCDIR)/pathfinder/**/*,$(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
 
 # files that get distributed to every user (beyond your source archive) - add
 # whatever files you want here. This line is configured to add all header files

@@ -2,6 +2,7 @@
 #define PATHFINDER_SPLINE_H_DEF
 
 #include "pathfinder/lib.h"
+#include "pathfinder/structs.h"
 
 #define PATHFINDER_SAMPLES_FAST (int)1000
 #define PATHFINDER_SAMPLES_LOW  (int)PATHFINDER_SAMPLES_FAST*10

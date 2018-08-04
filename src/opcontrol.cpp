@@ -10,7 +10,10 @@
 #include "okapi/api.hpp"
 #include "test/testRunner.hpp"
 #include "test/tests/impl/allImplTests.hpp"
+
+extern "C" {
 #include "pathfinder.h"
+}
 
 void runHeadlessTests() {
   using namespace okapi;
@@ -27,25 +30,32 @@ void opcontrol() {
   Logger::initialize(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::info);
 
   {
+    auto logger = Logger::instance();
+    logger->info("Started pathfinder.");
+
     int POINT_LENGTH = 3;
 
     auto *points = (Waypoint *)malloc(sizeof(Waypoint) * POINT_LENGTH);
 
-    Waypoint p1 = {-4, -1, d2r(45)}; // Waypoint @ x=-4, y=-1, exit angle=45 degrees
-    Waypoint p2 = {-1, 2, 0};        // Waypoint @ x=-1, y= 2, exit angle= 0 radians
-    Waypoint p3 = {2, 4, 0};         // Waypoint @ x= 2, y= 4, exit angle= 0 radians
+    Waypoint p1 = {-4/2.0, -1/2.0, d2r(45)}; // Waypoint @ x=-4, y=-1, exit angle=45 degrees
+    Waypoint p2 = {-1/2.0, 2/2.0, 0};        // Waypoint @ x=-1, y= 2, exit angle= 0 radians
+    Waypoint p3 = {2/2.0, 4/2.0, 0};         // Waypoint @ x= 2, y= 4, exit angle= 0 radians
     points[0] = p1;
     points[1] = p2;
     points[2] = p3;
 
     TrajectoryCandidate candidate;
-    pathfinder_prepare(points, POINT_LENGTH, FIT_HERMITE_CUBIC, PATHFINDER_SAMPLES_HIGH, 0.001, 15.0,
-                       10.0, 60.0, &candidate);
+    pathfinder_prepare(points, POINT_LENGTH, FIT_HERMITE_CUBIC, PATHFINDER_SAMPLES_HIGH, 0.001,
+                       15.0, 10.0, 60.0, &candidate);
+
+    logger->info("Done preparing points.");
 
     int length = candidate.length;
     auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
 
     pathfinder_generate(&candidate, trajectory);
+
+    logger->info("Done generating.");
 
     auto *leftTrajectory = (Segment *)malloc(sizeof(Segment) * length);
     auto *rightTrajectory = (Segment *)malloc(sizeof(Segment) * length);
@@ -53,6 +63,8 @@ void opcontrol() {
     double wheelbase_width = 0.6;
 
     pathfinder_modify_tank(trajectory, length, leftTrajectory, rightTrajectory, wheelbase_width);
+
+    logger->info("Done modifying for tank.");
 
     // Do something with the trajectories...
 

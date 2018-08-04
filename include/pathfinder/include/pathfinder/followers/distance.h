@@ -2,6 +2,7 @@
 #define PATHFINDER_FOL_DISTANCE_H_DEF
 
 #include "pathfinder/lib.h"
+#include "pathfinder/structs.h"
 
 CAPI typedef struct {
     double kp, ki, kd, kv, ka;

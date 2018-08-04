@@ -12,7 +12,10 @@
 #include "test/crossPlatformTestRunner.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
+
+extern "C" {
 #include "pathfinder.h"
+}
 
 using namespace okapi;
 using namespace snowhouse;

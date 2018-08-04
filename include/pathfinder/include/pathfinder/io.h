@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "pathfinder/structs.h"
 #include <string.h>
 #include "pathfinder/lib.h"
 

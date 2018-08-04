@@ -1,6 +1,8 @@
 #ifndef PATHFINDER_FOL_ENCODER_H_DEF
 #define PATHFINDER_FOL_ENCODER_H_DEF
 
+#include "pathfinder/structs.h"
+
 typedef struct {
     int initial_position, ticks_per_revolution;
     double wheel_circumference;
