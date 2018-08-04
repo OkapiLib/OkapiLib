@@ -13,52 +13,8 @@
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 
-extern "C" {
-#include "pathfinder.h"
-}
-
 using namespace okapi;
 using namespace snowhouse;
-
-TEST(PathfinderTest, BasicTest) {
-  int POINT_LENGTH = 2;
-
-  auto *points = (Waypoint *)malloc(sizeof(Waypoint) * POINT_LENGTH);
-
-  Waypoint p1 = {0, 0, 0};
-  Waypoint p2 = {0.9144, 0, d2r(45)};
-  points[0] = p1;
-  points[1] = p2;
-
-  TrajectoryCandidate candidate;
-  pathfinder_prepare(points, POINT_LENGTH, FIT_HERMITE_CUBIC, PATHFINDER_SAMPLES_FAST, 0.001, 1.0,
-                     2.0, 10.0, &candidate);
-
-  int length = candidate.length;
-  auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
-
-  pathfinder_generate(&candidate, trajectory);
-
-  auto *leftTrajectory = (Segment *)malloc(sizeof(Segment) * length);
-  auto *rightTrajectory = (Segment *)malloc(sizeof(Segment) * length);
-
-  double wheelbase_width = 0.2794;
-
-  pathfinder_modify_tank(trajectory, length, leftTrajectory, rightTrajectory, wheelbase_width);
-
-  auto outFile = fopen("pathfinder_result.csv", "w");
-  fputs("left position,left velocity,left acceleration,right position,right velocity,right "
-        "acceleration\n",
-        outFile);
-  for (int i = 0; i < length; ++i) {
-    fprintf(outFile, "%1.2f,%1.2f,%1.2f,%1.2f,%1.2f,%1.2f\n", leftTrajectory[i].position,
-            leftTrajectory[i].velocity, leftTrajectory[i].acceleration, rightTrajectory[i].position,
-            rightTrajectory[i].velocity, rightTrajectory[i].acceleration);
-  }
-
-  fclose(outFile);
-  free(trajectory);
-}
 
 TEST(ChassisScalesTest, RawScales) {
   ChassisScales scales({0.5, 0.3});
