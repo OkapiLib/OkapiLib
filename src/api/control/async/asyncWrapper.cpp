@@ -39,7 +39,9 @@ void AsyncWrapper::loop() {
 }
 
 void AsyncWrapper::trampoline(void *context) {
-  static_cast<AsyncWrapper *>(context)->loop();
+  if (context) {
+    static_cast<AsyncWrapper *>(context)->loop();
+  }
 }
 
 void AsyncWrapper::setTarget(const double itarget) {
