@@ -96,7 +96,9 @@ void ChassisControllerPID::loop() {
 }
 
 void ChassisControllerPID::trampoline(void *context) {
-  static_cast<ChassisControllerPID *>(context)->loop();
+  if (context) {
+    static_cast<ChassisControllerPID *>(context)->loop();
+  }
 }
 
 void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {

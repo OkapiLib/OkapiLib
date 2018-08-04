@@ -291,7 +291,9 @@ void SimulatedSystem::step() {
 }
 
 void SimulatedSystem::trampoline(void *system) {
-  static_cast<SimulatedSystem *>(system)->step();
+  if (system) {
+    static_cast<SimulatedSystem *>(system)->step();
+  }
 }
 
 void SimulatedSystem::join() {
