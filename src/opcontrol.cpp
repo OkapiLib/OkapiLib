@@ -66,14 +66,16 @@ void opcontrol() {
 
     auto drive =
       ChassisControllerFactory::create(-1, 2, AbstractMotor::gearset::red, {2.5_in, 10.5_in});
-    drive.moveDistance(4_in);
-    //    Rate rate;
-    //    for (int i = 0; i < 1650; i += 10) {
-    //      logger->info("loop");
-    //      drive.left(leftTrajectory[i].velocity);
-    //      drive.right(rightTrajectory[i].velocity);
-    //      rate.delayUntil(10_ms);
-    //    }
+
+    Rate rate;
+    for (int i = 0; i < length; i += 1) {
+      logger->info("loop");
+      drive.left(leftTrajectory[i].velocity);
+      drive.right(rightTrajectory[i].velocity);
+      rate.delayUntil(1_ms);
+    }
+
+    drive.stop();
 
     free(trajectory);
   }
