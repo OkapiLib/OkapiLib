@@ -18,7 +18,7 @@ ChassisControllerFactory::create(Motor ileftSideMotor, Motor irightSideMotor,
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   return ChassisControllerIntegrated(
-    TimeUtilFactory::create(), std::make_unique<SkidSteerModel>(leftMtr, rightMtr),
+    TimeUtilFactory::create(), std::make_shared<SkidSteerModel>(leftMtr, rightMtr),
     std::make_unique<AsyncPosIntegratedController>(leftMtr, TimeUtilFactory::create()),
     std::make_unique<AsyncPosIntegratedController>(rightMtr, TimeUtilFactory::create()), igearset,
     iscales);
@@ -31,7 +31,7 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSid
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   return ChassisControllerIntegrated(
-    TimeUtilFactory::create(), std::make_unique<SkidSteerModel>(leftMtr, rightMtr),
+    TimeUtilFactory::create(), std::make_shared<SkidSteerModel>(leftMtr, rightMtr),
     std::make_unique<AsyncPosIntegratedController>(leftMtr, TimeUtilFactory::create()),
     std::make_unique<AsyncPosIntegratedController>(rightMtr, TimeUtilFactory::create()), igearset,
     iscales);
@@ -46,7 +46,7 @@ ChassisControllerIntegrated ChassisControllerFactory::create(
   auto bottomLeftMtr = std::make_shared<Motor>(ibottomLeftMotor);
   return ChassisControllerIntegrated(
     TimeUtilFactory::create(),
-    std::make_unique<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr),
+    std::make_shared<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr),
     std::make_unique<AsyncPosIntegratedController>(topLeftMtr, TimeUtilFactory::create()),
     std::make_unique<AsyncPosIntegratedController>(topRightMtr, TimeUtilFactory::create()),
     igearset, iscales);
@@ -61,7 +61,7 @@ ChassisControllerFactory::create(Motor ileftSideMotor, Motor irightSideMotor,
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   return ChassisControllerPID(
-    TimeUtilFactory::create(), std::make_unique<SkidSteerModel>(leftMtr, rightMtr),
+    TimeUtilFactory::create(), std::make_shared<SkidSteerModel>(leftMtr, rightMtr),
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()), igearset,
     iscales);
@@ -76,7 +76,7 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor, MotorGroup irightSid
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   return ChassisControllerPID(
-    TimeUtilFactory::create(), std::make_unique<SkidSteerModel>(leftMtr, rightMtr),
+    TimeUtilFactory::create(), std::make_shared<SkidSteerModel>(leftMtr, rightMtr),
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()), igearset,
     iscales);
@@ -91,7 +91,7 @@ ChassisControllerPID ChassisControllerFactory::create(
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   return ChassisControllerPID(
     TimeUtilFactory::create(),
-    std::make_unique<SkidSteerModel>(leftMtr, rightMtr, std::make_shared<ADIEncoder>(ileftEnc),
+    std::make_shared<SkidSteerModel>(leftMtr, rightMtr, std::make_shared<ADIEncoder>(ileftEnc),
                                      std::make_shared<ADIEncoder>(irightEnc)),
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()), igearset,
@@ -107,7 +107,7 @@ ChassisControllerPID ChassisControllerFactory::create(
   const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales) {
   return ChassisControllerPID(
     TimeUtilFactory::create(),
-    std::make_unique<SkidSteerModel>(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc),
+    std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc),
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()), igearset,
     iscales);
@@ -124,7 +124,7 @@ ChassisControllerPID ChassisControllerFactory::create(
   auto bottomLeftMtr = std::make_shared<Motor>(ibottomLeftMotor);
   return ChassisControllerPID(
     TimeUtilFactory::create(),
-    std::make_unique<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr),
+    std::make_shared<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr),
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()), igearset,
     iscales);
@@ -142,7 +142,7 @@ ChassisControllerPID ChassisControllerFactory::create(
   auto bottomLeftMtr = std::make_shared<Motor>(ibottomLeftMotor);
   return ChassisControllerPID(
     TimeUtilFactory::create(),
-    std::make_unique<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr,
+    std::make_shared<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr,
                                   std::make_shared<ADIEncoder>(itopLeftEnc),
                                   std::make_shared<ADIEncoder>(itopRightEnc)),
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
@@ -160,7 +160,7 @@ ChassisControllerPID ChassisControllerFactory::create(
   const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales) {
   return ChassisControllerPID(
     TimeUtilFactory::create(),
-    std::make_unique<XDriveModel>(itopLeftMotor, itopRightMotor, ibottomRightMotor,
+    std::make_shared<XDriveModel>(itopLeftMotor, itopRightMotor, ibottomRightMotor,
                                   ibottomLeftMotor, itopLeftEnc, itopRightEnc),
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()), igearset,

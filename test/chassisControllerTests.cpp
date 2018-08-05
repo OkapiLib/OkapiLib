@@ -42,7 +42,7 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
                                std::unique_ptr<AbstractMotor>(rightMotor));
 
     controller = new ChassisControllerIntegrated(
-      createTimeUtil(), std::unique_ptr<ChassisModel>(model),
+      createTimeUtil(), std::shared_ptr<ChassisModel>(model),
       std::unique_ptr<AsyncPosIntegratedController>(leftController),
       std::unique_ptr<AsyncPosIntegratedController>(rightController), AbstractMotor::gearset::red,
       *scales);
@@ -309,7 +309,7 @@ class ChassisControllerPIDTest : public ::testing::Test {
                                std::unique_ptr<AbstractMotor>(rightMotor));
 
     controller =
-      new ChassisControllerPID(createTimeUtil(), std::unique_ptr<ChassisModel>(model),
+      new ChassisControllerPID(createTimeUtil(), std::shared_ptr<ChassisModel>(model),
                                std::unique_ptr<IterativePosPIDController>(distanceController),
                                std::unique_ptr<IterativePosPIDController>(angleController),
                                AbstractMotor::gearset::red, *scales);

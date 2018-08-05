@@ -28,7 +28,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(
-    const TimeUtil &itimeUtil, std::unique_ptr<ChassisModel> imodel,
+    const TimeUtil &itimeUtil, std::shared_ptr<ChassisModel> imodel,
     std::unique_ptr<AsyncPosIntegratedController> ileftController,
     std::unique_ptr<AsyncPosIntegratedController> irightController,
     AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,

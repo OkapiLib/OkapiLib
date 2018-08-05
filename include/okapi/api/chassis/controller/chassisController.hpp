@@ -25,7 +25,7 @@ class ChassisController : public ChassisModel {
    *
    * @param imodel underlying ChassisModel
    */
-  explicit ChassisController(std::unique_ptr<ChassisModel> imodel);
+  explicit ChassisController(std::shared_ptr<ChassisModel> imodel);
 
   ~ChassisController() override;
 
@@ -185,8 +185,14 @@ class ChassisController : public ChassisModel {
    */
   void setGearing(AbstractMotor::gearset gearset) const override;
 
+  /**
+   * Get the underlying ChassisModel. This should be used sparingly and carefully because it can
+   * result to multiple owners writing to the same set of motors.
+   */
+  std::shared_ptr<ChassisModel> getChassisModel() const;
+
   protected:
-  std::unique_ptr<ChassisModel> model;
+  std::shared_ptr<ChassisModel> model;
 };
 } // namespace okapi
 
