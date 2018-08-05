@@ -15,7 +15,8 @@ namespace okapi {
  * Closed-loop controller that steps on its own in another thread and automatically writes to the
  * output.
  */
-template <typename I, typename O> class AsyncController : public ClosedLoopController<I, O> {
+template <typename Input, typename Output>
+class AsyncController : public ClosedLoopController<Input, Output> {
   public:
   /**
    * Blocks the current task until the controller has settled. Determining what settling means is

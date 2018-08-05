@@ -15,7 +15,8 @@ namespace okapi {
 /**
  * Closed-loop controller that steps iteratively using the step method below.
  */
-template <typename I, typename O> class IterativeController : public ClosedLoopController<I, O> {
+template <typename Input, typename Output>
+class IterativeController : public ClosedLoopController<Input, Output> {
   public:
   /**
    * Do one iteration of the controller. Outputs in the range [-1, 1]
@@ -23,12 +24,12 @@ template <typename I, typename O> class IterativeController : public ClosedLoopC
    * @param inewReading new measurement
    * @return controller [-1, 1]
    */
-  virtual O step(I ireading) = 0;
+  virtual Output step(Input ireading) = 0;
 
   /**
    * Returns the last calculated output of the controller.
    */
-  virtual O getOutput() const = 0;
+  virtual Output getOutput() const = 0;
 
   /**
    * Set controller output bounds.
@@ -36,7 +37,7 @@ template <typename I, typename O> class IterativeController : public ClosedLoopC
    * @param imax max output
    * @param imin min output
    */
-  virtual void setOutputLimits(O imax, O imin) = 0;
+  virtual void setOutputLimits(Output imax, Output imin) = 0;
 
   /**
    * Set time between loops in ms.

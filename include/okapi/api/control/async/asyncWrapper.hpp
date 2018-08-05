@@ -21,7 +21,8 @@
 #include <memory>
 
 namespace okapi {
-template <typename I, typename O> class AsyncWrapper : virtual public AsyncController<I, O> {
+template <typename Input, typename Output>
+class AsyncWrapper : virtual public AsyncController<Input, Output> {
   public:
   /**
    * A wrapper class that transforms an IterativeController into an AsyncController by running it in
@@ -35,9 +36,9 @@ template <typename I, typename O> class AsyncWrapper : virtual public AsyncContr
    * @param isettledUtil used in waitUntilSettled
    * @param iscale the scale applied to the controller output
    */
-  AsyncWrapper(std::shared_ptr<ControllerInput<I>> iinput,
-               std::shared_ptr<ControllerOutput<O>> ioutput,
-               std::unique_ptr<IterativeController<I, O>> icontroller,
+  AsyncWrapper(std::shared_ptr<ControllerInput<Input>> iinput,
+               std::shared_ptr<ControllerOutput<Output>> ioutput,
+               std::unique_ptr<IterativeController<Input, Output>> icontroller,
                const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
                std::unique_ptr<SettledUtil> isettledUtil)
     : logger(Logger::instance()),
@@ -53,7 +54,7 @@ template <typename I, typename O> class AsyncWrapper : virtual public AsyncContr
   /**
    * Sets the target for the controller.
    */
-  void setTarget(I itarget) override {
+  void setTarget(Input itarget) override {
     logger->info("AsyncWrapper: Set target to " + std::to_string(itarget));
     controller->setTarget(itarget);
   }
@@ -61,14 +62,14 @@ template <typename I, typename O> class AsyncWrapper : virtual public AsyncContr
   /**
    * Returns the last calculated output of the controller. Default is 0.
    */
-  O getOutput() const {
+  Output getOutput() const {
     return controller->getOutput();
   }
 
   /**
    * Returns the last error of the controller.
    */
-  O getError() const override {
+  Output getError() const override {
     return controller->getError();
   }
 
@@ -99,7 +100,7 @@ template <typename I, typename O> class AsyncWrapper : virtual public AsyncContr
    * @param imax max output
    * @param imin min output
    */
-  void setOutputLimits(O imax, O imin) {
+  void setOutputLimits(Output imax, Output imin) {
     controller->setOutputLimits(imax, imin);
   }
 
@@ -156,9 +157,9 @@ template <typename I, typename O> class AsyncWrapper : virtual public AsyncContr
 
   protected:
   Logger *logger;
-  std::shared_ptr<ControllerInput<I>> input;
-  std::shared_ptr<ControllerOutput<O>> output;
-  std::unique_ptr<IterativeController<I, O>> controller;
+  std::shared_ptr<ControllerInput<Input>> input;
+  std::shared_ptr<ControllerOutput<Output>> output;
+  std::unique_ptr<IterativeController<Input, Output>> controller;
   std::unique_ptr<AbstractRate> loopRate;
   std::unique_ptr<AbstractRate> settledRate;
   std::unique_ptr<SettledUtil> settledUtil;

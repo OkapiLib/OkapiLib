@@ -12,8 +12,8 @@
 #include <memory>
 
 namespace okapi {
-template <typename I, typename O>
-class AsyncVelocityController : virtual public AsyncController<I, O> {};
+template <typename Input, typename Output>
+class AsyncVelocityController : virtual public AsyncController<Input, Output> {};
 } // namespace okapi
 
 #endif
