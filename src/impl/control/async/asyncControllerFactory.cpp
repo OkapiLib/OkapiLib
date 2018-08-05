@@ -42,6 +42,21 @@ AsyncPosPIDController AsyncControllerFactory::posPID(Motor imotor, ADIEncoder ie
                                TimeUtilFactory::create(), ikP, ikI, ikD, ikBias);
 }
 
+AsyncPosPIDController AsyncControllerFactory::posPID(Motor imotor, Potentiometer ipot,
+                                                     const double ikP, const double ikI,
+                                                     const double ikD, const double ikBias) {
+  return AsyncPosPIDController(std::make_shared<Potentiometer>(ipot),
+                               std::make_shared<Motor>(imotor), TimeUtilFactory::create(), ikP, ikI,
+                               ikD, ikBias);
+}
+
+AsyncPosPIDController AsyncControllerFactory::posPID(MotorGroup imotor, const double ikP,
+                                                     const double ikI, const double ikD,
+                                                     const double ikBias) {
+  return AsyncPosPIDController(imotor.getEncoder(), std::make_shared<MotorGroup>(imotor),
+                               TimeUtilFactory::create(), ikP, ikI, ikD, ikBias);
+}
+
 AsyncPosPIDController AsyncControllerFactory::posPID(MotorGroup imotor, ADIEncoder ienc,
                                                      const double ikP, const double ikI,
                                                      const double ikD, const double ikBias) {
@@ -50,11 +65,12 @@ AsyncPosPIDController AsyncControllerFactory::posPID(MotorGroup imotor, ADIEncod
                                ikI, ikD, ikBias);
 }
 
-AsyncPosPIDController AsyncControllerFactory::posPID(MotorGroup imotor, const double ikP,
-                                                     const double ikI, const double ikD,
-                                                     const double ikBias) {
-  return AsyncPosPIDController(imotor.getEncoder(), std::make_shared<MotorGroup>(imotor),
-                               TimeUtilFactory::create(), ikP, ikI, ikD, ikBias);
+AsyncPosPIDController AsyncControllerFactory::posPID(MotorGroup imotor, Potentiometer ipot,
+                                                     const double ikP, const double ikI,
+                                                     const double ikD, const double ikBias) {
+  return AsyncPosPIDController(std::make_shared<Potentiometer>(ipot),
+                               std::make_shared<MotorGroup>(imotor), TimeUtilFactory::create(), ikP,
+                               ikI, ikD, ikBias);
 }
 
 AsyncPosPIDController
@@ -80,6 +96,14 @@ AsyncVelPIDController AsyncControllerFactory::velPID(Motor imotor, ADIEncoder ie
                                VelMathFactory::createPtr(iTPR));
 }
 
+AsyncVelPIDController AsyncControllerFactory::velPID(Motor imotor, Potentiometer ipot,
+                                                     const double ikP, const double ikD,
+                                                     const double ikF, const double iTPR) {
+  return AsyncVelPIDController(std::make_shared<Potentiometer>(ipot),
+                               std::make_shared<Motor>(imotor), TimeUtilFactory::create(), ikP, ikD,
+                               ikF, VelMathFactory::createPtr(iTPR));
+}
+
 AsyncVelPIDController AsyncControllerFactory::velPID(MotorGroup imotor, const double ikP,
                                                      const double ikD, const double ikF,
                                                      const double iTPR) {
@@ -92,6 +116,14 @@ AsyncVelPIDController AsyncControllerFactory::velPID(MotorGroup imotor, ADIEncod
                                                      const double ikP, const double ikD,
                                                      const double ikF, const double iTPR) {
   return AsyncVelPIDController(std::make_shared<ADIEncoder>(ienc),
+                               std::make_shared<MotorGroup>(imotor), TimeUtilFactory::create(), ikP,
+                               ikD, ikF, VelMathFactory::createPtr(iTPR));
+}
+
+AsyncVelPIDController AsyncControllerFactory::velPID(MotorGroup imotor, Potentiometer ipot,
+                                                     const double ikP, const double ikD,
+                                                     const double ikF, const double iTPR) {
+  return AsyncVelPIDController(std::make_shared<Potentiometer>(ipot),
                                std::make_shared<MotorGroup>(imotor), TimeUtilFactory::create(), ikP,
                                ikD, ikF, VelMathFactory::createPtr(iTPR));
 }
