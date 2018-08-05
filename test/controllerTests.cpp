@@ -307,7 +307,17 @@ TEST_F(AsyncMotionProfileControllerTest, MotorsAreStoppedAfterSettling) {
 
   controller->setTarget("A");
   controller->waitUntilSettled();
+
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+  EXPECT_GT(leftMotor->maxVelocity, 0);
+  EXPECT_GT(rightMotor->maxVelocity, 0);
+}
+TEST_F(AsyncMotionProfileControllerTest, WrongPathNameDoesNotMoveAnything) {
+  controller->setTarget("A");
+  controller->waitUntilSettled();
+
+  EXPECT_EQ(leftMotor->maxVelocity, 0);
+  EXPECT_EQ(rightMotor->maxVelocity, 0);
 }
 
 TEST_F(AsyncMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
@@ -317,6 +327,8 @@ TEST_F(AsyncMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
   controller->setTarget("A");
   controller->waitUntilSettled();
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+  EXPECT_GT(leftMotor->maxVelocity, 0);
+  EXPECT_GT(rightMotor->maxVelocity, 0);
 }
 
 TEST_F(AsyncMotionProfileControllerTest, CrashesTheBrain) {
@@ -325,6 +337,4 @@ TEST_F(AsyncMotionProfileControllerTest, CrashesTheBrain) {
                             Point{3_ft, 1_ft, 0_deg}, Point{2_ft, 1_ft, 0_deg},
                             Point{1_ft, 1_m, 0_deg}, Point{1_ft, 0_m, 0_deg}},
                            "A");
-  controller->setTarget("A");
-  controller->waitUntilSettled();
 }

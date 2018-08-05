@@ -76,9 +76,10 @@ class MockMotor : public AbstractMotor {
   std::int32_t moveVoltage(std::int16_t ivoltage) const override;
 
   std::shared_ptr<MockContinuousRotarySensor> encoder;
-  mutable std::int16_t lastVelocity{};
-  mutable std::int16_t lastVoltage{};
-  mutable std::int16_t lastPosition{};
+  mutable std::int16_t lastVelocity{0};
+  mutable std::int16_t maxVelocity{0};
+  mutable std::int16_t lastVoltage{0};
+  mutable std::int16_t lastPosition{0};
 };
 
 /**
