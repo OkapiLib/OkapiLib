@@ -11,9 +11,8 @@
 #include "okapi/api/control/iterative/iterativeController.hpp"
 
 namespace okapi {
-class IterativePositionControllerArgs : public IterativeControllerArgs {};
-
-class IterativePositionController : public IterativeController {};
+template <typename Input, typename Output>
+class IterativePositionController : public IterativeController<Input, Output> {};
 } // namespace okapi
 
 #endif

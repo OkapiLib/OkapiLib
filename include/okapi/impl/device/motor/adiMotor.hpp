@@ -12,7 +12,7 @@
 #include "okapi/api/control/controllerOutput.hpp"
 
 namespace okapi {
-class ADIMotor : public ControllerOutput {
+class ADIMotor : public ControllerOutput<double> {
   public:
   ADIMotor(const std::uint8_t iport, const bool ireverse = false);
 

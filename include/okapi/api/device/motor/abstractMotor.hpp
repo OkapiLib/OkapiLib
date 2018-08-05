@@ -13,7 +13,7 @@
 #include <memory>
 
 namespace okapi {
-class AbstractMotor : public ControllerOutput {
+class AbstractMotor : public ControllerOutput<double> {
   public:
   /**
    * Indicates the 'brake mode' of a motor.

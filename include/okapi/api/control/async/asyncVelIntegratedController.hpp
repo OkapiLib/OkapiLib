@@ -15,23 +15,13 @@
 #include <memory>
 
 namespace okapi {
-class AsyncVelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
-  public:
-  explicit AsyncVelIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
-
-  std::shared_ptr<AbstractMotor> motor;
-};
-
 /**
  * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are whatever
  * units the motor is in.
  */
-class AsyncVelIntegratedController : public AsyncVelocityController {
+class AsyncVelIntegratedController : public AsyncVelocityController<double, double> {
   public:
   AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor, const TimeUtil &itimeUtil);
-
-  AsyncVelIntegratedController(const AsyncVelIntegratedControllerArgs &iparams,
-                               const TimeUtil &itimeUtil);
 
   /**
    * Sets the target for the controller.

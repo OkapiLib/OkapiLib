@@ -22,7 +22,7 @@ int32_t MockContinuousRotarySensor::reset() {
   return 0;
 }
 
-int32_t MockContinuousRotarySensor::get() const {
+double MockContinuousRotarySensor::get() const {
   return value;
 }
 
@@ -93,6 +93,9 @@ std::shared_ptr<ContinuousRotarySensor> MockMotor::getEncoder() const {
 
 std::int32_t MockMotor::moveVelocity(const std::int16_t ivelocity) const {
   lastVelocity = ivelocity;
+  if (ivelocity > maxVelocity) {
+    maxVelocity = ivelocity;
+  }
   return 1;
 }
 
@@ -301,19 +304,6 @@ void SimulatedSystem::join() {
   thread.join();
 }
 
-double MockAsyncController::getOutput() const {
-  return output;
-}
-
-void MockAsyncController::setSampleTime(QTime isampleTime) {
-  sampleTime = isampleTime;
-}
-
-void MockAsyncController::setOutputLimits(double imax, double imin) {
-  maxOutput = imax;
-  minOutput = imin;
-}
-
 void MockAsyncController::waitUntilSettled() {
 }
 
@@ -364,10 +354,6 @@ double MockIterativeController::getError() const {
   return 0;
 }
 
-double MockIterativeController::getDerivative() const {
-  return 0;
-}
-
 bool MockIterativeController::isSettled() {
   return isSettledOverride;
 }
@@ -410,5 +396,12 @@ bool MockIterativeController::isDisabled() const {
 
 QTime MockIterativeController::getSampleTime() const {
   return sampleTime;
+}
+
+void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor) {
+  EXPECT_DOUBLE_EQ(leftMotor->lastVoltage, 0);
+  EXPECT_DOUBLE_EQ(leftMotor->lastVelocity, 0);
+  EXPECT_DOUBLE_EQ(rightMotor->lastVoltage, 0);
+  EXPECT_DOUBLE_EQ(rightMotor->lastVelocity, 0);
 }
 } // namespace okapi

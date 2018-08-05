@@ -8,6 +8,7 @@
 #ifndef _OKAPI_ASYNCCONTROLLERFACTORY_HPP_
 #define _OKAPI_ASYNCCONTROLLERFACTORY_HPP_
 
+#include "okapi/api/control/async/asyncMotionProfileController.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
 #include "okapi/api/control/async/asyncPosPidController.hpp"
 #include "okapi/api/control/async/asyncVelIntegratedController.hpp"
@@ -16,6 +17,7 @@
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
+#include "okapi/api/chassis/controller/chassisController.hpp"
 
 namespace okapi {
 class AsyncControllerFactory {
@@ -108,8 +110,8 @@ class AsyncControllerFactory {
    * @param ikD derivative gain
    * @param ikBias output bias (a constant added to the output)
    */
-  static AsyncPosPIDController posPID(std::shared_ptr<ControllerInput> iinput,
-                                      std::shared_ptr<ControllerOutput> ioutput, double ikP,
+  static AsyncPosPIDController posPID(std::shared_ptr<ControllerInput<double>> iinput,
+                                      std::shared_ptr<ControllerOutput<double>> ioutput, double ikP,
                                       double ikI, double ikD, double ikBias = 0);
 
   /**
@@ -167,9 +169,37 @@ class AsyncControllerFactory {
    * @param ikD derivative gain
    * @param ikF feed-forward gain
    */
-  static AsyncVelPIDController velPID(std::shared_ptr<ControllerInput> iinput,
-                                      std::shared_ptr<ControllerOutput> ioutput, double ikP,
+  static AsyncVelPIDController velPID(std::shared_ptr<ControllerInput<double>> iinput,
+                                      std::shared_ptr<ControllerOutput<double>> ioutput, double ikP,
                                       double ikD, double ikF = 0, double iTPR = imev5TPR);
+
+  /**
+   * A controller which generates and follows 2D motion profiles.
+   *
+   * @param imaxVel The maximum possible velocity.
+   * @param imaxAccel The maximum possible acceleration.
+   * @param imaxJerk The maximum possible jerk.
+   * @param imodel The chassis model to control.
+   * @param iwidth The chassis wheelbase width.
+   */
+  static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel,
+                                                    double imaxJerk,
+                                                    std::shared_ptr<SkidSteerModel> imodel,
+                                                    QLength iwidth);
+
+  /**
+   * A controller which generates and follows 2D motion profiles.
+   *
+   * @param imaxVel The maximum possible velocity.
+   * @param imaxAccel The maximum possible acceleration.
+   * @param imaxJerk The maximum possible jerk.
+   * @param imodel The chassis to control.
+   * @param iwidth The chassis wheelbase width.
+   */
+  static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel,
+                                                    double imaxJerk,
+                                                    const ChassisController &ichassis,
+                                                    QLength iwidth);
 };
 } // namespace okapi
 

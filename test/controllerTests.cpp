@@ -5,6 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+#include "okapi/api/control/async/asyncMotionProfileController.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
 #include "okapi/api/control/async/asyncPosPidController.hpp"
 #include "okapi/api/control/async/asyncVelIntegratedController.hpp"
@@ -33,7 +34,7 @@ class IterativeControllerTest : public ::testing::Test {
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
   }
 
-  void runSimulation(IterativeController &controller, const double target) {
+  void runSimulation(IterativeController<double, double> &controller, const double target) {
     controller.setTarget(target);
     for (size_t i = 0; i < 2000; i++) {
       controller.step(sim.getAngle() * radianToDegree);
@@ -122,7 +123,7 @@ TEST_F(IterativeControllerTest, IterativeMotorVelocityController) {
 
 class AsyncControllerTest : public ::testing::Test {
   public:
-  void assertControllerFollowsDisableLifecycle(AsyncController &&controller,
+  void assertControllerFollowsDisableLifecycle(AsyncController<double, double> &&controller,
                                                std::int16_t &domainValue,
                                                std::int16_t &voltageValue) {
     EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled at the start.";
@@ -153,7 +154,7 @@ class AsyncControllerTest : public ::testing::Test {
       << "Re-enabling the controller after a reset should not move the motor";
   }
 
-  void assertControllerFollowsTargetLifecycle(AsyncController &&controller) {
+  void assertControllerFollowsTargetLifecycle(AsyncController<double, double> &&controller) {
     EXPECT_DOUBLE_EQ(0, controller.getError()) << "Should start with 0 error";
     controller.setTarget(100);
     EXPECT_DOUBLE_EQ(100, controller.getError());
@@ -217,16 +218,15 @@ TEST(AsyncVelIntegratedControllerTest, SettledWhenDisabled) {
 }
 
 TEST(FilteredControllerInputTest, InputShouldBePassedThrough) {
-  class MockControllerInput : public ControllerInput {
+  class MockControllerInput : public ControllerInput<double> {
     public:
     double controllerGet() override {
       return 1;
     }
   };
 
-  MockControllerInput mockInput;
-  PassthroughFilter filter;
-  FilteredControllerInput<MockControllerInput, PassthroughFilter> input(mockInput, filter);
+  FilteredControllerInput<double, PassthroughFilter> input(std::make_unique<MockControllerInput>(),
+                                                           std::make_unique<PassthroughFilter>());
 
   for (int i = 0; i < 3; i++) {
     EXPECT_FLOAT_EQ(input.controllerGet(), 1);
@@ -277,4 +277,65 @@ TEST(SettledUtilTest, ZeroTime) {
   EXPECT_FALSE(settledUtil.isSettled(60));
   EXPECT_FALSE(settledUtil.isSettled(55));
   EXPECT_TRUE(settledUtil.isSettled(50));
+}
+
+class AsyncMotionProfileControllerTest : public ::testing::Test {
+  protected:
+  void SetUp() override {
+    Logger::initialize(createTimeUtil().getTimer(), "thefile.txt", Logger::LogLevel::info);
+    leftMotor = new MockMotor();
+    rightMotor = new MockMotor();
+
+    model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
+                               std::unique_ptr<AbstractMotor>(rightMotor));
+
+    controller = new AsyncMotionProfileController(createTimeUtil(), 1.0, 2.0, 10.0,
+                                                  std::shared_ptr<SkidSteerModel>(model), 10.5_in);
+  }
+
+  void TearDown() override {
+    delete controller;
+  }
+
+  MockMotor *leftMotor;
+  MockMotor *rightMotor;
+  SkidSteerModel *model;
+  AsyncMotionProfileController *controller;
+};
+
+TEST_F(AsyncMotionProfileControllerTest, MotorsAreStoppedAfterSettling) {
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 45_deg}}, "A");
+
+  controller->setTarget("A");
+  controller->waitUntilSettled();
+
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+  EXPECT_GT(leftMotor->maxVelocity, 0);
+  EXPECT_GT(rightMotor->maxVelocity, 0);
+}
+TEST_F(AsyncMotionProfileControllerTest, WrongPathNameDoesNotMoveAnything) {
+  controller->setTarget("A");
+  controller->waitUntilSettled();
+
+  EXPECT_EQ(leftMotor->maxVelocity, 0);
+  EXPECT_EQ(rightMotor->maxVelocity, 0);
+}
+
+TEST_F(AsyncMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 45_deg}}, "A");
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 2_ft, 45_deg}}, "A");
+
+  controller->setTarget("A");
+  controller->waitUntilSettled();
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+  EXPECT_GT(leftMotor->maxVelocity, 0);
+  EXPECT_GT(rightMotor->maxVelocity, 0);
+}
+
+TEST_F(AsyncMotionProfileControllerTest, ImpossiblePathThrowsException) {
+  EXPECT_THROW(controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 0_deg},
+                                         Point{3_ft, 1_ft, 0_deg}, Point{2_ft, 1_ft, 0_deg},
+                                         Point{1_ft, 1_m, 0_deg}, Point{1_ft, 0_m, 0_deg}},
+                                        "A"),
+               std::runtime_error);
 }

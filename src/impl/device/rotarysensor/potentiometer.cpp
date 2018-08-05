@@ -13,7 +13,7 @@ Potentiometer::Potentiometer(const std::uint8_t iport) : pot(iport) {
 
 Potentiometer::~Potentiometer() = default;
 
-std::int32_t Potentiometer::get() const {
+double Potentiometer::get() const {
   return pot.get_value();
 }
 

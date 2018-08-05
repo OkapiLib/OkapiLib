@@ -9,11 +9,14 @@
 #define _OKAPI_CONTROLLERRUNNERFACTORY_HPP_
 
 #include "okapi/api/control/util/controllerRunner.hpp"
+#include "okapi/impl/util/rate.hpp"
 
 namespace okapi {
-class ControllerRunnerFactory {
+template <typename Input, typename Output> class ControllerRunnerFactory {
   public:
-  static ControllerRunner create();
+  static ControllerRunner<Input, Output> create() {
+    return ControllerRunner<Input, Output>(std::make_unique<Rate>());
+  }
 };
 } // namespace okapi
 
