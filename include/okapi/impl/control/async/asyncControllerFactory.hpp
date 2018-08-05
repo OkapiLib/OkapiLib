@@ -17,6 +17,7 @@
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
+#include "okapi/api/chassis/controller/chassisController.hpp"
 
 namespace okapi {
 class AsyncControllerFactory {
@@ -184,6 +185,20 @@ class AsyncControllerFactory {
   static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel,
                                                     double imaxJerk,
                                                     std::shared_ptr<SkidSteerModel> imodel,
+                                                    QLength iwidth);
+
+  /**
+   * A controller which generates and follows 2D motion profiles.
+   *
+   * @param imaxVel The maximum possible velocity.
+   * @param imaxAccel The maximum possible acceleration.
+   * @param imaxJerk The maximum possible jerk.
+   * @param imodel The chassis to control.
+   * @param iwidth The chassis wheelbase width.
+   */
+  static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel,
+                                                    double imaxJerk,
+                                                    const ChassisController &ichassis,
                                                     QLength iwidth);
 };
 } // namespace okapi

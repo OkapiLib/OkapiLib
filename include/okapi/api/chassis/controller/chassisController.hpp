@@ -187,7 +187,7 @@ class ChassisController : public ChassisModel {
 
   /**
    * Get the underlying ChassisModel. This should be used sparingly and carefully because it can
-   * result to multiple owners writing to the same set of motors.
+   * result in multiple owners writing to the same set of motors.
    */
   std::shared_ptr<ChassisModel> getChassisModel() const;
 

@@ -20,7 +20,7 @@ namespace okapi {
  * @tparam FilterType the type of the Filter
  */
 template <typename InputType, typename FilterType>
-class FilteredControllerInput : public ControllerInput<InputType> {
+class FilteredControllerInput : public ControllerInput<double> {
   public:
   /**
    * A filtered controller input. Applies a filter to the controller input. Useful if you want to

@@ -103,10 +103,18 @@ AsyncControllerFactory::velPID(std::shared_ptr<ControllerInput<double>> iinput,
   return AsyncVelPIDController(iinput, ioutput, TimeUtilFactory::create(), ikP, ikD, ikF,
                                VelMathFactory::createPtr(iTPR));
 }
+
 AsyncMotionProfileController
 AsyncControllerFactory::motionProfile(double imaxVel, double imaxAccel, double imaxJerk,
                                       std::shared_ptr<SkidSteerModel> imodel, QLength iwidth) {
   return AsyncMotionProfileController(TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk,
                                       imodel, iwidth);
+}
+
+AsyncMotionProfileController
+AsyncControllerFactory::motionProfile(double imaxVel, double imaxAccel, double imaxJerk,
+                                      const ChassisController &ichassis, QLength iwidth) {
+  return AsyncMotionProfileController(TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk,
+                                      ichassis.getChassisModel(), iwidth);
 }
 } // namespace okapi

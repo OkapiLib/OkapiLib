@@ -52,7 +52,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * If the waypoints form a path which is impossible to achieve, an instance of std::runtime_error
    * is thrown (and an error is logged) which describes the waypoints.
    *
-   * @param iwaypoints The Waypoints to hit on the path.
+   * @param iwaypoints The waypoints to hit on the path.
    * @param ipathId A unique identifier to save the path with.
    */
   void generatePath(std::initializer_list<Point> iwaypoints, std::string ipathId);
@@ -93,18 +93,20 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
+   *
+   * This implementation does nothing.
    */
   void reset() override;
 
   /**
    * Changes whether the controller is off or on. Turning the controller on after it was off will
-   * cause the controller to move to its last set target, unless it was reset in that time.
+   * NOT cause the controller to move to its last set target.
    */
   void flipDisable() override;
 
   /**
    * Sets whether the controller is off or on. Turning the controller on after it was off will
-   * cause the controller to move to its last set target, unless it was reset in that time.
+   * NOT cause the controller to move to its last set target, unless it was reset in that time.
    *
    * @param iisDisabled whether the controller is disabled
    */

@@ -40,7 +40,7 @@ class IterativeController : public ClosedLoopController<Input, Output> {
   virtual void setOutputLimits(Output imax, Output imin) = 0;
 
   /**
-   * Set time between loops in ms.
+   * Set time between loops.
    *
    * @param isampleTime time between loops
    */

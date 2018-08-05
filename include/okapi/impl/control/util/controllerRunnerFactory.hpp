@@ -12,10 +12,10 @@
 #include "okapi/impl/util/rate.hpp"
 
 namespace okapi {
-template <typename I, typename O> class ControllerRunnerFactory {
+template <typename Input, typename Output> class ControllerRunnerFactory {
   public:
-  static ControllerRunner<I, O> create() {
-    return ControllerRunner(std::make_unique<Rate>());
+  static ControllerRunner<Input, Output> create() {
+    return ControllerRunner<Input, Output>(std::make_unique<Rate>());
   }
 };
 } // namespace okapi

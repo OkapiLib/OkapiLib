@@ -16,7 +16,7 @@
 #include <memory>
 
 namespace okapi {
-template <typename I, typename O> class ControllerRunner {
+template <typename Input, typename Output> class ControllerRunner {
   public:
   ControllerRunner(std::unique_ptr<AbstractRate> irate)
     : logger(Logger::instance()), rate(std::move(irate)) {
@@ -29,7 +29,7 @@ template <typename I, typename O> class ControllerRunner {
    * @param icontroller the controller to run
    * @return the error when settled
    */
-  virtual O runUntilSettled(const I itarget, AsyncController<I, O> &icontroller) {
+  virtual Output runUntilSettled(const Input itarget, AsyncController<Input, Output> &icontroller) {
     logger->info("ControllerRunner: runUntilSettled(AsyncController): Set target to " +
                  std::to_string(itarget));
     icontroller.setTarget(itarget);
@@ -50,8 +50,8 @@ template <typename I, typename O> class ControllerRunner {
    * @param ioutput the output to write to
    * @return the error when settled
    */
-  virtual O runUntilSettled(const I itarget, IterativeController<I, O> &icontroller,
-                            ControllerOutput<O> &ioutput) {
+  virtual Output runUntilSettled(const Input itarget, IterativeController<Input, Output> &icontroller,
+                            ControllerOutput<Output> &ioutput) {
     logger->info("ControllerRunner: runUntilSettled(IterativeController): Set target to " +
                  std::to_string(itarget));
     icontroller.setTarget(itarget);
@@ -72,7 +72,7 @@ template <typename I, typename O> class ControllerRunner {
    * @param icontroller the controller to run
    * @return the error when settled
    */
-  virtual O runUntilAtTarget(const I itarget, AsyncController<I, O> &icontroller) {
+  virtual Output runUntilAtTarget(const Input itarget, AsyncController<Input, Output> &icontroller) {
     logger->info("ControllerRunner: runUntilAtTarget(AsyncController): Set target to " +
                  std::to_string(itarget));
     icontroller.setTarget(itarget);
@@ -97,8 +97,8 @@ template <typename I, typename O> class ControllerRunner {
    * @param ioutput the output to write to
    * @return the error when settled
    */
-  virtual O runUntilAtTarget(const I itarget, IterativeController<I, O> &icontroller,
-                             ControllerOutput<O> &ioutput) {
+  virtual Output runUntilAtTarget(const Input itarget, IterativeController<Input, Output> &icontroller,
+                             ControllerOutput<Output> &ioutput) {
     logger->info("ControllerRunner: runUntilAtTarget(IterativeController): Set target to " +
                  std::to_string(itarget));
     icontroller.setTarget(itarget);
