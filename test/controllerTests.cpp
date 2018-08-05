@@ -225,9 +225,8 @@ TEST(FilteredControllerInputTest, InputShouldBePassedThrough) {
     }
   };
 
-  std::unique_ptr<ControllerInput<double>> mockInput = std::make_unique<MockControllerInput>();
-  PassthroughFilter filter;
-  FilteredControllerInput<double, PassthroughFilter> input(std::move(mockInput), filter);
+  FilteredControllerInput<double, PassthroughFilter> input(std::make_unique<MockControllerInput>(),
+                                                           std::make_unique<PassthroughFilter>());
 
   for (int i = 0; i < 3; i++) {
     EXPECT_FLOAT_EQ(input.controllerGet(), 1);
