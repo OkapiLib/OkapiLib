@@ -26,14 +26,6 @@ struct Point {
   QLength x;    // X coordinate relative to the start of the movement
   QLength y;    // Y coordinate relative to the start of the movement
   QAngle theta; // Exit angle relative to the start of the movement
-
-  Point operator+(const Point &other) const {
-    return Point{x + other.x, y + other.y, theta + other.theta};
-  }
-
-  Point operator-(const Point &other) const {
-    return Point{x - other.x, y - other.y, theta - other.theta};
-  }
 };
 
 class AsyncMotionProfileController : public AsyncPositionController<std::string, Point> {
