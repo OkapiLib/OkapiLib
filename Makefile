@@ -13,8 +13,8 @@ SRCDIR=$(ROOT)/src
 INCDIR=$(ROOT)/include
 
 WARNFLAGS+=-Wall -Wextra -Wno-implicit-fallthrough -pedantic # -Wconversion #-Wmissing-include-dirs
-EXTRA_CFLAGS=-I $(INCDIR)/pathfinder/include
-EXTRA_CXXFLAGS=-I $(INCDIR)/pathfinder/include
+EXTRA_CFLAGS=
+EXTRA_CXXFLAGS=
 
 # Set this to 1 to add additional rules to compile your project as a PROS library template
 IS_LIBRARY:=1
@@ -24,7 +24,7 @@ EXCLUDE_SRC_FROM_LIB=$(SRCDIR)/test/testRunner.cpp
 EXCLUDE_SRC_FROM_LIB+=$(SRCDIR)/test/testMain.cpp
 EXCLUDE_SRC_FROM_LIB+=$(SRCDIR)/test/crossPlatformTestRunner.cpp
 # this line excludes opcontrol.c and similar files
-EXCLUDE_SRC_FROM_LIB+= $(foreach file, $(SRCDIR)/opcontrol $(SRCDIR)/initialize $(SRCDIR)/autonomous $(SRCDIR)/pathfinder/**/*,$(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
+EXCLUDE_SRC_FROM_LIB+= $(foreach file, $(SRCDIR)/opcontrol $(SRCDIR)/initialize $(SRCDIR)/autonomous, $(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
 
 # files that get distributed to every user (beyond your source archive) - add
 # whatever files you want here. This line is configured to add all header files
@@ -49,7 +49,7 @@ CXXOBJ=$(addprefix $(BINDIR)/,$(patsubst $(SRCDIR)/%,%.o,$(call CXXSRC,$1)))
 
 GETALLOBJ=$(sort $(call ASMOBJ,$1) $(call COBJ,$1) $(call CXXOBJ,$1))
 
-LIBRARIES=-L$(FWDIR) -Wl,--start-group $(wildcard $(FWDIR)/*.a) -lc -lm -lgcc -lstdc++ -lsupc++ $(wildcard $(FWDIR)/*.so) -Wl,--end-group
+LIBRARIES=-L$(FWDIR) -Wl,--start-group $(wildcard $(FWDIR)/*.a) -lc -lm -lgcc -lstdc++ -lsupc++ -Wl,--end-group
 ARCHIVE_TEXT_LIST:=$(subst $(SPACE),$(COMMA),$(notdir $(basename $(wildcard $(FWDIR)/*.a))))
 
 ifndef OUTBIN

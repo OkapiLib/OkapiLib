@@ -1,8 +1,8 @@
 #ifndef PATHFINDER_MOD_SWERVE_H_DEF
 #define PATHFINDER_MOD_SWERVE_H_DEF
 
-#include "pathfinder/lib.h"
-#include "pathfinder/structs.h"
+#include "okapi/pathfinder/include/pathfinder/lib.h"
+#include "okapi/pathfinder/include/pathfinder/structs.h"
 
 CAPI typedef enum {
     SWERVE_DEFAULT

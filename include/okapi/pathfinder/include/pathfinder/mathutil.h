@@ -3,7 +3,7 @@
 #ifndef PATHFINDER_MATH_UTIL_H_DEF
 #define PATHFINDER_MATH_UTIL_H_DEF
 
-#include "pathfinder/lib.h"
+#include "okapi/pathfinder/include/pathfinder/lib.h"
 
 #define PI 3.14159265358979323846
 #define TAU PI*2

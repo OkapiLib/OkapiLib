@@ -1,4 +1,4 @@
-#include "pathfinder.h"
+#include "okapi/pathfinder/include/pathfinder.h"
 
 void pf_fit_hermite_cubic(Waypoint a, Waypoint b, Spline *s) {
     pf_fit_hermite_pre(a, b, s);

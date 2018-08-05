@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-#include "pathfinder.h"
+#include "okapi/pathfinder/include/pathfinder.h"
 
 void pf_trajectory_copy(Segment *src, Segment *dest, int length) {
     int i;

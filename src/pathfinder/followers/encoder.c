@@ -1,4 +1,4 @@
-#include "pathfinder.h"
+#include "okapi/pathfinder/include/pathfinder.h"
 
 double pathfinder_follow_encoder(EncoderConfig c, EncoderFollower *follower, Segment *trajectory, int trajectory_length, int encoder_tick) {
     int segment = follower->segment;

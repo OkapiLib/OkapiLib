@@ -1,4 +1,4 @@
-#include "pathfinder.h"
+#include "okapi/pathfinder/include/pathfinder.h"
 
 #include <stdlib.h>
 

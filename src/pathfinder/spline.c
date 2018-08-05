@@ -1,4 +1,4 @@
-#include "pathfinder.h"
+#include "okapi/pathfinder/include/pathfinder.h"
 
 Coord pf_spline_coords(Spline s, double percentage) {
     percentage = MAX(MIN(percentage, 1), 0);

@@ -1,4 +1,4 @@
-#include "pathfinder.h"
+#include "okapi/pathfinder/include/pathfinder.h"
 
 double pathfinder_follow_distance(FollowerConfig c, DistanceFollower *follower, Segment *trajectory, int trajectory_length, double distance) {
     int segment = follower->segment;

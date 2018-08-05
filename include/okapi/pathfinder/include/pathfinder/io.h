@@ -3,9 +3,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "pathfinder/structs.h"
+#include "okapi/pathfinder/include/pathfinder/structs.h"
 #include <string.h>
-#include "pathfinder/lib.h"
+#include "okapi/pathfinder/include/pathfinder/lib.h"
 
 #define CSV_LEADING_STRING "dt,x,y,position,velocity,acceleration,jerk,heading\n"
 

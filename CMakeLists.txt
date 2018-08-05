@@ -44,7 +44,6 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 include_directories(include)
-include_directories(include/pathfinder/include)
 
 add_executable(OkapiLibV5
         include/okapi/api/chassis/controller/chassisController.hpp

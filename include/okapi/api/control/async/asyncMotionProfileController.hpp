@@ -18,7 +18,7 @@
 #include <map>
 
 extern "C" {
-#include "pathfinder.h"
+#include "okapi/pathfinder/include/pathfinder.h"
 }
 
 namespace okapi {

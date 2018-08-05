@@ -1,4 +1,4 @@
-#include "pathfinder.h"
+#include "okapi/pathfinder/include/pathfinder.h"
 
 void pf_modify_swerve_default(Segment *original, int length, Segment *front_left, Segment *front_right,
     Segment *back_left, Segment *back_right, double wheelbase_width, double wheelbase_depth) {
