@@ -29,11 +29,7 @@ void opcontrol() {
     auto model =
       std::make_shared<SkidSteerModel>(std::make_shared<Motor>(-1), std::make_shared<Motor>(2));
     auto cnt = AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, model, 10.5_in);
-    //    cnt.generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 0_deg}, Point{3_ft, 1_ft,
-    //    0_deg},
-    //                      Point{2_ft, 1_ft, 0_deg}, Point{1_ft, 1_m, 0_deg}, Point{1_ft, 0_m,
-    //                      0_deg}},
-    //                     "A");
+
     cnt.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
     cnt.setTarget("B");
     cnt.waitUntilSettled();

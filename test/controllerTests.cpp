@@ -332,7 +332,7 @@ TEST_F(AsyncMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
   EXPECT_GT(rightMotor->maxVelocity, 0);
 }
 
-TEST_F(AsyncMotionProfileControllerTest, CrashesTheBrain) {
+TEST_F(AsyncMotionProfileControllerTest, ImpossiblePathThrowsException) {
   EXPECT_THROW(controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 0_deg},
                                          Point{3_ft, 1_ft, 0_deg}, Point{2_ft, 1_ft, 0_deg},
                                          Point{1_ft, 1_m, 0_deg}, Point{1_ft, 0_m, 0_deg}},
