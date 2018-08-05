@@ -48,7 +48,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param iwidth The chassis wheelbase width.
    */
   AsyncMotionProfileController(const TimeUtil &itimeUtil, double imaxVel, double imaxAccel,
-                               double imaxJerk, std::shared_ptr<SkidSteerModel> imodel,
+                               double imaxJerk, std::shared_ptr<ChassisModel> imodel,
                                QLength iwidth);
 
   ~AsyncMotionProfileController() override;
@@ -132,7 +132,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   double maxVel{0};
   double maxAccel{0};
   double maxJerk{0};
-  std::shared_ptr<SkidSteerModel> model;
+  std::shared_ptr<ChassisModel> model;
   QLength width{11_in};
   TimeUtil timeUtil;
   Logger *logger;

@@ -10,7 +10,7 @@
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(
   const TimeUtil &itimeUtil, const double imaxVel, const double imaxAccel, const double imaxJerk,
-  std::shared_ptr<SkidSteerModel> imodel, QLength iwidth)
+  std::shared_ptr<ChassisModel> imodel, QLength iwidth)
   : maxVel(imaxVel),
     maxAccel(imaxAccel),
     maxJerk(imaxJerk),

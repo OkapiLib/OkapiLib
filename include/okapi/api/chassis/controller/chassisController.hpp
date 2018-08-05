@@ -27,7 +27,7 @@ class ChassisController : public ChassisModel {
    */
   explicit ChassisController(std::unique_ptr<ChassisModel> imodel);
 
-  virtual ~ChassisController();
+  ~ChassisController() override;
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
