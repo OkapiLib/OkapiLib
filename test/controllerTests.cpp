@@ -282,6 +282,7 @@ TEST(SettledUtilTest, ZeroTime) {
 class AsyncMotionProfileControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
+    Logger::initialize(createTimeUtil().getTimer(), "thefile.txt", Logger::LogLevel::info);
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
 
@@ -332,9 +333,9 @@ TEST_F(AsyncMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
 }
 
 TEST_F(AsyncMotionProfileControllerTest, CrashesTheBrain) {
-  // This test crashes the brain
-  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 0_deg},
-                            Point{3_ft, 1_ft, 0_deg}, Point{2_ft, 1_ft, 0_deg},
-                            Point{1_ft, 1_m, 0_deg}, Point{1_ft, 0_m, 0_deg}},
-                           "A");
+  EXPECT_THROW(controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 0_deg},
+                                         Point{3_ft, 1_ft, 0_deg}, Point{2_ft, 1_ft, 0_deg},
+                                         Point{1_ft, 1_m, 0_deg}, Point{1_ft, 0_m, 0_deg}},
+                                        "A"),
+               std::runtime_error);
 }

@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
+#include <numeric>
 
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(
@@ -52,6 +53,22 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
                      PATHFINDER_SAMPLES_FAST, 0.001, maxVel, maxAccel, maxJerk, &candidate);
 
   const int length = candidate.length;
+
+  if (length < 0) {
+    auto pointToString = [](Waypoint point) {
+      return "Point{x = " + std::to_string(point.x) + ", y = " + std::to_string(point.y) +
+             ", theta = " + std::to_string(point.angle) + "}";
+    };
+
+    std::string message =
+      "AsyncMotionProfileController: Path is impossible with waypoints: " +
+      std::accumulate(std::next(points.begin()), points.end(), pointToString(points.at(0)),
+                      [&](std::string a, Waypoint b) { return a + ", " + pointToString(b); });
+
+    logger->error(message);
+    throw std::runtime_error(message);
+  }
+
   auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
 
   logger->info("AsyncMotionProfileController: Generating path");
@@ -72,9 +89,9 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
     paths.erase(ipathId);
   }
 
-  const auto lastWaypoint = points.back();
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length});
   logger->info("AsyncMotionProfileController: Completely done generating path");
+  logger->info("AsyncMotionProfileController: " + std::to_string(length));
 }
 
 void AsyncMotionProfileController::setTarget(std::string ipathId) {

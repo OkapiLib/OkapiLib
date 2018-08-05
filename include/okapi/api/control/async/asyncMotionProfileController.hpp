@@ -57,6 +57,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * Generates a path which intersects the given waypoints and saves it internally with a key of
    * pathId. Call executePath() with the same pathId to run it.
    *
+   * If the waypoints form a path which is impossible to achieve, an instance of std::runtime_error
+   * is thrown (and an error is logged) which describes the waypoints.
+   *
    * @param iwaypoints The Waypoints to hit on the path.
    * @param ipathId A unique identifier to save the path with.
    */
