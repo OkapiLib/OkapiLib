@@ -15,7 +15,7 @@ ChassisController::ChassisController(std::unique_ptr<ChassisModel> imodel)
 
 ChassisController::~ChassisController() = default;
 
-void ChassisController::forward(const int ispeed) const {
+void ChassisController::forward(const double ispeed) const {
   model->forward(ispeed);
 }
 
@@ -23,7 +23,7 @@ void ChassisController::driveVector(const double iySpeed, const double izRotatio
   model->driveVector(iySpeed, izRotation);
 }
 
-void ChassisController::rotate(const int ispeed) const {
+void ChassisController::rotate(const double ispeed) const {
   model->rotate(ispeed);
 }
 
