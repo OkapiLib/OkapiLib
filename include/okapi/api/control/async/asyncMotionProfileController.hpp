@@ -77,7 +77,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   void waitUntilSettled() override;
 
   /**
-   * Returns the last error of the controller.
+   * Returns the last error of the controller. This implementation always returns zero since the
+   * robot is assumed to perfectly follow the path. Subclasses can override this to be more
+   * accurate using odometry information.
    *
    * @return the last error
    */
@@ -125,7 +127,6 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
     Segment *left;
     Segment *right;
     int length;
-    Point finalPosition;
   };
 
   std::map<std::string, TrajectoryPair> paths{};
@@ -140,12 +141,16 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   CrossplatformThread task;
   bool dtorCalled{false};
   std::string currentPath{""};
-  Point currentPosition{0_m, 0_m, 0_deg};
   bool isRunning{false};
   bool disabled{false};
 
   static void trampoline(void *context);
   void loop();
+
+  /**
+   * Follow the supplied path. Must follow the disabled lifecycle.
+   */
+  virtual void executeSinglePath(const TrajectoryPair &path, std::unique_ptr<AbstractRate> rate);
 };
 } // namespace okapi
 

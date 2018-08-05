@@ -73,9 +73,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
   }
 
   const auto lastWaypoint = points.back();
-  paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length,
-                                        Point{lastWaypoint.x * meter, lastWaypoint.y * meter,
-                                              lastWaypoint.angle * radian}});
+  paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length});
   logger->info("AsyncMotionProfileController: Completely done generating path");
 }
 
@@ -100,11 +98,8 @@ void AsyncMotionProfileController::loop() {
         logger->debug("AsyncMotionProfileController: Path length is " +
                       std::to_string(path->second.length));
 
-        for (int i = 0; i < path->second.length && !disabled; ++i) {
-          model->left(path->second.left[i].velocity / maxVel);
-          model->right(path->second.right[i].velocity / maxVel);
-          rate->delayUntil(1_ms);
-        }
+        executeSinglePath(path->second, timeUtil.getRate());
+        model->stop();
 
         logger->info("AsyncMotionProfileController: Done moving");
       }
@@ -113,6 +108,15 @@ void AsyncMotionProfileController::loop() {
     }
 
     rate->delayUntil(10_ms);
+  }
+}
+
+void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
+                                                     std::unique_ptr<AbstractRate> rate) {
+  for (int i = 0; i < path.length && !disabled; ++i) {
+    model->left(path.left[i].velocity / maxVel);
+    model->right(path.right[i].velocity / maxVel);
+    rate->delayUntil(1_ms);
   }
 }
 
@@ -134,7 +138,7 @@ void AsyncMotionProfileController::waitUntilSettled() {
 }
 
 Point AsyncMotionProfileController::getError() const {
-  return paths.at(currentPath).finalPosition - currentPosition;
+  return Point{0_m, 0_m, 0_deg};
 }
 
 bool AsyncMotionProfileController::isSettled() {
