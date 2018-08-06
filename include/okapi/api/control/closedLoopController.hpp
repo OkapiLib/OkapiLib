@@ -8,31 +8,38 @@
 #ifndef _OKAPI_CLOSEDLOOPCONTROLLER_HPP_
 #define _OKAPI_CLOSEDLOOPCONTROLLER_HPP_
 
+#include "okapi/api/units/QTime.hpp"
+
 namespace okapi {
 /**
  * An abstract closed-loop controller.
+ *
+ * @tparam Input The target/input type.
+ * @tparam Output The error/output type.
  */
-class ClosedLoopController {
+template <typename Input, typename Output> class ClosedLoopController {
   public:
-  virtual ~ClosedLoopController();
+  virtual ~ClosedLoopController() = default;
 
   /**
    * Sets the target for the controller.
    *
    * @param itarget the new target
    */
-  virtual void setTarget(const double itarget) = 0;
+  virtual void setTarget(Input itarget) = 0;
 
   /**
    * Returns the last error of the controller.
    *
    * @return the last error
    */
-  virtual double getError() const = 0;
+  virtual Output getError() const = 0;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
    * implementation-dependent.
+   *
+   * If the controller is disabled, this method must return true.
    *
    * @return whether the controller is settled
    */
@@ -56,7 +63,7 @@ class ClosedLoopController {
    *
    * @param iisDisabled whether the controller is disabled
    */
-  virtual void flipDisable(const bool iisDisabled) = 0;
+  virtual void flipDisable(bool iisDisabled) = 0;
 
   /**
    * Returns whether the controller is currently disabled.

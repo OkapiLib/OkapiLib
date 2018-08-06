@@ -13,29 +13,17 @@
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include <memory>
 
 namespace okapi {
-class AsyncPosPIDControllerArgs : public AsyncPositionControllerArgs {
+class AsyncPosPIDController : public AsyncWrapper<double, double>,
+                              public AsyncPositionController<double, double> {
   public:
-  AsyncPosPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
-                            std::shared_ptr<ControllerOutput> ioutput,
-                            const IterativePosPIDControllerArgs &iparams);
-
-  std::shared_ptr<ControllerInput> input;
-  std::shared_ptr<ControllerOutput> output;
-  const IterativePosPIDControllerArgs params;
-};
-
-class AsyncPosPIDController : public AsyncWrapper, public AsyncPositionController {
-  public:
-  AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
-                        std::shared_ptr<ControllerOutput> ioutput, const double ikP,
-                        const double ikI, const double ikD, const double ikBias = 0);
-
-  AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
-                        std::shared_ptr<ControllerOutput> ioutput,
-                        const IterativePosPIDControllerArgs &iparams);
+  AsyncPosPIDController(std::shared_ptr<ControllerInput<double>> iinput,
+                        std::shared_ptr<ControllerOutput<double>> ioutput,
+                        const TimeUtil &itimeUtil, double ikP, double ikI, double ikD,
+                        double ikBias = 0);
 };
 } // namespace okapi
 

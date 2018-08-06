@@ -50,6 +50,13 @@ class AbstractTimer {
   virtual void placeMark() = 0;
 
   /**
+   * Clears the marker.
+   *
+   * @return The old marker
+   */
+  virtual QTime clearMark() = 0;
+
+  /**
    * Place a hard time marker. Placing another hard marker will not overwrite the previous one;
    * instead, call clearHardMark() and then place another.
    */
@@ -63,14 +70,14 @@ class AbstractTimer {
   virtual QTime clearHardMark() = 0;
 
   /**
-   * Returns the time since the time marker.
+   * Returns the time since the time marker. Returns 0_ms if there is no marker.
    *
    * @return The time since the time marker
    */
   virtual QTime getDtFromMark() const = 0;
 
   /**
-   * Returns the time since the hard time marker.
+   * Returns the time since the hard time marker. Returns 0_ms if there is no hard marker set.
    *
    * @return The time since the hard time marker
    */
@@ -84,7 +91,7 @@ class AbstractTimer {
    * @return true when the input time period has passed, false after reading true until the
    *   period has passed again
    */
-  virtual bool repeat(const QTime time) = 0;
+  virtual bool repeat(QTime time) = 0;
 
   /**
    * Returns true when the input time period has passed, then resets. Meant to be used in loops
@@ -94,7 +101,7 @@ class AbstractTimer {
    * @return true when the input time period has passed, false after reading true until the
    *   period has passed again
    */
-  virtual bool repeat(const QFrequency frequency) = 0;
+  virtual bool repeat(QFrequency frequency) = 0;
 };
 } // namespace okapi
 

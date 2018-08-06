@@ -11,6 +11,8 @@
 #include "okapi/api/chassis/controller/chassisController.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
+#include "okapi/api/util/logging.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
 class ChassisControllerIntegrated : public virtual ChassisController {
@@ -26,10 +28,10 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * @param iscales see ChassisScales docs
    */
   ChassisControllerIntegrated(
-    std::shared_ptr<ChassisModel> imodel,
-    const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
-    const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-    const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+    const TimeUtil &itimeUtil, std::shared_ptr<ChassisModel> imodel,
+    std::unique_ptr<AsyncPosIntegratedController> ileftController,
+    std::unique_ptr<AsyncPosIntegratedController> irightController,
+    AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
     const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -37,32 +39,72 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    *
    * @param itarget distance to travel
    */
-  virtual void moveDistance(const QLength itarget) override;
+  void moveDistance(QLength itarget) override;
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
    *
    * @param itarget distance to travel in motor degrees
    */
-  virtual void moveDistance(const double itarget) override;
+  void moveDistance(double itarget) override;
+
+  /**
+   * Sets the target distance for the robot to drive straight (using closed-loop control).
+   *
+   * @param itarget distance to travel
+   */
+  void moveDistanceAsync(QLength itarget) override;
+
+  /**
+   * Sets the target distance for the robot to drive straight (using closed-loop control).
+   *
+   * @param itarget distance to travel in motor degrees
+   */
+  void moveDistanceAsync(double itarget) override;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for
    */
-  virtual void turnAngle(const QAngle idegTarget) override;
+  void turnAngle(QAngle idegTarget) override;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
    * @param idegTarget angle to turn for in motor degrees
    */
-  virtual void turnAngle(const double idegTarget) override;
+  void turnAngle(double idegTarget) override;
+
+  /**
+   * Sets the target angle for the robot to turn clockwise in place (using closed-loop control).
+   *
+   * @param idegTarget angle to turn for
+   */
+  void turnAngleAsync(QAngle idegTarget) override;
+
+  /**
+   * Sets the target angle for the robot to turn clockwise in place (using closed-loop control).
+   *
+   * @param idegTarget angle to turn for in motor degrees
+   */
+  void turnAngleAsync(double idegTarget) override;
+
+  /**
+   * Delays until the currently executing movement completes.
+   */
+  void waitUntilSettled() override;
+
+  /**
+   * Stop the robot (set all the motors to 0).
+   */
+  void stop() override;
 
   protected:
-  AsyncPosIntegratedController leftController;
-  AsyncPosIntegratedController rightController;
+  Logger *logger;
+  std::unique_ptr<AbstractRate> rate;
+  std::unique_ptr<AsyncPosIntegratedController> leftController;
+  std::unique_ptr<AsyncPosIntegratedController> rightController;
   int lastTarget;
   const double gearRatio;
   const double straightScale;

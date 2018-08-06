@@ -6,8 +6,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_PIDTUNER_HPP_
-#define _OKAPI_PIDTUNER_HPP_
+#ifndef _OKAPI_FLYWHEELSIMULATOR_HPP_
+#define _OKAPI_FLYWHEELSIMULATOR_HPP_
 
 #include <functional>
 
@@ -18,9 +18,8 @@ class FlywheelSimulator {
    * A simulator for an inverted pendulum. The center of mass of the system changes as the link
    * rotates (by default, you can set a new torque function with setExternalTorqueFunction()).
    */
-  FlywheelSimulator(const double imass = 0.01, const double ilinkLen = 1,
-                    const double imuStatic = 0.1, const double imuDynamic = 0.9,
-                    const double itimestep = 0.01);
+  explicit FlywheelSimulator(double imass = 0.01, double ilinkLen = 1, double imuStatic = 0.1,
+                             double imuDynamic = 0.9, double itimestep = 0.01);
 
   virtual ~FlywheelSimulator();
 
@@ -37,7 +36,7 @@ class FlywheelSimulator {
    * @param itorque new input torque
    * @return the current angle
    */
-  double step(const double itorque);
+  double step(double itorque);
 
   /**
    * Sets the torque function used to calculate the torque due to external forces. This torque gets
@@ -58,56 +57,56 @@ class FlywheelSimulator {
    *
    * @param itorque new input torque
    */
-  void setTorque(const double itorque);
+  void setTorque(double itorque);
 
   /**
    * Sets the max torque. The input torque cannot exceed this maximum torque.
    *
    * @param imaxTorque new maximum torque
    */
-  void setMaxTorque(const double imaxTorque);
+  void setMaxTorque(double imaxTorque);
 
   /**
    * Sets the current angle.
    *
    * @param iangle new angle
    **/
-  void setAngle(const double iangle);
+  void setAngle(double iangle);
 
   /**
    * Sets the mass (kg).
    *
    * @param imass new mass
    */
-  void setMass(const double imass);
+  void setMass(double imass);
 
   /**
    * Sets the link length (m).
    *
    * @param ilinkLen new link length
    */
-  void setLinkLength(const double ilinkLen);
+  void setLinkLength(double ilinkLen);
 
   /**
    * Sets the static friction (N*m).
    *
    * @param imuStatic new static friction
    */
-  void setStaticFriction(const double imuStatic);
+  void setStaticFriction(double imuStatic);
 
   /**
    * Sets the dynamic friction (N*m).
    *
    * @param imuDynamic new dynamic friction
    */
-  void setDynamicFriction(const double imuDynamic);
+  void setDynamicFriction(double imuDynamic);
 
   /**
    * Sets the timestep (sec).
    *
    * @param itimestep new timestep
    */
-  void setTimestep(const double itimestep);
+  void setTimestep(double itimestep);
 
   /**
    * Returns the current angle (angle in rad).

@@ -8,15 +8,21 @@
 #ifndef _OKAPI_ASYNCWRAPPER_HPP_
 #define _OKAPI_ASYNCWRAPPER_HPP_
 
-#include "api.h"
 #include "okapi/api/control/async/asyncController.hpp"
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativeController.hpp"
+#include "okapi/api/control/util/settledUtil.hpp"
+#include "okapi/api/coreProsAPI.hpp"
+#include "okapi/api/util/abstractRate.hpp"
+#include "okapi/api/util/logging.hpp"
+#include "okapi/api/util/mathUtil.hpp"
+#include "okapi/api/util/supplier.hpp"
 #include <memory>
 
 namespace okapi {
-class AsyncWrapper : virtual public AsyncController {
+template <typename Input, typename Output>
+class AsyncWrapper : virtual public AsyncController<Input, Output> {
   public:
   /**
    * A wrapper class that transforms an IterativeController into an AsyncController by running it in
@@ -26,40 +32,67 @@ class AsyncWrapper : virtual public AsyncController {
    * @param iinput controller input, passed to the IterativeController
    * @param ioutput controller output, written to from the IterativeController
    * @param icontroller the controller to use
+   * @param irateSupplier used for rates used in the main loop and in waitUntilSettled
+   * @param isettledUtil used in waitUntilSettled
    * @param iscale the scale applied to the controller output
    */
-  AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
-               std::unique_ptr<IterativeController> icontroller, const double iscale = 127);
+  AsyncWrapper(std::shared_ptr<ControllerInput<Input>> iinput,
+               std::shared_ptr<ControllerOutput<Output>> ioutput,
+               std::unique_ptr<IterativeController<Input, Output>> icontroller,
+               const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
+               std::unique_ptr<SettledUtil> isettledUtil)
+    : logger(Logger::instance()),
+      input(iinput),
+      output(ioutput),
+      controller(std::move(icontroller)),
+      loopRate(std::move(irateSupplier.get())),
+      settledRate(std::move(irateSupplier.get())),
+      settledUtil(std::move(isettledUtil)),
+      task(trampoline, this) {
+  }
 
   /**
    * Sets the target for the controller.
    */
-  virtual void setTarget(const double itarget) override;
+  void setTarget(Input itarget) override {
+    logger->info("AsyncWrapper: Set target to " + std::to_string(itarget));
+    controller->setTarget(itarget);
+  }
 
   /**
    * Returns the last calculated output of the controller. Default is 0.
    */
-  virtual double getOutput() const override;
+  Output getOutput() const {
+    return controller->getOutput();
+  }
 
   /**
    * Returns the last error of the controller.
    */
-  virtual double getError() const override;
+  Output getError() const override {
+    return controller->getError();
+  }
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
    * implementation-dependent.
    *
+   * If the controller is disabled, this method must return true.
+   *
    * @return whether the controller is settled
    */
-  virtual bool isSettled() override;
+  bool isSettled() override {
+    return controller->isSettled();
+  }
 
   /**
    * Set time between loops. Default does nothing.
    *
    * @param isampleTime time between loops
    */
-  virtual void setSampleTime(const QTime isampleTime) override;
+  void setSampleTime(QTime isampleTime) {
+    controller->setSampleTime(isampleTime);
+  }
 
   /**
    * Set controller output bounds. Default does nothing.
@@ -67,19 +100,26 @@ class AsyncWrapper : virtual public AsyncController {
    * @param imax max output
    * @param imin min output
    */
-  virtual void setOutputLimits(double imax, double imin) override;
+  void setOutputLimits(Output imax, Output imin) {
+    controller->setOutputLimits(imax, imin);
+  }
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
    * before.
    */
-  virtual void reset() override;
+  void reset() override {
+    logger->info("AsyncWrapper: Reset");
+    controller->reset();
+  }
 
   /**
    * Changes whether the controller is off or on. Turning the controller on after it was off will
    * cause the controller to move to its last set target, unless it was reset in that time.
    */
-  virtual void flipDisable() override;
+  void flipDisable() override {
+    controller->flipDisable();
+  }
 
   /**
    * Sets whether the controller is off or on. Turning the controller on after it was off will
@@ -87,24 +127,62 @@ class AsyncWrapper : virtual public AsyncController {
    *
    * @param iisDisabled whether the controller is disabled
    */
-  virtual void flipDisable(const bool iisDisabled) override;
+  void flipDisable(bool iisDisabled) override {
+    logger->info("AsyncWrapper: flipDisable " + std::to_string(iisDisabled));
+    controller->flipDisable(iisDisabled);
+  }
 
   /**
    * Returns whether the controller is currently disabled.
    *
    * @return whether the controller is currently disabled
    */
-  virtual bool isDisabled() const override;
+  bool isDisabled() const override {
+    return controller->isDisabled();
+  }
+
+  /**
+   * Blocks the current task until the controller has settled. Determining what settling means is
+   * implementation-dependent.
+   */
+  void waitUntilSettled() override {
+    logger->info("AsyncWrapper: Waiting to settle");
+
+    while (!settledUtil->isSettled(getError())) {
+      loopRate->delayUntil(motorUpdateRate);
+    }
+
+    logger->info("AsyncWrapper: Done waiting to settle");
+  }
 
   protected:
-  std::shared_ptr<ControllerInput> input;
-  std::shared_ptr<ControllerOutput> output;
-  std::unique_ptr<IterativeController> controller;
-  pros::Task task;
-  const double scale = 127;
+  Logger *logger;
+  std::shared_ptr<ControllerInput<Input>> input;
+  std::shared_ptr<ControllerOutput<Output>> output;
+  std::unique_ptr<IterativeController<Input, Output>> controller;
+  std::unique_ptr<AbstractRate> loopRate;
+  std::unique_ptr<AbstractRate> settledRate;
+  std::unique_ptr<SettledUtil> settledUtil;
+  CrossplatformThread task;
 
-  static void trampoline(void *context);
-  void loop();
+  static void trampoline(void *context) {
+    if (context) {
+      static_cast<AsyncWrapper *>(context)->loop();
+    }
+  }
+
+  void loop() {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
+    while (true) {
+      if (!controller->isDisabled()) {
+        output->controllerSet(controller->step(input->controllerGet()));
+      }
+
+      loopRate->delayUntil(controller->getSampleTime());
+    }
+#pragma clang diagnostic pop
+  }
 };
 } // namespace okapi
 

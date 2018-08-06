@@ -8,11 +8,11 @@
 #ifndef _OKAPI_CHASSISMODEL_HPP_
 #define _OKAPI_CHASSISMODEL_HPP_
 
+#include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include <array>
 #include <initializer_list>
 #include <memory>
-#include <valarray>
 #include <vector>
 
 namespace okapi {
@@ -21,16 +21,23 @@ class ChassisModelArgs {
   virtual ~ChassisModelArgs();
 };
 
-class ChassisModel {
+/**
+ * A version of the ReadOnlyChassisModel that also supports write methods, such as setting motor
+ * speed. Because this class can write to motors, there can only be one owner and as such copying
+ * is disabled.
+ */
+class ChassisModel : public ReadOnlyChassisModel {
   public:
-  virtual ~ChassisModel();
+  ChassisModel() = default;
+  ChassisModel(const ChassisModel &) = delete;
+  ChassisModel &operator=(const ChassisModel &) = delete;
 
   /**
    * Drive the robot forwards (using open-loop control).
    *
    * @param ipower motor power
    */
-  virtual void forward(const double ispeed) const = 0;
+  virtual void forward(double ispeed) const = 0;
 
   /**
    * Drive the robot in an arc (using open-loop control).
@@ -41,19 +48,19 @@ class ChassisModel {
    * @param iySpeed speed on y axis (forward)
    * @param izRotation speed around z axis (up)
    */
-  virtual void driveVector(const double iySpeed, const double izRotation) const = 0;
+  virtual void driveVector(double iySpeed, double izRotation) const = 0;
 
   /**
    * Turn the robot clockwise (using open-loop control).
    *
    * @param ispeed motor power
    */
-  virtual void rotate(const double ispeed) const = 0;
+  virtual void rotate(double ispeed) const = 0;
 
   /**
    * Stop the robot (set all the motors to 0).
    */
-  virtual void stop() const = 0;
+  virtual void stop() = 0;
 
   /**
    * Drive the robot with a tank drive layout. Uses voltage mode.
@@ -62,8 +69,7 @@ class ChassisModel {
    * @param irightSpeed right side speed
    * @param ithreshold deadband on joystick values
    */
-  virtual void tank(const double ileftSpeed, const double irightSpeed,
-                    const double ithreshold = 0) const = 0;
+  virtual void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const = 0;
 
   /**
    * Drive the robot with an arcade drive layout. Uses voltage mode.
@@ -72,29 +78,21 @@ class ChassisModel {
    * @param izRotation speed around z axis (up)
    * @param ithreshold deadband on joystick values
    */
-  virtual void arcade(const double iySpeed, const double izRotation,
-                      const double ithreshold = 0) const = 0;
+  virtual void arcade(double iySpeed, double izRotation, double ithreshold = 0) const = 0;
 
   /**
    * Power the left side motors.
    *
    * @param ipower motor power
    */
-  virtual void left(const double ispeed) const = 0;
+  virtual void left(double ispeed) const = 0;
 
   /**
    * Power the right side motors.
    *
    * @param ipower motor power
    */
-  virtual void right(const double ispeed) const = 0;
-
-  /**
-   * Read the sensors.
-   *
-   * @return sensor readings (format is implementation dependent)
-   */
-  virtual std::valarray<std::int32_t> getSensorVals() const = 0;
+  virtual void right(double ispeed) const = 0;
 
   /**
    * Reset the sensors to their zero point.
@@ -106,21 +104,21 @@ class ChassisModel {
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(const AbstractMotor::brakeMode mode) const = 0;
+  virtual void setBrakeMode(AbstractMotor::brakeMode mode) const = 0;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(const AbstractMotor::encoderUnits units) const = 0;
+  virtual void setEncoderUnits(AbstractMotor::encoderUnits units) const = 0;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(const AbstractMotor::gearset gearset) const = 0;
+  virtual void setGearing(AbstractMotor::gearset gearset) const = 0;
 };
 } // namespace okapi
 

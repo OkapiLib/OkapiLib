@@ -9,32 +9,38 @@
 #include <cmath>
 
 namespace okapi {
-SettledUtil::SettledUtil(const double iatTargetError, const double iatTargetDerivative,
-                         const QTime iatTargetTime)
+SettledUtil::SettledUtil(std::unique_ptr<AbstractTimer> iatTargetTimer, const double iatTargetError,
+                         const double iatTargetDerivative, const QTime iatTargetTime)
   : atTargetError(iatTargetError),
     atTargetDerivative(iatTargetDerivative),
-    atTargetTime(iatTargetTime) {
+    atTargetTime(iatTargetTime),
+    atTargetTimer(std::move(iatTargetTimer)) {
 }
 
 SettledUtil::~SettledUtil() = default;
 
 bool SettledUtil::isSettled(const double ierror) {
-  if (std::fabs(ierror) <= atTargetError || std::fabs(ierror - lastError) <= atTargetDerivative) {
-    atTargetTimer.placeHardMark();
+  if (std::fabs(ierror) <= atTargetError && std::fabs(ierror - lastError) <= atTargetDerivative) {
+    /**
+     * Timer::getDtFromhardMark() returns 0_ms if there is no hard mark set, so this needs to be
+     * special-cased. Setting atTargetTime to 0_ms means that the user wants to exit immediately
+     * when in range of the target.
+     */
+    if (atTargetTime == 0_ms) {
+      return true;
+    }
+
+    atTargetTimer->placeHardMark();
   } else {
-    atTargetTimer.clearHardMark();
+    atTargetTimer->clearHardMark();
   }
 
   lastError = ierror;
 
-  if (atTargetTimer.getDtFromHardMark() >= atTargetTime) {
-    return true;
-  }
-
-  return false;
+  return atTargetTimer->getDtFromHardMark() > atTargetTime;
 }
 
 void SettledUtil::reset() {
-  atTargetTimer.clearHardMark();
+  atTargetTimer->clearHardMark();
 }
 } // namespace okapi

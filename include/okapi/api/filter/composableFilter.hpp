@@ -42,7 +42,7 @@ class ComposableFilter : public Filter {
 
   ComposableFilter(const std::vector<std::shared_ptr<Filter>> &ilist);
 
-  ComposableFilter(const ComposableFilterArgs &iparams);
+  explicit ComposableFilter(const ComposableFilterArgs &iparams);
 
   /**
    * Filters a value, like a sensor reading.
@@ -50,14 +50,14 @@ class ComposableFilter : public Filter {
    * @param ireading new measurement
    * @return filtered result
    */
-  virtual double filter(const double ireading);
+  double filter(double ireading) override;
 
   /**
    * Returns the previous output from filter.
    *
    * @return the previous output from filter
    */
-  virtual double getOutput() const;
+  double getOutput() const override;
 
   /**
    * Adds a filter to the end of the sequence.

@@ -12,27 +12,12 @@
 #include <cmath>
 
 namespace okapi {
-IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, const double ikI,
-                                                             const double ikD, const double ikBias)
-  : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
-}
-
-IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
-                                                     const double ikD, const double ikBias)
-  : IterativePosPIDController(ikP, ikI, ikD, ikBias, std::make_unique<Timer>(),
-                              std::make_unique<SettledUtil>()) {
-}
-
-IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params)
-  : IterativePosPIDController(params.kP, params.kI, params.kD, params.kBias,
-                              std::make_unique<Timer>(), std::make_unique<SettledUtil>()) {
-}
-
 IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
                                                      const double ikD, const double ikBias,
-                                                     std::unique_ptr<Timer> iloopDtTimer,
-                                                     std::unique_ptr<SettledUtil> isettledUtil)
-  : loopDtTimer(std::move(iloopDtTimer)), settledUtil(std::move(isettledUtil)) {
+                                                     const TimeUtil &itimeUtil)
+  : logger(Logger::instance()),
+    loopDtTimer(std::move(itimeUtil.getTimer())),
+    settledUtil(std::move(itimeUtil.getSettledUtil())) {
   if (ikI != 0) {
     setIntegralLimits(-1 / ikI, 1 / ikI);
   }
@@ -40,7 +25,12 @@ IterativePosPIDController::IterativePosPIDController(const double ikP, const dou
   setGains(ikP, ikI, ikD, ikBias);
 }
 
+IterativePosPIDController::IterativePosPIDController(const Gains &igains, const TimeUtil &itimeUtil)
+  : IterativePosPIDController(igains.kP, igains.kI, igains.kD, igains.kBias, itimeUtil) {
+}
+
 void IterativePosPIDController::setTarget(const double itarget) {
+  logger->info("IterativePosPIDController: Set target to " + std::to_string(itarget));
   target = itarget;
 }
 
@@ -52,18 +42,13 @@ double IterativePosPIDController::getError() const {
   return error;
 }
 
-double IterativePosPIDController::getDerivative() const {
-  return derivative;
-}
-
 bool IterativePosPIDController::isSettled() {
-  return settledUtil->isSettled(error);
+  return isDisabled() ? true : settledUtil->isSettled(error);
 }
 
 void IterativePosPIDController::setSampleTime(const QTime isampleTime) {
   if (isampleTime > 0_ms) {
-    const double ratio = static_cast<double>(isampleTime.convert(millisecond)) /
-                         static_cast<double>(sampleTime.convert(millisecond));
+    const double ratio = isampleTime.convert(millisecond) / sampleTime.convert(millisecond);
     kI *= ratio;
     kD /= ratio;
     sampleTime = isampleTime;
@@ -152,6 +137,7 @@ void IterativePosPIDController::setGains(const double ikP, const double ikI, con
 }
 
 void IterativePosPIDController::reset() {
+  logger->info("IterativePosPIDController: Reset");
   error = 0;
   lastError = 0;
   lastReading = 0;
@@ -168,6 +154,7 @@ void IterativePosPIDController::flipDisable() {
 }
 
 void IterativePosPIDController::flipDisable(const bool iisDisabled) {
+  logger->info("IterativePosPIDController: flipDisable " + std::to_string(iisDisabled));
   isOn = !iisDisabled;
 }
 

@@ -16,10 +16,12 @@
 #include <cstddef>
 
 namespace okapi {
-template <std::size_t n> class MedianFilterArgs : public FilterArgs {};
+class MedianFilterArgs : public FilterArgs {};
 
 /**
- * @param n number of taps in the filter
+ * A filter which returns the median value of list of values.
+ *
+ * @tparam n number of taps in the filter
  */
 template <std::size_t n> class MedianFilter : public Filter {
   public:
@@ -32,7 +34,7 @@ template <std::size_t n> class MedianFilter : public Filter {
    * @param ireading new measurement
    * @return filtered result
    */
-  virtual double filter(const double ireading) override {
+  double filter(const double ireading) override {
     data[index++] = ireading;
     if (index >= n) {
       index = 0;
@@ -47,7 +49,7 @@ template <std::size_t n> class MedianFilter : public Filter {
    *
    * @return the previous output from filter
    */
-  virtual double getOutput() const override {
+  double getOutput() const override {
     return output;
   }
 

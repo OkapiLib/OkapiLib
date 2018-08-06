@@ -17,11 +17,13 @@
 #include "okapi/api/units/RQuantity.hpp"
 #include <cmath>
 
+namespace okapi {
 QUANTITY_TYPE(0, 0, 0, 1, QAngle)
 
 constexpr QAngle radian(1.0);
 constexpr QAngle degree = static_cast<double>(2_pi / 360.0) * radian;
 
+inline namespace literals {
 constexpr QAngle operator"" _rad(long double x) {
   return QAngle(x);
 }
@@ -34,5 +36,7 @@ constexpr QAngle operator"" _deg(long double x) {
 constexpr QAngle operator"" _deg(unsigned long long int x) {
   return static_cast<double>(x) * degree;
 }
+} // namespace literals
+} // namespace okapi
 
 #endif

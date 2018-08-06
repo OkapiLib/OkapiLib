@@ -13,8 +13,14 @@
 #include <memory>
 
 namespace okapi {
+/**
+ * A ControllerInput with a filter built in.
+ *
+ * @tparam InputType the type of the ControllerInput
+ * @tparam FilterType the type of the Filter
+ */
 template <typename InputType, typename FilterType>
-class FilteredControllerInput : public ControllerInput {
+class FilteredControllerInput : public ControllerInput<double> {
   public:
   /**
    * A filtered controller input. Applies a filter to the controller input. Useful if you want to
@@ -23,8 +29,9 @@ class FilteredControllerInput : public ControllerInput {
    * @param iinput ControllerInput type
    * @param ifilter Filter type
    */
-  FilteredControllerInput(InputType iinput, FilterType ifilter)
-    : input(std::make_unique<InputType>(iinput)), filter(std::make_unique<FilterType>(ifilter)) {
+  FilteredControllerInput(std::unique_ptr<ControllerInput<InputType>> iinput,
+                          std::unique_ptr<FilterType> ifilter)
+    : input(std::move(iinput)), filter(std::move(ifilter)) {
   }
 
   /**
@@ -33,12 +40,12 @@ class FilteredControllerInput : public ControllerInput {
    *
    * @return the current filtered sensor value.
    */
-  virtual double controllerGet() override {
+  double controllerGet() override {
     return filter->filter(input->controllerGet());
   }
 
   protected:
-  std::unique_ptr<InputType> input;
+  std::unique_ptr<ControllerInput<InputType>> input;
   std::unique_ptr<FilterType> filter;
 };
 } // namespace okapi

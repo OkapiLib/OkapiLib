@@ -18,14 +18,14 @@ class XDriveModelArgs : public ChassisModelArgs {
   XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
                   std::shared_ptr<AbstractMotor> itopRightMotor,
                   std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                  std::shared_ptr<AbstractMotor> ibottomLeftMotor, const double imaxOutput = 127);
+                  std::shared_ptr<AbstractMotor> ibottomLeftMotor, double imaxOutput = 127);
 
   XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
                   std::shared_ptr<AbstractMotor> itopRightMotor,
                   std::shared_ptr<AbstractMotor> ibottomRightMotor,
                   std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                   std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                  std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput = 127);
+                  std::shared_ptr<ContinuousRotarySensor> irightEnc, double imaxOutput = 127);
 
   std::shared_ptr<AbstractMotor> topLeftMotor;
   std::shared_ptr<AbstractMotor> topRightMotor;
@@ -53,7 +53,7 @@ class XDriveModel : public ChassisModel {
   XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
               std::shared_ptr<AbstractMotor> itopRightMotor,
               std::shared_ptr<AbstractMotor> ibottomRightMotor,
-              std::shared_ptr<AbstractMotor> ibottomLeftMotor, const double imaxOutput = 127);
+              std::shared_ptr<AbstractMotor> ibottomLeftMotor, double imaxOutput = 127);
 
   /**
    * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
@@ -71,18 +71,16 @@ class XDriveModel : public ChassisModel {
               std::shared_ptr<AbstractMotor> ibottomRightMotor,
               std::shared_ptr<AbstractMotor> ibottomLeftMotor,
               std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-              std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput = 127);
+              std::shared_ptr<ContinuousRotarySensor> irightEnc, double imaxOutput = 127);
 
-  XDriveModel(const XDriveModelArgs &iparams);
-
-  XDriveModel(const XDriveModel &other);
+  explicit XDriveModel(const XDriveModelArgs &iparams);
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.
    *
    * @param ispeed motor power
    */
-  virtual void forward(const double ipower) const override;
+  void forward(double ipower) const override;
 
   /**
    * Drive the robot in an arc (using open-loop control). Uses velocity mode.
@@ -93,19 +91,19 @@ class XDriveModel : public ChassisModel {
    * @param iySpeed speed on y axis (forward)
    * @param izRotation speed around z axis (up)
    */
-  virtual void driveVector(const double iySpeed, const double izRotation) const override;
+  void driveVector(double iySpeed, double izRotation) const override;
 
   /**
    * Turn the robot clockwise (using open-loop control). Uses velocity mode.
    *
    * @param ipower motor power
    */
-  virtual void rotate(const double ipower) const override;
+  void rotate(double ipower) const override;
 
   /**
    * Stop the robot (set all the motors to 0). Uses velocity mode.
    */
-  virtual void stop() const override;
+  void stop() override;
 
   /**
    * Drive the robot with a tank drive layout. Uses voltage mode.
@@ -114,8 +112,7 @@ class XDriveModel : public ChassisModel {
    * @param irightSpeed right side speed
    * @param ithreshold deadband on joystick values
    */
-  virtual void tank(const double ileftSpeed, const double irightSpeed,
-                    const double ithreshold = 0) const override;
+  void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const override;
 
   /**
    * Drive the robot with an arcade drive layout. Uses voltage mode.
@@ -124,8 +121,7 @@ class XDriveModel : public ChassisModel {
    * @param izRotation speed around z axis (up)
    * @param ithreshold deadband on joystick values
    */
-  virtual void arcade(const double iySpeed, const double izRotation,
-                      const double ithreshold = 0) const override;
+  void arcade(double iySpeed, double izRotation, double ithreshold = 0) const override;
 
   /**
    * Drive the robot with an arcade drive layout. Uses voltage mode.
@@ -135,55 +131,55 @@ class XDriveModel : public ChassisModel {
    * @param izRotation speed around z axis (up)
    * @param ithreshold deadband on joystick values
    */
-  virtual void xArcade(const double ixSpeed, const double iySpeed, const double izRotation,
-                       const double ithreshold = 0) const;
+  virtual void xArcade(double ixSpeed, double iySpeed, double izRotation,
+                       double ithreshold = 0) const;
 
   /**
    * Power the left side motors. Uses velocity mode.
    *
    * @param ipower motor power
    */
-  virtual void left(const double ipower) const override;
+  void left(double ipower) const override;
 
   /**
    * Power the right side motors. Uses velocity mode.
    *
    * @param ipower motor power
    */
-  virtual void right(const double ipower) const override;
+  void right(double ipower) const override;
 
   /**
    * Read the sensors.
    *
    * @return sensor readings in the format {left, right}
    */
-  virtual std::valarray<std::int32_t> getSensorVals() const override;
+  std::valarray<std::int32_t> getSensorVals() const override;
 
   /**
    * Reset the sensors to their zero point.
    */
-  virtual void resetSensors() const override;
+  void resetSensors() const override;
 
   /**
    * Set the brake mode for each motor.
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(const AbstractMotor::brakeMode mode) const override;
+  void setBrakeMode(AbstractMotor::brakeMode mode) const override;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(const AbstractMotor::encoderUnits units) const override;
+  void setEncoderUnits(AbstractMotor::encoderUnits units) const override;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(const AbstractMotor::gearset gearset) const override;
+  void setGearing(AbstractMotor::gearset gearset) const override;
 
   /**
    * Returns the top left motor.

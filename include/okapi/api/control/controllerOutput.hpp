@@ -9,15 +9,15 @@
 #define _OKAPI_CONTROLLEROUTPUT_HPP_
 
 namespace okapi {
-class ControllerOutput {
+template <typename T> class ControllerOutput {
   public:
   /**
    * Writes the value of the controller output. This method might be automatically called in another
-   * thread by the controller.
+   * thread by the controller. The range of input values is expected to be [-1, 1].
    *
-   * @param ivalue the controller's output
+   * @param ivalue the controller's output in the range [-1, 1]
    */
-  virtual void controllerSet(const double ivalue) = 0;
+  virtual void controllerSet(T ivalue) = 0;
 };
 } // namespace okapi
 

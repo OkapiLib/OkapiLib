@@ -18,16 +18,20 @@
 #include "okapi/api/units/QTime.hpp"
 #include "okapi/api/units/RQuantity.hpp"
 
+namespace okapi {
 QUANTITY_TYPE(0, 0, -1, 1, QAngularSpeed)
 
 constexpr QAngularSpeed radps = radian / second;
 constexpr QAngularSpeed rpm = (360 * degree) / minute;
 
+inline namespace literals {
 constexpr QAngularSpeed operator"" _rpm(long double x) {
   return x * rpm;
 }
 constexpr QAngularSpeed operator"" _rpm(unsigned long long int x) {
   return static_cast<double>(x) * rpm;
 }
+} // namespace literals
+} // namespace okapi
 
 #endif

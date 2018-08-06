@@ -13,29 +13,17 @@
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include <memory>
 
 namespace okapi {
-class AsyncVelPIDControllerArgs : public AsyncVelocityControllerArgs {
+class AsyncVelPIDController : public AsyncWrapper<double, double>,
+                              public AsyncVelocityController<double, double> {
   public:
-  AsyncVelPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
-                            std::shared_ptr<ControllerOutput> ioutput,
-                            const IterativeVelPIDControllerArgs &iparams);
-
-  std::shared_ptr<ControllerInput> input;
-  std::shared_ptr<ControllerOutput> output;
-  const IterativeVelPIDControllerArgs params;
-};
-
-class AsyncVelPIDController : public AsyncWrapper, public AsyncVelocityController {
-  public:
-  AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
-                        std::shared_ptr<ControllerOutput> ioutput, const double ikP,
-                        const double ikD, const double ikF);
-
-  AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
-                        std::shared_ptr<ControllerOutput> ioutput,
-                        const IterativeVelPIDControllerArgs &iparams);
+  AsyncVelPIDController(std::shared_ptr<ControllerInput<double>> iinput,
+                        std::shared_ptr<ControllerOutput<double>> ioutput,
+                        const TimeUtil &itimeUtil, double ikP, double ikD, double ikF,
+                        std::unique_ptr<VelMath> ivelMath);
 };
 } // namespace okapi
 

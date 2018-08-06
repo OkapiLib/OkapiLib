@@ -17,6 +17,7 @@
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/units/RQuantity.hpp"
 
+namespace okapi {
 QUANTITY_TYPE(0, 2, 0, 0, QArea)
 
 constexpr QArea kilometer2 = kilometer * kilometer;
@@ -27,5 +28,6 @@ constexpr QArea millimeter2 = millimeter * millimeter;
 constexpr QArea inch2 = inch * inch;
 constexpr QArea foot2 = foot * foot;
 constexpr QArea mile2 = mile * mile;
+} // namespace okapi
 
 #endif

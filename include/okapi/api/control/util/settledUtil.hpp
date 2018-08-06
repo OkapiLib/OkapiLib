@@ -9,21 +9,22 @@
 #define _OKAPI_SETTLEDUTIL_HPP_
 
 #include "okapi/api/units/QTime.hpp"
-#include "okapi/api/util/timer.hpp"
+#include "okapi/api/util/abstractTimer.hpp"
+#include <memory>
 
 namespace okapi {
 class SettledUtil {
   public:
   /**
    * A utility class to determine if a control loop has settled based on error. A control loop is
-   * settled if the error is within atTargetError for atTargetTime.
+   * settled if the error is within atTargetError and atTargetDerivative for atTargetTime.
    *
    * @param iatTargetError minimum error to be considered settled
    * @param iatTargetDerivative minimum error derivative to be considered settled
    * @param iatTargetTime minimum time within atTargetError to be considered settled
    */
-  SettledUtil(const double iatTargetError = 50, const double iatTargetDerivative = 5,
-              const QTime iatTargetTime = 250_ms);
+  explicit SettledUtil(std::unique_ptr<AbstractTimer> iatTargetTimer, double iatTargetError = 50,
+                       double iatTargetDerivative = 5, QTime iatTargetTime = 250_ms);
 
   virtual ~SettledUtil();
 
@@ -33,7 +34,7 @@ class SettledUtil {
    * @param ierror current error
    * @return whether the controller is settled
    */
-  virtual bool isSettled(const double ierror);
+  virtual bool isSettled(double ierror);
 
   /**
    * Resets the "at target" timer.
@@ -44,7 +45,7 @@ class SettledUtil {
   double atTargetError = 50;
   double atTargetDerivative = 5;
   QTime atTargetTime = 250_ms;
-  Timer atTargetTimer;
+  std::unique_ptr<AbstractTimer> atTargetTimer;
   double lastError = 0;
 };
 } // namespace okapi

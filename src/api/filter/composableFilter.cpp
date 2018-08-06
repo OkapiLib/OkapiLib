@@ -13,8 +13,7 @@ ComposableFilterArgs::ComposableFilterArgs(
   const std::initializer_list<std::shared_ptr<Filter>> &ilist)
   : list(ilist) {
 }
-ComposableFilter::ComposableFilter() {
-}
+ComposableFilter::ComposableFilter() = default;
 
 ComposableFilter::ComposableFilter(const std::initializer_list<std::shared_ptr<Filter>> &ilist) {
   for (auto &&elem : ilist) {
@@ -35,7 +34,7 @@ ComposableFilter::ComposableFilter(const ComposableFilterArgs &iparams) {
 }
 
 double ComposableFilter::filter(const double ireading) {
-  if (filters.size() <= 0) {
+  if (filters.empty()) {
     return 0;
   }
 

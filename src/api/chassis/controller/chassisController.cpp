@@ -6,7 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/chassis/controller/chassisController.hpp"
-#include "okapi/api/util/timer.hpp"
 #include <cmath>
 
 namespace okapi {
@@ -15,7 +14,7 @@ ChassisController::ChassisController(std::shared_ptr<ChassisModel> imodel) : mod
 
 ChassisController::~ChassisController() = default;
 
-void ChassisController::forward(const int ispeed) const {
+void ChassisController::forward(const double ispeed) const {
   model->forward(ispeed);
 }
 
@@ -23,11 +22,11 @@ void ChassisController::driveVector(const double iySpeed, const double izRotatio
   model->driveVector(iySpeed, izRotation);
 }
 
-void ChassisController::rotate(const int ispeed) const {
+void ChassisController::rotate(const double ispeed) const {
   model->rotate(ispeed);
 }
 
-void ChassisController::stop() const {
+void ChassisController::stop() {
   model->stop();
 }
 
@@ -67,5 +66,9 @@ void ChassisController::setEncoderUnits(const AbstractMotor::encoderUnits units)
 
 void ChassisController::setGearing(const AbstractMotor::gearset gearset) const {
   model->setGearing(gearset);
+}
+
+std::shared_ptr<ChassisModel> ChassisController::getChassisModel() const {
+  return model;
 }
 } // namespace okapi
