@@ -29,6 +29,18 @@ class IterativeControllerFactory {
   static IterativePosPIDController posPID(double ikP, double ikI, double ikD, double ikBias = 0);
 
   /**
+   * Position PID controller.
+   *
+   * @param ikP proportional gain
+   * @param ikI integral gain
+   * @param ikD derivative gain
+   * @param ikBias controller bias (constant offset added to the output)
+   * @param iderivativeFilter a filter for filtering the derivative term
+   */
+  static IterativePosPIDController posPID(double ikP, double ikI, double ikD, double ikBias,
+                                          std::unique_ptr<Filter> iderivativeFilter);
+
+  /**
    * Velocity PD controller.
    *
    * @param ikP proportional gain
@@ -36,6 +48,18 @@ class IterativeControllerFactory {
    * @param ikF feed-forward gain
    */
   static IterativeVelPIDController velPID(double ikP, double ikD, double ikF = 0,
+                                          const VelMathArgs &iparams = VelMathArgs(imev5TPR));
+
+  /**
+   * Velocity PD controller.
+   *
+   * @param ikP proportional gain
+   * @param ikD derivative gain
+   * @param ikF feed-forward gain
+   * @param iderivativeFilter a filter for filtering the derivative term
+   */
+  static IterativeVelPIDController velPID(double ikP, double ikD, double ikF,
+                                          std::unique_ptr<Filter> iderivativeFilter,
                                           const VelMathArgs &iparams = VelMathArgs(imev5TPR));
 
   /**
