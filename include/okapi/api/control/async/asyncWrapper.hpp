@@ -45,8 +45,8 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
       input(iinput),
       output(ioutput),
       controller(std::move(icontroller)),
-      loopRate(std::move(irateSupplier.get())),
-      settledRate(std::move(irateSupplier.get())),
+      loopRate(irateSupplier.get()),
+      settledRate(irateSupplier.get()),
       settledUtil(std::move(isettledUtil)),
       task(trampoline, this) {
   }

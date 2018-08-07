@@ -10,10 +10,14 @@
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
 #include "okapi/api/filter/filteredControllerInput.hpp"
+#include "okapi/api/filter/passthroughFilter.hpp"
 #include <numeric>
 
 namespace okapi {
 AsyncControllerBuilder::AsyncControllerBuilder(const TimeUtil &itimeUtil) : timeUtil(itimeUtil) {
+  // We need at least a passthrough filter, since a composable filter with no filters will not
+  // output anything
+  m_filters.emplace_back(std::make_unique<PassthroughFilter>());
 }
 
 AsyncControllerBuilder::~AsyncControllerBuilder() = default;
@@ -134,10 +138,14 @@ std::unique_ptr<AsyncController<double, double>> AsyncControllerBuilder::build()
   return std::make_unique<AsyncWrapper<double, double>>(
     m_input, m_output,
     std::make_unique<IterativeLambdaBasedController>(
-      [this](double error) {
+      [=](double error) {
+        printf("loop %1.2f\n", error);
         return std::accumulate(std::next(this->m_controllers.begin()), this->m_controllers.end(),
-                               this->m_controllers.front()->step(error),
-                               [&](double prevOutput, auto &cnt) { return cnt->step(prevOutput); });
+                               this->m_controllers.front()->step(outFilter->filter(error)),
+                               [](double prevOutput, auto &cnt) {
+                                 printf("%1.2f\n", prevOutput);
+                                 return cnt->step(prevOutput);
+                               });
       },
       timeUtil),
     timeUtil.getRateSupplier(), timeUtil.getSettledUtil());

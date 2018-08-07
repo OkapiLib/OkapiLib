@@ -97,6 +97,7 @@ double IterativePosPIDController::step(const double inewReading) {
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
       error = target - inewReading;
+      logger->debug("IterativePosPIDController: error is " + std::to_string(error));
 
       if ((std::abs(error) < target - errorSumMin && std::abs(error) > target - errorSumMax) ||
           (std::abs(error) > target + errorSumMin && std::abs(error) < target + errorSumMax)) {
