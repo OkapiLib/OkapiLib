@@ -35,6 +35,7 @@
 #include "okapi/api/control/util/pidTuner.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/impl/control/async/asyncControllerFactory.hpp"
+#include "okapi/impl/control/async/asyncControllerBuilder.hpp"
 #include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
 #include "okapi/impl/control/util/controllerRunnerFactory.hpp"
 #include "okapi/impl/control/util/pidTunerFactory.hpp"

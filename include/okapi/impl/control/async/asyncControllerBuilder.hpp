@@ -33,6 +33,7 @@ class AsyncControllerBuilder {
 
   AsyncControllerBuilder &input(ADIEncoder iencoder);
   AsyncControllerBuilder &input(IntegratedEncoder iencoder);
+//  AsyncControllerBuilder &input(Motor imotor);
   AsyncControllerBuilder &input(MotorGroup imotor);
   AsyncControllerBuilder &input(Potentiometer ipotentiometer);
   AsyncControllerBuilder &input(ADIUltrasonic iultrasonic);

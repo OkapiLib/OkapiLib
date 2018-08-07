@@ -24,21 +24,29 @@ void opcontrol() {
   pros::Task::delay(100);
 
   Logger::initialize(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug);
+  auto logger = Logger::instance();
+
+  //  {
+  //    auto model =
+  //      std::make_shared<SkidSteerModel>(std::make_shared<Motor>(-1), std::make_shared<Motor>(2));
+  //    auto cnt = AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, model, 10.5_in);
+  //
+  //    cnt.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
+  //    cnt.setTarget("B");
+  //    cnt.waitUntilSettled();
+  //  }
+
+  //    auto drive =
+  //      ChassisControllerFactory::create(-1, 2, AbstractMotor::gearset::red, {2.5_in, 10.5_in});
+  //  drive.moveDistanceAsync(2_in);
+  //  drive.waitUntilSettled();
 
   {
-    auto model =
-      std::make_shared<SkidSteerModel>(std::make_shared<Motor>(-1), std::make_shared<Motor>(2));
-    auto cnt = AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, model, 10.5_in);
-
-    cnt.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
-    cnt.setTarget("B");
-    cnt.waitUntilSettled();
+    AsyncControllerBuilder builder(TimeUtilFactory::create());
+    auto cnt = builder.input(1).posPid(1, 0, 0).output(2).build();
+    cnt->setTarget(1800);
+    pros::Task::delay(10000);
   }
-
-  auto drive =
-    ChassisControllerFactory::create(-1, 2, AbstractMotor::gearset::red, {2.5_in, 10.5_in});
-  drive.moveDistanceAsync(2_in);
-  drive.waitUntilSettled();
 
   //  runHeadlessTests();
   return;

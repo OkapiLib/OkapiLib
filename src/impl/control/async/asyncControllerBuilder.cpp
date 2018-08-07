@@ -10,6 +10,7 @@
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
 #include "okapi/api/filter/filteredControllerInput.hpp"
+#include <numeric>
 
 namespace okapi {
 AsyncControllerBuilder::AsyncControllerBuilder(const TimeUtil &itimeUtil) : timeUtil(itimeUtil) {
@@ -32,6 +33,11 @@ AsyncControllerBuilder &AsyncControllerBuilder::input(IntegratedEncoder iencoder
   m_input = std::make_shared<IntegratedEncoder>(iencoder);
   return *this;
 }
+
+//AsyncControllerBuilder &AsyncControllerBuilder::input(Motor imotor) {
+//  m_input = imotor.getEncoder();
+//  return *this;
+//}
 
 AsyncControllerBuilder &AsyncControllerBuilder::input(MotorGroup imotor) {
   m_input = imotor.getEncoder();
@@ -112,10 +118,12 @@ AsyncControllerBuilder &AsyncControllerBuilder::output(Motor imotor) {
   m_output = std::make_shared<Motor>(imotor);
   return *this;
 }
+
 AsyncControllerBuilder &AsyncControllerBuilder::output(MotorGroup imotor) {
   m_output = std::make_shared<MotorGroup>(imotor);
   return *this;
 }
+
 AsyncControllerBuilder &AsyncControllerBuilder::output(std::shared_ptr<AbstractMotor> imotor) {
   m_output = imotor;
   return *this;
@@ -123,8 +131,19 @@ AsyncControllerBuilder &AsyncControllerBuilder::output(std::shared_ptr<AbstractM
 
 std::unique_ptr<AsyncController<double, double>> AsyncControllerBuilder::build() const {
   auto outFilter = std::make_shared<ComposableFilter>(m_filters);
-//  return std::make_unique<AsyncWrapper<double, double>>(m_input, m_output, std::move(m_controllers[0]),
-//                                                        timeUtil.getRateSupplier(),
-//                                                        std::move(timeUtil.getSettledUtil()));
+  return std::make_unique<AsyncWrapper<double, double>>(
+    m_input, m_output,
+    std::make_unique<IterativeLambdaBasedController>(
+      [this](double error) {
+        double output = 0;
+
+        std::accumulate(std::next(this->m_controllers.begin()), this->m_controllers.end(),
+                        output = this->m_controllers.front()->step(error),
+                        [&](double prevOutput, auto &cnt) { return cnt->step(prevOutput); });
+
+        return output;
+      },
+      timeUtil),
+    timeUtil.getRateSupplier(), std::move(timeUtil.getSettledUtil()));
 }
 } // namespace okapi
