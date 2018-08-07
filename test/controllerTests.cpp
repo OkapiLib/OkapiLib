@@ -28,6 +28,14 @@
 using namespace okapi;
 using namespace snowhouse;
 
+void assertControllerIsSettledWhenDisabled(ClosedLoopController<double, double> &controller) {
+  controller.setTarget(100);
+  EXPECT_FALSE(controller.isSettled());
+
+  controller.flipDisable();
+  EXPECT_TRUE(controller.isSettled());
+}
+
 class IterativeControllerTest : public ::testing::Test {
   protected:
   virtual void SetUp() {
@@ -114,6 +122,10 @@ TEST_F(IterativePosPIDControllerTest, DefaultErrorBounds_ErrorOfOne) {
 TEST_F(IterativePosPIDControllerTest, DefaultErrorBounds_LargeError) {
   const double largeError = 10000000000000;
   EXPECT_DOUBLE_EQ(controller->step(largeError), -1);
+}
+
+TEST_F(IterativePosPIDControllerTest, SettledWhenDisabled) {
+  assertControllerIsSettledWhenDisabled(*controller);
 }
 
 TEST_F(IterativeControllerTest, IterativeMotorVelocityController) {
@@ -205,23 +217,6 @@ TEST_F(AsyncControllerTest, AsyncVelIntegratedController) {
   assertControllerFollowsDisableLifecycle(AsyncVelIntegratedController(motor, createTimeUtil()),
                                           motor->lastVelocity, motor->lastVoltage);
   assertControllerFollowsTargetLifecycle(AsyncVelIntegratedController(motor, createTimeUtil()));
-}
-
-void assertControllerIsSettledWhenDisabled(ClosedLoopController<double, double> &controller) {
-  controller.setTarget(100);
-  EXPECT_FALSE(controller.isSettled());
-
-  controller.flipDisable();
-  EXPECT_TRUE(controller.isSettled());
-}
-
-TEST(IterativePosPIDControllerTest, SettledWhenDisabled) {
-  IterativePosPIDController controller(
-    0.004, 0, 0, 0, createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>([]() {
-      return std::make_unique<ConstantMockTimer>(10_ms);
-    })));
-
-  assertControllerIsSettledWhenDisabled(controller);
 }
 
 TEST(IterativeVelPIDControllerTest, SettledWhenDisabled) {
