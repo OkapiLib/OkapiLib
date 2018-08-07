@@ -9,17 +9,10 @@
 
 namespace okapi {
 IterativeLambdaBasedController::IterativeLambdaBasedController(
-  std::function<double(double)> istepFunction)
-  : IterativeLambdaBasedController(istepFunction, std::make_unique<Timer>(),
-                                   std::make_unique<SettledUtil>()) {
-}
-
-IterativeLambdaBasedController::IterativeLambdaBasedController(
-  std::function<double(double)> istepFunction, std::unique_ptr<Timer> iloopDtTimer,
-  std::unique_ptr<SettledUtil> isettledUtil)
+  std::function<double(double)> istepFunction, const TimeUtil &itimeUtil)
   : stepFunction(istepFunction),
-    loopDtTimer(std::move(iloopDtTimer)),
-    settledUtil(std::move(isettledUtil)) {
+    loopDtTimer(itimeUtil.getTimer()),
+    settledUtil(itimeUtil.getSettledUtil()) {
 }
 
 void IterativeLambdaBasedController::setTarget(const double itarget) {
@@ -32,10 +25,6 @@ double IterativeLambdaBasedController::getOutput() const {
 
 double IterativeLambdaBasedController::getError() const {
   return error;
-}
-
-double IterativeLambdaBasedController::getDerivative() const {
-  return derivative;
 }
 
 bool IterativeLambdaBasedController::isSettled() {
@@ -68,14 +57,8 @@ double IterativeLambdaBasedController::step(const double inewReading) {
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
       error = target - inewReading;
-
-      // Derivative over measurement to eliminate derivative kick on setpoint change
-      derivative = inewReading - lastReading;
-
       output = stepFunction(error);
 
-      lastReading = inewReading;
-      lastError = error;
       loopDtTimer->clearHardMark(); // Important that we only clear if dt >= sampleTime
 
       settledUtil->isSettled(error);
@@ -89,8 +72,6 @@ double IterativeLambdaBasedController::step(const double inewReading) {
 
 void IterativeLambdaBasedController::reset() {
   error = 0;
-  lastError = 0;
-  lastReading = 0;
   output = 0;
 }
 

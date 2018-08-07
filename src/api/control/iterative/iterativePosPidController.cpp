@@ -16,8 +16,8 @@ IterativePosPIDController::IterativePosPIDController(const double ikP, const dou
                                                      const double ikD, const double ikBias,
                                                      const TimeUtil &itimeUtil)
   : logger(Logger::instance()),
-    loopDtTimer(std::move(itimeUtil.getTimer())),
-    settledUtil(std::move(itimeUtil.getSettledUtil())) {
+    loopDtTimer(itimeUtil.getTimer()),
+    settledUtil(itimeUtil.getSettledUtil()) {
   if (ikI != 0) {
     setIntegralLimits(-1 / ikI, 1 / ikI);
   }

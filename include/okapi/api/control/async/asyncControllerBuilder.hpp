@@ -11,22 +11,23 @@
 #include "okapi/api/control/async/asyncController.hpp"
 #include "okapi/api/control/iterative/iterativeController.hpp"
 #include "okapi/api/control/iterative/iterativeLambdaBasedController.hpp"
-#include "okapi/api/device/adiUltrasonic.hpp"
-#include "okapi/api/device/motor/motor.hpp"
-#include "okapi/api/device/motor/motorGroup.hpp"
-#include "okapi/api/device/rotarysensor/adiEncoder.hpp"
-#include "okapi/api/device/rotarysensor/integratedEncoder.hpp"
-#include "okapi/api/device/rotarysensor/potentiometer.hpp"
 #include "okapi/api/filter/composableFilter.hpp"
 #include "okapi/api/filter/demaFilter.hpp"
 #include "okapi/api/filter/emaFilter.hpp"
 #include "okapi/api/filter/velMath.hpp"
+#include "okapi/impl/device/adiUltrasonic.hpp"
+#include "okapi/impl/device/motor/motor.hpp"
+#include "okapi/impl/device/motor/motorGroup.hpp"
+#include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
+#include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
+#include "okapi/impl/device/rotarysensor/potentiometer.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include <vector>
 
 namespace okapi {
 class AsyncControllerBuilder {
   public:
-  AsyncControllerBuilder();
+  AsyncControllerBuilder(const TimeUtil &itimeUtil);
 
   virtual ~AsyncControllerBuilder();
 
@@ -41,11 +42,9 @@ class AsyncControllerBuilder {
   AsyncControllerBuilder &filter(ComposableFilter ifilter);
   AsyncControllerBuilder &filter(std::shared_ptr<Filter> ifilter);
 
-  AsyncControllerBuilder &posPid(const double ikP, const double ikI, const double ikD,
-                                 const double ikBias = 0);
+  AsyncControllerBuilder &posPid(double ikP, double ikI, double ikD, double ikBias = 0);
 
-  AsyncControllerBuilder &velPid(const double ikP, const double ikD, const double ikF,
-                                 const VelMathArgs &iparams);
+  AsyncControllerBuilder &velPid(double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath);
 
   AsyncControllerBuilder &lambda(std::function<double(double)> istepFunction);
 
@@ -53,13 +52,15 @@ class AsyncControllerBuilder {
   AsyncControllerBuilder &output(MotorGroup imotor);
   AsyncControllerBuilder &output(std::shared_ptr<AbstractMotor> imotor);
 
-  std::unique_ptr<AsyncController> build() const;
+  std::unique_ptr<AsyncController<double, double>> build() const;
 
   private:
-  std::shared_ptr<ControllerInput> m_input;
+  TimeUtil timeUtil;
+
+  std::shared_ptr<ControllerInput<double>> m_input;
   std::vector<std::shared_ptr<Filter>> m_filters{};
-  std::vector<std::unique_ptr<IterativeController>> m_controllers{};
-  std::shared_ptr<ControllerOutput> m_output;
+  std::vector<std::unique_ptr<IterativeController<double, double>>> m_controllers{};
+  std::shared_ptr<ControllerOutput<double>> m_output;
 };
 } // namespace okapi
 

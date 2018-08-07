@@ -17,8 +17,8 @@ IterativeVelPIDController::IterativeVelPIDController(const double ikP, const dou
                                                      const TimeUtil &itimeUtil)
   : logger(Logger::instance()),
     velMath(std::move(ivelMath)),
-    loopDtTimer(std::move(itimeUtil.getTimer())),
-    settledUtil(std::move(itimeUtil.getSettledUtil())) {
+    loopDtTimer(itimeUtil.getTimer()),
+    settledUtil(itimeUtil.getSettledUtil()) {
   setGains(ikP, ikD, ikF);
 }
 

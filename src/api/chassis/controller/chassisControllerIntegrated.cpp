@@ -15,7 +15,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
   AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
   : ChassisController(imodel),
     logger(Logger::instance()),
-    rate(std::move(itimeUtil.getRate())),
+    rate(itimeUtil.getRate()),
     leftController(std::move(ileftController)),
     rightController(std::move(irightController)),
     lastTarget(0),

@@ -15,7 +15,7 @@ ChassisControllerPID::ChassisControllerPID(
   std::unique_ptr<IterativePosPIDController> iangleController,
   const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
   : ChassisController(imodel),
-    rate(std::move(itimeUtil.getRate())),
+    rate(itimeUtil.getRate()),
     distancePid(std::move(idistanceController)),
     anglePid(std::move(iangleController)),
     gearRatio(igearset.ratio),

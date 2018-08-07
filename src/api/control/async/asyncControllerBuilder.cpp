@@ -12,69 +12,101 @@
 #include "okapi/api/filter/filteredControllerInput.hpp"
 
 namespace okapi {
-AsyncControllerBuilder::AsyncControllerBuilder() = default;
+AsyncControllerBuilder::AsyncControllerBuilder(const TimeUtil &itimeUtil) : timeUtil(itimeUtil) {
+}
 
 AsyncControllerBuilder::~AsyncControllerBuilder() = default;
+
+// //////////////////////////////////////////////////////
+//                                                     //
+//                        INPUT                        //
+//                                                     //
+// //////////////////////////////////////////////////////
 
 AsyncControllerBuilder &AsyncControllerBuilder::input(ADIEncoder iencoder) {
   m_input = std::make_shared<ADIEncoder>(iencoder);
   return *this;
 }
+
 AsyncControllerBuilder &AsyncControllerBuilder::input(IntegratedEncoder iencoder) {
   m_input = std::make_shared<IntegratedEncoder>(iencoder);
   return *this;
 }
+
 AsyncControllerBuilder &AsyncControllerBuilder::input(MotorGroup imotor) {
-  m_input = std::make_shared<IntegratedEncoder>(imotor.getEncoder());
+  m_input = imotor.getEncoder();
   return *this;
 }
+
 AsyncControllerBuilder &AsyncControllerBuilder::input(Potentiometer ipotentiometer) {
   m_input = std::make_shared<Potentiometer>(ipotentiometer);
   return *this;
 }
+
 AsyncControllerBuilder &AsyncControllerBuilder::input(ADIUltrasonic iultrasonic) {
   m_input = std::make_shared<ADIUltrasonic>(iultrasonic);
   return *this;
 }
 
+// //////////////////////////////////////////////////////
+//                                                     //
+//                        FILTER                       //
+//                                                     //
+// //////////////////////////////////////////////////////
+
 AsyncControllerBuilder &AsyncControllerBuilder::filter(EmaFilter ifilter) {
   m_filters.push_back(std::make_shared<EmaFilter>(ifilter));
   return *this;
 }
+
 AsyncControllerBuilder &AsyncControllerBuilder::filter(DemaFilter ifilter) {
   m_filters.push_back(std::make_shared<DemaFilter>(ifilter));
   return *this;
 }
+
 AsyncControllerBuilder &AsyncControllerBuilder::filter(ComposableFilter ifilter) {
   m_filters.push_back(std::make_shared<ComposableFilter>(ifilter));
   return *this;
 }
+
 AsyncControllerBuilder &AsyncControllerBuilder::filter(std::shared_ptr<Filter> ifilter) {
   m_filters.push_back(ifilter);
   return *this;
 }
 
+// //////////////////////////////////////////////////////
+//                                                     //
+//                     CONTROLLERS                     //
+//                                                     //
+// //////////////////////////////////////////////////////
+
 AsyncControllerBuilder &AsyncControllerBuilder::posPid(const double ikP, const double ikI,
                                                        const double ikD, const double ikBias) {
-  m_controllers.push_back(
-    std::move(std::make_unique<IterativePosPIDController>(ikP, ikI, ikD, ikBias)));
+  m_controllers.emplace_back(
+    std::make_unique<IterativePosPIDController>(ikP, ikI, ikD, ikBias, timeUtil));
   return *this;
 }
 
 AsyncControllerBuilder &AsyncControllerBuilder::velPid(const double ikP, const double ikD,
                                                        const double ikF,
-                                                       const VelMathArgs &iparams) {
-  m_controllers.push_back(
-    std::move(std::make_unique<IterativeVelPIDController>(ikP, ikD, ikF, iparams)));
+                                                       std::unique_ptr<VelMath> ivelMath) {
+  m_controllers.emplace_back(
+    std::make_unique<IterativeVelPIDController>(ikP, ikD, ikF, std::move(ivelMath), timeUtil));
   return *this;
 }
 
 AsyncControllerBuilder &
 AsyncControllerBuilder::lambda(std::function<double(double)> istepFunction) {
-  m_controllers.push_back(
-    std::move(std::make_unique<IterativeLambdaBasedController>(istepFunction)));
+  m_controllers.emplace_back(
+    std::make_unique<IterativeLambdaBasedController>(istepFunction, timeUtil));
   return *this;
 }
+
+// //////////////////////////////////////////////////////
+//                                                     //
+//                        OUTPUT                       //
+//                                                     //
+// //////////////////////////////////////////////////////
 
 AsyncControllerBuilder &AsyncControllerBuilder::output(Motor imotor) {
   m_output = std::make_shared<Motor>(imotor);
@@ -89,8 +121,10 @@ AsyncControllerBuilder &AsyncControllerBuilder::output(std::shared_ptr<AbstractM
   return *this;
 }
 
-std::unique_ptr<AsyncController> AsyncControllerBuilder::build() const {
+std::unique_ptr<AsyncController<double, double>> AsyncControllerBuilder::build() const {
   auto outFilter = std::make_shared<ComposableFilter>(m_filters);
-  return std::make_unique<AsyncWrapper>(m_input, m_output, m_controllers[0]);
+//  return std::make_unique<AsyncWrapper<double, double>>(m_input, m_output, std::move(m_controllers[0]),
+//                                                        timeUtil.getRateSupplier(),
+//                                                        std::move(timeUtil.getSettledUtil()));
 }
 } // namespace okapi
