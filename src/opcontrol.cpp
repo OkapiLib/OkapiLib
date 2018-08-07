@@ -43,9 +43,12 @@ void opcontrol() {
 
   {
     AsyncControllerBuilder builder(TimeUtilFactory::create());
-    auto cnt = builder.input(1).posPid(1, 0, 0).output(1).build();
-    cnt->setTarget(1800);
-    pros::Task::delay(10000);
+    auto cnt = builder.input(IntegratedEncoder(Motor(1))).posPid(1, 0, 0).output(Motor(-1)).build();
+    cnt.setTarget(1800);
+    while (true) {
+      logger->debug("opcontrol: enc " + std::to_string(Motor(1).getPosition()));
+      pros::Task::delay(20);
+    }
   }
 
   //  runHeadlessTests();

@@ -6,7 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/control/async/asyncControllerBuilder.hpp"
-#include "okapi/api/control/async/asyncWrapper.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
 #include "okapi/api/filter/filteredControllerInput.hpp"
@@ -15,12 +14,11 @@
 
 namespace okapi {
 AsyncControllerBuilder::AsyncControllerBuilder(const TimeUtil &itimeUtil) : timeUtil(itimeUtil) {
-  // We need at least a passthrough filter, since a composable filter with no filters will not
-  // output anything
-  m_filters.emplace_back(std::make_unique<PassthroughFilter>());
 }
 
-AsyncControllerBuilder::~AsyncControllerBuilder() = default;
+AsyncControllerBuilder::~AsyncControllerBuilder() {
+  printf("AsyncControllerBuilder dtor!\n");
+}
 
 // //////////////////////////////////////////////////////
 //                                                     //
@@ -93,7 +91,7 @@ AsyncControllerBuilder &AsyncControllerBuilder::filter(std::shared_ptr<Filter> i
 AsyncControllerBuilder &AsyncControllerBuilder::posPid(const double ikP, const double ikI,
                                                        const double ikD, const double ikBias) {
   m_controllers.emplace_back(
-    std::make_unique<IterativePosPIDController>(ikP, ikI, ikD, ikBias, timeUtil));
+    std::make_shared<IterativePosPIDController>(ikP, ikI, ikD, ikBias, timeUtil));
   return *this;
 }
 
@@ -101,14 +99,14 @@ AsyncControllerBuilder &AsyncControllerBuilder::velPid(const double ikP, const d
                                                        const double ikF,
                                                        std::unique_ptr<VelMath> ivelMath) {
   m_controllers.emplace_back(
-    std::make_unique<IterativeVelPIDController>(ikP, ikD, ikF, std::move(ivelMath), timeUtil));
+    std::make_shared<IterativeVelPIDController>(ikP, ikD, ikF, std::move(ivelMath), timeUtil));
   return *this;
 }
 
 AsyncControllerBuilder &
 AsyncControllerBuilder::lambda(std::function<double(double)> istepFunction) {
   m_controllers.emplace_back(
-    std::make_unique<IterativeLambdaBasedController>(istepFunction, timeUtil));
+    std::make_shared<IterativeLambdaBasedController>(istepFunction, timeUtil));
   return *this;
 }
 
@@ -133,21 +131,72 @@ AsyncControllerBuilder &AsyncControllerBuilder::output(std::shared_ptr<AbstractM
   return *this;
 }
 
-std::unique_ptr<AsyncController<double, double>> AsyncControllerBuilder::build() const {
-  auto outFilter = std::make_shared<ComposableFilter>(m_filters);
-  return std::make_unique<AsyncWrapper<double, double>>(
+AsyncWrapper<double, double> AsyncControllerBuilder::build() const {
+  std::shared_ptr<Filter> outFilter;
+  if (m_filters.empty()) {
+    outFilter = std::make_shared<PassthroughFilter>();
+  } else {
+    outFilter = std::make_shared<ComposableFilter>(m_filters);
+  }
+
+  struct WrappedIterativeController {
+    std::shared_ptr<ControllerInput<double>> m_input;
+    std::shared_ptr<Filter> outFilter;
+    std::vector<std::shared_ptr<IterativeController<double, double>>> m_controllers;
+    std::shared_ptr<ControllerOutput<double>> m_output;
+
+    WrappedIterativeController(
+      std::shared_ptr<ControllerInput<double>> input, std::vector<std::shared_ptr<Filter>> filters,
+      std::vector<std::shared_ptr<IterativeController<double, double>>> controllers,
+      std::shared_ptr<ControllerOutput<double>> output)
+      : m_input(input), m_controllers(controllers), m_output(output) {
+      std::shared_ptr<Filter> outFilter;
+      if (filters.empty()) {
+        outFilter = std::make_shared<PassthroughFilter>();
+      } else {
+        outFilter = std::make_shared<ComposableFilter>(filters);
+      }
+    }
+
+    virtual ~WrappedIterativeController() {
+      printf("WrappedIterativeController dtor!");
+    }
+
+    double operator()(const double error) {
+      // return std::accumulate(std::next(m_controllers.begin()), m_controllers.end(),
+      //                        m_controllers.front()->step(outFilter->filter(error)),
+      //                        [](double prevOutput, auto &cnt) {
+      //                          printf("prevOut %1.2f\n", prevOutput);
+      //                          return cnt->step(prevOutput);
+      //                        });
+      printf("step");
+      return 0;
+    }
+  };
+
+  struct WrappedAsyncController : public AsyncWrapper<double, double> {
+    std::shared_ptr<ControllerInput<double>> m_input;
+    std::shared_ptr<ControllerOutput<double>> m_output;
+
+    WrappedAsyncController(std::shared_ptr<ControllerInput<double>> input,
+                           std::shared_ptr<ControllerOutput<double>> output,
+                           std::unique_ptr<IterativeLambdaBasedController> controller,
+                           const TimeUtil &timeUtil)
+      : AsyncWrapper<double, double>(input, output, std::move(controller),
+                                     timeUtil.getRateSupplier(), timeUtil.getSettledUtil()),
+        m_input(input),
+        m_output(output) {
+    }
+
+    ~WrappedAsyncController() override {
+      printf("WrappedAsyncController dtor!");
+    }
+  };
+
+  return WrappedAsyncController(
     m_input, m_output,
     std::make_unique<IterativeLambdaBasedController>(
-      [=](double error) {
-        printf("loop %1.2f\n", error);
-        return std::accumulate(std::next(this->m_controllers.begin()), this->m_controllers.end(),
-                               this->m_controllers.front()->step(outFilter->filter(error)),
-                               [](double prevOutput, auto &cnt) {
-                                 printf("%1.2f\n", prevOutput);
-                                 return cnt->step(prevOutput);
-                               });
-      },
-      timeUtil),
-    timeUtil.getRateSupplier(), timeUtil.getSettledUtil());
+      WrappedIterativeController(m_input, m_filters, m_controllers, m_output), timeUtil),
+    timeUtil);
 }
 } // namespace okapi

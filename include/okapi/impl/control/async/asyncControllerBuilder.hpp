@@ -9,6 +9,7 @@
 #define _OKAPI_ASYNCCONTROLLERBUILDER_HPP_
 
 #include "okapi/api/control/async/asyncController.hpp"
+#include "okapi/api/control/async/asyncWrapper.hpp"
 #include "okapi/api/control/iterative/iterativeController.hpp"
 #include "okapi/api/control/iterative/iterativeLambdaBasedController.hpp"
 #include "okapi/api/filter/composableFilter.hpp"
@@ -54,14 +55,14 @@ class AsyncControllerBuilder {
   AsyncControllerBuilder &output(MotorGroup imotor);
   AsyncControllerBuilder &output(std::shared_ptr<AbstractMotor> imotor);
 
-  std::unique_ptr<AsyncController<double, double>> build() const;
+  AsyncWrapper<double, double> build() const;
 
   private:
   TimeUtil timeUtil;
 
   std::shared_ptr<ControllerInput<double>> m_input;
   std::vector<std::shared_ptr<Filter>> m_filters{};
-  std::vector<std::unique_ptr<IterativeController<double, double>>> m_controllers{};
+  std::vector<std::shared_ptr<IterativeController<double, double>>> m_controllers{};
   std::shared_ptr<ControllerOutput<double>> m_output;
 };
 } // namespace okapi

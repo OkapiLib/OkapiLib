@@ -114,6 +114,7 @@ double IterativePosPIDController::step(const double inewReading) {
       derivative = inewReading - lastReading;
 
       output = std::clamp(kP * error + integral - kD * derivative + kBias, outputMin, outputMax);
+      logger->debug("IterativePosPIDController: output is " + std::to_string(output));
 
       lastReading = inewReading;
       lastError = error;
