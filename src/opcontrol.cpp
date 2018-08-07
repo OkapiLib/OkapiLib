@@ -43,7 +43,7 @@ void opcontrol() {
 
   {
     AsyncControllerBuilder builder(TimeUtilFactory::create());
-    auto cnt = builder.input(1).posPid(1, 0, 0).output(2).build();
+    auto cnt = builder.input(1).posPid(1, 0, 0).output(1).build();
     cnt->setTarget(1800);
     pros::Task::delay(10000);
   }
