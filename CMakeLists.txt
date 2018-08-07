@@ -45,6 +45,8 @@ endif()
 
 include_directories(include)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 add_executable(OkapiLibV5
         include/okapi/api/chassis/controller/chassisController.hpp
         include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp

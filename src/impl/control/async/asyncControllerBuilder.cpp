@@ -34,7 +34,7 @@ AsyncControllerBuilder &AsyncControllerBuilder::input(IntegratedEncoder iencoder
   return *this;
 }
 
-//AsyncControllerBuilder &AsyncControllerBuilder::input(Motor imotor) {
+// AsyncControllerBuilder &AsyncControllerBuilder::input(Motor imotor) {
 //  m_input = imotor.getEncoder();
 //  return *this;
 //}
@@ -135,15 +135,11 @@ std::unique_ptr<AsyncController<double, double>> AsyncControllerBuilder::build()
     m_input, m_output,
     std::make_unique<IterativeLambdaBasedController>(
       [this](double error) {
-        double output = 0;
-
-        std::accumulate(std::next(this->m_controllers.begin()), this->m_controllers.end(),
-                        output = this->m_controllers.front()->step(error),
-                        [&](double prevOutput, auto &cnt) { return cnt->step(prevOutput); });
-
-        return output;
+        return std::accumulate(std::next(this->m_controllers.begin()), this->m_controllers.end(),
+                               this->m_controllers.front()->step(error),
+                               [&](double prevOutput, auto &cnt) { return cnt->step(prevOutput); });
       },
       timeUtil),
-    timeUtil.getRateSupplier(), std::move(timeUtil.getSettledUtil()));
+    timeUtil.getRateSupplier(), timeUtil.getSettledUtil());
 }
 } // namespace okapi
