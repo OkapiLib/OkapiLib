@@ -10,6 +10,7 @@
 
 #include "okapi/api/control/iterative/iterativeVelocityController.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
+#include "okapi/api/filter/passthroughFilter.hpp"
 #include "okapi/api/filter/velMath.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
@@ -19,9 +20,17 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
   public:
   /**
    * Velocity PD controller.
+   *
+   * @param ikP the proportional gain
+   * @param ikD the derivative gain
+   * @param ikF the feed-forward gain
+   * @param itimeUtil see TimeUtil docs
+   * @param iderivativeFilter a filter for filtering the derivative term
    */
-  IterativeVelPIDController(double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath,
-                            const TimeUtil &itimeUtil);
+  IterativeVelPIDController(
+    double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath,
+    const TimeUtil &itimeUtil,
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
    * Do one iteration of the controller.
@@ -149,6 +158,7 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
   bool isOn = true;
 
   std::unique_ptr<VelMath> velMath;
+  std::unique_ptr<Filter> derivativeFilter;
   std::unique_ptr<AbstractTimer> loopDtTimer;
   std::unique_ptr<SettledUtil> settledUtil;
 };

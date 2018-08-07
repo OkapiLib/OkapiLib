@@ -12,10 +12,11 @@ AsyncPosPIDController::AsyncPosPIDController(std::shared_ptr<ControllerInput<dou
                                              std::shared_ptr<ControllerOutput<double>> ioutput,
                                              const TimeUtil &itimeUtil, const double ikP,
                                              const double ikI, const double ikD,
-                                             const double ikBias)
-  : AsyncWrapper<double, double>(
-      iinput, ioutput,
-      std::make_unique<IterativePosPIDController>(ikP, ikI, ikD, ikBias, itimeUtil),
-      itimeUtil.getRateSupplier(), itimeUtil.getSettledUtil()) {
+                                             const double ikBias,
+                                             std::unique_ptr<Filter> iderivativeFilter)
+  : AsyncWrapper<double, double>(iinput, ioutput,
+                                 std::make_unique<IterativePosPIDController>(
+                                   ikP, ikI, ikD, ikBias, itimeUtil, std::move(iderivativeFilter)),
+                                 itimeUtil.getRateSupplier(), itimeUtil.getSettledUtil()) {
 }
 } // namespace okapi
