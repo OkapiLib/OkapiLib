@@ -64,7 +64,7 @@ class IterativeLambdaBasedController : public IterativeController<double, double
    *
    * @param isampleTime time between loops
    */
-  void setSampleTime(const QTime isampleTime) override;
+  void setSampleTime(QTime isampleTime) override;
 
   /**
    * Set controller output bounds. Default bounds are [-1, 1].
