@@ -11,9 +11,7 @@
 namespace okapi {
 AsyncVelIntegratedController::AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor,
                                                            const TimeUtil &itimeUtil)
-  : motor(imotor),
-    settledUtil(itimeUtil.getSettledUtil()),
-    rate(itimeUtil.getRate()) {
+  : motor(imotor), settledUtil(itimeUtil.getSettledUtil()), rate(itimeUtil.getRate()) {
 }
 
 void AsyncVelIntegratedController::setTarget(const double itarget) {

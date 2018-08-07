@@ -8,6 +8,7 @@
 #ifndef _OKAPI_ASYNCCONTROLLERFACTORY_HPP_
 #define _OKAPI_ASYNCCONTROLLERFACTORY_HPP_
 
+#include "okapi/api/chassis/controller/chassisController.hpp"
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
 #include "okapi/api/control/async/asyncPosPidController.hpp"
@@ -17,7 +18,6 @@
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
-#include "okapi/api/chassis/controller/chassisController.hpp"
 
 namespace okapi {
 class AsyncControllerFactory {

@@ -15,13 +15,13 @@
 #include "okapi/api/filter/demaFilter.hpp"
 #include "okapi/api/filter/emaFilter.hpp"
 #include "okapi/api/filter/velMath.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include "okapi/impl/device/adiUltrasonic.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/potentiometer.hpp"
-#include "okapi/api/util/timeUtil.hpp"
 #include <vector>
 
 namespace okapi {
@@ -33,7 +33,7 @@ class AsyncControllerBuilder {
 
   AsyncControllerBuilder &input(ADIEncoder iencoder);
   AsyncControllerBuilder &input(IntegratedEncoder iencoder);
-//  AsyncControllerBuilder &input(Motor imotor);
+  //  AsyncControllerBuilder &input(Motor imotor);
   AsyncControllerBuilder &input(MotorGroup imotor);
   AsyncControllerBuilder &input(Potentiometer ipotentiometer);
   AsyncControllerBuilder &input(ADIUltrasonic iultrasonic);
@@ -45,7 +45,8 @@ class AsyncControllerBuilder {
 
   AsyncControllerBuilder &posPid(double ikP, double ikI, double ikD, double ikBias = 0);
 
-  AsyncControllerBuilder &velPid(double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath);
+  AsyncControllerBuilder &velPid(double ikP, double ikD, double ikF,
+                                 std::unique_ptr<VelMath> ivelMath);
 
   AsyncControllerBuilder &lambda(std::function<double(double)> istepFunction);
 
