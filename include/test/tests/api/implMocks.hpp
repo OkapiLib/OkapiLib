@@ -174,6 +174,8 @@ std::unique_ptr<SettledUtil> createSettledUtilPtr(double iatTargetError = 50,
 
 TimeUtil createTimeUtil();
 
+TimeUtil createConstantTimeUtil(QTime idt);
+
 TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier);
 
 TimeUtil createTimeUtil(const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier);

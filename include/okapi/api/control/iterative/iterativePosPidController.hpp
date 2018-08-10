@@ -16,6 +16,7 @@
 #include "okapi/api/filter/passthroughFilter.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
+#include <limits>
 #include <memory>
 
 namespace okapi {
@@ -124,8 +125,9 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   virtual void setIntegralLimits(double imax, double imin);
 
   /**
-   * Set the error sum bounds. Default bounds are [500, 1250]. Error will only be added to the
-   * integral term when its absolute value between these bounds of either side of the target.
+   * Set the error sum bounds. Default bounds are [0, std::numeric_limits<double>::max()]. Error
+   * will only be added to the integral term when its absolute value is between these bounds of
+   * either side of the target.
    *
    * @param imax max error value that will be summed
    * @param imin min error value that will be summed
@@ -189,8 +191,8 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   double integralMin = -1;
 
   // Error will only be added to the integral term within these bounds on either side of the target
-  double errorSumMin = 500;
-  double errorSumMax = 1250;
+  double errorSumMin = 0;
+  double errorSumMax = std::numeric_limits<double>::max();
 
   double derivative = 0;
 
