@@ -58,8 +58,8 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
                " motor degrees");
 
   const auto enc = model->getSensorVals();
-  leftController->setTarget(newTarget + enc[0]);
-  rightController->setTarget(newTarget + enc[1]);
+//  leftController->setTarget(newTarget + enc[0]);
+//  rightController->setTarget(newTarget + enc[1]);
 }
 
 void ChassisControllerIntegrated::moveDistanceAsync(const double itarget) {
@@ -109,7 +109,7 @@ void ChassisControllerIntegrated::waitUntilSettled() {
 
   leftController->flipDisable(true);
   rightController->flipDisable(true);
-  model->stop();
+//  model->stop();
 
   logger->info("ChassisControllerIntegrated: Done waiting to settle");
 }
