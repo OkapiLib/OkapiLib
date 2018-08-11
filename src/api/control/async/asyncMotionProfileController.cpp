@@ -99,6 +99,10 @@ void AsyncMotionProfileController::setTarget(std::string ipathId) {
   isRunning = true;
 }
 
+std::string AsyncMotionProfileController::getTarget() {
+  return currentPath;
+}
+
 void AsyncMotionProfileController::loop() {
   auto rate = timeUtil.getRate();
 

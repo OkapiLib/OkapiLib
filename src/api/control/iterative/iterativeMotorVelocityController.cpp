@@ -22,6 +22,10 @@ void IterativeMotorVelocityController::setTarget(const double itarget) {
   controller->setTarget(itarget);
 }
 
+double IterativeMotorVelocityController::getTarget() {
+  return controller->getTarget();
+}
+
 double IterativeMotorVelocityController::getOutput() const {
   return controller->getOutput();
 }

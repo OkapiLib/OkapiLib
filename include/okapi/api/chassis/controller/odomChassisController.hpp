@@ -30,6 +30,8 @@ class OdomChassisController : public virtual ChassisController {
   OdomChassisController(std::shared_ptr<SkidSteerModel> imodel, std::unique_ptr<Odometry> iodometry,
                         double imoveThreshold = 10);
 
+  ~OdomChassisController() override;
+
   /**
    * Drives the robot straight to a point in the odom frame.
    *

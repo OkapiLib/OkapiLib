@@ -98,13 +98,19 @@ class Odometry {
    */
   virtual void setState(const OdomState &istate);
 
+  /**
+   * Stop the loop from loop() so the thread called loop() can exit safely.
+   */
+  void stopLooping();
+
   protected:
   std::shared_ptr<ReadOnlyChassisModel> model;
   std::unique_ptr<AbstractRate> rate;
   OdomState state;
   ChassisScales chassisScales;
   std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0}, lastTicks{0, 0};
-  double mm = 0;
+  double mm{0};
+  bool dtorCalled{false};
 };
 } // namespace okapi
 

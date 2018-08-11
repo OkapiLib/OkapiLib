@@ -34,20 +34,19 @@ Odometry::Odometry(const OdometryArgs &iparams)
   : model(iparams.model), chassisScales(iparams.chassisScales) {
 }
 
-Odometry::~Odometry() = default;
+Odometry::~Odometry() {
+  dtorCalled = true;
+}
 
 void Odometry::setScales(const ChassisScales &ichassisScales) {
   chassisScales = ichassisScales;
 }
 
 void Odometry::loop() {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
-  while (true) {
+  while (!dtorCalled) {
     step();
     rate->delayUntil(10);
   }
-#pragma clang diagnostic pop
 }
 
 void Odometry::step() {
@@ -68,7 +67,9 @@ void Odometry::step() {
 }
 
 void Odometry::trampoline(void *context) {
-  static_cast<Odometry *>(context)->loop();
+  if (context) {
+    static_cast<Odometry *>(context)->loop();
+  }
 }
 
 OdomState Odometry::getState() const {
@@ -81,4 +82,7 @@ void Odometry::setState(const OdomState &istate) {
   lastTicks[1] = 0;
 }
 
+void Odometry::stopLooping() {
+  dtorCalled = true;
+}
 } // namespace okapi

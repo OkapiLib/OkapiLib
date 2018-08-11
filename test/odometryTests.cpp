@@ -9,7 +9,6 @@
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/odometry/odometry.hpp"
 #include "okapi/api/odometry/threeEncoderOdometry.hpp"
-#include "test/testRunner.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 #include <memory>

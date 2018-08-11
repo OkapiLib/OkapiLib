@@ -29,6 +29,10 @@ void AsyncPosIntegratedController::setTarget(const double itarget) {
   lastTarget = itarget;
 }
 
+double AsyncPosIntegratedController::getTarget() {
+  return lastTarget;
+}
+
 double AsyncPosIntegratedController::getError() const {
   return lastTarget - motor->getPosition();
 }

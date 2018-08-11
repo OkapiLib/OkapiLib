@@ -71,6 +71,13 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   void setTarget(double itarget) override;
 
   /**
+   * Gets the last set target.
+   *
+   * @return the last target
+   */
+  double getTarget() override;
+
+  /**
    * Returns the last calculated output of the controller. Output is in the range [-1, 1]
    * unless the bounds have been changed with setOutputLimits().
    */
