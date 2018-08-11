@@ -103,12 +103,12 @@ void ChassisControllerIntegrated::turnAngleAsync(const double idegTarget) {
 
 void ChassisControllerIntegrated::waitUntilSettled() {
   logger->info("ChassisControllerIntegrated: Waiting to settle");
-  while (!(leftController->isSettled() && rightController->isSettled())) {
-    rate->delayUntil(10_ms);
-  }
+//  while (!(leftController->isSettled() && rightController->isSettled())) {
+//    rate->delayUntil(10_ms);
+//  }
 
-  leftController->flipDisable(true);
-  rightController->flipDisable(true);
+//  leftController->flipDisable(true);
+//  rightController->flipDisable(true);
 //  model->stop();
 
   logger->info("ChassisControllerIntegrated: Done waiting to settle");
