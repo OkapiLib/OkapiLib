@@ -74,14 +74,6 @@ double MotorGroup::getPosition() const {
   return motors[0].getPosition();
 }
 
-std::int32_t MotorGroup::getTargetVelocity() const {
-  return motors[0].getTargetVelocity();
-}
-
-double MotorGroup::getActualVelocity() const {
-  return motors[0].getActualVelocity();
-}
-
 std::int32_t MotorGroup::tarePosition() const {
   auto out = 1;
   for (auto &&elem : motors) {
@@ -91,6 +83,70 @@ std::int32_t MotorGroup::tarePosition() const {
     }
   }
   return out;
+}
+
+std::int32_t MotorGroup::getTargetVelocity() const {
+  return motors[0].getTargetVelocity();
+}
+
+double MotorGroup::getActualVelocity() const {
+  return motors[0].getActualVelocity();
+}
+
+std::int32_t MotorGroup::getCurrentDraw() const {
+  return motors[0].get_current_draw();
+}
+
+std::int32_t MotorGroup::getDirection() const {
+  return motors[0].get_direction();
+}
+
+double MotorGroup::getEfficiency() const {
+  return motors[0].get_efficiency();
+}
+
+std::int32_t MotorGroup::isOverCurrent() const {
+  return motors[0].is_over_current();
+}
+
+std::int32_t MotorGroup::isOverTemp() const {
+  return motors[0].is_over_temp();
+}
+
+std::int32_t MotorGroup::isStopped() const {
+  return motors[0].is_stopped();
+}
+
+std::int32_t MotorGroup::getZeroPositionFlag() const {
+  return motors[0].get_zero_position_flag();
+}
+
+uint32_t MotorGroup::getFaults() const {
+  return motors[0].get_faults();
+}
+
+uint32_t MotorGroup::getFlags() const {
+  return motors[0].get_flags();
+}
+
+std::int32_t MotorGroup::getRawPosition(std::uint32_t *timestamp) const {
+  return motors[0].get_raw_position(timestamp);
+}
+
+double MotorGroup::getPower() const {
+  return motors[0].get_power();
+}
+
+double MotorGroup::getTemperature() const {
+  return motors[0].get_temperature();
+}
+
+double MotorGroup::getTorque() const {
+  return motors[0].get_torque();
+}
+
+std::int32_t MotorGroup::getVoltage() const {
+  return motors[0].get_voltage();
 }
 
 std::int32_t MotorGroup::setBrakeMode(const AbstractMotor::brakeMode imode) const {

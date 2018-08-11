@@ -104,6 +104,62 @@ std::int32_t MockMotor::moveVoltage(const std::int16_t ivoltage) const {
   return 1;
 }
 
+int32_t MockMotor::getCurrentDraw() const {
+  return 0;
+}
+
+int32_t MockMotor::getDirection() const {
+  return 0;
+}
+
+double MockMotor::getEfficiency() const {
+  return 0;
+}
+
+int32_t MockMotor::isOverCurrent() const {
+  return 0;
+}
+
+int32_t MockMotor::isOverTemp() const {
+  return 0;
+}
+
+int32_t MockMotor::isStopped() const {
+  return 0;
+}
+
+int32_t MockMotor::getZeroPositionFlag() const {
+  return 0;
+}
+
+uint32_t MockMotor::getFaults() const {
+  return 0;
+}
+
+uint32_t MockMotor::getFlags() const {
+  return 0;
+}
+
+int32_t MockMotor::getRawPosition(std::uint32_t *) const {
+  return encoder->get();
+}
+
+double MockMotor::getPower() const {
+  return 0;
+}
+
+double MockMotor::getTemperature() const {
+  return 0;
+}
+
+double MockMotor::getTorque() const {
+  return 0;
+}
+
+int32_t MockMotor::getVoltage() const {
+  return 0;
+}
+
 MockTimer::MockTimer() : firstCalled(millis()), lastCalled(firstCalled), mark(firstCalled) {
 }
 
