@@ -50,8 +50,9 @@ template <typename Input, typename Output> class ControllerRunner {
    * @param ioutput the output to write to
    * @return the error when settled
    */
-  virtual Output runUntilSettled(const Input itarget, IterativeController<Input, Output> &icontroller,
-                            ControllerOutput<Output> &ioutput) {
+  virtual Output runUntilSettled(const Input itarget,
+                                 IterativeController<Input, Output> &icontroller,
+                                 ControllerOutput<Output> &ioutput) {
     logger->info("ControllerRunner: runUntilSettled(IterativeController): Set target to " +
                  std::to_string(itarget));
     icontroller.setTarget(itarget);
@@ -72,7 +73,8 @@ template <typename Input, typename Output> class ControllerRunner {
    * @param icontroller the controller to run
    * @return the error when settled
    */
-  virtual Output runUntilAtTarget(const Input itarget, AsyncController<Input, Output> &icontroller) {
+  virtual Output runUntilAtTarget(const Input itarget,
+                                  AsyncController<Input, Output> &icontroller) {
     logger->info("ControllerRunner: runUntilAtTarget(AsyncController): Set target to " +
                  std::to_string(itarget));
     icontroller.setTarget(itarget);
@@ -97,8 +99,9 @@ template <typename Input, typename Output> class ControllerRunner {
    * @param ioutput the output to write to
    * @return the error when settled
    */
-  virtual Output runUntilAtTarget(const Input itarget, IterativeController<Input, Output> &icontroller,
-                             ControllerOutput<Output> &ioutput) {
+  virtual Output runUntilAtTarget(const Input itarget,
+                                  IterativeController<Input, Output> &icontroller,
+                                  ControllerOutput<Output> &ioutput) {
     logger->info("ControllerRunner: runUntilAtTarget(IterativeController): Set target to " +
                  std::to_string(itarget));
     icontroller.setTarget(itarget);
