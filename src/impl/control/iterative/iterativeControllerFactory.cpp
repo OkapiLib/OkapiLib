@@ -10,17 +10,19 @@
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
 namespace okapi {
-IterativePosPIDController IterativeControllerFactory::posPID(const double ikP, const double ikI,
-                                                             const double ikD,
-                                                             const double ikBias) {
-  return IterativePosPIDController(ikP, ikI, ikD, ikBias, TimeUtilFactory::create());
+IterativePosPIDController
+IterativeControllerFactory::posPID(const double ikP, const double ikI, const double ikD,
+                                   const double ikBias, std::unique_ptr<Filter> iderivativeFilter) {
+  return IterativePosPIDController(ikP, ikI, ikD, ikBias, TimeUtilFactory::create(),
+                                   std::move(iderivativeFilter));
 }
 
-IterativeVelPIDController IterativeControllerFactory::velPID(const double ikP, const double ikD,
-                                                             const double ikF,
-                                                             const VelMathArgs &iparams) {
+IterativeVelPIDController
+IterativeControllerFactory::velPID(const double ikP, const double ikD, const double ikF,
+                                   const VelMathArgs &iparams,
+                                   std::unique_ptr<Filter> iderivativeFilter) {
   return IterativeVelPIDController(ikP, ikD, ikF, VelMathFactory::createPtr(iparams),
-                                   TimeUtilFactory::create());
+                                   TimeUtilFactory::create(), std::move(iderivativeFilter));
 }
 
 IterativeMotorVelocityController

@@ -14,9 +14,11 @@ namespace okapi {
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
                                                      const double ikF,
                                                      std::unique_ptr<VelMath> ivelMath,
-                                                     const TimeUtil &itimeUtil)
+                                                     const TimeUtil &itimeUtil,
+                                                     std::unique_ptr<Filter> iderivativeFilter)
   : logger(Logger::instance()),
     velMath(std::move(ivelMath)),
+    derivativeFilter(std::move(iderivativeFilter)),
     loopDtTimer(itimeUtil.getTimer()),
     settledUtil(itimeUtil.getSettledUtil()) {
   setGains(ikP, ikD, ikF);
@@ -62,7 +64,7 @@ double IterativeVelPIDController::step(const double inewReading) {
       error = target - velMath->getVelocity().convert(rpm);
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
-      derivative = velMath->getAccel().getValue();
+      derivative = derivativeFilter->filter(velMath->getAccel().getValue());
 
       output += kP * error - kD * derivative;
       output = std::clamp(output, outputMin, outputMax);

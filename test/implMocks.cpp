@@ -255,6 +255,14 @@ TimeUtil createTimeUtil() {
     Supplier<std::unique_ptr<SettledUtil>>([]() { return createSettledUtilPtr(); }));
 }
 
+TimeUtil createConstantTimeUtil(const QTime idt) {
+  return TimeUtil(
+    Supplier<std::unique_ptr<AbstractTimer>>(
+      [=]() { return std::make_unique<ConstantMockTimer>(idt); }),
+    Supplier<std::unique_ptr<AbstractRate>>([]() { return std::make_unique<MockRate>(); }),
+    Supplier<std::unique_ptr<SettledUtil>>([]() { return createSettledUtilPtr(); }));
+}
+
 TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier) {
   return TimeUtil(itimerSupplier, Supplier<std::unique_ptr<AbstractRate>>([]() {
                     return std::make_unique<MockRate>();
