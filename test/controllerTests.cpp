@@ -306,7 +306,7 @@ TEST(SettledUtilTest, ZeroTime) {
 class AsyncMotionProfileControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    Logger::initialize(createTimeUtil().getTimer(), "thefile.txt", Logger::LogLevel::info);
+//    Logger::initialize(createTimeUtil().getTimer(), "thefile.txt", Logger::LogLevel::info);
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
 
