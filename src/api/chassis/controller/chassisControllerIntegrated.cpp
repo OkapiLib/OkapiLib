@@ -47,17 +47,17 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
   logger->info("ChassisControllerIntegrated: moving " + std::to_string(itarget.convert(meter)) +
                " meters");
 
-  leftController->reset();
-  rightController->reset();
-  leftController->flipDisable(false);
-  rightController->flipDisable(false);
+//  leftController->reset();
+//  rightController->reset();
+//  leftController->flipDisable(false);
+//  rightController->flipDisable(false);
 
   const double newTarget = itarget.convert(meter) * straightScale * gearRatio;
 
   logger->info("ChassisControllerIntegrated: moving " + std::to_string(newTarget) +
                " motor degrees");
 
-  const auto enc = model->getSensorVals();
+//  const auto enc = model->getSensorVals();
 //  leftController->setTarget(newTarget + enc[0]);
 //  rightController->setTarget(newTarget + enc[1]);
 }
