@@ -29,6 +29,13 @@ template <typename Input, typename Output> class ClosedLoopController {
   virtual void setTarget(Input itarget) = 0;
 
   /**
+   * Gets the last set target.
+   *
+   * @return the last target
+   */
+  virtual Input getTarget() = 0;
+
+  /**
    * Returns the last error of the controller.
    *
    * @return the last error

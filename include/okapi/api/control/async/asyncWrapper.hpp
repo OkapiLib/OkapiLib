@@ -60,6 +60,15 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   /**
+   * Gets the last set target.
+   *
+   * @return the last target
+   */
+  Input getTarget() override {
+    return controller->getTarget();
+  }
+
+  /**
    * Returns the last calculated output of the controller. Default is 0.
    */
   Output getOutput() const {

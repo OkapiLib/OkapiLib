@@ -14,7 +14,11 @@ OdomChassisController::OdomChassisController(std::shared_ptr<SkidSteerModel> imo
   : ChassisController(imodel),
     moveThreshold(imoveThreshold),
     odom(std::move(iodometry)),
-    task(Odometry::trampoline, &odom) {
+    task(Odometry::trampoline, odom.get()) {
+}
+
+OdomChassisController::~OdomChassisController() {
+  odom->stopLooping();
 }
 
 OdomState OdomChassisController::getState() const {

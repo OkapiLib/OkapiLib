@@ -187,7 +187,7 @@ add_executable(OkapiLibV5
         src/pathfinder/modifiers/tank.c
         include/okapi/api/control/async/asyncMotionProfileController.hpp
         src/api/control/async/asyncMotionProfileController.cpp
-        src/api/chassis/controller/chassisScales.cpp)
+        src/api/chassis/controller/chassisScales.cpp test/odomChassisControllerTests.cpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)
