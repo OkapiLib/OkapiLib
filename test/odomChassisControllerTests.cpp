@@ -12,6 +12,16 @@
 
 using namespace okapi;
 
+void assertOdomStateEquals(double x, double y, double theta, const OdomState &actual) {
+  EXPECT_DOUBLE_EQ(actual.x, x);
+  EXPECT_DOUBLE_EQ(actual.y, y);
+  EXPECT_DOUBLE_EQ(actual.theta, theta);
+}
+
+void assertOdomStateEquals(const OdomState &expected, const OdomState &actual) {
+  assertOdomStateEquals(expected.x, expected.y, expected.theta, actual);
+}
+
 class OdomChassisControllerIntegratedTest : public ::testing::Test {
   protected:
   void SetUp() override {
@@ -68,4 +78,15 @@ TEST_F(OdomChassisControllerIntegratedTest, MoveAboveThreshold) {
 
   EXPECT_DOUBLE_EQ(leftController->getError(), 11);
   EXPECT_DOUBLE_EQ(rightController->getError(), 11);
+}
+
+TEST_F(OdomChassisControllerIntegratedTest, SetStateTest) {
+  auto stateBefore = drive->getState();
+  assertOdomStateEquals(0, 0, 0, stateBefore);
+
+  OdomState newState(1, 2, 3);
+  drive->setState(newState);
+
+  auto stateAfter = drive->getState();
+  assertOdomStateEquals(stateAfter, newState);
 }
