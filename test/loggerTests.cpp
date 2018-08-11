@@ -18,6 +18,7 @@ class LoggerTest : public ::testing::Test {
   }
 
   virtual void TearDown() {
+    // Call close after every case so other tests don't end up with a NULL logfile pointer
     Logger::instance()->close();
     free(logBuffer);
   }
