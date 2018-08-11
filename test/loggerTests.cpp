@@ -18,9 +18,8 @@ class LoggerTest : public ::testing::Test {
   }
 
   virtual void TearDown() {
-    fclose(logFile);
-    free(logBuffer);
     Logger::instance()->close();
+    free(logBuffer);
   }
 
   void logData(Logger *logger) const {
