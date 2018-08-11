@@ -26,7 +26,7 @@ class IntegratedEncoder : public ContinuousRotarySensor {
    *
    * @return the current sensor value, or ``PROS_ERR`` on a failure.
    */
-  virtual std::int32_t get() const override;
+  virtual double get() const override;
 
   /**
    * Reset the sensor to zero.

@@ -28,15 +28,22 @@ Logger *Logger::instance() noexcept {
 void Logger::initialize(std::unique_ptr<AbstractTimer> itimer, std::string_view filename,
                         Logger::LogLevel level) noexcept {
   timer = std::move(itimer);
-  logfile = fopen(filename.data(), "w");
   logLevel = level;
+
+  FILE *log = fopen(filename.data(), "w");
+  if (log) {
+    logfile = log;
+  }
 }
 
 void Logger::initialize(std::unique_ptr<AbstractTimer> itimer, FILE *file,
                         Logger::LogLevel level) noexcept {
   timer = std::move(itimer);
-  logfile = file;
   logLevel = level;
+
+  if (file) {
+    logfile = file;
+  }
 }
 
 void Logger::setLogLevel(Logger::LogLevel level) noexcept {

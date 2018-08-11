@@ -9,7 +9,7 @@
 #define _OKAPI_CONTROLLEROUTPUT_HPP_
 
 namespace okapi {
-class ControllerOutput {
+template <typename T> class ControllerOutput {
   public:
   /**
    * Writes the value of the controller output. This method might be automatically called in another
@@ -17,7 +17,7 @@ class ControllerOutput {
    *
    * @param ivalue the controller's output in the range [-1, 1]
    */
-  virtual void controllerSet(double ivalue) = 0;
+  virtual void controllerSet(T ivalue) = 0;
 };
 } // namespace okapi
 

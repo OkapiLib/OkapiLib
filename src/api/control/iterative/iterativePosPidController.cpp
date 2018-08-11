@@ -12,27 +12,25 @@
 #include <cmath>
 
 namespace okapi {
-IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, const double ikI,
-                                                             const double ikD, const double ikBias)
-  : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
-}
-
-IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params,
-                                                     const TimeUtil &itimeUtil)
-  : IterativePosPIDController(params.kP, params.kI, params.kD, params.kBias, itimeUtil) {
-}
-
 IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
                                                      const double ikD, const double ikBias,
-                                                     const TimeUtil &itimeUtil)
+                                                     const TimeUtil &itimeUtil,
+                                                     std::unique_ptr<Filter> iderivativeFilter)
   : logger(Logger::instance()),
     loopDtTimer(std::move(itimeUtil.getTimer())),
-    settledUtil(std::move(itimeUtil.getSettledUtil())) {
+    settledUtil(std::move(itimeUtil.getSettledUtil())),
+    derivativeFilter(std::move(iderivativeFilter)) {
   if (ikI != 0) {
     setIntegralLimits(-1 / ikI, 1 / ikI);
   }
   setOutputLimits(-1, 1);
   setGains(ikP, ikI, ikD, ikBias);
+}
+
+IterativePosPIDController::IterativePosPIDController(const Gains &igains, const TimeUtil &itimeUtil,
+                                                     std::unique_ptr<Filter> iderivativeFilter)
+  : IterativePosPIDController(igains.kP, igains.kI, igains.kD, igains.kBias, itimeUtil,
+                              std::move(iderivativeFilter)) {
 }
 
 void IterativePosPIDController::setTarget(const double itarget) {
@@ -46,10 +44,6 @@ double IterativePosPIDController::getOutput() const {
 
 double IterativePosPIDController::getError() const {
   return error;
-}
-
-double IterativePosPIDController::getDerivative() const {
-  return derivative;
 }
 
 bool IterativePosPIDController::isSettled() {
@@ -120,7 +114,7 @@ double IterativePosPIDController::step(const double inewReading) {
       integral = std::clamp(integral, integralMin, integralMax);
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
-      derivative = inewReading - lastReading;
+      derivative = derivativeFilter->filter(inewReading - lastReading);
 
       output = std::clamp(kP * error + integral - kD * derivative + kBias, outputMin, outputMax);
 

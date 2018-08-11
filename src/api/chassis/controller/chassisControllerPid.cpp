@@ -9,27 +9,17 @@
 #include <cmath>
 
 namespace okapi {
-ChassisControllerPID::ChassisControllerPID(const TimeUtil &itimeUtil,
-                                           std::unique_ptr<ChassisModel> imodel,
-                                           const IterativePosPIDControllerArgs &idistanceArgs,
-                                           const IterativePosPIDControllerArgs &iangleArgs,
-                                           const AbstractMotor::GearsetRatioPair igearset,
-                                           const ChassisScales &iscales)
-  : ChassisControllerPID(itimeUtil, std::move(imodel),
-                         std::make_unique<IterativePosPIDController>(idistanceArgs, itimeUtil),
-                         std::make_unique<IterativePosPIDController>(iangleArgs, itimeUtil),
-                         igearset, iscales) {
-}
-
 ChassisControllerPID::ChassisControllerPID(
-  const TimeUtil &itimeUtil, std::unique_ptr<ChassisModel> imodel,
+  const TimeUtil &itimeUtil, std::shared_ptr<ChassisModel> imodel,
   std::unique_ptr<IterativePosPIDController> idistanceController,
   std::unique_ptr<IterativePosPIDController> iangleController,
+  std::unique_ptr<IterativePosPIDController> iturnController,
   const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
-  : ChassisController(std::move(imodel)),
+  : ChassisController(imodel),
     rate(std::move(itimeUtil.getRate())),
     distancePid(std::move(idistanceController)),
     anglePid(std::move(iangleController)),
+    turnPid(std::move(iturnController)),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),
     turnScale(iscales.turn),
@@ -67,6 +57,7 @@ void ChassisControllerPID::loop() {
         encStartVals = model->getSensorVals();
         distancePid->reset();
         anglePid->reset();
+        turnPid->reset();
         model->stop();
       }
 
@@ -81,7 +72,7 @@ void ChassisControllerPID::loop() {
       case angle:
         encVals = model->getSensorVals() - encStartVals;
         angleChange = static_cast<double>(encVals[0] - encVals[1]);
-        model->rotate(anglePid->step(angleChange));
+        model->rotate(turnPid->step(angleChange));
 
         break;
       default:
@@ -109,6 +100,7 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   anglePid->reset();
   distancePid->flipDisable(false);
   anglePid->flipDisable(false);
+  turnPid->flipDisable(true);
   mode = distance;
 
   const double newTarget = itarget.convert(meter) * straightScale * gearRatio;
@@ -140,16 +132,17 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   logger->info("ChassisControllerPID: turning " + std::to_string(idegTarget.convert(degree)) +
                " degrees");
 
-  anglePid->reset();
-  anglePid->flipDisable(false);
+  turnPid->reset();
+  turnPid->flipDisable(false);
   distancePid->flipDisable(true);
+  anglePid->flipDisable(true);
   mode = angle;
 
   const double newTarget = idegTarget.convert(degree) * turnScale * gearRatio;
 
   logger->info("ChassisControllerPID: turning " + std::to_string(newTarget) + " motor degrees");
 
-  anglePid->setTarget(newTarget);
+  turnPid->setTarget(newTarget);
 
   doneLooping = false;
 }
@@ -233,7 +226,7 @@ bool ChassisControllerPID::waitForDistanceSettled() {
 bool ChassisControllerPID::waitForAngleSettled() {
   logger->info("ChassisControllerPID: Waiting to settle in angle mode");
 
-  while (!anglePid->isSettled()) {
+  while (!turnPid->isSettled()) {
     if (mode == distance) {
       // False will cause the loop to re-enter the switch
       logger->warn("ChassisControllerPID: Mode changed to distance while waiting in angle!");
@@ -258,7 +251,7 @@ void ChassisControllerPID::stopAfterSettled() {
 
   case angle:
     doneLooping = true;
-    anglePid->flipDisable(true);
+    turnPid->flipDisable(true);
     model->stop();
     break;
 

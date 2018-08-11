@@ -10,18 +10,27 @@
 
 #include "okapi/api/control/iterative/iterativeVelocityController.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
+#include "okapi/api/filter/passthroughFilter.hpp"
 #include "okapi/api/filter/velMath.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
-class IterativeVelPIDController : public IterativeVelocityController {
+class IterativeVelPIDController : public IterativeVelocityController<double, double> {
   public:
   /**
    * Velocity PD controller.
+   *
+   * @param ikP the proportional gain
+   * @param ikD the derivative gain
+   * @param ikF the feed-forward gain
+   * @param itimeUtil see TimeUtil docs
+   * @param iderivativeFilter a filter for filtering the derivative term
    */
-  IterativeVelPIDController(double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath,
-                            const TimeUtil &itimeUtil);
+  IterativeVelPIDController(
+    double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath,
+    const TimeUtil &itimeUtil,
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
    * Do one iteration of the controller.
@@ -47,11 +56,6 @@ class IterativeVelPIDController : public IterativeVelocityController {
    * Returns the last error of the controller.
    */
   double getError() const override;
-
-  /**
-   * Returns the last derivative (change in error) of the controller.
-   */
-  double getDerivative() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
@@ -154,6 +158,7 @@ class IterativeVelPIDController : public IterativeVelocityController {
   bool isOn = true;
 
   std::unique_ptr<VelMath> velMath;
+  std::unique_ptr<Filter> derivativeFilter;
   std::unique_ptr<AbstractTimer> loopDtTimer;
   std::unique_ptr<SettledUtil> settledUtil;
 };

@@ -26,7 +26,9 @@ class IterativeControllerFactory {
    * @param ikD derivative gain
    * @param ikBias controller bias (constant offset added to the output)
    */
-  static IterativePosPIDController posPID(double ikP, double ikI, double ikD, double ikBias = 0);
+  static IterativePosPIDController
+  posPID(double ikP, double ikI, double ikD, double ikBias = 0,
+         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
    * Velocity PD controller.
@@ -35,8 +37,9 @@ class IterativeControllerFactory {
    * @param ikD derivative gain
    * @param ikF feed-forward gain
    */
-  static IterativeVelPIDController velPID(double ikP, double ikD, double ikF = 0,
-                                          const VelMathArgs &iparams = VelMathArgs(imev5TPR));
+  static IterativeVelPIDController
+  velPID(double ikP, double ikD, double ikF = 0, const VelMathArgs &iparams = VelMathArgs(imev5TPR),
+         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
    * Velocity PD controller that automatically writes to the motor.
@@ -69,7 +72,8 @@ class IterativeControllerFactory {
    * @param icontroller controller to use
    */
   static IterativeMotorVelocityController
-  motorVelocity(Motor imotor, std::shared_ptr<IterativeVelocityController> icontroller);
+  motorVelocity(Motor imotor,
+                std::shared_ptr<IterativeVelocityController<double, double>> icontroller);
 
   /**
    * Velocity PD controller that automatically writes to the motor.
@@ -78,7 +82,8 @@ class IterativeControllerFactory {
    * @param icontroller controller to use
    */
   static IterativeMotorVelocityController
-  motorVelocity(MotorGroup imotor, std::shared_ptr<IterativeVelocityController> icontroller);
+  motorVelocity(MotorGroup imotor,
+                std::shared_ptr<IterativeVelocityController<double, double>> icontroller);
 };
 } // namespace okapi
 

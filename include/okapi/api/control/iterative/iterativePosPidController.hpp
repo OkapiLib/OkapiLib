@@ -12,35 +12,50 @@
 
 #include "okapi/api/control/iterative/iterativePositionController.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
+#include "okapi/api/filter/filter.hpp"
+#include "okapi/api/filter/passthroughFilter.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
+#include <limits>
 #include <memory>
 
 namespace okapi {
-class IterativePosPIDControllerArgs : public IterativePositionControllerArgs {
+class IterativePosPIDController : public IterativePositionController<double, double> {
   public:
-  IterativePosPIDControllerArgs(double ikP, double ikI, double ikD, double ikBias = 0);
-
-  const double kP, kI, kD, kBias;
-};
-
-class IterativePosPIDController : public IterativePositionController {
-  public:
-  /**
-   * Position PID controller.
-   */
-  IterativePosPIDController(double ikP, double ikI, double ikD, double ikBias,
-                            const TimeUtil &itimeUtil);
+  struct Gains {
+    double kP;
+    double kI;
+    double kD;
+    double kBias;
+  };
 
   /**
    * Position PID controller.
    *
-   * @param params PosPIDControllerArgs
+   * @param ikP the proportional gain
+   * @param ikI the integration gain
+   * @param ikD the derivative gain
+   * @param ikBias the controller bias
+   * @param itimeUtil see TimeUtil docs
+   * @param iderivativeFilter a filter for filtering the derivative term
    */
-  IterativePosPIDController(const IterativePosPIDControllerArgs &params, const TimeUtil &itimeUtil);
+  IterativePosPIDController(
+    double ikP, double ikI, double ikD, double ikBias, const TimeUtil &itimeUtil,
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
-   * Do one iteration of the controller. Returns the reading in the range [-127, 127] unless the
+   * Position PID controller.
+   *
+   * @param igains the controller gains
+   * @param itimeUtil see TimeUtil docs
+   * @param iderivativeFilter a filter for filtering the derivative term
+   */
+  IterativePosPIDController(
+    const Gains &igains, const TimeUtil &itimeUtil,
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+
+  /**
+   * Do one iteration of the controller. Returns the reading in the range [-1, 1] unless the
    * bounds have been changed with setOutputLimits().
    *
    * @param inewReading new measurement
@@ -65,11 +80,6 @@ class IterativePosPIDController : public IterativePositionController {
    * Returns the last error of the controller.
    */
   double getError() const override;
-
-  /**
-   * Returns the last derivative (change in error) of the controller.
-   */
-  double getDerivative() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
@@ -115,8 +125,9 @@ class IterativePosPIDController : public IterativePositionController {
   virtual void setIntegralLimits(double imax, double imin);
 
   /**
-   * Set the error sum bounds. Default bounds are [500, 1250]. Error will only be added to the
-   * integral term when its absolute value between these bounds of either side of the target.
+   * Set the error sum bounds. Default bounds are [0, std::numeric_limits<double>::max()]. Error
+   * will only be added to the integral term when its absolute value is between these bounds of
+   * either side of the target.
    *
    * @param imax max error value that will be summed
    * @param imin min error value that will be summed
@@ -172,6 +183,7 @@ class IterativePosPIDController : public IterativePositionController {
   double lastReading = 0;
   double error = 0;
   double lastError = 0;
+  std::unique_ptr<Filter> derivativeFilter;
 
   // Integral bounds
   double integral = 0;
@@ -179,8 +191,8 @@ class IterativePosPIDController : public IterativePositionController {
   double integralMin = -1;
 
   // Error will only be added to the integral term within these bounds on either side of the target
-  double errorSumMin = 500;
-  double errorSumMax = 1250;
+  double errorSumMin = 0;
+  double errorSumMax = std::numeric_limits<double>::max();
 
   double derivative = 0;
 

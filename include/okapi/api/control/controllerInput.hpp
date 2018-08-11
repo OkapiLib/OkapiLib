@@ -9,7 +9,7 @@
 #define _OKAPI_CONTROLLERINPUT_HPP_
 
 namespace okapi {
-class ControllerInput {
+template <typename T> class ControllerInput {
   public:
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in
@@ -17,7 +17,7 @@ class ControllerInput {
    *
    * @return the current sensor value, or ``PROS_ERR`` on a failure.
    */
-  virtual double controllerGet() = 0;
+  virtual T controllerGet() = 0;
 };
 } // namespace okapi
 

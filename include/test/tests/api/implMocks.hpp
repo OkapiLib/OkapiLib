@@ -19,6 +19,7 @@
 #include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <chrono>
+#include <gtest/gtest.h>
 
 namespace okapi {
 
@@ -28,7 +29,7 @@ class MockContinuousRotarySensor : public ContinuousRotarySensor {
 
   int32_t reset() override;
 
-  int32_t get() const override;
+  double get() const override;
 
   mutable std::int32_t value{0};
 };
@@ -103,9 +104,10 @@ class MockMotor : public AbstractMotor {
   int32_t getVoltage() const override;
 
   std::shared_ptr<MockContinuousRotarySensor> encoder;
-  mutable std::int16_t lastVelocity{};
-  mutable std::int16_t lastVoltage{};
-  mutable std::int16_t lastPosition{};
+  mutable std::int16_t lastVelocity{0};
+  mutable std::int16_t maxVelocity{0};
+  mutable std::int16_t lastVoltage{0};
+  mutable std::int16_t lastPosition{0};
 };
 
 /**
@@ -200,13 +202,15 @@ std::unique_ptr<SettledUtil> createSettledUtilPtr(double iatTargetError = 50,
 
 TimeUtil createTimeUtil();
 
+TimeUtil createConstantTimeUtil(QTime idt);
+
 TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier);
 
 TimeUtil createTimeUtil(const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier);
 
-class SimulatedSystem : public ControllerInput, public ControllerOutput {
+class SimulatedSystem : public ControllerInput<double>, public ControllerOutput<double> {
   public:
-  SimulatedSystem(FlywheelSimulator &simulator);
+  explicit SimulatedSystem(FlywheelSimulator &simulator);
 
   virtual ~SimulatedSystem();
 
@@ -232,15 +236,9 @@ class MockAsyncController : public AsyncPosIntegratedController {
     : AsyncPosIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
   }
 
-  MockAsyncController(const TimeUtil &itimeUtil)
+  explicit MockAsyncController(const TimeUtil &itimeUtil)
     : AsyncPosIntegratedController(std::make_shared<MockMotor>(), itimeUtil) {
   }
-
-  double getOutput() const override;
-
-  void setSampleTime(QTime isampleTime) override;
-
-  void setOutputLimits(double imax, double imin) override;
 
   void waitUntilSettled() override;
 
@@ -278,8 +276,6 @@ class MockIterativeController : public IterativePosPIDController {
   double getOutput() const override;
 
   double getError() const override;
-
-  double getDerivative() const override;
 
   bool isSettled() override;
 
@@ -325,6 +321,8 @@ class MockSettledUtil : public SettledUtil {
 
   bool isSettledOverride{true};
 };
+
+void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor);
 } // namespace okapi
 
 #endif
