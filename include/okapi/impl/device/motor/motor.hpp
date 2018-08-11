@@ -159,7 +159,6 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * This function uses the following values of errno when an error state is
    * reached:
-   * EINVAL - The given value is not within the range of V5 ports (1-21).
    * EACCES - Another resource is currently trying to access the port.
    *
    * @return The motor's current in mA or PROS_ERR if the operation failed, setting errno.
@@ -171,7 +170,6 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * This function uses the following values of errno when an error state is
    * reached:
-   * EINVAL - The given value is not within the range of V5 ports (1-21).
    * EACCES - Another resource is currently trying to access the port.
    *
    * @return 1 for moving in the positive direction, -1 for moving in the negative direction, and
@@ -188,7 +186,6 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * This function uses the following values of errno when an error state is
    * reached:
-   * EINVAL - The given value is not within the range of V5 ports (1-21).
    * EACCES - Another resource is currently trying to access the port.
    *
    * @return The motor's efficiency in percent or PROS_ERR_F if the operation failed, setting errno.
@@ -200,7 +197,6 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * This function uses the following values of errno when an error state is
    * reached:
-   * EINVAL - The given value is not within the range of V5 ports (1-21).
    * EACCES - Another resource is currently trying to access the port.
    *
    * @return 1 if the motor's current limit is being exceeded and 0 if the current limit is not
@@ -213,7 +209,6 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * This function uses the following values of errno when an error state is
    * reached:
-   * EINVAL - The given value is not within the range of V5 ports (1-21).
    * EACCES - Another resource is currently trying to access the port.
    *
    * @return 1 if the temperature limit is exceeded and 0 if the the temperature is below the limit,
@@ -226,7 +221,6 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * Although this function forwards data from the motor, the motor presently does not provide any
    * value. This function returns PROS_ERR with errno set to ENOSYS.
-   *
    * @return 1 if the motor is not moving, 0 if the motor is moving, or PROS_ERR if the operation
    * failed, setting errno
    */
@@ -248,7 +242,6 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * This function uses the following values of errno when an error state is
    * reached:
-   * EINVAL - The given value is not within the range of V5 ports (1-21).
    * EACCES - Another resource is currently trying to access the port.
    *
    * @return A currently unknown bitfield containing the motor's faults. 0b00000100 = Current Limit
@@ -261,7 +254,6 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * This function uses the following values of errno when an error state is
    * reached:
-   * EINVAL - The given value is not within the range of V5 ports (1-21).
    * EACCES - Another resource is currently trying to access the port.
    *
    * @return A currently unknown bitfield containing the motor's flags. These seem to be unrelated
@@ -274,7 +266,6 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * This function uses the following values of errno when an error state is
    * reached:
-   * EINVAL - The given value is not within the range of V5 ports (1-21).
    * EACCES - Another resource is currently trying to access the port.
    *
    * @param timestamp A pointer to a time in milliseconds for which the encoder count will be
@@ -289,7 +280,6 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * This function uses the following values of errno when an error state is
    * reached:
-   * EINVAL - The given value is not within the range of V5 ports (1-21).
    * EACCES - Another resource is currently trying to access the port.
    *
    * @return The motor's power draw in Watts or PROS_ERR_F if the operation failed, setting errno.
@@ -301,7 +291,6 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * This function uses the following values of errno when an error state is
    * reached:
-   * EINVAL - The given value is not within the range of V5 ports (1-21).
    * EACCES - Another resource is currently trying to access the port.
    *
    * @return The motor's temperature in degrees Celsius or PROS_ERR_F if the operation failed,
@@ -314,7 +303,6 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * This function uses the following values of errno when an error state is
    * reached:
-   * EINVAL - The given value is not within the range of V5 ports (1-21).
    * EACCES - Another resource is currently trying to access the port.
    *
    * @return The motor's torque in NM or PROS_ERR_F if the operation failed, setting errno.
@@ -326,7 +314,6 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * This function uses the following values of errno when an error state is
    * reached:
-   * EINVAL - The given value is not within the range of V5 ports (1-21).
    * EACCES - Another resource is currently trying to access the port.
    *
    * @return The motor's voltage in V or PROS_ERR_F if the operation failed, setting errno.
