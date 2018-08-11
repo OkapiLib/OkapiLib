@@ -35,7 +35,7 @@ void OdomChassisControllerIntegrated::driveToPoint(const double ix, const double
   }
 
   if (std::fabs(daa.length - ioffset) > moveThreshold) {
-    ChassisControllerIntegrated::moveDistance(static_cast<int>(daa.length - ioffset));
+//    ChassisControllerIntegrated::moveDistance(static_cast<int>(daa.length - ioffset));
   }
 }
 
