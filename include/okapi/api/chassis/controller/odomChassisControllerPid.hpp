@@ -30,29 +30,6 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
    * @param imodel chassis model to use
    * @param iscale straight scale
    * @param iturnScale turn scale
-   * @param idistanceArgs distance PID controller params
-   * @param iangleArgs angle PID controller params (keeps the robot straight)
-   * @param imoveThreshold minimum length movement
-   */
-  OdomChassisControllerPID(const TimeUtil &itimeUtil, std::shared_ptr<SkidSteerModel> imodel,
-                           std::unique_ptr<Odometry> iodometry,
-                           const IterativePosPIDControllerArgs &idistanceArgs,
-                           const IterativePosPIDControllerArgs &iangleArgs,
-                           double imoveThreshold = 10);
-
-  /**
-   * Odometry based chassis controller that moves using PID control. Spins up a task at the default
-   * priority plus 1 for odometry when constructed.
-   *
-   * This constructor uses the encoders from the supplied chassis model.
-   *
-   * Moves the robot around in the odom frame. Instead of telling the robot to drive forward or
-   * turn some amount, you instead tell it to drive to a specific point on the field or turn to
-   * a specific angle, relative to its starting position.
-   *
-   * @param imodel chassis model to use
-   * @param iscale straight scale
-   * @param iturnScale turn scale
    * @param idistanceController distance PID controller
    * @param idistanceController angle PID controller (keeps the robot straight)
    * @param imoveThreshold minimum length movement
@@ -61,6 +38,7 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
                            std::unique_ptr<Odometry> iodometry,
                            std::unique_ptr<IterativePosPIDController> idistanceController,
                            std::unique_ptr<IterativePosPIDController> iangleController,
+                           std::unique_ptr<IterativePosPIDController> iturnController,
                            double imoveThreshold = 10);
 
   /**

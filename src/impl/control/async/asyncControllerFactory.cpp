@@ -30,77 +30,143 @@ AsyncVelIntegratedController AsyncControllerFactory::velIntegrated(MotorGroup im
 
 AsyncPosPIDController AsyncControllerFactory::posPID(Motor imotor, const double ikP,
                                                      const double ikI, const double ikD,
-                                                     const double ikBias) {
+                                                     const double ikBias,
+                                                     std::unique_ptr<Filter> iderivativeFilter) {
   return AsyncPosPIDController(imotor.getEncoder(), std::make_shared<Motor>(imotor),
-                               TimeUtilFactory::create(), ikP, ikI, ikD, ikBias);
+                               TimeUtilFactory::create(), ikP, ikI, ikD, ikBias,
+                               std::move(iderivativeFilter));
 }
 
 AsyncPosPIDController AsyncControllerFactory::posPID(Motor imotor, ADIEncoder ienc,
                                                      const double ikP, const double ikI,
-                                                     const double ikD, const double ikBias) {
+                                                     const double ikD, const double ikBias,
+                                                     std::unique_ptr<Filter> iderivativeFilter) {
   return AsyncPosPIDController(std::make_shared<ADIEncoder>(ienc), std::make_shared<Motor>(imotor),
-                               TimeUtilFactory::create(), ikP, ikI, ikD, ikBias);
+                               TimeUtilFactory::create(), ikP, ikI, ikD, ikBias,
+                               std::move(iderivativeFilter));
 }
 
-AsyncPosPIDController AsyncControllerFactory::posPID(MotorGroup imotor, ADIEncoder ienc,
+AsyncPosPIDController AsyncControllerFactory::posPID(Motor imotor, Potentiometer ipot,
                                                      const double ikP, const double ikI,
-                                                     const double ikD, const double ikBias) {
-  return AsyncPosPIDController(std::make_shared<ADIEncoder>(ienc),
-                               std::make_shared<MotorGroup>(imotor), TimeUtilFactory::create(), ikP,
-                               ikI, ikD, ikBias);
+                                                     const double ikD, const double ikBias,
+                                                     std::unique_ptr<Filter> iderivativeFilter) {
+  return AsyncPosPIDController(std::make_shared<Potentiometer>(ipot),
+                               std::make_shared<Motor>(imotor), TimeUtilFactory::create(), ikP, ikI,
+                               ikD, ikBias, std::move(iderivativeFilter));
 }
 
 AsyncPosPIDController AsyncControllerFactory::posPID(MotorGroup imotor, const double ikP,
                                                      const double ikI, const double ikD,
-                                                     const double ikBias) {
+                                                     const double ikBias,
+                                                     std::unique_ptr<Filter> iderivativeFilter) {
   return AsyncPosPIDController(imotor.getEncoder(), std::make_shared<MotorGroup>(imotor),
-                               TimeUtilFactory::create(), ikP, ikI, ikD, ikBias);
+                               TimeUtilFactory::create(), ikP, ikI, ikD, ikBias,
+                               std::move(iderivativeFilter));
 }
 
-AsyncPosPIDController AsyncControllerFactory::posPID(std::shared_ptr<ControllerInput> iinput,
-                                                     std::shared_ptr<ControllerOutput> ioutput,
+AsyncPosPIDController AsyncControllerFactory::posPID(MotorGroup imotor, ADIEncoder ienc,
                                                      const double ikP, const double ikI,
-                                                     const double ikD, const double ikBias) {
-  return AsyncPosPIDController(iinput, ioutput, TimeUtilFactory::create(), ikP, ikI, ikD, ikBias);
+                                                     const double ikD, const double ikBias,
+                                                     std::unique_ptr<Filter> iderivativeFilter) {
+  return AsyncPosPIDController(std::make_shared<ADIEncoder>(ienc),
+                               std::make_shared<MotorGroup>(imotor), TimeUtilFactory::create(), ikP,
+                               ikI, ikD, ikBias, std::move(iderivativeFilter));
+}
+
+AsyncPosPIDController AsyncControllerFactory::posPID(MotorGroup imotor, Potentiometer ipot,
+                                                     const double ikP, const double ikI,
+                                                     const double ikD, const double ikBias,
+                                                     std::unique_ptr<Filter> iderivativeFilter) {
+  return AsyncPosPIDController(std::make_shared<Potentiometer>(ipot),
+                               std::make_shared<MotorGroup>(imotor), TimeUtilFactory::create(), ikP,
+                               ikI, ikD, ikBias, std::move(iderivativeFilter));
+}
+
+AsyncPosPIDController
+AsyncControllerFactory::posPID(std::shared_ptr<ControllerInput<double>> iinput,
+                               std::shared_ptr<ControllerOutput<double>> ioutput, const double ikP,
+                               const double ikI, const double ikD, const double ikBias,
+                               std::unique_ptr<Filter> iderivativeFilter) {
+  return AsyncPosPIDController(iinput, ioutput, TimeUtilFactory::create(), ikP, ikI, ikD, ikBias,
+                               std::move(iderivativeFilter));
 }
 
 AsyncVelPIDController AsyncControllerFactory::velPID(Motor imotor, const double ikP,
                                                      const double ikD, const double ikF,
-                                                     const double iTPR) {
+                                                     const double iTPR,
+                                                     std::unique_ptr<Filter> iderivativeFilter) {
   return AsyncVelPIDController(imotor.getEncoder(), std::make_shared<Motor>(imotor),
                                TimeUtilFactory::create(), ikP, ikD, ikF,
-                               VelMathFactory::createPtr(iTPR));
+                               VelMathFactory::createPtr(iTPR), std::move(iderivativeFilter));
 }
 
 AsyncVelPIDController AsyncControllerFactory::velPID(Motor imotor, ADIEncoder ienc,
                                                      const double ikP, const double ikD,
-                                                     const double ikF, const double iTPR) {
+                                                     const double ikF, const double iTPR,
+                                                     std::unique_ptr<Filter> iderivativeFilter) {
   return AsyncVelPIDController(std::make_shared<ADIEncoder>(ienc), std::make_shared<Motor>(imotor),
                                TimeUtilFactory::create(), ikP, ikD, ikF,
-                               VelMathFactory::createPtr(iTPR));
+                               VelMathFactory::createPtr(iTPR), std::move(iderivativeFilter));
+}
+
+AsyncVelPIDController AsyncControllerFactory::velPID(Motor imotor, Potentiometer ipot,
+                                                     const double ikP, const double ikD,
+                                                     const double ikF, const double iTPR,
+                                                     std::unique_ptr<Filter> iderivativeFilter) {
+  return AsyncVelPIDController(std::make_shared<Potentiometer>(ipot),
+                               std::make_shared<Motor>(imotor), TimeUtilFactory::create(), ikP, ikD,
+                               ikF, VelMathFactory::createPtr(iTPR), std::move(iderivativeFilter));
 }
 
 AsyncVelPIDController AsyncControllerFactory::velPID(MotorGroup imotor, const double ikP,
                                                      const double ikD, const double ikF,
-                                                     const double iTPR) {
+                                                     const double iTPR,
+                                                     std::unique_ptr<Filter> iderivativeFilter) {
   return AsyncVelPIDController(imotor.getEncoder(), std::make_shared<MotorGroup>(imotor),
                                TimeUtilFactory::create(), ikP, ikD, ikF,
-                               VelMathFactory::createPtr(iTPR));
+                               VelMathFactory::createPtr(iTPR), std::move(iderivativeFilter));
 }
 
 AsyncVelPIDController AsyncControllerFactory::velPID(MotorGroup imotor, ADIEncoder ienc,
                                                      const double ikP, const double ikD,
-                                                     const double ikF, const double iTPR) {
+                                                     const double ikF, const double iTPR,
+                                                     std::unique_ptr<Filter> iderivativeFilter) {
   return AsyncVelPIDController(std::make_shared<ADIEncoder>(ienc),
                                std::make_shared<MotorGroup>(imotor), TimeUtilFactory::create(), ikP,
-                               ikD, ikF, VelMathFactory::createPtr(iTPR));
+                               ikD, ikF, VelMathFactory::createPtr(iTPR),
+                               std::move(iderivativeFilter));
 }
 
-AsyncVelPIDController AsyncControllerFactory::velPID(std::shared_ptr<ControllerInput> iinput,
-                                                     std::shared_ptr<ControllerOutput> ioutput,
+AsyncVelPIDController AsyncControllerFactory::velPID(MotorGroup imotor, Potentiometer ipot,
                                                      const double ikP, const double ikD,
-                                                     const double ikF, const double iTPR) {
+                                                     const double ikF, const double iTPR,
+                                                     std::unique_ptr<Filter> iderivativeFilter) {
+  return AsyncVelPIDController(std::make_shared<Potentiometer>(ipot),
+                               std::make_shared<MotorGroup>(imotor), TimeUtilFactory::create(), ikP,
+                               ikD, ikF, VelMathFactory::createPtr(iTPR),
+                               std::move(iderivativeFilter));
+}
+
+AsyncVelPIDController
+AsyncControllerFactory::velPID(std::shared_ptr<ControllerInput<double>> iinput,
+                               std::shared_ptr<ControllerOutput<double>> ioutput, const double ikP,
+                               const double ikD, const double ikF, const double iTPR,
+                               std::unique_ptr<Filter> iderivativeFilter) {
   return AsyncVelPIDController(iinput, ioutput, TimeUtilFactory::create(), ikP, ikD, ikF,
-                               VelMathFactory::createPtr(iTPR));
+                               VelMathFactory::createPtr(iTPR), std::move(iderivativeFilter));
+}
+
+AsyncMotionProfileController
+AsyncControllerFactory::motionProfile(double imaxVel, double imaxAccel, double imaxJerk,
+                                      std::shared_ptr<SkidSteerModel> imodel, QLength iwidth) {
+  return AsyncMotionProfileController(TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk,
+                                      imodel, iwidth);
+}
+
+AsyncMotionProfileController
+AsyncControllerFactory::motionProfile(double imaxVel, double imaxAccel, double imaxJerk,
+                                      const ChassisController &ichassis, QLength iwidth) {
+  return AsyncMotionProfileController(TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk,
+                                      ichassis.getChassisModel(), iwidth);
 }
 } // namespace okapi

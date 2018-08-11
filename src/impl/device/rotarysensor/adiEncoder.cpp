@@ -13,7 +13,7 @@ ADIEncoder::ADIEncoder(const std::uint8_t iportTop, const std::uint8_t iportBott
   : enc(iportTop, iportBottom, ireversed) {
 }
 
-std::int32_t ADIEncoder::get() const {
+double ADIEncoder::get() const {
   return enc.get_value();
 }
 

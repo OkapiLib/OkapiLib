@@ -31,30 +31,6 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
    * @param imodel chassis model to use
    * @param iscale straight scale
    * @param iturnScale turn scale
-   * @param ileftControllerParams left side controller arguments for the ChassisControllerIntegrated
-   * @param irightControllerParams right side controller arguments for the
-   * ChassisControllerIntegrated
-   * @param imoveThreshold minimum length movement
-   */
-  OdomChassisControllerIntegrated(const TimeUtil &itimeUtil, std::shared_ptr<SkidSteerModel> imodel,
-                                  std::unique_ptr<Odometry> iodometry,
-                                  const AsyncPosIntegratedControllerArgs &ileftControllerParams,
-                                  const AsyncPosIntegratedControllerArgs &irightControllerParams,
-                                  double imoveThreshold = 10);
-
-  /**
-   * Odometry based chassis controller that moves using the V5 motor's integrated control. Spins up
-   * a task at the default priority plus 1 for odometry when constructed.
-   *
-   * This constructor exposes every configuration option and does not perform any logic itself.
-   *
-   * Moves the robot around in the odom frame. Instead of telling the robot to drive forward or
-   * turn some amount, you instead tell it to drive to a specific point on the field or turn to
-   * a specific angle, relative to its starting position.
-   *
-   * @param imodel chassis model to use
-   * @param iscale straight scale
-   * @param iturnScale turn scale
    * @param ileftController left side controller
    * @param irightController right side controller
    * @param imoveThreshold minimum length movement

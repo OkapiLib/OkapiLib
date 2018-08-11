@@ -11,7 +11,7 @@ namespace okapi {
 IntegratedEncoder::IntegratedEncoder(pros::Motor imotor) : motor(imotor) {
 }
 
-std::int32_t IntegratedEncoder::get() const {
+double IntegratedEncoder::get() const {
   return motor.get_position();
 }
 

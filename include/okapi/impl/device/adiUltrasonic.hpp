@@ -14,7 +14,7 @@
 #include <memory>
 
 namespace okapi {
-class ADIUltrasonic : public ControllerInput {
+class ADIUltrasonic : public ControllerInput<double> {
   public:
   /**
    * An ultrasonic sensor in the ADI (3-wire) ports. Uses a 5-tap MedianFilter by default.
@@ -41,7 +41,7 @@ class ADIUltrasonic : public ControllerInput {
    *
    * @return current value
    */
-  virtual std::int32_t get();
+  virtual double get();
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in

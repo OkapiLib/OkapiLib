@@ -8,7 +8,7 @@ DOWNLOADS-BADGE
 A PROS library for programming VEX V5 robots. This library is intended to raise the floor for teams with all levels of experience.
 New teams should have an easier time getting their robot up and running, and veteran teams should find that OkapiLib doesn't get in the way or place any limits on functionality.
 
-Documentation is hosted on the PROS website: [OkapiLib Docs](https://pros3.purduesigbots.com/v5/okapi/index.html)
+Documentation is hosted on the PROS website: [OkapiLib Docs](https://pros.cs.purdue.edu/v5/okapi/index.html)
 
 ## Installing
 

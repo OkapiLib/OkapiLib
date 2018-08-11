@@ -12,7 +12,7 @@
 #include "okapi/api/coreProsAPI.hpp"
 
 namespace okapi {
-class RotarySensor : public ControllerInput {
+class RotarySensor : public ControllerInput<double> {
   public:
   virtual ~RotarySensor();
 
@@ -21,7 +21,7 @@ class RotarySensor : public ControllerInput {
    *
    * @return the current sensor value, or ``PROS_ERR`` on a failure.
    */
-  virtual std::int32_t get() const = 0;
+  virtual double get() const = 0;
 };
 } // namespace okapi
 

@@ -12,23 +12,14 @@
 namespace okapi {
 OdomChassisControllerPID::OdomChassisControllerPID(
   const TimeUtil &itimeUtil, std::shared_ptr<SkidSteerModel> imodel,
-  std::unique_ptr<Odometry> iodometry, const IterativePosPIDControllerArgs &idistanceArgs,
-  const IterativePosPIDControllerArgs &iangleArgs, const double imoveThreshold)
-  : OdomChassisControllerPID(itimeUtil, imodel, std::move(iodometry),
-                             std::make_unique<IterativePosPIDController>(idistanceArgs, itimeUtil),
-                             std::make_unique<IterativePosPIDController>(iangleArgs, itimeUtil),
-                             imoveThreshold) {
-}
-
-OdomChassisControllerPID::OdomChassisControllerPID(
-  const TimeUtil &itimeUtil, std::shared_ptr<SkidSteerModel> imodel,
   std::unique_ptr<Odometry> iodometry,
   std::unique_ptr<IterativePosPIDController> idistanceController,
-  std::unique_ptr<IterativePosPIDController> iangleController, const double imoveThreshold)
+  std::unique_ptr<IterativePosPIDController> iangleController,
+  std::unique_ptr<IterativePosPIDController> iturnController, const double imoveThreshold)
   : ChassisController(imodel),
     OdomChassisController(imodel, std::move(iodometry), imoveThreshold),
     ChassisControllerPID(itimeUtil, imodel, std::move(idistanceController),
-                         std::move(iangleController)) {
+                         std::move(iangleController), std::move(iturnController)) {
 }
 
 void OdomChassisControllerPID::driveToPoint(const double ix, const double iy, const bool ibackwards,

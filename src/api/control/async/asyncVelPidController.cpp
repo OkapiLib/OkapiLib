@@ -9,14 +9,16 @@
 #include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
-AsyncVelPIDController::AsyncVelPIDController(std::shared_ptr<ControllerInput> iinput,
-                                             std::shared_ptr<ControllerOutput> ioutput,
+AsyncVelPIDController::AsyncVelPIDController(std::shared_ptr<ControllerInput<double>> iinput,
+                                             std::shared_ptr<ControllerOutput<double>> ioutput,
                                              const TimeUtil &itimeUtil, const double ikP,
                                              const double ikD, const double ikF,
-                                             std::unique_ptr<VelMath> ivelMath)
-  : AsyncWrapper(
+                                             std::unique_ptr<VelMath> ivelMath,
+                                             std::unique_ptr<Filter> iderivativeFilter)
+  : AsyncWrapper<double, double>(
       iinput, ioutput,
-      std::make_unique<IterativeVelPIDController>(ikP, ikD, ikF, std::move(ivelMath), itimeUtil),
+      std::make_unique<IterativeVelPIDController>(ikP, ikD, ikF, std::move(ivelMath), itimeUtil,
+                                                  std::move(iderivativeFilter)),
       itimeUtil.getRateSupplier(), itimeUtil.getSettledUtil()) {
 }
 } // namespace okapi

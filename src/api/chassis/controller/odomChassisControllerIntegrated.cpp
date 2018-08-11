@@ -13,18 +13,6 @@ namespace okapi {
 OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
   const TimeUtil &itimeUtil, std::shared_ptr<SkidSteerModel> imodel,
   std::unique_ptr<Odometry> iodometry,
-  const AsyncPosIntegratedControllerArgs &ileftControllerParams,
-  const AsyncPosIntegratedControllerArgs &irightControllerParams, const double imoveThreshold)
-  : OdomChassisControllerIntegrated(
-      itimeUtil, imodel, std::move(iodometry),
-      std::make_unique<AsyncPosIntegratedController>(ileftControllerParams, itimeUtil),
-      std::make_unique<AsyncPosIntegratedController>(irightControllerParams, itimeUtil),
-      imoveThreshold) {
-}
-
-OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
-  const TimeUtil &itimeUtil, std::shared_ptr<SkidSteerModel> imodel,
-  std::unique_ptr<Odometry> iodometry,
   std::unique_ptr<AsyncPosIntegratedController> ileftController,
   std::unique_ptr<AsyncPosIntegratedController> irightController, const double imoveThreshold)
   : ChassisController(imodel),

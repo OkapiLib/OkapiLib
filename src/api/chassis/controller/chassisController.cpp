@@ -14,7 +14,7 @@ ChassisController::ChassisController(std::shared_ptr<ChassisModel> imodel) : mod
 
 ChassisController::~ChassisController() = default;
 
-void ChassisController::forward(const int ispeed) const {
+void ChassisController::forward(const double ispeed) const {
   model->forward(ispeed);
 }
 
@@ -22,7 +22,7 @@ void ChassisController::driveVector(const double iySpeed, const double izRotatio
   model->driveVector(iySpeed, izRotation);
 }
 
-void ChassisController::rotate(const int ispeed) const {
+void ChassisController::rotate(const double ispeed) const {
   model->rotate(ispeed);
 }
 
@@ -66,5 +66,9 @@ void ChassisController::setEncoderUnits(const AbstractMotor::encoderUnits units)
 
 void ChassisController::setGearing(const AbstractMotor::gearset gearset) const {
   model->setGearing(gearset);
+}
+
+std::shared_ptr<ChassisModel> ChassisController::getChassisModel() const {
+  return model;
 }
 } // namespace okapi

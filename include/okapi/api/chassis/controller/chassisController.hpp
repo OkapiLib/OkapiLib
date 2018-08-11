@@ -16,7 +16,7 @@
 #include <valarray>
 
 namespace okapi {
-class ChassisController {
+class ChassisController : public ChassisModel {
   public:
   /**
    * A ChassisController adds a closed-loop layer on top of a ChassisModel. moveDistance and
@@ -27,7 +27,7 @@ class ChassisController {
    */
   explicit ChassisController(std::shared_ptr<ChassisModel> imodel);
 
-  virtual ~ChassisController();
+  ~ChassisController() override;
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
@@ -95,7 +95,7 @@ class ChassisController {
    *
    * @param ipower motor power
    */
-  virtual void forward(int ispeed) const;
+  void forward(double ispeed) const override;
 
   /**
    * Drive the robot in an arc (using open-loop control).
@@ -106,19 +106,19 @@ class ChassisController {
    * @param iySpeed speed on y axis (forward)
    * @param izRotation speed around z axis (up)
    */
-  virtual void driveVector(double iySpeed, double izRotation) const;
+  void driveVector(double iySpeed, double izRotation) const override;
 
   /**
    * Turn the robot clockwise (using open-loop control).
    *
    * @param ipower motor power
    */
-  virtual void rotate(int ispeed) const;
+  void rotate(double ispeed) const override;
 
   /**
    * Stop the robot (set all the motors to 0).
    */
-  virtual void stop();
+  void stop() override;
 
   /**
    * Drive the robot with a tank drive layout. Uses voltage mode.
@@ -127,7 +127,7 @@ class ChassisController {
    * @param irightSpeed right side speed
    * @param ithreshold deadband on joystick values
    */
-  virtual void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const;
+  void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const override;
 
   /**
    * Drive the robot with an arcade drive layout.
@@ -136,54 +136,60 @@ class ChassisController {
    * @param izRotation speed around z axis (up)
    * @param ithreshold deadband on joystick values
    */
-  virtual void arcade(double iySpeed, double izRotation, double ithreshold = 0) const;
+  void arcade(double iySpeed, double izRotation, double ithreshold = 0) const override;
 
   /**
    * Power the left side motors.
    *
    * @param ipower motor power
    */
-  virtual void left(double ispeed) const;
+  void left(double ispeed) const override;
 
   /**
    * Power the right side motors.
    *
    * @param ipower motor power
    */
-  virtual void right(double ispeed) const;
+  void right(double ispeed) const override;
 
   /**
    * Read the sensors.
    *
    * @return sensor readings in the format {left, right}
    */
-  virtual std::valarray<std::int32_t> getSensorVals() const;
+  std::valarray<std::int32_t> getSensorVals() const override;
 
   /**
    * Reset the sensors to their zero point.
    */
-  virtual void resetSensors() const;
+  void resetSensors() const override;
 
   /**
    * Set the brake mode for each motor.
    *
    * @param mode new brake mode
    */
-  virtual void setBrakeMode(AbstractMotor::brakeMode mode) const;
+  void setBrakeMode(AbstractMotor::brakeMode mode) const override;
 
   /**
    * Set the encoder units for each motor.
    *
    * @param units new motor encoder units
    */
-  virtual void setEncoderUnits(AbstractMotor::encoderUnits units) const;
+  void setEncoderUnits(AbstractMotor::encoderUnits units) const override;
 
   /**
    * Set the gearset for each motor.
    *
    * @param gearset new motor gearset
    */
-  virtual void setGearing(AbstractMotor::gearset gearset) const;
+  void setGearing(AbstractMotor::gearset gearset) const override;
+
+  /**
+   * Get the underlying ChassisModel. This should be used sparingly and carefully because it can
+   * result in multiple owners writing to the same set of motors.
+   */
+  std::shared_ptr<ChassisModel> getChassisModel() const;
 
   protected:
   std::shared_ptr<ChassisModel> model;
