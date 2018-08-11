@@ -35,7 +35,7 @@ class LoggerTest : public ::testing::Test {
 };
 
 TEST_F(LoggerTest, OffLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::off);
+//  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::off);
   auto logger = Logger::instance();
 
   logData(logger);
@@ -54,7 +54,7 @@ TEST_F(LoggerTest, OffLevel) {
 }
 
 TEST_F(LoggerTest, ErrorLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::error);
+//  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::error);
   auto logger = Logger::instance();
 
   logData(logger);
@@ -71,7 +71,7 @@ TEST_F(LoggerTest, ErrorLevel) {
 }
 
 TEST_F(LoggerTest, WarningLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::warn);
+//  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::warn);
   auto logger = Logger::instance();
 
   logData(logger);
@@ -91,7 +91,7 @@ TEST_F(LoggerTest, WarningLevel) {
 }
 
 TEST_F(LoggerTest, InfoLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::info);
+//  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::info);
   auto logger = Logger::instance();
 
   logData(logger);
@@ -114,7 +114,7 @@ TEST_F(LoggerTest, InfoLevel) {
 }
 
 TEST_F(LoggerTest, DebugLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::debug);
+//  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::debug);
   auto logger = Logger::instance();
 
   logData(logger);
