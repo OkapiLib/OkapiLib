@@ -23,7 +23,7 @@ class AsyncVelPIDController : public AsyncWrapper<double, double>,
   AsyncVelPIDController(
     std::shared_ptr<ControllerInput<double>> iinput,
     std::shared_ptr<ControllerOutput<double>> ioutput, const TimeUtil &itimeUtil, double ikP,
-    double ikD, double ikF, std::unique_ptr<VelMath> ivelMath,
+    double ikD, double ikF, double ikSF, std::unique_ptr<VelMath> ivelMath,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 };
 } // namespace okapi
