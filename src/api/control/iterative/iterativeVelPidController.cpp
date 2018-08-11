@@ -12,22 +12,24 @@
 
 namespace okapi {
 IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
-                                                     const double ikF,
+                                                     const double ikF, const double ikSF,
                                                      std::unique_ptr<VelMath> ivelMath,
                                                      const TimeUtil &itimeUtil,
                                                      std::unique_ptr<Filter> iderivativeFilter)
   : logger(Logger::instance()),
     velMath(std::move(ivelMath)),
     derivativeFilter(std::move(iderivativeFilter)),
-    loopDtTimer(std::move(itimeUtil.getTimer())),
-    settledUtil(std::move(itimeUtil.getSettledUtil())) {
-  setGains(ikP, ikD, ikF);
+    loopDtTimer(itimeUtil.getTimer()),
+    settledUtil(itimeUtil.getSettledUtil()) {
+  setGains(ikP, ikD, ikF, ikSF);
 }
 
-void IterativeVelPIDController::setGains(const double ikP, const double ikD, const double ikF) {
+void IterativeVelPIDController::setGains(const double ikP, const double ikD, const double ikF,
+                                         const double ikSF) {
   kP = ikP;
   kD = ikD * sampleTime.convert(second);
   kF = ikF;
+  kSF = ikSF;
 }
 
 void IterativeVelPIDController::setSampleTime(const QTime isampleTime) {
@@ -74,7 +76,8 @@ double IterativeVelPIDController::step(const double inewReading) {
       settledUtil->isSettled(error);
     }
 
-    return std::clamp(output + kF * target, outputMin, outputMax);
+    return std::clamp(output + kF * target + kSF * std::copysign(1.0, target), outputMin,
+                      outputMax);
   }
 
   return 0; // Can't set output to zero because the entire loop in an integral

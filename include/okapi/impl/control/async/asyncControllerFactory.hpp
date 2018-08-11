@@ -157,9 +157,11 @@ class AsyncControllerFactory {
    * @param ikP proportional gain
    * @param ikD derivative gain
    * @param ikF feed-forward gain
+   * @param ikSF a feed-forward gain to counteract static friction
    */
   static AsyncVelPIDController
-  velPID(Motor imotor, double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+  velPID(Motor imotor, double ikP, double ikD, double ikF = 0, double ikSF = 0,
+         double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -170,9 +172,10 @@ class AsyncControllerFactory {
    * @param ikP proportional gain
    * @param ikD derivative gain
    * @param ikF feed-forward gain
+   * @param ikSF a feed-forward gain to counteract static friction
    */
   static AsyncVelPIDController
-  velPID(Motor imotor, ADIEncoder ienc, double ikP, double ikD, double ikF = 0,
+  velPID(Motor imotor, ADIEncoder ienc, double ikP, double ikD, double ikF = 0, double ikSF = 0,
          double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
@@ -184,9 +187,10 @@ class AsyncControllerFactory {
    * @param ikP proportional gain
    * @param ikD derivative gain
    * @param ikF feed-forward gain
+   * @param ikSF a feed-forward gain to counteract static friction
    */
   static AsyncVelPIDController
-  velPID(Motor imotor, Potentiometer ipot, double ikP, double ikD, double ikF = 0,
+  velPID(Motor imotor, Potentiometer ipot, double ikP, double ikD, double ikF = 0, double ikSF = 0,
          double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
@@ -197,9 +201,11 @@ class AsyncControllerFactory {
    * @param ikP proportional gain
    * @param ikD derivative gain
    * @param ikF feed-forward gain
+   * @param ikSF a feed-forward gain to counteract static friction
    */
   static AsyncVelPIDController
-  velPID(MotorGroup imotor, double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+  velPID(MotorGroup imotor, double ikP, double ikD, double ikF = 0, double ikSF = 0,
+         double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -210,10 +216,11 @@ class AsyncControllerFactory {
    * @param ikP proportional gain
    * @param ikD derivative gain
    * @param ikF feed-forward gain
+   * @param ikSF a feed-forward gain to counteract static friction
    */
   static AsyncVelPIDController
   velPID(MotorGroup imotor, ADIEncoder ienc, double ikP, double ikD, double ikF = 0,
-         double iTPR = imev5TPR,
+         double ikSF = 0, double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -224,10 +231,11 @@ class AsyncControllerFactory {
    * @param ikP proportional gain
    * @param ikD derivative gain
    * @param ikF feed-forward gain
+   * @param ikSF a feed-forward gain to counteract static friction
    */
   static AsyncVelPIDController
   velPID(MotorGroup imotor, Potentiometer ipot, double ikP, double ikD, double ikF = 0,
-         double iTPR = imev5TPR,
+         double ikSF = 0, double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -238,11 +246,12 @@ class AsyncControllerFactory {
    * @param ikP proportional gain
    * @param ikD derivative gain
    * @param ikF feed-forward gain
+   * @param ikSF a feed-forward gain to counteract static friction
    */
   static AsyncVelPIDController
   velPID(std::shared_ptr<ControllerInput<double>> iinput,
          std::shared_ptr<ControllerOutput<double>> ioutput, double ikP, double ikD, double ikF = 0,
-         double iTPR = imev5TPR,
+         double ikSF = 0, double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**

@@ -35,7 +35,7 @@ void assertControllerIsSettledWhenDisabled(ClosedLoopController<double, double> 
   EXPECT_TRUE(controller.isSettled());
 }
 
-class IterativeControllerTest : public ::testing::Test {
+class IterativeControllerWithSimulatorTest : public ::testing::Test {
   protected:
   virtual void SetUp() {
     sim.setExternalTorqueFunction([](double, double, double) { return 0; });
@@ -52,7 +52,7 @@ class IterativeControllerTest : public ::testing::Test {
   FlywheelSimulator sim;
 };
 
-TEST_F(IterativeControllerTest, IterativePosPIDControllerTest) {
+TEST_F(IterativeControllerWithSimulatorTest, IterativePosPIDControllerTest) {
   IterativePosPIDController controller(
     0.004, 0, 0, 0, createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>([]() {
       return std::make_unique<ConstantMockTimer>(10_ms);
@@ -64,9 +64,9 @@ TEST_F(IterativeControllerTest, IterativePosPIDControllerTest) {
   EXPECT_NE(controller.getError(), 0);
 }
 
-TEST_F(IterativeControllerTest, IterativeVelPIDController) {
+TEST_F(IterativeControllerWithSimulatorTest, IterativeVelPIDController) {
   IterativeVelPIDController controller(
-    0.000015, 0, 0,
+    0.000015, 0, 0, 0,
     std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
                               std::make_unique<ConstantMockTimer>(10_ms)),
     createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
@@ -78,9 +78,9 @@ TEST_F(IterativeControllerTest, IterativeVelPIDController) {
   EXPECT_NE(controller.getError(), 0);
 }
 
-TEST_F(IterativeControllerTest, IterativeVelPIDControllerFeedForwardOnly) {
+TEST_F(IterativeControllerWithSimulatorTest, IterativeVelPIDControllerFeedForwardOnly) {
   IterativeVelPIDController controller(
-    0, 0, 0.1,
+    0, 0, 0.1, 0,
     std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
                               std::make_unique<ConstantMockTimer>(10_ms)),
     createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
@@ -127,12 +127,12 @@ TEST_F(IterativePosPIDControllerTest, SettledWhenDisabled) {
   assertControllerIsSettledWhenDisabled(*controller);
 }
 
-TEST_F(IterativeControllerTest, IterativeMotorVelocityController) {
+TEST(IterativeMotorVelocityControllerTest, IterativeMotorVelocityController) {
   class MockIterativeVelPIDController : public IterativeVelPIDController {
     public:
     MockIterativeVelPIDController()
       : IterativeVelPIDController(
-          0, 0, 0,
+          0, 0, 0, 0,
           std::make_unique<VelMath>(imev5TPR, std::make_shared<AverageFilter<2>>(),
                                     std::make_unique<ConstantMockTimer>(10_ms)),
           createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
@@ -218,15 +218,45 @@ TEST_F(AsyncControllerTest, AsyncVelIntegratedController) {
   assertControllerFollowsTargetLifecycle(AsyncVelIntegratedController(motor, createTimeUtil()));
 }
 
-TEST(IterativeVelPIDControllerTest, SettledWhenDisabled) {
-  IterativeVelPIDController controller(
-    0, 0, 0.1,
-    std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                              std::make_unique<ConstantMockTimer>(10_ms)),
-    createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
-      []() { return std::make_unique<ConstantMockTimer>(10_ms); })));
+class IterativeVelPIDControllerTest : public ::testing::Test {
+  protected:
+  void SetUp() override {
+    controller = new IterativeVelPIDController(
+      0, 0, 0, 0,
+      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
+                                std::make_unique<ConstantMockTimer>(10_ms)),
+      createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
+        []() { return std::make_unique<ConstantMockTimer>(10_ms); })));
+  }
 
-  assertControllerIsSettledWhenDisabled(controller);
+  void TearDown() override {
+    delete controller;
+  }
+
+  IterativeVelPIDController *controller;
+};
+
+TEST_F(IterativeVelPIDControllerTest, SettledWhenDisabled) {
+  controller->setGains(0.1, 0.1, 0.1, 0.1);
+  assertControllerIsSettledWhenDisabled(*controller);
+}
+
+TEST_F(IterativeVelPIDControllerTest, StaticFrictionGainUsesTargetSign) {
+  controller->setGains(0, 0, 0, 0.1);
+
+  controller->setTarget(1);
+  EXPECT_DOUBLE_EQ(controller->step(0), 1 * 0.1);
+
+  // Use the same target but send the error to 0 to make sure the gain is applied to the target and
+  // not the error
+  EXPECT_DOUBLE_EQ(controller->step(1), 1 * 0.1);
+
+  controller->setTarget(-1);
+  EXPECT_DOUBLE_EQ(controller->step(0), -1 * 0.1);
+
+  // Use the same target but send the error to 0 to make sure the gain is applied to the target and
+  // not the error
+  EXPECT_DOUBLE_EQ(controller->step(-1), -1 * 0.1);
 }
 
 TEST(AsyncPosIntegratedControllerTest, SettledWhenDisabled) {

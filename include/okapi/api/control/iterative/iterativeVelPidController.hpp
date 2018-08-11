@@ -24,11 +24,12 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
    * @param ikP the proportional gain
    * @param ikD the derivative gain
    * @param ikF the feed-forward gain
+   * @param ikSF a feed-forward gain to counteract static friction
    * @param itimeUtil see TimeUtil docs
    * @param iderivativeFilter a filter for filtering the derivative term
    */
   IterativeVelPIDController(
-    double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath,
+    double ikP, double ikD, double ikF, double ikSF, std::unique_ptr<VelMath> ivelMath,
     const TimeUtil &itimeUtil,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
@@ -136,9 +137,10 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
    *
    * @param ikP proportional gain
    * @param ikD derivative gain
-   * @param ikBias controller bias
+   * @param ikF the feed-forward gain
+   * @param ikSF a feed-forward gain to counteract static friction
    */
-  virtual void setGains(double ikP, double ikD, double ikF);
+  virtual void setGains(double ikP, double ikD, double ikF, double ikSF);
 
   /**
    * Sets the number of encoder ticks per revolution. Default is 1800.
@@ -154,7 +156,7 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
 
   protected:
   Logger *logger;
-  double kP, kD, kF;
+  double kP, kD, kF, kSF;
   QTime sampleTime = 10_ms;
   double error = 0;
   double derivative = 0;

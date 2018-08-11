@@ -19,26 +19,28 @@ IterativeControllerFactory::posPID(const double ikP, const double ikI, const dou
 
 IterativeVelPIDController
 IterativeControllerFactory::velPID(const double ikP, const double ikD, const double ikF,
-                                   const VelMathArgs &iparams,
+                                   const double ikSF, const VelMathArgs &iparams,
                                    std::unique_ptr<Filter> iderivativeFilter) {
-  return IterativeVelPIDController(ikP, ikD, ikF, VelMathFactory::createPtr(iparams),
+  return IterativeVelPIDController(ikP, ikD, ikF, ikSF, VelMathFactory::createPtr(iparams),
                                    TimeUtilFactory::create(), std::move(iderivativeFilter));
 }
 
 IterativeMotorVelocityController
-IterativeControllerFactory::motorVelocity(Motor imotor, double ikP, double ikD, double ikF,
+IterativeControllerFactory::motorVelocity(Motor imotor, const double ikP, const double ikD,
+                                          const double ikF, const double ikSF,
                                           const VelMathArgs &iparams) {
   return IterativeMotorVelocityController(
     std::make_shared<Motor>(imotor),
-    std::make_shared<IterativeVelPIDController>(velPID(ikP, ikD, ikF, iparams)));
+    std::make_shared<IterativeVelPIDController>(velPID(ikP, ikD, ikF, ikSF, iparams)));
 }
 
 IterativeMotorVelocityController
-IterativeControllerFactory::motorVelocity(MotorGroup imotor, double ikP, double ikD, double ikF,
+IterativeControllerFactory::motorVelocity(MotorGroup imotor, const double ikP, const double ikD,
+                                          const double ikF, const double ikSF,
                                           const VelMathArgs &iparams) {
   return IterativeMotorVelocityController(
     std::make_shared<MotorGroup>(imotor),
-    std::make_shared<IterativeVelPIDController>(velPID(ikP, ikD, ikF, iparams)));
+    std::make_shared<IterativeVelPIDController>(velPID(ikP, ikD, ikF, ikSF, iparams)));
 }
 
 IterativeMotorVelocityController IterativeControllerFactory::motorVelocity(
