@@ -45,7 +45,7 @@ void ChassisControllerPID::loop() {
   auto encStartVals = model->getSensorVals();
   std::valarray<std::int32_t> encVals;
   double distanceElapsed = 0, angleChange = 0;
-  modeType pastMode = distance;
+  modeType pastMode = none;
 
   while (!dtorCalled) {
     /**
@@ -172,30 +172,24 @@ void ChassisControllerPID::waitUntilSettled() {
     switch (mode) {
     case distance:
       completelySettled = waitForDistanceSettled();
-
-      // Only disable the controllers and stop if we are totally settled and won't try again
-      if (completelySettled) {
-        stopAfterSettled();
-      }
-
       break;
 
     case angle:
       completelySettled = waitForAngleSettled();
-
-      // Only disable the controllers and stop if we are totally settled and won't try again
-      if (completelySettled) {
-        stopAfterSettled();
-      }
-
       break;
 
     default:
+      completelySettled = true;
       break;
     }
 
-    logger->info("ChassisControllerPID: Done waiting to settle");
+    // Only disable the controllers and stop if we are totally settled and won't try again
+    if (completelySettled) {
+      stopAfterSettled();
+    }
   }
+
+  logger->info("ChassisControllerPID: Done waiting to settle");
 }
 
 /**
@@ -243,23 +237,11 @@ bool ChassisControllerPID::waitForAngleSettled() {
 }
 
 void ChassisControllerPID::stopAfterSettled() {
-  switch (mode) {
-  case distance:
-    doneLooping = true;
-    distancePid->flipDisable(true);
-    anglePid->flipDisable(true);
-    model->stop();
-    break;
-
-  case angle:
-    doneLooping = true;
-    turnPid->flipDisable(true);
-    model->stop();
-    break;
-
-  default:
-    break;
-  }
+  doneLooping = true;
+  distancePid->flipDisable(true);
+  anglePid->flipDisable(true);
+  turnPid->flipDisable(true);
+  model->stop();
 }
 
 void ChassisControllerPID::stop() {

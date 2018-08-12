@@ -125,8 +125,8 @@ class ChassisControllerPID : public virtual ChassisController {
   bool waitForAngleSettled();
   void stopAfterSettled();
 
-  typedef enum { distance, angle } modeType;
-  modeType mode;
+  typedef enum { distance, angle, none } modeType;
+  modeType mode{none};
 };
 } // namespace okapi
 

@@ -580,3 +580,11 @@ TEST_F(ChassisControllerPIDTest, TurnAngleAndStopTest) {
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
   EXPECT_TRUE(angleController->isDisabled());
 }
+
+TEST_F(ChassisControllerPIDTest, WaitUntilSettledInModeNone) {
+  controller->waitUntilSettled();
+
+  EXPECT_TRUE(turnController->disabled);
+  EXPECT_TRUE(distanceController->disabled);
+  EXPECT_TRUE(angleController->disabled);
+}
