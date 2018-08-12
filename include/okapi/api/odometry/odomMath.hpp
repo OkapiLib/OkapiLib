@@ -51,17 +51,6 @@ class OdomMath {
   static DistanceAndAngle computeDistanceAndAngleToPoint(QLength ix, QLength iy,
                                                          const OdomState &istate);
 
-  /**
-   * Attempt to guess scales based on robot dimensions.
-   *
-   * @param chassisDiam center-to-center wheelbase diameter in inches
-   * @param wheelDiam edge-to-edge wheel diameter in inches
-   * @param ticksPerRev ticks per revolution (default is 360)
-   * @return scales in the format {straight scale, turn scale}
-   */
-  static std::tuple<double, double> guessScales(double chassisDiam, double wheelDiam,
-                                                double ticksPerRev = 1800.0);
-
   private:
   OdomMath();
   ~OdomMath();

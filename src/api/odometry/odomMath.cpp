@@ -38,12 +38,4 @@ DistanceAndAngle OdomMath::computeDistanceAndAngleToPoint(const QLength ix, cons
 
   return out;
 }
-
-std::tuple<double, double> OdomMath::guessScales(const double chassisDiam, const double wheelDiam,
-                                                 const double ticksPerRev) {
-  const double scale = ((wheelDiam * pi * inchToMM) / ticksPerRev) *
-                       0.9945483364; // The scale is usually off by this amount
-  const double turnScale = (1.0 / (chassisDiam * inchToMM)) * radianToDegree * 2;
-  return std::make_tuple(scale, turnScale);
-}
 } // namespace okapi
