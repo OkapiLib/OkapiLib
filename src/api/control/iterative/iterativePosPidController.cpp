@@ -45,6 +45,10 @@ void IterativePosPIDController::setTarget(const double itarget) {
   target = itarget;
 }
 
+double IterativePosPIDController::getTarget() {
+  return target;
+}
+
 double IterativePosPIDController::getOutput() const {
   return output;
 }
