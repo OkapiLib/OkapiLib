@@ -8,30 +8,6 @@
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
 
 namespace okapi {
-ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs(
-  std::shared_ptr<AbstractMotor> ileftSideMotor,
-  std::shared_ptr<AbstractMotor> irightSideMotor,
-  std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
-  const double imaxOutput)
-  : ThreeEncoderSkidSteerModelArgs(ileftSideMotor,
-                                   irightSideMotor,
-                                   ileftSideMotor->getEncoder(),
-                                   imiddleEnc,
-                                   irightSideMotor->getEncoder(),
-                                   imaxOutput) {
-}
-
-ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs(
-  std::shared_ptr<AbstractMotor> ileftSideMotor,
-  std::shared_ptr<AbstractMotor> irightSideMotor,
-  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-  std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
-  std::shared_ptr<ContinuousRotarySensor> irightEnc,
-  const double imaxOutput)
-  : SkidSteerModelArgs(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxOutput),
-    middleSensor(imiddleEnc) {
-}
-
 ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
   std::shared_ptr<AbstractMotor> ileftSideMotor,
   std::shared_ptr<AbstractMotor> irightSideMotor,
@@ -54,15 +30,6 @@ ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
   const double imaxOutput)
   : SkidSteerModel(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxOutput),
     middleSensor(imiddleEnc) {
-}
-
-ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
-  const ThreeEncoderSkidSteerModelArgs &iparams)
-  : SkidSteerModel(iparams.leftSideMotor,
-                   iparams.rightSideMotor,
-                   iparams.leftSensor,
-                   iparams.rightSensor),
-    middleSensor(iparams.middleSensor) {
 }
 
 std::valarray<std::int32_t> ThreeEncoderSkidSteerModel::getSensorVals() const {

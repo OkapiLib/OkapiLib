@@ -10,28 +10,6 @@
 #include <utility>
 
 namespace okapi {
-SkidSteerModelArgs::SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                                       std::shared_ptr<AbstractMotor> irightSideMotor,
-                                       std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                                       std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                                       const double imaxOutput)
-  : leftSideMotor(ileftSideMotor),
-    rightSideMotor(irightSideMotor),
-    leftSensor(ileftEnc),
-    rightSensor(irightEnc),
-    maxOutput(imaxOutput) {
-}
-
-SkidSteerModelArgs::SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                                       std::shared_ptr<AbstractMotor> irightSideMotor,
-                                       const double imaxOutput)
-  : leftSideMotor(ileftSideMotor),
-    rightSideMotor(irightSideMotor),
-    leftSensor(ileftSideMotor->getEncoder()),
-    rightSensor(irightSideMotor->getEncoder()),
-    maxOutput(imaxOutput) {
-}
-
 SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                std::shared_ptr<AbstractMotor> irightSideMotor,
                                std::shared_ptr<ContinuousRotarySensor> ileftEnc,
@@ -52,14 +30,6 @@ SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
     leftSensor(ileftSideMotor->getEncoder()),
     rightSensor(irightSideMotor->getEncoder()),
     maxOutput(imaxOutput) {
-}
-
-SkidSteerModel::SkidSteerModel(const SkidSteerModelArgs &iparams)
-  : leftSideMotor(iparams.leftSideMotor),
-    rightSideMotor(iparams.rightSideMotor),
-    leftSensor(iparams.leftSensor),
-    rightSensor(iparams.rightSensor),
-    maxOutput(iparams.maxOutput) {
 }
 
 void SkidSteerModel::forward(const double ispeed) const {

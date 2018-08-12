@@ -16,8 +16,6 @@
 #include <cstddef>
 
 namespace okapi {
-class MedianFilterArgs : public FilterArgs {};
-
 /**
  * A filter which returns the median value of list of values.
  *

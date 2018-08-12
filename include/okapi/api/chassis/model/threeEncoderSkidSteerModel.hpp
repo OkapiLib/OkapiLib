@@ -11,23 +11,6 @@
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 
 namespace okapi {
-class ThreeEncoderSkidSteerModelArgs : public SkidSteerModelArgs {
-  public:
-  ThreeEncoderSkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                                 std::shared_ptr<AbstractMotor> irightSideMotor,
-                                 std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
-                                 double imaxOutput = 127);
-
-  ThreeEncoderSkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                                 std::shared_ptr<AbstractMotor> irightSideMotor,
-                                 std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                                 std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
-                                 std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                                 double imaxOutput = 127);
-
-  std::shared_ptr<ContinuousRotarySensor> middleSensor;
-};
-
 class ThreeEncoderSkidSteerModel : public SkidSteerModel {
   public:
   /**
@@ -59,8 +42,6 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
                              std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
                              std::shared_ptr<ContinuousRotarySensor> irightEnc,
                              double imaxOutput = 127);
-
-  explicit ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams);
 
   /**
    * Read the sensors.

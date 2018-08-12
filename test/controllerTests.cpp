@@ -313,7 +313,7 @@ TEST(PIDTunerTest, AutotuneShouldNotSegfault) {
   auto system = std::make_shared<SimulatedSystem>(simulator);
 
   PIDTuner pidTuner(system, system, createTimeUtil(), 100_ms, 100, 0, 10, 0, 10, 0, 10);
-  auto result = pidTuner.autotune();
+  pidTuner.autotune();
 
   system->join(); // gtest will cause a SIGABRT if we don't join manually first
 }

@@ -19,9 +19,9 @@ IterativePosPIDController::IterativePosPIDController(const double ikP,
                                                      const TimeUtil &itimeUtil,
                                                      std::unique_ptr<Filter> iderivativeFilter)
   : logger(Logger::instance()),
-    loopDtTimer(std::move(itimeUtil.getTimer())),
-    settledUtil(std::move(itimeUtil.getSettledUtil())),
-    derivativeFilter(std::move(iderivativeFilter)) {
+    derivativeFilter(std::move(iderivativeFilter)),
+    loopDtTimer(itimeUtil.getTimer()),
+    settledUtil(itimeUtil.getSettledUtil()) {
   if (ikI != 0) {
     setIntegralLimits(-1 / ikI, 1 / ikI);
   }

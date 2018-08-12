@@ -12,14 +12,6 @@
 #include <ratio>
 
 namespace okapi {
-class DemaFilterArgs : public FilterArgs {
-  public:
-  DemaFilterArgs(double ialpha, double ibeta);
-
-  const double alpha;
-  const double beta;
-};
-
 class DemaFilter : public Filter {
   public:
   /**
@@ -29,8 +21,6 @@ class DemaFilter : public Filter {
    * @param ibeta beta gain
    */
   DemaFilter(double ialpha, double ibeta);
-
-  explicit DemaFilter(const DemaFilterArgs &iargs);
 
   /**
    * Filters a value, like a sensor reading.

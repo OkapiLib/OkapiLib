@@ -13,8 +13,6 @@
 #include <cstddef>
 
 namespace okapi {
-class AverageFilterArgs : public FilterArgs {};
-
 /**
  * A filter which returns the average of a list of values.
  *

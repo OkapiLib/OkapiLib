@@ -126,7 +126,6 @@ add_executable(OkapiLibV5
         src/api/chassis/controller/odomChassisController.cpp
         src/api/chassis/controller/odomChassisControllerIntegrated.cpp
         src/api/chassis/controller/odomChassisControllerPid.cpp
-        src/api/chassis/model/chassisModel.cpp
         src/api/chassis/model/skidSteerModel.cpp
         src/api/chassis/model/threeEncoderSkidSteerModel.cpp
         src/api/chassis/model/xDriveModel.cpp

@@ -9,36 +9,6 @@
 #include <utility>
 
 namespace okapi {
-XDriveModelArgs::XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
-                                 std::shared_ptr<AbstractMotor> itopRightMotor,
-                                 std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                                 std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                                 std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                                 std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                                 const double imaxOutput)
-  : topLeftMotor(itopLeftMotor),
-    topRightMotor(itopRightMotor),
-    bottomRightMotor(ibottomRightMotor),
-    bottomLeftMotor(ibottomLeftMotor),
-    leftSensor(ileftEnc),
-    rightSensor(irightEnc),
-    maxOutput(imaxOutput) {
-}
-
-XDriveModelArgs::XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
-                                 std::shared_ptr<AbstractMotor> itopRightMotor,
-                                 std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                                 std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                                 const double imaxOutput)
-  : topLeftMotor(itopLeftMotor),
-    topRightMotor(itopRightMotor),
-    bottomRightMotor(ibottomRightMotor),
-    bottomLeftMotor(ibottomLeftMotor),
-    leftSensor(itopLeftMotor->getEncoder()),
-    rightSensor(itopRightMotor->getEncoder()),
-    maxOutput(imaxOutput) {
-}
-
 XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
                          std::shared_ptr<AbstractMotor> itopRightMotor,
                          std::shared_ptr<AbstractMotor> ibottomRightMotor,
@@ -67,16 +37,6 @@ XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
     leftSensor(itopLeftMotor->getEncoder()),
     rightSensor(itopRightMotor->getEncoder()),
     maxOutput(imaxOutput) {
-}
-
-XDriveModel::XDriveModel(const XDriveModelArgs &iparams)
-  : topLeftMotor(iparams.topLeftMotor),
-    topRightMotor(iparams.topRightMotor),
-    bottomRightMotor(iparams.bottomRightMotor),
-    bottomLeftMotor(iparams.bottomLeftMotor),
-    leftSensor(iparams.leftSensor),
-    rightSensor(iparams.rightSensor),
-    maxOutput(iparams.maxOutput) {
 }
 
 void XDriveModel::forward(const double ispeed) const {
