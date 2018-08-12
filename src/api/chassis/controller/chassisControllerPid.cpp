@@ -25,7 +25,9 @@ ChassisControllerPID::ChassisControllerPID(
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),
     turnScale(iscales.turn),
-    task(trampoline, this) {
+    task(trampoline, this),
+    doneLooping(false),
+    dtorCalled(false) {
   if (igearset.ratio == 0) {
     logger->error("ChassisControllerPID: The gear ratio cannot be zero! Check if you are using "
                   "integer division.");
