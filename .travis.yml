@@ -21,6 +21,7 @@ matrix:
             - gcc-arm-embedded
             - g++-7
             - lcov
+            - valgrind
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
@@ -38,7 +39,7 @@ script:
   - cmake --build . --target OkapiLibV5 -- -j 2 # . is the build dir
   - ./OkapiLibV5
   - valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes --expensive-definedness-checks=yes --error-exitcode=1 ./OkapiLibV5
-  - valgrind --tool=massif --error-exitcode=2 --stacks=yes --time-unit=B --massif-out-file=massif.out.txt ./OkapiLibV5
+  - valgrind --tool=massif --error-exitcode=1 --stacks=yes --time-unit=B --massif-out-file=massif.out.txt ./OkapiLibV5
   - ms_print massif.out.txt
 
 after_success:
