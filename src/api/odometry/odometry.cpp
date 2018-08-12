@@ -10,28 +10,14 @@
 #include <cmath>
 
 namespace okapi {
-OdomState::OdomState() = default;
-
-OdomState::OdomState(const double ix, const double iy, const double itheta)
-  : x(ix), y(iy), theta(itheta) {
-}
-
-OdomState::~OdomState() = default;
-
-OdometryArgs::OdometryArgs(std::shared_ptr<ReadOnlyChassisModel> imodel,
-                           const ChassisScales &ichassisScales)
-  : model(imodel), chassisScales(ichassisScales) {
-}
-
-OdometryArgs::~OdometryArgs() = default;
-
 Odometry::Odometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
                    const ChassisScales &ichassisScales, std::unique_ptr<AbstractRate> irate)
-  : model(imodel), rate(std::move(irate)), chassisScales(ichassisScales), lastTicks{0, 0}, mm(0) {
-}
-
-Odometry::Odometry(const OdometryArgs &iparams)
-  : model(iparams.model), chassisScales(iparams.chassisScales) {
+  : logger(Logger::instance()),
+    model(imodel),
+    rate(std::move(irate)),
+    chassisScales(ichassisScales) {
+  logger->info("Odometry: Straight scale: " + std::to_string(chassisScales.straight) +
+               ", Turn scale: " + std::to_string(chassisScales.turn));
 }
 
 Odometry::~Odometry() {
@@ -45,7 +31,7 @@ void Odometry::setScales(const ChassisScales &ichassisScales) {
 void Odometry::loop() {
   while (!dtorCalled) {
     step();
-    rate->delayUntil(10);
+    rate->delayUntil(10_ms);
   }
 }
 
@@ -54,16 +40,16 @@ void Odometry::step() {
   tickDiff = newTicks - lastTicks;
   lastTicks = newTicks;
 
-  mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * chassisScales.straight;
+  mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) / chassisScales.straight * meter;
 
-  state.theta += ((tickDiff[0] - tickDiff[1]) / 2.0) * chassisScales.turn;
-  if (state.theta > 180)
-    state.theta -= 360;
-  else if (state.theta < -180)
-    state.theta += 360;
+  state.theta += (((tickDiff[0] - tickDiff[1]) / 2.0) / chassisScales.turn) * degree;
+  if (state.theta > 180_deg)
+    state.theta -= 360_deg;
+  else if (state.theta < -180 * degree)
+    state.theta += 360_deg;
 
-  state.x += mm * std::cos(state.theta * degreeToRadian);
-  state.y += mm * std::sin(state.theta * degreeToRadian);
+  state.x += mm * std::cos(state.theta.convert(radian));
+  state.y += mm * std::sin(state.theta.convert(radian));
 }
 
 void Odometry::trampoline(void *context) {

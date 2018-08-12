@@ -10,55 +10,31 @@
 #include <cmath>
 
 namespace okapi {
-DistanceAndAngle::DistanceAndAngle() = default;
-
-DistanceAndAngle::DistanceAndAngle(const double ilength, const double itheta)
-  : length(ilength), theta(itheta) {
-}
-
-DistanceAndAngle::~DistanceAndAngle() = default;
-
 OdomMath::OdomMath() = default;
 
 OdomMath::~OdomMath() = default;
 
-double OdomMath::computeDistanceToPoint(const double ix, const double iy, const OdomState &istate) {
-  const double xDiff = ix - istate.x;
-  const double yDiff = iy - istate.y;
-  return std::sqrt((xDiff * xDiff) + (yDiff * yDiff));
+QLength OdomMath::computeDistanceToPoint(const QLength ix, const QLength iy,
+                                         const OdomState &istate) {
+  const double xDiff = (ix - istate.x).convert(meter);
+  const double yDiff = (iy - istate.y).convert(meter);
+  return std::sqrt((xDiff * xDiff) + (yDiff * yDiff)) * meter;
 }
 
-double OdomMath::computeAngleToPoint(const double ix, const double iy, const OdomState &istate) {
-  const double xDiff = ix - istate.x;
-  const double yDiff = iy - istate.y;
-  return (std::atan2(yDiff, xDiff) * radianToDegree) - istate.theta;
+QAngle OdomMath::computeAngleToPoint(const QLength ix, const QLength iy, const OdomState &istate) {
+  const double xDiff = (ix - istate.x).convert(meter);
+  const double yDiff = (iy - istate.y).convert(meter);
+  return (std::atan2(yDiff, xDiff) * radian) - istate.theta;
 }
 
-DistanceAndAngle OdomMath::computeDistanceAndAngleToPoint(const double ix, const double iy,
+DistanceAndAngle OdomMath::computeDistanceAndAngleToPoint(const QLength ix, const QLength iy,
                                                           const OdomState &istate) {
-  const double xDiff = ix - istate.x;
-  const double yDiff = iy - istate.y;
+  const double xDiff = (ix - istate.x).convert(meter);
+  const double yDiff = (iy - istate.y).convert(meter);
 
   DistanceAndAngle out;
-  out.length = std::sqrt((xDiff * xDiff) + (yDiff * yDiff));
-
-  // Small xDiff is essentially dividing by zero, so avoid it and do custom math
-  if (xDiff < 0.0001 && xDiff > -0.0001) {
-    const int yDiffSign = static_cast<int>(copysign(1, yDiff));
-    if (yDiffSign == 1) {
-      out.theta = -1 * istate.theta;
-    } else if (yDiffSign == -1) {
-      out.theta = -180 - istate.theta;
-
-      // Fix theta
-      if (out.theta <= -360)
-        out.theta += 360;
-      else if (out.theta >= 360)
-        out.theta -= 360;
-    }
-  } else {
-    out.theta = (std::atan2(yDiff, xDiff) * radianToDegree) - istate.theta;
-  }
+  out.length = std::sqrt((xDiff * xDiff) + (yDiff * yDiff)) * meter;
+  out.theta = (std::atan2(yDiff, xDiff) * radian) - istate.theta;
 
   return out;
 }

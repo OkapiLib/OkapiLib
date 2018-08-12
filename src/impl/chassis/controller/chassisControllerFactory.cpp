@@ -52,6 +52,21 @@ ChassisControllerIntegrated ChassisControllerFactory::create(
     igearset, iscales);
 }
 
+OdomChassisControllerIntegrated
+ChassisControllerFactory::createOdom(Motor ileftSideMotor, Motor irightSideMotor,
+                                     const AbstractMotor::GearsetRatioPair igearset,
+                                     const ChassisScales &iscales, const QLength imoveThreshold) {
+  auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
+  auto rightMtr = std::make_shared<Motor>(irightSideMotor);
+  auto model = std::make_shared<SkidSteerModel>(leftMtr, rightMtr);
+  return OdomChassisControllerIntegrated(
+    TimeUtilFactory::create(), model,
+    std::make_unique<Odometry>(model, iscales, TimeUtilFactory::create().getRate()),
+    std::make_unique<AsyncPosIntegratedController>(leftMtr, TimeUtilFactory::create()),
+    std::make_unique<AsyncPosIntegratedController>(rightMtr, TimeUtilFactory::create()), igearset,
+    iscales, imoveThreshold);
+}
+
 ChassisControllerPID
 ChassisControllerFactory::create(Motor ileftSideMotor, Motor irightSideMotor,
                                  const IterativePosPIDController::Gains &idistanceArgs,

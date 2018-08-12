@@ -10,6 +10,8 @@
 
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"
+#include "okapi/api/chassis/controller/odomChassisControllerIntegrated.hpp"
+#include "okapi/api/chassis/controller/odomChassisControllerPid.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
@@ -63,6 +65,21 @@ class ChassisControllerFactory {
   create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
+
+  /**
+   * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
+   * steer layout. Puts the motors into degree units. Throws a std::invalid_argument exception if
+   * the gear ratio is zero.
+   *
+   * @param ileftSideMotor left side motor (also used for controller input)
+   * @param irightSideMotor right side motor (also used for controller input)
+   * @param igearset motor internal gearset and gear ratio
+   * @param iscales see ChassisScales docs
+   */
+  static OdomChassisControllerIntegrated createOdom(Motor ileftSideMotor, Motor irightSideMotor,
+                                                    const AbstractMotor::GearsetRatioPair igearset,
+                                                    const ChassisScales &iscales,
+                                                    QLength imoveThreshold = 10_mm);
 
   /**
    * ChassisController using PID control. This constructor assumes a skid

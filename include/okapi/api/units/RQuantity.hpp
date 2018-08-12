@@ -14,6 +14,7 @@
 #ifndef _OKAPI_RQUANTITY_HPP_
 #define _OKAPI_RQUANTITY_HPP_
 
+#include <cmath>
 #include <ratio>
 
 namespace okapi {
@@ -40,6 +41,16 @@ class RQuantity {
     return *this;
   }
 
+  constexpr RQuantity const &operator*=(const double rhs) {
+    value *= rhs;
+    return *this;
+  }
+
+  constexpr RQuantity const &operator/=(const double rhs) {
+    value /= rhs;
+    return *this;
+  }
+
   // Returns the value of the quantity in multiples of the specified unit
   constexpr double convert(const RQuantity &rhs) const {
     return value / rhs.value;
@@ -48,6 +59,10 @@ class RQuantity {
   // returns the raw value of the quantity (should not be used)
   constexpr double getValue() const {
     return value;
+  }
+
+  constexpr RQuantity<MassDim, LengthDim, TimeDim, AngleDim> abs() const {
+    return RQuantity<MassDim, LengthDim, TimeDim, AngleDim>(std::fabs(value));
   }
 
   private:
@@ -86,6 +101,10 @@ operator*(const RQuantity<M1, L1, T1, A1> &lhs, const RQuantity<M2, L2, T2, A2> 
 template <typename M, typename L, typename T, typename A>
 constexpr RQuantity<M, L, T, A> operator*(const double &lhs, const RQuantity<M, L, T, A> &rhs) {
   return RQuantity<M, L, T, A>(lhs * rhs.getValue());
+}
+template <typename M, typename L, typename T, typename A>
+constexpr RQuantity<M, L, T, A> operator*(const RQuantity<M, L, T, A> &lhs, const double &rhs) {
+  return RQuantity<M, L, T, A>(lhs.getValue() * rhs);
 }
 template <typename M1, typename L1, typename T1, typename A1, typename M2, typename L2, typename T2,
           typename A2>

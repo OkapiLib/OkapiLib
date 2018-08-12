@@ -15,32 +15,37 @@ OdomChassisControllerPID::OdomChassisControllerPID(
   std::unique_ptr<Odometry> iodometry,
   std::unique_ptr<IterativePosPIDController> idistanceController,
   std::unique_ptr<IterativePosPIDController> iangleController,
-  std::unique_ptr<IterativePosPIDController> iturnController, const double imoveThreshold)
+  std::unique_ptr<IterativePosPIDController> iturnController, const QLength imoveThreshold)
   : ChassisController(imodel),
     OdomChassisController(imodel, std::move(iodometry), imoveThreshold),
     ChassisControllerPID(itimeUtil, imodel, std::move(idistanceController),
-                         std::move(iangleController), std::move(iturnController)) {
+                         std::move(iangleController), std::move(iturnController)),
+    logger(Logger::instance()) {
 }
 
-void OdomChassisControllerPID::driveToPoint(const double ix, const double iy, const bool ibackwards,
-                                            const double ioffset) {
+void OdomChassisControllerPID::driveToPoint(const QLength ix, const QLength iy,
+                                            const bool ibackwards, const QLength ioffset) {
   DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom->getState());
 
   if (ibackwards) {
-    daa.theta += 180;
+    daa.theta += 180_deg;
     daa.length *= -1;
   }
 
-  if (std::abs(daa.theta) > 1) {
+  logger->info("OdomChassisControllerPID: Computed length of " +
+               std::to_string(daa.length.convert(meter)) + " meters and angle of " +
+               std::to_string(daa.theta.convert(degree)) + " degrees");
+
+  if (std::abs(daa.theta.convert(degree)) > 1) {
     ChassisControllerPID::turnAngle(daa.theta);
   }
 
-  if (std::abs(daa.length - ioffset) > moveThreshold) {
-    ChassisControllerPID::moveDistance(static_cast<int>(daa.length - ioffset));
+  if (std::abs((daa.length - ioffset).convert(meter)) * meter > moveThreshold) {
+    ChassisControllerPID::moveDistance(daa.length - ioffset);
   }
 }
 
-void OdomChassisControllerPID::turnToAngle(const double iangle) {
+void OdomChassisControllerPID::turnToAngle(const QAngle iangle) {
   ChassisControllerPID::turnAngle(iangle - odom->getState().theta);
 }
 } // namespace okapi

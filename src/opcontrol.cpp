@@ -18,20 +18,43 @@ void opcontrol() {
 
   Logger::initialize(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug);
 
-  {
-    auto model =
-      std::make_shared<SkidSteerModel>(std::make_shared<Motor>(-1), std::make_shared<Motor>(2));
-    auto cnt = AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, model, 10.5_in);
+  auto drive = ChassisControllerFactory::createOdom(-1, 2, AbstractMotor::gearset::red,
+                                                    {2.5_in, 10.5_in}, 0_mm);
+  drive.driveToPoint(4_in, 0_in);
 
-    cnt.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
-    cnt.setTarget("B");
-    cnt.waitUntilSettled();
-  }
+  auto state = drive.getState();
+  printf("x: %1.2f, y: %1.2f, theta: %1.2f\n", state.x.convert(inch), state.y.convert(inch),
+         state.theta.convert(degree));
 
-  auto drive =
-    ChassisControllerFactory::create(-1, 2, AbstractMotor::gearset::red, {2.5_in, 10.5_in});
-  drive.moveDistanceAsync(2_in);
-  drive.waitUntilSettled();
+  drive.driveToPoint(4_in, 4_in);
+  state = drive.getState();
+  printf("x: %1.2f, y: %1.2f, theta: %1.2f\n", state.x.convert(inch), state.y.convert(inch),
+         state.theta.convert(degree));
+
+  drive.driveToPoint(0_in, 4_in);
+  state = drive.getState();
+  printf("x: %1.2f, y: %1.2f, theta: %1.2f\n", state.x.convert(inch), state.y.convert(inch),
+         state.theta.convert(degree));
+
+  drive.driveToPoint(0_in, 0_in);
+  state = drive.getState();
+  printf("x: %1.2f, y: %1.2f, theta: %1.2f\n", state.x.convert(inch), state.y.convert(inch),
+         state.theta.convert(degree));
+
+  pros::Task::delay(500);
+
+  //  auto model =
+  //    std::make_shared<SkidSteerModel>(std::make_shared<Motor>(-1), std::make_shared<Motor>(2));
+  //  auto cnt = AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, model, 10.5_in);
+  //
+  //  cnt.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
+  //  cnt.setTarget("B");
+  //  cnt.waitUntilSettled();
+
+  //  auto drive =
+  //    ChassisControllerFactory::create(-1, 2, AbstractMotor::gearset::red, {2.5_in, 10.5_in});
+  //  drive.moveDistanceAsync(2_in);
+  //  drive.waitUntilSettled();
 
   //  runHeadlessTests();
   return;

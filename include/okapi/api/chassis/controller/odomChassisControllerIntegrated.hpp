@@ -39,7 +39,8 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
                                   std::unique_ptr<Odometry> iodometry,
                                   std::unique_ptr<AsyncPosIntegratedController> ileftController,
                                   std::unique_ptr<AsyncPosIntegratedController> irightController,
-                                  double imoveThreshold = 10);
+                                  AbstractMotor::GearsetRatioPair igearset,
+                                  const ChassisScales &iscales, QLength imoveThreshold = 10_mm);
 
   /**
    * Drives the robot straight to a point in the odom frame.
@@ -49,14 +50,18 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
    * @param ibackwards whether to drive to the target point backwards
    * @param ioffset offset from target point in the direction pointing towards the robot
    */
-  void driveToPoint(double ix, double iy, bool ibackwards = false, double ioffset = 0) override;
+  void driveToPoint(QLength ix, QLength iy, bool ibackwards = false,
+                    QLength ioffset = 0_mm) override;
 
   /**
    * Turns the robot to face an angle in the odom frame.
    *
    * @param iangle angle to turn to
    */
-  void turnToAngle(double iangle) override;
+  void turnToAngle(QAngle iangle) override;
+
+  protected:
+  Logger *logger;
 };
 } // namespace okapi
 

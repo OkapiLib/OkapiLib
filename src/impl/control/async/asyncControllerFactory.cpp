@@ -155,8 +155,8 @@ AsyncVelPIDController AsyncControllerFactory::velPID(MotorGroup imotor, Potentio
 AsyncVelPIDController
 AsyncControllerFactory::velPID(std::shared_ptr<ControllerInput<double>> iinput,
                                std::shared_ptr<ControllerOutput<double>> ioutput, const double ikP,
-                               const double ikD, const double ikF, const double ikSF, const double iTPR,
-                               std::unique_ptr<Filter> iderivativeFilter) {
+                               const double ikD, const double ikF, const double ikSF,
+                               const double iTPR, std::unique_ptr<Filter> iderivativeFilter) {
   return AsyncVelPIDController(iinput, ioutput, TimeUtilFactory::create(), ikP, ikD, ikF, ikSF,
                                VelMathFactory::createPtr(iTPR), std::move(iderivativeFilter));
 }

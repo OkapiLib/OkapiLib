@@ -11,30 +11,15 @@
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
 #include "okapi/api/util/abstractRate.hpp"
+#include "okapi/api/util/logging.hpp"
 #include <memory>
 #include <valarray>
 
 namespace okapi {
-class OdomState {
-  public:
-  OdomState();
-  OdomState(double ix, double iy, double itheta);
-
-  virtual ~OdomState();
-
-  double x = 0;
-  double y = 0;
-  double theta = 0;
-};
-
-class OdometryArgs {
-  public:
-  OdometryArgs(std::shared_ptr<ReadOnlyChassisModel> imodel, const ChassisScales &ichassisScales);
-
-  virtual ~OdometryArgs();
-
-  std::shared_ptr<ReadOnlyChassisModel> model;
-  ChassisScales chassisScales;
+struct OdomState {
+  QLength x{0_m};
+  QLength y{0_m};
+  QAngle theta{0_deg};
 };
 
 class Odometry {
@@ -49,14 +34,6 @@ class Odometry {
    */
   Odometry(std::shared_ptr<ReadOnlyChassisModel> imodel, const ChassisScales &ichassisScales,
            std::unique_ptr<AbstractRate> irate);
-
-  /**
-   * Odometry. Tracks the movement of the robot and estimates its position in coordinates
-   * relative to the start (assumed to be (0, 0)).
-   *
-   * @param iparams OdometryArgs
-   */
-  explicit Odometry(const OdometryArgs &iparams);
 
   virtual ~Odometry();
 
@@ -104,12 +81,13 @@ class Odometry {
   void stopLooping();
 
   protected:
+  Logger *logger;
   std::shared_ptr<ReadOnlyChassisModel> model;
   std::unique_ptr<AbstractRate> rate;
   OdomState state;
   ChassisScales chassisScales;
   std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0}, lastTicks{0, 0};
-  double mm{0};
+  QLength mm{0_m};
   bool dtorCalled{false};
 };
 } // namespace okapi

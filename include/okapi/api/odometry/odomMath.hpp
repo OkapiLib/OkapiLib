@@ -9,18 +9,13 @@
 #define _OKAPI_ODOMMATH_HPP_
 
 #include "okapi/api/odometry/odometry.hpp"
+#include "okapi/api/util/logging.hpp"
 #include <tuple>
 
 namespace okapi {
-class DistanceAndAngle {
-  public:
-  DistanceAndAngle();
-  DistanceAndAngle(double ilength, double itheta);
-
-  virtual ~DistanceAndAngle();
-
-  double length = 0;
-  double theta = 0;
+struct DistanceAndAngle {
+  QLength length{0_m};
+  QAngle theta{0_deg};
 };
 
 class OdomMath {
@@ -33,7 +28,7 @@ class OdomMath {
    * @param istate odometry state
    * @return distance between the points
    */
-  static double computeDistanceToPoint(double ix, double iy, const OdomState &istate);
+  static QLength computeDistanceToPoint(QLength ix, QLength iy, const OdomState &istate);
 
   /**
    * Computes the angle from the given Odometry state to the given point.
@@ -43,7 +38,7 @@ class OdomMath {
    * @param istate odometry state
    * @return angle to the point
    */
-  static double computeAngleToPoint(double ix, double iy, const OdomState &istate);
+  static QAngle computeAngleToPoint(QLength ix, QLength iy, const OdomState &istate);
 
   /**
    * Computes the distance and angle from the given Odometry state to the given point.
@@ -53,7 +48,7 @@ class OdomMath {
    * @param istate odometry state
    * @return distance and angle to the point
    */
-  static DistanceAndAngle computeDistanceAndAngleToPoint(double ix, double iy,
+  static DistanceAndAngle computeDistanceAndAngleToPoint(QLength ix, QLength iy,
                                                          const OdomState &istate);
 
   /**
@@ -70,6 +65,8 @@ class OdomMath {
   private:
   OdomMath();
   ~OdomMath();
+
+  Logger *logger;
 };
 } // namespace okapi
 

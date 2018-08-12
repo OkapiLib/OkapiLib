@@ -14,32 +14,39 @@ OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
   const TimeUtil &itimeUtil, std::shared_ptr<SkidSteerModel> imodel,
   std::unique_ptr<Odometry> iodometry,
   std::unique_ptr<AsyncPosIntegratedController> ileftController,
-  std::unique_ptr<AsyncPosIntegratedController> irightController, const double imoveThreshold)
+  std::unique_ptr<AsyncPosIntegratedController> irightController,
+  const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
+  const QLength imoveThreshold)
   : ChassisController(imodel),
     OdomChassisController(imodel, std::move(iodometry), imoveThreshold),
     ChassisControllerIntegrated(itimeUtil, imodel, std::move(ileftController),
-                                std::move(irightController)) {
+                                std::move(irightController), igearset, iscales),
+    logger(Logger::instance()) {
 }
 
-void OdomChassisControllerIntegrated::driveToPoint(const double ix, const double iy,
-                                                   const bool ibackwards, const double ioffset) {
+void OdomChassisControllerIntegrated::driveToPoint(const QLength ix, const QLength iy,
+                                                   const bool ibackwards, const QLength ioffset) {
   DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom->getState());
 
   if (ibackwards) {
-    daa.theta += 180;
+    daa.theta += 180_deg;
     daa.length *= -1;
   }
 
-  if (std::fabs(daa.theta) > 1) {
+  logger->info("OdomChassisControllerIntegrated: Computed length of " +
+               std::to_string(daa.length.convert(meter)) + " meters and angle of " +
+               std::to_string(daa.theta.convert(degree)) + " degrees");
+
+  if (daa.theta.abs() > 1_deg) {
     ChassisControllerIntegrated::turnAngle(daa.theta);
   }
 
-  if (std::fabs(daa.length - ioffset) > moveThreshold) {
-    ChassisControllerIntegrated::moveDistance(static_cast<int>(daa.length - ioffset));
+  if ((daa.length - ioffset).abs() > moveThreshold) {
+    ChassisControllerIntegrated::moveDistance(daa.length - ioffset);
   }
 }
 
-void OdomChassisControllerIntegrated::turnToAngle(const double iangle) {
+void OdomChassisControllerIntegrated::turnToAngle(const QAngle iangle) {
   ChassisControllerIntegrated::turnAngle(iangle - odom->getState().theta);
 }
 } // namespace okapi

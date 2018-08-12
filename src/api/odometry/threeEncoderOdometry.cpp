@@ -21,18 +21,18 @@ void ThreeEncoderOdometry::step() {
   tickDiff = newTicks - lastTicks;
   lastTicks = newTicks;
 
-  mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * chassisScales.straight;
+  mm = (static_cast<double>(tickDiff[1] + tickDiff[0]) / 2.0) * chassisScales.straight * meter;
 
-  state.theta += ((tickDiff[0] - tickDiff[1]) / 2.0) * chassisScales.turn;
-  if (state.theta > 180)
-    state.theta -= 360;
-  else if (state.theta < -180)
-    state.theta += 360;
+  state.theta += (((tickDiff[0] - tickDiff[1]) / 2.0) * chassisScales.turn) * degree;
+  if (state.theta > 180_deg)
+    state.theta -= 360_deg;
+  else if (state.theta < -180 * degree)
+    state.theta += 360_deg;
 
-  state.x +=
-    mm * std::cos(state.theta) + (tickDiff[2] * chassisScales.middle) * std::sin(state.theta);
-  state.y +=
-    mm * std::sin(state.theta) + (tickDiff[2] * chassisScales.middle) * std::cos(state.theta);
+  state.x += mm * std::cos(state.theta.convert(radian)) +
+             (tickDiff[2] * chassisScales.middle * meter) * std::sin(state.theta.convert(radian));
+  state.y += mm * std::sin(state.theta.convert(radian)) +
+             (tickDiff[2] * chassisScales.middle * meter) * std::cos(state.theta.convert(radian));
 }
 
 void ThreeEncoderOdometry::trampoline(void *context) {
