@@ -47,6 +47,9 @@ void OdomChassisControllerIntegrated::driveToPoint(const QLength ix, const QLeng
 }
 
 void OdomChassisControllerIntegrated::turnToAngle(const QAngle iangle) {
-  ChassisControllerIntegrated::turnAngle(iangle - odom->getState().theta);
+  const auto angleDiff = iangle - odom->getState().theta;
+  if (angleDiff > turnThreshold) {
+    ChassisControllerIntegrated::turnAngle(angleDiff);
+  }
 }
 } // namespace okapi

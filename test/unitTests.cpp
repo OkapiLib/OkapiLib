@@ -5,11 +5,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+#include "okapi/api/units/QLength.hpp"
 #include "okapi/api/units/QTime.hpp"
-#include "test/crossPlatformTestRunner.hpp"
 #include <gtest/gtest.h>
-
-using namespace snowhouse;
 
 namespace okapi {
 TEST(UnitTests, TimeAddition) {
@@ -23,5 +21,10 @@ TEST(UnitTests, TimeAssignmentAddition) {
   start += 1_ms;
 
   EXPECT_DOUBLE_EQ(start.convert(millisecond), (1_ms).convert(millisecond));
+}
+
+TEST(UnitTests, AbsTest) {
+  EXPECT_DOUBLE_EQ(QLength(-3.0).abs().getValue(), 3.0);
+  EXPECT_DOUBLE_EQ((-3.0 * inch).abs().convert(meter), (3.0_in).convert(meter));
 }
 } // namespace okapi

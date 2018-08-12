@@ -82,6 +82,26 @@ TEST_F(OdomChassisControllerIntegratedTest, MoveAboveThreshold) {
   EXPECT_DOUBLE_EQ(rightController->getTarget(), 6);
 }
 
+TEST_F(OdomChassisControllerIntegratedTest, TurnBelowThreshold) {
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+
+  drive->setTurnThreshold(5_deg);
+  drive->turnToAngle(4_deg);
+
+  EXPECT_DOUBLE_EQ(leftController->getTarget(), 0);
+  EXPECT_DOUBLE_EQ(rightController->getTarget(), 0);
+}
+
+TEST_F(OdomChassisControllerIntegratedTest, TurnAboveThreshold) {
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+
+  drive->setTurnThreshold(5_deg);
+  drive->turnToAngle(6_deg);
+
+  EXPECT_DOUBLE_EQ(leftController->getTarget(), 6);
+  EXPECT_DOUBLE_EQ(rightController->getTarget(), -6);
+}
+
 TEST_F(OdomChassisControllerIntegratedTest, SetStateTest) {
   auto stateBefore = drive->getState();
   assertOdomStateEquals(0, 0, 0, stateBefore);
@@ -155,6 +175,28 @@ TEST_F(OdomChassisControllerPIDTest, MoveAboveThreshold) {
   EXPECT_DOUBLE_EQ(distanceController->getTarget(), 6);
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
   EXPECT_DOUBLE_EQ(turnController->getTarget(), 0);
+}
+
+TEST_F(OdomChassisControllerPIDTest, TurnBelowThreshold) {
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+
+  drive->setTurnThreshold(5_deg);
+  drive->turnToAngle(4_deg);
+
+  EXPECT_DOUBLE_EQ(distanceController->getTarget(), 0);
+  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
+  EXPECT_DOUBLE_EQ(turnController->getTarget(), 0);
+}
+
+TEST_F(OdomChassisControllerPIDTest, TurnAboveThreshold) {
+  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+
+  drive->setTurnThreshold(5_deg);
+  drive->turnToAngle(6_deg);
+
+  EXPECT_DOUBLE_EQ(distanceController->getTarget(), 0);
+  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
+  EXPECT_DOUBLE_EQ(turnController->getTarget(), 6);
 }
 
 TEST_F(OdomChassisControllerPIDTest, SetStateTest) {
