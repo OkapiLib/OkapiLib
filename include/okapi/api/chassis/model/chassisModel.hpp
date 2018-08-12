@@ -16,11 +16,6 @@
 #include <vector>
 
 namespace okapi {
-class ChassisModelArgs {
-  public:
-  virtual ~ChassisModelArgs();
-};
-
 /**
  * A version of the ReadOnlyChassisModel that also supports write methods, such as setting motor
  * speed. Because this class can write to motors, there can only be one owner and as such copying

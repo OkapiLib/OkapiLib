@@ -24,15 +24,15 @@ PIDTuner::PIDTuner(std::shared_ptr<ControllerInput<double>> iinput,
                    double ikIMax,
                    double ikDMin,
                    double ikDMax,
-                   std::int32_t inumIterations,
-                   std::int32_t inumParticles,
+                   std::size_t inumIterations,
+                   std::size_t inumParticles,
                    double ikSettle,
                    double ikITAE)
   : logger(Logger::instance()),
     input(iinput),
     output(ioutput),
     timeUtil(itimeUtil),
-    rate(std::move(itimeUtil.getRate())),
+    rate(itimeUtil.getRate()),
     timeout(itimeout),
     goal(igoal),
     kPMin(ikPMin),
@@ -57,7 +57,7 @@ PIDTuner::Output PIDTuner::autotune() {
 
   IterativePosPIDController testController(0, 0, 0, 0, timeUtil);
   std::vector<ParticleSet> particles;
-  for (int i = 0; i < numParticles; i++) {
+  for (std::size_t i = 0; i < numParticles; i++) {
     ParticleSet set{};
     set.kP.pos = kPMin + (kPMax - kPMin) * dist(gen);
     set.kP.vel = set.kP.pos / increment;
@@ -82,7 +82,7 @@ PIDTuner::Output PIDTuner::autotune() {
   global.bestError = std::numeric_limits<double>::max();
 
   // Run the optimization
-  for (int iteration = 0; iteration < numIterations; iteration++) {
+  for (std::size_t iteration = 0; iteration < numIterations; iteration++) {
     logger->info("PIDTuner: Iteration number " + std::to_string(iteration));
     bool firstGoal = true;
 
@@ -105,7 +105,7 @@ PIDTuner::Output PIDTuner::autotune() {
       const double start_val = input->controllerGet();
 
       QTime settleTime = 0_ms;
-      int itae = 0;
+      double itae = 0;
       // Test constants then calculate fitness function
       while (!testController.isSettled()) {
         settleTime += loopDelta;

@@ -17,17 +17,6 @@
 #include <memory>
 
 namespace okapi {
-class VelMathArgs {
-  public:
-  explicit VelMathArgs(double iticksPerRev);
-  VelMathArgs(double iticksPerRev, std::shared_ptr<Filter> ifilter);
-
-  virtual ~VelMathArgs();
-
-  const double ticksPerRev;
-  std::shared_ptr<Filter> filter;
-};
-
 class VelMath {
   public:
   /**
@@ -40,8 +29,6 @@ class VelMath {
   VelMath(double iticksPerRev,
           std::shared_ptr<Filter> ifilter,
           std::unique_ptr<AbstractTimer> iloopDtTimer);
-
-  VelMath(const VelMathArgs &iparams, std::unique_ptr<AbstractTimer> iloopDtTimer);
 
   virtual ~VelMath();
 

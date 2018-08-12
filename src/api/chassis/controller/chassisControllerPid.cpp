@@ -18,7 +18,7 @@ ChassisControllerPID::ChassisControllerPID(
   const AbstractMotor::GearsetRatioPair igearset,
   const ChassisScales &iscales)
   : ChassisController(imodel),
-    rate(std::move(itimeUtil.getRate())),
+    rate(itimeUtil.getRate()),
     distancePid(std::move(idistanceController)),
     anglePid(std::move(iangleController)),
     turnPid(std::move(iturnController)),
