@@ -26,6 +26,10 @@ void AsyncVelIntegratedController::setTarget(const double itarget) {
   lastTarget = itarget;
 }
 
+double AsyncVelIntegratedController::getTarget() {
+  return lastTarget;
+}
+
 double AsyncVelIntegratedController::getError() const {
   return lastTarget - motor->getActualVelocity();
 }

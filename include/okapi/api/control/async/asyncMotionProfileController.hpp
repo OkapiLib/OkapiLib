@@ -69,6 +69,13 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   void setTarget(std::string ipathId) override;
 
   /**
+   * Gets the last set target, or the default target if none was set.
+   *
+   * @return the last target
+   */
+  std::string getTarget() override;
+
+  /**
    * Blocks the current task until the controller has settled. This controller is settled when
    * it has finished following a path. If no path is being followed, it is settled.
    */

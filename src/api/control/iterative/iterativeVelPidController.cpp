@@ -92,6 +92,10 @@ void IterativeVelPIDController::setTarget(const double itarget) {
   target = itarget;
 }
 
+double IterativeVelPIDController::getTarget() {
+  return target;
+}
+
 double IterativeVelPIDController::getOutput() const {
   return isOn ? output : 0;
 }
