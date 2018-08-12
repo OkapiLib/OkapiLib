@@ -67,6 +67,8 @@ ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
 
 std::valarray<std::int32_t> ThreeEncoderSkidSteerModel::getSensorVals() const {
   // Return the middle sensor last so this is compatible with SkidSteerModel::getSensorVals()
-  return std::valarray<std::int32_t>{leftSensor->get(), rightSensor->get(), middleSensor->get()};
+  return std::valarray<std::int32_t>{static_cast<std::int32_t>(leftSensor->get()),
+                                     static_cast<std::int32_t>(rightSensor->get()),
+                                     static_cast<std::int32_t>(middleSensor->get())};
 }
 } // namespace okapi

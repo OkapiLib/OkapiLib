@@ -64,8 +64,8 @@ SkidSteerModel::SkidSteerModel(const SkidSteerModelArgs &iparams)
 
 void SkidSteerModel::forward(const double ispeed) const {
   const double speed = std::clamp(ispeed, -1.0, 1.0);
-  leftSideMotor->moveVelocity(speed * maxOutput);
-  rightSideMotor->moveVelocity(speed * maxOutput);
+  leftSideMotor->moveVelocity(static_cast<int16_t>(speed * maxOutput));
+  rightSideMotor->moveVelocity(static_cast<int16_t>(speed * maxOutput));
 }
 
 void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) const {
@@ -82,14 +82,14 @@ void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) 
     rightOutput /= maxInputMag;
   }
 
-  leftSideMotor->moveVelocity(leftOutput * maxOutput);
-  rightSideMotor->moveVelocity(rightOutput * maxOutput);
+  leftSideMotor->moveVelocity(static_cast<int16_t>(leftOutput * maxOutput));
+  rightSideMotor->moveVelocity(static_cast<int16_t>(rightOutput * maxOutput));
 }
 
 void SkidSteerModel::rotate(const double ispeed) const {
   const double speed = std::clamp(ispeed, -1.0, 1.0);
-  leftSideMotor->moveVelocity(speed * maxOutput);
-  rightSideMotor->moveVelocity(-1 * speed * maxOutput);
+  leftSideMotor->moveVelocity(static_cast<int16_t>(speed * maxOutput));
+  rightSideMotor->moveVelocity(static_cast<int16_t>(-1 * speed * maxOutput));
 }
 
 void SkidSteerModel::stop() {
@@ -112,8 +112,8 @@ void SkidSteerModel::tank(const double ileftSpeed,
     rightSpeed = 0;
   }
 
-  leftSideMotor->moveVoltage(leftSpeed * maxOutput);
-  rightSideMotor->moveVoltage(rightSpeed * maxOutput);
+  leftSideMotor->moveVoltage(static_cast<int16_t>(leftSpeed * maxOutput));
+  rightSideMotor->moveVoltage(static_cast<int16_t>(rightSpeed * maxOutput));
 }
 
 void SkidSteerModel::arcade(const double iySpeed,
@@ -153,20 +153,21 @@ void SkidSteerModel::arcade(const double iySpeed,
     }
   }
 
-  leftSideMotor->moveVoltage(std::clamp(leftOutput, -1.0, 1.0) * maxOutput);
-  rightSideMotor->moveVoltage(std::clamp(rightOutput, -1.0, 1.0) * maxOutput);
+  leftSideMotor->moveVoltage(static_cast<int16_t>(std::clamp(leftOutput, -1.0, 1.0) * maxOutput));
+  rightSideMotor->moveVoltage(static_cast<int16_t>(std::clamp(rightOutput, -1.0, 1.0) * maxOutput));
 }
 
 void SkidSteerModel::left(const double ispeed) const {
-  leftSideMotor->moveVelocity(ispeed * maxOutput);
+  leftSideMotor->moveVelocity(static_cast<int16_t>(ispeed * maxOutput));
 }
 
 void SkidSteerModel::right(const double ispeed) const {
-  rightSideMotor->moveVelocity(ispeed * maxOutput);
+  rightSideMotor->moveVelocity(static_cast<int16_t>(ispeed * maxOutput));
 }
 
 std::valarray<std::int32_t> SkidSteerModel::getSensorVals() const {
-  return std::valarray<std::int32_t>{leftSensor->get(), rightSensor->get()};
+  return std::valarray<std::int32_t>{static_cast<std::int32_t>(leftSensor->get()),
+                                     static_cast<std::int32_t>(rightSensor->get())};
 }
 
 void SkidSteerModel::resetSensors() const {
