@@ -137,6 +137,50 @@ class ThreeEncoderOdometryTest : public ::testing::Test {
   ThreeEncoderOdometry *odom;
 };
 
+TEST_F(ThreeEncoderOdometryTest, NoSensorMovementDoesNotAffectState) {
+  assertOdomStateEquals(odom, 0, 0, 0);
+  odom->step();
+  assertOdomStateEquals(odom, 0, 0, 0);
+}
+
+TEST_F(ThreeEncoderOdometryTest, MoveForwardTest) {
+  model->setSensorVals(10, 10, 0);
+  odom->step();
+  assertOdomStateEquals(odom, 10, 0, 0);
+
+  model->setSensorVals(20, 20, 0);
+  odom->step();
+  assertOdomStateEquals(odom, 20, 0, 0);
+
+  model->setSensorVals(10, 10, 0);
+  odom->step();
+  assertOdomStateEquals(odom, 10, 0, 0);
+}
+
+TEST_F(ThreeEncoderOdometryTest, TurnInPlaceTest) {
+  model->setSensorVals(10, -10, 0);
+  odom->step();
+  assertOdomStateEquals(odom, 0, 0, 10);
+
+  model->setSensorVals(0, 0, 0);
+  odom->step();
+  assertOdomStateEquals(odom, 0, 0, 0);
+
+  model->setSensorVals(-10, 10, 0);
+  odom->step();
+  assertOdomStateEquals(odom, 0, 0, -10);
+}
+
+TEST_F(ThreeEncoderOdometryTest, TurnAndDriveTest) {
+  model->setSensorVals(90, -90, 0);
+  odom->step();
+  assertOdomStateEquals(odom, 0, 0, 90);
+
+  model->setSensorVals(180, 0, 0);
+  odom->step();
+  assertOdomStateEquals(odom, 0, 90, 90);
+}
+
 TEST_F(ThreeEncoderOdometryTest, StrafeTest) {
   model->setSensorVals(0, 0, 10);
   odom->step();
