@@ -14,8 +14,8 @@ OdomMath::OdomMath() = default;
 
 OdomMath::~OdomMath() = default;
 
-QLength OdomMath::computeDistanceToPoint(const QLength ix, const QLength iy,
-                                         const OdomState &istate) {
+QLength
+OdomMath::computeDistanceToPoint(const QLength ix, const QLength iy, const OdomState &istate) {
   const double xDiff = (ix - istate.x).convert(meter);
   const double yDiff = (iy - istate.y).convert(meter);
   return std::sqrt((xDiff * xDiff) + (yDiff * yDiff)) * meter;
@@ -27,7 +27,8 @@ QAngle OdomMath::computeAngleToPoint(const QLength ix, const QLength iy, const O
   return (std::atan2(yDiff, xDiff) * radian) - istate.theta;
 }
 
-DistanceAndAngle OdomMath::computeDistanceAndAngleToPoint(const QLength ix, const QLength iy,
+DistanceAndAngle OdomMath::computeDistanceAndAngleToPoint(const QLength ix,
+                                                          const QLength iy,
                                                           const OdomState &istate) {
   const double xDiff = (ix - istate.x).convert(meter);
   const double yDiff = (iy - istate.y).convert(meter);

@@ -30,7 +30,8 @@ class ChassisControllerFactory {
    * @param iscales see ChassisScales docs
    */
   static ChassisControllerIntegrated
-  create(Motor ileftSideMotor, Motor irightSideMotor,
+  create(Motor ileftSideMotor,
+         Motor irightSideMotor,
          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
@@ -45,7 +46,8 @@ class ChassisControllerFactory {
    * @param iscales see ChassisScales docs
    */
   static ChassisControllerIntegrated
-  create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+  create(MotorGroup ileftSideMotor,
+         MotorGroup irightSideMotor,
          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
@@ -62,7 +64,10 @@ class ChassisControllerFactory {
    * @param iscales see ChassisScales docs
    */
   static ChassisControllerIntegrated
-  create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
+  create(Motor itopLeftMotor,
+         Motor itopRightMotor,
+         Motor ibottomRightMotor,
+         Motor ibottomLeftMotor,
          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
@@ -79,7 +84,8 @@ class ChassisControllerFactory {
    * @param iscales see ChassisScales docs
    */
   static ChassisControllerPID
-  create(Motor ileftSideMotor, Motor irightSideMotor,
+  create(Motor ileftSideMotor,
+         Motor irightSideMotor,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
@@ -98,7 +104,8 @@ class ChassisControllerFactory {
    * @param iscales see ChassisScales docs
    */
   static ChassisControllerPID
-  create(Motor ileftSideMotor, Motor irightSideMotor,
+  create(Motor ileftSideMotor,
+         Motor irightSideMotor,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const IterativePosPIDController::Gains &iturnArgs,
@@ -118,7 +125,8 @@ class ChassisControllerFactory {
    * @param iscales see ChassisScales docs
    */
   static ChassisControllerPID
-  create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+  create(MotorGroup ileftSideMotor,
+         MotorGroup irightSideMotor,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
@@ -137,7 +145,8 @@ class ChassisControllerFactory {
    * @param iscales see ChassisScales docs
    */
   static ChassisControllerPID
-  create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+  create(MotorGroup ileftSideMotor,
+         MotorGroup irightSideMotor,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const IterativePosPIDController::Gains &iturnArgs,
@@ -159,8 +168,11 @@ class ChassisControllerFactory {
    * @param iscales see ChassisScales docs
    */
   static ChassisControllerPID
-  create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc,
-         ADIEncoder irightEnc, const IterativePosPIDController::Gains &idistanceArgs,
+  create(MotorGroup ileftSideMotor,
+         MotorGroup irightSideMotor,
+         ADIEncoder ileftEnc,
+         ADIEncoder irightEnc,
+         const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
@@ -180,8 +192,11 @@ class ChassisControllerFactory {
    * @param iscales see ChassisScales docs
    */
   static ChassisControllerPID
-  create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc,
-         ADIEncoder irightEnc, const IterativePosPIDController::Gains &idistanceArgs,
+  create(MotorGroup ileftSideMotor,
+         MotorGroup irightSideMotor,
+         ADIEncoder ileftEnc,
+         ADIEncoder irightEnc,
+         const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const IterativePosPIDController::Gains &iturnArgs,
          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
@@ -247,7 +262,10 @@ class ChassisControllerFactory {
    * @param iscales see ChassisScales docs
    */
   static ChassisControllerPID
-  create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
+  create(Motor itopLeftMotor,
+         Motor itopRightMotor,
+         Motor ibottomRightMotor,
+         Motor ibottomLeftMotor,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
@@ -268,7 +286,10 @@ class ChassisControllerFactory {
    * @param iscales see ChassisScales docs
    */
   static ChassisControllerPID
-  create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
+  create(Motor itopLeftMotor,
+         Motor itopRightMotor,
+         Motor ibottomRightMotor,
+         Motor ibottomLeftMotor,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const IterativePosPIDController::Gains &iturnArgs,
@@ -293,8 +314,12 @@ class ChassisControllerFactory {
    * @param iscales see ChassisScales docs
    */
   static ChassisControllerPID
-  create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-         ADIEncoder itopLeftEnc, ADIEncoder itopRightEnc,
+  create(Motor itopLeftMotor,
+         Motor itopRightMotor,
+         Motor ibottomRightMotor,
+         Motor ibottomLeftMotor,
+         ADIEncoder itopLeftEnc,
+         ADIEncoder itopRightEnc,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
@@ -318,8 +343,12 @@ class ChassisControllerFactory {
    * @param iscales see ChassisScales docs
    */
   static ChassisControllerPID
-  create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-         ADIEncoder itopLeftEnc, ADIEncoder itopRightEnc,
+  create(Motor itopLeftMotor,
+         Motor itopRightMotor,
+         Motor ibottomRightMotor,
+         Motor ibottomLeftMotor,
+         ADIEncoder itopLeftEnc,
+         ADIEncoder itopRightEnc,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const IterativePosPIDController::Gains &iturnArgs,
@@ -395,7 +424,8 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerIntegrated createOdom(Motor ileftSideMotor, Motor irightSideMotor,
+  static OdomChassisControllerIntegrated createOdom(Motor ileftSideMotor,
+                                                    Motor irightSideMotor,
                                                     const AbstractMotor::GearsetRatioPair igearset,
                                                     const ChassisScales &iscales,
                                                     QLength imoveThreshold = 10_mm,
@@ -411,10 +441,14 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerIntegrated
-  createOdom(Motor ileftSideMotor, Motor irightSideMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
-             const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-             QLength imoveThreshold = 10_mm, QAngle iturnThreshold = 1_deg);
+  static OdomChassisControllerIntegrated createOdom(Motor ileftSideMotor,
+                                                    Motor irightSideMotor,
+                                                    ADIEncoder ileftEnc,
+                                                    ADIEncoder irightEnc,
+                                                    const AbstractMotor::GearsetRatioPair igearset,
+                                                    const ChassisScales &iscales,
+                                                    QLength imoveThreshold = 10_mm,
+                                                    QAngle iturnThreshold = 1_deg);
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -426,11 +460,15 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerIntegrated
-  createOdom(Motor ileftSideMotor, Motor irightSideMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
-             ADIEncoder imiddleEnc, const AbstractMotor::GearsetRatioPair igearset,
-             const ChassisScales &iscales, QLength imoveThreshold = 10_mm,
-             QAngle iturnThreshold = 1_deg);
+  static OdomChassisControllerIntegrated createOdom(Motor ileftSideMotor,
+                                                    Motor irightSideMotor,
+                                                    ADIEncoder ileftEnc,
+                                                    ADIEncoder irightEnc,
+                                                    ADIEncoder imiddleEnc,
+                                                    const AbstractMotor::GearsetRatioPair igearset,
+                                                    const ChassisScales &iscales,
+                                                    QLength imoveThreshold = 10_mm,
+                                                    QAngle iturnThreshold = 1_deg);
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -442,10 +480,12 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerIntegrated
-  createOdom(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-             const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-             QLength imoveThreshold = 10_mm, QAngle iturnThreshold = 1_deg);
+  static OdomChassisControllerIntegrated createOdom(MotorGroup ileftSideMotor,
+                                                    MotorGroup irightSideMotor,
+                                                    const AbstractMotor::GearsetRatioPair igearset,
+                                                    const ChassisScales &iscales,
+                                                    QLength imoveThreshold = 10_mm,
+                                                    QAngle iturnThreshold = 1_deg);
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -457,11 +497,14 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerIntegrated
-  createOdom(MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc,
-             ADIEncoder irightEnc, const AbstractMotor::GearsetRatioPair igearset,
-             const ChassisScales &iscales, QLength imoveThreshold = 10_mm,
-             QAngle iturnThreshold = 1_deg);
+  static OdomChassisControllerIntegrated createOdom(MotorGroup ileftSideMotor,
+                                                    MotorGroup irightSideMotor,
+                                                    ADIEncoder ileftEnc,
+                                                    ADIEncoder irightEnc,
+                                                    const AbstractMotor::GearsetRatioPair igearset,
+                                                    const ChassisScales &iscales,
+                                                    QLength imoveThreshold = 10_mm,
+                                                    QAngle iturnThreshold = 1_deg);
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -473,11 +516,15 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerIntegrated
-  createOdom(MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc,
-             ADIEncoder irightEnc, ADIEncoder imiddleEnc,
-             const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-             QLength imoveThreshold = 10_mm, QAngle iturnThreshold = 1_deg);
+  static OdomChassisControllerIntegrated createOdom(MotorGroup ileftSideMotor,
+                                                    MotorGroup irightSideMotor,
+                                                    ADIEncoder ileftEnc,
+                                                    ADIEncoder irightEnc,
+                                                    ADIEncoder imiddleEnc,
+                                                    const AbstractMotor::GearsetRatioPair igearset,
+                                                    const ChassisScales &iscales,
+                                                    QLength imoveThreshold = 10_mm,
+                                                    QAngle iturnThreshold = 1_deg);
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -489,7 +536,8 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerPID createOdom(Motor ileftSideMotor, Motor irightSideMotor,
+  static OdomChassisControllerPID createOdom(Motor ileftSideMotor,
+                                             Motor irightSideMotor,
                                              const IterativePosPIDController::Gains &idistanceArgs,
                                              const IterativePosPIDController::Gains &iangleArgs,
                                              const AbstractMotor::GearsetRatioPair igearset,
@@ -507,41 +555,10 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerPID
-  createOdom(Motor ileftSideMotor, Motor irightSideMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
-             const IterativePosPIDController::Gains &idistanceArgs,
-             const IterativePosPIDController::Gains &iangleArgs,
-             const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-             QLength imoveThreshold = 10_mm, QAngle iturnThreshold = 1_deg);
-
-  /**
-   * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
-   * steer layout. Puts the motors into degree units. Throws a std::invalid_argument exception if
-   * the gear ratio is zero.
-   *
-   * @param ileftSideMotor left side motor (also used for controller input)
-   * @param irightSideMotor right side motor (also used for controller input)
-   * @param igearset motor internal gearset and gear ratio
-   * @param iscales see ChassisScales docs
-   */
-  static OdomChassisControllerPID
-  createOdom(Motor ileftSideMotor, Motor irightSideMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
-             ADIEncoder imiddleEnc, const IterativePosPIDController::Gains &idistanceArgs,
-             const IterativePosPIDController::Gains &iangleArgs,
-             const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-             QLength imoveThreshold = 10_mm, QAngle iturnThreshold = 1_deg);
-
-  /**
-   * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
-   * steer layout. Puts the motors into degree units. Throws a std::invalid_argument exception if
-   * the gear ratio is zero.
-   *
-   * @param ileftSideMotor left side motor (also used for controller input)
-   * @param irightSideMotor right side motor (also used for controller input)
-   * @param igearset motor internal gearset and gear ratio
-   * @param iscales see ChassisScales docs
-   */
-  static OdomChassisControllerPID createOdom(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+  static OdomChassisControllerPID createOdom(Motor ileftSideMotor,
+                                             Motor irightSideMotor,
+                                             ADIEncoder ileftEnc,
+                                             ADIEncoder irightEnc,
                                              const IterativePosPIDController::Gains &idistanceArgs,
                                              const IterativePosPIDController::Gains &iangleArgs,
                                              const AbstractMotor::GearsetRatioPair igearset,
@@ -559,45 +576,13 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerPID
-  createOdom(MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc,
-             ADIEncoder irightEnc, const IterativePosPIDController::Gains &idistanceArgs,
-             const IterativePosPIDController::Gains &iangleArgs,
-             const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-             QLength imoveThreshold = 10_mm, QAngle iturnThreshold = 1_deg);
-
-  /**
-   * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
-   * steer layout. Puts the motors into degree units. Throws a std::invalid_argument exception if
-   * the gear ratio is zero.
-   *
-   * @param ileftSideMotor left side motor (also used for controller input)
-   * @param irightSideMotor right side motor (also used for controller input)
-   * @param igearset motor internal gearset and gear ratio
-   * @param iscales see ChassisScales docs
-   */
-  static OdomChassisControllerPID
-  createOdom(MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc,
-             ADIEncoder irightEnc, ADIEncoder imiddleEnc,
-             const IterativePosPIDController::Gains &idistanceArgs,
-             const IterativePosPIDController::Gains &iangleArgs,
-             const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-             QLength imoveThreshold = 10_mm, QAngle iturnThreshold = 1_deg);
-
-  /**
-   * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
-   * steer layout. Puts the motors into degree units. Throws a std::invalid_argument exception if
-   * the gear ratio is zero.
-   *
-   * @param ileftSideMotor left side motor (also used for controller input)
-   * @param irightSideMotor right side motor (also used for controller input)
-   * @param igearset motor internal gearset and gear ratio
-   * @param iscales see ChassisScales docs
-   */
-  static OdomChassisControllerPID createOdom(Motor ileftSideMotor, Motor irightSideMotor,
+  static OdomChassisControllerPID createOdom(Motor ileftSideMotor,
+                                             Motor irightSideMotor,
+                                             ADIEncoder ileftEnc,
+                                             ADIEncoder irightEnc,
+                                             ADIEncoder imiddleEnc,
                                              const IterativePosPIDController::Gains &idistanceArgs,
                                              const IterativePosPIDController::Gains &iangleArgs,
-                                             const IterativePosPIDController::Gains &iturnArgs,
                                              const AbstractMotor::GearsetRatioPair igearset,
                                              const ChassisScales &iscales,
                                              QLength imoveThreshold = 10_mm,
@@ -613,13 +598,14 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerPID
-  createOdom(Motor ileftSideMotor, Motor irightSideMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
-             const IterativePosPIDController::Gains &idistanceArgs,
-             const IterativePosPIDController::Gains &iangleArgs,
-             const IterativePosPIDController::Gains &iturnArgs,
-             const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-             QLength imoveThreshold = 10_mm, QAngle iturnThreshold = 1_deg);
+  static OdomChassisControllerPID createOdom(MotorGroup ileftSideMotor,
+                                             MotorGroup irightSideMotor,
+                                             const IterativePosPIDController::Gains &idistanceArgs,
+                                             const IterativePosPIDController::Gains &iangleArgs,
+                                             const AbstractMotor::GearsetRatioPair igearset,
+                                             const ChassisScales &iscales,
+                                             QLength imoveThreshold = 10_mm,
+                                             QAngle iturnThreshold = 1_deg);
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -631,13 +617,16 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerPID
-  createOdom(Motor ileftSideMotor, Motor irightSideMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
-             ADIEncoder imiddleEnc, const IterativePosPIDController::Gains &idistanceArgs,
-             const IterativePosPIDController::Gains &iangleArgs,
-             const IterativePosPIDController::Gains &iturnArgs,
-             const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-             QLength imoveThreshold = 10_mm, QAngle iturnThreshold = 1_deg);
+  static OdomChassisControllerPID createOdom(MotorGroup ileftSideMotor,
+                                             MotorGroup irightSideMotor,
+                                             ADIEncoder ileftEnc,
+                                             ADIEncoder irightEnc,
+                                             const IterativePosPIDController::Gains &idistanceArgs,
+                                             const IterativePosPIDController::Gains &iangleArgs,
+                                             const AbstractMotor::GearsetRatioPair igearset,
+                                             const ChassisScales &iscales,
+                                             QLength imoveThreshold = 10_mm,
+                                             QAngle iturnThreshold = 1_deg);
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -649,7 +638,30 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerPID createOdom(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+  static OdomChassisControllerPID createOdom(MotorGroup ileftSideMotor,
+                                             MotorGroup irightSideMotor,
+                                             ADIEncoder ileftEnc,
+                                             ADIEncoder irightEnc,
+                                             ADIEncoder imiddleEnc,
+                                             const IterativePosPIDController::Gains &idistanceArgs,
+                                             const IterativePosPIDController::Gains &iangleArgs,
+                                             const AbstractMotor::GearsetRatioPair igearset,
+                                             const ChassisScales &iscales,
+                                             QLength imoveThreshold = 10_mm,
+                                             QAngle iturnThreshold = 1_deg);
+
+  /**
+   * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
+   * steer layout. Puts the motors into degree units. Throws a std::invalid_argument exception if
+   * the gear ratio is zero.
+   *
+   * @param ileftSideMotor left side motor (also used for controller input)
+   * @param irightSideMotor right side motor (also used for controller input)
+   * @param igearset motor internal gearset and gear ratio
+   * @param iscales see ChassisScales docs
+   */
+  static OdomChassisControllerPID createOdom(Motor ileftSideMotor,
+                                             Motor irightSideMotor,
                                              const IterativePosPIDController::Gains &idistanceArgs,
                                              const IterativePosPIDController::Gains &iangleArgs,
                                              const IterativePosPIDController::Gains &iturnArgs,
@@ -668,13 +680,17 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerPID
-  createOdom(MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc,
-             ADIEncoder irightEnc, const IterativePosPIDController::Gains &idistanceArgs,
-             const IterativePosPIDController::Gains &iangleArgs,
-             const IterativePosPIDController::Gains &iturnArgs,
-             const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-             QLength imoveThreshold = 10_mm, QAngle iturnThreshold = 1_deg);
+  static OdomChassisControllerPID createOdom(Motor ileftSideMotor,
+                                             Motor irightSideMotor,
+                                             ADIEncoder ileftEnc,
+                                             ADIEncoder irightEnc,
+                                             const IterativePosPIDController::Gains &idistanceArgs,
+                                             const IterativePosPIDController::Gains &iangleArgs,
+                                             const IterativePosPIDController::Gains &iturnArgs,
+                                             const AbstractMotor::GearsetRatioPair igearset,
+                                             const ChassisScales &iscales,
+                                             QLength imoveThreshold = 10_mm,
+                                             QAngle iturnThreshold = 1_deg);
 
   /**
    * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
@@ -686,14 +702,83 @@ class ChassisControllerFactory {
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    */
-  static OdomChassisControllerPID
-  createOdom(MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc,
-             ADIEncoder irightEnc, ADIEncoder imiddleEnc,
-             const IterativePosPIDController::Gains &idistanceArgs,
-             const IterativePosPIDController::Gains &iangleArgs,
-             const IterativePosPIDController::Gains &iturnArgs,
-             const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-             QLength imoveThreshold = 10_mm, QAngle iturnThreshold = 1_deg);
+  static OdomChassisControllerPID createOdom(Motor ileftSideMotor,
+                                             Motor irightSideMotor,
+                                             ADIEncoder ileftEnc,
+                                             ADIEncoder irightEnc,
+                                             ADIEncoder imiddleEnc,
+                                             const IterativePosPIDController::Gains &idistanceArgs,
+                                             const IterativePosPIDController::Gains &iangleArgs,
+                                             const IterativePosPIDController::Gains &iturnArgs,
+                                             const AbstractMotor::GearsetRatioPair igearset,
+                                             const ChassisScales &iscales,
+                                             QLength imoveThreshold = 10_mm,
+                                             QAngle iturnThreshold = 1_deg);
+
+  /**
+   * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
+   * steer layout. Puts the motors into degree units. Throws a std::invalid_argument exception if
+   * the gear ratio is zero.
+   *
+   * @param ileftSideMotor left side motor (also used for controller input)
+   * @param irightSideMotor right side motor (also used for controller input)
+   * @param igearset motor internal gearset and gear ratio
+   * @param iscales see ChassisScales docs
+   */
+  static OdomChassisControllerPID createOdom(MotorGroup ileftSideMotor,
+                                             MotorGroup irightSideMotor,
+                                             const IterativePosPIDController::Gains &idistanceArgs,
+                                             const IterativePosPIDController::Gains &iangleArgs,
+                                             const IterativePosPIDController::Gains &iturnArgs,
+                                             const AbstractMotor::GearsetRatioPair igearset,
+                                             const ChassisScales &iscales,
+                                             QLength imoveThreshold = 10_mm,
+                                             QAngle iturnThreshold = 1_deg);
+
+  /**
+   * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
+   * steer layout. Puts the motors into degree units. Throws a std::invalid_argument exception if
+   * the gear ratio is zero.
+   *
+   * @param ileftSideMotor left side motor (also used for controller input)
+   * @param irightSideMotor right side motor (also used for controller input)
+   * @param igearset motor internal gearset and gear ratio
+   * @param iscales see ChassisScales docs
+   */
+  static OdomChassisControllerPID createOdom(MotorGroup ileftSideMotor,
+                                             MotorGroup irightSideMotor,
+                                             ADIEncoder ileftEnc,
+                                             ADIEncoder irightEnc,
+                                             const IterativePosPIDController::Gains &idistanceArgs,
+                                             const IterativePosPIDController::Gains &iangleArgs,
+                                             const IterativePosPIDController::Gains &iturnArgs,
+                                             const AbstractMotor::GearsetRatioPair igearset,
+                                             const ChassisScales &iscales,
+                                             QLength imoveThreshold = 10_mm,
+                                             QAngle iturnThreshold = 1_deg);
+
+  /**
+   * ChassisController using the V5 motor's integrated control. This constructor assumes a skid
+   * steer layout. Puts the motors into degree units. Throws a std::invalid_argument exception if
+   * the gear ratio is zero.
+   *
+   * @param ileftSideMotor left side motor (also used for controller input)
+   * @param irightSideMotor right side motor (also used for controller input)
+   * @param igearset motor internal gearset and gear ratio
+   * @param iscales see ChassisScales docs
+   */
+  static OdomChassisControllerPID createOdom(MotorGroup ileftSideMotor,
+                                             MotorGroup irightSideMotor,
+                                             ADIEncoder ileftEnc,
+                                             ADIEncoder irightEnc,
+                                             ADIEncoder imiddleEnc,
+                                             const IterativePosPIDController::Gains &idistanceArgs,
+                                             const IterativePosPIDController::Gains &iangleArgs,
+                                             const IterativePosPIDController::Gains &iturnArgs,
+                                             const AbstractMotor::GearsetRatioPair igearset,
+                                             const ChassisScales &iscales,
+                                             QLength imoveThreshold = 10_mm,
+                                             QAngle iturnThreshold = 1_deg);
 };
 } // namespace okapi
 

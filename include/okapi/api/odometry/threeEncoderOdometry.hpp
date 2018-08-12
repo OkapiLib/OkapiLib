@@ -25,7 +25,8 @@ class ThreeEncoderOdometry : public Odometry {
    * @param irateSupplier a supplier of AbstractRate implementations
    */
   ThreeEncoderOdometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
-                       const ChassisScales &ichassisScales, const TimeUtil &itimeUtil);
+                       const ChassisScales &ichassisScales,
+                       const TimeUtil &itimeUtil);
 
   /**
    * Do odometry math in an infinite loop.

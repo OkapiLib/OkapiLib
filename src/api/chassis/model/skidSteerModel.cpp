@@ -97,7 +97,8 @@ void SkidSteerModel::stop() {
   rightSideMotor->moveVelocity(0);
 }
 
-void SkidSteerModel::tank(const double ileftSpeed, const double irightSpeed,
+void SkidSteerModel::tank(const double ileftSpeed,
+                          const double irightSpeed,
                           const double ithreshold) const {
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
@@ -115,7 +116,8 @@ void SkidSteerModel::tank(const double ileftSpeed, const double irightSpeed,
   rightSideMotor->moveVoltage(rightSpeed * maxOutput);
 }
 
-void SkidSteerModel::arcade(const double iySpeed, const double izRotation,
+void SkidSteerModel::arcade(const double iySpeed,
+                            const double izRotation,
                             const double ithreshold) const {
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73

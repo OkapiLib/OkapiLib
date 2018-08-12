@@ -18,8 +18,11 @@ class FlywheelSimulator {
    * A simulator for an inverted pendulum. The center of mass of the system changes as the link
    * rotates (by default, you can set a new torque function with setExternalTorqueFunction()).
    */
-  explicit FlywheelSimulator(double imass = 0.01, double ilinkLen = 1, double imuStatic = 0.1,
-                             double imuDynamic = 0.9, double itimestep = 0.01);
+  explicit FlywheelSimulator(double imass = 0.01,
+                             double ilinkLen = 1,
+                             double imuStatic = 0.1,
+                             double imuDynamic = 0.9,
+                             double itimestep = 0.01);
 
   virtual ~FlywheelSimulator();
 

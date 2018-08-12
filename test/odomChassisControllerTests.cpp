@@ -19,8 +19,8 @@ void assertOdomStateEquals(double x, double y, double theta, const OdomState &ac
 }
 
 void assertOdomStateEquals(const OdomState &expected, const OdomState &actual) {
-  assertOdomStateEquals(expected.x.convert(meter), expected.y.convert(meter),
-                        expected.theta.convert(degree), actual);
+  assertOdomStateEquals(
+    expected.x.convert(meter), expected.y.convert(meter), expected.theta.convert(degree), actual);
 }
 
 class OdomChassisControllerIntegratedTest : public ::testing::Test {
@@ -41,9 +41,12 @@ class OdomChassisControllerIntegratedTest : public ::testing::Test {
     odom = new Odometry(modelPtr, *scales, createTimeUtil().getRate());
 
     drive = new OdomChassisControllerIntegrated(
-      createTimeUtil(), modelPtr, std::unique_ptr<Odometry>(odom),
+      createTimeUtil(),
+      modelPtr,
+      std::unique_ptr<Odometry>(odom),
       std::unique_ptr<AsyncPosIntegratedController>(leftController),
-      std::unique_ptr<AsyncPosIntegratedController>(rightController), AbstractMotor::gearset::red,
+      std::unique_ptr<AsyncPosIntegratedController>(rightController),
+      AbstractMotor::gearset::red,
       {1, 1});
   }
 
@@ -132,11 +135,14 @@ class OdomChassisControllerPIDTest : public ::testing::Test {
     odom = new Odometry(modelPtr, *scales, createTimeUtil().getRate());
 
     drive =
-      new OdomChassisControllerPID(createTimeUtil(), modelPtr, std::unique_ptr<Odometry>(odom),
+      new OdomChassisControllerPID(createTimeUtil(),
+                                   modelPtr,
+                                   std::unique_ptr<Odometry>(odom),
                                    std::unique_ptr<IterativePosPIDController>(distanceController),
                                    std::unique_ptr<IterativePosPIDController>(angleController),
                                    std::unique_ptr<IterativePosPIDController>(turnController),
-                                   AbstractMotor::gearset::red, {1, 1});
+                                   AbstractMotor::gearset::red,
+                                   {1, 1});
   }
 
   void TearDown() override {

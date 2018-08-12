@@ -32,7 +32,8 @@ class Odometry {
    * @param iscale straight scale
    * @param iturnScale turn scale
    */
-  Odometry(std::shared_ptr<ReadOnlyChassisModel> imodel, const ChassisScales &ichassisScales,
+  Odometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
+           const ChassisScales &ichassisScales,
            std::unique_ptr<AbstractRate> irate);
 
   virtual ~Odometry();

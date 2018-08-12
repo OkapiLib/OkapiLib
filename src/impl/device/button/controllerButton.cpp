@@ -13,7 +13,8 @@ ControllerButton::ControllerButton(const controller_digital_e_t ibtn, const bool
 }
 
 ControllerButton::ControllerButton(const controller_id_e_t icontroller,
-                                   const controller_digital_e_t ibtn, const bool iinverted)
+                                   const controller_digital_e_t ibtn,
+                                   const bool iinverted)
   : ButtonBase(iinverted), controller(icontroller), btn(ibtn) {
 }
 

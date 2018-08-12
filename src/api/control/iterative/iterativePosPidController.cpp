@@ -12,8 +12,10 @@
 #include <cmath>
 
 namespace okapi {
-IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
-                                                     const double ikD, const double ikBias,
+IterativePosPIDController::IterativePosPIDController(const double ikP,
+                                                     const double ikI,
+                                                     const double ikD,
+                                                     const double ikBias,
                                                      const TimeUtil &itimeUtil,
                                                      std::unique_ptr<Filter> iderivativeFilter)
   : logger(Logger::instance()),
@@ -27,9 +29,14 @@ IterativePosPIDController::IterativePosPIDController(const double ikP, const dou
   setGains(ikP, ikI, ikD, ikBias);
 }
 
-IterativePosPIDController::IterativePosPIDController(const Gains &igains, const TimeUtil &itimeUtil,
+IterativePosPIDController::IterativePosPIDController(const Gains &igains,
+                                                     const TimeUtil &itimeUtil,
                                                      std::unique_ptr<Filter> iderivativeFilter)
-  : IterativePosPIDController(igains.kP, igains.kI, igains.kD, igains.kBias, itimeUtil,
+  : IterativePosPIDController(igains.kP,
+                              igains.kI,
+                              igains.kD,
+                              igains.kBias,
+                              itimeUtil,
                               std::move(iderivativeFilter)) {
 }
 
@@ -135,7 +142,9 @@ double IterativePosPIDController::step(const double inewReading) {
   return output;
 }
 
-void IterativePosPIDController::setGains(const double ikP, const double ikI, const double ikD,
+void IterativePosPIDController::setGains(const double ikP,
+                                         const double ikI,
+                                         const double ikD,
                                          const double ikBias) {
   const double sampleTimeSec = sampleTime.convert(second);
   kP = ikP;

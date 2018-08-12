@@ -11,23 +11,32 @@
 
 namespace okapi {
 OdomChassisControllerPID::OdomChassisControllerPID(
-  const TimeUtil &itimeUtil, std::shared_ptr<SkidSteerModel> imodel,
+  const TimeUtil &itimeUtil,
+  std::shared_ptr<SkidSteerModel> imodel,
   std::unique_ptr<Odometry> iodometry,
   std::unique_ptr<IterativePosPIDController> idistanceController,
   std::unique_ptr<IterativePosPIDController> iangleController,
   std::unique_ptr<IterativePosPIDController> iturnController,
-  AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-  const QLength imoveThreshold, const QAngle iturnThreshold)
+  AbstractMotor::GearsetRatioPair igearset,
+  const ChassisScales &iscales,
+  const QLength imoveThreshold,
+  const QAngle iturnThreshold)
   : ChassisController(imodel),
     OdomChassisController(imodel, std::move(iodometry), imoveThreshold, iturnThreshold),
-    ChassisControllerPID(itimeUtil, imodel, std::move(idistanceController),
-                         std::move(iangleController), std::move(iturnController), igearset,
+    ChassisControllerPID(itimeUtil,
+                         imodel,
+                         std::move(idistanceController),
+                         std::move(iangleController),
+                         std::move(iturnController),
+                         igearset,
                          iscales),
     logger(Logger::instance()) {
 }
 
-void OdomChassisControllerPID::driveToPoint(const QLength ix, const QLength iy,
-                                            const bool ibackwards, const QLength ioffset) {
+void OdomChassisControllerPID::driveToPoint(const QLength ix,
+                                            const QLength iy,
+                                            const bool ibackwards,
+                                            const QLength ioffset) {
   DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom->getState());
 
   if (ibackwards) {

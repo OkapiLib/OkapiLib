@@ -27,8 +27,10 @@ class OdomChassisController : public virtual ChassisController {
    * @param imoveThreshold minimum length movement (smaller movements will be skipped)
    * @param iturnThreshold minimum angle turn (smaller turns will be skipped)
    */
-  OdomChassisController(std::shared_ptr<SkidSteerModel> imodel, std::unique_ptr<Odometry> iodometry,
-                        QLength imoveThreshold = 10_mm, QAngle iturnThreshold = 1_deg);
+  OdomChassisController(std::shared_ptr<SkidSteerModel> imodel,
+                        std::unique_ptr<Odometry> iodometry,
+                        QLength imoveThreshold = 10_mm,
+                        QAngle iturnThreshold = 1_deg);
 
   ~OdomChassisController() override;
 
@@ -40,8 +42,8 @@ class OdomChassisController : public virtual ChassisController {
    * @param ibackwards whether to drive to the target point backwards
    * @param ioffset offset from target point in the direction pointing towards the robot
    */
-  virtual void driveToPoint(QLength ix, QLength iy, bool ibackwards = false,
-                            QLength ioffset = 0_mm) = 0;
+  virtual void
+  driveToPoint(QLength ix, QLength iy, bool ibackwards = false, QLength ioffset = 0_mm) = 0;
 
   /**
    * Turns the robot to face an angle in the odom frame.

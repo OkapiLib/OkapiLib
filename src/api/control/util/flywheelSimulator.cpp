@@ -13,8 +13,10 @@
 #include <utility>
 
 namespace okapi {
-FlywheelSimulator::FlywheelSimulator(const double imass, const double ilinkLen,
-                                     const double imuStatic, const double imuDynamic,
+FlywheelSimulator::FlywheelSimulator(const double imass,
+                                     const double ilinkLen,
+                                     const double imuStatic,
+                                     const double imuDynamic,
                                      const double itimestep)
   : mass(imass),
     linkLen(ilinkLen),

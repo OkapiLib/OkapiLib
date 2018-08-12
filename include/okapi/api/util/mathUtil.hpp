@@ -90,8 +90,11 @@ constexpr double deadband(const double value, const double min, const double max
  * @param newMax new range upper bound
  * @return remapped value in the new range [newMin, newMax]
  */
-constexpr double remapRange(const double value, const double oldMin, const double oldMax,
-                            const double newMin, const double newMax) {
+constexpr double remapRange(const double value,
+                            const double oldMin,
+                            const double oldMax,
+                            const double newMin,
+                            const double newMax) {
   return (value - oldMin) * ((newMax - newMin) / (oldMax - oldMin)) + newMin;
 }
 

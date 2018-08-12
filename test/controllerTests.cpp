@@ -66,9 +66,12 @@ TEST_F(IterativeControllerWithSimulatorTest, IterativePosPIDControllerTest) {
 
 TEST_F(IterativeControllerWithSimulatorTest, IterativeVelPIDController) {
   IterativeVelPIDController controller(
-    0.000015, 0, 0, 0,
-    std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                              std::make_unique<ConstantMockTimer>(10_ms)),
+    0.000015,
+    0,
+    0,
+    0,
+    std::make_unique<VelMath>(
+      1800, std::make_shared<PassthroughFilter>(), std::make_unique<ConstantMockTimer>(10_ms)),
     createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
       []() { return std::make_unique<ConstantMockTimer>(10_ms); })));
 
@@ -80,9 +83,12 @@ TEST_F(IterativeControllerWithSimulatorTest, IterativeVelPIDController) {
 
 TEST_F(IterativeControllerWithSimulatorTest, IterativeVelPIDControllerFeedForwardOnly) {
   IterativeVelPIDController controller(
-    0, 0, 0.1, 0,
-    std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                              std::make_unique<ConstantMockTimer>(10_ms)),
+    0,
+    0,
+    0.1,
+    0,
+    std::make_unique<VelMath>(
+      1800, std::make_shared<PassthroughFilter>(), std::make_unique<ConstantMockTimer>(10_ms)),
     createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
       []() { return std::make_unique<ConstantMockTimer>(10_ms); })));
 
@@ -132,8 +138,12 @@ TEST(IterativeMotorVelocityControllerTest, IterativeMotorVelocityController) {
     public:
     MockIterativeVelPIDController()
       : IterativeVelPIDController(
-          0, 0, 0, 0,
-          std::make_unique<VelMath>(imev5TPR, std::make_shared<AverageFilter<2>>(),
+          0,
+          0,
+          0,
+          0,
+          std::make_unique<VelMath>(imev5TPR,
+                                    std::make_shared<AverageFilter<2>>(),
                                     std::make_unique<ConstantMockTimer>(10_ms)),
           createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
             []() { return std::make_unique<ConstantMockTimer>(10_ms); }))) {
@@ -206,15 +216,15 @@ class AsyncControllerTest : public ::testing::Test {
 
 TEST_F(AsyncControllerTest, AsyncPosIntegratedController) {
   auto motor = std::make_shared<MockMotor>();
-  assertControllerFollowsDisableLifecycle(AsyncPosIntegratedController(motor, createTimeUtil()),
-                                          motor->lastPosition, motor->lastVoltage);
+  assertControllerFollowsDisableLifecycle(
+    AsyncPosIntegratedController(motor, createTimeUtil()), motor->lastPosition, motor->lastVoltage);
   assertControllerFollowsTargetLifecycle(AsyncPosIntegratedController(motor, createTimeUtil()));
 }
 
 TEST_F(AsyncControllerTest, AsyncVelIntegratedController) {
   auto motor = std::make_shared<MockMotor>();
-  assertControllerFollowsDisableLifecycle(AsyncVelIntegratedController(motor, createTimeUtil()),
-                                          motor->lastVelocity, motor->lastVoltage);
+  assertControllerFollowsDisableLifecycle(
+    AsyncVelIntegratedController(motor, createTimeUtil()), motor->lastVelocity, motor->lastVoltage);
   assertControllerFollowsTargetLifecycle(AsyncVelIntegratedController(motor, createTimeUtil()));
 }
 
@@ -222,9 +232,12 @@ class IterativeVelPIDControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
     controller = new IterativeVelPIDController(
-      0, 0, 0, 0,
-      std::make_unique<VelMath>(1800, std::make_shared<PassthroughFilter>(),
-                                std::make_unique<ConstantMockTimer>(10_ms)),
+      0,
+      0,
+      0,
+      0,
+      std::make_unique<VelMath>(
+        1800, std::make_shared<PassthroughFilter>(), std::make_unique<ConstantMockTimer>(10_ms)),
       createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
         []() { return std::make_unique<ConstantMockTimer>(10_ms); })));
   }
@@ -307,8 +320,8 @@ TEST(PIDTunerTest, AutotuneShouldNotSegfault) {
 
 TEST(SettledUtilTest, MaxDoubleError) {
   MockRate rate;
-  SettledUtil settledUtil(std::make_unique<MockTimer>(), std::numeric_limits<double>::max(), 5,
-                          250_ms);
+  SettledUtil settledUtil(
+    std::make_unique<MockTimer>(), std::numeric_limits<double>::max(), 5, 250_ms);
   EXPECT_FALSE(settledUtil.isSettled(1000));
   EXPECT_FALSE(settledUtil.isSettled(1000));
   rate.delayUntil(300_ms);
@@ -317,8 +330,8 @@ TEST(SettledUtilTest, MaxDoubleError) {
 
 TEST(SettledUtilTest, MaxDoubleDerivative) {
   MockRate rate;
-  SettledUtil settledUtil(std::make_unique<MockTimer>(), 50, std::numeric_limits<double>::max(),
-                          250_ms);
+  SettledUtil settledUtil(
+    std::make_unique<MockTimer>(), 50, std::numeric_limits<double>::max(), 250_ms);
   EXPECT_FALSE(settledUtil.isSettled(1000));
   EXPECT_FALSE(settledUtil.isSettled(0));
   rate.delayUntil(300_ms);
@@ -342,8 +355,8 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
     model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
                                std::unique_ptr<AbstractMotor>(rightMotor));
 
-    controller = new AsyncMotionProfileController(createTimeUtil(), 1.0, 2.0, 10.0,
-                                                  std::shared_ptr<SkidSteerModel>(model), 10.5_in);
+    controller = new AsyncMotionProfileController(
+      createTimeUtil(), 1.0, 2.0, 10.0, std::shared_ptr<SkidSteerModel>(model), 10.5_in);
   }
 
   void TearDown() override {
@@ -386,9 +399,12 @@ TEST_F(AsyncMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
 }
 
 TEST_F(AsyncMotionProfileControllerTest, ImpossiblePathThrowsException) {
-  EXPECT_THROW(controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 0_deg},
-                                         Point{3_ft, 1_ft, 0_deg}, Point{2_ft, 1_ft, 0_deg},
-                                         Point{1_ft, 1_m, 0_deg}, Point{1_ft, 0_m, 0_deg}},
+  EXPECT_THROW(controller->generatePath({Point{0_m, 0_m, 0_deg},
+                                         Point{3_ft, 0_m, 0_deg},
+                                         Point{3_ft, 1_ft, 0_deg},
+                                         Point{2_ft, 1_ft, 0_deg},
+                                         Point{1_ft, 1_m, 0_deg},
+                                         Point{1_ft, 0_m, 0_deg}},
                                         "A"),
                std::runtime_error);
 }

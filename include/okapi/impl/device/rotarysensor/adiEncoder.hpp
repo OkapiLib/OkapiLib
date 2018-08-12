@@ -14,7 +14,8 @@
 namespace okapi {
 class ADIEncoder : public ContinuousRotarySensor {
   public:
-  ADIEncoder(const std::uint8_t iportTop, const std::uint8_t iportBottom,
+  ADIEncoder(const std::uint8_t iportTop,
+             const std::uint8_t iportBottom,
              const bool ireversed = false);
 
   /**

@@ -48,8 +48,8 @@ class OdomMath {
    * @param istate odometry state
    * @return distance and angle to the point
    */
-  static DistanceAndAngle computeDistanceAndAngleToPoint(QLength ix, QLength iy,
-                                                         const OdomState &istate);
+  static DistanceAndAngle
+  computeDistanceAndAngleToPoint(QLength ix, QLength iy, const OdomState &istate);
 
   private:
   OdomMath();

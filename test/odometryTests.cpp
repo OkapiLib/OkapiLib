@@ -43,8 +43,8 @@ class OdometryTest : public ::testing::Test {
   protected:
   void SetUp() override {
     model = new MockModel();
-    odom = new Odometry(std::shared_ptr<MockModel>(model), ChassisScales({1, 1}),
-                        std::make_unique<MockRate>());
+    odom = new Odometry(
+      std::shared_ptr<MockModel>(model), ChassisScales({1, 1}), std::make_unique<MockRate>());
   }
 
   void TearDown() override {
@@ -102,7 +102,8 @@ TEST_F(OdometryTest, TurnAndDriveTest) {
 class MockThreeEncoderModel : public ThreeEncoderSkidSteerModel {
   public:
   MockThreeEncoderModel()
-    : ThreeEncoderSkidSteerModel(std::make_shared<MockMotor>(), std::make_shared<MockMotor>(),
+    : ThreeEncoderSkidSteerModel(std::make_shared<MockMotor>(),
+                                 std::make_shared<MockMotor>(),
                                  std::make_shared<MockMotor>()->getEncoder()) {
   }
 
@@ -125,8 +126,8 @@ class ThreeEncoderOdometryTest : public ::testing::Test {
   protected:
   void SetUp() override {
     model = new MockThreeEncoderModel();
-    odom = new ThreeEncoderOdometry(std::shared_ptr<MockThreeEncoderModel>(model),
-                                    ChassisScales({1, 1, 1}), createTimeUtil());
+    odom = new ThreeEncoderOdometry(
+      std::shared_ptr<MockThreeEncoderModel>(model), ChassisScales({1, 1, 1}), createTimeUtil());
   }
 
   void TearDown() override {

@@ -37,7 +37,8 @@ class VelMath {
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
    * @param ifilter filter used for filtering the calculated velocity
    */
-  VelMath(double iticksPerRev, std::shared_ptr<Filter> ifilter,
+  VelMath(double iticksPerRev,
+          std::shared_ptr<Filter> ifilter,
           std::unique_ptr<AbstractTimer> iloopDtTimer);
 
   VelMath(const VelMathArgs &iparams, std::unique_ptr<AbstractTimer> iloopDtTimer);

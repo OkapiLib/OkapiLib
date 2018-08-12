@@ -25,7 +25,8 @@ Logger *Logger::instance() noexcept {
   return s_instance;
 }
 
-void Logger::initialize(std::unique_ptr<AbstractTimer> itimer, std::string_view filename,
+void Logger::initialize(std::unique_ptr<AbstractTimer> itimer,
+                        std::string_view filename,
                         Logger::LogLevel level) noexcept {
   timer = std::move(itimer);
   logLevel = level;
@@ -36,7 +37,8 @@ void Logger::initialize(std::unique_ptr<AbstractTimer> itimer, std::string_view 
   }
 }
 
-void Logger::initialize(std::unique_ptr<AbstractTimer> itimer, FILE *file,
+void Logger::initialize(std::unique_ptr<AbstractTimer> itimer,
+                        FILE *file,
                         Logger::LogLevel level) noexcept {
   timer = std::move(itimer);
   logLevel = level;
@@ -52,28 +54,36 @@ void Logger::setLogLevel(Logger::LogLevel level) noexcept {
 
 void Logger::debug(std::string_view message) const noexcept {
   if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info) && logfile && timer) {
-    fprintf(logfile, "%ld DEBUG: %s\n", static_cast<long>(timer->millis().convert(millisecond)),
+    fprintf(logfile,
+            "%ld DEBUG: %s\n",
+            static_cast<long>(timer->millis().convert(millisecond)),
             message.data());
   }
 }
 
 void Logger::info(std::string_view message) const noexcept {
   if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info) && logfile && timer) {
-    fprintf(logfile, "%ld INFO: %s\n", static_cast<long>(timer->millis().convert(millisecond)),
+    fprintf(logfile,
+            "%ld INFO: %s\n",
+            static_cast<long>(timer->millis().convert(millisecond)),
             message.data());
   }
 }
 
 void Logger::warn(std::string_view message) const noexcept {
   if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::warn) && logfile && timer) {
-    fprintf(logfile, "%ld WARN: %s\n", static_cast<long>(timer->millis().convert(millisecond)),
+    fprintf(logfile,
+            "%ld WARN: %s\n",
+            static_cast<long>(timer->millis().convert(millisecond)),
             message.data());
   }
 }
 
 void Logger::error(std::string_view message) const noexcept {
   if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::error) && logfile && timer) {
-    fprintf(logfile, "%ld ERROR: %s\n", static_cast<long>(timer->millis().convert(millisecond)),
+    fprintf(logfile,
+            "%ld ERROR: %s\n",
+            static_cast<long>(timer->millis().convert(millisecond)),
             message.data());
   }
 }

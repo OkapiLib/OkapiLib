@@ -15,8 +15,8 @@ VelMath VelMathFactory::create(const double iticksPerRev) {
 }
 
 std::unique_ptr<VelMath> VelMathFactory::createPtr(const double iticksPerRev) {
-  return std::make_unique<VelMath>(iticksPerRev, std::make_shared<AverageFilter<2>>(),
-                                   std::make_unique<Timer>());
+  return std::make_unique<VelMath>(
+    iticksPerRev, std::make_shared<AverageFilter<2>>(), std::make_unique<Timer>());
 }
 
 VelMath VelMathFactory::create(const double iticksPerRev, std::shared_ptr<Filter> ifilter) {
