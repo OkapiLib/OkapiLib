@@ -255,10 +255,9 @@ ChassisControllerPID ChassisControllerFactory::create(
     iscales);
 }
 
-OdomChassisControllerIntegrated
-ChassisControllerFactory::createOdom(Motor ileftSideMotor, Motor irightSideMotor,
-                                     const AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales, const QLength imoveThreshold) {
+OdomChassisControllerIntegrated ChassisControllerFactory::createOdom(
+  Motor ileftSideMotor, Motor irightSideMotor, const AbstractMotor::GearsetRatioPair igearset,
+  const ChassisScales &iscales, const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   auto model = std::make_shared<SkidSteerModel>(leftMtr, rightMtr);
@@ -267,14 +266,13 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor, Motor irightSideMotor
     std::make_unique<Odometry>(model, iscales, TimeUtilFactory::create().getRate()),
     std::make_unique<AsyncPosIntegratedController>(leftMtr, TimeUtilFactory::create()),
     std::make_unique<AsyncPosIntegratedController>(rightMtr, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
-OdomChassisControllerIntegrated
-ChassisControllerFactory::createOdom(Motor ileftSideMotor, Motor irightSideMotor,
-                                     ADIEncoder ileftEnc, ADIEncoder irightEnc,
-                                     const AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales, const QLength imoveThreshold) {
+OdomChassisControllerIntegrated ChassisControllerFactory::createOdom(
+  Motor ileftSideMotor, Motor irightSideMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
+  const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
+  const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   auto model =
@@ -285,13 +283,13 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor, Motor irightSideMotor
     std::make_unique<Odometry>(model, iscales, TimeUtilFactory::create().getRate()),
     std::make_unique<AsyncPosIntegratedController>(leftMtr, TimeUtilFactory::create()),
     std::make_unique<AsyncPosIntegratedController>(rightMtr, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
 OdomChassisControllerIntegrated ChassisControllerFactory::createOdom(
   Motor ileftSideMotor, Motor irightSideMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
   ADIEncoder imiddleEnc, const AbstractMotor::GearsetRatioPair igearset,
-  const ChassisScales &iscales, const QLength imoveThreshold) {
+  const ChassisScales &iscales, const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   auto model = std::make_shared<ThreeEncoderSkidSteerModel>(
@@ -302,13 +300,14 @@ OdomChassisControllerIntegrated ChassisControllerFactory::createOdom(
     std::make_unique<Odometry>(model, iscales, TimeUtilFactory::create().getRate()),
     std::make_unique<AsyncPosIntegratedController>(leftMtr, TimeUtilFactory::create()),
     std::make_unique<AsyncPosIntegratedController>(rightMtr, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
 OdomChassisControllerIntegrated
 ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                                      const AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales, const QLength imoveThreshold) {
+                                     const ChassisScales &iscales, const QLength imoveThreshold,
+                                     const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   auto model = std::make_shared<SkidSteerModel>(leftMtr, rightMtr);
@@ -317,14 +316,13 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor, MotorGroup irigh
     std::make_unique<Odometry>(model, iscales, TimeUtilFactory::create().getRate()),
     std::make_unique<AsyncPosIntegratedController>(leftMtr, TimeUtilFactory::create()),
     std::make_unique<AsyncPosIntegratedController>(rightMtr, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
-OdomChassisControllerIntegrated
-ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                                     ADIEncoder ileftEnc, ADIEncoder irightEnc,
-                                     const AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales, const QLength imoveThreshold) {
+OdomChassisControllerIntegrated ChassisControllerFactory::createOdom(
+  MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
+  const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
+  const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   auto model =
@@ -335,13 +333,13 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor, MotorGroup irigh
     std::make_unique<Odometry>(model, iscales, TimeUtilFactory::create().getRate()),
     std::make_unique<AsyncPosIntegratedController>(leftMtr, TimeUtilFactory::create()),
     std::make_unique<AsyncPosIntegratedController>(rightMtr, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
 OdomChassisControllerIntegrated ChassisControllerFactory::createOdom(
   MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
   ADIEncoder imiddleEnc, const AbstractMotor::GearsetRatioPair igearset,
-  const ChassisScales &iscales, const QLength imoveThreshold) {
+  const ChassisScales &iscales, const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   auto model = std::make_shared<ThreeEncoderSkidSteerModel>(
@@ -352,7 +350,7 @@ OdomChassisControllerIntegrated ChassisControllerFactory::createOdom(
     std::make_unique<Odometry>(model, iscales, TimeUtilFactory::create().getRate()),
     std::make_unique<AsyncPosIntegratedController>(leftMtr, TimeUtilFactory::create()),
     std::make_unique<AsyncPosIntegratedController>(rightMtr, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
 OdomChassisControllerPID
@@ -360,7 +358,8 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor, Motor irightSideMotor
                                      const IterativePosPIDController::Gains &idistanceArgs,
                                      const IterativePosPIDController::Gains &iangleArgs,
                                      const AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales, const QLength imoveThreshold) {
+                                     const ChassisScales &iscales, const QLength imoveThreshold,
+                                     const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   auto model = std::make_shared<SkidSteerModel>(leftMtr, rightMtr);
@@ -370,16 +369,15 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor, Motor irightSideMotor
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
-OdomChassisControllerPID
-ChassisControllerFactory::createOdom(Motor ileftSideMotor, Motor irightSideMotor,
-                                     ADIEncoder ileftEnc, ADIEncoder irightEnc,
-                                     const IterativePosPIDController::Gains &idistanceArgs,
-                                     const IterativePosPIDController::Gains &iangleArgs,
-                                     const AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales, const QLength imoveThreshold) {
+OdomChassisControllerPID ChassisControllerFactory::createOdom(
+  Motor ileftSideMotor, Motor irightSideMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
+  const IterativePosPIDController::Gains &idistanceArgs,
+  const IterativePosPIDController::Gains &iangleArgs,
+  const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
+  const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   auto model =
@@ -391,7 +389,7 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor, Motor irightSideMotor
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
 OdomChassisControllerPID ChassisControllerFactory::createOdom(
@@ -399,7 +397,7 @@ OdomChassisControllerPID ChassisControllerFactory::createOdom(
   ADIEncoder imiddleEnc, const IterativePosPIDController::Gains &idistanceArgs,
   const IterativePosPIDController::Gains &iangleArgs,
   const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-  const QLength imoveThreshold) {
+  const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   auto model = std::make_shared<ThreeEncoderSkidSteerModel>(
@@ -411,7 +409,7 @@ OdomChassisControllerPID ChassisControllerFactory::createOdom(
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
 OdomChassisControllerPID
@@ -419,7 +417,8 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor, MotorGroup irigh
                                      const IterativePosPIDController::Gains &idistanceArgs,
                                      const IterativePosPIDController::Gains &iangleArgs,
                                      const AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales, const QLength imoveThreshold) {
+                                     const ChassisScales &iscales, const QLength imoveThreshold,
+                                     const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   auto model = std::make_shared<SkidSteerModel>(leftMtr, rightMtr);
@@ -429,16 +428,15 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor, MotorGroup irigh
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
-OdomChassisControllerPID
-ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                                     ADIEncoder ileftEnc, ADIEncoder irightEnc,
-                                     const IterativePosPIDController::Gains &idistanceArgs,
-                                     const IterativePosPIDController::Gains &iangleArgs,
-                                     const AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales, const QLength imoveThreshold) {
+OdomChassisControllerPID ChassisControllerFactory::createOdom(
+  MotorGroup ileftSideMotor, MotorGroup irightSideMotor, ADIEncoder ileftEnc, ADIEncoder irightEnc,
+  const IterativePosPIDController::Gains &idistanceArgs,
+  const IterativePosPIDController::Gains &iangleArgs,
+  const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
+  const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   auto model =
@@ -450,7 +448,7 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor, MotorGroup irigh
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
 OdomChassisControllerPID ChassisControllerFactory::createOdom(
@@ -458,7 +456,7 @@ OdomChassisControllerPID ChassisControllerFactory::createOdom(
   ADIEncoder imiddleEnc, const IterativePosPIDController::Gains &idistanceArgs,
   const IterativePosPIDController::Gains &iangleArgs,
   const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-  const QLength imoveThreshold) {
+  const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   auto model = std::make_shared<ThreeEncoderSkidSteerModel>(
@@ -470,16 +468,15 @@ OdomChassisControllerPID ChassisControllerFactory::createOdom(
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
-OdomChassisControllerPID
-ChassisControllerFactory::createOdom(Motor ileftSideMotor, Motor irightSideMotor,
-                                     const IterativePosPIDController::Gains &idistanceArgs,
-                                     const IterativePosPIDController::Gains &iangleArgs,
-                                     const IterativePosPIDController::Gains &iturnArgs,
-                                     const AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales, const QLength imoveThreshold) {
+OdomChassisControllerPID ChassisControllerFactory::createOdom(
+  Motor ileftSideMotor, Motor irightSideMotor,
+  const IterativePosPIDController::Gains &idistanceArgs,
+  const IterativePosPIDController::Gains &iangleArgs,
+  const IterativePosPIDController::Gains &iturnArgs, const AbstractMotor::GearsetRatioPair igearset,
+  const ChassisScales &iscales, const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   auto model = std::make_shared<SkidSteerModel>(leftMtr, rightMtr);
@@ -489,7 +486,7 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor, Motor irightSideMotor
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iturnArgs, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
 OdomChassisControllerPID ChassisControllerFactory::createOdom(
@@ -497,7 +494,7 @@ OdomChassisControllerPID ChassisControllerFactory::createOdom(
   const IterativePosPIDController::Gains &idistanceArgs,
   const IterativePosPIDController::Gains &iangleArgs,
   const IterativePosPIDController::Gains &iturnArgs, const AbstractMotor::GearsetRatioPair igearset,
-  const ChassisScales &iscales, const QLength imoveThreshold) {
+  const ChassisScales &iscales, const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   auto model =
@@ -509,7 +506,7 @@ OdomChassisControllerPID ChassisControllerFactory::createOdom(
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iturnArgs, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
 OdomChassisControllerPID ChassisControllerFactory::createOdom(
@@ -517,7 +514,7 @@ OdomChassisControllerPID ChassisControllerFactory::createOdom(
   ADIEncoder imiddleEnc, const IterativePosPIDController::Gains &idistanceArgs,
   const IterativePosPIDController::Gains &iangleArgs,
   const IterativePosPIDController::Gains &iturnArgs, const AbstractMotor::GearsetRatioPair igearset,
-  const ChassisScales &iscales, const QLength imoveThreshold) {
+  const ChassisScales &iscales, const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
   auto model = std::make_shared<ThreeEncoderSkidSteerModel>(
@@ -529,16 +526,15 @@ OdomChassisControllerPID ChassisControllerFactory::createOdom(
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iturnArgs, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
-OdomChassisControllerPID
-ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                                     const IterativePosPIDController::Gains &idistanceArgs,
-                                     const IterativePosPIDController::Gains &iangleArgs,
-                                     const IterativePosPIDController::Gains &iturnArgs,
-                                     const AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales, const QLength imoveThreshold) {
+OdomChassisControllerPID ChassisControllerFactory::createOdom(
+  MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+  const IterativePosPIDController::Gains &idistanceArgs,
+  const IterativePosPIDController::Gains &iangleArgs,
+  const IterativePosPIDController::Gains &iturnArgs, const AbstractMotor::GearsetRatioPair igearset,
+  const ChassisScales &iscales, const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   auto model = std::make_shared<SkidSteerModel>(leftMtr, rightMtr);
@@ -548,7 +544,7 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor, MotorGroup irigh
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iturnArgs, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
 OdomChassisControllerPID ChassisControllerFactory::createOdom(
@@ -556,7 +552,7 @@ OdomChassisControllerPID ChassisControllerFactory::createOdom(
   const IterativePosPIDController::Gains &idistanceArgs,
   const IterativePosPIDController::Gains &iangleArgs,
   const IterativePosPIDController::Gains &iturnArgs, const AbstractMotor::GearsetRatioPair igearset,
-  const ChassisScales &iscales, const QLength imoveThreshold) {
+  const ChassisScales &iscales, const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   auto model =
@@ -568,7 +564,7 @@ OdomChassisControllerPID ChassisControllerFactory::createOdom(
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iturnArgs, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 
 OdomChassisControllerPID ChassisControllerFactory::createOdom(
@@ -576,7 +572,7 @@ OdomChassisControllerPID ChassisControllerFactory::createOdom(
   ADIEncoder imiddleEnc, const IterativePosPIDController::Gains &idistanceArgs,
   const IterativePosPIDController::Gains &iangleArgs,
   const IterativePosPIDController::Gains &iturnArgs, const AbstractMotor::GearsetRatioPair igearset,
-  const ChassisScales &iscales, const QLength imoveThreshold) {
+  const ChassisScales &iscales, const QLength imoveThreshold, const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
   auto model = std::make_shared<ThreeEncoderSkidSteerModel>(
@@ -588,6 +584,6 @@ OdomChassisControllerPID ChassisControllerFactory::createOdom(
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iangleArgs, TimeUtilFactory::create()),
     std::make_unique<IterativePosPIDController>(iturnArgs, TimeUtilFactory::create()), igearset,
-    iscales, imoveThreshold);
+    iscales, imoveThreshold, iturnThreshold);
 }
 } // namespace okapi

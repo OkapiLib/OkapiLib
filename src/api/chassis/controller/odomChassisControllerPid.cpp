@@ -17,9 +17,9 @@ OdomChassisControllerPID::OdomChassisControllerPID(
   std::unique_ptr<IterativePosPIDController> iangleController,
   std::unique_ptr<IterativePosPIDController> iturnController,
   AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-  const QLength imoveThreshold)
+  const QLength imoveThreshold, const QAngle iturnThreshold)
   : ChassisController(imodel),
-    OdomChassisController(imodel, std::move(iodometry), imoveThreshold),
+    OdomChassisController(imodel, std::move(iodometry), imoveThreshold, iturnThreshold),
     ChassisControllerPID(itimeUtil, imodel, std::move(idistanceController),
                          std::move(iangleController), std::move(iturnController), igearset,
                          iscales),
@@ -39,11 +39,11 @@ void OdomChassisControllerPID::driveToPoint(const QLength ix, const QLength iy,
                std::to_string(daa.length.convert(meter)) + " meters and angle of " +
                std::to_string(daa.theta.convert(degree)) + " degrees");
 
-  if (std::abs(daa.theta.convert(degree)) > 1) {
+  if (daa.theta.abs() > turnThreshold) {
     ChassisControllerPID::turnAngle(daa.theta);
   }
 
-  if (std::abs((daa.length - ioffset).convert(meter)) * meter > moveThreshold) {
+  if ((daa.length - ioffset).abs() > moveThreshold) {
     ChassisControllerPID::moveDistance(daa.length - ioffset);
   }
 }

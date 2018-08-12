@@ -17,18 +17,18 @@ namespace okapi {
 class OdomChassisController : public virtual ChassisController {
   public:
   /**
-   * Odometry based chassis controller. Starts task at the default priority plus 1 for
-   * odometry when constructed.
+   * Odometry based chassis controller. Starts task at the default for odometry when constructed.
    *
    * Moves the robot around in the odom frame. Instead of telling the robot to drive forward or
    * turn some amount, you instead tell it to drive to a specific point on the field or turn to
    * a specific angle relative to its starting position.
    *
    * @param iparams odometry parameters for the internal odometry math
-   * @param imoveThreshold minimum length movement
+   * @param imoveThreshold minimum length movement (smaller movements will be skipped)
+   * @param iturnThreshold minimum angle turn (smaller turns will be skipped)
    */
   OdomChassisController(std::shared_ptr<SkidSteerModel> imodel, std::unique_ptr<Odometry> iodometry,
-                        QLength imoveThreshold = 10_mm);
+                        QLength imoveThreshold = 10_mm, QAngle iturnThreshold = 1_deg);
 
   ~OdomChassisController() override;
 
@@ -65,15 +65,22 @@ class OdomChassisController : public virtual ChassisController {
   virtual void setState(const OdomState &istate);
 
   /**
-   * Set a new move threshold. Any requested movements smaller than the move threshold will not be
-   * performed.
+   * Set a new move threshold. Any requested movements smaller than this threshold will be skipped.
    *
    * @param imoveThreshold new move threshold
    */
   virtual void setMoveThreshold(QLength imoveThreshold);
 
+  /**
+   * Set a new turn threshold. Any requested turns smaller than this threshold will be skipped.
+   *
+   * @param iturnTreshold new turn threshold
+   */
+  virtual void setTurnThreshold(QAngle iturnTreshold);
+
   protected:
-  QLength moveThreshold; // Minimum length movement
+  QLength moveThreshold;
+  QAngle turnThreshold;
   std::unique_ptr<Odometry> odom;
   CrossplatformThread task;
 };

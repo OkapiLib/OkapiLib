@@ -16,9 +16,9 @@ OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
   std::unique_ptr<AsyncPosIntegratedController> ileftController,
   std::unique_ptr<AsyncPosIntegratedController> irightController,
   const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
-  const QLength imoveThreshold)
+  const QLength imoveThreshold, const QAngle iturnThreshold)
   : ChassisController(imodel),
-    OdomChassisController(imodel, std::move(iodometry), imoveThreshold),
+    OdomChassisController(imodel, std::move(iodometry), imoveThreshold, iturnThreshold),
     ChassisControllerIntegrated(itimeUtil, imodel, std::move(ileftController),
                                 std::move(irightController), igearset, iscales),
     logger(Logger::instance()) {
@@ -37,7 +37,7 @@ void OdomChassisControllerIntegrated::driveToPoint(const QLength ix, const QLeng
                std::to_string(daa.length.convert(meter)) + " meters and angle of " +
                std::to_string(daa.theta.convert(degree)) + " degrees");
 
-  if (daa.theta.abs() > 1_deg) {
+  if (daa.theta.abs() > turnThreshold) {
     ChassisControllerIntegrated::turnAngle(daa.theta);
   }
 
