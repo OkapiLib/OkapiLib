@@ -12,6 +12,20 @@
 #include <utility>
 
 namespace okapi {
+VelMathArgs::VelMathArgs(const double iticksPerRev)
+  : VelMathArgs(iticksPerRev, std::make_shared<AverageFilter<2>>()) {
+}
+
+VelMathArgs::VelMathArgs(const double iticksPerRev, std::shared_ptr<Filter> ifilter)
+  : ticksPerRev(iticksPerRev), filter(ifilter) {
+}
+
+VelMathArgs::~VelMathArgs() = default;
+
+VelMath::VelMath(const VelMathArgs &iparams, std::unique_ptr<AbstractTimer> iloopDtTimer)
+  : VelMath(iparams.ticksPerRev, iparams.filter, std::move(iloopDtTimer)) {
+}
+
 VelMath::VelMath(const double iticksPerRev,
                  std::shared_ptr<Filter> ifilter,
                  std::unique_ptr<AbstractTimer> iloopDtTimer)
