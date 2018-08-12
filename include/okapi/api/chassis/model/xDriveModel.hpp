@@ -13,31 +13,6 @@
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
 
 namespace okapi {
-class XDriveModelArgs : public ChassisModelArgs {
-  public:
-  XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
-                  std::shared_ptr<AbstractMotor> itopRightMotor,
-                  std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                  std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                  double imaxOutput = 127);
-
-  XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
-                  std::shared_ptr<AbstractMotor> itopRightMotor,
-                  std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                  std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                  std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                  double imaxOutput = 127);
-
-  std::shared_ptr<AbstractMotor> topLeftMotor;
-  std::shared_ptr<AbstractMotor> topRightMotor;
-  std::shared_ptr<AbstractMotor> bottomRightMotor;
-  std::shared_ptr<AbstractMotor> bottomLeftMotor;
-  std::shared_ptr<ContinuousRotarySensor> leftSensor;
-  std::shared_ptr<ContinuousRotarySensor> rightSensor;
-  const double maxOutput;
-};
-
 class XDriveModel : public ChassisModel {
   public:
   /**
@@ -76,8 +51,6 @@ class XDriveModel : public ChassisModel {
               std::shared_ptr<ContinuousRotarySensor> ileftEnc,
               std::shared_ptr<ContinuousRotarySensor> irightEnc,
               double imaxOutput = 127);
-
-  explicit XDriveModel(const XDriveModelArgs &iparams);
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.

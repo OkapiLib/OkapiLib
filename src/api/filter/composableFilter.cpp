@@ -9,21 +9,10 @@
 #include <utility>
 
 namespace okapi {
-ComposableFilterArgs::ComposableFilterArgs(
-  const std::initializer_list<std::shared_ptr<Filter>> &ilist)
-  : list(ilist) {
-}
-
 ComposableFilter::ComposableFilter() = default;
 
 ComposableFilter::ComposableFilter(const std::initializer_list<std::shared_ptr<Filter>> &ilist) {
   for (auto &&elem : ilist) {
-    filters.push_back(elem);
-  }
-}
-
-ComposableFilter::ComposableFilter(const ComposableFilterArgs &iparams) {
-  for (auto &&elem : iparams.list) {
     filters.push_back(elem);
   }
 }

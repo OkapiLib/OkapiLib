@@ -13,26 +13,6 @@
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
 
 namespace okapi {
-class SkidSteerModelArgs : public ChassisModelArgs {
-  public:
-  // Create the sensors using the integrated encoder
-  SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                     std::shared_ptr<AbstractMotor> irightSideMotor,
-                     double imaxOutput = 127);
-
-  SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                     std::shared_ptr<AbstractMotor> irightSideMotor,
-                     std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                     std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                     double imaxOutput = 127);
-
-  std::shared_ptr<AbstractMotor> leftSideMotor;
-  std::shared_ptr<AbstractMotor> rightSideMotor;
-  std::shared_ptr<ContinuousRotarySensor> leftSensor;
-  std::shared_ptr<ContinuousRotarySensor> rightSensor;
-  const double maxOutput;
-};
-
 class SkidSteerModel : public ChassisModel {
   public:
   /**
@@ -63,8 +43,6 @@ class SkidSteerModel : public ChassisModel {
                  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                  std::shared_ptr<ContinuousRotarySensor> irightEnc,
                  double imaxOutput = 127);
-
-  explicit SkidSteerModel(const SkidSteerModelArgs &iparams);
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.

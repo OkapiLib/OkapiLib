@@ -13,8 +13,8 @@ AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<Abstr
                                                            const TimeUtil &itimeUtil)
   : logger(Logger::instance()),
     motor(imotor),
-    settledUtil(std::move(itimeUtil.getSettledUtil())),
-    rate(std::move(itimeUtil.getRate())) {
+    settledUtil(itimeUtil.getSettledUtil()),
+    rate(itimeUtil.getRate()) {
 }
 
 void AsyncPosIntegratedController::setTarget(const double itarget) {

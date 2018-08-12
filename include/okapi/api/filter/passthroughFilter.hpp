@@ -11,8 +11,6 @@
 #include "okapi/api/filter/filter.hpp"
 
 namespace okapi {
-class PassthroughFilterArgs : public FilterArgs {};
-
 class PassthroughFilter : public Filter {
   public:
   /**
