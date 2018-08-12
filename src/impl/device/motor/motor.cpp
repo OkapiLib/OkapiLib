@@ -15,7 +15,9 @@ Motor::Motor(const std::int8_t port)
   : Motor(std::abs(port), port < 0, AbstractMotor::gearset::red) {
 }
 
-Motor::Motor(const std::uint8_t port, const bool reverse, const AbstractMotor::gearset igearset,
+Motor::Motor(const std::uint8_t port,
+             const bool reverse,
+             const AbstractMotor::gearset igearset,
              const AbstractMotor::encoderUnits encoderUnits)
   : pros::Motor(port,
                 gearset == AbstractMotor::gearset::red

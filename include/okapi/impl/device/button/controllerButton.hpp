@@ -16,7 +16,8 @@ class ControllerButton : public ButtonBase {
   public:
   ControllerButton(const controller_digital_e_t ibtn, const bool iinverted = false);
 
-  ControllerButton(const controller_id_e_t icontroller, const controller_digital_e_t ibtn,
+  ControllerButton(const controller_id_e_t icontroller,
+                   const controller_digital_e_t ibtn,
                    const bool iinverted = false);
 
   protected:

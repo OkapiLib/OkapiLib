@@ -8,7 +8,8 @@
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
 
 namespace okapi {
-ADIEncoder::ADIEncoder(const std::uint8_t iportTop, const std::uint8_t iportBottom,
+ADIEncoder::ADIEncoder(const std::uint8_t iportTop,
+                       const std::uint8_t iportBottom,
                        const bool ireversed)
   : enc(iportTop, iportBottom, ireversed) {
 }

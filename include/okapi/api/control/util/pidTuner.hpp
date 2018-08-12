@@ -26,10 +26,20 @@ class PIDTuner {
   };
 
   PIDTuner(std::shared_ptr<ControllerInput<double>> iinput,
-           std::shared_ptr<ControllerOutput<double>> ioutput, const TimeUtil &itimeUtil,
-           QTime itimeout, std::int32_t igoal, double ikPMin, double ikPMax, double ikIMin,
-           double ikIMax, double ikDMin, double ikDMax, std::int32_t inumIterations = 5,
-           std::int32_t inumParticles = 16, double ikSettle = 1, double ikITAE = 2);
+           std::shared_ptr<ControllerOutput<double>> ioutput,
+           const TimeUtil &itimeUtil,
+           QTime itimeout,
+           std::int32_t igoal,
+           double ikPMin,
+           double ikPMax,
+           double ikIMin,
+           double ikIMax,
+           double ikDMin,
+           double ikDMax,
+           std::int32_t inumIterations = 5,
+           std::int32_t inumParticles = 16,
+           double ikSettle = 1,
+           double ikITAE = 2);
 
   virtual ~PIDTuner();
 

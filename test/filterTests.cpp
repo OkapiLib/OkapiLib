@@ -185,15 +185,15 @@ void testVelMathFunctionality(VelMath &velMath) {
 }
 
 TEST(VelMathTest, OutputTest) {
-  VelMath velMath(360, std::make_shared<PassthroughFilter>(),
-                  std::make_unique<ConstantMockTimer>(10_ms));
+  VelMath velMath(
+    360, std::make_shared<PassthroughFilter>(), std::make_unique<ConstantMockTimer>(10_ms));
 
   testVelMathFunctionality(velMath);
 }
 
 TEST(VelMathTest, SetTPRTest) {
-  VelMath velMath(1, std::make_shared<PassthroughFilter>(),
-                  std::make_unique<ConstantMockTimer>(10_ms));
+  VelMath velMath(
+    1, std::make_shared<PassthroughFilter>(), std::make_unique<ConstantMockTimer>(10_ms));
   velMath.setTicksPerRev(360);
 
   testVelMathFunctionality(velMath);

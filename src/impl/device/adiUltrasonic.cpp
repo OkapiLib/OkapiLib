@@ -12,7 +12,8 @@ ADIUltrasonic::ADIUltrasonic(const uint8_t iportTop, const uint8_t iportBottom)
   : ADIUltrasonic(iportTop, iportBottom, std::make_unique<MedianFilter<5>>()) {
 }
 
-ADIUltrasonic::ADIUltrasonic(const std::uint8_t iportTop, const std::uint8_t iportBottom,
+ADIUltrasonic::ADIUltrasonic(const std::uint8_t iportTop,
+                             const std::uint8_t iportBottom,
                              std::unique_ptr<Filter> ifilter)
   : ultra(iportBottom, iportTop), filter(std::move(ifilter)) {
 }

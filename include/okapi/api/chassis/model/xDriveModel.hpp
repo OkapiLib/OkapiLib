@@ -18,14 +18,16 @@ class XDriveModelArgs : public ChassisModelArgs {
   XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
                   std::shared_ptr<AbstractMotor> itopRightMotor,
                   std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                  std::shared_ptr<AbstractMotor> ibottomLeftMotor, double imaxOutput = 127);
+                  std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+                  double imaxOutput = 127);
 
   XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
                   std::shared_ptr<AbstractMotor> itopRightMotor,
                   std::shared_ptr<AbstractMotor> ibottomRightMotor,
                   std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                   std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                  std::shared_ptr<ContinuousRotarySensor> irightEnc, double imaxOutput = 127);
+                  std::shared_ptr<ContinuousRotarySensor> irightEnc,
+                  double imaxOutput = 127);
 
   std::shared_ptr<AbstractMotor> topLeftMotor;
   std::shared_ptr<AbstractMotor> topRightMotor;
@@ -53,7 +55,8 @@ class XDriveModel : public ChassisModel {
   XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
               std::shared_ptr<AbstractMotor> itopRightMotor,
               std::shared_ptr<AbstractMotor> ibottomRightMotor,
-              std::shared_ptr<AbstractMotor> ibottomLeftMotor, double imaxOutput = 127);
+              std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+              double imaxOutput = 127);
 
   /**
    * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
@@ -71,7 +74,8 @@ class XDriveModel : public ChassisModel {
               std::shared_ptr<AbstractMotor> ibottomRightMotor,
               std::shared_ptr<AbstractMotor> ibottomLeftMotor,
               std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-              std::shared_ptr<ContinuousRotarySensor> irightEnc, double imaxOutput = 127);
+              std::shared_ptr<ContinuousRotarySensor> irightEnc,
+              double imaxOutput = 127);
 
   explicit XDriveModel(const XDriveModelArgs &iparams);
 
@@ -131,8 +135,8 @@ class XDriveModel : public ChassisModel {
    * @param izRotation speed around z axis (up)
    * @param ithreshold deadband on joystick values
    */
-  virtual void xArcade(double ixSpeed, double iySpeed, double izRotation,
-                       double ithreshold = 0) const;
+  virtual void
+  xArcade(double ixSpeed, double iySpeed, double izRotation, double ithreshold = 0) const;
 
   /**
    * Power the left side motors. Uses velocity mode.
