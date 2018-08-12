@@ -64,7 +64,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    *
    * @return the last target
    */
-  Output getTarget() override {
+  Input getTarget() override {
     return controller->getTarget();
   }
 
