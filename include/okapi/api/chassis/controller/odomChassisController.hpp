@@ -51,9 +51,9 @@ class OdomChassisController : public virtual ChassisController {
   virtual void turnToAngle(QAngle iangle) = 0;
 
   /**
-   * Passthrough to internal Odometry object.
+   * Returns the current state.
    *
-   * @return state from internal Odometry object
+   * @return current state
    */
   virtual OdomState getState() const;
 
