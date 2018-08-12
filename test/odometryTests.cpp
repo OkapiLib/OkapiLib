@@ -34,9 +34,9 @@ class MockModel : public SkidSteerModel {
 };
 
 void assertOdomStateEquals(Odometry *odom, double x, double y, double theta) {
-  EXPECT_NEAR(odom->getState().x, x, 1e-8);
-  EXPECT_NEAR(odom->getState().y, y, 1e-8);
-  EXPECT_NEAR(odom->getState().theta, theta, 1e-8);
+  EXPECT_NEAR(odom->getState().x.convert(meter), x, 1e-8);
+  EXPECT_NEAR(odom->getState().y.convert(meter), y, 1e-8);
+  EXPECT_NEAR(odom->getState().theta.convert(degree), theta, 1e-8);
 }
 
 class OdometryTest : public ::testing::Test {

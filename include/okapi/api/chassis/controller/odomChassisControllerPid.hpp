@@ -39,6 +39,7 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
                            std::unique_ptr<IterativePosPIDController> idistanceController,
                            std::unique_ptr<IterativePosPIDController> iangleController,
                            std::unique_ptr<IterativePosPIDController> iturnController,
+                           AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
                            QLength imoveThreshold = 10_mm);
 
   /**

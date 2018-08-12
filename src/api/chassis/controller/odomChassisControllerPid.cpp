@@ -15,11 +15,14 @@ OdomChassisControllerPID::OdomChassisControllerPID(
   std::unique_ptr<Odometry> iodometry,
   std::unique_ptr<IterativePosPIDController> idistanceController,
   std::unique_ptr<IterativePosPIDController> iangleController,
-  std::unique_ptr<IterativePosPIDController> iturnController, const QLength imoveThreshold)
+  std::unique_ptr<IterativePosPIDController> iturnController,
+  AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales,
+  const QLength imoveThreshold)
   : ChassisController(imodel),
     OdomChassisController(imodel, std::move(iodometry), imoveThreshold),
     ChassisControllerPID(itimeUtil, imodel, std::move(idistanceController),
-                         std::move(iangleController), std::move(iturnController)),
+                         std::move(iangleController), std::move(iturnController), igearset,
+                         iscales),
     logger(Logger::instance()) {
 }
 

@@ -13,13 +13,14 @@
 using namespace okapi;
 
 void assertOdomStateEquals(double x, double y, double theta, const OdomState &actual) {
-  EXPECT_DOUBLE_EQ(actual.x, x);
-  EXPECT_DOUBLE_EQ(actual.y, y);
-  EXPECT_DOUBLE_EQ(actual.theta, theta);
+  EXPECT_DOUBLE_EQ(actual.x.convert(meter), x);
+  EXPECT_DOUBLE_EQ(actual.y.convert(meter), y);
+  EXPECT_DOUBLE_EQ(actual.theta.convert(degree), theta);
 }
 
 void assertOdomStateEquals(const OdomState &expected, const OdomState &actual) {
-  assertOdomStateEquals(expected.x, expected.y, expected.theta, actual);
+  assertOdomStateEquals(expected.x.convert(meter), expected.y.convert(meter),
+                        expected.theta.convert(degree), actual);
 }
 
 class OdomChassisControllerIntegratedTest : public ::testing::Test {
@@ -42,7 +43,8 @@ class OdomChassisControllerIntegratedTest : public ::testing::Test {
     drive = new OdomChassisControllerIntegrated(
       createTimeUtil(), modelPtr, std::unique_ptr<Odometry>(odom),
       std::unique_ptr<AsyncPosIntegratedController>(leftController),
-      std::unique_ptr<AsyncPosIntegratedController>(rightController));
+      std::unique_ptr<AsyncPosIntegratedController>(rightController), AbstractMotor::gearset::red,
+      {1, 1});
   }
 
   void TearDown() override {
@@ -63,8 +65,8 @@ class OdomChassisControllerIntegratedTest : public ::testing::Test {
 TEST_F(OdomChassisControllerIntegratedTest, MoveBelowThreshold) {
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 
-  drive->setMoveThreshold(5);
-  drive->driveToPoint(4, 0);
+  drive->setMoveThreshold(5_m);
+  drive->driveToPoint(4_m, 0_m);
 
   EXPECT_DOUBLE_EQ(leftController->getTarget(), 0);
   EXPECT_DOUBLE_EQ(rightController->getTarget(), 0);
@@ -73,8 +75,8 @@ TEST_F(OdomChassisControllerIntegratedTest, MoveBelowThreshold) {
 TEST_F(OdomChassisControllerIntegratedTest, MoveAboveThreshold) {
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 
-  drive->setMoveThreshold(5);
-  drive->driveToPoint(6, 0);
+  drive->setMoveThreshold(5_m);
+  drive->driveToPoint(6_m, 0_m);
 
   EXPECT_DOUBLE_EQ(leftController->getTarget(), 6);
   EXPECT_DOUBLE_EQ(rightController->getTarget(), 6);
@@ -84,7 +86,7 @@ TEST_F(OdomChassisControllerIntegratedTest, SetStateTest) {
   auto stateBefore = drive->getState();
   assertOdomStateEquals(0, 0, 0, stateBefore);
 
-  OdomState newState(1, 2, 3);
+  OdomState newState{1_m, 2_m, 3_deg};
   drive->setState(newState);
 
   auto stateAfter = drive->getState();
@@ -113,7 +115,8 @@ class OdomChassisControllerPIDTest : public ::testing::Test {
       new OdomChassisControllerPID(createTimeUtil(), modelPtr, std::unique_ptr<Odometry>(odom),
                                    std::unique_ptr<IterativePosPIDController>(distanceController),
                                    std::unique_ptr<IterativePosPIDController>(angleController),
-                                   std::unique_ptr<IterativePosPIDController>(turnController));
+                                   std::unique_ptr<IterativePosPIDController>(turnController),
+                                   AbstractMotor::gearset::red, {1, 1});
   }
 
   void TearDown() override {
@@ -135,8 +138,8 @@ class OdomChassisControllerPIDTest : public ::testing::Test {
 TEST_F(OdomChassisControllerPIDTest, MoveBelowThreshold) {
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 
-  drive->setMoveThreshold(5);
-  drive->driveToPoint(4, 0);
+  drive->setMoveThreshold(5_m);
+  drive->driveToPoint(4_m, 0_m);
 
   EXPECT_DOUBLE_EQ(distanceController->getTarget(), 0);
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
@@ -146,8 +149,8 @@ TEST_F(OdomChassisControllerPIDTest, MoveBelowThreshold) {
 TEST_F(OdomChassisControllerPIDTest, MoveAboveThreshold) {
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 
-  drive->setMoveThreshold(5);
-  drive->driveToPoint(6, 0);
+  drive->setMoveThreshold(5_m);
+  drive->driveToPoint(6_m, 0_m);
 
   EXPECT_DOUBLE_EQ(distanceController->getTarget(), 6);
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
@@ -158,7 +161,7 @@ TEST_F(OdomChassisControllerPIDTest, SetStateTest) {
   auto stateBefore = drive->getState();
   assertOdomStateEquals(0, 0, 0, stateBefore);
 
-  OdomState newState(1, 2, 3);
+  OdomState newState{1_m, 2_m, 3_deg};
   drive->setState(newState);
 
   auto stateAfter = drive->getState();
