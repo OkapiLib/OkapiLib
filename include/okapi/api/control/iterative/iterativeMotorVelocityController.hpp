@@ -37,6 +37,13 @@ class IterativeMotorVelocityController : public IterativeVelocityController<doub
   void setTarget(double itarget) override;
 
   /**
+   * Gets the last set target, or the default target if none was set.
+   *
+   * @return the last target
+   */
+  double getTarget() override;
+
+  /**
    * Returns the last calculated output of the controller.
    */
   double getOutput() const override;
