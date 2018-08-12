@@ -9,8 +9,10 @@
 #include <cmath>
 
 namespace okapi {
-SettledUtil::SettledUtil(std::unique_ptr<AbstractTimer> iatTargetTimer, const double iatTargetError,
-                         const double iatTargetDerivative, const QTime iatTargetTime)
+SettledUtil::SettledUtil(std::unique_ptr<AbstractTimer> iatTargetTimer,
+                         const double iatTargetError,
+                         const double iatTargetDerivative,
+                         const QTime iatTargetTime)
   : atTargetError(iatTargetError),
     atTargetDerivative(iatTargetDerivative),
     atTargetTime(iatTargetTime),

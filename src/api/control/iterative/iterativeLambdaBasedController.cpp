@@ -9,7 +9,8 @@
 
 namespace okapi {
 IterativeLambdaBasedController::IterativeLambdaBasedController(
-  std::function<double(double)> istepFunction, const TimeUtil &itimeUtil)
+  std::function<double(double)> istepFunction,
+  const TimeUtil &itimeUtil)
   : stepFunction(istepFunction),
     loopDtTimer(itimeUtil.getTimer()),
     settledUtil(itimeUtil.getSettledUtil()) {

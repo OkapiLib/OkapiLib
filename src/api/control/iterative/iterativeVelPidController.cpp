@@ -11,7 +11,8 @@
 #include <cmath>
 
 namespace okapi {
-IterativeVelPIDController::IterativeVelPIDController(const double ikP, const double ikD,
+IterativeVelPIDController::IterativeVelPIDController(const double ikP,
+                                                     const double ikD,
                                                      const double ikF,
                                                      std::unique_ptr<VelMath> ivelMath,
                                                      const TimeUtil &itimeUtil,

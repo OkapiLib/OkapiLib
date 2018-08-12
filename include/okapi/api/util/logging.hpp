@@ -24,7 +24,8 @@ class Logger {
    * @param logfileName The name of the log file to open.
    * @param level The log level. Log statements above this level will be disabled.
    */
-  static void initialize(std::unique_ptr<AbstractTimer> itimer, std::string_view filename,
+  static void initialize(std::unique_ptr<AbstractTimer> itimer,
+                         std::string_view filename,
                          LogLevel level) noexcept;
 
   /**
@@ -35,8 +36,8 @@ class Logger {
    * @param logfileName The name of the log file to open.
    * @param level The log level. Log statements above this level will be disabled.
    */
-  static void initialize(std::unique_ptr<AbstractTimer> itimer, FILE *file,
-                         LogLevel level) noexcept;
+  static void
+  initialize(std::unique_ptr<AbstractTimer> itimer, FILE *file, LogLevel level) noexcept;
 
   /**
    * Get the logger instance.

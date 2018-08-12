@@ -26,7 +26,8 @@ VelMath::VelMath(const VelMathArgs &iparams, std::unique_ptr<AbstractTimer> iloo
   : VelMath(iparams.ticksPerRev, iparams.filter, std::move(iloopDtTimer)) {
 }
 
-VelMath::VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter,
+VelMath::VelMath(const double iticksPerRev,
+                 std::shared_ptr<Filter> ifilter,
                  std::unique_ptr<AbstractTimer> iloopDtTimer)
   : logger(Logger::instance()),
     ticksPerRev(iticksPerRev),

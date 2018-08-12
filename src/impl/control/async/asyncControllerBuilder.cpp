@@ -88,14 +88,17 @@ AsyncControllerBuilder &AsyncControllerBuilder::filter(std::shared_ptr<Filter> i
 //                                                     //
 // //////////////////////////////////////////////////////
 
-AsyncControllerBuilder &AsyncControllerBuilder::posPid(const double ikP, const double ikI,
-                                                       const double ikD, const double ikBias) {
+AsyncControllerBuilder &AsyncControllerBuilder::posPid(const double ikP,
+                                                       const double ikI,
+                                                       const double ikD,
+                                                       const double ikBias) {
   m_controllers.emplace_back(
     std::make_shared<IterativePosPIDController>(ikP, ikI, ikD, ikBias, timeUtil));
   return *this;
 }
 
-AsyncControllerBuilder &AsyncControllerBuilder::velPid(const double ikP, const double ikD,
+AsyncControllerBuilder &AsyncControllerBuilder::velPid(const double ikP,
+                                                       const double ikD,
                                                        const double ikF,
                                                        std::unique_ptr<VelMath> ivelMath) {
   m_controllers.emplace_back(
@@ -146,7 +149,8 @@ AsyncWrapper<double, double> AsyncControllerBuilder::build() const {
     std::shared_ptr<ControllerOutput<double>> m_output;
 
     WrappedIterativeController(
-      std::shared_ptr<ControllerInput<double>> input, std::vector<std::shared_ptr<Filter>> filters,
+      std::shared_ptr<ControllerInput<double>> input,
+      std::vector<std::shared_ptr<Filter>> filters,
       std::vector<std::shared_ptr<IterativeController<double, double>>> controllers,
       std::shared_ptr<ControllerOutput<double>> output)
       : m_input(input), m_controllers(controllers), m_output(output) {
@@ -182,8 +186,11 @@ AsyncWrapper<double, double> AsyncControllerBuilder::build() const {
                            std::shared_ptr<ControllerOutput<double>> output,
                            std::unique_ptr<IterativeLambdaBasedController> controller,
                            const TimeUtil &timeUtil)
-      : AsyncWrapper<double, double>(input, output, std::move(controller),
-                                     timeUtil.getRateSupplier(), timeUtil.getSettledUtil()),
+      : AsyncWrapper<double, double>(input,
+                                     output,
+                                     std::move(controller),
+                                     timeUtil.getRateSupplier(),
+                                     timeUtil.getSettledUtil()),
         m_input(input),
         m_output(output) {
     }
@@ -194,7 +201,8 @@ AsyncWrapper<double, double> AsyncControllerBuilder::build() const {
   };
 
   return WrappedAsyncController(
-    m_input, m_output,
+    m_input,
+    m_output,
     std::make_unique<IterativeLambdaBasedController>(
       WrappedIterativeController(m_input, m_filters, m_controllers, m_output), timeUtil),
     timeUtil);

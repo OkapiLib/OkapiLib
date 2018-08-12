@@ -30,12 +30,14 @@ void ChassisController::stop() {
   model->stop();
 }
 
-void ChassisController::tank(const double ileftSpeed, const double irightSpeed,
+void ChassisController::tank(const double ileftSpeed,
+                             const double irightSpeed,
                              const double ithreshold) const {
   model->tank(ileftSpeed, irightSpeed, ithreshold);
 }
 
-void ChassisController::arcade(const double iySpeed, const double izRotation,
+void ChassisController::arcade(const double iySpeed,
+                               const double izRotation,
                                const double ithreshold) const {
   model->arcade(iySpeed, izRotation, ithreshold);
 }

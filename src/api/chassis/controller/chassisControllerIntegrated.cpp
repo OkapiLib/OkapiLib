@@ -9,10 +9,12 @@
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
-  const TimeUtil &itimeUtil, std::shared_ptr<ChassisModel> imodel,
+  const TimeUtil &itimeUtil,
+  std::shared_ptr<ChassisModel> imodel,
   std::unique_ptr<AsyncPosIntegratedController> ileftController,
   std::unique_ptr<AsyncPosIntegratedController> irightController,
-  AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
+  AbstractMotor::GearsetRatioPair igearset,
+  const ChassisScales &iscales)
   : ChassisController(imodel),
     logger(Logger::instance()),
     rate(itimeUtil.getRate()),

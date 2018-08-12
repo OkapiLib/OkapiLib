@@ -28,7 +28,10 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
    * @param iderivativeFilter a filter for filtering the derivative term
    */
   IterativeVelPIDController(
-    double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath,
+    double ikP,
+    double ikD,
+    double ikF,
+    std::unique_ptr<VelMath> ivelMath,
     const TimeUtil &itimeUtil,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 

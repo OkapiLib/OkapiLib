@@ -22,7 +22,9 @@ class Motor : public AbstractMotor, public pros::Motor {
   Motor(const std::int8_t port);
 
   explicit Motor(
-    const std::uint8_t port, const bool reverse, const AbstractMotor::gearset igearset,
+    const std::uint8_t port,
+    const bool reverse,
+    const AbstractMotor::gearset igearset,
     const AbstractMotor::encoderUnits encoderUnits = AbstractMotor::encoderUnits::degrees);
 
   /**

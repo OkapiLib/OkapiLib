@@ -17,12 +17,14 @@ class SkidSteerModelArgs : public ChassisModelArgs {
   public:
   // Create the sensors using the integrated encoder
   SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                     std::shared_ptr<AbstractMotor> irightSideMotor, double imaxOutput = 127);
+                     std::shared_ptr<AbstractMotor> irightSideMotor,
+                     double imaxOutput = 127);
 
   SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
                      std::shared_ptr<AbstractMotor> irightSideMotor,
                      std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                     std::shared_ptr<ContinuousRotarySensor> irightEnc, double imaxOutput = 127);
+                     std::shared_ptr<ContinuousRotarySensor> irightEnc,
+                     double imaxOutput = 127);
 
   std::shared_ptr<AbstractMotor> leftSideMotor;
   std::shared_ptr<AbstractMotor> rightSideMotor;
@@ -44,7 +46,8 @@ class SkidSteerModel : public ChassisModel {
    * @param irightSideMotor right side motor
    */
   SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                 std::shared_ptr<AbstractMotor> irightSideMotor, double imaxOutput = 127);
+                 std::shared_ptr<AbstractMotor> irightSideMotor,
+                 double imaxOutput = 127);
 
   /**
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
@@ -58,7 +61,8 @@ class SkidSteerModel : public ChassisModel {
   SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                  std::shared_ptr<AbstractMotor> irightSideMotor,
                  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                 std::shared_ptr<ContinuousRotarySensor> irightEnc, double imaxOutput = 127);
+                 std::shared_ptr<ContinuousRotarySensor> irightEnc,
+                 double imaxOutput = 127);
 
   explicit SkidSteerModel(const SkidSteerModelArgs &iparams);
 

@@ -10,11 +10,13 @@
 
 namespace okapi {
 ChassisControllerPID::ChassisControllerPID(
-  const TimeUtil &itimeUtil, std::shared_ptr<ChassisModel> imodel,
+  const TimeUtil &itimeUtil,
+  std::shared_ptr<ChassisModel> imodel,
   std::unique_ptr<IterativePosPIDController> idistanceController,
   std::unique_ptr<IterativePosPIDController> iangleController,
   std::unique_ptr<IterativePosPIDController> iturnController,
-  const AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
+  const AbstractMotor::GearsetRatioPair igearset,
+  const ChassisScales &iscales)
   : ChassisController(imodel),
     rate(itimeUtil.getRate()),
     distancePid(std::move(idistanceController)),

@@ -39,8 +39,11 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param imodel The chassis model to control.
    * @param iwidth The chassis wheelbase width.
    */
-  AsyncMotionProfileController(const TimeUtil &itimeUtil, double imaxVel, double imaxAccel,
-                               double imaxJerk, std::shared_ptr<ChassisModel> imodel,
+  AsyncMotionProfileController(const TimeUtil &itimeUtil,
+                               double imaxVel,
+                               double imaxAccel,
+                               double imaxJerk,
+                               std::shared_ptr<ChassisModel> imodel,
                                QLength iwidth);
 
   ~AsyncMotionProfileController() override;

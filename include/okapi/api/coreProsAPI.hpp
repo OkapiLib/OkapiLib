@@ -24,7 +24,10 @@ class CrossplatformThread {
 #ifdef THREADS_STD
       thread(ptr, params)
 #else
-      thread(pros::c::task_create(ptr, params, TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT,
+      thread(pros::c::task_create(ptr,
+                                  params,
+                                  TASK_PRIORITY_DEFAULT,
+                                  TASK_STACK_DEPTH_DEFAULT,
                                   "OkapiLibCrossplatformTask"))
 #endif
   {

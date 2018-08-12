@@ -22,8 +22,12 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
   public:
   AsyncPosPIDController(
     std::shared_ptr<ControllerInput<double>> iinput,
-    std::shared_ptr<ControllerOutput<double>> ioutput, const TimeUtil &itimeUtil, double ikP,
-    double ikI, double ikD, double ikBias = 0,
+    std::shared_ptr<ControllerOutput<double>> ioutput,
+    const TimeUtil &itimeUtil,
+    double ikP,
+    double ikI,
+    double ikD,
+    double ikBias = 0,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 };
 } // namespace okapi

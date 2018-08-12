@@ -61,7 +61,11 @@ class AsyncControllerFactory {
    * @param ikBias output bias (a constant added to the output)
    */
   static AsyncPosPIDController
-  posPID(Motor imotor, double ikP, double ikI, double ikD, double ikBias = 0,
+  posPID(Motor imotor,
+         double ikP,
+         double ikI,
+         double ikD,
+         double ikBias = 0,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -75,7 +79,12 @@ class AsyncControllerFactory {
    * @param ikBias output bias (a constant added to the output)
    */
   static AsyncPosPIDController
-  posPID(Motor imotor, ADIEncoder ienc, double ikP, double ikI, double ikD, double ikBias = 0,
+  posPID(Motor imotor,
+         ADIEncoder ienc,
+         double ikP,
+         double ikI,
+         double ikD,
+         double ikBias = 0,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -89,7 +98,12 @@ class AsyncControllerFactory {
    * @param ikBias output bias (a constant added to the output)
    */
   static AsyncPosPIDController
-  posPID(Motor imotor, Potentiometer ipot, double ikP, double ikI, double ikD, double ikBias = 0,
+  posPID(Motor imotor,
+         Potentiometer ipot,
+         double ikP,
+         double ikI,
+         double ikD,
+         double ikBias = 0,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -102,7 +116,11 @@ class AsyncControllerFactory {
    * @param ikBias output bias (a constant added to the output)
    */
   static AsyncPosPIDController
-  posPID(MotorGroup imotor, double ikP, double ikI, double ikD, double ikBias = 0,
+  posPID(MotorGroup imotor,
+         double ikP,
+         double ikI,
+         double ikD,
+         double ikBias = 0,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -116,7 +134,12 @@ class AsyncControllerFactory {
    * @param ikBias output bias (a constant added to the output)
    */
   static AsyncPosPIDController
-  posPID(MotorGroup imotor, ADIEncoder ienc, double ikP, double ikI, double ikD, double ikBias = 0,
+  posPID(MotorGroup imotor,
+         ADIEncoder ienc,
+         double ikP,
+         double ikI,
+         double ikD,
+         double ikBias = 0,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -130,7 +153,11 @@ class AsyncControllerFactory {
    * @param ikBias output bias (a constant added to the output)
    */
   static AsyncPosPIDController
-  posPID(MotorGroup imotor, Potentiometer ipot, double ikP, double ikI, double ikD,
+  posPID(MotorGroup imotor,
+         Potentiometer ipot,
+         double ikP,
+         double ikI,
+         double ikD,
          double ikBias = 0,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
@@ -146,7 +173,10 @@ class AsyncControllerFactory {
    */
   static AsyncPosPIDController
   posPID(std::shared_ptr<ControllerInput<double>> iinput,
-         std::shared_ptr<ControllerOutput<double>> ioutput, double ikP, double ikI, double ikD,
+         std::shared_ptr<ControllerOutput<double>> ioutput,
+         double ikP,
+         double ikI,
+         double ikD,
          double ikBias = 0,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
@@ -159,7 +189,11 @@ class AsyncControllerFactory {
    * @param ikF feed-forward gain
    */
   static AsyncVelPIDController
-  velPID(Motor imotor, double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+  velPID(Motor imotor,
+         double ikP,
+         double ikD,
+         double ikF = 0,
+         double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -172,7 +206,11 @@ class AsyncControllerFactory {
    * @param ikF feed-forward gain
    */
   static AsyncVelPIDController
-  velPID(Motor imotor, ADIEncoder ienc, double ikP, double ikD, double ikF = 0,
+  velPID(Motor imotor,
+         ADIEncoder ienc,
+         double ikP,
+         double ikD,
+         double ikF = 0,
          double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
@@ -186,7 +224,11 @@ class AsyncControllerFactory {
    * @param ikF feed-forward gain
    */
   static AsyncVelPIDController
-  velPID(Motor imotor, Potentiometer ipot, double ikP, double ikD, double ikF = 0,
+  velPID(Motor imotor,
+         Potentiometer ipot,
+         double ikP,
+         double ikD,
+         double ikF = 0,
          double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
@@ -199,7 +241,11 @@ class AsyncControllerFactory {
    * @param ikF feed-forward gain
    */
   static AsyncVelPIDController
-  velPID(MotorGroup imotor, double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+  velPID(MotorGroup imotor,
+         double ikP,
+         double ikD,
+         double ikF = 0,
+         double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -212,7 +258,11 @@ class AsyncControllerFactory {
    * @param ikF feed-forward gain
    */
   static AsyncVelPIDController
-  velPID(MotorGroup imotor, ADIEncoder ienc, double ikP, double ikD, double ikF = 0,
+  velPID(MotorGroup imotor,
+         ADIEncoder ienc,
+         double ikP,
+         double ikD,
+         double ikF = 0,
          double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
@@ -226,7 +276,11 @@ class AsyncControllerFactory {
    * @param ikF feed-forward gain
    */
   static AsyncVelPIDController
-  velPID(MotorGroup imotor, Potentiometer ipot, double ikP, double ikD, double ikF = 0,
+  velPID(MotorGroup imotor,
+         Potentiometer ipot,
+         double ikP,
+         double ikD,
+         double ikF = 0,
          double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
@@ -241,7 +295,10 @@ class AsyncControllerFactory {
    */
   static AsyncVelPIDController
   velPID(std::shared_ptr<ControllerInput<double>> iinput,
-         std::shared_ptr<ControllerOutput<double>> ioutput, double ikP, double ikD, double ikF = 0,
+         std::shared_ptr<ControllerOutput<double>> ioutput,
+         double ikP,
+         double ikD,
+         double ikF = 0,
          double iTPR = imev5TPR,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
@@ -254,7 +311,8 @@ class AsyncControllerFactory {
    * @param imodel The chassis model to control.
    * @param iwidth The chassis wheelbase width.
    */
-  static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel,
+  static AsyncMotionProfileController motionProfile(double imaxVel,
+                                                    double imaxAccel,
                                                     double imaxJerk,
                                                     std::shared_ptr<SkidSteerModel> imodel,
                                                     QLength iwidth);
@@ -268,7 +326,8 @@ class AsyncControllerFactory {
    * @param imodel The chassis to control.
    * @param iwidth The chassis wheelbase width.
    */
-  static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel,
+  static AsyncMotionProfileController motionProfile(double imaxVel,
+                                                    double imaxAccel,
                                                     double imaxJerk,
                                                     const ChassisController &ichassis,
                                                     QLength iwidth);

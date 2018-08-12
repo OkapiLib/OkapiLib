@@ -44,7 +44,8 @@ XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
                          std::shared_ptr<AbstractMotor> ibottomRightMotor,
                          std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                          std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                         std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput)
+                         std::shared_ptr<ContinuousRotarySensor> irightEnc,
+                         const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
@@ -57,7 +58,8 @@ XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
 XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
                          std::shared_ptr<AbstractMotor> itopRightMotor,
                          std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                         std::shared_ptr<AbstractMotor> ibottomLeftMotor, const double imaxOutput)
+                         std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+                         const double imaxOutput)
   : topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
@@ -120,7 +122,8 @@ void XDriveModel::stop() {
   bottomLeftMotor->moveVelocity(0);
 }
 
-void XDriveModel::tank(const double ileftSpeed, const double irightSpeed,
+void XDriveModel::tank(const double ileftSpeed,
+                       const double irightSpeed,
                        const double ithreshold) const {
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
@@ -140,7 +143,8 @@ void XDriveModel::tank(const double ileftSpeed, const double irightSpeed,
   bottomLeftMotor->moveVoltage(leftSpeed * maxOutput);
 }
 
-void XDriveModel::arcade(const double iySpeed, const double izRotation,
+void XDriveModel::arcade(const double iySpeed,
+                         const double izRotation,
                          const double ithreshold) const {
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
@@ -185,7 +189,9 @@ void XDriveModel::arcade(const double iySpeed, const double izRotation,
   bottomLeftMotor->moveVoltage(leftOutput * maxOutput);
 }
 
-void XDriveModel::xArcade(const double ixSpeed, const double iySpeed, const double izRotation,
+void XDriveModel::xArcade(const double ixSpeed,
+                          const double iySpeed,
+                          const double izRotation,
                           const double ithreshold) const {
   double xSpeed = std::clamp(ixSpeed, -1.0, 1.0);
   if (std::abs(xSpeed) < ithreshold) {

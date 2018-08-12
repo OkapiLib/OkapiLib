@@ -31,7 +31,8 @@ class ADIUltrasonic : public ControllerInput<double> {
    * @param iportBottom bottom port
    * @param ifilter the filter to use for filtering measurements
    */
-  ADIUltrasonic(const std::uint8_t iportTop, const std::uint8_t iportBottom,
+  ADIUltrasonic(const std::uint8_t iportTop,
+                const std::uint8_t iportBottom,
                 std::shared_ptr<Filter> ifilter);
 
   virtual ~ADIUltrasonic();

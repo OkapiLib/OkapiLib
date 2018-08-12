@@ -9,9 +9,12 @@
 #include <numeric>
 
 namespace okapi {
-AsyncMotionProfileController::AsyncMotionProfileController(
-  const TimeUtil &itimeUtil, const double imaxVel, const double imaxAccel, const double imaxJerk,
-  std::shared_ptr<ChassisModel> imodel, QLength iwidth)
+AsyncMotionProfileController::AsyncMotionProfileController(const TimeUtil &itimeUtil,
+                                                           const double imaxVel,
+                                                           const double imaxAccel,
+                                                           const double imaxJerk,
+                                                           std::shared_ptr<ChassisModel> imodel,
+                                                           QLength iwidth)
   : maxVel(imaxVel),
     maxAccel(imaxAccel),
     maxJerk(imaxJerk),
@@ -49,8 +52,15 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
 
   TrajectoryCandidate candidate;
   logger->info("AsyncMotionProfileController: Preparing trajectory");
-  pathfinder_prepare(points.data(), static_cast<int>(points.size()), FIT_HERMITE_CUBIC,
-                     PATHFINDER_SAMPLES_FAST, 0.001, maxVel, maxAccel, maxJerk, &candidate);
+  pathfinder_prepare(points.data(),
+                     static_cast<int>(points.size()),
+                     FIT_HERMITE_CUBIC,
+                     PATHFINDER_SAMPLES_FAST,
+                     0.001,
+                     maxVel,
+                     maxAccel,
+                     maxJerk,
+                     &candidate);
 
   const int length = candidate.length;
 
@@ -62,7 +72,9 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
 
     std::string message =
       "AsyncMotionProfileController: Path is impossible with waypoints: " +
-      std::accumulate(std::next(points.begin()), points.end(), pointToString(points.at(0)),
+      std::accumulate(std::next(points.begin()),
+                      points.end(),
+                      pointToString(points.at(0)),
                       [&](std::string a, Waypoint b) { return a + ", " + pointToString(b); });
 
     logger->error(message);

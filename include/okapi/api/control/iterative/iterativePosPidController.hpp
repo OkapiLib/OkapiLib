@@ -40,7 +40,11 @@ class IterativePosPIDController : public IterativePositionController<double, dou
    * @param iderivativeFilter a filter for filtering the derivative term
    */
   IterativePosPIDController(
-    double ikP, double ikI, double ikD, double ikBias, const TimeUtil &itimeUtil,
+    double ikP,
+    double ikI,
+    double ikD,
+    double ikBias,
+    const TimeUtil &itimeUtil,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -51,7 +55,8 @@ class IterativePosPIDController : public IterativePositionController<double, dou
    * @param iderivativeFilter a filter for filtering the derivative term
    */
   IterativePosPIDController(
-    const Gains &igains, const TimeUtil &itimeUtil,
+    const Gains &igains,
+    const TimeUtil &itimeUtil,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**

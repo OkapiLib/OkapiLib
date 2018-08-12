@@ -46,8 +46,8 @@ class AsyncControllerBuilder {
 
   AsyncControllerBuilder &posPid(double ikP, double ikI, double ikD, double ikBias = 0);
 
-  AsyncControllerBuilder &velPid(double ikP, double ikD, double ikF,
-                                 std::unique_ptr<VelMath> ivelMath);
+  AsyncControllerBuilder &
+  velPid(double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath);
 
   AsyncControllerBuilder &lambda(std::function<double(double)> istepFunction);
 
