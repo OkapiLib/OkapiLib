@@ -109,7 +109,8 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
 
   logger->info("ChassisControllerPID: moving " + std::to_string(newTarget) + " motor degrees");
 
-  distancePid->setTarget(newTarget);
+  const auto enc = model->getSensorVals();
+  distancePid->setTarget(newTarget + ((enc[0] + enc[1]) / 2.0));
   anglePid->setTarget(0);
 
   doneLooping = false;
@@ -144,6 +145,7 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
 
   logger->info("ChassisControllerPID: turning " + std::to_string(newTarget) + " motor degrees");
 
+  const auto enc = model->getSensorVals();
   turnPid->setTarget(newTarget);
 
   doneLooping = false;
