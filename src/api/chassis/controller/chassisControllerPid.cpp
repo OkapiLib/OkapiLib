@@ -53,14 +53,9 @@ void ChassisControllerPID::loop() {
      * waitUntilSettled
      */
     if (!doneLooping) {
-      if (mode != pastMode) {
-        logger->debug("ChassisControllerPID: Changed mode");
-
+      if (mode != pastMode || newMovement) {
         encStartVals = model->getSensorVals();
-        distancePid->reset();
-        anglePid->reset();
-        turnPid->reset();
-        model->stop();
+        newMovement = false;
       }
 
       switch (mode) {
@@ -69,14 +64,14 @@ void ChassisControllerPID::loop() {
         distanceElapsed = static_cast<double>((encVals[0] + encVals[1])) / 2.0;
         angleChange = static_cast<double>(encVals[0] - encVals[1]);
         model->driveVector(distancePid->step(distanceElapsed), anglePid->step(angleChange));
-
         break;
+
       case angle:
         encVals = model->getSensorVals() - encStartVals;
         angleChange = static_cast<double>(encVals[0] - encVals[1]);
         model->rotate(turnPid->step(angleChange));
-
         break;
+
       default:
         break;
       }
@@ -113,6 +108,7 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   anglePid->setTarget(0);
 
   doneLooping = false;
+  newMovement = true;
 }
 
 void ChassisControllerPID::moveDistanceAsync(const double itarget) {
@@ -147,6 +143,7 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   turnPid->setTarget(newTarget);
 
   doneLooping = false;
+  newMovement = true;
 }
 
 void ChassisControllerPID::turnAngleAsync(const double idegTarget) {
@@ -182,13 +179,11 @@ void ChassisControllerPID::waitUntilSettled() {
       completelySettled = true;
       break;
     }
-
-    // Only disable the controllers and stop if we are totally settled and won't try again
-    if (completelySettled) {
-      stopAfterSettled();
-    }
   }
 
+  stopAfterSettled();
+  mode = none;
+  doneLooping = true;
   logger->info("ChassisControllerPID: Done waiting to settle");
 }
 
@@ -237,7 +232,6 @@ bool ChassisControllerPID::waitForAngleSettled() {
 }
 
 void ChassisControllerPID::stopAfterSettled() {
-  doneLooping = true;
   distancePid->flipDisable(true);
   anglePid->flipDisable(true);
   turnPid->flipDisable(true);

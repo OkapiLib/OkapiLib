@@ -25,19 +25,23 @@ void opcontrol() {
 
   Logger::initialize(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug);
 
-  {
-    auto model =
-      std::make_shared<SkidSteerModel>(std::make_shared<Motor>(-1), std::make_shared<Motor>(2));
-    auto cnt = AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, model, 10.5_in);
+  //  {
+  //    auto model =
+  //      std::make_shared<SkidSteerModel>(std::make_shared<Motor>(-1), std::make_shared<Motor>(2));
+  //    auto cnt = AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, model, 10.5_in);
+  //
+  //    cnt.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
+  //    cnt.setTarget("B");
+  //    cnt.waitUntilSettled();
+  //  }
 
-    cnt.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
-    cnt.setTarget("B");
-    cnt.waitUntilSettled();
-  }
-
-  auto drive =
-    ChassisControllerFactory::create(-1, 2, AbstractMotor::gearset::red, {2.5_in, 10.5_in});
-  drive.moveDistanceAsync(2_in);
+  auto drive = ChassisControllerFactory::create(-1,
+                                                2,
+                                                IterativePosPIDController::Gains{0.01, 0, 0, 0},
+                                                IterativePosPIDController::Gains{0, 0, 0, 0},
+                                                IterativePosPIDController::Gains{0.007, 0, 0, 0},
+                                                AbstractMotor::gearset::red,
+                                                {2.5_in, 10.5_in});
   drive.waitUntilSettled();
 
   //  runHeadlessTests();

@@ -112,6 +112,7 @@ void IterativeVelPIDController::reset() {
   logger->info("IterativeVelPIDController: Reset");
   error = 0;
   output = 0;
+  settledUtil->reset();
 }
 
 void IterativeVelPIDController::flipDisable() {

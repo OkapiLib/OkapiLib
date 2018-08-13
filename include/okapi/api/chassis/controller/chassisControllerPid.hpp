@@ -118,6 +118,7 @@ class ChassisControllerPID : public virtual ChassisController {
   const double turnScale;
   bool doneLooping{true};
   bool dtorCalled{false};
+  bool newMovement{false};
 
   static void trampoline(void *context);
   void loop();
