@@ -183,6 +183,7 @@ void ChassisControllerPID::waitUntilSettled() {
 
   stopAfterSettled();
   mode = none;
+  doneLooping = true;
   logger->info("ChassisControllerPID: Done waiting to settle");
 }
 
