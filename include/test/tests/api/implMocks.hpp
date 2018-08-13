@@ -269,44 +269,10 @@ class MockIterativeController : public IterativePosPIDController {
   public:
   MockIterativeController();
 
-  double step(double inewReading) override;
-
-  void setTarget(double itarget) override;
-
-  double getOutput() const override;
-
-  double getError() const override;
+  MockIterativeController(double ikP);
 
   bool isSettled() override;
 
-  void setGains(double ikP, double ikI, double ikD, double ikBias) override;
-
-  void setSampleTime(QTime isampleTime) override;
-
-  void setOutputLimits(double imax, double imin) override;
-
-  void setIntegralLimits(double imax, double imin) override;
-
-  void setErrorSumLimits(double imax, double imin) override;
-
-  void reset() override;
-
-  void setIntegratorReset(bool iresetOnZero) override;
-
-  void flipDisable() override;
-
-  void flipDisable(bool iisDisabled) override;
-
-  bool isDisabled() const override;
-
-  QTime getSampleTime() const override;
-
-  double output{0};
-  QTime sampleTime = 10_ms;
-  double maxOutput{1};
-  double minOutput{-1};
-  double target{0};
-  bool disabled{false};
   bool isSettledOverride{true};
 };
 

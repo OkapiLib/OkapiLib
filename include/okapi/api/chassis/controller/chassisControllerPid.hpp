@@ -105,6 +105,8 @@ class ChassisControllerPID : public virtual ChassisController {
    */
   void stop() override;
 
+  void startThread();
+
   protected:
   Logger *logger;
   std::unique_ptr<AbstractRate> rate;
@@ -114,7 +116,6 @@ class ChassisControllerPID : public virtual ChassisController {
   const double gearRatio;
   const double straightScale;
   const double turnScale;
-  CrossplatformThread task;
   bool doneLooping{true};
   bool dtorCalled{false};
 
@@ -127,6 +128,8 @@ class ChassisControllerPID : public virtual ChassisController {
 
   typedef enum { distance, angle, none } modeType;
   modeType mode{none};
+
+  CrossplatformThread *task{nullptr};
 };
 } // namespace okapi
 
