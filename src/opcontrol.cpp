@@ -42,6 +42,12 @@ void opcontrol() {
                                                 IterativePosPIDController::Gains{0.007, 0, 0, 0},
                                                 AbstractMotor::gearset::red,
                                                 {2.5_in, 10.5_in});
+  drive.startThread();
+  drive.moveDistanceAsync(2_in);
+  drive.waitUntilSettled();
+  drive.moveDistanceAsync(2_in);
+  drive.waitUntilSettled();
+  drive.moveDistanceAsync(2_in);
   drive.waitUntilSettled();
 
   //  runHeadlessTests();
