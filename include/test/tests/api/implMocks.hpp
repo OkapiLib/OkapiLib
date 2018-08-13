@@ -232,36 +232,12 @@ class SimulatedSystem : public ControllerInput<double>, public ControllerOutput<
 
 class MockAsyncController : public AsyncPosIntegratedController {
   public:
-  MockAsyncController()
-    : AsyncPosIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
-  }
+  MockAsyncController();
 
-  explicit MockAsyncController(const TimeUtil &itimeUtil)
-    : AsyncPosIntegratedController(std::make_shared<MockMotor>(), itimeUtil) {
-  }
-
-  void waitUntilSettled() override;
-
-  void setTarget(double itarget) override;
-
-  double getError() const override;
+  explicit MockAsyncController(const TimeUtil &itimeUtil);
 
   bool isSettled() override;
 
-  void reset() override;
-
-  void flipDisable() override;
-
-  void flipDisable(bool iisDisabled) override;
-
-  bool isDisabled() const override;
-
-  double output{0};
-  QTime sampleTime = 10_ms;
-  double maxOutput{1};
-  double minOutput{-1};
-  double target{0};
-  bool disabled{false};
   bool isSettledOverride{true};
 };
 

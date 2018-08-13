@@ -368,34 +368,16 @@ void SimulatedSystem::join() {
   thread.join();
 }
 
-void MockAsyncController::waitUntilSettled() {
+MockAsyncController::MockAsyncController()
+  : AsyncPosIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
 }
 
-void MockAsyncController::setTarget(double itarget) {
-  target = itarget;
-}
-
-double MockAsyncController::getError() const {
-  return 0;
+MockAsyncController::MockAsyncController(const TimeUtil &itimeUtil)
+  : AsyncPosIntegratedController(std::make_shared<MockMotor>(), itimeUtil) {
 }
 
 bool MockAsyncController::isSettled() {
-  return isSettledOverride;
-}
-
-void MockAsyncController::reset() {
-}
-
-void MockAsyncController::flipDisable() {
-  disabled = !disabled;
-}
-
-void MockAsyncController::flipDisable(bool iisDisabled) {
-  disabled = iisDisabled;
-}
-
-bool MockAsyncController::isDisabled() const {
-  return disabled;
+  return isSettledOverride || AsyncPosIntegratedController::isSettled();
 }
 
 MockIterativeController::MockIterativeController()
