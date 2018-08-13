@@ -114,9 +114,9 @@ class ChassisControllerPID : public virtual ChassisController {
   const double gearRatio;
   const double straightScale;
   const double turnScale;
-  CrossplatformThread task;
   bool doneLooping{true};
   bool dtorCalled{false};
+  bool newMovement{false};
 
   static void trampoline(void *context);
   void loop();
@@ -125,8 +125,10 @@ class ChassisControllerPID : public virtual ChassisController {
   bool waitForAngleSettled();
   void stopAfterSettled();
 
-  typedef enum { distance, angle } modeType;
-  modeType mode;
+  typedef enum { distance, angle, none } modeType;
+  modeType mode{none};
+
+  CrossplatformThread task;
 };
 } // namespace okapi
 

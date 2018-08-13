@@ -37,16 +37,11 @@ void opcontrol() {
 
   auto drive = ChassisControllerFactory::create(-1,
                                                 2,
-                                                IterativePosPIDController::Gains{0.01, 0, 0},
-                                                IterativePosPIDController::Gains{0, 0, 0},
-                                                IterativePosPIDController::Gains{0.01, 0, 0},
+                                                IterativePosPIDController::Gains{0.01, 0, 0, 0},
+                                                IterativePosPIDController::Gains{0, 0, 0, 0},
+                                                IterativePosPIDController::Gains{0.007, 0, 0, 0},
                                                 AbstractMotor::gearset::red,
                                                 {2.5_in, 10.5_in});
-  drive.turnAngleAsync(20_deg);
-  drive.waitUntilSettled();
-  drive.turnAngleAsync(20_deg);
-  drive.waitUntilSettled();
-  drive.turnAngleAsync(20_deg);
   drive.waitUntilSettled();
 
   //  runHeadlessTests();
