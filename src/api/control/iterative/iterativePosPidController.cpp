@@ -160,6 +160,7 @@ void IterativePosPIDController::reset() {
   lastReading = 0;
   integral = 0;
   output = 0;
+  settledUtil->reset();
 }
 
 void IterativePosPIDController::setIntegratorReset(bool iresetOnZero) {
