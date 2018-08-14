@@ -36,6 +36,19 @@ ChassisControllerPID::ChassisControllerPID(
   setEncoderUnits(AbstractMotor::encoderUnits::degrees);
 }
 
+ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcept
+  : ChassisController(std::move(other.model)),
+    rate(std::move(other.rate)),
+    distancePid(std::move(other.distancePid)),
+    anglePid(std::move(other.anglePid)),
+    turnPid(std::move(other.turnPid)),
+    gearRatio(other.gearRatio),
+    straightScale(other.straightScale),
+    turnScale(other.turnScale),
+    task(other.task) {
+  other.task = nullptr;
+}
+
 ChassisControllerPID::~ChassisControllerPID() {
   dtorCalled = true;
   delete task;
@@ -244,6 +257,8 @@ void ChassisControllerPID::stop() {
 }
 
 void ChassisControllerPID::startThread() {
-  task = new CrossplatformThread(trampoline, this);
+  if (!task) {
+    task = new CrossplatformThread(trampoline, this);
+  }
 }
 } // namespace okapi
