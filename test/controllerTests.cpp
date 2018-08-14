@@ -259,7 +259,7 @@ class AsyncVelIntegratedControllerTest : public ::testing::Test {
   }
 
   void TearDown() override {
-    Test::TearDown();
+    delete controller;
   }
 
   MockMotor *motor;
