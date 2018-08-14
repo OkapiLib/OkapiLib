@@ -20,20 +20,65 @@
 #include "okapi/api/filter/passthroughFilter.hpp"
 #include "okapi/api/filter/velMath.hpp"
 #include "okapi/api/util/mathUtil.hpp"
-#include "test/testRunner.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 #include <limits>
 
 using namespace okapi;
-using namespace snowhouse;
 
-void assertControllerIsSettledWhenDisabled(ClosedLoopController<double, double> &controller) {
-  controller.setTarget(100);
+template <typename I, typename O>
+void assertControllerIsSettledWhenDisabled(ClosedLoopController<I, O> &controller, I target) {
+  controller.flipDisable(false);
+  controller.setTarget(target);
   EXPECT_FALSE(controller.isSettled());
 
-  controller.flipDisable();
+  controller.flipDisable(true);
   EXPECT_TRUE(controller.isSettled());
+}
+
+template <typename I, typename O>
+void assertWaitUntilSettledWorksWhenDisabled(AsyncController<I, O> &controller) {
+  controller.flipDisable(true);
+  controller.waitUntilSettled();
+}
+
+void assertControllerFollowsDisableLifecycle(AsyncController<double, double> &controller,
+                                             std::int16_t &domainValue,
+                                             std::int16_t &voltageValue) {
+  EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled at the start.";
+
+  controller.setTarget(100);
+  EXPECT_EQ(domainValue, 100) << "Should be on by default.";
+
+  controller.flipDisable();
+  EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after flipDisable";
+  EXPECT_EQ(voltageValue, 0) << "Disabling the controller should turn the motor off";
+
+  controller.flipDisable();
+  EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled after flipDisable";
+  EXPECT_EQ(domainValue, 100)
+    << "Re-enabling the controller should move the motor to the previous target";
+
+  controller.flipDisable();
+  EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after flipDisable";
+  controller.reset();
+  EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after reset";
+  EXPECT_EQ(voltageValue, 0) << "Resetting the controller should not change the current target";
+
+  controller.flipDisable();
+  EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled after flipDisable";
+  domainValue = 1337;            // Sample value to check it doesn't change
+  MockRate().delayUntil(100_ms); // Wait for it to possibly change
+  EXPECT_EQ(domainValue, 1337)
+    << "Re-enabling the controller after a reset should not move the motor";
+}
+
+void assertControllerFollowsTargetLifecycle(AsyncController<double, double> &controller) {
+  EXPECT_DOUBLE_EQ(0, controller.getError()) << "Should start with 0 error";
+  controller.setTarget(100);
+  EXPECT_DOUBLE_EQ(100, controller.getError());
+  controller.setTarget(0);
+  EXPECT_DOUBLE_EQ(0, controller.getError());
 }
 
 class IterativeControllerWithSimulatorTest : public ::testing::Test {
@@ -131,7 +176,7 @@ TEST_F(IterativePosPIDControllerTest, DefaultErrorBounds_LargeError) {
 }
 
 TEST_F(IterativePosPIDControllerTest, SettledWhenDisabled) {
-  assertControllerIsSettledWhenDisabled(*controller);
+  assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }
 
 TEST(IterativeMotorVelocityControllerTest, IterativeMotorVelocityController) {
@@ -173,60 +218,68 @@ TEST(IterativeMotorVelocityControllerTest, IterativeMotorVelocityController) {
   EXPECT_NEAR(motor->lastVelocity, -63, 0.01);
 }
 
-class AsyncControllerTest : public ::testing::Test {
-  public:
-  void assertControllerFollowsDisableLifecycle(AsyncController<double, double> &&controller,
-                                               std::int16_t &domainValue,
-                                               std::int16_t &voltageValue) {
-    EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled at the start.";
-
-    controller.setTarget(100);
-    EXPECT_EQ(domainValue, 100) << "Should be on by default.";
-
-    controller.flipDisable();
-    EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after flipDisable";
-    EXPECT_EQ(voltageValue, 0) << "Disabling the controller should turn the motor off";
-
-    controller.flipDisable();
-    EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled after flipDisable";
-    EXPECT_EQ(domainValue, 100)
-      << "Re-enabling the controller should move the motor to the previous target";
-
-    controller.flipDisable();
-    EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after flipDisable";
-    controller.reset();
-    EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after reset";
-    EXPECT_EQ(voltageValue, 0) << "Resetting the controller should not change the current target";
-
-    controller.flipDisable();
-    EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled after flipDisable";
-    domainValue = 1337;            // Sample value to check it doesn't change
-    MockRate().delayUntil(100_ms); // Wait for it to possibly change
-    EXPECT_EQ(domainValue, 1337)
-      << "Re-enabling the controller after a reset should not move the motor";
+class AsyncPosIntegratedControllerTest : public ::testing::Test {
+  protected:
+  void SetUp() override {
+    motor = new MockMotor();
+    controller =
+      new AsyncPosIntegratedController(std::shared_ptr<MockMotor>(motor), createTimeUtil());
   }
 
-  void assertControllerFollowsTargetLifecycle(AsyncController<double, double> &&controller) {
-    EXPECT_DOUBLE_EQ(0, controller.getError()) << "Should start with 0 error";
-    controller.setTarget(100);
-    EXPECT_DOUBLE_EQ(100, controller.getError());
-    controller.setTarget(0);
-    EXPECT_DOUBLE_EQ(0, controller.getError());
+  void TearDown() override {
+    delete controller;
   }
+
+  MockMotor *motor;
+  AsyncPosIntegratedController *controller;
 };
 
-TEST_F(AsyncControllerTest, AsyncPosIntegratedController) {
-  auto motor = std::make_shared<MockMotor>();
-  assertControllerFollowsDisableLifecycle(
-    AsyncPosIntegratedController(motor, createTimeUtil()), motor->lastPosition, motor->lastVoltage);
-  assertControllerFollowsTargetLifecycle(AsyncPosIntegratedController(motor, createTimeUtil()));
+TEST_F(AsyncPosIntegratedControllerTest, SettledWhenDisabled) {
+  assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }
 
-TEST_F(AsyncControllerTest, AsyncVelIntegratedController) {
-  auto motor = std::make_shared<MockMotor>();
-  assertControllerFollowsDisableLifecycle(
-    AsyncVelIntegratedController(motor, createTimeUtil()), motor->lastVelocity, motor->lastVoltage);
-  assertControllerFollowsTargetLifecycle(AsyncVelIntegratedController(motor, createTimeUtil()));
+TEST_F(AsyncPosIntegratedControllerTest, WaitUntilSettledWorksWhenDisabled) {
+  assertWaitUntilSettledWorksWhenDisabled(*controller);
+}
+
+TEST_F(AsyncPosIntegratedControllerTest, FollowsDisableLifecycle) {
+  assertControllerFollowsDisableLifecycle(*controller, motor->lastPosition, motor->lastVoltage);
+}
+
+TEST_F(AsyncPosIntegratedControllerTest, FollowsTargetLifecycle) {
+  assertControllerFollowsTargetLifecycle(*controller);
+}
+
+class AsyncVelIntegratedControllerTest : public ::testing::Test {
+  protected:
+  void SetUp() override {
+    motor = new MockMotor();
+    controller =
+      new AsyncVelIntegratedController(std::shared_ptr<MockMotor>(motor), createTimeUtil());
+  }
+
+  void TearDown() override {
+    Test::TearDown();
+  }
+
+  MockMotor *motor;
+  AsyncVelIntegratedController *controller;
+};
+
+TEST_F(AsyncVelIntegratedControllerTest, SettledWhenDisabled) {
+  assertControllerIsSettledWhenDisabled(*controller, 100.0);
+}
+
+TEST_F(AsyncVelIntegratedControllerTest, WaitUntilSettledWorksWhenDisabled) {
+  assertWaitUntilSettledWorksWhenDisabled(*controller);
+}
+
+TEST_F(AsyncVelIntegratedControllerTest, FollowsDisableLifecycle) {
+  assertControllerFollowsDisableLifecycle(*controller, motor->lastVelocity, motor->lastVoltage);
+}
+
+TEST_F(AsyncVelIntegratedControllerTest, FollowsTargetLifecycle) {
+  assertControllerFollowsTargetLifecycle(*controller);
 }
 
 class IterativeVelPIDControllerTest : public ::testing::Test {
@@ -252,7 +305,7 @@ class IterativeVelPIDControllerTest : public ::testing::Test {
 
 TEST_F(IterativeVelPIDControllerTest, SettledWhenDisabled) {
   controller->setGains(0.1, 0.1, 0.1, 0.1);
-  assertControllerIsSettledWhenDisabled(*controller);
+  assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }
 
 TEST_F(IterativeVelPIDControllerTest, StaticFrictionGainUsesTargetSign) {
@@ -271,18 +324,6 @@ TEST_F(IterativeVelPIDControllerTest, StaticFrictionGainUsesTargetSign) {
   // Use the same target but send the error to 0 to make sure the gain is applied to the target and
   // not the error
   EXPECT_DOUBLE_EQ(controller->step(-1), -1 * 0.1);
-}
-
-TEST(AsyncPosIntegratedControllerTest, SettledWhenDisabled) {
-  AsyncPosIntegratedController controller(std::make_shared<MockMotor>(), createTimeUtil());
-
-  assertControllerIsSettledWhenDisabled(controller);
-}
-
-TEST(AsyncVelIntegratedControllerTest, SettledWhenDisabled) {
-  AsyncVelIntegratedController controller(std::make_shared<MockMotor>(), createTimeUtil());
-
-  assertControllerIsSettledWhenDisabled(controller);
 }
 
 TEST(FilteredControllerInputTest, InputShouldBePassedThrough) {
@@ -370,6 +411,14 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
   SkidSteerModel *model;
   AsyncMotionProfileController *controller;
 };
+
+TEST_F(AsyncMotionProfileControllerTest, SettledWhenDisabled) {
+  assertControllerIsSettledWhenDisabled(*controller, std::string("A"));
+}
+
+TEST_F(AsyncMotionProfileControllerTest, WaitUntilSettledWorksWhenDisabled) {
+  assertWaitUntilSettledWorksWhenDisabled(*controller);
+}
 
 TEST_F(AsyncMotionProfileControllerTest, MotorsAreStoppedAfterSettling) {
   controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 45_deg}}, "A");

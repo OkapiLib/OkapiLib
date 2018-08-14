@@ -119,7 +119,7 @@ void AsyncMotionProfileController::loop() {
   auto rate = timeUtil.getRate();
 
   while (!dtorCalled) {
-    if (!disabled && isRunning) {
+    if (isRunning && !isDisabled()) {
       logger->info("AsyncMotionProfileController: Running with path: " + currentPath);
       auto path = paths.find(currentPath);
 
@@ -146,7 +146,7 @@ void AsyncMotionProfileController::loop() {
 
 void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
                                                      std::unique_ptr<AbstractRate> rate) {
-  for (int i = 0; i < path.length && !disabled; ++i) {
+  for (int i = 0; i < path.length && !isDisabled(); ++i) {
     model->left(path.left[i].velocity / maxVel);
     model->right(path.right[i].velocity / maxVel);
     rate->delayUntil(1_ms);
@@ -163,7 +163,7 @@ void AsyncMotionProfileController::waitUntilSettled() {
   logger->info("AsyncMotionProfileController: Waiting to settle");
 
   auto rate = timeUtil.getRate();
-  while (isRunning) {
+  while (!isSettled()) {
     rate->delayUntil(10_ms);
   }
 
@@ -175,7 +175,7 @@ Point AsyncMotionProfileController::getError() const {
 }
 
 bool AsyncMotionProfileController::isSettled() {
-  return !isRunning;
+  return isDisabled() || !isRunning;
 }
 
 void AsyncMotionProfileController::reset() {
