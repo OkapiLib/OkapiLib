@@ -35,7 +35,7 @@ double AsyncVelIntegratedController::getError() const {
 }
 
 bool AsyncVelIntegratedController::isSettled() {
-  return isDisabled() ? true : settledUtil->isSettled(getError());
+  return isDisabled() || settledUtil->isSettled(getError());
 }
 
 void AsyncVelIntegratedController::reset() {
@@ -71,7 +71,7 @@ void AsyncVelIntegratedController::resumeMovement() {
 
 void AsyncVelIntegratedController::waitUntilSettled() {
   logger->info("AsyncVelIntegratedController: Waiting to settle");
-  while (!settledUtil->isSettled(getError())) {
+  while (!isSettled()) {
     rate->delayUntil(motorUpdateRate);
   }
   logger->info("AsyncVelIntegratedController: Done waiting to settle");

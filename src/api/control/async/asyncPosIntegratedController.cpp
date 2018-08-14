@@ -38,7 +38,7 @@ double AsyncPosIntegratedController::getError() const {
 }
 
 bool AsyncPosIntegratedController::isSettled() {
-  return isDisabled() ? true : settledUtil->isSettled(getError());
+  return isDisabled() || settledUtil->isSettled(getError());
 }
 
 void AsyncPosIntegratedController::reset() {
@@ -74,7 +74,7 @@ void AsyncPosIntegratedController::resumeMovement() {
 
 void AsyncPosIntegratedController::waitUntilSettled() {
   logger->info("AsyncPosIntegratedController: Waiting to settle");
-  while (!settledUtil->isSettled(getError())) {
+  while (!isSettled()) {
     rate->delayUntil(motorUpdateRate);
   }
   logger->info("AsyncPosIntegratedController: Done waiting to settle");
