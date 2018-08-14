@@ -108,8 +108,7 @@ class ChassisControllerPID : public virtual ChassisController {
   void stop() override;
 
   /**
-   * Start the internal thread to loop the PID controllers. This should not be called by normal
-   * users.
+   * Starts the internal thread. This should not be called by normal users.
    */
   void startThread();
 

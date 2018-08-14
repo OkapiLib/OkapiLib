@@ -38,6 +38,7 @@ ChassisControllerPID::ChassisControllerPID(
 
 ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcept
   : ChassisController(std::move(other.model)),
+    logger(other.logger),
     rate(std::move(other.rate)),
     distancePid(std::move(other.distancePid)),
     anglePid(std::move(other.anglePid)),
@@ -45,6 +46,10 @@ ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcep
     gearRatio(other.gearRatio),
     straightScale(other.straightScale),
     turnScale(other.turnScale),
+    doneLooping(other.doneLooping),
+    dtorCalled(other.dtorCalled),
+    newMovement(other.newMovement),
+    mode(other.mode),
     task(other.task) {
   other.task = nullptr;
 }
