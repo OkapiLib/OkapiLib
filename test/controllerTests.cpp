@@ -399,6 +399,7 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
 
     controller = new AsyncMotionProfileController(
       createTimeUtil(), 1.0, 2.0, 10.0, std::shared_ptr<SkidSteerModel>(model), 10.5_in);
+    controller->startThread();
   }
 
   void TearDown() override {

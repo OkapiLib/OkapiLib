@@ -50,7 +50,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
       settledUtil(std::move(isettledUtil)) {
   }
 
-  AsyncWrapper(AsyncWrapper<Input, Output> &&other)
+  AsyncWrapper(AsyncWrapper<Input, Output> &&other) noexcept
     : logger(other.logger),
       input(std::move(other.input)),
       output(std::move(other.output)),
@@ -198,7 +198,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   std::unique_ptr<AbstractRate> settledRate;
   std::unique_ptr<SettledUtil> settledUtil;
   bool dtorCalled{false};
-  CrossplatformThread *task;
+  CrossplatformThread *task{nullptr};
 
   static void trampoline(void *context) {
     if (context) {

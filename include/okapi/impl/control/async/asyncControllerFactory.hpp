@@ -322,13 +322,13 @@ class AsyncControllerFactory {
    * @param imaxVel The maximum possible velocity.
    * @param imaxAccel The maximum possible acceleration.
    * @param imaxJerk The maximum possible jerk.
-   * @param imodel The chassis model to control.
+   * @param imodel The chassis to control.
    * @param iwidth The chassis wheelbase width.
    */
   static AsyncMotionProfileController motionProfile(double imaxVel,
                                                     double imaxAccel,
                                                     double imaxJerk,
-                                                    std::shared_ptr<SkidSteerModel> imodel,
+                                                    const ChassisController &ichassis,
                                                     QLength iwidth);
 
   /**
@@ -337,13 +337,13 @@ class AsyncControllerFactory {
    * @param imaxVel The maximum possible velocity.
    * @param imaxAccel The maximum possible acceleration.
    * @param imaxJerk The maximum possible jerk.
-   * @param imodel The chassis to control.
+   * @param imodel The chassis model to control.
    * @param iwidth The chassis wheelbase width.
    */
   static AsyncMotionProfileController motionProfile(double imaxVel,
                                                     double imaxAccel,
                                                     double imaxJerk,
-                                                    const ChassisController &ichassis,
+                                                    std::shared_ptr<ChassisModel> imodel,
                                                     QLength iwidth);
 };
 } // namespace okapi

@@ -46,6 +46,8 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
                                std::shared_ptr<ChassisModel> imodel,
                                QLength iwidth);
 
+  AsyncMotionProfileController(AsyncMotionProfileController &&other) noexcept;
+
   ~AsyncMotionProfileController() override;
 
   /**
@@ -129,6 +131,11 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    */
   bool isDisabled() const override;
 
+  /**
+   * Starts the internal thread. This should not be called by normal users.
+   */
+  void startThread();
+
   protected:
   struct TrajectoryPair {
     Segment *left;
@@ -136,6 +143,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
     int length;
   };
 
+  Logger *logger;
   std::map<std::string, TrajectoryPair> paths{};
   double maxVel{0};
   double maxAccel{0};
@@ -143,13 +151,12 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   std::shared_ptr<ChassisModel> model;
   QLength width{11_in};
   TimeUtil timeUtil;
-  Logger *logger;
 
-  CrossplatformThread task;
   bool dtorCalled{false};
   std::string currentPath{""};
   bool isRunning{false};
   bool disabled{false};
+  CrossplatformThread *task{nullptr};
 
   static void trampoline(void *context);
   void loop();

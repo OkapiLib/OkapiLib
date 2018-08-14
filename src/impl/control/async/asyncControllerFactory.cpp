@@ -310,19 +310,21 @@ AsyncMotionProfileController
 AsyncControllerFactory::motionProfile(double imaxVel,
                                       double imaxAccel,
                                       double imaxJerk,
-                                      std::shared_ptr<SkidSteerModel> imodel,
+                                      const ChassisController &ichassis,
                                       QLength iwidth) {
-  return AsyncMotionProfileController(
-    TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk, imodel, iwidth);
+  return motionProfile(imaxVel, imaxAccel, imaxJerk, ichassis.getChassisModel(), iwidth);
 }
 
 AsyncMotionProfileController
 AsyncControllerFactory::motionProfile(double imaxVel,
                                       double imaxAccel,
                                       double imaxJerk,
-                                      const ChassisController &ichassis,
+                                      std::shared_ptr<ChassisModel> imodel,
                                       QLength iwidth) {
-  return AsyncMotionProfileController(
-    TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk, ichassis.getChassisModel(), iwidth);
+  AsyncMotionProfileController out(
+    TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk, imodel, iwidth);
+  out.startThread();
+  return out;
 }
+
 } // namespace okapi
