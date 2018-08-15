@@ -11,6 +11,12 @@
 
 using namespace okapi;
 
+class MockAsyncMotionProfileController : public AsyncMotionProfileController {
+  public:
+  using AsyncMotionProfileController::AsyncMotionProfileController;
+  using AsyncMotionProfileController::paths;
+};
+
 class AsyncMotionProfileControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
@@ -20,7 +26,7 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
     model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
                                std::unique_ptr<AbstractMotor>(rightMotor));
 
-    controller = new AsyncMotionProfileController(
+    controller = new MockAsyncMotionProfileController(
       createTimeUtil(), 1.0, 2.0, 10.0, std::shared_ptr<SkidSteerModel>(model), 10.5_in);
     controller->startThread();
   }
@@ -32,7 +38,7 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
   MockMotor *leftMotor;
   MockMotor *rightMotor;
   SkidSteerModel *model;
-  AsyncMotionProfileController *controller;
+  MockAsyncMotionProfileController *controller;
 };
 
 TEST_F(AsyncMotionProfileControllerTest, SettledWhenDisabled) {
@@ -45,6 +51,8 @@ TEST_F(AsyncMotionProfileControllerTest, WaitUntilSettledWorksWhenDisabled) {
 
 TEST_F(AsyncMotionProfileControllerTest, MotorsAreStoppedAfterSettling) {
   controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 45_deg}}, "A");
+
+  EXPECT_EQ(controller->paths.size(), 1);
 
   controller->setTarget("A");
   controller->waitUntilSettled();
@@ -65,6 +73,8 @@ TEST_F(AsyncMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
   controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 45_deg}}, "A");
   controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 2_ft, 45_deg}}, "A");
 
+  EXPECT_EQ(controller->paths.size(), 1);
+
   controller->setTarget("A");
   controller->waitUntilSettled();
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
@@ -81,4 +91,10 @@ TEST_F(AsyncMotionProfileControllerTest, ImpossiblePathThrowsException) {
                                          Point{1_ft, 0_m, 0_deg}},
                                         "A"),
                std::runtime_error);
+  EXPECT_EQ(controller->paths.size(), 0);
+}
+
+TEST_F(AsyncMotionProfileControllerTest, ZeroWaypointsDoesNothing) {
+  controller->generatePath({}, "A");
+  EXPECT_EQ(controller->paths.size(), 0);
 }
