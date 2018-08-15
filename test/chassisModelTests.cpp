@@ -197,6 +197,36 @@ TEST_F(XDriveModelTest, XArcadeTurnBoundsInput) {
   assertLeftAndRightMotorsLastVoltage(127, -127);
 }
 
+TEST_F(XDriveModelTest, XArcadeBoundsInputAllPoweredFull) {
+  model.xArcade(10, 10, 10);
+
+  assertAllMotorsLastVelocity(0);
+  EXPECT_EQ(topLeftMotor->lastVoltage, 127);
+  EXPECT_EQ(topRightMotor->lastVoltage, -127);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, 127);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, 127);
+}
+
+TEST_F(XDriveModelTest, XArcadeBoundsInputAllNoTurn) {
+  model.xArcade(10, 10, 0);
+
+  assertAllMotorsLastVelocity(0);
+  EXPECT_EQ(topLeftMotor->lastVoltage, 127);
+  EXPECT_EQ(topRightMotor->lastVoltage, 0);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, 127);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, 0);
+}
+
+TEST_F(XDriveModelTest, XArcadeBoundsInputAllNoForward) {
+  model.xArcade(10, 0, 10);
+
+  assertAllMotorsLastVelocity(0);
+  EXPECT_EQ(topLeftMotor->lastVoltage, 127);
+  EXPECT_EQ(topRightMotor->lastVoltage, -127);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, 0);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, 0);
+}
+
 class SkidSteerModelTest : public ::testing::Test {
   public:
   SkidSteerModelTest() : model(leftMotor, rightMotor, 127) {
