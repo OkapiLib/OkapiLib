@@ -245,6 +245,8 @@ class MockIterativeController : public IterativePosPIDController {
   public:
   MockIterativeController();
 
+  MockIterativeController(double ikP);
+
   bool isSettled() override;
 
   bool isSettledOverride{true};

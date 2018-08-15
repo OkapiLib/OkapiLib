@@ -19,10 +19,10 @@ template <typename Input, typename Output>
 class IterativeController : public ClosedLoopController<Input, Output> {
   public:
   /**
-   * Do one iteration of the controller. Outputs in the range [-1, 1]
+   * Do one iteration of the controller.
    *
    * @param inewReading new measurement
-   * @return controller [-1, 1]
+   * @return controller output
    */
   virtual Output step(Input ireading) = 0;
 

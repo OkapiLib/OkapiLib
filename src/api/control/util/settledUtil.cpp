@@ -44,5 +44,6 @@ bool SettledUtil::isSettled(const double ierror) {
 
 void SettledUtil::reset() {
   atTargetTimer->clearHardMark();
+  lastError = 0;
 }
 } // namespace okapi

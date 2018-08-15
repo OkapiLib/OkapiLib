@@ -45,10 +45,26 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
       input(iinput),
       output(ioutput),
       controller(std::move(icontroller)),
-      loopRate(std::move(irateSupplier.get())),
-      settledRate(std::move(irateSupplier.get())),
-      settledUtil(std::move(isettledUtil)),
-      task(trampoline, this) {
+      loopRate(irateSupplier.get()),
+      settledRate(irateSupplier.get()),
+      settledUtil(std::move(isettledUtil)) {
+  }
+
+  AsyncWrapper(AsyncWrapper<Input, Output> &&other) noexcept
+    : logger(other.logger),
+      input(std::move(other.input)),
+      output(std::move(other.output)),
+      controller(std::move(other.controller)),
+      loopRate(std::move(other.loopRate)),
+      settledRate(std::move(other.settledRate)),
+      settledUtil(std::move(other.settledUtil)),
+      dtorCalled(other.dtorCalled),
+      task(other.task) {
+  }
+
+  ~AsyncWrapper() override {
+    dtorCalled = true;
+    delete task;
   }
 
   /**
@@ -60,7 +76,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   /**
-   * Gets the last set target.
+   * Gets the last set target, or the default target if none was set.
    *
    * @return the last target
    */
@@ -164,6 +180,16 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
     logger->info("AsyncWrapper: Done waiting to settle");
   }
 
+  /**
+   * Starts the internal thread. This should not be called by normal users. This method is called
+   * by the AsyncControllerFactory when making a new instance of this class.
+   */
+  void startThread() {
+    if (!task) {
+      task = new CrossplatformThread(trampoline, this);
+    }
+  }
+
   protected:
   Logger *logger;
   std::shared_ptr<ControllerInput<Input>> input;
@@ -172,7 +198,8 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   std::unique_ptr<AbstractRate> loopRate;
   std::unique_ptr<AbstractRate> settledRate;
   std::unique_ptr<SettledUtil> settledUtil;
-  CrossplatformThread task;
+  bool dtorCalled{false};
+  CrossplatformThread *task{nullptr};
 
   static void trampoline(void *context) {
     if (context) {
@@ -183,7 +210,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   void loop() {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
-    while (true) {
+    while (!dtorCalled) {
       if (!controller->isDisabled()) {
         output->controllerSet(controller->step(input->controllerGet()));
       }

@@ -38,7 +38,8 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
-   * Do one iteration of the controller.
+   * Do one iteration of the controller. Returns the reading in the range [-1, 1] unless the
+   * bounds have been changed with setOutputLimits().
    *
    * @param inewReading new measurement
    * @return controller output
@@ -53,7 +54,7 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
   void setTarget(double itarget) override;
 
   /**
-   * Gets the last set target.
+   * Gets the last set target, or the default target if none was set.
    *
    * @return the last target
    */
@@ -87,7 +88,7 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
   void setSampleTime(QTime isampleTime) override;
 
   /**
-   * Set controller output bounds.
+   * Set controller output bounds. Default bounds are [-1, 1].
    *
    * @param imax max output
    * @param imin min output

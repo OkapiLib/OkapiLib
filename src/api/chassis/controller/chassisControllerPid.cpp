@@ -24,8 +24,7 @@ ChassisControllerPID::ChassisControllerPID(
     turnPid(std::move(iturnController)),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),
-    turnScale(iscales.turn),
-    task(trampoline, this) {
+    turnScale(iscales.turn) {
   if (igearset.ratio == 0) {
     logger->error("ChassisControllerPID: The gear ratio cannot be zero! Check if you are using "
                   "integer division.");
@@ -37,15 +36,34 @@ ChassisControllerPID::ChassisControllerPID(
   setEncoderUnits(AbstractMotor::encoderUnits::degrees);
 }
 
+ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcept
+  : ChassisController(std::move(other.model)),
+    logger(other.logger),
+    rate(std::move(other.rate)),
+    distancePid(std::move(other.distancePid)),
+    anglePid(std::move(other.anglePid)),
+    turnPid(std::move(other.turnPid)),
+    gearRatio(other.gearRatio),
+    straightScale(other.straightScale),
+    turnScale(other.turnScale),
+    doneLooping(other.doneLooping),
+    dtorCalled(other.dtorCalled),
+    newMovement(other.newMovement),
+    mode(other.mode),
+    task(other.task) {
+  other.task = nullptr;
+}
+
 ChassisControllerPID::~ChassisControllerPID() {
   dtorCalled = true;
+  delete task;
 }
 
 void ChassisControllerPID::loop() {
   auto encStartVals = model->getSensorVals();
   std::valarray<std::int32_t> encVals;
   double distanceElapsed = 0, angleChange = 0;
-  modeType pastMode = distance;
+  modeType pastMode = none;
 
   while (!dtorCalled) {
     /**
@@ -53,14 +71,9 @@ void ChassisControllerPID::loop() {
      * waitUntilSettled
      */
     if (!doneLooping) {
-      if (mode != pastMode) {
-        logger->debug("ChassisControllerPID: Changed mode");
-
+      if (mode != pastMode || newMovement) {
         encStartVals = model->getSensorVals();
-        distancePid->reset();
-        anglePid->reset();
-        turnPid->reset();
-        model->stop();
+        newMovement = false;
       }
 
       switch (mode) {
@@ -69,14 +82,14 @@ void ChassisControllerPID::loop() {
         distanceElapsed = static_cast<double>((encVals[0] + encVals[1])) / 2.0;
         angleChange = static_cast<double>(encVals[0] - encVals[1]);
         model->driveVector(distancePid->step(distanceElapsed), anglePid->step(angleChange));
-
         break;
+
       case angle:
         encVals = model->getSensorVals() - encStartVals;
         angleChange = static_cast<double>(encVals[0] - encVals[1]);
         model->rotate(turnPid->step(angleChange));
-
         break;
+
       default:
         break;
       }
@@ -113,6 +126,7 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   anglePid->setTarget(0);
 
   doneLooping = false;
+  newMovement = true;
 }
 
 void ChassisControllerPID::moveDistanceAsync(const double itarget) {
@@ -147,6 +161,7 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   turnPid->setTarget(newTarget);
 
   doneLooping = false;
+  newMovement = true;
 }
 
 void ChassisControllerPID::turnAngleAsync(const double idegTarget) {
@@ -172,30 +187,22 @@ void ChassisControllerPID::waitUntilSettled() {
     switch (mode) {
     case distance:
       completelySettled = waitForDistanceSettled();
-
-      // Only disable the controllers and stop if we are totally settled and won't try again
-      if (completelySettled) {
-        stopAfterSettled();
-      }
-
       break;
 
     case angle:
       completelySettled = waitForAngleSettled();
-
-      // Only disable the controllers and stop if we are totally settled and won't try again
-      if (completelySettled) {
-        stopAfterSettled();
-      }
-
       break;
 
     default:
+      completelySettled = true;
       break;
     }
-
-    logger->info("ChassisControllerPID: Done waiting to settle");
   }
+
+  stopAfterSettled();
+  mode = none;
+  doneLooping = true;
+  logger->info("ChassisControllerPID: Done waiting to settle");
 }
 
 /**
@@ -243,27 +250,20 @@ bool ChassisControllerPID::waitForAngleSettled() {
 }
 
 void ChassisControllerPID::stopAfterSettled() {
-  switch (mode) {
-  case distance:
-    doneLooping = true;
-    distancePid->flipDisable(true);
-    anglePid->flipDisable(true);
-    model->stop();
-    break;
-
-  case angle:
-    doneLooping = true;
-    turnPid->flipDisable(true);
-    model->stop();
-    break;
-
-  default:
-    break;
-  }
+  distancePid->flipDisable(true);
+  anglePid->flipDisable(true);
+  turnPid->flipDisable(true);
+  model->stop();
 }
 
 void ChassisControllerPID::stop() {
   stopAfterSettled();
   ChassisController::stop();
+}
+
+void ChassisControllerPID::startThread() {
+  if (!task) {
+    task = new CrossplatformThread(trampoline, this);
+  }
 }
 } // namespace okapi

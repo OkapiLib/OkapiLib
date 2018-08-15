@@ -304,9 +304,9 @@ class ChassisControllerPIDTest : public ::testing::Test {
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
 
-    distanceController = new MockIterativeController();
-    angleController = new MockIterativeController();
-    turnController = new MockIterativeController();
+    distanceController = new MockIterativeController(0.1);
+    angleController = new MockIterativeController(0.1);
+    turnController = new MockIterativeController(0.1);
 
     model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
                                std::unique_ptr<AbstractMotor>(rightMotor));
@@ -319,6 +319,7 @@ class ChassisControllerPIDTest : public ::testing::Test {
                                std::unique_ptr<IterativePosPIDController>(turnController),
                                AbstractMotor::gearset::red,
                                *scales);
+    controller->startThread();
   }
 
   void TearDown() override {
@@ -327,7 +328,7 @@ class ChassisControllerPIDTest : public ::testing::Test {
   }
 
   ChassisScales *scales;
-  ChassisController *controller;
+  ChassisControllerPID *controller;
   MockMotor *leftMotor;
   MockMotor *rightMotor;
   MockIterativeController *distanceController;
@@ -578,5 +579,13 @@ TEST_F(ChassisControllerPIDTest, TurnAngleAndStopTest) {
   controller->stop();
 
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+  EXPECT_TRUE(angleController->isDisabled());
+}
+
+TEST_F(ChassisControllerPIDTest, WaitUntilSettledInModeNone) {
+  controller->waitUntilSettled();
+
+  EXPECT_TRUE(turnController->isDisabled());
+  EXPECT_TRUE(distanceController->isDisabled());
   EXPECT_TRUE(angleController->isDisabled());
 }

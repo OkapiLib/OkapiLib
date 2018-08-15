@@ -29,7 +29,7 @@ template <typename Input, typename Output> class ClosedLoopController {
   virtual void setTarget(Input itarget) = 0;
 
   /**
-   * Gets the last set target.
+   * Gets the last set target, or the default target if none was set.
    *
    * @return the last target
    */

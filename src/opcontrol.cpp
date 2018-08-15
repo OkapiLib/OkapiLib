@@ -1,6 +1,6 @@
 #include "api.h"
-
 #include "okapi/api.hpp"
+
 #include "test/testRunner.hpp"
 #include "test/tests/impl/utilTests.hpp"
 
@@ -17,6 +17,7 @@ void opcontrol() {
   pros::Task::delay(100);
 
   Logger::initialize(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug);
+  auto logger = Logger::instance();
 
   auto drive = ChassisControllerFactory::createOdom(
     -1, 2, AbstractMotor::gearset::red, {2.5_in, 10.5_in}, 0_mm);
@@ -51,6 +52,16 @@ void opcontrol() {
 
   pros::Task::delay(500);
 
+  //  {
+  //    auto model =
+  //      std::make_shared<SkidSteerModel>(std::make_shared<Motor>(-1), std::make_shared<Motor>(2));
+  //    auto cnt = AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, model, 10.5_in);
+  //
+  //    cnt.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
+  //    cnt.setTarget("B");
+  //    cnt.waitUntilSettled();
+  //  }
+
   //  auto model =
   //    std::make_shared<SkidSteerModel>(std::make_shared<Motor>(-1), std::make_shared<Motor>(2));
   //  auto cnt = AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, model, 10.5_in);
@@ -63,6 +74,26 @@ void opcontrol() {
   //    ChassisControllerFactory::create(-1, 2, AbstractMotor::gearset::red, {2.5_in, 10.5_in});
   //  drive.moveDistanceAsync(2_in);
   //  drive.waitUntilSettled();
+  //  auto drive = ChassisControllerFactory::create(
+  //    -1,
+  //    2,
+  //                                                IterativePosPIDController::Gains{0.01, 0, 0,
+  //                                                0}, IterativePosPIDController::Gains{0, 0, 0,
+  //                                                0}, IterativePosPIDController::Gains{0.007, 0,
+  //                                                0, 0},
+  //    AbstractMotor::gearset::red,
+  //    {2.5_in, 10.5_in});
+  //  drive.moveDistanceAsync(2_in);
+  //  drive.waitUntilSettled();
+  //  drive.moveDistanceAsync(2_in);
+  //  drive.waitUntilSettled();
+  //  drive.moveDistanceAsync(2_in);
+  //  drive.waitUntilSettled();
+
+  //  auto cnt = AsyncControllerFactory::posPID(2, 0.01, 0, 0);
+  //  cnt.setTarget(360);
+  //  cnt.waitUntilSettled();
+  //  logger->debug("opcontrol: position: " + std::to_string(Motor(2).getPosition()));
 
   //  runHeadlessTests();
   return;

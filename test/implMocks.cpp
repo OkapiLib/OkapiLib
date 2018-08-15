@@ -368,12 +368,12 @@ void SimulatedSystem::join() {
   thread.join();
 }
 
-MockAsyncController::MockAsyncController(const TimeUtil &itimeUtil)
-  : AsyncPosIntegratedController(std::make_shared<MockMotor>(), itimeUtil) {
-}
-
 MockAsyncController::MockAsyncController()
   : AsyncPosIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
+}
+
+MockAsyncController::MockAsyncController(const TimeUtil &itimeUtil)
+  : AsyncPosIntegratedController(std::make_shared<MockMotor>(), itimeUtil) {
 }
 
 bool MockAsyncController::isSettled() {
@@ -382,6 +382,10 @@ bool MockAsyncController::isSettled() {
 
 MockIterativeController::MockIterativeController()
   : IterativePosPIDController(0, 0, 0, 0, createTimeUtil()) {
+}
+
+MockIterativeController::MockIterativeController(const double ikP)
+  : IterativePosPIDController(ikP, 0, 0, 0, createTimeUtil()) {
 }
 
 bool MockIterativeController::isSettled() {

@@ -85,7 +85,7 @@ ChassisControllerFactory::create(Motor ileftSideMotor,
                                  const ChassisScales &iscales) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
-  return ChassisControllerPID(
+  ChassisControllerPID out(
     TimeUtilFactory::create(),
     std::make_shared<SkidSteerModel>(leftMtr, rightMtr),
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
@@ -93,6 +93,8 @@ ChassisControllerFactory::create(Motor ileftSideMotor,
     std::make_unique<IterativePosPIDController>(iturnArgs, TimeUtilFactory::create()),
     igearset,
     iscales);
+  out.startThread();
+  return out;
 }
 
 ChassisControllerPID
@@ -116,7 +118,7 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor,
                                  const ChassisScales &iscales) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
-  return ChassisControllerPID(
+  ChassisControllerPID out(
     TimeUtilFactory::create(),
     std::make_shared<SkidSteerModel>(leftMtr, rightMtr),
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
@@ -124,6 +126,8 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor,
     std::make_unique<IterativePosPIDController>(iturnArgs, TimeUtilFactory::create()),
     igearset,
     iscales);
+  out.startThread();
+  return out;
 }
 
 ChassisControllerPID
@@ -160,7 +164,7 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor,
                                  const ChassisScales &iscales) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
-  return ChassisControllerPID(
+  ChassisControllerPID out(
     TimeUtilFactory::create(),
     std::make_shared<SkidSteerModel>(leftMtr,
                                      rightMtr,
@@ -171,6 +175,8 @@ ChassisControllerFactory::create(MotorGroup ileftSideMotor,
     std::make_unique<IterativePosPIDController>(iturnArgs, TimeUtilFactory::create()),
     igearset,
     iscales);
+  out.startThread();
+  return out;
 }
 
 ChassisControllerPID
@@ -203,7 +209,7 @@ ChassisControllerFactory::create(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                  const IterativePosPIDController::Gains &iturnArgs,
                                  const AbstractMotor::GearsetRatioPair igearset,
                                  const ChassisScales &iscales) {
-  return ChassisControllerPID(
+  ChassisControllerPID out(
     TimeUtilFactory::create(),
     std::make_shared<SkidSteerModel>(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc),
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
@@ -211,6 +217,8 @@ ChassisControllerFactory::create(std::shared_ptr<AbstractMotor> ileftSideMotor,
     std::make_unique<IterativePosPIDController>(iturnArgs, TimeUtilFactory::create()),
     igearset,
     iscales);
+  out.startThread();
+  return out;
 }
 
 ChassisControllerPID
@@ -247,7 +255,7 @@ ChassisControllerFactory::create(Motor itopLeftMotor,
   auto topRightMtr = std::make_shared<Motor>(itopRightMotor);
   auto bottomRightMtr = std::make_shared<Motor>(ibottomRightMotor);
   auto bottomLeftMtr = std::make_shared<Motor>(ibottomLeftMotor);
-  return ChassisControllerPID(
+  ChassisControllerPID out(
     TimeUtilFactory::create(),
     std::make_shared<XDriveModel>(topLeftMtr, topRightMtr, bottomRightMtr, bottomLeftMtr),
     std::make_unique<IterativePosPIDController>(idistanceArgs, TimeUtilFactory::create()),
@@ -255,6 +263,8 @@ ChassisControllerFactory::create(Motor itopLeftMotor,
     std::make_unique<IterativePosPIDController>(iturnArgs, TimeUtilFactory::create()),
     igearset,
     iscales);
+  out.startThread();
+  return out;
 }
 
 ChassisControllerPID
@@ -297,7 +307,7 @@ ChassisControllerFactory::create(Motor itopLeftMotor,
   auto topRightMtr = std::make_shared<Motor>(itopRightMotor);
   auto bottomRightMtr = std::make_shared<Motor>(ibottomRightMotor);
   auto bottomLeftMtr = std::make_shared<Motor>(ibottomLeftMotor);
-  return ChassisControllerPID(
+  ChassisControllerPID out(
     TimeUtilFactory::create(),
     std::make_shared<XDriveModel>(topLeftMtr,
                                   topRightMtr,
@@ -310,6 +320,8 @@ ChassisControllerFactory::create(Motor itopLeftMotor,
     std::make_unique<IterativePosPIDController>(iturnArgs, TimeUtilFactory::create()),
     igearset,
     iscales);
+  out.startThread();
+  return out;
 }
 
 ChassisControllerPID
@@ -348,7 +360,7 @@ ChassisControllerFactory::create(std::shared_ptr<AbstractMotor> itopLeftMotor,
                                  const IterativePosPIDController::Gains &iturnArgs,
                                  const AbstractMotor::GearsetRatioPair igearset,
                                  const ChassisScales &iscales) {
-  return ChassisControllerPID(
+  ChassisControllerPID out(
     TimeUtilFactory::create(),
     std::make_shared<XDriveModel>(itopLeftMotor,
                                   itopRightMotor,
@@ -361,6 +373,8 @@ ChassisControllerFactory::create(std::shared_ptr<AbstractMotor> itopLeftMotor,
     std::make_unique<IterativePosPIDController>(iturnArgs, TimeUtilFactory::create()),
     igearset,
     iscales);
+  out.startThread();
+  return out;
 }
 
 OdomChassisControllerIntegrated

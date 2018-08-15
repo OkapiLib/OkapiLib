@@ -28,7 +28,7 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
   void setTarget(double itarget) override;
 
   /**
-   * Gets the last set target.
+   * Gets the last set target, or the default target if none was set.
    *
    * @return the last target
    */
