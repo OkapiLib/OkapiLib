@@ -24,8 +24,7 @@ ChassisControllerPID::ChassisControllerPID(
     turnPid(std::move(iturnController)),
     gearRatio(igearset.ratio),
     straightScale(iscales.straight),
-    turnScale(iscales.turn),
-    task(trampoline, this) {
+    turnScale(iscales.turn) {
   if (igearset.ratio == 0) {
     logger->error("ChassisControllerPID: The gear ratio cannot be zero! Check if you are using "
                   "integer division.");
@@ -37,15 +36,34 @@ ChassisControllerPID::ChassisControllerPID(
   setEncoderUnits(AbstractMotor::encoderUnits::degrees);
 }
 
+ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcept
+  : ChassisController(std::move(other.model)),
+    logger(other.logger),
+    rate(std::move(other.rate)),
+    distancePid(std::move(other.distancePid)),
+    anglePid(std::move(other.anglePid)),
+    turnPid(std::move(other.turnPid)),
+    gearRatio(other.gearRatio),
+    straightScale(other.straightScale),
+    turnScale(other.turnScale),
+    doneLooping(other.doneLooping),
+    dtorCalled(other.dtorCalled),
+    newMovement(other.newMovement),
+    mode(other.mode),
+    task(other.task) {
+  other.task = nullptr;
+}
+
 ChassisControllerPID::~ChassisControllerPID() {
   dtorCalled = true;
+  delete task;
 }
 
 void ChassisControllerPID::loop() {
   auto encStartVals = model->getSensorVals();
   std::valarray<std::int32_t> encVals;
   double distanceElapsed = 0, angleChange = 0;
-  modeType pastMode = distance;
+  modeType pastMode = none;
 
   while (!dtorCalled) {
     /**
@@ -241,5 +259,11 @@ void ChassisControllerPID::stopAfterSettled() {
 void ChassisControllerPID::stop() {
   stopAfterSettled();
   ChassisController::stop();
+}
+
+void ChassisControllerPID::startThread() {
+  if (!task) {
+    task = new CrossplatformThread(trampoline, this);
+  }
 }
 } // namespace okapi

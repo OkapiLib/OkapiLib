@@ -37,6 +37,8 @@ class ChassisControllerPID : public virtual ChassisController {
                        AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
                        const ChassisScales &iscales = ChassisScales({1, 1}));
 
+  ChassisControllerPID(ChassisControllerPID &&other) noexcept;
+
   ~ChassisControllerPID() override;
 
   /**
@@ -105,6 +107,12 @@ class ChassisControllerPID : public virtual ChassisController {
    */
   void stop() override;
 
+  /**
+   * Starts the internal thread. This should not be called by normal users. This method is called
+   * by the ChassisControllerFactory when making a new instance of this class.
+   */
+  void startThread();
+
   protected:
   Logger *logger;
   std::unique_ptr<AbstractRate> rate;
@@ -128,7 +136,7 @@ class ChassisControllerPID : public virtual ChassisController {
   typedef enum { distance, angle, none } modeType;
   modeType mode{none};
 
-  CrossplatformThread task;
+  CrossplatformThread *task{nullptr};
 };
 } // namespace okapi
 

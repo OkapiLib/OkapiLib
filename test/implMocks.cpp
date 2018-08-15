@@ -368,98 +368,28 @@ void SimulatedSystem::join() {
   thread.join();
 }
 
-void MockAsyncController::waitUntilSettled() {
+MockAsyncController::MockAsyncController()
+  : AsyncPosIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
 }
 
-void MockAsyncController::setTarget(double itarget) {
-  target = itarget;
-}
-
-double MockAsyncController::getError() const {
-  return 0;
+MockAsyncController::MockAsyncController(const TimeUtil &itimeUtil)
+  : AsyncPosIntegratedController(std::make_shared<MockMotor>(), itimeUtil) {
 }
 
 bool MockAsyncController::isSettled() {
-  return isSettledOverride;
-}
-
-void MockAsyncController::reset() {
-}
-
-void MockAsyncController::flipDisable() {
-  disabled = !disabled;
-}
-
-void MockAsyncController::flipDisable(bool iisDisabled) {
-  disabled = iisDisabled;
-}
-
-bool MockAsyncController::isDisabled() const {
-  return disabled;
+  return isSettledOverride || AsyncPosIntegratedController::isSettled();
 }
 
 MockIterativeController::MockIterativeController()
   : IterativePosPIDController(0, 0, 0, 0, createTimeUtil()) {
 }
 
-double MockIterativeController::step(double inewReading) {
-  return 0;
-}
-
-void MockIterativeController::setTarget(double itarget) {
-  target = itarget;
-}
-
-double MockIterativeController::getOutput() const {
-  return output;
-}
-
-double MockIterativeController::getError() const {
-  return 0;
+MockIterativeController::MockIterativeController(const double ikP)
+  : IterativePosPIDController(ikP, 0, 0, 0, createTimeUtil()) {
 }
 
 bool MockIterativeController::isSettled() {
-  return isSettledOverride;
-}
-
-void MockIterativeController::setGains(double ikP, double ikI, double ikD, double ikBias) {
-}
-
-void MockIterativeController::setSampleTime(QTime isampleTime) {
-  sampleTime = isampleTime;
-}
-
-void MockIterativeController::setOutputLimits(double imax, double imin) {
-  maxOutput = imax;
-  minOutput = imin;
-}
-
-void MockIterativeController::setIntegralLimits(double imax, double imin) {
-}
-
-void MockIterativeController::setErrorSumLimits(double imax, double imin) {
-}
-
-void MockIterativeController::reset() {
-}
-
-void MockIterativeController::setIntegratorReset(bool iresetOnZero) {
-}
-
-void MockIterativeController::flipDisable() {
-  disabled = !disabled;
-}
-
-void MockIterativeController::flipDisable(bool iisDisabled) {
-  disabled = iisDisabled;
-}
-
-bool MockIterativeController::isDisabled() const {
-  return disabled;
-}
-
-QTime MockIterativeController::getSampleTime() const {
-  return sampleTime;
+  return isSettledOverride || IterativePosPIDController::isSettled();
 }
 
 void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor) {
