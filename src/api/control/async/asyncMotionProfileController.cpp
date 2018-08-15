@@ -68,7 +68,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
       Waypoint{point.x.convert(meter), point.y.convert(meter), point.theta.convert(radian)});
   }
 
-  TrajectoryCandidate candidate;
+  TrajectoryCandidate *candidate = new TrajectoryCandidate();
   logger->info("AsyncMotionProfileController: Preparing trajectory");
   pathfinder_prepare(points.data(),
                      static_cast<int>(points.size()),
@@ -78,9 +78,9 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
                      maxVel,
                      maxAccel,
                      maxJerk,
-                     &candidate);
+                     candidate);
 
-  const int length = candidate.length;
+  const int length = candidate->length;
 
   if (length < 0) {
     auto pointToString = [](Waypoint point) {
@@ -102,14 +102,18 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
   auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
 
   logger->info("AsyncMotionProfileController: Generating path");
-  pathfinder_generate(&candidate, trajectory);
+  pathfinder_generate(candidate, trajectory);
 
   auto *leftTrajectory = (Segment *)malloc(sizeof(Segment) * length);
   auto *rightTrajectory = (Segment *)malloc(sizeof(Segment) * length);
 
   logger->info("AsyncMotionProfileController: Modifying for tank drive");
   pathfinder_modify_tank(trajectory, length, leftTrajectory, rightTrajectory, width.convert(meter));
+
   free(trajectory);
+  free(candidate->laptr);
+  free(candidate->saptr);
+  delete candidate;
 
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
