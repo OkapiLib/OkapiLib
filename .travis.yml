@@ -38,7 +38,7 @@ script:
   - cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" .. # .. is now the source dir
   - cmake --build . --target OkapiLibV5 -- -j 2 # . is the build dir
   - ./OkapiLibV5
-  - valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no --suppressions=../memcheck-suppressions.txt ./OkapiLibV5 # --expensive-definedness-checks=yes
+  - valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5 # --expensive-definedness-checks=yes
   - valgrind --tool=massif --stacks=yes --time-unit=B --massif-out-file=massif.out.txt ./OkapiLibV5
   - ms_print massif.out.txt
 
