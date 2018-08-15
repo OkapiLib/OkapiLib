@@ -1,7 +1,0 @@
-{
-   pathfinder_trajectorycandidate_saptr_laptr_leak
-   Memcheck:Leak
-   match-leak-kinds: definite
-   fun:malloc
-   fun:pathfinder_prepare
-}
