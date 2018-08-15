@@ -168,10 +168,10 @@ void XDriveModel::xArcade(const double ixSpeed,
     zRotation = 0;
   }
 
-  topLeftMotor->moveVoltage(static_cast<int16_t>(ySpeed + xSpeed + zRotation));
-  topRightMotor->moveVoltage(static_cast<int16_t>(ySpeed - xSpeed - zRotation));
-  bottomRightMotor->moveVoltage(static_cast<int16_t>(ySpeed + xSpeed - zRotation));
-  bottomLeftMotor->moveVoltage(static_cast<int16_t>(ySpeed - xSpeed + zRotation));
+  topLeftMotor->moveVoltage(static_cast<int16_t>((ySpeed + xSpeed + zRotation) * maxOutput));
+  topRightMotor->moveVoltage(static_cast<int16_t>((ySpeed - xSpeed - zRotation) * maxOutput));
+  bottomRightMotor->moveVoltage(static_cast<int16_t>((ySpeed + xSpeed - zRotation) * maxOutput));
+  bottomLeftMotor->moveVoltage(static_cast<int16_t>((ySpeed - xSpeed + zRotation) * maxOutput));
 }
 
 void XDriveModel::left(const double ispeed) const {

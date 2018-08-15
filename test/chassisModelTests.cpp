@@ -6,14 +6,13 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
+#include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
 #include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
-#include "test/crossPlatformTestRunner.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 
 using namespace okapi;
-using namespace snowhouse;
 
 class XDriveModelTest : public ::testing::Test {
   public:
@@ -157,6 +156,47 @@ TEST_F(XDriveModelTest, ArcadeThresholds) {
   assertAllMotorsLastVoltage(0);
 }
 
+TEST_F(XDriveModelTest, XArcadeHalfPowerForward) {
+  model.xArcade(0, 0.5, 0);
+
+  assertAllMotorsLastVelocity(0);
+  assertAllMotorsLastVoltage(63);
+}
+
+TEST_F(XDriveModelTest, XArcadeForwardBoundsInput) {
+  model.xArcade(0, 10, 0);
+
+  assertAllMotorsLastVelocity(0);
+  assertAllMotorsLastVoltage(127);
+}
+
+TEST_F(XDriveModelTest, XArcadeHalfPowerStrafe) {
+  model.xArcade(0.5, 0, 0);
+
+  assertAllMotorsLastVelocity(0);
+  EXPECT_EQ(topLeftMotor->lastVoltage, 63);
+  EXPECT_EQ(topRightMotor->lastVoltage, -63);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, 63);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, -63);
+}
+
+TEST_F(XDriveModelTest, XArcadeStrafeBoundsInput) {
+  model.xArcade(10, 0, 0);
+
+  assertAllMotorsLastVelocity(0);
+  EXPECT_EQ(topLeftMotor->lastVoltage, 127);
+  EXPECT_EQ(topRightMotor->lastVoltage, -127);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, 127);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, -127);
+}
+
+TEST_F(XDriveModelTest, XArcadeTurnBoundsInput) {
+  model.xArcade(0, 0, 10);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(127, -127);
+}
+
 class SkidSteerModelTest : public ::testing::Test {
   public:
   SkidSteerModelTest() : model(leftMotor, rightMotor, 127) {
@@ -285,4 +325,56 @@ TEST_F(SkidSteerModelTest, ArcadeThresholds) {
 
   assertAllMotorsLastVelocity(0);
   assertAllMotorsLastVoltage(0);
+}
+
+class ThreeEncoderSkidSteerModelTest : public ::testing::Test {
+  protected:
+  void SetUp() override {
+    leftMotor = std::make_shared<MockMotor>();
+    rightMotor = std::make_shared<MockMotor>();
+    leftSensor = std::make_shared<MockContinuousRotarySensor>();
+    rightSensor = std::make_shared<MockContinuousRotarySensor>();
+    middleSensor = std::make_shared<MockContinuousRotarySensor>();
+    model =
+      new ThreeEncoderSkidSteerModel(leftMotor, rightMotor, leftSensor, middleSensor, rightSensor);
+  }
+
+  void TearDown() override {
+    delete model;
+  }
+
+  std::shared_ptr<MockMotor> leftMotor;
+  std::shared_ptr<MockMotor> rightMotor;
+  std::shared_ptr<MockContinuousRotarySensor> leftSensor;
+  std::shared_ptr<MockContinuousRotarySensor> rightSensor;
+  std::shared_ptr<MockContinuousRotarySensor> middleSensor;
+  ThreeEncoderSkidSteerModel *model;
+};
+
+TEST_F(ThreeEncoderSkidSteerModelTest, GetSensorValsIsCompatibleWithSkidSteerModel) {
+  leftSensor->value = 1;
+  rightSensor->value = 2;
+  middleSensor->value = 3;
+
+  auto skidSteerModelVals =
+    SkidSteerModel(leftMotor, rightMotor, leftSensor, rightSensor).getSensorVals();
+  auto threeEncoderSkidSteerModelVals = model->getSensorVals();
+
+  EXPECT_EQ(skidSteerModelVals[0], threeEncoderSkidSteerModelVals[0]);
+  EXPECT_EQ(skidSteerModelVals[1], threeEncoderSkidSteerModelVals[1]);
+}
+
+TEST_F(ThreeEncoderSkidSteerModelTest, GetSensorValsIsCompatibleWithXDriveModel) {
+  leftSensor->value = 1;
+  rightSensor->value = 2;
+  middleSensor->value = 3;
+
+  // nonsense motors because it doesn't matter
+  auto xDriveModelVals =
+    XDriveModel(leftMotor, rightMotor, leftMotor, rightMotor, leftSensor, rightSensor)
+      .getSensorVals();
+  auto threeEncoderSkidSteerModelVals = model->getSensorVals();
+
+  EXPECT_EQ(xDriveModelVals[0], threeEncoderSkidSteerModelVals[0]);
+  EXPECT_EQ(xDriveModelVals[1], threeEncoderSkidSteerModelVals[1]);
 }
