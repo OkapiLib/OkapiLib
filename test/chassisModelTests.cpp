@@ -170,6 +170,13 @@ TEST_F(XDriveModelTest, XArcadeForwardBoundsInput) {
   assertAllMotorsLastVoltage(127);
 }
 
+TEST_F(XDriveModelTest, XArcadeForwardThresholds) {
+  model.xArcade(0, 0.4, 0, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertAllMotorsLastVoltage(0);
+}
+
 TEST_F(XDriveModelTest, XArcadeHalfPowerStrafe) {
   model.xArcade(0.5, 0, 0);
 
@@ -190,11 +197,32 @@ TEST_F(XDriveModelTest, XArcadeStrafeBoundsInput) {
   EXPECT_EQ(bottomLeftMotor->lastVoltage, -127);
 }
 
+TEST_F(XDriveModelTest, XArcadeStrafeThresholds) {
+  model.xArcade(0.4, 0, 0, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertAllMotorsLastVoltage(0);
+}
+
 TEST_F(XDriveModelTest, XArcadeTurnBoundsInput) {
   model.xArcade(0, 0, 10);
 
   assertAllMotorsLastVelocity(0);
   assertLeftAndRightMotorsLastVoltage(127, -127);
+}
+
+TEST_F(XDriveModelTest, XArcadeTurnHalfPower) {
+  model.xArcade(0, 0, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(63, -63);
+}
+
+TEST_F(XDriveModelTest, XArcadeTurnThresholds) {
+  model.xArcade(0, 0, 0.4, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertAllMotorsLastVoltage(0);
 }
 
 TEST_F(XDriveModelTest, XArcadeBoundsInputAllPoweredFull) {
