@@ -14,6 +14,27 @@
 
 using namespace okapi;
 
+void assertMotorsGearsetEquals(const AbstractMotor::gearset expected,
+                               const std::initializer_list<MockMotor> &motors) {
+  for (auto &motor : motors) {
+    EXPECT_EQ(expected, motor.gearset);
+  }
+}
+
+void assertMotorsBrakeModeEquals(const AbstractMotor::brakeMode expected,
+                                 const std::initializer_list<MockMotor> &motors) {
+  for (auto &motor : motors) {
+    EXPECT_EQ(expected, motor.brakeMode);
+  }
+}
+
+void assertMotorsEncoderUnitsEquals(const AbstractMotor::encoderUnits expected,
+                                    const std::initializer_list<MockMotor> &motors) {
+  for (auto &motor : motors) {
+    EXPECT_EQ(expected, motor.encoderUnits);
+  }
+}
+
 class XDriveModelTest : public ::testing::Test {
   public:
   XDriveModelTest() : model(topLeftMotor, topRightMotor, bottomRightMotor, bottomLeftMotor, 127) {
@@ -255,6 +276,25 @@ TEST_F(XDriveModelTest, XArcadeBoundsInputAllNoForward) {
   EXPECT_EQ(bottomLeftMotor->lastVoltage, 0);
 }
 
+TEST_F(XDriveModelTest, SetGearsetTest) {
+  model.setGearing(AbstractMotor::gearset::green);
+  assertMotorsGearsetEquals(AbstractMotor::gearset::green,
+                            {*topLeftMotor, *topRightMotor, *bottomRightMotor, *bottomLeftMotor});
+}
+
+TEST_F(XDriveModelTest, SetBrakeModeTest) {
+  model.setBrakeMode(AbstractMotor::brakeMode::hold);
+  assertMotorsBrakeModeEquals(AbstractMotor::brakeMode::hold,
+                              {*topLeftMotor, *topRightMotor, *bottomRightMotor, *bottomLeftMotor});
+}
+
+TEST_F(XDriveModelTest, SetEncoderUnitsTest) {
+  model.setEncoderUnits(AbstractMotor::encoderUnits::counts);
+  assertMotorsEncoderUnitsEquals(
+    AbstractMotor::encoderUnits::counts,
+    {*topLeftMotor, *topRightMotor, *bottomRightMotor, *bottomLeftMotor});
+}
+
 class SkidSteerModelTest : public ::testing::Test {
   public:
   SkidSteerModelTest() : model(leftMotor, rightMotor, 127) {
@@ -383,6 +423,21 @@ TEST_F(SkidSteerModelTest, ArcadeThresholds) {
 
   assertAllMotorsLastVelocity(0);
   assertAllMotorsLastVoltage(0);
+}
+
+TEST_F(SkidSteerModelTest, SetGearsetTest) {
+  model.setGearing(AbstractMotor::gearset::green);
+  assertMotorsGearsetEquals(AbstractMotor::gearset::green, {*leftMotor, *rightMotor});
+}
+
+TEST_F(SkidSteerModelTest, SetBrakeModeTest) {
+  model.setBrakeMode(AbstractMotor::brakeMode::hold);
+  assertMotorsBrakeModeEquals(AbstractMotor::brakeMode::hold, {*leftMotor, *rightMotor});
+}
+
+TEST_F(SkidSteerModelTest, SetEncoderUnitsTest) {
+  model.setEncoderUnits(AbstractMotor::encoderUnits::counts);
+  assertMotorsEncoderUnitsEquals(AbstractMotor::encoderUnits::counts, {*leftMotor, *rightMotor});
 }
 
 class ThreeEncoderSkidSteerModelTest : public ::testing::Test {

@@ -361,7 +361,7 @@ class AbstractMotor : public ControllerOutput<double> {
    * @param imode The new motor brake mode to set for the motor
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setBrakeMode(brakeMode imode) const = 0;
+  virtual std::int32_t setBrakeMode(brakeMode imode) = 0;
 
   /**
    * Sets the current limit for the motor in mA.
@@ -383,7 +383,7 @@ class AbstractMotor : public ControllerOutput<double> {
    * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setEncoderUnits(encoderUnits iunits) const = 0;
+  virtual std::int32_t setEncoderUnits(encoderUnits iunits) = 0;
 
   /**
    * Sets one of gearset for the motor.
@@ -394,7 +394,7 @@ class AbstractMotor : public ControllerOutput<double> {
    * @param igearset The new motor gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setGearing(gearset igearset) const = 0;
+  virtual std::int32_t setGearing(gearset igearset) = 0;
 
   /**
    * Sets the reverse flag for the motor.

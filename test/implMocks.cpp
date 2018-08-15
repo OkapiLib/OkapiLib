@@ -63,7 +63,8 @@ int32_t MockMotor::tarePosition() const {
   return 0;
 }
 
-int32_t MockMotor::setBrakeMode(const brakeMode imode) const {
+int32_t MockMotor::setBrakeMode(const AbstractMotor::brakeMode imode) {
+  brakeMode = imode;
   return 0;
 }
 
@@ -71,11 +72,13 @@ int32_t MockMotor::setCurrentLimit(const std::int32_t ilimit) const {
   return 0;
 }
 
-int32_t MockMotor::setEncoderUnits(const encoderUnits iunits) const {
+int32_t MockMotor::setEncoderUnits(const AbstractMotor::encoderUnits iunits) {
+  encoderUnits = iunits;
   return 0;
 }
 
-int32_t MockMotor::setGearing(const gearset igearset) const {
+int32_t MockMotor::setGearing(const AbstractMotor::gearset igearset) {
+  gearset = igearset;
   return 0;
 }
 

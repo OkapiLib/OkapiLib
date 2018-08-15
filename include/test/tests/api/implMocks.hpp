@@ -57,13 +57,13 @@ class MockMotor : public AbstractMotor {
 
   int32_t tarePosition() const override;
 
-  int32_t setBrakeMode(brakeMode imode) const override;
+  int32_t setBrakeMode(brakeMode imode) override;
 
   int32_t setCurrentLimit(std::int32_t ilimit) const override;
 
-  int32_t setEncoderUnits(encoderUnits iunits) const override;
+  int32_t setEncoderUnits(encoderUnits iunits) override;
 
-  int32_t setGearing(gearset igearset) const override;
+  int32_t setGearing(gearset igearset) override;
 
   int32_t setReversed(bool ireverse) const override;
 
@@ -108,6 +108,9 @@ class MockMotor : public AbstractMotor {
   mutable std::int16_t maxVelocity{0};
   mutable std::int16_t lastVoltage{0};
   mutable std::int16_t lastPosition{0};
+  AbstractMotor::gearset gearset;
+  AbstractMotor::encoderUnits encoderUnits;
+  AbstractMotor::brakeMode brakeMode;
 };
 
 /**
