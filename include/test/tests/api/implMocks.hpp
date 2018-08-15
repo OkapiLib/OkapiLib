@@ -268,6 +268,38 @@ class MockSettledUtil : public SettledUtil {
 };
 
 void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor);
+
+void assertMotorsGearsetEquals(const AbstractMotor::gearset expected,
+                               const std::initializer_list<MockMotor> &motors);
+
+void assertMotorsBrakeModeEquals(const AbstractMotor::brakeMode expected,
+                                 const std::initializer_list<MockMotor> &motors);
+
+void assertMotorsEncoderUnitsEquals(const AbstractMotor::encoderUnits expected,
+                                    const std::initializer_list<MockMotor> &motors);
+
+template <typename I, typename O>
+void assertControllerIsSettledWhenDisabled(ClosedLoopController<I, O> &controller, I target) {
+  controller.flipDisable(false);
+  controller.setTarget(target);
+  EXPECT_FALSE(controller.isSettled());
+
+  controller.flipDisable(true);
+  EXPECT_TRUE(controller.isSettled());
+}
+
+template <typename I, typename O>
+void assertWaitUntilSettledWorksWhenDisabled(AsyncController<I, O> &controller) {
+  controller.flipDisable(true);
+  controller.waitUntilSettled();
+}
+
+void assertControllerFollowsDisableLifecycle(AsyncController<double, double> &controller,
+                                             std::int16_t &domainValue,
+                                             std::int16_t &voltageValue);
+
+void assertControllerFollowsTargetLifecycle(AsyncController<double, double> &controller);
+
 } // namespace okapi
 
 #endif

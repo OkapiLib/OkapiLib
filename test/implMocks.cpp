@@ -401,4 +401,65 @@ void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor) {
   EXPECT_DOUBLE_EQ(rightMotor->lastVoltage, 0);
   EXPECT_DOUBLE_EQ(rightMotor->lastVelocity, 0);
 }
+
+void assertMotorsGearsetEquals(const AbstractMotor::gearset expected,
+                               const std::initializer_list<MockMotor> &motors) {
+  for (auto &motor : motors) {
+    EXPECT_EQ(expected, motor.gearset);
+  }
+}
+
+void assertMotorsBrakeModeEquals(const AbstractMotor::brakeMode expected,
+                                 const std::initializer_list<MockMotor> &motors) {
+  for (auto &motor : motors) {
+    EXPECT_EQ(expected, motor.brakeMode);
+  }
+}
+
+void assertMotorsEncoderUnitsEquals(const AbstractMotor::encoderUnits expected,
+                                    const std::initializer_list<MockMotor> &motors) {
+  for (auto &motor : motors) {
+    EXPECT_EQ(expected, motor.encoderUnits);
+  }
+}
+
+void assertControllerFollowsDisableLifecycle(AsyncController<double, double> &controller,
+                                             std::int16_t &domainValue,
+                                             std::int16_t &voltageValue) {
+  EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled at the start.";
+
+  controller.setTarget(100);
+  EXPECT_EQ(domainValue, 100) << "Should be on by default.";
+
+  controller.flipDisable();
+  EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after flipDisable";
+  EXPECT_EQ(voltageValue, 0) << "Disabling the controller should turn the motor off";
+
+  controller.flipDisable();
+  EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled after flipDisable";
+  EXPECT_EQ(domainValue, 100)
+    << "Re-enabling the controller should move the motor to the previous target";
+
+  controller.flipDisable();
+  EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after flipDisable";
+  controller.reset();
+  EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after reset";
+  EXPECT_EQ(voltageValue, 0) << "Resetting the controller should not change the current target";
+
+  controller.flipDisable();
+  EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled after flipDisable";
+  domainValue = 1337;            // Sample value to check it doesn't change
+  MockRate().delayUntil(100_ms); // Wait for it to possibly change
+  EXPECT_EQ(domainValue, 1337)
+    << "Re-enabling the controller after a reset should not move the motor";
+}
+
+void assertControllerFollowsTargetLifecycle(AsyncController<double, double> &controller) {
+  EXPECT_DOUBLE_EQ(0, controller.getError()) << "Should start with 0 error";
+  controller.setTarget(100);
+  EXPECT_DOUBLE_EQ(100, controller.getError());
+  controller.setTarget(0);
+  EXPECT_DOUBLE_EQ(0, controller.getError());
+}
+
 } // namespace okapi
