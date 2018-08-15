@@ -181,7 +181,8 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   /**
-   * Starts the internal thread. This should not be called by normal users.
+   * Starts the internal thread. This should not be called by normal users. This method is called
+   * by the AsyncControllerFactory when making a new instance of this class.
    */
   void startThread() {
     if (!task) {

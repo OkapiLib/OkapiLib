@@ -322,7 +322,7 @@ class AsyncControllerFactory {
    * @param imaxVel The maximum possible velocity.
    * @param imaxAccel The maximum possible acceleration.
    * @param imaxJerk The maximum possible jerk.
-   * @param imodel The chassis to control.
+   * @param ichassis The chassis to control.
    * @param iwidth The chassis wheelbase width.
    */
   static AsyncMotionProfileController motionProfile(double imaxVel,
