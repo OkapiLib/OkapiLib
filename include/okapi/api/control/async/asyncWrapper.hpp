@@ -18,6 +18,7 @@
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include "okapi/api/util/supplier.hpp"
+#include <atomic>
 #include <memory>
 
 namespace okapi {
@@ -58,12 +59,12 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
       loopRate(std::move(other.loopRate)),
       settledRate(std::move(other.settledRate)),
       settledUtil(std::move(other.settledUtil)),
-      dtorCalled(other.dtorCalled),
+      dtorCalled(other.dtorCalled.load(std::memory_order::memory_order_relaxed)),
       task(other.task) {
   }
 
   ~AsyncWrapper() override {
-    dtorCalled = true;
+    dtorCalled.store(true, std::memory_order::memory_order_relaxed);
     delete task;
   }
 
@@ -198,7 +199,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   std::unique_ptr<AbstractRate> loopRate;
   std::unique_ptr<AbstractRate> settledRate;
   std::unique_ptr<SettledUtil> settledUtil;
-  bool dtorCalled{false};
+  std::atomic_bool dtorCalled{false};
   CrossplatformThread *task{nullptr};
 
   static void trampoline(void *context) {
@@ -210,7 +211,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   void loop() {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
-    while (!dtorCalled) {
+    while (!dtorCalled.load(std::memory_order::memory_order_relaxed)) {
       if (!controller->isDisabled()) {
         output->controllerSet(controller->step(input->controllerGet()));
       }

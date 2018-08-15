@@ -34,15 +34,15 @@ AsyncMotionProfileController::AsyncMotionProfileController(
     model(std::move(other.model)),
     width(other.width),
     timeUtil(std::move(other.timeUtil)),
-    dtorCalled(other.dtorCalled),
     currentPath(std::move(other.currentPath)),
     isRunning(other.isRunning),
     disabled(other.disabled),
+    dtorCalled(other.dtorCalled.load(std::memory_order::memory_order_relaxed)),
     task(other.task) {
 }
 
 AsyncMotionProfileController::~AsyncMotionProfileController() {
-  dtorCalled = true;
+  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
 
   for (auto &path : paths) {
     free(path.second.left);
@@ -146,7 +146,7 @@ std::string AsyncMotionProfileController::getTarget() {
 void AsyncMotionProfileController::loop() {
   auto rate = timeUtil.getRate();
 
-  while (!dtorCalled) {
+  while (!dtorCalled.load(std::memory_order::memory_order_relaxed)) {
     if (isRunning && !isDisabled()) {
       logger->info("AsyncMotionProfileController: Running with path: " + currentPath);
       auto path = paths.find(currentPath);
