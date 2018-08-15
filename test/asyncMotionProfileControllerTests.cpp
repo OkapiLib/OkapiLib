@@ -55,6 +55,9 @@ TEST_F(AsyncMotionProfileControllerTest, MotorsAreStoppedAfterSettling) {
   EXPECT_EQ(controller->paths.size(), 1);
 
   controller->setTarget("A");
+
+  EXPECT_EQ(controller->getTarget(), "A");
+
   controller->waitUntilSettled();
 
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
