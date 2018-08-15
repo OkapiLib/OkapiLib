@@ -11,17 +11,24 @@
 
 using namespace okapi;
 
+class MockIterativePosPIDController : public IterativePosPIDController {
+public:
+  using IterativePosPIDController::IterativePosPIDController;
+  using IterativePosPIDController::integralMin;
+  using IterativePosPIDController::integralMax;
+};
+
 class IterativePosPIDControllerTest : public ::testing::Test {
   protected:
   virtual void SetUp() {
-    controller = new IterativePosPIDController(0.1, 0, 0, 0, createConstantTimeUtil(10_ms));
+    controller = new MockIterativePosPIDController(0.1, 0, 0, 0, createConstantTimeUtil(10_ms));
   }
 
   virtual void TearDown() {
     delete controller;
   }
 
-  IterativePosPIDController *controller;
+  MockIterativePosPIDController *controller;
 };
 
 TEST_F(IterativePosPIDControllerTest, BasicKpTest) {
@@ -43,4 +50,10 @@ TEST_F(IterativePosPIDControllerTest, DefaultErrorBounds_LargeError) {
 
 TEST_F(IterativePosPIDControllerTest, SettledWhenDisabled) {
   assertControllerIsSettledWhenDisabled(*controller, 100.0);
+}
+
+TEST_F(IterativePosPIDControllerTest, SetIntegralLimitsTest) {
+  MockIterativePosPIDController testController(0, 2, 0, 0, createTimeUtil());
+  EXPECT_DOUBLE_EQ(testController.integralMin, -1 / 2.0);
+  EXPECT_DOUBLE_EQ(testController.integralMax, 1 / 2.0);
 }

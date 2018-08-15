@@ -23,7 +23,7 @@ IterativePosPIDController::IterativePosPIDController(const double ikP,
     loopDtTimer(itimeUtil.getTimer()),
     settledUtil(itimeUtil.getSettledUtil()) {
   if (ikI != 0) {
-    setIntegralLimits(-1 / ikI, 1 / ikI);
+    setIntegralLimits(1 / ikI, -1 / ikI);
   }
   setOutputLimits(-1, 1);
   setGains(ikP, ikI, ikD, ikBias);
@@ -82,9 +82,6 @@ void IterativePosPIDController::setOutputLimits(double imax, double imin) {
   outputMin = imin;
 
   output = std::clamp(output, outputMin, outputMax);
-
-  // Fix integral
-  setIntegralLimits(imax, imin);
 }
 
 void IterativePosPIDController::setIntegralLimits(double imax, double imin) {
