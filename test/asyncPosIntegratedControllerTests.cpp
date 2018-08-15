@@ -27,6 +27,11 @@ class AsyncPosIntegratedControllerTest : public ::testing::Test {
   AsyncPosIntegratedController *controller;
 };
 
+TEST_F(AsyncPosIntegratedControllerTest, GetTargetTest) {
+  controller->setTarget(10);
+  EXPECT_EQ(controller->getTarget(), 10);
+}
+
 TEST_F(AsyncPosIntegratedControllerTest, SettledWhenDisabled) {
   assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }

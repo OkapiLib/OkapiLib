@@ -282,6 +282,7 @@ template <typename I, typename O>
 void assertControllerIsSettledWhenDisabled(ClosedLoopController<I, O> &controller, I target) {
   controller.flipDisable(false);
   controller.setTarget(target);
+  EXPECT_EQ(controller.getTarget(), target);
   EXPECT_FALSE(controller.isSettled());
 
   controller.flipDisable(true);

@@ -28,6 +28,11 @@ class AsyncVelIntegratedControllerTest : public ::testing::Test {
   AsyncVelIntegratedController *controller;
 };
 
+TEST_F(AsyncVelIntegratedControllerTest, GetTargetTest) {
+  controller->setTarget(10);
+  EXPECT_EQ(controller->getTarget(), 10);
+}
+
 TEST_F(AsyncVelIntegratedControllerTest, SettledWhenDisabled) {
   assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }
