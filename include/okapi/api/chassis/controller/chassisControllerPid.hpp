@@ -14,6 +14,7 @@
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
+#include <atomic>
 #include <memory>
 
 namespace okapi {
@@ -123,8 +124,8 @@ class ChassisControllerPID : public virtual ChassisController {
   const double straightScale;
   const double turnScale;
   bool doneLooping{true};
-  bool dtorCalled{false};
   bool newMovement{false};
+  std::atomic_bool dtorCalled{false};
 
   static void trampoline(void *context);
   void loop();
