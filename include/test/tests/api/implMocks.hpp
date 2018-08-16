@@ -57,13 +57,13 @@ class MockMotor : public AbstractMotor {
 
   int32_t tarePosition() const override;
 
-  int32_t setBrakeMode(brakeMode imode) const override;
+  int32_t setBrakeMode(brakeMode imode) override;
 
   int32_t setCurrentLimit(std::int32_t ilimit) const override;
 
-  int32_t setEncoderUnits(encoderUnits iunits) const override;
+  int32_t setEncoderUnits(encoderUnits iunits) override;
 
-  int32_t setGearing(gearset igearset) const override;
+  int32_t setGearing(gearset igearset) override;
 
   int32_t setReversed(bool ireverse) const override;
 
@@ -108,6 +108,9 @@ class MockMotor : public AbstractMotor {
   mutable std::int16_t maxVelocity{0};
   mutable std::int16_t lastVoltage{0};
   mutable std::int16_t lastPosition{0};
+  AbstractMotor::gearset gearset;
+  AbstractMotor::encoderUnits encoderUnits;
+  AbstractMotor::brakeMode brakeMode;
 };
 
 /**
@@ -265,6 +268,39 @@ class MockSettledUtil : public SettledUtil {
 };
 
 void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor);
+
+void assertMotorsGearsetEquals(const AbstractMotor::gearset expected,
+                               const std::initializer_list<MockMotor> &motors);
+
+void assertMotorsBrakeModeEquals(const AbstractMotor::brakeMode expected,
+                                 const std::initializer_list<MockMotor> &motors);
+
+void assertMotorsEncoderUnitsEquals(const AbstractMotor::encoderUnits expected,
+                                    const std::initializer_list<MockMotor> &motors);
+
+template <typename I, typename O>
+void assertControllerIsSettledWhenDisabled(ClosedLoopController<I, O> &controller, I target) {
+  controller.flipDisable(false);
+  controller.setTarget(target);
+  EXPECT_EQ(controller.getTarget(), target);
+  EXPECT_FALSE(controller.isSettled());
+
+  controller.flipDisable(true);
+  EXPECT_TRUE(controller.isSettled());
+}
+
+template <typename I, typename O>
+void assertWaitUntilSettledWorksWhenDisabled(AsyncController<I, O> &controller) {
+  controller.flipDisable(true);
+  controller.waitUntilSettled();
+}
+
+void assertControllerFollowsDisableLifecycle(AsyncController<double, double> &controller,
+                                             std::int16_t &domainValue,
+                                             std::int16_t &voltageValue);
+
+void assertControllerFollowsTargetLifecycle(AsyncController<double, double> &controller);
+
 } // namespace okapi
 
 #endif
