@@ -13,8 +13,9 @@ IterativeMotorVelocityController::IterativeMotorVelocityController(
   std::shared_ptr<IterativeVelocityController<double, double>> icontroller)
   : motor(imotor), controller(icontroller) {
 }
+
 double IterativeMotorVelocityController::step(const double ireading) {
-  motor->moveVelocity(static_cast<std::int16_t>(controller->step(ireading) * 127));
+  motor->controllerSet(controller->step(ireading));
   return controller->getOutput();
 }
 

@@ -90,45 +90,6 @@ TEST_F(IterativeControllerWithSimulatorTest, IterativeVelPIDControllerFeedForwar
   }
 }
 
-TEST(IterativeMotorVelocityControllerTest, IterativeMotorVelocityController) {
-  class MockIterativeVelPIDController : public IterativeVelPIDController {
-    public:
-    MockIterativeVelPIDController()
-      : IterativeVelPIDController(
-          0,
-          0,
-          0,
-          0,
-          std::make_unique<VelMath>(imev5TPR,
-                                    std::make_shared<AverageFilter<2>>(),
-                                    std::make_unique<ConstantMockTimer>(10_ms)),
-          createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
-            []() { return std::make_unique<ConstantMockTimer>(10_ms); }))) {
-    }
-
-    double step(const double inewReading) override {
-      return inewReading;
-    }
-  };
-
-  auto motor = std::make_shared<MockMotor>();
-
-  IterativeMotorVelocityController controller(motor,
-                                              std::make_shared<MockIterativeVelPIDController>());
-
-  controller.step(0);
-  EXPECT_NEAR(motor->lastVelocity, 0, 0.01);
-
-  controller.step(0.5);
-  EXPECT_NEAR(motor->lastVelocity, 63, 0.01);
-
-  controller.step(1);
-  EXPECT_NEAR(motor->lastVelocity, 127, 0.01);
-
-  controller.step(-0.5);
-  EXPECT_NEAR(motor->lastVelocity, -63, 0.01);
-}
-
 TEST(FilteredControllerInputTest, InputShouldBePassedThrough) {
   class MockControllerInput : public ControllerInput<double> {
     public:
