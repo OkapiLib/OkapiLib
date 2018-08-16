@@ -12,10 +12,10 @@
 using namespace okapi;
 
 class MockIterativePosPIDController : public IterativePosPIDController {
-public:
+  public:
   using IterativePosPIDController::IterativePosPIDController;
-  using IterativePosPIDController::integralMin;
   using IterativePosPIDController::integralMax;
+  using IterativePosPIDController::integralMin;
 };
 
 class IterativePosPIDControllerTest : public ::testing::Test {
@@ -56,4 +56,19 @@ TEST_F(IterativePosPIDControllerTest, SetIntegralLimitsTest) {
   MockIterativePosPIDController testController(0, 2, 0, 0, createTimeUtil());
   EXPECT_DOUBLE_EQ(testController.integralMin, -1 / 2.0);
   EXPECT_DOUBLE_EQ(testController.integralMax, 1 / 2.0);
+}
+
+TEST_F(IterativePosPIDControllerTest, NoOutputWhenDisabled) {
+  controller->setTarget(10);
+  controller->flipDisable(true);
+
+  EXPECT_EQ(controller->step(0), 0);
+  EXPECT_EQ(controller->getOutput(), 0);
+}
+
+TEST_F(IterativePosPIDControllerTest, SetTargetWorksWhenDisabled) {
+  controller->setTarget(10);
+  controller->flipDisable(true);
+
+  EXPECT_EQ(controller->getTarget(), 10);
 }
