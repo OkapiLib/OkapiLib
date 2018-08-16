@@ -12,10 +12,17 @@
 
 using namespace okapi;
 
+class MockIterativeVelPIDController : public IterativeVelPIDController {
+  public:
+  using IterativeVelPIDController::IterativeVelPIDController;
+  using IterativeVelPIDController::outputMax;
+  using IterativeVelPIDController::outputMin;
+};
+
 class IterativeVelPIDControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    controller = new IterativeVelPIDController(
+    controller = new MockIterativeVelPIDController(
       0,
       0,
       0,
@@ -30,7 +37,7 @@ class IterativeVelPIDControllerTest : public ::testing::Test {
     delete controller;
   }
 
-  IterativeVelPIDController *controller;
+  MockIterativeVelPIDController *controller;
 };
 
 TEST_F(IterativeVelPIDControllerTest, SettledWhenDisabled) {
@@ -54,4 +61,16 @@ TEST_F(IterativeVelPIDControllerTest, StaticFrictionGainUsesTargetSign) {
   // Use the same target but send the error to 0 to make sure the gain is applied to the target and
   // not the error
   EXPECT_DOUBLE_EQ(controller->step(-1), -1 * 0.1);
+}
+
+TEST_F(IterativeVelPIDControllerTest, SetOutputLimitsTest) {
+  controller->setOutputLimits(0.5, -0.5);
+  EXPECT_DOUBLE_EQ(controller->outputMax, 0.5);
+  EXPECT_DOUBLE_EQ(controller->outputMin, -0.5);
+}
+
+TEST_F(IterativeVelPIDControllerTest, SetOutputLimitsReversedTest) {
+  controller->setOutputLimits(-0.5, 0.5);
+  EXPECT_DOUBLE_EQ(controller->outputMax, 0.5);
+  EXPECT_DOUBLE_EQ(controller->outputMin, -0.5);
 }

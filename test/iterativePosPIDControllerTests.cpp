@@ -16,6 +16,8 @@ class MockIterativePosPIDController : public IterativePosPIDController {
   using IterativePosPIDController::IterativePosPIDController;
   using IterativePosPIDController::integralMax;
   using IterativePosPIDController::integralMin;
+  using IterativePosPIDController::outputMax;
+  using IterativePosPIDController::outputMin;
 };
 
 class IterativePosPIDControllerTest : public ::testing::Test {
@@ -52,10 +54,34 @@ TEST_F(IterativePosPIDControllerTest, SettledWhenDisabled) {
   assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }
 
-TEST_F(IterativePosPIDControllerTest, SetIntegralLimitsTest) {
+TEST_F(IterativePosPIDControllerTest, SetIntegralLimitsWithCtorTest) {
   MockIterativePosPIDController testController(0, 2, 0, 0, createTimeUtil());
   EXPECT_DOUBLE_EQ(testController.integralMin, -1 / 2.0);
   EXPECT_DOUBLE_EQ(testController.integralMax, 1 / 2.0);
+}
+
+TEST_F(IterativePosPIDControllerTest, SetIntegralLimitsTest) {
+  controller->setIntegralLimits(0.5, -0.5);
+  EXPECT_DOUBLE_EQ(controller->integralMin, -1 / 2.0);
+  EXPECT_DOUBLE_EQ(controller->integralMax, 1 / 2.0);
+}
+
+TEST_F(IterativePosPIDControllerTest, SetIntegralLimitsReversedTest) {
+  controller->setIntegralLimits(-0.5, 0.5);
+  EXPECT_DOUBLE_EQ(controller->integralMin, -1 / 2.0);
+  EXPECT_DOUBLE_EQ(controller->integralMax, 1 / 2.0);
+}
+
+TEST_F(IterativePosPIDControllerTest, SetOutputLimitsTest) {
+  controller->setOutputLimits(0.5, -0.5);
+  EXPECT_DOUBLE_EQ(controller->outputMax, 0.5);
+  EXPECT_DOUBLE_EQ(controller->outputMin, -0.5);
+}
+
+TEST_F(IterativePosPIDControllerTest, SetOutputLimitsReversedTest) {
+  controller->setOutputLimits(-0.5, 0.5);
+  EXPECT_DOUBLE_EQ(controller->outputMax, 0.5);
+  EXPECT_DOUBLE_EQ(controller->outputMin, -0.5);
 }
 
 TEST_F(IterativePosPIDControllerTest, NoOutputWhenDisabled) {
