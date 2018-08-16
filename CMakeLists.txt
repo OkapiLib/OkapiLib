@@ -169,6 +169,7 @@ add_executable(OkapiLibV5
         test/asyncVelIntegratedControllerTests.cpp
         test/asyncMotionProfileControllerTests.cpp
         test/iterativeVelPIDControllerTests.cpp
+        test/iterativeMotorVelocityControllerTest.cpp
         test/iterativePosPIDControllerTests.cpp
         test/asyncWrapperTests.cpp
         src/pathfinder/generator.c
@@ -180,7 +181,7 @@ add_executable(OkapiLibV5
         src/pathfinder/followers/distance.c
         src/pathfinder/followers/encoder.c
         src/pathfinder/modifiers/swerve.c
-        src/pathfinder/modifiers/tank.c test/iterativeMotorVelocityControllerTest.cpp)
+        src/pathfinder/modifiers/tank.c)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)
