@@ -12,6 +12,7 @@
 #include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/logging.hpp"
+#include <atomic>
 #include <memory>
 #include <valarray>
 
@@ -89,7 +90,7 @@ class Odometry {
   ChassisScales chassisScales;
   std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0}, lastTicks{0, 0};
   QLength mm{0_m};
-  bool dtorCalled{false};
+  std::atomic_bool dtorCalled{false};
 };
 } // namespace okapi
 
