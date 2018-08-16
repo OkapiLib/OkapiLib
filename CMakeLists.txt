@@ -180,7 +180,7 @@ add_executable(OkapiLibV5
         src/pathfinder/followers/distance.c
         src/pathfinder/followers/encoder.c
         src/pathfinder/modifiers/swerve.c
-        src/pathfinder/modifiers/tank.c)
+        src/pathfinder/modifiers/tank.c test/iterativeMotorVelocityControllerTest.cpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)

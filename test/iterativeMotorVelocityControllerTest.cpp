@@ -5,6 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+#include "okapi/api/control/iterative/iterativeMotorVelocityController.hpp"
 #include "okapi/api/control/iterative/iterativeVelPidController.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
@@ -18,10 +19,16 @@ class MockIterativeVelPIDController : public IterativeVelPIDController {
   using IterativeVelPIDController::outputMin;
 };
 
-class IterativeVelPIDControllerTest : public ::testing::Test {
+class MockIterativeMotorVelocityController : public IterativeMotorVelocityController {
+  public:
+  using IterativeMotorVelocityController::IterativeMotorVelocityController;
+};
+
+class IterativeMotorVelocityControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    controller = new MockIterativeVelPIDController(
+    motor = std::make_shared<MockMotor>();
+    velController = std::make_shared<MockIterativeVelPIDController>(
       0,
       0,
       0,
@@ -30,55 +37,54 @@ class IterativeVelPIDControllerTest : public ::testing::Test {
         1800, std::make_shared<PassthroughFilter>(), std::make_unique<ConstantMockTimer>(10_ms)),
       createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
         []() { return std::make_unique<ConstantMockTimer>(10_ms); })));
+    controller = new MockIterativeMotorVelocityController(motor, velController);
   }
 
   void TearDown() override {
     delete controller;
   }
 
-  MockIterativeVelPIDController *controller;
+  std::shared_ptr<MockMotor> motor;
+  std::shared_ptr<MockIterativeVelPIDController> velController;
+  MockIterativeMotorVelocityController *controller;
 };
 
-TEST_F(IterativeVelPIDControllerTest, SettledWhenDisabled) {
-  controller->setGains(0.1, 0.1, 0.1, 0.1);
+TEST_F(IterativeMotorVelocityControllerTest, SettledWhenDisabled) {
+  velController->setGains(0.1, 0.1, 0.1, 0.1);
   assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }
 
-TEST_F(IterativeVelPIDControllerTest, StaticFrictionGainUsesTargetSign) {
-  controller->setGains(0, 0, 0, 0.1);
+TEST_F(IterativeMotorVelocityControllerTest, StaticFrictionGainUsesTargetSign) {
+  velController->setGains(0, 0, 0, 0.1);
 
   controller->setTarget(1);
   EXPECT_DOUBLE_EQ(controller->step(0), 1 * 0.1);
-  EXPECT_DOUBLE_EQ(controller->getOutput(), 1 * 0.1);
 
   // Use the same target but send the error to 0 to make sure the gain is applied to the target and
   // not the error
   EXPECT_DOUBLE_EQ(controller->step(1), 1 * 0.1);
-  EXPECT_DOUBLE_EQ(controller->getOutput(), 1 * 0.1);
 
   controller->setTarget(-1);
   EXPECT_DOUBLE_EQ(controller->step(0), -1 * 0.1);
-  EXPECT_DOUBLE_EQ(controller->getOutput(), -1 * 0.1);
 
   // Use the same target but send the error to 0 to make sure the gain is applied to the target and
   // not the error
   EXPECT_DOUBLE_EQ(controller->step(-1), -1 * 0.1);
-  EXPECT_DOUBLE_EQ(controller->getOutput(), -1 * 0.1);
 }
 
-TEST_F(IterativeVelPIDControllerTest, SetOutputLimitsTest) {
+TEST_F(IterativeMotorVelocityControllerTest, SetOutputLimitsTest) {
   controller->setOutputLimits(0.5, -0.5);
-  EXPECT_DOUBLE_EQ(controller->outputMax, 0.5);
-  EXPECT_DOUBLE_EQ(controller->outputMin, -0.5);
+  EXPECT_DOUBLE_EQ(velController->outputMax, 0.5);
+  EXPECT_DOUBLE_EQ(velController->outputMin, -0.5);
 }
 
-TEST_F(IterativeVelPIDControllerTest, SetOutputLimitsReversedTest) {
+TEST_F(IterativeMotorVelocityControllerTest, SetOutputLimitsReversedTest) {
   controller->setOutputLimits(-0.5, 0.5);
-  EXPECT_DOUBLE_EQ(controller->outputMax, 0.5);
-  EXPECT_DOUBLE_EQ(controller->outputMin, -0.5);
+  EXPECT_DOUBLE_EQ(velController->outputMax, 0.5);
+  EXPECT_DOUBLE_EQ(velController->outputMin, -0.5);
 }
 
-TEST_F(IterativeVelPIDControllerTest, NoOutputWhenDisabled) {
+TEST_F(IterativeMotorVelocityControllerTest, NoOutputWhenDisabled) {
   controller->setTarget(10);
   controller->step(0); // Generate some output
   controller->flipDisable(true);
@@ -89,7 +95,7 @@ TEST_F(IterativeVelPIDControllerTest, NoOutputWhenDisabled) {
   EXPECT_EQ(controller->getOutput(), 0);
 }
 
-TEST_F(IterativeVelPIDControllerTest, SetTargetWorksWhenDisabled) {
+TEST_F(IterativeMotorVelocityControllerTest, SetTargetWorksWhenDisabled) {
   controller->setTarget(10);
   controller->flipDisable(true);
 
