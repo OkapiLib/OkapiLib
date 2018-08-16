@@ -151,6 +151,12 @@ TEST(ComposableFilterTest, OutputTest) {
   testComposableFilterFunctionality(filter);
 }
 
+TEST(ComposableFilterTest, OutputWithNoFiltersTest) {
+  ComposableFilter filter({});
+  EXPECT_DOUBLE_EQ(filter.filter(1), 0);
+  EXPECT_DOUBLE_EQ(filter.getOutput(), 0);
+}
+
 TEST(ComposableFilterTest, AddingAFilterIsEquivalentToCtorParam) {
   ComposableFilter filter(
     {std::make_shared<AverageFilter<3>>(), std::make_shared<AverageFilter<3>>()});

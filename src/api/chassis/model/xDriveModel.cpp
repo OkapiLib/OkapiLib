@@ -1,4 +1,4 @@
-/**impl
+/**
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -168,10 +168,14 @@ void XDriveModel::xArcade(const double ixSpeed,
     zRotation = 0;
   }
 
-  topLeftMotor->moveVoltage(static_cast<int16_t>(ySpeed + xSpeed + zRotation));
-  topRightMotor->moveVoltage(static_cast<int16_t>(ySpeed - xSpeed - zRotation));
-  bottomRightMotor->moveVoltage(static_cast<int16_t>(ySpeed + xSpeed - zRotation));
-  bottomLeftMotor->moveVoltage(static_cast<int16_t>(ySpeed - xSpeed + zRotation));
+  topLeftMotor->moveVoltage(
+    static_cast<int16_t>(std::clamp(ySpeed + xSpeed + zRotation, -1.0, 1.0) * maxOutput));
+  topRightMotor->moveVoltage(
+    static_cast<int16_t>(std::clamp(ySpeed - xSpeed - zRotation, -1.0, 1.0) * maxOutput));
+  bottomRightMotor->moveVoltage(
+    static_cast<int16_t>(std::clamp(ySpeed + xSpeed - zRotation, -1.0, 1.0) * maxOutput));
+  bottomLeftMotor->moveVoltage(
+    static_cast<int16_t>(std::clamp(ySpeed - xSpeed + zRotation, -1.0, 1.0) * maxOutput));
 }
 
 void XDriveModel::left(const double ispeed) const {
