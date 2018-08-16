@@ -270,3 +270,19 @@ TEST_F(XDriveModelTest, SetEncoderUnitsTest) {
     AbstractMotor::encoderUnits::counts,
     {*topLeftMotor, *topRightMotor, *bottomRightMotor, *bottomLeftMotor});
 }
+
+TEST_F(XDriveModelTest, GetTopLeftMotor) {
+  EXPECT_EQ(model.getTopLeftMotor().get(), topLeftMotor.get());
+}
+
+TEST_F(XDriveModelTest, GetTopRightMotor) {
+  EXPECT_EQ(model.getTopRightMotor().get(), topRightMotor.get());
+}
+
+TEST_F(XDriveModelTest, GetBottomLeftMotor) {
+  EXPECT_EQ(model.getBottomLeftMotor().get(), bottomLeftMotor.get());
+}
+
+TEST_F(XDriveModelTest, GetBottomRightMotor) {
+  EXPECT_EQ(model.getBottomRightMotor().get(), bottomRightMotor.get());
+}

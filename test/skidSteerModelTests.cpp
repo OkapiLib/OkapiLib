@@ -155,3 +155,11 @@ TEST_F(SkidSteerModelTest, SetEncoderUnitsTest) {
   model.setEncoderUnits(AbstractMotor::encoderUnits::counts);
   assertMotorsEncoderUnitsEquals(AbstractMotor::encoderUnits::counts, {*leftMotor, *rightMotor});
 }
+
+TEST_F(SkidSteerModelTest, GetLeftSideMotor) {
+  EXPECT_EQ(model.getLeftSideMotor().get(), leftMotor.get());
+}
+
+TEST_F(SkidSteerModelTest, GetRightSideMotor) {
+  EXPECT_EQ(model.getRightSideMotor().get(), rightMotor.get());
+}
