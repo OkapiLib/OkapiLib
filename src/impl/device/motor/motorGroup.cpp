@@ -149,7 +149,7 @@ std::int32_t MotorGroup::getVoltage() const {
   return motors[0].get_voltage();
 }
 
-std::int32_t MotorGroup::setBrakeMode(const AbstractMotor::brakeMode imode) const {
+std::int32_t MotorGroup::setBrakeMode(const AbstractMotor::brakeMode imode) {
   auto out = 1;
   for (auto &&elem : motors) {
     const auto errorCode = elem.setBrakeMode(imode);
@@ -171,7 +171,7 @@ std::int32_t MotorGroup::setCurrentLimit(const std::int32_t ilimit) const {
   return out;
 }
 
-std::int32_t MotorGroup::setEncoderUnits(const AbstractMotor::encoderUnits iunits) const {
+std::int32_t MotorGroup::setEncoderUnits(const AbstractMotor::encoderUnits iunits) {
   auto out = 1;
   for (auto &&elem : motors) {
     const auto errorCode = elem.setEncoderUnits(iunits);
@@ -182,7 +182,7 @@ std::int32_t MotorGroup::setEncoderUnits(const AbstractMotor::encoderUnits iunit
   return out;
 }
 
-std::int32_t MotorGroup::setGearing(const AbstractMotor::gearset igearset) const {
+std::int32_t MotorGroup::setGearing(const AbstractMotor::gearset igearset) {
   auto out = 1;
   for (auto &&elem : motors) {
     const auto errorCode = elem.setGearing(igearset);

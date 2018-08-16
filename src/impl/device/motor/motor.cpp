@@ -129,7 +129,7 @@ std::int32_t Motor::getVoltage() const {
   return get_voltage();
 }
 
-std::int32_t Motor::setBrakeMode(const AbstractMotor::brakeMode imode) const {
+std::int32_t Motor::setBrakeMode(const AbstractMotor::brakeMode imode) {
   switch (imode) {
   case AbstractMotor::brakeMode::brake:
     return set_brake_mode(pros::c::E_MOTOR_BRAKE_BRAKE);
@@ -146,7 +146,7 @@ std::int32_t Motor::setCurrentLimit(const std::int32_t ilimit) const {
   return set_current_limit(ilimit);
 }
 
-std::int32_t Motor::setEncoderUnits(const AbstractMotor::encoderUnits iunits) const {
+std::int32_t Motor::setEncoderUnits(const AbstractMotor::encoderUnits iunits) {
   switch (iunits) {
   case AbstractMotor::encoderUnits::counts:
     return set_encoder_units(pros::c::E_MOTOR_ENCODER_COUNTS);
@@ -159,7 +159,7 @@ std::int32_t Motor::setEncoderUnits(const AbstractMotor::encoderUnits iunits) co
   }
 }
 
-std::int32_t Motor::setGearing(const AbstractMotor::gearset igearset) const {
+std::int32_t Motor::setGearing(const AbstractMotor::gearset igearset) {
   switch (igearset) {
   case AbstractMotor::gearset::blue:
     return set_gearing(pros::c::E_MOTOR_GEARSET_06);
