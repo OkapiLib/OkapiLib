@@ -54,6 +54,7 @@ void IterativeVelPIDController::setOutputLimits(double imax, double imin) {
   outputMax = imax;
   outputMin = imin;
 
+  outputSum = std::clamp(outputSum, outputMin, outputMax);
   output = std::clamp(output, outputMin, outputMax);
 }
 
@@ -72,16 +73,17 @@ double IterativeVelPIDController::step(const double inewReading) {
       // Derivative over measurement to eliminate derivative kick on setpoint change
       derivative = derivativeFilter->filter(velMath->getAccel().getValue());
 
-      output += kP * error - kD * derivative;
-      output = std::clamp(output, outputMin, outputMax);
+      outputSum += kP * error - kD * derivative;
+      outputSum = std::clamp(outputSum, outputMin, outputMax);
 
       loopDtTimer->clearHardMark(); // Important that we only clear if dt >= sampleTime
 
       settledUtil->isSettled(error);
     }
 
-    return std::clamp(
-      output + kF * target + kSF * std::copysign(1.0, target), outputMin, outputMax);
+    output =
+      std::clamp(outputSum + kF * target + kSF * std::copysign(1.0, target), outputMin, outputMax);
+    return output;
   }
 
   return 0; // Can't set output to zero because the entire loop in an integral
@@ -111,6 +113,7 @@ bool IterativeVelPIDController::isSettled() {
 void IterativeVelPIDController::reset() {
   logger->info("IterativeVelPIDController: Reset");
   error = 0;
+  outputSum = 0;
   output = 0;
   settledUtil->reset();
 }

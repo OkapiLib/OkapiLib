@@ -166,6 +166,7 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
   double error = 0;
   double derivative = 0;
   double target = 0;
+  double outputSum = 0;
   double output = 0;
   double outputMax = 1;
   double outputMin = -1;
