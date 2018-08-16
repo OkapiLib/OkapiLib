@@ -28,7 +28,6 @@ AsyncVelPIDController::AsyncVelPIDController(std::shared_ptr<ControllerInput<dou
                                                   std::move(ivelMath),
                                                   itimeUtil,
                                                   std::move(iderivativeFilter)),
-      itimeUtil.getRateSupplier(),
-      itimeUtil.getSettledUtil()) {
+      itimeUtil.getRateSupplier()) {
 }
 } // namespace okapi

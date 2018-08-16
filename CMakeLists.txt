@@ -184,8 +184,10 @@ add_executable(OkapiLibV5
         test/asyncVelIntegratedControllerTests.cpp
         test/asyncMotionProfileControllerTests.cpp
         test/iterativeVelPIDControllerTests.cpp
+        test/iterativeMotorVelocityControllerTest.cpp
         test/iterativePosPIDControllerTests.cpp
         test/odomChassisControllerTests.cpp
+        test/asyncWrapperTests.cpp
         src/pathfinder/generator.c
         src/pathfinder/io.c
         src/pathfinder/mathutil.c

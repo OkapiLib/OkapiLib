@@ -42,9 +42,10 @@ TEST_F(AsyncVelIntegratedControllerTest, WaitUntilSettledWorksWhenDisabled) {
 }
 
 TEST_F(AsyncVelIntegratedControllerTest, FollowsDisableLifecycle) {
-  assertControllerFollowsDisableLifecycle(*controller, motor->lastVelocity, motor->lastVoltage);
+  assertControllerFollowsDisableLifecycle(
+    *controller, motor->lastVelocity, motor->lastVoltage, 100);
 }
 
 TEST_F(AsyncVelIntegratedControllerTest, FollowsTargetLifecycle) {
-  assertControllerFollowsTargetLifecycle(*controller);
+  assertControllerFollowsTargetLifecycle(*controller, 100);
 }

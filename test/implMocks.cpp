@@ -425,11 +425,12 @@ void assertMotorsEncoderUnitsEquals(const AbstractMotor::encoderUnits expected,
 
 void assertControllerFollowsDisableLifecycle(AsyncController<double, double> &controller,
                                              std::int16_t &domainValue,
-                                             std::int16_t &voltageValue) {
+                                             std::int16_t &voltageValue,
+                                             int expectedOutput) {
   EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled at the start.";
 
   controller.setTarget(100);
-  EXPECT_EQ(domainValue, 100) << "Should be on by default.";
+  EXPECT_EQ(domainValue, expectedOutput) << "Should be on by default.";
 
   controller.flipDisable();
   EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after flipDisable";
@@ -437,7 +438,7 @@ void assertControllerFollowsDisableLifecycle(AsyncController<double, double> &co
 
   controller.flipDisable();
   EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled after flipDisable";
-  EXPECT_EQ(domainValue, 100)
+  EXPECT_EQ(domainValue, expectedOutput)
     << "Re-enabling the controller should move the motor to the previous target";
 
   controller.flipDisable();
@@ -454,12 +455,13 @@ void assertControllerFollowsDisableLifecycle(AsyncController<double, double> &co
     << "Re-enabling the controller after a reset should not move the motor";
 }
 
-void assertControllerFollowsTargetLifecycle(AsyncController<double, double> &controller) {
+void assertControllerFollowsTargetLifecycle(AsyncController<double, double> &controller,
+                                            int expectedOutput) {
   EXPECT_DOUBLE_EQ(0, controller.getError()) << "Should start with 0 error";
   controller.setTarget(100);
-  EXPECT_DOUBLE_EQ(100, controller.getError());
+  EXPECT_DOUBLE_EQ(controller.getError(), expectedOutput);
   controller.setTarget(0);
-  EXPECT_DOUBLE_EQ(0, controller.getError());
+  EXPECT_DOUBLE_EQ(controller.getError(), 0);
 }
 
 } // namespace okapi

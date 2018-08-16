@@ -50,7 +50,7 @@ double IterativePosPIDController::getTarget() {
 }
 
 double IterativePosPIDController::getOutput() const {
-  return output;
+  return isDisabled() ? 0 : output;
 }
 
 double IterativePosPIDController::getError() const {

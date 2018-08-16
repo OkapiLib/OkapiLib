@@ -26,9 +26,8 @@ template <typename Input, typename Output>
 class AsyncWrapper : virtual public AsyncController<Input, Output> {
   public:
   /**
-   * A wrapper class that transforms an IterativeController into an AsyncController by running it in
-   * another task. The input controller will act like an AsyncController. The output of the
-   * IterativeController will be scaled by the given scale (127 by default).
+   * A wrapper class that transforms an IterativeController into an AsyncController by running it
+   * in another task. The input controller will act like an AsyncController.
    *
    * @param iinput controller input, passed to the IterativeController
    * @param ioutput controller output, written to from the IterativeController
@@ -40,15 +39,13 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   AsyncWrapper(std::shared_ptr<ControllerInput<Input>> iinput,
                std::shared_ptr<ControllerOutput<Output>> ioutput,
                std::unique_ptr<IterativeController<Input, Output>> icontroller,
-               const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
-               std::unique_ptr<SettledUtil> isettledUtil)
+               const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier)
     : logger(Logger::instance()),
       input(iinput),
       output(ioutput),
       controller(std::move(icontroller)),
       loopRate(irateSupplier.get()),
-      settledRate(irateSupplier.get()),
-      settledUtil(std::move(isettledUtil)) {
+      settledRate(irateSupplier.get()) {
   }
 
   AsyncWrapper(AsyncWrapper<Input, Output> &&other) noexcept
@@ -58,7 +55,6 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
       controller(std::move(other.controller)),
       loopRate(std::move(other.loopRate)),
       settledRate(std::move(other.settledRate)),
-      settledUtil(std::move(other.settledUtil)),
       dtorCalled(other.dtorCalled.load(std::memory_order::memory_order_relaxed)),
       task(other.task) {
   }
@@ -73,7 +69,9 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    */
   void setTarget(Input itarget) override {
     logger->info("AsyncWrapper: Set target to " + std::to_string(itarget));
+    hasFirstTarget = true;
     controller->setTarget(itarget);
+    lastTarget = itarget;
   }
 
   /**
@@ -108,7 +106,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * @return whether the controller is settled
    */
   bool isSettled() override {
-    return controller->isSettled();
+    return isDisabled() || controller->isSettled();
   }
 
   /**
@@ -137,6 +135,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   void reset() override {
     logger->info("AsyncWrapper: Reset");
     controller->reset();
+    hasFirstTarget = false;
   }
 
   /**
@@ -145,6 +144,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    */
   void flipDisable() override {
     controller->flipDisable();
+    resumeMovement();
   }
 
   /**
@@ -156,6 +156,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   void flipDisable(bool iisDisabled) override {
     logger->info("AsyncWrapper: flipDisable " + std::to_string(iisDisabled));
     controller->flipDisable(iisDisabled);
+    resumeMovement();
   }
 
   /**
@@ -174,7 +175,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   void waitUntilSettled() override {
     logger->info("AsyncWrapper: Waiting to settle");
 
-    while (!settledUtil->isSettled(getError())) {
+    while (!isSettled()) {
       loopRate->delayUntil(motorUpdateRate);
     }
 
@@ -196,9 +197,10 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   std::shared_ptr<ControllerInput<Input>> input;
   std::shared_ptr<ControllerOutput<Output>> output;
   std::unique_ptr<IterativeController<Input, Output>> controller;
+  bool hasFirstTarget{false};
+  Input lastTarget;
   std::unique_ptr<AbstractRate> loopRate;
   std::unique_ptr<AbstractRate> settledRate;
-  std::unique_ptr<SettledUtil> settledUtil;
   std::atomic_bool dtorCalled{false};
   CrossplatformThread *task{nullptr};
 
@@ -209,16 +211,28 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   void loop() {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (!dtorCalled.load(std::memory_order::memory_order_relaxed)) {
-      if (!controller->isDisabled()) {
+      if (!isDisabled()) {
         output->controllerSet(controller->step(input->controllerGet()));
       }
 
       loopRate->delayUntil(controller->getSampleTime());
     }
-#pragma clang diagnostic pop
+  }
+
+  /**
+   * Resumes moving after the controller is reset. Should not cause movement if the controller is
+   * turned off, reset, and turned back on.
+   */
+  virtual void resumeMovement() {
+    if (isDisabled()) {
+      // This will grab the output *when disabled*
+      output->controllerSet(controller->getOutput());
+    } else {
+      if (hasFirstTarget) {
+        setTarget(lastTarget);
+      }
+    }
   }
 };
 } // namespace okapi
