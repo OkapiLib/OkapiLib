@@ -63,7 +63,7 @@ bool AsyncPosIntegratedController::isDisabled() const {
 }
 
 void AsyncPosIntegratedController::resumeMovement() {
-  if (controllerIsDisabled) {
+  if (isDisabled()) {
     motor->moveVoltage(0);
   } else {
     if (hasFirstTarget) {
@@ -74,9 +74,11 @@ void AsyncPosIntegratedController::resumeMovement() {
 
 void AsyncPosIntegratedController::waitUntilSettled() {
   logger->info("AsyncPosIntegratedController: Waiting to settle");
+
   while (!isSettled()) {
     rate->delayUntil(motorUpdateRate);
   }
+
   logger->info("AsyncPosIntegratedController: Done waiting to settle");
 }
 } // namespace okapi

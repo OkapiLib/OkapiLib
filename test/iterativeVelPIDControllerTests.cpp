@@ -74,3 +74,21 @@ TEST_F(IterativeVelPIDControllerTest, SetOutputLimitsReversedTest) {
   EXPECT_DOUBLE_EQ(controller->outputMax, 0.5);
   EXPECT_DOUBLE_EQ(controller->outputMin, -0.5);
 }
+
+TEST_F(IterativeVelPIDControllerTest, NoOutputWhenDisabled) {
+  controller->setTarget(10);
+  controller->step(0); // Generate some output
+  controller->flipDisable(true);
+
+  // Check output before and after since step writes to output
+  EXPECT_EQ(controller->getOutput(), 0);
+  EXPECT_EQ(controller->step(0), 0);
+  EXPECT_EQ(controller->getOutput(), 0);
+}
+
+TEST_F(IterativeVelPIDControllerTest, SetTargetWorksWhenDisabled) {
+  controller->setTarget(10);
+  controller->flipDisable(true);
+
+  EXPECT_EQ(controller->getTarget(), 10);
+}
