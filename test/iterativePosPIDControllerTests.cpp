@@ -86,8 +86,11 @@ TEST_F(IterativePosPIDControllerTest, SetOutputLimitsReversedTest) {
 
 TEST_F(IterativePosPIDControllerTest, NoOutputWhenDisabled) {
   controller->setTarget(10);
+  controller->step(0); // Generate some output
   controller->flipDisable(true);
 
+  // Check output before and after since step writes to output
+  EXPECT_EQ(controller->getOutput(), 0);
   EXPECT_EQ(controller->step(0), 0);
   EXPECT_EQ(controller->getOutput(), 0);
 }

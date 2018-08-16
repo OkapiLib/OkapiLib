@@ -25,7 +25,6 @@ AsyncPosPIDController::AsyncPosPIDController(std::shared_ptr<ControllerInput<dou
                                                   ikBias,
                                                   itimeUtil,
                                                   std::move(iderivativeFilter)),
-      itimeUtil.getRateSupplier(),
-      itimeUtil.getSettledUtil()) {
+      itimeUtil.getRateSupplier()) {
 }
 } // namespace okapi

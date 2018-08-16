@@ -97,7 +97,7 @@ double IterativeVelPIDController::getTarget() {
 }
 
 double IterativeVelPIDController::getOutput() const {
-  return isOn ? output : 0;
+  return isDisabled() ? 0 : output;
 }
 
 double IterativeVelPIDController::getError() const {

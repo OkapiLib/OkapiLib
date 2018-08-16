@@ -297,9 +297,11 @@ void assertWaitUntilSettledWorksWhenDisabled(AsyncController<I, O> &controller) 
 
 void assertControllerFollowsDisableLifecycle(AsyncController<double, double> &controller,
                                              std::int16_t &domainValue,
-                                             std::int16_t &voltageValue);
+                                             std::int16_t &voltageValue,
+                                             int expectedOutput);
 
-void assertControllerFollowsTargetLifecycle(AsyncController<double, double> &controller);
+void assertControllerFollowsTargetLifecycle(AsyncController<double, double> &controller,
+                                            int expectedOutput);
 
 } // namespace okapi
 
