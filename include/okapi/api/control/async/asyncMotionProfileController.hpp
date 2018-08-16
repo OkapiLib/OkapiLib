@@ -15,6 +15,7 @@
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
+#include <atomic>
 #include <map>
 
 extern "C" {
@@ -153,10 +154,10 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   QLength width{11_in};
   TimeUtil timeUtil;
 
-  bool dtorCalled{false};
   std::string currentPath{""};
   bool isRunning{false};
   bool disabled{false};
+  std::atomic_bool dtorCalled{false};
   CrossplatformThread *task{nullptr};
 
   static void trampoline(void *context);

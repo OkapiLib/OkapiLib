@@ -12,12 +12,38 @@ void runHeadlessTests() {
   test_print_report();
 }
 
+std::atomic_bool baz{false};
+
+void foo(void *) {
+  while (true) {
+    bool val = baz.load(std::memory_order::memory_order_relaxed);
+    if (val) {
+      printf("foo\n");
+    }
+    baz.store(!val, std::memory_order::memory_order_relaxed);
+  }
+}
+
+void barr(void *) {
+  while (true) {
+    bool val = baz.load(std::memory_order::memory_order_relaxed);
+    if (val) {
+      printf("bar\n");
+    }
+    baz.store(!val, std::memory_order::memory_order_relaxed);
+  }
+}
+
 void opcontrol() {
   using namespace okapi;
   pros::Task::delay(100);
 
-  Logger::initialize(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug);
-  auto logger = Logger::instance();
+  //  Logger::initialize(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug);
+  //  auto logger = Logger::instance();
+
+  pros::Task fooTask(foo);
+  pros::Task barTask(barr);
+  pros::Task::delay(1000);
 
   auto drive = ChassisControllerFactory::createOdom(
     -1, 2, AbstractMotor::gearset::red, {2.5_in, 10.5_in}, 0_mm);
@@ -58,7 +84,7 @@ void opcontrol() {
   //    auto cnt = AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, model, 10.5_in);
   //
   //    cnt.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
-  //    cnt.setTarget("B");
+  //    cnt.setTarget("A");
   //    cnt.waitUntilSettled();
   //  }
 
