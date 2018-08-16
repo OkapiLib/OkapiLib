@@ -23,8 +23,7 @@ ChassisControllerPID::ChassisControllerPID(
     anglePid(std::move(iangleController)),
     turnPid(std::move(iturnController)),
     gearRatio(igearset.ratio),
-    straightScale(iscales.straight),
-    turnScale(iscales.turn) {
+    scales(iscales) {
   if (igearset.ratio == 0) {
     logger->error("ChassisControllerPID: The gear ratio cannot be zero! Check if you are using "
                   "integer division.");
@@ -44,8 +43,7 @@ ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcep
     anglePid(std::move(other.anglePid)),
     turnPid(std::move(other.turnPid)),
     gearRatio(other.gearRatio),
-    straightScale(other.straightScale),
-    turnScale(other.turnScale),
+    scales(other.scales),
     doneLooping(other.doneLooping),
     newMovement(other.newMovement),
     dtorCalled(other.dtorCalled.load(std::memory_order::memory_order_relaxed)),
@@ -118,7 +116,7 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   turnPid->flipDisable(true);
   mode = distance;
 
-  const double newTarget = itarget.convert(meter) * straightScale * gearRatio;
+  const double newTarget = itarget.convert(meter) * scales.straight * gearRatio;
 
   logger->info("ChassisControllerPID: moving " + std::to_string(newTarget) + " motor degrees");
 
@@ -131,7 +129,7 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
 
 void ChassisControllerPID::moveDistanceAsync(const double itarget) {
   // Divide by straightScale so the final result turns back into motor degrees
-  moveDistanceAsync((itarget / straightScale) * meter);
+  moveDistanceAsync((itarget / scales.straight) * meter);
 }
 
 void ChassisControllerPID::moveDistance(const QLength itarget) {
@@ -141,7 +139,7 @@ void ChassisControllerPID::moveDistance(const QLength itarget) {
 
 void ChassisControllerPID::moveDistance(const double itarget) {
   // Divide by straightScale so the final result turns back into motor degrees
-  moveDistance((itarget / straightScale) * meter);
+  moveDistance((itarget / scales.straight) * meter);
 }
 
 void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
@@ -154,7 +152,7 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   anglePid->flipDisable(true);
   mode = angle;
 
-  const double newTarget = idegTarget.convert(degree) * turnScale * gearRatio;
+  const double newTarget = idegTarget.convert(degree) * scales.turn * gearRatio;
 
   logger->info("ChassisControllerPID: turning " + std::to_string(newTarget) + " motor degrees");
 
@@ -166,7 +164,7 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
 
 void ChassisControllerPID::turnAngleAsync(const double idegTarget) {
   // Divide by turnScale so the final result turns back into motor degrees
-  turnAngleAsync((idegTarget / turnScale) * degree);
+  turnAngleAsync((idegTarget / scales.turn) * degree);
 }
 
 void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
@@ -176,7 +174,7 @@ void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
 
 void ChassisControllerPID::turnAngle(const double idegTarget) {
   // Divide by turnScale so the final result turns back into motor degrees
-  turnAngle((idegTarget / turnScale) * degree);
+  turnAngle((idegTarget / scales.turn) * degree);
 }
 
 void ChassisControllerPID::waitUntilSettled() {
@@ -265,5 +263,9 @@ void ChassisControllerPID::startThread() {
   if (!task) {
     task = new CrossplatformThread(trampoline, this);
   }
+}
+
+ChassisScales ChassisControllerPID::getChassisScales() const {
+  return scales;
 }
 } // namespace okapi

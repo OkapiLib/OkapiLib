@@ -23,9 +23,8 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     leftController(std::move(ileftController)),
     rightController(std::move(irightController)),
     lastTarget(0),
-    gearRatio(igearset.ratio),
-    straightScale(iscales.straight),
-    turnScale(iscales.turn) {
+    scales(iscales),
+    gearRatio(igearset.ratio) {
   if (igearset.ratio == 0) {
     logger->error("ChassisControllerIntegrated: The gear ratio cannot be zero! Check if you are "
                   "using integer division.");
@@ -44,7 +43,7 @@ void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
 
 void ChassisControllerIntegrated::moveDistance(const double itarget) {
   // Divide by straightScale so the final result turns back into motor degrees
-  moveDistance((itarget / straightScale) * meter);
+  moveDistance((itarget / scales.straight) * meter);
 }
 
 void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
@@ -56,7 +55,7 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
   leftController->flipDisable(false);
   rightController->flipDisable(false);
 
-  const double newTarget = itarget.convert(meter) * straightScale * gearRatio;
+  const double newTarget = itarget.convert(meter) * scales.straight * gearRatio;
 
   logger->info("ChassisControllerIntegrated: moving " + std::to_string(newTarget) +
                " motor degrees");
@@ -68,7 +67,7 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
 
 void ChassisControllerIntegrated::moveDistanceAsync(const double itarget) {
   // Divide by straightScale so the final result turns back into motor degrees
-  moveDistanceAsync((itarget / straightScale) * meter);
+  moveDistanceAsync((itarget / scales.straight) * meter);
 }
 
 void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
@@ -78,7 +77,7 @@ void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
 
 void ChassisControllerIntegrated::turnAngle(const double idegTarget) {
   // Divide by turnScale so the final result turns back into motor degrees
-  turnAngle((idegTarget / turnScale) * degree);
+  turnAngle((idegTarget / scales.turn) * degree);
 }
 
 void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
@@ -90,7 +89,7 @@ void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
   leftController->flipDisable(false);
   rightController->flipDisable(false);
 
-  const double newTarget = idegTarget.convert(degree) * turnScale * gearRatio;
+  const double newTarget = idegTarget.convert(degree) * scales.turn * gearRatio;
 
   logger->info("ChassisControllerIntegrated: turning " + std::to_string(newTarget) +
                " motor degrees");
@@ -102,7 +101,7 @@ void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
 
 void ChassisControllerIntegrated::turnAngleAsync(const double idegTarget) {
   // Divide by turnScale so the final result turns back into motor degrees
-  turnAngleAsync((idegTarget / turnScale) * degree);
+  turnAngleAsync((idegTarget / scales.turn) * degree);
 }
 
 void ChassisControllerIntegrated::waitUntilSettled() {
@@ -123,5 +122,9 @@ void ChassisControllerIntegrated::stop() {
   rightController->flipDisable(true);
 
   ChassisController::stop();
+}
+
+ChassisScales ChassisControllerIntegrated::getChassisScales() const {
+  return scales;
 }
 } // namespace okapi
