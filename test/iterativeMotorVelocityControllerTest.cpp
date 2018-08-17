@@ -54,6 +54,16 @@ TEST_F(IterativeMotorVelocityControllerTest, SettledWhenDisabled) {
   assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }
 
+TEST_F(IterativeMotorVelocityControllerTest, DisabledLifecycle) {
+  velController->setGains(0.1, 0, 0, 0);
+  assertIterativeControllerFollowsDisableLifecycle(*controller);
+}
+
+TEST_F(IterativeMotorVelocityControllerTest, TargetLifecycle) {
+  velController->setGains(0.1, 0, 0, 0);
+  assertControllerFollowsTargetLifecycle(*controller);
+}
+
 TEST_F(IterativeMotorVelocityControllerTest, StaticFrictionGainUsesTargetSign) {
   velController->setGains(0, 0, 0, 0.1);
 

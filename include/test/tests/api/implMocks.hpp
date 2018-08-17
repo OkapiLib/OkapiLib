@@ -18,9 +18,9 @@
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/timeUtil.hpp"
+#include <atomic>
 #include <chrono>
 #include <gtest/gtest.h>
-#include <atomic>
 
 namespace okapi {
 
@@ -284,27 +284,32 @@ void assertMotorsEncoderUnitsEquals(const AbstractMotor::encoderUnits expected,
 template <typename I, typename O>
 void assertControllerIsSettledWhenDisabled(ClosedLoopController<I, O> &controller, I target) {
   controller.flipDisable(false);
+  EXPECT_FALSE(controller.isDisabled());
   controller.setTarget(target);
   EXPECT_EQ(controller.getTarget(), target);
   EXPECT_FALSE(controller.isSettled());
 
   controller.flipDisable(true);
+  EXPECT_TRUE(controller.isDisabled());
   EXPECT_TRUE(controller.isSettled());
 }
 
 template <typename I, typename O>
 void assertWaitUntilSettledWorksWhenDisabled(AsyncController<I, O> &controller) {
   controller.flipDisable(true);
+  EXPECT_TRUE(controller.isDisabled());
   controller.waitUntilSettled();
 }
 
-void assertControllerFollowsDisableLifecycle(AsyncController<double, double> &controller,
-                                             std::int16_t &domainValue,
-                                             std::int16_t &voltageValue,
-                                             int expectedOutput);
+void assertAsyncControllerFollowsDisableLifecycle(AsyncController<double, double> &controller,
+                                                  std::int16_t &domainValue,
+                                                  std::int16_t &voltageValue,
+                                                  int expectedOutput);
 
-void assertControllerFollowsTargetLifecycle(AsyncController<double, double> &controller,
-                                            int expectedOutput);
+void assertIterativeControllerFollowsDisableLifecycle(
+  IterativeController<double, double> &controller);
+
+void assertControllerFollowsTargetLifecycle(ClosedLoopController<double, double> &controller);
 
 } // namespace okapi
 
