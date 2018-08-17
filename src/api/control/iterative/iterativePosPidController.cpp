@@ -54,7 +54,7 @@ double IterativePosPIDController::getOutput() const {
 }
 
 double IterativePosPIDController::getError() const {
-  return error;
+  return target - lastReading;
 }
 
 bool IterativePosPIDController::isSettled() {
@@ -104,11 +104,13 @@ void IterativePosPIDController::setErrorSumLimits(const double imax, const doubl
 }
 
 double IterativePosPIDController::step(const double inewReading) {
+  lastReading = inewReading;
+
   if (isOn) {
     loopDtTimer->placeHardMark();
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
-      error = target - inewReading;
+      error = getError();
 
       if ((std::abs(error) < target - errorSumMin && std::abs(error) > target - errorSumMax) ||
           (std::abs(error) > target + errorSumMin && std::abs(error) < target + errorSumMax)) {
@@ -126,14 +128,13 @@ double IterativePosPIDController::step(const double inewReading) {
 
       output = std::clamp(kP * error + integral - kD * derivative + kBias, outputMin, outputMax);
 
-      lastReading = inewReading;
       lastError = error;
       loopDtTimer->clearHardMark(); // Important that we only clear if dt >= sampleTime
 
       settledUtil->isSettled(error);
     }
   } else {
-    output = 0; // Controller is off so write 0
+    return 0;
   }
 
   return output;

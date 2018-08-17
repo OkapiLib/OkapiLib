@@ -24,7 +24,7 @@ class IterativeVelPIDControllerTest : public ::testing::Test {
     controller = new MockIterativeVelPIDController(
       0,
       0,
-      0,
+      0.1,
       0,
       std::make_unique<VelMath>(
         1800, std::make_shared<PassthroughFilter>(), std::make_unique<ConstantMockTimer>(10_ms)),
@@ -42,6 +42,25 @@ class IterativeVelPIDControllerTest : public ::testing::Test {
 TEST_F(IterativeVelPIDControllerTest, SettledWhenDisabled) {
   controller->setGains(0.1, 0.1, 0.1, 0.1);
   assertControllerIsSettledWhenDisabled(*controller, 100.0);
+}
+
+TEST_F(IterativeVelPIDControllerTest, DisabledLifecycle) {
+  assertIterativeControllerFollowsDisableLifecycle(*controller);
+}
+
+TEST_F(IterativeVelPIDControllerTest, TargetLifecycle) {
+  assertControllerFollowsTargetLifecycle(*controller);
+}
+
+TEST_F(IterativeVelPIDControllerTest, KeepsTrackOfReadingsWhenDisabled) {
+  EXPECT_EQ(controller->getError(), 0);
+  controller->flipDisable(true);
+  EXPECT_TRUE(controller->isDisabled());
+  controller->setTarget(2);
+  EXPECT_EQ(controller->getTarget(), 2);
+  EXPECT_EQ(controller->step(1), 0);
+  EXPECT_EQ(controller->getOutput(), 0);
+  EXPECT_NEAR(controller->getError(), -1, 0.5); // Velocity calculation gets a little weird here
 }
 
 TEST_F(IterativeVelPIDControllerTest, StaticFrictionGainUsesTargetSign) {
@@ -94,4 +113,13 @@ TEST_F(IterativeVelPIDControllerTest, SetTargetWorksWhenDisabled) {
   controller->flipDisable(true);
 
   EXPECT_EQ(controller->getTarget(), 10);
+}
+
+TEST_F(IterativeVelPIDControllerTest, SampleTime) {
+  controller->setSampleTime(20_ms);
+  EXPECT_EQ(controller->getSampleTime(), 20_ms);
+
+  // Output will be zero because the mock timer always reads dt of 10_ms and the sample time is
+  // 20_ms
+  EXPECT_EQ(controller->step(-1), 0);
 }
