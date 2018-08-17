@@ -337,10 +337,12 @@ TimeUtil createTimeUtil(const Supplier<std::unique_ptr<SettledUtil>> &isettledUt
 }
 
 SimulatedSystem::SimulatedSystem(FlywheelSimulator &simulator)
-  : simulator(simulator), thread(trampoline, this) {
+  : simulator(simulator) {
 }
 
-SimulatedSystem::~SimulatedSystem() = default;
+SimulatedSystem::~SimulatedSystem() {
+  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
+}
 
 double SimulatedSystem::controllerGet() {
   return simulator.getAngle();
@@ -351,13 +353,10 @@ void SimulatedSystem::controllerSet(double ivalue) {
 }
 
 void SimulatedSystem::step() {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
-  while (!shouldJoin) {
+  while (!dtorCalled.load(std::memory_order::memory_order_relaxed)) {
     simulator.step();
     rate.delayUntil(10_ms);
   }
-#pragma clang diagnostic pop
 }
 
 void SimulatedSystem::trampoline(void *system) {
@@ -366,8 +365,12 @@ void SimulatedSystem::trampoline(void *system) {
   }
 }
 
+void SimulatedSystem::startThread() {
+  thread = std::thread(trampoline, this);
+}
+
 void SimulatedSystem::join() {
-  shouldJoin = true;
+  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
   thread.join();
 }
 

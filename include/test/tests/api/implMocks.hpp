@@ -20,6 +20,7 @@
 #include "okapi/api/util/timeUtil.hpp"
 #include <chrono>
 #include <gtest/gtest.h>
+#include <atomic>
 
 namespace okapi {
 
@@ -225,12 +226,14 @@ class SimulatedSystem : public ControllerInput<double>, public ControllerOutput<
 
   static void trampoline(void *system);
 
+  void startThread();
+
   void join();
 
   FlywheelSimulator &simulator;
-  std::thread thread;
   MockRate rate{};
-  bool shouldJoin = false;
+  std::atomic_bool dtorCalled{false};
+  std::thread thread;
 };
 
 class MockAsyncController : public AsyncPosIntegratedController {
