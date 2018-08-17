@@ -107,7 +107,6 @@ double IterativeVelPIDController::getOutput() const {
 
 double IterativeVelPIDController::getError() const {
   return target - velMath->getVelocity().convert(rpm);
-  ;
 }
 
 bool IterativeVelPIDController::isSettled() {

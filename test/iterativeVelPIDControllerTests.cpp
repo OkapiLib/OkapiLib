@@ -114,3 +114,12 @@ TEST_F(IterativeVelPIDControllerTest, SetTargetWorksWhenDisabled) {
 
   EXPECT_EQ(controller->getTarget(), 10);
 }
+
+TEST_F(IterativeVelPIDControllerTest, SampleTime) {
+  controller->setSampleTime(20_ms);
+  EXPECT_EQ(controller->getSampleTime(), 20_ms);
+
+  // Output will be zero because the mock timer always reads dt of 10_ms and the sample time is
+  // 20_ms
+  EXPECT_EQ(controller->step(-1), 0);
+}
