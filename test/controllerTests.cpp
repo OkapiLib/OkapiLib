@@ -117,6 +117,7 @@ TEST(PIDTunerTest, AutotuneShouldNotSegfault) {
   simulator.setExternalTorqueFunction([](double, double, double) { return 0; });
 
   auto system = std::make_shared<SimulatedSystem>(simulator);
+  system->startThread();
 
   PIDTuner pidTuner(system, system, createTimeUtil(), 100_ms, 100, 0, 10, 0, 10, 0, 10);
   pidTuner.autotune();

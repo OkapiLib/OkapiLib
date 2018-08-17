@@ -54,6 +54,16 @@ TEST_F(IterativeMotorVelocityControllerTest, SettledWhenDisabled) {
   assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }
 
+TEST_F(IterativeMotorVelocityControllerTest, DisabledLifecycle) {
+  velController->setGains(0.1, 0, 0, 0);
+  assertIterativeControllerFollowsDisableLifecycle(*controller);
+}
+
+TEST_F(IterativeMotorVelocityControllerTest, TargetLifecycle) {
+  velController->setGains(0.1, 0, 0, 0);
+  assertControllerFollowsTargetLifecycle(*controller);
+}
+
 TEST_F(IterativeMotorVelocityControllerTest, StaticFrictionGainUsesTargetSign) {
   velController->setGains(0, 0, 0, 0.1);
 
@@ -100,4 +110,13 @@ TEST_F(IterativeMotorVelocityControllerTest, SetTargetWorksWhenDisabled) {
   controller->flipDisable(true);
 
   EXPECT_EQ(controller->getTarget(), 10);
+}
+
+TEST_F(IterativeMotorVelocityControllerTest, SampleTime) {
+  controller->setSampleTime(20_ms);
+  EXPECT_EQ(controller->getSampleTime(), 20_ms);
+
+  // Output will be zero because the mock timer always reads dt of 10_ms and the sample time is
+  // 20_ms
+  EXPECT_EQ(controller->step(-1), 0);
 }

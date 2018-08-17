@@ -63,12 +63,15 @@ QAngularSpeed IterativeVelPIDController::stepVel(const double inewReading) {
 }
 
 double IterativeVelPIDController::step(const double inewReading) {
+  if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
+    stepVel(inewReading);
+  }
+
   if (isOn) {
     loopDtTimer->placeHardMark();
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
-      stepVel(inewReading);
-      error = target - velMath->getVelocity().convert(rpm);
+      error = getError();
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
       derivative = derivativeFilter->filter(velMath->getAccel().getValue());
@@ -103,7 +106,7 @@ double IterativeVelPIDController::getOutput() const {
 }
 
 double IterativeVelPIDController::getError() const {
-  return error;
+  return target - velMath->getVelocity().convert(rpm);
 }
 
 bool IterativeVelPIDController::isSettled() {

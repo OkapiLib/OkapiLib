@@ -323,13 +323,11 @@ class AsyncControllerFactory {
    * @param imaxAccel The maximum possible acceleration.
    * @param imaxJerk The maximum possible jerk.
    * @param ichassis The chassis to control.
-   * @param iwidth The chassis wheelbase width.
    */
   static AsyncMotionProfileController motionProfile(double imaxVel,
                                                     double imaxAccel,
                                                     double imaxJerk,
-                                                    const ChassisController &ichassis,
-                                                    QLength iwidth);
+                                                    const ChassisController &ichassis);
 
   /**
    * A controller which generates and follows 2D motion profiles.

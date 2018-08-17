@@ -336,11 +336,12 @@ TimeUtil createTimeUtil(const Supplier<std::unique_ptr<SettledUtil>> &isettledUt
     isettledUtilSupplier);
 }
 
-SimulatedSystem::SimulatedSystem(FlywheelSimulator &simulator)
-  : simulator(simulator), thread(trampoline, this) {
+SimulatedSystem::SimulatedSystem(FlywheelSimulator &simulator) : simulator(simulator) {
 }
 
-SimulatedSystem::~SimulatedSystem() = default;
+SimulatedSystem::~SimulatedSystem() {
+  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
+}
 
 double SimulatedSystem::controllerGet() {
   return simulator.getAngle();
@@ -351,13 +352,10 @@ void SimulatedSystem::controllerSet(double ivalue) {
 }
 
 void SimulatedSystem::step() {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
-  while (!shouldJoin) {
+  while (!dtorCalled.load(std::memory_order::memory_order_relaxed)) {
     simulator.step();
     rate.delayUntil(10_ms);
   }
-#pragma clang diagnostic pop
 }
 
 void SimulatedSystem::trampoline(void *system) {
@@ -366,8 +364,12 @@ void SimulatedSystem::trampoline(void *system) {
   }
 }
 
+void SimulatedSystem::startThread() {
+  thread = std::thread(trampoline, this);
+}
+
 void SimulatedSystem::join() {
-  shouldJoin = true;
+  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
   thread.join();
 }
 
@@ -423,10 +425,10 @@ void assertMotorsEncoderUnitsEquals(const AbstractMotor::encoderUnits expected,
   }
 }
 
-void assertControllerFollowsDisableLifecycle(AsyncController<double, double> &controller,
-                                             std::int16_t &domainValue,
-                                             std::int16_t &voltageValue,
-                                             int expectedOutput) {
+void assertAsyncControllerFollowsDisableLifecycle(AsyncController<double, double> &controller,
+                                                  std::int16_t &domainValue,
+                                                  std::int16_t &voltageValue,
+                                                  int expectedOutput) {
   EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled at the start.";
 
   controller.setTarget(100);
@@ -455,13 +457,40 @@ void assertControllerFollowsDisableLifecycle(AsyncController<double, double> &co
     << "Re-enabling the controller after a reset should not move the motor";
 }
 
-void assertControllerFollowsTargetLifecycle(AsyncController<double, double> &controller,
-                                            int expectedOutput) {
+void assertIterativeControllerFollowsDisableLifecycle(
+  IterativeController<double, double> &controller) {
+  EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled at the start.";
+
+  controller.setTarget(100);
+  EXPECT_NE(controller.step(0), 0) << "Should be on by default.";
+  EXPECT_NE(controller.getOutput(), 0);
+
+  controller.flipDisable();
+  EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after flipDisable";
+  // Run getOutput before step to check that it really does respect disabled
+  EXPECT_EQ(controller.getOutput(), 0);
+  EXPECT_EQ(controller.step(0), 0) << "Disabling the controller should give zero output";
+  EXPECT_EQ(controller.getOutput(), 0);
+
+  controller.flipDisable();
+  EXPECT_FALSE(controller.isDisabled()) << "Should not be disabled after flipDisable";
+  EXPECT_NE(controller.getOutput(), 0);
+  EXPECT_NE(controller.step(0), 0);
+  EXPECT_NE(controller.getOutput(), 0);
+
+  controller.flipDisable();
+  EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after flipDisable";
+  controller.reset();
+  EXPECT_TRUE(controller.isDisabled()) << "Should be disabled after reset";
+  EXPECT_EQ(controller.getOutput(), 0);
+  EXPECT_EQ(controller.step(0), 0);
+}
+
+void assertControllerFollowsTargetLifecycle(ClosedLoopController<double, double> &controller) {
   EXPECT_DOUBLE_EQ(0, controller.getError()) << "Should start with 0 error";
   controller.setTarget(100);
-  EXPECT_DOUBLE_EQ(controller.getError(), expectedOutput);
+  EXPECT_DOUBLE_EQ(controller.getError(), 100);
   controller.setTarget(0);
   EXPECT_DOUBLE_EQ(controller.getError(), 0);
 }
-
 } // namespace okapi

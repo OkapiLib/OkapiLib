@@ -15,7 +15,6 @@ ChassisScales::ChassisScales(const std::initializer_list<QLength> &iwheelbase)
   std::vector<QLength> vec(iwheelbase);
   wheelDiameter = vec.at(0);
   wheelbaseWidth = vec.at(1);
-
   straight = static_cast<double>(360 / (wheelDiameter.convert(meter) * 1_pi));
   turn = wheelbaseWidth.convert(meter) / wheelDiameter.convert(meter);
 }
@@ -27,6 +26,8 @@ ChassisScales::ChassisScales(const std::initializer_list<double> &iscales)
   std::vector<double> vec(iscales);
   straight = vec.at(0);
   turn = vec.at(1);
+  wheelDiameter = (360 / (straight * 1_pi)) * meter;
+  wheelbaseWidth = turn * wheelDiameter;
 
   if (vec.size() >= 3) {
     middle = vec.at(2);

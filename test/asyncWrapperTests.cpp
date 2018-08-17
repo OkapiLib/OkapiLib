@@ -68,7 +68,7 @@ TEST_F(AsyncWrapperTest, WaitUntilSettledWorksWhenDisabledVelPID) {
 }
 
 TEST_F(AsyncWrapperTest, FollowsDisableLifecyclePosPID) {
-  assertControllerFollowsDisableLifecycle(
+  assertAsyncControllerFollowsDisableLifecycle(
     *posPIDController,
     output->lastPosition,
     output->lastVoltage,
@@ -76,7 +76,7 @@ TEST_F(AsyncWrapperTest, FollowsDisableLifecyclePosPID) {
 }
 
 TEST_F(AsyncWrapperTest, FollowsDisableLifecycleVelPID) {
-  assertControllerFollowsDisableLifecycle(
+  assertAsyncControllerFollowsDisableLifecycle(
     *velPIDController,
     output->lastPosition,
     output->lastVoltage,
@@ -84,13 +84,9 @@ TEST_F(AsyncWrapperTest, FollowsDisableLifecycleVelPID) {
 }
 
 TEST_F(AsyncWrapperTest, FollowsTargetLifecyclePosPID) {
-  assertControllerFollowsTargetLifecycle(
-    *posPIDController,
-    0); // Expected output is 0 since this controller requires stepping in another loop
+  assertControllerFollowsTargetLifecycle(*posPIDController);
 }
 
 TEST_F(AsyncWrapperTest, FollowsTargetLifecycleVelPID) {
-  assertControllerFollowsTargetLifecycle(
-    *velPIDController,
-    0); // Expected output is 0 since this controller requires stepping in another loop
+  assertControllerFollowsTargetLifecycle(*velPIDController);
 }

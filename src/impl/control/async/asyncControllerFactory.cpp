@@ -310,9 +310,12 @@ AsyncMotionProfileController
 AsyncControllerFactory::motionProfile(double imaxVel,
                                       double imaxAccel,
                                       double imaxJerk,
-                                      const ChassisController &ichassis,
-                                      QLength iwidth) {
-  return motionProfile(imaxVel, imaxAccel, imaxJerk, ichassis.getChassisModel(), iwidth);
+                                      const ChassisController &ichassis) {
+  return motionProfile(imaxVel,
+                       imaxAccel,
+                       imaxJerk,
+                       ichassis.getChassisModel(),
+                       ichassis.getChassisScales().wheelbaseWidth);
 }
 
 AsyncMotionProfileController

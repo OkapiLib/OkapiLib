@@ -9,7 +9,6 @@
 #define _OKAPI_CHASSISCONTROLLERPID_HPP_
 
 #include "okapi/api/chassis/controller/chassisController.hpp"
-#include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/logging.hpp"
@@ -114,6 +113,11 @@ class ChassisControllerPID : public virtual ChassisController {
    */
   void startThread();
 
+  /**
+   * Get the ChassisScales.
+   */
+  ChassisScales getChassisScales() const override;
+
   protected:
   Logger *logger;
   std::unique_ptr<AbstractRate> rate;
@@ -121,8 +125,7 @@ class ChassisControllerPID : public virtual ChassisController {
   std::unique_ptr<IterativePosPIDController> anglePid;
   std::unique_ptr<IterativePosPIDController> turnPid;
   const double gearRatio;
-  const double straightScale;
-  const double turnScale;
+  ChassisScales scales;
   bool doneLooping{true};
   bool newMovement{false};
   std::atomic_bool dtorCalled{false};
