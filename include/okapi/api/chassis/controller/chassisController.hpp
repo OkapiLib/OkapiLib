@@ -8,6 +8,7 @@
 #ifndef _OKAPI_CHASSISCONTROLLER_HPP_
 #define _OKAPI_CHASSISCONTROLLER_HPP_
 
+#include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/chassis/model/chassisModel.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/units/QAngle.hpp"
@@ -190,6 +191,11 @@ class ChassisController : public ChassisModel {
    * result in multiple owners writing to the same set of motors.
    */
   std::shared_ptr<ChassisModel> getChassisModel() const;
+
+  /**
+   * Get the ChassisScales.
+   */
+  virtual ChassisScales getChassisScales() const = 0;
 
   protected:
   std::shared_ptr<ChassisModel> model;
