@@ -95,14 +95,14 @@ void opcontrol() {
     ChassisControllerFactory::create({19, 20}, {-14}, AbstractMotor::gearset::red, {4_in, 11.5_in});
 
   Controller controller;
-  ControllerButton btn1(E_CONTROLLER_DIGITAL_A);
-  ControllerButton btn2(E_CONTROLLER_DIGITAL_B);
-  ControllerButton btn3(E_CONTROLLER_DIGITAL_Y);
-  ControllerButton btn4(E_CONTROLLER_DIGITAL_X);
+  ControllerButton btn1(ControllerDigital::A);
+  ControllerButton btn2(ControllerDigital::B);
+  ControllerButton btn3(ControllerDigital::Y);
+  ControllerButton btn4(ControllerDigital::X);
 
   while (true) {
-    chassis.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                   controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
+    chassis.arcade(controller.getAnalog(ControllerAnalog::leftY),
+                   controller.getAnalog(ControllerAnalog::leftX));
 
     if (btn1.changedToPressed()) {
       printf("move distance\n");

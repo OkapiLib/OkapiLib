@@ -6,9 +6,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/device/controller.hpp"
+#include "okapi/impl/device/controllerUtil.hpp"
 
 namespace okapi {
-Controller::Controller(const controller_id_e_t iid) : id(iid), controller(iid) {
+Controller::Controller(const ControllerId iid)
+  : m_id(iid), controller(ControllerUtil::idToProsEnum(iid)) {
 }
 
 Controller::~Controller() = default;
@@ -22,8 +24,8 @@ std::int32_t Controller::getConnectionState() {
   return controller.is_connected();
 }
 
-float Controller::getAnalog(const controller_analog_e_t ichannel) {
-  const auto val = controller.get_analog(ichannel);
+float Controller::getAnalog(const ControllerAnalog ichannel) {
+  const auto val = controller.get_analog(ControllerUtil::analogToProsEnum(ichannel));
   if (val == PROS_ERR) {
     return 0;
   }
@@ -31,11 +33,11 @@ float Controller::getAnalog(const controller_analog_e_t ichannel) {
   return static_cast<float>(val) / static_cast<float>(127);
 }
 
-bool Controller::getDigital(const controller_digital_e_t ibutton) {
-  return controller.get_digital(ibutton) == 1;
+bool Controller::getDigital(const ControllerDigital ibutton) {
+  return controller.get_digital(ControllerUtil::digitalToProsEnum(ibutton)) == 1;
 }
 
-ControllerButton Controller::operator[](const controller_digital_e_t ibtn) {
-  return ControllerButton(id, ibtn);
+ControllerButton Controller::operator[](const ControllerDigital ibtn) {
+  return ControllerButton(m_id, ibtn);
 }
 } // namespace okapi
