@@ -10,19 +10,20 @@
 
 #include "api.h"
 #include "okapi/api/device/button/buttonBase.hpp"
+#include "okapi/impl/device/controllerUtil.hpp"
 
 namespace okapi {
 class ControllerButton : public ButtonBase {
   public:
-  ControllerButton(const controller_digital_e_t ibtn, const bool iinverted = false);
+  ControllerButton(const ControllerDigital ibtn, const bool iinverted = false);
 
-  ControllerButton(const controller_id_e_t icontroller,
-                   const controller_digital_e_t ibtn,
+  ControllerButton(const ControllerId icontroller,
+                   const ControllerDigital ibtn,
                    const bool iinverted = false);
 
   protected:
   pros::Controller controller;
-  const controller_digital_e_t btn;
+  const ControllerDigital btn;
 
   virtual bool currentlyPressed() override;
 };

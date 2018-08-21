@@ -10,11 +10,12 @@
 
 #include "api.h"
 #include "okapi/impl/device/button/controllerButton.hpp"
+#include "okapi/impl/device/controllerUtil.hpp"
 
 namespace okapi {
 class Controller {
   public:
-  Controller(const controller_id_e_t iid = E_CONTROLLER_MASTER);
+  Controller(ControllerId iid = ControllerId::master);
 
   virtual ~Controller();
 
@@ -42,7 +43,7 @@ class Controller {
    * @param ichannel the channel to read
    * @return the value of that channel in the range [-1, 1]
    */
-  virtual float getAnalog(const controller_analog_e_t ichannel);
+  virtual float getAnalog(ControllerAnalog ichannel);
 
   /**
    * Returns whether the digital button is currently pressed. Returns false if the controller is
@@ -51,7 +52,7 @@ class Controller {
    * @param ibutton the button to check
    * @return true if the button is pressed, false if the controller is not connected
    */
-  virtual bool getDigital(const controller_digital_e_t ibutton);
+  virtual bool getDigital(ControllerDigital ibutton);
 
   /**
    * Returns a ControllerButton for the given button on this controller.
@@ -59,10 +60,10 @@ class Controller {
    * @param ibtn the button
    * @return a ControllerButton on this controller
    */
-  virtual ControllerButton operator[](const controller_digital_e_t ibtn);
+  virtual ControllerButton operator[](ControllerDigital ibtn);
 
   protected:
-  const controller_id_e_t id;
+  const ControllerId m_id;
   pros::Controller controller;
 };
 } // namespace okapi
