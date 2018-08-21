@@ -141,8 +141,60 @@ TEST_F(ChassisControllerTest, Forward) {
   EXPECT_EQ(model->lastForward, 0.5);
 }
 
+TEST_F(ChassisControllerTest, DriveVector) {
+  controller->driveVector(0.4, 0.5);
+  EXPECT_EQ(model->lastVectorY, 0.4);
+  EXPECT_EQ(model->lastVectorZ, 0.5);
+}
+
+TEST_F(ChassisControllerTest, Rotate) {
+  controller->rotate(0.5);
+  EXPECT_EQ(model->lastRotate, 0.5);
+}
+
+TEST_F(ChassisControllerTest, Stop) {
+  controller->stop();
+  EXPECT_TRUE(model->stopWasCalled);
+}
+
+TEST_F(ChassisControllerTest, Tank) {
+  controller->tank(0.4, 0.5);
+  EXPECT_EQ(model->lastTankLeft, 0.4);
+  EXPECT_EQ(model->lastTankRight, 0.5);
+}
+
 TEST_F(ChassisControllerTest, Arcade) {
   controller->arcade(0.4, 0.5);
   EXPECT_EQ(model->lastArcadeY, 0.4);
   EXPECT_EQ(model->lastArcadeZ, 0.5);
+}
+
+TEST_F(ChassisControllerTest, Left) {
+  controller->left(0.5);
+  EXPECT_EQ(model->lastLeft, 0.5);
+}
+
+TEST_F(ChassisControllerTest, Right) {
+  controller->right(0.5);
+  EXPECT_EQ(model->lastRight, 0.5);
+}
+
+TEST_F(ChassisControllerTest, ResetSensors) {
+  controller->resetSensors();
+  EXPECT_TRUE(model->resetSensorsWasCalled);
+}
+
+TEST_F(ChassisControllerTest, SetBrakeMode) {
+  controller->setBrakeMode(AbstractMotor::brakeMode::hold);
+  EXPECT_EQ(model->lastBrakeMode, AbstractMotor::brakeMode::hold);
+}
+
+TEST_F(ChassisControllerTest, SetEncoderUnits) {
+  controller->setEncoderUnits(AbstractMotor::encoderUnits::counts);
+  EXPECT_EQ(model->lastEncoderUnits, AbstractMotor::encoderUnits::counts);
+}
+
+TEST_F(ChassisControllerTest, SetGearing) {
+  controller->setGearing(AbstractMotor::gearset::green);
+  EXPECT_EQ(model->lastGearset, AbstractMotor::gearset::green);
 }
