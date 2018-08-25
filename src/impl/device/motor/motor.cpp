@@ -53,6 +53,10 @@ std::int32_t Motor::moveVoltage(const std::int16_t ivoltage) const {
   return move_voltage(ivoltage);
 }
 
+std::int32_t Motor::modifyProfiledVelocity(std::int32_t ivelocity) const {
+  return modify_profiled_velocity(ivelocity);
+}
+
 double Motor::getTargetPosition() const {
   return get_target_position();
 }
@@ -178,6 +182,38 @@ std::int32_t Motor::setReversed(const bool ireverse) const {
 
 std::int32_t Motor::setVoltageLimit(const std::int32_t ilimit) const {
   return set_voltage_limit(ilimit);
+}
+
+std::int32_t Motor::setPosPID(double ikF, double ikP, double ikI, double ikD) const {
+  return set_pos_pid(convert_pid(ikF, ikP, ikI, ikD));
+}
+
+std::int32_t Motor::setPosPIDFull(double ikF,
+                                  double ikP,
+                                  double ikI,
+                                  double ikD,
+                                  double ifilter,
+                                  double ilimit,
+                                  double ithreshold,
+                                  double iloopSpeed) const {
+  return set_pos_pid_full(
+    convert_pid_full(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed));
+}
+
+std::int32_t Motor::setVelPID(double ikF, double ikP, double ikI, double ikD) const {
+  return set_vel_pid(convert_pid(ikF, ikP, ikI, ikD));
+}
+
+std::int32_t Motor::setVelPIDFull(double ikF,
+                                  double ikP,
+                                  double ikI,
+                                  double ikD,
+                                  double ifilter,
+                                  double ilimit,
+                                  double ithreshold,
+                                  double iloopSpeed) const {
+  return set_vel_pid_full(
+    convert_pid_full(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed));
 }
 
 std::shared_ptr<ContinuousRotarySensor> Motor::getEncoder() const {

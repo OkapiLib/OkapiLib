@@ -55,10 +55,10 @@ std::int32_t MotorGroup::moveVoltage(const std::int16_t ivoltage) const {
   return out;
 }
 
-std::int32_t MotorGroup::move(const std::int8_t ivoltage) const {
+std::int32_t MotorGroup::modifyProfiledVelocity(std::int32_t ivelocity) const {
   auto out = 1;
   for (auto &&elem : motors) {
-    const auto errorCode = elem.pros::Motor::move(ivoltage);
+    const auto errorCode = elem.modifyProfiledVelocity(ivelocity);
     if (errorCode != 1) {
       out = errorCode;
     }
@@ -219,6 +219,66 @@ void MotorGroup::controllerSet(const double ivalue) {
   for (auto &&elem : motors) {
     elem.moveVelocity(ivalue);
   }
+}
+
+std::int32_t MotorGroup::setPosPID(double ikF, double ikP, double ikI, double ikD) const {
+  auto out = 1;
+  for (auto &&elem : motors) {
+    const auto errorCode = elem.setPosPID(ikF, ikP, ikI, ikD);
+    if (errorCode != 1) {
+      out = errorCode;
+    }
+  }
+  return out;
+}
+
+std::int32_t MotorGroup::setPosPIDFull(double ikF,
+                                       double ikP,
+                                       double ikI,
+                                       double ikD,
+                                       double ifilter,
+                                       double ilimit,
+                                       double ithreshold,
+                                       double iloopSpeed) const {
+  auto out = 1;
+  for (auto &&elem : motors) {
+    const auto errorCode =
+      elem.setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+    if (errorCode != 1) {
+      out = errorCode;
+    }
+  }
+  return out;
+}
+
+std::int32_t MotorGroup::setVelPID(double ikF, double ikP, double ikI, double ikD) const {
+  auto out = 1;
+  for (auto &&elem : motors) {
+    const auto errorCode = elem.setVelPID(ikF, ikP, ikI, ikD);
+    if (errorCode != 1) {
+      out = errorCode;
+    }
+  }
+  return out;
+}
+
+std::int32_t MotorGroup::setVelPIDFull(double ikF,
+                                       double ikP,
+                                       double ikI,
+                                       double ikD,
+                                       double ifilter,
+                                       double ilimit,
+                                       double ithreshold,
+                                       double iloopSpeed) const {
+  auto out = 1;
+  for (auto &&elem : motors) {
+    const auto errorCode =
+      elem.setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+    if (errorCode != 1) {
+      out = errorCode;
+    }
+  }
+  return out;
 }
 
 std::shared_ptr<ContinuousRotarySensor> MotorGroup::getEncoder() const {
