@@ -62,6 +62,52 @@ class Controller {
    */
   virtual ControllerButton operator[](ControllerDigital ibtn);
 
+  /**
+   * Sets text to the controller LCD screen.
+   *
+   * @param iline the line number at which the text will be displayed [0-2]
+   * @param icol the column number at which the text will be displayed. The width of the screen is
+   * 15 characters
+   * @param itext The string to display
+   * @return 1 if the operation was successful, PROS_ERR otherwise
+   */
+  virtual std::int32_t setText(std::uint8_t iline, std::uint8_t icol, std::string itext);
+
+  /**
+   * Clears all of the lines of the controller screen.
+   *
+   * @return 1 if the operation was successful, PROS_ERR otherwise
+   */
+  virtual std::int32_t clear();
+
+  /**
+   * Clears an individual line of the controller screen.
+   *
+   * @param iline the line number at which the text will be displayed [0-2]
+   * @return 1 if the operation was successful, PROS_ERR otherwise
+   */
+  virtual std::int32_t clearLine(std::uint8_t iline);
+
+  /**
+   * Gets the battery capacity of the given controller.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the controller port.
+   *
+   * @return the controller's battery capacity
+   */
+  virtual std::int32_t getBatteryCapacity();
+
+  /**
+   * Gets the battery level of the given controller.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the controller port.
+   *
+   * @return the controller's battery level
+   */
+  virtual std::int32_t getBatteryLevel();
+
   protected:
   const ControllerId m_id;
   pros::Controller controller;
