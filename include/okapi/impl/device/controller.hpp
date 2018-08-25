@@ -66,8 +66,7 @@ class Controller {
    * Sets text to the controller LCD screen.
    *
    * @param iline the line number at which the text will be displayed [0-2]
-   * @param icol the column number at which the text will be displayed. The width of the screen is
-   * 15 characters
+   * @param icol the column number at which the text will be displayed [0-14]
    * @param itext The string to display
    * @return 1 if the operation was successful, PROS_ERR otherwise
    */
@@ -83,7 +82,7 @@ class Controller {
   /**
    * Clears an individual line of the controller screen.
    *
-   * @param iline the line number at which the text will be displayed [0-2]
+   * @param iline the line number to clear
    * @return 1 if the operation was successful, PROS_ERR otherwise
    */
   virtual std::int32_t clearLine(std::uint8_t iline);

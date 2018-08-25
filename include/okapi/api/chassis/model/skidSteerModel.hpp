@@ -148,7 +148,7 @@ class SkidSteerModel : public ChassisModel {
    * @param ikD the derivative constant
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual void setPosPID(double ikF, double ikP, double ikI, double ikD) const override;
+  void setPosPID(double ikF, double ikP, double ikI, double ikD) const override;
 
   /**
    * Sets new PID constants.
@@ -163,14 +163,14 @@ class SkidSteerModel : public ChassisModel {
    * @param iloopSpeed the rate at which the PID computation is run (in ms)
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual void setPosPIDFull(double ikF,
-                             double ikP,
-                             double ikI,
-                             double ikD,
-                             double ifilter,
-                             double ilimit,
-                             double ithreshold,
-                             double iloopSpeed) const override;
+  void setPosPIDFull(double ikF,
+                     double ikP,
+                     double ikI,
+                     double ikD,
+                     double ifilter,
+                     double ilimit,
+                     double ithreshold,
+                     double iloopSpeed) const override;
 
   /**
    * Sets new PID constants.
@@ -181,7 +181,7 @@ class SkidSteerModel : public ChassisModel {
    * @param ikD the derivative constant
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual void setVelPID(double ikF, double ikP, double ikI, double ikD) const override;
+  void setVelPID(double ikF, double ikP, double ikI, double ikD) const override;
 
   /**
    * Sets new PID constants.
@@ -196,14 +196,14 @@ class SkidSteerModel : public ChassisModel {
    * @param iloopSpeed the rate at which the PID computation is run (in ms)
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual void setVelPIDFull(double ikF,
-                             double ikP,
-                             double ikI,
-                             double ikD,
-                             double ifilter,
-                             double ilimit,
-                             double ithreshold,
-                             double iloopSpeed) const override;
+  void setVelPIDFull(double ikF,
+                     double ikP,
+                     double ikI,
+                     double ikD,
+                     double ifilter,
+                     double ilimit,
+                     double ithreshold,
+                     double iloopSpeed) const override;
 
   /**
    * Returns the left side motor.
