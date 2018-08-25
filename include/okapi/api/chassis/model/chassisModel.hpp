@@ -114,6 +114,72 @@ class ChassisModel : public ReadOnlyChassisModel {
    * @param gearset new motor gearset
    */
   virtual void setGearing(AbstractMotor::gearset gearset) const = 0;
+
+  /**
+   * Sets new PID constants.
+   *
+   * @param ikF the feed-forward constant
+   * @param ikP the proportional constant
+   * @param ikI the integral constant
+   * @param ikD the derivative constant
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual void setPosPID(double ikF, double ikP, double ikI, double ikD) const = 0;
+
+  /**
+   * Sets new PID constants.
+   *
+   * @param ikF the feed-forward constant
+   * @param ikP the proportional constant
+   * @param ikI the integral constant
+   * @param ikD the derivative constant
+   * @param ifilter a constant used for filtering the profile acceleration
+   * @param ilimit the integral limit
+   * @param ithreshold the threshold for determining if a position movement has reached its goal
+   * @param iloopSpeed the rate at which the PID computation is run (in ms)
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual void setPosPIDFull(double ikF,
+                             double ikP,
+                             double ikI,
+                             double ikD,
+                             double ifilter,
+                             double ilimit,
+                             double ithreshold,
+                             double iloopSpeed) const = 0;
+
+  /**
+   * Sets new PID constants.
+   *
+   * @param ikF the feed-forward constant
+   * @param ikP the proportional constant
+   * @param ikI the integral constant
+   * @param ikD the derivative constant
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual void setVelPID(double ikF, double ikP, double ikI, double ikD) const = 0;
+
+  /**
+   * Sets new PID constants.
+   *
+   * @param ikF the feed-forward constant
+   * @param ikP the proportional constant
+   * @param ikI the integral constant
+   * @param ikD the derivative constant
+   * @param ifilter a constant used for filtering the profile acceleration
+   * @param ilimit the integral limit
+   * @param ithreshold the threshold for determining if a position movement has reached its goal
+   * @param iloopSpeed the rate at which the PID computation is run (in ms)
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual void setVelPIDFull(double ikF,
+                             double ikP,
+                             double ikI,
+                             double ikD,
+                             double ifilter,
+                             double ilimit,
+                             double ithreshold,
+                             double iloopSpeed) const = 0;
 };
 } // namespace okapi
 

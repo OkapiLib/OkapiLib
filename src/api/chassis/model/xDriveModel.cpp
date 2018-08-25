@@ -219,6 +219,48 @@ void XDriveModel::setGearing(const AbstractMotor::gearset gearset) const {
   bottomLeftMotor->setGearing(gearset);
 }
 
+void XDriveModel::setPosPID(double ikF, double ikP, double ikI, double ikD) const {
+  topLeftMotor->setPosPID(ikF, ikP, ikI, ikD);
+  topRightMotor->setPosPID(ikF, ikP, ikI, ikD);
+  bottomRightMotor->setPosPID(ikF, ikP, ikI, ikD);
+  bottomLeftMotor->setPosPID(ikF, ikP, ikI, ikD);
+}
+
+void XDriveModel::setPosPIDFull(double ikF,
+                                double ikP,
+                                double ikI,
+                                double ikD,
+                                double ifilter,
+                                double ilimit,
+                                double ithreshold,
+                                double iloopSpeed) const {
+  topLeftMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+  topRightMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+  bottomRightMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+  bottomLeftMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+}
+
+void XDriveModel::setVelPID(double ikF, double ikP, double ikI, double ikD) const {
+  topLeftMotor->setVelPID(ikF, ikP, ikI, ikD);
+  topRightMotor->setVelPID(ikF, ikP, ikI, ikD);
+  bottomRightMotor->setVelPID(ikF, ikP, ikI, ikD);
+  bottomLeftMotor->setVelPID(ikF, ikP, ikI, ikD);
+}
+
+void XDriveModel::setVelPIDFull(double ikF,
+                                double ikP,
+                                double ikI,
+                                double ikD,
+                                double ifilter,
+                                double ilimit,
+                                double ithreshold,
+                                double iloopSpeed) const {
+  topLeftMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+  topRightMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+  bottomRightMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+  bottomLeftMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+}
+
 std::shared_ptr<AbstractMotor> XDriveModel::getTopLeftMotor() const {
   return topLeftMotor;
 }

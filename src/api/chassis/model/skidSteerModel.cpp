@@ -160,6 +160,40 @@ void SkidSteerModel::setGearing(const AbstractMotor::gearset gearset) const {
   rightSideMotor->setGearing(gearset);
 }
 
+void SkidSteerModel::setPosPID(double ikF, double ikP, double ikI, double ikD) const {
+  leftSideMotor->setPosPID(ikF, ikP, ikI, ikD);
+  rightSideMotor->setPosPID(ikF, ikP, ikI, ikD);
+}
+
+void SkidSteerModel::setPosPIDFull(double ikF,
+                                   double ikP,
+                                   double ikI,
+                                   double ikD,
+                                   double ifilter,
+                                   double ilimit,
+                                   double ithreshold,
+                                   double iloopSpeed) const {
+  leftSideMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+  rightSideMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+}
+
+void SkidSteerModel::setVelPID(double ikF, double ikP, double ikI, double ikD) const {
+  leftSideMotor->setVelPID(ikF, ikP, ikI, ikD);
+  rightSideMotor->setVelPID(ikF, ikP, ikI, ikD);
+}
+
+void SkidSteerModel::setVelPIDFull(double ikF,
+                                   double ikP,
+                                   double ikI,
+                                   double ikD,
+                                   double ifilter,
+                                   double ilimit,
+                                   double ithreshold,
+                                   double iloopSpeed) const {
+  leftSideMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+  rightSideMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+}
+
 std::shared_ptr<AbstractMotor> SkidSteerModel::getLeftSideMotor() const {
   return leftSideMotor;
 }
