@@ -221,7 +221,10 @@ void MotorGroup::controllerSet(const double ivalue) {
   }
 }
 
-std::int32_t MotorGroup::setPosPID(double ikF, double ikP, double ikI, double ikD) const {
+std::int32_t MotorGroup::setPosPID(const double ikF,
+                                   const double ikP,
+                                   const double ikI,
+                                   const double ikD) const {
   auto out = 1;
   for (auto &&elem : motors) {
     const auto errorCode = elem.setPosPID(ikF, ikP, ikI, ikD);
@@ -232,14 +235,14 @@ std::int32_t MotorGroup::setPosPID(double ikF, double ikP, double ikI, double ik
   return out;
 }
 
-std::int32_t MotorGroup::setPosPIDFull(double ikF,
-                                       double ikP,
-                                       double ikI,
-                                       double ikD,
-                                       double ifilter,
-                                       double ilimit,
-                                       double ithreshold,
-                                       double iloopSpeed) const {
+std::int32_t MotorGroup::setPosPIDFull(const double ikF,
+                                       const double ikP,
+                                       const double ikI,
+                                       const double ikD,
+                                       const double ifilter,
+                                       const double ilimit,
+                                       const double ithreshold,
+                                       const double iloopSpeed) const {
   auto out = 1;
   for (auto &&elem : motors) {
     const auto errorCode =
@@ -251,7 +254,10 @@ std::int32_t MotorGroup::setPosPIDFull(double ikF,
   return out;
 }
 
-std::int32_t MotorGroup::setVelPID(double ikF, double ikP, double ikI, double ikD) const {
+std::int32_t MotorGroup::setVelPID(const double ikF,
+                                   const double ikP,
+                                   const double ikI,
+                                   const double ikD) const {
   auto out = 1;
   for (auto &&elem : motors) {
     const auto errorCode = elem.setVelPID(ikF, ikP, ikI, ikD);
@@ -262,14 +268,14 @@ std::int32_t MotorGroup::setVelPID(double ikF, double ikP, double ikI, double ik
   return out;
 }
 
-std::int32_t MotorGroup::setVelPIDFull(double ikF,
-                                       double ikP,
-                                       double ikI,
-                                       double ikD,
-                                       double ifilter,
-                                       double ilimit,
-                                       double ithreshold,
-                                       double iloopSpeed) const {
+std::int32_t MotorGroup::setVelPIDFull(const double ikF,
+                                       const double ikP,
+                                       const double ikI,
+                                       const double ikD,
+                                       const double ifilter,
+                                       const double ilimit,
+                                       const double ithreshold,
+                                       const double iloopSpeed) const {
   auto out = 1;
   for (auto &&elem : motors) {
     const auto errorCode =

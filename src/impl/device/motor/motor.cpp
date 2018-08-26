@@ -184,34 +184,36 @@ std::int32_t Motor::setVoltageLimit(const std::int32_t ilimit) const {
   return set_voltage_limit(ilimit);
 }
 
-std::int32_t Motor::setPosPID(double ikF, double ikP, double ikI, double ikD) const {
+std::int32_t
+Motor::setPosPID(const double ikF, const double ikP, const double ikI, const double ikD) const {
   return set_pos_pid(convert_pid(ikF, ikP, ikI, ikD));
 }
 
-std::int32_t Motor::setPosPIDFull(double ikF,
-                                  double ikP,
-                                  double ikI,
-                                  double ikD,
-                                  double ifilter,
-                                  double ilimit,
-                                  double ithreshold,
-                                  double iloopSpeed) const {
+std::int32_t Motor::setPosPIDFull(const double ikF,
+                                  const double ikP,
+                                  const double ikI,
+                                  const double ikD,
+                                  const double ifilter,
+                                  const double ilimit,
+                                  const double ithreshold,
+                                  const double iloopSpeed) const {
   return set_pos_pid_full(
     convert_pid_full(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed));
 }
 
-std::int32_t Motor::setVelPID(double ikF, double ikP, double ikI, double ikD) const {
+std::int32_t
+Motor::setVelPID(const double ikF, const double ikP, const double ikI, const double ikD) const {
   return set_vel_pid(convert_pid(ikF, ikP, ikI, ikD));
 }
 
-std::int32_t Motor::setVelPIDFull(double ikF,
-                                  double ikP,
-                                  double ikI,
-                                  double ikD,
-                                  double ifilter,
-                                  double ilimit,
-                                  double ithreshold,
-                                  double iloopSpeed) const {
+std::int32_t Motor::setVelPIDFull(const double ikF,
+                                  const double ikP,
+                                  const double ikI,
+                                  const double ikD,
+                                  const double ifilter,
+                                  const double ilimit,
+                                  const double ithreshold,
+                                  const double iloopSpeed) const {
   return set_vel_pid_full(
     convert_pid_full(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed));
 }
