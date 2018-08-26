@@ -2,11 +2,7 @@
 [![codecov](https://codecov.io/gh/Octogonapus/OkapiLibV5/branch/develop/graph/badge.svg?token=BxSrW0XOZ7)](https://codecov.io/gh/Octogonapus/OkapiLibV5)
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 DOWNLOADS-BADGE
-
-# OkapiLib
-
-A PROS library for programming VEX V5 robots. This library is intended to raise the floor for teams with all levels of experience.
-New teams should have an easier time getting their robot up and running, and veteran teams should find that OkapiLib doesn't get in the way or place any limits on functionality.
+ts on functionality.
 
 Documentation is hosted on the PROS website: [OkapiLib Docs](https://pros.cs.purdue.edu/v5/okapi/index.html)
 
