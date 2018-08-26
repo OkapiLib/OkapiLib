@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/Octogonapus/OkapiLibV5.svg?token=AwtpYxh3gE2zE453sfAs&branch=develop)](https://travis-ci.com/Octogonapus/OkapiLibV5)
 [![codecov](https://codecov.io/gh/Octogonapus/OkapiLibV5/branch/develop/graph/badge.svg?token=BxSrW0XOZ7)](https://codecov.io/gh/Octogonapus/OkapiLibV5)
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
-DOWNLOADS-BADGE
+LOADS-BADGE
 ts on functionality.
 
 Documentation is hosted on the PROS website: [OkapiLib Docs](https://pros.cs.purdue.edu/v5/okapi/index.html)
