@@ -68,6 +68,20 @@ class MockChassisModel : public ChassisModel {
     return {0, 0};
   }
 
+  void setPosPID(double, double, double, double) const override {
+  }
+
+  void
+  setPosPIDFull(double, double, double, double, double, double, double, double) const override {
+  }
+
+  void setVelPID(double, double, double, double) const override {
+  }
+
+  void
+  setVelPIDFull(double, double, double, double, double, double, double, double) const override {
+  }
+
   mutable double lastForward{0};
   mutable double lastVectorY{0};
   mutable double lastVectorZ{0};

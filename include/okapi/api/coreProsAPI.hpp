@@ -14,7 +14,7 @@
 #define CROSSPLATFORM_THREAD_T std::thread
 #else
 #include "api.h"
-#define CROSSPLATFORM_THREAD_T task_t
+#define CROSSPLATFORM_THREAD_T pros::task_t
 #endif
 
 class CrossplatformThread {

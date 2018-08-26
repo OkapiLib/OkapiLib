@@ -104,6 +104,30 @@ class MockMotor : public AbstractMotor {
 
   int32_t getVoltage() const override;
 
+  int32_t modifyProfiledVelocity(std::int32_t ivelocity) const override;
+
+  int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) const override;
+
+  int32_t setPosPIDFull(double ikF,
+                        double ikP,
+                        double ikI,
+                        double ikD,
+                        double ifilter,
+                        double ilimit,
+                        double ithreshold,
+                        double iloopSpeed) const override;
+
+  int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) const override;
+
+  int32_t setVelPIDFull(double ikF,
+                        double ikP,
+                        double ikI,
+                        double ikD,
+                        double ifilter,
+                        double ilimit,
+                        double ithreshold,
+                        double iloopSpeed) const override;
+
   std::shared_ptr<MockContinuousRotarySensor> encoder;
   mutable std::int16_t lastVelocity{0};
   mutable std::int16_t maxVelocity{0};
