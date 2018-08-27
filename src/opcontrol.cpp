@@ -123,32 +123,4 @@ void opcontrol() {
 
   //  runHeadlessTests();
   return;
-
-  MotorGroup leftMotors({19_mtr, 20_mtr});
-  MotorGroup rightMotors({13_rmtr, 14_rmtr});
-  Motor armMotor = 15_mtr;
-  armMotor.move(10);
-
-  auto chassis =
-    ChassisControllerFactory::create({19, 20}, {-14}, AbstractMotor::gearset::red, {4_in, 11.5_in});
-
-  Controller controller;
-  ControllerButton btn1(ControllerDigital::A);
-  ControllerButton btn2(ControllerDigital::B);
-  ControllerButton btn3(ControllerDigital::Y);
-  ControllerButton btn4(ControllerDigital::X);
-
-  while (true) {
-    pros::lcd::print(0,
-                     "%d %d %d",
-                     (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
-                     (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
-                     (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
-    int left = master.get_analog(ANALOG_LEFT_Y);
-    int right = master.get_analog(ANALOG_RIGHT_Y);
-
-    left_mtr = left;
-    right_mtr = right;
-    pros::delay(20);
-  }
 }
