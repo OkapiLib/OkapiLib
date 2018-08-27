@@ -163,6 +163,40 @@ int32_t MockMotor::getVoltage() const {
   return 0;
 }
 
+int32_t MockMotor::modifyProfiledVelocity(std::int32_t ivelocity) const {
+  return 0;
+}
+
+int32_t MockMotor::setPosPID(double ikF, double ikP, double ikI, double ikD) const {
+  return 0;
+}
+
+int32_t MockMotor::setPosPIDFull(double ikF,
+                                 double ikP,
+                                 double ikI,
+                                 double ikD,
+                                 double ifilter,
+                                 double ilimit,
+                                 double ithreshold,
+                                 double iloopSpeed) const {
+  return 0;
+}
+
+int32_t MockMotor::setVelPID(double ikF, double ikP, double ikI, double ikD) const {
+  return 0;
+}
+
+int32_t MockMotor::setVelPIDFull(double ikF,
+                                 double ikP,
+                                 double ikI,
+                                 double ikD,
+                                 double ifilter,
+                                 double ilimit,
+                                 double ithreshold,
+                                 double iloopSpeed) const {
+  return 0;
+}
+
 MockTimer::MockTimer() : firstCalled(millis()), lastCalled(firstCalled), mark(firstCalled) {
 }
 

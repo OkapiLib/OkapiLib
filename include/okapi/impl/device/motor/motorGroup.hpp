@@ -88,16 +88,17 @@ class MotorGroup : public AbstractMotor {
   virtual std::int32_t moveVoltage(const std::int16_t ivoltage) const override;
 
   /**
-   * Sets the voltage for the motor from -127 to 127.
+   * Changes the output velocity for a profiled movement (moveAbsolute or moveRelative). This will
+   * have no effect if the motor is not following a profiled movement.
    *
-   * This function uses the following values of errno when an error state is
-   * reached:
+   * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
-   * @param voltage The new motor voltage from -127 to 127
+   * @param ivelocity The new motor velocity from -+-100, +-200, or +-600 depending on the motor's
+   * gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t move(const std::int8_t ivoltage) const;
+  virtual std::int32_t modifyProfiledVelocity(std::int32_t ivelocity) const override;
 
   /******************************************************************************/
   /**                        Motor telemetry functions                         **/
@@ -403,6 +404,72 @@ class MotorGroup : public AbstractMotor {
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
   virtual std::int32_t setVoltageLimit(const std::int32_t ilimit) const override;
+
+  /**
+   * Sets new PID constants.
+   *
+   * @param ikF the feed-forward constant
+   * @param ikP the proportional constant
+   * @param ikI the integral constant
+   * @param ikD the derivative constant
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) const override;
+
+  /**
+   * Sets new PID constants.
+   *
+   * @param ikF the feed-forward constant
+   * @param ikP the proportional constant
+   * @param ikI the integral constant
+   * @param ikD the derivative constant
+   * @param ifilter a constant used for filtering the profile acceleration
+   * @param ilimit the integral limit
+   * @param ithreshold the threshold for determining if a position movement has reached its goal
+   * @param iloopSpeed the rate at which the PID computation is run (in ms)
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t setPosPIDFull(double ikF,
+                                     double ikP,
+                                     double ikI,
+                                     double ikD,
+                                     double ifilter,
+                                     double ilimit,
+                                     double ithreshold,
+                                     double iloopSpeed) const override;
+
+  /**
+   * Sets new PID constants.
+   *
+   * @param ikF the feed-forward constant
+   * @param ikP the proportional constant
+   * @param ikI the integral constant
+   * @param ikD the derivative constant
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) const override;
+
+  /**
+   * Sets new PID constants.
+   *
+   * @param ikF the feed-forward constant
+   * @param ikP the proportional constant
+   * @param ikI the integral constant
+   * @param ikD the derivative constant
+   * @param ifilter a constant used for filtering the profile acceleration
+   * @param ilimit the integral limit
+   * @param ithreshold the threshold for determining if a position movement has reached its goal
+   * @param iloopSpeed the rate at which the PID computation is run (in ms)
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t setVelPIDFull(double ikF,
+                                     double ikP,
+                                     double ikI,
+                                     double ikD,
+                                     double ifilter,
+                                     double ilimit,
+                                     double ithreshold,
+                                     double iloopSpeed) const override;
 
   /**
    * Writes the value of the controller output. This method might be automatically called in another

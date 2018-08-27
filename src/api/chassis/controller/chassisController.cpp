@@ -70,6 +70,42 @@ void ChassisController::setGearing(const AbstractMotor::gearset gearset) const {
   model->setGearing(gearset);
 }
 
+void ChassisController::setPosPID(const double ikF,
+                                  const double ikP,
+                                  const double ikI,
+                                  const double ikD) const {
+  model->setPosPID(ikF, ikP, ikI, ikD);
+}
+
+void ChassisController::setPosPIDFull(const double ikF,
+                                      const double ikP,
+                                      const double ikI,
+                                      const double ikD,
+                                      const double ifilter,
+                                      const double ilimit,
+                                      const double ithreshold,
+                                      const double iloopSpeed) const {
+  model->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+}
+
+void ChassisController::setVelPID(const double ikF,
+                                  const double ikP,
+                                  const double ikI,
+                                  const double ikD) const {
+  model->setVelPID(ikF, ikP, ikI, ikD);
+}
+
+void ChassisController::setVelPIDFull(const double ikF,
+                                      const double ikP,
+                                      const double ikI,
+                                      const double ikD,
+                                      const double ifilter,
+                                      const double ilimit,
+                                      const double ithreshold,
+                                      const double iloopSpeed) const {
+  model->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+}
+
 std::shared_ptr<ChassisModel> ChassisController::getChassisModel() const {
   return model;
 }

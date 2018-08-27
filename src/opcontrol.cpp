@@ -139,32 +139,16 @@ void opcontrol() {
   ControllerButton btn4(ControllerDigital::X);
 
   while (true) {
-    chassis.arcade(controller.getAnalog(ControllerAnalog::leftY),
-                   controller.getAnalog(ControllerAnalog::leftX));
+    pros::lcd::print(0,
+                     "%d %d %d",
+                     (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
+                     (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
+                     (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
+    int left = master.get_analog(ANALOG_LEFT_Y);
+    int right = master.get_analog(ANALOG_RIGHT_Y);
 
-    if (btn1.changedToPressed()) {
-      printf("move distance\n");
-      chassis.moveDistance(12_in);
-    }
-
-    if (btn2.changedToPressed()) {
-      printf("turn angle\n");
-      chassis.turnAngle(90_deg);
-    }
-
-    if (btn3.changedToPressed()) {
-      printf("move arm\n");
-      armMotor.moveRelative(-10, 127);
-    }
-
-    if (btn4.changedToPressed()) {
-      printf("autonomous routine\n");
-      for (int i = 0; i < 4; i++) {
-        chassis.moveDistance(12_in);
-        chassis.turnAngle(90_deg);
-      }
-    }
-
-    pros::Task::delay(10);
+    left_mtr = left;
+    right_mtr = right;
+    pros::delay(20);
   }
 }
