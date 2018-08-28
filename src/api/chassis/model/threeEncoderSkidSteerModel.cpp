@@ -14,8 +14,9 @@ ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
   std::shared_ptr<ContinuousRotarySensor> ileftEnc,
   std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
   std::shared_ptr<ContinuousRotarySensor> irightEnc,
-  const double imaxOutput)
-  : SkidSteerModel(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxOutput),
+  const double imaxVelocity,
+  const double imaxVoltage)
+  : SkidSteerModel(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxVelocity, imaxVoltage),
     middleSensor(imiddleEnc) {
 }
 

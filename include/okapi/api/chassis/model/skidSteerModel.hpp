@@ -27,7 +27,8 @@ class SkidSteerModel : public ChassisModel {
    */
   SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                  std::shared_ptr<AbstractMotor> irightSideMotor,
-                 double imaxOutput = 127);
+                 double imaxVelocity = 127,
+                 double imaxVoltage = 12000);
 
   /**
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
@@ -42,7 +43,8 @@ class SkidSteerModel : public ChassisModel {
                  std::shared_ptr<AbstractMotor> irightSideMotor,
                  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                  std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                 double imaxOutput = 127);
+                 double imaxVelocity = 127,
+                 double imaxVoltage = 12000);
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.
@@ -224,7 +226,8 @@ class SkidSteerModel : public ChassisModel {
   std::shared_ptr<AbstractMotor> rightSideMotor;
   std::shared_ptr<ContinuousRotarySensor> leftSensor;
   std::shared_ptr<ContinuousRotarySensor> rightSensor;
-  const double maxOutput;
+  const double maxVelocity;
+  const double maxVoltage;
 };
 } // namespace okapi
 
