@@ -34,7 +34,7 @@ class ThreeEncoderOdometry : public Odometry {
   void step() override;
 
   /**
-   * Tread the input as a ThreeEncoderOdometry pointer and call loop. Meant to be used to bounce
+   * Treat the input as a ThreeEncoderOdometry pointer and call loop. Meant to be used to bounce
    * into a thread because loop runs forever.
    *
    * @param context pointer to a ThreeEncoderOdometry object
