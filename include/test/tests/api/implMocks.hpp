@@ -275,34 +275,22 @@ class MockIterativeController : public IterativePosPIDController {
   public:
   MockIterativeController();
 
-  MockIterativeController(double ikP);
+  explicit MockIterativeController(double ikP);
 
   bool isSettled() override;
 
   bool isSettledOverride{true};
 };
 
-class MockSettledUtil : public SettledUtil {
-  public:
-  MockSettledUtil() : SettledUtil(std::make_unique<MockTimer>()) {
-  }
-
-  bool isSettled(double) override {
-    return isSettledOverride;
-  }
-
-  bool isSettledOverride{true};
-};
-
 void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor);
 
-void assertMotorsGearsetEquals(const AbstractMotor::gearset expected,
+void assertMotorsGearsetEquals(AbstractMotor::gearset expected,
                                const std::initializer_list<MockMotor> &motors);
 
-void assertMotorsBrakeModeEquals(const AbstractMotor::brakeMode expected,
+void assertMotorsBrakeModeEquals(AbstractMotor::brakeMode expected,
                                  const std::initializer_list<MockMotor> &motors);
 
-void assertMotorsEncoderUnitsEquals(const AbstractMotor::encoderUnits expected,
+void assertMotorsEncoderUnitsEquals(AbstractMotor::encoderUnits expected,
                                     const std::initializer_list<MockMotor> &motors);
 
 template <typename I, typename O>
@@ -313,7 +301,7 @@ void assertControllerIsSettledWhenDisabled(ClosedLoopController<I, O> &controlle
   EXPECT_EQ(controller.getTarget(), target);
   EXPECT_FALSE(controller.isSettled());
 
-  controller.flipDisable(true);
+  controller.flipDisable();
   EXPECT_TRUE(controller.isDisabled());
   EXPECT_TRUE(controller.isSettled());
 }
