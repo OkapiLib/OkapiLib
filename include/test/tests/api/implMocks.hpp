@@ -313,7 +313,7 @@ void assertControllerIsSettledWhenDisabled(ClosedLoopController<I, O> &controlle
   EXPECT_EQ(controller.getTarget(), target);
   EXPECT_FALSE(controller.isSettled());
 
-  controller.flipDisable(true);
+  controller.flipDisable();
   EXPECT_TRUE(controller.isDisabled());
   EXPECT_TRUE(controller.isSettled());
 }
