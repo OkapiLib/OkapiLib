@@ -20,7 +20,7 @@ void opcontrol() {
   Controller master;
   pros::c::lcd_initialize();
   while (true) {
-    drive.tank(0.3,0.3);
+    drive.tank(0.3, 0.3);
     // drive.forward(100);
     pros::c::lcd_print(0, "cnt %f", master.getAnalog(ControllerAnalog::rightY));
     pros::delay(50);
