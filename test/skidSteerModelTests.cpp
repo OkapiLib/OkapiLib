@@ -96,14 +96,14 @@ TEST_F(SkidSteerModelTest, TankHalfPower) {
   model.tank(0.5, 0.5);
 
   assertAllMotorsLastVelocity(0);
-  assertAllMotorsLastVoltage(63);
+  assertAllMotorsLastVoltage(6000);
 }
 
 TEST_F(SkidSteerModelTest, TankBoundsInput) {
   model.tank(10, 10);
 
   assertAllMotorsLastVelocity(0);
-  assertAllMotorsLastVoltage(127);
+  assertAllMotorsLastVoltage(12000);
 }
 
 TEST_F(SkidSteerModelTest, TankThresholds) {
@@ -117,21 +117,21 @@ TEST_F(SkidSteerModelTest, ArcadeHalfPower) {
   model.arcade(0.5, 0);
 
   assertAllMotorsLastVelocity(0);
-  assertAllMotorsLastVoltage(63);
+  assertAllMotorsLastVoltage(6000);
 }
 
 TEST_F(SkidSteerModelTest, ArcadeHalfPowerTurn) {
   model.arcade(0, 0.5);
 
   assertAllMotorsLastVelocity(0);
-  assertLeftAndRightMotorsLastVoltage(63, -63);
+  assertLeftAndRightMotorsLastVoltage(6000, -6000);
 }
 
 TEST_F(SkidSteerModelTest, ArcadeBoundsInput) {
   model.arcade(10, 0);
 
   assertAllMotorsLastVelocity(0);
-  assertAllMotorsLastVoltage(127);
+  assertAllMotorsLastVoltage(12000);
 }
 
 TEST_F(SkidSteerModelTest, ArcadeThresholds) {

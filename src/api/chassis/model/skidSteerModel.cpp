@@ -14,28 +14,32 @@ SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                std::shared_ptr<AbstractMotor> irightSideMotor,
                                std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                                std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                               const double imaxOutput)
+                               const double imaxVelocity,
+                               const double imaxVoltage)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
     leftSensor(ileftEnc),
     rightSensor(irightEnc),
-    maxOutput(imaxOutput) {
+    maxVelocity(imaxVelocity),
+    maxVoltage(imaxVoltage) {
 }
 
 SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                std::shared_ptr<AbstractMotor> irightSideMotor,
-                               const double imaxOutput)
+                               const double imaxVelocity,
+                               const double imaxVoltage)
   : leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
     leftSensor(ileftSideMotor->getEncoder()),
     rightSensor(irightSideMotor->getEncoder()),
-    maxOutput(imaxOutput) {
+    maxVelocity(imaxVelocity),
+    maxVoltage(imaxVoltage) {
 }
 
 void SkidSteerModel::forward(const double ispeed) const {
   const double speed = std::clamp(ispeed, -1.0, 1.0);
-  leftSideMotor->moveVelocity(static_cast<int16_t>(speed * maxOutput));
-  rightSideMotor->moveVelocity(static_cast<int16_t>(speed * maxOutput));
+  leftSideMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
+  rightSideMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
 }
 
 void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) const {
@@ -52,14 +56,14 @@ void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) 
     rightOutput /= maxInputMag;
   }
 
-  leftSideMotor->moveVelocity(static_cast<int16_t>(leftOutput * maxOutput));
-  rightSideMotor->moveVelocity(static_cast<int16_t>(rightOutput * maxOutput));
+  leftSideMotor->moveVelocity(static_cast<int16_t>(leftOutput * maxVelocity));
+  rightSideMotor->moveVelocity(static_cast<int16_t>(rightOutput * maxVelocity));
 }
 
 void SkidSteerModel::rotate(const double ispeed) const {
   const double speed = std::clamp(ispeed, -1.0, 1.0);
-  leftSideMotor->moveVelocity(static_cast<int16_t>(speed * maxOutput));
-  rightSideMotor->moveVelocity(static_cast<int16_t>(-1 * speed * maxOutput));
+  leftSideMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
+  rightSideMotor->moveVelocity(static_cast<int16_t>(-1 * speed * maxVelocity));
 }
 
 void SkidSteerModel::stop() {
@@ -82,8 +86,8 @@ void SkidSteerModel::tank(const double ileftSpeed,
     rightSpeed = 0;
   }
 
-  leftSideMotor->moveVoltage(static_cast<int16_t>(leftSpeed * maxOutput));
-  rightSideMotor->moveVoltage(static_cast<int16_t>(rightSpeed * maxOutput));
+  leftSideMotor->moveVoltage(static_cast<int16_t>(leftSpeed * maxVoltage));
+  rightSideMotor->moveVoltage(static_cast<int16_t>(rightSpeed * maxVoltage));
 }
 
 void SkidSteerModel::arcade(const double iySpeed,
@@ -123,16 +127,17 @@ void SkidSteerModel::arcade(const double iySpeed,
     }
   }
 
-  leftSideMotor->moveVoltage(static_cast<int16_t>(std::clamp(leftOutput, -1.0, 1.0) * maxOutput));
-  rightSideMotor->moveVoltage(static_cast<int16_t>(std::clamp(rightOutput, -1.0, 1.0) * maxOutput));
+  leftSideMotor->moveVoltage(static_cast<int16_t>(std::clamp(leftOutput, -1.0, 1.0) * maxVoltage));
+  rightSideMotor->moveVoltage(
+    static_cast<int16_t>(std::clamp(rightOutput, -1.0, 1.0) * maxVoltage));
 }
 
 void SkidSteerModel::left(const double ispeed) const {
-  leftSideMotor->moveVelocity(static_cast<int16_t>(ispeed * maxOutput));
+  leftSideMotor->moveVelocity(static_cast<int16_t>(ispeed * maxVelocity));
 }
 
 void SkidSteerModel::right(const double ispeed) const {
-  rightSideMotor->moveVelocity(static_cast<int16_t>(ispeed * maxOutput));
+  rightSideMotor->moveVelocity(static_cast<int16_t>(ispeed * maxVelocity));
 }
 
 std::valarray<std::int32_t> SkidSteerModel::getSensorVals() const {

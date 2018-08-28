@@ -108,14 +108,14 @@ TEST_F(XDriveModelTest, TankHalfPower) {
   model.tank(0.5, 0.5);
 
   assertAllMotorsLastVelocity(0);
-  assertAllMotorsLastVoltage(63);
+  assertAllMotorsLastVoltage(6000);
 }
 
 TEST_F(XDriveModelTest, TankBoundsInput) {
   model.tank(10, 10);
 
   assertAllMotorsLastVelocity(0);
-  assertAllMotorsLastVoltage(127);
+  assertAllMotorsLastVoltage(12000);
 }
 
 TEST_F(XDriveModelTest, TankThresholds) {
@@ -129,21 +129,21 @@ TEST_F(XDriveModelTest, ArcadeHalfPower) {
   model.arcade(0.5, 0);
 
   assertAllMotorsLastVelocity(0);
-  assertAllMotorsLastVoltage(63);
+  assertAllMotorsLastVoltage(6000);
 }
 
 TEST_F(XDriveModelTest, ArcadeHalfPowerTurn) {
   model.arcade(0, 0.5);
 
   assertAllMotorsLastVelocity(0);
-  assertLeftAndRightMotorsLastVoltage(63, -63);
+  assertLeftAndRightMotorsLastVoltage(6000, -6000);
 }
 
 TEST_F(XDriveModelTest, ArcadeBoundsInput) {
   model.arcade(10, 0);
 
   assertAllMotorsLastVelocity(0);
-  assertAllMotorsLastVoltage(127);
+  assertAllMotorsLastVoltage(12000);
 }
 
 TEST_F(XDriveModelTest, ArcadeThresholds) {
@@ -157,14 +157,14 @@ TEST_F(XDriveModelTest, XArcadeHalfPowerForward) {
   model.xArcade(0, 0.5, 0);
 
   assertAllMotorsLastVelocity(0);
-  assertAllMotorsLastVoltage(63);
+  assertAllMotorsLastVoltage(6000);
 }
 
 TEST_F(XDriveModelTest, XArcadeForwardBoundsInput) {
   model.xArcade(0, 10, 0);
 
   assertAllMotorsLastVelocity(0);
-  assertAllMotorsLastVoltage(127);
+  assertAllMotorsLastVoltage(12000);
 }
 
 TEST_F(XDriveModelTest, XArcadeForwardThresholds) {
@@ -178,20 +178,20 @@ TEST_F(XDriveModelTest, XArcadeHalfPowerStrafe) {
   model.xArcade(0.5, 0, 0);
 
   assertAllMotorsLastVelocity(0);
-  EXPECT_EQ(topLeftMotor->lastVoltage, 63);
-  EXPECT_EQ(topRightMotor->lastVoltage, -63);
-  EXPECT_EQ(bottomRightMotor->lastVoltage, 63);
-  EXPECT_EQ(bottomLeftMotor->lastVoltage, -63);
+  EXPECT_EQ(topLeftMotor->lastVoltage, 6000);
+  EXPECT_EQ(topRightMotor->lastVoltage, -6000);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, 6000);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, -6000);
 }
 
 TEST_F(XDriveModelTest, XArcadeStrafeBoundsInput) {
   model.xArcade(10, 0, 0);
 
   assertAllMotorsLastVelocity(0);
-  EXPECT_EQ(topLeftMotor->lastVoltage, 127);
-  EXPECT_EQ(topRightMotor->lastVoltage, -127);
-  EXPECT_EQ(bottomRightMotor->lastVoltage, 127);
-  EXPECT_EQ(bottomLeftMotor->lastVoltage, -127);
+  EXPECT_EQ(topLeftMotor->lastVoltage, 12000);
+  EXPECT_EQ(topRightMotor->lastVoltage, -12000);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, 12000);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, -12000);
 }
 
 TEST_F(XDriveModelTest, XArcadeStrafeThresholds) {
@@ -205,14 +205,14 @@ TEST_F(XDriveModelTest, XArcadeTurnBoundsInput) {
   model.xArcade(0, 0, 10);
 
   assertAllMotorsLastVelocity(0);
-  assertLeftAndRightMotorsLastVoltage(127, -127);
+  assertLeftAndRightMotorsLastVoltage(12000, -12000);
 }
 
 TEST_F(XDriveModelTest, XArcadeTurnHalfPower) {
   model.xArcade(0, 0, 0.5);
 
   assertAllMotorsLastVelocity(0);
-  assertLeftAndRightMotorsLastVoltage(63, -63);
+  assertLeftAndRightMotorsLastVoltage(6000, -6000);
 }
 
 TEST_F(XDriveModelTest, XArcadeTurnThresholds) {
@@ -226,19 +226,19 @@ TEST_F(XDriveModelTest, XArcadeBoundsInputAllPoweredFull) {
   model.xArcade(10, 10, 10);
 
   assertAllMotorsLastVelocity(0);
-  EXPECT_EQ(topLeftMotor->lastVoltage, 127);
-  EXPECT_EQ(topRightMotor->lastVoltage, -127);
-  EXPECT_EQ(bottomRightMotor->lastVoltage, 127);
-  EXPECT_EQ(bottomLeftMotor->lastVoltage, 127);
+  EXPECT_EQ(topLeftMotor->lastVoltage, 12000);
+  EXPECT_EQ(topRightMotor->lastVoltage, -12000);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, 12000);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, 12000);
 }
 
 TEST_F(XDriveModelTest, XArcadeBoundsInputAllNoTurn) {
   model.xArcade(10, 10, 0);
 
   assertAllMotorsLastVelocity(0);
-  EXPECT_EQ(topLeftMotor->lastVoltage, 127);
+  EXPECT_EQ(topLeftMotor->lastVoltage, 12000);
   EXPECT_EQ(topRightMotor->lastVoltage, 0);
-  EXPECT_EQ(bottomRightMotor->lastVoltage, 127);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, 12000);
   EXPECT_EQ(bottomLeftMotor->lastVoltage, 0);
 }
 
@@ -246,8 +246,8 @@ TEST_F(XDriveModelTest, XArcadeBoundsInputAllNoForward) {
   model.xArcade(10, 0, 10);
 
   assertAllMotorsLastVelocity(0);
-  EXPECT_EQ(topLeftMotor->lastVoltage, 127);
-  EXPECT_EQ(topRightMotor->lastVoltage, -127);
+  EXPECT_EQ(topLeftMotor->lastVoltage, 12000);
+  EXPECT_EQ(topRightMotor->lastVoltage, -12000);
   EXPECT_EQ(bottomRightMotor->lastVoltage, 0);
   EXPECT_EQ(bottomLeftMotor->lastVoltage, 0);
 }
