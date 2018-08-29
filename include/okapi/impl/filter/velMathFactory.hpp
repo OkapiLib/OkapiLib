@@ -20,8 +20,9 @@ class VelMathFactory {
    *
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
    */
-  static VelMath create(double iticksPerRev);
-  static std::unique_ptr<VelMath> createPtr(double iticksPerRev);
+  static VelMath create(double iticksPerRev, QTime isampleTime = 0_ms);
+
+  static std::unique_ptr<VelMath> createPtr(double iticksPerRev, QTime isampleTime = 0_ms);
 
   /**
    * Velocity math helper. Calculates filtered velocity. Throws a std::invalid_argument exception
@@ -30,8 +31,12 @@ class VelMathFactory {
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
    * @param ifilter filter used for filtering the calculated velocity
    */
-  static VelMath create(double iticksPerRev, std::shared_ptr<Filter> ifilter);
-  static std::unique_ptr<VelMath> createPtr(double iticksPerRev, std::shared_ptr<Filter> ifilter);
+  static VelMath
+  create(double iticksPerRev, std::shared_ptr<Filter> ifilter, QTime isampleTime = 0_ms);
+
+  static std::unique_ptr<VelMath>
+  createPtr(double iticksPerRev, std::shared_ptr<Filter> ifilter, QTime isampleTime = 0_ms);
+
   static std::unique_ptr<VelMath> createPtr(const VelMathArgs &ivelMathArgs);
 };
 } // namespace okapi

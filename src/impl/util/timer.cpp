@@ -9,72 +9,10 @@
 #include "api.h"
 
 namespace okapi {
-Timer::Timer() : firstCalled(millis()), lastCalled(firstCalled), mark(firstCalled) {
+Timer::Timer() : AbstractTimer(millis()) {
 }
 
 QTime Timer::millis() const {
   return pros::millis() * millisecond;
-}
-
-QTime Timer::getDt() {
-  const QTime currTime = millis();
-  const QTime dt = currTime - lastCalled;
-  lastCalled = currTime;
-  return dt;
-}
-
-QTime Timer::getStartingTime() const {
-  return firstCalled;
-}
-
-QTime Timer::getDtFromStart() const {
-  return millis() - firstCalled;
-}
-
-void Timer::placeMark() {
-  mark = millis();
-}
-
-QTime Timer::clearMark() {
-  const QTime old = mark;
-  mark = 0_ms;
-  return old;
-}
-
-void Timer::placeHardMark() {
-  if (hardMark == 0_ms)
-    hardMark = millis();
-}
-
-QTime Timer::clearHardMark() {
-  const QTime old = hardMark;
-  hardMark = 0_ms;
-  return old;
-}
-
-QTime Timer::getDtFromMark() const {
-  return mark == 0_ms ? 0_ms : millis() - mark;
-}
-
-QTime Timer::getDtFromHardMark() const {
-  return hardMark == 0_ms ? 0_ms : millis() - hardMark;
-}
-
-bool Timer::repeat(const QTime time) {
-  if (repeatMark == 0_ms) {
-    repeatMark = millis();
-    return false;
-  }
-
-  if (millis() - repeatMark >= time) {
-    repeatMark = 0_ms;
-    return true;
-  }
-
-  return false;
-}
-
-bool Timer::repeat(const QFrequency frequency) {
-  return repeat(QTime(1 / frequency.convert(Hz)));
 }
 } // namespace okapi
