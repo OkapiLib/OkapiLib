@@ -19,7 +19,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * @param port the port number
    */
-  Motor(const std::int8_t port);
+  Motor(std::int8_t port);
 
   explicit Motor(std::uint8_t port,
                  bool reverse,
