@@ -30,7 +30,7 @@ class ChassisControllerFactory {
   static ChassisControllerIntegrated
   create(Motor ileftSideMotor,
          Motor irightSideMotor,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -46,7 +46,7 @@ class ChassisControllerFactory {
   static ChassisControllerIntegrated
   create(MotorGroup ileftSideMotor,
          MotorGroup irightSideMotor,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -66,7 +66,7 @@ class ChassisControllerFactory {
          Motor itopRightMotor,
          Motor ibottomRightMotor,
          Motor ibottomLeftMotor,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -86,7 +86,7 @@ class ChassisControllerFactory {
          Motor irightSideMotor,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -107,7 +107,7 @@ class ChassisControllerFactory {
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const IterativePosPIDController::Gains &iturnArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -127,7 +127,7 @@ class ChassisControllerFactory {
          MotorGroup irightSideMotor,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -148,7 +148,7 @@ class ChassisControllerFactory {
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const IterativePosPIDController::Gains &iturnArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -172,7 +172,7 @@ class ChassisControllerFactory {
          ADIEncoder irightEnc,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -197,7 +197,7 @@ class ChassisControllerFactory {
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const IterativePosPIDController::Gains &iturnArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -219,7 +219,7 @@ class ChassisControllerFactory {
          std::shared_ptr<ContinuousRotarySensor> irightEnc,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -242,7 +242,7 @@ class ChassisControllerFactory {
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const IterativePosPIDController::Gains &iturnArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -266,7 +266,7 @@ class ChassisControllerFactory {
          Motor ibottomLeftMotor,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -291,7 +291,7 @@ class ChassisControllerFactory {
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const IterativePosPIDController::Gains &iturnArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -320,7 +320,7 @@ class ChassisControllerFactory {
          ADIEncoder itopRightEnc,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -350,7 +350,7 @@ class ChassisControllerFactory {
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const IterativePosPIDController::Gains &iturnArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -379,7 +379,7 @@ class ChassisControllerFactory {
          std::shared_ptr<ContinuousRotarySensor> itopRightEnc,
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 
   /**
@@ -409,7 +409,7 @@ class ChassisControllerFactory {
          const IterativePosPIDController::Gains &idistanceArgs,
          const IterativePosPIDController::Gains &iangleArgs,
          const IterativePosPIDController::Gains &iturnArgs,
-         const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
          const ChassisScales &iscales = ChassisScales({1, 1}));
 };
 } // namespace okapi

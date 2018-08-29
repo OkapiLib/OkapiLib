@@ -14,7 +14,7 @@
 namespace okapi {
 class ADIButton : public ButtonBase {
   public:
-  ADIButton(const std::uint8_t iport, const bool iinverted = false);
+  ADIButton(std::uint8_t iport, bool iinverted = false);
 
   protected:
   pros::ADIButton btn;
