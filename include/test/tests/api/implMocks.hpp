@@ -161,7 +161,7 @@ class ConstantMockTimer : public AbstractTimer {
 
   QTime getDt() override;
 
-  QTime readDt() override;
+  QTime readDt() const override;
 
   QTime getStartingTime() const override;
 

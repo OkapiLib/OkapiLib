@@ -218,7 +218,7 @@ QTime ConstantMockTimer::getDt() {
   return dtToReturn;
 }
 
-QTime ConstantMockTimer::readDt() {
+QTime ConstantMockTimer::readDt() const {
   return dtToReturn;
 }
 

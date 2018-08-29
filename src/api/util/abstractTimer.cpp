@@ -21,7 +21,7 @@ QTime AbstractTimer::getDt() {
   return dt;
 }
 
-QTime AbstractTimer::readDt() {
+QTime AbstractTimer::readDt() const {
   return millis() - lastCalled;
 }
 

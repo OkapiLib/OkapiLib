@@ -37,6 +37,7 @@ class VelMath {
    *
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
    * @param ifilter filter used for filtering the calculated velocity
+   * @param isampleTime the minimum time between velocity measurements
    */
   VelMath(double iticksPerRev,
           std::shared_ptr<Filter> ifilter,
