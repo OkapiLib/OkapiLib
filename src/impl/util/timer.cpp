@@ -23,6 +23,10 @@ QTime Timer::getDt() {
   return dt;
 }
 
+QTime Timer::sampleDt() {
+  return millis() - lastCalled;
+}
+
 QTime Timer::getStartingTime() const {
   return firstCalled;
 }

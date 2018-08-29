@@ -214,6 +214,10 @@ QTime MockTimer::getDt() {
   return dt;
 }
 
+QTime MockTimer::sampleDt() {
+  return millis() - lastCalled;
+}
+
 QTime MockTimer::getStartingTime() const {
   return firstCalled;
 }
@@ -275,6 +279,10 @@ QTime ConstantMockTimer::millis() const {
 }
 
 QTime ConstantMockTimer::getDt() {
+  return dtToReturn;
+}
+
+QTime ConstantMockTimer::sampleDt() {
   return dtToReturn;
 }
 

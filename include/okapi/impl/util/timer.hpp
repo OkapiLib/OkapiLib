@@ -20,67 +20,75 @@ class Timer : public AbstractTimer {
    *
    * @return the current time
    */
-  virtual QTime millis() const override;
+  QTime millis() const override;
 
   /**
    * Returns the time passed in ms since the previous call of this function.
    *
    * @return The time passed in ms since the previous call of this function
    */
-  virtual QTime getDt() override;
+  QTime getDt() override;
+
+  /**
+   * Returns the time passed in ms since the previous call of getDt(). Does not change the time
+   * recorded by getDt().
+   *
+   * @return The time passed in ms since the previous call of getDt()
+   */
+  QTime sampleDt() override;
 
   /**
    * Returns the time the timer was first constructed.
    *
    * @return The time the timer was first constructed
    */
-  virtual QTime getStartingTime() const override;
+  QTime getStartingTime() const override;
 
   /**
    * Returns the time since the timer was first constructed.
    *
    * @return The time since the timer was first constructed
    */
-  virtual QTime getDtFromStart() const override;
+  QTime getDtFromStart() const override;
 
   /**
    * Place a time marker. Placing another marker will overwrite the previous one.
    */
-  virtual void placeMark() override;
+  void placeMark() override;
 
   /**
    * Clears the marker.
    *
    * @return The old marker
    */
-  virtual QTime clearMark() override;
+  QTime clearMark() override;
 
   /**
    * Place a hard time marker. Placing another hard marker will not overwrite the previous one;
    * instead, call clearHardMark() and then place another.
    */
-  virtual void placeHardMark() override;
+  void placeHardMark() override;
 
   /**
    * Clears the hard marker.
    *
    * @return The old hard marker
    */
-  virtual QTime clearHardMark() override;
+  QTime clearHardMark() override;
 
   /**
    * Returns the time since the time marker.
    *
    * @return The time since the time marker
    */
-  virtual QTime getDtFromMark() const override;
+  QTime getDtFromMark() const override;
 
   /**
    * Returns the time since the hard time marker.
    *
    * @return The time since the hard time marker
    */
-  virtual QTime getDtFromHardMark() const override;
+  QTime getDtFromHardMark() const override;
 
   /**
    * Returns true when the input time period has passed, then resets. Meant to be used in loops
@@ -90,7 +98,7 @@ class Timer : public AbstractTimer {
    * @return true when the input time period has passed, false after reading true until the
    *   period has passed again
    */
-  virtual bool repeat(QTime time) override;
+  bool repeat(QTime time) override;
 
   /**
    * Returns true when the input time period has passed, then resets. Meant to be used in loops
@@ -100,7 +108,7 @@ class Timer : public AbstractTimer {
    * @return true when the input time period has passed, false after reading true until the
    *   period has passed again
    */
-  virtual bool repeat(QFrequency frequency) override;
+  bool repeat(QFrequency frequency) override;
 
   protected:
   QTime firstCalled;

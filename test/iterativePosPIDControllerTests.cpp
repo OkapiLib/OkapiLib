@@ -13,9 +13,9 @@ using namespace okapi;
 
 class MockIterativePosPIDController : public IterativePosPIDController {
   public:
-  using IterativePosPIDController::IterativePosPIDController;
   using IterativePosPIDController::integralMax;
   using IterativePosPIDController::integralMin;
+  using IterativePosPIDController::IterativePosPIDController;
   using IterativePosPIDController::outputMax;
   using IterativePosPIDController::outputMin;
 };
