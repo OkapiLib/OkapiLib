@@ -197,7 +197,7 @@ int32_t MockMotor::setVelPIDFull(double ikF,
   return 0;
 }
 
-MockTimer::MockTimer() : firstCalled(millis()), lastCalled(firstCalled), mark(firstCalled) {
+MockTimer::MockTimer() : AbstractTimer(millis()) {
 }
 
 QTime MockTimer::millis() const {
@@ -207,71 +207,7 @@ QTime MockTimer::millis() const {
          millisecond;
 }
 
-QTime MockTimer::getDt() {
-  const QTime currTime = millis();
-  const QTime dt = currTime - lastCalled;
-  lastCalled = currTime;
-  return dt;
-}
-
-QTime MockTimer::readDt() {
-  return millis() - lastCalled;
-}
-
-QTime MockTimer::getStartingTime() const {
-  return firstCalled;
-}
-
-QTime MockTimer::getDtFromStart() const {
-  return millis() - firstCalled;
-}
-
-void MockTimer::placeMark() {
-  mark = millis();
-}
-
-void MockTimer::placeHardMark() {
-  if (hardMark == 0_ms)
-    hardMark = millis();
-}
-
-QTime MockTimer::clearHardMark() {
-  const QTime old = hardMark;
-  hardMark = 0_ms;
-  return old;
-}
-
-QTime MockTimer::getDtFromMark() const {
-  return millis() - mark;
-}
-
-QTime MockTimer::getDtFromHardMark() const {
-  return hardMark == 0_ms ? 0_ms : millis() - hardMark;
-}
-
-bool MockTimer::repeat(const QTime time) {
-  if (repeatMark == 0_ms) {
-    repeatMark = millis();
-    return false;
-  }
-
-  if (millis() - repeatMark >= time) {
-    repeatMark = 0_ms;
-    return true;
-  }
-
-  return false;
-}
-
-bool MockTimer::repeat(const QFrequency frequency) {
-  return repeat(QTime(1 / frequency.convert(Hz)));
-}
-
-QTime MockTimer::clearMark() {
-  return 0_ms;
-}
-
-ConstantMockTimer::ConstantMockTimer(const QTime idt) : dtToReturn(idt) {
+ConstantMockTimer::ConstantMockTimer(const QTime idt) : AbstractTimer(0_ms), dtToReturn(idt) {
 }
 
 QTime ConstantMockTimer::millis() const {

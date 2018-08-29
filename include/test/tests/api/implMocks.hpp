@@ -147,36 +147,7 @@ class MockTimer : public AbstractTimer {
 
   QTime millis() const override;
 
-  QTime getDt() override;
-
-  QTime readDt() override;
-
-  QTime getStartingTime() const override;
-
-  QTime getDtFromStart() const override;
-
-  void placeMark() override;
-
-  QTime clearMark() override;
-
-  void placeHardMark() override;
-
-  QTime clearHardMark() override;
-
-  QTime getDtFromMark() const override;
-
-  QTime getDtFromHardMark() const override;
-
-  bool repeat(QTime time) override;
-
-  bool repeat(QFrequency frequency) override;
-
   std::chrono::system_clock::time_point epoch = std::chrono::high_resolution_clock::from_time_t(0);
-  QTime firstCalled;
-  QTime lastCalled;
-  QTime mark;
-  QTime hardMark;
-  QTime repeatMark;
 };
 
 /**
