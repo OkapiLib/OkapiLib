@@ -14,14 +14,14 @@
 namespace okapi {
 class ADIMotor : public ControllerOutput<double> {
   public:
-  ADIMotor(const std::uint8_t iport, const bool ireverse = false);
+  ADIMotor(std::uint8_t iport, bool ireverse = false);
 
   /**
    * Set the voltage to the motor.
    *
    * @param ivoltage voltage
    */
-  virtual void moveVoltage(const std::int32_t ivoltage) const;
+  virtual void moveVoltage(std::int32_t ivoltage) const;
 
   /**
    * Writes the value of the controller output. This method might be automatically called in another
@@ -29,7 +29,7 @@ class ADIMotor : public ControllerOutput<double> {
    *
    * @param ivalue the controller's output in the range [-1, 1]
    */
-  virtual void controllerSet(const double ivalue) override;
+  virtual void controllerSet(double ivalue) override;
 
   protected:
   const pros::ADIMotor motor;

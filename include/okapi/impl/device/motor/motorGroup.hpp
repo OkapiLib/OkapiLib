@@ -37,8 +37,7 @@ class MotorGroup : public AbstractMotor {
    * @param ivelocity The maximum allowable velocity for the movement in RPM
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveAbsolute(const double iposition,
-                                    const std::int32_t ivelocity) const override;
+  virtual std::int32_t moveAbsolute(double iposition, std::int32_t ivelocity) const override;
 
   /**
    * Sets the relative target position for the motor to move to.
@@ -54,8 +53,7 @@ class MotorGroup : public AbstractMotor {
    * @param ivelocity The maximum allowable velocity for the movement in RPM
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveRelative(const double iposition,
-                                    const std::int32_t ivelocity) const override;
+  virtual std::int32_t moveRelative(double iposition, std::int32_t ivelocity) const override;
 
   /**
    * Sets the velocity for the motor.
@@ -73,7 +71,7 @@ class MotorGroup : public AbstractMotor {
    * gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const override;
+  virtual std::int32_t moveVelocity(std::int16_t ivelocity) const override;
 
   /**
    * Sets the voltage for the motor from -127 to 127.
@@ -85,7 +83,7 @@ class MotorGroup : public AbstractMotor {
    * @param ivoltage The new voltage value from -127 to 127
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveVoltage(const std::int16_t ivoltage) const override;
+  virtual std::int32_t moveVoltage(std::int16_t ivoltage) const override;
 
   /**
    * Changes the output velocity for a profiled movement (moveAbsolute or moveRelative). This will
@@ -346,7 +344,7 @@ class MotorGroup : public AbstractMotor {
    * @param imode The new motor brake mode to set for the motor
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setBrakeMode(const AbstractMotor::brakeMode imode) override;
+  virtual std::int32_t setBrakeMode(AbstractMotor::brakeMode imode) override;
 
   /**
    * Sets the current limit for the motor in mA.
@@ -357,7 +355,7 @@ class MotorGroup : public AbstractMotor {
    * @param ilimit The new current limit in mA
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const override;
+  virtual std::int32_t setCurrentLimit(std::int32_t ilimit) const override;
 
   /**
    * Sets one of AbstractMotor::encoderUnits for the motor encoder.
@@ -368,7 +366,7 @@ class MotorGroup : public AbstractMotor {
    * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setEncoderUnits(const AbstractMotor::encoderUnits iunits) override;
+  virtual std::int32_t setEncoderUnits(AbstractMotor::encoderUnits iunits) override;
 
   /**
    * Sets one of AbstractMotor::gearset for the motor.
@@ -379,7 +377,7 @@ class MotorGroup : public AbstractMotor {
    * @param igearset The new motor gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setGearing(const AbstractMotor::gearset igearset) override;
+  virtual std::int32_t setGearing(AbstractMotor::gearset igearset) override;
 
   /**
    * Sets the reverse flag for the motor.
@@ -392,7 +390,7 @@ class MotorGroup : public AbstractMotor {
    * @param ireverse True reverses the motor, false is default
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setReversed(const bool ireverse) const override;
+  virtual std::int32_t setReversed(bool ireverse) const override;
 
   /**
    * Sets the voltage limit for the motor in Volts.
@@ -403,7 +401,7 @@ class MotorGroup : public AbstractMotor {
    * @param ilimit The new voltage limit in Volts
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setVoltageLimit(const std::int32_t ilimit) const override;
+  virtual std::int32_t setVoltageLimit(std::int32_t ilimit) const override;
 
   /**
    * Sets new PID constants.
@@ -477,7 +475,7 @@ class MotorGroup : public AbstractMotor {
    *
    * @param ivalue the controller's output in the range [-1, 1]
    */
-  virtual void controllerSet(const double ivalue) override;
+  virtual void controllerSet(double ivalue) override;
 
   /**
    * Get the encoder associated with this motor.

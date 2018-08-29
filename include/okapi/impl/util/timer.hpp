@@ -90,7 +90,7 @@ class Timer : public AbstractTimer {
    * @return true when the input time period has passed, false after reading true until the
    *   period has passed again
    */
-  virtual bool repeat(const QTime time) override;
+  virtual bool repeat(QTime time) override;
 
   /**
    * Returns true when the input time period has passed, then resets. Meant to be used in loops
@@ -100,7 +100,7 @@ class Timer : public AbstractTimer {
    * @return true when the input time period has passed, false after reading true until the
    *   period has passed again
    */
-  virtual bool repeat(const QFrequency frequency) override;
+  virtual bool repeat(QFrequency frequency) override;
 
   protected:
   QTime firstCalled;

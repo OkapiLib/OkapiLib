@@ -15,11 +15,9 @@
 namespace okapi {
 class ControllerButton : public ButtonBase {
   public:
-  ControllerButton(const ControllerDigital ibtn, const bool iinverted = false);
+  ControllerButton(ControllerDigital ibtn, bool iinverted = false);
 
-  ControllerButton(const ControllerId icontroller,
-                   const ControllerDigital ibtn,
-                   const bool iinverted = false);
+  ControllerButton(ControllerId icontroller, ControllerDigital ibtn, bool iinverted = false);
 
   protected:
   pros::Controller controller;
