@@ -48,7 +48,7 @@ VelMath::VelMath(const double iticksPerRev,
 VelMath::~VelMath() = default;
 
 QAngularSpeed VelMath::step(const double inewPos) {
-  if (loopDtTimer->sampleDt() >= sampleTime) {
+  if (loopDtTimer->readDt() >= sampleTime) {
     const QTime dt = loopDtTimer->getDt();
 
     vel = filter->filter(((inewPos - lastPos) * (60 / ticksPerRev)) / dt.convert(second)) * rpm;

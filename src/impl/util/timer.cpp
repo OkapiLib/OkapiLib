@@ -23,7 +23,7 @@ QTime Timer::getDt() {
   return dt;
 }
 
-QTime Timer::sampleDt() {
+QTime Timer::readDt() {
   return millis() - lastCalled;
 }
 

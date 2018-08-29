@@ -35,7 +35,7 @@ class Timer : public AbstractTimer {
    *
    * @return The time passed in ms since the previous call of getDt()
    */
-  QTime sampleDt() override;
+  QTime readDt() override;
 
   /**
    * Returns the time the timer was first constructed.

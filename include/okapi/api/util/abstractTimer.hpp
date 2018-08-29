@@ -36,7 +36,7 @@ class AbstractTimer {
    *
    * @return The time passed in ms since the previous call of getDt()
    */
-  virtual QTime sampleDt() = 0;
+  virtual QTime readDt() = 0;
 
   /**
    * Returns the time the timer was first constructed.
