@@ -189,16 +189,34 @@ void testVelMathFunctionality(VelMath &velMath) {
   }
 }
 
-TEST(VelMathTest, OutputTest) {
+TEST(VelMathTest, DtLessThanSampleTime) {
   VelMath velMath(
-    360, std::make_shared<PassthroughFilter>(), std::make_unique<ConstantMockTimer>(10_ms));
+    360, std::make_shared<PassthroughFilter>(), 0_ms, std::make_unique<ConstantMockTimer>(10_ms));
 
   testVelMathFunctionality(velMath);
 }
 
+TEST(VelMathTest, DtEqualToSampleTime) {
+  VelMath velMath(
+    360, std::make_shared<PassthroughFilter>(), 10_ms, std::make_unique<ConstantMockTimer>(10_ms));
+
+  testVelMathFunctionality(velMath);
+}
+
+TEST(VelMathTest, DtGreaterThanToSampleTime) {
+  VelMath velMath(
+    360, std::make_shared<PassthroughFilter>(), 11_ms, std::make_unique<ConstantMockTimer>(10_ms));
+
+  EXPECT_EQ(velMath.step(10).convert(rpm), 0);
+  EXPECT_EQ(velMath.getVelocity().convert(rpm), 0);
+
+  EXPECT_EQ(velMath.step(20).convert(rpm), 0);
+  EXPECT_EQ(velMath.getVelocity().convert(rpm), 0);
+}
+
 TEST(VelMathTest, SetTPRTest) {
   VelMath velMath(
-    1, std::make_shared<PassthroughFilter>(), std::make_unique<ConstantMockTimer>(10_ms));
+    1, std::make_shared<PassthroughFilter>(), 0_ms, std::make_unique<ConstantMockTimer>(10_ms));
   velMath.setTicksPerRev(360);
 
   testVelMathFunctionality(velMath);
@@ -206,6 +224,7 @@ TEST(VelMathTest, SetTPRTest) {
 
 TEST(VelMathTest, ZeroTPRThrowsException) {
   EXPECT_THROW(
-    VelMath(0, std::make_shared<PassthroughFilter>(), std::make_unique<ConstantMockTimer>(10_ms)),
+    VelMath(
+      0, std::make_shared<PassthroughFilter>(), 0_ms, std::make_unique<ConstantMockTimer>(10_ms)),
     std::invalid_argument);
 }

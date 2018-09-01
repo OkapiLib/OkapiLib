@@ -14,7 +14,7 @@
 namespace okapi {
 class Potentiometer : public RotarySensor {
   public:
-  Potentiometer(const std::uint8_t iport);
+  Potentiometer(std::uint8_t iport);
 
   virtual ~Potentiometer();
 
