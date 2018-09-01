@@ -1,5 +1,6 @@
 #include "main.h"
 #include "okapi/api.hpp"
+#include "test/tests/impl/utilTests.hpp"
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -16,13 +17,5 @@
  */
 void opcontrol() {
   using namespace okapi;
-  auto drive = ChassisControllerFactory::create(-18, 19);
-  Controller master;
-  pros::c::lcd_initialize();
-  while (true) {
-    drive.tank(0.3, 0.3);
-    // drive.forward(100);
-    pros::c::lcd_print(0, "cnt %f", master.getAnalog(ControllerAnalog::rightY));
-    pros::delay(50);
-  }
+  runHeadlessUtilTests();
 }
