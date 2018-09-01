@@ -183,13 +183,15 @@ void XDriveModel::xArcade(const double ixSpeed,
 }
 
 void XDriveModel::left(const double ispeed) const {
-  topLeftMotor->moveVelocity(static_cast<int16_t>(ispeed * maxVelocity));
-  bottomLeftMotor->moveVelocity(static_cast<int16_t>(ispeed * maxVelocity));
+  const double speed = std::clamp(ispeed, -1.0, 1.0);
+  topLeftMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
+  bottomLeftMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
 }
 
 void XDriveModel::right(const double ispeed) const {
-  topRightMotor->moveVelocity(static_cast<int16_t>(ispeed * maxVelocity));
-  bottomRightMotor->moveVelocity(static_cast<int16_t>(ispeed * maxVelocity));
+  const double speed = std::clamp(ispeed, -1.0, 1.0);
+  topRightMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
+  bottomRightMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
 }
 
 std::valarray<std::int32_t> XDriveModel::getSensorVals() const {

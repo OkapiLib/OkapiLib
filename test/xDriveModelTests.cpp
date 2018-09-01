@@ -99,9 +99,19 @@ TEST_F(XDriveModelTest, LeftHalfPower) {
   assertLeftAndRightMotorsLastVelocity(63, 0);
 }
 
+TEST_F(XDriveModelTest, LeftBoundsInput) {
+  model.left(10);
+  assertLeftAndRightMotorsLastVelocity(127, 0);
+}
+
 TEST_F(XDriveModelTest, RightHalfPower) {
   model.right(0.5);
   assertLeftAndRightMotorsLastVelocity(0, 63);
+}
+
+TEST_F(XDriveModelTest, RightBoundsInput) {
+  model.right(10);
+  assertLeftAndRightMotorsLastVelocity(0, 127);
 }
 
 TEST_F(XDriveModelTest, TankHalfPower) {
