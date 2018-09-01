@@ -18,12 +18,14 @@
 #include "okapi/api/units/QMass.hpp"
 #include "okapi/api/units/RQuantity.hpp"
 
+namespace okapi {
 QUANTITY_TYPE(1, 1, -2, 0, QForce)
 
 constexpr QForce newton = (kg * meter) / (second * second);
 constexpr QForce poundforce = pound * G;
 constexpr QForce kilopond = kg * G;
 
+inline namespace literals {
 constexpr QForce operator"" _n(long double x) {
   return QForce(x);
 }
@@ -42,5 +44,7 @@ constexpr QForce operator"" _kp(long double x) {
 constexpr QForce operator"" _kp(unsigned long long int x) {
   return static_cast<double>(x) * kilopond;
 }
+} // namespace literals
+} // namespace okapi
 
 #endif

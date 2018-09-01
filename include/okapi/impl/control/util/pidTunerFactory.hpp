@@ -15,17 +15,35 @@
 namespace okapi {
 class PIDTunerFactory {
   public:
-  static PIDTuner create(std::shared_ptr<ControllerInput> iinput,
-                         std::shared_ptr<ControllerOutput> ioutput, QTime itimeout,
-                         std::int32_t igoal, double ikPMin, double ikPMax, double ikIMin,
-                         double ikIMax, double ikDMin, double ikDMax,
-                         std::int32_t inumIterations = 5, std::int32_t inumParticles = 16,
-                         double ikSettle = 1, double ikITAE = 2);
-  static std::unique_ptr<PIDTuner>
-  createPtr(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
-            QTime itimeout, std::int32_t igoal, double ikPMin, double ikPMax, double ikIMin,
-            double ikIMax, double ikDMin, double ikDMax, std::int32_t inumIterations = 5,
-            std::int32_t inumParticles = 16, double ikSettle = 1, double ikITAE = 2);
+  static PIDTuner create(std::shared_ptr<ControllerInput<double>> iinput,
+                         std::shared_ptr<ControllerOutput<double>> ioutput,
+                         QTime itimeout,
+                         std::int32_t igoal,
+                         double ikPMin,
+                         double ikPMax,
+                         double ikIMin,
+                         double ikIMax,
+                         double ikDMin,
+                         double ikDMax,
+                         std::int32_t inumIterations = 5,
+                         std::int32_t inumParticles = 16,
+                         double ikSettle = 1,
+                         double ikITAE = 2);
+
+  static std::unique_ptr<PIDTuner> createPtr(std::shared_ptr<ControllerInput<double>> iinput,
+                                             std::shared_ptr<ControllerOutput<double>> ioutput,
+                                             QTime itimeout,
+                                             std::int32_t igoal,
+                                             double ikPMin,
+                                             double ikPMax,
+                                             double ikIMin,
+                                             double ikIMax,
+                                             double ikDMin,
+                                             double ikDMax,
+                                             std::int32_t inumIterations = 5,
+                                             std::int32_t inumParticles = 16,
+                                             double ikSettle = 1,
+                                             double ikITAE = 2);
 };
 } // namespace okapi
 

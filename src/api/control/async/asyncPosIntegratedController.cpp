@@ -9,26 +9,17 @@
 #include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
-AsyncPosIntegratedControllerArgs::AsyncPosIntegratedControllerArgs(
-  std::shared_ptr<AbstractMotor> imotor)
-  : motor(imotor) {
-}
-
 AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
                                                            const TimeUtil &itimeUtil)
-  : motor(imotor),
-    settledUtil(std::move(itimeUtil.getSettledUtil())),
-    rate(std::move(itimeUtil.getRate())) {
-}
-
-AsyncPosIntegratedController::AsyncPosIntegratedController(
-  const AsyncPosIntegratedControllerArgs &iparams, const TimeUtil &itimeUtil)
-  : motor(iparams.motor),
-    settledUtil(std::move(itimeUtil.getSettledUtil())),
-    rate(std::move(itimeUtil.getRate())) {
+  : logger(Logger::instance()),
+    motor(imotor),
+    settledUtil(itimeUtil.getSettledUtil()),
+    rate(itimeUtil.getRate()) {
 }
 
 void AsyncPosIntegratedController::setTarget(const double itarget) {
+  logger->info("AsyncPosIntegratedController: Set target to " + std::to_string(itarget));
+
   hasFirstTarget = true;
 
   if (!controllerIsDisabled) {
@@ -38,15 +29,20 @@ void AsyncPosIntegratedController::setTarget(const double itarget) {
   lastTarget = itarget;
 }
 
+double AsyncPosIntegratedController::getTarget() {
+  return lastTarget;
+}
+
 double AsyncPosIntegratedController::getError() const {
   return lastTarget - motor->getPosition();
 }
 
 bool AsyncPosIntegratedController::isSettled() {
-  return settledUtil->isSettled(getError());
+  return isDisabled() || settledUtil->isSettled(getError());
 }
 
 void AsyncPosIntegratedController::reset() {
+  logger->info("AsyncPosIntegratedController: Reset");
   hasFirstTarget = false;
   settledUtil->reset();
 }
@@ -57,6 +53,7 @@ void AsyncPosIntegratedController::flipDisable() {
 }
 
 void AsyncPosIntegratedController::flipDisable(const bool iisDisabled) {
+  logger->info("AsyncPosIntegratedController: flipDisable " + std::to_string(iisDisabled));
   controllerIsDisabled = iisDisabled;
   resumeMovement();
 }
@@ -66,7 +63,7 @@ bool AsyncPosIntegratedController::isDisabled() const {
 }
 
 void AsyncPosIntegratedController::resumeMovement() {
-  if (controllerIsDisabled) {
+  if (isDisabled()) {
     motor->moveVoltage(0);
   } else {
     if (hasFirstTarget) {
@@ -76,8 +73,12 @@ void AsyncPosIntegratedController::resumeMovement() {
 }
 
 void AsyncPosIntegratedController::waitUntilSettled() {
-  while (!settledUtil->isSettled(getError())) {
+  logger->info("AsyncPosIntegratedController: Waiting to settle");
+
+  while (!isSettled()) {
     rate->delayUntil(motorUpdateRate);
   }
+
+  logger->info("AsyncPosIntegratedController: Done waiting to settle");
 }
 } // namespace okapi

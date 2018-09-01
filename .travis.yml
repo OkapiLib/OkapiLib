@@ -2,6 +2,10 @@ dist: trusty
 
 cache: packages
 
+env:
+  global:
+    secure: 4XkNbAF5/NuA5HhIOK/lbP1NiQ5sHV1yLVjMv74xlAXLUIknnrO9GJSqTJ/zQUfHRfYTCWnqVe/Z57LPGL4VZedMbw4HhqcWAuOtTt0byoSbO7ch6fmIBpgMmI695rVhx6U3Wky1Fiq3nDOzY8+QQ98USgC/5AVe5YYY8CtvSX1geoDBeD94ivsmpHjWtpzBlB9BG3ftUpBjVGkaBDCbJwKqIix2VDZM+FRAMoshhfKnqvgmGbyNSkG0T26xln6w4l4WQy1wB5Yejw+UVEFGlG2VqRyBj+D9wLdkSjXaeyXNoo57RPKAaLnRJhRvZFTyZQBbNBPPOTKbTDASvLjyW0Hi15gW6Zo21o1rX9XQQ0NzJUnAWQGLsNcbX4rr0CS21wMs9psJhWwwu3oDFzXI3gRccLeaFcyKg4JRegdX2UbiVpN/NoOT7XT0e96kQUkoQceOvNhz55rQRLC5cTCB1jhqQBaq4a4p3pJCQ9o9RK/rdIKpIP3ge8+rMm0lBND87qHlsMEifzwg+IWECiEV/M6M2qIgCZTqpZA6RILfYvwYldJkYlJ+FPgjOa2/ZRzS1DpUAB+ZPHXjPiNKtdzlGAOnGTZTQYu4WQLd6zE9pyaAr/HzOI7opcERRXJAQCUPC/RskuPp28kyJLfRNB7MtYbVTftJribwrn9hMF6QoNQ=
+
 matrix:
   include:
     - os: linux
@@ -17,6 +21,7 @@ matrix:
             - gcc-arm-embedded
             - g++-7
             - lcov
+            - valgrind
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
@@ -32,7 +37,10 @@ script:
   - cd cmake-build-debug
   - cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" .. # .. is now the source dir
   - cmake --build . --target OkapiLibV5 -- -j 2 # . is the build dir
-  - ./OkapiLibV5 # run the tests
+  - ./OkapiLibV5
+  - valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5 # --expensive-definedness-checks=yes
+  - valgrind --tool=massif --stacks=yes --time-unit=B --massif-out-file=massif.out.txt ./OkapiLibV5
+  - ms_print massif.out.txt
 
 after_success:
   - lcov --directory . --capture --output-file coverage.info # capture coverage info

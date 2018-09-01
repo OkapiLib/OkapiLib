@@ -5,182 +5,210 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
-#include "okapi/api/chassis/controller/chassisControllerPid.hpp"
-#include "okapi/api/chassis/controller/chassisScales.hpp"
-#include "okapi/api/chassis/model/skidSteerModel.hpp"
-#include "test/crossPlatformTestRunner.hpp"
+#include "okapi/api/chassis/controller/chassisController.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 
 using namespace okapi;
-using namespace snowhouse;
 
-TEST(ChassisScalesTest, RawScales) {
-  ChassisScales scales({0.5, 0.3});
-  EXPECT_DOUBLE_EQ(scales.straight, 0.5);
-  EXPECT_DOUBLE_EQ(scales.turn, 0.3);
-}
+class MockChassisModel : public ChassisModel {
+  public:
+  void forward(double ispeed) const override {
+    lastForward = ispeed;
+  }
 
-TEST(ChassisScalesTest, ScalesFromWheelbase) {
-  ChassisScales scales({4_in, 11.5_in});
-  EXPECT_FLOAT_EQ(scales.straight, 1127.8696);
-  EXPECT_FLOAT_EQ(scales.turn, 2.875);
-}
+  void driveVector(double iySpeed, double izRotation) const override {
+    lastVectorY = iySpeed;
+    lastVectorZ = izRotation;
+  }
 
-void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor) {
-  EXPECT_DOUBLE_EQ(leftMotor->lastVoltage, 0);
-  EXPECT_DOUBLE_EQ(leftMotor->lastVelocity, 0);
-  EXPECT_DOUBLE_EQ(rightMotor->lastVoltage, 0);
-  EXPECT_DOUBLE_EQ(rightMotor->lastVelocity, 0);
-}
+  void rotate(double ispeed) const override {
+    lastRotate = ispeed;
+  }
 
-class ChassisControllerIntegratedTest : public ::testing::Test {
+  void stop() override {
+    stopWasCalled = true;
+  }
+
+  void tank(double ileftSpeed, double irightSpeed, double) const override {
+    lastTankLeft = ileftSpeed;
+    lastTankRight = irightSpeed;
+  }
+
+  void arcade(double iySpeed, double izRotation, double) const override {
+    lastArcadeY = iySpeed;
+    lastArcadeZ = izRotation;
+  }
+
+  void left(double ispeed) const override {
+    lastLeft = ispeed;
+  }
+
+  void right(double ispeed) const override {
+    lastRight = ispeed;
+  }
+
+  void resetSensors() const override {
+    resetSensorsWasCalled = true;
+  }
+
+  void setBrakeMode(AbstractMotor::brakeMode mode) const override {
+    lastBrakeMode = mode;
+  }
+
+  void setEncoderUnits(AbstractMotor::encoderUnits units) const override {
+    lastEncoderUnits = units;
+  }
+
+  void setGearing(AbstractMotor::gearset gearset) const override {
+    lastGearset = gearset;
+  }
+
+  std::valarray<int32_t> getSensorVals() const override {
+    return {0, 0};
+  }
+
+  void setPosPID(double, double, double, double) const override {
+  }
+
+  void
+  setPosPIDFull(double, double, double, double, double, double, double, double) const override {
+  }
+
+  void setVelPID(double, double, double, double) const override {
+  }
+
+  void
+  setVelPIDFull(double, double, double, double, double, double, double, double) const override {
+  }
+
+  mutable double lastForward{0};
+  mutable double lastVectorY{0};
+  mutable double lastVectorZ{0};
+  mutable double lastRotate{0};
+  mutable bool stopWasCalled{false};
+  mutable double lastTankLeft{0};
+  mutable double lastTankRight{0};
+  mutable double lastArcadeY{0};
+  mutable double lastArcadeZ{0};
+  mutable double lastLeft{0};
+  mutable double lastRight{0};
+  mutable bool resetSensorsWasCalled{false};
+  mutable AbstractMotor::brakeMode lastBrakeMode{AbstractMotor::brakeMode::invalid};
+  mutable AbstractMotor::encoderUnits lastEncoderUnits{AbstractMotor::encoderUnits::invalid};
+  mutable AbstractMotor::gearset lastGearset{AbstractMotor::gearset::invalid};
+};
+
+class MockChassisController : public ChassisController {
+  public:
+  using ChassisController::ChassisController;
+
+  void moveDistance(QLength) override {
+  }
+
+  void moveDistance(double) override {
+  }
+
+  void moveDistanceAsync(QLength) override {
+  }
+
+  void moveDistanceAsync(double) override {
+  }
+
+  void turnAngle(QAngle) override {
+  }
+
+  void turnAngle(double) override {
+  }
+
+  void turnAngleAsync(QAngle) override {
+  }
+
+  void turnAngleAsync(double) override {
+  }
+
+  void waitUntilSettled() override {
+  }
+
+  ChassisScales getChassisScales() const override {
+    return ChassisScales({1, 1});
+  }
+};
+
+class ChassisControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    scales = new ChassisScales({2, 2});
-    leftMotor = new MockMotor();
-    rightMotor = new MockMotor();
-    leftController = new MockAsyncController();
-    rightController = new MockAsyncController();
-    model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
-                               std::unique_ptr<AbstractMotor>(rightMotor));
-    controller = new ChassisControllerIntegrated(
-      createTimeUtil(), std::unique_ptr<ChassisModel>(model),
-      std::unique_ptr<AsyncPosIntegratedController>(leftController),
-      std::unique_ptr<AsyncPosIntegratedController>(rightController), AbstractMotor::gearset::red,
-      *scales);
+    model = std::make_shared<MockChassisModel>();
+    controller = new MockChassisController(model);
   }
 
   void TearDown() override {
-    delete scales;
     delete controller;
   }
 
-  ChassisScales *scales;
+  std::shared_ptr<MockChassisModel> model;
   ChassisController *controller;
-  MockMotor *leftMotor;
-  MockMotor *rightMotor;
-  MockAsyncController *leftController;
-  MockAsyncController *rightController;
-  SkidSteerModel *model;
 };
 
-TEST_F(ChassisControllerIntegratedTest, MoveDistanceRawUnitsTest) {
-  controller->moveDistance(100);
-
-  EXPECT_DOUBLE_EQ(leftController->target, 100);
-  EXPECT_DOUBLE_EQ(rightController->target, 100);
-
-  EXPECT_TRUE(leftController->disabled);
-  EXPECT_TRUE(rightController->disabled);
-
-  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+TEST_F(ChassisControllerTest, Forward) {
+  controller->forward(0.5);
+  EXPECT_EQ(model->lastForward, 0.5);
 }
 
-TEST_F(ChassisControllerIntegratedTest, MoveDistanceUnitsTest) {
-  controller->moveDistance(1_m);
-
-  EXPECT_DOUBLE_EQ(leftController->target, 2);
-  EXPECT_DOUBLE_EQ(rightController->target, 2);
-
-  EXPECT_TRUE(leftController->disabled);
-  EXPECT_TRUE(rightController->disabled);
-
-  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+TEST_F(ChassisControllerTest, DriveVector) {
+  controller->driveVector(0.4, 0.5);
+  EXPECT_EQ(model->lastVectorY, 0.4);
+  EXPECT_EQ(model->lastVectorZ, 0.5);
 }
 
-TEST_F(ChassisControllerIntegratedTest, TurnAngleRawUnitsTest) {
-  controller->turnAngle(100);
-
-  EXPECT_DOUBLE_EQ(leftController->target, 100);
-  EXPECT_DOUBLE_EQ(rightController->target, -100);
-
-  EXPECT_TRUE(leftController->disabled);
-  EXPECT_TRUE(rightController->disabled);
-
-  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+TEST_F(ChassisControllerTest, Rotate) {
+  controller->rotate(0.5);
+  EXPECT_EQ(model->lastRotate, 0.5);
 }
 
-TEST_F(ChassisControllerIntegratedTest, TurnAngleUnitsTest) {
-  controller->turnAngle(45_deg);
-
-  EXPECT_DOUBLE_EQ(leftController->target, 90);
-  EXPECT_DOUBLE_EQ(rightController->target, -90);
-
-  EXPECT_TRUE(leftController->disabled);
-  EXPECT_TRUE(rightController->disabled);
-
-  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+TEST_F(ChassisControllerTest, Stop) {
+  controller->stop();
+  EXPECT_TRUE(model->stopWasCalled);
 }
 
-class ChassisControllerPIDTest : public ::testing::Test {
-  protected:
-  void SetUp() override {
-    scales = new ChassisScales({2, 2});
-    leftMotor = new MockMotor();
-    rightMotor = new MockMotor();
-    distanceController = new MockIterativeController();
-    angleController = new MockIterativeController();
-    model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
-                               std::unique_ptr<AbstractMotor>(rightMotor));
-    controller =
-      new ChassisControllerPID(createTimeUtil(), std::unique_ptr<ChassisModel>(model),
-                               std::unique_ptr<IterativePosPIDController>(distanceController),
-                               std::unique_ptr<IterativePosPIDController>(angleController),
-                               AbstractMotor::gearset::red, *scales);
-  }
-
-  void TearDown() override {
-    delete scales;
-    delete controller;
-  }
-
-  ChassisScales *scales;
-  ChassisController *controller;
-  MockMotor *leftMotor;
-  MockMotor *rightMotor;
-  MockIterativeController *distanceController;
-  MockIterativeController *angleController;
-  SkidSteerModel *model;
-};
-
-TEST_F(ChassisControllerPIDTest, MoveDistanceRawUnitsTest) {
-  controller->moveDistance(100);
-
-  EXPECT_DOUBLE_EQ(distanceController->target, 100);
-  EXPECT_DOUBLE_EQ(angleController->target, 0);
-
-  EXPECT_TRUE(distanceController->disabled);
-  EXPECT_TRUE(angleController->disabled);
-
-  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+TEST_F(ChassisControllerTest, Tank) {
+  controller->tank(0.4, 0.5);
+  EXPECT_EQ(model->lastTankLeft, 0.4);
+  EXPECT_EQ(model->lastTankRight, 0.5);
 }
 
-TEST_F(ChassisControllerPIDTest, MoveDistanceUnitsTest) {
-  controller->moveDistance(1_m);
-
-  EXPECT_DOUBLE_EQ(distanceController->target, 2);
-  EXPECT_DOUBLE_EQ(angleController->target, 0);
-
-  EXPECT_TRUE(distanceController->disabled);
-  EXPECT_TRUE(angleController->disabled);
-
-  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+TEST_F(ChassisControllerTest, Arcade) {
+  controller->arcade(0.4, 0.5);
+  EXPECT_EQ(model->lastArcadeY, 0.4);
+  EXPECT_EQ(model->lastArcadeZ, 0.5);
 }
 
-TEST_F(ChassisControllerPIDTest, TurnAngleRawUnitsTest) {
-  controller->turnAngle(100);
-
-  EXPECT_DOUBLE_EQ(angleController->target, 100);
-  EXPECT_TRUE(angleController->disabled);
-  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+TEST_F(ChassisControllerTest, Left) {
+  controller->left(0.5);
+  EXPECT_EQ(model->lastLeft, 0.5);
 }
 
-TEST_F(ChassisControllerPIDTest, TurnAngleUnitsTest) {
-  controller->turnAngle(45_deg);
+TEST_F(ChassisControllerTest, Right) {
+  controller->right(0.5);
+  EXPECT_EQ(model->lastRight, 0.5);
+}
 
-  EXPECT_DOUBLE_EQ(angleController->target, 90);
-  EXPECT_TRUE(angleController->disabled);
-  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+TEST_F(ChassisControllerTest, ResetSensors) {
+  controller->resetSensors();
+  EXPECT_TRUE(model->resetSensorsWasCalled);
+}
+
+TEST_F(ChassisControllerTest, SetBrakeMode) {
+  controller->setBrakeMode(AbstractMotor::brakeMode::hold);
+  EXPECT_EQ(model->lastBrakeMode, AbstractMotor::brakeMode::hold);
+}
+
+TEST_F(ChassisControllerTest, SetEncoderUnits) {
+  controller->setEncoderUnits(AbstractMotor::encoderUnits::counts);
+  EXPECT_EQ(model->lastEncoderUnits, AbstractMotor::encoderUnits::counts);
+}
+
+TEST_F(ChassisControllerTest, SetGearing) {
+  controller->setGearing(AbstractMotor::gearset::green);
+  EXPECT_EQ(model->lastGearset, AbstractMotor::gearset::green);
 }

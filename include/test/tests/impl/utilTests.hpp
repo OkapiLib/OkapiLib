@@ -30,7 +30,8 @@ void testUtils() {
 
         // Static cast so the compiler doesn't complain about comparing signed and unsigned values
         test("Rate " + std::to_string(i),
-             TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
+             TEST_BODY(AssertThat,
+                       static_cast<double>(pros::millis() - lastTime),
                        EqualsWithDelta(100, 10)));
 
         lastTime = pros::millis();
@@ -50,7 +51,8 @@ void testUtils() {
 
         // Static cast so the compiler doesn't complain about comparing signed and unsigned values
         test("Rate " + std::to_string(i),
-             TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
+             TEST_BODY(AssertThat,
+                       static_cast<double>(pros::millis() - lastTime),
                        EqualsWithDelta(100, 10)));
 
         lastTime = pros::millis();
@@ -76,7 +78,8 @@ void testUtils() {
 
           // Static cast so the compiler doesn't complain about comparing signed and unsigned values
           test("Timer " + std::to_string(i),
-               TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
+               TEST_BODY(AssertThat,
+                         static_cast<double>(pros::millis() - lastTime),
                          EqualsWithDelta(100, 10)));
 
           lastTime = pros::millis();
@@ -99,13 +102,30 @@ void testUtils() {
 
           // Static cast so the compiler doesn't complain about comparing signed and unsigned values
           test("Timer " + std::to_string(i),
-               TEST_BODY(AssertThat, static_cast<double>(pros::millis() - lastTime),
+               TEST_BODY(AssertThat,
+                         static_cast<double>(pros::millis() - lastTime),
                          EqualsWithDelta(100, 10)));
 
           lastTime = pros::millis();
         }
         pros::Task::delay(1); // Emulate some computation
       }
+    }
+
+    {
+      printf("Testing getDt and readDt\n");
+
+      Timer timer;
+
+      test("getDt should read zero the first time",
+           TEST_BODY(AssertThat, timer.getDt().convert(millisecond), Equals(0)));
+
+      pros::Task::delay(1000);
+
+      test("readDt should read the same as getDt but not affect getDt",
+           TEST_BODY(AssertThat, timer.readDt().convert(millisecond), EqualsWithDelta(1000, 5)));
+      test("getDt should read the dt the second time",
+           TEST_BODY(AssertThat, timer.getDt().convert(millisecond), EqualsWithDelta(1000, 5)));
     }
   }
 }

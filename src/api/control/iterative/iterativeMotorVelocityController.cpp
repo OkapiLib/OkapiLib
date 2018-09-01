@@ -8,28 +8,23 @@
 #include "okapi/api/control/iterative/iterativeMotorVelocityController.hpp"
 
 namespace okapi {
-IterativeMotorVelocityControllerArgs::IterativeMotorVelocityControllerArgs(
-  std::shared_ptr<AbstractMotor> imotor, std::shared_ptr<IterativeVelocityController> icontroller)
-  : motor(imotor), controller(icontroller) {
-}
-
 IterativeMotorVelocityController::IterativeMotorVelocityController(
-  std::shared_ptr<AbstractMotor> imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+  std::shared_ptr<AbstractMotor> imotor,
+  std::shared_ptr<IterativeVelocityController<double, double>> icontroller)
   : motor(imotor), controller(icontroller) {
-}
-
-IterativeMotorVelocityController::IterativeMotorVelocityController(
-  const IterativeMotorVelocityControllerArgs &iparams)
-  : motor(iparams.motor), controller(iparams.controller) {
 }
 
 double IterativeMotorVelocityController::step(const double ireading) {
-  motor->moveVelocity(static_cast<std::int16_t>(controller->step(ireading) * 127));
+  motor->controllerSet(controller->step(ireading));
   return controller->getOutput();
 }
 
 void IterativeMotorVelocityController::setTarget(const double itarget) {
   controller->setTarget(itarget);
+}
+
+double IterativeMotorVelocityController::getTarget() {
+  return controller->getTarget();
 }
 
 double IterativeMotorVelocityController::getOutput() const {
@@ -38,10 +33,6 @@ double IterativeMotorVelocityController::getOutput() const {
 
 double IterativeMotorVelocityController::getError() const {
   return controller->getError();
-}
-
-double IterativeMotorVelocityController::getDerivative() const {
-  return controller->getDerivative();
 }
 
 bool IterativeMotorVelocityController::isSettled() {

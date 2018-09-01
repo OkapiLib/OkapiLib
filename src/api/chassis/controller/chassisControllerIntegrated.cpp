@@ -1,3 +1,5 @@
+#include <utility>
+
 /**
  * @author Ryan Benasutti, WPI
  *
@@ -9,31 +11,23 @@
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
-  const TimeUtil &itimeUtil, std::unique_ptr<ChassisModel> imodel,
-  const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
-  const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-  AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
-  : ChassisControllerIntegrated(
-      itimeUtil, std::move(imodel),
-      std::make_unique<AsyncPosIntegratedController>(ileftControllerArgs, itimeUtil),
-      std::make_unique<AsyncPosIntegratedController>(irightControllerArgs, itimeUtil), igearset,
-      iscales) {
-}
-
-ChassisControllerIntegrated::ChassisControllerIntegrated(
-  const TimeUtil &itimeUtil, std::unique_ptr<ChassisModel> imodel,
+  const TimeUtil &itimeUtil,
+  std::shared_ptr<ChassisModel> imodel,
   std::unique_ptr<AsyncPosIntegratedController> ileftController,
   std::unique_ptr<AsyncPosIntegratedController> irightController,
-  AbstractMotor::GearsetRatioPair igearset, const ChassisScales &iscales)
-  : ChassisController(std::move(imodel)),
-    rate(std::move(itimeUtil.getRate())),
+  AbstractMotor::GearsetRatioPair igearset,
+  const ChassisScales &iscales)
+  : ChassisController(imodel),
+    logger(Logger::instance()),
+    rate(itimeUtil.getRate()),
     leftController(std::move(ileftController)),
     rightController(std::move(irightController)),
     lastTarget(0),
-    gearRatio(igearset.ratio),
-    straightScale(iscales.straight),
-    turnScale(iscales.turn) {
+    scales(iscales),
+    gearRatio(igearset.ratio) {
   if (igearset.ratio == 0) {
+    logger->error("ChassisControllerIntegrated: The gear ratio cannot be zero! Check if you are "
+                  "using integer division.");
     throw std::invalid_argument("ChassisControllerIntegrated: The gear ratio cannot be zero! Check "
                                 "if you are using integer division.");
   }
@@ -43,52 +37,94 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
 }
 
 void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
-  leftController->reset();
-  rightController->reset();
-  leftController->flipDisable(false);
-  rightController->flipDisable(false);
-
-  const double newTarget = itarget.convert(meter) * straightScale * gearRatio;
-  const auto enc = model->getSensorVals();
-  leftController->setTarget(newTarget + enc[0]);
-  rightController->setTarget(newTarget + enc[1]);
-
-  while (!leftController->isSettled() && !rightController->isSettled()) {
-    rate->delayUntil(10_ms);
-  }
-
-  leftController->flipDisable(true);
-  rightController->flipDisable(true);
-  model->stop();
+  moveDistanceAsync(itarget);
+  waitUntilSettled();
 }
 
 void ChassisControllerIntegrated::moveDistance(const double itarget) {
   // Divide by straightScale so the final result turns back into motor degrees
-  moveDistance((itarget / straightScale) * meter);
+  moveDistance((itarget / scales.straight) * meter);
 }
 
-void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
+void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
+  logger->info("ChassisControllerIntegrated: moving " + std::to_string(itarget.convert(meter)) +
+               " meters");
+
   leftController->reset();
   rightController->reset();
   leftController->flipDisable(false);
   rightController->flipDisable(false);
 
-  const double newTarget = idegTarget.convert(degree) * turnScale * gearRatio;
+  const double newTarget = itarget.convert(meter) * scales.straight * gearRatio;
+
+  logger->info("ChassisControllerIntegrated: moving " + std::to_string(newTarget) +
+               " motor degrees");
+
+  const auto enc = model->getSensorVals();
+  leftController->setTarget(newTarget + enc[0]);
+  rightController->setTarget(newTarget + enc[1]);
+}
+
+void ChassisControllerIntegrated::moveDistanceAsync(const double itarget) {
+  // Divide by straightScale so the final result turns back into motor degrees
+  moveDistanceAsync((itarget / scales.straight) * meter);
+}
+
+void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
+  turnAngleAsync(idegTarget);
+  waitUntilSettled();
+}
+
+void ChassisControllerIntegrated::turnAngle(const double idegTarget) {
+  // Divide by turnScale so the final result turns back into motor degrees
+  turnAngle((idegTarget / scales.turn) * degree);
+}
+
+void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
+  logger->info("ChassisControllerIntegrated: turning " +
+               std::to_string(idegTarget.convert(degree)) + " degrees");
+
+  leftController->reset();
+  rightController->reset();
+  leftController->flipDisable(false);
+  rightController->flipDisable(false);
+
+  const double newTarget = idegTarget.convert(degree) * scales.turn * gearRatio;
+
+  logger->info("ChassisControllerIntegrated: turning " + std::to_string(newTarget) +
+               " motor degrees");
+
   const auto enc = model->getSensorVals();
   leftController->setTarget(newTarget + enc[0]);
   rightController->setTarget(-1 * newTarget + enc[1]);
+}
 
-  while (!leftController->isSettled() && !rightController->isSettled()) {
+void ChassisControllerIntegrated::turnAngleAsync(const double idegTarget) {
+  // Divide by turnScale so the final result turns back into motor degrees
+  turnAngleAsync((idegTarget / scales.turn) * degree);
+}
+
+void ChassisControllerIntegrated::waitUntilSettled() {
+  logger->info("ChassisControllerIntegrated: Waiting to settle");
+  while (!(leftController->isSettled() && rightController->isSettled())) {
     rate->delayUntil(10_ms);
   }
 
   leftController->flipDisable(true);
   rightController->flipDisable(true);
   model->stop();
+
+  logger->info("ChassisControllerIntegrated: Done waiting to settle");
 }
 
-void ChassisControllerIntegrated::turnAngle(const double idegTarget) {
-  // Divide by turnScale so the final result turns back into motor degrees
-  turnAngle((idegTarget / turnScale) * degree);
+void ChassisControllerIntegrated::stop() {
+  leftController->flipDisable(true);
+  rightController->flipDisable(true);
+
+  ChassisController::stop();
+}
+
+ChassisScales ChassisControllerIntegrated::getChassisScales() const {
+  return scales;
 }
 } // namespace okapi

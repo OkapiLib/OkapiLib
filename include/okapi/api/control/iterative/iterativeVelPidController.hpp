@@ -10,20 +10,36 @@
 
 #include "okapi/api/control/iterative/iterativeVelocityController.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
+#include "okapi/api/filter/passthroughFilter.hpp"
 #include "okapi/api/filter/velMath.hpp"
+#include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
-class IterativeVelPIDController : public IterativeVelocityController {
+class IterativeVelPIDController : public IterativeVelocityController<double, double> {
   public:
   /**
    * Velocity PD controller.
+   *
+   * @param ikP the proportional gain
+   * @param ikD the derivative gain
+   * @param ikF the feed-forward gain
+   * @param ikSF a feed-forward gain to counteract static friction
+   * @param itimeUtil see TimeUtil docs
+   * @param iderivativeFilter a filter for filtering the derivative term
    */
-  IterativeVelPIDController(double ikP, double ikD, double ikF, std::unique_ptr<VelMath> ivelMath,
-                            const TimeUtil &itimeUtil);
+  IterativeVelPIDController(
+    double ikP,
+    double ikD,
+    double ikF,
+    double ikSF,
+    std::unique_ptr<VelMath> ivelMath,
+    const TimeUtil &itimeUtil,
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
-   * Do one iteration of the controller.
+   * Do one iteration of the controller. Returns the reading in the range [-1, 1] unless the
+   * bounds have been changed with setOutputLimits().
    *
    * @param inewReading new measurement
    * @return controller output
@@ -38,6 +54,13 @@ class IterativeVelPIDController : public IterativeVelocityController {
   void setTarget(double itarget) override;
 
   /**
+   * Gets the last set target, or the default target if none was set.
+   *
+   * @return the last target
+   */
+  double getTarget() override;
+
+  /**
    * Returns the last calculated output of the controller.
    */
   double getOutput() const override;
@@ -48,13 +71,10 @@ class IterativeVelPIDController : public IterativeVelocityController {
   double getError() const override;
 
   /**
-   * Returns the last derivative (change in error) of the controller.
-   */
-  double getDerivative() const override;
-
-  /**
    * Returns whether the controller has settled at the target. Determining what settling means is
    * implementation-dependent.
+   *
+   * If the controller is disabled, this method must return true.
    *
    * @return whether the controller is settled
    */
@@ -68,7 +88,7 @@ class IterativeVelPIDController : public IterativeVelocityController {
   void setSampleTime(QTime isampleTime) override;
 
   /**
-   * Set controller output bounds.
+   * Set controller output bounds. Default bounds are [-1, 1].
    *
    * @param imax max output
    * @param imin min output
@@ -122,9 +142,10 @@ class IterativeVelPIDController : public IterativeVelocityController {
    *
    * @param ikP proportional gain
    * @param ikD derivative gain
-   * @param ikBias controller bias
+   * @param ikF the feed-forward gain
+   * @param ikSF a feed-forward gain to counteract static friction
    */
-  virtual void setGains(double ikP, double ikD, double ikF);
+  virtual void setGains(double ikP, double ikD, double ikF, double ikSF);
 
   /**
    * Sets the number of encoder ticks per revolution. Default is 1800.
@@ -139,17 +160,20 @@ class IterativeVelPIDController : public IterativeVelocityController {
   virtual QAngularSpeed getVel() const;
 
   protected:
-  double kP, kD, kF;
+  Logger *logger;
+  double kP, kD, kF, kSF;
   QTime sampleTime = 10_ms;
   double error = 0;
   double derivative = 0;
   double target = 0;
+  double outputSum = 0;
   double output = 0;
   double outputMax = 1;
   double outputMin = -1;
   bool isOn = true;
 
   std::unique_ptr<VelMath> velMath;
+  std::unique_ptr<Filter> derivativeFilter;
   std::unique_ptr<AbstractTimer> loopDtTimer;
   std::unique_ptr<SettledUtil> settledUtil;
 };

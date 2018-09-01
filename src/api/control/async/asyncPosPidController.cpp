@@ -8,13 +8,23 @@
 #include "okapi/api/control/async/asyncPosPidController.hpp"
 
 namespace okapi {
-AsyncPosPIDController::AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
-                                             std::shared_ptr<ControllerOutput> ioutput,
-                                             const TimeUtil &itimeUtil, const double ikP,
-                                             const double ikI, const double ikD,
-                                             const double ikBias)
-  : AsyncWrapper(iinput, ioutput,
-                 std::make_unique<IterativePosPIDController>(ikP, ikI, ikD, ikBias, itimeUtil),
-                 itimeUtil.getRateSupplier(), itimeUtil.getSettledUtil()) {
+AsyncPosPIDController::AsyncPosPIDController(std::shared_ptr<ControllerInput<double>> iinput,
+                                             std::shared_ptr<ControllerOutput<double>> ioutput,
+                                             const TimeUtil &itimeUtil,
+                                             const double ikP,
+                                             const double ikI,
+                                             const double ikD,
+                                             const double ikBias,
+                                             std::unique_ptr<Filter> iderivativeFilter)
+  : AsyncWrapper<double, double>(
+      iinput,
+      ioutput,
+      std::make_unique<IterativePosPIDController>(ikP,
+                                                  ikI,
+                                                  ikD,
+                                                  ikBias,
+                                                  itimeUtil,
+                                                  std::move(iderivativeFilter)),
+      itimeUtil.getRateSupplier()) {
 }
 } // namespace okapi

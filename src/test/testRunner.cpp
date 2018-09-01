@@ -29,7 +29,8 @@ void test(const std::string &iname, std::function<void()> ifunc) {
     testFailCount++;
     testFailLog.push_back(iname);
     printf(TEST_PRINT_RED "Test failed:" TEST_PRINT_WHT " %s" TEST_PRINT_RESET "\n%s\n",
-           iname.c_str(), e.GetMessage().c_str());
+           iname.c_str(),
+           e.GetMessage().c_str());
   }
 
   testLengthTimer.placeMark(); // Mark for the end of the last test

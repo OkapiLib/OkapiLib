@@ -18,7 +18,9 @@
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/timeUtil.hpp"
+#include <atomic>
 #include <chrono>
+#include <gtest/gtest.h>
 
 namespace okapi {
 
@@ -26,9 +28,11 @@ class MockContinuousRotarySensor : public ContinuousRotarySensor {
   public:
   double controllerGet() override;
 
-  int32_t reset() const override;
+  int32_t reset() override;
 
-  int32_t get() const override;
+  double get() const override;
+
+  mutable std::int32_t value{0};
 };
 
 /**
@@ -54,13 +58,13 @@ class MockMotor : public AbstractMotor {
 
   int32_t tarePosition() const override;
 
-  int32_t setBrakeMode(brakeMode imode) const override;
+  int32_t setBrakeMode(brakeMode imode) override;
 
   int32_t setCurrentLimit(std::int32_t ilimit) const override;
 
-  int32_t setEncoderUnits(encoderUnits iunits) const override;
+  int32_t setEncoderUnits(encoderUnits iunits) override;
 
-  int32_t setGearing(gearset igearset) const override;
+  int32_t setGearing(gearset igearset) override;
 
   int32_t setReversed(bool ireverse) const override;
 
@@ -72,9 +76,66 @@ class MockMotor : public AbstractMotor {
 
   std::int32_t moveVoltage(std::int16_t ivoltage) const override;
 
-  mutable std::int16_t lastVelocity{};
-  mutable std::int16_t lastVoltage{};
-  mutable std::int16_t lastPosition{};
+  int32_t getCurrentDraw() const override;
+
+  int32_t getDirection() const override;
+
+  double getEfficiency() const override;
+
+  int32_t isOverCurrent() const override;
+
+  int32_t isOverTemp() const override;
+
+  int32_t isStopped() const override;
+
+  int32_t getZeroPositionFlag() const override;
+
+  uint32_t getFaults() const override;
+
+  uint32_t getFlags() const override;
+
+  int32_t getRawPosition(std::uint32_t *timestamp) const override;
+
+  double getPower() const override;
+
+  double getTemperature() const override;
+
+  double getTorque() const override;
+
+  int32_t getVoltage() const override;
+
+  int32_t modifyProfiledVelocity(std::int32_t ivelocity) const override;
+
+  int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) const override;
+
+  int32_t setPosPIDFull(double ikF,
+                        double ikP,
+                        double ikI,
+                        double ikD,
+                        double ifilter,
+                        double ilimit,
+                        double ithreshold,
+                        double iloopSpeed) const override;
+
+  int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) const override;
+
+  int32_t setVelPIDFull(double ikF,
+                        double ikP,
+                        double ikI,
+                        double ikD,
+                        double ifilter,
+                        double ilimit,
+                        double ithreshold,
+                        double iloopSpeed) const override;
+
+  std::shared_ptr<MockContinuousRotarySensor> encoder;
+  mutable std::int16_t lastVelocity{0};
+  mutable std::int16_t maxVelocity{0};
+  mutable std::int16_t lastVoltage{0};
+  mutable std::int16_t lastPosition{0};
+  AbstractMotor::gearset gearset;
+  AbstractMotor::encoderUnits encoderUnits;
+  AbstractMotor::brakeMode brakeMode;
 };
 
 /**
@@ -86,32 +147,7 @@ class MockTimer : public AbstractTimer {
 
   QTime millis() const override;
 
-  QTime getDt() override;
-
-  QTime getStartingTime() const override;
-
-  QTime getDtFromStart() const override;
-
-  void placeMark() override;
-
-  void placeHardMark() override;
-
-  QTime clearHardMark() override;
-
-  QTime getDtFromMark() const override;
-
-  QTime getDtFromHardMark() const override;
-
-  bool repeat(QTime time) override;
-
-  bool repeat(QFrequency frequency) override;
-
   std::chrono::system_clock::time_point epoch = std::chrono::high_resolution_clock::from_time_t(0);
-  QTime firstCalled;
-  QTime lastCalled;
-  QTime mark;
-  QTime hardMark;
-  QTime repeatMark;
 };
 
 /**
@@ -125,11 +161,15 @@ class ConstantMockTimer : public AbstractTimer {
 
   QTime getDt() override;
 
+  QTime readDt() const override;
+
   QTime getStartingTime() const override;
 
   QTime getDtFromStart() const override;
 
   void placeMark() override;
+
+  QTime clearMark() override;
 
   void placeHardMark() override;
 
@@ -165,11 +205,15 @@ std::unique_ptr<SettledUtil> createSettledUtilPtr(double iatTargetError = 50,
 
 TimeUtil createTimeUtil();
 
+TimeUtil createConstantTimeUtil(QTime idt);
+
 TimeUtil createTimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier);
 
-class SimulatedSystem : public ControllerInput, public ControllerOutput {
+TimeUtil createTimeUtil(const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier);
+
+class SimulatedSystem : public ControllerInput<double>, public ControllerOutput<double> {
   public:
-  SimulatedSystem(FlywheelSimulator &simulator);
+  explicit SimulatedSystem(FlywheelSimulator &simulator);
 
   virtual ~SimulatedSystem();
 
@@ -181,95 +225,79 @@ class SimulatedSystem : public ControllerInput, public ControllerOutput {
 
   static void trampoline(void *system);
 
+  void startThread();
+
   void join();
 
   FlywheelSimulator &simulator;
-  std::thread thread;
   MockRate rate{};
-  bool shouldJoin = false;
+  std::atomic_bool dtorCalled{false};
+  std::thread thread;
 };
 
 class MockAsyncController : public AsyncPosIntegratedController {
   public:
-  MockAsyncController()
-    : AsyncPosIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
-  }
+  MockAsyncController();
 
-  double getOutput() const override;
-
-  void setSampleTime(QTime isampleTime) override;
-
-  void setOutputLimits(double imax, double imin) override;
-
-  void waitUntilSettled() override;
-
-  void setTarget(double itarget) override;
-
-  double getError() const override;
+  explicit MockAsyncController(const TimeUtil &itimeUtil);
 
   bool isSettled() override;
 
-  void reset() override;
-
-  void flipDisable() override;
-
-  void flipDisable(bool iisDisabled) override;
-
-  bool isDisabled() const override;
-
-  double output{0};
-  QTime sampleTime = 10_ms;
-  double maxOutput{1};
-  double minOutput{-1};
-  double target{0};
-  bool disabled{false};
+  bool isSettledOverride{true};
 };
 
 class MockIterativeController : public IterativePosPIDController {
   public:
   MockIterativeController();
 
-  double step(double inewReading) override;
-
-  void setTarget(double itarget) override;
-
-  double getOutput() const override;
-
-  double getError() const override;
-
-  double getDerivative() const override;
+  explicit MockIterativeController(double ikP);
 
   bool isSettled() override;
 
-  void setGains(double ikP, double ikI, double ikD, double ikBias) override;
-
-  void setSampleTime(QTime isampleTime) override;
-
-  void setOutputLimits(double imax, double imin) override;
-
-  void setIntegralLimits(double imax, double imin) override;
-
-  void setErrorSumLimits(double imax, double imin) override;
-
-  void reset() override;
-
-  void setIntegratorReset(bool iresetOnZero) override;
-
-  void flipDisable() override;
-
-  void flipDisable(bool iisDisabled) override;
-
-  bool isDisabled() const override;
-
-  QTime getSampleTime() const override;
-
-  double output{0};
-  QTime sampleTime = 10_ms;
-  double maxOutput{1};
-  double minOutput{-1};
-  double target{0};
-  bool disabled{false};
+  bool isSettledOverride{true};
 };
+
+void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor);
+
+void assertMotorsGearsetEquals(AbstractMotor::gearset expected,
+                               const std::initializer_list<MockMotor> &motors);
+
+void assertMotorsBrakeModeEquals(AbstractMotor::brakeMode expected,
+                                 const std::initializer_list<MockMotor> &motors);
+
+void assertMotorsEncoderUnitsEquals(AbstractMotor::encoderUnits expected,
+                                    const std::initializer_list<MockMotor> &motors);
+
+template <typename I, typename O>
+void assertControllerIsSettledWhenDisabled(ClosedLoopController<I, O> &controller, I target) {
+  controller.flipDisable(false);
+  EXPECT_FALSE(controller.isDisabled());
+  controller.setTarget(target);
+  EXPECT_EQ(controller.getTarget(), target);
+  EXPECT_FALSE(controller.isSettled());
+
+  controller.flipDisable();
+  EXPECT_TRUE(controller.isDisabled());
+  EXPECT_TRUE(controller.isSettled());
+}
+
+template <typename I, typename O>
+void assertWaitUntilSettledWorksWhenDisabled(AsyncController<I, O> &controller) {
+  controller.flipDisable(true);
+  EXPECT_TRUE(controller.isDisabled());
+  controller.waitUntilSettled();
+}
+
+void assertAsyncControllerFollowsDisableLifecycle(AsyncController<double, double> &controller,
+                                                  std::int16_t &domainValue,
+                                                  std::int16_t &voltageValue,
+                                                  int expectedOutput);
+
+void assertIterativeControllerFollowsDisableLifecycle(
+  IterativeController<double, double> &controller);
+
+void assertControllerFollowsTargetLifecycle(ClosedLoopController<double, double> &controller);
+
 } // namespace okapi
 
 #endif

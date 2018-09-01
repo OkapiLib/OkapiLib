@@ -10,31 +10,29 @@
 
 #include "okapi/api/control/async/asyncPositionController.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
+#include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
-class AsyncPosIntegratedControllerArgs : public AsyncPositionControllerArgs {
-  public:
-  explicit AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
-
-  std::shared_ptr<AbstractMotor> motor;
-};
-
 /**
  * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are whatever
  * units the motor is in.
  */
-class AsyncPosIntegratedController : public AsyncPositionController {
+class AsyncPosIntegratedController : public AsyncPositionController<double, double> {
   public:
   AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor, const TimeUtil &itimeUtil);
-
-  AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams,
-                               const TimeUtil &itimeUtil);
 
   /**
    * Sets the target for the controller.
    */
   void setTarget(double itarget) override;
+
+  /**
+   * Gets the last set target, or the default target if none was set.
+   *
+   * @return the last target
+   */
+  double getTarget() override;
 
   /**
    * Returns the last error of the controller.
@@ -44,6 +42,8 @@ class AsyncPosIntegratedController : public AsyncPositionController {
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
    * implementation-dependent.
+   *
+   * If the controller is disabled, this method must return true.
    *
    * @return whether the controller is settled
    */
@@ -83,6 +83,7 @@ class AsyncPosIntegratedController : public AsyncPositionController {
   void waitUntilSettled() override;
 
   protected:
+  Logger *logger;
   std::shared_ptr<AbstractMotor> motor;
   double lastTarget = 0;
   bool controllerIsDisabled = false;

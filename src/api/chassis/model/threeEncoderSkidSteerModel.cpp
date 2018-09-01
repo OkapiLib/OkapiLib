@@ -8,33 +8,22 @@
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
 
 namespace okapi {
-ThreeEncoderSkidSteerModelArgs::ThreeEncoderSkidSteerModelArgs(
-  std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
+ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
+  std::shared_ptr<AbstractMotor> ileftSideMotor,
+  std::shared_ptr<AbstractMotor> irightSideMotor,
   std::shared_ptr<ContinuousRotarySensor> ileftEnc,
   std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
-  std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput)
-  : SkidSteerModelArgs(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxOutput),
+  std::shared_ptr<ContinuousRotarySensor> irightEnc,
+  const double imaxVelocity,
+  const double imaxVoltage)
+  : SkidSteerModel(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxVelocity, imaxVoltage),
     middleSensor(imiddleEnc) {
-}
-
-ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
-  std::shared_ptr<AbstractMotor> ileftSideMotor, std::shared_ptr<AbstractMotor> irightSideMotor,
-  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-  std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
-  std::shared_ptr<ContinuousRotarySensor> irightEnc, const double imaxOutput)
-  : SkidSteerModel(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxOutput),
-    middleSensor(imiddleEnc) {
-}
-
-ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
-  const ThreeEncoderSkidSteerModelArgs &iparams)
-  : SkidSteerModel(iparams.leftSideMotor, iparams.rightSideMotor, iparams.leftSensor,
-                   iparams.rightSensor),
-    middleSensor(iparams.middleSensor) {
 }
 
 std::valarray<std::int32_t> ThreeEncoderSkidSteerModel::getSensorVals() const {
   // Return the middle sensor last so this is compatible with SkidSteerModel::getSensorVals()
-  return std::valarray<std::int32_t>{leftSensor->get(), rightSensor->get(), middleSensor->get()};
+  return std::valarray<std::int32_t>{static_cast<std::int32_t>(leftSensor->get()),
+                                     static_cast<std::int32_t>(rightSensor->get()),
+                                     static_cast<std::int32_t>(middleSensor->get())};
 }
 } // namespace okapi

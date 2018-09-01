@@ -22,8 +22,8 @@ class SettledUtilFactory {
    * @param iatTargetDerivative minimum error derivative to be considered settled
    * @param iatTargetTime minimum time within atTargetError to be considered settled
    */
-  static SettledUtil create(double iatTargetError = 50, double iatTargetDerivative = 5,
-                            QTime iatTargetTime = 250_ms);
+  static SettledUtil
+  create(double iatTargetError = 50, double iatTargetDerivative = 5, QTime iatTargetTime = 250_ms);
   static std::unique_ptr<SettledUtil> createPtr(double iatTargetError = 50,
                                                 double iatTargetDerivative = 5,
                                                 QTime iatTargetTime = 250_ms);

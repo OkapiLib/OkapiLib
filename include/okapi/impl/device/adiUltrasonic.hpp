@@ -14,7 +14,7 @@
 #include <memory>
 
 namespace okapi {
-class ADIUltrasonic : public ControllerInput {
+class ADIUltrasonic : public ControllerInput<double> {
   public:
   /**
    * An ultrasonic sensor in the ADI (3-wire) ports. Uses a 5-tap MedianFilter by default.
@@ -22,7 +22,7 @@ class ADIUltrasonic : public ControllerInput {
    * @param iportTop top port
    * @param iportBottom bottom port
    */
-  ADIUltrasonic(const std::uint8_t iportTop, const std::uint8_t iportBottom);
+  ADIUltrasonic(std::uint8_t iportTop, std::uint8_t iportBottom);
 
   /**
    * An ultrasonic sensor in the ADI (3-wire) ports.
@@ -31,8 +31,7 @@ class ADIUltrasonic : public ControllerInput {
    * @param iportBottom bottom port
    * @param ifilter the filter to use for filtering measurements
    */
-  ADIUltrasonic(const std::uint8_t iportTop, const std::uint8_t iportBottom,
-                std::unique_ptr<Filter> ifilter);
+  ADIUltrasonic(std::uint8_t iportTop, std::uint8_t iportBottom, std::unique_ptr<Filter> ifilter);
 
   virtual ~ADIUltrasonic();
 
@@ -41,7 +40,7 @@ class ADIUltrasonic : public ControllerInput {
    *
    * @return current value
    */
-  virtual std::int32_t get();
+  virtual double get();
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in

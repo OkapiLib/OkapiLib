@@ -16,11 +16,6 @@
 #include <vector>
 
 namespace okapi {
-class ChassisModelArgs {
-  public:
-  virtual ~ChassisModelArgs();
-};
-
 /**
  * A version of the ReadOnlyChassisModel that also supports write methods, such as setting motor
  * speed. Because this class can write to motors, there can only be one owner and as such copying
@@ -60,7 +55,7 @@ class ChassisModel : public ReadOnlyChassisModel {
   /**
    * Stop the robot (set all the motors to 0).
    */
-  virtual void stop() const = 0;
+  virtual void stop() = 0;
 
   /**
    * Drive the robot with a tank drive layout. Uses voltage mode.
@@ -119,6 +114,68 @@ class ChassisModel : public ReadOnlyChassisModel {
    * @param gearset new motor gearset
    */
   virtual void setGearing(AbstractMotor::gearset gearset) const = 0;
+
+  /**
+   * Sets new PID constants.
+   *
+   * @param ikF the feed-forward constant
+   * @param ikP the proportional constant
+   * @param ikI the integral constant
+   * @param ikD the derivative constant
+   */
+  virtual void setPosPID(double ikF, double ikP, double ikI, double ikD) const = 0;
+
+  /**
+   * Sets new PID constants.
+   *
+   * @param ikF the feed-forward constant
+   * @param ikP the proportional constant
+   * @param ikI the integral constant
+   * @param ikD the derivative constant
+   * @param ifilter a constant used for filtering the profile acceleration
+   * @param ilimit the integral limit
+   * @param ithreshold the threshold for determining if a position movement has reached its goal
+   * @param iloopSpeed the rate at which the PID computation is run (in ms)
+   */
+  virtual void setPosPIDFull(double ikF,
+                             double ikP,
+                             double ikI,
+                             double ikD,
+                             double ifilter,
+                             double ilimit,
+                             double ithreshold,
+                             double iloopSpeed) const = 0;
+
+  /**
+   * Sets new PID constants.
+   *
+   * @param ikF the feed-forward constant
+   * @param ikP the proportional constant
+   * @param ikI the integral constant
+   * @param ikD the derivative constant
+   */
+  virtual void setVelPID(double ikF, double ikP, double ikI, double ikD) const = 0;
+
+  /**
+   * Sets new PID constants.
+   *
+   * @param ikF the feed-forward constant
+   * @param ikP the proportional constant
+   * @param ikI the integral constant
+   * @param ikD the derivative constant
+   * @param ifilter a constant used for filtering the profile acceleration
+   * @param ilimit the integral limit
+   * @param ithreshold the threshold for determining if a position movement has reached its goal
+   * @param iloopSpeed the rate at which the PID computation is run (in ms)
+   */
+  virtual void setVelPIDFull(double ikF,
+                             double ikP,
+                             double ikI,
+                             double ikD,
+                             double ifilter,
+                             double ilimit,
+                             double ithreshold,
+                             double iloopSpeed) const = 0;
 };
 } // namespace okapi
 

@@ -10,32 +10,30 @@
 
 #include "okapi/api/control/async/asyncVelocityController.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
+#include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <memory>
 
 namespace okapi {
-class AsyncVelIntegratedControllerArgs : public AsyncVelocityControllerArgs {
-  public:
-  explicit AsyncVelIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor);
-
-  std::shared_ptr<AbstractMotor> motor;
-};
-
 /**
  * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are whatever
  * units the motor is in.
  */
-class AsyncVelIntegratedController : public AsyncVelocityController {
+class AsyncVelIntegratedController : public AsyncVelocityController<double, double> {
   public:
   AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor, const TimeUtil &itimeUtil);
-
-  AsyncVelIntegratedController(const AsyncVelIntegratedControllerArgs &iparams,
-                               const TimeUtil &itimeUtil);
 
   /**
    * Sets the target for the controller.
    */
   void setTarget(double itarget) override;
+
+  /**
+   * Gets the last set target, or the default target if none was set.
+   *
+   * @return the last target
+   */
+  double getTarget() override;
 
   /**
    * Returns the last error of the controller.
@@ -45,6 +43,8 @@ class AsyncVelIntegratedController : public AsyncVelocityController {
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
    * implementation-dependent.
+   *
+   * If the controller is disabled, this method must return true.
    *
    * @return whether the controller is settled
    */
@@ -84,6 +84,7 @@ class AsyncVelIntegratedController : public AsyncVelocityController {
   void waitUntilSettled() override;
 
   protected:
+  Logger *logger;
   std::shared_ptr<AbstractMotor> motor;
   double lastTarget = 0;
   bool controllerIsDisabled = false;

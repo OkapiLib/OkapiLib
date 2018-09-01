@@ -16,6 +16,7 @@
 
 #include "okapi/api/units/RQuantity.hpp"
 
+namespace okapi {
 QUANTITY_TYPE(0, 1, 0, 0, QLength)
 
 constexpr QLength meter(1.0); // SI base unit
@@ -28,7 +29,7 @@ constexpr QLength foot = 12 * inch;
 constexpr QLength yard = 3 * foot;
 constexpr QLength mile = 5280 * foot;
 
-// literals for length units
+inline namespace literals {
 constexpr QLength operator"" _mm(long double x) {
   return static_cast<double>(x) * millimeter;
 }
@@ -77,5 +78,7 @@ constexpr QLength operator"" _ft(unsigned long long int x) {
 constexpr QLength operator"" _in(unsigned long long int x) {
   return static_cast<double>(x) * inch;
 }
+} // namespace literals
+} // namespace okapi
 
 #endif

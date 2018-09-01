@@ -11,24 +11,66 @@
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
 namespace okapi {
-PIDTuner PIDTunerFactory::create(std::shared_ptr<ControllerInput> iinput,
-                                 std::shared_ptr<ControllerOutput> ioutput, QTime itimeout,
-                                 std::int32_t igoal, double ikPMin, double ikPMax, double ikIMin,
-                                 double ikIMax, double ikDMin, double ikDMax,
-                                 std::int32_t inumIterations, std::int32_t inumParticles,
-                                 double ikSettle, double ikITAE) {
-  return PIDTuner(iinput, ioutput, TimeUtilFactory::create(), itimeout, igoal, ikPMin, ikPMax,
-                  ikIMin, ikIMax, ikDMin, ikDMax, inumIterations, inumParticles, ikSettle, ikITAE);
+PIDTuner PIDTunerFactory::create(std::shared_ptr<ControllerInput<double>> iinput,
+                                 std::shared_ptr<ControllerOutput<double>> ioutput,
+                                 QTime itimeout,
+                                 std::int32_t igoal,
+                                 double ikPMin,
+                                 double ikPMax,
+                                 double ikIMin,
+                                 double ikIMax,
+                                 double ikDMin,
+                                 double ikDMax,
+                                 std::int32_t inumIterations,
+                                 std::int32_t inumParticles,
+                                 double ikSettle,
+                                 double ikITAE) {
+  return PIDTuner(iinput,
+                  ioutput,
+                  TimeUtilFactory::create(),
+                  itimeout,
+                  igoal,
+                  ikPMin,
+                  ikPMax,
+                  ikIMin,
+                  ikIMax,
+                  ikDMin,
+                  ikDMax,
+                  inumIterations,
+                  inumParticles,
+                  ikSettle,
+                  ikITAE);
 }
 
 std::unique_ptr<PIDTuner>
-PIDTunerFactory::createPtr(std::shared_ptr<ControllerInput> iinput,
-                           std::shared_ptr<ControllerOutput> ioutput, QTime itimeout,
-                           std::int32_t igoal, double ikPMin, double ikPMax, double ikIMin,
-                           double ikIMax, double ikDMin, double ikDMax, std::int32_t inumIterations,
-                           std::int32_t inumParticles, double ikSettle, double ikITAE) {
-  return std::make_unique<PIDTuner>(iinput, ioutput, TimeUtilFactory::create(), itimeout, igoal,
-                                    ikPMin, ikPMax, ikIMin, ikIMax, ikDMin, ikDMax, inumIterations,
-                                    inumParticles, ikSettle, ikITAE);
+PIDTunerFactory::createPtr(std::shared_ptr<ControllerInput<double>> iinput,
+                           std::shared_ptr<ControllerOutput<double>> ioutput,
+                           QTime itimeout,
+                           std::int32_t igoal,
+                           double ikPMin,
+                           double ikPMax,
+                           double ikIMin,
+                           double ikIMax,
+                           double ikDMin,
+                           double ikDMax,
+                           std::int32_t inumIterations,
+                           std::int32_t inumParticles,
+                           double ikSettle,
+                           double ikITAE) {
+  return std::make_unique<PIDTuner>(iinput,
+                                    ioutput,
+                                    TimeUtilFactory::create(),
+                                    itimeout,
+                                    igoal,
+                                    ikPMin,
+                                    ikPMax,
+                                    ikIMin,
+                                    ikIMax,
+                                    ikDMin,
+                                    ikDMax,
+                                    inumIterations,
+                                    inumParticles,
+                                    ikSettle,
+                                    ikITAE);
 }
 } // namespace okapi

@@ -15,13 +15,6 @@
 #include <vector>
 
 namespace okapi {
-class ComposableFilterArgs : public FilterArgs {
-  public:
-  ComposableFilterArgs(const std::initializer_list<std::shared_ptr<Filter>> &ilist);
-
-  const std::initializer_list<std::shared_ptr<Filter>> list;
-};
-
 class ComposableFilter : public Filter {
   public:
   /**
@@ -39,8 +32,6 @@ class ComposableFilter : public Filter {
    * @param ilist the filters to use in sequence
    */
   ComposableFilter(const std::initializer_list<std::shared_ptr<Filter>> &ilist);
-
-  explicit ComposableFilter(const ComposableFilterArgs &iparams);
 
   /**
    * Filters a value, like a sensor reading.

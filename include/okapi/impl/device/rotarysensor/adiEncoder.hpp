@@ -14,22 +14,21 @@
 namespace okapi {
 class ADIEncoder : public ContinuousRotarySensor {
   public:
-  ADIEncoder(const std::uint8_t iportTop, const std::uint8_t iportBottom,
-             const bool ireversed = false);
+  ADIEncoder(std::uint8_t iportTop, std::uint8_t iportBottom, bool ireversed = false);
 
   /**
    * Get the current sensor value.
    *
    * @return the current sensor value, or ``PROS_ERR`` on a failure.
    */
-  virtual std::int32_t get() const override;
+  virtual double get() const override;
 
   /**
    * Reset the sensor to zero.
    *
-   * @return 1 on suceess, PROS_ERR on fail
+   * @return 1 on success, PROS_ERR on fail
    */
-  virtual std::int32_t reset() const override;
+  virtual std::int32_t reset() override;
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in

@@ -13,6 +13,7 @@
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/units/QTime.hpp"
+#include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <memory>
 #include <vector>
@@ -20,15 +21,29 @@
 namespace okapi {
 class PIDTuner {
   public:
-  PIDTuner(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
-           const TimeUtil &itimeUtil, QTime itimeout, std::int32_t igoal, double ikPMin,
-           double ikPMax, double ikIMin, double ikIMax, double ikDMin, double ikDMax,
-           std::int32_t inumIterations = 5, std::int32_t inumParticles = 16, double ikSettle = 1,
+  struct Output {
+    double kP, kI, kD;
+  };
+
+  PIDTuner(std::shared_ptr<ControllerInput<double>> iinput,
+           std::shared_ptr<ControllerOutput<double>> ioutput,
+           const TimeUtil &itimeUtil,
+           QTime itimeout,
+           std::int32_t igoal,
+           double ikPMin,
+           double ikPMax,
+           double ikIMin,
+           double ikIMax,
+           double ikDMin,
+           double ikDMax,
+           std::size_t inumIterations = 5,
+           std::size_t inumParticles = 16,
+           double ikSettle = 1,
            double ikITAE = 2);
 
   virtual ~PIDTuner();
 
-  virtual IterativePosPIDControllerArgs autotune();
+  virtual Output autotune();
 
   protected:
   static constexpr double inertia = 0.5;   // Particle inertia
@@ -47,8 +62,9 @@ class PIDTuner {
     double bestError;
   };
 
-  std::shared_ptr<ControllerInput> input;
-  std::shared_ptr<ControllerOutput> output;
+  Logger *logger;
+  std::shared_ptr<ControllerInput<double>> input;
+  std::shared_ptr<ControllerOutput<double>> output;
   TimeUtil timeUtil;
   std::unique_ptr<AbstractRate> rate;
 
@@ -60,8 +76,8 @@ class PIDTuner {
   const double kIMax;
   const double kDMin;
   const double kDMax;
-  const std::int32_t numIterations;
-  const std::int32_t numParticles;
+  const std::size_t numIterations;
+  const std::size_t numParticles;
   const double kSettle;
   const double kITAE;
 };

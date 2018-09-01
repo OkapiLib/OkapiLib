@@ -13,18 +13,20 @@
 #include "okapi/api/units/QAngularSpeed.hpp"
 #include "okapi/api/units/QTime.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
+#include "okapi/api/util/logging.hpp"
 #include <memory>
 
 namespace okapi {
 class VelMathArgs {
   public:
-  explicit VelMathArgs(double iticksPerRev);
-  VelMathArgs(double iticksPerRev, std::shared_ptr<Filter> ifilter);
+  explicit VelMathArgs(double iticksPerRev, QTime isampleTime = 0_ms);
+  VelMathArgs(double iticksPerRev, std::shared_ptr<Filter> ifilter, QTime isampleTime = 0_ms);
 
   virtual ~VelMathArgs();
 
-  const double ticksPerRev;
+  double ticksPerRev;
   std::shared_ptr<Filter> filter;
+  QTime sampleTime;
 };
 
 class VelMath {
@@ -35,8 +37,11 @@ class VelMath {
    *
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
    * @param ifilter filter used for filtering the calculated velocity
+   * @param isampleTime the minimum time between velocity measurements
    */
-  VelMath(double iticksPerRev, std::shared_ptr<Filter> ifilter,
+  VelMath(double iticksPerRev,
+          std::shared_ptr<Filter> ifilter,
+          QTime isampleTime,
           std::unique_ptr<AbstractTimer> iloopDtTimer);
 
   VelMath(const VelMathArgs &iparams, std::unique_ptr<AbstractTimer> iloopDtTimer);
@@ -69,12 +74,14 @@ class VelMath {
   virtual QAngularAcceleration getAccel() const;
 
   protected:
+  Logger *logger;
   QAngularSpeed vel;
   QAngularSpeed lastVel;
   QAngularAcceleration accel;
   double lastPos = 0;
   double ticksPerRev;
 
+  QTime sampleTime;
   std::unique_ptr<AbstractTimer> loopDtTimer;
   std::shared_ptr<Filter> filter;
 };

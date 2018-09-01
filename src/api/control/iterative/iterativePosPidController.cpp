@@ -12,46 +12,53 @@
 #include <cmath>
 
 namespace okapi {
-IterativePosPIDControllerArgs::IterativePosPIDControllerArgs(const double ikP, const double ikI,
-                                                             const double ikD, const double ikBias)
-  : kP(ikP), kI(ikI), kD(ikD), kBias(ikBias) {
-}
-
-IterativePosPIDController::IterativePosPIDController(const IterativePosPIDControllerArgs &params,
-                                                     const TimeUtil &itimeUtil)
-  : IterativePosPIDController(params.kP, params.kI, params.kD, params.kBias, itimeUtil) {
-}
-
-IterativePosPIDController::IterativePosPIDController(const double ikP, const double ikI,
-                                                     const double ikD, const double ikBias,
-                                                     const TimeUtil &itimeUtil)
-  : loopDtTimer(std::move(itimeUtil.getTimer())),
-    settledUtil(std::move(itimeUtil.getSettledUtil())) {
+IterativePosPIDController::IterativePosPIDController(const double ikP,
+                                                     const double ikI,
+                                                     const double ikD,
+                                                     const double ikBias,
+                                                     const TimeUtil &itimeUtil,
+                                                     std::unique_ptr<Filter> iderivativeFilter)
+  : logger(Logger::instance()),
+    derivativeFilter(std::move(iderivativeFilter)),
+    loopDtTimer(itimeUtil.getTimer()),
+    settledUtil(itimeUtil.getSettledUtil()) {
   if (ikI != 0) {
-    setIntegralLimits(-1 / ikI, 1 / ikI);
+    setIntegralLimits(1 / ikI, -1 / ikI);
   }
   setOutputLimits(-1, 1);
   setGains(ikP, ikI, ikD, ikBias);
 }
 
+IterativePosPIDController::IterativePosPIDController(const Gains &igains,
+                                                     const TimeUtil &itimeUtil,
+                                                     std::unique_ptr<Filter> iderivativeFilter)
+  : IterativePosPIDController(igains.kP,
+                              igains.kI,
+                              igains.kD,
+                              igains.kBias,
+                              itimeUtil,
+                              std::move(iderivativeFilter)) {
+}
+
 void IterativePosPIDController::setTarget(const double itarget) {
+  logger->info("IterativePosPIDController: Set target to " + std::to_string(itarget));
   target = itarget;
 }
 
+double IterativePosPIDController::getTarget() {
+  return target;
+}
+
 double IterativePosPIDController::getOutput() const {
-  return output;
+  return isDisabled() ? 0 : output;
 }
 
 double IterativePosPIDController::getError() const {
-  return error;
-}
-
-double IterativePosPIDController::getDerivative() const {
-  return derivative;
+  return target - lastReading;
 }
 
 bool IterativePosPIDController::isSettled() {
-  return settledUtil->isSettled(error);
+  return isDisabled() ? true : settledUtil->isSettled(error);
 }
 
 void IterativePosPIDController::setSampleTime(const QTime isampleTime) {
@@ -75,9 +82,6 @@ void IterativePosPIDController::setOutputLimits(double imax, double imin) {
   outputMin = imin;
 
   output = std::clamp(output, outputMin, outputMax);
-
-  // Fix integral
-  setIntegralLimits(imax, imin);
 }
 
 void IterativePosPIDController::setIntegralLimits(double imax, double imin) {
@@ -100,11 +104,13 @@ void IterativePosPIDController::setErrorSumLimits(const double imax, const doubl
 }
 
 double IterativePosPIDController::step(const double inewReading) {
+  lastReading = inewReading;
+
   if (isOn) {
     loopDtTimer->placeHardMark();
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
-      error = target - inewReading;
+      error = getError();
 
       if ((std::abs(error) < target - errorSumMin && std::abs(error) > target - errorSumMax) ||
           (std::abs(error) > target + errorSumMin && std::abs(error) < target + errorSumMax)) {
@@ -118,24 +124,25 @@ double IterativePosPIDController::step(const double inewReading) {
       integral = std::clamp(integral, integralMin, integralMax);
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
-      derivative = inewReading - lastReading;
+      derivative = derivativeFilter->filter(inewReading - lastReading);
 
       output = std::clamp(kP * error + integral - kD * derivative + kBias, outputMin, outputMax);
 
-      lastReading = inewReading;
       lastError = error;
       loopDtTimer->clearHardMark(); // Important that we only clear if dt >= sampleTime
 
       settledUtil->isSettled(error);
     }
   } else {
-    output = 0; // Controller is off so write 0
+    return 0;
   }
 
   return output;
 }
 
-void IterativePosPIDController::setGains(const double ikP, const double ikI, const double ikD,
+void IterativePosPIDController::setGains(const double ikP,
+                                         const double ikI,
+                                         const double ikD,
                                          const double ikBias) {
   const double sampleTimeSec = sampleTime.convert(second);
   kP = ikP;
@@ -145,11 +152,13 @@ void IterativePosPIDController::setGains(const double ikP, const double ikI, con
 }
 
 void IterativePosPIDController::reset() {
+  logger->info("IterativePosPIDController: Reset");
   error = 0;
   lastError = 0;
   lastReading = 0;
   integral = 0;
   output = 0;
+  settledUtil->reset();
 }
 
 void IterativePosPIDController::setIntegratorReset(bool iresetOnZero) {
@@ -161,6 +170,7 @@ void IterativePosPIDController::flipDisable() {
 }
 
 void IterativePosPIDController::flipDisable(const bool iisDisabled) {
+  logger->info("IterativePosPIDController: flipDisable " + std::to_string(iisDisabled));
   isOn = !iisDisabled;
 }
 

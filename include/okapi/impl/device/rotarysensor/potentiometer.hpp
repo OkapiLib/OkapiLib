@@ -14,7 +14,7 @@
 namespace okapi {
 class Potentiometer : public RotarySensor {
   public:
-  Potentiometer(const std::uint8_t iport);
+  Potentiometer(std::uint8_t iport);
 
   virtual ~Potentiometer();
 
@@ -23,7 +23,7 @@ class Potentiometer : public RotarySensor {
    *
    * @return the current sensor value, or ``PROS_ERR`` on a failure.
    */
-  virtual std::int32_t get() const override;
+  virtual double get() const override;
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in

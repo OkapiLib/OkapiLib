@@ -9,26 +9,14 @@
 #include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
-AsyncVelIntegratedControllerArgs::AsyncVelIntegratedControllerArgs(
-  std::shared_ptr<AbstractMotor> imotor)
-  : motor(imotor) {
-}
-
 AsyncVelIntegratedController::AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor,
                                                            const TimeUtil &itimeUtil)
-  : motor(imotor),
-    settledUtil(std::move(itimeUtil.getSettledUtil())),
-    rate(std::move(itimeUtil.getRate())) {
-}
-
-AsyncVelIntegratedController::AsyncVelIntegratedController(
-  const AsyncVelIntegratedControllerArgs &iparams, const TimeUtil &itimeUtil)
-  : motor(iparams.motor),
-    settledUtil(std::move(itimeUtil.getSettledUtil())),
-    rate(std::move(itimeUtil.getRate())) {
+  : motor(imotor), settledUtil(itimeUtil.getSettledUtil()), rate(itimeUtil.getRate()) {
 }
 
 void AsyncVelIntegratedController::setTarget(const double itarget) {
+  logger->info("AsyncVelIntegratedController: Set target to " + std::to_string(itarget));
+
   hasFirstTarget = true;
 
   if (!controllerIsDisabled) {
@@ -38,15 +26,20 @@ void AsyncVelIntegratedController::setTarget(const double itarget) {
   lastTarget = itarget;
 }
 
+double AsyncVelIntegratedController::getTarget() {
+  return lastTarget;
+}
+
 double AsyncVelIntegratedController::getError() const {
   return lastTarget - motor->getActualVelocity();
 }
 
 bool AsyncVelIntegratedController::isSettled() {
-  return settledUtil->isSettled(getError());
+  return isDisabled() || settledUtil->isSettled(getError());
 }
 
 void AsyncVelIntegratedController::reset() {
+  logger->info("AsyncVelIntegratedController: Reset");
   hasFirstTarget = false;
   settledUtil->reset();
 }
@@ -57,6 +50,7 @@ void AsyncVelIntegratedController::flipDisable() {
 }
 
 void AsyncVelIntegratedController::flipDisable(const bool iisDisabled) {
+  logger->info("AsyncVelIntegratedController: flipDisable " + std::to_string(iisDisabled));
   controllerIsDisabled = iisDisabled;
   resumeMovement();
 }
@@ -66,7 +60,7 @@ bool AsyncVelIntegratedController::isDisabled() const {
 }
 
 void AsyncVelIntegratedController::resumeMovement() {
-  if (controllerIsDisabled) {
+  if (isDisabled()) {
     motor->moveVoltage(0);
   } else {
     if (hasFirstTarget) {
@@ -76,8 +70,10 @@ void AsyncVelIntegratedController::resumeMovement() {
 }
 
 void AsyncVelIntegratedController::waitUntilSettled() {
-  while (!settledUtil->isSettled(getError())) {
+  logger->info("AsyncVelIntegratedController: Waiting to settle");
+  while (!isSettled()) {
     rate->delayUntil(motorUpdateRate);
   }
+  logger->info("AsyncVelIntegratedController: Done waiting to settle");
 }
 } // namespace okapi
