@@ -65,6 +65,9 @@ class AbstractMotor : public ControllerOutput<double> {
    * This movement is relative to the position of the motor when initialized or
    * the position when it was most recently reset with setZeroPosition().
    *
+   * @note This function simply sets the target for the motor, it does not block program execution
+   * until the movement finishes.
+   *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
@@ -80,6 +83,9 @@ class AbstractMotor : public ControllerOutput<double> {
    * This movement is relative to the current position of the motor. Providing 10.0 as the position
    * parameter would result in the motor moving clockwise 10 units, no matter what the current
    * position is.
+   *
+   * @note This function simply sets the target for the motor, it does not block program execution
+   * until the movement finishes.
    *
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
@@ -277,7 +283,8 @@ class AbstractMotor : public ControllerOutput<double> {
   virtual std::int32_t getZeroPositionFlag() const = 0;
 
   /**
-   * Gets the faults experienced by the motor.
+   * Gets the faults experienced by the motor. Compare this bitfield to the bitmasks in
+   * pros::motor_fault_e_t.
    *
    * This function uses the following values of errno when an error state is
    * reached:
@@ -289,7 +296,8 @@ class AbstractMotor : public ControllerOutput<double> {
   virtual uint32_t getFaults() const = 0;
 
   /**
-   * Gets the flags set by the motor's operation.
+   * Gets the flags set by the motor's operation. Compare this bitfield to the bitmasks in
+   * pros::motor_flag_e_t.
    *
    * This function uses the following values of errno when an error state is
    * reached:
