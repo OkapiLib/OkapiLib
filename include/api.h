@@ -1,5 +1,7 @@
 /**
- * api.h - PROS API header provides high-level user functionality
+ * \file api.h
+ *
+ * PROS API header provides high-level user functionality
  *
  * Contains declarations for use by typical VEX programmers using PROS.
  *
@@ -18,13 +20,16 @@
 #define _PROS_API_H_
 
 #ifdef __cplusplus
+#include <cerrno>
 #include <cmath>
 #include <cstdbool>
 #include <cstddef>
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
+#include <iostream>
 #else /* (not) __cplusplus */
+#include <errno.h>
 #include <math.h>
 #include <stdbool.h>
 #include <stddef.h>
@@ -35,9 +40,9 @@
 #endif /* __cplusplus */
 
 #define PROS_VERSION_MAJOR 3
-#define PROS_VERSION_MINOR 0
-#define PROS_VERSION_PATCH 8
-#define PROS_VERSION_STRING "3.0.8"
+#define PROS_VERSION_MINOR 1
+#define PROS_VERSION_PATCH 1
+#define PROS_VERSION_STRING "3.1.1-dirty+6030ad6"
 
 #define PROS_ERR (INT32_MAX)
 #define PROS_ERR_F (INFINITY)
@@ -59,4 +64,4 @@
 #include "pros/vision.hpp"
 #endif
 
-#endif /* _PROS_API_H_ */
+#endif  // _PROS_API_H_
