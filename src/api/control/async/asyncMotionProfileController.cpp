@@ -53,7 +53,7 @@ AsyncMotionProfileController::~AsyncMotionProfileController() {
 }
 
 void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwaypoints,
-                                                std::string ipathId) {
+                                                const std::string &ipathId) {
   if (iwaypoints.size() == 0) {
     // No point in generating a path
     logger->warn(
@@ -121,17 +121,31 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
 
   free(trajectory);
 
-  auto oldPath = paths.find(ipathId);
-  if (oldPath != paths.end()) {
-    // Free the old path before overwriting it
-    free(oldPath->second.left);
-    free(oldPath->second.right);
-    paths.erase(ipathId);
-  }
+  // Free the old path before overwriting it
+  removePath(ipathId);
 
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length});
   logger->info("AsyncMotionProfileController: Completely done generating path");
   logger->info("AsyncMotionProfileController: " + std::to_string(length));
+}
+
+void AsyncMotionProfileController::removePath(const std::string &ipathId) {
+  auto oldPath = paths.find(ipathId);
+  if (oldPath != paths.end()) {
+    free(oldPath->second.left);
+    free(oldPath->second.right);
+    paths.erase(ipathId);
+  }
+}
+
+std::vector<std::string> AsyncMotionProfileController::getPaths() {
+  std::vector<std::string> keys;
+
+  for (const auto &path : paths) {
+    keys.push_back(path.first);
+  }
+
+  return keys;
 }
 
 void AsyncMotionProfileController::setTarget(std::string ipathId) {
