@@ -56,12 +56,27 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * pathId. Call executePath() with the same pathId to run it.
    *
    * If the waypoints form a path which is impossible to achieve, an instance of std::runtime_error
-   * is thrown (and an error is logged) which describes the waypoints.
+   * is thrown (and an error is logged) which describes the waypoints. If there are no waypoints,
+   * no path is generated.
    *
    * @param iwaypoints The waypoints to hit on the path.
    * @param ipathId A unique identifier to save the path with.
    */
-  void generatePath(std::initializer_list<Point> iwaypoints, std::string ipathId);
+  void generatePath(std::initializer_list<Point> iwaypoints, const std::string &ipathId);
+
+  /**
+   * Removes a path and frees the memory it used.
+   *
+   * @param ipathId A unique identifier for the path, previously passed to generatePath()
+   */
+  void removePath(const std::string &ipathId);
+
+  /**
+   * Gets the identifiers of all paths saved in this AsyncMotionProfileController.
+   *
+   * @return The identifiers of all paths
+   */
+  std::vector<std::string> getPaths();
 
   /**
    * Executes a path with the given ID. If there is no path matching the ID, the method will
