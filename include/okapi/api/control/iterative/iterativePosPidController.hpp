@@ -23,10 +23,10 @@ namespace okapi {
 class IterativePosPIDController : public IterativePositionController<double, double> {
   public:
   struct Gains {
-    double kP;
-    double kI;
-    double kD;
-    double kBias;
+    double kP{0};
+    double kI{0};
+    double kD{0};
+    double kBias{0};
   };
 
   /**
