@@ -87,9 +87,19 @@ TEST_F(SkidSteerModelTest, LeftHalfPower) {
   assertLeftAndRightMotorsLastVelocity(63, 0);
 }
 
+TEST_F(SkidSteerModelTest, LeftBoundsInput) {
+  model.left(10);
+  assertLeftAndRightMotorsLastVelocity(127, 0);
+}
+
 TEST_F(SkidSteerModelTest, RightHalfPower) {
   model.right(0.5);
   assertLeftAndRightMotorsLastVelocity(0, 63);
+}
+
+TEST_F(SkidSteerModelTest, RightBoundsInput) {
+  model.right(10);
+  assertLeftAndRightMotorsLastVelocity(0, 127);
 }
 
 TEST_F(SkidSteerModelTest, TankHalfPower) {

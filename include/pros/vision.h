@@ -3,7 +3,8 @@
  *
  * Contains prototypes for the VEX Vision Sensor-related functions.
  *
- * Visit https://pros.cs.purdue.edu/v5/tutorials/topical/vision to learn more.
+ * Visit https://pros.cs.purdue.edu/v5/tutorials/topical/vision.html to learn
+ * more.
  *
  * This file should not be modified by users, since it gets replaced whenever
  * a kernel upgrade occurs.
@@ -16,8 +17,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-#ifndef PROS_VISION_H_
-#define PROS_VISION_H_
+#ifndef _PROS_VISION_H_
+#define _PROS_VISION_H_
 
 #define VISION_OBJECT_ERR_SIG 255
 // Parameters given by VEX
@@ -105,7 +106,8 @@ namespace c {
  * \param port
  *        The V5 port number from 1-21
  *
- * \return 1 if no errors occurred, PROS_ERR otherwise
+ * \return 1 if the operation was successful or PROS_ERR if the operation
+ * failed, setting errno.
  */
 int32_t vision_clear_led(uint8_t port);
 
@@ -143,8 +145,7 @@ vision_object_s_t vision_get_by_size(uint8_t port, const uint32_t size_id);
  *        The object to read from a list roughly ordered by object size
  *        (0 is the largest item, 1 is the second largest, etc.)
  * \param signature
- *        The vision_signature_s_t signature for which an object will be
- *        returned.
+ *        The signature ID [1-7] for which an object will be returned.
  *
  * \return The vision_object_s_t object corresponding to the given signature and
  * size_id, or PROS_ERR if an error occurred.
@@ -162,8 +163,8 @@ vision_object_s_t vision_get_by_sig(uint8_t port, const uint32_t size_id, const 
  * \param port
  *        The V5 port number from 1-21
  *
- * \return The current exposure percentage parameter from [0,100],
- * PROS_ERR if an error occurred
+ * \return The current exposure percentage parameter from [0,100], PROS_ERR if
+ * an error occurred
  */
 int32_t vision_get_exposure(uint8_t port);
 
@@ -203,7 +204,8 @@ int32_t vision_get_white_balance(uint8_t port);
  *
  * This function uses the following values of errno when an error state is
  * reached:
- * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EINVAL - The given value is not within the range of V5 ports (1-21), or
+ *          fewer than object_count number of objects were found.
  * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
@@ -217,8 +219,10 @@ int32_t vision_get_white_balance(uint8_t port);
  *             A pointer to copy the objects into
  *
  * \return The number of object signatures copied. This number will be less than
- * object_count if there are fewer objects detected by the vision
- * sensor. Returns PROS_ERR if the port was invalid or an error occurred.
+ * object_count if there are fewer objects detected by the vision sensor.
+ * Returns PROS_ERR if the port was invalid, an error occurred, or fewer objects
+ * than size_id were found. All objects in object_arr that were not found are
+ * given VISION_OBJECT_ERR_SIG as their signature.
  */
 int32_t vision_read_by_size(uint8_t port, const uint32_t size_id, const uint32_t object_count,
                             vision_object_s_t* const object_arr);
@@ -228,7 +232,8 @@ int32_t vision_read_by_size(uint8_t port, const uint32_t size_id, const uint32_t
  *
  * This function uses the following values of errno when an error state is
  * reached:
- * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EINVAL - The given value is not within the range of V5 ports (1-21), or
+ *          fewer than object_count number of objects were found.
  * EACCES - Another resource is currently trying to access the port.
  *
  * \param port
@@ -239,14 +244,15 @@ int32_t vision_read_by_size(uint8_t port, const uint32_t size_id, const uint32_t
  *        The object to read from a list roughly ordered by object size
  *        (0 is the largest item, 1 is the second largest, etc.)
  * \param signature
- *        The vision_signature_s_t signature for which an object will be
- * returned.
+ *        The signature ID [1-7] for which an object will be returned.
  * \param[out] object_arr
  *             A pointer to copy the objects into
  *
  * \return The number of object signatures copied. This number will be less than
- * object_count if there are fewer objects detected by the vision
- * sensor. Returns PROS_ERR if the port was invalid or an error occurred.
+ * object_count if there are fewer objects detected by the vision sensor.
+ * Returns PROS_ERR if the port was invalid, an error occurred, or fewer objects
+ * than size_id were found. All objects in object_arr that were not found are
+ * given VISION_OBJECT_ERR_SIG as their signature.
  */
 int32_t vision_read_by_sig(uint8_t port, const uint32_t size_id, const uint32_t sig_id, const uint32_t object_count,
                            vision_object_s_t* const object_arr);
@@ -264,7 +270,8 @@ int32_t vision_read_by_sig(uint8_t port, const uint32_t size_id, const uint32_t 
  * \param enabled
  * 		    Pass 0 to disable, 1 to enable
  *
- * \return 1 if no errors occurred, PROS_ERR otherwise
+ * \return 1 if the operation was successful or PROS_ERR if the operation
+ * failed, setting errno.
  */
 int32_t vision_set_auto_white_balance(uint8_t port, const uint8_t enable);
 
@@ -281,7 +288,8 @@ int32_t vision_set_auto_white_balance(uint8_t port, const uint8_t enable);
  * \param percent
  *        The new exposure percentage from [0,100]
  *
- * \return 1 if no errors occurred, PROS_ERR otherwise
+ * \return 1 if the operation was successful or PROS_ERR if the operation
+ * failed, setting errno.
  */
 int32_t vision_set_exposure(uint8_t port, const uint8_t percent);
 
@@ -298,7 +306,8 @@ int32_t vision_set_exposure(uint8_t port, const uint8_t percent);
  * \param rgb
  *        An RGB code to set the LED to
  *
- * \return 1 if no errors occured, PROS_ERR otherwise
+ * \return 1 if the operation was successful or PROS_ERR if the operation
+ * failed, setting errno.
  */
 int32_t vision_set_led(uint8_t port, const int32_t rgb);
 
@@ -315,7 +324,8 @@ int32_t vision_set_led(uint8_t port, const int32_t rgb);
  * \param rgb
  *        The new RGB white balance setting of the sensor
  *
- * \return 1 if no errors occurred, PROS_ERR otherwise
+ * \return 1 if the operation was successful or PROS_ERR if the operation
+ * failed, setting errno.
  */
 int32_t vision_set_white_balance(uint8_t port, const int32_t rgb);
 
@@ -336,14 +346,15 @@ int32_t vision_set_white_balance(uint8_t port, const int32_t rgb);
  * \param zero_point
  *        One of vision_zero_e_t to set the (0,0) coordinate for the FOV
  *
- * \return 1 if the operation was successful, or PROS_ERR if an error occurred
+ * \return 1 if the operation was successful or PROS_ERR if the operation
+ * failed, setting errno.
  */
 int32_t vision_set_zero_point(uint8_t port, vision_zero_e_t zero_point);
 
 #ifdef __cplusplus
-}
-}
+}  // namespace c
+}  // namespace pros
 }
 #endif
 
-#endif
+#endif  // _PROS_VISION_H_

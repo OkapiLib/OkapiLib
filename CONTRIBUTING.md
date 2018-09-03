@@ -27,7 +27,7 @@ This project and everyone participating in it is governed by OkapiLib's [Code of
 
 ## I don't want to read this whole thing I just have a question!!!
 
-You can get help for questions that can't be answered by [OkapiLib's docs](https://pros.cs.purdue.edu/v5/okapi/index.html) by [filing an issue](???????????????????).
+You can get help for questions that can't be answered by [OkapiLib's docs](https://pros.cs.purdue.edu/v5/okapi/index.html) by [filing an issue](https://github.com/OkapiLib/OkapiLib/issues/new/choose).
 
 ## How Can I Contribute?
 

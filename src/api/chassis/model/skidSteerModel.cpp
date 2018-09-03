@@ -133,11 +133,11 @@ void SkidSteerModel::arcade(const double iySpeed,
 }
 
 void SkidSteerModel::left(const double ispeed) const {
-  leftSideMotor->moveVelocity(static_cast<int16_t>(ispeed * maxVelocity));
+  leftSideMotor->moveVelocity(static_cast<int16_t>(std::clamp(ispeed, -1.0, 1.0) * maxVelocity));
 }
 
 void SkidSteerModel::right(const double ispeed) const {
-  rightSideMotor->moveVelocity(static_cast<int16_t>(ispeed * maxVelocity));
+  rightSideMotor->moveVelocity(static_cast<int16_t>(std::clamp(ispeed, -1.0, 1.0) * maxVelocity));
 }
 
 std::valarray<std::int32_t> SkidSteerModel::getSensorVals() const {
