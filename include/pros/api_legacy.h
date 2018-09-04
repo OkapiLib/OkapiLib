@@ -1,13 +1,11 @@
 /**
  * \file pros/api_legacy.h
  *
- * \brief PROS 2 Legacy API header
+ * PROS 2 Legacy API header
  *
- * Contains declarations for functions that are name-compatible with
- * the PROS 2 API. Some functions are not useful or cannot be
+ * Contains declarations for functions that are name-compatible with the PROS 2
+ * API. Some functions from the PROS 2 API are not useful or cannot be
  * implemented in PROS 3, but most common functions are available.
- *
- * Visit https://pros.cs.purdue.edu/v5/api/legacy to learn more.
  *
  * This file should not be modified by users, since it gets replaced whenever
  * a kernel upgrade occurs.
@@ -19,10 +17,19 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
 #ifndef _PROS_API_LEGACY_H_
 #define _PROS_API_LEGACY_H_
 
 #include "api.h"
+
+#ifdef __cplusplus
+#define _NAMESPACE pros::
+#define _CNAMESPACE pros::c::
+#else
+#define _NAMESPACE
+#define _CNAMESPACE
+#endif
 
 /**
  * From adi.h
@@ -44,8 +51,8 @@
 #define ultrasonicInit(portEcho, portPing) adi_ultrasonic_init(portEcho, portPing)
 #define ultrasonicShutdown(ult) adi_ultrasonic_shutdown(ult)
 
-typedef adi_encoder_t Encoder;
-typedef adi_ultrasonic_t Ultrasonic;
+typedef _CNAMESPACE adi_encoder_t Encoder;
+typedef _CNAMESPACE adi_ultrasonic_t Ultrasonic;
 
 /**
  * From llemu.h
@@ -85,8 +92,8 @@ typedef adi_ultrasonic_t Ultrasonic;
 #define mutexTake(mutex, blockTime) mutex_take(mutex, blockTime)
 #define mutexGive(mutex) mutex_give(mutex)
 
-typedef task_t TaskHandle;
-typedef mutex_t Mutex;
+typedef _NAMESPACE task_t TaskHandle;
+typedef _NAMESPACE mutex_t Mutex;
 
 /**
  * From motors.h
@@ -94,5 +101,8 @@ typedef mutex_t Mutex;
 #define motorSet(port, speed) motor_move(port, speed)
 #define motorGet(port) motor_get_voltage(port)
 #define motorStop(port) motor_move(port, 0)
+
+#undef _NAMESPACE
+#undef _CNAMESPACE
 
 #endif  // _PROS_API_LEGACY_H_

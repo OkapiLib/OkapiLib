@@ -111,6 +111,22 @@ void testUtils() {
         pros::Task::delay(1); // Emulate some computation
       }
     }
+
+    {
+      printf("Testing getDt and readDt\n");
+
+      Timer timer;
+
+      test("getDt should read zero the first time",
+           TEST_BODY(AssertThat, timer.getDt().convert(millisecond), Equals(0)));
+
+      pros::Task::delay(1000);
+
+      test("readDt should read the same as getDt but not affect getDt",
+           TEST_BODY(AssertThat, timer.readDt().convert(millisecond), EqualsWithDelta(1000, 5)));
+      test("getDt should read the dt the second time",
+           TEST_BODY(AssertThat, timer.getDt().convert(millisecond), EqualsWithDelta(1000, 5)));
+    }
   }
 }
 
