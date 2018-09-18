@@ -351,16 +351,34 @@ void SimulatedSystem::join() {
   thread.join();
 }
 
-MockAsyncController::MockAsyncController()
+MockAsyncPosIntegratedController::MockAsyncPosIntegratedController()
   : AsyncPosIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
 }
 
-MockAsyncController::MockAsyncController(const TimeUtil &itimeUtil)
+MockAsyncPosIntegratedController::MockAsyncPosIntegratedController(const TimeUtil &itimeUtil)
   : AsyncPosIntegratedController(std::make_shared<MockMotor>(), itimeUtil) {
 }
 
-bool MockAsyncController::isSettled() {
+bool MockAsyncPosIntegratedController::isSettled() {
   return isSettledOverride || AsyncPosIntegratedController::isSettled();
+}
+
+MockAsyncVelIntegratedController::MockAsyncVelIntegratedController()
+  : AsyncVelIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
+}
+
+bool MockAsyncVelIntegratedController::isSettled() {
+  return isSettledOverride || AsyncVelIntegratedController::isSettled();
+}
+
+void MockAsyncVelIntegratedController::setTarget(double itarget) {
+  lastTarget = itarget;
+
+  if (itarget > maxTarget) {
+    maxTarget = itarget;
+  }
+
+  AsyncVelIntegratedController::setTarget(itarget);
 }
 
 MockIterativeController::MockIterativeController()

@@ -10,6 +10,7 @@
 
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
+#include "okapi/api/control/async/asyncVelIntegratedController.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/util/flywheelSimulator.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
@@ -235,15 +236,28 @@ class SimulatedSystem : public ControllerInput<double>, public ControllerOutput<
   std::thread thread;
 };
 
-class MockAsyncController : public AsyncPosIntegratedController {
+class MockAsyncPosIntegratedController : public AsyncPosIntegratedController {
   public:
-  MockAsyncController();
+  MockAsyncPosIntegratedController();
 
-  explicit MockAsyncController(const TimeUtil &itimeUtil);
+  explicit MockAsyncPosIntegratedController(const TimeUtil &itimeUtil);
 
   bool isSettled() override;
 
   bool isSettledOverride{true};
+};
+
+class MockAsyncVelIntegratedController : public AsyncVelIntegratedController {
+  public:
+  MockAsyncVelIntegratedController();
+
+  void setTarget(double itarget) override;
+
+  bool isSettled() override;
+
+  bool isSettledOverride{true};
+  double lastTarget{0};
+  double maxTarget{0};
 };
 
 class MockIterativeController : public IterativePosPIDController {
