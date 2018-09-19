@@ -37,6 +37,12 @@ TEST_F(AsyncLinearMotionProfileControllerTest, WaitUntilSettledWorksWhenDisabled
   assertWaitUntilSettledWorksWhenDisabled(*controller);
 }
 
+TEST_F(AsyncLinearMotionProfileControllerTest, MoveToTest) {
+  controller->moveTo(0_ft, 3_ft);
+  EXPECT_EQ(output->lastTarget, 0);
+  EXPECT_GT(output->maxTarget, 0);
+}
+
 TEST_F(AsyncLinearMotionProfileControllerTest, MotorsAreStoppedAfterSettling) {
   controller->generatePath({0_m, 3_ft}, "A");
 

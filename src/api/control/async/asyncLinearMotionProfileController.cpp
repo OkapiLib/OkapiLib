@@ -198,6 +198,14 @@ void AsyncLinearMotionProfileController::waitUntilSettled() {
   logger->info("AsyncLinearMotionProfileController: Done waiting to settle");
 }
 
+void AsyncLinearMotionProfileController::moveTo(QLength iposition, QLength itarget) {
+  std::string name = reinterpret_cast<const char *>(this); // hmmmm...
+  generatePath({iposition, itarget}, name);
+  setTarget(name);
+  waitUntilSettled();
+  removePath(name);
+}
+
 QLength AsyncLinearMotionProfileController::getError() const {
   throw std::runtime_error("not implemented");
 }

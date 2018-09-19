@@ -25,7 +25,7 @@ namespace okapi {
 class AsyncLinearMotionProfileController : public AsyncPositionController<std::string, QLength> {
   public:
   /**
-   * An Async Controller which generates and follows 2D motion profiles.
+   * An Async Controller which generates and follows 1D motion profiles.
    *
    * @param imaxVel The maximum possible velocity.
    * @param imaxAccel The maximum possible acceleration.
@@ -90,6 +90,15 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * it has finished following a path. If no path is being followed, it is settled.
    */
   void waitUntilSettled() override;
+
+  /**
+   * Generates a new path from the position (typically the current position) to the target and
+   * blocks until the controller has settled. Does not save the path which was generated.
+   *
+   * @param iposition The starting position.
+   * @param itarget The target position.
+   */
+  void moveTo(QLength iposition, QLength itarget);
 
   /**
    * Returns the last error of the controller. This implementation always returns zero since the
