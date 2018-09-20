@@ -63,7 +63,7 @@ constexpr QMass operator"" _lb(unsigned long long int x) {
 constexpr QMass operator"" _st(unsigned long long int x) {
   return static_cast<double>(x) * stone;
 }
-} // namespace okapi
+} // namespace literals
 } // namespace okapi
 
 #endif
