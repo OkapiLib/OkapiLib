@@ -30,5 +30,10 @@ TEST(UnitTests, UnaryMinusTest) {
   EXPECT_EQ((1_ft - -4_ft).convert(foot), 5);
   EXPECT_EQ((1_ft - 4_ft).convert(foot), -3);
   EXPECT_EQ((1_s + -500_ms).convert(millisecond), 500);
+
+  // Make sure there are no side-effects
+  auto test = 5_in;
+  -test;
+  EXPECT_NE(test.convert(inch), -5);
 }
 } // namespace okapi

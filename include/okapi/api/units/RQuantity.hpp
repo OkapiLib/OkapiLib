@@ -40,9 +40,8 @@ class RQuantity {
     return *this;
   }
 
-  constexpr RQuantity const &operator-() {
-    value *= -1;
-    return *this;
+  constexpr RQuantity operator-() {
+    return RQuantity(value * -1);
   }
 
   // Returns the value of the quantity in multiples of the specified unit
