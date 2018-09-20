@@ -37,13 +37,13 @@ class ChassisModel : public ReadOnlyChassisModel {
   /**
    * Drive the robot in an arc (using open-loop control).
    * The algorithm is (approximately):
-   *   leftPower = ySpeed + zRotation
-   *   rightPower = ySpeed - zRotation
+   *   leftPower = forwardSpeed + yaw
+   *   rightPower = forwardSpeed - yaw
    *
-   * @param iySpeed speed on y axis (forward)
-   * @param izRotation speed around z axis (up)
+   * @param iforwadSpeed speed in forward direction
+   * @param iyaw speed around vertical axis
    */
-  virtual void driveVector(double iySpeed, double izRotation) const = 0;
+  virtual void driveVector(double iforwardSpeed, double iyaw) const = 0;
 
   /**
    * Turn the robot clockwise (using open-loop control).
@@ -69,11 +69,11 @@ class ChassisModel : public ReadOnlyChassisModel {
   /**
    * Drive the robot with an arcade drive layout. Uses voltage mode.
    *
-   * @param iySpeed speed on y axis (forward)
-   * @param izRotation speed around z axis (up)
+   * @param iforwardSpeed speed forward direction
+   * @param iyaw speed around vertical axis
    * @param ithreshold deadband on joystick values
    */
-  virtual void arcade(double iySpeed, double izRotation, double ithreshold = 0) const = 0;
+  virtual void arcade(double iforwardSpeed, double iyaw, double ithreshold = 0) const = 0;
 
   /**
    * Power the left side motors.

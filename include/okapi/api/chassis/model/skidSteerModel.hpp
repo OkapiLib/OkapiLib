@@ -88,11 +88,11 @@ class SkidSteerModel : public ChassisModel {
   /**
    * Drive the robot with an arcade drive layout. Uses voltage mode.
    *
-   * @param iySpeed speed on y axis (forward)
-   * @param izRotation speed around z axis (up)
+   * @param iforwardSpeed speed in forward direction
+   * @param iyaw speed around vertical axis
    * @param ithreshold deadband on joystick values
    */
-  void arcade(double iySpeed, double izRotation, double ithreshold = 0) const override;
+  void arcade(double iforwardSpeed, double iyaw, double ithreshold = 0) const override;
 
   /**
    * Power the left side motors. Uses velocity mode.

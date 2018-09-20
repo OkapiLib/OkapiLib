@@ -64,13 +64,13 @@ class XDriveModel : public ChassisModel {
   /**
    * Drive the robot in an arc (using open-loop control). Uses velocity mode.
    * The algorithm is (approximately):
-   *   leftPower = ySpeed + zRotation
-   *   rightPower = ySpeed - zRotation
+   *   leftPower = forwardSpeed + yaw
+   *   rightPower = forwardSpeed - yaw
    *
-   * @param iySpeed speed on y axis (forward)
-   * @param izRotation speed around z axis (up)
+   * @param iforwardSpeed speed in forward direction
+   * @param iyaw speed around vertical axis
    */
-  void driveVector(double iySpeed, double izRotation) const override;
+  void driveVector(double iforwardSpeed, double iyaw) const override;
 
   /**
    * Turn the robot clockwise (using open-loop control). Uses velocity mode.
@@ -96,22 +96,22 @@ class XDriveModel : public ChassisModel {
   /**
    * Drive the robot with an arcade drive layout. Uses voltage mode.
    *
-   * @param iySpeed speed on y axis (forward)
-   * @param izRotation speed around z axis (up)
+   * @param iforwardSpeed speed in forward direction
+   * @param iyaw speed around vertical axis
    * @param ithreshold deadband on joystick values
    */
-  void arcade(double iySpeed, double izRotation, double ithreshold = 0) const override;
+  void arcade(double iforwardSpeed, double iyaw, double ithreshold = 0) const override;
 
   /**
    * Drive the robot with an arcade drive layout. Uses voltage mode.
    *
-   * @param izSpeed speed on x axis (right)
-   * @param iySpeed speed on y axis (forward)
-   * @param izRotation speed around z axis (up)
+   * @param irightSpeed speed to the right
+   * @param iforwardSpeed speed in forward direction
+   * @param iyaw speed around vertical axis
    * @param ithreshold deadband on joystick values
    */
   virtual void
-  xArcade(double ixSpeed, double iySpeed, double izRotation, double ithreshold = 0) const;
+  xArcade(double irightSpeed, double iforwardSpeed, double iyaw, double ithreshold = 0) const;
 
   /**
    * Power the left side motors. Uses velocity mode.
