@@ -19,7 +19,8 @@ namespace okapi {
  * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are whatever
  * units the motor is in.
  */
-class AsyncVelIntegratedController : public AsyncVelocityController<double, double> {
+class AsyncVelIntegratedController : public AsyncVelocityController<double, double>,
+                                     public ControllerOutput<double> {
   public:
   AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor, const TimeUtil &itimeUtil);
 
@@ -82,6 +83,8 @@ class AsyncVelIntegratedController : public AsyncVelocityController<double, doub
    * implementation-dependent.
    */
   void waitUntilSettled() override;
+
+  void controllerSet(double ivalue) override;
 
   protected:
   Logger *logger;

@@ -9,7 +9,7 @@
 #define _OKAPI_ASYNCLINEARMOTIONPROFILECONTROLLER_HPP_
 
 #include "okapi/api/control/async/asyncPositionController.hpp"
-#include "okapi/api/control/async/asyncVelocityController.hpp"
+#include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/units/QAngle.hpp"
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/util/logging.hpp"
@@ -32,12 +32,11 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * @param imaxJerk The maximum possible jerk.
    * @param ioutput The output to control.
    */
-  AsyncLinearMotionProfileController(
-    const TimeUtil &itimeUtil,
-    double imaxVel,
-    double imaxAccel,
-    double imaxJerk,
-    std::shared_ptr<AsyncVelocityController<double, double>> ioutput);
+  AsyncLinearMotionProfileController(const TimeUtil &itimeUtil,
+                                     double imaxVel,
+                                     double imaxAccel,
+                                     double imaxJerk,
+                                     std::shared_ptr<ControllerOutput<double>> ioutput);
 
   AsyncLinearMotionProfileController(AsyncLinearMotionProfileController &&other) noexcept;
 
@@ -165,7 +164,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   double maxVel{0};
   double maxAccel{0};
   double maxJerk{0};
-  std::shared_ptr<AsyncVelocityController<double, double>> output;
+  std::shared_ptr<ControllerOutput<double>> output;
   TimeUtil timeUtil;
 
   std::string currentPath{""};

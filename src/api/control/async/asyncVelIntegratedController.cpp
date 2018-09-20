@@ -76,4 +76,14 @@ void AsyncVelIntegratedController::waitUntilSettled() {
   }
   logger->info("AsyncVelIntegratedController: Done waiting to settle");
 }
+
+void AsyncVelIntegratedController::controllerSet(double ivalue) {
+  hasFirstTarget = true;
+
+  if (!controllerIsDisabled) {
+    motor->controllerSet(ivalue);
+  }
+
+  lastTarget = ivalue;
+}
 } // namespace okapi

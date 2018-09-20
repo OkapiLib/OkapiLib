@@ -14,7 +14,7 @@ AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
   const double imaxVel,
   const double imaxAccel,
   const double imaxJerk,
-  std::shared_ptr<AsyncVelocityController<double, double>> ioutput)
+  std::shared_ptr<ControllerOutput<double>> ioutput)
   : logger(Logger::instance()),
     maxVel(imaxVel),
     maxAccel(imaxAccel),
@@ -161,7 +161,7 @@ void AsyncLinearMotionProfileController::loop() {
                       std::to_string(path->second.length));
 
         executeSinglePath(path->second, timeUtil.getRate());
-        output->setTarget(0);
+        output->controllerSet(0);
 
         logger->info("AsyncLinearMotionProfileController: Done moving");
       }
@@ -176,7 +176,7 @@ void AsyncLinearMotionProfileController::loop() {
 void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair &path,
                                                            std::unique_ptr<AbstractRate> rate) {
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
-    output->setTarget(path.segment[i].velocity / maxVel);
+    output->controllerSet(path.segment[i].velocity / maxVel);
     rate->delayUntil(1_ms);
   }
 }
