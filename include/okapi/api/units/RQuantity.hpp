@@ -40,6 +40,11 @@ class RQuantity {
     return *this;
   }
 
+  constexpr RQuantity const &operator-() {
+    value *= -1;
+    return *this;
+  }
+
   // Returns the value of the quantity in multiples of the specified unit
   constexpr double convert(const RQuantity &rhs) const {
     return value / rhs.value;
