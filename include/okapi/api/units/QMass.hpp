@@ -26,7 +26,7 @@ constexpr QMass ounce = 0.028349523125 * kg;
 constexpr QMass pound = 16 * ounce;
 constexpr QMass stone = 14 * pound;
 
-inline namespace okapi {
+inline namespace literals {
 constexpr QMass operator"" _kg(long double x) {
   return QMass(x);
 }
@@ -63,7 +63,7 @@ constexpr QMass operator"" _lb(unsigned long long int x) {
 constexpr QMass operator"" _st(unsigned long long int x) {
   return static_cast<double>(x) * stone;
 }
-} // namespace okapi
+} // namespace literals
 } // namespace okapi
 
 #endif
