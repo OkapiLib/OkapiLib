@@ -49,6 +49,7 @@
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
+#include "okapi/impl/device/rotarysensor/adiGyro.hpp"
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/potentiometer.hpp"
 #include "okapi/impl/device/vision.hpp"
