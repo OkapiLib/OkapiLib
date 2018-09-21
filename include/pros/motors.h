@@ -54,7 +54,7 @@ namespace c {
  * \return 1 if the operation was successful or PROS_ERR if the operation
  * failed, setting errno.
  */
-int32_t motor_move(uint8_t port, const int8_t voltage);
+int32_t motor_move(uint8_t port, int32_t voltage);
 
 /**
  * Sets the target absolute position for the motor to move to.
@@ -355,6 +355,22 @@ typedef enum motor_fault_e {
 	E_MOTOR_FAULT_DRV_OVER_CURRENT = 0x08  // Indicates an h-bridge over current
 } motor_fault_e_t;
 
+#ifdef PROS_USE_SIMPLE_NAMES
+#ifdef __cplusplus
+#define MOTOR_FAULT_NO_FAULTS pros::E_MOTOR_FAULT_NO_FAULTS
+#define MOTOR_FAULT_MOTOR_OVER_TEMP pros::E_MOTOR_FAULT_MOTOR_OVER_TEMP
+#define MOTOR_FAULT_DRIVER_FAULT pros::E_MOTOR_FAULT_DRIVER_FAULT
+#define MOTOR_FAULT_OVER_CURRENT pros::E_MOTOR_FAULT_DRV_OVER_CURRENT
+#define MOTOR_FAULT_DRV_OVER_CURRENT pros::E_MOTOR_FAULT_DRV_OVER_CURRENT
+#else
+#define MOTOR_FAULT_NO_FAULTS E_MOTOR_FAULT_NO_FAULTS
+#define MOTOR_FAULT_MOTOR_OVER_TEMP E_MOTOR_FAULT_MOTOR_OVER_TEMP
+#define MOTOR_FAULT_DRIVER_FAULT E_MOTOR_FAULT_DRIVER_FAULT
+#define MOTOR_FAULT_OVER_CURRENT E_MOTOR_FAULT_DRV_OVER_CURRENT
+#define MOTOR_FAULT_DRV_OVER_CURRENT E_MOTOR_FAULT_DRV_OVER_CURRENT
+#endif
+#endif
+
 #ifdef __cplusplus
 namespace c {
 #endif
@@ -386,6 +402,20 @@ typedef enum motor_flag_e {
 	E_MOTOR_FLAGS_ZERO_VELOCITY = 0x02,  // Analogous to motor_is_stopped()
 	E_MOTOR_FLAGS_ZERO_POSITION = 0x04   // Analogous to motor_get_zero_position_flag()
 } motor_flag_e_t;
+
+#ifdef PROS_USE_SIMPLE_NAMES
+#ifdef __cplusplus
+#define MOTOR_FLAGS_NONE pros::E_MOTOR_FLAGS_NONE
+#define MOTOR_FLAGS_BUSY pros::E_MOTOR_FLAGS_BUSY
+#define MOTOR_FLAGS_ZERO_VELOCITY pros::E_MOTOR_FLAGS_ZERO_VELOCITY
+#define MOTOR_FLAGS_ZERO_POSITION pros::E_MOTOR_FLAGS_ZERO_POSITION
+#else
+#define MOTOR_FLAGS_NONE E_MOTOR_FLAGS_NONE
+#define MOTOR_FLAGS_BUSY E_MOTOR_FLAGS_BUSY
+#define MOTOR_FLAGS_ZERO_VELOCITY E_MOTOR_FLAGS_ZERO_VELOCITY
+#define MOTOR_FLAGS_ZERO_POSITION E_MOTOR_FLAGS_ZERO_POSITION
+#endif
+#endif
 
 #ifdef __cplusplus
 namespace c {
@@ -532,9 +562,12 @@ typedef enum motor_brake_mode_e {
  * Indicates the units used by the motor encoders.
  */
 typedef enum motor_encoder_units_e {
-	E_MOTOR_ENCODER_DEGREES = 0,
-	E_MOTOR_ENCODER_ROTATIONS = 1,
-	E_MOTOR_ENCODER_COUNTS = 2,
+	E_MOTOR_ENCODER_DEGREES = 0,    // Position is recorded as angle in degrees
+	                                // as a floating point number
+	E_MOTOR_ENCODER_ROTATIONS = 1,  // Position is recorded as angle in rotations
+	                                // as a floating point number
+	E_MOTOR_ENCODER_COUNTS = 2,     // Position is recorded as raw encoder ticks
+	                                // as a whole number
 	E_MOTOR_ENCODER_INVALID = INT32_MAX
 } motor_encoder_units_e_t;
 
@@ -547,6 +580,38 @@ typedef enum motor_gearset_e {
 	E_MOTOR_GEARSET_06 = 2,  // 6:1, 600 RPM, Blue gear set
 	E_MOTOR_GEARSET_INVALID = INT32_MAX
 } motor_gearset_e_t;
+
+#ifdef PROS_USE_SIMPLE_NAMES
+#ifdef __cplusplus
+#define MOTOR_BRAKE_COAST pros::E_MOTOR_BRAKE_COAST
+#define MOTOR_BRAKE_BRAKE pros::E_MOTOR_BRAKE_BRAKE
+#define MOTOR_BRAKE_HOLD pros::E_MOTOR_BRAKE_HOLD
+#define MOTOR_BRAKE_INVALID pros::E_MOTOR_BRAKE_INVALID
+#define MOTOR_ENCODER_DEGREES pros::E_MOTOR_ENCODER_DEGREES
+#define MOTOR_ENCODER_ROTATIONS pros::E_MOTOR_ENCODER_ROTATIONS
+#define MOTOR_ENCODER_COUNTS pros::E_MOTOR_ENCODER_COUNTS
+#define MOTOR_ENCODER_INVALID pros::E_MOTOR_ENCODER_INVALID
+#define MOTOR_GEARSET_36 pros::E_MOTOR_GEARSET_36
+#define MOTOR_GEARSET_18 pros::E_MOTOR_GEARSET_18
+#define MOTOR_GEARSET_06 pros::E_MOTOR_GEARSET_06
+#define MOTOR_GEARSET_6 pros::E_MOTOR_GEARSET_06
+#define MOTOR_GEARSET_INVALID pros::E_MOTOR_GEARSET_INVALID
+#else
+#define MOTOR_BRAKE_COAST E_MOTOR_BRAKE_COAST
+#define MOTOR_BRAKE_BRAKE E_MOTOR_BRAKE_BRAKE
+#define MOTOR_BRAKE_HOLD E_MOTOR_BRAKE_HOLD
+#define MOTOR_BRAKE_INVALID E_MOTOR_BRAKE_INVALID
+#define MOTOR_ENCODER_DEGREES E_MOTOR_ENCODER_DEGREES
+#define MOTOR_ENCODER_ROTATIONS E_MOTOR_ENCODER_ROTATIONS
+#define MOTOR_ENCODER_COUNTS E_MOTOR_ENCODER_COUNTS
+#define MOTOR_ENCODER_INVALID E_MOTOR_ENCODER_INVALID
+#define MOTOR_GEARSET_36 E_MOTOR_GEARSET_36
+#define MOTOR_GEARSET_18 E_MOTOR_GEARSET_18
+#define MOTOR_GEARSET_06 E_MOTOR_GEARSET_06
+#define MOTOR_GEARSET_6 E_MOTOR_GEARSET_06
+#define MOTOR_GEARSET_INVALID E_MOTOR_GEARSET_INVALID
+#endif
+#endif
 
 /**
  * Holds the information about a Motor's position or velocity PID controls.
