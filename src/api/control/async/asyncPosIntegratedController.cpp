@@ -81,4 +81,14 @@ void AsyncPosIntegratedController::waitUntilSettled() {
 
   logger->info("AsyncPosIntegratedController: Done waiting to settle");
 }
+
+void AsyncPosIntegratedController::controllerSet(double ivalue) {
+  hasFirstTarget = true;
+
+  if (!controllerIsDisabled) {
+    motor->controllerSet(ivalue);
+  }
+
+  lastTarget = ivalue * toUnderlyingType(motor->getGearing());
+}
 } // namespace okapi

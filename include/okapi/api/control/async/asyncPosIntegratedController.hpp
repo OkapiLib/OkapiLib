@@ -18,7 +18,8 @@ namespace okapi {
  * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are whatever
  * units the motor is in.
  */
-class AsyncPosIntegratedController : public AsyncPositionController<double, double> {
+class AsyncPosIntegratedController : public AsyncPositionController<double, double>,
+                                     public ControllerOutput<double> {
   public:
   AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor, const TimeUtil &itimeUtil);
 
@@ -81,6 +82,14 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
    * implementation-dependent.
    */
   void waitUntilSettled() override;
+
+  /**
+   * Writes the value of the controller output. This method might be automatically called in another
+   * thread by the controller. The range of input values is expected to be [-1, 1].
+   *
+   * @param ivalue the controller's output in the range [-1, 1]
+   */
+  void controllerSet(double ivalue) override;
 
   protected:
   Logger *logger;
