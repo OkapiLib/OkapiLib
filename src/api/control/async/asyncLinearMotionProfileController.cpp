@@ -49,7 +49,7 @@ AsyncLinearMotionProfileController::~AsyncLinearMotionProfileController() {
   delete task;
 }
 
-void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLength> iwaypoints,
+void AsyncLinearMotionProfileController::generatePath(std::initializer_list<double> iwaypoints,
                                                       const std::string &ipathId) {
   if (iwaypoints.size() == 0) {
     // No point in generating a path
@@ -61,7 +61,7 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
   std::vector<Waypoint> points;
   points.reserve(iwaypoints.size());
   for (auto &point : iwaypoints) {
-    points.push_back(Waypoint{point.convert(meter), 0, 0});
+    points.push_back(Waypoint{point, 0, 0});
   }
 
   TrajectoryCandidate candidate;
@@ -184,7 +184,7 @@ void AsyncLinearMotionProfileController::loop() {
 void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair &path,
                                                            std::unique_ptr<AbstractRate> rate) {
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
-    currentProfilePosition = path.segment[i].position * meter;
+    currentProfilePosition = path.segment[i].position;
     output->controllerSet(path.segment[i].velocity / maxVel);
     rate->delayUntil(1_ms);
   }
@@ -207,7 +207,7 @@ void AsyncLinearMotionProfileController::waitUntilSettled() {
   logger->info("AsyncLinearMotionProfileController: Done waiting to settle");
 }
 
-void AsyncLinearMotionProfileController::moveTo(QLength iposition, QLength itarget) {
+void AsyncLinearMotionProfileController::moveTo(double iposition, double itarget) {
   std::string name = reinterpret_cast<const char *>(this); // hmmmm...
   generatePath({iposition, itarget}, name);
   setTarget(name);
@@ -215,13 +215,12 @@ void AsyncLinearMotionProfileController::moveTo(QLength iposition, QLength itarg
   removePath(name);
 }
 
-QLength AsyncLinearMotionProfileController::getError() const {
+double AsyncLinearMotionProfileController::getError() const {
   if (const auto path = paths.find(getTarget()); path == paths.end()) {
-    return 0_m;
+    return 0;
   } else {
     // The last position in the path is the target position
-    return (path->second.segment[path->second.length - 1].position * meter) -
-           currentProfilePosition;
+    return path->second.segment[path->second.length - 1].position - currentProfilePosition;
   }
 }
 

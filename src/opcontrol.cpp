@@ -26,7 +26,7 @@ void opcontrol() {
   mpCnt.startThread();
 
   Logger::initialize(TimeUtilFactory::create().getTimer(), "/ser/sout", Logger::LogLevel::debug);
-  mpCnt.generatePath({0_in, 12_in}, "A");
+  mpCnt.generatePath({0, 12}, "A");
   mpCnt.setTarget("A");
   mpCnt.waitUntilSettled();
 }

@@ -22,7 +22,7 @@ extern "C" {
 }
 
 namespace okapi {
-class AsyncLinearMotionProfileController : public AsyncPositionController<std::string, QLength> {
+class AsyncLinearMotionProfileController : public AsyncPositionController<std::string, double> {
   public:
   /**
    * An Async Controller which generates and follows 1D motion profiles.
@@ -53,7 +53,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * @param iwaypoints The waypoints to hit on the path.
    * @param ipathId A unique identifier to save the path with.
    */
-  void generatePath(std::initializer_list<QLength> iwaypoints, const std::string &ipathId);
+  void generatePath(std::initializer_list<double> iwaypoints, const std::string &ipathId);
 
   /**
    * Removes a path and frees the memory it used.
@@ -110,7 +110,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * @param iposition The starting position.
    * @param itarget The target position.
    */
-  void moveTo(QLength iposition, QLength itarget);
+  void moveTo(double iposition, double itarget);
 
   /**
    * Returns the last error of the controller. Returns zero if there is no path currently being
@@ -118,7 +118,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    *
    * @return the last error
    */
-  QLength getError() const override;
+  double getError() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
@@ -177,7 +177,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   double maxAccel{0};
   double maxJerk{0};
   std::shared_ptr<ControllerOutput<double>> output;
-  QLength currentProfilePosition{0_m};
+  double currentProfilePosition{0};
   TimeUtil timeUtil;
 
   std::string currentPath{""};

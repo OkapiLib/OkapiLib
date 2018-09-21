@@ -38,13 +38,13 @@ TEST_F(AsyncLinearMotionProfileControllerTest, WaitUntilSettledWorksWhenDisabled
 }
 
 TEST_F(AsyncLinearMotionProfileControllerTest, MoveToTest) {
-  controller->moveTo(0_ft, 3_ft);
+  controller->moveTo(0, 3);
   EXPECT_EQ(output->lastControllerOutputSet, 0);
   EXPECT_GT(output->maxControllerOutputSet, 0);
 }
 
 TEST_F(AsyncLinearMotionProfileControllerTest, MotorsAreStoppedAfterSettling) {
-  controller->generatePath({0_m, 3_ft}, "A");
+  controller->generatePath({0, 3}, "A");
 
   EXPECT_EQ(controller->getPaths().front(), "A");
   EXPECT_EQ(controller->getPaths().size(), 1);
@@ -68,8 +68,8 @@ TEST_F(AsyncLinearMotionProfileControllerTest, WrongPathNameDoesNotMoveAnything)
 }
 
 TEST_F(AsyncLinearMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
-  controller->generatePath({0_m, 3_ft}, "A");
-  controller->generatePath({0_m, 4_ft}, "A");
+  controller->generatePath({0, 3}, "A");
+  controller->generatePath({0, 4}, "A");
 
   EXPECT_EQ(controller->getPaths().front(), "A");
   EXPECT_EQ(controller->getPaths().size(), 1);
@@ -86,7 +86,7 @@ TEST_F(AsyncLinearMotionProfileControllerTest, ZeroWaypointsDoesNothing) {
 }
 
 TEST_F(AsyncLinearMotionProfileControllerTest, RemoveAPath) {
-  controller->generatePath({0_m, 3_ft}, "A");
+  controller->generatePath({0, 3}, "A");
 
   EXPECT_EQ(controller->getPaths().front(), "A");
   EXPECT_EQ(controller->getPaths().size(), 1);
@@ -110,18 +110,18 @@ TEST_F(AsyncLinearMotionProfileControllerTest, ControllerSetChangesTarget) {
 }
 
 TEST_F(AsyncLinearMotionProfileControllerTest, GetErrorWithNoTarget) {
-  EXPECT_EQ(controller->getError().convert(meter), 0);
+  EXPECT_EQ(controller->getError(), 0);
 }
 
 TEST_F(AsyncLinearMotionProfileControllerTest, GetErrorWithNonexistentTarget) {
   controller->setTarget("A");
-  EXPECT_EQ(controller->getError().convert(meter), 0);
+  EXPECT_EQ(controller->getError(), 0);
 }
 
 TEST_F(AsyncLinearMotionProfileControllerTest, GetErrorWithCorrectTarget) {
-  controller->generatePath({0_m, 3_ft}, "A");
+  controller->generatePath({0, 3}, "A");
   controller->setTarget("A");
 
   // Pathfinder generates an approximate path so this could be slightly off
-  EXPECT_NEAR(controller->getError().convert(foot), 3, 0.1);
+  EXPECT_NEAR(controller->getError(), 3, 0.1);
 }
