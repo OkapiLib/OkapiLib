@@ -12,7 +12,7 @@
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
 
 namespace okapi {
-class ADIGyro : public ContinuousRotarySensor, public ControllerInput<double> {
+class ADIGyro : public ContinuousRotarySensor {
   public:
   /**
    * A gyroscope on the given ADI port. If the port has not previously been configured as a gyro,
