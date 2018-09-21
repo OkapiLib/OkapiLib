@@ -61,7 +61,7 @@ bool AsyncVelIntegratedController::isDisabled() const {
 
 void AsyncVelIntegratedController::resumeMovement() {
   if (isDisabled()) {
-    motor->moveVoltage(0);
+    motor->moveVelocity(0);
   } else {
     if (hasFirstTarget) {
       setTarget(lastTarget);

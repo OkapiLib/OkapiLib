@@ -143,6 +143,7 @@ class MockMotor : public AbstractMotor {
   mutable std::int16_t maxVelocity{0};
   mutable std::int16_t lastVoltage{0};
   mutable std::int16_t lastPosition{0};
+  mutable std::int32_t lastProfiledMaxVelocity{0};
   AbstractMotor::gearset gearset;
   AbstractMotor::encoderUnits encoderUnits;
   AbstractMotor::brakeMode brakeMode;

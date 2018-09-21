@@ -28,15 +28,18 @@ class AsyncControllerFactory {
    * A position controller that uses the V5 motor's onboard control.
    *
    * @param imotor controller input (from the integrated encoder) and output
+   * @param imaxVelocity the maximum velocity during a profiled movement
    */
-  static AsyncPosIntegratedController posIntegrated(Motor imotor);
+  static AsyncPosIntegratedController posIntegrated(Motor imotor, std::int32_t imaxVelocity = 600);
 
   /**
    * A position controller that uses the V5 motor's onboard control.
    *
    * @param imotor controller input (from the integrated encoder) and output
+   * @param imaxVelocity the maximum velocity during a profiled movement
    */
-  static AsyncPosIntegratedController posIntegrated(MotorGroup imotor);
+  static AsyncPosIntegratedController posIntegrated(MotorGroup imotor,
+                                                    std::int32_t imaxVelocity = 600);
 
   /**
    * A velocity controller that uses the V5 motor's onboard control.

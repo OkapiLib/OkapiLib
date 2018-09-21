@@ -35,11 +35,13 @@ void MockMotor::controllerSet(const double ivalue) {
 
 int32_t MockMotor::moveAbsolute(const double iposition, const std::int32_t ivelocity) const {
   lastPosition = (int16_t)iposition;
+  lastProfiledMaxVelocity = ivelocity;
   return 0;
 }
 
 int32_t MockMotor::moveRelative(const double iposition, const std::int32_t ivelocity) const {
   lastPosition += iposition;
+  lastProfiledMaxVelocity = ivelocity;
   return 0;
 }
 
