@@ -40,8 +40,8 @@ class ChassisModel : public ReadOnlyChassisModel {
    *   leftPower = forwardSpeed + yaw
    *   rightPower = forwardSpeed - yaw
    *
-   * @param iforwadSpeed speed in forward direction
-   * @param iyaw speed around vertical axis
+   * @param iforwadSpeed speed in the forward direction
+   * @param iyaw speed around the vertical axis
    */
   virtual void driveVector(double iforwardSpeed, double iyaw) const = 0;
 
@@ -70,7 +70,7 @@ class ChassisModel : public ReadOnlyChassisModel {
    * Drive the robot with an arcade drive layout. Uses voltage mode.
    *
    * @param iforwardSpeed speed forward direction
-   * @param iyaw speed around vertical axis
+   * @param iyaw speed around the vertical axis
    * @param ithreshold deadband on joystick values
    */
   virtual void arcade(double iforwardSpeed, double iyaw, double ithreshold = 0) const = 0;

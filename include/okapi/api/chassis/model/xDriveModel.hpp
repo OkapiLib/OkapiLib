@@ -67,8 +67,8 @@ class XDriveModel : public ChassisModel {
    *   leftPower = forwardSpeed + yaw
    *   rightPower = forwardSpeed - yaw
    *
-   * @param iforwardSpeed speed in forward direction
-   * @param iyaw speed around vertical axis
+   * @param iforwardSpeed speed in the forward direction
+   * @param iyaw speed around the vertical axis
    */
   void driveVector(double iforwardSpeed, double iyaw) const override;
 
@@ -96,8 +96,8 @@ class XDriveModel : public ChassisModel {
   /**
    * Drive the robot with an arcade drive layout. Uses voltage mode.
    *
-   * @param iforwardSpeed speed in forward direction
-   * @param iyaw speed around vertical axis
+   * @param iforwardSpeed speed in the forward direction
+   * @param iyaw speed around the vertical axis
    * @param ithreshold deadband on joystick values
    */
   void arcade(double iforwardSpeed, double iyaw, double ithreshold = 0) const override;
@@ -106,8 +106,8 @@ class XDriveModel : public ChassisModel {
    * Drive the robot with an arcade drive layout. Uses voltage mode.
    *
    * @param irightSpeed speed to the right
-   * @param iforwardSpeed speed in forward direction
-   * @param iyaw speed around vertical axis
+   * @param iforwardSpeed speed in the forward direction
+   * @param iyaw speed around the vertical axis
    * @param ithreshold deadband on joystick values
    */
   virtual void
