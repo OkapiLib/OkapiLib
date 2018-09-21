@@ -8,6 +8,7 @@
 #ifndef _OKAPI_CLOSEDLOOPCONTROLLER_HPP_
 #define _OKAPI_CLOSEDLOOPCONTROLLER_HPP_
 
+#include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/units/QTime.hpp"
 
 namespace okapi {
@@ -17,7 +18,8 @@ namespace okapi {
  * @tparam Input The target/input type.
  * @tparam Output The error/output type.
  */
-template <typename Input, typename Output> class ClosedLoopController {
+template <typename Input, typename Output>
+class ClosedLoopController : public ControllerOutput<Input> {
   public:
   virtual ~ClosedLoopController() = default;
 

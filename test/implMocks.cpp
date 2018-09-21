@@ -387,7 +387,7 @@ bool MockAsyncVelIntegratedController::isSettled() {
   return isSettledOverride || AsyncVelIntegratedController::isSettled();
 }
 
-void MockAsyncVelIntegratedController::setTarget(double itarget) {
+void MockAsyncVelIntegratedController::setTarget(const double itarget) {
   lastTarget = itarget;
 
   if (itarget > maxTarget) {
@@ -397,7 +397,7 @@ void MockAsyncVelIntegratedController::setTarget(double itarget) {
   AsyncVelIntegratedController::setTarget(itarget);
 }
 
-void MockAsyncVelIntegratedController::controllerSet(double ivalue) {
+void MockAsyncVelIntegratedController::controllerSet(const double ivalue) {
   lastControllerOutputSet = ivalue;
 
   if (ivalue > maxControllerOutputSet) {
@@ -514,5 +514,20 @@ void assertControllerFollowsTargetLifecycle(ClosedLoopController<double, double>
   EXPECT_DOUBLE_EQ(controller.getError(), 100);
   controller.setTarget(0);
   EXPECT_DOUBLE_EQ(controller.getError(), 0);
+}
+
+void assertIterativeControllerScalesControllerSetTargets(
+  IterativeController<double, double> &controller) {
+  EXPECT_DOUBLE_EQ(controller.getTarget(), 0);
+  controller.setOutputLimits(-100, 100);
+  controller.controllerSet(0.5);
+  EXPECT_DOUBLE_EQ(controller.getTarget(), 50);
+}
+
+void assertAsyncWrapperScalesControllerSetTargets(AsyncWrapper<double, double> &controller) {
+  EXPECT_DOUBLE_EQ(controller.getTarget(), 0);
+  controller.setOutputLimits(-100, 100);
+  controller.controllerSet(0.5);
+  EXPECT_DOUBLE_EQ(controller.getTarget(), 50);
 }
 } // namespace okapi

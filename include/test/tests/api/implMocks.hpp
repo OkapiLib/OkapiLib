@@ -11,6 +11,7 @@
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
 #include "okapi/api/control/async/asyncVelIntegratedController.hpp"
+#include "okapi/api/control/async/asyncWrapper.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/util/flywheelSimulator.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
@@ -325,6 +326,12 @@ void assertIterativeControllerFollowsDisableLifecycle(
   IterativeController<double, double> &controller);
 
 void assertControllerFollowsTargetLifecycle(ClosedLoopController<double, double> &controller);
+
+void assertIterativeControllerScalesControllerSetTargets(
+  IterativeController<double, double> &controller);
+
+void assertAsyncWrapperScalesControllerSetTargets(
+  AsyncWrapper<double, double> &controller);
 
 } // namespace okapi
 

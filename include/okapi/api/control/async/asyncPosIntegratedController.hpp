@@ -18,8 +18,7 @@ namespace okapi {
  * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are whatever
  * units the motor is in.
  */
-class AsyncPosIntegratedController : public AsyncPositionController<double, double>,
-                                     public ControllerOutput<double> {
+class AsyncPosIntegratedController : public AsyncPositionController<double, double> {
   public:
   AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor, const TimeUtil &itimeUtil);
 

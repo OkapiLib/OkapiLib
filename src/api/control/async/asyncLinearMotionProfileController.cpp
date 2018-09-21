@@ -135,9 +135,13 @@ std::vector<std::string> AsyncLinearMotionProfileController::getPaths() {
   return keys;
 }
 
-void AsyncLinearMotionProfileController::setTarget(std::string ipathId) {
+void AsyncLinearMotionProfileController::setTarget(const std::string ipathId) {
   currentPath = ipathId;
   isRunning = true;
+}
+
+void AsyncLinearMotionProfileController::controllerSet(const std::string ivalue) {
+  setTarget(ivalue);
 }
 
 std::string AsyncLinearMotionProfileController::getTarget() {

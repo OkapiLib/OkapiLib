@@ -54,6 +54,10 @@ TEST_F(IterativeVelPIDControllerTest, TargetLifecycle) {
   assertControllerFollowsTargetLifecycle(*controller);
 }
 
+TEST_F(IterativeVelPIDControllerTest, ScalesControllerSetTarget) {
+  assertIterativeControllerScalesControllerSetTargets(*controller);
+}
+
 TEST_F(IterativeVelPIDControllerTest, KeepsTrackOfReadingsWhenDisabled) {
   EXPECT_EQ(controller->getError(), 0);
   controller->flipDisable(true);

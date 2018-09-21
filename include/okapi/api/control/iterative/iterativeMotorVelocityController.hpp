@@ -37,6 +37,14 @@ class IterativeMotorVelocityController : public IterativeVelocityController<doub
   void setTarget(double itarget) override;
 
   /**
+   * Writes the value of the controller output. This method might be automatically called in another
+   * thread by the controller. The range of input values is expected to be [-1, 1].
+   *
+   * @param ivalue the controller's output in the range [-1, 1]
+   */
+  void controllerSet(double ivalue) override;
+
+  /**
    * Gets the last set target, or the default target if none was set.
    *
    * @return the last target
@@ -47,6 +55,20 @@ class IterativeMotorVelocityController : public IterativeVelocityController<doub
    * Returns the last calculated output of the controller.
    */
   double getOutput() const override;
+
+  /**
+   * Get the upper output bound.
+   *
+   * @return  the upper output bound
+   */
+  double getMaxOutput() override;
+
+  /**
+   * Get the lower output bound.
+   *
+   * @return the lower output bound
+   */
+  double getMinOutput() override;
 
   /**
    * Returns the last error of the controller.

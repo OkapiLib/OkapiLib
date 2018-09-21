@@ -66,6 +66,10 @@ TEST_F(IterativeMotorVelocityControllerTest, TargetLifecycle) {
   assertControllerFollowsTargetLifecycle(*controller);
 }
 
+TEST_F(IterativeMotorVelocityControllerTest, ScalesControllerSetTarget) {
+  assertIterativeControllerScalesControllerSetTargets(*controller);
+}
+
 TEST_F(IterativeMotorVelocityControllerTest, StaticFrictionGainUsesTargetSign) {
   velController->setGains(0, 0, 0, 0.1);
 

@@ -34,9 +34,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   /**
    * An Async Controller which generates and follows 2D motion profiles.
    *
-   * @param imaxVel The maximum possible velocity.
-   * @param imaxAccel The maximum possible acceleration.
-   * @param imaxJerk The maximum possible jerk.
+   * @param imaxVel The maximum possible velocity in m/s.
+   * @param imaxAccel The maximum possible acceleration in m/s/s.
+   * @param imaxJerk The maximum possible jerk in m/s/s/s.
    * @param imodel The chassis model to control.
    * @param iwidth The chassis wheelbase width.
    */
@@ -85,6 +85,12 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param ipathId A unique identifier for the path, previously passed to generatePath().
    */
   void setTarget(std::string ipathId) override;
+
+  /**
+   * Writes the value of the controller output. This method might be automatically called in another
+   * thread by the controller. This just calls setTarget().
+   */
+  void controllerSet(std::string ivalue) override;
 
   /**
    * Gets the last set target, or the default target if none was set.

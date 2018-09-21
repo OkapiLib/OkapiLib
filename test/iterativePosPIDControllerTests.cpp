@@ -63,6 +63,10 @@ TEST_F(IterativePosPIDControllerTest, TargetLifecycle) {
   assertControllerFollowsTargetLifecycle(*controller);
 }
 
+TEST_F(IterativePosPIDControllerTest, ScalesControllerSetTarget) {
+  assertIterativeControllerScalesControllerSetTargets(*controller);
+}
+
 TEST_F(IterativePosPIDControllerTest, KeepsTrackOfReadingsWhenDisabled) {
   EXPECT_EQ(controller->getError(), 0);
   controller->flipDisable(true);

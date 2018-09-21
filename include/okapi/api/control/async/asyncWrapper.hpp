@@ -10,7 +10,6 @@
 
 #include "okapi/api/control/async/asyncController.hpp"
 #include "okapi/api/control/controllerInput.hpp"
-#include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativeController.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/coreProsAPI.hpp"
@@ -84,7 +83,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   /**
-   * Returns the last calculated output of the controller. Default is 0.
+   * Returns the last calculated output of the controller.
    */
   Output getOutput() const {
     return controller->getOutput();
@@ -110,7 +109,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   /**
-   * Set time between loops. Default does nothing.
+   * Set time between loops.
    *
    * @param isampleTime time between loops
    */
@@ -119,13 +118,31 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   /**
-   * Set controller output bounds. Default does nothing.
+   * Set controller output bounds.
    *
    * @param imax max output
    * @param imin min output
    */
   void setOutputLimits(Output imax, Output imin) {
     controller->setOutputLimits(imax, imin);
+  }
+
+  /**
+   * Get the upper output bound.
+   *
+   * @return  the upper output bound
+   */
+  Output getMaxOutput() {
+    return controller->getMaxOutput();
+  }
+
+  /**
+   * Get the lower output bound.
+   *
+   * @return the lower output bound
+   */
+  Output getMinOutput() {
+    return controller->getMinOutput();
   }
 
   /**
@@ -180,6 +197,10 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
     }
 
     logger->info("AsyncWrapper: Done waiting to settle");
+  }
+
+  void controllerSet(Input ivalue) override {
+    controller->controllerSet(ivalue);
   }
 
   /**

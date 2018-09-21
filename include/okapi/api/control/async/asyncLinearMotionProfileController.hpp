@@ -78,6 +78,12 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   void setTarget(std::string ipathId) override;
 
   /**
+   * Writes the value of the controller output. This method might be automatically called in another
+   * thread by the controller. This just calls setTarget().
+   */
+  void controllerSet(std::string ivalue) override;
+
+  /**
    * Gets the last set target, or the default target if none was set.
    *
    * @return the last target
