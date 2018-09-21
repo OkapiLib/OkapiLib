@@ -71,7 +71,7 @@ bool AsyncPosIntegratedController::isDisabled() const {
 
 void AsyncPosIntegratedController::resumeMovement() {
   if (isDisabled()) {
-    motor->moveVoltage(0);
+    motor->moveVelocity(0);
   } else {
     if (hasFirstTarget) {
       setTarget(lastTarget);
