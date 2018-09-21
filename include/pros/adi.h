@@ -58,6 +58,26 @@ typedef enum adi_port_config_e {
 } adi_port_config_e_t;
 
 #ifdef PROS_USE_SIMPLE_NAMES
+#ifdef __cplusplus
+#define ADI_ANALOG_IN pros::E_ADI_ANALOG_IN
+#define ADI_ANALOG_OUT pros::E_ADI_ANALOG_OUT
+#define ADI_DIGITAL_IN pros::E_ADI_DIGITAL_IN
+#define ADI_DIGITAL_OUT pros::E_ADI_DIGITAL_OUT
+#define ADI_SMART_BUTTON pros::E_ADI_SMART_BUTTON
+#define ADI_SMART_POT pros::E_ADI_SMART_POT
+#define ADI_LEGACY_BUTTON pros::E_ADI_LEGACY_BUTTON
+#define ADI_LEGACY_POT pros::E_ADI_LEGACY_POT
+#define ADI_LEGACY_LINE_SENSOR pros::E_ADI_LEGACY_LINE_SENSOR
+#define ADI_LEGACY_LIGHT_SENSOR pros::E_ADI_LEGACY_LIGHT_SENSOR
+#define ADI_LEGACY_GYRO pros::E_ADI_LEGACY_GYRO
+#define ADI_LEGACY_ACCELEROMETER pros::E_ADI_LEGACY_ACCELEROMETER
+#define ADI_LEGACY_SERVO pros::E_ADI_LEGACY_SERVO
+#define ADI_LEGACY_PWM pros::E_ADI_LEGACY_PWM
+#define ADI_LEGACY_ENCODER pros::E_ADI_LEGACY_ENCODER
+#define ADI_LEGACY_ULTRASONIC pros::E_ADI_LEGACY_ULTRASONIC
+#define ADI_TYPE_UNDEFINED pros::E_ADI_TYPE_UNDEFINED
+#define ADI_ERR pros::E_ADI_ERR
+#else
 #define ADI_ANALOG_IN E_ADI_ANALOG_IN
 #define ADI_ANALOG_OUT E_ADI_ANALOG_OUT
 #define ADI_DIGITAL_IN E_ADI_DIGITAL_IN
@@ -76,6 +96,7 @@ typedef enum adi_port_config_e {
 #define ADI_LEGACY_ULTRASONIC E_ADI_LEGACY_ULTRASONIC
 #define ADI_TYPE_UNDEFINED E_ADI_TYPE_UNDEFINED
 #define ADI_ERR E_ADI_ERR
+#endif
 #endif
 
 #define NUM_ADI_PORTS 8
@@ -528,7 +549,7 @@ int32_t adi_encoder_shutdown(adi_encoder_t enc);
  * Reference type for an initialized ultrasonic.
  *
  * This merely contains the port number for the ultrasonic, unlike its use as an
- * object to store encoder data in PROS 2.
+ * object to store ultrasonic data in PROS 2.
  */
 typedef int32_t adi_ultrasonic_t;
 
@@ -589,6 +610,93 @@ adi_ultrasonic_t adi_ultrasonic_init(uint8_t port_echo, uint8_t port_ping);
  * failed, setting errno.
  */
 int32_t adi_ultrasonic_shutdown(adi_ultrasonic_t ult);
+
+/**
+ * Reference type for an initialized gyroscope.
+ *
+ * This merely contains the port number for the gyroscope, unlike its use as an
+ * object to store gyro data in PROS 2.
+ */
+typedef int32_t adi_gyro_t;
+
+/**
+ * Gets the current gyro angle in tenths of a degree. Unless a multiplier is
+ * applied to the gyro, the return value will be a whole number representing
+ * the number of degrees of rotation times 10.
+ *
+ * There are 360 degrees in a circle, thus the gyro will return 3600 for one
+ * whole rotation.
+ *
+ * This function uses the following values of errno when an error state is
+ * reached:
+ * EINVAL - The given value is not within the range of ADI Ports, or the given
+ * port is not configured as an ADI Gyro.
+ * EACCES - Another resource is currently trying to access the ADI.
+ *
+ * \param gyro
+ *        The adi_gyro_t object for which the angle will be returned
+ *
+ * \return The gyro angle in degrees.
+ */
+double adi_gyro_get(adi_gyro_t gyro);
+
+/**
+ * Initializes a gyroscope on the given port. If the given port has not
+ * previously been configured as a gyro, then this function starts a 1 second
+ * calibration period.
+ *
+ * If calibration is required, it is highly recommended that this function be
+ * called from initialize when the robot is stationary.
+ *
+ * This function uses the following values of errno when an error state is
+ * reached:
+ * EINVAL - The given value is not within the range of ADI Ports.
+ * EACCES - Another resource is currently trying to access the ADI.
+ *
+ * \param port
+ *        The ADI port to initialize as a gyro (from 1-8, 'a'-'h', 'A'-'H')
+ * \param multiplier
+ *        A scalar value that will be multiplied by the gyro heading value
+ *        supplied by the ADI
+ *
+ * \return An adi_gyro_t object containing the given port, or PROS_ERR if the
+ * initialization failed.
+ */
+adi_gyro_t adi_gyro_init(uint8_t port, double multiplier);
+
+/**
+ * Resets the gyroscope value to zero.
+ *
+ * This function uses the following values of errno when an error state is
+ * reached:
+ * EINVAL - The given value is not within the range of ADI Ports, or the given
+ * port is not configured as an ADI Gyro.
+ * EACCES - Another resource is currently trying to access the ADI.
+ *
+ * \param gyro
+ *        The adi_gyro_t object for which the angle will be returned
+ *
+ * \return 1 if the operation was successful or PROS_ERR if the operation
+ * failed, setting errno.
+ */
+int32_t adi_gyro_reset(adi_gyro_t gyro);
+
+/**
+ * Disables the gyro and voids the configuration on its port.
+ *
+ * This function uses the following values of errno when an error state is
+ * reached:
+ * EINVAL - The given value is not within the range of ADI Ports, or the given
+ * port is not configured as an ADI Gyro.
+ * EACCES - Another resource is currently trying to access the ADI.
+ *
+ * \param gyro
+ *        The adi_gyro_t object to be shut down
+ *
+ * \return 1 if the operation was successful or PROS_ERR if the operation
+ * failed, setting errno.
+ */
+int32_t adi_gyro_shutdown(adi_gyro_t gyro);
 
 #ifdef __cplusplus
 }  // namespace c
