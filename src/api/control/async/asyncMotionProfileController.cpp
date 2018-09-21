@@ -153,6 +153,10 @@ void AsyncMotionProfileController::setTarget(std::string ipathId) {
   isRunning = true;
 }
 
+void AsyncMotionProfileController::controllerSet(std::string ivalue) {
+  setTarget(ivalue);
+}
+
 std::string AsyncMotionProfileController::getTarget() {
   return currentPath;
 }

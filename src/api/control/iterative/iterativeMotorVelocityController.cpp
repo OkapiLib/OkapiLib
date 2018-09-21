@@ -23,12 +23,24 @@ void IterativeMotorVelocityController::setTarget(const double itarget) {
   controller->setTarget(itarget);
 }
 
+void IterativeMotorVelocityController::controllerSet(double ivalue) {
+  controller->controllerSet(ivalue);
+}
+
 double IterativeMotorVelocityController::getTarget() {
   return controller->getTarget();
 }
 
 double IterativeMotorVelocityController::getOutput() const {
   return controller->getOutput();
+}
+
+double IterativeMotorVelocityController::getMaxOutput() {
+  return controller->getMaxOutput();
+}
+
+double IterativeMotorVelocityController::getMinOutput() {
+  return controller->getMinOutput();
 }
 
 double IterativeMotorVelocityController::getError() const {

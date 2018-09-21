@@ -16,6 +16,13 @@
 namespace okapi {
 class MotorGroup : public AbstractMotor {
   public:
+  /**
+   * A group of V5 motors which act as one motor (i.e. they are mechanically linked). A MotorGroup
+   * requires at least one motor. If no motors are supplied, a std::invalid_argument exception is
+   * thrown.
+   *
+   * @param imotors the motors in this group
+   */
   MotorGroup(const std::initializer_list<Motor> &imotors);
 
   /******************************************************************************/
@@ -355,6 +362,17 @@ class MotorGroup : public AbstractMotor {
   virtual std::int32_t setBrakeMode(AbstractMotor::brakeMode imode) override;
 
   /**
+   * Gets the brake mode that was set for the motor.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @return One of brakeMode, according to what was set for the motor, or brakeMode::invalid if the
+   * operation failed, setting errno.
+   */
+  virtual brakeMode getBrakeMode() const override;
+
+  /**
    * Sets the current limit for the motor in mA.
    *
    * This function uses the following values of errno when an error state is reached:
@@ -364,6 +382,18 @@ class MotorGroup : public AbstractMotor {
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
   virtual std::int32_t setCurrentLimit(std::int32_t ilimit) const override;
+
+  /**
+   * Gets the current limit for the motor in mA.
+   *
+   * The default value is 2500 mA.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @return The motor's current limit in mA or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t getCurrentLimit() const override;
 
   /**
    * Sets one of AbstractMotor::encoderUnits for the motor encoder.
@@ -377,6 +407,17 @@ class MotorGroup : public AbstractMotor {
   virtual std::int32_t setEncoderUnits(AbstractMotor::encoderUnits iunits) override;
 
   /**
+   * Gets the encoder units that were set for the motor.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @return One of encoderUnits according to what is set for the motor or encoderUnits::invalid if
+   * the operation failed.
+   */
+  virtual encoderUnits getEncoderUnits() const override;
+
+  /**
    * Sets one of AbstractMotor::gearset for the motor.
    *
    * This function uses the following values of errno when an error state is reached:
@@ -386,6 +427,17 @@ class MotorGroup : public AbstractMotor {
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
   virtual std::int32_t setGearing(AbstractMotor::gearset igearset) override;
+
+  /**
+   * Gets the gearset that was set for the motor.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @return One of gearset according to what is set for the motor, or gearset::invalid if the
+   * operation failed.
+   */
+  virtual gearset getGearing() const override;
 
   /**
    * Sets the reverse flag for the motor.

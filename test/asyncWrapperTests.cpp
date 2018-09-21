@@ -90,3 +90,11 @@ TEST_F(AsyncWrapperTest, FollowsTargetLifecyclePosPID) {
 TEST_F(AsyncWrapperTest, FollowsTargetLifecycleVelPID) {
   assertControllerFollowsTargetLifecycle(*velPIDController);
 }
+
+TEST_F(AsyncWrapperTest, ScalesControllerSetTargetPosPID) {
+  assertAsyncWrapperScalesControllerSetTargets(*posPIDController);
+}
+
+TEST_F(AsyncWrapperTest, ScalesControllerSetTargetVelPID) {
+  assertAsyncWrapperScalesControllerSetTargets(*velPIDController);
+}

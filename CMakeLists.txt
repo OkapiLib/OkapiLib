@@ -56,6 +56,7 @@ add_executable(OkapiLibV5
         include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp
         include/okapi/api/chassis/model/xDriveModel.hpp
         include/okapi/api/control/async/asyncController.hpp
+        include/okapi/api/control/async/asyncLinearMotionProfileController.hpp
         include/okapi/api/control/async/asyncMotionProfileController.hpp
         include/okapi/api/control/async/asyncPosIntegratedController.hpp
         include/okapi/api/control/async/asyncPositionController.hpp
@@ -125,6 +126,7 @@ add_executable(OkapiLibV5
         src/api/chassis/model/readOnlyChassisModel.cpp
         src/api/chassis/model/threeEncoderSkidSteerModel.cpp
         src/api/chassis/model/xDriveModel.cpp
+        src/api/control/async/asyncLinearMotionProfileController.cpp
         src/api/control/async/asyncMotionProfileController.cpp
         src/api/control/async/asyncPosIntegratedController.cpp
         src/api/control/async/asyncPosPidController.cpp
@@ -169,6 +171,7 @@ add_executable(OkapiLibV5
         test/asyncPosIntegratedControllerTests.cpp
         test/asyncVelIntegratedControllerTests.cpp
         test/asyncMotionProfileControllerTests.cpp
+        test/asyncLinearMotionProfileControllerTests.cpp
         test/iterativeVelPIDControllerTests.cpp
         test/iterativeMotorVelocityControllerTest.cpp
         test/iterativePosPIDControllerTests.cpp
