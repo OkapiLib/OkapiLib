@@ -84,6 +84,8 @@ void AsyncVelIntegratedController::controllerSet(double ivalue) {
     motor->controllerSet(ivalue);
   }
 
-  lastTarget = ivalue;
+  // Need to scale the controller output from [-1, 1] to the range of the motor based on its
+  // internal gearset
+  lastTarget = ivalue * toUnderlyingType(motor->getGearing());
 }
 } // namespace okapi
