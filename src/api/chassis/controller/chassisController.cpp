@@ -18,8 +18,8 @@ void ChassisController::forward(const double ispeed) const {
   model->forward(ispeed);
 }
 
-void ChassisController::driveVector(const double iySpeed, const double izRotation) const {
-  model->driveVector(iySpeed, izRotation);
+void ChassisController::driveVector(const double iforwardSpeed, const double iyaw) const {
+  model->driveVector(iforwardSpeed, iyaw);
 }
 
 void ChassisController::rotate(const double ispeed) const {
@@ -36,10 +36,10 @@ void ChassisController::tank(const double ileftSpeed,
   model->tank(ileftSpeed, irightSpeed, ithreshold);
 }
 
-void ChassisController::arcade(const double iySpeed,
-                               const double izRotation,
+void ChassisController::arcade(const double iforwardSpeed,
+                               const double iyaw,
                                const double ithreshold) const {
-  model->arcade(iySpeed, izRotation, ithreshold);
+  model->arcade(iforwardSpeed, iyaw, ithreshold);
 }
 
 void ChassisController::left(const double ispeed) const {
