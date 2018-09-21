@@ -8,6 +8,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include <algorithm>
 #include <cmath>
 
@@ -45,12 +46,24 @@ void IterativePosPIDController::setTarget(const double itarget) {
   target = itarget;
 }
 
+void IterativePosPIDController::controllerSet(const double ivalue) {
+  target = remapRange(ivalue, -1, 1, outputMin, outputMax);
+}
+
 double IterativePosPIDController::getTarget() {
   return target;
 }
 
 double IterativePosPIDController::getOutput() const {
   return isDisabled() ? 0 : output;
+}
+
+double IterativePosPIDController::getMaxOutput() {
+  return outputMax;
+}
+
+double IterativePosPIDController::getMinOutput() {
+  return outputMin;
 }
 
 double IterativePosPIDController::getError() const {

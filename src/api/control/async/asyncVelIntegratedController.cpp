@@ -76,4 +76,16 @@ void AsyncVelIntegratedController::waitUntilSettled() {
   }
   logger->info("AsyncVelIntegratedController: Done waiting to settle");
 }
+
+void AsyncVelIntegratedController::controllerSet(double ivalue) {
+  hasFirstTarget = true;
+
+  if (!controllerIsDisabled) {
+    motor->controllerSet(ivalue);
+  }
+
+  // Need to scale the controller output from [-1, 1] to the range of the motor based on its
+  // internal gearset
+  lastTarget = ivalue * toUnderlyingType(motor->getGearing());
+}
 } // namespace okapi

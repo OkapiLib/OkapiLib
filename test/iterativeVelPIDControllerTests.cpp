@@ -54,6 +54,10 @@ TEST_F(IterativeVelPIDControllerTest, TargetLifecycle) {
   assertControllerFollowsTargetLifecycle(*controller);
 }
 
+TEST_F(IterativeVelPIDControllerTest, ScalesControllerSetTarget) {
+  assertIterativeControllerScalesControllerSetTargets(*controller);
+}
+
 TEST_F(IterativeVelPIDControllerTest, KeepsTrackOfReadingsWhenDisabled) {
   EXPECT_EQ(controller->getError(), 0);
   controller->flipDisable(true);
@@ -90,13 +94,17 @@ TEST_F(IterativeVelPIDControllerTest, StaticFrictionGainUsesTargetSign) {
 TEST_F(IterativeVelPIDControllerTest, SetOutputLimitsTest) {
   controller->setOutputLimits(0.5, -0.5);
   EXPECT_DOUBLE_EQ(controller->outputMax, 0.5);
+  EXPECT_DOUBLE_EQ(controller->getMaxOutput(), 0.5);
   EXPECT_DOUBLE_EQ(controller->outputMin, -0.5);
+  EXPECT_DOUBLE_EQ(controller->getMinOutput(), -0.5);
 }
 
 TEST_F(IterativeVelPIDControllerTest, SetOutputLimitsReversedTest) {
   controller->setOutputLimits(-0.5, 0.5);
   EXPECT_DOUBLE_EQ(controller->outputMax, 0.5);
+  EXPECT_DOUBLE_EQ(controller->getMaxOutput(), 0.5);
   EXPECT_DOUBLE_EQ(controller->outputMin, -0.5);
+  EXPECT_DOUBLE_EQ(controller->getMinOutput(), -0.5);
 }
 
 TEST_F(IterativeVelPIDControllerTest, NoOutputWhenDisabled) {

@@ -10,6 +10,8 @@
 
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
+#include "okapi/api/control/async/asyncVelIntegratedController.hpp"
+#include "okapi/api/control/async/asyncWrapper.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
 #include "okapi/api/control/util/flywheelSimulator.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
@@ -128,6 +130,14 @@ class MockMotor : public AbstractMotor {
                         double ithreshold,
                         double iloopSpeed) const override;
 
+  AbstractMotor::brakeMode getBrakeMode() const override;
+
+  int32_t getCurrentLimit() const override;
+
+  AbstractMotor::encoderUnits getEncoderUnits() const override;
+
+  AbstractMotor::gearset getGearing() const override;
+
   std::shared_ptr<MockContinuousRotarySensor> encoder;
   mutable std::int16_t lastVelocity{0};
   mutable std::int16_t maxVelocity{0};
@@ -235,15 +245,34 @@ class SimulatedSystem : public ControllerInput<double>, public ControllerOutput<
   std::thread thread;
 };
 
-class MockAsyncController : public AsyncPosIntegratedController {
+class MockAsyncPosIntegratedController : public AsyncPosIntegratedController {
   public:
-  MockAsyncController();
+  MockAsyncPosIntegratedController();
 
-  explicit MockAsyncController(const TimeUtil &itimeUtil);
+  explicit MockAsyncPosIntegratedController(const TimeUtil &itimeUtil);
 
   bool isSettled() override;
 
   bool isSettledOverride{true};
+};
+
+class MockAsyncVelIntegratedController : public AsyncVelIntegratedController {
+  public:
+  MockAsyncVelIntegratedController();
+
+  void setTarget(double itarget) override;
+
+  bool isSettled() override;
+
+  void controllerSet(double ivalue) override;
+
+  bool isSettledOverride{true};
+
+  double lastTarget{0};
+  double maxTarget{0};
+
+  double lastControllerOutputSet{0};
+  double maxControllerOutputSet{0};
 };
 
 class MockIterativeController : public IterativePosPIDController {
@@ -297,6 +326,11 @@ void assertIterativeControllerFollowsDisableLifecycle(
   IterativeController<double, double> &controller);
 
 void assertControllerFollowsTargetLifecycle(ClosedLoopController<double, double> &controller);
+
+void assertIterativeControllerScalesControllerSetTargets(
+  IterativeController<double, double> &controller);
+
+void assertAsyncWrapperScalesControllerSetTargets(AsyncWrapper<double, double> &controller);
 
 } // namespace okapi
 

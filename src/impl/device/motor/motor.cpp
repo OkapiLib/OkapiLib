@@ -146,8 +146,25 @@ std::int32_t Motor::setBrakeMode(const AbstractMotor::brakeMode imode) {
   }
 }
 
+AbstractMotor::brakeMode Motor::getBrakeMode() const {
+  switch (get_brake_mode()) {
+  case pros::E_MOTOR_BRAKE_COAST:
+    return AbstractMotor::brakeMode::coast;
+  case pros::E_MOTOR_BRAKE_BRAKE:
+    return AbstractMotor::brakeMode::brake;
+  case pros::E_MOTOR_BRAKE_HOLD:
+    return AbstractMotor::brakeMode::hold;
+  case pros::E_MOTOR_BRAKE_INVALID:
+    return AbstractMotor::brakeMode::invalid;
+  }
+}
+
 std::int32_t Motor::setCurrentLimit(const std::int32_t ilimit) const {
   return set_current_limit(ilimit);
+}
+
+std::int32_t Motor::getCurrentLimit() const {
+  return get_current_limit();
 }
 
 std::int32_t Motor::setEncoderUnits(const AbstractMotor::encoderUnits iunits) {
@@ -163,6 +180,19 @@ std::int32_t Motor::setEncoderUnits(const AbstractMotor::encoderUnits iunits) {
   }
 }
 
+AbstractMotor::encoderUnits Motor::getEncoderUnits() const {
+  switch (get_encoder_units()) {
+  case pros::E_MOTOR_ENCODER_DEGREES:
+    return AbstractMotor::encoderUnits::degrees;
+  case pros::E_MOTOR_ENCODER_ROTATIONS:
+    return AbstractMotor::encoderUnits::rotations;
+  case pros::E_MOTOR_ENCODER_COUNTS:
+    return AbstractMotor::encoderUnits::counts;
+  case pros::E_MOTOR_ENCODER_INVALID:
+    return AbstractMotor::encoderUnits::invalid;
+  }
+}
+
 std::int32_t Motor::setGearing(const AbstractMotor::gearset igearset) {
   switch (igearset) {
   case AbstractMotor::gearset::blue:
@@ -173,6 +203,19 @@ std::int32_t Motor::setGearing(const AbstractMotor::gearset igearset) {
     return set_gearing(pros::E_MOTOR_GEARSET_36);
   case AbstractMotor::gearset::invalid:
     return set_gearing(pros::E_MOTOR_GEARSET_INVALID);
+  }
+}
+
+AbstractMotor::gearset Motor::getGearing() const {
+  switch (get_gearing()) {
+  case pros::E_MOTOR_GEARSET_36:
+    return AbstractMotor::gearset::red;
+  case pros::E_MOTOR_GEARSET_18:
+    return AbstractMotor::gearset::green;
+  case pros::E_MOTOR_GEARSET_06:
+    return AbstractMotor::gearset::blue;
+  case pros::E_MOTOR_GEARSET_INVALID:
+    return AbstractMotor::gearset::invalid;
   }
 }
 
