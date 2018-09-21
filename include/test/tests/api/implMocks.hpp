@@ -330,8 +330,7 @@ void assertControllerFollowsTargetLifecycle(ClosedLoopController<double, double>
 void assertIterativeControllerScalesControllerSetTargets(
   IterativeController<double, double> &controller);
 
-void assertAsyncWrapperScalesControllerSetTargets(
-  AsyncWrapper<double, double> &controller);
+void assertAsyncWrapperScalesControllerSetTargets(AsyncWrapper<double, double> &controller);
 
 } // namespace okapi
 

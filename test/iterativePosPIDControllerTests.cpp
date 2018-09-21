@@ -99,13 +99,17 @@ TEST_F(IterativePosPIDControllerTest, SetIntegralLimitsReversedTest) {
 TEST_F(IterativePosPIDControllerTest, SetOutputLimitsTest) {
   controller->setOutputLimits(0.5, -0.5);
   EXPECT_DOUBLE_EQ(controller->outputMax, 0.5);
+  EXPECT_DOUBLE_EQ(controller->getMaxOutput(), 0.5);
   EXPECT_DOUBLE_EQ(controller->outputMin, -0.5);
+  EXPECT_DOUBLE_EQ(controller->getMinOutput(), -0.5);
 }
 
 TEST_F(IterativePosPIDControllerTest, SetOutputLimitsReversedTest) {
   controller->setOutputLimits(-0.5, 0.5);
   EXPECT_DOUBLE_EQ(controller->outputMax, 0.5);
+  EXPECT_DOUBLE_EQ(controller->getMaxOutput(), 0.5);
   EXPECT_DOUBLE_EQ(controller->outputMin, -0.5);
+  EXPECT_DOUBLE_EQ(controller->getMinOutput(), -0.5);
 }
 
 TEST_F(IterativePosPIDControllerTest, NoOutputWhenDisabled) {

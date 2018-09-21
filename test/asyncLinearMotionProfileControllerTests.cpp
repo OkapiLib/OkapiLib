@@ -103,3 +103,8 @@ TEST_F(AsyncLinearMotionProfileControllerTest, RemoveAPathWhichDoesNotExist) {
 
   EXPECT_EQ(controller->getPaths().size(), 0);
 }
+
+TEST_F(AsyncLinearMotionProfileControllerTest, ControllerSetChangesTarget) {
+  controller->controllerSet("A");
+  EXPECT_EQ(controller->getTarget(), "A");
+}
