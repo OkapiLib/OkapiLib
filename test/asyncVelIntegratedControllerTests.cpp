@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/async/asyncVelIntegratedController.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 #include <limits>
@@ -48,4 +49,9 @@ TEST_F(AsyncVelIntegratedControllerTest, FollowsDisableLifecycle) {
 
 TEST_F(AsyncVelIntegratedControllerTest, FollowsTargetLifecycle) {
   assertControllerFollowsTargetLifecycle(*controller);
+}
+
+TEST_F(AsyncVelIntegratedControllerTest, ControllerSetScalesTarget) {
+  controller->controllerSet(1);
+  EXPECT_EQ(controller->getTarget(), toUnderlyingType(motor->getGearing()));
 }
