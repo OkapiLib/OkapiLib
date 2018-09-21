@@ -1,7 +1,5 @@
 #include "main.h"
 
-using namespace pros::literals;
-
 /**
  * Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -16,18 +14,19 @@ using namespace pros::literals;
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	pros::Controller master(pros::E_CONTROLLER_MASTER);
-	auto left_mtr = 1_mtr;
-	pros::Motor right_mtr(2);
-	while (true) {
-		pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
-		                 (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
-		                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
-		int left = master.get_analog(ANALOG_LEFT_Y);
-		int right = master.get_analog(ANALOG_RIGHT_Y);
+  using namespace okapi;
 
-		left_mtr = left;
-		right_mtr = right;
-		pros::delay(20);
-	}
+  pros::delay(100);
+
+  auto velCnt =
+    std::make_shared<AsyncVelIntegratedController>(AsyncControllerFactory::velIntegrated(1));
+
+  auto mpCnt =
+    AsyncLinearMotionProfileController(TimeUtilFactory::create(), 1.0, 2.0, 10.0, velCnt);
+  mpCnt.startThread();
+
+  Logger::initialize(TimeUtilFactory::create().getTimer(), "/ser/sout", Logger::LogLevel::debug);
+  mpCnt.generatePath({0, 12}, "A");
+  mpCnt.setTarget("A");
+  mpCnt.waitUntilSettled();
 }

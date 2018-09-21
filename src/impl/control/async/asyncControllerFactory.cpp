@@ -10,13 +10,16 @@
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
 namespace okapi {
-AsyncPosIntegratedController AsyncControllerFactory::posIntegrated(Motor imotor) {
-  return AsyncPosIntegratedController(std::make_shared<Motor>(imotor), TimeUtilFactory::create());
+AsyncPosIntegratedController AsyncControllerFactory::posIntegrated(Motor imotor,
+                                                                   std::int32_t imaxVelocity) {
+  return AsyncPosIntegratedController(
+    std::make_shared<Motor>(imotor), imaxVelocity, TimeUtilFactory::create());
 }
 
-AsyncPosIntegratedController AsyncControllerFactory::posIntegrated(MotorGroup imotor) {
-  return AsyncPosIntegratedController(std::make_shared<MotorGroup>(imotor),
-                                      TimeUtilFactory::create());
+AsyncPosIntegratedController AsyncControllerFactory::posIntegrated(MotorGroup imotor,
+                                                                   std::int32_t imaxVelocity) {
+  return AsyncPosIntegratedController(
+    std::make_shared<MotorGroup>(imotor), imaxVelocity, TimeUtilFactory::create());
 }
 
 AsyncVelIntegratedController AsyncControllerFactory::velIntegrated(Motor imotor) {

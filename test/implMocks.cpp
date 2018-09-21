@@ -35,11 +35,13 @@ void MockMotor::controllerSet(const double ivalue) {
 
 int32_t MockMotor::moveAbsolute(const double iposition, const std::int32_t ivelocity) const {
   lastPosition = (int16_t)iposition;
+  lastProfiledMaxVelocity = ivelocity;
   return 0;
 }
 
 int32_t MockMotor::moveRelative(const double iposition, const std::int32_t ivelocity) const {
   lastPosition += iposition;
+  lastProfiledMaxVelocity = ivelocity;
   return 0;
 }
 
@@ -197,6 +199,22 @@ int32_t MockMotor::setVelPIDFull(double ikF,
   return 0;
 }
 
+AbstractMotor::brakeMode MockMotor::getBrakeMode() const {
+  return brakeMode::coast;
+}
+
+int32_t MockMotor::getCurrentLimit() const {
+  return 2500;
+}
+
+AbstractMotor::encoderUnits MockMotor::getEncoderUnits() const {
+  return encoderUnits::degrees;
+}
+
+AbstractMotor::gearset MockMotor::getGearing() const {
+  return gearset::red;
+}
+
 MockTimer::MockTimer() : AbstractTimer(millis()) {
 }
 
@@ -351,16 +369,44 @@ void SimulatedSystem::join() {
   thread.join();
 }
 
-MockAsyncController::MockAsyncController()
+MockAsyncPosIntegratedController::MockAsyncPosIntegratedController()
   : AsyncPosIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
 }
 
-MockAsyncController::MockAsyncController(const TimeUtil &itimeUtil)
+MockAsyncPosIntegratedController::MockAsyncPosIntegratedController(const TimeUtil &itimeUtil)
   : AsyncPosIntegratedController(std::make_shared<MockMotor>(), itimeUtil) {
 }
 
-bool MockAsyncController::isSettled() {
+bool MockAsyncPosIntegratedController::isSettled() {
   return isSettledOverride || AsyncPosIntegratedController::isSettled();
+}
+
+MockAsyncVelIntegratedController::MockAsyncVelIntegratedController()
+  : AsyncVelIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
+}
+
+bool MockAsyncVelIntegratedController::isSettled() {
+  return isSettledOverride || AsyncVelIntegratedController::isSettled();
+}
+
+void MockAsyncVelIntegratedController::setTarget(const double itarget) {
+  lastTarget = itarget;
+
+  if (itarget > maxTarget) {
+    maxTarget = itarget;
+  }
+
+  AsyncVelIntegratedController::setTarget(itarget);
+}
+
+void MockAsyncVelIntegratedController::controllerSet(const double ivalue) {
+  lastControllerOutputSet = ivalue;
+
+  if (ivalue > maxControllerOutputSet) {
+    maxControllerOutputSet = ivalue;
+  }
+
+  AsyncVelIntegratedController::controllerSet(ivalue);
 }
 
 MockIterativeController::MockIterativeController()
@@ -470,5 +516,20 @@ void assertControllerFollowsTargetLifecycle(ClosedLoopController<double, double>
   EXPECT_DOUBLE_EQ(controller.getError(), 100);
   controller.setTarget(0);
   EXPECT_DOUBLE_EQ(controller.getError(), 0);
+}
+
+void assertIterativeControllerScalesControllerSetTargets(
+  IterativeController<double, double> &controller) {
+  EXPECT_DOUBLE_EQ(controller.getTarget(), 0);
+  controller.setOutputLimits(-100, 100);
+  controller.controllerSet(0.5);
+  EXPECT_DOUBLE_EQ(controller.getTarget(), 50);
+}
+
+void assertAsyncWrapperScalesControllerSetTargets(AsyncWrapper<double, double> &controller) {
+  EXPECT_DOUBLE_EQ(controller.getTarget(), 0);
+  controller.setOutputLimits(-100, 100);
+  controller.controllerSet(0.5);
+  EXPECT_DOUBLE_EQ(controller.getTarget(), 50);
 }
 } // namespace okapi

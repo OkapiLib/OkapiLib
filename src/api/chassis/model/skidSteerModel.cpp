@@ -42,14 +42,14 @@ void SkidSteerModel::forward(const double ispeed) const {
   rightSideMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
 }
 
-void SkidSteerModel::driveVector(const double iySpeed, const double izRotation) const {
+void SkidSteerModel::driveVector(const double iforwardSpeed, const double iyaw) const {
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
-  const double ySpeed = std::clamp(iySpeed, -1.0, 1.0);
-  const double zRotation = std::clamp(izRotation, -1.0, 1.0);
+  const double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
+  const double yaw = std::clamp(iyaw, -1.0, 1.0);
 
-  double leftOutput = ySpeed + zRotation;
-  double rightOutput = ySpeed - zRotation;
+  double leftOutput = forwardSpeed + yaw;
+  double rightOutput = forwardSpeed - yaw;
   if (const double maxInputMag = std::max<double>(std::abs(leftOutput), std::abs(rightOutput));
       maxInputMag > 1) {
     leftOutput /= maxInputMag;
@@ -90,40 +90,40 @@ void SkidSteerModel::tank(const double ileftSpeed,
   rightSideMotor->moveVoltage(static_cast<int16_t>(rightSpeed * maxVoltage));
 }
 
-void SkidSteerModel::arcade(const double iySpeed,
-                            const double izRotation,
+void SkidSteerModel::arcade(const double iforwardSpeed,
+                            const double iyaw,
                             const double ithreshold) const {
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
-  double ySpeed = std::clamp(iySpeed, -1.0, 1.0);
-  if (std::abs(ySpeed) < ithreshold) {
-    ySpeed = 0;
+  double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
+  if (std::abs(forwardSpeed) < ithreshold) {
+    forwardSpeed = 0;
   }
 
-  double zRotation = std::clamp(izRotation, -1.0, 1.0);
-  if (std::abs(zRotation) < ithreshold) {
-    zRotation = 0;
+  double yaw = std::clamp(iyaw, -1.0, 1.0);
+  if (std::abs(yaw) < ithreshold) {
+    yaw = 0;
   }
 
-  double maxInput = std::copysign(std::max(std::abs(ySpeed), std::abs(zRotation)), ySpeed);
+  double maxInput = std::copysign(std::max(std::abs(forwardSpeed), std::abs(yaw)), forwardSpeed);
   double leftOutput = 0;
   double rightOutput = 0;
 
-  if (ySpeed >= 0) {
-    if (zRotation >= 0) {
+  if (forwardSpeed >= 0) {
+    if (yaw >= 0) {
       leftOutput = maxInput;
-      rightOutput = ySpeed - zRotation;
+      rightOutput = forwardSpeed - yaw;
     } else {
-      leftOutput = ySpeed + zRotation;
+      leftOutput = forwardSpeed + yaw;
       rightOutput = maxInput;
     }
   } else {
-    if (zRotation >= 0) {
-      leftOutput = ySpeed + zRotation;
+    if (yaw >= 0) {
+      leftOutput = forwardSpeed + yaw;
       rightOutput = maxInput;
     } else {
       leftOutput = maxInput;
-      rightOutput = ySpeed - zRotation;
+      rightOutput = forwardSpeed - yaw;
     }
   }
 

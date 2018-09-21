@@ -18,6 +18,7 @@
 #include "okapi/impl/chassis/controller/chassisControllerFactory.hpp"
 #include "okapi/impl/chassis/model/chassisModelFactory.hpp"
 
+#include "okapi/api/control/async/asyncLinearMotionProfileController.hpp"
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
 #include "okapi/api/control/async/asyncPosPidController.hpp"
@@ -48,6 +49,7 @@
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
+#include "okapi/impl/device/rotarysensor/adiGyro.hpp"
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/potentiometer.hpp"
 #include "okapi/impl/device/vision.hpp"

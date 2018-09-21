@@ -9,6 +9,7 @@
 #define _OKAPI_ASYNCCONTROLLERFACTORY_HPP_
 
 #include "okapi/api/chassis/controller/chassisController.hpp"
+#include "okapi/api/control/async/asyncLinearMotionProfileController.hpp"
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
 #include "okapi/api/control/async/asyncPosPidController.hpp"
@@ -27,15 +28,18 @@ class AsyncControllerFactory {
    * A position controller that uses the V5 motor's onboard control.
    *
    * @param imotor controller input (from the integrated encoder) and output
+   * @param imaxVelocity the maximum velocity during a profiled movement
    */
-  static AsyncPosIntegratedController posIntegrated(Motor imotor);
+  static AsyncPosIntegratedController posIntegrated(Motor imotor, std::int32_t imaxVelocity = 600);
 
   /**
    * A position controller that uses the V5 motor's onboard control.
    *
    * @param imotor controller input (from the integrated encoder) and output
+   * @param imaxVelocity the maximum velocity during a profiled movement
    */
-  static AsyncPosIntegratedController posIntegrated(MotorGroup imotor);
+  static AsyncPosIntegratedController posIntegrated(MotorGroup imotor,
+                                                    std::int32_t imaxVelocity = 600);
 
   /**
    * A velocity controller that uses the V5 motor's onboard control.
@@ -319,9 +323,9 @@ class AsyncControllerFactory {
   /**
    * A controller which generates and follows 2D motion profiles.
    *
-   * @param imaxVel The maximum possible velocity.
-   * @param imaxAccel The maximum possible acceleration.
-   * @param imaxJerk The maximum possible jerk.
+   * @param imaxVel The maximum possible velocity in m/s.
+   * @param imaxAccel The maximum possible acceleration in m/s/s.
+   * @param imaxJerk The maximum possible jerk in m/s/s/s.
    * @param ichassis The chassis to control.
    */
   static AsyncMotionProfileController motionProfile(double imaxVel,
@@ -332,9 +336,9 @@ class AsyncControllerFactory {
   /**
    * A controller which generates and follows 2D motion profiles.
    *
-   * @param imaxVel The maximum possible velocity.
-   * @param imaxAccel The maximum possible acceleration.
-   * @param imaxJerk The maximum possible jerk.
+   * @param imaxVel The maximum possible velocity in m/s.
+   * @param imaxAccel The maximum possible acceleration in m/s/s.
+   * @param imaxJerk The maximum possible jerk in m/s/s/s.
    * @param imodel The chassis model to control.
    * @param iwidth The chassis wheelbase width.
    */
@@ -343,6 +347,20 @@ class AsyncControllerFactory {
                                                     double imaxJerk,
                                                     std::shared_ptr<ChassisModel> imodel,
                                                     QLength iwidth);
+
+  /**
+   * A controller which generates and follows 1D motion profiles.
+   *
+   * @param imaxVel The maximum possible velocity in m/s.
+   * @param imaxAccel The maximum possible acceleration in m/s/s.
+   * @param imaxJerk The maximum possible jerk in m/s/s/s.
+   * @param ioutput The output to write velocity targets to.
+   */
+  static AsyncLinearMotionProfileController
+  linearMotionProfile(double imaxVel,
+                      double imaxAccel,
+                      double imaxJerk,
+                      std::shared_ptr<ControllerOutput<double>> ioutput);
 };
 } // namespace okapi
 

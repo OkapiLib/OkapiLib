@@ -6,9 +6,16 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/device/motor/motorGroup.hpp"
+#include "okapi/api/util/logging.hpp"
 
 namespace okapi {
 MotorGroup::MotorGroup(const std::initializer_list<Motor> &imotors) : motors(imotors) {
+  if (motors.empty()) {
+    Logger::instance()->error(
+      "MotorGroup: A MotorGroup must be created with at least one motor. No motors were given.");
+    throw std::invalid_argument(
+      "MotorGroup: A MotorGroup must be created with at least one motor. No motors were given.");
+  }
 }
 
 std::int32_t MotorGroup::moveAbsolute(const double iposition, const std::int32_t ivelocity) const {
@@ -160,6 +167,10 @@ std::int32_t MotorGroup::setBrakeMode(const AbstractMotor::brakeMode imode) {
   return out;
 }
 
+AbstractMotor::brakeMode MotorGroup::getBrakeMode() const {
+  return motors[0].getBrakeMode();
+}
+
 std::int32_t MotorGroup::setCurrentLimit(const std::int32_t ilimit) const {
   auto out = 1;
   for (auto &&elem : motors) {
@@ -169,6 +180,10 @@ std::int32_t MotorGroup::setCurrentLimit(const std::int32_t ilimit) const {
     }
   }
   return out;
+}
+
+std::int32_t MotorGroup::getCurrentLimit() const {
+  return motors[0].getCurrentLimit();
 }
 
 std::int32_t MotorGroup::setEncoderUnits(const AbstractMotor::encoderUnits iunits) {
@@ -182,6 +197,10 @@ std::int32_t MotorGroup::setEncoderUnits(const AbstractMotor::encoderUnits iunit
   return out;
 }
 
+AbstractMotor::encoderUnits MotorGroup::getEncoderUnits() const {
+  return motors[0].getEncoderUnits();
+}
+
 std::int32_t MotorGroup::setGearing(const AbstractMotor::gearset igearset) {
   auto out = 1;
   for (auto &&elem : motors) {
@@ -191,6 +210,10 @@ std::int32_t MotorGroup::setGearing(const AbstractMotor::gearset igearset) {
     }
   }
   return out;
+}
+
+AbstractMotor::gearset MotorGroup::getGearing() const {
+  return motors[0].getGearing();
 }
 
 std::int32_t MotorGroup::setReversed(const bool ireverse) const {

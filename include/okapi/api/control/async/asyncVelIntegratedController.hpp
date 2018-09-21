@@ -83,6 +83,14 @@ class AsyncVelIntegratedController : public AsyncVelocityController<double, doub
    */
   void waitUntilSettled() override;
 
+  /**
+   * Writes the value of the controller output. This method might be automatically called in another
+   * thread by the controller. The range of input values is expected to be [-1, 1].
+   *
+   * @param ivalue the controller's output in the range [-1, 1]
+   */
+  void controllerSet(double ivalue) override;
+
   protected:
   Logger *logger;
   std::shared_ptr<AbstractMotor> motor;

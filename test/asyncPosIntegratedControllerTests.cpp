@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 
@@ -47,4 +48,27 @@ TEST_F(AsyncPosIntegratedControllerTest, FollowsDisableLifecycle) {
 
 TEST_F(AsyncPosIntegratedControllerTest, FollowsTargetLifecycle) {
   assertControllerFollowsTargetLifecycle(*controller);
+}
+
+TEST_F(AsyncPosIntegratedControllerTest, ControllerSetScalesTarget) {
+  controller->controllerSet(1);
+  EXPECT_EQ(controller->getTarget(), toUnderlyingType(motor->getGearing()));
+}
+
+TEST_F(AsyncPosIntegratedControllerTest, ProfiledMovementUsesMaxVelocityForRedGearset) {
+  motor->setGearing(AbstractMotor::gearset::red);
+  controller->setTarget(5);
+  EXPECT_GE(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::red));
+}
+
+TEST_F(AsyncPosIntegratedControllerTest, ProfiledMovementUsesMaxVelocityForBlueGearset) {
+  motor->setGearing(AbstractMotor::gearset::blue);
+  controller->setTarget(5);
+  EXPECT_GE(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::blue));
+}
+
+TEST_F(AsyncPosIntegratedControllerTest, ProfiledMovementUsesMaxVelocityForGreenGearset) {
+  motor->setGearing(AbstractMotor::gearset::green);
+  controller->setTarget(5);
+  EXPECT_GE(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::green));
 }
