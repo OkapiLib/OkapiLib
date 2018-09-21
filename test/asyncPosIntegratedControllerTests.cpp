@@ -55,11 +55,6 @@ TEST_F(AsyncPosIntegratedControllerTest, ControllerSetScalesTarget) {
   EXPECT_EQ(controller->getTarget(), toUnderlyingType(motor->getGearing()));
 }
 
-TEST_F(AsyncPosIntegratedControllerTest, ControllerSetScalesTarget) {
-  controller->controllerSet(1);
-  EXPECT_EQ(controller->getTarget(), toUnderlyingType(motor->getGearing()));
-}
-
 TEST_F(AsyncPosIntegratedControllerTest, ProfiledMovementUsesMaxVelocityForRedGearset) {
   motor->setGearing(AbstractMotor::gearset::red);
   controller->setTarget(5);
