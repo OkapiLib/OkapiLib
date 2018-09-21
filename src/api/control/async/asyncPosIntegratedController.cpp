@@ -11,8 +11,15 @@
 namespace okapi {
 AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
                                                            const TimeUtil &itimeUtil)
+  : AsyncPosIntegratedController(imotor, 600, itimeUtil) {
+}
+
+AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+                                                           const std::int32_t imaxVelocity,
+                                                           const TimeUtil &itimeUtil)
   : logger(Logger::instance()),
     motor(imotor),
+    maxVelocity(imaxVelocity),
     settledUtil(itimeUtil.getSettledUtil()),
     rate(itimeUtil.getRate()) {
 }
@@ -23,7 +30,7 @@ void AsyncPosIntegratedController::setTarget(const double itarget) {
   hasFirstTarget = true;
 
   if (!controllerIsDisabled) {
-    motor->moveAbsolute(itarget, 127);
+    motor->moveAbsolute(itarget, maxVelocity);
   }
 
   lastTarget = itarget;
@@ -64,7 +71,7 @@ bool AsyncPosIntegratedController::isDisabled() const {
 
 void AsyncPosIntegratedController::resumeMovement() {
   if (isDisabled()) {
-    motor->moveVoltage(0);
+    motor->moveVelocity(0);
   } else {
     if (hasFirstTarget) {
       setTarget(lastTarget);

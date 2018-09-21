@@ -20,7 +20,25 @@ namespace okapi {
  */
 class AsyncPosIntegratedController : public AsyncPositionController<double, double> {
   public:
+  /**
+   * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are
+   * whatever units the motor is in. The maximum velocity for profiled movements will be the maximum
+   * velocity for the motor's gearset.
+   *
+   * @param imotor the motor to control
+   */
   AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor, const TimeUtil &itimeUtil);
+
+  /**
+   * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are
+   * whatever units the motor is in.
+   *
+   * @param imotor the motor to control
+   * @param imaxVelocity the maximum velocity during a profiled movement
+   */
+  AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+                               std::int32_t imaxVelocity,
+                               const TimeUtil &itimeUtil);
 
   /**
    * Sets the target for the controller.
@@ -93,6 +111,7 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
   protected:
   Logger *logger;
   std::shared_ptr<AbstractMotor> motor;
+  std::int32_t maxVelocity{600}; // 600 RPM max, vexOS will limit if the gearset can't go this fast
   double lastTarget = 0;
   bool controllerIsDisabled = false;
   bool hasFirstTarget = false;
