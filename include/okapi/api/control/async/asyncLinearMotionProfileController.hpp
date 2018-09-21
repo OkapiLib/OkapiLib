@@ -30,7 +30,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * @param imaxVel The maximum possible velocity.
    * @param imaxAccel The maximum possible acceleration.
    * @param imaxJerk The maximum possible jerk.
-   * @param ioutput The output to control.
+   * @param ioutput The output to write velocity targets to.
    */
   AsyncLinearMotionProfileController(const TimeUtil &itimeUtil,
                                      double imaxVel,

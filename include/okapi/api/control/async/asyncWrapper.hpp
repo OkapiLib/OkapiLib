@@ -74,6 +74,16 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   /**
+   * Writes the value of the controller output. This method might be automatically called in another
+   * thread by the controller.
+   *
+   * @param ivalue the controller's output
+   */
+  void controllerSet(Input ivalue) override {
+    controller->controllerSet(ivalue);
+  }
+
+  /**
    * Gets the last set target, or the default target if none was set.
    *
    * @return the last target
@@ -197,10 +207,6 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
     }
 
     logger->info("AsyncWrapper: Done waiting to settle");
-  }
-
-  void controllerSet(Input ivalue) override {
-    controller->controllerSet(ivalue);
   }
 
   /**
