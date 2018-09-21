@@ -92,16 +92,20 @@ TEST_F(IterativeMotorVelocityControllerTest, SetOutputLimitsTest) {
   controller->setOutputLimits(0.5, -0.5);
   EXPECT_DOUBLE_EQ(velController->outputMax, 0.5);
   EXPECT_DOUBLE_EQ(velController->getMaxOutput(), 0.5);
+  EXPECT_DOUBLE_EQ(controller->getMaxOutput(), 0.5);
   EXPECT_DOUBLE_EQ(velController->outputMin, -0.5);
   EXPECT_DOUBLE_EQ(velController->getMinOutput(), -0.5);
+  EXPECT_DOUBLE_EQ(controller->getMinOutput(), -0.5);
 }
 
 TEST_F(IterativeMotorVelocityControllerTest, SetOutputLimitsReversedTest) {
   controller->setOutputLimits(-0.5, 0.5);
   EXPECT_DOUBLE_EQ(velController->outputMax, 0.5);
   EXPECT_DOUBLE_EQ(velController->getMaxOutput(), 0.5);
+  EXPECT_DOUBLE_EQ(controller->getMaxOutput(), 0.5);
   EXPECT_DOUBLE_EQ(velController->outputMin, -0.5);
   EXPECT_DOUBLE_EQ(velController->getMinOutput(), -0.5);
+  EXPECT_DOUBLE_EQ(controller->getMinOutput(), -0.5);
 }
 
 TEST_F(IterativeMotorVelocityControllerTest, NoOutputWhenDisabled) {
