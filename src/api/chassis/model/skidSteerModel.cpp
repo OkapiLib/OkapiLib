@@ -90,7 +90,7 @@ void SkidSteerModel::tank(const double ileftSpeed,
   rightSideMotor->moveVoltage(static_cast<int16_t>(rightSpeed * maxVoltage));
 }
 
-void SkidSteerModel::arcade(const double forwardSpeed,
+void SkidSteerModel::arcade(const double iforwardSpeed,
                             const double iyaw,
                             const double ithreshold) const {
   // This code is taken from WPIlib. All credit goes to them. Link:
