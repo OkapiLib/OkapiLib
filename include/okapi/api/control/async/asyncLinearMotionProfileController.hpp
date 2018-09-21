@@ -91,6 +91,13 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   std::string getTarget() override;
 
   /**
+   * Gets the last set target, or the default target if none was set.
+   *
+   * @return the last target
+   */
+  std::string getTarget() const;
+
+  /**
    * Blocks the current task until the controller has settled. This controller is settled when
    * it has finished following a path. If no path is being followed, it is settled.
    */
@@ -106,9 +113,8 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   void moveTo(QLength iposition, QLength itarget);
 
   /**
-   * Returns the last error of the controller. This implementation always returns zero since the
-   * robot is assumed to perfectly follow the path. Subclasses can override this to be more
-   * accurate using odometry information.
+   * Returns the last error of the controller. Returns zero if there is no path currently being
+   * followed.
    *
    * @return the last error
    */
@@ -171,6 +177,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   double maxAccel{0};
   double maxJerk{0};
   std::shared_ptr<ControllerOutput<double>> output;
+  QLength currentProfilePosition{0_m};
   TimeUtil timeUtil;
 
   std::string currentPath{""};

@@ -108,3 +108,20 @@ TEST_F(AsyncLinearMotionProfileControllerTest, ControllerSetChangesTarget) {
   controller->controllerSet("A");
   EXPECT_EQ(controller->getTarget(), "A");
 }
+
+TEST_F(AsyncLinearMotionProfileControllerTest, GetErrorWithNoTarget) {
+  EXPECT_EQ(controller->getError().convert(meter), 0);
+}
+
+TEST_F(AsyncLinearMotionProfileControllerTest, GetErrorWithNonexistentTarget) {
+  controller->setTarget("A");
+  EXPECT_EQ(controller->getError().convert(meter), 0);
+}
+
+TEST_F(AsyncLinearMotionProfileControllerTest, GetErrorWithCorrectTarget) {
+  controller->generatePath({0_m, 3_ft}, "A");
+  controller->setTarget("A");
+
+  // Pathfinder generates an approximate path so this could be slightly off
+  EXPECT_NEAR(controller->getError().convert(foot), 3, 0.1);
+}

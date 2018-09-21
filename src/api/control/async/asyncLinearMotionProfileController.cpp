@@ -148,6 +148,10 @@ std::string AsyncLinearMotionProfileController::getTarget() {
   return currentPath;
 }
 
+std::string AsyncLinearMotionProfileController::getTarget() const {
+  return currentPath;
+}
+
 void AsyncLinearMotionProfileController::loop() {
   auto rate = timeUtil.getRate();
 
@@ -180,6 +184,7 @@ void AsyncLinearMotionProfileController::loop() {
 void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair &path,
                                                            std::unique_ptr<AbstractRate> rate) {
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
+    currentProfilePosition = path.segment[i].position * meter;
     output->controllerSet(path.segment[i].velocity / maxVel);
     rate->delayUntil(1_ms);
   }
@@ -211,7 +216,13 @@ void AsyncLinearMotionProfileController::moveTo(QLength iposition, QLength itarg
 }
 
 QLength AsyncLinearMotionProfileController::getError() const {
-  throw std::runtime_error("not implemented");
+  if (const auto path = paths.find(getTarget()); path == paths.end()) {
+    return 0_m;
+  } else {
+    // The last position in the path is the target position
+    return (path->second.segment[path->second.length - 1].position * meter) -
+           currentProfilePosition;
+  }
 }
 
 bool AsyncLinearMotionProfileController::isSettled() {
