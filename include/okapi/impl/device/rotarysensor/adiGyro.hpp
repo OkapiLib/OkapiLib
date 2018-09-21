@@ -8,6 +8,7 @@
 #ifndef _OKAPI_GYRO_HPP_
 #define _OKAPI_GYRO_HPP_
 
+#include "api.h"
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
 
