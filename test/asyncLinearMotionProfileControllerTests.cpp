@@ -39,8 +39,8 @@ TEST_F(AsyncLinearMotionProfileControllerTest, WaitUntilSettledWorksWhenDisabled
 
 TEST_F(AsyncLinearMotionProfileControllerTest, MoveToTest) {
   controller->moveTo(0_ft, 3_ft);
-  EXPECT_EQ(output->lastTarget, 0);
-  EXPECT_GT(output->maxTarget, 0);
+  EXPECT_EQ(output->lastControllerOutputSet, 0);
+  EXPECT_GT(output->maxControllerOutputSet, 0);
 }
 
 TEST_F(AsyncLinearMotionProfileControllerTest, MotorsAreStoppedAfterSettling) {
@@ -55,16 +55,16 @@ TEST_F(AsyncLinearMotionProfileControllerTest, MotorsAreStoppedAfterSettling) {
 
   controller->waitUntilSettled();
 
-  EXPECT_EQ(output->lastTarget, 0);
-  EXPECT_GT(output->maxTarget, 0);
+  EXPECT_EQ(output->lastControllerOutputSet, 0);
+  EXPECT_GT(output->maxControllerOutputSet, 0);
 }
 
 TEST_F(AsyncLinearMotionProfileControllerTest, WrongPathNameDoesNotMoveAnything) {
   controller->setTarget("A");
   controller->waitUntilSettled();
 
-  EXPECT_EQ(output->lastTarget, 0);
-  EXPECT_EQ(output->maxTarget, 0);
+  EXPECT_EQ(output->lastControllerOutputSet, 0);
+  EXPECT_EQ(output->maxControllerOutputSet, 0);
 }
 
 TEST_F(AsyncLinearMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
@@ -76,8 +76,8 @@ TEST_F(AsyncLinearMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
 
   controller->setTarget("A");
   controller->waitUntilSettled();
-  EXPECT_EQ(output->lastTarget, 0);
-  EXPECT_GT(output->maxTarget, 0);
+  EXPECT_EQ(output->lastControllerOutputSet, 0);
+  EXPECT_GT(output->maxControllerOutputSet, 0);
 }
 
 TEST_F(AsyncLinearMotionProfileControllerTest, ZeroWaypointsDoesNothing) {

@@ -129,6 +129,14 @@ class MockMotor : public AbstractMotor {
                         double ithreshold,
                         double iloopSpeed) const override;
 
+  AbstractMotor::brakeMode getBrakeMode() const override;
+
+  int32_t getCurrentLimit() const override;
+
+  AbstractMotor::encoderUnits getEncoderUnits() const override;
+
+  AbstractMotor::gearset getGearing() const override;
+
   std::shared_ptr<MockContinuousRotarySensor> encoder;
   mutable std::int16_t lastVelocity{0};
   mutable std::int16_t maxVelocity{0};
@@ -255,9 +263,15 @@ class MockAsyncVelIntegratedController : public AsyncVelIntegratedController {
 
   bool isSettled() override;
 
+  void controllerSet(double ivalue) override;
+
   bool isSettledOverride{true};
+
   double lastTarget{0};
   double maxTarget{0};
+
+  double lastControllerOutputSet{0};
+  double maxControllerOutputSet{0};
 };
 
 class MockIterativeController : public IterativePosPIDController {

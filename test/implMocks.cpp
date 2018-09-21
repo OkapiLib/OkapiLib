@@ -197,6 +197,22 @@ int32_t MockMotor::setVelPIDFull(double ikF,
   return 0;
 }
 
+AbstractMotor::brakeMode MockMotor::getBrakeMode() const {
+  return brakeMode::coast;
+}
+
+int32_t MockMotor::getCurrentLimit() const {
+  return 2500;
+}
+
+AbstractMotor::encoderUnits MockMotor::getEncoderUnits() const {
+  return encoderUnits::degrees;
+}
+
+AbstractMotor::gearset MockMotor::getGearing() const {
+  return gearset::red;
+}
+
 MockTimer::MockTimer() : AbstractTimer(millis()) {
 }
 
@@ -379,6 +395,16 @@ void MockAsyncVelIntegratedController::setTarget(double itarget) {
   }
 
   AsyncVelIntegratedController::setTarget(itarget);
+}
+
+void MockAsyncVelIntegratedController::controllerSet(double ivalue) {
+  lastControllerOutputSet = ivalue;
+
+  if (ivalue > maxControllerOutputSet) {
+    maxControllerOutputSet = ivalue;
+  }
+
+  AsyncVelIntegratedController::controllerSet(ivalue);
 }
 
 MockIterativeController::MockIterativeController()
