@@ -16,6 +16,13 @@
 namespace okapi {
 class MotorGroup : public AbstractMotor {
   public:
+  /**
+   * A group of V5 motors which act as one motor (i.e. they are mechanically linked). A MotorGroup
+   * requires at least one motor. If no motors are supplied, a std::invalid_argument exception is
+   * thrown.
+   *
+   * @param imotors the motors in this group
+   */
   MotorGroup(const std::initializer_list<Motor> &imotors);
 
   /******************************************************************************/
