@@ -14,13 +14,15 @@ AsyncMotionProfileController::AsyncMotionProfileController(const TimeUtil &itime
                                                            const double imaxAccel,
                                                            const double imaxJerk,
                                                            std::shared_ptr<ChassisModel> imodel,
-                                                           QLength iwidth)
+                                                           const ChassisScales &iscales,
+                                                           AbstractMotor::GearsetRatioPair ipair)
   : logger(Logger::instance()),
     maxVel(imaxVel),
     maxAccel(imaxAccel),
     maxJerk(imaxJerk),
     model(imodel),
-    width(iwidth),
+    scales(iscales),
+    pair(ipair),
     timeUtil(itimeUtil) {
 }
 
@@ -32,7 +34,8 @@ AsyncMotionProfileController::AsyncMotionProfileController(
     maxAccel(other.maxAccel),
     maxJerk(other.maxJerk),
     model(std::move(other.model)),
-    width(other.width),
+    scales(other.scales),
+    pair(other.pair),
     timeUtil(std::move(other.timeUtil)),
     currentPath(std::move(other.currentPath)),
     isRunning(other.isRunning),
@@ -117,7 +120,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
   auto *rightTrajectory = (Segment *)malloc(sizeof(Segment) * length);
 
   logger->info("AsyncMotionProfileController: Modifying for tank drive");
-  pathfinder_modify_tank(trajectory, length, leftTrajectory, rightTrajectory, width.convert(meter));
+  pathfinder_modify_tank(trajectory, length, leftTrajectory, rightTrajectory, scales.wheelbaseWidth.convert(meter));
 
   free(trajectory);
 

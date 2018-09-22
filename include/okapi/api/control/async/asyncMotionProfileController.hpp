@@ -45,7 +45,8 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
                                double imaxAccel,
                                double imaxJerk,
                                std::shared_ptr<ChassisModel> imodel,
-                               QLength iwidth);
+                               const ChassisScales &iscales,
+                               AbstractMotor::GearsetRatioPair ipair);
 
   AsyncMotionProfileController(AsyncMotionProfileController &&other) noexcept;
 
@@ -172,7 +173,8 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   double maxAccel{0};
   double maxJerk{0};
   std::shared_ptr<ChassisModel> model;
-  QLength width{11_in};
+  const ChassisScales &scales;
+  AbstractMotor::GearsetRatioPair pair;
   TimeUtil timeUtil;
 
   std::string currentPath{""};

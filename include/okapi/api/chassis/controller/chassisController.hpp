@@ -259,6 +259,11 @@ class ChassisController : public ChassisModel {
    */
   virtual ChassisScales getChassisScales() const = 0;
 
+  /**
+   * Get the GearsetRatioPair.
+   */
+  virtual AbstractMotor::GearsetRatioPair getGearsetRatioPair() const = 0;
+
   protected:
   std::shared_ptr<ChassisModel> model;
 };
