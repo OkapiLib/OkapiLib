@@ -19,8 +19,8 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
 
-    leftController = new MockAsyncController();
-    rightController = new MockAsyncController();
+    leftController = new MockAsyncPosIntegratedController();
+    rightController = new MockAsyncPosIntegratedController();
 
     model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
                                std::unique_ptr<AbstractMotor>(rightMotor));
@@ -43,8 +43,8 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
   ChassisController *controller;
   MockMotor *leftMotor;
   MockMotor *rightMotor;
-  MockAsyncController *leftController;
-  MockAsyncController *rightController;
+  MockAsyncPosIntegratedController *leftController;
+  MockAsyncPosIntegratedController *rightController;
   SkidSteerModel *model;
 };
 

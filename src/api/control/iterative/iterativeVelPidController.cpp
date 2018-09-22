@@ -97,12 +97,24 @@ void IterativeVelPIDController::setTarget(const double itarget) {
   target = itarget;
 }
 
+void IterativeVelPIDController::controllerSet(const double ivalue) {
+  target = remapRange(ivalue, -1, 1, outputMin, outputMax);
+}
+
 double IterativeVelPIDController::getTarget() {
   return target;
 }
 
 double IterativeVelPIDController::getOutput() const {
   return isDisabled() ? 0 : output;
+}
+
+double IterativeVelPIDController::getMaxOutput() {
+  return outputMax;
+}
+
+double IterativeVelPIDController::getMinOutput() {
+  return outputMin;
 }
 
 double IterativeVelPIDController::getError() const {

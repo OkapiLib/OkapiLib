@@ -41,6 +41,10 @@ class RQuantity {
     return *this;
   }
 
+  constexpr RQuantity operator-() {
+    return RQuantity(value * -1);
+  }
+
   constexpr RQuantity const &operator*=(const double rhs) {
     value *= rhs;
     return *this;

@@ -75,7 +75,7 @@ class Motor {
 	 * \return 1 if the operation was successful or PROS_ERR if the operation
 	 * failed, setting errno.
 	 */
-	virtual std::int32_t operator=(const std::int8_t voltage) const;
+	virtual std::int32_t operator=(std::int32_t voltage) const;
 
 	/**
 	 * Sets the voltage for the motor from -127 to 127.
@@ -94,7 +94,7 @@ class Motor {
 	 * \return 1 if the operation was successful or PROS_ERR if the operation
 	 * failed, setting errno.
 	 */
-	virtual std::int32_t move(const std::int8_t voltage) const;
+	virtual std::int32_t move(std::int32_t voltage) const;
 
 	/**
 	 * Sets the target absolute position for the motor to move to.
@@ -811,7 +811,8 @@ class Motor {
 	/**
 	 * Gets the voltage limit set by the user.
 	 *
-	 * Default value is 0V, which I presume means that the limit does not exist.
+	 * Default value is 0V, which means that there is no software limitation
+	 * imposed on the voltage.
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:

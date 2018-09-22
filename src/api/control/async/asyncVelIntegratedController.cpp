@@ -61,7 +61,7 @@ bool AsyncVelIntegratedController::isDisabled() const {
 
 void AsyncVelIntegratedController::resumeMovement() {
   if (isDisabled()) {
-    motor->moveVoltage(0);
+    motor->moveVelocity(0);
   } else {
     if (hasFirstTarget) {
       setTarget(lastTarget);
@@ -75,5 +75,17 @@ void AsyncVelIntegratedController::waitUntilSettled() {
     rate->delayUntil(motorUpdateRate);
   }
   logger->info("AsyncVelIntegratedController: Done waiting to settle");
+}
+
+void AsyncVelIntegratedController::controllerSet(double ivalue) {
+  hasFirstTarget = true;
+
+  if (!controllerIsDisabled) {
+    motor->controllerSet(ivalue);
+  }
+
+  // Need to scale the controller output from [-1, 1] to the range of the motor based on its
+  // internal gearset
+  lastTarget = ivalue * toUnderlyingType(motor->getGearing());
 }
 } // namespace okapi
