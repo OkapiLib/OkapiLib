@@ -27,7 +27,7 @@ class SkidSteerModel : public ChassisModel {
    */
   SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                  std::shared_ptr<AbstractMotor> irightSideMotor,
-                 double imaxVelocity = 127,
+                 double imaxVelocity = 600,
                  double imaxVoltage = 12000);
 
   /**
@@ -43,7 +43,7 @@ class SkidSteerModel : public ChassisModel {
                  std::shared_ptr<AbstractMotor> irightSideMotor,
                  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                  std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                 double imaxVelocity = 127,
+                 double imaxVelocity = 600,
                  double imaxVoltage = 12000);
 
   /**
@@ -226,8 +226,8 @@ class SkidSteerModel : public ChassisModel {
   std::shared_ptr<AbstractMotor> rightSideMotor;
   std::shared_ptr<ContinuousRotarySensor> leftSensor;
   std::shared_ptr<ContinuousRotarySensor> rightSensor;
-  const double maxVelocity;
-  const double maxVoltage;
+  double maxVelocity;
+  double maxVoltage;
 };
 } // namespace okapi
 
