@@ -262,6 +262,18 @@ TEST_F(XDriveModelTest, XArcadeBoundsInputAllNoForward) {
   EXPECT_EQ(bottomLeftMotor->lastVoltage, 0);
 }
 
+TEST_F(XDriveModelTest, SetMaxVelocity) {
+  model.setMaxVelocity(2);
+  model.forward(0.5);
+  assertAllMotorsLastVelocity(1);
+}
+
+TEST_F(XDriveModelTest, SetMaxVoltage) {
+  model.setMaxVoltage(2);
+  model.tank(0.5, 0.5);
+  assertAllMotorsLastVoltage(1);
+}
+
 TEST_F(XDriveModelTest, SetGearsetTest) {
   model.setGearing(AbstractMotor::gearset::green);
   assertMotorsGearsetEquals(AbstractMotor::gearset::green,

@@ -261,8 +261,6 @@ class XDriveModel : public ChassisModel {
   std::shared_ptr<AbstractMotor> bottomLeftMotor;
   std::shared_ptr<ContinuousRotarySensor> leftSensor;
   std::shared_ptr<ContinuousRotarySensor> rightSensor;
-  double maxVelocity;
-  double maxVoltage;
 };
 } // namespace okapi
 

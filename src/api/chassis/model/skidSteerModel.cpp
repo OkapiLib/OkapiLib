@@ -16,24 +16,22 @@ SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                std::shared_ptr<ContinuousRotarySensor> irightEnc,
                                const double imaxVelocity,
                                const double imaxVoltage)
-  : leftSideMotor(ileftSideMotor),
+  : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage),
+    leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
     leftSensor(ileftEnc),
-    rightSensor(irightEnc),
-    maxVelocity(imaxVelocity),
-    maxVoltage(imaxVoltage) {
+    rightSensor(irightEnc) {
 }
 
 SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                std::shared_ptr<AbstractMotor> irightSideMotor,
                                const double imaxVelocity,
                                const double imaxVoltage)
-  : leftSideMotor(ileftSideMotor),
+  : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage),
+    leftSideMotor(ileftSideMotor),
     rightSideMotor(irightSideMotor),
     leftSensor(ileftSideMotor->getEncoder()),
-    rightSensor(irightSideMotor->getEncoder()),
-    maxVelocity(imaxVelocity),
-    maxVoltage(imaxVoltage) {
+    rightSensor(irightSideMotor->getEncoder()) {
 }
 
 void SkidSteerModel::forward(const double ispeed) const {

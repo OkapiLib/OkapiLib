@@ -226,8 +226,6 @@ class SkidSteerModel : public ChassisModel {
   std::shared_ptr<AbstractMotor> rightSideMotor;
   std::shared_ptr<ContinuousRotarySensor> leftSensor;
   std::shared_ptr<ContinuousRotarySensor> rightSensor;
-  double maxVelocity;
-  double maxVoltage;
 };
 } // namespace okapi
 
