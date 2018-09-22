@@ -62,14 +62,13 @@ template <std::size_t n> class MedianFilter : public Filter {
    */
   double kth_smallset() {
     std::array<double, n> dataCopy = data;
-    size_t i, j, l, m;
-    double x;
+    size_t j, l, m;
     l = 0;
     m = n - 1;
 
     while (l < m) {
-      x = dataCopy[middleIndex];
-      i = l;
+      double x = dataCopy[middleIndex];
+      size_t i = l;
       j = m;
       do {
         while (dataCopy[i] < x) {
