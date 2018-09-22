@@ -1,8 +1,8 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/28aa44e211bf46d0a8e9bbbd07814acb)](https://app.codacy.com/app/OkapiLib/OkapiLib?utm_source=github.com&utm_medium=referral&utm_content=OkapiLib/OkapiLib&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/OkapiLib/OkapiLib.svg?branch=develop)](https://travis-ci.org/OkapiLib/OkapiLib)
 [![codecov](https://codecov.io/gh/OkapiLib/OkapiLib/branch/develop/graph/badge.svg)](https://codecov.io/gh/OkapiLib/OkapiLib)
-[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/28aa44e211bf46d0a8e9bbbd07814acb)](https://app.codacy.com/app/OkapiLib/OkapiLib?utm_source=github.com&utm_medium=referral&utm_content=OkapiLib/OkapiLib&utm_campaign=Badge_Grade_Dashboard)
 [![Github All Releases](https://img.shields.io/github/downloads/OkapiLib/OkapiLib/total.svg)](https://github.com/OkapiLib/OkapiLib/releases)
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 
 
 # OkapiLib
