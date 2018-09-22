@@ -24,6 +24,7 @@ namespace okapi {
 class ChassisModel : public ReadOnlyChassisModel {
   public:
   ChassisModel() = default;
+  ChassisModel(double imaxVelocity, double imaxVoltage);
   ChassisModel(const ChassisModel &) = delete;
   ChassisModel &operator=(const ChassisModel &) = delete;
 
@@ -176,6 +177,24 @@ class ChassisModel : public ReadOnlyChassisModel {
                              double ilimit,
                              double ithreshold,
                              double iloopSpeed) const = 0;
+
+  /**
+   * Sets a new maximum velocity.
+   *
+   * @param imaxVelocity the new maximum velocity
+   */
+  virtual void setMaxVelocity(double imaxVelocity);
+
+  /**
+   * Sets a new maximum voltage.
+   *
+   * @param imaxVoltage the new maximum voltage
+   */
+  virtual void setMaxVoltage(double imaxVoltage);
+
+  protected:
+  double maxVelocity{600};
+  double maxVoltage{12000};
 };
 } // namespace okapi
 

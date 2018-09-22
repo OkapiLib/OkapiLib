@@ -31,7 +31,7 @@ class XDriveModel : public ChassisModel {
               std::shared_ptr<AbstractMotor> itopRightMotor,
               std::shared_ptr<AbstractMotor> ibottomRightMotor,
               std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-              double imaxVelocity = 127,
+              double imaxVelocity = 600,
               double imaxVoltage = 12000);
 
   /**
@@ -51,7 +51,7 @@ class XDriveModel : public ChassisModel {
               std::shared_ptr<AbstractMotor> ibottomLeftMotor,
               std::shared_ptr<ContinuousRotarySensor> ileftEnc,
               std::shared_ptr<ContinuousRotarySensor> irightEnc,
-              double imaxVelocity = 127,
+              double imaxVelocity = 600,
               double imaxVoltage = 12000);
 
   /**
@@ -261,8 +261,6 @@ class XDriveModel : public ChassisModel {
   std::shared_ptr<AbstractMotor> bottomLeftMotor;
   std::shared_ptr<ContinuousRotarySensor> leftSensor;
   std::shared_ptr<ContinuousRotarySensor> rightSensor;
-  const double maxVelocity;
-  const double maxVoltage;
 };
 } // namespace okapi
 
