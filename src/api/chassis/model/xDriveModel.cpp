@@ -17,14 +17,13 @@ XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
                          std::shared_ptr<ContinuousRotarySensor> irightEnc,
                          const double imaxVelocity,
                          const double imaxVoltage)
-  : topLeftMotor(itopLeftMotor),
+  : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage),
+    topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
     bottomLeftMotor(ibottomLeftMotor),
     leftSensor(ileftEnc),
-    rightSensor(irightEnc),
-    maxVelocity(imaxVelocity),
-    maxVoltage(imaxVoltage) {
+    rightSensor(irightEnc) {
 }
 
 XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
@@ -33,14 +32,13 @@ XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
                          std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                          const double imaxVelocity,
                          const double imaxVoltage)
-  : topLeftMotor(itopLeftMotor),
+  : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage),
+    topLeftMotor(itopLeftMotor),
     topRightMotor(itopRightMotor),
     bottomRightMotor(ibottomRightMotor),
     bottomLeftMotor(ibottomLeftMotor),
     leftSensor(itopLeftMotor->getEncoder()),
-    rightSensor(itopRightMotor->getEncoder()),
-    maxVelocity(imaxVelocity),
-    maxVoltage(imaxVoltage) {
+    rightSensor(itopRightMotor->getEncoder()) {
 }
 
 void XDriveModel::forward(const double ispeed) const {

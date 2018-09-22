@@ -9,7 +9,8 @@
 #include <cmath>
 
 namespace okapi {
-ChassisController::ChassisController(std::shared_ptr<ChassisModel> imodel) : model(imodel) {
+ChassisController::ChassisController(std::shared_ptr<ChassisModel> imodel)
+  : ChassisModel::ChassisModel(), model(imodel) {
 }
 
 ChassisController::~ChassisController() = default;
