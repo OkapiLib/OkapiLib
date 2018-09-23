@@ -15,7 +15,7 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
   public:
   /**
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-   * motors are powered +127, the robot should move forward in a straight line.
+   * motors are powered +100%, the robot should move forward in a straight line.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
@@ -28,7 +28,7 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
                              std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                              std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
                              std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                             double imaxVelocity = 127,
+                             double imaxVelocity,
                              double imaxVoltage = 12000);
 
   /**

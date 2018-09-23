@@ -26,7 +26,9 @@ class ChassisController : public ChassisModel {
    *
    * @param imodel underlying ChassisModel
    */
-  explicit ChassisController(std::shared_ptr<ChassisModel> imodel);
+  explicit ChassisController(std::shared_ptr<ChassisModel> imodel,
+                             double imaxVelocity,
+                             double imaxVoltage = 12000);
 
   ~ChassisController() override;
 
