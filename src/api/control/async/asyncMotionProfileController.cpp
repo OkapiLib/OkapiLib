@@ -6,6 +6,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
+#include "okapi/api/units/QAngularSpeed.hpp"
+#include "okapi/api/units/QSpeed.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include <numeric>
 
 namespace okapi {
@@ -120,7 +123,8 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
   auto *rightTrajectory = (Segment *)malloc(sizeof(Segment) * length);
 
   logger->info("AsyncMotionProfileController: Modifying for tank drive");
-  pathfinder_modify_tank(trajectory, length, leftTrajectory, rightTrajectory, scales.wheelbaseWidth.convert(meter));
+  pathfinder_modify_tank(
+    trajectory, length, leftTrajectory, rightTrajectory, scales.wheelbaseWidth.convert(meter));
 
   free(trajectory);
 
@@ -195,9 +199,17 @@ void AsyncMotionProfileController::loop() {
 
 void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
                                                      std::unique_ptr<AbstractRate> rate) {
+  const auto linearSpeedToRotationalSpeed = [&](QSpeed linearMps) -> QAngularSpeed {
+    return linearMps * (360_deg / (scales.wheelDiameter * 1_pi));
+  };
+
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
-    model->left(path.left[i].velocity / maxVel);
-    model->right(path.right[i].velocity / maxVel);
+    const auto leftRPM = linearSpeedToRotationalSpeed(path.left[i].velocity * mps).convert(rpm);
+    const auto rightRPM = linearSpeedToRotationalSpeed(path.right[i].velocity * mps).convert(rpm);
+
+    model->left(leftRPM / toUnderlyingType(pair.internalGearset));
+    model->right(rightRPM / toUnderlyingType(pair.internalGearset));
+
     rate->delayUntil(1_ms);
   }
 }

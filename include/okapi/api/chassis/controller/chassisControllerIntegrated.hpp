@@ -105,6 +105,11 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   ChassisScales getChassisScales() const override;
 
+  /**
+   * Get the GearsetRatioPair.
+   */
+  AbstractMotor::GearsetRatioPair getGearsetRatioPair() const override;
+
   protected:
   Logger *logger;
   std::unique_ptr<AbstractRate> rate;
@@ -112,7 +117,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   std::unique_ptr<AsyncPosIntegratedController> rightController;
   int lastTarget;
   ChassisScales scales;
-  const double gearRatio;
+  AbstractMotor::GearsetRatioPair gearsetRatioPair;
 };
 } // namespace okapi
 

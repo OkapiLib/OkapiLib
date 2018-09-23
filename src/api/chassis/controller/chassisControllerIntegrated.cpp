@@ -23,7 +23,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     rightController(std::move(irightController)),
     lastTarget(0),
     scales(iscales),
-    gearRatio(igearset.ratio) {
+    gearsetRatioPair(igearset) {
   if (igearset.ratio == 0) {
     logger->error("ChassisControllerIntegrated: The gear ratio cannot be zero! Check if you are "
                   "using integer division.");
@@ -54,7 +54,7 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
   leftController->flipDisable(false);
   rightController->flipDisable(false);
 
-  const double newTarget = itarget.convert(meter) * scales.straight * gearRatio;
+  const double newTarget = itarget.convert(meter) * scales.straight * gearsetRatioPair.ratio;
 
   logger->info("ChassisControllerIntegrated: moving " + std::to_string(newTarget) +
                " motor degrees");
@@ -88,7 +88,7 @@ void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
   leftController->flipDisable(false);
   rightController->flipDisable(false);
 
-  const double newTarget = idegTarget.convert(degree) * scales.turn * gearRatio;
+  const double newTarget = idegTarget.convert(degree) * scales.turn * gearsetRatioPair.ratio;
 
   logger->info("ChassisControllerIntegrated: turning " + std::to_string(newTarget) +
                " motor degrees");
@@ -125,5 +125,9 @@ void ChassisControllerIntegrated::stop() {
 
 ChassisScales ChassisControllerIntegrated::getChassisScales() const {
   return scales;
+}
+
+AbstractMotor::GearsetRatioPair ChassisControllerIntegrated::getGearsetRatioPair() const {
+  return gearsetRatioPair;
 }
 } // namespace okapi
