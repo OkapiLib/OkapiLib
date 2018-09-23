@@ -18,15 +18,11 @@ void opcontrol() {
 
   pros::delay(100);
 
-  auto velCnt =
-    std::make_shared<AsyncVelIntegratedController>(AsyncControllerFactory::velIntegrated(1));
-
-  auto mpCnt =
-    AsyncLinearMotionProfileController(TimeUtilFactory::create(), 1.0, 2.0, 10.0, velCnt);
-  mpCnt.startThread();
-
-  Logger::initialize(TimeUtilFactory::create().getTimer(), "/ser/sout", Logger::LogLevel::debug);
-  mpCnt.generatePath({0, 12}, "A");
-  mpCnt.setTarget("A");
-  mpCnt.waitUntilSettled();
+  auto drive = ChassisControllerFactory::create(-18, 19, AbstractMotor::gearset::green, {1, 1});
+  drive.forward(0.1);
+  Motor mtr(-18);
+  while (true) {
+    printf("%1.2f\n", mtr.getActualVelocity());
+    pros::delay(10);
+  }
 }

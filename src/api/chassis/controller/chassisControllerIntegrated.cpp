@@ -1,5 +1,3 @@
-#include <utility>
-
 /**
  * @author Ryan Benasutti, WPI
  *
@@ -8,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
@@ -17,7 +16,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::unique_ptr<AsyncPosIntegratedController> irightController,
   AbstractMotor::GearsetRatioPair igearset,
   const ChassisScales &iscales)
-  : ChassisController(imodel),
+  : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
     logger(Logger::instance()),
     rate(itimeUtil.getRate()),
     leftController(std::move(ileftController)),

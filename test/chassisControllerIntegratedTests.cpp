@@ -22,8 +22,8 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
     leftController = new MockAsyncPosIntegratedController();
     rightController = new MockAsyncPosIntegratedController();
 
-    model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
-                               std::unique_ptr<AbstractMotor>(rightMotor));
+    model = new SkidSteerModel(
+      std::unique_ptr<AbstractMotor>(leftMotor), std::unique_ptr<AbstractMotor>(rightMotor), 100);
 
     controller = new ChassisControllerIntegrated(
       createTimeUtil(),

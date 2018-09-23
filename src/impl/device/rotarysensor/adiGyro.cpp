@@ -8,8 +8,7 @@
 #include "okapi/impl/device/rotarysensor/adiGyro.hpp"
 
 namespace okapi {
-ADIGyro::ADIGyro(const std::uint8_t iport, const double imultiplier)
-  : gyro(iport, imultiplier) {
+ADIGyro::ADIGyro(const std::uint8_t iport, const double imultiplier) : gyro(iport, imultiplier) {
 }
 
 ADIGyro::~ADIGyro() = default;
