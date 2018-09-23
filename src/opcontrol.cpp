@@ -16,16 +16,28 @@
 void opcontrol() {
   using namespace okapi;
 
-  std::uint32_t lastTime;
-  std::uint32_t lastMillis = pros::millis();
-  std::uint32_t nowMillis;
-  const int delayAmount = 1;
+  auto drive =
+    ChassisControllerFactory::create(-18, 19, AbstractMotor::gearset::green, {10.5_in, 4.125_in});
 
-  while (true) {
-    pros::Task::delay_until(&lastTime, delayAmount);
-    if ((nowMillis = pros::millis()) - lastMillis != delayAmount) {
-      printf("%d\n", (int)(nowMillis - lastMillis));
-    }
-    lastMillis = nowMillis;
-  }
+  auto mp = AsyncControllerFactory::motionProfile(1, 2, 10, drive);
+
+  mp.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 3_ft, 90_deg}, Point{3_ft, 4_ft, 45_deg}},
+                  "E");
+  mp.setTarget("E");
+  mp.waitUntilSettled();
+
+  //  auto rate = TimeUtilFactory::create().getRate();
+  //
+  //  std::uint32_t lastTime;
+  //  std::uint32_t lastMillis = pros::millis();
+  //  std::uint32_t nowMillis;
+  //  const int delayAmount = 5;
+  //
+  //  while (true) {
+  //    rate->delayUntil(delayAmount);
+  //    if ((nowMillis = pros::millis()) - lastMillis != delayAmount) {
+  //      printf("%d\n", (int)(nowMillis - lastMillis));
+  //    }
+  //    lastMillis = nowMillis;
+  //  }
 }
