@@ -16,6 +16,8 @@
 void opcontrol() {
   using namespace okapi;
 
+  Logger::initialize(TimeUtilFactory::create().getTimer(), "/ser/sout", Logger::LogLevel::debug);
+
   auto drive =
     ChassisControllerFactory::create(-18, 19, AbstractMotor::gearset::green, {10.5_in, 4.125_in});
 

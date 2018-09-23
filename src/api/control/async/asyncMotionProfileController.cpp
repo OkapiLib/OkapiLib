@@ -80,7 +80,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
                      static_cast<int>(points.size()),
                      FIT_HERMITE_CUBIC,
                      PATHFINDER_SAMPLES_FAST,
-                     0.005,
+                     0.001,
                      maxVel,
                      maxAccel,
                      maxJerk,
@@ -210,7 +210,7 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
     model->left(leftRPM / toUnderlyingType(pair.internalGearset));
     model->right(rightRPM / toUnderlyingType(pair.internalGearset));
 
-    rate->delayUntil(5_ms);
+    rate->delayUntil(1_ms);
   }
 }
 

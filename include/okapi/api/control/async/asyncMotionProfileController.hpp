@@ -173,7 +173,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   double maxAccel{0};
   double maxJerk{0};
   std::shared_ptr<ChassisModel> model;
-  const ChassisScales &scales;
+  ChassisScales scales;
   AbstractMotor::GearsetRatioPair pair;
   TimeUtil timeUtil;
 
