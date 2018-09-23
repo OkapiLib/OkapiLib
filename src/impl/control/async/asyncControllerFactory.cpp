@@ -335,4 +335,14 @@ AsyncControllerFactory::motionProfile(double imaxVel,
   return out;
 }
 
+AsyncLinearMotionProfileController
+linearMotionProfile(double imaxVel,
+                    double imaxAccel,
+                    double imaxJerk,
+                    std::shared_ptr<ControllerOutput<double>> ioutput) {
+  AsyncLinearMotionProfileController out(
+    TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk, ioutput);
+  out.startThread();
+  return out;
+}
 } // namespace okapi
