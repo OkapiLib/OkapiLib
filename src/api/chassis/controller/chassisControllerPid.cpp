@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include <cmath>
 
 namespace okapi {
@@ -17,7 +18,7 @@ ChassisControllerPID::ChassisControllerPID(
   std::unique_ptr<IterativePosPIDController> iturnController,
   const AbstractMotor::GearsetRatioPair igearset,
   const ChassisScales &iscales)
-  : ChassisController(imodel),
+  : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
     rate(itimeUtil.getRate()),
     distancePid(std::move(idistanceController)),
     anglePid(std::move(iangleController)),
@@ -36,7 +37,7 @@ ChassisControllerPID::ChassisControllerPID(
 }
 
 ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcept
-  : ChassisController(std::move(other.model)),
+  : ChassisController(std::move(other.model), other.maxVelocity, other.maxVoltage),
     logger(other.logger),
     rate(std::move(other.rate)),
     distancePid(std::move(other.distancePid)),

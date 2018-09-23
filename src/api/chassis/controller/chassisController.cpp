@@ -9,8 +9,10 @@
 #include <cmath>
 
 namespace okapi {
-ChassisController::ChassisController(std::shared_ptr<ChassisModel> imodel)
-  : ChassisModel::ChassisModel(), model(imodel) {
+ChassisController::ChassisController(std::shared_ptr<ChassisModel> imodel,
+                                     const double imaxVelocity,
+                                     const double imaxVoltage)
+  : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage), model(imodel) {
 }
 
 ChassisController::~ChassisController() = default;
