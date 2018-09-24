@@ -10,7 +10,6 @@
 #include "okapi/api/units/QSpeed.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include <numeric>
-//#include "api.h"
 
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(const TimeUtil &itimeUtil,
