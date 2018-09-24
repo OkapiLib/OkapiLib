@@ -109,6 +109,14 @@ void ChassisController::setVelPIDFull(const double ikF,
   model->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
 }
 
+void ChassisController::setMaxVelocity(double imaxVelocity) {
+  model->setMaxVelocity(imaxVelocity);
+}
+
+void ChassisController::setMaxVoltage(double imaxVoltage) {
+  model->setMaxVoltage(imaxVoltage);
+}
+
 std::shared_ptr<ChassisModel> ChassisController::getChassisModel() const {
   return model;
 }
