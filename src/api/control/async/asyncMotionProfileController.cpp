@@ -10,7 +10,7 @@
 #include "okapi/api/units/QSpeed.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include <numeric>
-#include "api.h"
+//#include "api.h"
 
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(const TimeUtil &itimeUtil,
@@ -211,7 +211,7 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
     model->left(leftRPM / toUnderlyingType(pair.internalGearset));
     model->right(rightRPM / toUnderlyingType(pair.internalGearset));
 
-    pros::delay(1);
+//    pros::delay(1);
   }
 }
 
