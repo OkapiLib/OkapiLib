@@ -17,11 +17,16 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
 
-    model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
-                               std::unique_ptr<AbstractMotor>(rightMotor));
+    model = new SkidSteerModel(
+      std::unique_ptr<AbstractMotor>(leftMotor), std::unique_ptr<AbstractMotor>(rightMotor), 100);
 
-    controller = new AsyncMotionProfileController(
-      createTimeUtil(), 1.0, 2.0, 10.0, std::shared_ptr<SkidSteerModel>(model), 10.5_in);
+    controller = new AsyncMotionProfileController(createTimeUtil(),
+                                                  1.0,
+                                                  2.0,
+                                                  10.0,
+                                                  std::shared_ptr<SkidSteerModel>(model),
+                                                  {4_in, 10.5_in},
+                                                  AbstractMotor::gearset::green);
     controller->startThread();
   }
 

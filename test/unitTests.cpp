@@ -5,12 +5,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+#include "okapi/api/units/QAngularSpeed.hpp"
 #include "okapi/api/units/QLength.hpp"
+#include "okapi/api/units/QSpeed.hpp"
 #include "okapi/api/units/QTime.hpp"
-#include "test/crossPlatformTestRunner.hpp"
 #include <gtest/gtest.h>
-
-using namespace snowhouse;
 
 namespace okapi {
 TEST(UnitTests, TimeAddition) {

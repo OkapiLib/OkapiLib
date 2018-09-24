@@ -30,7 +30,7 @@ class ChassisModelFactory {
    */
   static SkidSteerModel create(Motor ileftSideMotor,
                                Motor irightSideMotor,
-                               double imaxVelocity = 127,
+                               double imaxVelocity,
                                double imaxVoltage = 12000);
 
   /**
@@ -45,7 +45,7 @@ class ChassisModelFactory {
    */
   static SkidSteerModel create(MotorGroup ileftSideMotor,
                                MotorGroup irightSideMotor,
-                               double imaxVelocity = 127,
+                               double imaxVelocity,
                                double imaxVoltage = 12000);
 
   /**
@@ -62,7 +62,7 @@ class ChassisModelFactory {
                                MotorGroup irightSideMotor,
                                ADIEncoder ileftEnc,
                                ADIEncoder irightEnc,
-                               double imaxVelocity = 127,
+                               double imaxVelocity,
                                double imaxVoltage = 12000);
 
   /**
@@ -81,7 +81,7 @@ class ChassisModelFactory {
                             Motor itopRightMotor,
                             Motor ibottomRightMotor,
                             Motor ibottomLeftMotor,
-                            double imaxVelocity = 127,
+                            double imaxVelocity,
                             double imaxVoltage = 12000);
 
   /**
@@ -102,7 +102,7 @@ class ChassisModelFactory {
                             Motor ibottomLeftMotor,
                             ADIEncoder ileftEnc,
                             ADIEncoder irightEnc,
-                            double imaxVelocity = 127,
+                            double imaxVelocity,
                             double imaxVoltage = 12000);
 
   /**
@@ -120,7 +120,7 @@ class ChassisModelFactory {
                                            ADIEncoder ileftEnc,
                                            ADIEncoder imiddleEnc,
                                            ADIEncoder irightEnc,
-                                           double imaxVelocity = 127,
+                                           double imaxVelocity,
                                            double imaxVoltage = 12000);
 
   /**
@@ -138,7 +138,7 @@ class ChassisModelFactory {
                                            ADIEncoder ileftEnc,
                                            ADIEncoder imiddleEnc,
                                            ADIEncoder irightEnc,
-                                           double imaxVelocity = 127,
+                                           double imaxVelocity,
                                            double imaxVoltage = 12000);
 };
 } // namespace okapi

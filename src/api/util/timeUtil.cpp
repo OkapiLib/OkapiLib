@@ -8,12 +8,12 @@
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
-TimeUtil::TimeUtil(const okapi::Supplier<std::unique_ptr<okapi::AbstractTimer>> &timerSupplier,
-                   const okapi::Supplier<std::unique_ptr<okapi::AbstractRate>> &rateSupplier,
-                   const okapi::Supplier<std::unique_ptr<okapi::SettledUtil>> &settledUtilSupplier)
-  : timerSupplier(timerSupplier),
-    rateSupplier(rateSupplier),
-    settledUtilSupplier(settledUtilSupplier) {
+TimeUtil::TimeUtil(const okapi::Supplier<std::unique_ptr<okapi::AbstractTimer>> &itimerSupplier,
+                   const okapi::Supplier<std::unique_ptr<okapi::AbstractRate>> &irateSupplier,
+                   const okapi::Supplier<std::unique_ptr<okapi::SettledUtil>> &isettledUtilSupplier)
+  : timerSupplier(itimerSupplier),
+    rateSupplier(irateSupplier),
+    settledUtilSupplier(isettledUtilSupplier) {
 }
 
 std::unique_ptr<AbstractTimer> TimeUtil::getTimer() const {

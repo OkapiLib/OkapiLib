@@ -26,7 +26,9 @@ class ChassisController : public ChassisModel {
    *
    * @param imodel underlying ChassisModel
    */
-  explicit ChassisController(std::shared_ptr<ChassisModel> imodel);
+  explicit ChassisController(std::shared_ptr<ChassisModel> imodel,
+                             double imaxVelocity,
+                             double imaxVoltage = 12000);
 
   ~ChassisController() override;
 
@@ -258,6 +260,11 @@ class ChassisController : public ChassisModel {
    * Get the ChassisScales.
    */
   virtual ChassisScales getChassisScales() const = 0;
+
+  /**
+   * Get the GearsetRatioPair.
+   */
+  virtual AbstractMotor::GearsetRatioPair getGearsetRatioPair() const = 0;
 
   protected:
   std::shared_ptr<ChassisModel> model;

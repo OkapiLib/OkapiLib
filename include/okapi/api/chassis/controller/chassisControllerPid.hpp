@@ -118,14 +118,19 @@ class ChassisControllerPID : public virtual ChassisController {
    */
   ChassisScales getChassisScales() const override;
 
+  /**
+   * Get the GearsetRatioPair.
+   */
+  AbstractMotor::GearsetRatioPair getGearsetRatioPair() const override;
+
   protected:
   Logger *logger;
   std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<IterativePosPIDController> distancePid;
   std::unique_ptr<IterativePosPIDController> anglePid;
   std::unique_ptr<IterativePosPIDController> turnPid;
-  const double gearRatio;
   ChassisScales scales;
+  AbstractMotor::GearsetRatioPair gearsetRatioPair;
   bool doneLooping{true};
   bool newMovement{false};
   std::atomic_bool dtorCalled{false};

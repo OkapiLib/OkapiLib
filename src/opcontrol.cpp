@@ -16,17 +16,15 @@
 void opcontrol() {
   using namespace okapi;
 
-  pros::delay(100);
-
-  auto velCnt =
-    std::make_shared<AsyncVelIntegratedController>(AsyncControllerFactory::velIntegrated(1));
-
-  auto mpCnt =
-    AsyncLinearMotionProfileController(TimeUtilFactory::create(), 1.0, 2.0, 10.0, velCnt);
-  mpCnt.startThread();
-
   Logger::initialize(TimeUtilFactory::create().getTimer(), "/ser/sout", Logger::LogLevel::debug);
-  mpCnt.generatePath({0, 12}, "A");
-  mpCnt.setTarget("A");
-  mpCnt.waitUntilSettled();
+
+  auto drive =
+    ChassisControllerFactory::create(-18, 19, AbstractMotor::gearset::green, {4.125_in, 10.5_in});
+
+  auto mp = AsyncControllerFactory::motionProfile(1, 4, 8, drive);
+
+  mp.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 3_ft, 90_deg}, Point{3_ft, 5_ft, 45_deg}},
+                  "E");
+  mp.setTarget("E");
+  mp.waitUntilSettled();
 }

@@ -346,7 +346,8 @@ class AsyncControllerFactory {
                                                     double imaxAccel,
                                                     double imaxJerk,
                                                     std::shared_ptr<ChassisModel> imodel,
-                                                    QLength iwidth);
+                                                    const ChassisScales &iscales,
+                                                    AbstractMotor::GearsetRatioPair ipair);
 
   /**
    * A controller which generates and follows 1D motion profiles.
