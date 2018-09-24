@@ -25,7 +25,7 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
                                                   2.0,
                                                   10.0,
                                                   std::shared_ptr<SkidSteerModel>(model),
-                                                  {10.5_in, 4_in},
+                                                  {4_in, 10.5_in},
                                                   AbstractMotor::gearset::green);
     controller->startThread();
   }
