@@ -31,7 +31,7 @@ script:
   - make # run the cross-compiler
   - mkdir cmake-build-debug
   - cd cmake-build-debug
-  - cmake -E env CXXFLAGS="-fsanitize=address" cmake -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=gold -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" .. # .. is now the source dir
+  - cmake -E env CXXFLAGS="-fsanitize=address" -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=gold cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" .. # .. is now the source dir
   - cmake --build . --target OkapiLibV5 -- -j 2 # . is the build dir
   - ./OkapiLibV5 # run with address sanitization
   - rm -rf ./* # clear everything and remake without sanitization for valgrind
