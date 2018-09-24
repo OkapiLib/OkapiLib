@@ -8,7 +8,6 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -Wall -Wextra -Wshadow -Wnull-dereference -Wno-psabi -pthread -g -O0 -fprofile-arcs -ftest-coverage -D THREADS_STD")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=gold")
 
 enable_testing()
 

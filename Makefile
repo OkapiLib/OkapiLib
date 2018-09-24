@@ -19,7 +19,7 @@ EXTRA_CXXFLAGS=
 # Set this to 1 to add additional rules to compile your project as a PROS library template
 IS_LIBRARY:=1
 LIBNAME:=okapilib
-VERSION:=3.3.2-beta
+VERSION:=3.3.1
 EXCLUDE_SRC_FROM_LIB=$(SRCDIR)/test/testRunner.cpp
 EXCLUDE_SRC_FROM_LIB+=$(SRCDIR)/test/testMain.cpp
 EXCLUDE_SRC_FROM_LIB+=$(SRCDIR)/test/crossPlatformTestRunner.cpp
