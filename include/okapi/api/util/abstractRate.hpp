@@ -42,7 +42,7 @@ class AbstractRate {
   virtual void delayUntil(QTime itime) = 0;
 
   /**
-   * Delay the current task until itime milliseconds have passed. This method can be used by
+   * Delay the current task until ims milliseconds have passed. This method can be used by
    * periodic tasks to ensure a consistent execution frequency.
    *
    * @param ims the time period

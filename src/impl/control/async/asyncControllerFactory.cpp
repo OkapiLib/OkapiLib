@@ -318,7 +318,8 @@ AsyncControllerFactory::motionProfile(double imaxVel,
                        imaxAccel,
                        imaxJerk,
                        ichassis.getChassisModel(),
-                       ichassis.getChassisScales().wheelbaseWidth);
+                       ichassis.getChassisScales(),
+                       ichassis.getGearsetRatioPair());
 }
 
 AsyncMotionProfileController
@@ -326,11 +327,22 @@ AsyncControllerFactory::motionProfile(double imaxVel,
                                       double imaxAccel,
                                       double imaxJerk,
                                       std::shared_ptr<ChassisModel> imodel,
-                                      QLength iwidth) {
+                                      const ChassisScales &iscales,
+                                      AbstractMotor::GearsetRatioPair ipair) {
   AsyncMotionProfileController out(
-    TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk, imodel, iwidth);
+    TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk, imodel, iscales, ipair);
   out.startThread();
   return out;
 }
 
+AsyncLinearMotionProfileController
+linearMotionProfile(double imaxVel,
+                    double imaxAccel,
+                    double imaxJerk,
+                    std::shared_ptr<ControllerOutput<double>> ioutput) {
+  AsyncLinearMotionProfileController out(
+    TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk, ioutput);
+  out.startThread();
+  return out;
+}
 } // namespace okapi

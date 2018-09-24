@@ -24,8 +24,8 @@ FlywheelSimulator::FlywheelSimulator(const double imass,
     muDynamic(imuDynamic),
     timestep(itimestep),
     I(mass * ipow(linkLen, 2)),
-    torqueFunc([](double angle, double mass, double linkLen) {
-      return (linkLen * std::cos(angle)) * (mass * -1 * gravity);
+    torqueFunc([](double iiangle, double iimass, double iilinkLen) {
+      return (iilinkLen * std::cos(iiangle)) * (iimass * -1 * gravity);
     }) {
 }
 

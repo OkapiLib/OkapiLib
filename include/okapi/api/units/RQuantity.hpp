@@ -101,6 +101,10 @@ template <typename M, typename L, typename T, typename A>
 constexpr RQuantity<M, L, T, A> operator*(const double &lhs, const RQuantity<M, L, T, A> &rhs) {
   return RQuantity<M, L, T, A>(lhs * rhs.getValue());
 }
+template <typename M, typename L, typename T, typename A>
+constexpr RQuantity<M, L, T, A> operator*(const RQuantity<M, L, T, A> &lhs, const double &rhs) {
+  return RQuantity<M, L, T, A>(lhs.getValue() * rhs);
+}
 template <typename M1,
           typename L1,
           typename T1,
@@ -124,14 +128,14 @@ constexpr RQuantity<std::ratio_subtract<std::ratio<0>, M>,
                     std::ratio_subtract<std::ratio<0>, L>,
                     std::ratio_subtract<std::ratio<0>, T>,
                     std::ratio_subtract<std::ratio<0>, A>>
-operator/(double x, const RQuantity<M, L, T, A> &rhs) {
+operator/(const double &x, const RQuantity<M, L, T, A> &rhs) {
   return RQuantity<std::ratio_subtract<std::ratio<0>, M>,
                    std::ratio_subtract<std::ratio<0>, L>,
                    std::ratio_subtract<std::ratio<0>, T>,
                    std::ratio_subtract<std::ratio<0>, A>>(x / rhs.getValue());
 }
 template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, A> operator/(const RQuantity<M, L, T, A> &rhs, double x) {
+constexpr RQuantity<M, L, T, A> operator/(const RQuantity<M, L, T, A> &rhs, const double &x) {
   return RQuantity<M, L, T, A>(rhs.getValue() / x);
 }
 

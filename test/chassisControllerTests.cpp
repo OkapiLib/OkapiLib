@@ -136,6 +136,10 @@ class MockChassisController : public ChassisController {
   ChassisScales getChassisScales() const override {
     return ChassisScales({1, 1});
   }
+
+  AbstractMotor::GearsetRatioPair getGearsetRatioPair() const override {
+    return AbstractMotor::gearset::green;
+  }
 };
 
 class ChassisControllerTest : public ::testing::Test {
