@@ -211,7 +211,7 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
     model->left(leftRPM / toUnderlyingType(pair.internalGearset));
     model->right(rightRPM / toUnderlyingType(pair.internalGearset));
 
-    //    pros::delay(1);
+    rate->delayUntil(1_ms);
   }
 }
 

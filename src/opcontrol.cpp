@@ -27,19 +27,4 @@ void opcontrol() {
                   "E");
   mp.setTarget("E");
   mp.waitUntilSettled();
-
-  //  auto rate = TimeUtilFactory::create().getRate();
-  //
-  //  std::uint32_t lastTime;
-  //  std::uint32_t lastMillis = pros::millis();
-  //  std::uint32_t nowMillis;
-  //  const int delayAmount = 5;
-  //
-  //  while (true) {
-  //    rate->delayUntil(delayAmount);
-  //    if ((nowMillis = pros::millis()) - lastMillis != delayAmount) {
-  //      printf("%d\n", (int)(nowMillis - lastMillis));
-  //    }
-  //    lastMillis = nowMillis;
-  //  }
 }
