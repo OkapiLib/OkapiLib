@@ -19,11 +19,11 @@ void opcontrol() {
   Logger::initialize(TimeUtilFactory::create().getTimer(), "/ser/sout", Logger::LogLevel::debug);
 
   auto drive =
-    ChassisControllerFactory::create(-18, 19, AbstractMotor::gearset::green, {10.5_in, 4.125_in});
+    ChassisControllerFactory::create(-18, 19, AbstractMotor::gearset::green, {4.125_in, 10.5_in});
 
-  auto mp = AsyncControllerFactory::motionProfile(1, 2, 10, drive);
+  auto mp = AsyncControllerFactory::motionProfile(1, 4, 8, drive);
 
-  mp.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 3_ft, 90_deg}, Point{3_ft, 4_ft, 45_deg}},
+  mp.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 3_ft, 90_deg}, Point{3_ft, 5_ft, 45_deg}},
                   "E");
   mp.setTarget("E");
   mp.waitUntilSettled();
