@@ -251,6 +251,20 @@ class ChassisController : public ChassisModel {
                      double iloopSpeed) const override;
 
   /**
+   * Sets a new maximum velocity.
+   *
+   * @param imaxVelocity the new maximum velocity
+   */
+  void setMaxVelocity(double imaxVelocity) override;
+
+  /**
+   * Sets a new maximum voltage.
+   *
+   * @param imaxVoltage the new maximum voltage
+   */
+  void setMaxVoltage(double imaxVoltage) override;
+
+  /**
    * Get the underlying ChassisModel. This should be used sparingly and carefully because it can
    * result in multiple owners writing to the same set of motors.
    */
