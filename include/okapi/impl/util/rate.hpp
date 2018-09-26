@@ -40,7 +40,7 @@ class Rate : public AbstractRate {
   void delayUntil(QTime itime) override;
 
   /**
-   * Delay the current task until itime milliseconds have passed. This method can be used by
+   * Delay the current task until ims milliseconds have passed. This method can be used by
    * periodic tasks to ensure a consistent execution frequency.
    *
    * @param ims the time period
@@ -48,7 +48,7 @@ class Rate : public AbstractRate {
   void delayUntil(uint32_t ims) override;
 
   protected:
-  std::uint32_t lastTime = 0;
+  std::uint32_t lastTime{0};
 };
 } // namespace okapi
 

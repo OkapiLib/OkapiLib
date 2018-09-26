@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include <cmath>
 
 namespace okapi {
@@ -17,13 +18,13 @@ ChassisControllerPID::ChassisControllerPID(
   std::unique_ptr<IterativePosPIDController> iturnController,
   const AbstractMotor::GearsetRatioPair igearset,
   const ChassisScales &iscales)
-  : ChassisController(imodel),
+  : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
     rate(itimeUtil.getRate()),
     distancePid(std::move(idistanceController)),
     anglePid(std::move(iangleController)),
     turnPid(std::move(iturnController)),
-    gearRatio(igearset.ratio),
-    scales(iscales) {
+    scales(iscales),
+    gearsetRatioPair(igearset) {
   if (igearset.ratio == 0) {
     logger->error("ChassisControllerPID: The gear ratio cannot be zero! Check if you are using "
                   "integer division.");
@@ -36,14 +37,14 @@ ChassisControllerPID::ChassisControllerPID(
 }
 
 ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcept
-  : ChassisController(std::move(other.model)),
+  : ChassisController(std::move(other.model), other.maxVelocity, other.maxVoltage),
     logger(other.logger),
     rate(std::move(other.rate)),
     distancePid(std::move(other.distancePid)),
     anglePid(std::move(other.anglePid)),
     turnPid(std::move(other.turnPid)),
-    gearRatio(other.gearRatio),
     scales(other.scales),
+    gearsetRatioPair(other.gearsetRatioPair),
     doneLooping(other.doneLooping),
     newMovement(other.newMovement),
     dtorCalled(other.dtorCalled.load(std::memory_order::memory_order_relaxed)),
@@ -116,7 +117,7 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   turnPid->flipDisable(true);
   mode = distance;
 
-  const double newTarget = itarget.convert(meter) * scales.straight * gearRatio;
+  const double newTarget = itarget.convert(meter) * scales.straight * gearsetRatioPair.ratio;
 
   logger->info("ChassisControllerPID: moving " + std::to_string(newTarget) + " motor degrees");
 
@@ -152,7 +153,7 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   anglePid->flipDisable(true);
   mode = angle;
 
-  const double newTarget = idegTarget.convert(degree) * scales.turn * gearRatio;
+  const double newTarget = idegTarget.convert(degree) * scales.turn * gearsetRatioPair.ratio;
 
   logger->info("ChassisControllerPID: turning " + std::to_string(newTarget) + " motor degrees");
 
@@ -267,5 +268,9 @@ void ChassisControllerPID::startThread() {
 
 ChassisScales ChassisControllerPID::getChassisScales() const {
   return scales;
+}
+
+AbstractMotor::GearsetRatioPair ChassisControllerPID::getGearsetRatioPair() const {
+  return gearsetRatioPair;
 }
 } // namespace okapi

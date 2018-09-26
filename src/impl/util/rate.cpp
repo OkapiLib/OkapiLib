@@ -12,18 +12,11 @@ namespace okapi {
 Rate::Rate() = default;
 
 void Rate::delay(const QFrequency ihz) {
-  delay(ihz.convert(Hz));
+  delayUntil(1000 / ihz.convert(Hz));
 }
 
 void Rate::delay(const int ihz) {
-  if (lastTime == 0) {
-    // First call
-    lastTime = pros::millis();
-    pros::Task::delay(1000 / ihz);
-  } else {
-    // Subsequent call
-    pros::Task::delay_until(&lastTime, 1000 / ihz);
-  }
+  delayUntil(1000 / ihz);
 }
 
 void Rate::delayUntil(const QTime itime) {
@@ -31,6 +24,11 @@ void Rate::delayUntil(const QTime itime) {
 }
 
 void Rate::delayUntil(const uint32_t ims) {
+  if (lastTime == 0) {
+    // First call
+    lastTime = pros::millis();
+  }
+
   pros::Task::delay_until(&lastTime, ims);
 }
 } // namespace okapi

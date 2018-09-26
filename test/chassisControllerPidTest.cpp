@@ -23,8 +23,8 @@ class ChassisControllerPIDTest : public ::testing::Test {
     angleController = new MockIterativeController(0.1);
     turnController = new MockIterativeController(0.1);
 
-    model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
-                               std::unique_ptr<AbstractMotor>(rightMotor));
+    model = new SkidSteerModel(
+      std::unique_ptr<AbstractMotor>(leftMotor), std::unique_ptr<AbstractMotor>(rightMotor), 100);
 
     controller =
       new ChassisControllerPID(createTimeUtil(),

@@ -70,7 +70,7 @@ int32_t MockMotor::setBrakeMode(const AbstractMotor::brakeMode imode) {
   return 0;
 }
 
-int32_t MockMotor::setCurrentLimit(const std::int32_t ilimit) const {
+int32_t MockMotor::setCurrentLimit(const std::int32_t) const {
   return 0;
 }
 
@@ -84,11 +84,11 @@ int32_t MockMotor::setGearing(const AbstractMotor::gearset igearset) {
   return 0;
 }
 
-int32_t MockMotor::setReversed(const bool ireverse) const {
+int32_t MockMotor::setReversed(const bool) const {
   return 0;
 }
 
-int32_t MockMotor::setVoltageLimit(const std::int32_t ilimit) const {
+int32_t MockMotor::setVoltageLimit(const std::int32_t) const {
   return 0;
 }
 
@@ -165,37 +165,25 @@ int32_t MockMotor::getVoltage() const {
   return 0;
 }
 
-int32_t MockMotor::modifyProfiledVelocity(std::int32_t ivelocity) const {
+int32_t MockMotor::modifyProfiledVelocity(std::int32_t) const {
   return 0;
 }
 
-int32_t MockMotor::setPosPID(double ikF, double ikP, double ikI, double ikD) const {
+int32_t MockMotor::setPosPID(double, double, double, double) const {
   return 0;
 }
 
-int32_t MockMotor::setPosPIDFull(double ikF,
-                                 double ikP,
-                                 double ikI,
-                                 double ikD,
-                                 double ifilter,
-                                 double ilimit,
-                                 double ithreshold,
-                                 double iloopSpeed) const {
+int32_t
+MockMotor::setPosPIDFull(double, double, double, double, double, double, double, double) const {
   return 0;
 }
 
-int32_t MockMotor::setVelPID(double ikF, double ikP, double ikI, double ikD) const {
+int32_t MockMotor::setVelPID(double, double, double, double) const {
   return 0;
 }
 
-int32_t MockMotor::setVelPIDFull(double ikF,
-                                 double ikP,
-                                 double ikI,
-                                 double ikD,
-                                 double ifilter,
-                                 double ilimit,
-                                 double ithreshold,
-                                 double iloopSpeed) const {
+int32_t
+MockMotor::setVelPIDFull(double, double, double, double, double, double, double, double) const {
   return 0;
 }
 
@@ -266,11 +254,11 @@ QTime ConstantMockTimer::getDtFromHardMark() const {
   return dtToReturn;
 }
 
-bool ConstantMockTimer::repeat(QTime time) {
+bool ConstantMockTimer::repeat(QTime) {
   return false;
 }
 
-bool ConstantMockTimer::repeat(QFrequency frequency) {
+bool ConstantMockTimer::repeat(QFrequency) {
   return false;
 }
 
@@ -332,7 +320,7 @@ TimeUtil createTimeUtil(const Supplier<std::unique_ptr<SettledUtil>> &isettledUt
     isettledUtilSupplier);
 }
 
-SimulatedSystem::SimulatedSystem(FlywheelSimulator &simulator) : simulator(simulator) {
+SimulatedSystem::SimulatedSystem(FlywheelSimulator &isimulator) : simulator(isimulator) {
 }
 
 SimulatedSystem::~SimulatedSystem() {

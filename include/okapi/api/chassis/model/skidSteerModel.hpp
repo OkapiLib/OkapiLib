@@ -17,7 +17,7 @@ class SkidSteerModel : public ChassisModel {
   public:
   /**
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-   * motors are powered +127, the robot should move forward in a straight line.
+   * motors are powered +100%, the robot should move forward in a straight line.
    *
    * This constructor infers the two sensors from the left and right motors (using the integrated
    * encoders).
@@ -27,12 +27,12 @@ class SkidSteerModel : public ChassisModel {
    */
   SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                  std::shared_ptr<AbstractMotor> irightSideMotor,
-                 double imaxVelocity = 127,
+                 double imaxVelocity,
                  double imaxVoltage = 12000);
 
   /**
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-   * motors are powered +127, the robot should move forward in a straight line.
+   * motors are powered +100%, the robot should move forward in a straight line.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
@@ -43,7 +43,7 @@ class SkidSteerModel : public ChassisModel {
                  std::shared_ptr<AbstractMotor> irightSideMotor,
                  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                  std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                 double imaxVelocity = 127,
+                 double imaxVelocity,
                  double imaxVoltage = 12000);
 
   /**
@@ -226,8 +226,6 @@ class SkidSteerModel : public ChassisModel {
   std::shared_ptr<AbstractMotor> rightSideMotor;
   std::shared_ptr<ContinuousRotarySensor> leftSensor;
   std::shared_ptr<ContinuousRotarySensor> rightSensor;
-  const double maxVelocity;
-  const double maxVoltage;
 };
 } // namespace okapi
 

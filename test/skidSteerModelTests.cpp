@@ -151,6 +151,18 @@ TEST_F(SkidSteerModelTest, ArcadeThresholds) {
   assertAllMotorsLastVoltage(0);
 }
 
+TEST_F(SkidSteerModelTest, SetMaxVelocity) {
+  model.setMaxVelocity(2);
+  model.forward(0.5);
+  assertAllMotorsLastVelocity(1);
+}
+
+TEST_F(SkidSteerModelTest, SetMaxVoltage) {
+  model.setMaxVoltage(2);
+  model.tank(0.5, 0.5);
+  assertAllMotorsLastVoltage(1);
+}
+
 TEST_F(SkidSteerModelTest, SetGearsetTest) {
   model.setGearing(AbstractMotor::gearset::green);
   assertMotorsGearsetEquals(AbstractMotor::gearset::green, {*leftMotor, *rightMotor});

@@ -26,7 +26,9 @@ class ChassisController : public ChassisModel {
    *
    * @param imodel underlying ChassisModel
    */
-  explicit ChassisController(std::shared_ptr<ChassisModel> imodel);
+  explicit ChassisController(std::shared_ptr<ChassisModel> imodel,
+                             double imaxVelocity,
+                             double imaxVoltage = 12000);
 
   ~ChassisController() override;
 
@@ -249,6 +251,20 @@ class ChassisController : public ChassisModel {
                      double iloopSpeed) const override;
 
   /**
+   * Sets a new maximum velocity.
+   *
+   * @param imaxVelocity the new maximum velocity
+   */
+  void setMaxVelocity(double imaxVelocity) override;
+
+  /**
+   * Sets a new maximum voltage.
+   *
+   * @param imaxVoltage the new maximum voltage
+   */
+  void setMaxVoltage(double imaxVoltage) override;
+
+  /**
    * Get the underlying ChassisModel. This should be used sparingly and carefully because it can
    * result in multiple owners writing to the same set of motors.
    */
@@ -258,6 +274,11 @@ class ChassisController : public ChassisModel {
    * Get the ChassisScales.
    */
   virtual ChassisScales getChassisScales() const = 0;
+
+  /**
+   * Get the GearsetRatioPair.
+   */
+  virtual AbstractMotor::GearsetRatioPair getGearsetRatioPair() const = 0;
 
   protected:
   std::shared_ptr<ChassisModel> model;

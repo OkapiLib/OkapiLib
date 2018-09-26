@@ -13,6 +13,9 @@ using namespace okapi;
 
 class MockChassisModel : public ChassisModel {
   public:
+  MockChassisModel() : ChassisModel(100) {
+  }
+
   void forward(double ispeed) const override {
     lastForward = ispeed;
   }
@@ -133,13 +136,17 @@ class MockChassisController : public ChassisController {
   ChassisScales getChassisScales() const override {
     return ChassisScales({1, 1});
   }
+
+  AbstractMotor::GearsetRatioPair getGearsetRatioPair() const override {
+    return AbstractMotor::gearset::green;
+  }
 };
 
 class ChassisControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
     model = std::make_shared<MockChassisModel>();
-    controller = new MockChassisController(model);
+    controller = new MockChassisController(model, 100);
   }
 
   void TearDown() override {

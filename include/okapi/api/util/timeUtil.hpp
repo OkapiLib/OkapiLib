@@ -20,9 +20,9 @@ namespace okapi {
  */
 class TimeUtil {
   public:
-  TimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &timerSupplier,
-           const Supplier<std::unique_ptr<AbstractRate>> &rateSupplier,
-           const Supplier<std::unique_ptr<SettledUtil>> &settledUtilSupplier);
+  TimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier,
+           const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
+           const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier);
 
   std::unique_ptr<AbstractTimer> getTimer() const;
 

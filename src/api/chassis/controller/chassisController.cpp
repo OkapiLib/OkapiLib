@@ -9,7 +9,10 @@
 #include <cmath>
 
 namespace okapi {
-ChassisController::ChassisController(std::shared_ptr<ChassisModel> imodel) : model(imodel) {
+ChassisController::ChassisController(std::shared_ptr<ChassisModel> imodel,
+                                     const double imaxVelocity,
+                                     const double imaxVoltage)
+  : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage), model(imodel) {
 }
 
 ChassisController::~ChassisController() = default;
@@ -104,6 +107,14 @@ void ChassisController::setVelPIDFull(const double ikF,
                                       const double ithreshold,
                                       const double iloopSpeed) const {
   model->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+}
+
+void ChassisController::setMaxVelocity(double imaxVelocity) {
+  model->setMaxVelocity(imaxVelocity);
+}
+
+void ChassisController::setMaxVoltage(double imaxVoltage) {
+  model->setMaxVoltage(imaxVoltage);
 }
 
 std::shared_ptr<ChassisModel> ChassisController::getChassisModel() const {

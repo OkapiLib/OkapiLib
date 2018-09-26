@@ -1,5 +1,3 @@
-#include <utility>
-
 /**
  * @author Ryan Benasutti, WPI
  *
@@ -8,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
@@ -17,14 +16,14 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::unique_ptr<AsyncPosIntegratedController> irightController,
   AbstractMotor::GearsetRatioPair igearset,
   const ChassisScales &iscales)
-  : ChassisController(imodel),
+  : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
     logger(Logger::instance()),
     rate(itimeUtil.getRate()),
     leftController(std::move(ileftController)),
     rightController(std::move(irightController)),
     lastTarget(0),
     scales(iscales),
-    gearRatio(igearset.ratio) {
+    gearsetRatioPair(igearset) {
   if (igearset.ratio == 0) {
     logger->error("ChassisControllerIntegrated: The gear ratio cannot be zero! Check if you are "
                   "using integer division.");
@@ -55,7 +54,7 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
   leftController->flipDisable(false);
   rightController->flipDisable(false);
 
-  const double newTarget = itarget.convert(meter) * scales.straight * gearRatio;
+  const double newTarget = itarget.convert(meter) * scales.straight * gearsetRatioPair.ratio;
 
   logger->info("ChassisControllerIntegrated: moving " + std::to_string(newTarget) +
                " motor degrees");
@@ -89,7 +88,7 @@ void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
   leftController->flipDisable(false);
   rightController->flipDisable(false);
 
-  const double newTarget = idegTarget.convert(degree) * scales.turn * gearRatio;
+  const double newTarget = idegTarget.convert(degree) * scales.turn * gearsetRatioPair.ratio;
 
   logger->info("ChassisControllerIntegrated: turning " + std::to_string(newTarget) +
                " motor degrees");
@@ -126,5 +125,9 @@ void ChassisControllerIntegrated::stop() {
 
 ChassisScales ChassisControllerIntegrated::getChassisScales() const {
   return scales;
+}
+
+AbstractMotor::GearsetRatioPair ChassisControllerIntegrated::getGearsetRatioPair() const {
+  return gearsetRatioPair;
 }
 } // namespace okapi
