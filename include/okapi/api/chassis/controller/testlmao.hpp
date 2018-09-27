@@ -19,7 +19,20 @@
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
-#define makeCreate(MotorType, methodName)                                                          \
+#define makeCreateInt(MotorType, methodName)                                                       \
+  static auto methodName(const MotorType &ileftMtr,                                                \
+                         const MotorType &irightMtr,                                               \
+                         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
+                         const ChassisScales &iscales = ChassisScales({1, 1})) {                   \
+    return methodName(std::make_shared<MotorType>(ileftMtr),                                       \
+                      std::make_shared<MotorType>(irightMtr),                                      \
+                      ileftMtr.getEncoder(),                                                       \
+                      irightMtr.getEncoder(),                                                      \
+                      igearset,                                                                    \
+                      iscales);                                                                    \
+  }
+
+#define makeCreatePID(MotorType, methodName)                                                       \
   static auto methodName(const MotorType &ileftMtr,                                                \
                          const MotorType &irightMtr,                                               \
                          const IterativePosPIDController::Gains &idistanceGains,                   \
@@ -56,7 +69,7 @@
       iscales);                                                                                    \
   }
 
-#define makeCreateWithSensor(MotorType, SensorType, methodName)                                    \
+#define makeCreatePIDWithSensor(MotorType, SensorType, methodName)                                 \
   static auto methodName(const MotorType &ileftMtr,                                                \
                          const MotorType &irightMtr,                                               \
                          const SensorType &ileftSens,                                              \
@@ -100,21 +113,60 @@
 namespace okapi {
 class ChassisControllerFactory {
   public:
-  makeCreate(Motor, create);
-  makeCreate(MotorGroup, create);
+  makeCreateInt(Motor, create);
+  makeCreateInt(MotorGroup, create);
 
-  makeCreate(Motor, createPtr);
-  makeCreate(MotorGroup, createPtr);
+  makeCreateInt(Motor, createPtr);
+  makeCreateInt(MotorGroup, createPtr);
 
-  makeCreateWithSensor(Motor, IntegratedEncoder, create);
-  makeCreateWithSensor(MotorGroup, IntegratedEncoder, create);
-  makeCreateWithSensor(Motor, ADIEncoder, create);
-  makeCreateWithSensor(MotorGroup, ADIEncoder, create);
+  makeCreatePID(Motor, create);
+  makeCreatePID(MotorGroup, create);
 
-  makeCreateWithSensor(Motor, IntegratedEncoder, createPtr);
-  makeCreateWithSensor(MotorGroup, IntegratedEncoder, createPtr);
-  makeCreateWithSensor(Motor, ADIEncoder, createPtr);
-  makeCreateWithSensor(MotorGroup, ADIEncoder, createPtr);
+  makeCreatePID(Motor, createPtr);
+  makeCreatePID(MotorGroup, createPtr);
+
+  makeCreatePIDWithSensor(Motor, IntegratedEncoder, create);
+  makeCreatePIDWithSensor(MotorGroup, IntegratedEncoder, create);
+  makeCreatePIDWithSensor(Motor, ADIEncoder, create);
+  makeCreatePIDWithSensor(MotorGroup, ADIEncoder, create);
+
+  makeCreatePIDWithSensor(Motor, IntegratedEncoder, createPtr);
+  makeCreatePIDWithSensor(MotorGroup, IntegratedEncoder, createPtr);
+  makeCreatePIDWithSensor(Motor, ADIEncoder, createPtr);
+  makeCreatePIDWithSensor(MotorGroup, ADIEncoder, createPtr);
+
+  static ChassisControllerIntegrated create(std::shared_ptr<AbstractMotor> ileftMtr,
+                                            std::shared_ptr<AbstractMotor> irightMtr,
+                                            std::shared_ptr<ContinuousRotarySensor> ileftSensor,
+                                            std::shared_ptr<ContinuousRotarySensor> irightSensor,
+                                            AbstractMotor::GearsetRatioPair igearset,
+                                            const ChassisScales &iscales) {
+    return ChassisControllerIntegrated(
+      TimeUtilFactory::create(),
+      std::make_shared<SkidSteerModel>(
+        ileftMtr, irightMtr, ileftSensor, irightSensor, toUnderlyingType(igearset.internalGearset)),
+      std::make_unique<AsyncPosIntegratedController>(ileftMtr, TimeUtilFactory::create()),
+      std::make_unique<AsyncPosIntegratedController>(irightMtr, TimeUtilFactory::create()),
+      igearset,
+      iscales);
+  }
+
+  static std::shared_ptr<ChassisControllerIntegrated>
+  createPtr(std::shared_ptr<AbstractMotor> ileftMtr,
+            std::shared_ptr<AbstractMotor> irightMtr,
+            std::shared_ptr<ContinuousRotarySensor> ileftSensor,
+            std::shared_ptr<ContinuousRotarySensor> irightSensor,
+            AbstractMotor::GearsetRatioPair igearset,
+            const ChassisScales &iscales) {
+    return std::make_shared<ChassisControllerIntegrated>(
+      TimeUtilFactory::create(),
+      std::make_shared<SkidSteerModel>(
+        ileftMtr, irightMtr, ileftSensor, irightSensor, toUnderlyingType(igearset.internalGearset)),
+      std::make_unique<AsyncPosIntegratedController>(ileftMtr, TimeUtilFactory::create()),
+      std::make_unique<AsyncPosIntegratedController>(irightMtr, TimeUtilFactory::create()),
+      igearset,
+      iscales);
+  }
 
   static ChassisControllerPID create(std::shared_ptr<AbstractMotor> ileftMtr,
                                      std::shared_ptr<AbstractMotor> irightMtr,
