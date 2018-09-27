@@ -177,7 +177,7 @@ class ChassisControllerFactory {
                                      std::unique_ptr<IterativePosPIDController> iturnController,
                                      AbstractMotor::GearsetRatioPair igearset,
                                      const ChassisScales &iscales) {
-    return ChassisControllerPID(
+    ChassisControllerPID out(
       TimeUtilFactory::create(),
       std::make_shared<SkidSteerModel>(
         ileftMtr, irightMtr, ileftSensor, irightSensor, toUnderlyingType(igearset.internalGearset)),
@@ -186,6 +186,8 @@ class ChassisControllerFactory {
       std::move(iturnController),
       igearset,
       iscales);
+    out.startThread();
+    return out;
   }
 
   static std::shared_ptr<ChassisControllerPID>
@@ -198,7 +200,7 @@ class ChassisControllerFactory {
             std::unique_ptr<IterativePosPIDController> iturnController,
             AbstractMotor::GearsetRatioPair igearset,
             const ChassisScales &iscales) {
-    return std::make_shared<ChassisControllerPID>(
+    auto out = std::make_shared<ChassisControllerPID>(
       TimeUtilFactory::create(),
       std::make_shared<SkidSteerModel>(
         ileftMtr, irightMtr, ileftSensor, irightSensor, toUnderlyingType(igearset.internalGearset)),
@@ -207,6 +209,8 @@ class ChassisControllerFactory {
       std::move(iturnController),
       igearset,
       iscales);
+    out->startThread();
+    return out;
   }
 };
 } // namespace okapi
