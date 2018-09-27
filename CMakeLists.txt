@@ -186,7 +186,7 @@ add_executable(OkapiLibV5
         src/pathfinder/followers/distance.c
         src/pathfinder/followers/encoder.c
         src/pathfinder/modifiers/swerve.c
-        src/pathfinder/modifiers/tank.c include/okapi/api/chassis/controller/testlmao.hpp)
+        src/pathfinder/modifiers/tank.c)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)
