@@ -14,7 +14,7 @@ A clear and concise description of what you want.
 A clear and concise description of any alternative solutions or features you've considered.
 
 **Versions**
-What version of OkapiLib and PROS are you on? Run `pros conduct info-project` in your terminal.
+What version of OkapiLib and PROS are you on? Run `prosv5 conduct info-project` in your terminal.
 
 **Additional context**
 Add any other context about the feature request here.

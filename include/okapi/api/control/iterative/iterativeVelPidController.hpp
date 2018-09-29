@@ -184,15 +184,15 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
   protected:
   Logger *logger;
   double kP, kD, kF, kSF;
-  QTime sampleTime = 10_ms;
-  double error = 0;
-  double derivative = 0;
-  double target = 0;
-  double outputSum = 0;
-  double output = 0;
-  double outputMax = 1;
-  double outputMin = -1;
-  bool isOn = true;
+  QTime sampleTime{10_ms};
+  double error{0};
+  double derivative{0};
+  double target{0};
+  double outputSum{0};
+  double output{0};
+  double outputMax{1};
+  double outputMin{-1};
+  bool controllerIsDisabled{false};
 
   std::unique_ptr<VelMath> velMath;
   std::unique_ptr<Filter> derivativeFilter;
