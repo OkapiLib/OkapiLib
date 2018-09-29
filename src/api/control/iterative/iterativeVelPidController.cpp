@@ -67,7 +67,7 @@ double IterativeVelPIDController::step(const double inewReading) {
     stepVel(inewReading);
   }
 
-  if (isOn) {
+  if (!controllerIsDisabled) {
     loopDtTimer->placeHardMark();
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
@@ -134,16 +134,16 @@ void IterativeVelPIDController::reset() {
 }
 
 void IterativeVelPIDController::flipDisable() {
-  isOn = !isOn;
+  flipDisable(!controllerIsDisabled);
 }
 
 void IterativeVelPIDController::flipDisable(const bool iisDisabled) {
   logger->info("IterativeVelPIDController: flipDisable " + std::to_string(iisDisabled));
-  isOn = !iisDisabled;
+  controllerIsDisabled = iisDisabled;
 }
 
 bool IterativeVelPIDController::isDisabled() const {
-  return !isOn;
+  return controllerIsDisabled;
 }
 
 void IterativeVelPIDController::setTicksPerRev(const double tpr) {

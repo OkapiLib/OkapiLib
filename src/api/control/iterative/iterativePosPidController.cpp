@@ -119,7 +119,9 @@ void IterativePosPIDController::setErrorSumLimits(const double imax, const doubl
 double IterativePosPIDController::step(const double inewReading) {
   lastReading = inewReading;
 
-  if (isOn) {
+  if (controllerIsDisabled) {
+    return 0;
+  } else {
     loopDtTimer->placeHardMark();
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
@@ -146,8 +148,6 @@ double IterativePosPIDController::step(const double inewReading) {
 
       settledUtil->isSettled(error);
     }
-  } else {
-    return 0;
   }
 
   return output;
@@ -179,16 +179,16 @@ void IterativePosPIDController::setIntegratorReset(bool iresetOnZero) {
 }
 
 void IterativePosPIDController::flipDisable() {
-  isOn = !isOn;
+  flipDisable(!controllerIsDisabled);
 }
 
 void IterativePosPIDController::flipDisable(const bool iisDisabled) {
   logger->info("IterativePosPIDController: flipDisable " + std::to_string(iisDisabled));
-  isOn = !iisDisabled;
+  controllerIsDisabled = iisDisabled;
 }
 
 bool IterativePosPIDController::isDisabled() const {
-  return !isOn;
+  return controllerIsDisabled;
 }
 
 QTime IterativePosPIDController::getSampleTime() const {

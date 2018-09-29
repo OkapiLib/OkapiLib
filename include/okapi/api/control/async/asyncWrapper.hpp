@@ -170,6 +170,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * cause the controller to move to its last set target, unless it was reset in that time.
    */
   void flipDisable() override {
+    logger->info("AsyncWrapper: flipDisable " + std::to_string(!controller->isDisabled()));
     controller->flipDisable();
     resumeMovement();
   }
