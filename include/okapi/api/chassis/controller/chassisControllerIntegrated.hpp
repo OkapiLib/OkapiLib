@@ -101,7 +101,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   void stop() override;
 
   /**
-   * Sets a new maximum velocity.
+   * Sets a new maximum velocity in RPM [0-600].
    *
    * @param imaxVelocity the new maximum velocity
    */
