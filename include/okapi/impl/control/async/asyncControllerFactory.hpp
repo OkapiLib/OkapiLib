@@ -22,7 +22,7 @@
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/potentiometer.hpp"
 
-#define makePosPID(MotorType)                                                                      \
+#define okapi_makePosPID(MotorType)                                                                \
   static AsyncPosPIDController posPID(MotorType imotor,                                            \
                                       double ikP,                                                  \
                                       double ikI,                                                  \
@@ -39,7 +39,7 @@
                   std::move(iderivativeFilter));                                                   \
   }
 
-#define makePosPIDWithSensor(MotorType, SensorType)                                                \
+#define okapi_makePosPIDWithSensor(MotorType, SensorType)                                          \
   static AsyncPosPIDController posPID(MotorType imotor,                                            \
                                       SensorType isensor,                                          \
                                       double ikP,                                                  \
@@ -57,7 +57,7 @@
                   std::move(iderivativeFilter));                                                   \
   }
 
-#define makeVelPID(MotorType)                                                                      \
+#define okapi_makeVelPID(MotorType)                                                                \
   static AsyncVelPIDController velPID(MotorType imotor,                                            \
                                       double ikP,                                                  \
                                       double ikD,                                                  \
@@ -76,7 +76,7 @@
                   std::move(iderivativeFilter));                                                   \
   }
 
-#define makeVelPIDWithSensor(MotorType, SensorType)                                                \
+#define okapi_makeVelPIDWithSensor(MotorType, SensorType)                                          \
   static AsyncVelPIDController velPID(MotorType imotor,                                            \
                                       SensorType ienc,                                             \
                                       double ikP,                                                  \
@@ -130,14 +130,14 @@ class AsyncControllerFactory {
    */
   static AsyncVelIntegratedController velIntegrated(MotorGroup imotor);
 
-  makePosPID(Motor);
-  makePosPID(MotorGroup);
-  makePosPIDWithSensor(Motor, ADIEncoder);
-  makePosPIDWithSensor(Motor, Potentiometer);
-  makePosPIDWithSensor(Motor, IntegratedEncoder);
-  makePosPIDWithSensor(MotorGroup, ADIEncoder);
-  makePosPIDWithSensor(MotorGroup, Potentiometer);
-  makePosPIDWithSensor(MotorGroup, IntegratedEncoder);
+  okapi_makePosPID(Motor);
+  okapi_makePosPID(MotorGroup);
+  okapi_makePosPIDWithSensor(Motor, ADIEncoder);
+  okapi_makePosPIDWithSensor(Motor, Potentiometer);
+  okapi_makePosPIDWithSensor(Motor, IntegratedEncoder);
+  okapi_makePosPIDWithSensor(MotorGroup, ADIEncoder);
+  okapi_makePosPIDWithSensor(MotorGroup, Potentiometer);
+  okapi_makePosPIDWithSensor(MotorGroup, IntegratedEncoder);
 
   /**
    * A position controller that uses the PID algorithm.
@@ -158,14 +158,14 @@ class AsyncControllerFactory {
          double ikBias = 0,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
-  makeVelPID(Motor);
-  makeVelPID(MotorGroup);
-  makeVelPIDWithSensor(Motor, ADIEncoder);
-  makeVelPIDWithSensor(Motor, Potentiometer);
-  makeVelPIDWithSensor(Motor, IntegratedEncoder);
-  makeVelPIDWithSensor(MotorGroup, ADIEncoder);
-  makeVelPIDWithSensor(MotorGroup, Potentiometer);
-  makeVelPIDWithSensor(MotorGroup, IntegratedEncoder);
+  okapi_makeVelPID(Motor);
+  okapi_makeVelPID(MotorGroup);
+  okapi_makeVelPIDWithSensor(Motor, ADIEncoder);
+  okapi_makeVelPIDWithSensor(Motor, Potentiometer);
+  okapi_makeVelPIDWithSensor(Motor, IntegratedEncoder);
+  okapi_makeVelPIDWithSensor(MotorGroup, ADIEncoder);
+  okapi_makeVelPIDWithSensor(MotorGroup, Potentiometer);
+  okapi_makeVelPIDWithSensor(MotorGroup, IntegratedEncoder);
 
   /**
    * A velocity controller that uses the PD algorithm.

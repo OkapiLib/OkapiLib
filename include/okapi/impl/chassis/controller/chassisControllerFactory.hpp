@@ -19,7 +19,7 @@
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
-#define makeCreateInt(MotorType, methodName)                                                       \
+#define okapi_makeCreateInt(MotorType, methodName)                                                 \
   static auto methodName(const MotorType &ileftMtr,                                                \
                          const MotorType &irightMtr,                                               \
                          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
@@ -47,7 +47,7 @@
                       iscales);                                                                    \
   }
 
-#define makeCreatePID(MotorType, methodName)                                                       \
+#define okapi_makeCreatePID(MotorType, methodName)                                                 \
   static auto methodName(const MotorType &ileftMtr,                                                \
                          const MotorType &irightMtr,                                               \
                          const IterativePosPIDController::Gains &idistanceGains,                   \
@@ -127,7 +127,7 @@
       iscales);                                                                                    \
   }
 
-#define makeCreatePIDWithSensor(MotorType, SensorType, methodName)                                 \
+#define okapi_makeCreatePIDWithSensor(MotorType, SensorType, methodName)                           \
   static auto methodName(const MotorType &ileftMtr,                                                \
                          const MotorType &irightMtr,                                               \
                          const SensorType &ileftSens,                                              \
@@ -218,27 +218,27 @@
 namespace okapi {
 class ChassisControllerFactory {
   public:
-  makeCreateInt(Motor, create);
-  makeCreateInt(MotorGroup, create);
+  okapi_makeCreateInt(Motor, create);
+  okapi_makeCreateInt(MotorGroup, create);
 
-  makeCreateInt(Motor, createPtr);
-  makeCreateInt(MotorGroup, createPtr);
+  okapi_makeCreateInt(Motor, createPtr);
+  okapi_makeCreateInt(MotorGroup, createPtr);
 
-  makeCreatePID(Motor, create);
-  makeCreatePID(MotorGroup, create);
+  okapi_makeCreatePID(Motor, create);
+  okapi_makeCreatePID(MotorGroup, create);
 
-  makeCreatePID(Motor, createPtr);
-  makeCreatePID(MotorGroup, createPtr);
+  okapi_makeCreatePID(Motor, createPtr);
+  okapi_makeCreatePID(MotorGroup, createPtr);
 
-  makeCreatePIDWithSensor(Motor, IntegratedEncoder, create);
-  makeCreatePIDWithSensor(MotorGroup, IntegratedEncoder, create);
-  makeCreatePIDWithSensor(Motor, ADIEncoder, create);
-  makeCreatePIDWithSensor(MotorGroup, ADIEncoder, create);
+  okapi_makeCreatePIDWithSensor(Motor, IntegratedEncoder, create);
+  okapi_makeCreatePIDWithSensor(MotorGroup, IntegratedEncoder, create);
+  okapi_makeCreatePIDWithSensor(Motor, ADIEncoder, create);
+  okapi_makeCreatePIDWithSensor(MotorGroup, ADIEncoder, create);
 
-  makeCreatePIDWithSensor(Motor, IntegratedEncoder, createPtr);
-  makeCreatePIDWithSensor(MotorGroup, IntegratedEncoder, createPtr);
-  makeCreatePIDWithSensor(Motor, ADIEncoder, createPtr);
-  makeCreatePIDWithSensor(MotorGroup, ADIEncoder, createPtr);
+  okapi_makeCreatePIDWithSensor(Motor, IntegratedEncoder, createPtr);
+  okapi_makeCreatePIDWithSensor(MotorGroup, IntegratedEncoder, createPtr);
+  okapi_makeCreatePIDWithSensor(Motor, ADIEncoder, createPtr);
+  okapi_makeCreatePIDWithSensor(MotorGroup, ADIEncoder, createPtr);
 
   static ChassisControllerIntegrated create(std::shared_ptr<AbstractMotor> ileftMtr,
                                             std::shared_ptr<AbstractMotor> irightMtr,
