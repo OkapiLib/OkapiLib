@@ -52,9 +52,9 @@ TEST(RemapRangeTest, Tests) {
 }
 
 TEST(TrueModTest, Tests) {
-  EXPECT_EQ(trueMod(0, 1), 0);
-  EXPECT_EQ(trueMod(1, 2), 1);
-  EXPECT_EQ(trueMod(-2, 5), 3);
-  EXPECT_EQ(trueMod(-1800, 3600), 1800);
-  EXPECT_EQ(trueMod(1, -3), -2);
+  EXPECT_EQ(modulus(0, 1), 0);
+  EXPECT_EQ(modulus(1, 2), 1);
+  EXPECT_EQ(modulus(-2, 5), 3);
+  EXPECT_EQ(modulus(-1800, 3600), 1800);
+  EXPECT_EQ(modulus(1, -3), -2);
 }

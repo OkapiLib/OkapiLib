@@ -106,15 +106,13 @@ template <typename E> constexpr auto toUnderlyingType(E e) noexcept {
 }
 
 /**
- * Computes the mathematically correct modulus of lhs % rhs. C99 requires that (a/b) * b + a%b equal
- * a, which has the effect that -2 % 5 equals -2 instead of the mathematically correct result of 3.
- * This method is mathematically correct and will return 3.
+ * Computes lhs mod rhs. C's % symbol computes the remainder, not modulus.
  *
  * @param lhs the left-hand side
  * @param rhs the right-hand side
- * @return the mathematically correct result of lhs % rhs.
+ * @return lhs mod rhs
  */
-constexpr long trueMod(const long lhs, const long rhs) {
+constexpr long modulus(const long lhs, const long rhs) {
   return (lhs % rhs + rhs) % rhs;
 }
 } // namespace okapi
