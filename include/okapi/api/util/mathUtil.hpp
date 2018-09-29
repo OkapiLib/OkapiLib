@@ -106,14 +106,14 @@ template <typename E> constexpr auto toUnderlyingType(E e) noexcept {
 }
 
 /**
- * Computes lhs mod rhs. C's % symbol computes the remainder, not modulus.
+ * Computes lhs mod rhs using Euclidean division. C's % symbol computes the remainder, not modulus.
  *
  * @param lhs the left-hand side
  * @param rhs the right-hand side
  * @return lhs mod rhs
  */
 constexpr long modulus(const long lhs, const long rhs) {
-  return (lhs % rhs + rhs) % rhs;
+  return ((lhs % rhs) + rhs) % rhs;
 }
 } // namespace okapi
 
