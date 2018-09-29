@@ -50,3 +50,11 @@ TEST(RemapRangeTest, Tests) {
   EXPECT_FLOAT_EQ(remapRange(-0.1, -1, 1, 2, -2), 0.2) << "-0.1 : [-1, 1] -> [2, -2]";
   EXPECT_FLOAT_EQ(remapRange(0, -1, 1, -5, 2), -1.5) << "0 : [-1, 1] -> [-5, 2]";
 }
+
+TEST(TrueModTest, Tests) {
+  EXPECT_EQ(trueMod(0, 1), 0);
+  EXPECT_EQ(trueMod(1, 2), 1);
+  EXPECT_EQ(trueMod(-2, 5), 3);
+  EXPECT_EQ(trueMod(-1800, 3600), 1800);
+  EXPECT_EQ(trueMod(1, -3), -2);
+}

@@ -104,6 +104,19 @@ constexpr double remapRange(const double value,
 template <typename E> constexpr auto toUnderlyingType(E e) noexcept {
   return static_cast<std::underlying_type_t<E>>(e);
 }
+
+/**
+ * Computes the mathematically correct modulus of lhs % rhs. C99 requires that (a/b) * b + a%b equal
+ * a, which has the effect that -2 % 5 equals -2 instead of the mathematically correct result of 3.
+ * This method is mathematically correct and will return 3.
+ *
+ * @param lhs the left-hand side
+ * @param rhs the right-hand side
+ * @return the mathematically correct result of lhs % rhs.
+ */
+constexpr long trueMod(const long lhs, const long rhs) {
+  return (lhs % rhs + rhs) % rhs;
+}
 } // namespace okapi
 
 #endif
