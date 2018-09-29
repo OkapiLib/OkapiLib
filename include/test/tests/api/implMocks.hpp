@@ -255,6 +255,7 @@ class MockAsyncPosIntegratedController : public AsyncPosIntegratedController {
   bool isSettled() override;
 
   bool isSettledOverride{true};
+  using AsyncPosIntegratedController::maxVelocity;
 };
 
 class MockAsyncVelIntegratedController : public AsyncVelIntegratedController {

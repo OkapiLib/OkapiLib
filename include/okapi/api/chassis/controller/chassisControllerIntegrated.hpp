@@ -101,6 +101,13 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   void stop() override;
 
   /**
+   * Sets a new maximum velocity.
+   *
+   * @param imaxVelocity the new maximum velocity
+   */
+  void setMaxVelocity(double imaxVelocity) override;
+
+  /**
    * Get the ChassisScales.
    */
   ChassisScales getChassisScales() const override;
