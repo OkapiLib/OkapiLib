@@ -11,12 +11,24 @@
 
 using namespace okapi;
 
+class MockAsyncLinearMotionProfileController : public AsyncLinearMotionProfileController {
+  public:
+  using AsyncLinearMotionProfileController::AsyncLinearMotionProfileController;
+
+  void executeSinglePath(const TrajectoryPair &path, std::unique_ptr<AbstractRate> rate) override {
+    executeSinglePathCalled = true;
+    AsyncLinearMotionProfileController::executeSinglePath(path, std::move(rate));
+  }
+
+  bool executeSinglePathCalled{false};
+};
+
 class AsyncLinearMotionProfileControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
     output = new MockAsyncVelIntegratedController();
 
-    controller = new AsyncLinearMotionProfileController(
+    controller = new MockAsyncLinearMotionProfileController(
       createTimeUtil(), 1.0, 2.0, 10.0, std::shared_ptr<MockAsyncVelIntegratedController>(output));
     controller->startThread();
   }
@@ -26,7 +38,7 @@ class AsyncLinearMotionProfileControllerTest : public ::testing::Test {
   }
 
   MockAsyncVelIntegratedController *output;
-  AsyncLinearMotionProfileController *controller;
+  MockAsyncLinearMotionProfileController *controller;
 };
 
 TEST_F(AsyncLinearMotionProfileControllerTest, SettledWhenDisabled) {
@@ -124,4 +136,46 @@ TEST_F(AsyncLinearMotionProfileControllerTest, GetErrorWithCorrectTarget) {
 
   // Pathfinder generates an approximate path so this could be slightly off
   EXPECT_NEAR(controller->getError(), 3, 0.1);
+}
+
+TEST_F(AsyncLinearMotionProfileControllerTest, ResetStopsMotors) {
+  controller->generatePath({0, 3}, "A");
+  controller->setTarget("A");
+
+  auto rate = createTimeUtil().getRate();
+  while (!controller->executeSinglePathCalled) {
+    rate->delayUntil(1_ms);
+  }
+
+  // Wait a little longer so we get into the path
+  rate->delayUntil(100_ms);
+  EXPECT_GT(output->lastControllerOutputSet, 0);
+
+  controller->reset();
+  EXPECT_FALSE(controller->isDisabled());
+  EXPECT_TRUE(controller->isSettled());
+  EXPECT_EQ(output->lastControllerOutputSet, 0);
+}
+
+TEST_F(AsyncLinearMotionProfileControllerTest, DisabledStopsMotors) {
+  controller->generatePath({0, 3}, "A");
+  controller->setTarget("A");
+
+  auto rate = createTimeUtil().getRate();
+  while (!controller->executeSinglePathCalled) {
+    rate->delayUntil(1_ms);
+  }
+
+  // Wait a little longer so we get into the path
+  rate->delayUntil(100_ms);
+  EXPECT_GT(output->lastControllerOutputSet, 0);
+
+  controller->flipDisable(true);
+
+  // Wait a bit because the loop() thread is what cleans up
+  rate->delayUntil(10_ms);
+
+  EXPECT_TRUE(controller->isDisabled());
+  EXPECT_TRUE(controller->isSettled());
+  EXPECT_EQ(output->lastControllerOutputSet, 0);
 }
