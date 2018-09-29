@@ -11,22 +11,33 @@
 
 using namespace okapi;
 
+class MockAsyncMotionProfileController : public AsyncMotionProfileController {
+  public:
+  using AsyncMotionProfileController::AsyncMotionProfileController;
+
+  void executeSinglePath(const TrajectoryPair &path, std::unique_ptr<AbstractRate> rate) override {
+    executeSinglePathCalled = true;
+    AsyncMotionProfileController::executeSinglePath(path, std::move(rate));
+  }
+
+  bool executeSinglePathCalled{false};
+};
+
 class AsyncMotionProfileControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    leftMotor = new MockMotor();
-    rightMotor = new MockMotor();
+    leftMotor = std::make_shared<MockMotor>();
+    rightMotor = std::make_shared<MockMotor>();
 
-    model = new SkidSteerModel(
-      std::unique_ptr<AbstractMotor>(leftMotor), std::unique_ptr<AbstractMotor>(rightMotor), 100);
+    model = new SkidSteerModel(leftMotor, rightMotor, 100);
 
-    controller = new AsyncMotionProfileController(createTimeUtil(),
-                                                  1.0,
-                                                  2.0,
-                                                  10.0,
-                                                  std::shared_ptr<SkidSteerModel>(model),
-                                                  {4_in, 10.5_in},
-                                                  AbstractMotor::gearset::green);
+    controller = new MockAsyncMotionProfileController(createTimeUtil(),
+                                                      1.0,
+                                                      2.0,
+                                                      10.0,
+                                                      std::shared_ptr<SkidSteerModel>(model),
+                                                      {4_in, 10.5_in},
+                                                      AbstractMotor::gearset::green);
     controller->startThread();
   }
 
@@ -34,10 +45,10 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
     delete controller;
   }
 
-  MockMotor *leftMotor;
-  MockMotor *rightMotor;
+  std::shared_ptr<MockMotor> leftMotor;
+  std::shared_ptr<MockMotor> rightMotor;
   SkidSteerModel *model;
-  AsyncMotionProfileController *controller;
+  MockAsyncMotionProfileController *controller;
 };
 
 TEST_F(AsyncMotionProfileControllerTest, SettledWhenDisabled) {
@@ -60,7 +71,7 @@ TEST_F(AsyncMotionProfileControllerTest, MotorsAreStoppedAfterSettling) {
 
   controller->waitUntilSettled();
 
-  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+  assertMotorsHaveBeenStopped(leftMotor.get(), rightMotor.get());
   EXPECT_GT(leftMotor->maxVelocity, 0);
   EXPECT_GT(rightMotor->maxVelocity, 0);
 }
@@ -81,7 +92,7 @@ TEST_F(AsyncMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
 
   controller->setTarget("A");
   controller->waitUntilSettled();
-  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
+  assertMotorsHaveBeenStopped(leftMotor.get(), rightMotor.get());
   EXPECT_GT(leftMotor->maxVelocity, 0);
   EXPECT_GT(rightMotor->maxVelocity, 0);
 }
@@ -125,4 +136,50 @@ TEST_F(AsyncMotionProfileControllerTest, RemoveAPathWhichDoesNotExist) {
 TEST_F(AsyncMotionProfileControllerTest, ControllerSetChangesTarget) {
   controller->controllerSet("A");
   EXPECT_EQ(controller->getTarget(), "A");
+}
+
+TEST_F(AsyncMotionProfileControllerTest, ResetStopsMotors) {
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 45_deg}}, "A");
+  controller->setTarget("A");
+
+  auto rate = createTimeUtil().getRate();
+  while (!controller->executeSinglePathCalled) {
+    rate->delayUntil(1_ms);
+  }
+
+  // Wait a little longer so we get into the path
+  rate->delayUntil(200_ms);
+  EXPECT_GT(leftMotor->maxVelocity, 0);
+  EXPECT_GT(rightMotor->maxVelocity, 0);
+
+  controller->reset();
+  EXPECT_FALSE(controller->isDisabled());
+  EXPECT_TRUE(controller->isSettled());
+  EXPECT_EQ(leftMotor->lastVelocity, 0);
+  EXPECT_EQ(rightMotor->lastVelocity, 0);
+}
+
+TEST_F(AsyncMotionProfileControllerTest, DisabledStopsMotors) {
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 45_deg}}, "A");
+  controller->setTarget("A");
+
+  auto rate = createTimeUtil().getRate();
+  while (!controller->executeSinglePathCalled) {
+    rate->delayUntil(1_ms);
+  }
+
+  // Wait a little longer so we get into the path
+  rate->delayUntil(200_ms);
+  EXPECT_GT(leftMotor->maxVelocity, 0);
+  EXPECT_GT(rightMotor->maxVelocity, 0);
+
+  controller->flipDisable(true);
+
+  // Wait a bit because the loop() thread is what cleans up
+  rate->delayUntil(10_ms);
+
+  EXPECT_TRUE(controller->isDisabled());
+  EXPECT_TRUE(controller->isSettled());
+  EXPECT_EQ(leftMotor->lastVelocity, 0);
+  EXPECT_EQ(rightMotor->lastVelocity, 0);
 }

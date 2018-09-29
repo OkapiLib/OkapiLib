@@ -229,6 +229,15 @@ bool AsyncLinearMotionProfileController::isSettled() {
 }
 
 void AsyncLinearMotionProfileController::reset() {
+  // Interrupt executeSinglePath() by disabling the controller
+  flipDisable(true);
+
+  auto rate = timeUtil.getRate();
+  while (isRunning) {
+    rate->delayUntil(1_ms);
+  }
+
+  flipDisable(false);
 }
 
 void AsyncLinearMotionProfileController::flipDisable() {
@@ -236,7 +245,10 @@ void AsyncLinearMotionProfileController::flipDisable() {
 }
 
 void AsyncLinearMotionProfileController::flipDisable(bool iisDisabled) {
+  logger->info("AsyncLinearMotionProfileController: flipDisable " + std::to_string(iisDisabled));
   disabled = iisDisabled;
+  // loop() will set the output to 0 when executeSinglePath() is done
+  // the default implementation of executeSinglePath() breaks when disabled
 }
 
 bool AsyncLinearMotionProfileController::isDisabled() const {
