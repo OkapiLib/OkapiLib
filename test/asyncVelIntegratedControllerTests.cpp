@@ -16,16 +16,15 @@ using namespace okapi;
 class AsyncVelIntegratedControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    motor = new MockMotor();
-    controller =
-      new AsyncVelIntegratedController(std::shared_ptr<MockMotor>(motor), createTimeUtil());
+    motor = std::make_shared<MockMotor>();
+    controller = new AsyncVelIntegratedController(motor, createTimeUtil());
   }
 
   void TearDown() override {
     delete controller;
   }
 
-  MockMotor *motor;
+  std::shared_ptr<MockMotor> motor;
   AsyncVelIntegratedController *controller;
 };
 

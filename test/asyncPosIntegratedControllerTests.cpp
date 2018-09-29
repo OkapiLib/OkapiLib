@@ -15,16 +15,15 @@ using namespace okapi;
 class AsyncPosIntegratedControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    motor = new MockMotor();
-    controller =
-      new AsyncPosIntegratedController(std::shared_ptr<MockMotor>(motor), createTimeUtil());
+    motor = std::make_shared<MockMotor>();
+    controller = new AsyncPosIntegratedController(motor, createTimeUtil());
   }
 
   void TearDown() override {
     delete controller;
   }
 
-  MockMotor *motor;
+  std::shared_ptr<MockMotor> motor;
   AsyncPosIntegratedController *controller;
 };
 
