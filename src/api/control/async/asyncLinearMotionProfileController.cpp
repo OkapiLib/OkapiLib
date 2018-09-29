@@ -244,7 +244,7 @@ void AsyncLinearMotionProfileController::flipDisable() {
   flipDisable(!disabled);
 }
 
-void AsyncLinearMotionProfileController::flipDisable(bool iisDisabled) {
+void AsyncLinearMotionProfileController::flipDisable(const bool iisDisabled) {
   logger->info("AsyncLinearMotionProfileController: flipDisable " + std::to_string(iisDisabled));
   disabled = iisDisabled;
   // loop() will set the output to 0 when executeSinglePath() is done

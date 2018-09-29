@@ -178,14 +178,14 @@ class ChassisModel : public ReadOnlyChassisModel {
                              double iloopSpeed) const = 0;
 
   /**
-   * Sets a new maximum velocity.
+   * Sets a new maximum velocity in RPM [0-600].
    *
    * @param imaxVelocity the new maximum velocity
    */
   virtual void setMaxVelocity(double imaxVelocity);
 
   /**
-   * Sets a new maximum voltage.
+   * Sets a new maximum voltage in mV [0-12000].
    *
    * @param imaxVoltage the new maximum voltage
    */

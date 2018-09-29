@@ -123,6 +123,12 @@ void ChassisControllerIntegrated::stop() {
   ChassisController::stop();
 }
 
+void ChassisControllerIntegrated::setMaxVelocity(const double imaxVelocity) {
+  leftController->setMaxVelocity(imaxVelocity);
+  rightController->setMaxVelocity(imaxVelocity);
+  ChassisController::setMaxVelocity(imaxVelocity);
+}
+
 ChassisScales ChassisControllerIntegrated::getChassisScales() const {
   return scales;
 }

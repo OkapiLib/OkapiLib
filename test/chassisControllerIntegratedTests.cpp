@@ -12,6 +12,12 @@
 
 using namespace okapi;
 
+class MockSkidSteerModel : public SkidSteerModel {
+  public:
+  using SkidSteerModel::maxVelocity;
+  using SkidSteerModel::SkidSteerModel;
+};
+
 class ChassisControllerIntegratedTest : public ::testing::Test {
   protected:
   void SetUp() override {
@@ -22,7 +28,7 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
     leftController = new MockAsyncPosIntegratedController();
     rightController = new MockAsyncPosIntegratedController();
 
-    model = new SkidSteerModel(
+    model = new MockSkidSteerModel(
       std::unique_ptr<AbstractMotor>(leftMotor), std::unique_ptr<AbstractMotor>(rightMotor), 100);
 
     controller = new ChassisControllerIntegrated(
@@ -45,7 +51,7 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
   MockMotor *rightMotor;
   MockAsyncPosIntegratedController *leftController;
   MockAsyncPosIntegratedController *rightController;
-  SkidSteerModel *model;
+  MockSkidSteerModel *model;
 };
 
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceRawUnitsTest) {
@@ -279,4 +285,11 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleAndStopTest) {
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
   EXPECT_TRUE(leftController->isDisabled());
   EXPECT_TRUE(rightController->isDisabled());
+}
+
+TEST_F(ChassisControllerIntegratedTest, SetMaxVelocityTest) {
+  controller->setMaxVelocity(42);
+  EXPECT_EQ(leftController->maxVelocity, 42);
+  EXPECT_EQ(rightController->maxVelocity, 42);
+  EXPECT_EQ(model->maxVelocity, 42);
 }
