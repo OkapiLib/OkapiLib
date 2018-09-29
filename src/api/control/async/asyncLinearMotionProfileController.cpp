@@ -232,7 +232,7 @@ void AsyncLinearMotionProfileController::reset() {
 }
 
 void AsyncLinearMotionProfileController::flipDisable() {
-  disabled = !disabled;
+  flipDisable(!disabled);
 }
 
 void AsyncLinearMotionProfileController::flipDisable(bool iisDisabled) {
