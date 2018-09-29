@@ -240,6 +240,15 @@ bool AsyncMotionProfileController::isSettled() {
 }
 
 void AsyncMotionProfileController::reset() {
+  // Interrupt executeSinglePath() by disabling the controller
+  flipDisable(true);
+
+  auto rate = timeUtil.getRate();
+  while (isRunning) {
+    rate->delayUntil(1_ms);
+  }
+
+  flipDisable(false);
 }
 
 void AsyncMotionProfileController::flipDisable() {
@@ -249,6 +258,8 @@ void AsyncMotionProfileController::flipDisable() {
 void AsyncMotionProfileController::flipDisable(const bool iisDisabled) {
   logger->info("AsyncMotionProfileController: flipDisable " + std::to_string(iisDisabled));
   disabled = iisDisabled;
+  // loop() will stop the chassis when executeSinglePath() is done
+  // the default implementation of executeSinglePath() breaks when disabled
 }
 
 bool AsyncMotionProfileController::isDisabled() const {
