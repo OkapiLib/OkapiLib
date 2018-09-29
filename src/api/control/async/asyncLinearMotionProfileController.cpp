@@ -235,7 +235,8 @@ void AsyncLinearMotionProfileController::flipDisable() {
   flipDisable(!disabled);
 }
 
-void AsyncLinearMotionProfileController::flipDisable(bool iisDisabled) {
+void AsyncLinearMotionProfileController::flipDisable(const bool iisDisabled) {
+  logger->info("AsyncMotionProfileController: flipDisable " + std::to_string(iisDisabled));
   disabled = iisDisabled;
 }
 
