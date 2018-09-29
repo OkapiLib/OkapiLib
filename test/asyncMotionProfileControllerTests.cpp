@@ -148,7 +148,7 @@ TEST_F(AsyncMotionProfileControllerTest, ResetStopsMotors) {
   }
 
   // Wait a little longer so we get into the path
-  rate->delayUntil(100_ms);
+  rate->delayUntil(200_ms);
   EXPECT_GT(leftMotor->maxVelocity, 0);
   EXPECT_GT(rightMotor->maxVelocity, 0);
 
@@ -169,7 +169,7 @@ TEST_F(AsyncMotionProfileControllerTest, DisabledStopsMotors) {
   }
 
   // Wait a little longer so we get into the path
-  rate->delayUntil(100_ms);
+  rate->delayUntil(200_ms);
   EXPECT_GT(leftMotor->maxVelocity, 0);
   EXPECT_GT(rightMotor->maxVelocity, 0);
 

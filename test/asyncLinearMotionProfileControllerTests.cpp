@@ -148,7 +148,7 @@ TEST_F(AsyncLinearMotionProfileControllerTest, ResetStopsMotors) {
   }
 
   // Wait a little longer so we get into the path
-  rate->delayUntil(100_ms);
+  rate->delayUntil(200_ms);
   EXPECT_GT(output->lastControllerOutputSet, 0);
 
   controller->reset();
@@ -167,7 +167,7 @@ TEST_F(AsyncLinearMotionProfileControllerTest, DisabledStopsMotors) {
   }
 
   // Wait a little longer so we get into the path
-  rate->delayUntil(100_ms);
+  rate->delayUntil(200_ms);
   EXPECT_GT(output->lastControllerOutputSet, 0);
 
   controller->flipDisable(true);
