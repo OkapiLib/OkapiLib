@@ -212,33 +212,33 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   protected:
   Logger *logger;
   double kP, kI, kD, kBias;
-  QTime sampleTime = 10_ms;
-  double target = 0;
-  double lastReading = 0;
-  double error = 0;
-  double lastError = 0;
+  QTime sampleTime{10_ms};
+  double target{0};
+  double lastReading{0};
+  double error{0};
+  double lastError{0};
   std::unique_ptr<Filter> derivativeFilter;
 
   // Integral bounds
-  double integral = 0;
-  double integralMax = 1;
-  double integralMin = -1;
+  double integral{0};
+  double integralMax{1};
+  double integralMin{-1};
 
   // Error will only be added to the integral term within these bounds on either side of the target
-  double errorSumMin = 0;
-  double errorSumMax = std::numeric_limits<double>::max();
+  double errorSumMin{0};
+  double errorSumMax{std::numeric_limits<double>::max()};
 
-  double derivative = 0;
+  double derivative{0};
 
   // Output bounds
-  double output = 0;
-  double outputMax = 1;
-  double outputMin = -1;
+  double output{0};
+  double outputMax{1};
+  double outputMin{-1};
 
   // Reset the integrated when the controller crosses 0 or not
-  bool shouldResetOnCross = true;
+  bool shouldResetOnCross{true};
 
-  bool isOn = true;
+  bool controllerIsDisabled{false};
 
   std::unique_ptr<AbstractTimer> loopDtTimer;
   std::unique_ptr<SettledUtil> settledUtil;

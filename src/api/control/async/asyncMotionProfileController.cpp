@@ -243,7 +243,7 @@ void AsyncMotionProfileController::reset() {
 }
 
 void AsyncMotionProfileController::flipDisable() {
-  disabled = !disabled;
+  flipDisable(!disabled);
 }
 
 void AsyncMotionProfileController::flipDisable(bool iisDisabled) {

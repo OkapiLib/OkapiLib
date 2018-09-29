@@ -45,8 +45,7 @@ void AsyncVelIntegratedController::reset() {
 }
 
 void AsyncVelIntegratedController::flipDisable() {
-  controllerIsDisabled = !controllerIsDisabled;
-  resumeMovement();
+  flipDisable(!controllerIsDisabled);
 }
 
 void AsyncVelIntegratedController::flipDisable(const bool iisDisabled) {
