@@ -55,8 +55,7 @@ void AsyncPosIntegratedController::reset() {
 }
 
 void AsyncPosIntegratedController::flipDisable() {
-  controllerIsDisabled = !controllerIsDisabled;
-  resumeMovement();
+  flipDisable(!controllerIsDisabled);
 }
 
 void AsyncPosIntegratedController::flipDisable(const bool iisDisabled) {
