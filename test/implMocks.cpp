@@ -188,7 +188,7 @@ MockMotor::setVelPIDFull(double, double, double, double, double, double, double,
 }
 
 AbstractMotor::brakeMode MockMotor::getBrakeMode() const {
-  return brakeMode::coast;
+  return brakeMode;
 }
 
 int32_t MockMotor::getCurrentLimit() const {
@@ -196,11 +196,11 @@ int32_t MockMotor::getCurrentLimit() const {
 }
 
 AbstractMotor::encoderUnits MockMotor::getEncoderUnits() const {
-  return encoderUnits::degrees;
+  return encoderUnits;
 }
 
 AbstractMotor::gearset MockMotor::getGearing() const {
-  return gearset::red;
+  return gearset;
 }
 
 MockTimer::MockTimer() : AbstractTimer(millis()) {
