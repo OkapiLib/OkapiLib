@@ -41,8 +41,8 @@ AsyncMotionProfileController::AsyncMotionProfileController(
     pair(other.pair),
     timeUtil(std::move(other.timeUtil)),
     currentPath(std::move(other.currentPath)),
-    isRunning(other.isRunning),
-    disabled(other.disabled),
+    isRunning(other.isRunning.load(std::memory_order_acquire)),
+    disabled(other.disabled.load(std::memory_order_acquire)),
     dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
     task(other.task) {
 }
@@ -172,7 +172,7 @@ void AsyncMotionProfileController::loop() {
   auto rate = timeUtil.getRate();
 
   while (!dtorCalled.load(std::memory_order_acquire)) {
-    if (isRunning && !isDisabled()) {
+    if (isRunning.load(std::memory_order_acquire) && !isDisabled()) {
       logger->info("AsyncMotionProfileController: Running with path: " + currentPath);
       auto path = paths.find(currentPath);
 
@@ -190,7 +190,7 @@ void AsyncMotionProfileController::loop() {
         logger->info("AsyncMotionProfileController: Done moving");
       }
 
-      isRunning = false;
+      isRunning.store(false, std::memory_order_release);
     }
 
     rate->delayUntil(10_ms);
@@ -236,7 +236,7 @@ Point AsyncMotionProfileController::getError() const {
 }
 
 bool AsyncMotionProfileController::isSettled() {
-  return isDisabled() || !isRunning;
+  return isDisabled() || !isRunning.load(std::memory_order_acquire);
 }
 
 void AsyncMotionProfileController::reset() {
@@ -244,7 +244,7 @@ void AsyncMotionProfileController::reset() {
   flipDisable(true);
 
   auto rate = timeUtil.getRate();
-  while (isRunning) {
+  while (isRunning.load(std::memory_order_acquire)) {
     rate->delayUntil(1_ms);
   }
 
@@ -252,18 +252,18 @@ void AsyncMotionProfileController::reset() {
 }
 
 void AsyncMotionProfileController::flipDisable() {
-  flipDisable(!disabled);
+  flipDisable(!disabled.load(std::memory_order_acquire));
 }
 
 void AsyncMotionProfileController::flipDisable(const bool iisDisabled) {
   logger->info("AsyncMotionProfileController: flipDisable " + std::to_string(iisDisabled));
-  disabled = iisDisabled;
+  disabled.store(iisDisabled, std::memory_order_release);
   // loop() will stop the chassis when executeSinglePath() is done
   // the default implementation of executeSinglePath() breaks when disabled
 }
 
 bool AsyncMotionProfileController::isDisabled() const {
-  return disabled;
+  return disabled.load(std::memory_order_acquire);
 }
 
 void AsyncMotionProfileController::startThread() {

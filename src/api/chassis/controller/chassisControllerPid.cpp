@@ -45,8 +45,8 @@ ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcep
     turnPid(std::move(other.turnPid)),
     scales(other.scales),
     gearsetRatioPair(other.gearsetRatioPair),
-    doneLooping(other.doneLooping),
-    newMovement(other.newMovement),
+    doneLooping(other.doneLooping.load(std::memory_order_acquire)),
+    newMovement(other.newMovement.load(std::memory_order_acquire)),
     dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
     mode(other.mode),
     task(other.task) {
@@ -69,10 +69,10 @@ void ChassisControllerPID::loop() {
      * doneLooping is set to false by moveDistanceAsync and turnAngleAsync and then set to true by
      * waitUntilSettled
      */
-    if (!doneLooping) {
-      if (mode != pastMode || newMovement) {
+    if (!doneLooping.load(std::memory_order_acquire)) {
+      if (mode != pastMode || newMovement.load(std::memory_order_acquire)) {
         encStartVals = model->getSensorVals();
-        newMovement = false;
+        newMovement.store(false, std::memory_order_release);
       }
 
       switch (mode) {
@@ -124,8 +124,8 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   distancePid->setTarget(newTarget);
   anglePid->setTarget(0);
 
-  doneLooping = false;
-  newMovement = true;
+  doneLooping.store(false, std::memory_order_release);
+  newMovement.store(true, std::memory_order_release);
 }
 
 void ChassisControllerPID::moveDistanceAsync(const double itarget) {
@@ -159,8 +159,8 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
 
   turnPid->setTarget(newTarget);
 
-  doneLooping = false;
-  newMovement = true;
+  doneLooping.store(false, std::memory_order_release);
+  newMovement.store(true, std::memory_order_release);
 }
 
 void ChassisControllerPID::turnAngleAsync(const double idegTarget) {
@@ -200,7 +200,7 @@ void ChassisControllerPID::waitUntilSettled() {
 
   stopAfterSettled();
   mode = none;
-  doneLooping = true;
+  doneLooping.store(true, std::memory_order_release);
   logger->info("ChassisControllerPID: Done waiting to settle");
 }
 
