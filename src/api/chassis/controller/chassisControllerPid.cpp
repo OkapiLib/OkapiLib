@@ -47,14 +47,14 @@ ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcep
     gearsetRatioPair(other.gearsetRatioPair),
     doneLooping(other.doneLooping),
     newMovement(other.newMovement),
-    dtorCalled(other.dtorCalled.load(std::memory_order::memory_order_relaxed)),
+    dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
     mode(other.mode),
     task(other.task) {
   other.task = nullptr;
 }
 
 ChassisControllerPID::~ChassisControllerPID() {
-  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
+  dtorCalled.store(true, std::memory_order_release);
   delete task;
 }
 
@@ -64,7 +64,7 @@ void ChassisControllerPID::loop() {
   double distanceElapsed = 0, angleChange = 0;
   modeType pastMode = none;
 
-  while (!dtorCalled.load(std::memory_order::memory_order_relaxed)) {
+  while (!dtorCalled.load(std::memory_order_acquire)) {
     /**
      * doneLooping is set to false by moveDistanceAsync and turnAngleAsync and then set to true by
      * waitUntilSettled
