@@ -1,26 +1,28 @@
 #include "okapi/api/device/button/buttonBase.hpp"
 
 namespace okapi {
-ButtonBase::ButtonBase(const bool iinverted) : inverted(iinverted) {
-}
+ButtonBase::ButtonBase() = default;
 
 bool ButtonBase::isPressed() {
-  wasPressedLast = currentlyPressed();
-  return wasPressedLast;
+  return currentlyPressed();
 }
 
 bool ButtonBase::changed() {
-  const bool pressed = currentlyPressed();
-  const bool out = pressed ^ wasPressedLast;
-  wasPressedLast = pressed;
-  return out;
+  return changedImpl(wasPressedLast_c);
 }
 
 bool ButtonBase::changedToPressed() {
-  return changed() && wasPressedLast;
+  return changedImpl(wasPressedLast_ctp) && wasPressedLast_ctp;
 }
 
 bool ButtonBase::changedToReleased() {
-  return changed() && !wasPressedLast;
+  return changedImpl(wasPressedLast_ctr) && !wasPressedLast_ctr;
+}
+
+bool ButtonBase::changedImpl(bool &prevState) {
+  const bool pressed = currentlyPressed();
+  const bool out = pressed ^ prevState;
+  prevState = pressed;
+  return out;
 }
 } // namespace okapi
