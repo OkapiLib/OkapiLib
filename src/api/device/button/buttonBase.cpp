@@ -1,7 +1,8 @@
 #include "okapi/api/device/button/buttonBase.hpp"
 
 namespace okapi {
-ButtonBase::ButtonBase() = default;
+ButtonBase::ButtonBase(const bool iinverted) : inverted(iinverted) {
+}
 
 bool ButtonBase::isPressed() {
   return currentlyPressed();

@@ -6,7 +6,7 @@
 namespace okapi {
 class ButtonBase : public AbstractButton {
   public:
-  explicit ButtonBase();
+  explicit ButtonBase(bool iinverted = false);
 
   /**
    * Return whether the button is currently pressed.
@@ -31,6 +31,7 @@ class ButtonBase : public AbstractButton {
   bool changedToReleased() override;
 
   protected:
+  bool inverted{false};
   bool wasPressedLast_c{false};
   bool wasPressedLast_ctp{false};
   bool wasPressedLast_ctr{false};
