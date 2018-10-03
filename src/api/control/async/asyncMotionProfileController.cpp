@@ -116,11 +116,47 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
 
   auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
 
+  if (trajectory == nullptr) {
+    std::string message = "AsyncMotionProfileController: Could not allocate trajectory. The path "
+                          "is probably impossible.";
+    logger->error(message);
+
+    if (candidate.laptr) {
+      free(candidate.laptr);
+    }
+
+    if (candidate.saptr) {
+      free(candidate.saptr);
+    }
+
+    throw std::runtime_error(message);
+  }
+
   logger->info("AsyncMotionProfileController: Generating path");
   pathfinder_generate(&candidate, trajectory);
 
   auto *leftTrajectory = (Segment *)malloc(sizeof(Segment) * length);
   auto *rightTrajectory = (Segment *)malloc(sizeof(Segment) * length);
+
+  if (leftTrajectory == nullptr || rightTrajectory == nullptr) {
+    std::string message = "AsyncMotionProfileController: Could not allocate left and/or right "
+                          "trajectories. The path is probably impossible.";
+    logger->error(message);
+
+    if (leftTrajectory) {
+      free(leftTrajectory);
+    }
+
+    if (rightTrajectory) {
+      free(rightTrajectory);
+    }
+
+    if (trajectory) {
+      free(trajectory);
+    }
+
+    throw std::runtime_error(message);
+  }
 
   logger->info("AsyncMotionProfileController: Modifying for tank drive");
   pathfinder_modify_tank(

@@ -106,6 +106,22 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<doub
 
   auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
 
+  if (trajectory == nullptr) {
+    std::string message = "AsyncLinearMotionProfileController: Could not allocate trajectory. The "
+                          "path is probably impossible.";
+    logger->error(message);
+
+    if (candidate.laptr) {
+      free(candidate.laptr);
+    }
+
+    if (candidate.saptr) {
+      free(candidate.saptr);
+    }
+
+    throw std::runtime_error(message);
+  }
+
   logger->info("AsyncLinearMotionProfileController: Generating path");
   pathfinder_generate(&candidate, trajectory);
 
