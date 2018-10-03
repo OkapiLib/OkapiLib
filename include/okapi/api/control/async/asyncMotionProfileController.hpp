@@ -178,8 +178,8 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   TimeUtil timeUtil;
 
   std::string currentPath{""};
-  bool isRunning{false};
-  bool disabled{false};
+  std::atomic_bool isRunning{false};
+  std::atomic_bool disabled{false};
   std::atomic_bool dtorCalled{false};
   CrossplatformThread *task{nullptr};
 

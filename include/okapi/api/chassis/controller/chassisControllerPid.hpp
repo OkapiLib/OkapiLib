@@ -131,8 +131,8 @@ class ChassisControllerPID : public virtual ChassisController {
   std::unique_ptr<IterativePosPIDController> turnPid;
   ChassisScales scales;
   AbstractMotor::GearsetRatioPair gearsetRatioPair;
-  bool doneLooping{true};
-  bool newMovement{false};
+  std::atomic_bool doneLooping{true};
+  std::atomic_bool newMovement{false};
   std::atomic_bool dtorCalled{false};
 
   static void trampoline(void *context);
