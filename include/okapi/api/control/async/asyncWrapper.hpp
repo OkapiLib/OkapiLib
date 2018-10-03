@@ -54,7 +54,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
       controller(std::move(other.controller)),
       loopRate(std::move(other.loopRate)),
       settledRate(std::move(other.settledRate)),
-      dtorCalled(other.dtorCalled.load(std::memory_order_release)),
+      dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
       task(other.task) {
   }
 
