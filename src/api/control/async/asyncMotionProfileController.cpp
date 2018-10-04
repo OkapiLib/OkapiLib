@@ -6,8 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
-#include "okapi/api/units/QAngularSpeed.hpp"
-#include "okapi/api/units/QSpeed.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include <numeric>
 
@@ -27,6 +25,13 @@ AsyncMotionProfileController::AsyncMotionProfileController(const TimeUtil &itime
     scales(iscales),
     pair(ipair),
     timeUtil(itimeUtil) {
+  if (ipair.ratio == 0) {
+    logger->error("AsyncMotionProfileController: The gear ratio cannot be zero! Check if you are "
+                  "using integer division.");
+    throw std::invalid_argument(
+      "AsyncMotionProfileController: The gear ratio cannot be zero! Check "
+      "if you are using integer division.");
+  }
 }
 
 AsyncMotionProfileController::AsyncMotionProfileController(
@@ -235,22 +240,19 @@ void AsyncMotionProfileController::loop() {
 
 void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
                                                      std::unique_ptr<AbstractRate> rate) {
-  // Converts linear chassis speed to rotational wheel speed
-  const auto linearSpeedToRotationalSpeed = [&](QSpeed linearMps) -> QAngularSpeed {
-    return linearMps * (360_deg / (scales.wheelDiameter * 1_pi));
-  };
-
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
-    const auto leftRPM =
-      linearSpeedToRotationalSpeed(path.left[i].velocity * mps).convert(rpm) * pair.ratio;
-    const auto rightRPM =
-      linearSpeedToRotationalSpeed(path.right[i].velocity * mps).convert(rpm) * pair.ratio;
+    const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
+    const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
 
     model->left(leftRPM / toUnderlyingType(pair.internalGearset));
     model->right(rightRPM / toUnderlyingType(pair.internalGearset));
 
     rate->delayUntil(1_ms);
   }
+}
+
+QAngularSpeed AsyncMotionProfileController::convertLinearToRotational(QSpeed linear) const {
+  return (linear * (360_deg / (scales.wheelDiameter * 1_pi))) * pair.ratio;
 }
 
 void AsyncMotionProfileController::trampoline(void *context) {
