@@ -40,7 +40,19 @@ class AbstractMotor : public ControllerOutput<double> {
     invalid = INT32_MAX
   };
 
+  /**
+   * A simple structure representing the full ratio between motor and wheel.
+   */
   struct GearsetRatioPair {
+    /**
+     * A simple structure representing the full ratio between motor and wheel.
+     *
+     * The ratio is motor rotation : wheel rotation. So for example, if one motor rotation
+     * corresponds to two wheel rotations, the ratio is 1/2.
+     *
+     * @param igearset the motor's gearset
+     * @param iratio the ratio of motor rotation to wheel rotation
+     */
     GearsetRatioPair(const gearset igearset, const double iratio = 1)
       : internalGearset(igearset), ratio(iratio) {
     }

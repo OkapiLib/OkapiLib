@@ -235,13 +235,16 @@ void AsyncMotionProfileController::loop() {
 
 void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
                                                      std::unique_ptr<AbstractRate> rate) {
+  // Converts linear chassis speed to rotational wheel speed
   const auto linearSpeedToRotationalSpeed = [&](QSpeed linearMps) -> QAngularSpeed {
     return linearMps * (360_deg / (scales.wheelDiameter * 1_pi));
   };
 
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
-    const auto leftRPM = linearSpeedToRotationalSpeed(path.left[i].velocity * mps).convert(rpm);
-    const auto rightRPM = linearSpeedToRotationalSpeed(path.right[i].velocity * mps).convert(rpm);
+    const auto leftRPM =
+      linearSpeedToRotationalSpeed(path.left[i].velocity * mps).convert(rpm) * pair.ratio;
+    const auto rightRPM =
+      linearSpeedToRotationalSpeed(path.right[i].velocity * mps).convert(rpm) * pair.ratio;
 
     model->left(leftRPM / toUnderlyingType(pair.internalGearset));
     model->right(rightRPM / toUnderlyingType(pair.internalGearset));
