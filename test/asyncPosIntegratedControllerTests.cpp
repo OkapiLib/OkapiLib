@@ -55,25 +55,22 @@ TEST_F(AsyncPosIntegratedControllerTest, ControllerSetScalesTarget) {
 }
 
 TEST_F(AsyncPosIntegratedControllerTest, ProfiledMovementUsesMaxVelocityForRedGearset) {
-  auto motor = std::make_shared<MockMotor>();
   motor->setGearing(AbstractMotor::gearset::red);
-  AsyncPosIntegratedController controller(motor, createTimeUtil());
-  controller.setTarget(5);
+  AsyncPosIntegratedController newController(motor, createTimeUtil());
+  newController.setTarget(5);
   EXPECT_EQ(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::red));
 }
 
 TEST_F(AsyncPosIntegratedControllerTest, ProfiledMovementUsesMaxVelocityForBlueGearset) {
-  auto motor = std::make_shared<MockMotor>();
   motor->setGearing(AbstractMotor::gearset::blue);
-  AsyncPosIntegratedController controller(motor, createTimeUtil());
-  controller.setTarget(5);
+  AsyncPosIntegratedController newController(motor, createTimeUtil());
+  newController.setTarget(5);
   EXPECT_EQ(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::blue));
 }
 
 TEST_F(AsyncPosIntegratedControllerTest, ProfiledMovementUsesMaxVelocityForGreenGearset) {
-  auto motor = std::make_shared<MockMotor>();
   motor->setGearing(AbstractMotor::gearset::green);
-  AsyncPosIntegratedController controller(motor, createTimeUtil());
-  controller.setTarget(5);
+  AsyncPosIntegratedController newController(motor, createTimeUtil());
+  newController.setTarget(5);
   EXPECT_EQ(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::green));
 }

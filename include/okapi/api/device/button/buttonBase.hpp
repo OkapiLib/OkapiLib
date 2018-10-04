@@ -14,28 +14,32 @@ class ButtonBase : public AbstractButton {
   bool isPressed() override;
 
   /**
-   * Return whether the state of the button changed since the last time this method was
-   * called.
+   * Return whether the state of the button changed since the last time this method was called.
    **/
   bool changed() override;
 
   /**
-   * Return whether the state of the button changed to being pressed since the last time this method
-   * was called.
+   * Return whether the state of the button changed to pressed since the last time this method was
+   *called.
    **/
   bool changedToPressed() override;
 
   /**
-   * Return whether the state of the button to being not pressed changed since the last time this
-   * method was called.
+   * Return whether the state of the button to not pressed since the last time this method was
+   *called.
    **/
   bool changedToReleased() override;
 
   protected:
-  const bool inverted;
-  bool wasPressedLast = false;
+  bool inverted{false};
+  bool wasPressedLast_c{false};
+  bool wasPressedLast_ctp{false};
+  bool wasPressedLast_ctr{false};
 
   virtual bool currentlyPressed() = 0;
+
+  private:
+  bool changedImpl(bool &prevState);
 };
 } // namespace okapi
 
