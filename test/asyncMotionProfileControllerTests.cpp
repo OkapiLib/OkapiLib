@@ -14,6 +14,7 @@ using namespace okapi;
 class MockAsyncMotionProfileController : public AsyncMotionProfileController {
   public:
   using AsyncMotionProfileController::AsyncMotionProfileController;
+  using AsyncMotionProfileController::convertLinearToRotational;
 
   void executeSinglePath(const TrajectoryPair &path, std::unique_ptr<AbstractRate> rate) override {
     executeSinglePathCalled = true;
@@ -37,7 +38,7 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
                                                       10.0,
                                                       std::shared_ptr<SkidSteerModel>(model),
                                                       {4_in, 10.5_in},
-                                                      AbstractMotor::gearset::green);
+                                                      AbstractMotor::gearset::green * (1.0 / 2));
     controller->startThread();
   }
 
@@ -182,4 +183,9 @@ TEST_F(AsyncMotionProfileControllerTest, DisabledStopsMotors) {
   EXPECT_TRUE(controller->isSettled());
   EXPECT_EQ(leftMotor->lastVelocity, 0);
   EXPECT_EQ(rightMotor->lastVelocity, 0);
+}
+
+TEST_F(AsyncMotionProfileControllerTest, SpeedConversionTest) {
+  // 4 inch wheels, 2 wheel rotations per 1 motor rotation
+  EXPECT_NEAR(controller->convertLinearToRotational(1_mps).convert(rpm), 93.989, 0.001);
 }

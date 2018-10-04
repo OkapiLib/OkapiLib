@@ -54,12 +54,12 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
       controller(std::move(other.controller)),
       loopRate(std::move(other.loopRate)),
       settledRate(std::move(other.settledRate)),
-      dtorCalled(other.dtorCalled.load(std::memory_order::memory_order_relaxed)),
+      dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
       task(other.task) {
   }
 
   ~AsyncWrapper() override {
-    dtorCalled.store(true, std::memory_order::memory_order_relaxed);
+    dtorCalled.store(true, std::memory_order_release);
     delete task;
   }
 
@@ -239,7 +239,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   void loop() {
-    while (!dtorCalled.load(std::memory_order::memory_order_relaxed)) {
+    while (!dtorCalled.load(std::memory_order_acquire)) {
       if (!isDisabled()) {
         output->controllerSet(controller->step(input->controllerGet()));
       }
