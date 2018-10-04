@@ -34,7 +34,8 @@ struct Point {
 class AsyncMotionProfileController : public AsyncPositionController<std::string, Point> {
   public:
   /**
-   * An Async Controller which generates and follows 2D motion profiles.
+   * An Async Controller which generates and follows 2D motion profiles. Throws a
+   * std::invalid_argument exception if the gear ratio is zero.
    *
    * @param imaxVel The maximum possible velocity in m/s.
    * @param imaxAccel The maximum possible acceleration in m/s/s.
