@@ -9,12 +9,12 @@
 #include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
-AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+AsyncPosIntegratedController::AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
                                                            const TimeUtil &itimeUtil)
   : AsyncPosIntegratedController(imotor, toUnderlyingType(imotor->getGearing()), itimeUtil) {
 }
 
-AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+AsyncPosIntegratedController::AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
                                                            const std::int32_t imaxVelocity,
                                                            const TimeUtil &itimeUtil)
   : logger(Logger::instance()),

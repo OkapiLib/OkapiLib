@@ -30,7 +30,7 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param iscales see ChassisScales docs
    */
   ChassisControllerPID(const TimeUtil &itimeUtil,
-                       std::shared_ptr<ChassisModel> imodel,
+                       const std::shared_ptr<ChassisModel> &imodel,
                        std::unique_ptr<IterativePosPIDController> idistanceController,
                        std::unique_ptr<IterativePosPIDController> iangleController,
                        std::unique_ptr<IterativePosPIDController> iturnController,

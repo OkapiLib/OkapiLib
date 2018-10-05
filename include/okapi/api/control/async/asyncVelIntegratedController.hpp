@@ -21,7 +21,7 @@ namespace okapi {
  */
 class AsyncVelIntegratedController : public AsyncVelocityController<double, double> {
   public:
-  AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor, const TimeUtil &itimeUtil);
+  AsyncVelIntegratedController(const std::shared_ptr<AbstractMotor> &imotor, const TimeUtil &itimeUtil);
 
   /**
    * Sets the target for the controller.

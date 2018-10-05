@@ -9,8 +9,8 @@
 #include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
-AsyncVelPIDController::AsyncVelPIDController(std::shared_ptr<ControllerInput<double>> iinput,
-                                             std::shared_ptr<ControllerOutput<double>> ioutput,
+AsyncVelPIDController::AsyncVelPIDController(const std::shared_ptr<ControllerInput<double>> &iinput,
+                                             const std::shared_ptr<ControllerOutput<double>> &ioutput,
                                              const TimeUtil &itimeUtil,
                                              const double ikP,
                                              const double ikD,

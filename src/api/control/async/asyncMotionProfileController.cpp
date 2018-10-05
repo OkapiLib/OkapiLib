@@ -14,7 +14,7 @@ AsyncMotionProfileController::AsyncMotionProfileController(const TimeUtil &itime
                                                            const double imaxVel,
                                                            const double imaxAccel,
                                                            const double imaxJerk,
-                                                           std::shared_ptr<ChassisModel> imodel,
+                                                           const std::shared_ptr<ChassisModel> &imodel,
                                                            const ChassisScales &iscales,
                                                            AbstractMotor::GearsetRatioPair ipair)
   : logger(Logger::instance()),
