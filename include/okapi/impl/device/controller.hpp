@@ -61,7 +61,7 @@ class Controller {
    * @param ibtn the button
    * @return a ControllerButton on this controller
    */
-  virtual ControllerButton operator[](ControllerDigital ibtn);
+  virtual ControllerButton &operator[](ControllerDigital ibtn);
 
   /**
    * Sets text to the controller LCD screen.

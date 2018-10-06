@@ -10,6 +10,8 @@
 #include "okapi/impl/device/controllerUtil.hpp"
 
 namespace okapi {
+std::array<ControllerButton *, 12> Controller::buttonArray;
+
 Controller::Controller(const ControllerId iid)
   : m_id(iid), controller(ControllerUtil::idToProsEnum(iid)) {
   std::fill(buttonArray.begin(), buttonArray.end(), nullptr);
@@ -40,7 +42,7 @@ bool Controller::getDigital(const ControllerDigital ibutton) {
   return controller.get_digital(ControllerUtil::digitalToProsEnum(ibutton)) == 1;
 }
 
-ControllerButton Controller::operator[](const ControllerDigital ibtn) {
+ControllerButton &Controller::operator[](const ControllerDigital ibtn) {
   const auto index = toUnderlyingType(ibtn) - toUnderlyingType(ControllerDigital::L1);
 
   if (buttonArray[index] == nullptr) {
