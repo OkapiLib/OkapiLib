@@ -11,6 +11,7 @@
 #include "api.h"
 #include "okapi/impl/device/button/controllerButton.hpp"
 #include "okapi/impl/device/controllerUtil.hpp"
+#include <array>
 
 namespace okapi {
 class Controller {
@@ -108,8 +109,9 @@ class Controller {
   virtual std::int32_t getBatteryLevel();
 
   protected:
-  const ControllerId m_id;
+  ControllerId m_id;
   pros::Controller controller;
+  static std::array<ControllerButton *, 12> buttonArray;
 };
 } // namespace okapi
 
