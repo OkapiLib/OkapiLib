@@ -20,7 +20,9 @@ namespace okapi {
 class VelMathArgs {
   public:
   explicit VelMathArgs(double iticksPerRev, QTime isampleTime = 0_ms);
-  VelMathArgs(double iticksPerRev, const std::shared_ptr<Filter> &ifilter, QTime isampleTime = 0_ms);
+  VelMathArgs(double iticksPerRev,
+              const std::shared_ptr<Filter> &ifilter,
+              QTime isampleTime = 0_ms);
 
   virtual ~VelMathArgs();
 

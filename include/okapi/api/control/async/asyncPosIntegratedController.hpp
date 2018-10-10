@@ -27,7 +27,8 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
    *
    * @param imotor the motor to control
    */
-  AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor, const TimeUtil &itimeUtil);
+  AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
+                               const TimeUtil &itimeUtil);
 
   /**
    * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are
