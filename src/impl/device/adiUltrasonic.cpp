@@ -15,7 +15,7 @@ ADIUltrasonic::ADIUltrasonic(const uint8_t iportTop, const uint8_t iportBottom)
 ADIUltrasonic::ADIUltrasonic(const std::uint8_t iportTop,
                              const std::uint8_t iportBottom,
                              std::unique_ptr<Filter> ifilter)
-  : ultra(iportBottom, iportTop), filter(std::move(ifilter)) {
+  : ultra(iportTop, iportBottom), filter(std::move(ifilter)) {
 }
 
 ADIUltrasonic::~ADIUltrasonic() = default;

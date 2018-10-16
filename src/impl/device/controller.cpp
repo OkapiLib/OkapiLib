@@ -53,6 +53,10 @@ std::int32_t Controller::clearLine(std::uint8_t iline) {
   return controller.clear_line(iline);
 }
 
+std::int32_t Controller::rumble(std::string irumblePattern) {
+  return controller.rumble(irumblePattern.c_str());
+}
+
 std::int32_t Controller::getBatteryCapacity() {
   return controller.get_battery_capacity();
 }
