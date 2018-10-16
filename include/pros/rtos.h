@@ -155,7 +155,7 @@ task_t task_create(task_fn_t function, void* const parameters, uint32_t prio, co
                    const char* const name);
 
 /**
- * Removes a task from the RTOS real time kernel's management.  The task being
+ * Removes a task from the RTOS real time kernel's management. The task being
  * deleted will be removed from all ready, blocked, suspended and event lists.
  *
  * Memory dynamically allocated by the task is not automatically freed, and
@@ -189,7 +189,8 @@ void delay(const uint32_t milliseconds);
  * be updated to reflect the time at which the task will unblock.
  *
  * \param prev_time
- *        A pointer to the location storing the setpoint time
+ *        A pointer to the location storing the setpoint time. This should
+ *        typically be initialized to the return value of millis().
  * \param delta
  *        The number of milliseconds to wait (1000 milliseconds per second)
  */
