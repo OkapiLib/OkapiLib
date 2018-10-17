@@ -144,9 +144,9 @@ class MockMotor : public AbstractMotor {
   mutable std::int16_t lastVoltage{0};
   mutable std::int16_t lastPosition{0};
   mutable std::int32_t lastProfiledMaxVelocity{0};
-  AbstractMotor::gearset gearset;
-  AbstractMotor::encoderUnits encoderUnits;
-  AbstractMotor::brakeMode brakeMode;
+  AbstractMotor::gearset gearset{AbstractMotor::gearset::green};
+  AbstractMotor::encoderUnits encoderUnits{AbstractMotor::encoderUnits::counts};
+  AbstractMotor::brakeMode brakeMode{AbstractMotor::brakeMode::coast};
 };
 
 /**
@@ -255,6 +255,7 @@ class MockAsyncPosIntegratedController : public AsyncPosIntegratedController {
   bool isSettled() override;
 
   bool isSettledOverride{true};
+  using AsyncPosIntegratedController::maxVelocity;
 };
 
 class MockAsyncVelIntegratedController : public AsyncVelIntegratedController {

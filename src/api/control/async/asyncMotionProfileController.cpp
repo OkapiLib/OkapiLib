@@ -6,8 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
-#include "okapi/api/units/QAngularSpeed.hpp"
-#include "okapi/api/units/QSpeed.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include <numeric>
 
@@ -27,6 +25,13 @@ AsyncMotionProfileController::AsyncMotionProfileController(const TimeUtil &itime
     scales(iscales),
     pair(ipair),
     timeUtil(itimeUtil) {
+  if (ipair.ratio == 0) {
+    logger->error("AsyncMotionProfileController: The gear ratio cannot be zero! Check if you are "
+                  "using integer division.");
+    throw std::invalid_argument(
+      "AsyncMotionProfileController: The gear ratio cannot be zero! Check "
+      "if you are using integer division.");
+  }
 }
 
 AsyncMotionProfileController::AsyncMotionProfileController(
@@ -41,14 +46,14 @@ AsyncMotionProfileController::AsyncMotionProfileController(
     pair(other.pair),
     timeUtil(std::move(other.timeUtil)),
     currentPath(std::move(other.currentPath)),
-    isRunning(other.isRunning),
-    disabled(other.disabled),
-    dtorCalled(other.dtorCalled.load(std::memory_order::memory_order_relaxed)),
+    isRunning(other.isRunning.load(std::memory_order_acquire)),
+    disabled(other.disabled.load(std::memory_order_acquire)),
+    dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
     task(other.task) {
 }
 
 AsyncMotionProfileController::~AsyncMotionProfileController() {
-  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
+  dtorCalled.store(true, std::memory_order_release);
 
   for (auto &path : paths) {
     free(path.second.left);
@@ -116,11 +121,47 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
 
   auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
 
+  if (trajectory == nullptr) {
+    std::string message = "AsyncMotionProfileController: Could not allocate trajectory. The path "
+                          "is probably impossible.";
+    logger->error(message);
+
+    if (candidate.laptr) {
+      free(candidate.laptr);
+    }
+
+    if (candidate.saptr) {
+      free(candidate.saptr);
+    }
+
+    throw std::runtime_error(message);
+  }
+
   logger->info("AsyncMotionProfileController: Generating path");
   pathfinder_generate(&candidate, trajectory);
 
   auto *leftTrajectory = (Segment *)malloc(sizeof(Segment) * length);
   auto *rightTrajectory = (Segment *)malloc(sizeof(Segment) * length);
+
+  if (leftTrajectory == nullptr || rightTrajectory == nullptr) {
+    std::string message = "AsyncMotionProfileController: Could not allocate left and/or right "
+                          "trajectories. The path is probably impossible.";
+    logger->error(message);
+
+    if (leftTrajectory) {
+      free(leftTrajectory);
+    }
+
+    if (rightTrajectory) {
+      free(rightTrajectory);
+    }
+
+    if (trajectory) {
+      free(trajectory);
+    }
+
+    throw std::runtime_error(message);
+  }
 
   logger->info("AsyncMotionProfileController: Modifying for tank drive");
   pathfinder_modify_tank(
@@ -171,8 +212,8 @@ std::string AsyncMotionProfileController::getTarget() {
 void AsyncMotionProfileController::loop() {
   auto rate = timeUtil.getRate();
 
-  while (!dtorCalled.load(std::memory_order::memory_order_relaxed)) {
-    if (isRunning && !isDisabled()) {
+  while (!dtorCalled.load(std::memory_order_acquire)) {
+    if (isRunning.load(std::memory_order_acquire) && !isDisabled()) {
       logger->info("AsyncMotionProfileController: Running with path: " + currentPath);
       auto path = paths.find(currentPath);
 
@@ -190,7 +231,7 @@ void AsyncMotionProfileController::loop() {
         logger->info("AsyncMotionProfileController: Done moving");
       }
 
-      isRunning = false;
+      isRunning.store(false, std::memory_order_release);
     }
 
     rate->delayUntil(10_ms);
@@ -199,19 +240,19 @@ void AsyncMotionProfileController::loop() {
 
 void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
                                                      std::unique_ptr<AbstractRate> rate) {
-  const auto linearSpeedToRotationalSpeed = [&](QSpeed linearMps) -> QAngularSpeed {
-    return linearMps * (360_deg / (scales.wheelDiameter * 1_pi));
-  };
-
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
-    const auto leftRPM = linearSpeedToRotationalSpeed(path.left[i].velocity * mps).convert(rpm);
-    const auto rightRPM = linearSpeedToRotationalSpeed(path.right[i].velocity * mps).convert(rpm);
+    const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
+    const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
 
     model->left(leftRPM / toUnderlyingType(pair.internalGearset));
     model->right(rightRPM / toUnderlyingType(pair.internalGearset));
 
     rate->delayUntil(1_ms);
   }
+}
+
+QAngularSpeed AsyncMotionProfileController::convertLinearToRotational(QSpeed linear) const {
+  return (linear * (360_deg / (scales.wheelDiameter * 1_pi))) * pair.ratio;
 }
 
 void AsyncMotionProfileController::trampoline(void *context) {
@@ -236,22 +277,34 @@ Point AsyncMotionProfileController::getError() const {
 }
 
 bool AsyncMotionProfileController::isSettled() {
-  return isDisabled() || !isRunning;
+  return isDisabled() || !isRunning.load(std::memory_order_acquire);
 }
 
 void AsyncMotionProfileController::reset() {
+  // Interrupt executeSinglePath() by disabling the controller
+  flipDisable(true);
+
+  auto rate = timeUtil.getRate();
+  while (isRunning.load(std::memory_order_acquire)) {
+    rate->delayUntil(1_ms);
+  }
+
+  flipDisable(false);
 }
 
 void AsyncMotionProfileController::flipDisable() {
-  disabled = !disabled;
+  flipDisable(!disabled.load(std::memory_order_acquire));
 }
 
-void AsyncMotionProfileController::flipDisable(bool iisDisabled) {
-  disabled = iisDisabled;
+void AsyncMotionProfileController::flipDisable(const bool iisDisabled) {
+  logger->info("AsyncMotionProfileController: flipDisable " + std::to_string(iisDisabled));
+  disabled.store(iisDisabled, std::memory_order_release);
+  // loop() will stop the chassis when executeSinglePath() is done
+  // the default implementation of executeSinglePath() breaks when disabled
 }
 
 bool AsyncMotionProfileController::isDisabled() const {
-  return disabled;
+  return disabled.load(std::memory_order_acquire);
 }
 
 void AsyncMotionProfileController::startThread() {

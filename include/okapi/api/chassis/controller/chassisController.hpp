@@ -251,14 +251,14 @@ class ChassisController : public ChassisModel {
                      double iloopSpeed) const override;
 
   /**
-   * Sets a new maximum velocity.
+   * Sets a new maximum velocity in RPM [0-600].
    *
    * @param imaxVelocity the new maximum velocity
    */
   void setMaxVelocity(double imaxVelocity) override;
 
   /**
-   * Sets a new maximum voltage.
+   * Sets a new maximum voltage in mV [0-12000].
    *
    * @param imaxVoltage the new maximum voltage
    */

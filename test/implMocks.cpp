@@ -188,7 +188,7 @@ MockMotor::setVelPIDFull(double, double, double, double, double, double, double,
 }
 
 AbstractMotor::brakeMode MockMotor::getBrakeMode() const {
-  return brakeMode::coast;
+  return brakeMode;
 }
 
 int32_t MockMotor::getCurrentLimit() const {
@@ -196,11 +196,11 @@ int32_t MockMotor::getCurrentLimit() const {
 }
 
 AbstractMotor::encoderUnits MockMotor::getEncoderUnits() const {
-  return encoderUnits::degrees;
+  return encoderUnits;
 }
 
 AbstractMotor::gearset MockMotor::getGearing() const {
-  return gearset::red;
+  return gearset;
 }
 
 MockTimer::MockTimer() : AbstractTimer(millis()) {
@@ -324,7 +324,7 @@ SimulatedSystem::SimulatedSystem(FlywheelSimulator &isimulator) : simulator(isim
 }
 
 SimulatedSystem::~SimulatedSystem() {
-  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
+  dtorCalled.store(true, std::memory_order_release);
 }
 
 double SimulatedSystem::controllerGet() {
@@ -336,7 +336,7 @@ void SimulatedSystem::controllerSet(double ivalue) {
 }
 
 void SimulatedSystem::step() {
-  while (!dtorCalled.load(std::memory_order::memory_order_relaxed)) {
+  while (!dtorCalled.load(std::memory_order_acquire)) {
     simulator.step();
     rate.delayUntil(10_ms);
   }
@@ -353,7 +353,7 @@ void SimulatedSystem::startThread() {
 }
 
 void SimulatedSystem::join() {
-  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
+  dtorCalled.store(true, std::memory_order_release);
   thread.join();
 }
 
