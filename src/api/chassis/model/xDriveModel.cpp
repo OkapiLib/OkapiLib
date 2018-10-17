@@ -9,12 +9,12 @@
 #include <utility>
 
 namespace okapi {
-XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
-                         std::shared_ptr<AbstractMotor> itopRightMotor,
-                         std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                         std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                         std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                         std::shared_ptr<ContinuousRotarySensor> irightEnc,
+XDriveModel::XDriveModel(const std::shared_ptr<AbstractMotor> &itopLeftMotor,
+                         const std::shared_ptr<AbstractMotor> &itopRightMotor,
+                         const std::shared_ptr<AbstractMotor> &ibottomRightMotor,
+                         const std::shared_ptr<AbstractMotor> &ibottomLeftMotor,
+                         const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
+                         const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
                          const double imaxVelocity,
                          const double imaxVoltage)
   : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage),
@@ -26,10 +26,10 @@ XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
     rightSensor(irightEnc) {
 }
 
-XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
-                         std::shared_ptr<AbstractMotor> itopRightMotor,
-                         std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                         std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+XDriveModel::XDriveModel(const std::shared_ptr<AbstractMotor> &itopLeftMotor,
+                         const std::shared_ptr<AbstractMotor> &itopRightMotor,
+                         const std::shared_ptr<AbstractMotor> &ibottomRightMotor,
+                         const std::shared_ptr<AbstractMotor> &ibottomLeftMotor,
                          const double imaxVelocity,
                          const double imaxVoltage)
   : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage),

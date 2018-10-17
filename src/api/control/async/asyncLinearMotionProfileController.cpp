@@ -14,7 +14,7 @@ AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
   const double imaxVel,
   const double imaxAccel,
   const double imaxJerk,
-  std::shared_ptr<ControllerOutput<double>> ioutput)
+  const std::shared_ptr<ControllerOutput<double>> &ioutput)
   : logger(Logger::instance()),
     maxVel(imaxVel),
     maxAccel(imaxAccel),

@@ -27,7 +27,8 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
    *
    * @param imotor the motor to control
    */
-  AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor, const TimeUtil &itimeUtil);
+  AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
+                               const TimeUtil &itimeUtil);
 
   /**
    * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are
@@ -36,7 +37,7 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
    * @param imotor the motor to control
    * @param imaxVelocity the maximum velocity during a profiled movement in RPM [0-600].
    */
-  AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+  AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
                                std::int32_t imaxVelocity,
                                const TimeUtil &itimeUtil);
 

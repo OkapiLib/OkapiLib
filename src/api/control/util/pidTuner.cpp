@@ -13,8 +13,8 @@
 #include <random>
 
 namespace okapi {
-PIDTuner::PIDTuner(std::shared_ptr<ControllerInput<double>> iinput,
-                   std::shared_ptr<ControllerOutput<double>> ioutput,
+PIDTuner::PIDTuner(const std::shared_ptr<ControllerInput<double>> &iinput,
+                   const std::shared_ptr<ControllerOutput<double>> &ioutput,
                    const TimeUtil &itimeUtil,
                    QTime itimeout,
                    std::int32_t igoal,
