@@ -166,8 +166,8 @@ class Motor : public AbstractMotor, public pros::Motor {
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
-   * @return The motor's actual velocity in motor_encoder_units_e_t per second or PROS_ERR_F if the
-   * operation failed, setting errno.
+   * @return The motor's actual velocity in RPM or PROS_ERR_F if the operation failed, setting
+   * errno.
    */
   virtual double getActualVelocity() const override;
 

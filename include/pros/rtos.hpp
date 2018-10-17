@@ -75,6 +75,15 @@ class Task {
 	void operator=(const task_t in);
 
 	/**
+	 * Removes the Task from the RTOS real time kernel's management. This task
+	 * will be removed from all ready, blocked, suspended and event lists.
+	 *
+	 * Memory dynamically allocated by the task is not automatically freed, and
+	 * should be freed before the task is deleted.
+	 */
+	void remove();
+
+	/**
 	 * Gets the priority of the specified task.
 	 *
 	 * \return The priority of the task
@@ -203,7 +212,8 @@ class Task {
 	 * will be updated to reflect the time at which the task will unblock.
 	 *
 	 * \param prev_time
-	 *        A pointer to the location storing the setpoint time
+	 *        A pointer to the location storing the setpoint time. This should
+	 *        typically be initialized to the return value from pros::millis().
 	 * \param delta
 	 *        The number of milliseconds to wait (1000 milliseconds per second)
 	 */
