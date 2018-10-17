@@ -324,7 +324,7 @@ SimulatedSystem::SimulatedSystem(FlywheelSimulator &isimulator) : simulator(isim
 }
 
 SimulatedSystem::~SimulatedSystem() {
-  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
+  dtorCalled.store(true, std::memory_order_release);
 }
 
 double SimulatedSystem::controllerGet() {
@@ -336,7 +336,7 @@ void SimulatedSystem::controllerSet(double ivalue) {
 }
 
 void SimulatedSystem::step() {
-  while (!dtorCalled.load(std::memory_order::memory_order_relaxed)) {
+  while (!dtorCalled.load(std::memory_order_acquire)) {
     simulator.step();
     rate.delayUntil(10_ms);
   }
@@ -353,7 +353,7 @@ void SimulatedSystem::startThread() {
 }
 
 void SimulatedSystem::join() {
-  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
+  dtorCalled.store(true, std::memory_order_release);
   thread.join();
 }
 
