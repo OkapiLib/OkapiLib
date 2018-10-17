@@ -20,7 +20,7 @@ class MockButton : public ButtonBase {
   }
 
   bool currentlyPressed() override {
-    return returnVals.at(index++);
+    return returnVals.at(index);
   }
 
   std::vector<bool> returnVals{};
@@ -31,7 +31,9 @@ TEST(ButtonBaseTest, IsPressedShouldMirrorCurrentlyPressed) {
   MockButton btn({false, true, false});
 
   EXPECT_FALSE(btn.isPressed());
+  btn.index++;
   EXPECT_TRUE(btn.isPressed());
+  btn.index++;
   EXPECT_FALSE(btn.isPressed());
 }
 
@@ -42,24 +44,63 @@ class ButtonBaseChangeTest : public ::testing::Test {
 
 TEST_F(ButtonBaseChangeTest, ChangeShouldDetectBothEdges) {
   EXPECT_FALSE(btn.changed());
+  btn.index++;
   EXPECT_TRUE(btn.changed());
+  btn.index++;
   EXPECT_FALSE(btn.changed());
+  btn.index++;
   EXPECT_TRUE(btn.changed());
+  btn.index++;
   EXPECT_FALSE(btn.changed());
 }
 
 TEST_F(ButtonBaseChangeTest, ChangedToPressedShouldDetectRisingEdges) {
   EXPECT_FALSE(btn.changedToPressed());
+  btn.index++;
   EXPECT_TRUE(btn.changedToPressed());
+  btn.index++;
   EXPECT_FALSE(btn.changedToPressed());
+  btn.index++;
   EXPECT_FALSE(btn.changedToPressed());
+  btn.index++;
   EXPECT_FALSE(btn.changedToPressed());
 }
 
 TEST_F(ButtonBaseChangeTest, ChangedToReleasedShouldDetectFallingEdges) {
   EXPECT_FALSE(btn.changedToReleased());
+  btn.index++;
   EXPECT_FALSE(btn.changedToReleased());
+  btn.index++;
   EXPECT_FALSE(btn.changedToReleased());
+  btn.index++;
   EXPECT_TRUE(btn.changedToReleased());
+  btn.index++;
+  EXPECT_FALSE(btn.changedToReleased());
+}
+
+TEST_F(ButtonBaseChangeTest, CallAllMethodsTogether) {
+  EXPECT_FALSE(btn.isPressed());
+  EXPECT_FALSE(btn.changed());
+  EXPECT_FALSE(btn.changedToPressed());
+  EXPECT_FALSE(btn.changedToReleased());
+  btn.index++;
+  EXPECT_TRUE(btn.isPressed());
+  EXPECT_TRUE(btn.changed());
+  EXPECT_TRUE(btn.changedToPressed());
+  EXPECT_FALSE(btn.changedToReleased());
+  btn.index++;
+  EXPECT_TRUE(btn.isPressed());
+  EXPECT_FALSE(btn.changed());
+  EXPECT_FALSE(btn.changedToPressed());
+  EXPECT_FALSE(btn.changedToReleased());
+  btn.index++;
+  EXPECT_FALSE(btn.isPressed());
+  EXPECT_TRUE(btn.changed());
+  EXPECT_FALSE(btn.changedToPressed());
+  EXPECT_TRUE(btn.changedToReleased());
+  btn.index++;
+  EXPECT_FALSE(btn.isPressed());
+  EXPECT_FALSE(btn.changed());
+  EXPECT_FALSE(btn.changedToPressed());
   EXPECT_FALSE(btn.changedToReleased());
 }
