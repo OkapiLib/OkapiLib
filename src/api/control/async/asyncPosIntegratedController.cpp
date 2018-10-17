@@ -11,7 +11,7 @@
 namespace okapi {
 AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
                                                            const TimeUtil &itimeUtil)
-  : AsyncPosIntegratedController(imotor, 600, itimeUtil) {
+  : AsyncPosIntegratedController(imotor, toUnderlyingType(imotor->getGearing()), itimeUtil) {
 }
 
 AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
@@ -55,8 +55,7 @@ void AsyncPosIntegratedController::reset() {
 }
 
 void AsyncPosIntegratedController::flipDisable() {
-  controllerIsDisabled = !controllerIsDisabled;
-  resumeMovement();
+  flipDisable(!controllerIsDisabled);
 }
 
 void AsyncPosIntegratedController::flipDisable(const bool iisDisabled) {
@@ -97,5 +96,9 @@ void AsyncPosIntegratedController::controllerSet(double ivalue) {
   }
 
   lastTarget = ivalue * toUnderlyingType(motor->getGearing());
+}
+
+void AsyncPosIntegratedController::setMaxVelocity(const std::int32_t imaxVelocity) {
+  maxVelocity = imaxVelocity;
 }
 } // namespace okapi

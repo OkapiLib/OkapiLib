@@ -62,7 +62,6 @@ TEST(MedianFilterTest, OutputTest) {
   MedianFilter<5> filter;
 
   for (int i = 0; i < 10; i++) {
-    auto testName = "MedianFilter i = " + std::to_string(i);
     if (i < 3) {
       assertThatFilterAndFilterOutputAreEqual(filter, i, 0);
     } else {

@@ -33,14 +33,14 @@ AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
     output(std::move(other.output)),
     timeUtil(std::move(other.timeUtil)),
     currentPath(std::move(other.currentPath)),
-    isRunning(other.isRunning),
-    disabled(other.disabled),
-    dtorCalled(other.dtorCalled.load(std::memory_order::memory_order_relaxed)),
+    isRunning(other.isRunning.load(std::memory_order_acquire)),
+    disabled(other.disabled.load(std::memory_order_acquire)),
+    dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
     task(other.task) {
 }
 
 AsyncLinearMotionProfileController::~AsyncLinearMotionProfileController() {
-  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
+  dtorCalled.store(true, std::memory_order_release);
 
   for (auto path : paths) {
     free(path.second.segment);
@@ -106,6 +106,22 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<doub
 
   auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
 
+  if (trajectory == nullptr) {
+    std::string message = "AsyncLinearMotionProfileController: Could not allocate trajectory. The "
+                          "path is probably impossible.";
+    logger->error(message);
+
+    if (candidate.laptr) {
+      free(candidate.laptr);
+    }
+
+    if (candidate.saptr) {
+      free(candidate.saptr);
+    }
+
+    throw std::runtime_error(message);
+  }
+
   logger->info("AsyncLinearMotionProfileController: Generating path");
   pathfinder_generate(&candidate, trajectory);
 
@@ -155,8 +171,8 @@ std::string AsyncLinearMotionProfileController::getTarget() const {
 void AsyncLinearMotionProfileController::loop() {
   auto rate = timeUtil.getRate();
 
-  while (!dtorCalled.load(std::memory_order::memory_order_relaxed)) {
-    if (isRunning && !isDisabled()) {
+  while (!dtorCalled.load(std::memory_order_acquire)) {
+    if (isRunning.load(std::memory_order_acquire) && !isDisabled()) {
       logger->info("AsyncLinearMotionProfileController: Running with path: " + currentPath);
       auto path = paths.find(currentPath);
 
@@ -174,7 +190,7 @@ void AsyncLinearMotionProfileController::loop() {
         logger->info("AsyncLinearMotionProfileController: Done moving");
       }
 
-      isRunning = false;
+      isRunning.store(false, std::memory_order_release);
     }
 
     rate->delayUntil(10_ms);
@@ -225,22 +241,34 @@ double AsyncLinearMotionProfileController::getError() const {
 }
 
 bool AsyncLinearMotionProfileController::isSettled() {
-  return isDisabled() || !isRunning;
+  return isDisabled() || !isRunning.load(std::memory_order_acquire);
 }
 
 void AsyncLinearMotionProfileController::reset() {
+  // Interrupt executeSinglePath() by disabling the controller
+  flipDisable(true);
+
+  auto rate = timeUtil.getRate();
+  while (isRunning.load(std::memory_order_acquire)) {
+    rate->delayUntil(1_ms);
+  }
+
+  flipDisable(false);
 }
 
 void AsyncLinearMotionProfileController::flipDisable() {
-  disabled = !disabled;
+  flipDisable(!disabled.load(std::memory_order_acquire));
 }
 
-void AsyncLinearMotionProfileController::flipDisable(bool iisDisabled) {
-  disabled = iisDisabled;
+void AsyncLinearMotionProfileController::flipDisable(const bool iisDisabled) {
+  logger->info("AsyncLinearMotionProfileController: flipDisable " + std::to_string(iisDisabled));
+  disabled.store(iisDisabled, std::memory_order_release);
+  // loop() will set the output to 0 when executeSinglePath() is done
+  // the default implementation of executeSinglePath() breaks when disabled
 }
 
 bool AsyncLinearMotionProfileController::isDisabled() const {
-  return disabled;
+  return disabled.load(std::memory_order_acquire);
 }
 
 void AsyncLinearMotionProfileController::startThread() {

@@ -15,16 +15,15 @@ using namespace okapi;
 class AsyncPosIntegratedControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    motor = new MockMotor();
-    controller =
-      new AsyncPosIntegratedController(std::shared_ptr<MockMotor>(motor), createTimeUtil());
+    motor = std::make_shared<MockMotor>();
+    controller = new AsyncPosIntegratedController(motor, createTimeUtil());
   }
 
   void TearDown() override {
     delete controller;
   }
 
-  MockMotor *motor;
+  std::shared_ptr<MockMotor> motor;
   AsyncPosIntegratedController *controller;
 };
 
@@ -57,18 +56,21 @@ TEST_F(AsyncPosIntegratedControllerTest, ControllerSetScalesTarget) {
 
 TEST_F(AsyncPosIntegratedControllerTest, ProfiledMovementUsesMaxVelocityForRedGearset) {
   motor->setGearing(AbstractMotor::gearset::red);
-  controller->setTarget(5);
-  EXPECT_GE(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::red));
+  AsyncPosIntegratedController newController(motor, createTimeUtil());
+  newController.setTarget(5);
+  EXPECT_EQ(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::red));
 }
 
 TEST_F(AsyncPosIntegratedControllerTest, ProfiledMovementUsesMaxVelocityForBlueGearset) {
   motor->setGearing(AbstractMotor::gearset::blue);
-  controller->setTarget(5);
-  EXPECT_GE(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::blue));
+  AsyncPosIntegratedController newController(motor, createTimeUtil());
+  newController.setTarget(5);
+  EXPECT_EQ(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::blue));
 }
 
 TEST_F(AsyncPosIntegratedControllerTest, ProfiledMovementUsesMaxVelocityForGreenGearset) {
   motor->setGearing(AbstractMotor::gearset::green);
-  controller->setTarget(5);
-  EXPECT_GE(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::green));
+  AsyncPosIntegratedController newController(motor, createTimeUtil());
+  newController.setTarget(5);
+  EXPECT_EQ(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::green));
 }

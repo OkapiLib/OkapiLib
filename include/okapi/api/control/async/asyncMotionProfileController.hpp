@@ -12,7 +12,9 @@
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/control/async/asyncPositionController.hpp"
 #include "okapi/api/units/QAngle.hpp"
+#include "okapi/api/units/QAngularSpeed.hpp"
 #include "okapi/api/units/QLength.hpp"
+#include "okapi/api/units/QSpeed.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <atomic>
@@ -32,7 +34,8 @@ struct Point {
 class AsyncMotionProfileController : public AsyncPositionController<std::string, Point> {
   public:
   /**
-   * An Async Controller which generates and follows 2D motion profiles.
+   * An Async Controller which generates and follows 2D motion profiles. Throws a
+   * std::invalid_argument exception if the gear ratio is zero.
    *
    * @param imaxVel The maximum possible velocity in m/s.
    * @param imaxAccel The maximum possible acceleration in m/s/s.
@@ -178,8 +181,8 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   TimeUtil timeUtil;
 
   std::string currentPath{""};
-  bool isRunning{false};
-  bool disabled{false};
+  std::atomic_bool isRunning{false};
+  std::atomic_bool disabled{false};
   std::atomic_bool dtorCalled{false};
   CrossplatformThread *task{nullptr};
 
@@ -190,6 +193,14 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * Follow the supplied path. Must follow the disabled lifecycle.
    */
   virtual void executeSinglePath(const TrajectoryPair &path, std::unique_ptr<AbstractRate> rate);
+
+  /**
+   * Converts linear chassis speed to rotational motor speed.
+   *
+   * @param linear chassis frame speed
+   * @return motor frame speed
+   */
+  QAngularSpeed convertLinearToRotational(QSpeed linear) const;
 };
 } // namespace okapi
 

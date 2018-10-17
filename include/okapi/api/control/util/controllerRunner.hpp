@@ -18,7 +18,7 @@
 namespace okapi {
 template <typename Input, typename Output> class ControllerRunner {
   public:
-  ControllerRunner(std::unique_ptr<AbstractRate> irate)
+  explicit ControllerRunner(std::unique_ptr<AbstractRate> irate)
     : logger(Logger::instance()), rate(std::move(irate)) {
   }
 
