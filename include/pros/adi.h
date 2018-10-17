@@ -37,15 +37,21 @@ typedef enum adi_port_config_e {
 	E_ADI_DIGITAL_IN,
 	E_ADI_DIGITAL_OUT,
 
-	E_ADI_SMART_BUTTON,
-	E_ADI_SMART_POT,
+#define _DEPRECATE_DIGITAL_IN __attribute__((deprecated("use E_ADI_DIGITAL_IN instead"))) = E_ADI_DIGITAL_IN
+#define _DEPRECATE_ANALOG_IN __attribute__((deprecated("use E_ADI_ANALOG_IN instead"))) = E_ADI_ANALOG_IN
 
-	E_ADI_LEGACY_BUTTON,
-	E_ADI_LEGACY_POT,
-	E_ADI_LEGACY_LINE_SENSOR,
-	E_ADI_LEGACY_LIGHT_SENSOR,
+	E_ADI_SMART_BUTTON _DEPRECATE_DIGITAL_IN,
+	E_ADI_SMART_POT _DEPRECATE_ANALOG_IN,
+
+	E_ADI_LEGACY_BUTTON _DEPRECATE_DIGITAL_IN,
+	E_ADI_LEGACY_POT _DEPRECATE_ANALOG_IN,
+	E_ADI_LEGACY_LINE_SENSOR _DEPRECATE_ANALOG_IN,
+	E_ADI_LEGACY_LIGHT_SENSOR _DEPRECATE_ANALOG_IN,
 	E_ADI_LEGACY_GYRO,
-	E_ADI_LEGACY_ACCELEROMETER,
+	E_ADI_LEGACY_ACCELEROMETER _DEPRECATE_ANALOG_IN,
+
+#undef _DEPRECATE_DIGITAL_IN
+#undef _DEPRECATE_ANALOG_IN
 
 	E_ADI_LEGACY_SERVO,
 	E_ADI_LEGACY_PWM,
@@ -569,7 +575,8 @@ typedef int32_t adi_ultrasonic_t;
  * \param ult
  *        The adi_ultrasonic_t object from adi_ultrasonic_init() to read
  *
- * \return The distance to the nearest object in centimeters
+ * \return The distance to the nearest object in m^-4 (10000 indicates 1 meter),
+ * measured from the sensor's mounting points.
  */
 int32_t adi_ultrasonic_get(adi_ultrasonic_t ult);
 
@@ -582,17 +589,17 @@ int32_t adi_ultrasonic_get(adi_ultrasonic_t ult);
  * port is not configured as an ADI Ultrasonic.
  * EACCES - Another resource is currently trying to access the ADI.
  *
- * \param port_echo
- *        The port connected to the yellow INPUT cable. This should be in port
- *        1, 3, 5, or 7 ('A', 'C', 'E', 'G').
  * \param port_ping
  *        The port connected to the orange OUTPUT cable. This should be in the
  *        next highest port following port_echo.
+ * \param port_echo
+ *        The port connected to the yellow INPUT cable. This should be in port
+ *        1, 3, 5, or 7 ('A', 'C', 'E', 'G').
  *
  * \return An adi_ultrasonic_t object to be stored and used for later calls to
  * ultrasonic functions
  */
-adi_ultrasonic_t adi_ultrasonic_init(uint8_t port_echo, uint8_t port_ping);
+adi_ultrasonic_t adi_ultrasonic_init(uint8_t port_ping, uint8_t port_echo);
 
 /**
  * Disables the ultrasonic sensor and voids the configuration on its ports.
@@ -642,11 +649,11 @@ double adi_gyro_get(adi_gyro_t gyro);
 
 /**
  * Initializes a gyroscope on the given port. If the given port has not
- * previously been configured as a gyro, then this function starts a 1 second
+ * previously been configured as a gyro, then this function starts a 1300 ms
  * calibration period.
  *
- * If calibration is required, it is highly recommended that this function be
- * called from initialize when the robot is stationary.
+ * It is highly recommended that this function be called from initialize() when
+ * the robot is stationary to ensure proper calibration.
  *
  * This function uses the following values of errno when an error state is
  * reached:

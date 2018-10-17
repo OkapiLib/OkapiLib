@@ -67,7 +67,7 @@ class Controller {
    *
    * @param iline the line number at which the text will be displayed [0-2]
    * @param icol the column number at which the text will be displayed [0-14]
-   * @param itext The string to display
+   * @param itext the string to display
    * @return 1 if the operation was successful, PROS_ERR otherwise
    */
   virtual std::int32_t setText(std::uint8_t iline, std::uint8_t icol, std::string itext);
@@ -86,6 +86,20 @@ class Controller {
    * @return 1 if the operation was successful, PROS_ERR otherwise
    */
   virtual std::int32_t clearLine(std::uint8_t iline);
+
+  /**
+   * Rumble the controller.
+   *
+   * Controller rumble activation is currently in beta, so continuous, fast
+   * updates will not work well.
+   *
+   * @param irumblePattern A string consisting of the characters '.', '-', and ' ', where dots are
+   * short rumbles, dashes are long rumbles, and spaces are pauses. Maximum supported length is 8
+   * characters.
+   *
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t rumble(std::string irumblePattern);
 
   /**
    * Gets the battery capacity of the given controller.
