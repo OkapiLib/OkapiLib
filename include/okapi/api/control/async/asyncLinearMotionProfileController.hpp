@@ -36,7 +36,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
                                      double imaxVel,
                                      double imaxAccel,
                                      double imaxJerk,
-                                     std::shared_ptr<ControllerOutput<double>> ioutput);
+                                     const std::shared_ptr<ControllerOutput<double>> &ioutput);
 
   AsyncLinearMotionProfileController(AsyncLinearMotionProfileController &&other) noexcept;
 

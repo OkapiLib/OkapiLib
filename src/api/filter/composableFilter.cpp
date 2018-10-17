@@ -38,7 +38,7 @@ double ComposableFilter::getOutput() const {
   return output;
 }
 
-void ComposableFilter::addFilter(std::shared_ptr<Filter> ifilter) {
+void ComposableFilter::addFilter(const std::shared_ptr<Filter> &ifilter) {
   filters.push_back(ifilter);
 }
 } // namespace okapi

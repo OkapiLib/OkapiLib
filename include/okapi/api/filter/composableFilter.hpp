@@ -53,7 +53,7 @@ class ComposableFilter : public Filter {
    *
    * @param ifilter the filter to add
    */
-  virtual void addFilter(std::shared_ptr<Filter> ifilter);
+  virtual void addFilter(const std::shared_ptr<Filter> &ifilter);
 
   protected:
   std::vector<std::shared_ptr<Filter>> filters;
