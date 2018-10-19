@@ -782,7 +782,8 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor,
                                      const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
-  auto model = std::make_shared<SkidSteerModel>(leftMtr, rightMtr);
+  auto model =
+    std::make_shared<SkidSteerModel>(leftMtr, rightMtr, toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerIntegrated(
     TimeUtilFactory::create(),
     model,
@@ -809,7 +810,8 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor,
   auto model = std::make_shared<SkidSteerModel>(leftMtr,
                                                 rightMtr,
                                                 std::make_shared<ADIEncoder>(ileftEnc),
-                                                std::make_shared<ADIEncoder>(irightEnc));
+                                                std::make_shared<ADIEncoder>(irightEnc),
+                                                toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerIntegrated(
     TimeUtilFactory::create(),
     model,
@@ -839,7 +841,8 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor,
                                                  rightMtr,
                                                  std::make_shared<ADIEncoder>(ileftEnc),
                                                  std::make_shared<ADIEncoder>(irightEnc),
-                                                 std::make_shared<ADIEncoder>(imiddleEnc));
+                                                 std::make_shared<ADIEncoder>(imiddleEnc),
+                                                 toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerIntegrated(
     TimeUtilFactory::create(),
     model,
@@ -861,7 +864,8 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor,
                                      const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
-  auto model = std::make_shared<SkidSteerModel>(leftMtr, rightMtr);
+  auto model =
+    std::make_shared<SkidSteerModel>(leftMtr, rightMtr, toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerIntegrated(
     TimeUtilFactory::create(),
     model,
@@ -888,7 +892,8 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor,
   auto model = std::make_shared<SkidSteerModel>(leftMtr,
                                                 rightMtr,
                                                 std::make_shared<ADIEncoder>(ileftEnc),
-                                                std::make_shared<ADIEncoder>(irightEnc));
+                                                std::make_shared<ADIEncoder>(irightEnc),
+                                                toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerIntegrated(
     TimeUtilFactory::create(),
     model,
@@ -918,7 +923,8 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor,
                                                  rightMtr,
                                                  std::make_shared<ADIEncoder>(ileftEnc),
                                                  std::make_shared<ADIEncoder>(irightEnc),
-                                                 std::make_shared<ADIEncoder>(imiddleEnc));
+                                                 std::make_shared<ADIEncoder>(imiddleEnc),
+                                                 toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerIntegrated(
     TimeUtilFactory::create(),
     model,
@@ -942,7 +948,8 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor,
                                      const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
-  auto model = std::make_shared<SkidSteerModel>(leftMtr, rightMtr);
+  auto model =
+    std::make_shared<SkidSteerModel>(leftMtr, rightMtr, toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerPID(
     TimeUtilFactory::create(),
     model,
@@ -972,7 +979,8 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor,
   auto model = std::make_shared<SkidSteerModel>(leftMtr,
                                                 rightMtr,
                                                 std::make_shared<ADIEncoder>(ileftEnc),
-                                                std::make_shared<ADIEncoder>(irightEnc));
+                                                std::make_shared<ADIEncoder>(irightEnc),
+                                                toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerPID(
     TimeUtilFactory::create(),
     model,
@@ -1005,7 +1013,8 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor,
                                                  rightMtr,
                                                  std::make_shared<ADIEncoder>(ileftEnc),
                                                  std::make_shared<ADIEncoder>(irightEnc),
-                                                 std::make_shared<ADIEncoder>(imiddleEnc));
+                                                 std::make_shared<ADIEncoder>(imiddleEnc),
+                                                 toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerPID(
     TimeUtilFactory::create(),
     model,
@@ -1030,7 +1039,8 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor,
                                      const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
-  auto model = std::make_shared<SkidSteerModel>(leftMtr, rightMtr);
+  auto model =
+    std::make_shared<SkidSteerModel>(leftMtr, rightMtr, toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerPID(
     TimeUtilFactory::create(),
     model,
@@ -1060,7 +1070,8 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor,
   auto model = std::make_shared<SkidSteerModel>(leftMtr,
                                                 rightMtr,
                                                 std::make_shared<ADIEncoder>(ileftEnc),
-                                                std::make_shared<ADIEncoder>(irightEnc));
+                                                std::make_shared<ADIEncoder>(irightEnc),
+                                                toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerPID(
     TimeUtilFactory::create(),
     model,
@@ -1093,7 +1104,8 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor,
                                                  rightMtr,
                                                  std::make_shared<ADIEncoder>(ileftEnc),
                                                  std::make_shared<ADIEncoder>(irightEnc),
-                                                 std::make_shared<ADIEncoder>(imiddleEnc));
+                                                 std::make_shared<ADIEncoder>(imiddleEnc),
+                                                 toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerPID(
     TimeUtilFactory::create(),
     model,
@@ -1119,7 +1131,8 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor,
                                      const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<Motor>(ileftSideMotor);
   auto rightMtr = std::make_shared<Motor>(irightSideMotor);
-  auto model = std::make_shared<SkidSteerModel>(leftMtr, rightMtr);
+  auto model =
+    std::make_shared<SkidSteerModel>(leftMtr, rightMtr, toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerPID(
     TimeUtilFactory::create(),
     model,
@@ -1150,7 +1163,8 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor,
   auto model = std::make_shared<SkidSteerModel>(leftMtr,
                                                 rightMtr,
                                                 std::make_shared<ADIEncoder>(ileftEnc),
-                                                std::make_shared<ADIEncoder>(irightEnc));
+                                                std::make_shared<ADIEncoder>(irightEnc),
+                                                toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerPID(
     TimeUtilFactory::create(),
     model,
@@ -1184,7 +1198,8 @@ ChassisControllerFactory::createOdom(Motor ileftSideMotor,
                                                  rightMtr,
                                                  std::make_shared<ADIEncoder>(ileftEnc),
                                                  std::make_shared<ADIEncoder>(irightEnc),
-                                                 std::make_shared<ADIEncoder>(imiddleEnc));
+                                                 std::make_shared<ADIEncoder>(imiddleEnc),
+                                                 toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerPID(
     TimeUtilFactory::create(),
     model,
@@ -1210,7 +1225,8 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor,
                                      const QAngle iturnThreshold) {
   auto leftMtr = std::make_shared<MotorGroup>(ileftSideMotor);
   auto rightMtr = std::make_shared<MotorGroup>(irightSideMotor);
-  auto model = std::make_shared<SkidSteerModel>(leftMtr, rightMtr);
+  auto model =
+    std::make_shared<SkidSteerModel>(leftMtr, rightMtr, toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerPID(
     TimeUtilFactory::create(),
     model,
@@ -1241,7 +1257,8 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor,
   auto model = std::make_shared<SkidSteerModel>(leftMtr,
                                                 rightMtr,
                                                 std::make_shared<ADIEncoder>(ileftEnc),
-                                                std::make_shared<ADIEncoder>(irightEnc));
+                                                std::make_shared<ADIEncoder>(irightEnc),
+                                                toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerPID(
     TimeUtilFactory::create(),
     model,
@@ -1275,7 +1292,8 @@ ChassisControllerFactory::createOdom(MotorGroup ileftSideMotor,
                                                  rightMtr,
                                                  std::make_shared<ADIEncoder>(ileftEnc),
                                                  std::make_shared<ADIEncoder>(irightEnc),
-                                                 std::make_shared<ADIEncoder>(imiddleEnc));
+                                                 std::make_shared<ADIEncoder>(imiddleEnc),
+                                                 toUnderlyingType(igearset.internalGearset));
   return OdomChassisControllerPID(
     TimeUtilFactory::create(),
     model,

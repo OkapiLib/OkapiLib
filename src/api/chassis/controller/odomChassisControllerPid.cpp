@@ -7,6 +7,7 @@
  */
 #include "okapi/api/chassis/controller/odomChassisControllerPid.hpp"
 #include "okapi/api/odometry/odomMath.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include <cmath>
 
 namespace okapi {
@@ -21,7 +22,7 @@ OdomChassisControllerPID::OdomChassisControllerPID(
   const ChassisScales &iscales,
   const QLength imoveThreshold,
   const QAngle iturnThreshold)
-  : ChassisController(imodel),
+  : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
     OdomChassisController(imodel, std::move(iodometry), imoveThreshold, iturnThreshold),
     ChassisControllerPID(itimeUtil,
                          imodel,
