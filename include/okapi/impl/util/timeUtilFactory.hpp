@@ -13,7 +13,17 @@
 namespace okapi {
 class TimeUtilFactory {
   public:
+  /**
+   * Creates a default TimeUtil.
+   */
   static TimeUtil create();
+
+  /**
+   * Creates a TimeUtil with custom SettledUtil params. See SettledUtil docs.
+   */
+  static TimeUtil withSettledUtilParams(double iatTargetError = 50,
+                                        double iatTargetDerivative = 5,
+                                        QTime iatTargetTime = 250_ms);
 };
 } // namespace okapi
 
