@@ -20,11 +20,11 @@ TimeUtil TimeUtilFactory::create() {
 
 TimeUtil TimeUtilFactory::withSettledUtilParams(const double iatTargetError,
                                                 const double iatTargetDerivative,
-                                                const QTime &iatTargetTime) {
+                                                QTime iatTargetTime) {
   return TimeUtil(
     Supplier<std::unique_ptr<AbstractTimer>>([]() { return std::make_unique<Timer>(); }),
     Supplier<std::unique_ptr<AbstractRate>>([]() { return std::make_unique<Rate>(); }),
-    Supplier<std::unique_ptr<SettledUtil>>([]() {
+    Supplier<std::unique_ptr<SettledUtil>>([=]() {
       return SettledUtilFactory::createPtr(iatTargetError, iatTargetDerivative, iatTargetTime);
     }));
 }
