@@ -7,28 +7,29 @@
  */
 #include "okapi/impl/control/async/asyncControllerFactory.hpp"
 #include "okapi/impl/filter/velMathFactory.hpp"
-#include "okapi/impl/util/timeUtilFactory.hpp"
 
 namespace okapi {
 AsyncPosIntegratedController AsyncControllerFactory::posIntegrated(Motor imotor,
-                                                                   std::int32_t imaxVelocity) {
-  return AsyncPosIntegratedController(
-    std::make_shared<Motor>(imotor), imaxVelocity, TimeUtilFactory::create());
+                                                                   std::int32_t imaxVelocity,
+                                                                   const TimeUtil &itimeUtil) {
+  return AsyncPosIntegratedController(std::make_shared<Motor>(imotor), imaxVelocity, itimeUtil);
 }
 
 AsyncPosIntegratedController AsyncControllerFactory::posIntegrated(MotorGroup imotor,
-                                                                   std::int32_t imaxVelocity) {
+                                                                   std::int32_t imaxVelocity,
+                                                                   const TimeUtil &itimeUtil) {
   return AsyncPosIntegratedController(
-    std::make_shared<MotorGroup>(imotor), imaxVelocity, TimeUtilFactory::create());
+    std::make_shared<MotorGroup>(imotor), imaxVelocity, itimeUtil);
 }
 
-AsyncVelIntegratedController AsyncControllerFactory::velIntegrated(Motor imotor) {
-  return AsyncVelIntegratedController(std::make_shared<Motor>(imotor), TimeUtilFactory::create());
+AsyncVelIntegratedController AsyncControllerFactory::velIntegrated(Motor imotor,
+                                                                   const TimeUtil &itimeUtil) {
+  return AsyncVelIntegratedController(std::make_shared<Motor>(imotor), itimeUtil);
 }
 
-AsyncVelIntegratedController AsyncControllerFactory::velIntegrated(MotorGroup imotor) {
-  return AsyncVelIntegratedController(std::make_shared<MotorGroup>(imotor),
-                                      TimeUtilFactory::create());
+AsyncVelIntegratedController AsyncControllerFactory::velIntegrated(MotorGroup imotor,
+                                                                   const TimeUtil &itimeUtil) {
+  return AsyncVelIntegratedController(std::make_shared<MotorGroup>(imotor), itimeUtil);
 }
 
 AsyncPosPIDController
@@ -38,15 +39,10 @@ AsyncControllerFactory::posPID(const std::shared_ptr<ControllerInput<double>> &i
                                const double ikI,
                                const double ikD,
                                const double ikBias,
-                               std::unique_ptr<Filter> iderivativeFilter) {
-  AsyncPosPIDController out(iinput,
-                            ioutput,
-                            TimeUtilFactory::create(),
-                            ikP,
-                            ikI,
-                            ikD,
-                            ikBias,
-                            std::move(iderivativeFilter));
+                               std::unique_ptr<Filter> iderivativeFilter,
+                               const TimeUtil &itimeUtil) {
+  AsyncPosPIDController out(
+    iinput, ioutput, itimeUtil, ikP, ikI, ikD, ikBias, std::move(iderivativeFilter));
   out.startThread();
   return out;
 }
@@ -59,10 +55,11 @@ AsyncControllerFactory::velPID(const std::shared_ptr<ControllerInput<double>> &i
                                const double ikF,
                                const double ikSF,
                                const double iTPR,
-                               std::unique_ptr<Filter> iderivativeFilter) {
+                               std::unique_ptr<Filter> iderivativeFilter,
+                               const TimeUtil &itimeUtil) {
   AsyncVelPIDController out(iinput,
                             ioutput,
-                            TimeUtilFactory::create(),
+                            itimeUtil,
                             ikP,
                             ikD,
                             ikF,
@@ -77,7 +74,8 @@ AsyncMotionProfileController
 AsyncControllerFactory::motionProfile(double imaxVel,
                                       double imaxAccel,
                                       double imaxJerk,
-                                      const ChassisController &ichassis) {
+                                      const ChassisController &ichassis,
+                                      const TimeUtil &itimeUtil) {
   return motionProfile(imaxVel,
                        imaxAccel,
                        imaxJerk,
@@ -92,9 +90,9 @@ AsyncControllerFactory::motionProfile(double imaxVel,
                                       double imaxJerk,
                                       const std::shared_ptr<ChassisModel> &imodel,
                                       const ChassisScales &iscales,
-                                      AbstractMotor::GearsetRatioPair ipair) {
-  AsyncMotionProfileController out(
-    TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk, imodel, iscales, ipair);
+                                      AbstractMotor::GearsetRatioPair ipair,
+                                      const TimeUtil &itimeUtil) {
+  AsyncMotionProfileController out(itimeUtil, imaxVel, imaxAccel, imaxJerk, imodel, iscales, ipair);
   out.startThread();
   return out;
 }
@@ -103,9 +101,9 @@ AsyncLinearMotionProfileController
 linearMotionProfile(double imaxVel,
                     double imaxAccel,
                     double imaxJerk,
-                    const std::shared_ptr<ControllerOutput<double>> &ioutput) {
-  AsyncLinearMotionProfileController out(
-    TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk, ioutput);
+                    const std::shared_ptr<ControllerOutput<double>> &ioutput,
+                    const TimeUtil &itimeUtil) {
+  AsyncLinearMotionProfileController out(itimeUtil, imaxVel, imaxAccel, imaxJerk, ioutput);
   out.startThread();
   return out;
 }

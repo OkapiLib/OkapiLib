@@ -21,6 +21,7 @@
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/potentiometer.hpp"
+#include "okapi/impl/util/timeUtilFactory.hpp"
 
 #define okapi_makePosPID(MotorType)                                                                \
   static AsyncPosPIDController posPID(MotorType imotor,                                            \
@@ -29,14 +30,16 @@
                                       double ikD,                                                  \
                                       double ikBias = 0,                                           \
                                       std::unique_ptr<Filter> iderivativeFilter =                  \
-                                        std::make_unique<PassthroughFilter>()) {                   \
+                                        std::make_unique<PassthroughFilter>(),                     \
+                                      const TimeUtil &itimeUtil = TimeUtilFactory::create()) {     \
     return posPID(imotor.getEncoder(),                                                             \
                   std::make_shared<MotorType>(imotor),                                             \
                   ikP,                                                                             \
                   ikI,                                                                             \
                   ikD,                                                                             \
                   ikBias,                                                                          \
-                  std::move(iderivativeFilter));                                                   \
+                  std::move(iderivativeFilter),                                                    \
+                  itimeUtil);                                                                      \
   }
 
 #define okapi_makePosPIDWithSensor(MotorType, SensorType)                                          \
@@ -47,14 +50,16 @@
                                       double ikD,                                                  \
                                       double ikBias = 0,                                           \
                                       std::unique_ptr<Filter> iderivativeFilter =                  \
-                                        std::make_unique<PassthroughFilter>()) {                   \
+                                        std::make_unique<PassthroughFilter>(),                     \
+                                      const TimeUtil &itimeUtil = TimeUtilFactory::create()) {     \
     return posPID(std::make_shared<SensorType>(isensor),                                           \
                   std::make_shared<MotorType>(imotor),                                             \
                   ikP,                                                                             \
                   ikI,                                                                             \
                   ikD,                                                                             \
                   ikBias,                                                                          \
-                  std::move(iderivativeFilter));                                                   \
+                  std::move(iderivativeFilter),                                                    \
+                  itimeUtil);                                                                      \
   }
 
 #define okapi_makeVelPID(MotorType)                                                                \
@@ -65,7 +70,8 @@
                                       double ikSF = 0,                                             \
                                       double iTPR = imev5TPR,                                      \
                                       std::unique_ptr<Filter> iderivativeFilter =                  \
-                                        std::make_unique<PassthroughFilter>()) {                   \
+                                        std::make_unique<PassthroughFilter>(),                     \
+                                      const TimeUtil &itimeUtil = TimeUtilFactory::create()) {     \
     return velPID(imotor.getEncoder(),                                                             \
                   std::make_shared<MotorType>(imotor),                                             \
                   ikP,                                                                             \
@@ -73,7 +79,8 @@
                   ikF,                                                                             \
                   ikSF,                                                                            \
                   iTPR,                                                                            \
-                  std::move(iderivativeFilter));                                                   \
+                  std::move(iderivativeFilter),                                                    \
+                  itimeUtil);                                                                      \
   }
 
 #define okapi_makeVelPIDWithSensor(MotorType, SensorType)                                          \
@@ -85,7 +92,8 @@
                                       double ikSF = 0,                                             \
                                       double iTPR = imev5TPR,                                      \
                                       std::unique_ptr<Filter> iderivativeFilter =                  \
-                                        std::make_unique<PassthroughFilter>()) {                   \
+                                        std::make_unique<PassthroughFilter>(),                     \
+                                      const TimeUtil &itimeUtil = TimeUtilFactory::create()) {     \
     return velPID(std::make_shared<SensorType>(ienc),                                              \
                   std::make_shared<MotorType>(imotor),                                             \
                   ikP,                                                                             \
@@ -93,7 +101,8 @@
                   ikF,                                                                             \
                   ikSF,                                                                            \
                   iTPR,                                                                            \
-                  std::move(iderivativeFilter));                                                   \
+                  std::move(iderivativeFilter),                                                    \
+                  itimeUtil);                                                                      \
   }
 
 namespace okapi {
@@ -105,7 +114,10 @@ class AsyncControllerFactory {
    * @param imotor controller input (from the integrated encoder) and output
    * @param imaxVelocity the maximum velocity during a profiled movement
    */
-  static AsyncPosIntegratedController posIntegrated(Motor imotor, std::int32_t imaxVelocity = 600);
+  static AsyncPosIntegratedController
+  posIntegrated(Motor imotor,
+                std::int32_t imaxVelocity = 600,
+                const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   /**
    * A position controller that uses the V5 motor's onboard control.
@@ -113,22 +125,26 @@ class AsyncControllerFactory {
    * @param imotor controller input (from the integrated encoder) and output
    * @param imaxVelocity the maximum velocity during a profiled movement
    */
-  static AsyncPosIntegratedController posIntegrated(MotorGroup imotor,
-                                                    std::int32_t imaxVelocity = 600);
+  static AsyncPosIntegratedController
+  posIntegrated(MotorGroup imotor,
+                std::int32_t imaxVelocity = 600,
+                const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   /**
    * A velocity controller that uses the V5 motor's onboard control.
    *
    * @param imotor controller input (from the integrated encoder) and output
    */
-  static AsyncVelIntegratedController velIntegrated(Motor imotor);
+  static AsyncVelIntegratedController
+  velIntegrated(Motor imotor, const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   /**
    * A velocity controller that uses the V5 motor's onboard control.
    *
    * @param imotor controller input (from the integrated encoder) and output
    */
-  static AsyncVelIntegratedController velIntegrated(MotorGroup imotor);
+  static AsyncVelIntegratedController
+  velIntegrated(MotorGroup imotor, const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   okapi_makePosPID(Motor);
   okapi_makePosPID(MotorGroup);
@@ -156,7 +172,8 @@ class AsyncControllerFactory {
          double ikI,
          double ikD,
          double ikBias = 0,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+         const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   okapi_makeVelPID(Motor);
   okapi_makeVelPID(MotorGroup);
@@ -185,7 +202,8 @@ class AsyncControllerFactory {
          double ikF = 0,
          double ikSF = 0,
          double iTPR = imev5TPR,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+         const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   /**
    * A controller which generates and follows 2D motion profiles.
@@ -195,10 +213,12 @@ class AsyncControllerFactory {
    * @param imaxJerk The maximum possible jerk in m/s/s/s.
    * @param ichassis The chassis to control.
    */
-  static AsyncMotionProfileController motionProfile(double imaxVel,
-                                                    double imaxAccel,
-                                                    double imaxJerk,
-                                                    const ChassisController &ichassis);
+  static AsyncMotionProfileController
+  motionProfile(double imaxVel,
+                double imaxAccel,
+                double imaxJerk,
+                const ChassisController &ichassis,
+                const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   /**
    * A controller which generates and follows 2D motion profiles.
@@ -209,12 +229,14 @@ class AsyncControllerFactory {
    * @param imodel The chassis model to control.
    * @param iwidth The chassis wheelbase width.
    */
-  static AsyncMotionProfileController motionProfile(double imaxVel,
-                                                    double imaxAccel,
-                                                    double imaxJerk,
-                                                    const std::shared_ptr<ChassisModel> &imodel,
-                                                    const ChassisScales &iscales,
-                                                    AbstractMotor::GearsetRatioPair ipair);
+  static AsyncMotionProfileController
+  motionProfile(double imaxVel,
+                double imaxAccel,
+                double imaxJerk,
+                const std::shared_ptr<ChassisModel> &imodel,
+                const ChassisScales &iscales,
+                AbstractMotor::GearsetRatioPair ipair,
+                const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   /**
    * A controller which generates and follows 1D motion profiles.
@@ -228,7 +250,8 @@ class AsyncControllerFactory {
   linearMotionProfile(double imaxVel,
                       double imaxAccel,
                       double imaxJerk,
-                      const std::shared_ptr<ControllerOutput<double>> &ioutput);
+                      const std::shared_ptr<ControllerOutput<double>> &ioutput,
+                      const TimeUtil &itimeUtil = TimeUtilFactory::create());
 };
 } // namespace okapi
 
