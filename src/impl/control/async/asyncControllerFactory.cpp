@@ -32,8 +32,8 @@ AsyncVelIntegratedController AsyncControllerFactory::velIntegrated(MotorGroup im
 }
 
 AsyncPosPIDController
-AsyncControllerFactory::posPID(std::shared_ptr<ControllerInput<double>> iinput,
-                               std::shared_ptr<ControllerOutput<double>> ioutput,
+AsyncControllerFactory::posPID(const std::shared_ptr<ControllerInput<double>> &iinput,
+                               const std::shared_ptr<ControllerOutput<double>> &ioutput,
                                const double ikP,
                                const double ikI,
                                const double ikD,
@@ -52,8 +52,8 @@ AsyncControllerFactory::posPID(std::shared_ptr<ControllerInput<double>> iinput,
 }
 
 AsyncVelPIDController
-AsyncControllerFactory::velPID(std::shared_ptr<ControllerInput<double>> iinput,
-                               std::shared_ptr<ControllerOutput<double>> ioutput,
+AsyncControllerFactory::velPID(const std::shared_ptr<ControllerInput<double>> &iinput,
+                               const std::shared_ptr<ControllerOutput<double>> &ioutput,
                                const double ikP,
                                const double ikD,
                                const double ikF,
@@ -90,7 +90,7 @@ AsyncMotionProfileController
 AsyncControllerFactory::motionProfile(double imaxVel,
                                       double imaxAccel,
                                       double imaxJerk,
-                                      std::shared_ptr<ChassisModel> imodel,
+                                      const std::shared_ptr<ChassisModel> &imodel,
                                       const ChassisScales &iscales,
                                       AbstractMotor::GearsetRatioPair ipair) {
   AsyncMotionProfileController out(
@@ -103,7 +103,7 @@ AsyncLinearMotionProfileController
 linearMotionProfile(double imaxVel,
                     double imaxAccel,
                     double imaxJerk,
-                    std::shared_ptr<ControllerOutput<double>> ioutput) {
+                    const std::shared_ptr<ControllerOutput<double>> &ioutput) {
   AsyncLinearMotionProfileController out(
     TimeUtilFactory::create(), imaxVel, imaxAccel, imaxJerk, ioutput);
   out.startThread();

@@ -240,12 +240,13 @@ class ChassisControllerFactory {
   okapi_makeCreatePIDWithSensor(Motor, ADIEncoder, createPtr);
   okapi_makeCreatePIDWithSensor(MotorGroup, ADIEncoder, createPtr);
 
-  static ChassisControllerIntegrated create(std::shared_ptr<AbstractMotor> ileftMtr,
-                                            std::shared_ptr<AbstractMotor> irightMtr,
-                                            std::shared_ptr<ContinuousRotarySensor> ileftSensor,
-                                            std::shared_ptr<ContinuousRotarySensor> irightSensor,
-                                            AbstractMotor::GearsetRatioPair igearset,
-                                            const ChassisScales &iscales) {
+  static ChassisControllerIntegrated
+  create(const std::shared_ptr<AbstractMotor> &ileftMtr,
+         const std::shared_ptr<AbstractMotor> &irightMtr,
+         const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
+         const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
+         AbstractMotor::GearsetRatioPair igearset,
+         const ChassisScales &iscales) {
     return ChassisControllerIntegrated(
       TimeUtilFactory::create(),
       std::make_shared<SkidSteerModel>(
@@ -257,10 +258,10 @@ class ChassisControllerFactory {
   }
 
   static std::shared_ptr<ChassisControllerIntegrated>
-  createPtr(std::shared_ptr<AbstractMotor> ileftMtr,
-            std::shared_ptr<AbstractMotor> irightMtr,
-            std::shared_ptr<ContinuousRotarySensor> ileftSensor,
-            std::shared_ptr<ContinuousRotarySensor> irightSensor,
+  createPtr(const std::shared_ptr<AbstractMotor> &ileftMtr,
+            const std::shared_ptr<AbstractMotor> &irightMtr,
+            const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
+            const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
             AbstractMotor::GearsetRatioPair igearset,
             const ChassisScales &iscales) {
     return std::make_shared<ChassisControllerIntegrated>(
@@ -273,14 +274,15 @@ class ChassisControllerFactory {
       iscales);
   }
 
-  static ChassisControllerIntegrated create(std::shared_ptr<AbstractMotor> itopLeftMtr,
-                                            std::shared_ptr<AbstractMotor> itopRightMtr,
-                                            std::shared_ptr<AbstractMotor> ibottomRightMtr,
-                                            std::shared_ptr<AbstractMotor> ibottomLeftMtr,
-                                            std::shared_ptr<ContinuousRotarySensor> ileftSensor,
-                                            std::shared_ptr<ContinuousRotarySensor> irightSensor,
-                                            AbstractMotor::GearsetRatioPair igearset,
-                                            const ChassisScales &iscales) {
+  static ChassisControllerIntegrated
+  create(const std::shared_ptr<AbstractMotor> &itopLeftMtr,
+         const std::shared_ptr<AbstractMotor> &itopRightMtr,
+         const std::shared_ptr<AbstractMotor> &ibottomRightMtr,
+         const std::shared_ptr<AbstractMotor> &ibottomLeftMtr,
+         const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
+         const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
+         AbstractMotor::GearsetRatioPair igearset,
+         const ChassisScales &iscales) {
     return ChassisControllerIntegrated(
       TimeUtilFactory::create(),
       std::make_shared<XDriveModel>(itopLeftMtr,
@@ -297,12 +299,12 @@ class ChassisControllerFactory {
   }
 
   static std::shared_ptr<ChassisControllerIntegrated>
-  createPtr(std::shared_ptr<AbstractMotor> itopLeftMtr,
-            std::shared_ptr<AbstractMotor> itopRightMtr,
-            std::shared_ptr<AbstractMotor> ibottomRightMtr,
-            std::shared_ptr<AbstractMotor> ibottomLeftMtr,
-            std::shared_ptr<ContinuousRotarySensor> ileftSensor,
-            std::shared_ptr<ContinuousRotarySensor> irightSensor,
+  createPtr(const std::shared_ptr<AbstractMotor> &itopLeftMtr,
+            const std::shared_ptr<AbstractMotor> &itopRightMtr,
+            const std::shared_ptr<AbstractMotor> &ibottomRightMtr,
+            const std::shared_ptr<AbstractMotor> &ibottomLeftMtr,
+            const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
+            const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
             AbstractMotor::GearsetRatioPair igearset,
             const ChassisScales &iscales) {
     return std::make_shared<ChassisControllerIntegrated>(
@@ -320,10 +322,10 @@ class ChassisControllerFactory {
       iscales);
   }
 
-  static ChassisControllerPID create(std::shared_ptr<AbstractMotor> ileftMtr,
-                                     std::shared_ptr<AbstractMotor> irightMtr,
-                                     std::shared_ptr<ContinuousRotarySensor> ileftSensor,
-                                     std::shared_ptr<ContinuousRotarySensor> irightSensor,
+  static ChassisControllerPID create(const std::shared_ptr<AbstractMotor> &ileftMtr,
+                                     const std::shared_ptr<AbstractMotor> &irightMtr,
+                                     const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
+                                     const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
                                      std::unique_ptr<IterativePosPIDController> idistanceController,
                                      std::unique_ptr<IterativePosPIDController> iangleController,
                                      std::unique_ptr<IterativePosPIDController> iturnController,
@@ -343,10 +345,10 @@ class ChassisControllerFactory {
   }
 
   static std::shared_ptr<ChassisControllerPID>
-  createPtr(std::shared_ptr<AbstractMotor> ileftMtr,
-            std::shared_ptr<AbstractMotor> irightMtr,
-            std::shared_ptr<ContinuousRotarySensor> ileftSensor,
-            std::shared_ptr<ContinuousRotarySensor> irightSensor,
+  createPtr(const std::shared_ptr<AbstractMotor> &ileftMtr,
+            const std::shared_ptr<AbstractMotor> &irightMtr,
+            const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
+            const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
             std::unique_ptr<IterativePosPIDController> idistanceController,
             std::unique_ptr<IterativePosPIDController> iangleController,
             std::unique_ptr<IterativePosPIDController> iturnController,
@@ -365,12 +367,12 @@ class ChassisControllerFactory {
     return out;
   }
 
-  static ChassisControllerPID create(std::shared_ptr<AbstractMotor> itopLeftMtr,
-                                     std::shared_ptr<AbstractMotor> itopRightMtr,
-                                     std::shared_ptr<AbstractMotor> ibottomRightMtr,
-                                     std::shared_ptr<AbstractMotor> ibottomLeftMtr,
-                                     std::shared_ptr<ContinuousRotarySensor> ileftSensor,
-                                     std::shared_ptr<ContinuousRotarySensor> irightSensor,
+  static ChassisControllerPID create(const std::shared_ptr<AbstractMotor> &itopLeftMtr,
+                                     const std::shared_ptr<AbstractMotor> &itopRightMtr,
+                                     const std::shared_ptr<AbstractMotor> &ibottomRightMtr,
+                                     const std::shared_ptr<AbstractMotor> &ibottomLeftMtr,
+                                     const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
+                                     const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
                                      std::unique_ptr<IterativePosPIDController> idistanceController,
                                      std::unique_ptr<IterativePosPIDController> iangleController,
                                      std::unique_ptr<IterativePosPIDController> iturnController,
@@ -395,12 +397,12 @@ class ChassisControllerFactory {
   }
 
   static std::shared_ptr<ChassisControllerPID>
-  createPtr(std::shared_ptr<AbstractMotor> itopLeftMtr,
-            std::shared_ptr<AbstractMotor> itopRightMtr,
-            std::shared_ptr<AbstractMotor> ibottomRightMtr,
-            std::shared_ptr<AbstractMotor> ibottomLeftMtr,
-            std::shared_ptr<ContinuousRotarySensor> ileftSensor,
-            std::shared_ptr<ContinuousRotarySensor> irightSensor,
+  createPtr(const std::shared_ptr<AbstractMotor> &itopLeftMtr,
+            const std::shared_ptr<AbstractMotor> &itopRightMtr,
+            const std::shared_ptr<AbstractMotor> &ibottomRightMtr,
+            const std::shared_ptr<AbstractMotor> &ibottomLeftMtr,
+            const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
+            const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
             std::unique_ptr<IterativePosPIDController> idistanceController,
             std::unique_ptr<IterativePosPIDController> iangleController,
             std::unique_ptr<IterativePosPIDController> iturnController,

@@ -150,8 +150,8 @@ class AsyncControllerFactory {
    * @param ikBias output bias (a constant added to the output)
    */
   static AsyncPosPIDController
-  posPID(std::shared_ptr<ControllerInput<double>> iinput,
-         std::shared_ptr<ControllerOutput<double>> ioutput,
+  posPID(const std::shared_ptr<ControllerInput<double>> &iinput,
+         const std::shared_ptr<ControllerOutput<double>> &ioutput,
          double ikP,
          double ikI,
          double ikD,
@@ -178,8 +178,8 @@ class AsyncControllerFactory {
    * @param ikSF a feed-forward gain to counteract static friction
    */
   static AsyncVelPIDController
-  velPID(std::shared_ptr<ControllerInput<double>> iinput,
-         std::shared_ptr<ControllerOutput<double>> ioutput,
+  velPID(const std::shared_ptr<ControllerInput<double>> &iinput,
+         const std::shared_ptr<ControllerOutput<double>> &ioutput,
          double ikP,
          double ikD,
          double ikF = 0,
@@ -212,7 +212,7 @@ class AsyncControllerFactory {
   static AsyncMotionProfileController motionProfile(double imaxVel,
                                                     double imaxAccel,
                                                     double imaxJerk,
-                                                    std::shared_ptr<ChassisModel> imodel,
+                                                    const std::shared_ptr<ChassisModel> &imodel,
                                                     const ChassisScales &iscales,
                                                     AbstractMotor::GearsetRatioPair ipair);
 
@@ -228,7 +228,7 @@ class AsyncControllerFactory {
   linearMotionProfile(double imaxVel,
                       double imaxAccel,
                       double imaxJerk,
-                      std::shared_ptr<ControllerOutput<double>> ioutput);
+                      const std::shared_ptr<ControllerOutput<double>> &ioutput);
 };
 } // namespace okapi
 
