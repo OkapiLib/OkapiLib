@@ -23,20 +23,23 @@
   static auto methodName(const MotorType &ileftMtr,                                                \
                          const MotorType &irightMtr,                                               \
                          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1})) {                   \
+                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
+                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
     return methodName(std::make_shared<MotorType>(ileftMtr),                                       \
                       std::make_shared<MotorType>(irightMtr),                                      \
                       ileftMtr.getEncoder(),                                                       \
                       irightMtr.getEncoder(),                                                      \
                       igearset,                                                                    \
-                      iscales);                                                                    \
+                      iscales,                                                                     \
+                      itimeUtil);                                                                  \
   }                                                                                                \
   static auto methodName(const MotorType &itopLeftMtr,                                             \
                          const MotorType &itopRightMtr,                                            \
                          const MotorType &ibottomRightMtr,                                         \
                          const MotorType &ibottomLeftMtr,                                          \
                          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1})) {                   \
+                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
+                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
     return methodName(std::make_shared<MotorType>(itopLeftMtr),                                    \
                       std::make_shared<MotorType>(itopRightMtr),                                   \
                       std::make_shared<MotorType>(ibottomRightMtr),                                \
@@ -44,7 +47,8 @@
                       itopLeftMtr.getEncoder(),                                                    \
                       itopRightMtr.getEncoder(),                                                   \
                       igearset,                                                                    \
-                      iscales);                                                                    \
+                      iscales,                                                                     \
+                      itimeUtil);                                                                  \
   }
 
 #define okapi_makeCreatePID(MotorType, methodName)                                                 \
@@ -53,7 +57,8 @@
                          const IterativePosPIDController::Gains &idistanceGains,                   \
                          const IterativePosPIDController::Gains &iangleGains,                      \
                          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1})) {                   \
+                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
+                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
     return methodName(                                                                             \
       std::make_shared<MotorType>(ileftMtr),                                                       \
       std::make_shared<MotorType>(irightMtr),                                                      \
@@ -63,7 +68,8 @@
       std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
       std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
       igearset,                                                                                    \
-      iscales);                                                                                    \
+      iscales,                                                                                     \
+      itimeUtil);                                                                                  \
   }                                                                                                \
   static auto methodName(const MotorType &ileftMtr,                                                \
                          const MotorType &irightMtr,                                               \
@@ -71,7 +77,8 @@
                          const IterativePosPIDController::Gains &iangleGains,                      \
                          const IterativePosPIDController::Gains &iturnGains,                       \
                          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1})) {                   \
+                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
+                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
     return methodName(                                                                             \
       std::make_shared<MotorType>(ileftMtr),                                                       \
       std::make_shared<MotorType>(irightMtr),                                                      \
@@ -81,7 +88,8 @@
       std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
       std::make_unique<IterativePosPIDController>(iturnGains, TimeUtilFactory::create()),          \
       igearset,                                                                                    \
-      iscales);                                                                                    \
+      iscales,                                                                                     \
+      itimeUtil);                                                                                  \
   }                                                                                                \
   static auto methodName(const MotorType &itopLeftMtr,                                             \
                          const MotorType &itopRightMtr,                                            \
@@ -90,7 +98,8 @@
                          const IterativePosPIDController::Gains &idistanceGains,                   \
                          const IterativePosPIDController::Gains &iangleGains,                      \
                          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1})) {                   \
+                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
+                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
     return methodName(                                                                             \
       std::make_shared<MotorType>(itopLeftMtr),                                                    \
       std::make_shared<MotorType>(itopRightMtr),                                                   \
@@ -102,7 +111,8 @@
       std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
       std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
       igearset,                                                                                    \
-      iscales);                                                                                    \
+      iscales,                                                                                     \
+      itimeUtil);                                                                                  \
   }                                                                                                \
   static auto methodName(const MotorType &itopLeftMtr,                                             \
                          const MotorType &itopRightMtr,                                            \
@@ -112,7 +122,8 @@
                          const IterativePosPIDController::Gains &iangleGains,                      \
                          const IterativePosPIDController::Gains &iturnGains,                       \
                          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1})) {                   \
+                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
+                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
     return methodName(                                                                             \
       std::make_shared<MotorType>(itopLeftMtr),                                                    \
       std::make_shared<MotorType>(itopRightMtr),                                                   \
@@ -124,7 +135,8 @@
       std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
       std::make_unique<IterativePosPIDController>(iturnGains, TimeUtilFactory::create()),          \
       igearset,                                                                                    \
-      iscales);                                                                                    \
+      iscales,                                                                                     \
+      itimeUtil);                                                                                  \
   }
 
 #define okapi_makeCreatePIDWithSensor(MotorType, SensorType, methodName)                           \
@@ -135,7 +147,8 @@
                          const IterativePosPIDController::Gains &idistanceGains,                   \
                          const IterativePosPIDController::Gains &iangleGains,                      \
                          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1})) {                   \
+                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
+                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
     return methodName(                                                                             \
       std::make_shared<MotorType>(ileftMtr),                                                       \
       std::make_shared<MotorType>(irightMtr),                                                      \
@@ -145,7 +158,8 @@
       std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
       std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
       igearset,                                                                                    \
-      iscales);                                                                                    \
+      iscales,                                                                                     \
+      itimeUtil);                                                                                  \
   }                                                                                                \
   static auto methodName(const MotorType &ileftMtr,                                                \
                          const MotorType &irightMtr,                                               \
@@ -155,7 +169,8 @@
                          const IterativePosPIDController::Gains &iangleGains,                      \
                          const IterativePosPIDController::Gains &iturnGains,                       \
                          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1})) {                   \
+                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
+                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
     return methodName(                                                                             \
       std::make_shared<MotorType>(ileftMtr),                                                       \
       std::make_shared<MotorType>(irightMtr),                                                      \
@@ -165,7 +180,8 @@
       std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
       std::make_unique<IterativePosPIDController>(iturnGains, TimeUtilFactory::create()),          \
       igearset,                                                                                    \
-      iscales);                                                                                    \
+      iscales,                                                                                     \
+      itimeUtil);                                                                                  \
   }                                                                                                \
   static auto methodName(const MotorType &itopLeftMtr,                                             \
                          const MotorType &itopRightMtr,                                            \
@@ -176,7 +192,8 @@
                          const IterativePosPIDController::Gains &idistanceGains,                   \
                          const IterativePosPIDController::Gains &iangleGains,                      \
                          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1})) {                   \
+                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
+                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
     return methodName(                                                                             \
       std::make_shared<MotorType>(itopLeftMtr),                                                    \
       std::make_shared<MotorType>(itopRightMtr),                                                   \
@@ -188,7 +205,8 @@
       std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
       std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
       igearset,                                                                                    \
-      iscales);                                                                                    \
+      iscales,                                                                                     \
+      itimeUtil);                                                                                  \
   }                                                                                                \
   static auto methodName(const MotorType &itopLeftMtr,                                             \
                          const MotorType &itopRightMtr,                                            \
@@ -200,7 +218,8 @@
                          const IterativePosPIDController::Gains &iangleGains,                      \
                          const IterativePosPIDController::Gains &iturnGains,                       \
                          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1})) {                   \
+                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
+                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
     return methodName(                                                                             \
       std::make_shared<MotorType>(itopLeftMtr),                                                    \
       std::make_shared<MotorType>(itopRightMtr),                                                   \
@@ -212,7 +231,8 @@
       std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
       std::make_unique<IterativePosPIDController>(iturnGains, TimeUtilFactory::create()),          \
       igearset,                                                                                    \
-      iscales);                                                                                    \
+      iscales,                                                                                     \
+      itimeUtil);                                                                                  \
   }
 
 namespace okapi {
@@ -246,9 +266,10 @@ class ChassisControllerFactory {
          const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
          const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
          AbstractMotor::GearsetRatioPair igearset,
-         const ChassisScales &iscales) {
+         const ChassisScales &iscales,
+         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
     return ChassisControllerIntegrated(
-      TimeUtilFactory::create(),
+      itimeUtil,
       std::make_shared<SkidSteerModel>(
         ileftMtr, irightMtr, ileftSensor, irightSensor, toUnderlyingType(igearset.internalGearset)),
       std::make_unique<AsyncPosIntegratedController>(ileftMtr, TimeUtilFactory::create()),
@@ -263,9 +284,10 @@ class ChassisControllerFactory {
             const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
             const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
             AbstractMotor::GearsetRatioPair igearset,
-            const ChassisScales &iscales) {
+            const ChassisScales &iscales,
+            const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
     return std::make_shared<ChassisControllerIntegrated>(
-      TimeUtilFactory::create(),
+      itimeUtil,
       std::make_shared<SkidSteerModel>(
         ileftMtr, irightMtr, ileftSensor, irightSensor, toUnderlyingType(igearset.internalGearset)),
       std::make_unique<AsyncPosIntegratedController>(ileftMtr, TimeUtilFactory::create()),
@@ -282,9 +304,10 @@ class ChassisControllerFactory {
          const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
          const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
          AbstractMotor::GearsetRatioPair igearset,
-         const ChassisScales &iscales) {
+         const ChassisScales &iscales,
+         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
     return ChassisControllerIntegrated(
-      TimeUtilFactory::create(),
+      itimeUtil,
       std::make_shared<XDriveModel>(itopLeftMtr,
                                     itopRightMtr,
                                     ibottomRightMtr,
@@ -306,9 +329,10 @@ class ChassisControllerFactory {
             const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
             const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
             AbstractMotor::GearsetRatioPair igearset,
-            const ChassisScales &iscales) {
+            const ChassisScales &iscales,
+            const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
     return std::make_shared<ChassisControllerIntegrated>(
-      TimeUtilFactory::create(),
+      itimeUtil,
       std::make_shared<XDriveModel>(itopLeftMtr,
                                     itopRightMtr,
                                     ibottomRightMtr,
@@ -330,9 +354,10 @@ class ChassisControllerFactory {
                                      std::unique_ptr<IterativePosPIDController> iangleController,
                                      std::unique_ptr<IterativePosPIDController> iturnController,
                                      AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales) {
+                                     const ChassisScales &iscales,
+                                     const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
     ChassisControllerPID out(
-      TimeUtilFactory::create(),
+      itimeUtil,
       std::make_shared<SkidSteerModel>(
         ileftMtr, irightMtr, ileftSensor, irightSensor, toUnderlyingType(igearset.internalGearset)),
       std::move(idistanceController),
@@ -353,9 +378,10 @@ class ChassisControllerFactory {
             std::unique_ptr<IterativePosPIDController> iangleController,
             std::unique_ptr<IterativePosPIDController> iturnController,
             AbstractMotor::GearsetRatioPair igearset,
-            const ChassisScales &iscales) {
+            const ChassisScales &iscales,
+            const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
     auto out = std::make_shared<ChassisControllerPID>(
-      TimeUtilFactory::create(),
+      itimeUtil,
       std::make_shared<SkidSteerModel>(
         ileftMtr, irightMtr, ileftSensor, irightSensor, toUnderlyingType(igearset.internalGearset)),
       std::move(idistanceController),
@@ -377,9 +403,10 @@ class ChassisControllerFactory {
                                      std::unique_ptr<IterativePosPIDController> iangleController,
                                      std::unique_ptr<IterativePosPIDController> iturnController,
                                      AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales) {
+                                     const ChassisScales &iscales,
+                                     const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
     ChassisControllerPID out(
-      TimeUtilFactory::create(),
+      itimeUtil,
       std::make_shared<XDriveModel>(itopLeftMtr,
                                     itopRightMtr,
                                     ibottomRightMtr,
@@ -407,9 +434,10 @@ class ChassisControllerFactory {
             std::unique_ptr<IterativePosPIDController> iangleController,
             std::unique_ptr<IterativePosPIDController> iturnController,
             AbstractMotor::GearsetRatioPair igearset,
-            const ChassisScales &iscales) {
+            const ChassisScales &iscales,
+            const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
     auto out = std::make_shared<ChassisControllerPID>(
-      TimeUtilFactory::create(),
+      itimeUtil,
       std::make_shared<XDriveModel>(itopLeftMtr,
                                     itopRightMtr,
                                     ibottomRightMtr,
