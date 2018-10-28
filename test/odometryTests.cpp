@@ -7,8 +7,10 @@
  */
 #include "test/tests/api/odometryTests.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
+#include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/odometry/odometry.hpp"
 #include "okapi/api/odometry/threeEncoderOdometry.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 #include <memory>
@@ -17,7 +19,10 @@ using namespace okapi;
 
 class MockModel : public SkidSteerModel {
   public:
-  MockModel() : SkidSteerModel(std::make_shared<MockMotor>(), std::make_shared<MockMotor>()) {
+  MockModel()
+    : SkidSteerModel(std::make_shared<MockMotor>(),
+                     std::make_shared<MockMotor>(),
+                     toUnderlyingType(AbstractMotor::gearset::red)) {
   }
 
   std::valarray<std::int32_t> getSensorVals() const override {

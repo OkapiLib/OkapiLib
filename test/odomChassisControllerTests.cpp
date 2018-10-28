@@ -7,6 +7,8 @@
  */
 #include "okapi/api/chassis/controller/odomChassisControllerIntegrated.hpp"
 #include "okapi/api/chassis/controller/odomChassisControllerPid.hpp"
+#include "okapi/api/device/motor/abstractMotor.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 
@@ -34,7 +36,8 @@ class OdomChassisControllerIntegratedTest : public ::testing::Test {
     rightController = new MockAsyncPosIntegratedController();
 
     model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
-                               std::unique_ptr<AbstractMotor>(rightMotor));
+                               std::unique_ptr<AbstractMotor>(rightMotor),
+                               toUnderlyingType(AbstractMotor::gearset::red));
 
     std::shared_ptr<SkidSteerModel> modelPtr = std::shared_ptr<SkidSteerModel>(model);
 
@@ -128,7 +131,8 @@ class OdomChassisControllerPIDTest : public ::testing::Test {
     turnController = new MockIterativeController();
 
     model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
-                               std::unique_ptr<AbstractMotor>(rightMotor));
+                               std::unique_ptr<AbstractMotor>(rightMotor),
+                               toUnderlyingType(AbstractMotor::gearset::red));
 
     std::shared_ptr<SkidSteerModel> modelPtr = std::shared_ptr<SkidSteerModel>(model);
 
