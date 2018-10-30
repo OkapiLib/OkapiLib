@@ -27,10 +27,10 @@ class XDriveModel : public ChassisModel {
    * @param ibottomRightMotor bottom right motor
    * @param ibottomLeftMotor bottom left motor
    */
-  XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
-              std::shared_ptr<AbstractMotor> itopRightMotor,
-              std::shared_ptr<AbstractMotor> ibottomRightMotor,
-              std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+  XDriveModel(const std::shared_ptr<AbstractMotor> &itopLeftMotor,
+              const std::shared_ptr<AbstractMotor> &itopRightMotor,
+              const std::shared_ptr<AbstractMotor> &ibottomRightMotor,
+              const std::shared_ptr<AbstractMotor> &ibottomLeftMotor,
               double imaxVelocity,
               double imaxVoltage = 12000);
 
@@ -45,12 +45,12 @@ class XDriveModel : public ChassisModel {
    * @param ileftEnc Left side encoder
    * @param irightEnc Right side encoder
    */
-  XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
-              std::shared_ptr<AbstractMotor> itopRightMotor,
-              std::shared_ptr<AbstractMotor> ibottomRightMotor,
-              std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-              std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-              std::shared_ptr<ContinuousRotarySensor> irightEnc,
+  XDriveModel(const std::shared_ptr<AbstractMotor> &itopLeftMotor,
+              const std::shared_ptr<AbstractMotor> &itopRightMotor,
+              const std::shared_ptr<AbstractMotor> &ibottomRightMotor,
+              const std::shared_ptr<AbstractMotor> &ibottomLeftMotor,
+              const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
+              const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
               double imaxVelocity,
               double imaxVoltage = 12000);
 
