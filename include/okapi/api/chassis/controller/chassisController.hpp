@@ -89,6 +89,13 @@ class ChassisController : public ChassisModel {
   virtual void turnAngleAsync(double idegTarget) = 0;
 
   /**
+   * Sets whether turns should be mirrored.
+   *
+   * @param ishouldMirror whether turns should be mirrored
+   */
+  virtual void setTurnsMirrored(bool ishouldMirror);
+
+  /**
    * Delays until the currently executing movement completes.
    */
   virtual void waitUntilSettled() = 0;
@@ -282,6 +289,7 @@ class ChassisController : public ChassisModel {
 
   protected:
   std::shared_ptr<ChassisModel> model;
+  bool normalTurns{true};
 };
 } // namespace okapi
 

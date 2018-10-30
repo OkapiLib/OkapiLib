@@ -17,6 +17,10 @@ ChassisController::ChassisController(const std::shared_ptr<ChassisModel> &imodel
 
 ChassisController::~ChassisController() = default;
 
+void ChassisController::setTurnsMirrored(const bool ishouldMirror) {
+  normalTurns = !ishouldMirror;
+}
+
 void ChassisController::forward(const double ispeed) const {
   model->forward(ispeed);
 }

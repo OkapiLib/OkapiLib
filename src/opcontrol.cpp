@@ -14,8 +14,12 @@
  * task, not resume it from where it left off.
  */
 using namespace okapi;
-auto drive = ChassisControllerFactory::create(
-  -18, 19, {}, {}, AbstractMotor::gearset::green, {4.125_in, 10.5_in});
+auto drive = ChassisControllerFactory::create(-18,
+                                              19,
+                                              {},
+                                              {},
+                                              AbstractMotor::gearset::green,
+                                              {4.125_in, 10.5_in});
 void opcontrol() {
 
   Logger::initialize(TimeUtilFactory::create().getTimer(), "/ser/sout", Logger::LogLevel::debug);
