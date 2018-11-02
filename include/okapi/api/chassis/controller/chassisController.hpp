@@ -26,7 +26,7 @@ class ChassisController : public ChassisModel {
    *
    * @param imodel underlying ChassisModel
    */
-  explicit ChassisController(std::shared_ptr<ChassisModel> imodel,
+  explicit ChassisController(const std::shared_ptr<ChassisModel> &imodel,
                              double imaxVelocity,
                              double imaxVoltage = 12000);
 
@@ -87,6 +87,13 @@ class ChassisController : public ChassisModel {
    * @param idegTarget angle to turn for in motor degrees
    */
   virtual void turnAngleAsync(double idegTarget) = 0;
+
+  /**
+   * Sets whether turns should be mirrored.
+   *
+   * @param ishouldMirror whether turns should be mirrored
+   */
+  virtual void setTurnsMirrored(bool ishouldMirror);
 
   /**
    * Delays until the currently executing movement completes.
@@ -282,6 +289,7 @@ class ChassisController : public ChassisModel {
 
   protected:
   std::shared_ptr<ChassisModel> model;
+  bool normalTurns{true};
 };
 } // namespace okapi
 

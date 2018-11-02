@@ -20,7 +20,9 @@ namespace okapi {
 class VelMathArgs {
   public:
   explicit VelMathArgs(double iticksPerRev, QTime isampleTime = 0_ms);
-  VelMathArgs(double iticksPerRev, std::shared_ptr<Filter> ifilter, QTime isampleTime = 0_ms);
+  VelMathArgs(double iticksPerRev,
+              const std::shared_ptr<Filter> &ifilter,
+              QTime isampleTime = 0_ms);
 
   virtual ~VelMathArgs();
 
@@ -40,7 +42,7 @@ class VelMath {
    * @param isampleTime the minimum time between velocity measurements
    */
   VelMath(double iticksPerRev,
-          std::shared_ptr<Filter> ifilter,
+          const std::shared_ptr<Filter> &ifilter,
           QTime isampleTime,
           std::unique_ptr<AbstractTimer> iloopDtTimer);
 

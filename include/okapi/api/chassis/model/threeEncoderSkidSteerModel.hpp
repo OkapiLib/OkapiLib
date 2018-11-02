@@ -36,11 +36,11 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
    * @param imiddleEnc middle encoder (mounted perpendicular to the left and right side encoders)
    * @param irightEnc right side encoder
    */
-  ThreeEncoderSkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                             std::shared_ptr<AbstractMotor> irightSideMotor,
-                             std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                             std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
-                             std::shared_ptr<ContinuousRotarySensor> irightEnc,
+  ThreeEncoderSkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
+                             const std::shared_ptr<AbstractMotor> &irightSideMotor,
+                             const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
+                             const std::shared_ptr<ContinuousRotarySensor> &imiddleEnc,
+                             const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
                              double imaxVelocity,
                              double imaxVoltage = 12000);
 

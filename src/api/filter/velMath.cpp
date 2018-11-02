@@ -17,7 +17,7 @@ VelMathArgs::VelMathArgs(const double iticksPerRev, const QTime isampleTime)
 }
 
 VelMathArgs::VelMathArgs(const double iticksPerRev,
-                         std::shared_ptr<Filter> ifilter,
+                         const std::shared_ptr<Filter> &ifilter,
                          const QTime isampleTime)
   : ticksPerRev(iticksPerRev), filter(ifilter), sampleTime(isampleTime) {
 }
@@ -29,7 +29,7 @@ VelMath::VelMath(const VelMathArgs &iparams, std::unique_ptr<AbstractTimer> iloo
 }
 
 VelMath::VelMath(const double iticksPerRev,
-                 std::shared_ptr<Filter> ifilter,
+                 const std::shared_ptr<Filter> &ifilter,
                  QTime isampleTime,
                  std::unique_ptr<AbstractTimer> iloopDtTimer)
   : logger(Logger::instance()),

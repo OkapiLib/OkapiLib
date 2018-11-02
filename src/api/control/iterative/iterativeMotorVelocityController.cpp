@@ -9,8 +9,8 @@
 
 namespace okapi {
 IterativeMotorVelocityController::IterativeMotorVelocityController(
-  std::shared_ptr<AbstractMotor> imotor,
-  std::shared_ptr<IterativeVelocityController<double, double>> icontroller)
+  const std::shared_ptr<AbstractMotor> &imotor,
+  const std::shared_ptr<IterativeVelocityController<double, double>> &icontroller)
   : motor(imotor), controller(icontroller) {
 }
 
