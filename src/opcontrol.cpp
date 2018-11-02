@@ -5,11 +5,11 @@
 #include "test/tests/impl/utilTests.hpp"
 
 void runHeadlessTests() {
-  using namespace okapi;
+    using namespace okapi;
 
-  runHeadlessUtilTests();
+    runHeadlessUtilTests();
 
-  test_print_report();
+    test_print_report();
 }
 
 /**
@@ -25,50 +25,41 @@ void runHeadlessTests() {
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
-using namespace okapi;
-auto drive = ChassisControllerFactory::create(-18,
-                                              19,
-                                              {},
-                                              {},
-                                              AbstractMotor::gearset::green,
-                                              {4.125_in, 10.5_in});
+// using namespace okapi;
+// auto drive = ChassisControllerFactory::create(-18,
+//                                               19,
+//                                               {},
+//                                               {},
+//                                               AbstractMotor::gearset::green,
+//                                               {4.125_in, 10.5_in});
 void opcontrol() {
-  using namespace okapi;
-  pros::Task::delay(100);
+    using namespace okapi;
+    pros::Task::delay(100);
 
-  //  Logger::initialize(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug);
-  //  auto logger = Logger::instance();
+    //  Logger::initialize(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug);
+    //  auto logger = Logger::instance();
+    okapi::ADIEncoder leftEnc (7,8);
+    okapi::ADIEncoder middleEnc (3,4);
+    pros::ADIEncoder rightEnc (1,2);
+    // auto drive = okapi::ChassisControllerFactory::createOdom(1,2,
+    //                                                   leftEnc,
+    //                                                   rightEnc,
+    //                                                   middleEnc,
+    //                                                   AbstractMotor::gearset::green,
+    //                                                   {4_in, 18_in},
+    //                                                   0_mm,
+    //                                                   0_deg);
+    pros::lcd::initialize();
+    while (true) {
+        // auto state = drive.getState();
+        // pros::lcd::print(1, "x: %1.2f, y: %1.2f, theta: %1.2f",
+        //        state.x.convert(inch),
+        //        state.y.convert(inch),
+        //        state.theta.convert(degree));
+        pros::lcd::print(2, "%f %f %f", leftEnc.get(), middleEnc.get(), rightEnc.get_value());
+        pros::delay(50);
+    }
 
-  auto drive = ChassisControllerFactory::createOdom(
-    -1, 2, AbstractMotor::gearset::red, {2.5_in, 10.5_in}, 0_mm);
-  drive.driveToPoint(4_in, 0_in);
 
-  auto state = drive.getState();
-  printf("x: %1.2f, y: %1.2f, theta: %1.2f\n",
-         state.x.convert(inch),
-         state.y.convert(inch),
-         state.theta.convert(degree));
-
-  drive.driveToPoint(4_in, 4_in);
-  state = drive.getState();
-  printf("x: %1.2f, y: %1.2f, theta: %1.2f\n",
-         state.x.convert(inch),
-         state.y.convert(inch),
-         state.theta.convert(degree));
-
-  drive.driveToPoint(0_in, 4_in);
-  state = drive.getState();
-  printf("x: %1.2f, y: %1.2f, theta: %1.2f\n",
-         state.x.convert(inch),
-         state.y.convert(inch),
-         state.theta.convert(degree));
-
-  drive.driveToPoint(0_in, 0_in);
-  state = drive.getState();
-  printf("x: %1.2f, y: %1.2f, theta: %1.2f\n",
-         state.x.convert(inch),
-         state.y.convert(inch),
-         state.theta.convert(degree));
-
-  pros::Task::delay(500);
+    pros::Task::delay(500);
 }
