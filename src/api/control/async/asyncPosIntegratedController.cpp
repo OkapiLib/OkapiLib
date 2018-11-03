@@ -103,4 +103,8 @@ void AsyncPosIntegratedController::controllerSet(double ivalue) {
 void AsyncPosIntegratedController::setMaxVelocity(const std::int32_t imaxVelocity) {
   maxVelocity = imaxVelocity;
 }
+
+std::int32_t AsyncPosIntegratedController::tarePosition() {
+  return motor->tarePosition();
+}
 } // namespace okapi
