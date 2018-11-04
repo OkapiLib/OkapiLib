@@ -72,7 +72,7 @@ bool AsyncPosIntegratedController::isDisabled() const {
 
 void AsyncPosIntegratedController::resumeMovement() {
   if (isDisabled()) {
-    motor->moveVelocity(0);
+    stop();
   } else {
     if (hasFirstTarget) {
       setTarget(lastTarget);
@@ -106,5 +106,9 @@ void AsyncPosIntegratedController::setMaxVelocity(const std::int32_t imaxVelocit
 
 std::int32_t AsyncPosIntegratedController::tarePosition() {
   return motor->tarePosition();
+}
+
+void AsyncPosIntegratedController::stop() {
+  motor->moveVelocity(0);
 }
 } // namespace okapi

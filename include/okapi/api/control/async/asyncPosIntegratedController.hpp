@@ -123,6 +123,11 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
    */
   virtual std::int32_t tarePosition();
 
+  /**
+   * Stops the motor mid-movement. Does not change the last set target.
+   */
+  virtual void stop();
+
   protected:
   Logger *logger;
   std::shared_ptr<AbstractMotor> motor;
