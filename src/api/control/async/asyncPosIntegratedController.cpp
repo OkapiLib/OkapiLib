@@ -104,6 +104,10 @@ void AsyncPosIntegratedController::setMaxVelocity(const std::int32_t imaxVelocit
   maxVelocity = imaxVelocity;
 }
 
+std::int32_t AsyncPosIntegratedController::tarePosition() {
+  return motor->tarePosition();
+}
+
 void AsyncPosIntegratedController::stop() {
   motor->moveVelocity(0);
 }
