@@ -52,8 +52,8 @@ class AsyncVelIntegratedController : public AsyncVelocityController<double, doub
   bool isSettled() override;
 
   /**
-   * Resets the controller so it can start from 0 again properly. Keeps configuration from
-   * before.
+   * Resets the controller's internal state so it is similar to when it was first initialized, while
+   * keeping any user-configured information.
    */
   void reset() override;
 
