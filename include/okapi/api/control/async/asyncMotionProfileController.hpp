@@ -130,9 +130,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
-   * before.
-   *
-   * This implementation does nothing.
+   * before. This implementation also stops movement.
    */
   void reset() override;
 

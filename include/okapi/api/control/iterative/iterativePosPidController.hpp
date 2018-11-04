@@ -169,8 +169,8 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   virtual void setErrorSumLimits(double imax, double imin);
 
   /**
-   * Resets the controller so it can start from 0 again properly. Keeps gains and limits from
-   * before.
+   * Resets the controller's internal state so it is similar to when it was first initialized, while
+   * keeping any user-configured information.
    */
   void reset() override;
 
