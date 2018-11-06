@@ -11,8 +11,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_QAREA_HPP_
-#define _OKAPI_QAREA_HPP_
+#pragma once
 
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/units/RQuantity.hpp"
@@ -29,5 +28,3 @@ constexpr QArea inch2 = inch * inch;
 constexpr QArea foot2 = foot * foot;
 constexpr QArea mile2 = mile * mile;
 } // namespace okapi
-
-#endif

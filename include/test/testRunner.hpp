@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_TESTRUNNER_HPP_
-#define _OKAPI_TESTRUNNER_HPP_
+#pragma once
 
 #include "api.h"
 #include "test/FakeIt/single_header/standalone/fakeit.hpp"
@@ -48,5 +47,3 @@ void test(const std::string &iname, std::function<void()> ifunc);
  */
 void test_print_report();
 } // namespace okapi
-
-#endif

@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_MATHUTIL_HPP_
-#define _OKAPI_MATHUTIL_HPP_
+#pragma once
 
 #include <algorithm>
 #include <cstdint>
@@ -112,5 +111,3 @@ constexpr auto boolToSign(const bool b) noexcept {
   return b ? 1 : -1;
 }
 } // namespace okapi
-
-#endif

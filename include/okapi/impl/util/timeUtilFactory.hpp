@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_TIMEUTILFACTORY_HPP_
-#define _OKAPI_TIMEUTILFACTORY_HPP_
+#pragma once
 
 #include "okapi/api/util/timeUtil.hpp"
 
@@ -26,5 +25,3 @@ class TimeUtilFactory {
                                         QTime iatTargetTime = 250_ms);
 };
 } // namespace okapi
-
-#endif

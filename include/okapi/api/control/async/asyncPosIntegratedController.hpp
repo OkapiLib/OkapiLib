@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ASYNCPOSINTEGRATEDCONTROLLER_HPP_
-#define _OKAPI_ASYNCPOSINTEGRATEDCONTROLLER_HPP_
+#pragma once
 
 #include "okapi/api/control/async/asyncPositionController.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
@@ -145,5 +144,3 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
   virtual void resumeMovement();
 };
 } // namespace okapi
-
-#endif
