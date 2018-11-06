@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_CHASSISMODELFACTORY_HPP_
-#define _OKAPI_CHASSISMODELFACTORY_HPP_
+#pragma once
 
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
@@ -142,5 +141,3 @@ class ChassisModelFactory {
                                            double imaxVoltage = 12000);
 };
 } // namespace okapi
-
-#endif

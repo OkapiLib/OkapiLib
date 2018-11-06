@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ASYNCMOTIONPROFILECONTROLLER_HPP_
-#define _OKAPI_ASYNCMOTIONPROFILECONTROLLER_HPP_
+#pragma once
 
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
@@ -201,5 +200,3 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   QAngularSpeed convertLinearToRotational(QSpeed linear) const;
 };
 } // namespace okapi
-
-#endif

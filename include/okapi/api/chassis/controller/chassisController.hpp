@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_CHASSISCONTROLLER_HPP_
-#define _OKAPI_CHASSISCONTROLLER_HPP_
+#pragma once
 
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/chassis/model/chassisModel.hpp"
@@ -292,5 +291,3 @@ class ChassisController : public ChassisModel {
   bool normalTurns{true};
 };
 } // namespace okapi
-
-#endif
