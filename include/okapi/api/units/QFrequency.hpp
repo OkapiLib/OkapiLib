@@ -11,8 +11,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_QFREQUENCY_HPP_
-#define _OKAPI_QFREQUENCY_HPP_
+#pragma once
 
 #include "okapi/api/units/RQuantity.hpp"
 
@@ -30,5 +29,3 @@ constexpr QFrequency operator"" _Hz(unsigned long long int x) {
 }
 } // namespace literals
 } // namespace okapi
-
-#endif

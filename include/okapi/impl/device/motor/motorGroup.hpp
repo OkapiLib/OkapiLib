@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_MOTORGROUP_HPP_
-#define _OKAPI_MOTORGROUP_HPP_
+#pragma once
 
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
@@ -547,5 +546,3 @@ class MotorGroup : public AbstractMotor {
   std::vector<Motor> motors;
 };
 } // namespace okapi
-
-#endif

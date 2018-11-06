@@ -153,7 +153,8 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   anglePid->flipDisable(true);
   mode = angle;
 
-  const double newTarget = idegTarget.convert(degree) * scales.turn * gearsetRatioPair.ratio;
+  const double newTarget =
+    idegTarget.convert(degree) * scales.turn * gearsetRatioPair.ratio * boolToSign(normalTurns);
 
   logger->info("ChassisControllerPID: turning " + std::to_string(newTarget) + " motor degrees");
 

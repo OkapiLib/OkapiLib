@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_EKFFILTER_HPP_
-#define _OKAPI_EKFFILTER_HPP_
+#pragma once
 
 #include "okapi/api/filter/filter.hpp"
 #include "okapi/api/util/mathUtil.hpp"
@@ -72,5 +71,3 @@ class EKFFilter : public Filter {
   double K = 0;
 };
 } // namespace okapi
-
-#endif

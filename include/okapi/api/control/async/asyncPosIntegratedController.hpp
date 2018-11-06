@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ASYNCPOSINTEGRATEDCONTROLLER_HPP_
-#define _OKAPI_ASYNCPOSINTEGRATEDCONTROLLER_HPP_
+#pragma once
 
 #include "okapi/api/control/async/asyncPositionController.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
@@ -69,8 +68,8 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
   bool isSettled() override;
 
   /**
-   * Resets the controller so it can start from 0 again properly. Keeps configuration from
-   * before.
+   * Resets the controller's internal state so it is similar to when it was first initialized, while
+   * keeping any user-configured information.
    */
   void reset() override;
 
@@ -116,6 +115,18 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
    */
   virtual void setMaxVelocity(std::int32_t imaxVelocity);
 
+  /**
+   * Sets the "absolute" zero position of the motor to its current position.
+   *
+   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   */
+  virtual std::int32_t tarePosition();
+
+  /**
+   * Stops the motor mid-movement. Does not change the last set target.
+   */
+  virtual void stop();
+
   protected:
   Logger *logger;
   std::shared_ptr<AbstractMotor> motor;
@@ -133,5 +144,3 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
   virtual void resumeMovement();
 };
 } // namespace okapi
-
-#endif

@@ -11,8 +11,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_QJERK_HPP_
-#define _OKAPI_QJERK_HPP_
+#pragma once
 
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/units/QTime.hpp"
@@ -21,5 +20,3 @@
 namespace okapi {
 QUANTITY_TYPE(0, 1, -3, 0, QJerk)
 }
-
-#endif

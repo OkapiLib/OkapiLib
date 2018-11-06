@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ASYNCVELPIDCONTROLLER_HPP_
-#define _OKAPI_ASYNCVELPIDCONTROLLER_HPP_
+#pragma once
 
 #include "okapi/api/control/async/asyncVelocityController.hpp"
 #include "okapi/api/control/async/asyncWrapper.hpp"
@@ -32,5 +31,3 @@ class AsyncVelPIDController : public AsyncWrapper<double, double>,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 };
 } // namespace okapi
-
-#endif

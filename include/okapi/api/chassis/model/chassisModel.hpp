@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_CHASSISMODEL_HPP_
-#define _OKAPI_CHASSISMODEL_HPP_
+#pragma once
 
 #include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
@@ -196,5 +195,3 @@ class ChassisModel : public ReadOnlyChassisModel {
   double maxVoltage;
 };
 } // namespace okapi
-
-#endif

@@ -14,12 +14,10 @@
 #include "okapi/api/filter/passthroughFilter.hpp"
 #include "okapi/api/filter/velMath.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
-#include "test/crossPlatformTestRunner.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 
 using namespace okapi;
-using namespace snowhouse;
 
 void assertThatFilterAndFilterOutputAreEqual(Filter &filter, double input, double value) {
   EXPECT_NEAR(filter.filter(input), value, 0.0001);

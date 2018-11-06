@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ASYNCWRAPPER_HPP_
-#define _OKAPI_ASYNCWRAPPER_HPP_
+#pragma once
 
 #include "okapi/api/control/async/asyncController.hpp"
 #include "okapi/api/control/controllerInput.hpp"
@@ -156,8 +155,8 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   /**
-   * Resets the controller so it can start from 0 again properly. Keeps configuration from
-   * before.
+   * Resets the controller's internal state so it is similar to when it was first initialized, while
+   * keeping any user-configured information.
    */
   void reset() override {
     logger->info("AsyncWrapper: Reset");
@@ -264,5 +263,3 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 };
 } // namespace okapi
-
-#endif

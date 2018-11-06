@@ -6,11 +6,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/util/flywheelSimulator.hpp"
-#include "test/crossPlatformTestRunner.hpp"
 #include <gtest/gtest.h>
 
 using namespace okapi;
-using namespace snowhouse;
 
 TEST(FlywheelSimulatorTest, BasicTest) {
   FlywheelSimulator sim;

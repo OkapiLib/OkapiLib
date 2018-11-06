@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_BUTTON_HPP_
-#define _OKAPI_BUTTON_HPP_
+#pragma once
 
 namespace okapi {
 class AbstractButton {
@@ -37,5 +36,3 @@ class AbstractButton {
   virtual bool changedToReleased() = 0;
 };
 } // namespace okapi
-
-#endif

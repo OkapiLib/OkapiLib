@@ -6,8 +6,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_PIDTUNER_HPP_
-#define _OKAPI_PIDTUNER_HPP_
+#pragma once
 
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
@@ -82,5 +81,3 @@ class PIDTuner {
   const double kITAE;
 };
 } // namespace okapi
-
-#endif

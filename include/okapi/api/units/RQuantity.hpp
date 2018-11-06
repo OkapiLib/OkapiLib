@@ -11,8 +11,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_RQUANTITY_HPP_
-#define _OKAPI_RQUANTITY_HPP_
+#pragma once
 
 #include <ratio>
 
@@ -178,5 +177,3 @@ constexpr long double operator"" _pi(unsigned long long int x) {
 
 // Conversion macro, which utilizes the string literals
 #define ConvertTo(_x, _y) (_x).convert(1.0_##_y)
-
-#endif

@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_FILTEREDCONTROLLERINPUT_HPP_
-#define _OKAPI_FILTEREDCONTROLLERINPUT_HPP_
+#pragma once
 
 #include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/filter/filter.hpp"
@@ -49,5 +48,3 @@ class FilteredControllerInput : public ControllerInput<double> {
   std::unique_ptr<FilterType> filter;
 };
 } // namespace okapi
-
-#endif
