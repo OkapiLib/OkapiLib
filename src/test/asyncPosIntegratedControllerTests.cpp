@@ -75,6 +75,13 @@ void testStop() {
   test("The motor position after stopping should be roughly equal to the position when stop was "
        "called",
        TEST_BODY(AssertThat, std::fabs(m->getPosition() - currentPos), EqualsWithDelta(0, 50)));
+
+  // Try moving to the target again
+  c.setTarget(moveAmt);
+  c.waitUntilSettled();
+
+  test("Moving to the target after being interrupted should work",
+       TEST_BODY(AssertThat, m->getPosition(), EqualsWithDelta(moveAmt, 50)));
 }
 
 void runAsyncPosIntegratedControllerTests() {
