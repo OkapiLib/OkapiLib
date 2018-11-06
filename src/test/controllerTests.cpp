@@ -19,6 +19,7 @@ void testBtnOperatorOverloadReturnsTheSameInstance() {
   auto btnAddr1 = &c[ControllerDigital::X];
   auto btnAddr2 = &c[ControllerDigital::X];
 
+  test("First button is not null", TEST_BODY(AssertThat, btnAddr1, Is().Not().Null()));
   test("Two calls should give the same address",
        TEST_BODY(AssertThat, btnAddr1 == btnAddr2, IsTrue()));
 }

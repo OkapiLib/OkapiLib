@@ -7,7 +7,9 @@
  */
 #include "test/tests/impl/allImplTests.hpp"
 #include "test/tests/impl/utilTests.hpp"
+#include "test/tests/impl/controllerTests.hpp"
 
 void runAllImplTests() {
   runUtilTests();
+  runControllerTests();
 }
