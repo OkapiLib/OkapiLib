@@ -5,12 +5,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_CONTROLLER_HPP_
-#define _OKAPI_CONTROLLER_HPP_
+#pragma once
 
 #include "api.h"
 #include "okapi/impl/device/button/controllerButton.hpp"
 #include "okapi/impl/device/controllerUtil.hpp"
+#include <array>
 
 namespace okapi {
 class Controller {
@@ -60,7 +60,7 @@ class Controller {
    * @param ibtn the button
    * @return a ControllerButton on this controller
    */
-  virtual ControllerButton operator[](ControllerDigital ibtn);
+  virtual ControllerButton &operator[](ControllerDigital ibtn);
 
   /**
    * Sets text to the controller LCD screen.
@@ -122,9 +122,8 @@ class Controller {
   virtual std::int32_t getBatteryLevel();
 
   protected:
-  const ControllerId m_id;
+  ControllerId m_id;
   pros::Controller controller;
+  static std::array<ControllerButton *, 12> buttonArray;
 };
 } // namespace okapi
-
-#endif

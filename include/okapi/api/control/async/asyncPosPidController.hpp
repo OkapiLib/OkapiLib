@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ASYNCPOSPIDCONTROLLER_HPP_
-#define _OKAPI_ASYNCPOSPIDCONTROLLER_HPP_
+#pragma once
 
 #include "okapi/api/control/async/asyncPositionController.hpp"
 #include "okapi/api/control/async/asyncWrapper.hpp"
@@ -21,8 +20,8 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
                               public AsyncPositionController<double, double> {
   public:
   AsyncPosPIDController(
-    std::shared_ptr<ControllerInput<double>> iinput,
-    std::shared_ptr<ControllerOutput<double>> ioutput,
+    const std::shared_ptr<ControllerInput<double>> &iinput,
+    const std::shared_ptr<ControllerOutput<double>> &ioutput,
     const TimeUtil &itimeUtil,
     double ikP,
     double ikI,
@@ -31,5 +30,3 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 };
 } // namespace okapi
-
-#endif

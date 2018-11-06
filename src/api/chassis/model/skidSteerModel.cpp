@@ -10,10 +10,10 @@
 #include <utility>
 
 namespace okapi {
-SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                               std::shared_ptr<AbstractMotor> irightSideMotor,
-                               std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                               std::shared_ptr<ContinuousRotarySensor> irightEnc,
+SkidSteerModel::SkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
+                               const std::shared_ptr<AbstractMotor> &irightSideMotor,
+                               const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
+                               const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
                                const double imaxVelocity,
                                const double imaxVoltage)
   : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage),
@@ -23,8 +23,8 @@ SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
     rightSensor(irightEnc) {
 }
 
-SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                               std::shared_ptr<AbstractMotor> irightSideMotor,
+SkidSteerModel::SkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
+                               const std::shared_ptr<AbstractMotor> &irightSideMotor,
                                const double imaxVelocity,
                                const double imaxVoltage)
   : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage),

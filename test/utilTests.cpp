@@ -6,11 +6,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/util/mathUtil.hpp"
-#include "test/crossPlatformTestRunner.hpp"
 #include <gtest/gtest.h>
 
 using namespace okapi;
-using namespace snowhouse;
 
 TEST(IpowTest, IntegerTests) {
   EXPECT_EQ(ipow(0, 0), 1);

@@ -9,13 +9,17 @@
 #include <cmath>
 
 namespace okapi {
-ChassisController::ChassisController(std::shared_ptr<ChassisModel> imodel,
+ChassisController::ChassisController(const std::shared_ptr<ChassisModel> &imodel,
                                      const double imaxVelocity,
                                      const double imaxVoltage)
   : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage), model(imodel) {
 }
 
 ChassisController::~ChassisController() = default;
+
+void ChassisController::setTurnsMirrored(const bool ishouldMirror) {
+  normalTurns = !ishouldMirror;
+}
 
 void ChassisController::forward(const double ispeed) const {
   model->forward(ispeed);

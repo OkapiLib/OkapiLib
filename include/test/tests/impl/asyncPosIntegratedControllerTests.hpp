@@ -5,10 +5,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_CROSSPLATFORMTESTRUNNER_HPP_
-#define _OKAPI_CROSSPLATFORMTESTRUNNER_HPP_
+#pragma once
 
-#include "test/FakeIt/single_header/standalone/fakeit.hpp"
-#include "test/snowhouse/snowhouse.h"
-
-#endif
+void runAsyncPosIntegratedControllerTests();

@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_CLOSEDLOOPCONTROLLER_HPP_
-#define _OKAPI_CLOSEDLOOPCONTROLLER_HPP_
+#pragma once
 
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/units/QTime.hpp"
@@ -55,8 +54,8 @@ class ClosedLoopController : public ControllerOutput<Input> {
   virtual bool isSettled() = 0;
 
   /**
-   * Resets the controller so it can start from 0 again properly. Keeps configuration from
-   * before.
+   * Resets the controller's internal state so it is similar to when it was first initialized, while
+   * keeping any user-configured information.
    */
   virtual void reset() = 0;
 
@@ -82,5 +81,3 @@ class ClosedLoopController : public ControllerOutput<Input> {
   virtual bool isDisabled() const = 0;
 };
 } // namespace okapi
-
-#endif

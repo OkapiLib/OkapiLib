@@ -10,13 +10,14 @@
 #include <numeric>
 
 namespace okapi {
-AsyncMotionProfileController::AsyncMotionProfileController(const TimeUtil &itimeUtil,
-                                                           const double imaxVel,
-                                                           const double imaxAccel,
-                                                           const double imaxJerk,
-                                                           std::shared_ptr<ChassisModel> imodel,
-                                                           const ChassisScales &iscales,
-                                                           AbstractMotor::GearsetRatioPair ipair)
+AsyncMotionProfileController::AsyncMotionProfileController(
+  const TimeUtil &itimeUtil,
+  const double imaxVel,
+  const double imaxAccel,
+  const double imaxJerk,
+  const std::shared_ptr<ChassisModel> &imodel,
+  const ChassisScales &iscales,
+  AbstractMotor::GearsetRatioPair ipair)
   : logger(Logger::instance()),
     maxVel(imaxVel),
     maxAccel(imaxAccel),

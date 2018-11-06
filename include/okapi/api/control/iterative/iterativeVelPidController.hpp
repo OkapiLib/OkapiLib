@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ITERATIVEVELPIDCONTROLLER_HPP_
-#define _OKAPI_ITERATIVEVELPIDCONTROLLER_HPP_
+#pragma once
 
 #include "okapi/api/control/iterative/iterativeVelocityController.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
@@ -118,8 +117,8 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
   void setOutputLimits(double imax, double imin) override;
 
   /**
-   * Resets the controller so it can start from 0 again properly. Keeps configuration from
-   * before.
+   * Resets the controller's internal state so it is similar to when it was first initialized, while
+   * keeping any user-configured information.
    */
   void reset() override;
 
@@ -200,5 +199,3 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
   std::unique_ptr<SettledUtil> settledUtil;
 };
 } // namespace okapi
-
-#endif

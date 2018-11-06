@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_COMPOSABLEFILTER_HPP_
-#define _OKAPI_COMPOSABLEFILTER_HPP_
+#pragma once
 
 #include "okapi/api/filter/filter.hpp"
 #include <functional>
@@ -53,12 +52,10 @@ class ComposableFilter : public Filter {
    *
    * @param ifilter the filter to add
    */
-  virtual void addFilter(std::shared_ptr<Filter> ifilter);
+  virtual void addFilter(const std::shared_ptr<Filter> &ifilter);
 
   protected:
   std::vector<std::shared_ptr<Filter>> filters;
   double output = 0;
 };
 } // namespace okapi
-
-#endif

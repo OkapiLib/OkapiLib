@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_INTEGRATEDENCODER_HPP_
-#define _OKAPI_INTEGRATEDENCODER_HPP_
+#pragma once
 
 #include "api.h"
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
@@ -47,5 +46,3 @@ class IntegratedEncoder : public ContinuousRotarySensor {
   pros::Motor motor;
 };
 } // namespace okapi
-
-#endif
