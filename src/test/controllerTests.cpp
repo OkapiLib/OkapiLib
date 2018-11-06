@@ -13,7 +13,7 @@ using namespace snowhouse;
 using namespace okapi;
 
 void testBtnOperatorOverloadReturnsTheSameInstance() {
-  test_printf("Testing Controller operator[] overload returns the same ControllerButton instance");
+  printf("Testing Controller operator[] overload returns the same ControllerButton instance\n");
 
   Controller c;
   auto btnAddr1 = &c[ControllerDigital::X];
@@ -25,5 +25,6 @@ void testBtnOperatorOverloadReturnsTheSameInstance() {
 }
 
 void runControllerTests() {
+  test_printf("Testing Controller");
   testBtnOperatorOverloadReturnsTheSameInstance();
 }

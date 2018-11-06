@@ -25,6 +25,9 @@
 #define TEST_BODY(FUNCTION, ...) [&]() { FUNCTION(__VA_ARGS__); }
 
 namespace okapi {
+static const int MOTOR_1_PORT = 18;
+static const int MOTOR_2_PORT = 19;
+
 /**
  * Print the input string with an underline made from hypens ("-").
  *
