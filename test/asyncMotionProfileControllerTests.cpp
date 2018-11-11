@@ -76,6 +76,7 @@ TEST_F(AsyncMotionProfileControllerTest, MotorsAreStoppedAfterSettling) {
   EXPECT_GT(leftMotor->maxVelocity, 0);
   EXPECT_GT(rightMotor->maxVelocity, 0);
 }
+
 TEST_F(AsyncMotionProfileControllerTest, WrongPathNameDoesNotMoveAnything) {
   controller->setTarget("A");
   controller->waitUntilSettled();
@@ -188,4 +189,24 @@ TEST_F(AsyncMotionProfileControllerTest, DisabledStopsMotors) {
 TEST_F(AsyncMotionProfileControllerTest, SpeedConversionTest) {
   // 4 inch wheels, 2 wheel rotations per 1 motor rotation
   EXPECT_NEAR(controller->convertLinearToRotational(1_mps).convert(rpm), 93.989, 0.001);
+}
+
+TEST_F(AsyncMotionProfileControllerTest, FollowPathBackwards) {
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 0_deg}}, "A");
+  controller->setTarget("A", true);
+
+  auto rate = createTimeUtil().getRate();
+  while (!controller->executeSinglePathCalled) {
+    rate->delayUntil(1_ms);
+  }
+
+  // Wait a little longer so we get into the path
+  rate->delayUntil(200_ms);
+
+  EXPECT_LT(leftMotor->lastVelocity, 0);
+  EXPECT_LT(rightMotor->lastVelocity, 0);
+
+  // Disable the controller so gtest doesn't clean up the test fixture while the internal thread is
+  // still running
+  controller->flipDisable(true);
 }

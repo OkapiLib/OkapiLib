@@ -198,8 +198,13 @@ std::vector<std::string> AsyncMotionProfileController::getPaths() {
 }
 
 void AsyncMotionProfileController::setTarget(std::string ipathId) {
+  setTarget(ipathId, false);
+}
+
+void AsyncMotionProfileController::setTarget(std::string ipathId, const bool ibackwards) {
   currentPath = ipathId;
-  isRunning = true;
+  isRunning.store(true, std::memory_order_release);
+  direction.store(boolToSign(!ibackwards), std::memory_order_release);
 }
 
 void AsyncMotionProfileController::controllerSet(std::string ivalue) {
@@ -241,12 +246,14 @@ void AsyncMotionProfileController::loop() {
 
 void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
                                                      std::unique_ptr<AbstractRate> rate) {
+  const auto reversed = direction.load(std::memory_order_acquire);
+
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
     const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
     const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
 
-    model->left(leftRPM / toUnderlyingType(pair.internalGearset));
-    model->right(rightRPM / toUnderlyingType(pair.internalGearset));
+    model->left(leftRPM / toUnderlyingType(pair.internalGearset) * reversed);
+    model->right(rightRPM / toUnderlyingType(pair.internalGearset) * reversed);
 
     rate->delayUntil(1_ms);
   }

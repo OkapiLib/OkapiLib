@@ -90,6 +90,15 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   void setTarget(std::string ipathId) override;
 
   /**
+   * Executes a path with the given ID. If there is no path matching the ID, the method will
+   * return. Any targets set while a path is being followed will be ignored.
+   *
+   * @param ipathId A unique identifier for the path, previously passed to generatePath().
+   * @param ibackwards Whether to follow the profile backwards.
+   */
+  void setTarget(std::string ipathId, bool ibackwards);
+
+  /**
    * Writes the value of the controller output. This method might be automatically called in another
    * thread by the controller. This just calls setTarget().
    */
@@ -179,6 +188,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
 
   std::string currentPath{""};
   std::atomic_bool isRunning{false};
+  std::atomic_int direction{1};
   std::atomic_bool disabled{false};
   std::atomic_bool dtorCalled{false};
   CrossplatformThread *task{nullptr};
