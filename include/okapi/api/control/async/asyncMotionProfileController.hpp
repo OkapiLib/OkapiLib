@@ -109,6 +109,14 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   void waitUntilSettled() override;
 
   /**
+   * Generates a new path from the position (typically the current position) to the target and
+   * blocks until the controller has settled. Does not save the path which was generated.
+   *
+   * @param iwaypoints The waypoints to hit on the path.
+   */
+  void moveTo(std::initializer_list<Point> iwaypoints);
+
+  /**
    * Returns the last error of the controller. This implementation always returns zero since the
    * robot is assumed to perfectly follow the path. Subclasses can override this to be more
    * accurate using odometry information.
