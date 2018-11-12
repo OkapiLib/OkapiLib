@@ -118,7 +118,7 @@ constexpr auto boolToSign(const bool b) noexcept {
  * @param rhs the right-hand side
  * @return lhs mod rhs
  */
-constexpr long modulus(const long lhs, const long rhs) {
+constexpr long modulus(const long lhs, const long rhs) noexcept {
   return ((lhs % rhs) + rhs) % rhs;
 }
 } // namespace okapi
