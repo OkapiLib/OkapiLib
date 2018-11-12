@@ -18,6 +18,7 @@
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
+#include "okapi/impl/device/rotarysensor/adiGyro.hpp"
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/potentiometer.hpp"
 #include "okapi/impl/util/timeUtilFactory.hpp"
@@ -148,9 +149,11 @@ class AsyncControllerFactory {
   okapi_makePosPID(Motor);
   okapi_makePosPID(MotorGroup);
   okapi_makePosPIDWithSensor(Motor, ADIEncoder);
+  okapi_makePosPIDWithSensor(Motor, ADIGyro);
   okapi_makePosPIDWithSensor(Motor, Potentiometer);
   okapi_makePosPIDWithSensor(Motor, IntegratedEncoder);
   okapi_makePosPIDWithSensor(MotorGroup, ADIEncoder);
+  okapi_makePosPIDWithSensor(MotorGroup, ADIGyro);
   okapi_makePosPIDWithSensor(MotorGroup, Potentiometer);
   okapi_makePosPIDWithSensor(MotorGroup, IntegratedEncoder);
 
@@ -177,9 +180,11 @@ class AsyncControllerFactory {
   okapi_makeVelPID(Motor);
   okapi_makeVelPID(MotorGroup);
   okapi_makeVelPIDWithSensor(Motor, ADIEncoder);
+  okapi_makeVelPIDWithSensor(Motor, ADIGyro);
   okapi_makeVelPIDWithSensor(Motor, Potentiometer);
   okapi_makeVelPIDWithSensor(Motor, IntegratedEncoder);
   okapi_makeVelPIDWithSensor(MotorGroup, ADIEncoder);
+  okapi_makeVelPIDWithSensor(MotorGroup, ADIGyro);
   okapi_makeVelPIDWithSensor(MotorGroup, Potentiometer);
   okapi_makeVelPIDWithSensor(MotorGroup, IntegratedEncoder);
 
