@@ -36,11 +36,11 @@ class ADIGyro : public ContinuousRotarySensor {
   /**
    * Get the current sensor value remapped into the target range ([1800, -1800] by default).
    *
-   * @param upperBound the upper bound of the range.
-   * @param lowerBound the lower bound of the range.
+   * @param iupperBound the upper bound of the range.
+   * @param ilowerBound the lower bound of the range.
    * @return the remapped sensor value.
    */
-  double getRemapped(double upperBound = 1800, double lowerBound = -1800) const
+  double getRemapped(double iupperBound = 1800, double ilowerBound = -1800) const
     __attribute__((optimize(3)));
 
   /**
