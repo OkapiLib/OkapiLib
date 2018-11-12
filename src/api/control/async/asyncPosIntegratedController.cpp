@@ -9,14 +9,16 @@
 #include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
-AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
-                                                           const TimeUtil &itimeUtil)
+AsyncPosIntegratedController::AsyncPosIntegratedController(
+  const std::shared_ptr<AbstractMotor> &imotor,
+  const TimeUtil &itimeUtil)
   : AsyncPosIntegratedController(imotor, toUnderlyingType(imotor->getGearing()), itimeUtil) {
 }
 
-AsyncPosIntegratedController::AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
-                                                           const std::int32_t imaxVelocity,
-                                                           const TimeUtil &itimeUtil)
+AsyncPosIntegratedController::AsyncPosIntegratedController(
+  const std::shared_ptr<AbstractMotor> &imotor,
+  const std::int32_t imaxVelocity,
+  const TimeUtil &itimeUtil)
   : logger(Logger::instance()),
     motor(imotor),
     maxVelocity(imaxVelocity),
@@ -70,7 +72,7 @@ bool AsyncPosIntegratedController::isDisabled() const {
 
 void AsyncPosIntegratedController::resumeMovement() {
   if (isDisabled()) {
-    motor->moveVelocity(0);
+    stop();
   } else {
     if (hasFirstTarget) {
       setTarget(lastTarget);
@@ -100,5 +102,13 @@ void AsyncPosIntegratedController::controllerSet(double ivalue) {
 
 void AsyncPosIntegratedController::setMaxVelocity(const std::int32_t imaxVelocity) {
   maxVelocity = imaxVelocity;
+}
+
+std::int32_t AsyncPosIntegratedController::tarePosition() {
+  return motor->tarePosition();
+}
+
+void AsyncPosIntegratedController::stop() {
+  motor->moveVelocity(0);
 }
 } // namespace okapi

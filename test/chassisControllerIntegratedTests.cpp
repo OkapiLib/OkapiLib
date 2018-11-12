@@ -173,6 +173,14 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleAsyncUnitsTest) {
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
+TEST_F(ChassisControllerIntegratedTest, MirrorTurnTest) {
+  controller->setTurnsMirrored(true);
+  controller->turnAngle(45_deg);
+
+  EXPECT_DOUBLE_EQ(leftController->getTarget(), -90);
+  EXPECT_DOUBLE_EQ(rightController->getTarget(), 90);
+}
+
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceThenTurnAngleAsyncTest) {
   controller->moveDistanceAsync(100);
 

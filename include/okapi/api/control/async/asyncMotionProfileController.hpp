@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ASYNCMOTIONPROFILECONTROLLER_HPP_
-#define _OKAPI_ASYNCMOTIONPROFILECONTROLLER_HPP_
+#pragma once
 
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
@@ -47,7 +46,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
                                double imaxVel,
                                double imaxAccel,
                                double imaxJerk,
-                               std::shared_ptr<ChassisModel> imodel,
+                               const std::shared_ptr<ChassisModel> &imodel,
                                const ChassisScales &iscales,
                                AbstractMotor::GearsetRatioPair ipair);
 
@@ -130,9 +129,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
-   * before.
-   *
-   * This implementation does nothing.
+   * before. This implementation also stops movement.
    */
   void reset() override;
 
@@ -203,5 +200,3 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   QAngularSpeed convertLinearToRotational(QSpeed linear) const;
 };
 } // namespace okapi
-
-#endif

@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_MATHUTIL_HPP_
-#define _OKAPI_MATHUTIL_HPP_
+#pragma once
 
 #include <algorithm>
 #include <cstdint>
@@ -101,8 +100,15 @@ constexpr double remapRange(const double value,
 /**
  * Converts an enum to its value type.
  */
-template <typename E> constexpr auto toUnderlyingType(E e) noexcept {
+template <typename E> constexpr auto toUnderlyingType(const E e) noexcept {
   return static_cast<std::underlying_type_t<E>>(e);
+}
+
+/**
+ * Converts a bool to a sign. True corresponds to 1 and false corresponds to -1.
+ */
+constexpr auto boolToSign(const bool b) noexcept {
+  return b ? 1 : -1;
 }
 
 /**
@@ -116,5 +122,3 @@ constexpr long modulus(const long lhs, const long rhs) {
   return ((lhs % rhs) + rhs) % rhs;
 }
 } // namespace okapi
-
-#endif

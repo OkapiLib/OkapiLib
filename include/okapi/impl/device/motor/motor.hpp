@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_MOTOR_HPP_
-#define _OKAPI_MOTOR_HPP_
+#pragma once
 
 #include "api.h"
 #include "okapi/api/device/motor/abstractMotor.hpp"
@@ -555,5 +554,3 @@ okapi::Motor operator"" _mtr(unsigned long long iport);
 okapi::Motor operator"" _rmtr(unsigned long long iport);
 } // namespace literals
 } // namespace okapi
-
-#endif

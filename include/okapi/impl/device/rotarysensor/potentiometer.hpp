@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_POTENTIOMETER_HPP_
-#define _OKAPI_POTENTIOMETER_HPP_
+#pragma once
 
 #include "api.h"
 #include "okapi/api/device/rotarysensor/rotarySensor.hpp"
@@ -37,5 +36,3 @@ class Potentiometer : public RotarySensor {
   pros::ADIPotentiometer pot;
 };
 } // namespace okapi
-
-#endif

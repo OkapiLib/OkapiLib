@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_CONTROLLEROUTPUT_HPP_
-#define _OKAPI_CONTROLLEROUTPUT_HPP_
+#pragma once
 
 namespace okapi {
 template <typename T> class ControllerOutput {
@@ -20,5 +19,3 @@ template <typename T> class ControllerOutput {
   virtual void controllerSet(T ivalue) = 0;
 };
 } // namespace okapi
-
-#endif

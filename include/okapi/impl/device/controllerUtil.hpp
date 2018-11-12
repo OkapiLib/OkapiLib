@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_CONTROLLERUTIL_HPP_
-#define _OKAPI_CONTROLLERUTIL_HPP_
+#pragma once
 
 #include "api.h"
 
@@ -57,5 +56,3 @@ class ControllerUtil {
   static pros::controller_digital_e_t digitalToProsEnum(ControllerDigital in);
 };
 } // namespace okapi
-
-#endif

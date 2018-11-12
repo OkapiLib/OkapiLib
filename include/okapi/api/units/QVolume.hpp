@@ -11,8 +11,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_QVOLUME_HPP_
-#define _OKAPI_QVOLUME_HPP_
+#pragma once
 
 #include "okapi/api/units/QArea.hpp"
 #include "okapi/api/units/QLength.hpp"
@@ -31,5 +30,3 @@ constexpr QVolume foot3 = foot2 * foot;
 constexpr QVolume mile3 = mile2 * mile;
 constexpr QVolume litre = decimeter3;
 } // namespace okapi
-
-#endif

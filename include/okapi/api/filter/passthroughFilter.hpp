@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_PASSTHROUGHFILTER_HPP_
-#define _OKAPI_PASSTHROUGHFILTER_HPP_
+#pragma once
 
 #include "okapi/api/filter/filter.hpp"
 
@@ -37,5 +36,3 @@ class PassthroughFilter : public Filter {
   double lastOutput = 0;
 };
 } // namespace okapi
-
-#endif

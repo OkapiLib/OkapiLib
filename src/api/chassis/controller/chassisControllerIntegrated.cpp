@@ -11,7 +11,7 @@
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   const TimeUtil &itimeUtil,
-  std::shared_ptr<ChassisModel> imodel,
+  const std::shared_ptr<ChassisModel> &imodel,
   std::unique_ptr<AsyncPosIntegratedController> ileftController,
   std::unique_ptr<AsyncPosIntegratedController> irightController,
   AbstractMotor::GearsetRatioPair igearset,
@@ -88,7 +88,8 @@ void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
   leftController->flipDisable(false);
   rightController->flipDisable(false);
 
-  const double newTarget = idegTarget.convert(degree) * scales.turn * gearsetRatioPair.ratio;
+  const double newTarget =
+    idegTarget.convert(degree) * scales.turn * gearsetRatioPair.ratio * boolToSign(normalTurns);
 
   logger->info("ChassisControllerIntegrated: turning " + std::to_string(newTarget) +
                " motor degrees");

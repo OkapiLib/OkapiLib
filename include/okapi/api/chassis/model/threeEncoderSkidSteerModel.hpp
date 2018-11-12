@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_THREEENCODERSKIDSTEERMODEL_HPP_
-#define _OKAPI_THREEENCODERSKIDSTEERMODEL_HPP_
+#pragma once
 
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 
@@ -23,11 +22,11 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
    * @param imiddleEnc middle encoder (mounted perpendicular to the left and right side encoders)
    * @param irightEnc right side encoder
    */
-  ThreeEncoderSkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                             std::shared_ptr<AbstractMotor> irightSideMotor,
-                             std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                             std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
-                             std::shared_ptr<ContinuousRotarySensor> irightEnc,
+  ThreeEncoderSkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
+                             const std::shared_ptr<AbstractMotor> &irightSideMotor,
+                             const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
+                             const std::shared_ptr<ContinuousRotarySensor> &imiddleEnc,
+                             const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
                              double imaxVelocity,
                              double imaxVoltage = 12000);
 
@@ -42,5 +41,3 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
   std::shared_ptr<ContinuousRotarySensor> middleSensor;
 };
 } // namespace okapi
-
-#endif

@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPILIB_ITERATIVECONTROLLERFACTORY_HPP_
-#define _OKAPILIB_ITERATIVECONTROLLERFACTORY_HPP_
+#pragma once
 
 #include "okapi/api/control/iterative/iterativeMotorVelocityController.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
@@ -104,5 +103,3 @@ class IterativeControllerFactory {
                 std::shared_ptr<IterativeVelocityController<double, double>> icontroller);
 };
 } // namespace okapi
-
-#endif
