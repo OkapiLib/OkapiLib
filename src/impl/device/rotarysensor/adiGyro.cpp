@@ -19,7 +19,13 @@ double ADIGyro::get() const {
 }
 
 double ADIGyro::getRemapped(const double upperBound, const double lowerBound) const {
-  return remapRange(get(), -3600, 3600, lowerBound, upperBound);
+  const auto value = get();
+
+  if (value == PROS_ERR) {
+    return value;
+  }
+
+  return remapRange(value, -3600, 3600, lowerBound, upperBound);
 }
 
 std::int32_t ADIGyro::reset() {
