@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/device/rotarysensor/adiGyro.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
 ADIGyro::ADIGyro(const std::uint8_t iport, const double imultiplier) : gyro(iport, imultiplier) {
@@ -15,6 +16,10 @@ ADIGyro::~ADIGyro() = default;
 
 double ADIGyro::get() const {
   return gyro.get_value();
+}
+
+double ADIGyro::getRemapped(const double upperBound, const double lowerBound) const {
+  return remapRange(get(), -3600, 3600, lowerBound, upperBound);
 }
 
 std::int32_t ADIGyro::reset() {
