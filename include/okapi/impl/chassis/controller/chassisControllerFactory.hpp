@@ -18,125 +18,70 @@
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
-#define okapi_makeCreateInt(MotorType, methodName)                                                 \
-  static auto methodName(const MotorType &ileftMtr,                                                \
-                         const MotorType &irightMtr,                                               \
+#define okapi_tankParams(MotorType) const MotorType &ileftMtr, const MotorType &irightMtr
+
+#define okapi_tankBody(MotorType)                                                                  \
+  std::make_shared<MotorType>(ileftMtr), std::make_shared<MotorType>(irightMtr),                   \
+    ileftMtr.getEncoder(), irightMtr.getEncoder()
+
+#define okapi_xdriveParams(MotorType)                                                              \
+  const MotorType &itopLeftMtr, const MotorType &itopRightMtr, const MotorType &ibottomRightMtr,   \
+    const MotorType &ibottomLeftMtr
+
+#define okapi_xdriveBody(MotorType)                                                                \
+  std::make_shared<MotorType>(itopLeftMtr), std::make_shared<MotorType>(itopRightMtr),             \
+    std::make_shared<MotorType>(ibottomRightMtr), std::make_shared<MotorType>(ibottomLeftMtr),     \
+    itopLeftMtr.getEncoder(), itopRightMtr.getEncoder()
+
+#define okapi_makeCreateIntImpl(driveType, motorType, methodName)                                  \
+  static auto methodName(okapi_##driveType##Params(motorType),                                     \
                          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
                          const ChassisScales &iscales = ChassisScales({1, 1}),                     \
                          const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
-    return methodName(std::make_shared<MotorType>(ileftMtr),                                       \
-                      std::make_shared<MotorType>(irightMtr),                                      \
-                      ileftMtr.getEncoder(),                                                       \
-                      irightMtr.getEncoder(),                                                      \
-                      igearset,                                                                    \
-                      iscales,                                                                     \
-                      itimeUtil);                                                                  \
-  }                                                                                                \
-  static auto methodName(const MotorType &itopLeftMtr,                                             \
-                         const MotorType &itopRightMtr,                                            \
-                         const MotorType &ibottomRightMtr,                                         \
-                         const MotorType &ibottomLeftMtr,                                          \
+    return methodName(okapi_##driveType##Body(motorType), igearset, iscales, itimeUtil);           \
+  }
+
+#define okapi_makeCreateInt(motorType, methodName)                                                 \
+  okapi_makeCreateIntImpl(tank, motorType, methodName);                                            \
+  okapi_makeCreateIntImpl(xdrive, motorType, methodName)
+
+#define okapi_pidGains2Params()                                                                    \
+  const IterativePosPIDController::Gains &idistanceGains,                                          \
+    const IterativePosPIDController::Gains &iangleGains
+
+#define okapi_pidGains2Body()                                                                      \
+  std::make_unique<IterativePosPIDController>(idistanceGains, TimeUtilFactory::create()),          \
+    std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),           \
+    std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create())
+
+#define okapi_pidGains3Params()                                                                    \
+  const IterativePosPIDController::Gains &idistanceGains,                                          \
+    const IterativePosPIDController::Gains &iangleGains,                                           \
+    const IterativePosPIDController::Gains &iturnGains
+
+#define okapi_pidGains3Body()                                                                      \
+  std::make_unique<IterativePosPIDController>(idistanceGains, TimeUtilFactory::create()),          \
+    std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),           \
+    std::make_unique<IterativePosPIDController>(iturnGains, TimeUtilFactory::create())
+
+#define okapi_makeCreatePidImpl(driveType, pidGainsType, motorType, methodName)                    \
+  static auto methodName(okapi_##driveType##Params(motorType),                                     \
+                         okapi_##pidGainsType##Params(),                                           \
                          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
                          const ChassisScales &iscales = ChassisScales({1, 1}),                     \
                          const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
-    return methodName(std::make_shared<MotorType>(itopLeftMtr),                                    \
-                      std::make_shared<MotorType>(itopRightMtr),                                   \
-                      std::make_shared<MotorType>(ibottomRightMtr),                                \
-                      std::make_shared<MotorType>(ibottomLeftMtr),                                 \
-                      itopLeftMtr.getEncoder(),                                                    \
-                      itopRightMtr.getEncoder(),                                                   \
+    return methodName(okapi_##driveType##Body(motorType),                                          \
+                      okapi_##pidGainsType##Body(),                                                \
                       igearset,                                                                    \
                       iscales,                                                                     \
                       itimeUtil);                                                                  \
   }
 
-#define okapi_makeCreatePID(MotorType, methodName)                                                 \
-  static auto methodName(const MotorType &ileftMtr,                                                \
-                         const MotorType &irightMtr,                                               \
-                         const IterativePosPIDController::Gains &idistanceGains,                   \
-                         const IterativePosPIDController::Gains &iangleGains,                      \
-                         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
-                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
-    return methodName(                                                                             \
-      std::make_shared<MotorType>(ileftMtr),                                                       \
-      std::make_shared<MotorType>(irightMtr),                                                      \
-      ileftMtr.getEncoder(),                                                                       \
-      irightMtr.getEncoder(),                                                                      \
-      std::make_unique<IterativePosPIDController>(idistanceGains, TimeUtilFactory::create()),      \
-      std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
-      std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
-      igearset,                                                                                    \
-      iscales,                                                                                     \
-      itimeUtil);                                                                                  \
-  }                                                                                                \
-  static auto methodName(const MotorType &ileftMtr,                                                \
-                         const MotorType &irightMtr,                                               \
-                         const IterativePosPIDController::Gains &idistanceGains,                   \
-                         const IterativePosPIDController::Gains &iangleGains,                      \
-                         const IterativePosPIDController::Gains &iturnGains,                       \
-                         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
-                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
-    return methodName(                                                                             \
-      std::make_shared<MotorType>(ileftMtr),                                                       \
-      std::make_shared<MotorType>(irightMtr),                                                      \
-      ileftMtr.getEncoder(),                                                                       \
-      irightMtr.getEncoder(),                                                                      \
-      std::make_unique<IterativePosPIDController>(idistanceGains, TimeUtilFactory::create()),      \
-      std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
-      std::make_unique<IterativePosPIDController>(iturnGains, TimeUtilFactory::create()),          \
-      igearset,                                                                                    \
-      iscales,                                                                                     \
-      itimeUtil);                                                                                  \
-  }                                                                                                \
-  static auto methodName(const MotorType &itopLeftMtr,                                             \
-                         const MotorType &itopRightMtr,                                            \
-                         const MotorType &ibottomRightMtr,                                         \
-                         const MotorType &ibottomLeftMtr,                                          \
-                         const IterativePosPIDController::Gains &idistanceGains,                   \
-                         const IterativePosPIDController::Gains &iangleGains,                      \
-                         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
-                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
-    return methodName(                                                                             \
-      std::make_shared<MotorType>(itopLeftMtr),                                                    \
-      std::make_shared<MotorType>(itopRightMtr),                                                   \
-      std::make_shared<MotorType>(ibottomRightMtr),                                                \
-      std::make_shared<MotorType>(ibottomLeftMtr),                                                 \
-      itopLeftMtr.getEncoder(),                                                                    \
-      itopRightMtr.getEncoder(),                                                                   \
-      std::make_unique<IterativePosPIDController>(idistanceGains, TimeUtilFactory::create()),      \
-      std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
-      std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
-      igearset,                                                                                    \
-      iscales,                                                                                     \
-      itimeUtil);                                                                                  \
-  }                                                                                                \
-  static auto methodName(const MotorType &itopLeftMtr,                                             \
-                         const MotorType &itopRightMtr,                                            \
-                         const MotorType &ibottomRightMtr,                                         \
-                         const MotorType &ibottomLeftMtr,                                          \
-                         const IterativePosPIDController::Gains &idistanceGains,                   \
-                         const IterativePosPIDController::Gains &iangleGains,                      \
-                         const IterativePosPIDController::Gains &iturnGains,                       \
-                         AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,   \
-                         const ChassisScales &iscales = ChassisScales({1, 1}),                     \
-                         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {                  \
-    return methodName(                                                                             \
-      std::make_shared<MotorType>(itopLeftMtr),                                                    \
-      std::make_shared<MotorType>(itopRightMtr),                                                   \
-      std::make_shared<MotorType>(ibottomRightMtr),                                                \
-      std::make_shared<MotorType>(ibottomLeftMtr),                                                 \
-      itopLeftMtr.getEncoder(),                                                                    \
-      itopRightMtr.getEncoder(),                                                                   \
-      std::make_unique<IterativePosPIDController>(idistanceGains, TimeUtilFactory::create()),      \
-      std::make_unique<IterativePosPIDController>(iangleGains, TimeUtilFactory::create()),         \
-      std::make_unique<IterativePosPIDController>(iturnGains, TimeUtilFactory::create()),          \
-      igearset,                                                                                    \
-      iscales,                                                                                     \
-      itimeUtil);                                                                                  \
-  }
+#define okapi_makeCreatePid(motorType, methodName)                                                 \
+  okapi_makeCreatePidImpl(tank, pidGains2, motorType, methodName);                                 \
+  okapi_makeCreatePidImpl(tank, pidGains3, motorType, methodName);                                 \
+  okapi_makeCreatePidImpl(xdrive, pidGains2, motorType, methodName);                               \
+  okapi_makeCreatePidImpl(xdrive, pidGains3, motorType, methodName)
 
 #define okapi_makeCreatePIDWithSensor(MotorType, SensorType, methodName)                           \
   static auto methodName(const MotorType &ileftMtr,                                                \
@@ -243,11 +188,11 @@ class ChassisControllerFactory {
   okapi_makeCreateInt(Motor, createPtr);
   okapi_makeCreateInt(MotorGroup, createPtr);
 
-  okapi_makeCreatePID(Motor, create);
-  okapi_makeCreatePID(MotorGroup, create);
+  okapi_makeCreatePid(Motor, create);
+  okapi_makeCreatePid(MotorGroup, create);
 
-  okapi_makeCreatePID(Motor, createPtr);
-  okapi_makeCreatePID(MotorGroup, createPtr);
+  okapi_makeCreatePid(Motor, createPtr);
+  okapi_makeCreatePid(MotorGroup, createPtr);
 
   okapi_makeCreatePIDWithSensor(Motor, IntegratedEncoder, create);
   okapi_makeCreatePIDWithSensor(MotorGroup, IntegratedEncoder, create);
