@@ -135,97 +135,61 @@
   okapi_makeCreatePid(motorType);                                                                  \
   okapi_makeCreatePidWithSensor(motorType)
 
+#define okapi_baseTankParams                                                                       \
+  const std::shared_ptr<AbstractMotor> &ileftMtr, const std::shared_ptr<AbstractMotor> &irightMtr
+
+#define okapi_baseTankBody ileftMtr, irightMtr
+
+#define okapi_baseTankControllerBody                                                               \
+  std::make_unique<AsyncPosIntegratedController>(ileftMtr, TimeUtilFactory::create()),             \
+    std::make_unique<AsyncPosIntegratedController>(irightMtr, TimeUtilFactory::create())
+
+#define okapi_baseXdriveParams                                                                     \
+  const std::shared_ptr<AbstractMotor> &itopLeftMtr,                                               \
+    const std::shared_ptr<AbstractMotor> &itopRightMtr,                                            \
+    const std::shared_ptr<AbstractMotor> &ibottomRightMtr,                                         \
+    const std::shared_ptr<AbstractMotor> &ibottomLeftMtr
+
+#define okapi_baseXdriveBody itopLeftMtr, itopRightMtr, ibottomRightMtr, ibottomLeftMtr
+
+#define okapi_baseXdriveControllerBody                                                             \
+  std::make_unique<AsyncPosIntegratedController>(itopLeftMtr, TimeUtilFactory::create()),          \
+    std::make_unique<AsyncPosIntegratedController>(itopRightMtr, TimeUtilFactory::create())
+
+#define okapi_baseSensorParams                                                                     \
+  const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,                                      \
+    const std::shared_ptr<ContinuousRotarySensor> &irightSensor
+
+#define okapi_baseSensorBody ileftSensor, irightSensor
+
+#define okapi_makeCreateBaseIntImpl(                                                               \
+  returnType, allocateExpr, methodName, modelType, fullModelTypeName)                              \
+  static returnType methodName(                                                                    \
+    okapi_##modelType##Params, okapi_baseSensorParams, okapi_makeCreateEndParams) {                \
+    return allocateExpr(                                                                           \
+      itimeUtil,                                                                                   \
+      std::make_shared<fullModelTypeName>(okapi_##modelType##Body,                                 \
+                                          okapi_baseSensorBody,                                    \
+                                          toUnderlyingType(igearset.internalGearset)),             \
+      okapi_##modelType##ControllerBody,                                                           \
+      igearset,                                                                                    \
+      iscales);                                                                                    \
+  }
+
+#define okapi_makeCreateBaseInt(returnType, allocateExpr, methodName)                              \
+  okapi_makeCreateBaseIntImpl(returnType, allocateExpr, methodName, baseTank, SkidSteerModel);     \
+  okapi_makeCreateBaseIntImpl(returnType, allocateExpr, methodName, baseXdrive, XDriveModel)
+
 namespace okapi {
 class ChassisControllerFactory {
   public:
   okapi_makeCreateAll(Motor);
   okapi_makeCreateAll(MotorGroup);
 
-  static ChassisControllerIntegrated
-  create(const std::shared_ptr<AbstractMotor> &ileftMtr,
-         const std::shared_ptr<AbstractMotor> &irightMtr,
-         const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
-         const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
-         AbstractMotor::GearsetRatioPair igearset,
-         const ChassisScales &iscales,
-         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
-    return ChassisControllerIntegrated(
-      itimeUtil,
-      std::make_shared<SkidSteerModel>(
-        ileftMtr, irightMtr, ileftSensor, irightSensor, toUnderlyingType(igearset.internalGearset)),
-      std::make_unique<AsyncPosIntegratedController>(ileftMtr, TimeUtilFactory::create()),
-      std::make_unique<AsyncPosIntegratedController>(irightMtr, TimeUtilFactory::create()),
-      igearset,
-      iscales);
-  }
-
-  static std::shared_ptr<ChassisControllerIntegrated>
-  createPtr(const std::shared_ptr<AbstractMotor> &ileftMtr,
-            const std::shared_ptr<AbstractMotor> &irightMtr,
-            const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
-            const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
-            AbstractMotor::GearsetRatioPair igearset,
-            const ChassisScales &iscales,
-            const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
-    return std::make_shared<ChassisControllerIntegrated>(
-      itimeUtil,
-      std::make_shared<SkidSteerModel>(
-        ileftMtr, irightMtr, ileftSensor, irightSensor, toUnderlyingType(igearset.internalGearset)),
-      std::make_unique<AsyncPosIntegratedController>(ileftMtr, TimeUtilFactory::create()),
-      std::make_unique<AsyncPosIntegratedController>(irightMtr, TimeUtilFactory::create()),
-      igearset,
-      iscales);
-  }
-
-  static ChassisControllerIntegrated
-  create(const std::shared_ptr<AbstractMotor> &itopLeftMtr,
-         const std::shared_ptr<AbstractMotor> &itopRightMtr,
-         const std::shared_ptr<AbstractMotor> &ibottomRightMtr,
-         const std::shared_ptr<AbstractMotor> &ibottomLeftMtr,
-         const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
-         const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
-         AbstractMotor::GearsetRatioPair igearset,
-         const ChassisScales &iscales,
-         const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
-    return ChassisControllerIntegrated(
-      itimeUtil,
-      std::make_shared<XDriveModel>(itopLeftMtr,
-                                    itopRightMtr,
-                                    ibottomRightMtr,
-                                    ibottomLeftMtr,
-                                    ileftSensor,
-                                    irightSensor,
-                                    toUnderlyingType(igearset.internalGearset)),
-      std::make_unique<AsyncPosIntegratedController>(itopLeftMtr, TimeUtilFactory::create()),
-      std::make_unique<AsyncPosIntegratedController>(itopRightMtr, TimeUtilFactory::create()),
-      igearset,
-      iscales);
-  }
-
-  static std::shared_ptr<ChassisControllerIntegrated>
-  createPtr(const std::shared_ptr<AbstractMotor> &itopLeftMtr,
-            const std::shared_ptr<AbstractMotor> &itopRightMtr,
-            const std::shared_ptr<AbstractMotor> &ibottomRightMtr,
-            const std::shared_ptr<AbstractMotor> &ibottomLeftMtr,
-            const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
-            const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
-            AbstractMotor::GearsetRatioPair igearset,
-            const ChassisScales &iscales,
-            const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
-    return std::make_shared<ChassisControllerIntegrated>(
-      itimeUtil,
-      std::make_shared<XDriveModel>(itopLeftMtr,
-                                    itopRightMtr,
-                                    ibottomRightMtr,
-                                    ibottomLeftMtr,
-                                    ileftSensor,
-                                    irightSensor,
-                                    toUnderlyingType(igearset.internalGearset)),
-      std::make_unique<AsyncPosIntegratedController>(itopLeftMtr, TimeUtilFactory::create()),
-      std::make_unique<AsyncPosIntegratedController>(itopRightMtr, TimeUtilFactory::create()),
-      igearset,
-      iscales);
-  }
+  okapi_makeCreateBaseInt(ChassisControllerIntegrated, ChassisControllerIntegrated, create);
+  okapi_makeCreateBaseInt(std::shared_ptr<ChassisControllerIntegrated>,
+                          std::make_shared<ChassisControllerIntegrated>,
+                          createPtr);
 
   static ChassisControllerPID create(const std::shared_ptr<AbstractMotor> &ileftMtr,
                                      const std::shared_ptr<AbstractMotor> &irightMtr,
