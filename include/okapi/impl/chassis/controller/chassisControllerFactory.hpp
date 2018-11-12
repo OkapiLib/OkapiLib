@@ -48,9 +48,13 @@
       okapi_##driveType##Body(motorType), okapi_##driveType##SensorBody, okapi_makeCreateEndBody); \
   }
 
-#define okapi_makeCreateInt(motorType, methodName)                                                 \
+#define okapi_makeCreateIntImpl2(motorType, methodName)                                            \
   okapi_makeCreateIntImpl(tank, motorType, methodName);                                            \
   okapi_makeCreateIntImpl(xdrive, motorType, methodName)
+
+#define okapi_makeCreateInt(motorType)                                                             \
+  okapi_makeCreateIntImpl2(motorType, create);                                                     \
+  okapi_makeCreateIntImpl2(motorType, createPtr)
 
 #define okapi_pidGains2Params()                                                                    \
   const IterativePosPIDController::Gains &idistanceGains,                                          \
@@ -81,11 +85,17 @@
                       okapi_makeCreateEndBody);                                                    \
   }
 
-#define okapi_makeCreatePid(motorType, methodName)                                                 \
-  okapi_makeCreatePidImpl(tank, pidGains2, motorType, methodName);                                 \
-  okapi_makeCreatePidImpl(tank, pidGains3, motorType, methodName);                                 \
-  okapi_makeCreatePidImpl(xdrive, pidGains2, motorType, methodName);                               \
-  okapi_makeCreatePidImpl(xdrive, pidGains3, motorType, methodName)
+#define okapi_makeCreatePidImpl2(pidGainsType, motorType, methodName)                              \
+  okapi_makeCreatePidImpl(tank, pidGainsType, motorType, methodName);                              \
+  okapi_makeCreatePidImpl(xdrive, pidGainsType, motorType, methodName)
+
+#define okapi_makeCreatePidImpl3(motorType, methodName)                                            \
+  okapi_makeCreatePidImpl2(pidGains2, motorType, methodName);                                      \
+  okapi_makeCreatePidImpl2(pidGains3, motorType, methodName)
+
+#define okapi_makeCreatePid(motorType)                                                             \
+  okapi_makeCreatePidImpl3(motorType, create);                                                     \
+  okapi_makeCreatePidImpl3(motorType, createPtr)
 
 #define okapi_sensorParams(SensorType) const SensorType &ileftSens, const SensorType &irightSens
 
@@ -104,34 +114,32 @@
                       okapi_makeCreateEndBody);                                                    \
   }
 
-#define okapi_makeCreatePidWithSensorImpl2(pidGainsType, motorType, methodName)                    \
-  okapi_makeCreatePidWithSensorImpl(tank, IntegratedEncoder, pidGainsType, motorType, methodName); \
-  okapi_makeCreatePidWithSensorImpl(tank, ADIEncoder, pidGainsType, motorType, methodName);        \
-  okapi_makeCreatePidWithSensorImpl(                                                               \
-    xdrive, IntegratedEncoder, pidGainsType, motorType, methodName);                               \
-  okapi_makeCreatePidWithSensorImpl(xdrive, ADIEncoder, pidGainsType, motorType, methodName)
+#define okapi_makeCreatePidWithSensorImpl2(sensorType, pidGainsType, motorType, methodName)        \
+  okapi_makeCreatePidWithSensorImpl(tank, sensorType, pidGainsType, motorType, methodName);        \
+  okapi_makeCreatePidWithSensorImpl(xdrive, sensorType, pidGainsType, motorType, methodName)
 
-#define okapi_makeCreatePidWithSensor(motorType, methodName)                                       \
-  okapi_makeCreatePidWithSensorImpl2(pidGains2, motorType, methodName);                            \
-  okapi_makeCreatePidWithSensorImpl2(pidGains3, motorType, methodName)
+#define okapi_makeCreatePidWithSensorImpl3(pidGainsType, motorType, methodName)                    \
+  okapi_makeCreatePidWithSensorImpl2(IntegratedEncoder, pidGainsType, motorType, methodName);      \
+  okapi_makeCreatePidWithSensorImpl2(ADIEncoder, pidGainsType, motorType, methodName)
+
+#define okapi_makeCreatePidWithSensorImpl4(motorType, methodName)                                  \
+  okapi_makeCreatePidWithSensorImpl3(pidGains2, motorType, methodName);                            \
+  okapi_makeCreatePidWithSensorImpl3(pidGains3, motorType, methodName)
+
+#define okapi_makeCreatePidWithSensor(motorType)                                                   \
+  okapi_makeCreatePidWithSensorImpl4(motorType, create);                                           \
+  okapi_makeCreatePidWithSensorImpl4(motorType, createPtr)
+
+#define okapi_makeCreateAll(motorType)                                                             \
+  okapi_makeCreateInt(motorType);                                                                  \
+  okapi_makeCreatePid(motorType);                                                                  \
+  okapi_makeCreatePidWithSensor(motorType)
 
 namespace okapi {
 class ChassisControllerFactory {
   public:
-  okapi_makeCreateInt(Motor, create);
-  okapi_makeCreateInt(MotorGroup, create);
-  okapi_makeCreateInt(Motor, createPtr);
-  okapi_makeCreateInt(MotorGroup, createPtr);
-
-  okapi_makeCreatePid(Motor, create);
-  okapi_makeCreatePid(MotorGroup, create);
-  okapi_makeCreatePid(Motor, createPtr);
-  okapi_makeCreatePid(MotorGroup, createPtr);
-
-  okapi_makeCreatePidWithSensor(Motor, create);
-  okapi_makeCreatePidWithSensor(MotorGroup, create);
-  okapi_makeCreatePidWithSensor(Motor, createPtr);
-  okapi_makeCreatePidWithSensor(MotorGroup, createPtr);
+  okapi_makeCreateAll(Motor);
+  okapi_makeCreateAll(MotorGroup);
 
   static ChassisControllerIntegrated
   create(const std::shared_ptr<AbstractMotor> &ileftMtr,
