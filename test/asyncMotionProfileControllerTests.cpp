@@ -77,6 +77,14 @@ TEST_F(AsyncMotionProfileControllerTest, MotorsAreStoppedAfterSettling) {
   EXPECT_GT(rightMotor->maxVelocity, 0);
 }
 
+TEST_F(AsyncMotionProfileControllerTest, FollowPathWithMoveTo) {
+  controller->moveTo({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 0_deg}});
+
+  assertMotorsHaveBeenStopped(leftMotor.get(), rightMotor.get());
+  EXPECT_GT(leftMotor->maxVelocity, 0);
+  EXPECT_GT(rightMotor->maxVelocity, 0);
+}
+
 TEST_F(AsyncMotionProfileControllerTest, WrongPathNameDoesNotMoveAnything) {
   controller->setTarget("A");
   controller->waitUntilSettled();
