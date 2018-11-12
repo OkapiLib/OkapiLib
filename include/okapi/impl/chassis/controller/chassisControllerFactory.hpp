@@ -180,6 +180,42 @@
   okapi_makeCreateBaseIntImpl(returnType, allocateExpr, methodName, baseTank, SkidSteerModel);     \
   okapi_makeCreateBaseIntImpl(returnType, allocateExpr, methodName, baseXdrive, XDriveModel)
 
+#define okapi_createAllocExpr ChassisControllerPID out
+
+#define okapi_createEndExpr                                                                        \
+  out.startThread();                                                                               \
+  return out
+
+#define okapi_createPtrAllocExpr auto out = std::make_shared<ChassisControllerPID>
+
+#define okapi_createPtrEndExpr                                                                     \
+  out->startThread();                                                                              \
+  return out
+
+#define okapi_makeCreateBasePidImpl(returnType, methodName, modelType, fullModelTypeName)          \
+  static returnType methodName(okapi_##modelType##Params,                                          \
+                               okapi_baseSensorParams,                                             \
+                               std::unique_ptr<IterativePosPIDController> idistanceController,     \
+                               std::unique_ptr<IterativePosPIDController> iangleController,        \
+                               std::unique_ptr<IterativePosPIDController> iturnController,         \
+                               okapi_makeCreateEndParams) {                                        \
+    okapi_##methodName##AllocExpr(                                                                 \
+      itimeUtil,                                                                                   \
+      std::make_shared<fullModelTypeName>(okapi_##modelType##Body,                                 \
+                                          okapi_baseSensorBody,                                    \
+                                          toUnderlyingType(igearset.internalGearset)),             \
+      std::move(idistanceController),                                                              \
+      std::move(iangleController),                                                                 \
+      std::move(iturnController),                                                                  \
+      igearset,                                                                                    \
+      iscales);                                                                                    \
+    okapi_##methodName##EndExpr;                                                                   \
+  }
+
+#define okapi_makeCreateBasePid(returnType, methodName)                                            \
+  okapi_makeCreateBasePidImpl(returnType, methodName, baseTank, SkidSteerModel);                   \
+  okapi_makeCreateBasePidImpl(returnType, methodName, baseXdrive, XDriveModel)
+
 namespace okapi {
 class ChassisControllerFactory {
   public:
@@ -191,112 +227,7 @@ class ChassisControllerFactory {
                           std::make_shared<ChassisControllerIntegrated>,
                           createPtr);
 
-  static ChassisControllerPID create(const std::shared_ptr<AbstractMotor> &ileftMtr,
-                                     const std::shared_ptr<AbstractMotor> &irightMtr,
-                                     const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
-                                     const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
-                                     std::unique_ptr<IterativePosPIDController> idistanceController,
-                                     std::unique_ptr<IterativePosPIDController> iangleController,
-                                     std::unique_ptr<IterativePosPIDController> iturnController,
-                                     AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales,
-                                     const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
-    ChassisControllerPID out(
-      itimeUtil,
-      std::make_shared<SkidSteerModel>(
-        ileftMtr, irightMtr, ileftSensor, irightSensor, toUnderlyingType(igearset.internalGearset)),
-      std::move(idistanceController),
-      std::move(iangleController),
-      std::move(iturnController),
-      igearset,
-      iscales);
-    out.startThread();
-    return out;
-  }
-
-  static std::shared_ptr<ChassisControllerPID>
-  createPtr(const std::shared_ptr<AbstractMotor> &ileftMtr,
-            const std::shared_ptr<AbstractMotor> &irightMtr,
-            const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
-            const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
-            std::unique_ptr<IterativePosPIDController> idistanceController,
-            std::unique_ptr<IterativePosPIDController> iangleController,
-            std::unique_ptr<IterativePosPIDController> iturnController,
-            AbstractMotor::GearsetRatioPair igearset,
-            const ChassisScales &iscales,
-            const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
-    auto out = std::make_shared<ChassisControllerPID>(
-      itimeUtil,
-      std::make_shared<SkidSteerModel>(
-        ileftMtr, irightMtr, ileftSensor, irightSensor, toUnderlyingType(igearset.internalGearset)),
-      std::move(idistanceController),
-      std::move(iangleController),
-      std::move(iturnController),
-      igearset,
-      iscales);
-    out->startThread();
-    return out;
-  }
-
-  static ChassisControllerPID create(const std::shared_ptr<AbstractMotor> &itopLeftMtr,
-                                     const std::shared_ptr<AbstractMotor> &itopRightMtr,
-                                     const std::shared_ptr<AbstractMotor> &ibottomRightMtr,
-                                     const std::shared_ptr<AbstractMotor> &ibottomLeftMtr,
-                                     const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
-                                     const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
-                                     std::unique_ptr<IterativePosPIDController> idistanceController,
-                                     std::unique_ptr<IterativePosPIDController> iangleController,
-                                     std::unique_ptr<IterativePosPIDController> iturnController,
-                                     AbstractMotor::GearsetRatioPair igearset,
-                                     const ChassisScales &iscales,
-                                     const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
-    ChassisControllerPID out(
-      itimeUtil,
-      std::make_shared<XDriveModel>(itopLeftMtr,
-                                    itopRightMtr,
-                                    ibottomRightMtr,
-                                    ibottomLeftMtr,
-                                    ileftSensor,
-                                    irightSensor,
-                                    toUnderlyingType(igearset.internalGearset)),
-      std::move(idistanceController),
-      std::move(iangleController),
-      std::move(iturnController),
-      igearset,
-      iscales);
-    out.startThread();
-    return out;
-  }
-
-  static std::shared_ptr<ChassisControllerPID>
-  createPtr(const std::shared_ptr<AbstractMotor> &itopLeftMtr,
-            const std::shared_ptr<AbstractMotor> &itopRightMtr,
-            const std::shared_ptr<AbstractMotor> &ibottomRightMtr,
-            const std::shared_ptr<AbstractMotor> &ibottomLeftMtr,
-            const std::shared_ptr<ContinuousRotarySensor> &ileftSensor,
-            const std::shared_ptr<ContinuousRotarySensor> &irightSensor,
-            std::unique_ptr<IterativePosPIDController> idistanceController,
-            std::unique_ptr<IterativePosPIDController> iangleController,
-            std::unique_ptr<IterativePosPIDController> iturnController,
-            AbstractMotor::GearsetRatioPair igearset,
-            const ChassisScales &iscales,
-            const TimeUtil &itimeUtil = TimeUtilFactory::create()) {
-    auto out = std::make_shared<ChassisControllerPID>(
-      itimeUtil,
-      std::make_shared<XDriveModel>(itopLeftMtr,
-                                    itopRightMtr,
-                                    ibottomRightMtr,
-                                    ibottomLeftMtr,
-                                    ileftSensor,
-                                    irightSensor,
-                                    toUnderlyingType(igearset.internalGearset)),
-      std::move(idistanceController),
-      std::move(iangleController),
-      std::move(iturnController),
-      igearset,
-      iscales);
-    out->startThread();
-    return out;
-  }
+  okapi_makeCreateBasePid(ChassisControllerPID, create);
+  okapi_makeCreateBasePid(std::shared_ptr<ChassisControllerPID>, createPtr);
 };
 } // namespace okapi

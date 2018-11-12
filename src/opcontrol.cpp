@@ -133,12 +133,6 @@ void opcontrol() {
                                    IterativePosPIDController::Gains(),
                                    IterativePosPIDController::Gains(),
                                    IterativePosPIDController::Gains());
-
-
-
-
-
-
   ChassisControllerFactory::createPtr(1,
                                       2,
                                       IntegratedEncoder(pros::Motor(1)),
