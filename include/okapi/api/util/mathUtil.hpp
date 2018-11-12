@@ -110,4 +110,15 @@ template <typename E> constexpr auto toUnderlyingType(const E e) noexcept {
 constexpr auto boolToSign(const bool b) noexcept {
   return b ? 1 : -1;
 }
+
+/**
+ * Computes lhs mod rhs using Euclidean division. C's % symbol computes the remainder, not modulus.
+ *
+ * @param lhs the left-hand side
+ * @param rhs the right-hand side
+ * @return lhs mod rhs
+ */
+constexpr long modulus(const long lhs, const long rhs) noexcept {
+  return ((lhs % rhs) + rhs) % rhs;
+}
 } // namespace okapi
