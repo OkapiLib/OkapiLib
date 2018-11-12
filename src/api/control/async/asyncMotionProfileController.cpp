@@ -273,6 +273,14 @@ void AsyncMotionProfileController::waitUntilSettled() {
   logger->info("AsyncMotionProfileController: Done waiting to settle");
 }
 
+void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints) {
+  std::string name = reinterpret_cast<const char *>(this); // hmmmm...
+  generatePath(iwaypoints, name);
+  setTarget(name);
+  waitUntilSettled();
+  removePath(name);
+}
+
 Point AsyncMotionProfileController::getError() const {
   return Point{0_m, 0_m, 0_deg};
 }
