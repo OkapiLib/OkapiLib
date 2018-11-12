@@ -19,7 +19,7 @@ class IntegratedEncoder : public ContinuousRotarySensor {
    *
    * @param imotor the motor to use the encoder from.
    */
-  IntegratedEncoder(const pros::Motor &imotor);
+  explicit IntegratedEncoder(const pros::Motor &imotor);
 
   /**
    * Integrated motor encoder. Uses the encoder inside the V5 motor.
