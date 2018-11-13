@@ -14,30 +14,12 @@ ChassisControllerBuilder::ChassisControllerBuilder() : logger(Logger::instance()
 
 ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const Motor &ileft,
                                                                const Motor &iright) {
-  hasMotors = true;
-  isSkidSteer = true;
-  skidSteerMotors = {std::make_shared<Motor>(ileft), std::make_shared<Motor>(iright)};
-
-  if (!sensorsSetByUser) {
-    leftSensor = ileft.getEncoder();
-    rightSensor = iright.getEncoder();
-  }
-
-  return *this;
+  return withMotors(std::make_shared<Motor>(ileft), std::make_shared<Motor>(iright));
 }
 
 ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const MotorGroup &ileft,
                                                                const MotorGroup &iright) {
-  hasMotors = true;
-  isSkidSteer = true;
-  skidSteerMotors = {std::make_shared<MotorGroup>(ileft), std::make_shared<MotorGroup>(iright)};
-
-  if (!sensorsSetByUser) {
-    leftSensor = ileft.getEncoder();
-    rightSensor = iright.getEncoder();
-  }
-
-  return *this;
+  return withMotors(std::make_shared<MotorGroup>(ileft), std::make_shared<MotorGroup>(iright));
 }
 
 ChassisControllerBuilder &
@@ -59,38 +41,20 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const Motor &itop
                                                                const Motor &itopRight,
                                                                const Motor &ibottomRight,
                                                                const Motor &ibottomLeft) {
-  hasMotors = true;
-  isSkidSteer = false;
-  xDriveMotors = {std::make_shared<Motor>(itopLeft),
-                  std::make_shared<Motor>(itopRight),
-                  std::make_shared<Motor>(ibottomRight),
-                  std::make_shared<Motor>(ibottomLeft)};
-
-  if (!sensorsSetByUser) {
-    leftSensor = itopLeft.getEncoder();
-    rightSensor = itopRight.getEncoder();
-  }
-
-  return *this;
+  return withMotors(std::make_shared<Motor>(itopLeft),
+                    std::make_shared<Motor>(itopRight),
+                    std::make_shared<Motor>(ibottomRight),
+                    std::make_shared<Motor>(ibottomLeft));
 }
 
 ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const MotorGroup &itopLeft,
                                                                const MotorGroup &itopRight,
                                                                const MotorGroup &ibottomRight,
                                                                const MotorGroup &ibottomLeft) {
-  hasMotors = true;
-  isSkidSteer = false;
-  xDriveMotors = {std::make_shared<MotorGroup>(itopLeft),
-                  std::make_shared<MotorGroup>(itopRight),
-                  std::make_shared<MotorGroup>(ibottomRight),
-                  std::make_shared<MotorGroup>(ibottomLeft)};
-
-  if (!sensorsSetByUser) {
-    leftSensor = itopLeft.getEncoder();
-    rightSensor = itopRight.getEncoder();
-  }
-
-  return *this;
+  return withMotors(std::make_shared<MotorGroup>(itopLeft),
+                    std::make_shared<MotorGroup>(itopRight),
+                    std::make_shared<MotorGroup>(ibottomRight),
+                    std::make_shared<MotorGroup>(ibottomLeft));
 }
 
 ChassisControllerBuilder &
@@ -112,18 +76,13 @@ ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &itopL
 
 ChassisControllerBuilder &ChassisControllerBuilder::withSensors(const ADIEncoder &ileft,
                                                                 const ADIEncoder &iright) {
-  sensorsSetByUser = true;
-  leftSensor = std::make_shared<ADIEncoder>(ileft);
-  rightSensor = std::make_shared<ADIEncoder>(iright);
-  return *this;
+  return withSensors(std::make_shared<ADIEncoder>(ileft), std::make_shared<ADIEncoder>(iright));
 }
 
 ChassisControllerBuilder &ChassisControllerBuilder::withSensors(const IntegratedEncoder &ileft,
                                                                 const IntegratedEncoder &iright) {
-  sensorsSetByUser = true;
-  leftSensor = std::make_shared<IntegratedEncoder>(ileft);
-  rightSensor = std::make_shared<IntegratedEncoder>(iright);
-  return *this;
+  return withSensors(std::make_shared<IntegratedEncoder>(ileft),
+                     std::make_shared<IntegratedEncoder>(iright));
 }
 
 ChassisControllerBuilder &
@@ -246,7 +205,7 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
 
 std::shared_ptr<SkidSteerModel> ChassisControllerBuilder::makeSkidSteerModel() {
   return std::make_shared<SkidSteerModel>(
-    skidSteerMotors.left, skidSteerMotors.right, toUnderlyingType(gearset.internalGearset));
+    skidSteerMotors.left, skidSteerMotors.right, maxVelocity, maxVoltage);
 }
 
 std::shared_ptr<XDriveModel> ChassisControllerBuilder::makeXDriveModel() {
@@ -254,6 +213,7 @@ std::shared_ptr<XDriveModel> ChassisControllerBuilder::makeXDriveModel() {
                                        xDriveMotors.topRight,
                                        xDriveMotors.bottomRight,
                                        xDriveMotors.bottomLeft,
-                                       toUnderlyingType(gearset.internalGearset));
+                                       maxVelocity,
+                                       maxVoltage);
 }
 } // namespace okapi
