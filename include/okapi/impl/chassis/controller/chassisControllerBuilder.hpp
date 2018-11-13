@@ -25,6 +25,9 @@ class ChassisControllerBuilder {
 
   ChassisControllerBuilder &withMotors(const MotorGroup &ileft, const MotorGroup &iright);
 
+  ChassisControllerBuilder &withMotors(const std::shared_ptr<AbstractMotor> &ileft,
+                                       const std::shared_ptr<AbstractMotor> &iright);
+
   ChassisControllerBuilder &withMotors(const Motor &itopLeft,
                                        const Motor &itopRight,
                                        const Motor &ibottomRight,
@@ -35,10 +38,18 @@ class ChassisControllerBuilder {
                                        const MotorGroup &ibottomRight,
                                        const MotorGroup &ibottomLeft);
 
+  ChassisControllerBuilder &withMotors(const std::shared_ptr<AbstractMotor> &itopLeft,
+                                       const std::shared_ptr<AbstractMotor> &itopRight,
+                                       const std::shared_ptr<AbstractMotor> &ibottomRight,
+                                       const std::shared_ptr<AbstractMotor> &ibottomLeft);
+
   ChassisControllerBuilder &withSensors(const ADIEncoder &ileft, const ADIEncoder &iright);
 
   ChassisControllerBuilder &withSensors(const IntegratedEncoder &ileft,
                                         const IntegratedEncoder &iright);
+
+  ChassisControllerBuilder &withSensors(const std::shared_ptr<ContinuousRotarySensor> &ileft,
+                                        const std::shared_ptr<ContinuousRotarySensor> &iright);
 
   ChassisControllerBuilder &withGains(const IterativePosPIDController::Gains &idistanceGains,
                                       const IterativePosPIDController::Gains &iangleGains);
@@ -49,7 +60,11 @@ class ChassisControllerBuilder {
 
   ChassisControllerBuilder &withGearset(const AbstractMotor::GearsetRatioPair &igearset);
 
-  ChassisControllerBuilder &withScales(const ChassisScales &iscales);
+  ChassisControllerBuilder &withDimensions(const ChassisScales &iscales);
+
+  ChassisControllerBuilder &withMaxVelocity(double imaxVelocity);
+
+  ChassisControllerBuilder &withMaxVoltage(double imaxVoltage);
 
   std::shared_ptr<ChassisController> build();
 
@@ -70,6 +85,7 @@ class ChassisControllerBuilder {
   SkidSteerMotors skidSteerMotors;
   XDriveMotors xDriveMotors;
 
+  bool sensorsSetByUser{false};
   std::shared_ptr<ContinuousRotarySensor> leftSensor;
   std::shared_ptr<ContinuousRotarySensor> rightSensor;
 
@@ -81,6 +97,14 @@ class ChassisControllerBuilder {
   AbstractMotor::GearsetRatioPair gearset = AbstractMotor::gearset::red;
   ChassisScales scales = {1, 1};
 
+  bool maxVelSetByUser{false};
+  double maxVelocity{600};
+
+  bool maxVoltSetByUser{false};
+  double maxVoltage{12000};
+
+  std::shared_ptr<ChassisControllerPID> buildCCPID();
+  std::shared_ptr<ChassisControllerIntegrated> buildCCI();
   std::shared_ptr<SkidSteerModel> makeSkidSteerModel();
   std::shared_ptr<XDriveModel> makeXDriveModel();
 };

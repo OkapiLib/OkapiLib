@@ -12,8 +12,12 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const Motor &ilef
                                                                const Motor &iright) {
   isSkidSteer = true;
   skidSteerMotors = {std::make_shared<Motor>(ileft), std::make_shared<Motor>(iright)};
-  leftSensor = ileft.getEncoder();
-  rightSensor = iright.getEncoder();
+
+  if (!sensorsSetByUser) {
+    leftSensor = ileft.getEncoder();
+    rightSensor = iright.getEncoder();
+  }
+
   return *this;
 }
 
@@ -21,8 +25,26 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const MotorGroup 
                                                                const MotorGroup &iright) {
   isSkidSteer = true;
   skidSteerMotors = {std::make_shared<MotorGroup>(ileft), std::make_shared<MotorGroup>(iright)};
-  leftSensor = ileft.getEncoder();
-  rightSensor = iright.getEncoder();
+
+  if (!sensorsSetByUser) {
+    leftSensor = ileft.getEncoder();
+    rightSensor = iright.getEncoder();
+  }
+
+  return *this;
+}
+
+ChassisControllerBuilder &
+ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &ileft,
+                                     const std::shared_ptr<AbstractMotor> &iright) {
+  isSkidSteer = true;
+  skidSteerMotors = {ileft, iright};
+
+  if (!sensorsSetByUser) {
+    leftSensor = ileft->getEncoder();
+    rightSensor = iright->getEncoder();
+  }
+
   return *this;
 }
 
@@ -35,8 +57,12 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const Motor &itop
                   std::make_shared<Motor>(itopRight),
                   std::make_shared<Motor>(ibottomRight),
                   std::make_shared<Motor>(ibottomLeft)};
-  leftSensor = itopLeft.getEncoder();
-  rightSensor = itopRight.getEncoder();
+
+  if (!sensorsSetByUser) {
+    leftSensor = itopLeft.getEncoder();
+    rightSensor = itopRight.getEncoder();
+  }
+
   return *this;
 }
 
@@ -49,13 +75,34 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const MotorGroup 
                   std::make_shared<MotorGroup>(itopRight),
                   std::make_shared<MotorGroup>(ibottomRight),
                   std::make_shared<MotorGroup>(ibottomLeft)};
-  leftSensor = itopLeft.getEncoder();
-  rightSensor = itopRight.getEncoder();
+
+  if (!sensorsSetByUser) {
+    leftSensor = itopLeft.getEncoder();
+    rightSensor = itopRight.getEncoder();
+  }
+
+  return *this;
+}
+
+ChassisControllerBuilder &
+ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &itopLeft,
+                                     const std::shared_ptr<AbstractMotor> &itopRight,
+                                     const std::shared_ptr<AbstractMotor> &ibottomRight,
+                                     const std::shared_ptr<AbstractMotor> &ibottomLeft) {
+  isSkidSteer = false;
+  xDriveMotors = {itopLeft, itopRight, ibottomRight, ibottomLeft};
+
+  if (!sensorsSetByUser) {
+    leftSensor = itopLeft->getEncoder();
+    rightSensor = itopRight->getEncoder();
+  }
+
   return *this;
 }
 
 ChassisControllerBuilder &ChassisControllerBuilder::withSensors(const ADIEncoder &ileft,
                                                                 const ADIEncoder &iright) {
+  sensorsSetByUser = true;
   leftSensor = std::make_shared<ADIEncoder>(ileft);
   rightSensor = std::make_shared<ADIEncoder>(iright);
   return *this;
@@ -63,8 +110,18 @@ ChassisControllerBuilder &ChassisControllerBuilder::withSensors(const ADIEncoder
 
 ChassisControllerBuilder &ChassisControllerBuilder::withSensors(const IntegratedEncoder &ileft,
                                                                 const IntegratedEncoder &iright) {
+  sensorsSetByUser = true;
   leftSensor = std::make_shared<IntegratedEncoder>(ileft);
   rightSensor = std::make_shared<IntegratedEncoder>(iright);
+  return *this;
+}
+
+ChassisControllerBuilder &
+ChassisControllerBuilder::withSensors(const std::shared_ptr<ContinuousRotarySensor> &ileft,
+                                      const std::shared_ptr<ContinuousRotarySensor> &iright) {
+  sensorsSetByUser = true;
+  leftSensor = ileft;
+  rightSensor = iright;
   return *this;
 }
 
@@ -88,65 +145,88 @@ ChassisControllerBuilder::withGains(const IterativePosPIDController::Gains &idis
 ChassisControllerBuilder &
 ChassisControllerBuilder::withGearset(const AbstractMotor::GearsetRatioPair &igearset) {
   gearset = igearset;
+
+  if (!maxVelSetByUser) {
+    maxVelocity = toUnderlyingType(igearset.internalGearset);
+  }
+
   return *this;
 }
 
-ChassisControllerBuilder &ChassisControllerBuilder::withScales(const ChassisScales &iscales) {
+ChassisControllerBuilder &ChassisControllerBuilder::withDimensions(const ChassisScales &iscales) {
   scales = iscales;
+  return *this;
+}
+
+ChassisControllerBuilder &ChassisControllerBuilder::withMaxVelocity(const double imaxVelocity) {
+  maxVelSetByUser = true;
+  maxVelocity = imaxVelocity;
+  return *this;
+}
+
+ChassisControllerBuilder &ChassisControllerBuilder::withMaxVoltage(const double imaxVoltage) {
+  maxVoltSetByUser = true;
+  maxVoltage = imaxVoltage;
   return *this;
 }
 
 std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
   if (hasGains) {
-    // CCPID
-    if (isSkidSteer) {
-      auto out = std::make_shared<ChassisControllerPID>(
-        TimeUtilFactory::create(),
-        makeSkidSteerModel(),
-        std::make_unique<IterativePosPIDController>(distanceGains, TimeUtilFactory::create()),
-        std::make_unique<IterativePosPIDController>(angleGains, TimeUtilFactory::create()),
-        std::make_unique<IterativePosPIDController>(turnGains, TimeUtilFactory::create()),
-        gearset,
-        scales);
-      out->startThread();
-      return out;
-    } else {
-      auto out = std::make_shared<ChassisControllerPID>(
-        TimeUtilFactory::create(),
-        makeXDriveModel(),
-        std::make_unique<IterativePosPIDController>(distanceGains, TimeUtilFactory::create()),
-        std::make_unique<IterativePosPIDController>(angleGains, TimeUtilFactory::create()),
-        std::make_unique<IterativePosPIDController>(turnGains, TimeUtilFactory::create()),
-        gearset,
-        scales);
-      out->startThread();
-      return out;
-    }
+    return buildCCPID();
   } else {
-    // CCI
-    if (isSkidSteer) {
-      auto out = std::make_shared<ChassisControllerIntegrated>(
-        TimeUtilFactory::create(),
-        makeSkidSteerModel(),
-        std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
-                                                       TimeUtilFactory::create()),
-        std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.right,
-                                                       TimeUtilFactory::create()),
-        gearset,
-        scales);
-      return out;
-    } else {
-      auto out = std::make_shared<ChassisControllerIntegrated>(
-        TimeUtilFactory::create(),
-        makeXDriveModel(),
-        std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
-                                                       TimeUtilFactory::create()),
-        std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.right,
-                                                       TimeUtilFactory::create()),
-        gearset,
-        scales);
-      return out;
-    }
+    return buildCCI();
+  }
+}
+
+std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
+  if (isSkidSteer) {
+    auto out = std::make_shared<ChassisControllerPID>(
+      TimeUtilFactory::create(),
+      makeSkidSteerModel(),
+      std::make_unique<IterativePosPIDController>(distanceGains, TimeUtilFactory::create()),
+      std::make_unique<IterativePosPIDController>(angleGains, TimeUtilFactory::create()),
+      std::make_unique<IterativePosPIDController>(turnGains, TimeUtilFactory::create()),
+      gearset,
+      scales);
+    out->startThread();
+    return out;
+  } else {
+    auto out = std::make_shared<ChassisControllerPID>(
+      TimeUtilFactory::create(),
+      makeXDriveModel(),
+      std::make_unique<IterativePosPIDController>(distanceGains, TimeUtilFactory::create()),
+      std::make_unique<IterativePosPIDController>(angleGains, TimeUtilFactory::create()),
+      std::make_unique<IterativePosPIDController>(turnGains, TimeUtilFactory::create()),
+      gearset,
+      scales);
+    out->startThread();
+    return out;
+  }
+}
+
+std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI() {
+  if (isSkidSteer) {
+    auto out = std::make_shared<ChassisControllerIntegrated>(
+      TimeUtilFactory::create(),
+      makeSkidSteerModel(),
+      std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
+                                                     TimeUtilFactory::create()),
+      std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.right,
+                                                     TimeUtilFactory::create()),
+      gearset,
+      scales);
+    return out;
+  } else {
+    auto out = std::make_shared<ChassisControllerIntegrated>(
+      TimeUtilFactory::create(),
+      makeXDriveModel(),
+      std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
+                                                     TimeUtilFactory::create()),
+      std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.right,
+                                                     TimeUtilFactory::create()),
+      gearset,
+      scales);
+    return out;
   }
 }
 
