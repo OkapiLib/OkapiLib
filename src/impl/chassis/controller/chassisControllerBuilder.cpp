@@ -6,10 +6,15 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
+#include <stdexcept>
 
 namespace okapi {
+ChassisControllerBuilder::ChassisControllerBuilder() : logger(Logger::instance()) {
+}
+
 ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const Motor &ileft,
                                                                const Motor &iright) {
+  hasMotors = true;
   isSkidSteer = true;
   skidSteerMotors = {std::make_shared<Motor>(ileft), std::make_shared<Motor>(iright)};
 
@@ -23,6 +28,7 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const Motor &ilef
 
 ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const MotorGroup &ileft,
                                                                const MotorGroup &iright) {
+  hasMotors = true;
   isSkidSteer = true;
   skidSteerMotors = {std::make_shared<MotorGroup>(ileft), std::make_shared<MotorGroup>(iright)};
 
@@ -37,6 +43,7 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const MotorGroup 
 ChassisControllerBuilder &
 ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &ileft,
                                      const std::shared_ptr<AbstractMotor> &iright) {
+  hasMotors = true;
   isSkidSteer = true;
   skidSteerMotors = {ileft, iright};
 
@@ -52,6 +59,7 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const Motor &itop
                                                                const Motor &itopRight,
                                                                const Motor &ibottomRight,
                                                                const Motor &ibottomLeft) {
+  hasMotors = true;
   isSkidSteer = false;
   xDriveMotors = {std::make_shared<Motor>(itopLeft),
                   std::make_shared<Motor>(itopRight),
@@ -70,6 +78,7 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const MotorGroup 
                                                                const MotorGroup &itopRight,
                                                                const MotorGroup &ibottomRight,
                                                                const MotorGroup &ibottomLeft) {
+  hasMotors = true;
   isSkidSteer = false;
   xDriveMotors = {std::make_shared<MotorGroup>(itopLeft),
                   std::make_shared<MotorGroup>(itopRight),
@@ -89,6 +98,7 @@ ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &itopL
                                      const std::shared_ptr<AbstractMotor> &itopRight,
                                      const std::shared_ptr<AbstractMotor> &ibottomRight,
                                      const std::shared_ptr<AbstractMotor> &ibottomLeft) {
+  hasMotors = true;
   isSkidSteer = false;
   xDriveMotors = {itopLeft, itopRight, ibottomRight, ibottomLeft};
 
@@ -165,12 +175,16 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMaxVelocity(const double
 }
 
 ChassisControllerBuilder &ChassisControllerBuilder::withMaxVoltage(const double imaxVoltage) {
-  maxVoltSetByUser = true;
   maxVoltage = imaxVoltage;
   return *this;
 }
 
 std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
+  if (!hasMotors) {
+    logger->error("ChassisControllerBuilder: No motors given.");
+    throw std::runtime_error("ChassisControllerBuilder: No motors given.");
+  }
+
   if (hasGains) {
     return buildCCPID();
   } else {
