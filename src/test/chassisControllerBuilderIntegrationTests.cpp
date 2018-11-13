@@ -14,9 +14,13 @@ using namespace snowhouse;
 void testForwardUsesCorrectMaximumVelocityForAGearset() {
   printf("Testing forward uses the correct max vel for a gearset");
 
-  auto drive = ChassisControllerFactory::create(18, 19, AbstractMotor::gearset::green, {1, 1});
-  drive.forward(0.1);
+  auto drive = ChassisControllerBuilder()
+                 .withMotors(18, 19)
+                 .withGearset(AbstractMotor::gearset::green)
+                 .withDimensions({1, 1})
+                 .build();
 
+  drive->forward(0.1);
   pros::delay(250);
 
   auto sampleRPM = Motor(18).getActualVelocity();
@@ -25,5 +29,5 @@ void testForwardUsesCorrectMaximumVelocityForAGearset() {
 }
 
 void runChassisControllerFactoryIntegrationTests() {
-  test_printf("Testing ChassisControllerFactory");
+  test_printf("Testing ChassisControllerBuilder");
 }
