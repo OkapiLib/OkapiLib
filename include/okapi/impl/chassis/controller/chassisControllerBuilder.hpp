@@ -181,7 +181,7 @@ class ChassisControllerBuilder {
   ChassisControllerBuilder &withMaxVoltage(double imaxVoltage);
 
   /**
-   * Builds the ChassisController.
+   * Builds the ChassisController. Throws a std::runtime_exception if no motors were set.
    *
    * @return A fully built ChassisController.
    */

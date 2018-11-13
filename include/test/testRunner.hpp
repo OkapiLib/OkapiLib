@@ -8,6 +8,7 @@
 #pragma once
 
 #include "api.h"
+#include "okapi/api.hpp"
 #include "test/FakeIt/single_header/standalone/fakeit.hpp"
 #include "test/snowhouse/snowhouse.h"
 #include <functional>
@@ -27,6 +28,7 @@
 namespace okapi {
 static const int MOTOR_1_PORT = 18;
 static const int MOTOR_2_PORT = 19;
+static const auto MOTOR_GEARSET = AbstractMotor::gearset::red;
 
 /**
  * Print the input string with an underline made from hypens ("-").

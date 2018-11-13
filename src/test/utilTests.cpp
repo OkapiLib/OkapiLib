@@ -6,7 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/tests/impl/utilTests.hpp"
-#include "okapi/api.hpp"
 #include "test/testRunner.hpp"
 
 void testUtils() {
