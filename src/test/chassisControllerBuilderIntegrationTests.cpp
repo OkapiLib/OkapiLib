@@ -58,9 +58,9 @@ void testSensorsWork() {
 
   const double power = 0.2;
   auto drive = ChassisControllerBuilder()
+                 .withSensors({MOTOR_1_PORT}, {MOTOR_2_PORT})
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
                  .withGearset(MOTOR_GEARSET)
-                 .withSensors({MOTOR_1_PORT}, {MOTOR_2_PORT})
                  .build();
 
   Motor leftMtr(MOTOR_1_PORT);
