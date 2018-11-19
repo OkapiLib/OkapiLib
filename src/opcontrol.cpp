@@ -3,5 +3,6 @@
 
 using namespace okapi;
 void opcontrol() {
+  pros::delay(100);
   runAllImplTests();
 }

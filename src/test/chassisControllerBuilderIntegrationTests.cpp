@@ -14,7 +14,7 @@ using namespace snowhouse;
 void testForwardUsesCorrectMaximumVelocityForAGearset() {
   printf("Testing forward uses the correct max vel for a gearset\n");
 
-  const double power = 0.2;
+  const double power = 0.3;
   auto drive = ChassisControllerBuilder()
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
                  .withGearset(MOTOR_GEARSET)
