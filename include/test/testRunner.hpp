@@ -31,7 +31,7 @@ static const int MOTOR_2_PORT = 19;
 static const auto MOTOR_GEARSET = AbstractMotor::gearset::red;
 
 /**
- * Print the input string with an underline made from hypens ("-").
+ * Print the input string with an underline made from hyphens ("-").
  *
  * @param istring string to print
  */
