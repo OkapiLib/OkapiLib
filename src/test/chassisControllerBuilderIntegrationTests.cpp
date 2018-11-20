@@ -13,6 +13,7 @@ using namespace snowhouse;
 
 void testForwardUsesCorrectMaximumVelocityForAGearset() {
   printf("Testing forward uses the correct max vel for a gearset\n");
+  resetHardware();
 
   const double power = 0.3;
   auto drive = ChassisControllerBuilder()
@@ -29,11 +30,13 @@ void testForwardUsesCorrectMaximumVelocityForAGearset() {
     TEST_BODY(AssertThat, sampleRPM, EqualsWithDelta(toUnderlyingType(MOTOR_GEARSET) * power, 3)));
 
   drive->stop();
+  resetHardware();
   pros::delay(500);
 }
 
 void testMaxVelWorksOutOfOrder() {
   printf("Testing withMaxVelocity works out of order\n");
+  resetHardware();
 
   const double maxVel = 20;
   auto drive = ChassisControllerBuilder()
@@ -50,11 +53,13 @@ void testMaxVelWorksOutOfOrder() {
        TEST_BODY(AssertThat, sampleRPM, EqualsWithDelta(maxVel, 2)));
 
   drive->stop();
+  resetHardware();
   pros::delay(500);
 }
 
 void testSensorsWork() {
   printf("Testing sensor configuration works\n");
+  resetHardware();
 
   const double power = 0.2;
   auto drive = ChassisControllerBuilder()
@@ -91,6 +96,7 @@ void testSensorsWork() {
        TEST_BODY(AssertThat, sensorDiff[1], EqualsWithDelta(rightDiff, 5)));
 
   drive->stop();
+  resetHardware();
   pros::delay(500);
 }
 

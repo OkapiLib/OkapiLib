@@ -13,6 +13,7 @@ using namespace okapi;
 
 void testTarePosition() {
   printf("Testing tarePosition\n");
+  resetHardware();
 
   const int moveAmt = 500;
   auto m = std::make_shared<Motor>(MOTOR_1_PORT);
@@ -49,11 +50,13 @@ void testTarePosition() {
        TEST_BODY(AssertThat, deltaPos, EqualsWithDelta(moveAmt, 10)));
 
   c.flipDisable(true);
+  resetHardware();
   pros::delay(500);
 }
 
 void testStop() {
   printf("Testing stop\n");
+  resetHardware();
 
   const int moveAmt = 500;
   const double requiredDeltaPos = moveAmt / 3.0;
@@ -90,6 +93,7 @@ void testStop() {
        TEST_BODY(AssertThat, m->getPosition(), EqualsWithDelta(moveAmt, 50)));
 
   c.flipDisable(true);
+  resetHardware();
   pros::delay(500);
 }
 
