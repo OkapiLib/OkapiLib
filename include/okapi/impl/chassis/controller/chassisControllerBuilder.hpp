@@ -98,7 +98,7 @@ class ChassisControllerBuilder {
                                        const std::shared_ptr<AbstractMotor> &ibottomLeft);
 
   /**
-   * Sets the sensors. Uses the integrated encoders in the motors if not set.
+   * Sets the sensors. The default sensors are the motor's integrated encoders.
    *
    * @param ileft The left side sensor.
    * @param iright The right side sensor.
@@ -107,7 +107,7 @@ class ChassisControllerBuilder {
   ChassisControllerBuilder &withSensors(const ADIEncoder &ileft, const ADIEncoder &iright);
 
   /**
-   * Sets the sensors. Uses the integrated encoders in the motors if not set.
+   * Sets the sensors. The default sensors are the motor's integrated encoders.
    *
    * @param ileft The left side sensor.
    * @param iright The right side sensor.
@@ -117,7 +117,7 @@ class ChassisControllerBuilder {
                                         const IntegratedEncoder &iright);
 
   /**
-   * Sets the sensors. Uses the integrated encoders in the motors if not set.
+   * Sets the sensors. The default sensors are the motor's integrated encoders.
    *
    * @param ileft The left side sensor.
    * @param iright The right side sensor.
@@ -127,10 +127,11 @@ class ChassisControllerBuilder {
                                         const std::shared_ptr<ContinuousRotarySensor> &iright);
 
   /**
-   * Sets the PID controller gains, causing the builder to generate a ChassisControllerPID.
+   * Sets the PID controller gains, causing the builder to generate a ChassisControllerPID. Uses the
+   * angle controller's gains for the turn controller's gains.
    *
-   * @param idistanceGains The distance controller gains.
-   * @param iangleGains The angle controller gains.
+   * @param idistanceGains The distance controller's gains.
+   * @param iangleGains The angle controller's gains.
    * @return An ongoing builder.
    */
   ChassisControllerBuilder &withGains(const IterativePosPIDController::Gains &idistanceGains,
@@ -139,9 +140,9 @@ class ChassisControllerBuilder {
   /**
    * Sets the PID controller gains, causing the builder to generate a ChassisControllerPID.
    *
-   * @param idistanceGains The distance controller gains.
-   * @param iangleGains The angle controller gains.
-   * @param iturnGains The turn controller gains.
+   * @param idistanceGains The distance controller's gains.
+   * @param iangleGains The angle controller's gains.
+   * @param iturnGains The turn controller's gains.
    * @return An ongoing builder.
    */
   ChassisControllerBuilder &withGains(const IterativePosPIDController::Gains &idistanceGains,
