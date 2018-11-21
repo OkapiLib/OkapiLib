@@ -9,9 +9,9 @@
 
 #include "okapi/api/control/async/asyncPositionController.hpp"
 #include "okapi/api/control/async/asyncWrapper.hpp"
-#include "okapi/api/control/controllerInput.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/control/iterative/iterativePosPidController.hpp"
+#include "okapi/api/control/offsettableControllerInput.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <memory>
 
@@ -28,5 +28,13 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
     double ikD,
     double ikBias = 0,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+
+  /**
+   * Sets the "absolute" zero position of the controller to its current position.
+   */
+  void tarePosition() override;
+
+  protected:
+  std::shared_ptr<OffsettableControllerInput> offsettableInput;
 };
 } // namespace okapi

@@ -116,11 +116,9 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
   virtual void setMaxVelocity(std::int32_t imaxVelocity);
 
   /**
-   * Sets the "absolute" zero position of the motor to its current position.
-   *
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   * Sets the "absolute" zero position of the controller to its current position.
    */
-  virtual std::int32_t tarePosition();
+  void tarePosition() override;
 
   /**
    * Stops the motor mid-movement. Does not change the last set target.

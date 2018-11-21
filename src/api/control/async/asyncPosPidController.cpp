@@ -18,7 +18,7 @@ AsyncPosPIDController::AsyncPosPIDController(
   const double ikBias,
   std::unique_ptr<Filter> iderivativeFilter)
   : AsyncWrapper<double, double>(
-      iinput,
+      std::make_shared<OffsettableControllerInput>(iinput),
       ioutput,
       std::make_unique<IterativePosPIDController>(ikP,
                                                   ikI,
@@ -26,6 +26,11 @@ AsyncPosPIDController::AsyncPosPIDController(
                                                   ikBias,
                                                   itimeUtil,
                                                   std::move(iderivativeFilter)),
-      itimeUtil.getRateSupplier()) {
+      itimeUtil.getRateSupplier()),
+    offsettableInput(std::dynamic_pointer_cast<OffsettableControllerInput>(input)) {
+}
+
+void AsyncPosPIDController::tarePosition() {
+  offsettableInput->tarePosition();
 }
 } // namespace okapi

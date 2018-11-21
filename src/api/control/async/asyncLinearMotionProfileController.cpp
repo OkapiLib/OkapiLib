@@ -276,4 +276,7 @@ void AsyncLinearMotionProfileController::startThread() {
     task = new CrossplatformThread(trampoline, this);
   }
 }
+
+void AsyncLinearMotionProfileController::tarePosition() {
+}
 } // namespace okapi

@@ -323,6 +323,9 @@ bool AsyncMotionProfileController::isDisabled() const {
   return disabled.load(std::memory_order_acquire);
 }
 
+void AsyncMotionProfileController::tarePosition() {
+}
+
 void AsyncMotionProfileController::startThread() {
   if (!task) {
     task = new CrossplatformThread(trampoline, this);

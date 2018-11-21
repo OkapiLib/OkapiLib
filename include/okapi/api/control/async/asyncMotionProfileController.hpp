@@ -172,6 +172,14 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   bool isDisabled() const override;
 
   /**
+   * Sets the "absolute" zero position of the controller to its current position.
+   *
+   * This implementation does nothing because the API always requires the starting position to be
+   * specified.
+   */
+  void tarePosition() override;
+
+  /**
    * Starts the internal thread. This should not be called by normal users. This method is called
    * by the AsyncControllerFactory when making a new instance of this class.
    */
