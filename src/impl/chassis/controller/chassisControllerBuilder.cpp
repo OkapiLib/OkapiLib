@@ -205,7 +205,7 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
 
 std::shared_ptr<SkidSteerModel> ChassisControllerBuilder::makeSkidSteerModel() {
   return std::make_shared<SkidSteerModel>(
-    skidSteerMotors.left, skidSteerMotors.right, maxVelocity, maxVoltage);
+    skidSteerMotors.left, skidSteerMotors.right, leftSensor, rightSensor, maxVelocity, maxVoltage);
 }
 
 std::shared_ptr<XDriveModel> ChassisControllerBuilder::makeXDriveModel() {
@@ -213,6 +213,8 @@ std::shared_ptr<XDriveModel> ChassisControllerBuilder::makeXDriveModel() {
                                        xDriveMotors.topRight,
                                        xDriveMotors.bottomRight,
                                        xDriveMotors.bottomLeft,
+                                       leftSensor,
+                                       rightSensor,
                                        maxVelocity,
                                        maxVoltage);
 }
