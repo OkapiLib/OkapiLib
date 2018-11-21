@@ -17,6 +17,13 @@
 namespace okapi {
 class IterativeVelPIDController : public IterativeVelocityController<double, double> {
   public:
+  struct Gains {
+    double kP{0};
+    double kD{0};
+    double kF{0};
+    double kSF{0};
+  };
+
   /**
    * Velocity PD controller.
    *

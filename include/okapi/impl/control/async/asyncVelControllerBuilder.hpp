@@ -7,9 +7,9 @@
  */
 #pragma once
 
-#include "okapi/api/control/async/asyncPosIntegratedController.hpp"
-#include "okapi/api/control/async/asyncPosPidController.hpp"
-#include "okapi/api/control/async/asyncPositionController.hpp"
+#include "okapi/api/control/async/asyncVelIntegratedController.hpp"
+#include "okapi/api/control/async/asyncVelPidController.hpp"
+#include "okapi/api/control/async/asyncVelocityController.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
@@ -18,13 +18,13 @@
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
 namespace okapi {
-class AsyncPosControllerBuilder {
+class AsyncVelControllerBuilder {
   public:
   /**
-   * A builder that creates async position controllers. Use this to create an
-   * AsyncPosIntegratedController or an AsyncPosPIDController.
+   * A builder that creates async velocity controllers. Use this to create an
+   * AsyncVelIntegratedController or an AsyncVelPIDController.
    */
-  AsyncPosControllerBuilder();
+  AsyncVelControllerBuilder();
 
   /**
    * Sets the motor.
@@ -32,7 +32,7 @@ class AsyncPosControllerBuilder {
    * @param imotor The motor.
    * @return An ongoing builder.
    */
-  AsyncPosControllerBuilder &withMotor(const Motor &imotor);
+  AsyncVelControllerBuilder &withMotor(const Motor &imotor);
 
   /**
    * Sets the motor.
@@ -40,7 +40,7 @@ class AsyncPosControllerBuilder {
    * @param imotor The motor.
    * @return An ongoing builder.
    */
-  AsyncPosControllerBuilder &withMotor(const MotorGroup &imotor);
+  AsyncVelControllerBuilder &withMotor(const MotorGroup &imotor);
 
   /**
    * Sets the motor.
@@ -48,7 +48,7 @@ class AsyncPosControllerBuilder {
    * @param imotor The motor.
    * @return An ongoing builder.
    */
-  AsyncPosControllerBuilder &withMotor(const std::shared_ptr<AbstractMotor> &imotor);
+  AsyncVelControllerBuilder &withMotor(const std::shared_ptr<AbstractMotor> &imotor);
 
   /**
    * Sets the sensor. The default sensor is the motor's integrated encoder.
@@ -56,7 +56,7 @@ class AsyncPosControllerBuilder {
    * @param isensor The sensor.
    * @return An ongoing builder.
    */
-  AsyncPosControllerBuilder &withSensor(const ADIEncoder &isensor);
+  AsyncVelControllerBuilder &withSensor(const ADIEncoder &isensor);
 
   /**
    * Sets the sensor. The default sensor is the motor's integrated encoder.
@@ -64,7 +64,7 @@ class AsyncPosControllerBuilder {
    * @param isensor The sensor.
    * @return An ongoing builder.
    */
-  AsyncPosControllerBuilder &withSensor(const IntegratedEncoder &isensor);
+  AsyncVelControllerBuilder &withSensor(const IntegratedEncoder &isensor);
 
   /**
    * Sets the sensor. The default sensor is the motor's integrated encoder.
@@ -72,7 +72,7 @@ class AsyncPosControllerBuilder {
    * @param isensor The sensor.
    * @return An ongoing builder.
    */
-  AsyncPosControllerBuilder &withSensor(const std::shared_ptr<RotarySensor> &isensor);
+  AsyncVelControllerBuilder &withSensor(const std::shared_ptr<RotarySensor> &isensor);
 
   /**
    * Sets the controller gains, causing the builder to generate an AsyncPosPIDController. This does
@@ -81,7 +81,16 @@ class AsyncPosControllerBuilder {
    * @param igains The gains.
    * @return An ongoing builder.
    */
-  AsyncPosControllerBuilder &withGains(const IterativePosPIDController::Gains &igains);
+  AsyncVelControllerBuilder &withGains(const IterativeVelPIDController::Gains &igains);
+
+  /**
+   * Sets the VelMath which calculates and filters velocity. This is ignored when using integrated
+   * controller. If using a PID controller (by setting the gains), this is required.
+   *
+   * @param ivelMath The VelMath.
+   * @return An ongoing builder.
+   */
+  AsyncVelControllerBuilder &withVelMath(std::unique_ptr<VelMath> ivelMath);
 
   /**
    * Sets the derivative filter which filters the derivative term before it is scaled by kD. The
@@ -91,7 +100,7 @@ class AsyncPosControllerBuilder {
    * @param iderivativeFilter The derivative filter.
    * @return An ongoing builder.
    */
-  AsyncPosControllerBuilder &withDerivativeFilter(std::unique_ptr<Filter> iderivativeFilter);
+  AsyncVelControllerBuilder &withDerivativeFilter(std::unique_ptr<Filter> iderivativeFilter);
 
   /**
    * Sets the maximum velocity. The default maximum velocity is derived from the motor's gearset.
@@ -99,7 +108,7 @@ class AsyncPosControllerBuilder {
    * @param imaxVelocity The maximum velocity.
    * @return An ongoing builder.
    */
-  AsyncPosControllerBuilder &withMaxVelocity(double imaxVelocity);
+  AsyncVelControllerBuilder &withMaxVelocity(double imaxVelocity);
 
   /**
    * Sets the TimeUtilFactory used when building the controller. The default is the static
@@ -108,14 +117,14 @@ class AsyncPosControllerBuilder {
    * @param itimeUtilFactory The TimeUtilFactory.
    * @return An ongoing builder.
    */
-  AsyncPosControllerBuilder &withTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
+  AsyncVelControllerBuilder &withTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
 
   /**
    * Builds the AsyncPositionController. Throws a std::runtime_exception is no motors were set.
    *
    * @return A fully built AsyncPositionController.
    */
-  std::shared_ptr<AsyncPositionController<double, double>> build();
+  std::shared_ptr<AsyncVelocityController<double, double>> build();
 
   private:
   Logger *logger;
@@ -127,7 +136,11 @@ class AsyncPosControllerBuilder {
   std::shared_ptr<RotarySensor> sensor;
 
   bool hasGains{false}; // Whether gains were passed, no gains means integrated control
-  IterativePosPIDController::Gains gains;
+  IterativeVelPIDController::Gains gains;
+
+  bool hasVelMath{false}; // Used to verify velMath was passed
+  std::unique_ptr<VelMath> velMath;
+
   std::unique_ptr<Filter> derivativeFilter = std::make_unique<PassthroughFilter>();
 
   bool maxVelSetByUser{false}; // Used so motors don't overwrite maxVelocity
@@ -135,7 +148,7 @@ class AsyncPosControllerBuilder {
 
   TimeUtilFactory timeUtilFactory = TimeUtilFactory();
 
-  std::shared_ptr<AsyncPosIntegratedController> buildAPIC();
-  std::shared_ptr<AsyncPosPIDController> buildAPPC();
+  std::shared_ptr<AsyncVelIntegratedController> buildAVIC();
+  std::shared_ptr<AsyncVelPIDController> buildAVPC();
 };
 } // namespace okapi

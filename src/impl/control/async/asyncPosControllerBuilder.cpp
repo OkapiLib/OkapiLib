@@ -63,16 +63,19 @@ AsyncPosControllerBuilder::withGains(const IterativePosPIDController::Gains &iga
 AsyncPosControllerBuilder &
 AsyncPosControllerBuilder::withDerivativeFilter(std::unique_ptr<Filter> iderivativeFilter) {
   derivativeFilter = std::move(iderivativeFilter);
+  return *this;
 }
 
 AsyncPosControllerBuilder &AsyncPosControllerBuilder::withMaxVelocity(double imaxVelocity) {
   maxVelSetByUser = true;
   maxVelocity = imaxVelocity;
+  return *this;
 }
 
 AsyncPosControllerBuilder &
 AsyncPosControllerBuilder::withTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory) {
   timeUtilFactory = itimeUtilFactory;
+  return *this;
 }
 
 std::shared_ptr<AsyncPositionController<double, double>> AsyncPosControllerBuilder::build() {
@@ -82,7 +85,7 @@ std::shared_ptr<AsyncPositionController<double, double>> AsyncPosControllerBuild
   }
 
   if (hasGains) {
-    return buildAPID();
+    return buildAPPC();
   } else {
     return buildAPIC();
   }
@@ -92,7 +95,7 @@ std::shared_ptr<AsyncPosIntegratedController> AsyncPosControllerBuilder::buildAP
   return std::make_shared<AsyncPosIntegratedController>(motor, timeUtilFactory.create());
 }
 
-std::shared_ptr<AsyncPosPIDController> AsyncPosControllerBuilder::buildAPID() {
+std::shared_ptr<AsyncPosPIDController> AsyncPosControllerBuilder::buildAPPC() {
   auto out = std::make_shared<AsyncPosPIDController>(sensor,
                                                      motor,
                                                      timeUtilFactory.create(),
