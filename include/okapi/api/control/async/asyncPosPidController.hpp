@@ -29,6 +29,16 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
     double ikBias = 0,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
+  AsyncPosPIDController(
+    const std::shared_ptr<OffsettableControllerInput> &iinput,
+    const std::shared_ptr<ControllerOutput<double>> &ioutput,
+    const TimeUtil &itimeUtil,
+    double ikP,
+    double ikI,
+    double ikD,
+    double ikBias = 0,
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+
   /**
    * Sets the "absolute" zero position of the controller to its current position.
    */

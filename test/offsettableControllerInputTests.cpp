@@ -19,7 +19,6 @@ class OffsettableControllerInputTest : public ::testing::Test {
   }
 
   void TearDown() override {
-    delete input;
     delete mockInput;
   }
 

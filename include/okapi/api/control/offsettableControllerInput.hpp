@@ -15,6 +15,8 @@ class OffsettableControllerInput : public ControllerInput<double> {
   public:
   explicit OffsettableControllerInput(const std::shared_ptr<ControllerInput<double>> &iinput);
 
+  virtual ~OffsettableControllerInput();
+
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in
    * another thread by the controller.

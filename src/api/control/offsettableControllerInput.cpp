@@ -14,6 +14,8 @@ OffsettableControllerInput::OffsettableControllerInput(
   : input(iinput) {
 }
 
+OffsettableControllerInput::~OffsettableControllerInput() = default;
+
 double OffsettableControllerInput::controllerGet() {
   return input->controllerGet() - offset;
 }
