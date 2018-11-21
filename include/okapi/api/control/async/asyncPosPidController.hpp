@@ -19,6 +19,18 @@ namespace okapi {
 class AsyncPosPIDController : public AsyncWrapper<double, double>,
                               public AsyncPositionController<double, double> {
   public:
+  /**
+   * An async position PID controller.
+   *
+   * @param iinput The controller input. Will be turned into an OffsettableControllerInput.
+   * @param ioutput The controller output.
+   * @param itimeUtil The TimeUtil.
+   * @param ikP The proportional gain.
+   * @param ikI The integral gain.
+   * @param ikD The derivative gain.
+   * @param ikBias The controller bias.
+   * @param iderivativeFilter The derivative filter.
+   */
   AsyncPosPIDController(
     const std::shared_ptr<ControllerInput<double>> &iinput,
     const std::shared_ptr<ControllerOutput<double>> &ioutput,
@@ -29,6 +41,18 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
     double ikBias = 0,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
+  /**
+   * An async position PID controller.
+   *
+   * @param iinput The controller input.
+   * @param ioutput The controller output.
+   * @param itimeUtil The TimeUtil.
+   * @param ikP The proportional gain.
+   * @param ikI The integral gain.
+   * @param ikD The derivative gain.
+   * @param ikBias The controller bias.
+   * @param iderivativeFilter The derivative filter.
+   */
   AsyncPosPIDController(
     const std::shared_ptr<OffsettableControllerInput> &iinput,
     const std::shared_ptr<ControllerOutput<double>> &ioutput,

@@ -24,6 +24,7 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
    * @param ikD the derivative gain
    * @param ikF the feed-forward gain
    * @param ikSF a feed-forward gain to counteract static friction
+   * @param ivelMath The VelMath used for calculating velocity.
    * @param itimeUtil see TimeUtil docs
    * @param iderivativeFilter a filter for filtering the derivative term
    */
