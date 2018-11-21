@@ -14,15 +14,15 @@ using namespace okapi;
 class OffsettableControllerInputTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    mockInput = new MockControllerInput();
-    input = new OffsettableControllerInput(std::shared_ptr<MockControllerInput>(mockInput));
+    mockInput = std::make_shared<MockControllerInput>();
+    input = new OffsettableControllerInput(mockInput);
   }
 
   void TearDown() override {
-    delete mockInput;
+    delete input;
   }
 
-  MockControllerInput *mockInput;
+  std::shared_ptr<MockControllerInput> mockInput;
   OffsettableControllerInput *input;
 };
 

@@ -15,22 +15,17 @@ using namespace okapi;
 class AsyncPosPIDControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    input = new MockControllerInput();
-    output = new MockMotor();
-    controller = new AsyncPosPIDController(std::shared_ptr<MockControllerInput>(input),
-                                           std::shared_ptr<MockMotor>(output),
-                                           createTimeUtil(),
-                                           0,
-                                           0,
-                                           0);
+    input = std::make_shared<MockControllerInput>();
+    output = std::make_shared<MockMotor>();
+    controller = new AsyncPosPIDController(input, output, createTimeUtil(), 0, 0, 0);
   }
 
   void TearDown() override {
     delete controller;
   }
 
-  MockControllerInput *input;
-  MockMotor *output;
+  std::shared_ptr<MockControllerInput> input;
+  std::shared_ptr<MockMotor> output;
   AsyncPosPIDController *controller;
 };
 
