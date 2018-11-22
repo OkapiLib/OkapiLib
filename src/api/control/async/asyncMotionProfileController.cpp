@@ -12,16 +12,12 @@
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(
   const TimeUtil &itimeUtil,
-  const double imaxVel,
-  const double imaxAccel,
-  const double imaxJerk,
+  const PathfinderLimits &ilimits,
   const std::shared_ptr<ChassisModel> &imodel,
   const ChassisScales &iscales,
-  AbstractMotor::GearsetRatioPair ipair)
+  const AbstractMotor::GearsetRatioPair &ipair)
   : logger(Logger::instance()),
-    maxVel(imaxVel),
-    maxAccel(imaxAccel),
-    maxJerk(imaxJerk),
+    limits(ilimits),
     model(imodel),
     scales(iscales),
     pair(ipair),
@@ -39,9 +35,7 @@ AsyncMotionProfileController::AsyncMotionProfileController(
   AsyncMotionProfileController &&other) noexcept
   : logger(other.logger),
     paths(std::move(other.paths)),
-    maxVel(other.maxVel),
-    maxAccel(other.maxAccel),
-    maxJerk(other.maxJerk),
+    limits(other.limits),
     model(std::move(other.model)),
     scales(other.scales),
     pair(other.pair),
@@ -87,9 +81,9 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
                      FIT_HERMITE_CUBIC,
                      PATHFINDER_SAMPLES_FAST,
                      0.001,
-                     maxVel,
-                     maxAccel,
-                     maxJerk,
+                     limits.maxVel,
+                     limits.maxAccel,
+                     limits.maxJerk,
                      &candidate);
 
   const int length = candidate.length;

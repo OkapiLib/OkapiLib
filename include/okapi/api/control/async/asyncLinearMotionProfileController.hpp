@@ -8,9 +8,7 @@
 #pragma once
 
 #include "okapi/api/control/async/asyncPositionController.hpp"
-#include "okapi/api/control/controllerOutput.hpp"
-#include "okapi/api/units/QAngle.hpp"
-#include "okapi/api/units/QLength.hpp"
+#include "okapi/api/control/util/pathfinderUtil.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <atomic>
@@ -26,15 +24,11 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   /**
    * An Async Controller which generates and follows 1D motion profiles.
    *
-   * @param imaxVel The maximum possible velocity.
-   * @param imaxAccel The maximum possible acceleration.
-   * @param imaxJerk The maximum possible jerk.
+   * @param ilimits The limits.
    * @param ioutput The output to write velocity targets to.
    */
   AsyncLinearMotionProfileController(const TimeUtil &itimeUtil,
-                                     double imaxVel,
-                                     double imaxAccel,
-                                     double imaxJerk,
+                                     const PathfinderLimits &ilimits,
                                      const std::shared_ptr<ControllerOutput<double>> &ioutput);
 
   AsyncLinearMotionProfileController(AsyncLinearMotionProfileController &&other) noexcept;
@@ -178,9 +172,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
 
   Logger *logger;
   std::map<std::string, TrajectoryPair> paths{};
-  double maxVel{0};
-  double maxAccel{0};
-  double maxJerk{0};
+  PathfinderLimits limits;
   std::shared_ptr<ControllerOutput<double>> output;
   double currentProfilePosition{0};
   TimeUtil timeUtil;

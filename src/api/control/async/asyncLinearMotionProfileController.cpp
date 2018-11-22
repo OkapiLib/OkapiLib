@@ -11,25 +11,16 @@
 namespace okapi {
 AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
   const TimeUtil &itimeUtil,
-  const double imaxVel,
-  const double imaxAccel,
-  const double imaxJerk,
+  const PathfinderLimits &ilimits,
   const std::shared_ptr<ControllerOutput<double>> &ioutput)
-  : logger(Logger::instance()),
-    maxVel(imaxVel),
-    maxAccel(imaxAccel),
-    maxJerk(imaxJerk),
-    output(ioutput),
-    timeUtil(itimeUtil) {
+  : logger(Logger::instance()), limits(ilimits), output(ioutput), timeUtil(itimeUtil) {
 }
 
 AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
   AsyncLinearMotionProfileController &&other) noexcept
   : logger(other.logger),
     paths(std::move(other.paths)),
-    maxVel(other.maxVel),
-    maxAccel(other.maxAccel),
-    maxJerk(other.maxJerk),
+    limits(other.limits),
     output(std::move(other.output)),
     timeUtil(std::move(other.timeUtil)),
     currentPath(std::move(other.currentPath)),
@@ -71,9 +62,9 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<doub
                      FIT_HERMITE_CUBIC,
                      PATHFINDER_SAMPLES_FAST,
                      0.001,
-                     maxVel,
-                     maxAccel,
-                     maxJerk,
+                     limits.maxVel,
+                     limits.maxAccel,
+                     limits.maxJerk,
                      &candidate);
 
   const int length = candidate.length;
@@ -201,7 +192,7 @@ void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair 
                                                            std::unique_ptr<AbstractRate> rate) {
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
     currentProfilePosition = path.segment[i].position;
-    output->controllerSet(path.segment[i].velocity / maxVel);
+    output->controllerSet(path.segment[i].velocity / limits.maxVel);
     rate->delayUntil(1_ms);
   }
 }

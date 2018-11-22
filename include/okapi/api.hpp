@@ -35,6 +35,7 @@
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/impl/control/async/asyncPosControllerBuilder.hpp"
 #include "okapi/impl/control/async/asyncVelControllerBuilder.hpp"
+#include "okapi/impl/control/async/asyncMotionProfileControllerBuilder.hpp"
 #include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
 #include "okapi/impl/control/util/controllerRunnerFactory.hpp"
 #include "okapi/impl/control/util/pidTunerFactory.hpp"

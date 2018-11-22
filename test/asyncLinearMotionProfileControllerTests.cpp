@@ -29,7 +29,9 @@ class AsyncLinearMotionProfileControllerTest : public ::testing::Test {
     output = new MockAsyncVelIntegratedController();
 
     controller = new MockAsyncLinearMotionProfileController(
-      createTimeUtil(), 1.0, 2.0, 10.0, std::shared_ptr<MockAsyncVelIntegratedController>(output));
+      createTimeUtil(),
+      {1.0, 2.0, 10.0},
+      std::shared_ptr<MockAsyncVelIntegratedController>(output));
     controller->startThread();
   }
 

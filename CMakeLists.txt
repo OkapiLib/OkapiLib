@@ -185,7 +185,7 @@ add_executable(OkapiLibV5
         src/pathfinder/followers/distance.c
         src/pathfinder/followers/encoder.c
         src/pathfinder/modifiers/swerve.c
-        src/pathfinder/modifiers/tank.c include/okapi/api/control/offsettableControllerInput.hpp src/api/control/offsettableControllerInput.cpp test/offsettableControllerInputTests.cpp test/asyncPosPIDControllerTests.cpp)
+        src/pathfinder/modifiers/tank.c include/okapi/api/control/offsettableControllerInput.hpp src/api/control/offsettableControllerInput.cpp test/offsettableControllerInputTests.cpp test/asyncPosPIDControllerTests.cpp include/okapi/api/control/util/pathfinderUtil.hpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)
