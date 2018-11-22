@@ -24,10 +24,10 @@ void testMotionProfileController() {
 
   auto controller = AsyncMotionProfileControllerBuilder()
                       .withOutput(drive)
-                      .withLimits({1, 2, 10})
+                      .withLimits({0.15, 2, 10})
                       .buildMotionProfileController();
 
-  controller->generatePath({{0_in, 0_in, 0_deg}, {1_in, 0_in, 0_deg}}, "A");
+  controller->generatePath({{0_in, 0_in, 0_deg}, {10_in, 0_in, 0_deg}}, "A");
 
   double maxVelLeft = 0;
   double maxVelRight = 0;
@@ -50,6 +50,11 @@ void testMotionProfileController() {
   }
 
   controller->flipDisable(true);
+
+  test("Max velocity should match the profile limits (left)",
+       TEST_BODY(AssertThat, maxVelLeft, EqualsWithDelta(30, 5)));
+  test("Max velocity should match the profile limits (right)",
+       TEST_BODY(AssertThat, maxVelRight, EqualsWithDelta(30, 5)));
 
   resetHardware();
   pros::delay(500);
