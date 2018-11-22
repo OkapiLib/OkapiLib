@@ -79,6 +79,7 @@ void testMaxVelOnIntegratedController() {
 }
 
 void runAsyncPosControllerBuilderIntegrationTests() {
+  test_printf("Testing AsyncPosControllerBuilder");
   testMaxVelOnPIDController();
   testMaxVelOnIntegratedController();
 }
