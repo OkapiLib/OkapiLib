@@ -6,7 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
-#include "okapi/impl/filter/velMathFactory.hpp"
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
 namespace okapi {
@@ -25,13 +24,13 @@ IterativeControllerFactory::velPID(const double ikP,
                                    const double ikD,
                                    const double ikF,
                                    const double ikSF,
-                                   const VelMathArgs &iparams,
+                                   std::unique_ptr<VelMath> ivelMath,
                                    std::unique_ptr<Filter> iderivativeFilter) {
   return IterativeVelPIDController(ikP,
                                    ikD,
                                    ikF,
                                    ikSF,
-                                   VelMathFactory::createPtr(iparams),
+                                   std::move(ivelMath),
                                    TimeUtilFactory::create(),
                                    std::move(iderivativeFilter));
 }
@@ -42,10 +41,10 @@ IterativeControllerFactory::motorVelocity(Motor imotor,
                                           const double ikD,
                                           const double ikF,
                                           const double ikSF,
-                                          const VelMathArgs &iparams) {
+                                          std::unique_ptr<VelMath> ivelMath) {
   return IterativeMotorVelocityController(
     std::make_shared<Motor>(imotor),
-    std::make_shared<IterativeVelPIDController>(velPID(ikP, ikD, ikF, ikSF, iparams)));
+    std::make_shared<IterativeVelPIDController>(velPID(ikP, ikD, ikF, ikSF, std::move(ivelMath))));
 }
 
 IterativeMotorVelocityController
@@ -54,10 +53,10 @@ IterativeControllerFactory::motorVelocity(MotorGroup imotor,
                                           const double ikD,
                                           const double ikF,
                                           const double ikSF,
-                                          const VelMathArgs &iparams) {
+                                          std::unique_ptr<VelMath> ivelMath) {
   return IterativeMotorVelocityController(
     std::make_shared<MotorGroup>(imotor),
-    std::make_shared<IterativeVelPIDController>(velPID(ikP, ikD, ikF, ikSF, iparams)));
+    std::make_shared<IterativeVelPIDController>(velPID(ikP, ikD, ikF, ikSF, std::move(ivelMath))));
 }
 
 IterativeMotorVelocityController IterativeControllerFactory::motorVelocity(

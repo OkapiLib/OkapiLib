@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/tests/impl/allImplTests.hpp"
+#include "test/tests/impl/asyncMotionProfileControllerBuilderIntegrationTests.hpp"
 #include "test/tests/impl/asyncPosControllerBuilderIntegrationTests.hpp"
 #include "test/tests/impl/asyncPosIntegratedControllerTests.hpp"
 #include "test/tests/impl/chassisControllerBuilderIntegrationTests.hpp"
@@ -14,7 +15,8 @@
 
 void runAllImplTests() {
   //  runChassisControllerBuilderIntegrationTests();
-  runAsyncPosControllerBuilderIntegrationTests();
+  //  runAsyncPosControllerBuilderIntegrationTests();
+  runAsyncMotionProfileControllerBuilderIntegrationTests();
   //  runAsyncPosIntegratedControllerTests();
   //  runUtilTests();
   //  runControllerTests();
