@@ -37,6 +37,13 @@ AsyncMotionProfileControllerBuilder::withOutput(const ChassisController &icontro
                     icontroller.getGearsetRatioPair());
 }
 
+AsyncMotionProfileControllerBuilder &AsyncMotionProfileControllerBuilder::withOutput(
+  const std::shared_ptr<ChassisController> &icontroller) {
+  return withOutput(icontroller->getChassisModel(),
+                    icontroller->getChassisScales(),
+                    icontroller->getGearsetRatioPair());
+}
+
 AsyncMotionProfileControllerBuilder &
 AsyncMotionProfileControllerBuilder::withOutput(const std::shared_ptr<ChassisModel> &imodel,
                                                 const ChassisScales &iscales,
