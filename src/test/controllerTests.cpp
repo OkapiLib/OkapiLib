@@ -6,7 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/tests/impl/controllerTests.hpp"
-#include "okapi/api.hpp"
 #include "test/testRunner.hpp"
 
 using namespace snowhouse;
@@ -14,6 +13,7 @@ using namespace okapi;
 
 void testBtnOperatorOverloadReturnsTheSameInstance() {
   printf("Testing Controller operator[] overload returns the same ControllerButton instance\n");
+  resetHardware();
 
   Controller c;
   auto btnAddr1 = &c[ControllerDigital::X];
@@ -22,6 +22,7 @@ void testBtnOperatorOverloadReturnsTheSameInstance() {
   test("First button is not null", TEST_BODY(AssertThat, btnAddr1, Is().Not().Null()));
   test("Two calls should give the same address",
        TEST_BODY(AssertThat, btnAddr1 == btnAddr2, IsTrue()));
+  resetHardware();
 }
 
 void runControllerTests() {

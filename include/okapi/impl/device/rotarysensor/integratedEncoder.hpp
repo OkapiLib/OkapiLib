@@ -26,7 +26,7 @@ class IntegratedEncoder : public ContinuousRotarySensor {
    *
    * @param imotor the motor to use the encoder from.
    */
-  explicit IntegratedEncoder(const okapi::Motor &imotor);
+  IntegratedEncoder(const okapi::Motor &imotor);
 
   /**
    * Get the current sensor value.

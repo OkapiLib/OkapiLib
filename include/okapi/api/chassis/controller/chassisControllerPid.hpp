@@ -102,7 +102,7 @@ class ChassisControllerPID : public virtual ChassisController {
   void waitUntilSettled() override;
 
   /**
-   * Stop the robot (set all the motors to 0).
+   * Stop the robot (set all the motors to 0 and stops the PID controllers).
    */
   void stop() override;
 
