@@ -100,7 +100,7 @@ void testSensorsWork() {
   pros::delay(500);
 }
 
-void runChassisControllerFactoryIntegrationTests() {
+void runChassisControllerBuilderIntegrationTests() {
   test_printf("Testing ChassisControllerBuilder");
   testForwardUsesCorrectMaximumVelocityForAGearset();
   testMaxVelWorksOutOfOrder();

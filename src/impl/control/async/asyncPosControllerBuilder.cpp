@@ -92,7 +92,8 @@ std::shared_ptr<AsyncPositionController<double, double>> AsyncPosControllerBuild
 }
 
 std::shared_ptr<AsyncPosIntegratedController> AsyncPosControllerBuilder::buildAPIC() {
-  return std::make_shared<AsyncPosIntegratedController>(motor, timeUtilFactory.create());
+  return std::make_shared<AsyncPosIntegratedController>(
+    motor, maxVelocity, timeUtilFactory.create());
 }
 
 std::shared_ptr<AsyncPosPIDController> AsyncPosControllerBuilder::buildAPPC() {
