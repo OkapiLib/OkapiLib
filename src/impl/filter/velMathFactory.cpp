@@ -12,28 +12,25 @@
 namespace okapi {
 VelMath VelMathFactory::create(const double iticksPerRev, const QTime isampleTime) {
   return VelMath(
-    iticksPerRev, std::make_shared<AverageFilter<2>>(), isampleTime, std::make_unique<Timer>());
+    iticksPerRev, std::make_unique<AverageFilter<2>>(), isampleTime, std::make_unique<Timer>());
 }
 
 std::unique_ptr<VelMath> VelMathFactory::createPtr(const double iticksPerRev,
                                                    const QTime isampleTime) {
   return std::make_unique<VelMath>(
-    iticksPerRev, std::make_shared<AverageFilter<2>>(), isampleTime, std::make_unique<Timer>());
+    iticksPerRev, std::make_unique<AverageFilter<2>>(), isampleTime, std::make_unique<Timer>());
 }
 
 VelMath VelMathFactory::create(const double iticksPerRev,
-                               std::shared_ptr<Filter> ifilter,
+                               std::unique_ptr<Filter> ifilter,
                                const QTime isampleTime) {
-  return VelMath(iticksPerRev, ifilter, isampleTime, std::make_unique<Timer>());
+  return VelMath(iticksPerRev, std::move(ifilter), isampleTime, std::make_unique<Timer>());
 }
 
 std::unique_ptr<VelMath> VelMathFactory::createPtr(const double iticksPerRev,
-                                                   std::shared_ptr<Filter> ifilter,
+                                                   std::unique_ptr<Filter> ifilter,
                                                    const QTime isampleTime) {
-  return std::make_unique<VelMath>(iticksPerRev, ifilter, isampleTime, std::make_unique<Timer>());
-}
-
-std::unique_ptr<VelMath> VelMathFactory::createPtr(const VelMathArgs &ivelMathArgs) {
-  return std::make_unique<VelMath>(ivelMathArgs, std::make_unique<Timer>());
+  return std::make_unique<VelMath>(
+    iticksPerRev, std::move(ifilter), isampleTime, std::make_unique<Timer>());
 }
 } // namespace okapi

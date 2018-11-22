@@ -27,7 +27,7 @@ class AsyncWrapperTest : public ::testing::Test {
       0,
       0,
       std::make_unique<VelMath>(
-        imev5TPR, std::make_shared<PassthroughFilter>(), 0_ms, std::make_unique<MockTimer>()));
+        imev5TPR, std::make_unique<PassthroughFilter>(), 0_ms, std::make_unique<MockTimer>()));
   }
 
   void TearDown() override {
