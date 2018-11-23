@@ -33,7 +33,7 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
    * whatever units the motor is in.
    *
    * @param imotor The motor to control.
-   * @param imaxVelocity The maximum target velocity.
+   * @param imaxVelocity The maximum velocity during a profiled movement in RPM [0-600].
    */
   AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
                                std::int32_t imaxVelocity,
