@@ -31,19 +31,20 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * @param ioutput controller output, written to from the IterativeController
    * @param icontroller the controller to use
    * @param irateSupplier used for rates used in the main loop and in waitUntilSettled
-   * @param isettledUtil used in waitUntilSettled
-   * @param iscale the scale applied to the controller output
+   * @param iratio Any external gear ratio.
    */
   AsyncWrapper(const std::shared_ptr<ControllerInput<Input>> &iinput,
                const std::shared_ptr<ControllerOutput<Output>> &ioutput,
                std::unique_ptr<IterativeController<Input, Output>> icontroller,
-               const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier)
+               const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
+               const double iratio = 1)
     : logger(Logger::instance()),
       input(iinput),
       output(ioutput),
       controller(std::move(icontroller)),
       loopRate(irateSupplier.get()),
-      settledRate(irateSupplier.get()) {
+      settledRate(irateSupplier.get()),
+      ratio(iratio) {
   }
 
   AsyncWrapper(AsyncWrapper<Input, Output> &&other) noexcept
@@ -53,6 +54,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
       controller(std::move(other.controller)),
       loopRate(std::move(other.loopRate)),
       settledRate(std::move(other.settledRate)),
+      ratio(other.ratio),
       dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
       task(other.task) {
   }
@@ -65,7 +67,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   /**
    * Sets the target for the controller.
    */
-  void setTarget(Input itarget) override {
+  void setTarget(const Input itarget) override {
     logger->info("AsyncWrapper: Set target to " + std::to_string(itarget));
     hasFirstTarget = true;
     controller->setTarget(itarget);
@@ -78,7 +80,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    *
    * @param ivalue the controller's output
    */
-  void controllerSet(Input ivalue) override {
+  void controllerSet(const Input ivalue) override {
     controller->controllerSet(ivalue);
   }
 
@@ -122,7 +124,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    *
    * @param isampleTime time between loops
    */
-  void setSampleTime(QTime isampleTime) {
+  void setSampleTime(const QTime &isampleTime) {
     controller->setSampleTime(isampleTime);
   }
 
@@ -132,7 +134,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * @param imax max output
    * @param imin min output
    */
-  void setOutputLimits(Output imax, Output imin) {
+  void setOutputLimits(const Output imax, const Output imin) {
     controller->setOutputLimits(imax, imin);
   }
 
@@ -180,7 +182,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    *
    * @param iisDisabled whether the controller is disabled
    */
-  void flipDisable(bool iisDisabled) override {
+  void flipDisable(const bool iisDisabled) override {
     logger->info("AsyncWrapper: flipDisable " + std::to_string(iisDisabled));
     controller->flipDisable(iisDisabled);
     resumeMovement();
@@ -228,6 +230,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   Input lastTarget;
   std::unique_ptr<AbstractRate> loopRate;
   std::unique_ptr<AbstractRate> settledRate;
+  double ratio;
   std::atomic_bool dtorCalled{false};
   CrossplatformThread *task{nullptr};
 

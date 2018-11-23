@@ -150,7 +150,7 @@ class ChassisControllerBuilder {
                                       const IterativePosPIDController::Gains &iturnGains);
 
   /**
-   * Sets the gearset.
+   * Sets the gearset. The default gearset is derived from the motor's.
    *
    * @param igearset The gearset.
    * @return An ongoing builder.

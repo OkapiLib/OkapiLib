@@ -29,6 +29,7 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
    * @param ikI The integral gain.
    * @param ikD The derivative gain.
    * @param ikBias The controller bias.
+   * @param iratio Any external gear ratio.
    * @param iderivativeFilter The derivative filter.
    */
   AsyncPosPIDController(
@@ -39,6 +40,7 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
     double ikI,
     double ikD,
     double ikBias = 0,
+    double iratio = 1,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -51,6 +53,7 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
    * @param ikI The integral gain.
    * @param ikD The derivative gain.
    * @param ikBias The controller bias.
+   * @param iratio Any external gear ratio.
    * @param iderivativeFilter The derivative filter.
    */
   AsyncPosPIDController(
@@ -61,6 +64,7 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
     double ikI,
     double ikD,
     double ikBias = 0,
+    double iratio = 1,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**

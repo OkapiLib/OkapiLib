@@ -35,6 +35,10 @@ AsyncVelControllerBuilder::withMotor(const std::shared_ptr<AbstractMotor> &imoto
     maxVelocity = toUnderlyingType(imotor->getGearing());
   }
 
+  if (!gearsetSetByUser) {
+    pair = imotor->getGearing();
+  }
+
   return *this;
 }
 
@@ -73,6 +77,13 @@ AsyncVelControllerBuilder::withDerivativeFilter(std::unique_ptr<Filter> iderivat
   return *this;
 }
 
+AsyncVelControllerBuilder &
+AsyncVelControllerBuilder::withGearset(const AbstractMotor::GearsetRatioPair &igearset) {
+  gearsetSetByUser = true;
+  pair = igearset;
+  return *this;
+}
+
 AsyncVelControllerBuilder &AsyncVelControllerBuilder::withMaxVelocity(double imaxVelocity) {
   maxVelSetByUser = true;
   maxVelocity = imaxVelocity;
@@ -105,10 +116,11 @@ std::shared_ptr<AsyncVelocityController<double, double>> AsyncVelControllerBuild
 
 std::shared_ptr<AsyncVelIntegratedController> AsyncVelControllerBuilder::buildAVIC() {
   return std::make_shared<AsyncVelIntegratedController>(
-    motor, maxVelocity, timeUtilFactory.create());
+    motor, pair, maxVelocity, timeUtilFactory.create());
 }
 
 std::shared_ptr<AsyncVelPIDController> AsyncVelControllerBuilder::buildAVPC() {
+  motor->setGearing(pair.internalGearset);
   auto out = std::make_shared<AsyncVelPIDController>(sensor,
                                                      motor,
                                                      timeUtilFactory.create(),
@@ -117,6 +129,7 @@ std::shared_ptr<AsyncVelPIDController> AsyncVelControllerBuilder::buildAVPC() {
                                                      gains.kF,
                                                      gains.kSF,
                                                      std::move(velMath),
+                                                     pair.ratio,
                                                      std::move(derivativeFilter));
   out->startThread();
   return out;

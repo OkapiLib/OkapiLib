@@ -35,6 +35,10 @@ AsyncPosControllerBuilder::withMotor(const std::shared_ptr<AbstractMotor> &imoto
     maxVelocity = toUnderlyingType(imotor->getGearing());
   }
 
+  if (!gearsetSetByUser) {
+    pair = imotor->getGearing();
+  }
+
   return *this;
 }
 
@@ -66,6 +70,13 @@ AsyncPosControllerBuilder::withDerivativeFilter(std::unique_ptr<Filter> iderivat
   return *this;
 }
 
+AsyncPosControllerBuilder &
+AsyncPosControllerBuilder::withGearset(const AbstractMotor::GearsetRatioPair &igearset) {
+  gearsetSetByUser = true;
+  pair = igearset;
+  return *this;
+}
+
 AsyncPosControllerBuilder &AsyncPosControllerBuilder::withMaxVelocity(double imaxVelocity) {
   maxVelSetByUser = true;
   maxVelocity = imaxVelocity;
@@ -93,10 +104,11 @@ std::shared_ptr<AsyncPositionController<double, double>> AsyncPosControllerBuild
 
 std::shared_ptr<AsyncPosIntegratedController> AsyncPosControllerBuilder::buildAPIC() {
   return std::make_shared<AsyncPosIntegratedController>(
-    motor, maxVelocity, timeUtilFactory.create());
+    motor, pair, maxVelocity, timeUtilFactory.create());
 }
 
 std::shared_ptr<AsyncPosPIDController> AsyncPosControllerBuilder::buildAPPC() {
+  motor->setGearing(pair.internalGearset);
   auto out = std::make_shared<AsyncPosPIDController>(sensor,
                                                      motor,
                                                      timeUtilFactory.create(),
@@ -104,6 +116,7 @@ std::shared_ptr<AsyncPosPIDController> AsyncPosControllerBuilder::buildAPPC() {
                                                      gains.kI,
                                                      gains.kD,
                                                      gains.kBias,
+                                                     pair.ratio,
                                                      std::move(derivativeFilter));
   out->startThread();
   return out;
