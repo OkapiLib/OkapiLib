@@ -75,7 +75,7 @@ class AsyncVelControllerBuilder {
   AsyncVelControllerBuilder &withSensor(const std::shared_ptr<RotarySensor> &isensor);
 
   /**
-   * Sets the controller gains, causing the builder to generate an AsyncPosPIDController. This does
+   * Sets the controller gains, causing the builder to generate an AsyncVelPIDController. This does
    * not set the integrated control's gains.
    *
    * @param igains The gains.
@@ -121,9 +121,9 @@ class AsyncVelControllerBuilder {
   AsyncVelControllerBuilder &withTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
 
   /**
-   * Builds the AsyncPositionController. Throws a std::runtime_exception is no motors were set.
+   * Builds the AsyncVelocityController. Throws a std::runtime_exception is no motors were set.
    *
-   * @return A fully built AsyncPositionController.
+   * @return A fully built AsyncVelocityController.
    */
   std::shared_ptr<AsyncVelocityController<double, double>> build();
 
