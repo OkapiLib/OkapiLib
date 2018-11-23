@@ -25,9 +25,11 @@ class AsyncMotionProfileControllerBuilder {
   AsyncMotionProfileControllerBuilder();
 
   /**
-   * Sets the output.
+   * Sets the output. This must be used with buildLinearMotionProfileController().
    *
    * @param ioutput The output.
+   * @param idiameter The diameter of the mechanical part the motor spins.
+   * @param ipair The gearset.
    * @return An ongoing builder.
    */
   AsyncMotionProfileControllerBuilder &withOutput(const Motor &ioutput,
@@ -35,9 +37,11 @@ class AsyncMotionProfileControllerBuilder {
                                                   const AbstractMotor::GearsetRatioPair &ipair);
 
   /**
-   * Sets the output.
+   * Sets the output. This must be used with buildLinearMotionProfileController().
    *
    * @param ioutput The output.
+   * @param idiameter The diameter of the mechanical part the motor spins.
+   * @param ipair The gearset.
    * @return An ongoing builder.
    */
   AsyncMotionProfileControllerBuilder &withOutput(const MotorGroup &ioutput,
@@ -45,9 +49,11 @@ class AsyncMotionProfileControllerBuilder {
                                                   const AbstractMotor::GearsetRatioPair &ipair);
 
   /**
-   * Sets the output.
+   * Sets the output. This must be used with buildLinearMotionProfileController().
    *
    * @param ioutput The output.
+   * @param idiameter The diameter of the mechanical part the motor spins.
+   * @param ipair The gearset.
    * @return An ongoing builder.
    */
   AsyncMotionProfileControllerBuilder &
@@ -56,7 +62,7 @@ class AsyncMotionProfileControllerBuilder {
              const AbstractMotor::GearsetRatioPair &ipair);
 
   /**
-   * Sets the output.
+   * Sets the output. This must be used with buildMotionProfileController().
    *
    * @param icontroller The chassis controller to use.
    * @return An ongoing builder.
@@ -64,7 +70,7 @@ class AsyncMotionProfileControllerBuilder {
   AsyncMotionProfileControllerBuilder &withOutput(const ChassisController &icontroller);
 
   /**
-   * Sets the output.
+   * Sets the output. This must be used with buildMotionProfileController().
    *
    * @param icontroller The chassis controller to use.
    * @return An ongoing builder.
@@ -73,7 +79,7 @@ class AsyncMotionProfileControllerBuilder {
   withOutput(const std::shared_ptr<ChassisController> &icontroller);
 
   /**
-   * Sets the output.
+   * Sets the output. This must be used with buildMotionProfileController().
    *
    * @param imodel The chassis model to use.
    * @param iscales The chassis dimensions.

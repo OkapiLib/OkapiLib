@@ -15,7 +15,7 @@ class OffsettableControllerInputTest : public ::testing::Test {
   protected:
   void SetUp() override {
     mockInput = std::make_shared<MockControllerInput>();
-    input = new OffsettableControllerInput(mockInput);
+    input = new OffsetableControllerInput(mockInput);
   }
 
   void TearDown() override {
@@ -23,7 +23,7 @@ class OffsettableControllerInputTest : public ::testing::Test {
   }
 
   std::shared_ptr<MockControllerInput> mockInput;
-  OffsettableControllerInput *input;
+  OffsetableControllerInput *input;
 };
 
 TEST_F(OffsettableControllerInputTest, TestTarePositionNormally) {

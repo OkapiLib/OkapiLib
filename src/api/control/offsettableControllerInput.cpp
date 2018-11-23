@@ -9,18 +9,18 @@
 #include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
-OffsettableControllerInput::OffsettableControllerInput(
+OffsetableControllerInput::OffsetableControllerInput(
   const std::shared_ptr<ControllerInput<double>> &iinput)
   : input(iinput) {
 }
 
-OffsettableControllerInput::~OffsettableControllerInput() = default;
+OffsetableControllerInput::~OffsetableControllerInput() = default;
 
-double OffsettableControllerInput::controllerGet() {
+double OffsetableControllerInput::controllerGet() {
   return input->controllerGet() - offset;
 }
 
-void OffsettableControllerInput::tarePosition() {
+void OffsetableControllerInput::tarePosition() {
   const auto reading = input->controllerGet();
   if (reading != OKAPI_PROS_ERR) {
     offset = reading;

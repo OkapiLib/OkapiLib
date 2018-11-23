@@ -11,11 +11,16 @@
 #include <memory>
 
 namespace okapi {
-class OffsettableControllerInput : public ControllerInput<double> {
+class OffsetableControllerInput : public ControllerInput<double> {
   public:
-  explicit OffsettableControllerInput(const std::shared_ptr<ControllerInput<double>> &iinput);
+  /**
+   * A ControllerInput which can be tared to change the zero position.
+   *
+   * @param iinput The ControllerInput to reference.
+   */
+  explicit OffsetableControllerInput(const std::shared_ptr<ControllerInput<double>> &iinput);
 
-  virtual ~OffsettableControllerInput();
+  virtual ~OffsetableControllerInput();
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in
@@ -26,7 +31,7 @@ class OffsettableControllerInput : public ControllerInput<double> {
   double controllerGet() override;
 
   /**
-   * Sets the "absolute" zero position of the controller input to its current position. This does
+   * Sets the "absolute" zero position of this controller input to its current position. This does
    * nothing if the underlying controller input returns PROS_ERR.
    */
   virtual void tarePosition();

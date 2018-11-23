@@ -54,7 +54,7 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
    * @param iderivativeFilter The derivative filter.
    */
   AsyncPosPIDController(
-    const std::shared_ptr<OffsettableControllerInput> &iinput,
+    const std::shared_ptr<OffsetableControllerInput> &iinput,
     const std::shared_ptr<ControllerOutput<double>> &ioutput,
     const TimeUtil &itimeUtil,
     double ikP,
@@ -69,6 +69,6 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
   void tarePosition() override;
 
   protected:
-  std::shared_ptr<OffsettableControllerInput> offsettableInput;
+  std::shared_ptr<OffsetableControllerInput> offsettableInput;
 };
 } // namespace okapi
