@@ -9,15 +9,17 @@
 #include "test/tests/impl/asyncMotionProfileControllerBuilderIntegrationTests.hpp"
 #include "test/tests/impl/asyncPosControllerBuilderIntegrationTests.hpp"
 #include "test/tests/impl/asyncPosIntegratedControllerTests.hpp"
+#include "test/tests/impl/asyncVelControllerBuilderIntegrationTests.hpp"
 #include "test/tests/impl/chassisControllerBuilderIntegrationTests.hpp"
 #include "test/tests/impl/controllerTests.hpp"
 #include "test/tests/impl/utilTests.hpp"
 
 void runAllImplTests() {
-  //  runChassisControllerBuilderIntegrationTests();
-  //  runAsyncPosControllerBuilderIntegrationTests();
+  runChassisControllerBuilderIntegrationTests();
+  runAsyncPosControllerBuilderIntegrationTests();
   runAsyncMotionProfileControllerBuilderIntegrationTests();
-  //  runAsyncPosIntegratedControllerTests();
-  //  runUtilTests();
-  //  runControllerTests();
+  runAsyncPosIntegratedControllerTests();
+  runAsyncVelControllerBuilderIntegrationTests();
+  runUtilTests();
+  runControllerTests();
 }

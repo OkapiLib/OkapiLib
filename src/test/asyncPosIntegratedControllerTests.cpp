@@ -11,7 +11,7 @@
 using namespace snowhouse;
 using namespace okapi;
 
-void testTarePosition() {
+static void testTarePosition() {
   printf("Testing tarePosition\n");
   resetHardware();
 
@@ -54,7 +54,7 @@ void testTarePosition() {
   pros::delay(500);
 }
 
-void testStop() {
+static void testStop() {
   printf("Testing stop\n");
   resetHardware();
 

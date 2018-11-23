@@ -104,7 +104,8 @@ std::shared_ptr<AsyncVelocityController<double, double>> AsyncVelControllerBuild
 }
 
 std::shared_ptr<AsyncVelIntegratedController> AsyncVelControllerBuilder::buildAVIC() {
-  return std::make_shared<AsyncVelIntegratedController>(motor, timeUtilFactory.create());
+  return std::make_shared<AsyncVelIntegratedController>(
+    motor, maxVelocity, timeUtilFactory.create());
 }
 
 std::shared_ptr<AsyncVelPIDController> AsyncVelControllerBuilder::buildAVPC() {

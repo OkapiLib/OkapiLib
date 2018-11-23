@@ -5,28 +5,28 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "test/tests/impl/asyncPosControllerBuilderIntegrationTests.hpp"
+#include "test/tests/impl/asyncVelControllerBuilderIntegrationTests.hpp"
 #include "test/testRunner.hpp"
 
 using namespace okapi;
 using namespace snowhouse;
 
-// segfault at 0301d462
 static void testMaxVelOnPIDController() {
   printf("Testing PID controller obeys maximum velocity\n");
   resetHardware();
 
   const double maxVel = 20;
-  auto controller = AsyncPosControllerBuilder()
+  auto controller = AsyncVelControllerBuilder()
                       .withMaxVelocity(maxVel)
                       .withMotor(MOTOR_1_PORT)
                       .withGains({0.01, 0, 0})
+                      .withVelMath(VelMathFactory::createPtr(imev5TPR))
                       .build();
 
   Motor motor(MOTOR_1_PORT);
   double maxRPM = 0;
 
-  controller->setTarget(500);
+  controller->setTarget(50);
 
   AverageFilter<10> filter;
   while (!controller->isSettled()) {
@@ -50,12 +50,11 @@ static void testMaxVelOnIntegratedController() {
 
   const double maxVel = 20;
   auto controller =
-    AsyncPosControllerBuilder().withMaxVelocity(maxVel).withMotor(MOTOR_1_PORT).build();
+    AsyncVelControllerBuilder().withMaxVelocity(maxVel).withMotor(MOTOR_1_PORT).build();
 
   Motor motor(MOTOR_1_PORT);
-  double maxRPM = 0;
 
-  controller->setTarget(500);
+  controller->setTarget(50);
 
   AverageFilter<10> filter;
   while (!controller->isSettled()) {
@@ -73,8 +72,8 @@ static void testMaxVelOnIntegratedController() {
   pros::delay(500);
 }
 
-void runAsyncPosControllerBuilderIntegrationTests() {
-  test_printf("Testing AsyncPosControllerBuilder");
+void runAsyncVelControllerBuilderIntegrationTests() {
+  test_printf("Testing AsyncVelControllerBuilder");
   testMaxVelOnPIDController();
   testMaxVelOnIntegratedController();
 }

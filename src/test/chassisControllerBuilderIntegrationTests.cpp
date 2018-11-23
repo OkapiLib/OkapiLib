@@ -11,7 +11,7 @@
 using namespace okapi;
 using namespace snowhouse;
 
-void testForwardUsesCorrectMaximumVelocityForAGearset() {
+static void testForwardUsesCorrectMaximumVelocityForAGearset() {
   printf("Testing forward uses the correct max vel for a gearset\n");
   resetHardware();
 
@@ -34,7 +34,7 @@ void testForwardUsesCorrectMaximumVelocityForAGearset() {
   pros::delay(500);
 }
 
-void testMaxVelWorksOutOfOrder() {
+static void testMaxVelWorksOutOfOrder() {
   printf("Testing withMaxVelocity works out of order\n");
   resetHardware();
 
@@ -57,7 +57,7 @@ void testMaxVelWorksOutOfOrder() {
   pros::delay(500);
 }
 
-void testSensorsWork() {
+static void testSensorsWork() {
   printf("Testing sensor configuration works\n");
   resetHardware();
 

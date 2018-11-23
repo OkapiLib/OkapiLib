@@ -95,6 +95,7 @@ class AsyncPosControllerBuilder {
 
   /**
    * Sets the maximum velocity. The default maximum velocity is derived from the motor's gearset.
+   * This parameter is ignored when using an AsyncPosPIDController.
    *
    * @param imaxVelocity The maximum velocity.
    * @return An ongoing builder.

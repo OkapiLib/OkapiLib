@@ -6,13 +6,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/tests/impl/asyncMotionProfileControllerBuilderIntegrationTests.hpp"
-#include "okapi/impl/control/async/asyncPosControllerBuilder.hpp"
 #include "test/testRunner.hpp"
 
 using namespace okapi;
 using namespace snowhouse;
 
-void testMotionProfileController() {
+static void testMotionProfileController() {
   printf("Testing motion profile controller\n");
   resetHardware();
 
@@ -32,34 +31,25 @@ void testMotionProfileController() {
 
   controller->generatePath({{0_in, 0_in, 0_deg}, {pathLength, 0_in, 0_deg}}, "A");
 
-  double maxVelLeft = 0;
-  double maxVelRight = 0;
   Motor leftMtr(MOTOR_1_PORT);
   Motor rightMtr(MOTOR_2_PORT);
 
   controller->setTarget("A");
 
+  AverageFilter<10> leftFilter;
+  AverageFilter<10> rightFilter;
   while (!controller->isSettled()) {
-    const auto leftVel = leftMtr.getActualVelocity();
-    const auto rightVel = rightMtr.getActualVelocity();
-
-    if (leftVel > maxVelLeft) {
-      maxVelLeft = leftVel;
-    }
-
-    if (rightVel > maxVelRight) {
-      maxVelRight = rightVel;
-    }
-
+    leftFilter.filter(leftMtr.getActualVelocity());
+    rightFilter.filter(rightMtr.getActualVelocity());
     pros::delay(10);
   }
 
   controller->flipDisable(true);
 
-  test("Max velocity should match the profile limits (left)",
-       TEST_BODY(AssertThat, maxVelLeft, EqualsWithDelta(30, 5)));
-  test("Max velocity should match the profile limits (right)",
-       TEST_BODY(AssertThat, maxVelRight, EqualsWithDelta(30, 5)));
+  test("Steady-state average RPM should match the profile limits (left)",
+       TEST_BODY(AssertThat, leftFilter.getOutput(), EqualsWithDelta(15, 2)));
+  test("Steady-state average RPM should match the profile limits (right)",
+       TEST_BODY(AssertThat, rightFilter.getOutput(), EqualsWithDelta(15, 2)));
 
   const auto endAngle = leftMtr.getPosition() * degree;
   const auto endPosition = (endAngle / 360_deg) * 1_pi * imaginaryDiameter;
@@ -72,7 +62,7 @@ void testMotionProfileController() {
   pros::delay(500);
 }
 
-void testLinearMotionProfileController() {
+static void testLinearMotionProfileController() {
   printf("Testing linear motion profile controller\n");
   resetHardware();
 

@@ -11,7 +11,7 @@
 using namespace snowhouse;
 using namespace okapi;
 
-void testBtnOperatorOverloadReturnsTheSameInstance() {
+static void testBtnOperatorOverloadReturnsTheSameInstance() {
   printf("Testing Controller operator[] overload returns the same ControllerButton instance\n");
   resetHardware();
 

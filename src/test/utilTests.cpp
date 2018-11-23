@@ -11,7 +11,7 @@
 using namespace okapi;
 using namespace snowhouse;
 
-void testUtils() {
+static void testUtils() {
   {
     test_printf("Testing Rate");
 

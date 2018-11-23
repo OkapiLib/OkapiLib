@@ -128,7 +128,7 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
   protected:
   Logger *logger;
   std::shared_ptr<AbstractMotor> motor;
-  std::int32_t maxVelocity{600}; // 600 RPM max, vexOS will limit if the gearset can't go this fast
+  std::int32_t maxVelocity;
   double lastTarget = 0;
   bool controllerIsDisabled = false;
   bool hasFirstTarget = false;
