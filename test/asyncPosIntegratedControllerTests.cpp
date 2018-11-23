@@ -113,3 +113,8 @@ TEST_F(AsyncPosIntegratedControllerTest, ExternalRatioWorksForFraction) {
   EXPECT_EQ(motor->lastPosition, static_cast<std::int16_t>(5 * (2.0 / 3)));
   EXPECT_EQ(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::red));
 }
+
+TEST_F(AsyncPosIntegratedControllerTest, GearRatioOfZeroThrowsException) {
+  EXPECT_THROW(AsyncPosIntegratedController(motor, motor->gearset * 0, 100, createTimeUtil()),
+               std::invalid_argument);
+}

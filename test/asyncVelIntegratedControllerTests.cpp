@@ -71,3 +71,8 @@ TEST_F(AsyncVelIntegratedControllerTest, ExternalRatioWorksForFraction) {
   newController.setTarget(5);
   EXPECT_EQ(motor->lastVelocity, static_cast<std::int16_t>(5 * (2.0 / 3)));
 }
+
+TEST_F(AsyncVelIntegratedControllerTest, GearRatioOfZeroThrowsException) {
+  EXPECT_THROW(AsyncVelIntegratedController(motor, motor->gearset * 0, 100, createTimeUtil()),
+               std::invalid_argument);
+}
