@@ -10,9 +10,8 @@
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/control/async/asyncPositionController.hpp"
-#include "okapi/api/units/QAngle.hpp"
+#include "okapi/api/control/util/pathfinderUtil.hpp"
 #include "okapi/api/units/QAngularSpeed.hpp"
-#include "okapi/api/units/QLength.hpp"
 #include "okapi/api/units/QSpeed.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
@@ -24,31 +23,22 @@ extern "C" {
 }
 
 namespace okapi {
-struct Point {
-  QLength x;    // X coordinate relative to the start of the movement
-  QLength y;    // Y coordinate relative to the start of the movement
-  QAngle theta; // Exit angle relative to the start of the movement
-};
-
 class AsyncMotionProfileController : public AsyncPositionController<std::string, Point> {
   public:
   /**
    * An Async Controller which generates and follows 2D motion profiles. Throws a
    * std::invalid_argument exception if the gear ratio is zero.
    *
-   * @param imaxVel The maximum possible velocity in m/s.
-   * @param imaxAccel The maximum possible acceleration in m/s/s.
-   * @param imaxJerk The maximum possible jerk in m/s/s/s.
+   * @param ilimits The limits.
    * @param imodel The chassis model to control.
-   * @param iwidth The chassis wheelbase width.
+   * @param iscales The chassis dimensions.
+   * @param ipair The gearset.
    */
   AsyncMotionProfileController(const TimeUtil &itimeUtil,
-                               double imaxVel,
-                               double imaxAccel,
-                               double imaxJerk,
+                               const PathfinderLimits &ilimits,
                                const std::shared_ptr<ChassisModel> &imodel,
                                const ChassisScales &iscales,
-                               AbstractMotor::GearsetRatioPair ipair);
+                               const AbstractMotor::GearsetRatioPair &ipair);
 
   AsyncMotionProfileController(AsyncMotionProfileController &&other) noexcept;
 
@@ -122,8 +112,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * blocks until the controller has settled. Does not save the path which was generated.
    *
    * @param iwaypoints The waypoints to hit on the path.
+   * @param ibackwards Whether to follow the profile backwards.
    */
-  void moveTo(std::initializer_list<Point> iwaypoints);
+  void moveTo(std::initializer_list<Point> iwaypoints, bool ibackwards = false);
 
   /**
    * Returns the last error of the controller. This implementation always returns zero since the
@@ -172,6 +163,14 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   bool isDisabled() const override;
 
   /**
+   * Sets the "absolute" zero position of the controller to its current position.
+   *
+   * This implementation does nothing because the API always requires the starting position to be
+   * specified.
+   */
+  void tarePosition() override;
+
+  /**
    * Starts the internal thread. This should not be called by normal users. This method is called
    * by the AsyncControllerFactory when making a new instance of this class.
    */
@@ -186,9 +185,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
 
   Logger *logger;
   std::map<std::string, TrajectoryPair> paths{};
-  double maxVel{0};
-  double maxAccel{0};
-  double maxJerk{0};
+  PathfinderLimits limits;
   std::shared_ptr<ChassisModel> model;
   ChassisScales scales;
   AbstractMotor::GearsetRatioPair pair;

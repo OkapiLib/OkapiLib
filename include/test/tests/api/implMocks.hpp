@@ -209,6 +209,17 @@ class MockRate : public AbstractRate {
   void delayUntil(uint32_t ims) override;
 };
 
+class MockControllerInput : public ControllerInput<double> {
+  public:
+  virtual ~MockControllerInput() = default;
+
+  double controllerGet() override {
+    return reading;
+  }
+
+  double reading{0};
+};
+
 std::unique_ptr<SettledUtil> createSettledUtilPtr(double iatTargetError = 50,
                                                   double iatTargetDerivative = 5,
                                                   QTime iatTargetTime = 250_ms);

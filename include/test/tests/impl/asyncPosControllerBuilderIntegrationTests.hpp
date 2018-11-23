@@ -7,4 +7,4 @@
  */
 #pragma once
 
-void runChassisControllerBuilderIntegrationTests();
+void runAsyncPosControllerBuilderIntegrationTests();

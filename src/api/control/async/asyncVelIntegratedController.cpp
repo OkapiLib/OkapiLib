@@ -12,19 +12,30 @@ namespace okapi {
 AsyncVelIntegratedController::AsyncVelIntegratedController(
   const std::shared_ptr<AbstractMotor> &imotor,
   const TimeUtil &itimeUtil)
-  : motor(imotor), settledUtil(itimeUtil.getSettledUtil()), rate(itimeUtil.getRate()) {
+  : AsyncVelIntegratedController(imotor, toUnderlyingType(imotor->getGearing()), itimeUtil) {
+}
+
+AsyncVelIntegratedController::AsyncVelIntegratedController(
+  const std::shared_ptr<AbstractMotor> &imotor,
+  const std::int32_t imaxVelocity,
+  const TimeUtil &itimeUtil)
+  : motor(imotor),
+    maxVelocity(imaxVelocity),
+    settledUtil(itimeUtil.getSettledUtil()),
+    rate(itimeUtil.getRate()) {
 }
 
 void AsyncVelIntegratedController::setTarget(const double itarget) {
-  logger->info("AsyncVelIntegratedController: Set target to " + std::to_string(itarget));
+  const auto boundedTarget = itarget > maxVelocity ? maxVelocity : itarget;
+  logger->info("AsyncVelIntegratedController: Set target to " + std::to_string(boundedTarget));
 
   hasFirstTarget = true;
 
   if (!controllerIsDisabled) {
-    motor->moveVelocity((std::int16_t)itarget);
+    motor->moveVelocity((std::int16_t)boundedTarget);
   }
 
-  lastTarget = itarget;
+  lastTarget = boundedTarget;
 }
 
 double AsyncVelIntegratedController::getTarget() {

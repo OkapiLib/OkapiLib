@@ -17,25 +17,40 @@ class VelMathFactory {
    * Velocity math helper. Calculates filtered velocity. Throws a std::invalid_argument exception
    * if iticksPerRev is zero. Averages the last two readings.
    *
-   * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
+   * @param iticksPerRev The number of ticks per revolution.
+   * @param isampleTime The minimum time between samples.
    */
   static VelMath create(double iticksPerRev, QTime isampleTime = 0_ms);
 
+  /**
+   * Velocity math helper. Calculates filtered velocity. Throws a std::invalid_argument exception
+   * if iticksPerRev is zero. Averages the last two readings.
+   *
+   * @param iticksPerRev The number of ticks per revolution.
+   * @param isampleTime The minimum time between samples.
+   */
   static std::unique_ptr<VelMath> createPtr(double iticksPerRev, QTime isampleTime = 0_ms);
 
   /**
    * Velocity math helper. Calculates filtered velocity. Throws a std::invalid_argument exception
    * if iticksPerRev is zero.
    *
-   * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
-   * @param ifilter filter used for filtering the calculated velocity
+   * @param iticksPerRev The number of ticks per revolution.
+   * @param ifilter The filter used for filtering the calculated velocity.
+   * @param isampleTime The minimum time between samples.
    */
   static VelMath
-  create(double iticksPerRev, std::shared_ptr<Filter> ifilter, QTime isampleTime = 0_ms);
+  create(double iticksPerRev, std::unique_ptr<Filter> ifilter, QTime isampleTime = 0_ms);
 
+  /**
+   * Velocity math helper. Calculates filtered velocity. Throws a std::invalid_argument exception
+   * if iticksPerRev is zero.
+   *
+   * @param iticksPerRev The number of ticks per revolution.
+   * @param ifilter The filter used for filtering the calculated velocity.
+   * @param isampleTime The minimum time between samples.
+   */
   static std::unique_ptr<VelMath>
-  createPtr(double iticksPerRev, std::shared_ptr<Filter> ifilter, QTime isampleTime = 0_ms);
-
-  static std::unique_ptr<VelMath> createPtr(const VelMathArgs &ivelMathArgs);
+  createPtr(double iticksPerRev, std::unique_ptr<Filter> ifilter, QTime isampleTime = 0_ms);
 };
 } // namespace okapi

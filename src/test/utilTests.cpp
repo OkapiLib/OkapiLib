@@ -8,10 +8,10 @@
 #include "test/tests/impl/utilTests.hpp"
 #include "test/testRunner.hpp"
 
-void testUtils() {
-  using namespace okapi;
-  using namespace snowhouse;
+using namespace okapi;
+using namespace snowhouse;
 
+static void testUtils() {
   {
     test_printf("Testing Rate");
 
@@ -128,5 +128,6 @@ void testUtils() {
 }
 
 void runUtilTests() {
+  test_printf("Testing Util");
   testUtils();
 }

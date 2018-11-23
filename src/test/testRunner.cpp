@@ -21,6 +21,9 @@ void resetHardware() {
   pros::c::motor_set_gearing(MOTOR_1_PORT, pros::E_MOTOR_GEARSET_36);
   pros::c::motor_set_gearing(MOTOR_2_PORT, pros::E_MOTOR_GEARSET_36);
 
+  pros::c::motor_set_encoder_units(MOTOR_1_PORT, pros::E_MOTOR_ENCODER_DEGREES);
+  pros::c::motor_set_encoder_units(MOTOR_2_PORT, pros::E_MOTOR_ENCODER_DEGREES);
+
   pros::c::motor_tare_position(MOTOR_1_PORT);
   pros::c::motor_tare_position(MOTOR_2_PORT);
 }

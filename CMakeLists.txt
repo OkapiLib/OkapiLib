@@ -73,11 +73,13 @@ add_executable(OkapiLibV5
         include/okapi/api/control/iterative/iterativeVelPidController.hpp
         include/okapi/api/control/util/controllerRunner.hpp
         include/okapi/api/control/util/flywheelSimulator.hpp
+        include/okapi/api/control/util/pathfinderUtil.hpp
         include/okapi/api/control/util/pidTuner.hpp
         include/okapi/api/control/util/settledUtil.hpp
         include/okapi/api/control/closedLoopController.hpp
         include/okapi/api/control/controllerInput.hpp
         include/okapi/api/control/controllerOutput.hpp
+        include/okapi/api/control/offsettableControllerInput.hpp
         include/okapi/api/device/button/abstractButton.hpp
         include/okapi/api/device/button/buttonBase.hpp
         include/okapi/api/device/motor/abstractMotor.hpp
@@ -136,6 +138,7 @@ add_executable(OkapiLibV5
         src/api/control/iterative/iterativePosPidController.cpp
         src/api/control/iterative/iterativeVelPidController.cpp
         src/api/control/util/flywheelSimulator.cpp
+        src/api/control/offsettableControllerInput.cpp
         src/api/control/util/pidTuner.cpp
         src/api/control/util/settledUtil.cpp
         src/api/device/button/abstractButton.cpp
@@ -153,6 +156,16 @@ add_executable(OkapiLibV5
         src/api/util/abstractTimer.cpp
         src/api/util/timeUtil.cpp
         src/api/util/logging.cpp
+        src/pathfinder/generator.c
+        src/pathfinder/io.c
+        src/pathfinder/mathutil.c
+        src/pathfinder/spline.c
+        src/pathfinder/trajectory.c
+        src/pathfinder/fit/hermite.c
+        src/pathfinder/followers/distance.c
+        src/pathfinder/followers/encoder.c
+        src/pathfinder/modifiers/swerve.c
+        src/pathfinder/modifiers/tank.c
         test/buttonTests.cpp
         test/controllerTests.cpp
         test/controlTests.cpp
@@ -176,16 +189,8 @@ add_executable(OkapiLibV5
         test/iterativeMotorVelocityControllerTest.cpp
         test/iterativePosPIDControllerTests.cpp
         test/asyncWrapperTests.cpp
-        src/pathfinder/generator.c
-        src/pathfinder/io.c
-        src/pathfinder/mathutil.c
-        src/pathfinder/spline.c
-        src/pathfinder/trajectory.c
-        src/pathfinder/fit/hermite.c
-        src/pathfinder/followers/distance.c
-        src/pathfinder/followers/encoder.c
-        src/pathfinder/modifiers/swerve.c
-        src/pathfinder/modifiers/tank.c)
+        test/offsettableControllerInputTests.cpp
+        test/asyncPosPIDControllerTests.cpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)
