@@ -13,20 +13,28 @@ AsyncMotionProfileControllerBuilder::AsyncMotionProfileControllerBuilder()
 }
 
 AsyncMotionProfileControllerBuilder &
-AsyncMotionProfileControllerBuilder::withOutput(const Motor &ioutput) {
-  return withOutput(ioutput);
+AsyncMotionProfileControllerBuilder::withOutput(const Motor &ioutput,
+                                                const QLength &idiameter,
+                                                const AbstractMotor::GearsetRatioPair &ipair) {
+  return withOutput(std::make_shared<Motor>(ioutput), idiameter, ipair);
 }
 
 AsyncMotionProfileControllerBuilder &
-AsyncMotionProfileControllerBuilder::withOutput(const MotorGroup &ioutput) {
-  return withOutput(ioutput);
+AsyncMotionProfileControllerBuilder::withOutput(const MotorGroup &ioutput,
+                                                const QLength &idiameter,
+                                                const AbstractMotor::GearsetRatioPair &ipair) {
+  return withOutput(std::make_shared<MotorGroup>(ioutput), idiameter, ipair);
 }
 
 AsyncMotionProfileControllerBuilder &AsyncMotionProfileControllerBuilder::withOutput(
-  const std::shared_ptr<ControllerOutput<double>> &ioutput) {
+  const std::shared_ptr<ControllerOutput<double>> &ioutput,
+  const QLength &idiameter,
+  const AbstractMotor::GearsetRatioPair &ipair) {
   hasOutput = true;
-  isLinear = true;
+  hasModel = false;
   output = ioutput;
+  diameter = idiameter;
+  pair = ipair;
   return *this;
 }
 
@@ -48,8 +56,8 @@ AsyncMotionProfileControllerBuilder &
 AsyncMotionProfileControllerBuilder::withOutput(const std::shared_ptr<ChassisModel> &imodel,
                                                 const ChassisScales &iscales,
                                                 const AbstractMotor::GearsetRatioPair &ipair) {
-  hasOutput = true;
-  isLinear = false;
+  hasOutput = false;
+  hasModel = true;
   model = imodel;
   scales = iscales;
   pair = ipair;
@@ -71,25 +79,6 @@ AsyncMotionProfileControllerBuilder::withTimeUtilFactory(const TimeUtilFactory &
 
 std::shared_ptr<AsyncLinearMotionProfileController>
 AsyncMotionProfileControllerBuilder::buildLinearMotionProfileController() {
-  validateBuilder();
-
-  auto out =
-    std::make_shared<AsyncLinearMotionProfileController>(timeUtilFactory.create(), limits, output);
-  out->startThread();
-  return out;
-}
-
-std::shared_ptr<AsyncMotionProfileController>
-AsyncMotionProfileControllerBuilder::buildMotionProfileController() {
-  validateBuilder();
-
-  auto out = std::make_shared<AsyncMotionProfileController>(
-    timeUtilFactory.create(), limits, model, scales, pair);
-  out->startThread();
-  return out;
-}
-
-void AsyncMotionProfileControllerBuilder::validateBuilder() {
   if (!hasOutput) {
     logger->error("AsyncMotionProfileControllerBuilder: No output given.");
     throw std::runtime_error("AsyncMotionProfileControllerBuilder: No output given.");
@@ -99,5 +88,28 @@ void AsyncMotionProfileControllerBuilder::validateBuilder() {
     logger->error("AsyncMotionProfileControllerBuilder: No limits given.");
     throw std::runtime_error("AsyncMotionProfileControllerBuilder: No limits given.");
   }
+
+  auto out = std::make_shared<AsyncLinearMotionProfileController>(
+    timeUtilFactory.create(), limits, output, diameter, pair);
+  out->startThread();
+  return out;
+}
+
+std::shared_ptr<AsyncMotionProfileController>
+AsyncMotionProfileControllerBuilder::buildMotionProfileController() {
+  if (!hasModel) {
+    logger->error("AsyncMotionProfileControllerBuilder: No model given.");
+    throw std::runtime_error("AsyncMotionProfileControllerBuilder: No model given.");
+  }
+
+  if (!hasLimits) {
+    logger->error("AsyncMotionProfileControllerBuilder: No limits given.");
+    throw std::runtime_error("AsyncMotionProfileControllerBuilder: No limits given.");
+  }
+
+  auto out = std::make_shared<AsyncMotionProfileController>(
+    timeUtilFactory.create(), limits, model, scales, pair);
+  out->startThread();
+  return out;
 }
 } // namespace okapi

@@ -9,6 +9,9 @@
 
 #include "okapi/api/control/async/asyncPositionController.hpp"
 #include "okapi/api/control/util/pathfinderUtil.hpp"
+#include "okapi/api/device/motor/abstractMotor.hpp"
+#include "okapi/api/units/QAngularSpeed.hpp"
+#include "okapi/api/units/QSpeed.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <atomic>
@@ -26,10 +29,14 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    *
    * @param ilimits The limits.
    * @param ioutput The output to write velocity targets to.
+   * @param idiameter The effective diameter for whatever the motor spins.
+   * @param ipair The gearset.
    */
   AsyncLinearMotionProfileController(const TimeUtil &itimeUtil,
                                      const PathfinderLimits &ilimits,
-                                     const std::shared_ptr<ControllerOutput<double>> &ioutput);
+                                     const std::shared_ptr<ControllerOutput<double>> &ioutput,
+                                     const QLength &idiameter,
+                                     const AbstractMotor::GearsetRatioPair &ipair);
 
   AsyncLinearMotionProfileController(AsyncLinearMotionProfileController &&other) noexcept;
 
@@ -46,7 +53,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * @param iwaypoints The waypoints to hit on the path.
    * @param ipathId A unique identifier to save the path with.
    */
-  void generatePath(std::initializer_list<double> iwaypoints, const std::string &ipathId);
+  void generatePath(std::initializer_list<QLength> iwaypoints, const std::string &ipathId);
 
   /**
    * Removes a path and frees the memory it used.
@@ -103,7 +110,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * @param iposition The starting position.
    * @param itarget The target position.
    */
-  void moveTo(double iposition, double itarget);
+  void moveTo(const QLength &iposition, const QLength &itarget);
 
   /**
    * Returns the last error of the controller. Returns zero if there is no path currently being
@@ -174,6 +181,8 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   std::map<std::string, TrajectoryPair> paths{};
   PathfinderLimits limits;
   std::shared_ptr<ControllerOutput<double>> output;
+  QLength diameter;
+  AbstractMotor::GearsetRatioPair pair;
   double currentProfilePosition{0};
   TimeUtil timeUtil;
 
@@ -190,5 +199,13 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * Follow the supplied path. Must follow the disabled lifecycle.
    */
   virtual void executeSinglePath(const TrajectoryPair &path, std::unique_ptr<AbstractRate> rate);
+
+  /**
+   * Converts linear "chassis" speed to rotational motor speed.
+   *
+   * @param linear "chassis" frame speed
+   * @return motor frame speed
+   */
+  QAngularSpeed convertLinearToRotational(QSpeed linear) const;
 };
 } // namespace okapi

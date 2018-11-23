@@ -30,7 +30,9 @@ class AsyncMotionProfileControllerBuilder {
    * @param ioutput The output.
    * @return An ongoing builder.
    */
-  AsyncMotionProfileControllerBuilder &withOutput(const Motor &ioutput);
+  AsyncMotionProfileControllerBuilder &withOutput(const Motor &ioutput,
+                                                  const QLength &idiameter,
+                                                  const AbstractMotor::GearsetRatioPair &ipair);
 
   /**
    * Sets the output.
@@ -38,7 +40,9 @@ class AsyncMotionProfileControllerBuilder {
    * @param ioutput The output.
    * @return An ongoing builder.
    */
-  AsyncMotionProfileControllerBuilder &withOutput(const MotorGroup &ioutput);
+  AsyncMotionProfileControllerBuilder &withOutput(const MotorGroup &ioutput,
+                                                  const QLength &idiameter,
+                                                  const AbstractMotor::GearsetRatioPair &ipair);
 
   /**
    * Sets the output.
@@ -47,7 +51,9 @@ class AsyncMotionProfileControllerBuilder {
    * @return An ongoing builder.
    */
   AsyncMotionProfileControllerBuilder &
-  withOutput(const std::shared_ptr<ControllerOutput<double>> &ioutput);
+  withOutput(const std::shared_ptr<ControllerOutput<double>> &ioutput,
+             const QLength &idiameter,
+             const AbstractMotor::GearsetRatioPair &ipair);
 
   /**
    * Sets the output.
@@ -115,16 +121,15 @@ class AsyncMotionProfileControllerBuilder {
   bool hasLimits{false};
   PathfinderLimits limits;
 
-  bool isLinear{false}; // Whether to build a linear controller or not
   bool hasOutput{false};
   std::shared_ptr<ControllerOutput<double>> output;
+  QLength diameter;
 
+  bool hasModel{false};
   std::shared_ptr<ChassisModel> model;
   ChassisScales scales{1, 1};
   AbstractMotor::GearsetRatioPair pair{AbstractMotor::gearset::invalid};
 
   TimeUtilFactory timeUtilFactory = TimeUtilFactory();
-
-  void validateBuilder();
 };
 } // namespace okapi

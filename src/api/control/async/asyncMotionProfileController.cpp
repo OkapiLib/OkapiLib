@@ -95,7 +95,8 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
     };
 
     std::string message =
-      "AsyncMotionProfileController: Path is impossible with waypoints: " +
+      "AsyncMotionProfileController: The path (length " + std::to_string(length) +
+      ") is impossible with waypoints: " +
       std::accumulate(std::next(points.begin()),
                       points.end(),
                       pointToString(points.at(0)),
@@ -117,8 +118,9 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
   auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
 
   if (trajectory == nullptr) {
-    std::string message = "AsyncMotionProfileController: Could not allocate trajectory. The path "
-                          "is probably impossible.";
+    std::string message =
+      "AsyncMotionProfileController: Could not allocate trajectory. The path (length " +
+      std::to_string(length) + ") is probably impossible.";
     logger->error(message);
 
     if (candidate.laptr) {
@@ -140,7 +142,8 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
 
   if (leftTrajectory == nullptr || rightTrajectory == nullptr) {
     std::string message = "AsyncMotionProfileController: Could not allocate left and/or right "
-                          "trajectories. The path is probably impossible.";
+                          "trajectories. The path (length " +
+                          std::to_string(length) + ") is probably impossible.";
     logger->error(message);
 
     if (leftTrajectory) {
@@ -169,7 +172,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
 
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length});
   logger->info("AsyncMotionProfileController: Completely done generating path");
-  logger->info("AsyncMotionProfileController: " + std::to_string(length));
+  logger->info("AsyncMotionProfileController: Path length: " + std::to_string(length));
 }
 
 void AsyncMotionProfileController::removePath(const std::string &ipathId) {
