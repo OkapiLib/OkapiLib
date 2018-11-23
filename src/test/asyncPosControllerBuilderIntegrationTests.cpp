@@ -24,7 +24,6 @@ static void testMaxVelOnPIDController() {
                       .build();
 
   Motor motor(MOTOR_1_PORT);
-  double maxRPM = 0;
 
   controller->setTarget(500);
 
@@ -53,7 +52,6 @@ static void testMaxVelOnIntegratedController() {
     AsyncPosControllerBuilder().withMaxVelocity(maxVel).withMotor(MOTOR_1_PORT).build();
 
   Motor motor(MOTOR_1_PORT);
-  double maxRPM = 0;
 
   controller->setTarget(500);
 

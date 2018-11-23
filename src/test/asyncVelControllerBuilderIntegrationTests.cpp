@@ -24,7 +24,6 @@ static void testMaxVelOnPIDController() {
                       .build();
 
   Motor motor(MOTOR_1_PORT);
-  double maxRPM = 0;
 
   controller->setTarget(50);
 
