@@ -70,7 +70,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   void setTarget(const Input itarget) override {
     logger->info("AsyncWrapper: Set target to " + std::to_string(itarget));
     hasFirstTarget = true;
-    controller->setTarget(itarget);
+    controller->setTarget(itarget * ratio);
     lastTarget = itarget;
   }
 

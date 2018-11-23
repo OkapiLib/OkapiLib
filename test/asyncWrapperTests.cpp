@@ -98,3 +98,23 @@ TEST_F(AsyncWrapperTest, ScalesControllerSetTargetPosPID) {
 TEST_F(AsyncWrapperTest, ScalesControllerSetTargetVelPID) {
   assertAsyncWrapperScalesControllerSetTargets(*velPIDController);
 }
+
+TEST_F(AsyncWrapperTest, TestRatioWorks) {
+  AsyncPosPIDController posController(input, output, createTimeUtil(), 0.1, 0, 0, 0, 2);
+  posController.setTarget(10);
+  EXPECT_EQ(posController.getError(), 20);
+
+  AsyncVelPIDController velController(
+    input,
+    output,
+    createTimeUtil(),
+    0.1,
+    0,
+    0,
+    0,
+    std::make_unique<VelMath>(
+      imev5TPR, std::make_unique<PassthroughFilter>(), 0_ms, std::make_unique<MockTimer>()),
+    2);
+  velController.setTarget(10);
+  EXPECT_EQ(velController.getError(), 20);
+}
