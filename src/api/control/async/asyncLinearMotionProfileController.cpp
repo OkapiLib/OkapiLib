@@ -35,6 +35,7 @@ AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
     timeUtil(std::move(other.timeUtil)),
     currentPath(std::move(other.currentPath)),
     isRunning(other.isRunning.load(std::memory_order_acquire)),
+    direction(other.direction.load(std::memory_order_acquire)),
     disabled(other.disabled.load(std::memory_order_acquire)),
     dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
     task(other.task) {
@@ -154,9 +155,14 @@ std::vector<std::string> AsyncLinearMotionProfileController::getPaths() {
   return keys;
 }
 
-void AsyncLinearMotionProfileController::setTarget(const std::string ipathId) {
+void AsyncLinearMotionProfileController::setTarget(std::string ipathId) {
+  setTarget(ipathId, false);
+}
+
+void AsyncLinearMotionProfileController::setTarget(std::string ipathId, const bool ibackwards) {
   currentPath = ipathId;
-  isRunning = true;
+  isRunning.store(true, std::memory_order_release);
+  direction.store(boolToSign(!ibackwards), std::memory_order_release);
 }
 
 void AsyncLinearMotionProfileController::controllerSet(const std::string ivalue) {
@@ -202,11 +208,13 @@ void AsyncLinearMotionProfileController::loop() {
 
 void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair &path,
                                                            std::unique_ptr<AbstractRate> rate) {
+  const auto reversed = direction.load(std::memory_order_acquire);
+
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
     currentProfilePosition = path.segment[i].position;
 
     const auto motorRPM = convertLinearToRotational(path.segment[i].velocity * mps).convert(rpm);
-    output->controllerSet(motorRPM / toUnderlyingType(pair.internalGearset));
+    output->controllerSet(motorRPM / toUnderlyingType(pair.internalGearset) * reversed);
 
     rate->delayUntil(1_ms);
   }
@@ -233,10 +241,12 @@ void AsyncLinearMotionProfileController::waitUntilSettled() {
   logger->info("AsyncLinearMotionProfileController: Done waiting to settle");
 }
 
-void AsyncLinearMotionProfileController::moveTo(const QLength &iposition, const QLength &itarget) {
+void AsyncLinearMotionProfileController::moveTo(const QLength &iposition,
+                                                const QLength &itarget,
+                                                const bool ibackwards) {
   std::string name = reinterpret_cast<const char *>(this); // hmmmm...
   generatePath({iposition, itarget}, name);
-  setTarget(name);
+  setTarget(name, ibackwards);
   waitUntilSettled();
   removePath(name);
 }

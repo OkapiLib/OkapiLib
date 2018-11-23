@@ -183,3 +183,22 @@ TEST_F(AsyncLinearMotionProfileControllerTest, DisabledStopsMotors) {
   EXPECT_TRUE(controller->isSettled());
   EXPECT_EQ(output->lastControllerOutputSet, 0);
 }
+
+TEST_F(AsyncLinearMotionProfileControllerTest, FollowPathBackwards) {
+  controller->generatePath({0_m, 3_m}, "A");
+  controller->setTarget("A", true);
+
+  auto rate = createTimeUtil().getRate();
+  while (!controller->executeSinglePathCalled) {
+    rate->delayUntil(1_ms);
+  }
+
+  // Wait a little longer so we get into the path
+  rate->delayUntil(200_ms);
+
+  EXPECT_LT(output->lastControllerOutputSet, 0);
+
+  // Disable the controller so gtest doesn't clean up the test fixture while the internal thread is
+  // still running
+  controller->flipDisable(true);
+}

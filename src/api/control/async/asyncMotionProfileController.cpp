@@ -42,6 +42,7 @@ AsyncMotionProfileController::AsyncMotionProfileController(
     timeUtil(std::move(other.timeUtil)),
     currentPath(std::move(other.currentPath)),
     isRunning(other.isRunning.load(std::memory_order_acquire)),
+    direction(other.direction.load(std::memory_order_acquire)),
     disabled(other.disabled.load(std::memory_order_acquire)),
     dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
     task(other.task) {
@@ -277,10 +278,11 @@ void AsyncMotionProfileController::waitUntilSettled() {
   logger->info("AsyncMotionProfileController: Done waiting to settle");
 }
 
-void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints) {
+void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints,
+                                          const bool ibackwards) {
   std::string name = reinterpret_cast<const char *>(this); // hmmmm...
   generatePath(iwaypoints, name);
-  setTarget(name);
+  setTarget(name, ibackwards);
   waitUntilSettled();
   removePath(name);
 }

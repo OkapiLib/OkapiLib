@@ -112,8 +112,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * blocks until the controller has settled. Does not save the path which was generated.
    *
    * @param iwaypoints The waypoints to hit on the path.
+   * @param ibackwards Whether to follow the profile backwards.
    */
-  void moveTo(std::initializer_list<Point> iwaypoints);
+  void moveTo(std::initializer_list<Point> iwaypoints, bool ibackwards = false);
 
   /**
    * Returns the last error of the controller. This implementation always returns zero since the
