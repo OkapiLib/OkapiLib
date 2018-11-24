@@ -37,47 +37,50 @@ void Odometry::loop() {
 }
 
 void Odometry::step() {
-  newTicks = model->getSensorVals();
-  tickDiff = newTicks - lastTicks;
-  lastTicks = newTicks;
-
-  const auto Sl = (tickDiff[0] / chassisScales.straight) * meter;
-  const auto Sr = (tickDiff[1] / chassisScales.straight) * meter;
   const auto deltaT = timer->getDt();
-  const auto Vl = Sl / deltaT;
-  const auto Vr = Sr / deltaT;
-  const auto b = chassisScales.wheelbaseWidth;
-  auto turnRadius = (b * (Vr + Vl)) / (2 * (Vr - Vl));
 
-  QLength deltaX;
-  QLength deltaY;
-  QAngle deltaTheta;
+  if (deltaT.getValue() != 0) {
+    newTicks = model->getSensorVals();
+    tickDiff = newTicks - lastTicks;
+    lastTicks = newTicks;
 
-  if ((Sr - Sl).abs() < 0.0000001_mm) {
-    turnRadius = (Sr + Sl) / 2;
-    deltaTheta = 0_deg;
-  } else {
-    deltaTheta = (((Vr - Vl) * deltaT) / b) * radian;
+    const auto Sl = (tickDiff[0] / chassisScales.straight) * meter;
+    const auto Sr = (tickDiff[1] / chassisScales.straight) * meter;
+    const auto Vl = Sl / deltaT;
+    const auto Vr = Sr / deltaT;
+    const auto b = chassisScales.wheelbaseWidth;
+    auto turnRadius = (b * (Vr + Vl)) / (2 * (Vr - Vl));
 
-    if (isnan(deltaTheta.getValue())) {
+    QLength deltaX;
+    QLength deltaY;
+    QAngle deltaTheta;
+
+    if ((Sr - Sl).abs() < 0.0000001_mm) {
+      turnRadius = (Sr + Sl) / 2;
       deltaTheta = 0_deg;
+    } else {
+      deltaTheta = (((Vr - Vl) * deltaT) / b) * radian;
+
+      if (isnan(deltaTheta.getValue())) {
+        deltaTheta = 0_deg;
+      }
     }
+
+    deltaX = turnRadius * std::sin((state.theta + deltaTheta).convert(radian));
+    deltaY = turnRadius * std::cos((state.theta + deltaTheta).convert(radian));
+
+    if (isnan(deltaX.getValue())) {
+      deltaX = 0_m;
+    }
+
+    if (isnan(deltaY.getValue())) {
+      deltaY = 0_m;
+    }
+
+    state.x += deltaX;
+    state.y += deltaY;
+    state.theta += deltaTheta;
   }
-
-  deltaX = turnRadius * std::sin((state.theta + deltaTheta).convert(radian));
-  deltaY = turnRadius * std::cos((state.theta + deltaTheta).convert(radian));
-
-  if (isnan(deltaX.getValue())) {
-    deltaX = 0_m;
-  }
-
-  if (isnan(deltaY.getValue())) {
-    deltaY = 0_m;
-  }
-
-  state.x += deltaX;
-  state.y += deltaY;
-  state.theta += deltaTheta;
 }
 
 void Odometry::trampoline(void *context) {
