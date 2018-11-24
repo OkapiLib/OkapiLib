@@ -16,7 +16,15 @@ void ChassisModel::setMaxVelocity(const double imaxVelocity) {
   maxVelocity = imaxVelocity;
 }
 
+double ChassisModel::getMaxVelocity() const {
+  return maxVelocity;
+}
+
 void ChassisModel::setMaxVoltage(const double imaxVoltage) {
   maxVoltage = imaxVoltage;
+}
+
+double ChassisModel::getMaxVoltage() const {
+  return maxVoltage;
 }
 } // namespace okapi

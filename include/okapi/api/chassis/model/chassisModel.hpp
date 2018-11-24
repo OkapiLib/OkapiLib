@@ -184,11 +184,25 @@ class ChassisModel : public ReadOnlyChassisModel {
   virtual void setMaxVelocity(double imaxVelocity);
 
   /**
+   * Returns the maximum velocity in RPM [0-600].
+   *
+   * @return The maximum velocity in RPM [0-600].
+   */
+  virtual double getMaxVelocity() const;
+
+  /**
    * Sets a new maximum voltage in mV [0-12000].
    *
    * @param imaxVoltage the new maximum voltage
    */
   virtual void setMaxVoltage(double imaxVoltage);
+
+  /**
+   * Returns the maximum voltage in mV [0-12000].
+   *
+   * @return The maximum voltage in mV [0-12000].
+   */
+  virtual double getMaxVoltage() const;
 
   protected:
   double maxVelocity;

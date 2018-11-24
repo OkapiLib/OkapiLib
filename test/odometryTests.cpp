@@ -17,7 +17,7 @@ using namespace okapi;
 
 class MockModel : public SkidSteerModel {
   public:
-  MockModel() : SkidSteerModel(std::make_shared<MockMotor>(), std::make_shared<MockMotor>()) {
+  MockModel() : SkidSteerModel(std::make_shared<MockMotor>(), std::make_shared<MockMotor>(), 600) {
   }
 
   std::valarray<std::int32_t> getSensorVals() const override {

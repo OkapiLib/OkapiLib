@@ -33,8 +33,8 @@ class OdomChassisControllerIntegratedTest : public ::testing::Test {
     leftController = new MockAsyncPosIntegratedController();
     rightController = new MockAsyncPosIntegratedController();
 
-    model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
-                               std::unique_ptr<AbstractMotor>(rightMotor));
+    model = new SkidSteerModel(
+      std::unique_ptr<AbstractMotor>(leftMotor), std::unique_ptr<AbstractMotor>(rightMotor), 600);
 
     std::shared_ptr<SkidSteerModel> modelPtr = std::shared_ptr<SkidSteerModel>(model);
 
@@ -127,8 +127,8 @@ class OdomChassisControllerPIDTest : public ::testing::Test {
     angleController = new MockIterativeController();
     turnController = new MockIterativeController();
 
-    model = new SkidSteerModel(std::unique_ptr<AbstractMotor>(leftMotor),
-                               std::unique_ptr<AbstractMotor>(rightMotor));
+    model = new SkidSteerModel(
+      std::unique_ptr<AbstractMotor>(leftMotor), std::unique_ptr<AbstractMotor>(rightMotor), 600);
 
     std::shared_ptr<SkidSteerModel> modelPtr = std::shared_ptr<SkidSteerModel>(model);
 

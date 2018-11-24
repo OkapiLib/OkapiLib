@@ -127,14 +127,11 @@ add_executable(OkapiLibV5
         src/api/chassis/controller/chassisController.cpp
         src/api/chassis/controller/chassisControllerIntegrated.cpp
         src/api/chassis/controller/chassisControllerPid.cpp
-<<<<<<< HEAD
         src/api/chassis/controller/chassisScales.cpp
         src/api/chassis/controller/odomChassisController.cpp
         src/api/chassis/controller/odomChassisControllerIntegrated.cpp
         src/api/chassis/controller/odomChassisControllerPid.cpp
-=======
         src/api/chassis/model/chassisModel.cpp
->>>>>>> develop
         src/api/chassis/model/skidSteerModel.cpp
         src/api/chassis/model/readOnlyChassisModel.cpp
         src/api/chassis/model/threeEncoderSkidSteerModel.cpp
