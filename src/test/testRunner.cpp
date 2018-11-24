@@ -14,6 +14,20 @@ static size_t testFailCount = 0;
 static std::vector<std::string> testFailLog; // Names of tests that have failed
 static Timer testLengthTimer;                // Time since the first test
 
+void resetHardware() {
+  pros::c::motor_move_voltage(MOTOR_1_PORT, 0);
+  pros::c::motor_move_voltage(MOTOR_2_PORT, 0);
+
+  pros::c::motor_set_gearing(MOTOR_1_PORT, pros::E_MOTOR_GEARSET_36);
+  pros::c::motor_set_gearing(MOTOR_2_PORT, pros::E_MOTOR_GEARSET_36);
+
+  pros::c::motor_set_encoder_units(MOTOR_1_PORT, pros::E_MOTOR_ENCODER_DEGREES);
+  pros::c::motor_set_encoder_units(MOTOR_2_PORT, pros::E_MOTOR_ENCODER_DEGREES);
+
+  pros::c::motor_tare_position(MOTOR_1_PORT);
+  pros::c::motor_tare_position(MOTOR_2_PORT);
+}
+
 void test_printf(const std::string &istring) {
   printf("\n%s\n%s\n", istring.c_str(), std::string(istring.length(), '-').c_str());
 }

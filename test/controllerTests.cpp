@@ -62,7 +62,7 @@ TEST_F(IterativeControllerWithSimulatorTest, IterativeVelPIDController) {
     0,
     0,
     std::make_unique<VelMath>(1800,
-                              std::make_shared<PassthroughFilter>(),
+                              std::make_unique<PassthroughFilter>(),
                               0_ms,
                               std::make_unique<ConstantMockTimer>(10_ms)),
     createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
@@ -81,7 +81,7 @@ TEST_F(IterativeControllerWithSimulatorTest, IterativeVelPIDControllerFeedForwar
     0.1,
     0,
     std::make_unique<VelMath>(1800,
-                              std::make_shared<PassthroughFilter>(),
+                              std::make_unique<PassthroughFilter>(),
                               0_ms,
                               std::make_unique<ConstantMockTimer>(10_ms)),
     createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(

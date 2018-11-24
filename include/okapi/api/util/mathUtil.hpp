@@ -9,6 +9,7 @@
 
 #include <algorithm>
 #include <cstdint>
+#include <math.h>
 #include <type_traits>
 
 namespace okapi {
@@ -26,6 +27,8 @@ static constexpr double quadEncoderTPR = 360.0;
 static constexpr double pi = 3.1415926535897932;
 static constexpr double pi2 = 1.5707963267948966;
 static constexpr double gravity = 9.80665;
+static constexpr auto OKAPI_PROS_ERR = INT32_MAX;
+static constexpr auto OKAPI_PROS_ERR_F = INFINITY;
 
 static constexpr std::int8_t motorUpdateRate = 10;
 static constexpr std::int8_t adiUpdateRate = 50;

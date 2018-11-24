@@ -74,3 +74,20 @@ TEST_F(AsyncPosIntegratedControllerTest, ProfiledMovementUsesMaxVelocityForGreen
   newController.setTarget(5);
   EXPECT_EQ(motor->lastProfiledMaxVelocity, toUnderlyingType(AbstractMotor::gearset::green));
 }
+
+TEST_F(AsyncPosIntegratedControllerTest, TarePositionWorksWithSetTarget) {
+  controller->setTarget(10);
+  EXPECT_EQ(controller->getError(), 10);
+  EXPECT_EQ(motor->lastPosition, 10);
+
+  motor->encoder->value = 10;
+  EXPECT_EQ(controller->getError(), 0);
+
+  controller->tarePosition();
+  EXPECT_EQ(controller->getError(), 10);
+
+  motor->lastPosition = 7; // So we can detect if the controller wrote anything
+  controller->setTarget(10);
+  EXPECT_EQ(controller->getError(), 10);
+  EXPECT_EQ(motor->lastPosition, 20);
+}

@@ -13,6 +13,7 @@ pros::controller_id_e_t ControllerUtil::idToProsEnum(ControllerId in) {
   case ControllerId::master:
     return pros::E_CONTROLLER_MASTER;
   case ControllerId::partner:
+  default:
     return pros::E_CONTROLLER_PARTNER;
   }
 }
@@ -26,6 +27,7 @@ pros::controller_analog_e_t ControllerUtil::analogToProsEnum(ControllerAnalog in
   case ControllerAnalog::rightX:
     return pros::E_CONTROLLER_ANALOG_RIGHT_X;
   case ControllerAnalog::rightY:
+  default:
     return pros::E_CONTROLLER_ANALOG_RIGHT_Y;
   }
 }
@@ -55,6 +57,7 @@ pros::controller_digital_e_t ControllerUtil::digitalToProsEnum(ControllerDigital
   case ControllerDigital::Y:
     return pros::E_CONTROLLER_DIGITAL_Y;
   case ControllerDigital::A:
+  default:
     return pros::E_CONTROLLER_DIGITAL_A;
   }
 }

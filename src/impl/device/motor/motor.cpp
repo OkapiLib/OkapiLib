@@ -142,6 +142,7 @@ std::int32_t Motor::setBrakeMode(const AbstractMotor::brakeMode imode) {
   case AbstractMotor::brakeMode::hold:
     return set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   case AbstractMotor::brakeMode::invalid:
+  default:
     return set_brake_mode(pros::E_MOTOR_BRAKE_INVALID);
   }
 }
@@ -155,6 +156,7 @@ AbstractMotor::brakeMode Motor::getBrakeMode() const {
   case pros::E_MOTOR_BRAKE_HOLD:
     return AbstractMotor::brakeMode::hold;
   case pros::E_MOTOR_BRAKE_INVALID:
+  default:
     return AbstractMotor::brakeMode::invalid;
   }
 }
@@ -176,6 +178,7 @@ std::int32_t Motor::setEncoderUnits(const AbstractMotor::encoderUnits iunits) {
   case AbstractMotor::encoderUnits::rotations:
     return set_encoder_units(pros::E_MOTOR_ENCODER_ROTATIONS);
   case AbstractMotor::encoderUnits::invalid:
+  default:
     return set_encoder_units(pros::E_MOTOR_ENCODER_INVALID);
   }
 }
@@ -189,6 +192,7 @@ AbstractMotor::encoderUnits Motor::getEncoderUnits() const {
   case pros::E_MOTOR_ENCODER_COUNTS:
     return AbstractMotor::encoderUnits::counts;
   case pros::E_MOTOR_ENCODER_INVALID:
+  default:
     return AbstractMotor::encoderUnits::invalid;
   }
 }
@@ -202,6 +206,7 @@ std::int32_t Motor::setGearing(const AbstractMotor::gearset igearset) {
   case AbstractMotor::gearset::red:
     return set_gearing(pros::E_MOTOR_GEARSET_36);
   case AbstractMotor::gearset::invalid:
+  default:
     return set_gearing(pros::E_MOTOR_GEARSET_INVALID);
   }
 }
@@ -215,6 +220,7 @@ AbstractMotor::gearset Motor::getGearing() const {
   case pros::E_MOTOR_GEARSET_06:
     return AbstractMotor::gearset::blue;
   case pros::E_MOTOR_GEARSET_INVALID:
+  default:
     return AbstractMotor::gearset::invalid;
   }
 }

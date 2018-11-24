@@ -12,31 +12,15 @@
 #include <utility>
 
 namespace okapi {
-VelMathArgs::VelMathArgs(const double iticksPerRev, const QTime isampleTime)
-  : VelMathArgs(iticksPerRev, std::make_shared<AverageFilter<2>>(), isampleTime) {
-}
-
-VelMathArgs::VelMathArgs(const double iticksPerRev,
-                         const std::shared_ptr<Filter> &ifilter,
-                         const QTime isampleTime)
-  : ticksPerRev(iticksPerRev), filter(ifilter), sampleTime(isampleTime) {
-}
-
-VelMathArgs::~VelMathArgs() = default;
-
-VelMath::VelMath(const VelMathArgs &iparams, std::unique_ptr<AbstractTimer> iloopDtTimer)
-  : VelMath(iparams.ticksPerRev, iparams.filter, iparams.sampleTime, std::move(iloopDtTimer)) {
-}
-
 VelMath::VelMath(const double iticksPerRev,
-                 const std::shared_ptr<Filter> &ifilter,
+                 std::unique_ptr<Filter> ifilter,
                  QTime isampleTime,
                  std::unique_ptr<AbstractTimer> iloopDtTimer)
   : logger(Logger::instance()),
     ticksPerRev(iticksPerRev),
     sampleTime(isampleTime),
     loopDtTimer(std::move(iloopDtTimer)),
-    filter(ifilter) {
+    filter(std::move(ifilter)) {
   if (iticksPerRev == 0) {
     logger->error(
       "VelMath: The ticks per revolution cannot be zero! Check if you are using integer division.");

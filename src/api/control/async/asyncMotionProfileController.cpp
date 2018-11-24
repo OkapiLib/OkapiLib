@@ -12,16 +12,12 @@
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(
   const TimeUtil &itimeUtil,
-  const double imaxVel,
-  const double imaxAccel,
-  const double imaxJerk,
+  const PathfinderLimits &ilimits,
   const std::shared_ptr<ChassisModel> &imodel,
   const ChassisScales &iscales,
-  AbstractMotor::GearsetRatioPair ipair)
+  const AbstractMotor::GearsetRatioPair &ipair)
   : logger(Logger::instance()),
-    maxVel(imaxVel),
-    maxAccel(imaxAccel),
-    maxJerk(imaxJerk),
+    limits(ilimits),
     model(imodel),
     scales(iscales),
     pair(ipair),
@@ -39,15 +35,14 @@ AsyncMotionProfileController::AsyncMotionProfileController(
   AsyncMotionProfileController &&other) noexcept
   : logger(other.logger),
     paths(std::move(other.paths)),
-    maxVel(other.maxVel),
-    maxAccel(other.maxAccel),
-    maxJerk(other.maxJerk),
+    limits(other.limits),
     model(std::move(other.model)),
     scales(other.scales),
     pair(other.pair),
     timeUtil(std::move(other.timeUtil)),
     currentPath(std::move(other.currentPath)),
     isRunning(other.isRunning.load(std::memory_order_acquire)),
+    direction(other.direction.load(std::memory_order_acquire)),
     disabled(other.disabled.load(std::memory_order_acquire)),
     dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
     task(other.task) {
@@ -87,9 +82,9 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
                      FIT_HERMITE_CUBIC,
                      PATHFINDER_SAMPLES_FAST,
                      0.001,
-                     maxVel,
-                     maxAccel,
-                     maxJerk,
+                     limits.maxVel,
+                     limits.maxAccel,
+                     limits.maxJerk,
                      &candidate);
 
   const int length = candidate.length;
@@ -101,7 +96,8 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
     };
 
     std::string message =
-      "AsyncMotionProfileController: Path is impossible with waypoints: " +
+      "AsyncMotionProfileController: The path (length " + std::to_string(length) +
+      ") is impossible with waypoints: " +
       std::accumulate(std::next(points.begin()),
                       points.end(),
                       pointToString(points.at(0)),
@@ -123,8 +119,9 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
   auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
 
   if (trajectory == nullptr) {
-    std::string message = "AsyncMotionProfileController: Could not allocate trajectory. The path "
-                          "is probably impossible.";
+    std::string message =
+      "AsyncMotionProfileController: Could not allocate trajectory. The path (length " +
+      std::to_string(length) + ") is probably impossible.";
     logger->error(message);
 
     if (candidate.laptr) {
@@ -146,7 +143,8 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
 
   if (leftTrajectory == nullptr || rightTrajectory == nullptr) {
     std::string message = "AsyncMotionProfileController: Could not allocate left and/or right "
-                          "trajectories. The path is probably impossible.";
+                          "trajectories. The path (length " +
+                          std::to_string(length) + ") is probably impossible.";
     logger->error(message);
 
     if (leftTrajectory) {
@@ -175,7 +173,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
 
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length});
   logger->info("AsyncMotionProfileController: Completely done generating path");
-  logger->info("AsyncMotionProfileController: " + std::to_string(length));
+  logger->info("AsyncMotionProfileController: Path length: " + std::to_string(length));
 }
 
 void AsyncMotionProfileController::removePath(const std::string &ipathId) {
@@ -280,10 +278,11 @@ void AsyncMotionProfileController::waitUntilSettled() {
   logger->info("AsyncMotionProfileController: Done waiting to settle");
 }
 
-void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints) {
+void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints,
+                                          const bool ibackwards) {
   std::string name = reinterpret_cast<const char *>(this); // hmmmm...
   generatePath(iwaypoints, name);
-  setTarget(name);
+  setTarget(name, ibackwards);
   waitUntilSettled();
   removePath(name);
 }
@@ -321,6 +320,9 @@ void AsyncMotionProfileController::flipDisable(const bool iisDisabled) {
 
 bool AsyncMotionProfileController::isDisabled() const {
   return disabled.load(std::memory_order_acquire);
+}
+
+void AsyncMotionProfileController::tarePosition() {
 }
 
 void AsyncMotionProfileController::startThread() {

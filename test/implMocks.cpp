@@ -146,7 +146,7 @@ uint32_t MockMotor::getFlags() const {
 }
 
 int32_t MockMotor::getRawPosition(std::uint32_t *) const {
-  return encoder->get();
+  return static_cast<int32_t>(encoder->get());
 }
 
 double MockMotor::getPower() const {

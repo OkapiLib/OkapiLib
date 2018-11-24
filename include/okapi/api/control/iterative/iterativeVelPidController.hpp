@@ -17,6 +17,13 @@
 namespace okapi {
 class IterativeVelPIDController : public IterativeVelocityController<double, double> {
   public:
+  struct Gains {
+    double kP{0};
+    double kD{0};
+    double kF{0};
+    double kSF{0};
+  };
+
   /**
    * Velocity PD controller.
    *
@@ -24,6 +31,7 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
    * @param ikD the derivative gain
    * @param ikF the feed-forward gain
    * @param ikSF a feed-forward gain to counteract static friction
+   * @param ivelMath The VelMath used for calculating velocity.
    * @param itimeUtil see TimeUtil docs
    * @param iderivativeFilter a filter for filtering the derivative term
    */

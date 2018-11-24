@@ -6,20 +6,21 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/control/async/asyncLinearMotionProfileController.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include <numeric>
 
 namespace okapi {
 AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
   const TimeUtil &itimeUtil,
-  const double imaxVel,
-  const double imaxAccel,
-  const double imaxJerk,
-  const std::shared_ptr<ControllerOutput<double>> &ioutput)
+  const PathfinderLimits &ilimits,
+  const std::shared_ptr<ControllerOutput<double>> &ioutput,
+  const QLength &idiameter,
+  const AbstractMotor::GearsetRatioPair &ipair)
   : logger(Logger::instance()),
-    maxVel(imaxVel),
-    maxAccel(imaxAccel),
-    maxJerk(imaxJerk),
+    limits(ilimits),
     output(ioutput),
+    diameter(idiameter),
+    pair(ipair),
     timeUtil(itimeUtil) {
 }
 
@@ -27,13 +28,14 @@ AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
   AsyncLinearMotionProfileController &&other) noexcept
   : logger(other.logger),
     paths(std::move(other.paths)),
-    maxVel(other.maxVel),
-    maxAccel(other.maxAccel),
-    maxJerk(other.maxJerk),
+    limits(other.limits),
     output(std::move(other.output)),
+    diameter(other.diameter),
+    pair(other.pair),
     timeUtil(std::move(other.timeUtil)),
     currentPath(std::move(other.currentPath)),
     isRunning(other.isRunning.load(std::memory_order_acquire)),
+    direction(other.direction.load(std::memory_order_acquire)),
     disabled(other.disabled.load(std::memory_order_acquire)),
     dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
     task(other.task) {
@@ -49,7 +51,7 @@ AsyncLinearMotionProfileController::~AsyncLinearMotionProfileController() {
   delete task;
 }
 
-void AsyncLinearMotionProfileController::generatePath(std::initializer_list<double> iwaypoints,
+void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLength> iwaypoints,
                                                       const std::string &ipathId) {
   if (iwaypoints.size() == 0) {
     // No point in generating a path
@@ -61,7 +63,7 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<doub
   std::vector<Waypoint> points;
   points.reserve(iwaypoints.size());
   for (auto &point : iwaypoints) {
-    points.push_back(Waypoint{point, 0, 0});
+    points.push_back(Waypoint{point.convert(meter), 0, 0});
   }
 
   TrajectoryCandidate candidate;
@@ -71,9 +73,9 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<doub
                      FIT_HERMITE_CUBIC,
                      PATHFINDER_SAMPLES_FAST,
                      0.001,
-                     maxVel,
-                     maxAccel,
-                     maxJerk,
+                     limits.maxVel,
+                     limits.maxAccel,
+                     limits.maxJerk,
                      &candidate);
 
   const int length = candidate.length;
@@ -85,7 +87,8 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<doub
     };
 
     std::string message =
-      "AsyncLinearMotionProfileController: Path is impossible with waypoints: " +
+      "AsyncLinearMotionProfileController: The path (length " + std::to_string(length) +
+      ") is impossible with waypoints: " +
       std::accumulate(std::next(points.begin()),
                       points.end(),
                       pointToString(points.at(0)),
@@ -107,8 +110,9 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<doub
   auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
 
   if (trajectory == nullptr) {
-    std::string message = "AsyncLinearMotionProfileController: Could not allocate trajectory. The "
-                          "path is probably impossible.";
+    std::string message =
+      "AsyncLinearMotionProfileController: Could not allocate trajectory. The path (length " +
+      std::to_string(length) + ") is probably impossible.";
     logger->error(message);
 
     if (candidate.laptr) {
@@ -130,7 +134,7 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<doub
 
   paths.emplace(ipathId, TrajectoryPair{trajectory, length});
   logger->info("AsyncLinearMotionProfileController: Completely done generating path");
-  logger->info("AsyncLinearMotionProfileController: " + std::to_string(length));
+  logger->info("AsyncLinearMotionProfileController: Path length: " + std::to_string(length));
 }
 
 void AsyncLinearMotionProfileController::removePath(const std::string &ipathId) {
@@ -151,9 +155,14 @@ std::vector<std::string> AsyncLinearMotionProfileController::getPaths() {
   return keys;
 }
 
-void AsyncLinearMotionProfileController::setTarget(const std::string ipathId) {
+void AsyncLinearMotionProfileController::setTarget(std::string ipathId) {
+  setTarget(ipathId, false);
+}
+
+void AsyncLinearMotionProfileController::setTarget(std::string ipathId, const bool ibackwards) {
   currentPath = ipathId;
-  isRunning = true;
+  isRunning.store(true, std::memory_order_release);
+  direction.store(boolToSign(!ibackwards), std::memory_order_release);
 }
 
 void AsyncLinearMotionProfileController::controllerSet(const std::string ivalue) {
@@ -199,11 +208,20 @@ void AsyncLinearMotionProfileController::loop() {
 
 void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair &path,
                                                            std::unique_ptr<AbstractRate> rate) {
+  const auto reversed = direction.load(std::memory_order_acquire);
+
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
     currentProfilePosition = path.segment[i].position;
-    output->controllerSet(path.segment[i].velocity / maxVel);
+
+    const auto motorRPM = convertLinearToRotational(path.segment[i].velocity * mps).convert(rpm);
+    output->controllerSet(motorRPM / toUnderlyingType(pair.internalGearset) * reversed);
+
     rate->delayUntil(1_ms);
   }
+}
+
+QAngularSpeed AsyncLinearMotionProfileController::convertLinearToRotational(QSpeed linear) const {
+  return (linear * (360_deg / (diameter * 1_pi))) * pair.ratio;
 }
 
 void AsyncLinearMotionProfileController::trampoline(void *context) {
@@ -223,10 +241,12 @@ void AsyncLinearMotionProfileController::waitUntilSettled() {
   logger->info("AsyncLinearMotionProfileController: Done waiting to settle");
 }
 
-void AsyncLinearMotionProfileController::moveTo(double iposition, double itarget) {
+void AsyncLinearMotionProfileController::moveTo(const QLength &iposition,
+                                                const QLength &itarget,
+                                                const bool ibackwards) {
   std::string name = reinterpret_cast<const char *>(this); // hmmmm...
   generatePath({iposition, itarget}, name);
-  setTarget(name);
+  setTarget(name, ibackwards);
   waitUntilSettled();
   removePath(name);
 }
@@ -275,5 +295,8 @@ void AsyncLinearMotionProfileController::startThread() {
   if (!task) {
     task = new CrossplatformThread(trampoline, this);
   }
+}
+
+void AsyncLinearMotionProfileController::tarePosition() {
 }
 } // namespace okapi

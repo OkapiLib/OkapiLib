@@ -21,10 +21,9 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
   public:
   /**
    * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are
-   * whatever units the motor is in. The maximum velocity for profiled movements will be the maximum
-   * velocity for the motor's gearset.
+   * whatever units the motor is in. The maximum velocity will be dervied from the motor's gearset.
    *
-   * @param imotor the motor to control
+   * @param imotor The motor to control.
    */
   AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
                                const TimeUtil &itimeUtil);
@@ -33,8 +32,8 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
    * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are
    * whatever units the motor is in.
    *
-   * @param imotor the motor to control
-   * @param imaxVelocity the maximum velocity during a profiled movement in RPM [0-600].
+   * @param imotor The motor to control.
+   * @param imaxVelocity The maximum velocity during a profiled movement in RPM [0-600].
    */
   AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
                                std::int32_t imaxVelocity,
@@ -116,11 +115,9 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
   virtual void setMaxVelocity(std::int32_t imaxVelocity);
 
   /**
-   * Sets the "absolute" zero position of the motor to its current position.
-   *
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   * Sets the "absolute" zero position of the controller to its current position.
    */
-  virtual std::int32_t tarePosition();
+  void tarePosition() override;
 
   /**
    * Stops the motor mid-movement. Does not change the last set target.
@@ -130,10 +127,11 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
   protected:
   Logger *logger;
   std::shared_ptr<AbstractMotor> motor;
-  std::int32_t maxVelocity{600}; // 600 RPM max, vexOS will limit if the gearset can't go this fast
-  double lastTarget = 0;
-  bool controllerIsDisabled = false;
-  bool hasFirstTarget = false;
+  std::int32_t maxVelocity;
+  double lastTarget{0};
+  double offset{0};
+  bool controllerIsDisabled{false};
+  bool hasFirstTarget{false};
   std::unique_ptr<SettledUtil> settledUtil;
   std::unique_ptr<AbstractRate> rate;
 

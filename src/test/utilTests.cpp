@@ -6,13 +6,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/tests/impl/utilTests.hpp"
-#include "okapi/api.hpp"
 #include "test/testRunner.hpp"
 
-void testUtils() {
-  using namespace okapi;
-  using namespace snowhouse;
+using namespace okapi;
+using namespace snowhouse;
 
+static void testUtils() {
   {
     test_printf("Testing Rate");
 
@@ -129,5 +128,6 @@ void testUtils() {
 }
 
 void runUtilTests() {
+  test_printf("Testing Util");
   testUtils();
 }
