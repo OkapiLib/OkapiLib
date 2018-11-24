@@ -184,7 +184,6 @@ add_executable(OkapiLibV5
         test/controlTests.cpp
         test/filterTests.cpp
         test/implMocks.cpp
-        include/test/tests/api/odometryTests.hpp
         test/odometryTests.cpp
         test/utilTests.cpp
         test/unitTests.cpp
