@@ -103,6 +103,14 @@ class AsyncVelControllerBuilder {
   AsyncVelControllerBuilder &withDerivativeFilter(std::unique_ptr<Filter> iderivativeFilter);
 
   /**
+   * Sets the gearset. The default gearset is derived from the motor's.
+   *
+   * @param igearset The gearset.
+   * @return An ongoing builder.
+   */
+  AsyncVelControllerBuilder &withGearset(const AbstractMotor::GearsetRatioPair &igearset);
+
+  /**
    * Sets the maximum velocity. The default maximum velocity is derived from the motor's gearset.
    * This parameter is ignored when using an AsyncVelPIDController.
    *
@@ -143,6 +151,9 @@ class AsyncVelControllerBuilder {
   std::unique_ptr<VelMath> velMath;
 
   std::unique_ptr<Filter> derivativeFilter = std::make_unique<PassthroughFilter>();
+
+  bool gearsetSetByUser{false}; // Used so motor's don't overwrite a gearset set manually
+  AbstractMotor::GearsetRatioPair pair{AbstractMotor::gearset::invalid};
 
   bool maxVelSetByUser{false}; // Used so motors don't overwrite maxVelocity
   double maxVelocity{600};

@@ -16,6 +16,7 @@ AsyncPosPIDController::AsyncPosPIDController(
   const double ikI,
   const double ikD,
   const double ikBias,
+  const double iratio,
   std::unique_ptr<Filter> iderivativeFilter)
   : AsyncPosPIDController(std::make_shared<OffsetableControllerInput>(iinput),
                           ioutput,
@@ -24,6 +25,7 @@ AsyncPosPIDController::AsyncPosPIDController(
                           ikI,
                           ikD,
                           ikBias,
+                          iratio,
                           std::move(iderivativeFilter)) {
 }
 
@@ -35,6 +37,7 @@ AsyncPosPIDController::AsyncPosPIDController(
   const double ikI,
   const double ikD,
   const double ikBias,
+  const double iratio,
   std::unique_ptr<Filter> iderivativeFilter)
   : AsyncWrapper<double, double>(
       iinput,
@@ -45,7 +48,8 @@ AsyncPosPIDController::AsyncPosPIDController(
                                                   ikBias,
                                                   itimeUtil,
                                                   std::move(iderivativeFilter)),
-      itimeUtil.getRateSupplier()),
+      itimeUtil.getRateSupplier(),
+      iratio),
     offsettableInput(iinput) {
 }
 

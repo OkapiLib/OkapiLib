@@ -11,28 +11,37 @@
 namespace okapi {
 AsyncVelIntegratedController::AsyncVelIntegratedController(
   const std::shared_ptr<AbstractMotor> &imotor,
-  const TimeUtil &itimeUtil)
-  : AsyncVelIntegratedController(imotor, toUnderlyingType(imotor->getGearing()), itimeUtil) {
-}
-
-AsyncVelIntegratedController::AsyncVelIntegratedController(
-  const std::shared_ptr<AbstractMotor> &imotor,
+  const AbstractMotor::GearsetRatioPair &ipair,
   const std::int32_t imaxVelocity,
   const TimeUtil &itimeUtil)
   : motor(imotor),
+    pair(ipair),
     maxVelocity(imaxVelocity),
     settledUtil(itimeUtil.getSettledUtil()),
     rate(itimeUtil.getRate()) {
+  if (ipair.ratio == 0) {
+    logger->error("AsyncVelIntegratedController: The gear ratio cannot be zero! Check if you are "
+                  "using integer division.");
+    throw std::invalid_argument("AsyncVelIntegratedController: The gear ratio cannot be zero! "
+                                "Check if you are using integer division.");
+  }
+
+  motor->setGearing(ipair.internalGearset);
 }
 
 void AsyncVelIntegratedController::setTarget(const double itarget) {
-  const auto boundedTarget = itarget > maxVelocity ? maxVelocity : itarget;
+  double boundedTarget = itarget * pair.ratio;
+
+  if (boundedTarget > maxVelocity) {
+    boundedTarget = maxVelocity;
+  }
+
   logger->info("AsyncVelIntegratedController: Set target to " + std::to_string(boundedTarget));
 
   hasFirstTarget = true;
 
   if (!controllerIsDisabled) {
-    motor->moveVelocity((std::int16_t)boundedTarget);
+    motor->moveVelocity(static_cast<int16_t>(boundedTarget));
   }
 
   lastTarget = boundedTarget;
@@ -43,7 +52,7 @@ double AsyncVelIntegratedController::getTarget() {
 }
 
 double AsyncVelIntegratedController::getError() const {
-  return lastTarget - motor->getActualVelocity();
+  return lastTarget * pair.ratio - motor->getActualVelocity();
 }
 
 bool AsyncVelIntegratedController::isSettled() {

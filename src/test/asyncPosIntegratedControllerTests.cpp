@@ -18,8 +18,10 @@ static void testTarePosition() {
   const int moveAmt = 360;
   auto m = std::make_shared<Motor>(MOTOR_1_PORT);
 
-  AsyncPosIntegratedController c(
-    m, toUnderlyingType(MOTOR_GEARSET), TimeUtilFactory::withSettledUtilParams(10, 0, 0_ms));
+  AsyncPosIntegratedController c(m,
+                                 MOTOR_GEARSET,
+                                 toUnderlyingType(MOTOR_GEARSET),
+                                 TimeUtilFactory::withSettledUtilParams(10, 0, 0_ms));
 
   c.setTarget(moveAmt);
   c.waitUntilSettled();
@@ -51,7 +53,7 @@ static void testStop() {
   auto m = std::make_shared<Motor>(MOTOR_1_PORT);
 
   // Slow max speed so we don't coast too much after stopping
-  AsyncPosIntegratedController c(m, 30, TimeUtilFactory::create());
+  AsyncPosIntegratedController c(m, MOTOR_GEARSET, 30, TimeUtilFactory::create());
 
   c.setTarget(moveAmt);
 

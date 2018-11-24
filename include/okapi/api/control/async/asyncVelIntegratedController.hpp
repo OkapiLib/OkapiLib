@@ -22,21 +22,15 @@ class AsyncVelIntegratedController : public AsyncVelocityController<double, doub
   public:
   /**
    * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are
-   * whatever units the motor is in. The maximum velocity will be dervied from the motor's gearset.
+   * whatever units the motor is in. Throws a std::invalid_argument exception if the gear ratio is
+   * zero.
    *
    * @param imotor The motor to control.
+   * @param ipair The gearset.
+   * @param imaxVelocity The maximum velocity after gearing.
    */
   AsyncVelIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
-                               const TimeUtil &itimeUtil);
-
-  /**
-   * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are
-   * whatever units the motor is in.
-   *
-   * @param imotor The motor to control.
-   * @param imaxVelocity The maximum target velocity.
-   */
-  AsyncVelIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
+                               const AbstractMotor::GearsetRatioPair &ipair,
                                std::int32_t imaxVelocity,
                                const TimeUtil &itimeUtil);
 
@@ -111,6 +105,7 @@ class AsyncVelIntegratedController : public AsyncVelocityController<double, doub
   protected:
   Logger *logger;
   std::shared_ptr<AbstractMotor> motor;
+  AbstractMotor::GearsetRatioPair pair;
   std::int32_t maxVelocity;
   double lastTarget = 0;
   bool controllerIsDisabled = false;

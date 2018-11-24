@@ -94,6 +94,14 @@ class AsyncPosControllerBuilder {
   AsyncPosControllerBuilder &withDerivativeFilter(std::unique_ptr<Filter> iderivativeFilter);
 
   /**
+   * Sets the gearset. The default gearset is derived from the motor's.
+   *
+   * @param igearset The gearset.
+   * @return An ongoing builder.
+   */
+  AsyncPosControllerBuilder &withGearset(const AbstractMotor::GearsetRatioPair &igearset);
+
+  /**
    * Sets the maximum velocity. The default maximum velocity is derived from the motor's gearset.
    * This parameter is ignored when using an AsyncPosPIDController.
    *
@@ -130,6 +138,9 @@ class AsyncPosControllerBuilder {
   bool hasGains{false}; // Whether gains were passed, no gains means integrated control
   IterativePosPIDController::Gains gains;
   std::unique_ptr<Filter> derivativeFilter = std::make_unique<PassthroughFilter>();
+
+  bool gearsetSetByUser{false}; // Used so motor's don't overwrite a gearset set manually
+  AbstractMotor::GearsetRatioPair pair{AbstractMotor::gearset::invalid};
 
   bool maxVelSetByUser{false}; // Used so motors don't overwrite maxVelocity
   double maxVelocity{600};
