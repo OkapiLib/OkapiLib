@@ -28,11 +28,11 @@ class Odometry {
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
    * relative to the start (assumed to be (0, 0)).
    *
-   * @param imodel SkidSteerModel for reading sensors
-   * @param iscale straight scale
-   * @param iturnScale turn scale
+   * @param imodel The chassis model for reading sensors.
+   * @param ichassisScales The chassis dimensions.
+   * @param irate The rate.
    */
-  Odometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
+  Odometry(const std::shared_ptr<ReadOnlyChassisModel> &imodel,
            const ChassisScales &ichassisScales,
            std::unique_ptr<AbstractRate> irate);
 

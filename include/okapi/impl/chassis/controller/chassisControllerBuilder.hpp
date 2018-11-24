@@ -9,6 +9,8 @@
 
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"
+#include "okapi/api/chassis/controller/odomChassisControllerIntegrated.hpp"
+#include "okapi/api/chassis/controller/odomChassisControllerPid.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/api/util/logging.hpp"
@@ -150,6 +152,28 @@ class ChassisControllerBuilder {
                                       const IterativePosPIDController::Gains &iturnGains);
 
   /**
+   * Sets the odometry information, causing the builder to generate an Odometry variant.
+   *
+   * @param imoveThreshold The minimum length movement.
+   * @param iturnThreshold The minimum angle turn.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withOdometry(const QLength &imoveThreshold = 10_mm,
+                                         const QAngle &iturnThreshold = 1_deg);
+
+  /**
+   * Sets the odometry information, causing the builder to generate an Odometry variant.
+   *
+   * @param iodometry The odometry object.
+   * @param imoveThreshold The minimum length movement.
+   * @param iturnThreshold The minimum angle turn.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withOdometry(std::unique_ptr<Odometry> iodometry,
+                                         const QLength &imoveThreshold = 10_mm,
+                                         const QAngle &iturnThreshold = 1_deg);
+
+  /**
    * Sets the gearset.
    *
    * @param igearset The gearset.
@@ -188,6 +212,14 @@ class ChassisControllerBuilder {
    */
   std::shared_ptr<ChassisController> build();
 
+  /**
+   * Builds the OdomChassisController. Throws a std::runtime_exception if no motors were set or if
+   * no odometry information was passed.
+   *
+   * @return A fully built OdomChassisController.
+   */
+  std::shared_ptr<OdomChassisController> buildOdometry();
+
   private:
   Logger *logger;
 
@@ -217,6 +249,11 @@ class ChassisControllerBuilder {
   IterativePosPIDController::Gains angleGains;
   IterativePosPIDController::Gains turnGains;
 
+  bool hasOdom{false}; // Whether odometry was passed
+  std::unique_ptr<Odometry> odometry;
+  QLength moveThreshold;
+  QAngle turnThreshold;
+
   AbstractMotor::GearsetRatioPair gearset = AbstractMotor::gearset::red;
   ChassisScales scales = {1, 1};
 
@@ -227,6 +264,8 @@ class ChassisControllerBuilder {
 
   std::shared_ptr<ChassisControllerPID> buildCCPID();
   std::shared_ptr<ChassisControllerIntegrated> buildCCI();
+  std::shared_ptr<OdomChassisControllerPID> buildOCCPID();
+  std::shared_ptr<OdomChassisControllerIntegrated> buildOCCI();
   std::shared_ptr<SkidSteerModel> makeSkidSteerModel();
   std::shared_ptr<XDriveModel> makeXDriveModel();
 };

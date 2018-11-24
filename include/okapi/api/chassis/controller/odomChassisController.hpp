@@ -26,10 +26,10 @@ class OdomChassisController : public virtual ChassisController {
    * @param imoveThreshold minimum length movement (smaller movements will be skipped)
    * @param iturnThreshold minimum angle turn (smaller turns will be skipped)
    */
-  OdomChassisController(std::shared_ptr<SkidSteerModel> imodel,
+  OdomChassisController(const std::shared_ptr<SkidSteerModel> &imodel,
                         std::unique_ptr<Odometry> iodometry,
-                        QLength imoveThreshold = 10_mm,
-                        QAngle iturnThreshold = 1_deg);
+                        const QLength &imoveThreshold = 10_mm,
+                        const QAngle &iturnThreshold = 1_deg);
 
   ~OdomChassisController() override;
 

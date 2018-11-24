@@ -8,11 +8,11 @@
 #include "okapi/api/chassis/controller/odomChassisController.hpp"
 
 namespace okapi {
-OdomChassisController::OdomChassisController(std::shared_ptr<SkidSteerModel> imodel,
+OdomChassisController::OdomChassisController(const std::shared_ptr<SkidSteerModel> &imodel,
                                              std::unique_ptr<Odometry> iodometry,
-                                             const QLength imoveThreshold,
-                                             const QAngle iturnThreshold)
-  : ChassisController(imodel),
+                                             const QLength &imoveThreshold,
+                                             const QAngle &iturnThreshold)
+  : ChassisController(imodel, imodel->getMaxVelocity(), imodel->getMaxVoltage()),
     moveThreshold(imoveThreshold),
     turnThreshold(iturnThreshold),
     odom(std::move(iodometry)),

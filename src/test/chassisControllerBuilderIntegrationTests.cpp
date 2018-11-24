@@ -100,9 +100,86 @@ static void testSensorsWork() {
   pros::delay(500);
 }
 
+static void testOCCI() {
+  printf("Testing OCCI\n");
+  resetHardware();
+
+  auto drive = ChassisControllerBuilder()
+                 .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
+                 .withGearset(MOTOR_GEARSET)
+                 .withOdometry()
+                 .withDimensions({4_in, 10_in})
+                 .buildOdometry();
+
+  const auto stateBefore = drive->getState();
+  printf("x:%1.2f, y:%1.2f, theta:%1.2f\n",
+         stateBefore.x.convert(inch),
+         stateBefore.y.convert(inch),
+         stateBefore.theta.convert(degree));
+  drive->moveDistance(12_in);
+  const auto stateAfter = drive->getState();
+  printf("x:%1.2f, y:%1.2f, theta:%1.2f\n",
+         stateAfter.x.convert(inch),
+         stateAfter.y.convert(inch),
+         stateAfter.theta.convert(degree));
+
+  test("State diff x should be 12 inches",
+       TEST_BODY(AssertThat, (stateAfter.x - stateBefore.x).convert(inch), EqualsWithDelta(12, 1)));
+  test("State diff y should be 0 inches",
+       TEST_BODY(AssertThat, (stateAfter.y - stateBefore.y).convert(inch), EqualsWithDelta(0, 1)));
+  test("State diff theta should be 0 degrees",
+       TEST_BODY(AssertThat,
+                 (stateAfter.theta - stateBefore.theta).convert(degree),
+                 EqualsWithDelta(0, 1)));
+
+  drive->stop();
+  resetHardware();
+  pros::delay(500);
+}
+
+static void testOCCPID() {
+  printf("Testing OCCPID\n");
+  resetHardware();
+
+  auto drive = ChassisControllerBuilder()
+                 .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
+                 .withGains({0.01, 0, 0}, {0, 0, 0})
+                 .withGearset(MOTOR_GEARSET)
+                 .withOdometry()
+                 .withDimensions({4_in, 10_in})
+                 .buildOdometry();
+
+  const auto stateBefore = drive->getState();
+  printf("x:%1.2f, y:%1.2f, theta:%1.2f\n",
+         stateBefore.x.convert(inch),
+         stateBefore.y.convert(inch),
+         stateBefore.theta.convert(degree));
+  drive->moveDistance(12_in);
+  const auto stateAfter = drive->getState();
+  printf("x:%1.2f, y:%1.2f, theta:%1.2f\n",
+         stateAfter.x.convert(inch),
+         stateAfter.y.convert(inch),
+         stateAfter.theta.convert(degree));
+
+  test("State diff x should be 12 inches",
+       TEST_BODY(AssertThat, (stateAfter.x - stateBefore.x).convert(inch), EqualsWithDelta(12, 1)));
+  test("State diff y should be 0 inches",
+       TEST_BODY(AssertThat, (stateAfter.y - stateBefore.y).convert(inch), EqualsWithDelta(0, 1)));
+  test("State diff theta should be 0 degrees",
+       TEST_BODY(AssertThat,
+                 (stateAfter.theta - stateBefore.theta).convert(degree),
+                 EqualsWithDelta(0, 1)));
+
+  drive->stop();
+  resetHardware();
+  pros::delay(500);
+}
+
 void runChassisControllerBuilderIntegrationTests() {
   test_printf("Testing ChassisControllerBuilder");
   testForwardUsesCorrectMaximumVelocityForAGearset();
   testMaxVelWorksOutOfOrder();
   testSensorsWork();
+  testOCCI();
+  testOCCPID();
 }

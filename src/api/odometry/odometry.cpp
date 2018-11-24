@@ -10,19 +10,17 @@
 #include <cmath>
 
 namespace okapi {
-Odometry::Odometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
+Odometry::Odometry(const std::shared_ptr<ReadOnlyChassisModel> &imodel,
                    const ChassisScales &ichassisScales,
                    std::unique_ptr<AbstractRate> irate)
   : logger(Logger::instance()),
     model(imodel),
     rate(std::move(irate)),
     chassisScales(ichassisScales) {
-  logger->info("Odometry: Straight scale: " + std::to_string(chassisScales.straight) +
-               ", Turn scale: " + std::to_string(chassisScales.turn));
 }
 
 Odometry::~Odometry() {
-  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
+  dtorCalled.store(true, std::memory_order_release);
 }
 
 void Odometry::setScales(const ChassisScales &ichassisScales) {
@@ -30,7 +28,7 @@ void Odometry::setScales(const ChassisScales &ichassisScales) {
 }
 
 void Odometry::loop() {
-  while (!dtorCalled.load(std::memory_order::memory_order_relaxed)) {
+  while (!dtorCalled.load(std::memory_order_acquire)) {
     step();
     rate->delayUntil(10_ms);
   }
@@ -70,6 +68,6 @@ void Odometry::setState(const OdomState &istate) {
 }
 
 void Odometry::stopLooping() {
-  dtorCalled.store(true, std::memory_order::memory_order_relaxed);
+  dtorCalled.store(true, std::memory_order_release);
 }
 } // namespace okapi

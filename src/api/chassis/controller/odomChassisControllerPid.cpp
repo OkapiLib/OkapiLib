@@ -12,15 +12,15 @@
 namespace okapi {
 OdomChassisControllerPID::OdomChassisControllerPID(
   const TimeUtil &itimeUtil,
-  std::shared_ptr<SkidSteerModel> imodel,
+  const std::shared_ptr<SkidSteerModel> &imodel,
   std::unique_ptr<Odometry> iodometry,
   std::unique_ptr<IterativePosPIDController> idistanceController,
   std::unique_ptr<IterativePosPIDController> iangleController,
   std::unique_ptr<IterativePosPIDController> iturnController,
-  AbstractMotor::GearsetRatioPair igearset,
+  const AbstractMotor::GearsetRatioPair &igearset,
   const ChassisScales &iscales,
-  const QLength imoveThreshold,
-  const QAngle iturnThreshold)
+  const QLength &imoveThreshold,
+  const QAngle &iturnThreshold)
   : ChassisController(imodel, imodel->getMaxVelocity(), imodel->getMaxVoltage()),
     OdomChassisController(imodel, std::move(iodometry), imoveThreshold, iturnThreshold),
     ChassisControllerPID(itimeUtil,

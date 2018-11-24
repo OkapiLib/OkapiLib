@@ -35,15 +35,15 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
    * @param iturnThreshold minimum angle turn (smaller turns will be skipped)
    */
   OdomChassisControllerPID(const TimeUtil &itimeUtil,
-                           std::shared_ptr<SkidSteerModel> imodel,
+                           const std::shared_ptr<SkidSteerModel> &imodel,
                            std::unique_ptr<Odometry> iodometry,
                            std::unique_ptr<IterativePosPIDController> idistanceController,
                            std::unique_ptr<IterativePosPIDController> iangleController,
                            std::unique_ptr<IterativePosPIDController> iturnController,
-                           AbstractMotor::GearsetRatioPair igearset,
+                           const AbstractMotor::GearsetRatioPair &igearset,
                            const ChassisScales &iscales,
-                           QLength imoveThreshold = 10_mm,
-                           QAngle iturnThreshold = 1_deg);
+                           const QLength &imoveThreshold = 10_mm,
+                           const QAngle &iturnThreshold = 1_deg);
 
   /**
    * Drives the robot straight to a point in the odom frame.

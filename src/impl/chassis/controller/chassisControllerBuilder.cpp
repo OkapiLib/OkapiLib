@@ -111,6 +111,31 @@ ChassisControllerBuilder::withGains(const IterativePosPIDController::Gains &idis
   return *this;
 }
 
+ChassisControllerBuilder &ChassisControllerBuilder::withOdometry(const QLength &imoveThreshold,
+                                                                 const QAngle &iturnThreshold) {
+  hasOdom = true;
+  odometry = nullptr;
+  moveThreshold = imoveThreshold;
+  turnThreshold = iturnThreshold;
+  return *this;
+}
+
+ChassisControllerBuilder &
+ChassisControllerBuilder::withOdometry(std::unique_ptr<Odometry> iodometry,
+                                       const QLength &imoveThreshold,
+                                       const QAngle &iturnThreshold) {
+  if (iodometry == nullptr) {
+    logger->error("ChassisControllerBuilder: Odometry cannot be null.");
+    throw std::runtime_error("ChassisControllerBuilder: Odometry cannot be null.");
+  }
+
+  hasOdom = true;
+  odometry = std::move(iodometry);
+  moveThreshold = imoveThreshold;
+  turnThreshold = iturnThreshold;
+  return *this;
+}
+
 ChassisControllerBuilder &
 ChassisControllerBuilder::withGearset(const AbstractMotor::GearsetRatioPair &igearset) {
   gearset = igearset;
@@ -144,10 +169,92 @@ std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
     throw std::runtime_error("ChassisControllerBuilder: No motors given.");
   }
 
-  if (hasGains) {
-    return buildCCPID();
+  if (hasOdom) {
+    if (hasGains) {
+      return buildOCCPID();
+    } else {
+      return buildOCCI();
+    }
   } else {
-    return buildCCI();
+    if (hasGains) {
+      return buildCCPID();
+    } else {
+      return buildCCI();
+    }
+  }
+}
+
+std::shared_ptr<OdomChassisController> ChassisControllerBuilder::buildOdometry() {
+  if (!hasMotors) {
+    logger->error("ChassisControllerBuilder: No motors given.");
+    throw std::runtime_error("ChassisControllerBuilder: No motors given.");
+  }
+
+  if (!hasOdom) {
+    logger->error("ChassisControllerBuilder: No odometry information given.");
+    throw std::runtime_error("ChassisControllerBuilder: No odometry information given.");
+  }
+
+  if (hasGains) {
+    return buildOCCPID();
+  } else {
+    return buildOCCI();
+  }
+}
+
+std::shared_ptr<OdomChassisControllerPID> ChassisControllerBuilder::buildOCCPID() {
+  if (isSkidSteer) {
+    auto model = makeSkidSteerModel();
+
+    if (odometry == nullptr) {
+      odometry = std::make_unique<Odometry>(model, scales, TimeUtilFactory::create().getRate());
+    }
+
+    auto out = std::make_shared<OdomChassisControllerPID>(
+      TimeUtilFactory::create(),
+      model,
+      std::move(odometry),
+      std::make_unique<IterativePosPIDController>(distanceGains, TimeUtilFactory::create()),
+      std::make_unique<IterativePosPIDController>(angleGains, TimeUtilFactory::create()),
+      std::make_unique<IterativePosPIDController>(turnGains, TimeUtilFactory::create()),
+      gearset,
+      scales,
+      moveThreshold,
+      turnThreshold);
+    out->startThread();
+    return out;
+  } else {
+    logger->error("ChassisControllerBuilder: Odometry only support with skid-steer layout.");
+    throw std::runtime_error(
+      "ChassisControllerBuilder: Odometry only support with skid-steer layout.");
+  }
+}
+
+std::shared_ptr<OdomChassisControllerIntegrated> ChassisControllerBuilder::buildOCCI() {
+  if (isSkidSteer) {
+    auto model = makeSkidSteerModel();
+
+    if (odometry == nullptr) {
+      odometry = std::make_unique<Odometry>(model, scales, TimeUtilFactory::create().getRate());
+    }
+
+    auto out = std::make_shared<OdomChassisControllerIntegrated>(
+      TimeUtilFactory::create(),
+      model,
+      std::move(odometry),
+      std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
+                                                     TimeUtilFactory::create()),
+      std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.right,
+                                                     TimeUtilFactory::create()),
+      gearset,
+      scales,
+      moveThreshold,
+      turnThreshold);
+    return out;
+  } else {
+    logger->error("ChassisControllerBuilder: Odometry only support with skid-steer layout.");
+    throw std::runtime_error(
+      "ChassisControllerBuilder: Odometry only support with skid-steer layout.");
   }
 }
 
