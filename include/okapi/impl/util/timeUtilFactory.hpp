@@ -5,16 +5,23 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_TIMEUTILFACTORY_HPP_
-#define _OKAPI_TIMEUTILFACTORY_HPP_
+#pragma once
 
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
 class TimeUtilFactory {
   public:
+  /**
+   * Creates a default TimeUtil.
+   */
   static TimeUtil create();
+
+  /**
+   * Creates a TimeUtil with custom SettledUtil params. See SettledUtil docs.
+   */
+  static TimeUtil withSettledUtilParams(double iatTargetError = 50,
+                                        double iatTargetDerivative = 5,
+                                        QTime iatTargetTime = 250_ms);
 };
 } // namespace okapi
-
-#endif

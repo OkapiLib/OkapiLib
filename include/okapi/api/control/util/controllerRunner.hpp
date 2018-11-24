@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_CONTROLLERRUNNER_HPP_
-#define _OKAPI_CONTROLLERRUNNER_HPP_
+#pragma once
 
 #include "okapi/api/control/async/asyncController.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
@@ -124,5 +123,3 @@ template <typename Input, typename Output> class ControllerRunner {
   std::unique_ptr<AbstractRate> rate;
 };
 } // namespace okapi
-
-#endif

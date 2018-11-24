@@ -14,7 +14,6 @@
 #include "okapi/api/filter/passthroughFilter.hpp"
 #include "okapi/api/filter/velMath.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
-#include "test/crossPlatformTestRunner.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 

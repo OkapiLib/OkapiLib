@@ -7,4 +7,4 @@
  */
 #pragma once
 
-void runUtilTests();
+void runControllerTests();

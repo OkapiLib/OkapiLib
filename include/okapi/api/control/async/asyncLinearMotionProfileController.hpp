@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ASYNCLINEARMOTIONPROFILECONTROLLER_HPP_
-#define _OKAPI_ASYNCLINEARMOTIONPROFILECONTROLLER_HPP_
+#pragma once
 
 #include "okapi/api/control/async/asyncPositionController.hpp"
 #include "okapi/api/control/controllerOutput.hpp"
@@ -36,7 +35,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
                                      double imaxVel,
                                      double imaxAccel,
                                      double imaxJerk,
-                                     std::shared_ptr<ControllerOutput<double>> ioutput);
+                                     const std::shared_ptr<ControllerOutput<double>> &ioutput);
 
   AsyncLinearMotionProfileController(AsyncLinearMotionProfileController &&other) noexcept;
 
@@ -131,10 +130,8 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   bool isSettled() override;
 
   /**
-   * Resets the controller so it can start from 0 again properly. Keeps configuration from
-   * before.
-   *
-   * This implementation does nothing.
+   * Resets the controller's internal state so it is similar to when it was first initialized, while
+   * keeping any user-configured information. This implementation also stops movement.
    */
   void reset() override;
 
@@ -195,5 +192,3 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   virtual void executeSinglePath(const TrajectoryPair &path, std::unique_ptr<AbstractRate> rate);
 };
 } // namespace okapi
-
-#endif

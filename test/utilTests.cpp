@@ -6,7 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/util/mathUtil.hpp"
-#include "test/crossPlatformTestRunner.hpp"
 #include <gtest/gtest.h>
 
 using namespace okapi;
@@ -48,4 +47,12 @@ TEST(RemapRangeTest, Tests) {
   EXPECT_FLOAT_EQ(remapRange(0.1, -1, 1, -2, 2), 0.2) << "0.1 : [-1, 1] -> [-2, 2]";
   EXPECT_FLOAT_EQ(remapRange(-0.1, -1, 1, 2, -2), 0.2) << "-0.1 : [-1, 1] -> [2, -2]";
   EXPECT_FLOAT_EQ(remapRange(0, -1, 1, -5, 2), -1.5) << "0 : [-1, 1] -> [-5, 2]";
+}
+
+TEST(TrueModTest, Tests) {
+  EXPECT_EQ(modulus(0, 1), 0);
+  EXPECT_EQ(modulus(1, 2), 1);
+  EXPECT_EQ(modulus(-2, 5), 3);
+  EXPECT_EQ(modulus(-1800, 3600), 1800);
+  EXPECT_EQ(modulus(1, -3), -2);
 }

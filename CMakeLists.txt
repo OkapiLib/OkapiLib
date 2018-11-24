@@ -123,7 +123,6 @@ add_executable(OkapiLibV5
         include/okapi/api/util/mathUtil.hpp
         include/okapi/api/util/supplier.hpp
         include/okapi/api/coreProsAPI.hpp
-        include/test/crossPlatformTestRunner.hpp
         include/test/tests/api/implMocks.hpp
         src/api/chassis/controller/chassisController.cpp
         src/api/chassis/controller/chassisControllerIntegrated.cpp

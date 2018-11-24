@@ -141,3 +141,9 @@ OkapiLib uses the program [cppcheck](http://cppcheck.sourceforge.net/) for stati
 * Use default arguments instead of method overloading.
 * Everything that can be `const` should be.
 * Don't optimize for no reason or prematurely optimize.
+
+## Licensing
+
+By contributing to OkapiLib, you agree that your code will be distributed with OkapiLib, and licensed under the license for the OkapiLib project. You should not contribute code that you do not have permission to relicense in this manner. Our license is the Mozilla Public License 2.0, which you can find [here](LICENSE).
+
+(This licensing clause adapted from the WPIlib clause [here](https://github.com/wpilibsuite/allwpilib/blob/master/CONTRIBUTING.md#licensing))

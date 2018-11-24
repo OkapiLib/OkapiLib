@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ASYNCCONTROLLERFACTORY_HPP_
-#define _OKAPI_ASYNCCONTROLLERFACTORY_HPP_
+#pragma once
 
 #include "okapi/api/chassis/controller/chassisController.hpp"
 #include "okapi/api/control/async/asyncLinearMotionProfileController.hpp"
@@ -19,7 +18,92 @@
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
+#include "okapi/impl/device/rotarysensor/adiGyro.hpp"
+#include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/potentiometer.hpp"
+#include "okapi/impl/util/timeUtilFactory.hpp"
+
+#define okapi_makePosPID(MotorType)                                                                \
+  static AsyncPosPIDController posPID(MotorType imotor,                                            \
+                                      double ikP,                                                  \
+                                      double ikI,                                                  \
+                                      double ikD,                                                  \
+                                      double ikBias = 0,                                           \
+                                      std::unique_ptr<Filter> iderivativeFilter =                  \
+                                        std::make_unique<PassthroughFilter>(),                     \
+                                      const TimeUtil &itimeUtil = TimeUtilFactory::create()) {     \
+    return posPID(imotor.getEncoder(),                                                             \
+                  std::make_shared<MotorType>(imotor),                                             \
+                  ikP,                                                                             \
+                  ikI,                                                                             \
+                  ikD,                                                                             \
+                  ikBias,                                                                          \
+                  std::move(iderivativeFilter),                                                    \
+                  itimeUtil);                                                                      \
+  }
+
+#define okapi_makePosPIDWithSensor(MotorType, SensorType)                                          \
+  static AsyncPosPIDController posPID(MotorType imotor,                                            \
+                                      SensorType isensor,                                          \
+                                      double ikP,                                                  \
+                                      double ikI,                                                  \
+                                      double ikD,                                                  \
+                                      double ikBias = 0,                                           \
+                                      std::unique_ptr<Filter> iderivativeFilter =                  \
+                                        std::make_unique<PassthroughFilter>(),                     \
+                                      const TimeUtil &itimeUtil = TimeUtilFactory::create()) {     \
+    return posPID(std::make_shared<SensorType>(isensor),                                           \
+                  std::make_shared<MotorType>(imotor),                                             \
+                  ikP,                                                                             \
+                  ikI,                                                                             \
+                  ikD,                                                                             \
+                  ikBias,                                                                          \
+                  std::move(iderivativeFilter),                                                    \
+                  itimeUtil);                                                                      \
+  }
+
+#define okapi_makeVelPID(MotorType)                                                                \
+  static AsyncVelPIDController velPID(MotorType imotor,                                            \
+                                      double ikP,                                                  \
+                                      double ikD,                                                  \
+                                      double ikF = 0,                                              \
+                                      double ikSF = 0,                                             \
+                                      double iTPR = imev5TPR,                                      \
+                                      std::unique_ptr<Filter> iderivativeFilter =                  \
+                                        std::make_unique<PassthroughFilter>(),                     \
+                                      const TimeUtil &itimeUtil = TimeUtilFactory::create()) {     \
+    return velPID(imotor.getEncoder(),                                                             \
+                  std::make_shared<MotorType>(imotor),                                             \
+                  ikP,                                                                             \
+                  ikD,                                                                             \
+                  ikF,                                                                             \
+                  ikSF,                                                                            \
+                  iTPR,                                                                            \
+                  std::move(iderivativeFilter),                                                    \
+                  itimeUtil);                                                                      \
+  }
+
+#define okapi_makeVelPIDWithSensor(MotorType, SensorType)                                          \
+  static AsyncVelPIDController velPID(MotorType imotor,                                            \
+                                      SensorType ienc,                                             \
+                                      double ikP,                                                  \
+                                      double ikD,                                                  \
+                                      double ikF = 0,                                              \
+                                      double ikSF = 0,                                             \
+                                      double iTPR = imev5TPR,                                      \
+                                      std::unique_ptr<Filter> iderivativeFilter =                  \
+                                        std::make_unique<PassthroughFilter>(),                     \
+                                      const TimeUtil &itimeUtil = TimeUtilFactory::create()) {     \
+    return velPID(std::make_shared<SensorType>(ienc),                                              \
+                  std::make_shared<MotorType>(imotor),                                             \
+                  ikP,                                                                             \
+                  ikD,                                                                             \
+                  ikF,                                                                             \
+                  ikSF,                                                                            \
+                  iTPR,                                                                            \
+                  std::move(iderivativeFilter),                                                    \
+                  itimeUtil);                                                                      \
+  }
 
 namespace okapi {
 class AsyncControllerFactory {
@@ -30,7 +114,10 @@ class AsyncControllerFactory {
    * @param imotor controller input (from the integrated encoder) and output
    * @param imaxVelocity the maximum velocity during a profiled movement
    */
-  static AsyncPosIntegratedController posIntegrated(Motor imotor, std::int32_t imaxVelocity = 600);
+  static AsyncPosIntegratedController
+  posIntegrated(Motor imotor,
+                std::int32_t imaxVelocity = 600,
+                const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   /**
    * A position controller that uses the V5 motor's onboard control.
@@ -38,132 +125,37 @@ class AsyncControllerFactory {
    * @param imotor controller input (from the integrated encoder) and output
    * @param imaxVelocity the maximum velocity during a profiled movement
    */
-  static AsyncPosIntegratedController posIntegrated(MotorGroup imotor,
-                                                    std::int32_t imaxVelocity = 600);
+  static AsyncPosIntegratedController
+  posIntegrated(MotorGroup imotor,
+                std::int32_t imaxVelocity = 600,
+                const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   /**
    * A velocity controller that uses the V5 motor's onboard control.
    *
    * @param imotor controller input (from the integrated encoder) and output
    */
-  static AsyncVelIntegratedController velIntegrated(Motor imotor);
+  static AsyncVelIntegratedController
+  velIntegrated(Motor imotor, const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   /**
    * A velocity controller that uses the V5 motor's onboard control.
    *
    * @param imotor controller input (from the integrated encoder) and output
    */
-  static AsyncVelIntegratedController velIntegrated(MotorGroup imotor);
+  static AsyncVelIntegratedController
+  velIntegrated(MotorGroup imotor, const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
-  /**
-   * A position controller that uses the PID algorithm.
-   *
-   * @param imotor controller input (from the integrated encoder) and output
-   * @param ikP proportional gain
-   * @param ikI integration gain
-   * @param ikD derivative gain
-   * @param ikBias output bias (a constant added to the output)
-   */
-  static AsyncPosPIDController
-  posPID(Motor imotor,
-         double ikP,
-         double ikI,
-         double ikD,
-         double ikBias = 0,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
-
-  /**
-   * A position controller that uses the PID algorithm.
-   *
-   * @param imotor controller output
-   * @param ienc controller input
-   * @param ikP proportional gain
-   * @param ikI integration gain
-   * @param ikD derivative gain
-   * @param ikBias output bias (a constant added to the output)
-   */
-  static AsyncPosPIDController
-  posPID(Motor imotor,
-         ADIEncoder ienc,
-         double ikP,
-         double ikI,
-         double ikD,
-         double ikBias = 0,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
-
-  /**
-   * A position controller that uses the PID algorithm.
-   *
-   * @param imotor controller output
-   * @param ipot controller input
-   * @param ikP proportional gain
-   * @param ikI integration gain
-   * @param ikD derivative gain
-   * @param ikBias output bias (a constant added to the output)
-   */
-  static AsyncPosPIDController
-  posPID(Motor imotor,
-         Potentiometer ipot,
-         double ikP,
-         double ikI,
-         double ikD,
-         double ikBias = 0,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
-
-  /**
-   * A position controller that uses the PID algorithm.
-   *
-   * @param imotor controller input (from the integrated encoder) and output
-   * @param ikP proportional gain
-   * @param ikI integration gain
-   * @param ikD derivative gain
-   * @param ikBias output bias (a constant added to the output)
-   */
-  static AsyncPosPIDController
-  posPID(MotorGroup imotor,
-         double ikP,
-         double ikI,
-         double ikD,
-         double ikBias = 0,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
-
-  /**
-   * A position controller that uses the PID algorithm.
-   *
-   * @param imotor controller output
-   * @param ienc controller input
-   * @param ikP proportional gain
-   * @param ikI integration gain
-   * @param ikD derivative gain
-   * @param ikBias output bias (a constant added to the output)
-   */
-  static AsyncPosPIDController
-  posPID(MotorGroup imotor,
-         ADIEncoder ienc,
-         double ikP,
-         double ikI,
-         double ikD,
-         double ikBias = 0,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
-
-  /**
-   * A position controller that uses the PID algorithm.
-   *
-   * @param imotor controller output
-   * @param ipot controller input
-   * @param ikP proportional gain
-   * @param ikI integration gain
-   * @param ikD derivative gain
-   * @param ikBias output bias (a constant added to the output)
-   */
-  static AsyncPosPIDController
-  posPID(MotorGroup imotor,
-         Potentiometer ipot,
-         double ikP,
-         double ikI,
-         double ikD,
-         double ikBias = 0,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+  okapi_makePosPID(Motor);
+  okapi_makePosPID(MotorGroup);
+  okapi_makePosPIDWithSensor(Motor, ADIEncoder);
+  okapi_makePosPIDWithSensor(Motor, ADIGyro);
+  okapi_makePosPIDWithSensor(Motor, Potentiometer);
+  okapi_makePosPIDWithSensor(Motor, IntegratedEncoder);
+  okapi_makePosPIDWithSensor(MotorGroup, ADIEncoder);
+  okapi_makePosPIDWithSensor(MotorGroup, ADIGyro);
+  okapi_makePosPIDWithSensor(MotorGroup, Potentiometer);
+  okapi_makePosPIDWithSensor(MotorGroup, IntegratedEncoder);
 
   /**
    * A position controller that uses the PID algorithm.
@@ -176,129 +168,25 @@ class AsyncControllerFactory {
    * @param ikBias output bias (a constant added to the output)
    */
   static AsyncPosPIDController
-  posPID(std::shared_ptr<ControllerInput<double>> iinput,
-         std::shared_ptr<ControllerOutput<double>> ioutput,
+  posPID(const std::shared_ptr<ControllerInput<double>> &iinput,
+         const std::shared_ptr<ControllerOutput<double>> &ioutput,
          double ikP,
          double ikI,
          double ikD,
          double ikBias = 0,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+         const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
-  /**
-   * A velocity controller that uses the PD algorithm.
-   *
-   * @param imotor controller input (from the integrated encoder) and output
-   * @param ikP proportional gain
-   * @param ikD derivative gain
-   * @param ikF feed-forward gain
-   * @param ikSF a feed-forward gain to counteract static friction
-   */
-  static AsyncVelPIDController
-  velPID(Motor imotor,
-         double ikP,
-         double ikD,
-         double ikF = 0,
-         double ikSF = 0,
-         double iTPR = imev5TPR,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
-
-  /**
-   * A velocity controller that uses the PD algorithm.
-   *
-   * @param imotor controller output
-   * @param ienc controller input
-   * @param ikP proportional gain
-   * @param ikD derivative gain
-   * @param ikF feed-forward gain
-   * @param ikSF a feed-forward gain to counteract static friction
-   */
-  static AsyncVelPIDController
-  velPID(Motor imotor,
-         ADIEncoder ienc,
-         double ikP,
-         double ikD,
-         double ikF = 0,
-         double ikSF = 0,
-         double iTPR = imev5TPR,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
-
-  /**
-   * A velocity controller that uses the PD algorithm.
-   *
-   * @param imotor controller output
-   * @param ipot controller input
-   * @param ikP proportional gain
-   * @param ikD derivative gain
-   * @param ikF feed-forward gain
-   * @param ikSF a feed-forward gain to counteract static friction
-   */
-  static AsyncVelPIDController
-  velPID(Motor imotor,
-         Potentiometer ipot,
-         double ikP,
-         double ikD,
-         double ikF = 0,
-         double ikSF = 0,
-         double iTPR = imev5TPR,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
-
-  /**
-   * A velocity controller that uses the PD algorithm.
-   *
-   * @param imotor controller input (from the integrated encoder) and output
-   * @param ikP proportional gain
-   * @param ikD derivative gain
-   * @param ikF feed-forward gain
-   * @param ikSF a feed-forward gain to counteract static friction
-   */
-  static AsyncVelPIDController
-  velPID(MotorGroup imotor,
-         double ikP,
-         double ikD,
-         double ikF = 0,
-         double ikSF = 0,
-         double iTPR = imev5TPR,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
-
-  /**
-   * A velocity controller that uses the PD algorithm.
-   *
-   * @param imotor controller output
-   * @param ienc controller input
-   * @param ikP proportional gain
-   * @param ikD derivative gain
-   * @param ikF feed-forward gain
-   * @param ikSF a feed-forward gain to counteract static friction
-   */
-  static AsyncVelPIDController
-  velPID(MotorGroup imotor,
-         ADIEncoder ienc,
-         double ikP,
-         double ikD,
-         double ikF = 0,
-         double ikSF = 0,
-         double iTPR = imev5TPR,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
-
-  /**
-   * A velocity controller that uses the PD algorithm.
-   *
-   * @param imotor controller output
-   * @param ipot controller input
-   * @param ikP proportional gain
-   * @param ikD derivative gain
-   * @param ikF feed-forward gain
-   * @param ikSF a feed-forward gain to counteract static friction
-   */
-  static AsyncVelPIDController
-  velPID(MotorGroup imotor,
-         Potentiometer ipot,
-         double ikP,
-         double ikD,
-         double ikF = 0,
-         double ikSF = 0,
-         double iTPR = imev5TPR,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+  okapi_makeVelPID(Motor);
+  okapi_makeVelPID(MotorGroup);
+  okapi_makeVelPIDWithSensor(Motor, ADIEncoder);
+  okapi_makeVelPIDWithSensor(Motor, ADIGyro);
+  okapi_makeVelPIDWithSensor(Motor, Potentiometer);
+  okapi_makeVelPIDWithSensor(Motor, IntegratedEncoder);
+  okapi_makeVelPIDWithSensor(MotorGroup, ADIEncoder);
+  okapi_makeVelPIDWithSensor(MotorGroup, ADIGyro);
+  okapi_makeVelPIDWithSensor(MotorGroup, Potentiometer);
+  okapi_makeVelPIDWithSensor(MotorGroup, IntegratedEncoder);
 
   /**
    * A velocity controller that uses the PD algorithm.
@@ -311,14 +199,15 @@ class AsyncControllerFactory {
    * @param ikSF a feed-forward gain to counteract static friction
    */
   static AsyncVelPIDController
-  velPID(std::shared_ptr<ControllerInput<double>> iinput,
-         std::shared_ptr<ControllerOutput<double>> ioutput,
+  velPID(const std::shared_ptr<ControllerInput<double>> &iinput,
+         const std::shared_ptr<ControllerOutput<double>> &ioutput,
          double ikP,
          double ikD,
          double ikF = 0,
          double ikSF = 0,
          double iTPR = imev5TPR,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+         const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   /**
    * A controller which generates and follows 2D motion profiles.
@@ -328,10 +217,12 @@ class AsyncControllerFactory {
    * @param imaxJerk The maximum possible jerk in m/s/s/s.
    * @param ichassis The chassis to control.
    */
-  static AsyncMotionProfileController motionProfile(double imaxVel,
-                                                    double imaxAccel,
-                                                    double imaxJerk,
-                                                    const ChassisController &ichassis);
+  static AsyncMotionProfileController
+  motionProfile(double imaxVel,
+                double imaxAccel,
+                double imaxJerk,
+                const ChassisController &ichassis,
+                const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   /**
    * A controller which generates and follows 2D motion profiles.
@@ -342,12 +233,14 @@ class AsyncControllerFactory {
    * @param imodel The chassis model to control.
    * @param iwidth The chassis wheelbase width.
    */
-  static AsyncMotionProfileController motionProfile(double imaxVel,
-                                                    double imaxAccel,
-                                                    double imaxJerk,
-                                                    std::shared_ptr<ChassisModel> imodel,
-                                                    const ChassisScales &iscales,
-                                                    AbstractMotor::GearsetRatioPair ipair);
+  static AsyncMotionProfileController
+  motionProfile(double imaxVel,
+                double imaxAccel,
+                double imaxJerk,
+                const std::shared_ptr<ChassisModel> &imodel,
+                const ChassisScales &iscales,
+                AbstractMotor::GearsetRatioPair ipair,
+                const TimeUtil &itimeUtil = TimeUtilFactory::create());
 
   /**
    * A controller which generates and follows 1D motion profiles.
@@ -361,8 +254,7 @@ class AsyncControllerFactory {
   linearMotionProfile(double imaxVel,
                       double imaxAccel,
                       double imaxJerk,
-                      std::shared_ptr<ControllerOutput<double>> ioutput);
+                      const std::shared_ptr<ControllerOutput<double>> &ioutput,
+                      const TimeUtil &itimeUtil = TimeUtilFactory::create());
 };
 } // namespace okapi
-
-#endif

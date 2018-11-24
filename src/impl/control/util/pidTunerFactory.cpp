@@ -11,8 +11,8 @@
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
 namespace okapi {
-PIDTuner PIDTunerFactory::create(std::shared_ptr<ControllerInput<double>> iinput,
-                                 std::shared_ptr<ControllerOutput<double>> ioutput,
+PIDTuner PIDTunerFactory::create(const std::shared_ptr<ControllerInput<double>> &iinput,
+                                 const std::shared_ptr<ControllerOutput<double>> &ioutput,
                                  QTime itimeout,
                                  std::int32_t igoal,
                                  double ikPMin,
@@ -43,8 +43,8 @@ PIDTuner PIDTunerFactory::create(std::shared_ptr<ControllerInput<double>> iinput
 }
 
 std::unique_ptr<PIDTuner>
-PIDTunerFactory::createPtr(std::shared_ptr<ControllerInput<double>> iinput,
-                           std::shared_ptr<ControllerOutput<double>> ioutput,
+PIDTunerFactory::createPtr(const std::shared_ptr<ControllerInput<double>> &iinput,
+                           const std::shared_ptr<ControllerOutput<double>> &ioutput,
                            QTime itimeout,
                            std::int32_t igoal,
                            double ikPMin,

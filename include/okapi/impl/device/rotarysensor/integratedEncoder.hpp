@@ -5,11 +5,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_INTEGRATEDENCODER_HPP_
-#define _OKAPI_INTEGRATEDENCODER_HPP_
+#pragma once
 
 #include "api.h"
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
+#include "okapi/impl/device/motor/motor.hpp"
 
 namespace okapi {
 class IntegratedEncoder : public ContinuousRotarySensor {
@@ -17,9 +17,16 @@ class IntegratedEncoder : public ContinuousRotarySensor {
   /**
    * Integrated motor encoder. Uses the encoder inside the V5 motor.
    *
-   * @param imotor motor
+   * @param imotor the motor to use the encoder from.
    */
-  IntegratedEncoder(pros::Motor imotor);
+  explicit IntegratedEncoder(const pros::Motor &imotor);
+
+  /**
+   * Integrated motor encoder. Uses the encoder inside the V5 motor.
+   *
+   * @param imotor the motor to use the encoder from.
+   */
+  explicit IntegratedEncoder(const okapi::Motor &imotor);
 
   /**
    * Get the current sensor value.
@@ -47,5 +54,3 @@ class IntegratedEncoder : public ContinuousRotarySensor {
   pros::Motor motor;
 };
 } // namespace okapi
-
-#endif

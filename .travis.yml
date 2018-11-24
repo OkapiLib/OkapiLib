@@ -2,6 +2,11 @@ dist: trusty
 
 cache: packages
 
+notifications:
+  email:
+    on_failure: always
+    on_success: change
+
 matrix:
   include:
     - os: linux

@@ -1,4 +1,4 @@
-/**#include "test/"
+/**
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -6,12 +6,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/device/button/buttonBase.hpp"
-#include "test/crossPlatformTestRunner.hpp"
 #include <gtest/gtest.h>
 #include <utility>
 
 using namespace okapi;
-using namespace fakeit;
 
 class MockButton : public ButtonBase {
   public:

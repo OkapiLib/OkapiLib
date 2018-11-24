@@ -11,8 +11,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_QFORCE_HPP_
-#define _OKAPI_QFORCE_HPP_
+#pragma once
 
 #include "okapi/api/units/QAcceleration.hpp"
 #include "okapi/api/units/QMass.hpp"
@@ -46,5 +45,3 @@ constexpr QForce operator"" _kp(unsigned long long int x) {
 }
 } // namespace literals
 } // namespace okapi
-
-#endif

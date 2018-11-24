@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ASYNCMOTIONPROFILECONTROLLER_HPP_
-#define _OKAPI_ASYNCMOTIONPROFILECONTROLLER_HPP_
+#pragma once
 
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
@@ -47,7 +46,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
                                double imaxVel,
                                double imaxAccel,
                                double imaxJerk,
-                               std::shared_ptr<ChassisModel> imodel,
+                               const std::shared_ptr<ChassisModel> &imodel,
                                const ChassisScales &iscales,
                                AbstractMotor::GearsetRatioPair ipair);
 
@@ -91,6 +90,15 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   void setTarget(std::string ipathId) override;
 
   /**
+   * Executes a path with the given ID. If there is no path matching the ID, the method will
+   * return. Any targets set while a path is being followed will be ignored.
+   *
+   * @param ipathId A unique identifier for the path, previously passed to generatePath().
+   * @param ibackwards Whether to follow the profile backwards.
+   */
+  void setTarget(std::string ipathId, bool ibackwards);
+
+  /**
    * Writes the value of the controller output. This method might be automatically called in another
    * thread by the controller. This just calls setTarget().
    */
@@ -108,6 +116,14 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * it has finished following a path. If no path is being followed, it is settled.
    */
   void waitUntilSettled() override;
+
+  /**
+   * Generates a new path from the position (typically the current position) to the target and
+   * blocks until the controller has settled. Does not save the path which was generated.
+   *
+   * @param iwaypoints The waypoints to hit on the path.
+   */
+  void moveTo(std::initializer_list<Point> iwaypoints);
 
   /**
    * Returns the last error of the controller. This implementation always returns zero since the
@@ -130,9 +146,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
 
   /**
    * Resets the controller so it can start from 0 again properly. Keeps configuration from
-   * before.
-   *
-   * This implementation does nothing.
+   * before. This implementation also stops movement.
    */
   void reset() override;
 
@@ -182,6 +196,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
 
   std::string currentPath{""};
   std::atomic_bool isRunning{false};
+  std::atomic_int direction{1};
   std::atomic_bool disabled{false};
   std::atomic_bool dtorCalled{false};
   CrossplatformThread *task{nullptr};
@@ -203,5 +218,3 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   QAngularSpeed convertLinearToRotational(QSpeed linear) const;
 };
 } // namespace okapi
-
-#endif

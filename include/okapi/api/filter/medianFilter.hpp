@@ -7,8 +7,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_MEDIANFILTER_HPP_
-#define _OKAPI_MEDIANFILTER_HPP_
+#pragma once
 
 #include "okapi/api/filter/filter.hpp"
 #include <algorithm>
@@ -95,5 +94,3 @@ template <std::size_t n> class MedianFilter : public Filter {
   }
 };
 } // namespace okapi
-
-#endif
