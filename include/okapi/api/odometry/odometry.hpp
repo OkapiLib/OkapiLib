@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ODOMETRY_HPP_
-#define _OKAPI_ODOMETRY_HPP_
+#pragma once
 
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
@@ -93,5 +92,3 @@ class Odometry {
   std::atomic_bool dtorCalled{false};
 };
 } // namespace okapi
-
-#endif
