@@ -32,70 +32,81 @@ class MockModel : public SkidSteerModel {
   std::int32_t rightEnc{0};
 };
 
-void assertOdomStateEquals(Odometry *odom, double x, double y, double theta) {
-  EXPECT_NEAR(odom->getState().x.convert(meter), x, 1e-8);
-  EXPECT_NEAR(odom->getState().y.convert(meter), y, 1e-8);
-  EXPECT_NEAR(odom->getState().theta.convert(degree), theta, 1e-8);
+void assertOdomStateEquals(Odometry *odom, QLength x, QLength y, QAngle theta) {
+  const auto error = 1e-4;
+  EXPECT_NEAR(odom->getState().x.convert(meter), x.convert(meter), error);
+  EXPECT_NEAR(odom->getState().y.convert(meter), y.convert(meter), error);
+  EXPECT_NEAR(odom->getState().theta.convert(degree), theta.convert(degree), error);
 }
 
 class OdometryTest : public ::testing::Test {
   protected:
   void SetUp() override {
     model = new MockModel();
-    odom = new Odometry(
-      std::shared_ptr<MockModel>(model), ChassisScales({1, 1}), std::make_unique<MockRate>());
+    odom = new Odometry(std::shared_ptr<MockModel>(model),
+                        ChassisScales({wheelDiam, wheelbaseWidth}),
+                        createConstantTimeUtil(10_ms));
   }
 
   void TearDown() override {
     delete odom;
   }
 
+  QLength calculateDistanceTraveled(int ticks) {
+    return (ticks / 360.0) * 1_pi * wheelDiam;
+  }
+
+  QLength wheelDiam = 4_in;
+  QLength wheelbaseWidth = 10_in;
   MockModel *model;
   Odometry *odom;
 };
 
 TEST_F(OdometryTest, NoSensorMovementDoesNotAffectState) {
-  assertOdomStateEquals(odom, 0, 0, 0);
+  assertOdomStateEquals(odom, 0_m, 0_m, 0_deg);
   odom->step();
-  assertOdomStateEquals(odom, 0, 0, 0);
+  assertOdomStateEquals(odom, 0_m, 0_m, 0_deg);
 }
 
 TEST_F(OdometryTest, MoveForwardTest) {
   model->setSensorVals(10, 10);
   odom->step();
-  assertOdomStateEquals(odom, 10, 0, 0);
+  assertOdomStateEquals(odom, 0_m, calculateDistanceTraveled(10), 0_deg);
 
   model->setSensorVals(20, 20);
   odom->step();
-  assertOdomStateEquals(odom, 20, 0, 0);
+  assertOdomStateEquals(odom, 0_m, calculateDistanceTraveled(20), 0_deg);
 
   model->setSensorVals(10, 10);
   odom->step();
-  assertOdomStateEquals(odom, 10, 0, 0);
+  assertOdomStateEquals(odom, 0_m, calculateDistanceTraveled(10), 0_deg);
 }
 
 TEST_F(OdometryTest, TurnInPlaceTest) {
   model->setSensorVals(10, -10);
   odom->step();
-  assertOdomStateEquals(odom, 0, 0, 10);
+  assertOdomStateEquals(odom, 0_m, 0_m, -4_deg);
 
   model->setSensorVals(0, 0);
   odom->step();
-  assertOdomStateEquals(odom, 0, 0, 0);
+  assertOdomStateEquals(odom, 0_m, 0_m, 0_deg);
 
   model->setSensorVals(-10, 10);
   odom->step();
-  assertOdomStateEquals(odom, 0, 0, -10);
+  assertOdomStateEquals(odom, 0_m, 0_m, 4_deg);
 }
 
 TEST_F(OdometryTest, TurnAndDriveTest) {
   model->setSensorVals(90, -90);
   odom->step();
-  assertOdomStateEquals(odom, 0, 0, 90);
+  assertOdomStateEquals(odom, 0_m, 0_m, -36_deg);
 
   model->setSensorVals(180, 0);
   odom->step();
-  assertOdomStateEquals(odom, 0, 90, 90);
+  assertOdomStateEquals(odom,
+                        calculateDistanceTraveled(90) * std::sin((-36_deg).convert(radian)),
+                        calculateDistanceTraveled(90) * std::cos((-36_deg).convert(radian)),
+                        -36_deg);
 }
 
 class MockThreeEncoderModel : public ThreeEncoderSkidSteerModel {
@@ -138,51 +149,51 @@ class ThreeEncoderOdometryTest : public ::testing::Test {
 };
 
 TEST_F(ThreeEncoderOdometryTest, NoSensorMovementDoesNotAffectState) {
-  assertOdomStateEquals(odom, 0, 0, 0);
+  assertOdomStateEquals(odom, 0_m, 0_m, 0_deg);
   odom->step();
-  assertOdomStateEquals(odom, 0, 0, 0);
+  assertOdomStateEquals(odom, 0_m, 0_m, 0_deg);
 }
 
 TEST_F(ThreeEncoderOdometryTest, MoveForwardTest) {
   model->setSensorVals(10, 10, 0);
   odom->step();
-  assertOdomStateEquals(odom, 10, 0, 0);
+  assertOdomStateEquals(odom, 10_m, 0_m, 0_deg);
 
   model->setSensorVals(20, 20, 0);
   odom->step();
-  assertOdomStateEquals(odom, 20, 0, 0);
+  assertOdomStateEquals(odom, 20_m, 0_m, 0_deg);
 
   model->setSensorVals(10, 10, 0);
   odom->step();
-  assertOdomStateEquals(odom, 10, 0, 0);
+  assertOdomStateEquals(odom, 10_m, 0_m, 0_deg);
 }
 
 TEST_F(ThreeEncoderOdometryTest, TurnInPlaceTest) {
   model->setSensorVals(10, -10, 0);
   odom->step();
-  assertOdomStateEquals(odom, 0, 0, 10);
+  assertOdomStateEquals(odom, 0_m, 0_m, 10_deg);
 
   model->setSensorVals(0, 0, 0);
   odom->step();
-  assertOdomStateEquals(odom, 0, 0, 0);
+  assertOdomStateEquals(odom, 0_m, 0_m, 0_deg);
 
   model->setSensorVals(-10, 10, 0);
   odom->step();
-  assertOdomStateEquals(odom, 0, 0, -10);
+  assertOdomStateEquals(odom, 0_m, 0_m, -10_deg);
 }
 
 TEST_F(ThreeEncoderOdometryTest, TurnAndDriveTest) {
   model->setSensorVals(90, -90, 0);
   odom->step();
-  assertOdomStateEquals(odom, 0, 0, 90);
+  assertOdomStateEquals(odom, 0_m, 0_m, 90_deg);
 
   model->setSensorVals(180, 0, 0);
   odom->step();
-  assertOdomStateEquals(odom, 0, 90, 90);
+  assertOdomStateEquals(odom, 0_m, 90_m, 90_deg);
 }
 
 TEST_F(ThreeEncoderOdometryTest, StrafeTest) {
   model->setSensorVals(0, 0, 10);
   odom->step();
-  assertOdomStateEquals(odom, 0, 10, 0);
+  assertOdomStateEquals(odom, 0_m, 10_m, 0_deg);
 }

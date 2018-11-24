@@ -11,6 +11,7 @@
 #include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/logging.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include <atomic>
 #include <memory>
 #include <valarray>
@@ -34,7 +35,7 @@ class Odometry {
    */
   Odometry(const std::shared_ptr<ReadOnlyChassisModel> &imodel,
            const ChassisScales &ichassisScales,
-           std::unique_ptr<AbstractRate> irate);
+           const TimeUtil &itimeUtil);
 
   virtual ~Odometry();
 
@@ -85,6 +86,7 @@ class Odometry {
   Logger *logger;
   std::shared_ptr<ReadOnlyChassisModel> model;
   std::unique_ptr<AbstractRate> rate;
+  std::unique_ptr<AbstractTimer> timer;
   OdomState state;
   ChassisScales chassisScales;
   std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0}, lastTicks{0, 0};
