@@ -46,7 +46,7 @@ class IterativeControllerFactory {
          double ikD,
          double ikF = 0,
          double ikSF = 0,
-         std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5TPR),
+         std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5RedTPR),
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
 
   /**
@@ -65,7 +65,7 @@ class IterativeControllerFactory {
                 double ikD,
                 double ikF = 0,
                 double ikSF = 0,
-                std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5TPR));
+                std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5RedTPR));
 
   /**
    * Velocity PD controller that automatically writes to the motor.
@@ -83,7 +83,7 @@ class IterativeControllerFactory {
                 double ikD,
                 double ikF = 0,
                 double ikSF = 0,
-                std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5TPR));
+                std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5RedTPR));
 
   /**
    * Velocity PD controller that automatically writes to the motor.
