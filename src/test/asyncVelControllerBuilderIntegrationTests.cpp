@@ -20,7 +20,7 @@ static void testMaxVelOnPIDController() {
                       .withMaxVelocity(maxVel)
                       .withMotor(MOTOR_1_PORT)
                       .withGains({0.01, 0, 0})
-                      .withVelMath(VelMathFactory::createPtr(imev5TPR))
+                      .withVelMath(VelMathFactory::createPtr(imev5RedTPR))
                       .build();
 
   Motor motor(MOTOR_1_PORT);
