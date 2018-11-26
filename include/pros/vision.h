@@ -60,6 +60,11 @@ typedef struct __attribute__((__packed__)) vision_signature {
 } vision_signature_s_t;
 
 /**
+ * Color codes are just signatures with multiple IDs and a different type.
+ */
+typedef uint16_t vision_color_code_t;
+
+/**
  * This structure contains a descriptor of an object detected
  * by the Vision Sensor
  */
@@ -128,12 +133,42 @@ namespace c {
 int32_t vision_clear_led(uint8_t port);
 
 /**
+ * Creates a color code that represents a combination of the given signature
+ * IDs. If fewer than 5 signatures are to be a part of the color code, pass 0
+ * for the additional function parameters.
+ *
+ * This function uses the following values of errno when an error state is
+ * reached:
+ * EINVAL - Fewer than two signatures have been provided, or one of the
+ *          signatures is out of its [1-7] range.
+ *
+ * \param port
+ *        The V5 port number from 1-21
+ * \param sig_id1
+ *        The first signature id [1-7] to add to the color code
+ * \param sig_id2
+ *        The second signature id [1-7] to add to the color code
+ * \param sig_id3
+ *        The third signature id [1-7] to add to the color code
+ * \param sig_id4
+ *        The fourth signature id [1-7] to add to the color code
+ * \param sig_id5
+ *        The fifth signature id [1-7] to add to the color code
+ *
+ * \return A vision_color_code_t object containing the color code information.
+ */
+vision_color_code_t vision_create_color_code(uint8_t port, const uint32_t sig_id1, const uint32_t sig_id2,
+                                             const uint32_t sig_id3, const uint32_t sig_id4, const uint32_t sig_id5);
+
+/**
  * Gets the nth largest object according to size_id.
  *
  * This function uses the following values of errno when an error state is
  * reached:
  * EINVAL - The given value is not within the range of V5 ports (1-21).
  * EACCES - Another resource is currently trying to access the port.
+ * EDOM - size_id is greater than the number of available objects.
+ * EHOSTDOWN - Reading the vision sensor failed for an unknown reason.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -153,7 +188,8 @@ vision_object_s_t vision_get_by_size(uint8_t port, const uint32_t size_id);
  * reached:
  * EINVAL - The given value is not within the range of V5 ports (1-21).
  * EACCES - Another resource is currently trying to access the port.
- * EAGAIN - Reading the Vision Sensor failed for an unknown reason.
+ * EDOM - size_id is greater than the number of available objects.
+ * EHOSTDOWN - Reading the vision sensor failed for an unknown reason.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -167,6 +203,28 @@ vision_object_s_t vision_get_by_size(uint8_t port, const uint32_t size_id);
  * size_id, or PROS_ERR if an error occurred.
  */
 vision_object_s_t vision_get_by_sig(uint8_t port, const uint32_t size_id, const uint32_t sig_id);
+
+/**
+ * Gets the nth largest object of the given color code according to size_id.
+ *
+ * This function uses the following values of errno when an error state is
+ * reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21).
+ * EACCES - Another resource is currently trying to access the port.
+ * EAGAIN - Reading the Vision Sensor failed for an unknown reason.
+ *
+ * \param port
+ *        The V5 port number from 1-21
+ * \param size_id
+ *        The object to read from a list roughly ordered by object size
+ *        (0 is the largest item, 1 is the second largest, etc.)
+ * \param color_code
+ *        The vision_color_code_t for which an object will be returned
+ *
+ * \return The vision_object_s_t object corresponding to the given color code
+ * and size_id, or PROS_ERR if an error occurred.
+ */
+vision_object_s_t vision_get_by_code(uint8_t port, const uint32_t size_id, const vision_color_code_t color_code);
 
 /**
  * Gets the exposure parameter of the Vision Sensor.
@@ -216,6 +274,16 @@ int32_t vision_get_object_count(uint8_t port);
 int32_t vision_get_white_balance(uint8_t port);
 
 /**
+ * Prints the contents of the signature as an initializer list to the terminal.
+ *
+ * \param sig
+ *        The signature for which the contents will be printed
+ *
+ * \return 1 if no errors occured, PROS_ERR otherwise
+ */
+int32_t vision_print_signature(const vision_signature_s_t sig);
+
+/**
  * Reads up to object_count object descriptors into object_arr.
  *
  * This function uses the following values of errno when an error state is
@@ -223,6 +291,7 @@ int32_t vision_get_white_balance(uint8_t port);
  * EINVAL - The given value is not within the range of V5 ports (1-21), or
  *          fewer than object_count number of objects were found.
  * EACCES - Another resource is currently trying to access the port.
+ * EDOM - size_id is greater than the number of available objects.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -251,6 +320,7 @@ int32_t vision_read_by_size(uint8_t port, const uint32_t size_id, const uint32_t
  * EINVAL - The given value is not within the range of V5 ports (1-21), or
  *          fewer than object_count number of objects were found.
  * EACCES - Another resource is currently trying to access the port.
+ * EDOM - size_id is greater than the number of available objects.
  *
  * \param port
  *        The V5 port number from 1-21
@@ -260,7 +330,7 @@ int32_t vision_read_by_size(uint8_t port, const uint32_t size_id, const uint32_t
  *        The object to read from a list roughly ordered by object size
  *        (0 is the largest item, 1 is the second largest, etc.)
  * \param signature
- *        The signature ID [1-7] for which an object will be returned.
+ *        The signature ID [1-7] for which objects will be returned.
  * \param[out] object_arr
  *             A pointer to copy the objects into
  *
@@ -272,6 +342,65 @@ int32_t vision_read_by_size(uint8_t port, const uint32_t size_id, const uint32_t
  */
 int32_t vision_read_by_sig(uint8_t port, const uint32_t size_id, const uint32_t sig_id, const uint32_t object_count,
                            vision_object_s_t* const object_arr);
+
+/**
+ * Reads up to object_count object descriptors into object_arr.
+ *
+ * This function uses the following values of errno when an error state is
+ * reached:
+ * EINVAL - The given value is not within the range of V5 ports (1-21), or
+ *          fewer than object_count number of objects were found.
+ * EACCES - Another resource is currently trying to access the port.
+ *
+ * \param port
+ *        The V5 port number from 1-21
+ * \param object_count
+ *        The number of objects to read
+ * \param size_id
+ *        The object to read from a list roughly ordered by object size
+ *        (0 is the largest item, 1 is the second largest, etc.)
+ * \param color_code
+ *        The vision_color_code_t for which objects will be returned
+ * \param[out] object_arr
+ *             A pointer to copy the objects into
+ *
+ * \return The number of object signatures copied. This number will be less than
+ * object_count if there are fewer objects detected by the vision sensor.
+ * Returns PROS_ERR if the port was invalid, an error occurred, or fewer objects
+ * than size_id were found. All objects in object_arr that were not found are
+ * given VISION_OBJECT_ERR_SIG as their signature.
+ */
+int32_t vision_read_by_code(uint8_t port, const uint32_t size_id, const vision_color_code_t color_code,
+                            const uint32_t object_count, vision_object_s_t* const object_arr);
+
+/**
+ * Gets the object detection signature with the given id number.
+ *
+ * \param port
+ *        The V5 port number from 1-21
+ * \param signature_id
+ *        The signature id to read
+ *
+ * \return A vision_signature_s_t containing information about the signature.
+ */
+vision_signature_s_t vision_get_signature(uint8_t port, const uint8_t signature_id);
+
+/**
+ * Stores the supplied object detection signature onto the vision sensor.
+ *
+ * NOTE: This saves the signature in volatile memory, and the signature will be
+ * lost as soon as the sensor is powered down.
+ *
+ * \param port
+ *        The V5 port number from 1-21
+ * \param signature_id
+ *        The signature id to store into
+ * \param[in] signature_ptr
+ *            A pointer to the signature to save
+ *
+ * \return 1 if no errors occured, PROS_ERR otherwise
+ */
+int32_t vision_set_signature(uint8_t port, const uint8_t signature_id, vision_signature_s_t* const signature_ptr);
 
 /**
  * Enables/disables auto white-balancing on the Vision Sensor.

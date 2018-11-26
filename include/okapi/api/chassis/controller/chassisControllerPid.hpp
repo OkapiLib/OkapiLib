@@ -107,12 +107,6 @@ class ChassisControllerPID : public virtual ChassisController {
   void stop() override;
 
   /**
-   * Starts the internal thread. This should not be called by normal users. This method is called
-   * by the ChassisControllerFactory when making a new instance of this class.
-   */
-  void startThread();
-
-  /**
    * Get the ChassisScales.
    */
   ChassisScales getChassisScales() const override;
@@ -121,6 +115,19 @@ class ChassisControllerPID : public virtual ChassisController {
    * Get the GearsetRatioPair.
    */
   AbstractMotor::GearsetRatioPair getGearsetRatioPair() const override;
+
+  /**
+   * Starts the internal thread. This should not be called by normal users. This method is called
+   * by the ChassisControllerFactory when making a new instance of this class.
+   */
+  void startThread();
+
+  /**
+   * Returns the underlying thread handle.
+   *
+   * @return The underlying thread handle.
+   */
+  CrossplatformThread *getThread() const;
 
   protected:
   Logger *logger;

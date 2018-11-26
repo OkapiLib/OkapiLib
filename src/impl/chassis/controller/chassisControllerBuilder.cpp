@@ -162,6 +162,7 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
       gearset,
       scales);
     out->startThread();
+    out->getThread()->notifyWhenDeletingRaw(NULL);
     return out;
   } else {
     auto out = std::make_shared<ChassisControllerPID>(
@@ -173,6 +174,7 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
       gearset,
       scales);
     out->startThread();
+    out->getThread()->notifyWhenDeletingRaw(NULL);
     return out;
   }
 }

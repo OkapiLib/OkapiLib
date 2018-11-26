@@ -261,17 +261,21 @@ void ChassisControllerPID::stop() {
   ChassisController::stop();
 }
 
-void ChassisControllerPID::startThread() {
-  if (!task) {
-    task = new CrossplatformThread(trampoline, this);
-  }
-}
-
 ChassisScales ChassisControllerPID::getChassisScales() const {
   return scales;
 }
 
 AbstractMotor::GearsetRatioPair ChassisControllerPID::getGearsetRatioPair() const {
   return gearsetRatioPair;
+}
+
+void ChassisControllerPID::startThread() {
+  if (!task) {
+    task = new CrossplatformThread(trampoline, this);
+  }
+}
+
+CrossplatformThread *ChassisControllerPID::getThread() const {
+  return task;
 }
 } // namespace okapi
