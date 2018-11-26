@@ -27,6 +27,7 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param iangleController angle PID controller (keeps the robot straight)
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
+   * @param ilogger The logger this instance will log to.
    */
   ChassisControllerPID(const TimeUtil &itimeUtil,
                        const std::shared_ptr<ChassisModel> &imodel,
@@ -34,7 +35,8 @@ class ChassisControllerPID : public virtual ChassisController {
                        std::unique_ptr<IterativePosPIDController> iturnController,
                        std::unique_ptr<IterativePosPIDController> iangleController,
                        AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-                       const ChassisScales &iscales = ChassisScales({1, 1}));
+                       const ChassisScales &iscales = ChassisScales({1, 1}),
+                       const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   ChassisControllerPID(ChassisControllerPID &&other) noexcept;
 
@@ -123,7 +125,7 @@ class ChassisControllerPID : public virtual ChassisController {
   AbstractMotor::GearsetRatioPair getGearsetRatioPair() const override;
 
   protected:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
   std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<IterativePosPIDController> distancePid;
   std::unique_ptr<IterativePosPIDController> turnPid;

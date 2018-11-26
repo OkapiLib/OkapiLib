@@ -18,8 +18,9 @@ IterativePosPIDController::IterativePosPIDController(const double ikP,
                                                      const double ikD,
                                                      const double ikBias,
                                                      const TimeUtil &itimeUtil,
-                                                     std::unique_ptr<Filter> iderivativeFilter)
-  : logger(Logger::instance()),
+                                                     std::unique_ptr<Filter> iderivativeFilter,
+                                                     const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger),
     derivativeFilter(std::move(iderivativeFilter)),
     loopDtTimer(itimeUtil.getTimer()),
     settledUtil(itimeUtil.getSettledUtil()) {
@@ -32,13 +33,15 @@ IterativePosPIDController::IterativePosPIDController(const double ikP,
 
 IterativePosPIDController::IterativePosPIDController(const Gains &igains,
                                                      const TimeUtil &itimeUtil,
-                                                     std::unique_ptr<Filter> iderivativeFilter)
+                                                     std::unique_ptr<Filter> iderivativeFilter,
+                                                     const std::shared_ptr<Logger> &ilogger)
   : IterativePosPIDController(igains.kP,
                               igains.kI,
                               igains.kD,
                               igains.kBias,
                               itimeUtil,
-                              std::move(iderivativeFilter)) {
+                              std::move(iderivativeFilter),
+                              ilogger) {
 }
 
 void IterativePosPIDController::setTarget(const double itarget) {

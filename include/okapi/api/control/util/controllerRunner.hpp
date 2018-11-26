@@ -12,13 +12,21 @@
 #include "okapi/api/control/iterative/iterativeController.hpp"
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/logging.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include <memory>
 
 namespace okapi {
 template <typename Input, typename Output> class ControllerRunner {
   public:
-  explicit ControllerRunner(std::unique_ptr<AbstractRate> irate)
-    : logger(Logger::instance()), rate(std::move(irate)) {
+  /**
+   * A utility class that runs a closed-loop controller.
+   *
+   * @param itimeUtil The TimeUtil.
+   * @param ilogger The logger this instance will log to.
+   */
+  explicit ControllerRunner(const TimeUtil &itimeUtil,
+                            const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
+    : logger(ilogger), rate(itimeUtil.getRate()) {
   }
 
   /**
@@ -119,7 +127,7 @@ template <typename Input, typename Output> class ControllerRunner {
   }
 
   protected:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
   std::unique_ptr<AbstractRate> rate;
 };
 } // namespace okapi

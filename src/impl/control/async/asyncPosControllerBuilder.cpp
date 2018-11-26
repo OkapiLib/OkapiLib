@@ -10,7 +10,8 @@
 #include <stdexcept>
 
 namespace okapi {
-AsyncPosControllerBuilder::AsyncPosControllerBuilder() : logger(Logger::instance()) {
+AsyncPosControllerBuilder::AsyncPosControllerBuilder(const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger) {
 }
 
 AsyncPosControllerBuilder &AsyncPosControllerBuilder::withMotor(const Motor &imotor) {
@@ -89,6 +90,12 @@ AsyncPosControllerBuilder::withTimeUtilFactory(const TimeUtilFactory &itimeUtilF
   return *this;
 }
 
+AsyncPosControllerBuilder &
+AsyncPosControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
+  controllerLogger = ilogger;
+  return *this;
+}
+
 std::shared_ptr<AsyncPositionController<double, double>> AsyncPosControllerBuilder::build() {
   if (!hasMotors) {
     logger->error("AsyncPosControllerBuilder: No motors given.");
@@ -104,7 +111,7 @@ std::shared_ptr<AsyncPositionController<double, double>> AsyncPosControllerBuild
 
 std::shared_ptr<AsyncPosIntegratedController> AsyncPosControllerBuilder::buildAPIC() {
   return std::make_shared<AsyncPosIntegratedController>(
-    motor, pair, maxVelocity, timeUtilFactory.create());
+    motor, pair, maxVelocity, timeUtilFactory.create(), controllerLogger);
 }
 
 std::shared_ptr<AsyncPosPIDController> AsyncPosControllerBuilder::buildAPPC() {
@@ -117,7 +124,8 @@ std::shared_ptr<AsyncPosPIDController> AsyncPosControllerBuilder::buildAPPC() {
                                                      gains.kD,
                                                      gains.kBias,
                                                      pair.ratio,
-                                                     std::move(derivativeFilter));
+                                                     std::move(derivativeFilter),
+                                                     controllerLogger);
   out->startThread();
   return out;
 }

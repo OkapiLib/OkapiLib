@@ -38,7 +38,8 @@ class PIDTuner {
            std::size_t inumIterations = 5,
            std::size_t inumParticles = 16,
            double ikSettle = 1,
-           double ikITAE = 2);
+           double ikITAE = 2,
+           const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   virtual ~PIDTuner();
 
@@ -61,7 +62,7 @@ class PIDTuner {
     double bestError;
   };
 
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
   std::shared_ptr<ControllerInput<double>> input;
   std::shared_ptr<ControllerOutput<double>> output;
   TimeUtil timeUtil;

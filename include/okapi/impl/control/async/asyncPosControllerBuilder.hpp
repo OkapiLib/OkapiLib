@@ -23,8 +23,10 @@ class AsyncPosControllerBuilder {
   /**
    * A builder that creates async position controllers. Use this to create an
    * AsyncPosIntegratedController or an AsyncPosPIDController.
+   *
+   * @param ilogger The logger this instance will log to.
    */
-  AsyncPosControllerBuilder();
+  AsyncPosControllerBuilder(const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Sets the motor.
@@ -120,6 +122,14 @@ class AsyncPosControllerBuilder {
   AsyncPosControllerBuilder &withTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
 
   /**
+   * Sets the logger.
+   *
+   * @param ilogger The logger.
+   * @return An ongoing builder.
+   */
+  AsyncPosControllerBuilder &withLogger(const std::shared_ptr<Logger> &ilogger);
+
+  /**
    * Builds the AsyncPositionController. Throws a std::runtime_exception is no motors were set.
    *
    * @return A fully built AsyncPositionController.
@@ -127,7 +137,7 @@ class AsyncPosControllerBuilder {
   std::shared_ptr<AsyncPositionController<double, double>> build();
 
   private:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
 
   bool hasMotors{false}; // Used to verify motors were passed
   std::shared_ptr<AbstractMotor> motor;
@@ -146,6 +156,7 @@ class AsyncPosControllerBuilder {
   double maxVelocity{600};
 
   TimeUtilFactory timeUtilFactory = TimeUtilFactory();
+  std::shared_ptr<Logger> controllerLogger = std::make_shared<Logger>();
 
   std::shared_ptr<AsyncPosIntegratedController> buildAPIC();
   std::shared_ptr<AsyncPosPIDController> buildAPPC();

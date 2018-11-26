@@ -17,8 +17,10 @@ ChassisControllerPID::ChassisControllerPID(
   std::unique_ptr<IterativePosPIDController> iturnController,
   std::unique_ptr<IterativePosPIDController> iangleController,
   const AbstractMotor::GearsetRatioPair igearset,
-  const ChassisScales &iscales)
+  const ChassisScales &iscales,
+  const std::shared_ptr<Logger> &ilogger)
   : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
+    logger(ilogger),
     rate(itimeUtil.getRate()),
     distancePid(std::move(idistanceController)),
     turnPid(std::move(iturnController)),

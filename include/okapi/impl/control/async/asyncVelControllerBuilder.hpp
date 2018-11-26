@@ -23,8 +23,10 @@ class AsyncVelControllerBuilder {
   /**
    * A builder that creates async velocity controllers. Use this to create an
    * AsyncVelIntegratedController or an AsyncVelPIDController.
+   *
+   * @param ilogger The logger this instance will log to.
    */
-  AsyncVelControllerBuilder();
+  AsyncVelControllerBuilder(const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Sets the motor.
@@ -129,6 +131,14 @@ class AsyncVelControllerBuilder {
   AsyncVelControllerBuilder &withTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
 
   /**
+   * Sets the logger.
+   *
+   * @param ilogger The logger.
+   * @return An ongoing builder.
+   */
+  AsyncVelControllerBuilder &withLogger(const std::shared_ptr<Logger> &ilogger);
+
+  /**
    * Builds the AsyncVelocityController. Throws a std::runtime_exception is no motors were set.
    *
    * @return A fully built AsyncVelocityController.
@@ -136,7 +146,7 @@ class AsyncVelControllerBuilder {
   std::shared_ptr<AsyncVelocityController<double, double>> build();
 
   private:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
 
   bool hasMotors{false}; // Used to verify motors were passed
   std::shared_ptr<AbstractMotor> motor;
@@ -159,6 +169,7 @@ class AsyncVelControllerBuilder {
   double maxVelocity{600};
 
   TimeUtilFactory timeUtilFactory = TimeUtilFactory();
+  std::shared_ptr<Logger> controllerLogger = std::make_shared<Logger>();
 
   std::shared_ptr<AsyncVelIntegratedController> buildAVIC();
   std::shared_ptr<AsyncVelPIDController> buildAVPC();

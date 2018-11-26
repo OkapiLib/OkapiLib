@@ -21,8 +21,11 @@ class AsyncMotionProfileControllerBuilder {
   /**
    * A builder that creates async motion profile controllers. Use this to build an
    * AsyncMotionProfileController or an AsyncLinearMotionProfileController.
+   *
+   * @param ilogger The logger this instance will log to.
    */
-  AsyncMotionProfileControllerBuilder();
+  AsyncMotionProfileControllerBuilder(
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Sets the output. This must be used with buildLinearMotionProfileController().
@@ -108,6 +111,14 @@ class AsyncMotionProfileControllerBuilder {
   AsyncMotionProfileControllerBuilder &withTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
 
   /**
+   * Sets the logger.
+   *
+   * @param ilogger The logger.
+   * @return An ongoing builder.
+   */
+  AsyncMotionProfileControllerBuilder &withLogger(const std::shared_ptr<Logger> &ilogger);
+
+  /**
    * Builds the AsyncLinearMotionProfileController.
    *
    * @return A fully built AsyncLinearMotionProfileController.
@@ -122,7 +133,7 @@ class AsyncMotionProfileControllerBuilder {
   std::shared_ptr<AsyncMotionProfileController> buildMotionProfileController();
 
   private:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
 
   bool hasLimits{false};
   PathfinderLimits limits;
@@ -135,7 +146,7 @@ class AsyncMotionProfileControllerBuilder {
   std::shared_ptr<ChassisModel> model;
   ChassisScales scales{1, 1};
   AbstractMotor::GearsetRatioPair pair{AbstractMotor::gearset::invalid};
-
   TimeUtilFactory timeUtilFactory = TimeUtilFactory();
+  std::shared_ptr<Logger> controllerLogger = std::make_shared<Logger>();
 };
 } // namespace okapi

@@ -15,9 +15,10 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
   std::unique_ptr<AsyncPosIntegratedController> ileftController,
   std::unique_ptr<AsyncPosIntegratedController> irightController,
   AbstractMotor::GearsetRatioPair igearset,
-  const ChassisScales &iscales)
+  const ChassisScales &iscales,
+  const std::shared_ptr<Logger> &ilogger)
   : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
-    logger(Logger::instance()),
+    logger(ilogger),
     rate(itimeUtil.getRate()),
     leftController(std::move(ileftController)),
     rightController(std::move(irightController)),
