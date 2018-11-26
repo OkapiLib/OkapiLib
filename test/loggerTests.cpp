@@ -25,7 +25,7 @@ class LoggerTest : public ::testing::Test {
     free(logBuffer);
   }
 
-  void logData(Logger *const ilogger) const {
+  void logData(const std::shared_ptr<Logger> &ilogger) const {
     ilogger->error("MSG");
     ilogger->warn("MSG");
     ilogger->info("MSG");
@@ -35,11 +35,12 @@ class LoggerTest : public ::testing::Test {
   FILE *logFile;
   char *logBuffer;
   size_t logSize;
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
 };
 
 TEST_F(LoggerTest, OffLevel) {
-  logger = new Logger(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::off);
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::off);
 
   logData(logger);
 
@@ -57,7 +58,8 @@ TEST_F(LoggerTest, OffLevel) {
 }
 
 TEST_F(LoggerTest, ErrorLevel) {
-  logger = new Logger(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::error);
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::error);
 
   logData(logger);
 
@@ -73,7 +75,8 @@ TEST_F(LoggerTest, ErrorLevel) {
 }
 
 TEST_F(LoggerTest, WarningLevel) {
-  logger = new Logger(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::warn);
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::warn);
 
   logData(logger);
 
@@ -92,7 +95,8 @@ TEST_F(LoggerTest, WarningLevel) {
 }
 
 TEST_F(LoggerTest, InfoLevel) {
-  logger = new Logger(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::info);
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::info);
 
   logData(logger);
 
@@ -114,7 +118,8 @@ TEST_F(LoggerTest, InfoLevel) {
 }
 
 TEST_F(LoggerTest, DebugLevel) {
-  logger = new Logger(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::debug);
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::debug);
 
   logData(logger);
 
