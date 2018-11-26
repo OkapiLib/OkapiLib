@@ -8,8 +8,9 @@
 #include "okapi/impl/control/async/asyncMotionProfileControllerBuilder.hpp"
 
 namespace okapi {
-AsyncMotionProfileControllerBuilder::AsyncMotionProfileControllerBuilder()
-  : logger(Logger::instance()) {
+AsyncMotionProfileControllerBuilder::AsyncMotionProfileControllerBuilder(
+  const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger) {
 }
 
 AsyncMotionProfileControllerBuilder &
@@ -77,6 +78,12 @@ AsyncMotionProfileControllerBuilder::withTimeUtilFactory(const TimeUtilFactory &
   return *this;
 }
 
+AsyncMotionProfileControllerBuilder &
+AsyncMotionProfileControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
+  controllerLogger = ilogger;
+  return *this;
+}
+
 std::shared_ptr<AsyncLinearMotionProfileController>
 AsyncMotionProfileControllerBuilder::buildLinearMotionProfileController() {
   if (!hasOutput) {
@@ -90,7 +97,7 @@ AsyncMotionProfileControllerBuilder::buildLinearMotionProfileController() {
   }
 
   auto out = std::make_shared<AsyncLinearMotionProfileController>(
-    timeUtilFactory.create(), limits, output, diameter, pair);
+    timeUtilFactory.create(), limits, output, diameter, pair, controllerLogger);
   out->startThread();
   return out;
 }
@@ -108,7 +115,7 @@ AsyncMotionProfileControllerBuilder::buildMotionProfileController() {
   }
 
   auto out = std::make_shared<AsyncMotionProfileController>(
-    timeUtilFactory.create(), limits, model, scales, pair);
+    timeUtilFactory.create(), limits, model, scales, pair, controllerLogger);
   out->startThread();
   return out;
 }

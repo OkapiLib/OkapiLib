@@ -8,6 +8,7 @@
 #pragma once
 
 #include "okapi/api/device/motor/abstractMotor.hpp"
+#include "okapi/api/util/logging.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include <initializer_list>
 #include <vector>
@@ -21,8 +22,10 @@ class MotorGroup : public AbstractMotor {
    * thrown.
    *
    * @param imotors the motors in this group
+   * @param ilogger The logger this instance will log to.
    */
-  MotorGroup(const std::initializer_list<Motor> &imotors);
+  MotorGroup(const std::initializer_list<Motor> &imotors,
+             const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /******************************************************************************/
   /**                         Motor movement functions                         **/

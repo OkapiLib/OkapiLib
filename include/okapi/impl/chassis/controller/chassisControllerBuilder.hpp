@@ -26,8 +26,11 @@ class ChassisControllerBuilder {
   public:
   /**
    * A builder that creates ChassisControllers. Use this to create your ChassisController.
+   *
+   * @param ilogger The logger this instance will log to.
    */
-  ChassisControllerBuilder();
+  explicit ChassisControllerBuilder(
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Sets the motors using a skid-steer layout.
@@ -130,26 +133,26 @@ class ChassisControllerBuilder {
 
   /**
    * Sets the PID controller gains, causing the builder to generate a ChassisControllerPID. Uses the
-   * angle controller's gains for the turn controller's gains.
+   * turn controller's gains for the angle controller's gains.
    *
    * @param idistanceGains The distance controller's gains.
-   * @param iangleGains The angle controller's gains.
+   * @param iturnGains The turn controller's gains.
    * @return An ongoing builder.
    */
   ChassisControllerBuilder &withGains(const IterativePosPIDController::Gains &idistanceGains,
-                                      const IterativePosPIDController::Gains &iangleGains);
+                                      const IterativePosPIDController::Gains &iturnGains);
 
   /**
    * Sets the PID controller gains, causing the builder to generate a ChassisControllerPID.
    *
    * @param idistanceGains The distance controller's gains.
-   * @param iangleGains The angle controller's gains.
    * @param iturnGains The turn controller's gains.
+   * @param iangleGains The angle controller's gains.
    * @return An ongoing builder.
    */
   ChassisControllerBuilder &withGains(const IterativePosPIDController::Gains &idistanceGains,
-                                      const IterativePosPIDController::Gains &iangleGains,
-                                      const IterativePosPIDController::Gains &iturnGains);
+                                      const IterativePosPIDController::Gains &iturnGains,
+                                      const IterativePosPIDController::Gains &iangleGains);
 
   /**
    * Sets the odometry information, causing the builder to generate an Odometry variant.
@@ -174,7 +177,29 @@ class ChassisControllerBuilder {
                                          const QAngle &iturnThreshold = 1_deg);
 
   /**
-   * Sets the gearset.
+   * Sets the derivative filters. Uses a PassthroughFilter by default.
+   *
+   * @param idistanceFilter The distance controller's filter.
+   * @param iturnFilter The turn controller's filter.
+   * @param iangleFilter The angle controller's filter.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withDerivativeFilters(
+    std::unique_ptr<Filter> idistanceFilter,
+    std::unique_ptr<Filter> iturnFilter = std::make_unique<PassthroughFilter>(),
+    std::unique_ptr<Filter> iangleFilter = std::make_unique<PassthroughFilter>());
+
+  /**
+   * Sets the TimeUtilFactory used for creating a TimeUtil for each controller. Uses the static
+   * TimeUtilFactory by default.
+   *
+   * @param itimeUtilFactory The TimeUtilFactory.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
+
+  /**
+   * Sets the gearset. The default gearset is derived from the motor's.
    *
    * @param igearset The gearset.
    * @return An ongoing builder.
@@ -198,12 +223,20 @@ class ChassisControllerBuilder {
   ChassisControllerBuilder &withMaxVelocity(double imaxVelocity);
 
   /**
-   * Set the max voltage.
+   * Sets the max voltage.
    *
    * @param imaxVoltage The max voltage.
    * @return An ongoing builder.
    */
   ChassisControllerBuilder &withMaxVoltage(double imaxVoltage);
+
+  /**
+   * Sets the logger.
+   *
+   * @param ilogger The logger.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withLogger(const std::shared_ptr<Logger> &ilogger);
 
   /**
    * Builds the ChassisController. Throws a std::runtime_exception if no motors were set.
@@ -221,7 +254,7 @@ class ChassisControllerBuilder {
   std::shared_ptr<OdomChassisController> buildOdometry();
 
   private:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
 
   struct SkidSteerMotors {
     std::shared_ptr<AbstractMotor> left;
@@ -246,8 +279,12 @@ class ChassisControllerBuilder {
 
   bool hasGains{false}; // Whether gains were passed, no gains means CCI
   IterativePosPIDController::Gains distanceGains;
+  std::unique_ptr<Filter> distanceFilter = std::make_unique<PassthroughFilter>();
   IterativePosPIDController::Gains angleGains;
+  std::unique_ptr<Filter> angleFilter = std::make_unique<PassthroughFilter>();
   IterativePosPIDController::Gains turnGains;
+  std::unique_ptr<Filter> turnFilter = std::make_unique<PassthroughFilter>();
+  TimeUtilFactory controllerTimeUtilFactory = TimeUtilFactory();
 
   bool hasOdom{false}; // Whether odometry was passed
   std::unique_ptr<Odometry> odometry;
@@ -256,6 +293,7 @@ class ChassisControllerBuilder {
 
   AbstractMotor::GearsetRatioPair gearset = AbstractMotor::gearset::red;
   ChassisScales scales = {1, 1};
+  std::shared_ptr<Logger> controllerLogger = std::make_shared<Logger>();
 
   bool maxVelSetByUser{false}; // Used so motors don't overwrite maxVelocity
   double maxVelocity{600};

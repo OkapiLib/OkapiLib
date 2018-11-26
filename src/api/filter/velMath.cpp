@@ -15,8 +15,9 @@ namespace okapi {
 VelMath::VelMath(const double iticksPerRev,
                  std::unique_ptr<Filter> ifilter,
                  QTime isampleTime,
-                 std::unique_ptr<AbstractTimer> iloopDtTimer)
-  : logger(Logger::instance()),
+                 std::unique_ptr<AbstractTimer> iloopDtTimer,
+                 const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger),
     ticksPerRev(iticksPerRev),
     sampleTime(isampleTime),
     loopDtTimer(std::move(iloopDtTimer)),

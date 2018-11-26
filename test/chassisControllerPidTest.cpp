@@ -26,8 +26,8 @@ class ChassisControllerPIDTest : public ::testing::Test {
     rightMotor = new MockMotor();
 
     distanceController = new MockIterativeController(0.1);
-    angleController = new MockIterativeController(0.1);
     turnController = new MockIterativeController(0.1);
+    angleController = new MockIterativeController(0.1);
 
     model = new MockSkidSteerModel(
       std::unique_ptr<AbstractMotor>(leftMotor), std::unique_ptr<AbstractMotor>(rightMotor), 100);
@@ -36,8 +36,8 @@ class ChassisControllerPIDTest : public ::testing::Test {
       new ChassisControllerPID(createTimeUtil(),
                                std::shared_ptr<ChassisModel>(model),
                                std::unique_ptr<IterativePosPIDController>(distanceController),
-                               std::unique_ptr<IterativePosPIDController>(angleController),
                                std::unique_ptr<IterativePosPIDController>(turnController),
+                               std::unique_ptr<IterativePosPIDController>(angleController),
                                AbstractMotor::gearset::red,
                                *scales);
     controller->startThread();
@@ -53,8 +53,8 @@ class ChassisControllerPIDTest : public ::testing::Test {
   MockMotor *leftMotor;
   MockMotor *rightMotor;
   MockIterativeController *distanceController;
-  MockIterativeController *angleController;
   MockIterativeController *turnController;
+  MockIterativeController *angleController;
   MockSkidSteerModel *model;
 };
 

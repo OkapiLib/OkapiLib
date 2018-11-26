@@ -358,11 +358,17 @@ void SimulatedSystem::join() {
 }
 
 MockAsyncPosIntegratedController::MockAsyncPosIntegratedController()
-  : AsyncPosIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
+  : AsyncPosIntegratedController(std::make_shared<MockMotor>(),
+                                 AbstractMotor::gearset::green,
+                                 200,
+                                 createTimeUtil()) {
 }
 
 MockAsyncPosIntegratedController::MockAsyncPosIntegratedController(const TimeUtil &itimeUtil)
-  : AsyncPosIntegratedController(std::make_shared<MockMotor>(), itimeUtil) {
+  : AsyncPosIntegratedController(std::make_shared<MockMotor>(),
+                                 AbstractMotor::gearset::green,
+                                 200,
+                                 itimeUtil) {
 }
 
 bool MockAsyncPosIntegratedController::isSettled() {
@@ -370,7 +376,10 @@ bool MockAsyncPosIntegratedController::isSettled() {
 }
 
 MockAsyncVelIntegratedController::MockAsyncVelIntegratedController()
-  : AsyncVelIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
+  : AsyncVelIntegratedController(std::make_shared<MockMotor>(),
+                                 AbstractMotor::gearset::green,
+                                 200,
+                                 createTimeUtil()) {
 }
 
 bool MockAsyncVelIntegratedController::isSettled() {

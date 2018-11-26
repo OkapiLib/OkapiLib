@@ -33,12 +33,14 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param imodel The chassis model to control.
    * @param iscales The chassis dimensions.
    * @param ipair The gearset.
+   * @param ilogger The logger this instance will log to.
    */
   AsyncMotionProfileController(const TimeUtil &itimeUtil,
                                const PathfinderLimits &ilimits,
                                const std::shared_ptr<ChassisModel> &imodel,
                                const ChassisScales &iscales,
-                               const AbstractMotor::GearsetRatioPair &ipair);
+                               const AbstractMotor::GearsetRatioPair &ipair,
+                               const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   AsyncMotionProfileController(AsyncMotionProfileController &&other) noexcept;
 
@@ -183,7 +185,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
     int length;
   };
 
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
   std::map<std::string, TrajectoryPair> paths{};
   PathfinderLimits limits;
   std::shared_ptr<ChassisModel> model;

@@ -23,8 +23,11 @@ class AsyncVelControllerBuilder {
   /**
    * A builder that creates async velocity controllers. Use this to create an
    * AsyncVelIntegratedController or an AsyncVelPIDController.
+   *
+   * @param ilogger The logger this instance will log to.
    */
-  AsyncVelControllerBuilder();
+  explicit AsyncVelControllerBuilder(
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Sets the motor.
@@ -103,6 +106,14 @@ class AsyncVelControllerBuilder {
   AsyncVelControllerBuilder &withDerivativeFilter(std::unique_ptr<Filter> iderivativeFilter);
 
   /**
+   * Sets the gearset. The default gearset is derived from the motor's.
+   *
+   * @param igearset The gearset.
+   * @return An ongoing builder.
+   */
+  AsyncVelControllerBuilder &withGearset(const AbstractMotor::GearsetRatioPair &igearset);
+
+  /**
    * Sets the maximum velocity. The default maximum velocity is derived from the motor's gearset.
    * This parameter is ignored when using an AsyncVelPIDController.
    *
@@ -121,6 +132,14 @@ class AsyncVelControllerBuilder {
   AsyncVelControllerBuilder &withTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
 
   /**
+   * Sets the logger.
+   *
+   * @param ilogger The logger.
+   * @return An ongoing builder.
+   */
+  AsyncVelControllerBuilder &withLogger(const std::shared_ptr<Logger> &ilogger);
+
+  /**
    * Builds the AsyncVelocityController. Throws a std::runtime_exception is no motors were set.
    *
    * @return A fully built AsyncVelocityController.
@@ -128,7 +147,7 @@ class AsyncVelControllerBuilder {
   std::shared_ptr<AsyncVelocityController<double, double>> build();
 
   private:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
 
   bool hasMotors{false}; // Used to verify motors were passed
   std::shared_ptr<AbstractMotor> motor;
@@ -144,10 +163,14 @@ class AsyncVelControllerBuilder {
 
   std::unique_ptr<Filter> derivativeFilter = std::make_unique<PassthroughFilter>();
 
+  bool gearsetSetByUser{false}; // Used so motor's don't overwrite a gearset set manually
+  AbstractMotor::GearsetRatioPair pair{AbstractMotor::gearset::invalid};
+
   bool maxVelSetByUser{false}; // Used so motors don't overwrite maxVelocity
   double maxVelocity{600};
 
   TimeUtilFactory timeUtilFactory = TimeUtilFactory();
+  std::shared_ptr<Logger> controllerLogger = std::make_shared<Logger>();
 
   std::shared_ptr<AsyncVelIntegratedController> buildAVIC();
   std::shared_ptr<AsyncVelPIDController> buildAVPC();

@@ -15,8 +15,9 @@ AsyncMotionProfileController::AsyncMotionProfileController(
   const PathfinderLimits &ilimits,
   const std::shared_ptr<ChassisModel> &imodel,
   const ChassisScales &iscales,
-  const AbstractMotor::GearsetRatioPair &ipair)
-  : logger(Logger::instance()),
+  const AbstractMotor::GearsetRatioPair &ipair,
+  const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger),
     limits(ilimits),
     model(imodel),
     scales(iscales),

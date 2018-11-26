@@ -10,7 +10,8 @@
 #include <stdexcept>
 
 namespace okapi {
-AsyncVelControllerBuilder::AsyncVelControllerBuilder() : logger(Logger::instance()) {
+AsyncVelControllerBuilder::AsyncVelControllerBuilder(const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger) {
 }
 
 AsyncVelControllerBuilder &AsyncVelControllerBuilder::withMotor(const Motor &imotor) {
@@ -33,6 +34,10 @@ AsyncVelControllerBuilder::withMotor(const std::shared_ptr<AbstractMotor> &imoto
 
   if (!maxVelSetByUser) {
     maxVelocity = toUnderlyingType(imotor->getGearing());
+  }
+
+  if (!gearsetSetByUser) {
+    pair = imotor->getGearing();
   }
 
   return *this;
@@ -73,6 +78,13 @@ AsyncVelControllerBuilder::withDerivativeFilter(std::unique_ptr<Filter> iderivat
   return *this;
 }
 
+AsyncVelControllerBuilder &
+AsyncVelControllerBuilder::withGearset(const AbstractMotor::GearsetRatioPair &igearset) {
+  gearsetSetByUser = true;
+  pair = igearset;
+  return *this;
+}
+
 AsyncVelControllerBuilder &AsyncVelControllerBuilder::withMaxVelocity(double imaxVelocity) {
   maxVelSetByUser = true;
   maxVelocity = imaxVelocity;
@@ -82,6 +94,12 @@ AsyncVelControllerBuilder &AsyncVelControllerBuilder::withMaxVelocity(double ima
 AsyncVelControllerBuilder &
 AsyncVelControllerBuilder::withTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory) {
   timeUtilFactory = itimeUtilFactory;
+  return *this;
+}
+
+AsyncVelControllerBuilder &
+AsyncVelControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
+  controllerLogger = ilogger;
   return *this;
 }
 
@@ -105,10 +123,11 @@ std::shared_ptr<AsyncVelocityController<double, double>> AsyncVelControllerBuild
 
 std::shared_ptr<AsyncVelIntegratedController> AsyncVelControllerBuilder::buildAVIC() {
   return std::make_shared<AsyncVelIntegratedController>(
-    motor, maxVelocity, timeUtilFactory.create());
+    motor, pair, maxVelocity, timeUtilFactory.create(), controllerLogger);
 }
 
 std::shared_ptr<AsyncVelPIDController> AsyncVelControllerBuilder::buildAVPC() {
+  motor->setGearing(pair.internalGearset);
   auto out = std::make_shared<AsyncVelPIDController>(sensor,
                                                      motor,
                                                      timeUtilFactory.create(),
@@ -117,7 +136,9 @@ std::shared_ptr<AsyncVelPIDController> AsyncVelControllerBuilder::buildAVPC() {
                                                      gains.kF,
                                                      gains.kSF,
                                                      std::move(velMath),
-                                                     std::move(derivativeFilter));
+                                                     pair.ratio,
+                                                     std::move(derivativeFilter),
+                                                     controllerLogger);
   out->startThread();
   return out;
 }

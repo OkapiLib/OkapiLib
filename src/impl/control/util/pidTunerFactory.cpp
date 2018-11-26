@@ -24,7 +24,8 @@ PIDTuner PIDTunerFactory::create(const std::shared_ptr<ControllerInput<double>> 
                                  std::int32_t inumIterations,
                                  std::int32_t inumParticles,
                                  double ikSettle,
-                                 double ikITAE) {
+                                 double ikITAE,
+                                 const std::shared_ptr<Logger> &ilogger) {
   return PIDTuner(iinput,
                   ioutput,
                   TimeUtilFactory::create(),
@@ -39,7 +40,8 @@ PIDTuner PIDTunerFactory::create(const std::shared_ptr<ControllerInput<double>> 
                   inumIterations,
                   inumParticles,
                   ikSettle,
-                  ikITAE);
+                  ikITAE,
+                  ilogger);
 }
 
 std::unique_ptr<PIDTuner>
@@ -56,7 +58,8 @@ PIDTunerFactory::createPtr(const std::shared_ptr<ControllerInput<double>> &iinpu
                            std::int32_t inumIterations,
                            std::int32_t inumParticles,
                            double ikSettle,
-                           double ikITAE) {
+                           double ikITAE,
+                           const std::shared_ptr<Logger> &ilogger) {
   return std::make_unique<PIDTuner>(iinput,
                                     ioutput,
                                     TimeUtilFactory::create(),
@@ -71,6 +74,7 @@ PIDTunerFactory::createPtr(const std::shared_ptr<ControllerInput<double>> &iinpu
                                     inumIterations,
                                     inumParticles,
                                     ikSettle,
-                                    ikITAE);
+                                    ikITAE,
+                                    ilogger);
 }
 } // namespace okapi

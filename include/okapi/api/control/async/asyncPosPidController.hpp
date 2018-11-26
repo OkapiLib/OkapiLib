@@ -29,6 +29,7 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
    * @param ikI The integral gain.
    * @param ikD The derivative gain.
    * @param ikBias The controller bias.
+   * @param iratio Any external gear ratio.
    * @param iderivativeFilter The derivative filter.
    */
   AsyncPosPIDController(
@@ -39,7 +40,9 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
     double ikI,
     double ikD,
     double ikBias = 0,
-    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+    double iratio = 1,
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * An async position PID controller.
@@ -51,6 +54,7 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
    * @param ikI The integral gain.
    * @param ikD The derivative gain.
    * @param ikBias The controller bias.
+   * @param iratio Any external gear ratio.
    * @param iderivativeFilter The derivative filter.
    */
   AsyncPosPIDController(
@@ -61,7 +65,9 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
     double ikI,
     double ikD,
     double ikBias = 0,
-    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+    double iratio = 1,
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Sets the "absolute" zero position of the controller to its current position.

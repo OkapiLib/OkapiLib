@@ -30,6 +30,7 @@ class AsyncVelPIDController : public AsyncWrapper<double, double>,
    * @param ikF The feed-forward gain.
    * @param ikSF A feed-forward gain to counteract static friction.
    * @param ivelMath The VelMath used for calculating velocity.
+   * @param iratio Any external gear ratio.
    * @param iderivativeFilter The derivative filter.
    */
   AsyncVelPIDController(
@@ -41,6 +42,8 @@ class AsyncVelPIDController : public AsyncWrapper<double, double>,
     double ikF,
     double ikSF,
     std::unique_ptr<VelMath> ivelMath,
-    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+    double iratio = 1,
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 };
 } // namespace okapi

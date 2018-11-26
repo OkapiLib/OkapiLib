@@ -11,19 +11,24 @@
 namespace okapi {
 AsyncPosIntegratedController::AsyncPosIntegratedController(
   const std::shared_ptr<AbstractMotor> &imotor,
-  const TimeUtil &itimeUtil)
-  : AsyncPosIntegratedController(imotor, toUnderlyingType(imotor->getGearing()), itimeUtil) {
-}
-
-AsyncPosIntegratedController::AsyncPosIntegratedController(
-  const std::shared_ptr<AbstractMotor> &imotor,
+  const AbstractMotor::GearsetRatioPair &ipair,
   const std::int32_t imaxVelocity,
-  const TimeUtil &itimeUtil)
-  : logger(Logger::instance()),
+  const TimeUtil &itimeUtil,
+  const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger),
     motor(imotor),
+    pair(ipair),
     maxVelocity(imaxVelocity),
     settledUtil(itimeUtil.getSettledUtil()),
     rate(itimeUtil.getRate()) {
+  if (ipair.ratio == 0) {
+    logger->error("AsyncPosIntegratedController: The gear ratio cannot be zero! Check if you are "
+                  "using integer division.");
+    throw std::invalid_argument("AsyncPosIntegratedController: The gear ratio cannot be zero! "
+                                "Check if you are using integer division.");
+  }
+
+  motor->setGearing(ipair.internalGearset);
 }
 
 void AsyncPosIntegratedController::setTarget(const double itarget) {
@@ -32,7 +37,7 @@ void AsyncPosIntegratedController::setTarget(const double itarget) {
   hasFirstTarget = true;
 
   if (!controllerIsDisabled) {
-    motor->moveAbsolute(itarget + offset, maxVelocity);
+    motor->moveAbsolute(itarget * pair.ratio + offset, maxVelocity);
   }
 
   lastTarget = itarget;
@@ -43,7 +48,7 @@ double AsyncPosIntegratedController::getTarget() {
 }
 
 double AsyncPosIntegratedController::getError() const {
-  return (lastTarget + offset) - motor->getPosition();
+  return (lastTarget * pair.ratio + offset) - motor->getPosition();
 }
 
 bool AsyncPosIntegratedController::isSettled() {
@@ -97,6 +102,8 @@ void AsyncPosIntegratedController::controllerSet(double ivalue) {
     motor->controllerSet(ivalue);
   }
 
+  // Need to scale the controller output from [-1, 1] to the range of the motor based on its
+  // internal gearset
   lastTarget = ivalue * toUnderlyingType(motor->getGearing());
 }
 

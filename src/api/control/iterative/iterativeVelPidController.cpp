@@ -17,8 +17,9 @@ IterativeVelPIDController::IterativeVelPIDController(const double ikP,
                                                      const double ikSF,
                                                      std::unique_ptr<VelMath> ivelMath,
                                                      const TimeUtil &itimeUtil,
-                                                     std::unique_ptr<Filter> iderivativeFilter)
-  : logger(Logger::instance()),
+                                                     std::unique_ptr<Filter> iderivativeFilter,
+                                                     const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger),
     velMath(std::move(ivelMath)),
     derivativeFilter(std::move(iderivativeFilter)),
     loopDtTimer(itimeUtil.getTimer()),
