@@ -14,15 +14,15 @@ ChassisControllerPID::ChassisControllerPID(
   const TimeUtil &itimeUtil,
   const std::shared_ptr<ChassisModel> &imodel,
   std::unique_ptr<IterativePosPIDController> idistanceController,
-  std::unique_ptr<IterativePosPIDController> iangleController,
   std::unique_ptr<IterativePosPIDController> iturnController,
+  std::unique_ptr<IterativePosPIDController> iangleController,
   const AbstractMotor::GearsetRatioPair igearset,
   const ChassisScales &iscales)
   : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
     rate(itimeUtil.getRate()),
     distancePid(std::move(idistanceController)),
-    anglePid(std::move(iangleController)),
     turnPid(std::move(iturnController)),
+    anglePid(std::move(iangleController)),
     scales(iscales),
     gearsetRatioPair(igearset) {
   if (igearset.ratio == 0) {
@@ -41,8 +41,8 @@ ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcep
     logger(other.logger),
     rate(std::move(other.rate)),
     distancePid(std::move(other.distancePid)),
-    anglePid(std::move(other.anglePid)),
     turnPid(std::move(other.turnPid)),
+    anglePid(std::move(other.anglePid)),
     scales(other.scales),
     gearsetRatioPair(other.gearsetRatioPair),
     doneLooping(other.doneLooping.load(std::memory_order_acquire)),

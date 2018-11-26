@@ -31,8 +31,8 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisControllerPID(const TimeUtil &itimeUtil,
                        const std::shared_ptr<ChassisModel> &imodel,
                        std::unique_ptr<IterativePosPIDController> idistanceController,
-                       std::unique_ptr<IterativePosPIDController> iangleController,
                        std::unique_ptr<IterativePosPIDController> iturnController,
+                       std::unique_ptr<IterativePosPIDController> iangleController,
                        AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
                        const ChassisScales &iscales = ChassisScales({1, 1}));
 
@@ -126,8 +126,8 @@ class ChassisControllerPID : public virtual ChassisController {
   Logger *logger;
   std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<IterativePosPIDController> distancePid;
-  std::unique_ptr<IterativePosPIDController> anglePid;
   std::unique_ptr<IterativePosPIDController> turnPid;
+  std::unique_ptr<IterativePosPIDController> anglePid;
   ChassisScales scales;
   AbstractMotor::GearsetRatioPair gearsetRatioPair;
   std::atomic_bool doneLooping{true};

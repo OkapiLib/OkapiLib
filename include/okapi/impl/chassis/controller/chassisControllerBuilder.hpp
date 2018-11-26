@@ -131,23 +131,36 @@ class ChassisControllerBuilder {
    * angle controller's gains for the turn controller's gains.
    *
    * @param idistanceGains The distance controller's gains.
-   * @param iangleGains The angle controller's gains.
+   * @param iturnGains The turn controller's gains.
    * @return An ongoing builder.
    */
   ChassisControllerBuilder &withGains(const IterativePosPIDController::Gains &idistanceGains,
-                                      const IterativePosPIDController::Gains &iangleGains);
+                                      const IterativePosPIDController::Gains &iturnGains);
 
   /**
    * Sets the PID controller gains, causing the builder to generate a ChassisControllerPID.
    *
    * @param idistanceGains The distance controller's gains.
-   * @param iangleGains The angle controller's gains.
    * @param iturnGains The turn controller's gains.
+   * @param iangleGains The angle controller's gains.
    * @return An ongoing builder.
    */
   ChassisControllerBuilder &withGains(const IterativePosPIDController::Gains &idistanceGains,
-                                      const IterativePosPIDController::Gains &iangleGains,
-                                      const IterativePosPIDController::Gains &iturnGains);
+                                      const IterativePosPIDController::Gains &iturnGains,
+                                      const IterativePosPIDController::Gains &iangleGains);
+
+  /**
+   * Sets the derivative filters. Uses a PassthroughFilter by default.
+   *
+   * @param idistanceFilter The distance controller's filter.
+   * @param iturnFilter The turn controller's filter.
+   * @param iangleFilter The angle controller's filter.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withDerivativeFilters(
+    std::unique_ptr<Filter> idistanceFilter,
+    std::unique_ptr<Filter> iturnFilter = std::make_unique<PassthroughFilter>(),
+    std::unique_ptr<Filter> iangleFilter = std::make_unique<PassthroughFilter>());
 
   /**
    * Sets the gearset. The default gearset is derived from the motor's.
@@ -214,8 +227,11 @@ class ChassisControllerBuilder {
 
   bool hasGains{false}; // Whether gains were passed, no gains means CCI
   IterativePosPIDController::Gains distanceGains;
+  std::unique_ptr<Filter> distanceFilter = std::make_unique<PassthroughFilter>();
   IterativePosPIDController::Gains angleGains;
+  std::unique_ptr<Filter> angleFilter = std::make_unique<PassthroughFilter>();
   IterativePosPIDController::Gains turnGains;
+  std::unique_ptr<Filter> turnFilter = std::make_unique<PassthroughFilter>();
 
   AbstractMotor::GearsetRatioPair gearset = AbstractMotor::gearset::red;
   ChassisScales scales = {1, 1};
