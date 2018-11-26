@@ -24,7 +24,8 @@ class MotorGroup : public AbstractMotor {
    * @param imotors the motors in this group
    * @param ilogger The logger this instance will log to.
    */
-  MotorGroup(const std::initializer_list<Motor> &imotors, Logger *ilogger = new Logger());
+  MotorGroup(const std::initializer_list<Motor> &imotors,
+             const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /******************************************************************************/
   /**                         Motor movement functions                         **/

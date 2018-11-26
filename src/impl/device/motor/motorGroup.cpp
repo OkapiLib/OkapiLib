@@ -8,7 +8,8 @@
 #include "okapi/impl/device/motor/motorGroup.hpp"
 
 namespace okapi {
-MotorGroup::MotorGroup(const std::initializer_list<Motor> &imotors, Logger *const ilogger)
+MotorGroup::MotorGroup(const std::initializer_list<Motor> &imotors,
+                       const std::shared_ptr<Logger> &ilogger)
   : motors(imotors) {
   if (motors.empty()) {
     ilogger->error(
