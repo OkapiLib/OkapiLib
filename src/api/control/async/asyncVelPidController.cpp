@@ -19,7 +19,8 @@ AsyncVelPIDController::AsyncVelPIDController(
   const double ikSF,
   std::unique_ptr<VelMath> ivelMath,
   const double iratio,
-  std::unique_ptr<Filter> iderivativeFilter)
+  std::unique_ptr<Filter> iderivativeFilter,
+  const std::shared_ptr<Logger> &ilogger)
   : AsyncWrapper<double, double>(
       iinput,
       ioutput,
@@ -31,6 +32,7 @@ AsyncVelPIDController::AsyncVelPIDController(
                                                   itimeUtil,
                                                   std::move(iderivativeFilter)),
       itimeUtil.getRateSupplier(),
-      iratio) {
+      iratio,
+      ilogger) {
 }
 } // namespace okapi

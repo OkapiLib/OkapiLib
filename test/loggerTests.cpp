@@ -19,25 +19,28 @@ class LoggerTest : public ::testing::Test {
 
   virtual void TearDown() {
     // Call close after every case so other tests don't end up with a NULL logfile pointer
-    Logger::instance()->close();
+    if (logger) {
+      logger->close();
+    }
     free(logBuffer);
   }
 
-  void logData(Logger *logger) const {
-    logger->error("MSG");
-    logger->warn("MSG");
-    logger->info("MSG");
-    logger->debug("MSG");
+  void logData(const std::shared_ptr<Logger> &ilogger) const {
+    ilogger->error("MSG");
+    ilogger->warn("MSG");
+    ilogger->info("MSG");
+    ilogger->debug("MSG");
   }
 
   FILE *logFile;
   char *logBuffer;
   size_t logSize;
+  std::shared_ptr<Logger> logger;
 };
 
 TEST_F(LoggerTest, OffLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::off);
-  auto logger = Logger::instance();
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::off);
 
   logData(logger);
 
@@ -55,8 +58,8 @@ TEST_F(LoggerTest, OffLevel) {
 }
 
 TEST_F(LoggerTest, ErrorLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::error);
-  auto logger = Logger::instance();
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::error);
 
   logData(logger);
 
@@ -72,8 +75,8 @@ TEST_F(LoggerTest, ErrorLevel) {
 }
 
 TEST_F(LoggerTest, WarningLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::warn);
-  auto logger = Logger::instance();
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::warn);
 
   logData(logger);
 
@@ -92,8 +95,8 @@ TEST_F(LoggerTest, WarningLevel) {
 }
 
 TEST_F(LoggerTest, InfoLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::info);
-  auto logger = Logger::instance();
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::info);
 
   logData(logger);
 
@@ -115,8 +118,8 @@ TEST_F(LoggerTest, InfoLevel) {
 }
 
 TEST_F(LoggerTest, DebugLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::debug);
-  auto logger = Logger::instance();
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::debug);
 
   logData(logger);
 

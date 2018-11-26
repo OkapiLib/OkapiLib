@@ -41,7 +41,8 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
     double ikD,
     double ikBias = 0,
     double iratio = 1,
-    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * An async position PID controller.
@@ -65,7 +66,8 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
     double ikD,
     double ikBias = 0,
     double iratio = 1,
-    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Sets the "absolute" zero position of the controller to its current position.

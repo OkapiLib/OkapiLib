@@ -28,11 +28,13 @@ class AsyncVelIntegratedController : public AsyncVelocityController<double, doub
    * @param imotor The motor to control.
    * @param ipair The gearset.
    * @param imaxVelocity The maximum velocity after gearing.
+   * @param ilogger The logger this instance will log to.
    */
   AsyncVelIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
                                const AbstractMotor::GearsetRatioPair &ipair,
                                std::int32_t imaxVelocity,
-                               const TimeUtil &itimeUtil);
+                               const TimeUtil &itimeUtil,
+                               const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Sets the target for the controller.
@@ -103,7 +105,7 @@ class AsyncVelIntegratedController : public AsyncVelocityController<double, doub
   void controllerSet(double ivalue) override;
 
   protected:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
   std::shared_ptr<AbstractMotor> motor;
   AbstractMotor::GearsetRatioPair pair;
   std::int32_t maxVelocity;

@@ -27,8 +27,9 @@ PIDTuner::PIDTuner(const std::shared_ptr<ControllerInput<double>> &iinput,
                    std::size_t inumIterations,
                    std::size_t inumParticles,
                    double ikSettle,
-                   double ikITAE)
-  : logger(Logger::instance()),
+                   double ikITAE,
+                   const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger),
     input(iinput),
     output(ioutput),
     timeUtil(itimeUtil),

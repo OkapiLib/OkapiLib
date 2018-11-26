@@ -9,7 +9,8 @@
 #include <stdexcept>
 
 namespace okapi {
-ChassisControllerBuilder::ChassisControllerBuilder() : logger(Logger::instance()) {
+ChassisControllerBuilder::ChassisControllerBuilder(const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger) {
 }
 
 ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const Motor &ileft,
@@ -154,6 +155,12 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMaxVoltage(const double 
   return *this;
 }
 
+ChassisControllerBuilder &
+ChassisControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
+  controllerLogger = ilogger;
+  return *this;
+}
+
 std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
   if (!hasMotors) {
     logger->error("ChassisControllerBuilder: No motors given.");
@@ -179,7 +186,8 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
       std::make_unique<IterativePosPIDController>(
         turnGains, controllerTimeUtilFactory.create(), std::move(turnFilter)),
       gearset,
-      scales);
+      scales,
+      controllerLogger);
     out->startThread();
     return out;
   } else {
@@ -193,7 +201,8 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
       std::make_unique<IterativePosPIDController>(
         turnGains, controllerTimeUtilFactory.create(), std::move(turnFilter)),
       gearset,
-      scales);
+      scales,
+      controllerLogger);
     out->startThread();
     return out;
   }
@@ -213,7 +222,8 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
                                                      toUnderlyingType(gearset.internalGearset),
                                                      controllerTimeUtilFactory.create()),
       gearset,
-      scales);
+      scales,
+      controllerLogger);
     return out;
   } else {
     auto out = std::make_shared<ChassisControllerIntegrated>(
@@ -228,7 +238,8 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
                                                      toUnderlyingType(gearset.internalGearset),
                                                      controllerTimeUtilFactory.create()),
       gearset,
-      scales);
+      scales,
+      controllerLogger);
     return out;
   }
 }
