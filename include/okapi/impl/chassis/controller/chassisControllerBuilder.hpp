@@ -27,7 +27,8 @@ class ChassisControllerBuilder {
    *
    * @param ilogger The logger this instance will log to.
    */
-  ChassisControllerBuilder(const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+  explicit ChassisControllerBuilder(
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Sets the motors using a skid-steer layout.

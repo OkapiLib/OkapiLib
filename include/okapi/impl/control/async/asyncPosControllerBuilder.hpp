@@ -26,7 +26,8 @@ class AsyncPosControllerBuilder {
    *
    * @param ilogger The logger this instance will log to.
    */
-  AsyncPosControllerBuilder(const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+  explicit AsyncPosControllerBuilder(
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Sets the motor.

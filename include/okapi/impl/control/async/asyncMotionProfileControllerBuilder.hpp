@@ -24,7 +24,7 @@ class AsyncMotionProfileControllerBuilder {
    *
    * @param ilogger The logger this instance will log to.
    */
-  AsyncMotionProfileControllerBuilder(
+  explicit AsyncMotionProfileControllerBuilder(
     const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**

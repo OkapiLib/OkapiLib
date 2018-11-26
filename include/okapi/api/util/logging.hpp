@@ -19,7 +19,7 @@ class Logger {
   /**
    * A logger that does nothing.
    */
-  Logger() noexcept : timer(nullptr), logfile(nullptr), logLevel(LogLevel::off) {
+  Logger() noexcept : Logger(nullptr, nullptr, LogLevel::off) {
   }
 
   /**

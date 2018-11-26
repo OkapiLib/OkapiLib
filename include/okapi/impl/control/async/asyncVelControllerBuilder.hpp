@@ -26,7 +26,8 @@ class AsyncVelControllerBuilder {
    *
    * @param ilogger The logger this instance will log to.
    */
-  AsyncVelControllerBuilder(const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+  explicit AsyncVelControllerBuilder(
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Sets the motor.
