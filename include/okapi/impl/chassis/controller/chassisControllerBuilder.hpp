@@ -128,7 +128,7 @@ class ChassisControllerBuilder {
 
   /**
    * Sets the PID controller gains, causing the builder to generate a ChassisControllerPID. Uses the
-   * angle controller's gains for the turn controller's gains.
+   * turn controller's gains for the angle controller's gains.
    *
    * @param idistanceGains The distance controller's gains.
    * @param iturnGains The turn controller's gains.
