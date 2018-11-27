@@ -44,7 +44,7 @@ class OdometryTest : public ::testing::Test {
   void SetUp() override {
     model = new MockModel();
     odom = new Odometry(std::shared_ptr<MockModel>(model),
-                        ChassisScales({{wheelDiam, wheelbaseWidth}, imev5GreenTPR}),
+                        ChassisScales({{wheelDiam, wheelbaseWidth}, 360}),
                         createConstantTimeUtil(10_ms));
   }
 
@@ -137,7 +137,7 @@ class ThreeEncoderOdometryTest : public ::testing::Test {
   void SetUp() override {
     model = new MockThreeEncoderModel();
     odom = new ThreeEncoderOdometry(std::shared_ptr<MockThreeEncoderModel>(model),
-                                    ChassisScales({{wheelDiam, wheelbaseWidth}, imev5GreenTPR}),
+                                    ChassisScales({{wheelDiam, wheelbaseWidth}, 360}),
                                     createConstantTimeUtil(10_ms));
   }
 
