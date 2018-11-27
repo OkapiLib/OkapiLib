@@ -26,7 +26,7 @@ void assertOdomStateEquals(const OdomState &expected, const OdomState &actual) {
 class OdomChassisControllerIntegratedTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    scales = new ChassisScales({2, 2});
+    scales = new ChassisScales({2, 2}, imev5GreenTPR);
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
 
@@ -47,7 +47,7 @@ class OdomChassisControllerIntegratedTest : public ::testing::Test {
       std::unique_ptr<AsyncPosIntegratedController>(leftController),
       std::unique_ptr<AsyncPosIntegratedController>(rightController),
       AbstractMotor::gearset::red,
-      {1, 1});
+      {{1, 1}, imev5GreenTPR});
   }
 
   void TearDown() override {
@@ -119,7 +119,7 @@ TEST_F(OdomChassisControllerIntegratedTest, SetStateTest) {
 class OdomChassisControllerPIDTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    scales = new ChassisScales({2, 2});
+    scales = new ChassisScales({2, 2}, imev5GreenTPR);
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
 
@@ -142,7 +142,7 @@ class OdomChassisControllerPIDTest : public ::testing::Test {
                                    std::unique_ptr<IterativePosPIDController>(angleController),
                                    std::unique_ptr<IterativePosPIDController>(turnController),
                                    AbstractMotor::gearset::red,
-                                   {1, 1});
+                                   {{1, 1}, imev5GreenTPR});
   }
 
   void TearDown() override {

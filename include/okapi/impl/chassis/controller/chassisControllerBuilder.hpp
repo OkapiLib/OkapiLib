@@ -292,7 +292,7 @@ class ChassisControllerBuilder {
   QAngle turnThreshold;
 
   AbstractMotor::GearsetRatioPair gearset = AbstractMotor::gearset::red;
-  ChassisScales scales = {1, 1};
+  ChassisScales scales = {{1, 1}, imev5GreenTPR};
   std::shared_ptr<Logger> controllerLogger = std::make_shared<Logger>();
 
   bool maxVelSetByUser{false}; // Used so motors don't overwrite maxVelocity

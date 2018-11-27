@@ -43,7 +43,8 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
                            const AbstractMotor::GearsetRatioPair &igearset,
                            const ChassisScales &iscales,
                            const QLength &imoveThreshold = 10_mm,
-                           const QAngle &iturnThreshold = 1_deg);
+                           const QAngle &iturnThreshold = 1_deg,
+                           const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Drives the robot straight to a point in the odom frame.
@@ -64,6 +65,6 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
   void turnToAngle(QAngle iangle) override;
 
   protected:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
 };
 } // namespace okapi

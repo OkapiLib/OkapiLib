@@ -20,7 +20,8 @@ OdomChassisControllerPID::OdomChassisControllerPID(
   const AbstractMotor::GearsetRatioPair &igearset,
   const ChassisScales &iscales,
   const QLength &imoveThreshold,
-  const QAngle &iturnThreshold)
+  const QAngle &iturnThreshold,
+  const std::shared_ptr<Logger> &ilogger)
   : ChassisController(imodel, imodel->getMaxVelocity(), imodel->getMaxVoltage()),
     OdomChassisController(imodel, std::move(iodometry), imoveThreshold, iturnThreshold),
     ChassisControllerPID(itimeUtil,
@@ -30,7 +31,7 @@ OdomChassisControllerPID::OdomChassisControllerPID(
                          std::move(iturnController),
                          igearset,
                          iscales),
-    logger(Logger::instance()) {
+    logger(ilogger) {
 }
 
 void OdomChassisControllerPID::driveToPoint(const QLength ix,

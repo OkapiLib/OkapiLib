@@ -33,15 +33,17 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
    * @param imoveThreshold minimum length movement (smaller movements will be skipped)
    * @param iturnThreshold minimum angle turn (smaller turns will be skipped)
    */
-  OdomChassisControllerIntegrated(const TimeUtil &itimeUtil,
-                                  std::shared_ptr<SkidSteerModel> imodel,
-                                  std::unique_ptr<Odometry> iodometry,
-                                  std::unique_ptr<AsyncPosIntegratedController> ileftController,
-                                  std::unique_ptr<AsyncPosIntegratedController> irightController,
-                                  AbstractMotor::GearsetRatioPair igearset,
-                                  const ChassisScales &iscales,
-                                  QLength imoveThreshold = 10_mm,
-                                  QAngle iturnThreshold = 1_deg);
+  OdomChassisControllerIntegrated(
+    const TimeUtil &itimeUtil,
+    std::shared_ptr<SkidSteerModel> imodel,
+    std::unique_ptr<Odometry> iodometry,
+    std::unique_ptr<AsyncPosIntegratedController> ileftController,
+    std::unique_ptr<AsyncPosIntegratedController> irightController,
+    AbstractMotor::GearsetRatioPair igearset,
+    const ChassisScales &iscales,
+    QLength imoveThreshold = 10_mm,
+    QAngle iturnThreshold = 1_deg,
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Drives the robot straight to a point in the odom frame.
@@ -62,6 +64,6 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
   void turnToAngle(QAngle iangle) override;
 
   protected:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
 };
 } // namespace okapi

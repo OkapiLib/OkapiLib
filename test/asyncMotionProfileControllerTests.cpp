@@ -35,7 +35,7 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
     controller = new MockAsyncMotionProfileController(createTimeUtil(),
                                                       {1.0, 2.0, 10.0},
                                                       std::shared_ptr<SkidSteerModel>(model),
-                                                      {4_in, 10.5_in},
+                                                      {{4_in, 10.5_in}, imev5GreenTPR},
                                                       AbstractMotor::gearset::green * (1.0 / 2));
     controller->startThread();
   }

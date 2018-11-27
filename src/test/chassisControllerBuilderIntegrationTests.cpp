@@ -108,7 +108,7 @@ static void testOCCI() {
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
                  .withGearset(MOTOR_GEARSET)
                  .withOdometry()
-                 .withDimensions({4_in, 10_in})
+                 .withDimensions({{4_in, 10_in}, toUnderlyingType(MOTOR_GEARSET)})
                  .buildOdometry();
 
   const auto stateBefore = drive->getState();
@@ -146,7 +146,7 @@ static void testOCCPID() {
                  .withGains({0.01, 0, 0}, {0, 0, 0})
                  .withGearset(MOTOR_GEARSET)
                  .withOdometry()
-                 .withDimensions({4_in, 10_in})
+                 .withDimensions({{4_in, 10_in}, toUnderlyingType(MOTOR_GEARSET)})
                  .buildOdometry();
 
   const auto stateBefore = drive->getState();
