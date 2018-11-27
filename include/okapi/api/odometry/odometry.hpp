@@ -35,7 +35,8 @@ class Odometry {
    */
   Odometry(const std::shared_ptr<ReadOnlyChassisModel> &imodel,
            const ChassisScales &ichassisScales,
-           const TimeUtil &itimeUtil);
+           const TimeUtil &itimeUtil,
+           const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   virtual ~Odometry();
 
@@ -83,7 +84,7 @@ class Odometry {
   void stopLooping();
 
   protected:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
   std::shared_ptr<ReadOnlyChassisModel> model;
   std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<AbstractTimer> timer;

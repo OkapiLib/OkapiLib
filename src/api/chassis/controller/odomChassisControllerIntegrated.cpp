@@ -19,7 +19,8 @@ OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
   const AbstractMotor::GearsetRatioPair igearset,
   const ChassisScales &iscales,
   const QLength imoveThreshold,
-  const QAngle iturnThreshold)
+  const QAngle iturnThreshold,
+  const std::shared_ptr<Logger> &ilogger)
   : ChassisController(imodel, imodel->getMaxVelocity(), imodel->getMaxVoltage()),
     OdomChassisController(imodel, std::move(iodometry), imoveThreshold, iturnThreshold),
     ChassisControllerIntegrated(itimeUtil,
@@ -28,7 +29,7 @@ OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
                                 std::move(irightController),
                                 igearset,
                                 iscales),
-    logger(Logger::instance()) {
+    logger(ilogger) {
 }
 
 void OdomChassisControllerIntegrated::driveToPoint(const QLength ix,

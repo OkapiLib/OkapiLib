@@ -13,8 +13,9 @@
 namespace okapi {
 Odometry::Odometry(const std::shared_ptr<ReadOnlyChassisModel> &imodel,
                    const ChassisScales &ichassisScales,
-                   const TimeUtil &itimeUtil)
-  : logger(Logger::instance()),
+                   const TimeUtil &itimeUtil,
+                   const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger),
     model(imodel),
     rate(itimeUtil.getRate()),
     timer(itimeUtil.getTimer()),

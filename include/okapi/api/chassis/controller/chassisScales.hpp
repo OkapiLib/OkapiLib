@@ -19,11 +19,10 @@ namespace okapi {
 class ChassisScales {
   public:
   /**
-   * The two scales a Chassis Controller needs to do all of its closed-loop control. First index is
-   * the wheel diameter, second index is the wheelbase width. Read the clawbot programming tutorial
-   * for more information behind the meaning of these two numbers.
-   *
-   * The middle scale can be set directly after calling the constructor if it is needed.
+   * The scales a Chassis Controller needs to do all of its closed-loop control. First index is
+   * the wheel diameter, second index is the wheelbase width. An optional third index is the middle
+   * wheel diameter if you are using a 3-encoder setup. Read the clawbot programming tutorial for
+   * more information behind the meaning of these two numbers.
    *
    * The wheelbase diameter is the center-to-center distance between the wheels (center-to-center
    * meaning the width between the centers of both wheels). For example, if you are using four inch
@@ -49,29 +48,40 @@ class ChassisScales {
    *                     +--->    ===             ===
    *
    *
-   * @param  iwheelbase {wheel diameter, wheelbase width}
+   * @param  iwheelbase {wheel diameter, wheelbase width} or {wheel diameter, wheelbase width,
+   * middle wheel diameter}
+   * @param itpr The ticks per revolution of the encoders.
+   * @param ilogger The logger this instance will log to.
    */
-  ChassisScales(const std::initializer_list<QLength> &iwheelbase);
+  ChassisScales(const std::initializer_list<QLength> &iwheelbase,
+                std::int32_t itpr,
+                const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
-   * The two scales a Chassis Controller needs to do all of its closed-loop control. First index is
-   * the straight scale, second index is the turn scale. The straight scale converts motor degrees
-   * to meters and the turn scale converts motor degrees to robot turn degrees. Read the clawbot
-   * programming tutorial for more information behind the meaning of these two numbers.
+   * The scales a Chassis Controller needs to do all of its closed-loop control. First index is
+   * the straight scale, second index is the turn scale. An optional third index is the middle
+   * scale. The straight scale converts motor degrees to meters, the turn scale converts motor
+   * degrees to robot turn degrees, and the middle scale converts middle wheel degrees to meters.
+   * Read the clawbot programming tutorial for more information behind the meaning of these two
+   * numbers.
    *
-   * @param  iscales {straight scale, turn scale}
+   * @param  iscales {straight scale, turn scale} or {straight scale, turn scale, middle scale}
+   * @param itpr The ticks per revolution of the encoders.
+   * @param ilogger The logger this instance will log to.
    */
-  ChassisScales(const std::initializer_list<double> &iscales);
+  ChassisScales(const std::initializer_list<double> &iscales,
+                std::int32_t itpr,
+                const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
-  QLength wheelDiameter{0_m};
-  QLength wheelbaseWidth{0_m};
-  double straight{0};
-  double turn{0};
-  double middle{0};
+  QLength wheelDiameter;
+  QLength wheelbaseWidth;
+  QLength middleWheelDiameter;
+  double straight;
+  double turn;
+  double middle;
+  std::int32_t tpr;
 
   protected:
-  void validateInput(std::size_t inputSize);
-
-  Logger *logger;
+  void validateInput(std::size_t inputSize, const std::shared_ptr<Logger> &logger);
 };
 } // namespace okapi

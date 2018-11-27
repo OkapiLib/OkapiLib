@@ -8,34 +8,50 @@
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 
 namespace okapi {
-ChassisScales::ChassisScales(const std::initializer_list<QLength> &iwheelbase)
-  : logger(Logger::instance()) {
-  validateInput(iwheelbase.size());
+ChassisScales::ChassisScales(const std::initializer_list<QLength> &iwheelbase,
+                             const std::int32_t itpr,
+                             const std::shared_ptr<Logger> &ilogger)
+  : tpr(itpr) {
+  validateInput(iwheelbase.size(), ilogger);
 
   std::vector<QLength> vec(iwheelbase);
   wheelDiameter = vec.at(0);
   wheelbaseWidth = vec.at(1);
-  straight = static_cast<double>(360 / (wheelDiameter.convert(meter) * 1_pi));
+
+  if (vec.size() >= 3) {
+    middleWheelDiameter = vec.at(2);
+  } else {
+    middleWheelDiameter = wheelDiameter;
+  }
+
+  straight = static_cast<double>(tpr / (wheelDiameter.convert(meter) * 1_pi));
   turn = wheelbaseWidth.convert(meter) / wheelDiameter.convert(meter);
-  middle = straight;
+  middle = static_cast<double>(tpr / (middleWheelDiameter.convert(meter) * 1_pi));
 }
 
-ChassisScales::ChassisScales(const std::initializer_list<double> &iscales)
-  : logger(Logger::instance()) {
-  validateInput(iscales.size());
+ChassisScales::ChassisScales(const std::initializer_list<double> &iscales,
+                             const std::int32_t itpr,
+                             const std::shared_ptr<Logger> &ilogger)
+  : tpr(itpr) {
+  validateInput(iscales.size(), ilogger);
 
   std::vector<double> vec(iscales);
   straight = vec.at(0);
   turn = vec.at(1);
-  wheelDiameter = (360 / (straight * 1_pi)) * meter;
-  wheelbaseWidth = turn * wheelDiameter;
 
   if (vec.size() >= 3) {
     middle = vec.at(2);
+  } else {
+    middle = straight;
   }
+
+  wheelDiameter = (tpr / (straight * 1_pi)) * meter;
+  wheelbaseWidth = turn * wheelDiameter;
+  middleWheelDiameter = (tpr / (middle * 1_pi)) * meter;
 }
 
-void ChassisScales::validateInput(const std::size_t inputSize) {
+void ChassisScales::validateInput(const std::size_t inputSize,
+                                  const std::shared_ptr<Logger> &logger) {
   if (inputSize < 2) {
     logger->error("At least two measurements must be given to ChassisScales. Got " +
                   std::to_string(inputSize) + "measurements.");
