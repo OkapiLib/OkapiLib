@@ -132,6 +132,23 @@ class ChassisControllerBuilder {
                                         const std::shared_ptr<ContinuousRotarySensor> &iright);
 
   /**
+   * Sets the middle encoder. Used for three-encoder odometry.
+   *
+   * @param imiddle The middle encoder.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withMiddleEncoder(const ADIEncoder &imiddle);
+
+  /**
+   * Sets the middle encoder. Used for three-encoder odometry.
+   *
+   * @param imiddle The middle encoder.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &
+  withMiddleEncoder(const std::shared_ptr<ContinuousRotarySensor> &imiddle);
+
+  /**
    * Sets the PID controller gains, causing the builder to generate a ChassisControllerPID. Uses the
    * turn controller's gains for the angle controller's gains.
    *
@@ -276,6 +293,7 @@ class ChassisControllerBuilder {
   bool sensorsSetByUser{false}; // Used so motors don't overwrite sensors set manually
   std::shared_ptr<ContinuousRotarySensor> leftSensor;
   std::shared_ptr<ContinuousRotarySensor> rightSensor;
+  std::shared_ptr<ContinuousRotarySensor> middleSensor{nullptr};
 
   bool hasGains{false}; // Whether gains were passed, no gains means CCI
   IterativePosPIDController::Gains distanceGains;

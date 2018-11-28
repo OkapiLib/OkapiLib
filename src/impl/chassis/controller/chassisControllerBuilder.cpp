@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
+#include "okapi/api/odometry/threeEncoderOdometry.hpp"
 #include <stdexcept>
 
 namespace okapi {
@@ -92,6 +93,16 @@ ChassisControllerBuilder::withSensors(const std::shared_ptr<ContinuousRotarySens
   sensorsSetByUser = true;
   leftSensor = ileft;
   rightSensor = iright;
+  return *this;
+}
+
+ChassisControllerBuilder &ChassisControllerBuilder::withMiddleEncoder(const ADIEncoder &imiddle) {
+  return withMiddleEncoder(std::make_shared<ADIEncoder>(imiddle));
+}
+
+ChassisControllerBuilder &ChassisControllerBuilder::withMiddleEncoder(
+  const std::shared_ptr<ContinuousRotarySensor> &imiddle) {
+  middleSensor = imiddle;
   return *this;
 }
 
@@ -230,8 +241,12 @@ std::shared_ptr<OdomChassisControllerPID> ChassisControllerBuilder::buildOCCPID(
     auto model = makeSkidSteerModel();
 
     if (odometry == nullptr) {
-      odometry =
-        std::make_unique<Odometry>(model, scales, TimeUtilFactory::create(), controllerLogger);
+      if (middleSensor == nullptr) {
+        odometry =
+          std::make_unique<Odometry>(model, scales, TimeUtilFactory::create(), controllerLogger);
+      } else {
+        odometry = std::make_unique<ThreeEncoderOdometry>(model, scales, TimeUtilFactory::create());
+      }
     }
 
     auto out = std::make_shared<OdomChassisControllerPID>(
@@ -265,8 +280,12 @@ std::shared_ptr<OdomChassisControllerIntegrated> ChassisControllerBuilder::build
     auto model = makeSkidSteerModel();
 
     if (odometry == nullptr) {
-      odometry =
-        std::make_unique<Odometry>(model, scales, TimeUtilFactory::create(), controllerLogger);
+      if (middleSensor == nullptr) {
+        odometry =
+          std::make_unique<Odometry>(model, scales, TimeUtilFactory::create(), controllerLogger);
+      } else {
+        odometry = std::make_unique<ThreeEncoderOdometry>(model, scales, TimeUtilFactory::create());
+      }
     }
 
     auto out = std::make_shared<OdomChassisControllerIntegrated>(
@@ -375,8 +394,23 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
 }
 
 std::shared_ptr<SkidSteerModel> ChassisControllerBuilder::makeSkidSteerModel() {
-  return std::make_shared<SkidSteerModel>(
-    skidSteerMotors.left, skidSteerMotors.right, leftSensor, rightSensor, maxVelocity, maxVoltage);
+  if (middleSensor == nullptr) {
+    return std::make_shared<SkidSteerModel>(skidSteerMotors.left,
+                                            skidSteerMotors.right,
+                                            leftSensor,
+                                            rightSensor,
+                                            maxVelocity,
+                                            maxVoltage);
+
+  } else {
+    return std::make_shared<ThreeEncoderSkidSteerModel>(skidSteerMotors.left,
+                                                        skidSteerMotors.right,
+                                                        leftSensor,
+                                                        middleSensor,
+                                                        rightSensor,
+                                                        maxVelocity,
+                                                        maxVoltage);
+  }
 }
 
 std::shared_ptr<XDriveModel> ChassisControllerBuilder::makeXDriveModel() {
