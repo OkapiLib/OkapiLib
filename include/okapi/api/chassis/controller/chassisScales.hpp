@@ -32,15 +32,16 @@ class ChassisScales {
    *
    *                             Wheel diameter
    *
-   *                              +-+
-   *                              | |
-   *                              v v
-   *
-   *                     +--->    ===             ===
-   *                     |         +               +
-   *                     |        ++---------------++
-   *                     |        |                 |
+   *                              +-+      Center of rotation
+   *                              | |      |
+   *                              v v      +----------+ Distance to middle wheel
+   *                                       |          | from center of rotation 
+   *                     +--->    ===      |      === | 
+   *                     |         +       v       +  | 
+   *                     |        ++---------------++ |
+   *                     |        |                 | v
    *    Wheelbase Width  |        |                 |
+   *                     |        |        x        |+|  <-- Middle wheel
    *                     |        |                 |
    *                     |        |                 |
    *                     |        ++---------------++
@@ -49,7 +50,7 @@ class ChassisScales {
    *
    *
    * @param  iwheelbase {wheel diameter, wheelbase width} or {wheel diameter, wheelbase width,
-   * middle wheel diameter}
+   * length to middle wheel, middle wheel diameter}
    * @param itpr The ticks per revolution of the encoders.
    * @param ilogger The logger this instance will log to.
    */
