@@ -38,7 +38,7 @@ TEST_F(ChassisScalesTest, TestMiddleScaleWithTwoMeasurements) {
 }
 
 TEST_F(ChassisScalesTest, TestMiddleScaleWithThreeMeasurements) {
-  ChassisScales scales({4_in, 11.5_in, 5_in}, imev5GreenTPR);
+  ChassisScales scales({4_in, 11.5_in, 11.5_in, 5_in}, imev5GreenTPR);
   EXPECT_FLOAT_EQ(scales.middleWheelDiameter.convert(inch), 5);
   EXPECT_NE(scales.middle, scales.straight);
 }
