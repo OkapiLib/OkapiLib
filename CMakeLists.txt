@@ -204,7 +204,7 @@ add_executable(OkapiLibV5
         test/odomChassisControllerTests.cpp
         test/asyncWrapperTests.cpp
         test/offsettableControllerInputTests.cpp
-        test/asyncPosPIDControllerTests.cpp)
+        test/asyncPosPIDControllerTests.cpp test/threeEncoderOdometryTests.cpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)
