@@ -32,6 +32,7 @@ void ThreeEncoderOdometry::step() {
     const auto Vl = Sl / deltaT;
     const auto Vr = Sr / deltaT;
     const auto b = chassisScales.wheelbaseWidth;
+    const auto mB = chassisScales.middleWheelDistance;
     auto turnRadius = (b * (Vr + Vl)) / (2 * (Vr - Vl));
 
     QLength deltaX;
@@ -51,7 +52,7 @@ void ThreeEncoderOdometry::step() {
 
     const double sinTheta = std::sin((state.theta + deltaTheta).convert(radian));
     const double cosTheta = std::cos((state.theta + deltaTheta).convert(radian));
-    const auto deltaMiddle = Sm - ((deltaTheta / 360_deg) * 1_pi * b);
+    const auto deltaMiddle = Sm - ((deltaTheta / 360_deg) * 1_pi * mB);
     deltaX = turnRadius * sinTheta + deltaMiddle * cosTheta;
     deltaY = turnRadius * cosTheta + deltaMiddle * sinTheta;
 
