@@ -529,4 +529,11 @@ void assertAsyncWrapperScalesControllerSetTargets(AsyncWrapper<double, double> &
   controller.controllerSet(0.5);
   EXPECT_DOUBLE_EQ(controller.getTarget(), 50);
 }
+
+void assertOdomStateEquals(Odometry *odom, QLength x, QLength y, QAngle theta) {
+  const auto error = 1e-4;
+  EXPECT_NEAR(odom->getState().x.convert(meter), x.convert(meter), error);
+  EXPECT_NEAR(odom->getState().y.convert(meter), y.convert(meter), error);
+  EXPECT_NEAR(odom->getState().theta.convert(degree), theta.convert(degree), error);
+}
 } // namespace okapi

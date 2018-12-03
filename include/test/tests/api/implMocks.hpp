@@ -19,6 +19,7 @@
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/timeUtil.hpp"
+#include "okapi/api/odometry/odometry.hpp"
 #include <atomic>
 #include <chrono>
 #include <gtest/gtest.h>
@@ -344,4 +345,5 @@ void assertIterativeControllerScalesControllerSetTargets(
 
 void assertAsyncWrapperScalesControllerSetTargets(AsyncWrapper<double, double> &controller);
 
+void assertOdomStateEquals(Odometry *odom, QLength x, QLength y, QAngle theta);
 } // namespace okapi

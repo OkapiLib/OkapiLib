@@ -32,13 +32,6 @@ class MockModel : public SkidSteerModel {
   std::int32_t rightEnc{0};
 };
 
-void assertOdomStateEquals(Odometry *odom, QLength x, QLength y, QAngle theta) {
-  const auto error = 1e-4;
-  EXPECT_NEAR(odom->getState().x.convert(meter), x.convert(meter), error);
-  EXPECT_NEAR(odom->getState().y.convert(meter), y.convert(meter), error);
-  EXPECT_NEAR(odom->getState().theta.convert(degree), theta.convert(degree), error);
-}
-
 class OdometryTest : public ::testing::Test {
   protected:
   void SetUp() override {
