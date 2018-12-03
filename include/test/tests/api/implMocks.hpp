@@ -16,10 +16,10 @@
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
+#include "okapi/api/odometry/odometry.hpp"
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/timeUtil.hpp"
-#include "okapi/api/odometry/odometry.hpp"
 #include <atomic>
 #include <chrono>
 #include <gtest/gtest.h>

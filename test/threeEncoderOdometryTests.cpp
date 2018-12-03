@@ -15,107 +15,108 @@
 using namespace okapi;
 
 class MockThreeEncoderModel : public ThreeEncoderSkidSteerModel {
-public:
-    MockThreeEncoderModel()
-            : ThreeEncoderSkidSteerModel(std::make_shared<MockMotor>(),
-                                         std::make_shared<MockMotor>(),
-                                         std::make_shared<MockMotor>()->getEncoder()) {
-    }
+  public:
+  MockThreeEncoderModel()
+    : ThreeEncoderSkidSteerModel(std::make_shared<MockMotor>(),
+                                 std::make_shared<MockMotor>(),
+                                 std::make_shared<MockMotor>()->getEncoder()) {
+  }
 
-    std::valarray<std::int32_t> getSensorVals() const override {
-        return std::valarray<std::int32_t>{leftEnc, rightEnc, middleEnc};
-    }
+  std::valarray<std::int32_t> getSensorVals() const override {
+    return std::valarray<std::int32_t>{leftEnc, rightEnc, middleEnc};
+  }
 
-    void setSensorVals(std::int32_t left, std::int32_t right, std::int32_t middle) {
-        leftEnc = left;
-        rightEnc = right;
-        middleEnc = middle;
-    }
+  void setSensorVals(std::int32_t left, std::int32_t right, std::int32_t middle) {
+    leftEnc = left;
+    rightEnc = right;
+    middleEnc = middle;
+  }
 
-    std::int32_t leftEnc{0};
-    std::int32_t rightEnc{0};
-    std::int32_t middleEnc{0};
+  std::int32_t leftEnc{0};
+  std::int32_t rightEnc{0};
+  std::int32_t middleEnc{0};
 };
 
 class ThreeEncoderOdometryTest : public ::testing::Test {
-protected:
-    void SetUp() override {
-        model = new MockThreeEncoderModel();
-        odom = new ThreeEncoderOdometry(std::shared_ptr<MockThreeEncoderModel>(model),
-                                        ChassisScales({{wheelDiam, wheelbaseWidth, wheelbaseWidth, wheelDiam}, 360}),
-                                        createConstantTimeUtil(10_ms));
-    }
+  protected:
+  void SetUp() override {
+    model = new MockThreeEncoderModel();
+    odom = new ThreeEncoderOdometry(
+      std::shared_ptr<MockThreeEncoderModel>(model),
+      ChassisScales({{wheelDiam, wheelbaseWidth, wheelbaseWidth, wheelDiam}, 360}),
+      createConstantTimeUtil(10_ms));
+  }
 
-    void TearDown() override {
-        delete odom;
-    }
+  void TearDown() override {
+    delete odom;
+  }
 
-    QLength calculateDistanceTraveled(int ticks) {
-        return (ticks / 360.0) * 1_pi * wheelDiam;
-    }
+  QLength calculateDistanceTraveled(int ticks) {
+    return (ticks / 360.0) * 1_pi * wheelDiam;
+  }
 
-    QLength wheelDiam = 4_in;
-    QLength wheelbaseWidth = 10_in;
+  QLength wheelDiam = 4_in;
+  QLength wheelbaseWidth = 10_in;
 
-    MockThreeEncoderModel *model;
-    ThreeEncoderOdometry *odom;
+  MockThreeEncoderModel *model;
+  ThreeEncoderOdometry *odom;
 };
 
 TEST_F(ThreeEncoderOdometryTest, NoSensorMovementDoesNotAffectState) {
-    assertOdomStateEquals(odom, 0_m, 0_m, 0_deg);
-    odom->step();
-    assertOdomStateEquals(odom, 0_m, 0_m, 0_deg);
+  assertOdomStateEquals(odom, 0_m, 0_m, 0_deg);
+  odom->step();
+  assertOdomStateEquals(odom, 0_m, 0_m, 0_deg);
 }
 
 TEST_F(ThreeEncoderOdometryTest, MoveForwardTest) {
-    model->setSensorVals(10, 10, 0);
-    odom->step();
-    assertOdomStateEquals(odom, 0_m, calculateDistanceTraveled(10), 0_deg);
+  model->setSensorVals(10, 10, 0);
+  odom->step();
+  assertOdomStateEquals(odom, 0_m, calculateDistanceTraveled(10), 0_deg);
 
-    model->setSensorVals(20, 20, 0);
-    odom->step();
-    assertOdomStateEquals(odom, 0_m, calculateDistanceTraveled(20), 0_deg);
+  model->setSensorVals(20, 20, 0);
+  odom->step();
+  assertOdomStateEquals(odom, 0_m, calculateDistanceTraveled(20), 0_deg);
 
-    model->setSensorVals(10, 10, 0);
-    odom->step();
-    assertOdomStateEquals(odom, 0_m, calculateDistanceTraveled(10), 0_deg);
+  model->setSensorVals(10, 10, 0);
+  odom->step();
+  assertOdomStateEquals(odom, 0_m, calculateDistanceTraveled(10), 0_deg);
 }
 
 TEST_F(ThreeEncoderOdometryTest, TurnInPlaceTest) {
-    model->setSensorVals(10, -10, -10);
-    odom->step();
-    assertOdomStateEquals(odom, 0_m, 0_m, -4_deg);
+  model->setSensorVals(10, -10, -10);
+  odom->step();
+  assertOdomStateEquals(odom, 0_m, 0_m, -4_deg);
 
-    model->setSensorVals(0, 0, 0);
-    odom->step();
-    assertOdomStateEquals(odom, 0_m, 0_m, 0_deg);
+  model->setSensorVals(0, 0, 0);
+  odom->step();
+  assertOdomStateEquals(odom, 0_m, 0_m, 0_deg);
 
-    model->setSensorVals(-10, 10, 10);
-    odom->step();
-    assertOdomStateEquals(odom, 0_m, 0_m, 4_deg);
+  model->setSensorVals(-10, 10, 10);
+  odom->step();
+  assertOdomStateEquals(odom, 0_m, 0_m, 4_deg);
 }
 
 TEST_F(ThreeEncoderOdometryTest, TurnAndDriveTest) {
-    model->setSensorVals(90, -90, -90);
-    odom->step();
-    assertOdomStateEquals(odom, 0_m, 0_m, -36_deg);
+  model->setSensorVals(90, -90, -90);
+  odom->step();
+  assertOdomStateEquals(odom, 0_m, 0_m, -36_deg);
 
-    model->setSensorVals(180, 0, -90);
-    odom->step();
-    assertOdomStateEquals(odom,
-                          calculateDistanceTraveled(90) * std::sin((-36_deg).convert(radian)),
-                          calculateDistanceTraveled(90) * std::cos((-36_deg).convert(radian)),
-                          -36_deg);
+  model->setSensorVals(180, 0, -90);
+  odom->step();
+  assertOdomStateEquals(odom,
+                        calculateDistanceTraveled(90) * std::sin((-36_deg).convert(radian)),
+                        calculateDistanceTraveled(90) * std::cos((-36_deg).convert(radian)),
+                        -36_deg);
 }
 
 TEST_F(ThreeEncoderOdometryTest, StrafeTest) {
-    model->setSensorVals(0, 0, 10);
-    odom->step();
-    assertOdomStateEquals(odom, calculateDistanceTraveled(10), 0_in, 0_deg);
+  model->setSensorVals(0, 0, 10);
+  odom->step();
+  assertOdomStateEquals(odom, calculateDistanceTraveled(10), 0_in, 0_deg);
 }
 
 TEST_F(ThreeEncoderOdometryTest, DriveForwardWhileStrafingTest) {
-    model->setSensorVals(10, 10, 10);
-    odom->step();
-    assertOdomStateEquals(odom, calculateDistanceTraveled(10), calculateDistanceTraveled(10), 0_deg);
+  model->setSensorVals(10, 10, 10);
+  odom->step();
+  assertOdomStateEquals(odom, calculateDistanceTraveled(10), calculateDistanceTraveled(10), 0_deg);
 }
