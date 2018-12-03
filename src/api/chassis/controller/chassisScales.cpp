@@ -19,7 +19,13 @@ ChassisScales::ChassisScales(const std::initializer_list<QLength> &iwheelbase,
   wheelbaseWidth = vec.at(1);
 
   if (vec.size() >= 3) {
-    middleWheelDiameter = vec.at(2);
+      middleWheelDistance = vec.at(2);
+  } else {
+      middleWheelDistance = 0_m;
+  }
+
+  if (vec.size() >= 4) {
+    middleWheelDiameter = vec.at(3);
   } else {
     middleWheelDiameter = wheelDiameter;
   }
@@ -35,12 +41,17 @@ ChassisScales::ChassisScales(const std::initializer_list<double> &iscales,
   : tpr(itpr) {
   validateInput(iscales.size(), ilogger);
 
+  if (iscales.size() == 3) {
+      ilogger->error("Middle wheel distance and scale must both be supplied, not just one.");
+      throw std::invalid_argument("Middle wheel distance and scale must both be supplied, not just one.");
+  }
+
   std::vector<double> vec(iscales);
   straight = vec.at(0);
   turn = vec.at(1);
 
-  if (vec.size() >= 3) {
-    middle = vec.at(2);
+  if (vec.size() >= 4) {
+    middle = vec.at(3);
   } else {
     middle = straight;
   }
@@ -48,6 +59,12 @@ ChassisScales::ChassisScales(const std::initializer_list<double> &iscales,
   wheelDiameter = (tpr / (straight * 1_pi)) * meter;
   wheelbaseWidth = turn * wheelDiameter;
   middleWheelDiameter = (tpr / (middle * 1_pi)) * meter;
+
+    if (vec.size() >= 4) {
+        middleWheelDistance = vec.at(2) * meter;
+    } else {
+        middleWheelDistance = 0_m;
+    }
 }
 
 void ChassisScales::validateInput(const std::size_t inputSize,

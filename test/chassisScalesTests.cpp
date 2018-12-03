@@ -51,3 +51,15 @@ TEST_F(ChassisScalesTest, TestDifferentTPR) {
   EXPECT_FLOAT_EQ(scalesGreen.turn, scalesBlue.turn);
   EXPECT_FLOAT_EQ(scalesGreen.middle / 3.0, scalesBlue.middle);
 }
+
+TEST_F(ChassisScalesTest, TestLengthToMiddleWheel) {
+  ChassisScales scales({1_in, 2_in, 3_in}, 360);
+  EXPECT_FLOAT_EQ(scales.middleWheelDistance.convert(inch), 3);
+  EXPECT_FLOAT_EQ(scales.straight, scales.middle);
+}
+
+TEST_F(ChassisScalesTest, TestMiddleWheelScaleWithLength) {
+  ChassisScales scales({1_in, 2_in, 3_in, 2_in}, 360);
+  EXPECT_FLOAT_EQ(scales.middleWheelDistance.convert(inch), 3);
+  EXPECT_FLOAT_EQ(scales.middle, scales.straight / 2.0);
+}

@@ -34,10 +34,10 @@ class ChassisScales {
    *
    *                              +-+      Center of rotation
    *                              | |      |
-   *                              v v      +----------+ Distance to middle wheel
-   *                                       |          | from center of rotation 
-   *                     +--->    ===      |      === | 
-   *                     |         +       v       +  | 
+   *                              v v      +----------+ Length to middle wheel
+   *                                       |          | from center of rotation
+   *                     +--->    ===      |      === |
+   *                     |         +       v       +  |
    *                     |        ++---------------++ |
    *                     |        |                 | v
    *    Wheelbase Width  |        |                 |
@@ -66,7 +66,7 @@ class ChassisScales {
    * Read the clawbot programming tutorial for more information behind the meaning of these two
    * numbers.
    *
-   * @param  iscales {straight scale, turn scale} or {straight scale, turn scale, middle scale}
+   * @param  iscales {straight scale, turn scale} or {straight scale, turn scale, length to middle wheel in meters, middle scale}
    * @param itpr The ticks per revolution of the encoders.
    * @param ilogger The logger this instance will log to.
    */
@@ -76,6 +76,7 @@ class ChassisScales {
 
   QLength wheelDiameter;
   QLength wheelbaseWidth;
+  QLength middleWheelDistance;
   QLength middleWheelDiameter;
   double straight;
   double turn;
