@@ -96,8 +96,6 @@ OdomState Odometry::getState() const {
 
 void Odometry::setState(const OdomState &istate) {
   state = istate;
-  lastTicks[0] = 0;
-  lastTicks[1] = 0;
 }
 
 void Odometry::stopLooping() {

@@ -11,10 +11,20 @@
 namespace okapi {
 ThreeEncoderOdometry::ThreeEncoderOdometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
                                            const ChassisScales &ichassisScales,
-                                           const TimeUtil &itimeUtil)
-  : Odometry(imodel, ichassisScales, itimeUtil), model(imodel), rate(itimeUtil.getRate()) {
+                                           const TimeUtil &itimeUtil,
+                                           const std::shared_ptr<Logger> &ilogger)
+  : Odometry(imodel, ichassisScales, itimeUtil, ilogger),
+    logger(ilogger),
+    model(imodel),
+    rate(itimeUtil.getRate()) {
   if (ichassisScales.middle == 0) {
+    logger->error("ThreeEncoderOdometry: Middle scale cannot be zero.");
     throw std::invalid_argument("ThreeEncoderOdometry: Middle scale cannot be zero.");
+  }
+
+  if (ichassisScales.middleWheelDistance == 0_m) {
+    logger->error("ThreeEncoderOdometry: Middle wheel distance cannot be zero.");
+    throw std::invalid_argument("ThreeEncoderOdometry: Middle wheel distance cannot be zero.");
   }
 }
 

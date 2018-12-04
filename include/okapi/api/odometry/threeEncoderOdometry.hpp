@@ -25,7 +25,8 @@ class ThreeEncoderOdometry : public Odometry {
    */
   ThreeEncoderOdometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
                        const ChassisScales &ichassisScales,
-                       const TimeUtil &itimeUtil);
+                       const TimeUtil &itimeUtil,
+                       const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Do odometry math in an infinite loop.
@@ -41,6 +42,7 @@ class ThreeEncoderOdometry : public Odometry {
   static void trampoline(void *context);
 
   protected:
+  std::shared_ptr<Logger> logger;
   std::shared_ptr<ReadOnlyChassisModel> model;
   std::unique_ptr<AbstractRate> rate;
   std::valarray<std::int32_t> newTicks{0, 0, 0}, tickDiff{0, 0, 0}, lastTicks{0, 0, 0};
