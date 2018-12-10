@@ -99,7 +99,7 @@ void IterativeVelPIDController::setTarget(const double itarget) {
 }
 
 void IterativeVelPIDController::controllerSet(const double ivalue) {
-  target = remapRange(ivalue, -1, 1, outputMin, outputMax);
+  target = remapRange(ivalue, -1, 1, controllerSetTargetMin, controllerSetTargetMax);
 }
 
 double IterativeVelPIDController::getTarget() {
@@ -145,6 +145,12 @@ void IterativeVelPIDController::flipDisable(const bool iisDisabled) {
 
 bool IterativeVelPIDController::isDisabled() const {
   return controllerIsDisabled;
+}
+
+void IterativeVelPIDController::setControllerSetTargetLimits(const double itargetMax,
+                                                             const double itargetMin) {
+  controllerSetTargetMax = itargetMax;
+  controllerSetTargetMin = itargetMin;
 }
 
 void IterativeVelPIDController::setTicksPerRev(const double tpr) {

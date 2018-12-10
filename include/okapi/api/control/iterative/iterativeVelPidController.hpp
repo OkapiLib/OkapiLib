@@ -179,6 +179,15 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
   virtual void setGains(double ikP, double ikD, double ikF, double ikSF);
 
   /**
+   * Sets the (soft) limits for the target range that controllerSet() scales into. The target
+   * computed by controllerSet() is scaled from [-1, 1] into the range [-itargetMin, itargetMax].
+   *
+   * @param itargetMax The new max target for controllerSet().
+   * @param itargetMin The new min target for controllerSet().
+   */
+  virtual void setControllerSetTargetLimits(double itargetMax, double itargetMin);
+
+  /**
    * Sets the number of encoder ticks per revolution. Default is 1800.
    *
    * @param tpr number of measured units per revolution
@@ -201,6 +210,8 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
   double output{0};
   double outputMax{1};
   double outputMin{-1};
+  double controllerSetTargetMax{1};
+  double controllerSetTargetMin{-1};
   bool controllerIsDisabled{false};
 
   std::unique_ptr<VelMath> velMath;
