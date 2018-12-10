@@ -132,6 +132,7 @@ std::shared_ptr<AsyncVelPIDController> AsyncVelControllerBuilder::buildAVPC() {
                                                      pair.ratio,
                                                      std::move(derivativeFilter));
   out->startThread();
+  out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
   return out;
 }
 } // namespace okapi

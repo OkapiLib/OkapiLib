@@ -53,7 +53,7 @@ class CrossplatformThread {
   }
 #else
   void notifyWhenDeleting(CrossplatformThread *parent) {
-    pros::task_notify_when_deleting(parent->thread, thread, 1, pros::E_NOTIFY_ACTION_INCR);
+    pros::c::task_notify_when_deleting(parent->thread, thread, 1, pros::E_NOTIFY_ACTION_INCR);
   }
 #endif
 
@@ -61,8 +61,8 @@ class CrossplatformThread {
   void notifyWhenDeletingRaw(CROSSPLATFORM_THREAD_T *) {
   }
 #else
-  void notifyWhenDeletingRaw(CROSSPLATFORM_THREAD_T *parent) {
-    task_notify_when_deleting(parent, thread, 1, pros::E_NOTIFY_ACTION_INCR);
+  void notifyWhenDeletingRaw(CROSSPLATFORM_THREAD_T parent) {
+    pros::c::task_notify_when_deleting(parent, thread, 1, pros::E_NOTIFY_ACTION_INCR);
   }
 #endif
 
@@ -76,6 +76,5 @@ class CrossplatformThread {
   }
 #endif
 
-  protected:
   CROSSPLATFORM_THREAD_T thread;
 };

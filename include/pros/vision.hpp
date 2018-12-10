@@ -51,6 +51,36 @@ class Vision {
 	std::int32_t clear_led(void) const;
 
 	/**
+	 * Creates a signature from the vision sensor utility
+	 *
+	 * \param id
+	 *        The signature ID
+	 * \param u_min
+	 *        Minimum value on U axis
+	 * \param u_max
+	 *        Maximum value on U axis
+	 * \param u_mean
+	 *        Mean value on U axis
+	 * \param v_min
+	 *        Minimum value on V axis
+	 * \param v_max
+	 *        Maximum value on V axis
+	 * \param v_mean
+	 *        Mean value on V axis
+	 * \param rgb
+	 *        Scale factor
+	 * \param type
+	 *        Signature type
+	 *
+	 * \return A vision_signature_s_t that can be set using Vision::set_signature
+	 */
+	static vision_signature_s_t signature_from_utility(const std::int32_t id, const std::int32_t u_min,
+	                                                   const std::int32_t u_max, const std::int32_t u_mean,
+	                                                   const std::int32_t v_min, const std::int32_t v_max,
+	                                                   const std::int32_t v_mean, const float range,
+	                                                   const std::int32_t type);
+
+	/**
 	 * Creates a color code that represents a combination of the given signature
 	 * IDs.
 	 *
@@ -135,13 +165,15 @@ class Vision {
 	vision_object_s_t get_by_code(const std::uint32_t size_id, const vision_color_code_t color_code) const;
 
 	/**
-	 * Gets the exposure parameter of the Vision Sensor.
+	 * Gets the exposure parameter of the Vision Sensor. See
+	 * https://pros.cs.purdue.edu/v5/tutorials/topical/vision.html#exposure-setting
+	 * for more detials.
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
 	 * EACCES - Another resource is currently trying to access the port.
 	 *
-	 * \return The current exposure percentage parameter from [0,100],
+	 * \return The current exposure parameter from [0,150],
 	 * PROS_ERR if an error occurred
 	 */
 	std::int32_t get_exposure(void) const;
@@ -286,19 +318,21 @@ class Vision {
 	std::int32_t set_auto_white_balance(const std::uint8_t enable) const;
 
 	/**
-	 * Sets the exposure parameter of the Vision Sensor.
+	 * Sets the exposure parameter of the Vision Sensor. See
+	 * https://pros.cs.purdue.edu/v5/tutorials/topical/vision.html#exposure-setting
+	 * for more detials.
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
 	 * EACCES - Another resource is currently trying to access the port.
 	 *
 	 * \param percent
-	 *        The new exposure percentage from [0,100]
+	 *        The new exposure setting from [0,150].
 	 *
 	 * \return 1 if the operation was successful or PROS_ERR if the operation
 	 * failed, setting errno.
 	 */
-	std::int32_t set_exposure(const std::uint8_t percent) const;
+	std::int32_t set_exposure(const std::uint8_t exposure) const;
 
 	/**
 	 * Sets the vision sensor LED color, overriding the automatic behavior.
@@ -363,6 +397,22 @@ class Vision {
 	 * failed, setting errno.
 	 */
 	std::int32_t set_zero_point(vision_zero_e_t zero_point) const;
+
+	/**
+	 * Sets the Wi-Fi mode of the Vision sensor
+	 *
+	 * This functions uses the following values of errno when an error state is
+	 * reached:
+	 * EINVAL - The given port is not within the range of V5 ports (1-21)
+	 * EACCESS - Anothe resources is currently trying to access the port
+	 *
+	 * \param enable
+	 *        Disable Wi-Fi on the Vision sensor if 0, enable otherwise (e.g. 1)
+	 *
+	 * \return 1 if the operation was successful or PROS_ERR if the operation
+	 * failed, setting errno.
+	 */
+	std::int32_t set_wifi_mode(const std::uint8_t enable) const;
 
 	private:
 	std::uint8_t _port;

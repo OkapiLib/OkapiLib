@@ -180,7 +180,7 @@ std::string AsyncLinearMotionProfileController::getTarget() const {
 void AsyncLinearMotionProfileController::loop() {
   auto rate = timeUtil.getRate();
 
-  while (!dtorCalled.load(std::memory_order_acquire)) {
+  while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
     if (isRunning.load(std::memory_order_acquire) && !isDisabled()) {
       logger->info("AsyncLinearMotionProfileController: Running with path: " + currentPath);
       auto path = paths.find(currentPath);
@@ -295,6 +295,10 @@ void AsyncLinearMotionProfileController::startThread() {
   if (!task) {
     task = new CrossplatformThread(trampoline, this);
   }
+}
+
+CrossplatformThread *AsyncLinearMotionProfileController::getThread() const {
+  return task;
 }
 
 void AsyncLinearMotionProfileController::tarePosition() {

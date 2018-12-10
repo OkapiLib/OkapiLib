@@ -221,6 +221,15 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
     }
   }
 
+  /**
+   * Returns the underlying thread handle.
+   *
+   * @return The underlying thread handle.
+   */
+  CrossplatformThread *getThread() const {
+    return task;
+  }
+
   protected:
   Logger *logger;
   std::shared_ptr<ControllerInput<Input>> input;
@@ -241,7 +250,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   void loop() {
-    while (!dtorCalled.load(std::memory_order_acquire)) {
+    while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
       if (!isDisabled()) {
         output->controllerSet(controller->step(input->controllerGet()));
       }

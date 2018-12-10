@@ -133,6 +133,34 @@ namespace c {
 int32_t vision_clear_led(uint8_t port);
 
 /**
+ * Creates a signature from the vision sensor utility
+ *
+ * \param id
+ *        The signature ID
+ * \param u_min
+ *        Minimum value on U axis
+ * \param u_max
+ *        Maximum value on U axis
+ * \param u_mean
+ *        Mean value on U axis
+ * \param v_min
+ *        Minimum value on V axis
+ * \param v_max
+ *        Maximum value on V axis
+ * \param v_mean
+ *        Mean value on V axis
+ * \param range
+ *        Scale factor
+ * \param type
+ *        Signature type
+ *
+ * \return A vision_signature_s_t that can be set using vision_set_signature
+ */
+vision_signature_s_t vision_signature_from_utility(const int32_t id, const int32_t u_min, const int32_t u_max,
+                                                   const int32_t u_mean, const int32_t v_min, const int32_t v_max,
+                                                   const int32_t v_mean, const float range, const int32_t type);
+
+/**
  * Creates a color code that represents a combination of the given signature
  * IDs. If fewer than 5 signatures are to be a part of the color code, pass 0
  * for the additional function parameters.
@@ -227,7 +255,9 @@ vision_object_s_t vision_get_by_sig(uint8_t port, const uint32_t size_id, const 
 vision_object_s_t vision_get_by_code(uint8_t port, const uint32_t size_id, const vision_color_code_t color_code);
 
 /**
- * Gets the exposure parameter of the Vision Sensor.
+ * Gets the exposure parameter of the Vision Sensor. See
+ * https://pros.cs.purdue.edu/v5/tutorials/topical/vision.html#exposure-setting
+ * for more detials.
  *
  * This function uses the following values of errno when an error state is
  * reached:
@@ -237,8 +267,8 @@ vision_object_s_t vision_get_by_code(uint8_t port, const uint32_t size_id, const
  * \param port
  *        The V5 port number from 1-21
  *
- * \return The current exposure percentage parameter from [0,100], PROS_ERR if
- * an error occurred
+ * \return The current exposure setting from [0,150], PROS_ERR if an error
+ * occurred
  */
 int32_t vision_get_exposure(uint8_t port);
 
@@ -421,7 +451,9 @@ int32_t vision_set_signature(uint8_t port, const uint8_t signature_id, vision_si
 int32_t vision_set_auto_white_balance(uint8_t port, const uint8_t enable);
 
 /**
- * Sets the exposure parameter of the Vision Sensor.
+ * Sets the exposure parameter of the Vision Sensor. See
+ * https://pros.cs.purdue.edu/v5/tutorials/topical/vision.html#exposure-setting
+ * for more detials.
  *
  * This function uses the following values of errno when an error state is
  * reached:
@@ -431,12 +463,12 @@ int32_t vision_set_auto_white_balance(uint8_t port, const uint8_t enable);
  * \param port
  *        The V5 port number from 1-21
  * \param percent
- *        The new exposure percentage from [0,100]
+ *        The new exposure setting from [0,150]
  *
  * \return 1 if the operation was successful or PROS_ERR if the operation
  * failed, setting errno.
  */
-int32_t vision_set_exposure(uint8_t port, const uint8_t percent);
+int32_t vision_set_exposure(uint8_t port, const uint8_t exposure);
 
 /**
  * Sets the vision sensor LED color, overriding the automatic behavior.
@@ -495,6 +527,24 @@ int32_t vision_set_white_balance(uint8_t port, const int32_t rgb);
  * failed, setting errno.
  */
 int32_t vision_set_zero_point(uint8_t port, vision_zero_e_t zero_point);
+
+/**
+ * Sets the Wi-Fi mode of the Vision sensor
+ *
+ * This functions uses the following values of errno when an error state is
+ * reached:
+ * EINVAL - The given port is not within the range of V5 ports (1-21)
+ * EACCESS - Anothe resources is currently trying to access the port
+ *
+ * \param port
+ *        The V5 port number from 1-21
+ * \param enable
+ *        Disable Wi-Fi on the Vision sensor if 0, enable otherwise (e.g. 1)
+ *
+ * \return 1 if the operation was successful or PROS_ERR if the operation
+ * failed, setting errno.
+ */
+int32_t vision_set_wifi_mode(uint8_t port, const uint8_t enable);
 
 #ifdef __cplusplus
 }  // namespace c

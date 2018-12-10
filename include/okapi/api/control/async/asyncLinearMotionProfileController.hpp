@@ -181,6 +181,13 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    */
   void startThread();
 
+  /**
+   * Returns the underlying thread handle.
+   *
+   * @return The underlying thread handle.
+   */
+  CrossplatformThread *getThread() const;
+
   protected:
   struct TrajectoryPair {
     Segment *segment;
