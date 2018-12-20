@@ -50,7 +50,7 @@ void IterativePosPIDController::setTarget(const double itarget) {
 }
 
 void IterativePosPIDController::controllerSet(const double ivalue) {
-  target = remapRange(ivalue, -1, 1, outputMin, outputMax);
+  target = remapRange(ivalue, -1, 1, controllerSetTargetMin, controllerSetTargetMax);
 }
 
 double IterativePosPIDController::getTarget() {
@@ -98,6 +98,18 @@ void IterativePosPIDController::setOutputLimits(double imax, double imin) {
   outputMin = imin;
 
   output = std::clamp(output, outputMin, outputMax);
+}
+
+void IterativePosPIDController::setControllerSetTargetLimits(double itargetMax, double itargetMin) {
+  // Always use larger value as max
+  if (itargetMin > itargetMax) {
+    const double temp = itargetMax;
+    itargetMax = itargetMin;
+    itargetMin = temp;
+  }
+
+  controllerSetTargetMax = itargetMax;
+  controllerSetTargetMin = itargetMin;
 }
 
 void IterativePosPIDController::setIntegralLimits(double imax, double imin) {

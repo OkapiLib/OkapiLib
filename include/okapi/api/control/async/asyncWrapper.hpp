@@ -141,6 +141,17 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   /**
+   * Sets the (soft) limits for the target range that controllerSet() scales into. The target
+   * computed by controllerSet() is scaled into the range [-itargetMin, itargetMax].
+   *
+   * @param itargetMax The new max target for controllerSet().
+   * @param itargetMin The new min target for controllerSet().
+   */
+  void setControllerSetTargetLimits(double itargetMax, double itargetMin) {
+    controller->setControllerSetTargetLimits(itargetMax, itargetMin);
+  }
+
+  /**
    * Get the upper output bound.
    *
    * @return  the upper output bound
