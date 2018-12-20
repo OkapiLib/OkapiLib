@@ -59,6 +59,18 @@ void IterativeVelPIDController::setOutputLimits(double imax, double imin) {
   output = std::clamp(output, outputMin, outputMax);
 }
 
+void IterativeVelPIDController::setControllerSetTargetLimits(double itargetMax, double itargetMin) {
+  // Always use larger value as max
+  if (itargetMin > itargetMax) {
+    const double temp = itargetMax;
+    itargetMax = itargetMin;
+    itargetMin = temp;
+  }
+
+  controllerSetTargetMax = itargetMax;
+  controllerSetTargetMin = itargetMin;
+}
+
 QAngularSpeed IterativeVelPIDController::stepVel(const double inewReading) {
   return velMath->step(inewReading);
 }
@@ -145,12 +157,6 @@ void IterativeVelPIDController::flipDisable(const bool iisDisabled) {
 
 bool IterativeVelPIDController::isDisabled() const {
   return controllerIsDisabled;
-}
-
-void IterativeVelPIDController::setControllerSetTargetLimits(const double itargetMax,
-                                                             const double itargetMin) {
-  controllerSetTargetMax = itargetMax;
-  controllerSetTargetMin = itargetMin;
 }
 
 void IterativeVelPIDController::setTicksPerRev(const double tpr) {
