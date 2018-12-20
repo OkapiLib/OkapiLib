@@ -87,8 +87,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    *
    * @param ipathId A unique identifier for the path, previously passed to generatePath().
    * @param ibackwards Whether to follow the profile backwards.
+   * @param imirrored Whether to follow the profile mirrored.
    */
-  void setTarget(std::string ipathId, bool ibackwards);
+  void setTarget(std::string ipathId, bool ibackwards, bool imirrored = false);
 
   /**
    * Writes the value of the controller output. This method might be automatically called in another
@@ -115,8 +116,10 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    *
    * @param iwaypoints The waypoints to hit on the path.
    * @param ibackwards Whether to follow the profile backwards.
+   * @param imirrored Whether to follow the profile mirrored.
    */
-  void moveTo(std::initializer_list<Point> iwaypoints, bool ibackwards = false);
+  void
+  moveTo(std::initializer_list<Point> iwaypoints, bool ibackwards = false, bool imirrored = false);
 
   /**
    * Returns the last error of the controller. This implementation always returns zero since the
@@ -196,6 +199,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   std::string currentPath{""};
   std::atomic_bool isRunning{false};
   std::atomic_int direction{1};
+  std::atomic_bool mirrored{false};
   std::atomic_bool disabled{false};
   std::atomic_bool dtorCalled{false};
   CrossplatformThread *task{nullptr};
