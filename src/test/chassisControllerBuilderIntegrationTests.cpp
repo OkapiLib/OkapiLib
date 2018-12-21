@@ -100,9 +100,32 @@ static void testSensorsWork() {
   pros::delay(500);
 }
 
+static void testMotorGearsetsAreNotOverwritten() {
+  printf("Testing motor gearsets are not overwritten\n");
+  resetHardware();
+
+  // blue is not the correct gearset on purpose
+  auto drive = ChassisControllerBuilder()
+                 .withSensors({MOTOR_1_PORT}, {MOTOR_2_PORT})
+                 .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
+                 .withGearset(AbstractMotor::gearset::blue)
+                 .build();
+
+  test("Left motor gearset should equal blue",
+       TEST_BODY(
+         AssertThat, pros::c::motor_get_gearing(MOTOR_1_PORT), Equals(pros::E_MOTOR_GEARSET_06)));
+  test("Right motor gearset should equal blue",
+       TEST_BODY(
+         AssertThat, pros::c::motor_get_gearing(MOTOR_2_PORT), Equals(pros::E_MOTOR_GEARSET_06)));
+
+  resetHardware();
+  pros::delay(500);
+}
+
 void runChassisControllerBuilderIntegrationTests() {
   test_printf("Testing ChassisControllerBuilder");
   testForwardUsesCorrectMaximumVelocityForAGearset();
   testMaxVelWorksOutOfOrder();
   testSensorsWork();
+  testMotorGearsetsAreNotOverwritten();
 }
