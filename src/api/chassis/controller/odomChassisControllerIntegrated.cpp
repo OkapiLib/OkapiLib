@@ -36,29 +36,29 @@ void OdomChassisControllerIntegrated::driveToPoint(const QLength ix,
                                                    const QLength iy,
                                                    const bool ibackwards,
                                                    const QLength ioffset) {
-  DistanceAndAngle daa = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom->getState());
+  auto [length, angle] = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom->getState());
 
   if (ibackwards) {
-    daa.theta += 180_deg;
-    daa.length *= -1;
+    length *= -1;
+    angle += 180_deg;
   }
 
   logger->info("OdomChassisControllerIntegrated: Computed length of " +
-               std::to_string(daa.length.convert(meter)) + " meters and angle of " +
-               std::to_string(daa.theta.convert(degree)) + " degrees");
+               std::to_string(length.convert(meter)) + " meters and angle of " +
+               std::to_string(angle.convert(degree)) + " degrees");
 
-  if (daa.theta.abs() > turnThreshold) {
-    ChassisControllerIntegrated::turnAngle(daa.theta);
+  if (angle.abs() > turnThreshold) {
+    ChassisControllerIntegrated::turnAngle(angle);
   }
 
-  if ((daa.length - ioffset).abs() > moveThreshold) {
-    ChassisControllerIntegrated::moveDistance(daa.length - ioffset);
+  if ((length - ioffset).abs() > moveThreshold) {
+    ChassisControllerIntegrated::moveDistance(length - ioffset);
   }
 }
 
 void OdomChassisControllerIntegrated::turnToAngle(const QAngle iangle) {
   const auto angleDiff = iangle - odom->getState().theta;
-  if (angleDiff > turnThreshold) {
+  if (angleDiff.abs() > turnThreshold) {
     ChassisControllerIntegrated::turnAngle(angleDiff);
   }
 }
