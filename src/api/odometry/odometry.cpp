@@ -77,18 +77,18 @@ std::tuple<OdomState, double, double> Odometry::odomMathStep(std::valarray<std::
     sinTheta = std::sin(state.theta.convert(radian));
     cosTheta = std::cos(state.theta.convert(radian));
   } else {
-    deltaTheta = (((Vr - Vl) * deltaT) / b) * radian;
+    deltaTheta = (((Vl - Vr) * deltaT) / b) * radian;
 
     if (isnan(deltaTheta.getValue())) {
       deltaTheta = 0_deg;
     }
 
-    sinTheta = std::sin((Vr - Vl).convert(mps) * deltaT.convert(second) / b.convert(meter));
-    cosTheta = std::cos((Vr - Vl).convert(mps) * deltaT.convert(second) / b.convert(meter)) - 1;
+    sinTheta = std::sin(deltaTheta.convert(radian));
+    cosTheta = std::cos(deltaTheta.convert(radian)) - 1;
   }
 
-  deltaX = turnRadius * sinTheta;
-  deltaY = turnRadius * cosTheta;
+  deltaX = turnRadius * cosTheta;
+  deltaY = turnRadius * sinTheta;
 
   if (isnan(deltaX.getValue())) {
     deltaX = 0_m;

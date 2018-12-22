@@ -39,10 +39,10 @@ ThreeEncoderOdometry::odomMathStep(std::valarray<std::int32_t> &tickDiff, const 
 
   const auto Sm = (tickDiff[2] / chassisScales.middle) * meter;
   const auto mB = chassisScales.middleWheelDistance;
-  const auto deltaMiddle = Sm - ((superState.theta / 360_deg) * 1_pi * mB);
+  const auto deltaMiddle = Sm + ((superState.theta / 360_deg) * 1_pi * mB);
 
-  return std::make_tuple(OdomState{superState.x + deltaMiddle * superCosTheta,
-                                   superState.y + deltaMiddle * superSinTheta,
+  return std::make_tuple(OdomState{superState.x + deltaMiddle * superSinTheta,
+                                   superState.y + deltaMiddle * superCosTheta,
                                    superState.theta},
                          superSinTheta,
                          superCosTheta);

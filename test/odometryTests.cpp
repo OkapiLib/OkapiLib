@@ -64,21 +64,21 @@ TEST_F(OdometryTest, NoSensorMovementDoesNotAffectState) {
 TEST_F(OdometryTest, MoveForwardTest) {
   model->setSensorVals(10, 10);
   odom->step();
-  assertOdomStateEquals(odom, 0_m, calculateDistanceTraveled(10), 0_deg);
+  assertOdomStateEquals(odom, calculateDistanceTraveled(10), 0_m, 0_deg);
 
   model->setSensorVals(20, 20);
   odom->step();
-  assertOdomStateEquals(odom, 0_m, calculateDistanceTraveled(20), 0_deg);
+  assertOdomStateEquals(odom, calculateDistanceTraveled(20), 0_m, 0_deg);
 
   model->setSensorVals(10, 10);
   odom->step();
-  assertOdomStateEquals(odom, 0_m, calculateDistanceTraveled(10), 0_deg);
+  assertOdomStateEquals(odom, calculateDistanceTraveled(10), 0_m, 0_deg);
 }
 
 TEST_F(OdometryTest, TurnInPlaceTest) {
   model->setSensorVals(10, -10);
   odom->step();
-  assertOdomStateEquals(odom, 0_m, 0_m, -4_deg);
+  assertOdomStateEquals(odom, 0_m, 0_m, 4_deg);
 
   model->setSensorVals(0, 0);
   odom->step();
@@ -86,18 +86,18 @@ TEST_F(OdometryTest, TurnInPlaceTest) {
 
   model->setSensorVals(-10, 10);
   odom->step();
-  assertOdomStateEquals(odom, 0_m, 0_m, 4_deg);
+  assertOdomStateEquals(odom, 0_m, 0_m, -4_deg);
 }
 
 TEST_F(OdometryTest, TurnAndDriveTest) {
   model->setSensorVals(90, -90);
   odom->step();
-  assertOdomStateEquals(odom, 0_m, 0_m, -36_deg);
+  assertOdomStateEquals(odom, 0_m, 0_m, 36_deg);
 
   model->setSensorVals(180, 0);
   odom->step();
   assertOdomStateEquals(odom,
-                        calculateDistanceTraveled(90) * std::sin((-36_deg).convert(radian)),
-                        calculateDistanceTraveled(90) * std::cos((-36_deg).convert(radian)),
-                        -36_deg);
+                        calculateDistanceTraveled(90) * std::cos((36_deg).convert(radian)),
+                        calculateDistanceTraveled(90) * std::sin((36_deg).convert(radian)),
+                        36_deg);
 }
