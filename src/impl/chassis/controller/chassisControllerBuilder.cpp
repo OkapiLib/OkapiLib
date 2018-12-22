@@ -140,11 +140,13 @@ ChassisControllerBuilder::withTimeUtilFactory(const TimeUtilFactory &itimeUtilFa
 }
 
 ChassisControllerBuilder &ChassisControllerBuilder::withOdometry(const QLength &imoveThreshold,
-                                                                 const QAngle &iturnThreshold) {
+                                                                 const QAngle &iturnThreshold,
+                                                                 const QSpeed &iwheelVelDelta) {
   hasOdom = true;
   odometry = nullptr;
   moveThreshold = imoveThreshold;
   turnThreshold = iturnThreshold;
+  wheelVelDelta = iwheelVelDelta;
   return *this;
 }
 
@@ -242,10 +244,11 @@ std::shared_ptr<OdomChassisControllerPID> ChassisControllerBuilder::buildOCCPID(
 
     if (odometry == nullptr) {
       if (middleSensor == nullptr) {
-        odometry =
-          std::make_unique<Odometry>(model, scales, TimeUtilFactory::create(), controllerLogger);
+        odometry = std::make_unique<Odometry>(
+          TimeUtilFactory::create(), model, scales, wheelVelDelta, controllerLogger);
       } else {
-        odometry = std::make_unique<ThreeEncoderOdometry>(model, scales, TimeUtilFactory::create());
+        odometry = std::make_unique<ThreeEncoderOdometry>(
+          TimeUtilFactory::create(), model, scales, wheelVelDelta, controllerLogger);
       }
     }
 
@@ -281,10 +284,11 @@ std::shared_ptr<OdomChassisControllerIntegrated> ChassisControllerBuilder::build
 
     if (odometry == nullptr) {
       if (middleSensor == nullptr) {
-        odometry =
-          std::make_unique<Odometry>(model, scales, TimeUtilFactory::create(), controllerLogger);
+        odometry = std::make_unique<Odometry>(
+          TimeUtilFactory::create(), model, scales, wheelVelDelta, controllerLogger);
       } else {
-        odometry = std::make_unique<ThreeEncoderOdometry>(model, scales, TimeUtilFactory::create());
+        odometry = std::make_unique<ThreeEncoderOdometry>(
+          TimeUtilFactory::create(), model, scales, wheelVelDelta, controllerLogger);
       }
     }
 
