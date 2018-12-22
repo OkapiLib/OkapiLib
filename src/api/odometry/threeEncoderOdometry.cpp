@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/odometry/threeEncoderOdometry.hpp"
+#include "okapi/api/units/QSpeed.hpp"
 #include <math.h>
 
 namespace okapi {
@@ -48,20 +49,26 @@ void ThreeEncoderOdometry::step() {
     QLength deltaX;
     QLength deltaY;
     QAngle deltaTheta;
+    double sinTheta;
+    double cosTheta;
 
-    if ((Sr - Sl).abs() < 0.0000001_mm) {
+    if ((Vr - Vl).abs() < 0.0001_mps) {
       turnRadius = (Sr + Sl) / 2;
       deltaTheta = 0_deg;
+
+      sinTheta = std::sin(state.theta.convert(radian));
+      cosTheta = std::cos(state.theta.convert(radian));
     } else {
       deltaTheta = (((Vr - Vl) * deltaT) / b) * radian;
 
       if (isnan(deltaTheta.getValue())) {
         deltaTheta = 0_deg;
       }
+
+      sinTheta = std::sin((Vr - Vl).convert(mps) * deltaT.convert(second) / b.convert(meter));
+      cosTheta = std::cos((Vr - Vl).convert(mps) * deltaT.convert(second) / b.convert(meter)) - 1;
     }
 
-    const double sinTheta = std::sin((state.theta + deltaTheta).convert(radian));
-    const double cosTheta = std::cos((state.theta + deltaTheta).convert(radian));
     const auto deltaMiddle = Sm - ((deltaTheta / 360_deg) * 1_pi * mB);
     deltaX = turnRadius * sinTheta + deltaMiddle * cosTheta;
     deltaY = turnRadius * cosTheta + deltaMiddle * sinTheta;

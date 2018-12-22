@@ -120,3 +120,18 @@ TEST_F(ThreeEncoderOdometryTest, DriveForwardWhileStrafingTest) {
   odom->step();
   assertOdomStateEquals(odom, calculateDistanceTraveled(10), calculateDistanceTraveled(10), 0_deg);
 }
+
+TEST_F(ThreeEncoderOdometryTest, SmallSwingTurnOnRightWheels) {
+  auto model = std::make_shared<MockThreeEncoderModel>();
+  ThreeEncoderOdometry odom(model,
+                            ChassisScales{{2.75_in, 12.9_in, 1_in, 2.75_in}, quadEncoderTPR},
+                            createConstantTimeUtil(10_ms));
+
+  model->setSensorVals(0, 0, 0);
+  odom.step();
+  assertOdomStateEquals(&odom, 0_in, 0_in, 0_deg);
+
+  model->setSensorVals(0, -2, 0);
+  odom.step();
+  assertOdomStateEquals(&odom, -0.024_in, 0_in, -0.2131_deg);
+}
