@@ -36,9 +36,9 @@ class OdometryTest : public ::testing::Test {
   protected:
   void SetUp() override {
     model = new MockModel();
-    odom = new Odometry(std::shared_ptr<MockModel>(model),
-                        ChassisScales({{wheelDiam, wheelbaseWidth}, 360}),
-                        createConstantTimeUtil(10_ms));
+    odom = new Odometry(createConstantTimeUtil(10_ms),
+                        std::shared_ptr<MockModel>(model),
+                        ChassisScales({{wheelDiam, wheelbaseWidth}, 360}));
   }
 
   void TearDown() override {

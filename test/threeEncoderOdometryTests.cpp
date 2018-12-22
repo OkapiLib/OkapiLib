@@ -42,9 +42,9 @@ class ThreeEncoderOdometryTest : public ::testing::Test {
   void SetUp() override {
     model = new MockThreeEncoderModel();
     odom = new ThreeEncoderOdometry(
+      createConstantTimeUtil(10_ms),
       std::shared_ptr<MockThreeEncoderModel>(model),
-      ChassisScales({{wheelDiam, wheelbaseWidth, wheelbaseWidth, wheelDiam}, 360}),
-      createConstantTimeUtil(10_ms));
+      ChassisScales({{wheelDiam, wheelbaseWidth, wheelbaseWidth, wheelDiam}, 360}));
   }
 
   void TearDown() override {
@@ -123,9 +123,9 @@ TEST_F(ThreeEncoderOdometryTest, DriveForwardWhileStrafingTest) {
 
 TEST_F(ThreeEncoderOdometryTest, SmallSwingTurnOnRightWheels) {
   auto model = std::make_shared<MockThreeEncoderModel>();
-  ThreeEncoderOdometry odom(model,
-                            ChassisScales{{2.75_in, 12.9_in, 1_in, 2.75_in}, quadEncoderTPR},
-                            createConstantTimeUtil(10_ms));
+  ThreeEncoderOdometry odom(createConstantTimeUtil(10_ms),
+                            model,
+                            ChassisScales{{2.75_in, 12.9_in, 1_in, 2.75_in}, quadEncoderTPR});
 
   model->setSensorVals(0, 0, 0);
   odom.step();

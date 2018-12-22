@@ -9,6 +9,7 @@
 
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
+#include "okapi/api/units/QSpeed.hpp"
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
@@ -27,15 +28,18 @@ class Odometry {
   public:
   /**
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
-   * relative to the start (assumed to be (0, 0)).
+   * relative to the start (assumed to be (0, 0, 0)).
    *
+   * @param itimeUtil The TimeUtil.
    * @param imodel The chassis model for reading sensors.
    * @param ichassisScales The chassis dimensions.
-   * @param irate The rate.
+   * @param iwheelVelDelta The maximum delta between wheel velocities to consider the robot as
+   * driving straight.
    */
-  Odometry(const std::shared_ptr<ReadOnlyChassisModel> &imodel,
+  Odometry(const TimeUtil &itimeUtil,
+           const std::shared_ptr<ReadOnlyChassisModel> &imodel,
            const ChassisScales &ichassisScales,
-           const TimeUtil &itimeUtil,
+           const QSpeed &iwheelVelDelta = 0.0001_mps,
            const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   virtual ~Odometry();
@@ -84,14 +88,25 @@ class Odometry {
   void stopLooping();
 
   protected:
-  std::shared_ptr<Logger> logger;
-  std::shared_ptr<ReadOnlyChassisModel> model;
   std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<AbstractTimer> timer;
-  OdomState state;
+  std::shared_ptr<ReadOnlyChassisModel> model;
   ChassisScales chassisScales;
+  QSpeed wheelVelDelta;
+  std::shared_ptr<Logger> logger;
+  OdomState state;
   std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0}, lastTicks{0, 0};
   QLength mm{0_m};
   std::atomic_bool dtorCalled{false};
+
+  /**
+   * Does the math, side-effect free, for one odom step.
+   *
+   * @param tickDiff The tick difference from the previous step to this step.
+   * @param deltaT The time difference from the previous step to this step.
+   * @return The estimated position/orientation offset, sinTheta, cosTheta.
+   */
+  virtual std::tuple<OdomState, double, double> odomMathStep(std::valarray<std::int32_t> &tickDiff,
+                                                             const QTime &deltaT);
 };
 } // namespace okapi

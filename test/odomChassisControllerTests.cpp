@@ -38,7 +38,7 @@ class OdomChassisControllerIntegratedTest : public ::testing::Test {
 
     std::shared_ptr<SkidSteerModel> modelPtr = std::shared_ptr<SkidSteerModel>(model);
 
-    odom = new Odometry(modelPtr, *scales, createTimeUtil());
+    odom = new Odometry(createTimeUtil(), modelPtr, *scales);
 
     drive = new OdomChassisControllerIntegrated(
       createTimeUtil(),
@@ -132,7 +132,7 @@ class OdomChassisControllerPIDTest : public ::testing::Test {
 
     std::shared_ptr<SkidSteerModel> modelPtr = std::shared_ptr<SkidSteerModel>(model);
 
-    odom = new Odometry(modelPtr, *scales, createTimeUtil());
+    odom = new Odometry(createTimeUtil(), modelPtr, *scales);
 
     drive =
       new OdomChassisControllerPID(createTimeUtil(),
