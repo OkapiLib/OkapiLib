@@ -95,7 +95,7 @@ class Odometry {
   QSpeed wheelVelDelta;
   std::shared_ptr<Logger> logger;
   OdomState state;
-  std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0}, lastTicks{0, 0};
+  std::valarray<std::int32_t> newTicks{0, 0, 0}, tickDiff{0, 0, 0}, lastTicks{0, 0, 0};
   QLength mm{0_m};
   std::atomic_bool dtorCalled{false};
 
