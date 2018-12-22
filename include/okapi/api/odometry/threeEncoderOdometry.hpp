@@ -41,7 +41,6 @@ class ThreeEncoderOdometry : public Odometry {
   std::shared_ptr<Logger> logger;
   std::shared_ptr<ReadOnlyChassisModel> model;
   std::unique_ptr<AbstractRate> rate;
-  std::valarray<std::int32_t> newTicks{0, 0, 0}, tickDiff{0, 0, 0}, lastTicks{0, 0, 0};
 
   /**
    * Does the math, side-effect free, for one odom step.
