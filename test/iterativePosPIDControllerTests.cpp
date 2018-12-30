@@ -140,7 +140,7 @@ TEST_F(IterativePosPIDControllerTest, SampleTime) {
 }
 
 TEST_F(IterativePosPIDControllerTest, TestDerivativeTermWithDefaultFilter) {
-  controller->setGains(0, 0, 1);
+  controller->setGains(0, 0, 1, 0);
   EXPECT_EQ(controller->step(1), -0.01);
   EXPECT_EQ(controller->step(1), 0);
   EXPECT_EQ(controller->step(2), -0.01);
