@@ -59,6 +59,11 @@ void IterativeMotorVelocityController::setOutputLimits(double imax, double imin)
   controller->setOutputLimits(imax, imin);
 }
 
+void IterativeMotorVelocityController::setControllerSetTargetLimits(double itargetMax,
+                                                                    double itargetMin) {
+  controller->setControllerSetTargetLimits(itargetMax, itargetMin);
+}
+
 void IterativeMotorVelocityController::reset() {
   controller->reset();
 }

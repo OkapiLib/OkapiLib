@@ -133,3 +133,17 @@ TEST_F(IterativeVelPIDControllerTest, SampleTime) {
   // 20_ms
   EXPECT_EQ(controller->step(-1), 0);
 }
+
+TEST_F(IterativeVelPIDControllerTest, ControllerSetWithModifiedTargetLimits) {
+  controller->setControllerSetTargetLimits(10, 0);
+  controller->controllerSet(0.5);
+  EXPECT_EQ(controller->getTarget(), 7.5);
+}
+
+TEST_F(IterativeVelPIDControllerTest, TestDerivativeTermWithDefaultFilter) {
+  controller->setGains(0, 1, 0, 0);
+  EXPECT_NEAR(controller->step(1), -0.349, 0.0001);
+  EXPECT_EQ(controller->step(1), 0);
+  EXPECT_NEAR(controller->step(2), -0.349, 0.0001);
+  EXPECT_EQ(controller->step(2), 0);
+}

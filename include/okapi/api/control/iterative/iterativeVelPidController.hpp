@@ -127,6 +127,15 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
   void setOutputLimits(double imax, double imin) override;
 
   /**
+   * Sets the (soft) limits for the target range that controllerSet() scales into. The target
+   * computed by controllerSet() is scaled into the range [-itargetMin, itargetMax].
+   *
+   * @param itargetMax The new max target for controllerSet().
+   * @param itargetMin The new min target for controllerSet().
+   */
+  void setControllerSetTargetLimits(double itargetMax, double itargetMin) override;
+
+  /**
    * Resets the controller's internal state so it is similar to when it was first initialized, while
    * keeping any user-configured information.
    */
@@ -201,6 +210,8 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
   double output{0};
   double outputMax{1};
   double outputMin{-1};
+  double controllerSetTargetMax{1};
+  double controllerSetTargetMin{-1};
   bool controllerIsDisabled{false};
 
   std::unique_ptr<VelMath> velMath;
