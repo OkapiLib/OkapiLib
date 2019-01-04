@@ -117,6 +117,7 @@ void IterativePosPIDController::setErrorSumLimits(const double imax, const doubl
 }
 
 double IterativePosPIDController::step(const double inewReading) {
+  const double readingDiff = inewReading - lastReading;
   lastReading = inewReading;
 
   if (controllerIsDisabled) {
@@ -139,7 +140,7 @@ double IterativePosPIDController::step(const double inewReading) {
       integral = std::clamp(integral, integralMin, integralMax);
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
-      derivative = derivativeFilter->filter(inewReading - lastReading);
+      derivative = derivativeFilter->filter(readingDiff);
 
       output = std::clamp(kP * error + integral - kD * derivative + kBias, outputMin, outputMax);
 
