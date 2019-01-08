@@ -98,6 +98,15 @@ class IterativeMotorVelocityController : public IterativeVelocityController<doub
   void setOutputLimits(double imax, double imin) override;
 
   /**
+   * Sets the (soft) limits for the target range that controllerSet() scales into. The target
+   * computed by controllerSet() is scaled into the range [-itargetMin, itargetMax].
+   *
+   * @param itargetMax The new max target for controllerSet().
+   * @param itargetMin The new min target for controllerSet().
+   */
+  void setControllerSetTargetLimits(double itargetMax, double itargetMin) override;
+
+  /**
    * Resets the controller's internal state so it is similar to when it was first initialized, while
    * keeping any user-configured information.
    */

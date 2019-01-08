@@ -518,14 +518,14 @@ void assertControllerFollowsTargetLifecycle(ClosedLoopController<double, double>
 void assertIterativeControllerScalesControllerSetTargets(
   IterativeController<double, double> &controller) {
   EXPECT_DOUBLE_EQ(controller.getTarget(), 0);
-  controller.setOutputLimits(-100, 100);
+  controller.setControllerSetTargetLimits(-100, 100);
   controller.controllerSet(0.5);
   EXPECT_DOUBLE_EQ(controller.getTarget(), 50);
 }
 
 void assertAsyncWrapperScalesControllerSetTargets(AsyncWrapper<double, double> &controller) {
   EXPECT_DOUBLE_EQ(controller.getTarget(), 0);
-  controller.setOutputLimits(-100, 100);
+  controller.setControllerSetTargetLimits(-100, 100);
   controller.controllerSet(0.5);
   EXPECT_DOUBLE_EQ(controller.getTarget(), 50);
 }

@@ -50,7 +50,7 @@ void IterativePosPIDController::setTarget(const double itarget) {
 }
 
 void IterativePosPIDController::controllerSet(const double ivalue) {
-  target = remapRange(ivalue, -1, 1, outputMin, outputMax);
+  target = remapRange(ivalue, -1, 1, controllerSetTargetMin, controllerSetTargetMax);
 }
 
 double IterativePosPIDController::getTarget() {
@@ -100,6 +100,18 @@ void IterativePosPIDController::setOutputLimits(double imax, double imin) {
   output = std::clamp(output, outputMin, outputMax);
 }
 
+void IterativePosPIDController::setControllerSetTargetLimits(double itargetMax, double itargetMin) {
+  // Always use larger value as max
+  if (itargetMin > itargetMax) {
+    const double temp = itargetMax;
+    itargetMax = itargetMin;
+    itargetMin = temp;
+  }
+
+  controllerSetTargetMax = itargetMax;
+  controllerSetTargetMin = itargetMin;
+}
+
 void IterativePosPIDController::setIntegralLimits(double imax, double imin) {
   // Always use larger value as max
   if (imin > imax) {
@@ -120,6 +132,7 @@ void IterativePosPIDController::setErrorSumLimits(const double imax, const doubl
 }
 
 double IterativePosPIDController::step(const double inewReading) {
+  const double readingDiff = inewReading - lastReading;
   lastReading = inewReading;
 
   if (controllerIsDisabled) {
@@ -142,7 +155,7 @@ double IterativePosPIDController::step(const double inewReading) {
       integral = std::clamp(integral, integralMin, integralMax);
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
-      derivative = derivativeFilter->filter(inewReading - lastReading);
+      derivative = derivativeFilter->filter(readingDiff);
 
       output = std::clamp(kP * error + integral - kD * derivative + kBias, outputMin, outputMax);
 
