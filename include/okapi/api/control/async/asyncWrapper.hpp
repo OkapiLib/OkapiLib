@@ -32,13 +32,15 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * @param icontroller the controller to use
    * @param irateSupplier used for rates used in the main loop and in waitUntilSettled
    * @param iratio Any external gear ratio.
+   * @param ilogger The logger this instance will log to.
    */
   AsyncWrapper(const std::shared_ptr<ControllerInput<Input>> &iinput,
                const std::shared_ptr<ControllerOutput<Output>> &ioutput,
                std::unique_ptr<IterativeController<Input, Output>> icontroller,
                const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
-               const double iratio = 1)
-    : logger(Logger::instance()),
+               const double iratio = 1,
+               const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
+    : logger(ilogger),
       input(iinput),
       output(ioutput),
       controller(std::move(icontroller)),
@@ -48,7 +50,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   AsyncWrapper(AsyncWrapper<Input, Output> &&other) noexcept
-    : logger(other.logger),
+    : logger(std::move(other.logger)),
       input(std::move(other.input)),
       output(std::move(other.output)),
       controller(std::move(other.controller)),
@@ -136,6 +138,17 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    */
   void setOutputLimits(const Output imax, const Output imin) {
     controller->setOutputLimits(imax, imin);
+  }
+
+  /**
+   * Sets the (soft) limits for the target range that controllerSet() scales into. The target
+   * computed by controllerSet() is scaled into the range [-itargetMin, itargetMax].
+   *
+   * @param itargetMax The new max target for controllerSet().
+   * @param itargetMin The new min target for controllerSet().
+   */
+  void setControllerSetTargetLimits(double itargetMax, double itargetMin) {
+    controller->setControllerSetTargetLimits(itargetMax, itargetMin);
   }
 
   /**
@@ -231,7 +244,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   protected:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
   std::shared_ptr<ControllerInput<Input>> input;
   std::shared_ptr<ControllerOutput<Output>> output;
   std::unique_ptr<IterativeController<Input, Output>> controller;

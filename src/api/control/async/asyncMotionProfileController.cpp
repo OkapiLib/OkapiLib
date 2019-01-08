@@ -15,8 +15,9 @@ AsyncMotionProfileController::AsyncMotionProfileController(
   const PathfinderLimits &ilimits,
   const std::shared_ptr<ChassisModel> &imodel,
   const ChassisScales &iscales,
-  const AbstractMotor::GearsetRatioPair &ipair)
-  : logger(Logger::instance()),
+  const AbstractMotor::GearsetRatioPair &ipair,
+  const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger),
     limits(ilimits),
     model(imodel),
     scales(iscales),
@@ -199,10 +200,13 @@ void AsyncMotionProfileController::setTarget(std::string ipathId) {
   setTarget(ipathId, false);
 }
 
-void AsyncMotionProfileController::setTarget(std::string ipathId, const bool ibackwards) {
+void AsyncMotionProfileController::setTarget(std::string ipathId,
+                                             const bool ibackwards,
+                                             const bool imirrored) {
   currentPath = ipathId;
   isRunning.store(true, std::memory_order_release);
   direction.store(boolToSign(!ibackwards), std::memory_order_release);
+  mirrored.store(imirrored, std::memory_order_release);
 }
 
 void AsyncMotionProfileController::controllerSet(std::string ivalue) {
@@ -244,16 +248,29 @@ void AsyncMotionProfileController::loop() {
 
 void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
                                                      std::unique_ptr<AbstractRate> rate) {
-  const auto reversed = direction.load(std::memory_order_acquire);
+  const int reversed = direction.load(std::memory_order_acquire);
+  const bool followMirrored = mirrored.load(std::memory_order_acquire);
 
-  for (int i = 0; i < path.length && !isDisabled(); ++i) {
-    const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
-    const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
+  if (followMirrored) {
+    for (int i = 0; i < path.length && !isDisabled(); ++i) {
+      const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
+      const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
 
-    model->left(leftRPM / toUnderlyingType(pair.internalGearset) * reversed);
-    model->right(rightRPM / toUnderlyingType(pair.internalGearset) * reversed);
+      model->left(rightRPM / toUnderlyingType(pair.internalGearset) * reversed);
+      model->right(leftRPM / toUnderlyingType(pair.internalGearset) * reversed);
 
-    rate->delayUntil(1_ms);
+      rate->delayUntil(1_ms);
+    }
+  } else {
+    for (int i = 0; i < path.length && !isDisabled(); ++i) {
+      const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
+      const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
+
+      model->left(leftRPM / toUnderlyingType(pair.internalGearset) * reversed);
+      model->right(rightRPM / toUnderlyingType(pair.internalGearset) * reversed);
+
+      rate->delayUntil(1_ms);
+    }
   }
 }
 
@@ -279,10 +296,11 @@ void AsyncMotionProfileController::waitUntilSettled() {
 }
 
 void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints,
-                                          const bool ibackwards) {
+                                          const bool ibackwards,
+                                          const bool imirrored) {
   std::string name = reinterpret_cast<const char *>(this); // hmmmm...
   generatePath(iwaypoints, name);
-  setTarget(name, ibackwards);
+  setTarget(name, ibackwards, imirrored);
   waitUntilSettled();
   removePath(name);
 }

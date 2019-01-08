@@ -13,8 +13,10 @@ AsyncVelIntegratedController::AsyncVelIntegratedController(
   const std::shared_ptr<AbstractMotor> &imotor,
   const AbstractMotor::GearsetRatioPair &ipair,
   const std::int32_t imaxVelocity,
-  const TimeUtil &itimeUtil)
-  : motor(imotor),
+  const TimeUtil &itimeUtil,
+  const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger),
+    motor(imotor),
     pair(ipair),
     maxVelocity(imaxVelocity),
     settledUtil(itimeUtil.getSettledUtil()),

@@ -8,66 +8,100 @@
 #pragma once
 
 #include "okapi/api/util/abstractTimer.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include <memory>
 
 namespace okapi {
 class Logger {
   public:
-  enum class LogLevel { off = 0, debug = 4, info = 3, warn = 2, error = 1 };
+  enum class LogLevel { debug = 4, info = 3, warn = 2, error = 1, off = 0 };
 
   /**
-   * Initializes the logger. If the logger is not initialized when logging methods are called,
-   * nothing will be logged.
+   * A logger that does nothing.
+   */
+  Logger() noexcept : Logger(nullptr, nullptr, LogLevel::off) {
+  }
+
+  /**
+   * A logger that opens the input file name with append permissions.
    *
    * @param itimer A timer used to get the current time for log statements.
-   * @param logfileName The name of the log file to open.
-   * @param level The log level. Log statements above this level will be disabled.
+   * @param ifileName The name of the log file to open.
+   * @param ilevel The log level. Log statements more verbose than this level will be disabled.
    */
-  static void initialize(std::unique_ptr<AbstractTimer> itimer,
-                         std::string_view filename,
-                         LogLevel level) noexcept;
+  Logger(std::unique_ptr<AbstractTimer> itimer,
+         std::string_view ifileName,
+         const LogLevel &ilevel) noexcept
+    : Logger(std::move(itimer), fopen(ifileName.data(), "a"), ilevel) {
+  }
 
   /**
-   * Initializes the logger. If the logger is not initialized when logging methods are called,
-   * nothing will be logged.
+   * A logger that uses an existing file handle. Will be closed by the logger!
    *
    * @param itimer A timer used to get the current time for log statements.
-   * @param logfileName The name of the log file to open.
-   * @param level The log level. Log statements above this level will be disabled.
+   * @param ifile The log file to open. Will be closed by the logger!
+   * @param ilevel The log level. Log statements more verbose than this level will be disabled.
    */
-  static void
-  initialize(std::unique_ptr<AbstractTimer> itimer, FILE *file, LogLevel level) noexcept;
+  Logger(std::unique_ptr<AbstractTimer> itimer, FILE *const ifile, const LogLevel &ilevel) noexcept
+    : timer(std::move(itimer)), logfile(ifile), logLevel(ilevel) {
+  }
 
-  /**
-   * Get the logger instance.
-   */
-  static Logger *instance() noexcept;
+  ~Logger() {
+    if (logfile) {
+      fclose(logfile);
+      logfile = nullptr;
+    }
+  }
 
-  /**
-   * Set a new logging level. Log statements above this level will be disabled. For example, if the
-   * level is set to LogLevel::warn, then LogLevel::warn and LogLevel::error will be enabled, but
-   * LogLevel::info and LogLevel::debug will be disabled.
-   */
-  static void setLogLevel(LogLevel level) noexcept;
+  constexpr void debug(std::string_view message) const noexcept {
+    if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info) && logfile && timer) {
+      fprintf(logfile,
+              "%ld DEBUG: %s\n",
+              static_cast<long>(timer->millis().convert(millisecond)),
+              message.data());
+    }
+  }
 
-  void debug(std::string_view message) const noexcept;
+  constexpr void info(std::string_view message) const noexcept {
+    if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info) && logfile && timer) {
+      fprintf(logfile,
+              "%ld INFO: %s\n",
+              static_cast<long>(timer->millis().convert(millisecond)),
+              message.data());
+    }
+  }
 
-  void info(std::string_view message) const noexcept;
+  constexpr void warn(std::string_view message) const noexcept {
+    if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::warn) && logfile && timer) {
+      fprintf(logfile,
+              "%ld WARN: %s\n",
+              static_cast<long>(timer->millis().convert(millisecond)),
+              message.data());
+    }
+  }
 
-  void warn(std::string_view message) const noexcept;
-
-  void error(std::string_view message) const noexcept;
+  constexpr void error(std::string_view message) const noexcept {
+    if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::error) && logfile && timer) {
+      fprintf(logfile,
+              "%ld ERROR: %s\n",
+              static_cast<long>(timer->millis().convert(millisecond)),
+              message.data());
+    }
+  }
 
   /**
    * Closes the connection to the log file.
    */
-  void close() noexcept;
+  void close() noexcept {
+    if (logfile) {
+      fclose(logfile);
+      logfile = nullptr;
+    }
+  }
 
   private:
-  Logger();
-  static Logger *s_instance;
-  static std::unique_ptr<AbstractTimer> timer;
-  static LogLevel logLevel;
-  static FILE *logfile;
+  std::unique_ptr<AbstractTimer> timer;
+  FILE *logfile;
+  LogLevel logLevel;
 };
 } // namespace okapi

@@ -42,6 +42,15 @@ class IterativeController : public ClosedLoopController<Input, Output> {
   virtual void setOutputLimits(Output imax, Output imin) = 0;
 
   /**
+   * Sets the (soft) limits for the target range that controllerSet() scales into. The target
+   * computed by controllerSet() is scaled into the range [-itargetMin, itargetMax].
+   *
+   * @param itargetMax The new max target for controllerSet().
+   * @param itargetMin The new min target for controllerSet().
+   */
+  virtual void setControllerSetTargetLimits(Output itargetMax, Output itargetMin) = 0;
+
+  /**
    * Get the upper output bound.
    *
    * @return  the upper output bound

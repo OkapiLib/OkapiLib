@@ -155,7 +155,6 @@ add_executable(OkapiLibV5
         src/api/util/abstractRate.cpp
         src/api/util/abstractTimer.cpp
         src/api/util/timeUtil.cpp
-        src/api/util/logging.cpp
         src/pathfinder/generator.c
         src/pathfinder/io.c
         src/pathfinder/mathutil.c

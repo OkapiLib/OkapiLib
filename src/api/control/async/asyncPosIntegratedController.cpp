@@ -13,8 +13,9 @@ AsyncPosIntegratedController::AsyncPosIntegratedController(
   const std::shared_ptr<AbstractMotor> &imotor,
   const AbstractMotor::GearsetRatioPair &ipair,
   const std::int32_t imaxVelocity,
-  const TimeUtil &itimeUtil)
-  : logger(Logger::instance()),
+  const TimeUtil &itimeUtil,
+  const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger),
     motor(imotor),
     pair(ipair),
     maxVelocity(imaxVelocity),

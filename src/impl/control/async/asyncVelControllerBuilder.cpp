@@ -10,7 +10,8 @@
 #include <stdexcept>
 
 namespace okapi {
-AsyncVelControllerBuilder::AsyncVelControllerBuilder() : logger(Logger::instance()) {
+AsyncVelControllerBuilder::AsyncVelControllerBuilder(const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger) {
 }
 
 AsyncVelControllerBuilder &AsyncVelControllerBuilder::withMotor(const Motor &imotor) {
@@ -96,6 +97,12 @@ AsyncVelControllerBuilder::withTimeUtilFactory(const TimeUtilFactory &itimeUtilF
   return *this;
 }
 
+AsyncVelControllerBuilder &
+AsyncVelControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
+  controllerLogger = ilogger;
+  return *this;
+}
+
 std::shared_ptr<AsyncVelocityController<double, double>> AsyncVelControllerBuilder::build() {
   if (!hasMotors) {
     logger->error("AsyncVelControllerBuilder: No motors given.");
@@ -116,7 +123,7 @@ std::shared_ptr<AsyncVelocityController<double, double>> AsyncVelControllerBuild
 
 std::shared_ptr<AsyncVelIntegratedController> AsyncVelControllerBuilder::buildAVIC() {
   return std::make_shared<AsyncVelIntegratedController>(
-    motor, pair, maxVelocity, timeUtilFactory.create());
+    motor, pair, maxVelocity, timeUtilFactory.create(), controllerLogger);
 }
 
 std::shared_ptr<AsyncVelPIDController> AsyncVelControllerBuilder::buildAVPC() {
@@ -130,7 +137,8 @@ std::shared_ptr<AsyncVelPIDController> AsyncVelControllerBuilder::buildAVPC() {
                                                      gains.kSF,
                                                      std::move(velMath),
                                                      pair.ratio,
-                                                     std::move(derivativeFilter));
+                                                     std::move(derivativeFilter),
+                                                     controllerLogger);
   out->startThread();
   out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
   return out;

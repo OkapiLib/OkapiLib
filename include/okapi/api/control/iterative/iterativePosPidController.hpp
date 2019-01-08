@@ -37,6 +37,7 @@ class IterativePosPIDController : public IterativePositionController<double, dou
    * @param ikBias the controller bias
    * @param itimeUtil see TimeUtil docs
    * @param iderivativeFilter a filter for filtering the derivative term
+   * @param ilogger The logger this instance will log to.
    */
   IterativePosPIDController(
     double ikP,
@@ -44,7 +45,8 @@ class IterativePosPIDController : public IterativePositionController<double, dou
     double ikD,
     double ikBias,
     const TimeUtil &itimeUtil,
-    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Position PID controller.
@@ -56,7 +58,8 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   IterativePosPIDController(
     const Gains &igains,
     const TimeUtil &itimeUtil,
-    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   /**
    * Do one iteration of the controller. Returns the reading in the range [-1, 1] unless the
@@ -150,6 +153,15 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   void setOutputLimits(double imax, double imin) override;
 
   /**
+   * Sets the (soft) limits for the target range that controllerSet() scales into. The target
+   * computed by controllerSet() is scaled into the range [-itargetMin, itargetMax].
+   *
+   * @param itargetMax The new max target for controllerSet().
+   * @param itargetMin The new min target for controllerSet().
+   */
+  void setControllerSetTargetLimits(double itargetMax, double itargetMin) override;
+
+  /**
    * Set integrator bounds. Default bounds are [-1, 1].
    *
    * @param imax max integrator value
@@ -209,7 +221,7 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   QTime getSampleTime() const override;
 
   protected:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
   double kP, kI, kD, kBias;
   QTime sampleTime{10_ms};
   double target{0};
@@ -233,6 +245,8 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   double output{0};
   double outputMax{1};
   double outputMin{-1};
+  double controllerSetTargetMax{1};
+  double controllerSetTargetMin{-1};
 
   // Reset the integrated when the controller crosses 0 or not
   bool shouldResetOnCross{true};

@@ -25,11 +25,13 @@ class VelMath {
    * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
    * @param ifilter filter used for filtering the calculated velocity
    * @param isampleTime the minimum time between velocity measurements
+   * @param ilogger The logger this instance will log to.
    */
   VelMath(double iticksPerRev,
           std::unique_ptr<Filter> ifilter,
           QTime isampleTime,
-          std::unique_ptr<AbstractTimer> iloopDtTimer);
+          std::unique_ptr<AbstractTimer> iloopDtTimer,
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   virtual ~VelMath();
 
@@ -59,7 +61,7 @@ class VelMath {
   virtual QAngularAcceleration getAccel() const;
 
   protected:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
   QAngularSpeed vel;
   QAngularSpeed lastVel;
   QAngularAcceleration accel;

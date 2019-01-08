@@ -6,12 +6,13 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/device/motor/motorGroup.hpp"
-#include "okapi/api/util/logging.hpp"
 
 namespace okapi {
-MotorGroup::MotorGroup(const std::initializer_list<Motor> &imotors) : motors(imotors) {
+MotorGroup::MotorGroup(const std::initializer_list<Motor> &imotors,
+                       const std::shared_ptr<Logger> &ilogger)
+  : motors(imotors) {
   if (motors.empty()) {
-    Logger::instance()->error(
+    ilogger->error(
       "MotorGroup: A MotorGroup must be created with at least one motor. No motors were given.");
     throw std::invalid_argument(
       "MotorGroup: A MotorGroup must be created with at least one motor. No motors were given.");

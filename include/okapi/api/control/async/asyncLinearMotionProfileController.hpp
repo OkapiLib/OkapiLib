@@ -31,12 +31,15 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * @param ioutput The output to write velocity targets to.
    * @param idiameter The effective diameter for whatever the motor spins.
    * @param ipair The gearset.
+   * @param ilogger The logger this instance will log to.
    */
-  AsyncLinearMotionProfileController(const TimeUtil &itimeUtil,
-                                     const PathfinderLimits &ilimits,
-                                     const std::shared_ptr<ControllerOutput<double>> &ioutput,
-                                     const QLength &idiameter,
-                                     const AbstractMotor::GearsetRatioPair &ipair);
+  AsyncLinearMotionProfileController(
+    const TimeUtil &itimeUtil,
+    const PathfinderLimits &ilimits,
+    const std::shared_ptr<ControllerOutput<double>> &ioutput,
+    const QLength &idiameter,
+    const AbstractMotor::GearsetRatioPair &ipair,
+    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   AsyncLinearMotionProfileController(AsyncLinearMotionProfileController &&other) noexcept;
 
@@ -194,7 +197,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
     int length;
   };
 
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
   std::map<std::string, TrajectoryPair> paths{};
   PathfinderLimits limits;
   std::shared_ptr<ControllerOutput<double>> output;

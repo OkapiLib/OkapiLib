@@ -15,8 +15,9 @@ AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
   const PathfinderLimits &ilimits,
   const std::shared_ptr<ControllerOutput<double>> &ioutput,
   const QLength &idiameter,
-  const AbstractMotor::GearsetRatioPair &ipair)
-  : logger(Logger::instance()),
+  const AbstractMotor::GearsetRatioPair &ipair,
+  const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger),
     limits(ilimits),
     output(ioutput),
     diameter(idiameter),

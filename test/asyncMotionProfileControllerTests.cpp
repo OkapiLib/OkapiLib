@@ -216,3 +216,45 @@ TEST_F(AsyncMotionProfileControllerTest, FollowPathBackwards) {
   // still running
   controller->flipDisable(true);
 }
+
+TEST_F(AsyncMotionProfileControllerTest, FollowPathNotMirrored) {
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{1_ft, 1_ft, 0_deg}}, "A");
+  controller->setTarget("A");
+
+  auto rate = createTimeUtil().getRate();
+  while (!controller->executeSinglePathCalled) {
+    rate->delayUntil(1_ms);
+  }
+
+  // Wait a little longer so we get into the path
+  rate->delayUntil(200_ms);
+
+  EXPECT_GT(leftMotor->lastVelocity, 0);
+  EXPECT_GT(rightMotor->lastVelocity, 0);
+  EXPECT_GT(rightMotor->maxVelocity, leftMotor->maxVelocity);
+
+  // Disable the controller so gtest doesn't clean up the test fixture while the internal thread is
+  // still running
+  controller->flipDisable(true);
+}
+
+TEST_F(AsyncMotionProfileControllerTest, FollowPathMirrored) {
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{1_ft, 1_ft, 0_deg}}, "A");
+  controller->setTarget("A", false, true);
+
+  auto rate = createTimeUtil().getRate();
+  while (!controller->executeSinglePathCalled) {
+    rate->delayUntil(1_ms);
+  }
+
+  // Wait a little longer so we get into the path
+  rate->delayUntil(200_ms);
+
+  EXPECT_GT(leftMotor->lastVelocity, 0);
+  EXPECT_GT(rightMotor->lastVelocity, 0);
+  EXPECT_GT(leftMotor->maxVelocity, rightMotor->maxVelocity);
+
+  // Disable the controller so gtest doesn't clean up the test fixture while the internal thread is
+  // still running
+  controller->flipDisable(true);
+}
