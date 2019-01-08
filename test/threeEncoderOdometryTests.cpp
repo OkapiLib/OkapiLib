@@ -133,5 +133,5 @@ TEST_F(ThreeEncoderOdometryTest, SmallSwingTurnOnRightWheels) {
 
   model->setSensorVals(0, -2, 0);
   odom.step();
-  assertOdomStateEquals(&odom, 0_in, 0.024_in, 0.2131_deg);
+  assertOdomStateEquals(&odom, -0.024_in, 0_in, 0.2131_deg);
 }

@@ -33,19 +33,48 @@ ThreeEncoderOdometry::ThreeEncoderOdometry(const TimeUtil &itimeUtil,
   }
 }
 
-std::tuple<OdomState, double, double>
-ThreeEncoderOdometry::odomMathStep(std::valarray<std::int32_t> &tickDiff, const QTime &deltaT) {
-  const auto [superState, superSinTheta, superCosTheta] = Odometry::odomMathStep(tickDiff, deltaT);
+OdomState ThreeEncoderOdometry::odomMathStep(std::valarray<std::int32_t> &tickDiff, const QTime &) {
+  const double deltaL = tickDiff[0] / chassisScales.straight;
+  const double deltaR = tickDiff[1] / chassisScales.straight;
 
-  const auto Sm = (tickDiff[2] / chassisScales.middle) * meter;
-  const auto mB = chassisScales.middleWheelDistance;
-  const auto deltaMiddle = Sm + ((superState.theta / 360_deg) * 1_pi * mB);
+  double deltaTheta = (deltaL - deltaR) / chassisScales.wheelbaseWidth.convert(meter);
+  double localOffX, localOffY;
 
-  return std::make_tuple(OdomState{superState.x + deltaMiddle * superSinTheta,
-                                   superState.y + deltaMiddle * superCosTheta,
-                                   superState.theta},
-                         superSinTheta,
-                         superCosTheta);
+  const auto deltaM = static_cast<const double>(
+    tickDiff[2] / chassisScales.middle -
+    ((deltaTheta / 2_pi) * 1_pi * chassisScales.middleWheelDistance.convert(meter)));
+
+  if (deltaL == deltaR) {
+    localOffX = deltaM;
+    localOffY = deltaR;
+  } else {
+    localOffX = 2 * sin(deltaTheta / 2) *
+                (deltaM / deltaTheta + chassisScales.middleWheelDistance.convert(meter));
+    localOffY = 2 * sin(deltaTheta / 2) *
+                (deltaR / deltaTheta + chassisScales.wheelbaseWidth.convert(meter) / 2);
+  }
+
+  double avgA = state.theta.convert(radian) + (deltaTheta / 2);
+
+  double polarR = sqrt((localOffX * localOffX) + (localOffY * localOffY));
+  double polarA = atan2(localOffY, localOffX) - avgA;
+
+  double dX = sin(polarA) * polarR;
+  double dY = cos(polarA) * polarR;
+
+  if (isnan(dX)) {
+    dX = 0;
+  }
+
+  if (isnan(dY)) {
+    dY = 0;
+  }
+
+  if (isnan(deltaTheta)) {
+    deltaTheta = 0;
+  }
+
+  return OdomState{dX * meter, dY * meter, deltaTheta * radian};
 }
 
 void ThreeEncoderOdometry::trampoline(void *context) {

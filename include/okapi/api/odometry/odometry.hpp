@@ -105,7 +105,6 @@ class Odometry {
    * @param deltaT The time difference from the previous step to this step.
    * @return The estimated position/orientation offset, sinTheta, cosTheta.
    */
-  virtual std::tuple<OdomState, double, double> odomMathStep(std::valarray<std::int32_t> &tickDiff,
-                                                             const QTime &deltaT);
+  virtual OdomState odomMathStep(std::valarray<std::int32_t> &tickDiff, const QTime &deltaT);
 };
 } // namespace okapi

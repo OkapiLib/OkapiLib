@@ -47,7 +47,7 @@ void Odometry::step() {
     tickDiff = newTicks - lastTicks;
     lastTicks = newTicks;
 
-    const auto [newState, sinTheta, cosTheta] = odomMathStep(tickDiff, deltaT);
+    const auto newState = odomMathStep(tickDiff, deltaT);
 
     state.x += newState.x;
     state.y += newState.y;
@@ -55,50 +55,43 @@ void Odometry::step() {
   }
 }
 
-std::tuple<OdomState, double, double> Odometry::odomMathStep(std::valarray<std::int32_t> &tickDiff,
-                                                             const QTime &deltaT) {
-  const auto Sl = (tickDiff[0] / chassisScales.straight) * meter;
-  const auto Sr = (tickDiff[1] / chassisScales.straight) * meter;
-  const auto Vl = Sl / deltaT;
-  const auto Vr = Sr / deltaT;
-  const auto b = chassisScales.wheelbaseWidth;
-  auto turnRadius = (b * (Vr + Vl)) / (2 * (Vr - Vl));
+OdomState Odometry::odomMathStep(std::valarray<std::int32_t> &tickDiff, const QTime &) {
+  const double deltaL = tickDiff[0] / chassisScales.straight;
+  const double deltaR = tickDiff[1] / chassisScales.straight;
 
-  QLength deltaX;
-  QLength deltaY;
-  QAngle deltaTheta;
-  double sinTheta;
-  double cosTheta;
+  double deltaTheta = (deltaL - deltaR) / chassisScales.wheelbaseWidth.convert(meter);
+  double localOffX, localOffY;
 
-  if ((Vr - Vl).abs() < wheelVelDelta) {
-    turnRadius = (Sr + Sl) / 2;
-    deltaTheta = 0_deg;
-
-    sinTheta = std::sin(state.theta.convert(radian));
-    cosTheta = std::cos(state.theta.convert(radian));
+  if (deltaTheta != 0) {
+    localOffX = 2 * sin(deltaTheta / 2) * chassisScales.middleWheelDistance.convert(meter);
+    localOffY = 2 * sin(deltaTheta / 2) *
+                (deltaR / deltaTheta + chassisScales.wheelbaseWidth.convert(meter) / 2);
   } else {
-    deltaTheta = (((Vl - Vr) * deltaT) / b) * radian;
-
-    if (isnan(deltaTheta.getValue())) {
-      deltaTheta = 0_deg;
-    }
-
-    sinTheta = std::sin(deltaTheta.convert(radian));
-    cosTheta = std::cos(deltaTheta.convert(radian)) - 1;
+    localOffX = 0;
+    localOffY = deltaR;
   }
 
-  deltaX = turnRadius * cosTheta;
-  deltaY = turnRadius * sinTheta;
+  double avgA = state.theta.convert(radian) + (deltaTheta / 2);
 
-  if (isnan(deltaX.getValue())) {
-    deltaX = 0_m;
+  double polarR = sqrt(localOffX * localOffX + localOffY * localOffY);
+  double polarA = atan2(localOffY, localOffX) - avgA;
+
+  double dX = sin(polarA) * polarR;
+  double dY = cos(polarA) * polarR;
+
+  if (isnan(dX)) {
+    dX = 0;
   }
 
-  if (isnan(deltaY.getValue())) {
-    deltaY = 0_m;
+  if (isnan(dY)) {
+    dY = 0;
   }
 
-  return std::make_tuple(OdomState{deltaX, deltaY, deltaTheta}, sinTheta, cosTheta);
+  if (isnan(deltaTheta)) {
+    deltaTheta = 0;
+  }
+
+  return OdomState{dX * meter, dY * meter, deltaTheta * radian};
 }
 
 void Odometry::trampoline(void *context) {
