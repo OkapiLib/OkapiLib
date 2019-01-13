@@ -12,7 +12,7 @@ using namespace okapi;
 using namespace snowhouse;
 
 void testForwardUsesCorrectMaximumVelocityForAGearset() {
-  printf("Testing forward uses the correct max vel for a gearset");
+  printf("Testing forward uses the correct max vel for a gearset\n");
 
   auto drive = ChassisControllerFactory::create(18, 19, AbstractMotor::gearset::green, {1, 1});
   drive.forward(0.1);
@@ -26,4 +26,5 @@ void testForwardUsesCorrectMaximumVelocityForAGearset() {
 
 void runChassisControllerFactoryIntegrationTests() {
   test_printf("Testing ChassisControllerFactory");
+  testForwardUsesCorrectMaximumVelocityForAGearset();
 }
