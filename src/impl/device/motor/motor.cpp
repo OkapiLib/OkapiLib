@@ -18,20 +18,20 @@ Motor::Motor(const std::int8_t port)
 Motor::Motor(const std::uint8_t port,
              const bool reverse,
              const AbstractMotor::gearset igearset,
-             const AbstractMotor::encoderUnits encoderUnits)
+             const AbstractMotor::encoderUnits iencoderUnits)
   : pros::Motor(port,
                 igearset == AbstractMotor::gearset::red
                   ? pros::E_MOTOR_GEARSET_36
-                  : gearset == AbstractMotor::gearset::green
+                  : igearset == AbstractMotor::gearset::green
                       ? pros::E_MOTOR_GEARSET_18
-                      : gearset == AbstractMotor::gearset::blue ? pros::E_MOTOR_GEARSET_06
-                                                                : pros::E_MOTOR_GEARSET_INVALID,
+                      : igearset == AbstractMotor::gearset::blue ? pros::E_MOTOR_GEARSET_06
+                                                                 : pros::E_MOTOR_GEARSET_INVALID,
                 reverse,
-                encoderUnits == AbstractMotor::encoderUnits::counts
+                iencoderUnits == AbstractMotor::encoderUnits::counts
                   ? pros::E_MOTOR_ENCODER_COUNTS
-                  : encoderUnits == AbstractMotor::encoderUnits::degrees
+                  : iencoderUnits == AbstractMotor::encoderUnits::degrees
                       ? pros::E_MOTOR_ENCODER_DEGREES
-                      : encoderUnits == AbstractMotor::encoderUnits::rotations
+                      : iencoderUnits == AbstractMotor::encoderUnits::rotations
                           ? pros::E_MOTOR_ENCODER_ROTATIONS
                           : pros::E_MOTOR_ENCODER_INVALID),
     gearset(igearset) {
