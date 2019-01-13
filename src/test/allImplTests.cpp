@@ -14,7 +14,4 @@ void runAllImplTests() {
   runAsyncPosIntegratedControllerTests();
   runUtilTests();
   runControllerTests();
-  runAsyncPosIntegratedControllerTests();
-  runUtilTests();
-  runControllerTests();
 }
