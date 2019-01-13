@@ -20,7 +20,7 @@ Motor::Motor(const std::uint8_t port,
              const AbstractMotor::gearset igearset,
              const AbstractMotor::encoderUnits encoderUnits)
   : pros::Motor(port,
-                gearset == AbstractMotor::gearset::red
+                igearset == AbstractMotor::gearset::red
                   ? pros::E_MOTOR_GEARSET_36
                   : gearset == AbstractMotor::gearset::green
                       ? pros::E_MOTOR_GEARSET_18
