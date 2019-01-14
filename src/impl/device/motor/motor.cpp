@@ -12,7 +12,7 @@
 
 namespace okapi {
 Motor::Motor(const std::int8_t iport)
-  : Motor(std::abs(iport), iport < 0, AbstractMotor::gearset::red) {
+  : Motor(std::abs(iport), iport < 0, AbstractMotor::gearset::green) {
 }
 
 Motor::Motor(const std::uint8_t iport,

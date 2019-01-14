@@ -539,7 +539,7 @@ class Motor : public AbstractMotor, public pros::Motor {
   virtual void controllerSet(double ivalue) override;
 
   protected:
-  AbstractMotor::gearset gearset;
+  AbstractMotor::gearset gearset{AbstractMotor::gearset::green};
 };
 
 inline namespace literals {
