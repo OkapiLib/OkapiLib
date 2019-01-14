@@ -87,7 +87,7 @@ void ChassisControllerPID::loop() {
 
       case angle:
         encVals = model->getSensorVals() - encStartVals;
-        angleChange = static_cast<double>(encVals[0] - encVals[1]);
+        angleChange = (encVals[0] - encVals[1]) / 2.0;
         model->rotate(turnPid->step(angleChange));
         break;
 
