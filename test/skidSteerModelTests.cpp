@@ -13,7 +13,7 @@ using namespace okapi;
 
 class SkidSteerModelTest : public ::testing::Test {
   public:
-  SkidSteerModelTest() : model(leftMotor, rightMotor, 127) {
+  SkidSteerModelTest() : model(leftMotor, rightMotor, leftSensor, rightSensor, 127) {
   }
 
   void assertAllMotorsLastVelocity(const std::int16_t expectedLastVelocity) const {
@@ -40,6 +40,10 @@ class SkidSteerModelTest : public ::testing::Test {
 
   std::shared_ptr<MockMotor> leftMotor = std::make_shared<MockMotor>();
   std::shared_ptr<MockMotor> rightMotor = std::make_shared<MockMotor>();
+  std::shared_ptr<MockContinuousRotarySensor> leftSensor =
+    std::make_shared<MockContinuousRotarySensor>();
+  std::shared_ptr<MockContinuousRotarySensor> rightSensor =
+    std::make_shared<MockContinuousRotarySensor>();
   SkidSteerModel model;
 };
 
@@ -184,4 +188,14 @@ TEST_F(SkidSteerModelTest, GetLeftSideMotor) {
 
 TEST_F(SkidSteerModelTest, GetRightSideMotor) {
   EXPECT_EQ(model.getRightSideMotor().get(), rightMotor.get());
+}
+
+TEST_F(SkidSteerModelTest, Reset) {
+  leftSensor->value = 1;
+  rightSensor->value = 1;
+
+  model.resetSensors();
+
+  EXPECT_EQ(leftSensor->get(), 0);
+  EXPECT_EQ(rightSensor->get(), 0);
 }
