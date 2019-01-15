@@ -26,4 +26,9 @@ std::valarray<std::int32_t> ThreeEncoderSkidSteerModel::getSensorVals() const {
                                      static_cast<std::int32_t>(rightSensor->get()),
                                      static_cast<std::int32_t>(middleSensor->get())};
 }
+
+void ThreeEncoderSkidSteerModel::resetSensors() const {
+  SkidSteerModel::resetSensors();
+  middleSensor->reset();
+}
 } // namespace okapi

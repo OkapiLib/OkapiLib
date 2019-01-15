@@ -126,6 +126,7 @@ class ChassisControllerPID : public virtual ChassisController {
 
   protected:
   std::shared_ptr<Logger> logger;
+  TimeUtil timeUtil;
   std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<IterativePosPIDController> distancePid;
   std::unique_ptr<IterativePosPIDController> turnPid;
@@ -135,6 +136,7 @@ class ChassisControllerPID : public virtual ChassisController {
   std::atomic_bool doneLooping{true};
   std::atomic_bool newMovement{false};
   std::atomic_bool dtorCalled{false};
+  QTime threadSleepTime{10_ms};
 
   static void trampoline(void *context);
   void loop();

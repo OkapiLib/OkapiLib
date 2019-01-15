@@ -21,6 +21,7 @@ ChassisControllerPID::ChassisControllerPID(
   const std::shared_ptr<Logger> &ilogger)
   : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
     logger(ilogger),
+    timeUtil(itimeUtil),
     rate(itimeUtil.getRate()),
     distancePid(std::move(idistanceController)),
     turnPid(std::move(iturnController)),
@@ -39,8 +40,9 @@ ChassisControllerPID::ChassisControllerPID(
 }
 
 ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcept
-  : ChassisController(std::move(other.model), other.maxVelocity, other.maxVoltage),
+  : ChassisController(other.model, other.maxVelocity, other.maxVoltage),
     logger(other.logger),
+    timeUtil(other.timeUtil),
     rate(std::move(other.rate)),
     distancePid(std::move(other.distancePid)),
     turnPid(std::move(other.turnPid)),
@@ -87,7 +89,7 @@ void ChassisControllerPID::loop() {
 
       case angle:
         encVals = model->getSensorVals() - encStartVals;
-        angleChange = static_cast<double>(encVals[0] - encVals[1]);
+        angleChange = (encVals[0] - encVals[1]) / 2.0;
         model->rotate(turnPid->step(angleChange));
         break;
 
@@ -98,7 +100,7 @@ void ChassisControllerPID::loop() {
       pastMode = mode;
     }
 
-    rate->delayUntil(10_ms);
+    rate->delayUntil(threadSleepTime);
   }
 }
 
@@ -201,9 +203,18 @@ void ChassisControllerPID::waitUntilSettled() {
     }
   }
 
-  stopAfterSettled();
+  // Order here is important
   mode = none;
   doneLooping.store(true, std::memory_order_release);
+
+  // Wait for the thread to finish if it happens to be writing to motors
+  auto rate = timeUtil.getRate();
+  for (int i = 0; i < 2; ++i) {
+    rate->delayUntil(threadSleepTime);
+  }
+
+  // Stop after the thread has run at least once
+  stopAfterSettled();
   logger->info("ChassisControllerPID: Done waiting to settle");
 }
 
