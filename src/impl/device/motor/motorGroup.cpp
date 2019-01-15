@@ -240,7 +240,7 @@ std::int32_t MotorGroup::setVoltageLimit(const std::int32_t ilimit) const {
 
 void MotorGroup::controllerSet(const double ivalue) {
   for (auto &&elem : motors) {
-    elem.moveVelocity(ivalue);
+    elem.controllerSet(ivalue);
   }
 }
 
