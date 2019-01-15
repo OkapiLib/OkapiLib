@@ -34,7 +34,7 @@ AsyncMotionProfileController::AsyncMotionProfileController(
 
 AsyncMotionProfileController::AsyncMotionProfileController(
   AsyncMotionProfileController &&other) noexcept
-  : logger(other.logger),
+  : logger(std::move(other.logger)),
     paths(std::move(other.paths)),
     limits(other.limits),
     model(std::move(other.model)),

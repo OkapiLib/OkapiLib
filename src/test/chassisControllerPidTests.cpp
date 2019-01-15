@@ -13,12 +13,17 @@ using namespace okapi;
 
 void testWaitUntilSettledExitsProperly() {
   printf("Testing waitUntilSettled() exits properly\n");
+  resetHardware();
 
-  auto drive = ChassisControllerFactory::create(
-    MOTOR_1_PORT * -1, MOTOR_2_PORT, {0.003}, {0}, {0.004}, AbstractMotor::gearset::green, {1, 1});
+  const double power = 0.3;
+  auto drive = ChassisControllerBuilder()
+                 .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
+                 .withGearset(MOTOR_GEARSET)
+                 .withGains({}, {0.004})
+                 .build();
 
   for (int i = 0; i < 10; ++i) {
-    drive.turnAngle(45_deg);
+    drive->turnAngle(45_deg);
     for (int i = 0; i < 100; ++i) {
       int32_t mtr1Vel = pros::c::motor_get_target_velocity(MOTOR_1_PORT);
       int32_t mtr2Vel = pros::c::motor_get_target_velocity(MOTOR_2_PORT);
@@ -35,7 +40,9 @@ void testWaitUntilSettledExitsProperly() {
     }
   }
 
-  drive.stop();
+  drive->stop();
+  resetHardware();
+  pros::delay(500);
 }
 
 void runChassisControllerPidTests() {

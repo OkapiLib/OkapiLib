@@ -27,7 +27,7 @@ AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
 
 AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
   AsyncLinearMotionProfileController &&other) noexcept
-  : logger(other.logger),
+  : logger(std::move(other.logger)),
     paths(std::move(other.paths)),
     limits(other.limits),
     output(std::move(other.output)),

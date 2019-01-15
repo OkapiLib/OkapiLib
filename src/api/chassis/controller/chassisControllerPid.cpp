@@ -41,7 +41,7 @@ ChassisControllerPID::ChassisControllerPID(
 
 ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcept
   : ChassisController(other.model, other.maxVelocity, other.maxVoltage),
-    logger(other.logger),
+    logger(std::move(other.logger)),
     timeUtil(other.timeUtil),
     rate(std::move(other.rate)),
     distancePid(std::move(other.distancePid)),
