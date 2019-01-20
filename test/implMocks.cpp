@@ -30,7 +30,7 @@ MockMotor::MockMotor() : encoder(std::make_shared<MockContinuousRotarySensor>())
 }
 
 void MockMotor::controllerSet(const double ivalue) {
-  moveVelocity((int16_t)ivalue);
+  moveVelocity(ivalue * toUnderlyingType(gearset));
 }
 
 int32_t MockMotor::moveAbsolute(const double iposition, const std::int32_t ivelocity) const {
