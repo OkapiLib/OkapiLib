@@ -25,7 +25,7 @@
 
 #define okapi_makeCreateEndBody igearset, iscales, itimeUtil
 
-#define okapi_tankParams(MotorType) const MotorType &ileftMtr, const MotorType &irightMtr
+#define okapi_tankParams(MotorType) MotorType ileftMtr, MotorType irightMtr
 
 #define okapi_tankBody(MotorType)                                                                  \
   std::make_shared<MotorType>(ileftMtr), std::make_shared<MotorType>(irightMtr)
@@ -33,8 +33,7 @@
 #define okapi_tankSensorBody ileftMtr.getEncoder(), irightMtr.getEncoder()
 
 #define okapi_xdriveParams(MotorType)                                                              \
-  const MotorType &itopLeftMtr, const MotorType &itopRightMtr, const MotorType &ibottomRightMtr,   \
-    const MotorType &ibottomLeftMtr
+  MotorType itopLeftMtr, MotorType itopRightMtr, MotorType ibottomRightMtr, MotorType ibottomLeftMtr
 
 #define okapi_xdriveBody(MotorType)                                                                \
   std::make_shared<MotorType>(itopLeftMtr), std::make_shared<MotorType>(itopRightMtr),             \

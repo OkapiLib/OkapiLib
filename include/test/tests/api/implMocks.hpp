@@ -45,69 +45,69 @@ class MockMotor : public AbstractMotor {
 
   void controllerSet(double ivalue) override;
 
-  int32_t moveAbsolute(double iposition, std::int32_t ivelocity) const override;
+  int32_t moveAbsolute(double iposition, std::int32_t ivelocity) override;
 
-  int32_t moveRelative(double iposition, std::int32_t ivelocity) const override;
+  int32_t moveRelative(double iposition, std::int32_t ivelocity) override;
 
-  double getTargetPosition() const override;
+  double getTargetPosition() override;
 
-  double getPosition() const override;
+  double getPosition() override;
 
-  int32_t getTargetVelocity() const override;
+  int32_t getTargetVelocity() override;
 
-  double getActualVelocity() const override;
+  double getActualVelocity() override;
 
-  int32_t tarePosition() const override;
+  int32_t tarePosition() override;
 
   int32_t setBrakeMode(brakeMode imode) override;
 
-  int32_t setCurrentLimit(std::int32_t ilimit) const override;
+  int32_t setCurrentLimit(std::int32_t ilimit) override;
 
   int32_t setEncoderUnits(encoderUnits iunits) override;
 
   int32_t setGearing(gearset igearset) override;
 
-  int32_t setReversed(bool ireverse) const override;
+  int32_t setReversed(bool ireverse) override;
 
-  int32_t setVoltageLimit(std::int32_t ilimit) const override;
+  int32_t setVoltageLimit(std::int32_t ilimit) override;
 
-  std::shared_ptr<ContinuousRotarySensor> getEncoder() const override;
+  std::shared_ptr<ContinuousRotarySensor> getEncoder() override;
 
-  std::int32_t moveVelocity(std::int16_t ivelocity) const override;
+  std::int32_t moveVelocity(std::int16_t ivelocity) override;
 
-  std::int32_t moveVoltage(std::int16_t ivoltage) const override;
+  std::int32_t moveVoltage(std::int16_t ivoltage) override;
 
-  int32_t getCurrentDraw() const override;
+  int32_t getCurrentDraw() override;
 
-  int32_t getDirection() const override;
+  int32_t getDirection() override;
 
-  double getEfficiency() const override;
+  double getEfficiency() override;
 
-  int32_t isOverCurrent() const override;
+  int32_t isOverCurrent() override;
 
-  int32_t isOverTemp() const override;
+  int32_t isOverTemp() override;
 
-  int32_t isStopped() const override;
+  int32_t isStopped() override;
 
-  int32_t getZeroPositionFlag() const override;
+  int32_t getZeroPositionFlag() override;
 
-  uint32_t getFaults() const override;
+  uint32_t getFaults() override;
 
-  uint32_t getFlags() const override;
+  uint32_t getFlags() override;
 
-  int32_t getRawPosition(std::uint32_t *timestamp) const override;
+  int32_t getRawPosition(std::uint32_t *timestamp) override;
 
-  double getPower() const override;
+  double getPower() override;
 
-  double getTemperature() const override;
+  double getTemperature() override;
 
-  double getTorque() const override;
+  double getTorque() override;
 
-  int32_t getVoltage() const override;
+  int32_t getVoltage() override;
 
-  int32_t modifyProfiledVelocity(std::int32_t ivelocity) const override;
+  int32_t modifyProfiledVelocity(std::int32_t ivelocity) override;
 
-  int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) const override;
+  int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) override;
 
   int32_t setPosPIDFull(double ikF,
                         double ikP,
@@ -116,9 +116,9 @@ class MockMotor : public AbstractMotor {
                         double ifilter,
                         double ilimit,
                         double ithreshold,
-                        double iloopSpeed) const override;
+                        double iloopSpeed) override;
 
-  int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) const override;
+  int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) override;
 
   int32_t setVelPIDFull(double ikF,
                         double ikP,
@@ -127,15 +127,15 @@ class MockMotor : public AbstractMotor {
                         double ifilter,
                         double ilimit,
                         double ithreshold,
-                        double iloopSpeed) const override;
+                        double iloopSpeed) override;
 
-  AbstractMotor::brakeMode getBrakeMode() const override;
+  AbstractMotor::brakeMode getBrakeMode() override;
 
-  int32_t getCurrentLimit() const override;
+  int32_t getCurrentLimit() override;
 
-  AbstractMotor::encoderUnits getEncoderUnits() const override;
+  AbstractMotor::encoderUnits getEncoderUnits() override;
 
-  AbstractMotor::gearset getGearing() const override;
+  AbstractMotor::gearset getGearing() override;
 
   std::shared_ptr<MockContinuousRotarySensor> encoder;
   mutable std::int16_t lastVelocity{0};
@@ -146,6 +146,142 @@ class MockMotor : public AbstractMotor {
   AbstractMotor::gearset gearset{AbstractMotor::gearset::green};
   AbstractMotor::encoderUnits encoderUnits{AbstractMotor::encoderUnits::counts};
   AbstractMotor::brakeMode brakeMode{AbstractMotor::brakeMode::coast};
+};
+
+class ThreadedMockMotor : public AbstractMotor {
+  public:
+  ThreadedMockMotor();
+
+  void controllerSet(double ivalue) override;
+
+  int32_t moveAbsolute(double iposition, std::int32_t ivelocity) override;
+
+  int32_t moveRelative(double iposition, std::int32_t ivelocity) override;
+
+  int32_t moveVelocity(std::int16_t ivelocity) override;
+
+  int32_t moveVoltage(std::int16_t ivoltage) override;
+
+  int32_t modifyProfiledVelocity(std::int32_t ivelocity) override;
+
+  double getTargetPosition() override;
+
+  double getPosition() override;
+
+  int32_t tarePosition() override;
+
+  int32_t getTargetVelocity() override;
+
+  double getActualVelocity() override;
+
+  int32_t getCurrentDraw() override;
+
+  int32_t getDirection() override;
+
+  double getEfficiency() override;
+
+  int32_t isOverCurrent() override;
+
+  int32_t isOverTemp() override;
+
+  int32_t isStopped() override;
+
+  int32_t getZeroPositionFlag() override;
+
+  uint32_t getFaults() override;
+
+  uint32_t getFlags() override;
+
+  int32_t getRawPosition(std::uint32_t *timestamp) override;
+
+  double getPower() override;
+
+  double getTemperature() override;
+
+  double getTorque() override;
+
+  int32_t getVoltage() override;
+
+  int32_t setBrakeMode(brakeMode imode) override;
+
+  brakeMode getBrakeMode() override;
+
+  int32_t setCurrentLimit(std::int32_t ilimit) override;
+
+  int32_t getCurrentLimit() override;
+
+  int32_t setEncoderUnits(encoderUnits iunits) override;
+
+  encoderUnits getEncoderUnits() override;
+
+  int32_t setGearing(gearset igearset) override;
+
+  gearset getGearing() override;
+
+  int32_t setReversed(bool ireverse) override;
+
+  int32_t setVoltageLimit(std::int32_t ilimit) override;
+
+  int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) override;
+
+  int32_t setPosPIDFull(double ikF,
+                        double ikP,
+                        double ikI,
+                        double ikD,
+                        double ifilter,
+                        double ilimit,
+                        double ithreshold,
+                        double iloopSpeed) override;
+
+  int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) override;
+
+  int32_t setVelPIDFull(double ikF,
+                        double ikP,
+                        double ikI,
+                        double ikD,
+                        double ifilter,
+                        double ilimit,
+                        double ithreshold,
+                        double iloopSpeed) override;
+
+  std::shared_ptr<ContinuousRotarySensor> getEncoder() override;
+
+  void startThread();
+
+  void stopThread();
+
+  void threadFunc();
+
+  std::thread thread;
+  int reverse{1};
+  AbstractMotor::gearset gearset{AbstractMotor::gearset::green};
+  AbstractMotor::encoderUnits encoderUnits{AbstractMotor::encoderUnits::counts};
+  AbstractMotor::brakeMode brakeMode{AbstractMotor::brakeMode::coast};
+  std::shared_ptr<MockContinuousRotarySensor> encoder;
+
+  // User set position
+  double targetPosition{0};
+
+  // User set profiled velocity target
+  std::int32_t targetProfiledVelocity{toUnderlyingType(gearset)};
+
+  // User set velocity
+  std::int16_t targetVelocity{0};
+
+  // User set voltage
+  std::int16_t setVoltage{0};
+
+  // User set voltage limit
+  std::int32_t voltageLimit{12000};
+
+  // User set current limit
+  std::int32_t currentLimit{2500};
+
+  enum e_mode { position = 1, velocity = 2, voltage = 3 } mode;
+  double actualPosition{0};
+  double actualVelocity{0};
+  int dt{1};
+  bool threadShouldStop{false};
 };
 
 /**
