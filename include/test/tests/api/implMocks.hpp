@@ -277,7 +277,7 @@ class ThreadedMockMotor : public AbstractMotor {
   // User set current limit
   std::int32_t currentLimit{2500};
 
-  enum e_mode { position = 1, velocity = 2, voltage = 3 } mode;
+  enum e_mode { position = 1, velocity = 2, voltage = 3 } mode{velocity};
   double actualPosition{0};
   double actualVelocity{0};
   int dt{1};
