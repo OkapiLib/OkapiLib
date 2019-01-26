@@ -80,262 +80,318 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceRawUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_EQ(controller->getSensorVals()[0], 100);
-  EXPECT_EQ(controller->getSensorVals()[1], 100);
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], 100, 5);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
 
-// TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceUnitsTest) {
-//  controller->moveDistance(1_m);
-//
-//  EXPECT_DOUBLE_EQ(distanceController->getTarget(), 2);
-//  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
-//
-//  EXPECT_TRUE(turnController->isDisabled());
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncRawUnitsTest) {
-//  controller->moveDistanceAsync(100);
-//
-//  EXPECT_DOUBLE_EQ(distanceController->getTarget(), 100);
-//  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
-//
-//  EXPECT_TRUE(turnController->isDisabled());
-//  EXPECT_FALSE(distanceController->isDisabled());
-//  EXPECT_FALSE(angleController->isDisabled());
-//
-//  controller->waitUntilSettled();
-//
-//  EXPECT_TRUE(turnController->isDisabled());
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncUnitsTest) {
-//  controller->moveDistanceAsync(1_m);
-//
-//  EXPECT_DOUBLE_EQ(distanceController->getTarget(), 2);
-//  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
-//
-//  EXPECT_TRUE(turnController->isDisabled());
-//  EXPECT_FALSE(distanceController->isDisabled());
-//  EXPECT_FALSE(angleController->isDisabled());
-//
-//  controller->waitUntilSettled();
-//
-//  EXPECT_TRUE(turnController->isDisabled());
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleRawUnitsTest) {
-//  controller->turnAngle(100);
-//
-//  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
-//  EXPECT_DOUBLE_EQ(turnController->getTarget(), 100);
-//
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//  EXPECT_TRUE(turnController->isDisabled());
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleUnitsTest) {
-//  controller->turnAngle(45_deg);
-//
-//  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
-//  EXPECT_DOUBLE_EQ(turnController->getTarget(), 90);
-//
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//  EXPECT_TRUE(turnController->isDisabled());
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncRawUnitsTest) {
-//  controller->turnAngleAsync(100);
-//
-//  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
-//  EXPECT_DOUBLE_EQ(turnController->getTarget(), 100);
-//
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//  EXPECT_FALSE(turnController->isDisabled());
-//
-//  controller->waitUntilSettled();
-//
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//  EXPECT_TRUE(turnController->isDisabled());
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncUnitsTest) {
-//  controller->turnAngleAsync(45_deg);
-//
-//  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
-//  EXPECT_DOUBLE_EQ(turnController->getTarget(), 90);
-//
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//  EXPECT_FALSE(turnController->isDisabled());
-//
-//  controller->waitUntilSettled();
-//
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//  EXPECT_TRUE(turnController->isDisabled());
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, MirrorTurnTest) {
-//  controller->setTurnsMirrored(true);
-//  controller->turnAngle(45_deg);
-//
-//  EXPECT_DOUBLE_EQ(distanceController->getTarget(), 0);
-//  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
-//  EXPECT_DOUBLE_EQ(turnController->getTarget(), -90);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceThenTurnAngleAsyncTest) {
-//  controller->moveDistanceAsync(100);
-//
-//  EXPECT_DOUBLE_EQ(distanceController->getTarget(), 100);
-//  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
-//
-//  EXPECT_FALSE(distanceController->isDisabled());
-//  EXPECT_FALSE(angleController->isDisabled());
-//  EXPECT_TRUE(turnController->isDisabled());
-//
-//  controller->turnAngleAsync(200);
-//
-//  EXPECT_DOUBLE_EQ(turnController->getTarget(), 200);
-//
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//  EXPECT_FALSE(turnController->isDisabled());
-//
-//  controller->waitUntilSettled();
-//
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//  EXPECT_TRUE(turnController->isDisabled());
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleThenMoveDistanceAsyncTest) {
-//  controller->turnAngleAsync(200);
-//
-//  EXPECT_DOUBLE_EQ(turnController->getTarget(), 200);
-//
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//  EXPECT_FALSE(turnController->isDisabled());
-//
-//  controller->moveDistanceAsync(100);
-//
-//  EXPECT_DOUBLE_EQ(distanceController->getTarget(), 100);
-//  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
-//
-//  EXPECT_FALSE(distanceController->isDisabled());
-//  EXPECT_FALSE(angleController->isDisabled());
-//  EXPECT_TRUE(turnController->isDisabled());
-//
-//  controller->waitUntilSettled();
-//
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//  EXPECT_TRUE(turnController->isDisabled());
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAndWaitTest) {
-//  controller->moveDistance(100);
-//  controller->waitUntilSettled();
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceGetBumpedAndWaitTest) {
-//  controller->moveDistance(100);
-//
-//  // First bump
-//  leftMotor->encoder->value = 500;
-//  rightMotor->encoder->value = 500;
-//  controller->waitUntilSettled();
-//
-//  // Second bump
-//  leftMotor->encoder->value = 1000;
-//  rightMotor->encoder->value = 1000;
-//  controller->waitUntilSettled();
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAndWaitTest) {
-//  controller->turnAngle(100);
-//  controller->waitUntilSettled();
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleGetBumpedAndWaitTest) {
-//  controller->turnAngle(100);
-//
-//  // First bump
-//  leftMotor->encoder->value = 500;
-//  rightMotor->encoder->value = 500;
-//  controller->waitUntilSettled();
-//
-//  // Second bump
-//  leftMotor->encoder->value = 1000;
-//  rightMotor->encoder->value = 1000;
-//  controller->waitUntilSettled();
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAndStopTest) {
-//  controller->moveDistanceAsync(100);
-//  controller->stop();
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAndStopTest) {
-//  controller->turnAngleAsync(100);
-//  controller->stop();
-//
-//  //  assertMotorsHaveBeenStopped(leftMotor, rightMotor);
-//  EXPECT_TRUE(angleController->isDisabled());
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, WaitUntilSettledInModeNone) {
-//  controller->waitUntilSettled();
-//
-//  EXPECT_TRUE(turnController->isDisabled());
-//  EXPECT_TRUE(distanceController->isDisabled());
-//  EXPECT_TRUE(angleController->isDisabled());
-//}
-//
-// TEST_F(ChassisControllerPIDIntegrationTest, SetMaxVelocityTest) {
-//  controller->setMaxVelocity(42);
-//  //  EXPECT_EQ(model->maxVelocity, 42);
-//}
+TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceUnitsTest) {
+  controller->moveDistance(1_m);
+
+  EXPECT_NEAR(distanceController->getTarget(), 1128, 1);
+  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
+
+  EXPECT_TRUE(turnController->isDisabled());
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], 1128, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], 1128, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncRawUnitsTest) {
+  controller->moveDistanceAsync(100);
+
+  EXPECT_DOUBLE_EQ(distanceController->getTarget(), 100);
+  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
+
+  EXPECT_TRUE(turnController->isDisabled());
+  EXPECT_FALSE(distanceController->isDisabled());
+  EXPECT_FALSE(angleController->isDisabled());
+
+  controller->waitUntilSettled();
+
+  EXPECT_TRUE(turnController->isDisabled());
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], 100, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncUnitsTest) {
+  controller->moveDistanceAsync(1_m);
+
+  EXPECT_NEAR(distanceController->getTarget(), 1128, 1);
+  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
+
+  EXPECT_TRUE(turnController->isDisabled());
+  EXPECT_FALSE(distanceController->isDisabled());
+  EXPECT_FALSE(angleController->isDisabled());
+
+  controller->waitUntilSettled();
+
+  EXPECT_TRUE(turnController->isDisabled());
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], 1128, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], 1128, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleRawUnitsTest) {
+  controller->turnAngle(100);
+
+  EXPECT_DOUBLE_EQ(turnController->getTarget(), 100);
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_TRUE(turnController->isDisabled());
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], -100, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleUnitsTest) {
+  controller->turnAngle(45_deg);
+
+  EXPECT_NEAR(turnController->getTarget(), 129, 1);
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_TRUE(turnController->isDisabled());
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], 129, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], -129, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncRawUnitsTest) {
+  controller->turnAngleAsync(100);
+
+  EXPECT_DOUBLE_EQ(turnController->getTarget(), 100);
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_FALSE(turnController->isDisabled());
+
+  controller->waitUntilSettled();
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_TRUE(turnController->isDisabled());
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], -100, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncUnitsTest) {
+  controller->turnAngleAsync(45_deg);
+
+  EXPECT_NEAR(turnController->getTarget(), 129, 1);
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_FALSE(turnController->isDisabled());
+
+  controller->waitUntilSettled();
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_TRUE(turnController->isDisabled());
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], 129, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], -129, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, MirrorTurnTest) {
+  controller->setTurnsMirrored(true);
+  controller->turnAngle(45_deg);
+
+  EXPECT_NEAR(turnController->getTarget(), -129, 1);
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], -129, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], 129, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceThenTurnAngleAsyncTest) {
+  controller->moveDistanceAsync(100);
+
+  EXPECT_DOUBLE_EQ(distanceController->getTarget(), 100);
+  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
+
+  EXPECT_FALSE(distanceController->isDisabled());
+  EXPECT_FALSE(angleController->isDisabled());
+  EXPECT_TRUE(turnController->isDisabled());
+
+  controller->turnAngleAsync(200);
+
+  EXPECT_DOUBLE_EQ(turnController->getTarget(), 200);
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_FALSE(turnController->isDisabled());
+
+  controller->waitUntilSettled();
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_TRUE(turnController->isDisabled());
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], 200, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], -200, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleThenMoveDistanceAsyncTest) {
+  controller->turnAngleAsync(200);
+
+  EXPECT_DOUBLE_EQ(turnController->getTarget(), 200);
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_FALSE(turnController->isDisabled());
+
+  controller->moveDistanceAsync(100);
+
+  EXPECT_DOUBLE_EQ(distanceController->getTarget(), 100);
+  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
+
+  EXPECT_FALSE(distanceController->isDisabled());
+  EXPECT_FALSE(angleController->isDisabled());
+  EXPECT_TRUE(turnController->isDisabled());
+
+  controller->waitUntilSettled();
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_TRUE(turnController->isDisabled());
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], 100, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAndWaitTest) {
+  controller->moveDistance(100);
+  controller->waitUntilSettled();
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_TRUE(turnController->isDisabled());
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], 100, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAndWaitTest) {
+  controller->turnAngle(100);
+  controller->waitUntilSettled();
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_TRUE(turnController->isDisabled());
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], -100, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncAndStopTest) {
+  controller->moveDistanceAsync(100);
+  controller->stop();
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_TRUE(turnController->isDisabled());
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], 0, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], 0, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncAndStopTest) {
+  controller->turnAngleAsync(100);
+  controller->stop();
+
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+  EXPECT_TRUE(turnController->isDisabled());
+
+  // Wait a bit extra in case the thread is still writing to the motors
+  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+  EXPECT_NEAR(controller->getSensorVals()[0], 0, 5);
+  EXPECT_NEAR(controller->getSensorVals()[1], 0, 5);
+  EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
+  EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
+}
+
+TEST_F(ChassisControllerPIDIntegrationTest, WaitUntilSettledInModeNone) {
+  controller->waitUntilSettled();
+
+  EXPECT_TRUE(turnController->isDisabled());
+  EXPECT_TRUE(distanceController->isDisabled());
+  EXPECT_TRUE(angleController->isDisabled());
+}

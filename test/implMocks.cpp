@@ -719,6 +719,11 @@ void ThreadedMockMotor::threadFunc() {
   while (!threadShouldStop) {
     switch (mode) {
     case position: {
+      // If the encoder value was written to from outside this thread
+      if (static_cast<std::int32_t>(actualPosition) != encoder->value) {
+        actualPosition = encoder->value;
+      }
+
       actualVelocity = targetProfiledVelocity;
       actualPosition += actualVelocity * (dt / 1000.0);
 
@@ -731,6 +736,11 @@ void ThreadedMockMotor::threadFunc() {
     }
 
     case velocity: {
+      // If the encoder value was written to from outside this thread
+      if (static_cast<std::int32_t>(actualPosition) != encoder->value) {
+        actualPosition = encoder->value;
+      }
+
       actualVelocity = targetVelocity;
       actualPosition += actualVelocity * (dt / 1000.0);
 
