@@ -45,7 +45,7 @@ IterativePosPIDController::IterativePosPIDController(const Gains &igains,
 }
 
 void IterativePosPIDController::setTarget(const double itarget) {
-  logger->info("IterativePosPIDController: Set target to " + std::to_string(itarget));
+  LOG_INFO("IterativePosPIDController: Set target to " + std::to_string(itarget));
   target = itarget;
 }
 
@@ -181,7 +181,8 @@ void IterativePosPIDController::setGains(const double ikP,
 }
 
 void IterativePosPIDController::reset() {
-  logger->info("IterativePosPIDController: Reset");
+  LOG_INFO_S("IterativePosPIDController: Reset");
+
   error = 0;
   lastError = 0;
   lastReading = 0;
@@ -199,7 +200,7 @@ void IterativePosPIDController::flipDisable() {
 }
 
 void IterativePosPIDController::flipDisable(const bool iisDisabled) {
-  logger->info("IterativePosPIDController: flipDisable " + std::to_string(iisDisabled));
+  LOG_INFO("IterativePosPIDController: flipDisable " + std::to_string(iisDisabled));
   controllerIsDisabled = iisDisabled;
 }
 

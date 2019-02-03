@@ -15,7 +15,6 @@ void testWaitUntilSettledExitsProperly() {
   printf("Testing waitUntilSettled() exits properly\n");
   resetHardware();
 
-  const double power = 0.3;
   auto drive = ChassisControllerBuilder()
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
                  .withGearset(MOTOR_GEARSET)
