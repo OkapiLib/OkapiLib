@@ -53,8 +53,12 @@ class Logger {
     }
   }
 
+  constexpr bool isDebugLevelEnabled() const noexcept {
+    return toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::debug);
+  }
+
   constexpr void debug(std::string_view message) const noexcept {
-    if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info) && logfile && timer) {
+    if (isDebugLevelEnabled() && logfile && timer) {
       fprintf(logfile,
               "%ld DEBUG: %s\n",
               static_cast<long>(timer->millis().convert(millisecond)),
@@ -62,8 +66,12 @@ class Logger {
     }
   }
 
+  constexpr bool isInfoLevelEnabled() const noexcept {
+    return toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info);
+  }
+
   constexpr void info(std::string_view message) const noexcept {
-    if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info) && logfile && timer) {
+    if (isInfoLevelEnabled() && logfile && timer) {
       fprintf(logfile,
               "%ld INFO: %s\n",
               static_cast<long>(timer->millis().convert(millisecond)),
@@ -71,8 +79,12 @@ class Logger {
     }
   }
 
+  constexpr bool isWarnLevelEnabled() const noexcept {
+    return toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::warn);
+  }
+
   constexpr void warn(std::string_view message) const noexcept {
-    if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::warn) && logfile && timer) {
+    if (isWarnLevelEnabled() && logfile && timer) {
       fprintf(logfile,
               "%ld WARN: %s\n",
               static_cast<long>(timer->millis().convert(millisecond)),
@@ -80,8 +92,12 @@ class Logger {
     }
   }
 
+  constexpr bool isErrorLevelEnabled() const noexcept {
+    return toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::error);
+  }
+
   constexpr void error(std::string_view message) const noexcept {
-    if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::error) && logfile && timer) {
+    if (isErrorLevelEnabled() && logfile && timer) {
       fprintf(logfile,
               "%ld ERROR: %s\n",
               static_cast<long>(timer->millis().convert(millisecond)),
