@@ -163,7 +163,7 @@ ChassisControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
 
 std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
   if (!hasMotors) {
-    logger->error("ChassisControllerBuilder: No motors given.");
+    LOG_ERROR_S("ChassisControllerBuilder: No motors given.");
     throw std::runtime_error("ChassisControllerBuilder: No motors given.");
   }
 

@@ -70,7 +70,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * Sets the target for the controller.
    */
   void setTarget(const Input itarget) override {
-    logger->info("AsyncWrapper: Set target to " + std::to_string(itarget));
+    LOG_INFO("AsyncWrapper: Set target to " + std::to_string(itarget));
     hasFirstTarget = true;
     controller->setTarget(itarget * ratio);
     lastTarget = itarget;
@@ -174,7 +174,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * keeping any user-configured information.
    */
   void reset() override {
-    logger->info("AsyncWrapper: Reset");
+    LOG_INFO_S("AsyncWrapper: Reset");
     controller->reset();
     hasFirstTarget = false;
   }
@@ -184,7 +184,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * cause the controller to move to its last set target, unless it was reset in that time.
    */
   void flipDisable() override {
-    logger->info("AsyncWrapper: flipDisable " + std::to_string(!controller->isDisabled()));
+    LOG_INFO("AsyncWrapper: flipDisable " + std::to_string(!controller->isDisabled()));
     controller->flipDisable();
     resumeMovement();
   }
@@ -196,7 +196,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * @param iisDisabled whether the controller is disabled
    */
   void flipDisable(const bool iisDisabled) override {
-    logger->info("AsyncWrapper: flipDisable " + std::to_string(iisDisabled));
+    LOG_INFO("AsyncWrapper: flipDisable " + std::to_string(iisDisabled));
     controller->flipDisable(iisDisabled);
     resumeMovement();
   }
@@ -215,13 +215,13 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * implementation-dependent.
    */
   void waitUntilSettled() override {
-    logger->info("AsyncWrapper: Waiting to settle");
+    LOG_INFO_S("AsyncWrapper: Waiting to settle");
 
     while (!isSettled()) {
       loopRate->delayUntil(motorUpdateRate);
     }
 
-    logger->info("AsyncWrapper: Done waiting to settle");
+    LOG_INFO_S("AsyncWrapper: Done waiting to settle");
   }
 
   /**

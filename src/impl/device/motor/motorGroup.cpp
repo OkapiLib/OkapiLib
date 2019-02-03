@@ -9,11 +9,11 @@
 
 namespace okapi {
 MotorGroup::MotorGroup(const std::initializer_list<Motor> &imotors,
-                       const std::shared_ptr<Logger> &ilogger)
+                       const std::shared_ptr<Logger> &logger)
   : motors(imotors) {
   if (motors.empty()) {
-    ilogger->error(
-      "MotorGroup: A MotorGroup must be created with at least one motor. No motors were given.");
+    LOG_ERROR_S("MotorGroup: A MotorGroup must be created with at least one motor. No motors were"
+                " given.");
     throw std::invalid_argument(
       "MotorGroup: A MotorGroup must be created with at least one motor. No motors were given.");
   }

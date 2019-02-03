@@ -84,11 +84,12 @@ PIDTuner::Output PIDTuner::autotune() {
 
   // Run the optimization
   for (std::size_t iteration = 0; iteration < numIterations; iteration++) {
-    logger->info("PIDTuner: Iteration number " + std::to_string(iteration));
+    LOG_INFO("PIDTuner: Iteration number " + std::to_string(iteration));
+
     bool firstGoal = true;
 
     for (std::size_t particleIndex = 0; particleIndex < numParticles; particleIndex++) {
-      logger->info("PIDTuner: Particle number " + std::to_string(particleIndex));
+      LOG_INFO("PIDTuner: Particle number " + std::to_string(particleIndex));
 
       testController.setGains(particles.at(particleIndex).kP.pos,
                               particles.at(particleIndex).kI.pos,
@@ -128,7 +129,7 @@ PIDTuner::Output PIDTuner::autotune() {
 
       const double error = kSettle * settleTime.convert(millisecond) + kITAE * itae;
 
-      logger->info("PIDTuner: New error is " + std::to_string(error));
+      LOG_INFO("PIDTuner: New error is " + std::to_string(error));
 
       if (error < particles.at(particleIndex).bestError) {
         particles.at(particleIndex).kP.best = particles.at(particleIndex).kP.pos;

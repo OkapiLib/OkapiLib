@@ -22,8 +22,8 @@ AsyncVelIntegratedController::AsyncVelIntegratedController(
     settledUtil(itimeUtil.getSettledUtil()),
     rate(itimeUtil.getRate()) {
   if (ipair.ratio == 0) {
-    logger->error("AsyncVelIntegratedController: The gear ratio cannot be zero! Check if you are "
-                  "using integer division.");
+    LOG_ERROR_S("AsyncVelIntegratedController: The gear ratio cannot be zero! Check if you are "
+                "using integer division.");
     throw std::invalid_argument("AsyncVelIntegratedController: The gear ratio cannot be zero! "
                                 "Check if you are using integer division.");
   }
@@ -38,7 +38,7 @@ void AsyncVelIntegratedController::setTarget(const double itarget) {
     boundedTarget = maxVelocity;
   }
 
-  logger->info("AsyncVelIntegratedController: Set target to " + std::to_string(boundedTarget));
+  LOG_INFO("AsyncVelIntegratedController: Set target to " + std::to_string(boundedTarget));
 
   hasFirstTarget = true;
 
@@ -62,7 +62,7 @@ bool AsyncVelIntegratedController::isSettled() {
 }
 
 void AsyncVelIntegratedController::reset() {
-  logger->info("AsyncVelIntegratedController: Reset");
+  LOG_INFO_S("AsyncVelIntegratedController: Reset");
   hasFirstTarget = false;
   settledUtil->reset();
 }
@@ -72,7 +72,7 @@ void AsyncVelIntegratedController::flipDisable() {
 }
 
 void AsyncVelIntegratedController::flipDisable(const bool iisDisabled) {
-  logger->info("AsyncVelIntegratedController: flipDisable " + std::to_string(iisDisabled));
+  LOG_INFO("AsyncVelIntegratedController: flipDisable " + std::to_string(iisDisabled));
   controllerIsDisabled = iisDisabled;
   resumeMovement();
 }
@@ -92,11 +92,13 @@ void AsyncVelIntegratedController::resumeMovement() {
 }
 
 void AsyncVelIntegratedController::waitUntilSettled() {
-  logger->info("AsyncVelIntegratedController: Waiting to settle");
+  LOG_INFO_S("AsyncVelIntegratedController: Waiting to settle");
+
   while (!isSettled()) {
     rate->delayUntil(motorUpdateRate);
   }
-  logger->info("AsyncVelIntegratedController: Done waiting to settle");
+
+  LOG_INFO_S("AsyncVelIntegratedController: Done waiting to settle");
 }
 
 void AsyncVelIntegratedController::controllerSet(double ivalue) {

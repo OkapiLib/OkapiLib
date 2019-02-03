@@ -26,10 +26,10 @@ class LoggerTest : public ::testing::Test {
   }
 
   void logData(const std::shared_ptr<Logger> &ilogger) const {
-    ilogger->error("MSG");
-    ilogger->warn("MSG");
-    ilogger->info("MSG");
-    ilogger->debug("MSG");
+    LOG_ERROR_S("MSG");
+    LOG_WARN_S("MSG");
+    LOG_INFO_S("MSG");
+    LOG_DEBUG_S("MSG");
   }
 
   FILE *logFile;
