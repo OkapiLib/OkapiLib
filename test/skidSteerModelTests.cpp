@@ -155,6 +155,13 @@ TEST_F(SkidSteerModelTest, ArcadeThresholds) {
   assertAllMotorsLastVoltage(0);
 }
 
+TEST_F(SkidSteerModelTest, ArcadeNegativeZero) {
+  model.arcade(-0.0, -1.0);
+  
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(-12000, 12000);
+}
+
 TEST_F(SkidSteerModelTest, SetMaxVelocity) {
   model.setMaxVelocity(2);
   model.forward(0.5);

@@ -73,7 +73,9 @@ void ChassisControllerPID::loop() {
      * doneLooping is set to false by moveDistanceAsync and turnAngleAsync and then set to true by
      * waitUntilSettled
      */
-    if (!doneLooping.load(std::memory_order_acquire)) {
+    if (doneLooping.load(std::memory_order_acquire)) {
+      doneLoopingSeen.store(true, std::memory_order_release);
+    } else {
       if (mode != pastMode || newMovement.load(std::memory_order_acquire)) {
         encStartVals = model->getSensorVals();
         newMovement.store(false, std::memory_order_release);
@@ -206,10 +208,11 @@ void ChassisControllerPID::waitUntilSettled() {
   // Order here is important
   mode = none;
   doneLooping.store(true, std::memory_order_release);
+  doneLoopingSeen.store(false, std::memory_order_release);
 
   // Wait for the thread to finish if it happens to be writing to motors
   auto rate = timeUtil.getRate();
-  for (int i = 0; i < 2; ++i) {
+  while (!doneLoopingSeen.load(std::memory_order_acquire)) {
     rate->delayUntil(threadSleepTime);
   }
 
@@ -271,6 +274,8 @@ void ChassisControllerPID::stopAfterSettled() {
 }
 
 void ChassisControllerPID::stop() {
+  mode = none;
+  doneLooping.store(true, std::memory_order_release);
   stopAfterSettled();
   ChassisController::stop();
 }

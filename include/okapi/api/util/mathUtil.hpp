@@ -33,7 +33,7 @@ static constexpr auto OKAPI_PROS_ERR = INT32_MAX;
 static constexpr auto OKAPI_PROS_ERR_F = INFINITY;
 
 static constexpr std::int8_t motorUpdateRate = 10;
-static constexpr std::int8_t adiUpdateRate = 5;
+static constexpr std::int8_t adiUpdateRate = 10;
 
 /**
  * Integer power function. Computes base^expo.

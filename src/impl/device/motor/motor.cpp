@@ -37,99 +37,99 @@ Motor::Motor(const std::uint8_t iport,
     gearset(igearset) {
 }
 
-std::int32_t Motor::moveAbsolute(const double iposition, const std::int32_t ivelocity) const {
+std::int32_t Motor::moveAbsolute(const double iposition, const std::int32_t ivelocity) {
   return move_absolute(iposition, ivelocity);
 }
 
-std::int32_t Motor::moveRelative(const double iposition, const std::int32_t ivelocity) const {
+std::int32_t Motor::moveRelative(const double iposition, const std::int32_t ivelocity) {
   return move_relative(iposition, ivelocity);
 }
 
-std::int32_t Motor::moveVelocity(const std::int16_t ivelocity) const {
+std::int32_t Motor::moveVelocity(const std::int16_t ivelocity) {
   return move_velocity(ivelocity);
 }
 
-std::int32_t Motor::moveVoltage(const std::int16_t ivoltage) const {
+std::int32_t Motor::moveVoltage(const std::int16_t ivoltage) {
   return move_voltage(ivoltage);
 }
 
-std::int32_t Motor::modifyProfiledVelocity(std::int32_t ivelocity) const {
+std::int32_t Motor::modifyProfiledVelocity(std::int32_t ivelocity) {
   return modify_profiled_velocity(ivelocity);
 }
 
-double Motor::getTargetPosition() const {
+double Motor::getTargetPosition() {
   return get_target_position();
 }
 
-double Motor::getPosition() const {
+double Motor::getPosition() {
   return get_position();
 }
 
-std::int32_t Motor::tarePosition() const {
+std::int32_t Motor::tarePosition() {
   return tare_position();
 }
 
-std::int32_t Motor::getTargetVelocity() const {
+std::int32_t Motor::getTargetVelocity() {
   return get_target_velocity();
 }
 
-double Motor::getActualVelocity() const {
+double Motor::getActualVelocity() {
   return get_actual_velocity();
 }
 
-std::int32_t Motor::getCurrentDraw() const {
+std::int32_t Motor::getCurrentDraw() {
   return get_current_draw();
 }
 
-std::int32_t Motor::getDirection() const {
+std::int32_t Motor::getDirection() {
   return get_direction();
 }
 
-double Motor::getEfficiency() const {
+double Motor::getEfficiency() {
   return get_efficiency();
 }
 
-std::int32_t Motor::isOverCurrent() const {
+std::int32_t Motor::isOverCurrent() {
   return is_over_current();
 }
 
-std::int32_t Motor::isOverTemp() const {
+std::int32_t Motor::isOverTemp() {
   return is_over_temp();
 }
 
-std::int32_t Motor::isStopped() const {
+std::int32_t Motor::isStopped() {
   return is_stopped();
 }
 
-std::int32_t Motor::getZeroPositionFlag() const {
+std::int32_t Motor::getZeroPositionFlag() {
   return get_zero_position_flag();
 }
 
-uint32_t Motor::getFaults() const {
+uint32_t Motor::getFaults() {
   return get_faults();
 }
 
-uint32_t Motor::getFlags() const {
+uint32_t Motor::getFlags() {
   return get_flags();
 }
 
-std::int32_t Motor::getRawPosition(std::uint32_t *timestamp) const {
+std::int32_t Motor::getRawPosition(std::uint32_t *timestamp) {
   return get_raw_position(timestamp);
 }
 
-double Motor::getPower() const {
+double Motor::getPower() {
   return get_power();
 }
 
-double Motor::getTemperature() const {
+double Motor::getTemperature() {
   return get_temperature();
 }
 
-double Motor::getTorque() const {
+double Motor::getTorque() {
   return get_torque();
 }
 
-std::int32_t Motor::getVoltage() const {
+std::int32_t Motor::getVoltage() {
   return get_voltage();
 }
 
@@ -147,7 +147,7 @@ std::int32_t Motor::setBrakeMode(const AbstractMotor::brakeMode imode) {
   }
 }
 
-AbstractMotor::brakeMode Motor::getBrakeMode() const {
+AbstractMotor::brakeMode Motor::getBrakeMode() {
   switch (get_brake_mode()) {
   case pros::E_MOTOR_BRAKE_COAST:
     return AbstractMotor::brakeMode::coast;
@@ -161,11 +161,11 @@ AbstractMotor::brakeMode Motor::getBrakeMode() const {
   }
 }
 
-std::int32_t Motor::setCurrentLimit(const std::int32_t ilimit) const {
+std::int32_t Motor::setCurrentLimit(const std::int32_t ilimit) {
   return set_current_limit(ilimit);
 }
 
-std::int32_t Motor::getCurrentLimit() const {
+std::int32_t Motor::getCurrentLimit() {
   return get_current_limit();
 }
 
@@ -183,7 +183,7 @@ std::int32_t Motor::setEncoderUnits(const AbstractMotor::encoderUnits iunits) {
   }
 }
 
-AbstractMotor::encoderUnits Motor::getEncoderUnits() const {
+AbstractMotor::encoderUnits Motor::getEncoderUnits() {
   switch (get_encoder_units()) {
   case pros::E_MOTOR_ENCODER_DEGREES:
     return AbstractMotor::encoderUnits::degrees;
@@ -211,7 +211,7 @@ std::int32_t Motor::setGearing(const AbstractMotor::gearset igearset) {
   }
 }
 
-AbstractMotor::gearset Motor::getGearing() const {
+AbstractMotor::gearset Motor::getGearing() {
   switch (get_gearing()) {
   case pros::E_MOTOR_GEARSET_36:
     return AbstractMotor::gearset::red;
@@ -225,16 +225,16 @@ AbstractMotor::gearset Motor::getGearing() const {
   }
 }
 
-std::int32_t Motor::setReversed(const bool ireverse) const {
+std::int32_t Motor::setReversed(const bool ireverse) {
   return set_reversed(ireverse);
 }
 
-std::int32_t Motor::setVoltageLimit(const std::int32_t ilimit) const {
+std::int32_t Motor::setVoltageLimit(const std::int32_t ilimit) {
   return set_voltage_limit(ilimit);
 }
 
 std::int32_t
-Motor::setPosPID(const double ikF, const double ikP, const double ikI, const double ikD) const {
+Motor::setPosPID(const double ikF, const double ikP, const double ikI, const double ikD) {
   return set_pos_pid(convert_pid(ikF, ikP, ikI, ikD));
 }
 
@@ -245,13 +245,13 @@ std::int32_t Motor::setPosPIDFull(const double ikF,
                                   const double ifilter,
                                   const double ilimit,
                                   const double ithreshold,
-                                  const double iloopSpeed) const {
+                                  const double iloopSpeed) {
   return set_pos_pid_full(
     convert_pid_full(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed));
 }
 
 std::int32_t
-Motor::setVelPID(const double ikF, const double ikP, const double ikI, const double ikD) const {
+Motor::setVelPID(const double ikF, const double ikP, const double ikI, const double ikD) {
   return set_vel_pid(convert_pid(ikF, ikP, ikI, ikD));
 }
 
@@ -262,12 +262,12 @@ std::int32_t Motor::setVelPIDFull(const double ikF,
                                   const double ifilter,
                                   const double ilimit,
                                   const double ithreshold,
-                                  const double iloopSpeed) const {
+                                  const double iloopSpeed) {
   return set_vel_pid_full(
     convert_pid_full(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed));
 }
 
-std::shared_ptr<ContinuousRotarySensor> Motor::getEncoder() const {
+std::shared_ptr<ContinuousRotarySensor> Motor::getEncoder() {
   return std::make_shared<IntegratedEncoder>(*this);
 }
 
