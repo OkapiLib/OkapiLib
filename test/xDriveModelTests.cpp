@@ -13,7 +13,14 @@ using namespace okapi;
 
 class XDriveModelTest : public ::testing::Test {
   public:
-  XDriveModelTest() : model(topLeftMotor, topRightMotor, bottomRightMotor, bottomLeftMotor, 127) {
+  XDriveModelTest()
+    : model(topLeftMotor,
+            topRightMotor,
+            bottomRightMotor,
+            bottomLeftMotor,
+            leftSensor,
+            rightSensor,
+            127) {
   }
 
   void assertAllMotorsLastVelocity(const std::int16_t expectedLastVelocity) const {
@@ -50,6 +57,10 @@ class XDriveModelTest : public ::testing::Test {
   std::shared_ptr<MockMotor> topRightMotor = std::make_shared<MockMotor>();
   std::shared_ptr<MockMotor> bottomRightMotor = std::make_shared<MockMotor>();
   std::shared_ptr<MockMotor> bottomLeftMotor = std::make_shared<MockMotor>();
+  std::shared_ptr<MockContinuousRotarySensor> leftSensor =
+    std::make_shared<MockContinuousRotarySensor>();
+  std::shared_ptr<MockContinuousRotarySensor> rightSensor =
+    std::make_shared<MockContinuousRotarySensor>();
   XDriveModel model;
 };
 
@@ -161,6 +172,13 @@ TEST_F(XDriveModelTest, ArcadeThresholds) {
 
   assertAllMotorsLastVelocity(0);
   assertAllMotorsLastVoltage(0);
+}
+
+TEST_F(XDriveModelTest, ArcadeNegativeZero) {
+  model.arcade(-0.0, -1.0);
+  
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(-12000, 12000);
 }
 
 TEST_F(XDriveModelTest, XArcadeHalfPowerForward) {
@@ -307,4 +325,14 @@ TEST_F(XDriveModelTest, GetBottomLeftMotor) {
 
 TEST_F(XDriveModelTest, GetBottomRightMotor) {
   EXPECT_EQ(model.getBottomRightMotor().get(), bottomRightMotor.get());
+}
+
+TEST_F(XDriveModelTest, Reset) {
+  leftSensor->value = 1;
+  rightSensor->value = 1;
+
+  model.resetSensors();
+
+  EXPECT_EQ(leftSensor->get(), 0);
+  EXPECT_EQ(rightSensor->get(), 0);
 }

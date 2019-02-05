@@ -7,6 +7,7 @@
  */
 #include "test/tests/impl/allImplTests.hpp"
 #include "test/tests/impl/asyncPosIntegratedControllerTests.hpp"
+#include "test/tests/impl/chassisControllerPidTests.hpp"
 #include "test/tests/impl/controllerTests.hpp"
 #include "test/tests/impl/utilTests.hpp"
 
@@ -14,4 +15,5 @@ void runAllImplTests() {
   runAsyncPosIntegratedControllerTests();
   runUtilTests();
   runControllerTests();
+  runChassisControllerPidTests();
 }

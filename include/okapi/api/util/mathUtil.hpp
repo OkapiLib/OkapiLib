@@ -28,7 +28,7 @@ static constexpr double pi2 = 1.5707963267948966;
 static constexpr double gravity = 9.80665;
 
 static constexpr std::int8_t motorUpdateRate = 10;
-static constexpr std::int8_t adiUpdateRate = 50;
+static constexpr std::int8_t adiUpdateRate = 10;
 
 /**
  * Integer power function. Computes base^expo.
