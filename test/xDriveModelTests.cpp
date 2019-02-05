@@ -174,6 +174,13 @@ TEST_F(XDriveModelTest, ArcadeThresholds) {
   assertAllMotorsLastVoltage(0);
 }
 
+TEST_F(XDriveModelTest, ArcadeNegativeZero) {
+  model.arcade(-0.0, -1.0);
+  
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(-12000, 12000);
+}
+
 TEST_F(XDriveModelTest, XArcadeHalfPowerForward) {
   model.xArcade(0, 0.5, 0);
 

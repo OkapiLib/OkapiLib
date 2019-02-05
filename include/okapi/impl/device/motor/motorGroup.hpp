@@ -46,7 +46,7 @@ class MotorGroup : public AbstractMotor {
    * @param ivelocity The maximum allowable velocity for the movement in RPM
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveAbsolute(double iposition, std::int32_t ivelocity) const override;
+  virtual std::int32_t moveAbsolute(double iposition, std::int32_t ivelocity) override;
 
   /**
    * Sets the relative target position for the motor to move to.
@@ -65,7 +65,7 @@ class MotorGroup : public AbstractMotor {
    * @param ivelocity The maximum allowable velocity for the movement in RPM
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveRelative(double iposition, std::int32_t ivelocity) const override;
+  virtual std::int32_t moveRelative(double iposition, std::int32_t ivelocity) override;
 
   /**
    * Sets the velocity for the motor.
@@ -83,7 +83,7 @@ class MotorGroup : public AbstractMotor {
    * gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveVelocity(std::int16_t ivelocity) const override;
+  virtual std::int32_t moveVelocity(std::int16_t ivelocity) override;
 
   /**
    * Sets the voltage for the motor from -12000 to 12000.
@@ -94,7 +94,7 @@ class MotorGroup : public AbstractMotor {
    * @param ivoltage The new voltage value from -12000 to 12000.
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveVoltage(std::int16_t ivoltage) const override;
+  virtual std::int32_t moveVoltage(std::int16_t ivoltage) override;
 
   /**
    * Changes the output velocity for a profiled movement (moveAbsolute or moveRelative). This will
@@ -107,7 +107,7 @@ class MotorGroup : public AbstractMotor {
    * gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t modifyProfiledVelocity(std::int32_t ivelocity) const override;
+  virtual std::int32_t modifyProfiledVelocity(std::int32_t ivelocity) override;
 
   /******************************************************************************/
   /**                        Motor telemetry functions                         **/
@@ -124,7 +124,7 @@ class MotorGroup : public AbstractMotor {
    * @return The target position in its encoder units or PROS_ERR_F if the operation failed,
    * setting errno.
    */
-  virtual double getTargetPosition() const override;
+  virtual double getTargetPosition() override;
 
   /**
    * Gets the absolute position of the motor in its encoder units.
@@ -135,7 +135,7 @@ class MotorGroup : public AbstractMotor {
    * @return The motor's absolute position in its encoder units or PROS_ERR_F if the operation
    * failed, setting errno.
    */
-  virtual double getPosition() const override;
+  virtual double getPosition() override;
 
   /**
    * Sets the "absolute" zero position of the motor to its current position.
@@ -145,7 +145,7 @@ class MotorGroup : public AbstractMotor {
    *
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t tarePosition() const override;
+  virtual std::int32_t tarePosition() override;
 
   /**
    * Gets the velocity commanded to the motor by the user.
@@ -156,7 +156,7 @@ class MotorGroup : public AbstractMotor {
    * @return The commanded motor velocity from +-100, +-200, or +-600, or PROS_ERR if the operation
    * failed, setting errno.
    */
-  virtual std::int32_t getTargetVelocity() const override;
+  virtual std::int32_t getTargetVelocity() override;
 
   /**
    * Gets the actual velocity of the motor.
@@ -167,7 +167,7 @@ class MotorGroup : public AbstractMotor {
    * @return The motor's actual velocity in RPM or PROS_ERR_F if the operation failed, setting
    * errno.
    */
-  virtual double getActualVelocity() const override;
+  virtual double getActualVelocity() override;
 
   /**
    * Gets the current drawn by the motor in mA.
@@ -178,7 +178,7 @@ class MotorGroup : public AbstractMotor {
    *
    * @return The motor's current in mA or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t getCurrentDraw() const override;
+  virtual std::int32_t getCurrentDraw() override;
 
   /**
    * Gets the direction of movement for the motor.
@@ -190,7 +190,7 @@ class MotorGroup : public AbstractMotor {
    * @return 1 for moving in the positive direction, -1 for moving in the negative direction, and
    * PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t getDirection() const override;
+  virtual std::int32_t getDirection() override;
 
   /**
    * Gets the efficiency of the motor in percent.
@@ -205,7 +205,7 @@ class MotorGroup : public AbstractMotor {
    *
    * @return The motor's efficiency in percent or PROS_ERR_F if the operation failed, setting errno.
    */
-  virtual double getEfficiency() const override;
+  virtual double getEfficiency() override;
 
   /**
    * Checks if the motor is drawing over its current limit.
@@ -217,7 +217,7 @@ class MotorGroup : public AbstractMotor {
    * @return 1 if the motor's current limit is being exceeded and 0 if the current limit is not
    * exceeded, or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t isOverCurrent() const override;
+  virtual std::int32_t isOverCurrent() override;
 
   /**
    * Checks if the motor's temperature is above its limit.
@@ -229,7 +229,7 @@ class MotorGroup : public AbstractMotor {
    * @return 1 if the temperature limit is exceeded and 0 if the the temperature is below the limit,
    * or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t isOverTemp() const override;
+  virtual std::int32_t isOverTemp() override;
 
   /**
    * Checks if the motor is stopped.
@@ -242,7 +242,7 @@ class MotorGroup : public AbstractMotor {
    * @return 1 if the motor is not moving, 0 if the motor is moving, or PROS_ERR if the operation
    * failed, setting errno
    */
-  virtual std::int32_t isStopped() const override;
+  virtual std::int32_t isStopped() override;
 
   /**
    * Checks if the motor is at its zero position.
@@ -255,7 +255,7 @@ class MotorGroup : public AbstractMotor {
    * @return 1 if the motor is at zero absolute position, 0 if the motor has moved from its absolute
    * zero, or PROS_ERR if the operation failed, setting errno
    */
-  virtual std::int32_t getZeroPositionFlag() const override;
+  virtual std::int32_t getZeroPositionFlag() override;
 
   /**
    * Gets the faults experienced by the motor. Compare this bitfield to the bitmasks in
@@ -268,7 +268,7 @@ class MotorGroup : public AbstractMotor {
    * @return A currently unknown bitfield containing the motor's faults. 0b00000100 = Current Limit
    * Hit
    */
-  virtual uint32_t getFaults() const override;
+  virtual uint32_t getFaults() override;
 
   /**
    * Gets the flags set by the motor's operation. Compare this bitfield to the bitmasks in
@@ -281,7 +281,7 @@ class MotorGroup : public AbstractMotor {
    * @return A currently unknown bitfield containing the motor's flags. These seem to be unrelated
    * to the individual get_specific_flag functions
    */
-  virtual uint32_t getFlags() const override;
+  virtual uint32_t getFlags() override;
 
   /**
    * Gets the raw encoder count of the motor at a given timestamp.
@@ -295,7 +295,7 @@ class MotorGroup : public AbstractMotor {
    *
    * @return The raw encoder count at the given timestamp or PROS_ERR if the operation failed.
    */
-  virtual std::int32_t getRawPosition(std::uint32_t *timestamp) const override;
+  virtual std::int32_t getRawPosition(std::uint32_t *timestamp) override;
 
   /**
    * Gets the power drawn by the motor in Watts.
@@ -306,7 +306,7 @@ class MotorGroup : public AbstractMotor {
    *
    * @return The motor's power draw in Watts or PROS_ERR_F if the operation failed, setting errno.
    */
-  virtual double getPower() const override;
+  virtual double getPower() override;
 
   /**
    * Gets the temperature of the motor in degrees Celsius.
@@ -318,7 +318,7 @@ class MotorGroup : public AbstractMotor {
    * @return The motor's temperature in degrees Celsius or PROS_ERR_F if the operation failed,
    * setting errno.
    */
-  virtual double getTemperature() const override;
+  virtual double getTemperature() override;
 
   /**
    * Gets the torque generated by the motor in Newton Metres (Nm).
@@ -329,7 +329,7 @@ class MotorGroup : public AbstractMotor {
    *
    * @return The motor's torque in NM or PROS_ERR_F if the operation failed, setting errno.
    */
-  virtual double getTorque() const override;
+  virtual double getTorque() override;
 
   /**
    * Gets the voltage delivered to the motor in millivolts.
@@ -340,7 +340,7 @@ class MotorGroup : public AbstractMotor {
    *
    * @return The motor's voltage in V or PROS_ERR_F if the operation failed, setting errno.
    */
-  virtual std::int32_t getVoltage() const override;
+  virtual std::int32_t getVoltage() override;
 
   /******************************************************************************/
   /**                      Motor configuration functions                       **/
@@ -368,7 +368,7 @@ class MotorGroup : public AbstractMotor {
    * @return One of brakeMode, according to what was set for the motor, or brakeMode::invalid if the
    * operation failed, setting errno.
    */
-  virtual brakeMode getBrakeMode() const override;
+  virtual brakeMode getBrakeMode() override;
 
   /**
    * Sets the current limit for the motor in mA.
@@ -379,7 +379,7 @@ class MotorGroup : public AbstractMotor {
    * @param ilimit The new current limit in mA
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setCurrentLimit(std::int32_t ilimit) const override;
+  virtual std::int32_t setCurrentLimit(std::int32_t ilimit) override;
 
   /**
    * Gets the current limit for the motor in mA.
@@ -391,7 +391,7 @@ class MotorGroup : public AbstractMotor {
    *
    * @return The motor's current limit in mA or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t getCurrentLimit() const override;
+  virtual std::int32_t getCurrentLimit() override;
 
   /**
    * Sets one of AbstractMotor::encoderUnits for the motor encoder.
@@ -413,7 +413,7 @@ class MotorGroup : public AbstractMotor {
    * @return One of encoderUnits according to what is set for the motor or encoderUnits::invalid if
    * the operation failed.
    */
-  virtual encoderUnits getEncoderUnits() const override;
+  virtual encoderUnits getEncoderUnits() override;
 
   /**
    * Sets one of AbstractMotor::gearset for the motor.
@@ -435,7 +435,7 @@ class MotorGroup : public AbstractMotor {
    * @return One of gearset according to what is set for the motor, or gearset::invalid if the
    * operation failed.
    */
-  virtual gearset getGearing() const override;
+  virtual gearset getGearing() override;
 
   /**
    * Sets the reverse flag for the motor.
@@ -448,7 +448,7 @@ class MotorGroup : public AbstractMotor {
    * @param ireverse True reverses the motor, false is default
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setReversed(bool ireverse) const override;
+  virtual std::int32_t setReversed(bool ireverse) override;
 
   /**
    * Sets the voltage limit for the motor in Volts.
@@ -459,7 +459,7 @@ class MotorGroup : public AbstractMotor {
    * @param ilimit The new voltage limit in Volts
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setVoltageLimit(std::int32_t ilimit) const override;
+  virtual std::int32_t setVoltageLimit(std::int32_t ilimit) override;
 
   /**
    * Sets new PID constants.
@@ -470,7 +470,7 @@ class MotorGroup : public AbstractMotor {
    * @param ikD the derivative constant
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) const override;
+  virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) override;
 
   /**
    * Sets new PID constants.
@@ -492,7 +492,7 @@ class MotorGroup : public AbstractMotor {
                                      double ifilter,
                                      double ilimit,
                                      double ithreshold,
-                                     double iloopSpeed) const override;
+                                     double iloopSpeed) override;
 
   /**
    * Sets new PID constants.
@@ -503,7 +503,7 @@ class MotorGroup : public AbstractMotor {
    * @param ikD the derivative constant
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) const override;
+  virtual std::int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) override;
 
   /**
    * Sets new PID constants.
@@ -525,7 +525,7 @@ class MotorGroup : public AbstractMotor {
                                      double ifilter,
                                      double ilimit,
                                      double ithreshold,
-                                     double iloopSpeed) const override;
+                                     double iloopSpeed) override;
 
   /**
    * Writes the value of the controller output. This method might be automatically called in another
@@ -540,7 +540,7 @@ class MotorGroup : public AbstractMotor {
    *
    * @return encoder for this motor
    */
-  virtual std::shared_ptr<ContinuousRotarySensor> getEncoder() const override;
+  virtual std::shared_ptr<ContinuousRotarySensor> getEncoder() override;
 
   protected:
   std::vector<Motor> motors;

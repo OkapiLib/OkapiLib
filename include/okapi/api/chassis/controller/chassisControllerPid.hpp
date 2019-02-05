@@ -132,6 +132,7 @@ class ChassisControllerPID : public virtual ChassisController {
   ChassisScales scales;
   AbstractMotor::GearsetRatioPair gearsetRatioPair;
   std::atomic_bool doneLooping{true};
+  std::atomic_bool doneLoopingSeen{true};
   std::atomic_bool newMovement{false};
   std::atomic_bool dtorCalled{false};
   QTime threadSleepTime{10_ms};
