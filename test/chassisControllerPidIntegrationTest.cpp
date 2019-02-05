@@ -80,8 +80,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceRawUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], 100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], 100, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -99,8 +99,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 1128, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], 1128, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 1128, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], 1128, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -124,8 +124,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncRawUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], 100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], 100, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -149,8 +149,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 1128, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], 1128, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 1128, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], 1128, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -167,8 +167,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleRawUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], -100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], -100, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -185,8 +185,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 129, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], -129, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 129, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], -129, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -209,8 +209,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncRawUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], -100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], -100, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -233,8 +233,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 129, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], -129, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 129, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], -129, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -248,8 +248,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, MirrorTurnTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], -129, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], 129, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], -129, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], 129, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -281,8 +281,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceThenTurnAngleAsyncTest) 
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 200, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], -200, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 200, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], -200, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -314,8 +314,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleThenMoveDistanceAsyncTest) 
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], 100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], 100, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -331,8 +331,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAndWaitTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], 100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], 100, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -348,8 +348,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAndWaitTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 100, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], -100, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], -100, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -365,8 +365,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncAndStopTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 0, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], 0, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 0, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], 0, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -382,8 +382,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncAndStopTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 0, 5);
-  EXPECT_NEAR(controller->getSensorVals()[1], 0, 5);
+  EXPECT_NEAR(controller->getSensorVals()[0], 0, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], 0, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
