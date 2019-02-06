@@ -36,8 +36,8 @@ class ChassisControllerPIDIntegrationTest : public ::testing::Test {
       new ChassisControllerPID(createTimeUtil(),
                                std::shared_ptr<ChassisModel>(model),
                                std::unique_ptr<IterativePosPIDController>(distanceController),
-                               std::unique_ptr<IterativePosPIDController>(angleController),
                                std::unique_ptr<IterativePosPIDController>(turnController),
+                               std::unique_ptr<IterativePosPIDController>(angleController),
                                AbstractMotor::gearset::red,
                                *scales);
 
