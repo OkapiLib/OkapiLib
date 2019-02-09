@@ -67,7 +67,6 @@ void ChassisControllerPID::loop() {
   modeType pastMode = none;
 
   while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
-      printf("loop\n");
     /**
      * doneLooping is set to false by moveDistanceAsync and turnAngleAsync and then set to true by
      * waitUntilSettled
