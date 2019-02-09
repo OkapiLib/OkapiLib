@@ -220,7 +220,7 @@ std::string AsyncMotionProfileController::getTarget() {
 void AsyncMotionProfileController::loop() {
   auto rate = timeUtil.getRate();
 
-  while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
+  while (!dtorCalled.load(std::memory_order_acquire) || !task->notifyTake(0)) {
     if (isRunning.load(std::memory_order_acquire) && !isDisabled()) {
       logger->info("AsyncMotionProfileController: Running with path: " + currentPath);
       auto path = paths.find(currentPath);

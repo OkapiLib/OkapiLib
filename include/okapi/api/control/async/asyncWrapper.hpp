@@ -263,7 +263,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   void loop() {
-    while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
+    while (!dtorCalled.load(std::memory_order_acquire) || !task->notifyTake(0)) {
       if (!isDisabled()) {
         output->controllerSet(controller->step(input->controllerGet()));
       }

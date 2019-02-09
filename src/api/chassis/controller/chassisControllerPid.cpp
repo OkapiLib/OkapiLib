@@ -66,7 +66,7 @@ void ChassisControllerPID::loop() {
   double distanceElapsed = 0, angleChange = 0;
   modeType pastMode = none;
 
-  while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
+  while (!dtorCalled.load(std::memory_order_acquire) || !task->notifyTake(0)) {
     /**
      * doneLooping is set to false by moveDistanceAsync and turnAngleAsync and then set to true by
      * waitUntilSettled
