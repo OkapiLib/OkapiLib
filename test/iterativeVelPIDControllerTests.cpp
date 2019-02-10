@@ -58,7 +58,7 @@ TEST_F(IterativeVelPIDControllerTest, ScalesControllerSetTarget) {
   assertIterativeControllerScalesControllerSetTargets(*controller);
 }
 
-TEST_F(IterativeVelPIDControllerTest, KeepsTrackOfReadingsWhenDisabled) {
+TEST_F(IterativeVelPIDControllerTest, DoesNotKeepTrackOfReadingsWhenDisabled) {
   EXPECT_EQ(controller->getError(), 0);
   controller->flipDisable(true);
   EXPECT_TRUE(controller->isDisabled());
@@ -66,7 +66,7 @@ TEST_F(IterativeVelPIDControllerTest, KeepsTrackOfReadingsWhenDisabled) {
   EXPECT_EQ(controller->getTarget(), 2);
   EXPECT_EQ(controller->step(1), 0);
   EXPECT_EQ(controller->getOutput(), 0);
-  EXPECT_NEAR(controller->getError(), -1, 0.5); // Velocity calculation gets a little weird here
+  EXPECT_EQ(controller->getError(), 0);
 }
 
 TEST_F(IterativeVelPIDControllerTest, StaticFrictionGainUsesTargetSign) {

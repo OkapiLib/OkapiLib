@@ -67,7 +67,7 @@ TEST_F(IterativePosPIDControllerTest, ScalesControllerSetTarget) {
   assertIterativeControllerScalesControllerSetTargets(*controller);
 }
 
-TEST_F(IterativePosPIDControllerTest, KeepsTrackOfReadingsWhenDisabled) {
+TEST_F(IterativePosPIDControllerTest, DoesNotKeepTrackOfReadingsWhenDisabled) {
   EXPECT_EQ(controller->getError(), 0);
   controller->flipDisable(true);
   EXPECT_TRUE(controller->isDisabled());
@@ -75,7 +75,7 @@ TEST_F(IterativePosPIDControllerTest, KeepsTrackOfReadingsWhenDisabled) {
   EXPECT_EQ(controller->getTarget(), 2);
   EXPECT_EQ(controller->step(1), 0);
   EXPECT_EQ(controller->getOutput(), 0);
-  EXPECT_EQ(controller->getError(), 1);
+  EXPECT_EQ(controller->getError(), 0);
 }
 
 TEST_F(IterativePosPIDControllerTest, SetIntegralLimitsWithCtorTest) {
