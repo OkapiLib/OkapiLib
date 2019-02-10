@@ -41,21 +41,19 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
                const double iratio = 1,
                const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
     : logger(ilogger),
+      rateSupplier(irateSupplier),
       input(iinput),
       output(ioutput),
       controller(std::move(icontroller)),
-      loopRate(irateSupplier.get()),
-      settledRate(irateSupplier.get()),
       ratio(iratio) {
   }
 
   AsyncWrapper(AsyncWrapper<Input, Output> &&other) noexcept
     : logger(std::move(other.logger)),
+      rateSupplier(std::move(other.rateSupplier)),
       input(std::move(other.input)),
       output(std::move(other.output)),
       controller(std::move(other.controller)),
-      loopRate(std::move(other.loopRate)),
-      settledRate(std::move(other.settledRate)),
       ratio(other.ratio),
       dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
       task(other.task) {
@@ -70,7 +68,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * Sets the target for the controller.
    */
   void setTarget(const Input itarget) override {
-    logger->info("AsyncWrapper: Set target to " + std::to_string(itarget));
+    LOG_INFO("AsyncWrapper: Set target to " + std::to_string(itarget));
     hasFirstTarget = true;
     controller->setTarget(itarget * ratio);
     lastTarget = itarget;
@@ -103,7 +101,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   /**
-   * Returns the last error of the controller.
+   * Returns the last error of the controller. Does not update when disabled.
    */
   Output getError() const override {
     return controller->getError();
@@ -174,7 +172,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * keeping any user-configured information.
    */
   void reset() override {
-    logger->info("AsyncWrapper: Reset");
+    LOG_INFO_S("AsyncWrapper: Reset");
     controller->reset();
     hasFirstTarget = false;
   }
@@ -184,7 +182,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * cause the controller to move to its last set target, unless it was reset in that time.
    */
   void flipDisable() override {
-    logger->info("AsyncWrapper: flipDisable " + std::to_string(!controller->isDisabled()));
+    LOG_INFO("AsyncWrapper: flipDisable " + std::to_string(!controller->isDisabled()));
     controller->flipDisable();
     resumeMovement();
   }
@@ -196,7 +194,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * @param iisDisabled whether the controller is disabled
    */
   void flipDisable(const bool iisDisabled) override {
-    logger->info("AsyncWrapper: flipDisable " + std::to_string(iisDisabled));
+    LOG_INFO("AsyncWrapper: flipDisable " + std::to_string(iisDisabled));
     controller->flipDisable(iisDisabled);
     resumeMovement();
   }
@@ -215,13 +213,14 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * implementation-dependent.
    */
   void waitUntilSettled() override {
-    logger->info("AsyncWrapper: Waiting to settle");
+    LOG_INFO_S("AsyncWrapper: Waiting to settle");
 
+    auto rate = rateSupplier.get();
     while (!isSettled()) {
-      loopRate->delayUntil(motorUpdateRate);
+      rate->delayUntil(motorUpdateRate);
     }
 
-    logger->info("AsyncWrapper: Done waiting to settle");
+    LOG_INFO_S("AsyncWrapper: Done waiting to settle");
   }
 
   /**
@@ -236,13 +235,12 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
 
   protected:
   std::shared_ptr<Logger> logger;
+  Supplier<std::unique_ptr<AbstractRate>> rateSupplier;
   std::shared_ptr<ControllerInput<Input>> input;
   std::shared_ptr<ControllerOutput<Output>> output;
   std::unique_ptr<IterativeController<Input, Output>> controller;
   bool hasFirstTarget{false};
   Input lastTarget;
-  std::unique_ptr<AbstractRate> loopRate;
-  std::unique_ptr<AbstractRate> settledRate;
   double ratio;
   std::atomic_bool dtorCalled{false};
   CrossplatformThread *task{nullptr};
@@ -254,12 +252,13 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   void loop() {
+    auto rate = rateSupplier.get();
     while (!dtorCalled.load(std::memory_order_acquire)) {
       if (!isDisabled()) {
         output->controllerSet(controller->step(input->controllerGet()));
       }
 
-      loopRate->delayUntil(controller->getSampleTime());
+      rate->delayUntil(controller->getSampleTime());
     }
   }
 

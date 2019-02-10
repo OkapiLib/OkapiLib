@@ -76,14 +76,14 @@ QAngularSpeed IterativeVelPIDController::stepVel(const double inewReading) {
 }
 
 double IterativeVelPIDController::step(const double inewReading) {
-  if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
-    stepVel(inewReading);
-  }
-
   if (!controllerIsDisabled) {
     loopDtTimer->placeHardMark();
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
+      if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
+        stepVel(inewReading);
+      }
+
       error = getError();
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
@@ -106,7 +106,7 @@ double IterativeVelPIDController::step(const double inewReading) {
 }
 
 void IterativeVelPIDController::setTarget(const double itarget) {
-  logger->info("IterativeVelPIDController: Set target to " + std::to_string(itarget));
+  LOG_INFO("IterativeVelPIDController: Set target to " + std::to_string(itarget));
   target = itarget;
 }
 
@@ -139,7 +139,8 @@ bool IterativeVelPIDController::isSettled() {
 }
 
 void IterativeVelPIDController::reset() {
-  logger->info("IterativeVelPIDController: Reset");
+  LOG_INFO_S("IterativeVelPIDController: Reset");
+
   error = 0;
   outputSum = 0;
   output = 0;
@@ -151,7 +152,7 @@ void IterativeVelPIDController::flipDisable() {
 }
 
 void IterativeVelPIDController::flipDisable(const bool iisDisabled) {
-  logger->info("IterativeVelPIDController: flipDisable " + std::to_string(iisDisabled));
+  LOG_INFO("IterativeVelPIDController: flipDisable " + std::to_string(iisDisabled));
   controllerIsDisabled = iisDisabled;
 }
 

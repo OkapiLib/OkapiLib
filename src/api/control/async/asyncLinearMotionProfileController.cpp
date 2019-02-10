@@ -27,7 +27,7 @@ AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
 
 AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
   AsyncLinearMotionProfileController &&other) noexcept
-  : logger(other.logger),
+  : logger(std::move(other.logger)),
     paths(std::move(other.paths)),
     limits(other.limits),
     output(std::move(other.output)),
@@ -56,8 +56,8 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
                                                       const std::string &ipathId) {
   if (iwaypoints.size() == 0) {
     // No point in generating a path
-    logger->warn(
-      "AsyncLinearMotionProfileController: Not generating a path because no waypoints were given.");
+    LOG_WARN_S("AsyncLinearMotionProfileController: Not generating a path because no waypoints were"
+               " given.");
     return;
   }
 
@@ -67,8 +67,9 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
     points.push_back(Waypoint{point.convert(meter), 0, 0});
   }
 
+  LOG_INFO_S("AsyncLinearMotionProfileController: Preparing trajectory");
+
   TrajectoryCandidate candidate;
-  logger->info("AsyncLinearMotionProfileController: Preparing trajectory");
   pathfinder_prepare(points.data(),
                      static_cast<int>(points.size()),
                      FIT_HERMITE_CUBIC,
@@ -95,8 +96,6 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
                       pointToString(points.at(0)),
                       [&](std::string a, Waypoint b) { return a + ", " + pointToString(b); });
 
-    logger->error(message);
-
     if (candidate.laptr) {
       free(candidate.laptr);
     }
@@ -105,6 +104,7 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
       free(candidate.saptr);
     }
 
+    LOG_ERROR(message);
     throw std::runtime_error(message);
   }
 
@@ -114,7 +114,6 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
     std::string message =
       "AsyncLinearMotionProfileController: Could not allocate trajectory. The path (length " +
       std::to_string(length) + ") is probably impossible.";
-    logger->error(message);
 
     if (candidate.laptr) {
       free(candidate.laptr);
@@ -124,18 +123,21 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
       free(candidate.saptr);
     }
 
+    LOG_ERROR(message);
     throw std::runtime_error(message);
   }
 
-  logger->info("AsyncLinearMotionProfileController: Generating path");
+  LOG_INFO_S("AsyncLinearMotionProfileController: Generating path");
+
   pathfinder_generate(&candidate, trajectory);
 
   // Free the old path before overwriting it
   removePath(ipathId);
 
   paths.emplace(ipathId, TrajectoryPair{trajectory, length});
-  logger->info("AsyncLinearMotionProfileController: Completely done generating path");
-  logger->info("AsyncLinearMotionProfileController: Path length: " + std::to_string(length));
+
+  LOG_INFO_S("AsyncLinearMotionProfileController: Completely done generating path");
+  LOG_INFO("AsyncLinearMotionProfileController: Path length: " + std::to_string(length));
 }
 
 void AsyncLinearMotionProfileController::removePath(const std::string &ipathId) {
@@ -183,21 +185,22 @@ void AsyncLinearMotionProfileController::loop() {
 
   while (!dtorCalled.load(std::memory_order_acquire)) {
     if (isRunning.load(std::memory_order_acquire) && !isDisabled()) {
-      logger->info("AsyncLinearMotionProfileController: Running with path: " + currentPath);
+      LOG_INFO("AsyncLinearMotionProfileController: Running with path: " + currentPath);
+
       auto path = paths.find(currentPath);
 
       if (path == paths.end()) {
-        logger->warn(
+        LOG_WARN(
           "AsyncLinearMotionProfileController: Target was set to non-existent path with name: " +
           currentPath);
       } else {
-        logger->debug("AsyncLinearMotionProfileController: Path length is " +
-                      std::to_string(path->second.length));
+        LOG_DEBUG("AsyncLinearMotionProfileController: Path length is " +
+                  std::to_string(path->second.length));
 
         executeSinglePath(path->second, timeUtil.getRate());
         output->controllerSet(0);
 
-        logger->info("AsyncLinearMotionProfileController: Done moving");
+        LOG_INFO_S("AsyncLinearMotionProfileController: Done moving");
       }
 
       isRunning.store(false, std::memory_order_release);
@@ -232,14 +235,14 @@ void AsyncLinearMotionProfileController::trampoline(void *context) {
 }
 
 void AsyncLinearMotionProfileController::waitUntilSettled() {
-  logger->info("AsyncLinearMotionProfileController: Waiting to settle");
+  LOG_INFO_S("AsyncLinearMotionProfileController: Waiting to settle");
 
   auto rate = timeUtil.getRate();
   while (!isSettled()) {
     rate->delayUntil(10_ms);
   }
 
-  logger->info("AsyncLinearMotionProfileController: Done waiting to settle");
+  LOG_INFO_S("AsyncLinearMotionProfileController: Done waiting to settle");
 }
 
 void AsyncLinearMotionProfileController::moveTo(const QLength &iposition,
@@ -282,7 +285,7 @@ void AsyncLinearMotionProfileController::flipDisable() {
 }
 
 void AsyncLinearMotionProfileController::flipDisable(const bool iisDisabled) {
-  logger->info("AsyncLinearMotionProfileController: flipDisable " + std::to_string(iisDisabled));
+  LOG_INFO("AsyncLinearMotionProfileController: flipDisable " + std::to_string(iisDisabled));
   disabled.store(iisDisabled, std::memory_order_release);
   // loop() will set the output to 0 when executeSinglePath() is done
   // the default implementation of executeSinglePath() breaks when disabled

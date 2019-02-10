@@ -11,6 +11,18 @@
 #include "okapi/api/util/mathUtil.hpp"
 #include <memory>
 
+#define LOG_DEBUG(msg) logger->debug([&]() { return (msg).c_str(); })
+#define LOG_DEBUG_S(msg) logger->debug([&]() { return msg; })
+
+#define LOG_INFO(msg) logger->info([&]() { return (msg).c_str(); })
+#define LOG_INFO_S(msg) logger->info([&]() { return msg; })
+
+#define LOG_WARN(msg) logger->warn([&]() { return (msg).c_str(); })
+#define LOG_WARN_S(msg) logger->warn([&]() { return msg; })
+
+#define LOG_ERROR(msg) logger->error([&]() { return (msg).c_str(); })
+#define LOG_ERROR_S(msg) logger->error([&]() { return msg; })
+
 namespace okapi {
 class Logger {
   public:
@@ -53,46 +65,62 @@ class Logger {
     }
   }
 
-  constexpr void debug(std::string_view message) const noexcept {
-    if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info) && logfile && timer) {
+  constexpr bool isDebugLevelEnabled() const noexcept {
+    return toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::debug);
+  }
+
+  template <typename T> constexpr void debug(T ilazyMessage) const noexcept {
+    if (isDebugLevelEnabled() && logfile && timer) {
       fprintf(logfile,
               "%ld DEBUG: %s\n",
               static_cast<long>(timer->millis().convert(millisecond)),
-              message.data());
+              ilazyMessage());
     }
   }
 
-  constexpr void info(std::string_view message) const noexcept {
-    if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info) && logfile && timer) {
+  constexpr bool isInfoLevelEnabled() const noexcept {
+    return toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info);
+  }
+
+  template <typename T> constexpr void info(T ilazyMessage) const noexcept {
+    if (isInfoLevelEnabled() && logfile && timer) {
       fprintf(logfile,
               "%ld INFO: %s\n",
               static_cast<long>(timer->millis().convert(millisecond)),
-              message.data());
+              ilazyMessage());
     }
   }
 
-  constexpr void warn(std::string_view message) const noexcept {
-    if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::warn) && logfile && timer) {
+  constexpr bool isWarnLevelEnabled() const noexcept {
+    return toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::warn);
+  }
+
+  template <typename T> constexpr void warn(T ilazyMessage) const noexcept {
+    if (isWarnLevelEnabled() && logfile && timer) {
       fprintf(logfile,
               "%ld WARN: %s\n",
               static_cast<long>(timer->millis().convert(millisecond)),
-              message.data());
+              ilazyMessage());
     }
   }
 
-  constexpr void error(std::string_view message) const noexcept {
-    if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::error) && logfile && timer) {
+  constexpr bool isErrorLevelEnabled() const noexcept {
+    return toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::error);
+  }
+
+  template <typename T> constexpr void error(T ilazyMessage) const noexcept {
+    if (isErrorLevelEnabled() && logfile && timer) {
       fprintf(logfile,
               "%ld ERROR: %s\n",
               static_cast<long>(timer->millis().convert(millisecond)),
-              message.data());
+              ilazyMessage());
     }
   }
 
   /**
    * Closes the connection to the log file.
    */
-  void close() noexcept {
+  constexpr void close() noexcept {
     if (logfile) {
       fclose(logfile);
       logfile = nullptr;
@@ -100,8 +128,8 @@ class Logger {
   }
 
   private:
-  std::unique_ptr<AbstractTimer> timer;
+  const std::unique_ptr<AbstractTimer> timer;
   FILE *logfile;
-  LogLevel logLevel;
+  const LogLevel logLevel;
 };
 } // namespace okapi

@@ -63,3 +63,15 @@ TEST_F(ThreeEncoderSkidSteerModelTest, GetSensorValsIsCompatibleWithXDriveModel)
   EXPECT_EQ(xDriveModelVals[0], threeEncoderSkidSteerModelVals[0]);
   EXPECT_EQ(xDriveModelVals[1], threeEncoderSkidSteerModelVals[1]);
 }
+
+TEST_F(ThreeEncoderSkidSteerModelTest, Reset) {
+  leftSensor->value = 1;
+  rightSensor->value = 1;
+  middleSensor->value = 1;
+
+  model->resetSensors();
+
+  EXPECT_EQ(leftSensor->get(), 0);
+  EXPECT_EQ(rightSensor->get(), 0);
+  EXPECT_EQ(middleSensor->get(), 0);
+}
