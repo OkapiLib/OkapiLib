@@ -132,8 +132,6 @@ void IterativePosPIDController::setErrorSumLimits(const double imax, const doubl
 }
 
 double IterativePosPIDController::step(const double inewReading) {
-  const double readingDiff = inewReading - lastReading;
-  lastReading = inewReading;
 
   if (controllerIsDisabled) {
     return 0;
@@ -141,6 +139,9 @@ double IterativePosPIDController::step(const double inewReading) {
     loopDtTimer->placeHardMark();
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
+      const double readingDiff = inewReading - lastReading;
+      lastReading = inewReading;
+
       error = getError();
 
       if ((std::abs(error) < target - errorSumMin && std::abs(error) > target - errorSumMax) ||

@@ -127,7 +127,6 @@ class ChassisControllerPID : public virtual ChassisController {
   protected:
   std::shared_ptr<Logger> logger;
   TimeUtil timeUtil;
-  std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<IterativePosPIDController> distancePid;
   std::unique_ptr<IterativePosPIDController> turnPid;
   std::unique_ptr<IterativePosPIDController> anglePid;

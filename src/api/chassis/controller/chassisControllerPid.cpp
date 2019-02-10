@@ -22,7 +22,6 @@ ChassisControllerPID::ChassisControllerPID(
   : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
     logger(ilogger),
     timeUtil(itimeUtil),
-    rate(itimeUtil.getRate()),
     distancePid(std::move(idistanceController)),
     turnPid(std::move(iturnController)),
     anglePid(std::move(iangleController)),
@@ -43,7 +42,6 @@ ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcep
   : ChassisController(other.model, other.maxVelocity, other.maxVoltage),
     logger(std::move(other.logger)),
     timeUtil(other.timeUtil),
-    rate(std::move(other.rate)),
     distancePid(std::move(other.distancePid)),
     turnPid(std::move(other.turnPid)),
     anglePid(std::move(other.anglePid)),
@@ -67,6 +65,7 @@ void ChassisControllerPID::loop() {
   std::valarray<std::int32_t> encVals;
   double distanceElapsed = 0, angleChange = 0;
   modeType pastMode = none;
+  auto rate = timeUtil.getRate();
 
   while (!dtorCalled.load(std::memory_order_acquire)) {
     /**
@@ -230,6 +229,7 @@ void ChassisControllerPID::waitUntilSettled() {
 bool ChassisControllerPID::waitForDistanceSettled() {
   LOG_INFO_S("ChassisControllerPID: Waiting to settle in distance mode");
 
+  auto rate = timeUtil.getRate();
   while (!(distancePid->isSettled() && anglePid->isSettled())) {
     if (mode == angle) {
       // False will cause the loop to re-enter the switch
@@ -252,6 +252,7 @@ bool ChassisControllerPID::waitForDistanceSettled() {
 bool ChassisControllerPID::waitForAngleSettled() {
   LOG_INFO_S("ChassisControllerPID: Waiting to settle in angle mode");
 
+  auto rate = timeUtil.getRate();
   while (!turnPid->isSettled()) {
     if (mode == distance) {
       // False will cause the loop to re-enter the switch
