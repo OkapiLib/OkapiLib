@@ -161,7 +161,7 @@ void IterativePosPIDController::setGains(const double ikP,
   const double sampleTimeSec = sampleTime.convert(second);
   kP = ikP;
   kI = ikI * sampleTimeSec;
-  kD = ikD * sampleTimeSec;
+  kD = ikD / sampleTimeSec;
   kBias = ikBias;
 }
 
