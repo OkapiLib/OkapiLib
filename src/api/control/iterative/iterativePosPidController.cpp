@@ -132,7 +132,6 @@ void IterativePosPIDController::setErrorSumLimits(const double imax, const doubl
 }
 
 double IterativePosPIDController::step(const double inewReading) {
-
   if (controllerIsDisabled) {
     return 0;
   } else {
