@@ -30,10 +30,9 @@ PIDTuner::PIDTuner(const std::shared_ptr<ControllerInput<double>> &iinput,
                    double ikITAE,
                    const std::shared_ptr<Logger> &ilogger)
   : logger(ilogger),
+    timeUtil(itimeUtil),
     input(iinput),
     output(ioutput),
-    timeUtil(itimeUtil),
-    rate(itimeUtil.getRate()),
     timeout(itimeout),
     goal(igoal),
     kPMin(ikPMin),
@@ -84,11 +83,12 @@ PIDTuner::Output PIDTuner::autotune() {
 
   // Run the optimization
   for (std::size_t iteration = 0; iteration < numIterations; iteration++) {
-    logger->info("PIDTuner: Iteration number " + std::to_string(iteration));
+    LOG_INFO("PIDTuner: Iteration number " + std::to_string(iteration));
+
     bool firstGoal = true;
 
     for (std::size_t particleIndex = 0; particleIndex < numParticles; particleIndex++) {
-      logger->info("PIDTuner: Particle number " + std::to_string(particleIndex));
+      LOG_INFO("PIDTuner: Particle number " + std::to_string(particleIndex));
 
       testController.setGains(particles.at(particleIndex).kP.pos,
                               particles.at(particleIndex).kI.pos,
@@ -108,6 +108,7 @@ PIDTuner::Output PIDTuner::autotune() {
       QTime settleTime = 0_ms;
       double itae = 0;
       // Test constants then calculate fitness function
+      auto rate = timeUtil.getRate();
       while (!testController.isSettled()) {
         settleTime += loopDelta;
         if (settleTime > timeout)
@@ -128,7 +129,7 @@ PIDTuner::Output PIDTuner::autotune() {
 
       const double error = kSettle * settleTime.convert(millisecond) + kITAE * itae;
 
-      logger->info("PIDTuner: New error is " + std::to_string(error));
+      LOG_INFO("PIDTuner: New error is " + std::to_string(error));
 
       if (error < particles.at(particleIndex).bestError) {
         particles.at(particleIndex).kP.best = particles.at(particleIndex).kP.pos;

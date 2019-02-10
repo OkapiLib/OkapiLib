@@ -120,7 +120,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
 
   protected:
   std::shared_ptr<Logger> logger;
-  std::unique_ptr<AbstractRate> rate;
+  TimeUtil timeUtil;
   std::unique_ptr<AsyncPosIntegratedController> leftController;
   std::unique_ptr<AsyncPosIntegratedController> rightController;
   int lastTarget;

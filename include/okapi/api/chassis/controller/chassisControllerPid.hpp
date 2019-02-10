@@ -126,15 +126,17 @@ class ChassisControllerPID : public virtual ChassisController {
 
   protected:
   std::shared_ptr<Logger> logger;
-  std::unique_ptr<AbstractRate> rate;
+  TimeUtil timeUtil;
   std::unique_ptr<IterativePosPIDController> distancePid;
   std::unique_ptr<IterativePosPIDController> turnPid;
   std::unique_ptr<IterativePosPIDController> anglePid;
   ChassisScales scales;
   AbstractMotor::GearsetRatioPair gearsetRatioPair;
   std::atomic_bool doneLooping{true};
+  std::atomic_bool doneLoopingSeen{true};
   std::atomic_bool newMovement{false};
   std::atomic_bool dtorCalled{false};
+  QTime threadSleepTime{10_ms};
 
   static void trampoline(void *context);
   void loop();

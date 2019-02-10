@@ -16,14 +16,14 @@ AsyncPosIntegratedController::AsyncPosIntegratedController(
   const TimeUtil &itimeUtil,
   const std::shared_ptr<Logger> &ilogger)
   : logger(ilogger),
+    timeUtil(itimeUtil),
     motor(imotor),
     pair(ipair),
     maxVelocity(imaxVelocity),
-    settledUtil(itimeUtil.getSettledUtil()),
-    rate(itimeUtil.getRate()) {
+    settledUtil(itimeUtil.getSettledUtil()) {
   if (ipair.ratio == 0) {
-    logger->error("AsyncPosIntegratedController: The gear ratio cannot be zero! Check if you are "
-                  "using integer division.");
+    LOG_ERROR_S("AsyncPosIntegratedController: The gear ratio cannot be zero! Check if you are "
+                "using integer division.");
     throw std::invalid_argument("AsyncPosIntegratedController: The gear ratio cannot be zero! "
                                 "Check if you are using integer division.");
   }
@@ -32,7 +32,7 @@ AsyncPosIntegratedController::AsyncPosIntegratedController(
 }
 
 void AsyncPosIntegratedController::setTarget(const double itarget) {
-  logger->info("AsyncPosIntegratedController: Set target to " + std::to_string(itarget));
+  LOG_INFO("AsyncPosIntegratedController: Set target to " + std::to_string(itarget));
 
   hasFirstTarget = true;
 
@@ -56,7 +56,7 @@ bool AsyncPosIntegratedController::isSettled() {
 }
 
 void AsyncPosIntegratedController::reset() {
-  logger->info("AsyncPosIntegratedController: Reset");
+  LOG_INFO_S("AsyncPosIntegratedController: Reset");
   hasFirstTarget = false;
   settledUtil->reset();
 }
@@ -66,7 +66,7 @@ void AsyncPosIntegratedController::flipDisable() {
 }
 
 void AsyncPosIntegratedController::flipDisable(const bool iisDisabled) {
-  logger->info("AsyncPosIntegratedController: flipDisable " + std::to_string(iisDisabled));
+  LOG_INFO("AsyncPosIntegratedController: flipDisable " + std::to_string(iisDisabled));
   controllerIsDisabled = iisDisabled;
   resumeMovement();
 }
@@ -86,13 +86,14 @@ void AsyncPosIntegratedController::resumeMovement() {
 }
 
 void AsyncPosIntegratedController::waitUntilSettled() {
-  logger->info("AsyncPosIntegratedController: Waiting to settle");
+  LOG_INFO_S("AsyncPosIntegratedController: Waiting to settle");
 
+  auto rate = timeUtil.getRate();
   while (!isSettled()) {
     rate->delayUntil(motorUpdateRate);
   }
 
-  logger->info("AsyncPosIntegratedController: Done waiting to settle");
+  LOG_INFO_S("AsyncPosIntegratedController: Done waiting to settle");
 }
 
 void AsyncPosIntegratedController::controllerSet(double ivalue) {

@@ -94,12 +94,12 @@ void SkidSteerModel::arcade(const double iforwardSpeed,
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
-  if (std::abs(forwardSpeed) < ithreshold) {
+  if (std::abs(forwardSpeed) <= ithreshold) {
     forwardSpeed = 0;
   }
 
   double yaw = std::clamp(iyaw, -1.0, 1.0);
-  if (std::abs(yaw) < ithreshold) {
+  if (std::abs(yaw) <= ithreshold) {
     yaw = 0;
   }
 

@@ -33,35 +33,35 @@ void MockMotor::controllerSet(const double ivalue) {
   moveVelocity((int16_t)ivalue);
 }
 
-int32_t MockMotor::moveAbsolute(const double iposition, const std::int32_t ivelocity) const {
+int32_t MockMotor::moveAbsolute(const double iposition, const std::int32_t ivelocity) {
   lastPosition = (int16_t)iposition;
   lastProfiledMaxVelocity = ivelocity;
   return 0;
 }
 
-int32_t MockMotor::moveRelative(const double iposition, const std::int32_t ivelocity) const {
-  lastPosition += (int16_t)iposition;
+int32_t MockMotor::moveRelative(const double iposition, const std::int32_t ivelocity) {
+  lastPosition += static_cast<std::int16_t>(iposition);
   lastProfiledMaxVelocity = ivelocity;
   return 0;
 }
 
-double MockMotor::getTargetPosition() const {
+double MockMotor::getTargetPosition() {
   return 0;
 }
 
-double MockMotor::getPosition() const {
+double MockMotor::getPosition() {
   return encoder->get();
 }
 
-int32_t MockMotor::getTargetVelocity() const {
+int32_t MockMotor::getTargetVelocity() {
   return 0;
 }
 
-double MockMotor::getActualVelocity() const {
+double MockMotor::getActualVelocity() {
   return 0;
 }
 
-int32_t MockMotor::tarePosition() const {
+int32_t MockMotor::tarePosition() {
   return 0;
 }
 
@@ -70,7 +70,7 @@ int32_t MockMotor::setBrakeMode(const AbstractMotor::brakeMode imode) {
   return 0;
 }
 
-int32_t MockMotor::setCurrentLimit(const std::int32_t) const {
+int32_t MockMotor::setCurrentLimit(const std::int32_t) {
   return 0;
 }
 
@@ -84,19 +84,19 @@ int32_t MockMotor::setGearing(const AbstractMotor::gearset igearset) {
   return 0;
 }
 
-int32_t MockMotor::setReversed(const bool) const {
+int32_t MockMotor::setReversed(const bool) {
   return 0;
 }
 
-int32_t MockMotor::setVoltageLimit(const std::int32_t) const {
+int32_t MockMotor::setVoltageLimit(const std::int32_t) {
   return 0;
 }
 
-std::shared_ptr<ContinuousRotarySensor> MockMotor::getEncoder() const {
+std::shared_ptr<ContinuousRotarySensor> MockMotor::getEncoder() {
   return encoder;
 }
 
-std::int32_t MockMotor::moveVelocity(const std::int16_t ivelocity) const {
+std::int32_t MockMotor::moveVelocity(const std::int16_t ivelocity) {
   lastVelocity = ivelocity;
   if (ivelocity > maxVelocity) {
     maxVelocity = ivelocity;
@@ -104,102 +104,100 @@ std::int32_t MockMotor::moveVelocity(const std::int16_t ivelocity) const {
   return 1;
 }
 
-std::int32_t MockMotor::moveVoltage(const std::int16_t ivoltage) const {
+std::int32_t MockMotor::moveVoltage(const std::int16_t ivoltage) {
   lastVoltage = ivoltage;
   return 1;
 }
 
-int32_t MockMotor::getCurrentDraw() const {
+int32_t MockMotor::getCurrentDraw() {
   return 0;
 }
 
-int32_t MockMotor::getDirection() const {
+int32_t MockMotor::getDirection() {
   return 0;
 }
 
-double MockMotor::getEfficiency() const {
+double MockMotor::getEfficiency() {
   return 0;
 }
 
-int32_t MockMotor::isOverCurrent() const {
+int32_t MockMotor::isOverCurrent() {
   return 0;
 }
 
-int32_t MockMotor::isOverTemp() const {
+int32_t MockMotor::isOverTemp() {
   return 0;
 }
 
-int32_t MockMotor::isStopped() const {
+int32_t MockMotor::isStopped() {
   return 0;
 }
 
-int32_t MockMotor::getZeroPositionFlag() const {
+int32_t MockMotor::getZeroPositionFlag() {
   return 0;
 }
 
-uint32_t MockMotor::getFaults() const {
+uint32_t MockMotor::getFaults() {
   return 0;
 }
 
-uint32_t MockMotor::getFlags() const {
+uint32_t MockMotor::getFlags() {
   return 0;
 }
 
-int32_t MockMotor::getRawPosition(std::uint32_t *) const {
+int32_t MockMotor::getRawPosition(std::uint32_t *) {
   return static_cast<int32_t>(encoder->get());
 }
 
-double MockMotor::getPower() const {
+double MockMotor::getPower() {
   return 0;
 }
 
-double MockMotor::getTemperature() const {
+double MockMotor::getTemperature() {
   return 0;
 }
 
-double MockMotor::getTorque() const {
+double MockMotor::getTorque() {
   return 0;
 }
 
-int32_t MockMotor::getVoltage() const {
+int32_t MockMotor::getVoltage() {
   return 0;
 }
 
-int32_t MockMotor::modifyProfiledVelocity(std::int32_t) const {
+int32_t MockMotor::modifyProfiledVelocity(std::int32_t) {
   return 0;
 }
 
-int32_t MockMotor::setPosPID(double, double, double, double) const {
+int32_t MockMotor::setPosPID(double, double, double, double) {
   return 0;
 }
 
-int32_t
-MockMotor::setPosPIDFull(double, double, double, double, double, double, double, double) const {
+int32_t MockMotor::setPosPIDFull(double, double, double, double, double, double, double, double) {
   return 0;
 }
 
-int32_t MockMotor::setVelPID(double, double, double, double) const {
+int32_t MockMotor::setVelPID(double, double, double, double) {
   return 0;
 }
 
-int32_t
-MockMotor::setVelPIDFull(double, double, double, double, double, double, double, double) const {
+int32_t MockMotor::setVelPIDFull(double, double, double, double, double, double, double, double) {
   return 0;
 }
 
-AbstractMotor::brakeMode MockMotor::getBrakeMode() const {
+AbstractMotor::brakeMode MockMotor::getBrakeMode() {
   return brakeMode;
 }
 
-int32_t MockMotor::getCurrentLimit() const {
+int32_t MockMotor::getCurrentLimit() {
   return 2500;
 }
 
-AbstractMotor::encoderUnits MockMotor::getEncoderUnits() const {
+AbstractMotor::encoderUnits MockMotor::getEncoderUnits() {
   return encoderUnits;
 }
 
-AbstractMotor::gearset MockMotor::getGearing() const {
+AbstractMotor::gearset MockMotor::getGearing() {
   return gearset;
 }
 
@@ -269,7 +267,7 @@ QTime ConstantMockTimer::clearMark() {
 MockRate::MockRate() = default;
 
 void MockRate::delay(QFrequency ihz) {
-  delay(ihz.convert(Hz));
+  delay(static_cast<int>(ihz.convert(Hz)));
 }
 
 void MockRate::delay(int ihz) {
@@ -277,7 +275,7 @@ void MockRate::delay(int ihz) {
 }
 
 void MockRate::delayUntil(QTime itime) {
-  delayUntil(itime.convert(millisecond));
+  delayUntil(static_cast<uint32_t>(itime.convert(millisecond)));
 }
 
 void MockRate::delayUntil(uint32_t ims) {
@@ -528,6 +526,244 @@ void assertAsyncWrapperScalesControllerSetTargets(AsyncWrapper<double, double> &
   controller.setControllerSetTargetLimits(-100, 100);
   controller.controllerSet(0.5);
   EXPECT_DOUBLE_EQ(controller.getTarget(), 50);
+}
+
+ThreadedMockMotor::ThreadedMockMotor() : encoder(std::make_shared<MockContinuousRotarySensor>()) {
+}
+
+void ThreadedMockMotor::controllerSet(double ivalue) {
+  moveVelocity(static_cast<int16_t>(ivalue * toUnderlyingType(gearset)));
+}
+
+int32_t ThreadedMockMotor::moveAbsolute(double iposition, std::int32_t ivelocity) {
+  targetPosition = iposition;
+  targetProfiledVelocity = ivelocity;
+  mode = position;
+  return 1;
+}
+
+int32_t ThreadedMockMotor::moveRelative(double iposition, std::int32_t ivelocity) {
+  targetPosition += iposition;
+  targetProfiledVelocity = ivelocity;
+  mode = position;
+  return 1;
+}
+
+int32_t ThreadedMockMotor::moveVelocity(std::int16_t ivelocity) {
+  targetVelocity = ivelocity;
+  mode = velocity;
+  return 1;
+}
+
+int32_t ThreadedMockMotor::moveVoltage(std::int16_t ivoltage) {
+  setVoltage = ivoltage;
+  mode = voltage;
+  return 1;
+}
+
+int32_t ThreadedMockMotor::modifyProfiledVelocity(std::int32_t ivelocity) {
+  targetProfiledVelocity = ivelocity;
+  return 1;
+}
+
+double ThreadedMockMotor::getTargetPosition() {
+  return targetPosition;
+}
+
+double ThreadedMockMotor::getPosition() {
+  return encoder->get();
+}
+
+int32_t ThreadedMockMotor::tarePosition() {
+  encoder->reset();
+  return 1;
+}
+
+int32_t ThreadedMockMotor::getTargetVelocity() {
+  return targetVelocity;
+}
+
+double ThreadedMockMotor::getActualVelocity() {
+  return actualVelocity;
+}
+
+int32_t ThreadedMockMotor::getCurrentDraw() {
+  return 0;
+}
+
+int32_t ThreadedMockMotor::getDirection() {
+  return 0;
+}
+
+double ThreadedMockMotor::getEfficiency() {
+  return 0;
+}
+
+int32_t ThreadedMockMotor::isOverCurrent() {
+  return 0;
+}
+
+int32_t ThreadedMockMotor::isOverTemp() {
+  return 0;
+}
+
+int32_t ThreadedMockMotor::isStopped() {
+  return 0;
+}
+
+int32_t ThreadedMockMotor::getZeroPositionFlag() {
+  return 0;
+}
+
+uint32_t ThreadedMockMotor::getFaults() {
+  return 0;
+}
+
+uint32_t ThreadedMockMotor::getFlags() {
+  return 0;
+}
+
+int32_t ThreadedMockMotor::getRawPosition(std::uint32_t *) {
+  return 0;
+}
+
+double ThreadedMockMotor::getPower() {
+  return 0;
+}
+
+double ThreadedMockMotor::getTemperature() {
+  return 0;
+}
+
+double ThreadedMockMotor::getTorque() {
+  return 0;
+}
+
+int32_t ThreadedMockMotor::getVoltage() {
+  return 0;
+}
+
+int32_t ThreadedMockMotor::setBrakeMode(AbstractMotor::brakeMode imode) {
+  brakeMode = imode;
+  return 1;
+}
+
+AbstractMotor::brakeMode ThreadedMockMotor::getBrakeMode() {
+  return brakeMode;
+}
+
+int32_t ThreadedMockMotor::setCurrentLimit(std::int32_t ilimit) {
+  currentLimit = ilimit;
+  return 1;
+}
+
+int32_t ThreadedMockMotor::getCurrentLimit() {
+  return currentLimit;
+}
+
+int32_t ThreadedMockMotor::setEncoderUnits(AbstractMotor::encoderUnits iunits) {
+  encoderUnits = iunits;
+  return 1;
+}
+
+AbstractMotor::encoderUnits ThreadedMockMotor::getEncoderUnits() {
+  return encoderUnits;
+}
+
+int32_t ThreadedMockMotor::setGearing(AbstractMotor::gearset igearset) {
+  gearset = igearset;
+  return 1;
+}
+
+AbstractMotor::gearset ThreadedMockMotor::getGearing() {
+  return gearset;
+}
+
+int32_t ThreadedMockMotor::setReversed(bool ireverse) {
+  if (ireverse) {
+    reverse = -1;
+  } else {
+    reverse = 1;
+  }
+
+  return 1;
+}
+
+int32_t ThreadedMockMotor::setVoltageLimit(std::int32_t ilimit) {
+  voltageLimit = ilimit;
+  return 1;
+}
+
+int32_t ThreadedMockMotor::setPosPID(double, double, double, double) {
+  return 0;
+}
+
+int32_t
+ThreadedMockMotor::setPosPIDFull(double, double, double, double, double, double, double, double) {
+  return 0;
+}
+
+int32_t ThreadedMockMotor::setVelPID(double, double, double, double) {
+  return 0;
+}
+
+int32_t
+ThreadedMockMotor::setVelPIDFull(double, double, double, double, double, double, double, double) {
+  return 0;
+}
+
+std::shared_ptr<ContinuousRotarySensor> ThreadedMockMotor::getEncoder() {
+  return encoder;
+}
+
+void ThreadedMockMotor::startThread() {
+  thread = std::thread(&ThreadedMockMotor::threadFunc, this);
+}
+
+void ThreadedMockMotor::stopThread() {
+  threadShouldStop = true;
+}
+
+void ThreadedMockMotor::threadFunc() {
+  while (!threadShouldStop) {
+    switch (mode) {
+    case position: {
+      // If the encoder value was written to from outside this thread
+      if (static_cast<std::int32_t>(actualPosition) != encoder->value) {
+        actualPosition = encoder->value;
+      }
+
+      actualVelocity = targetProfiledVelocity;
+      actualPosition += actualVelocity * (dt / 1000.0);
+
+      if (actualPosition > targetPosition) {
+        actualPosition = targetPosition;
+      }
+
+      encoder->value = static_cast<std::int32_t>(actualPosition);
+      break;
+    }
+
+    case velocity: {
+      // If the encoder value was written to from outside this thread
+      if (static_cast<std::int32_t>(actualPosition) != encoder->value) {
+        actualPosition = encoder->value;
+      }
+
+      actualVelocity = targetVelocity;
+      actualPosition += actualVelocity * (dt / 1000.0);
+
+      encoder->value = static_cast<std::int32_t>(actualPosition);
+      break;
+    }
+
+    case voltage: {
+      break;
+    }
+    }
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(dt));
+  }
 }
 
 void assertOdomStateEquals(Odometry *odom, QLength x, QLength y, QAngle theta) {
