@@ -43,9 +43,9 @@ void OdomChassisControllerIntegrated::driveToPoint(const QLength ix,
     daa.length *= -1;
   }
 
-  logger->info("OdomChassisControllerIntegrated: Computed length of " +
-               std::to_string(daa.length.convert(meter)) + " meters and angle of " +
-               std::to_string(daa.theta.convert(degree)) + " degrees");
+  LOG_INFO("OdomChassisControllerIntegrated: Computed length of " +
+           std::to_string(daa.length.convert(meter)) + " meters and angle of " +
+           std::to_string(daa.theta.convert(degree)) + " degrees");
 
   if (daa.theta.abs() > turnThreshold) {
     ChassisControllerIntegrated::turnAngle(daa.theta);

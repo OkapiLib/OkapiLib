@@ -21,7 +21,7 @@ class MockSkidSteerModel : public SkidSteerModel {
 class ChassisControllerPIDIntegrationTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    scales = new ChassisScales({4_in, 11.5_in});
+    scales = new ChassisScales({4_in, 11.5_in}, imev5GreenTPR);
     leftMotor = new ThreadedMockMotor();
     rightMotor = new ThreadedMockMotor();
 
@@ -89,7 +89,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceRawUnitsTest) {
 TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceUnitsTest) {
   controller->moveDistance(1_m);
 
-  EXPECT_NEAR(distanceController->getTarget(), 1128, 1);
+  EXPECT_NEAR(distanceController->getTarget(), 2820, 1);
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
 
   EXPECT_TRUE(turnController->isDisabled());
@@ -99,8 +99,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 1128, 10);
-  EXPECT_NEAR(controller->getSensorVals()[1], 1128, 10);
+  EXPECT_NEAR(controller->getSensorVals()[0], 2820, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], 2820, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -133,7 +133,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncRawUnitsTest) {
 TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncUnitsTest) {
   controller->moveDistanceAsync(1_m);
 
-  EXPECT_NEAR(distanceController->getTarget(), 1128, 1);
+  EXPECT_NEAR(distanceController->getTarget(), 2820, 1);
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
 
   EXPECT_TRUE(turnController->isDisabled());
@@ -149,8 +149,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 1128, 10);
-  EXPECT_NEAR(controller->getSensorVals()[1], 1128, 10);
+  EXPECT_NEAR(controller->getSensorVals()[0], 2820, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], 2820, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }

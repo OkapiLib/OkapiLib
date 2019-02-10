@@ -53,8 +53,8 @@ ChassisScales::ChassisScales(const std::initializer_list<double> &iscales,
 void ChassisScales::validateInput(const std::size_t inputSize,
                                   const std::shared_ptr<Logger> &logger) {
   if (inputSize < 2) {
-    logger->error("At least two measurements must be given to ChassisScales. Got " +
-                  std::to_string(inputSize) + "measurements.");
+    LOG_ERROR("At least two measurements must be given to ChassisScales. Got " +
+              std::to_string(inputSize) + "measurements.");
     throw std::invalid_argument("At least two measurements must be given to ChassisScales.");
   }
 }
