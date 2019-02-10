@@ -21,15 +21,15 @@ ChassisControllerPID::ChassisControllerPID(
   const std::shared_ptr<Logger> &ilogger)
   : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
     logger(ilogger),
-    rate(itimeUtil.getRate()),
+    timeUtil(itimeUtil),
     distancePid(std::move(idistanceController)),
     turnPid(std::move(iturnController)),
     anglePid(std::move(iangleController)),
     scales(iscales),
     gearsetRatioPair(igearset) {
   if (igearset.ratio == 0) {
-    logger->error("ChassisControllerPID: The gear ratio cannot be zero! Check if you are using "
-                  "integer division.");
+    LOG_ERROR_S("ChassisControllerPID: The gear ratio cannot be zero! Check if you are using "
+                "integer division.");
     throw std::invalid_argument("ChassisControllerPID: The gear ratio cannot be zero! Check if you "
                                 "are using integer division.");
   }
@@ -39,9 +39,9 @@ ChassisControllerPID::ChassisControllerPID(
 }
 
 ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcept
-  : ChassisController(std::move(other.model), other.maxVelocity, other.maxVoltage),
-    logger(other.logger),
-    rate(std::move(other.rate)),
+  : ChassisController(other.model, other.maxVelocity, other.maxVoltage),
+    logger(std::move(other.logger)),
+    timeUtil(other.timeUtil),
     distancePid(std::move(other.distancePid)),
     turnPid(std::move(other.turnPid)),
     anglePid(std::move(other.anglePid)),
@@ -65,13 +65,16 @@ void ChassisControllerPID::loop() {
   std::valarray<std::int32_t> encVals;
   double distanceElapsed = 0, angleChange = 0;
   modeType pastMode = none;
+  auto rate = timeUtil.getRate();
 
   while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
     /**
      * doneLooping is set to false by moveDistanceAsync and turnAngleAsync and then set to true by
      * waitUntilSettled
      */
-    if (!doneLooping.load(std::memory_order_acquire)) {
+    if (doneLooping.load(std::memory_order_acquire)) {
+      doneLoopingSeen.store(true, std::memory_order_release);
+    } else {
       if (mode != pastMode || newMovement.load(std::memory_order_acquire)) {
         encStartVals = model->getSensorVals();
         newMovement.store(false, std::memory_order_release);
@@ -87,7 +90,7 @@ void ChassisControllerPID::loop() {
 
       case angle:
         encVals = model->getSensorVals() - encStartVals;
-        angleChange = static_cast<double>(encVals[0] - encVals[1]);
+        angleChange = (encVals[0] - encVals[1]) / 2.0;
         model->rotate(turnPid->step(angleChange));
         break;
 
@@ -98,7 +101,7 @@ void ChassisControllerPID::loop() {
       pastMode = mode;
     }
 
-    rate->delayUntil(10_ms);
+    rate->delayUntil(threadSleepTime);
   }
 }
 
@@ -109,8 +112,7 @@ void ChassisControllerPID::trampoline(void *context) {
 }
 
 void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
-  logger->info("ChassisControllerPID: moving " + std::to_string(itarget.convert(meter)) +
-               " meters");
+  LOG_INFO("ChassisControllerPID: moving " + std::to_string(itarget.convert(meter)) + " meters");
 
   distancePid->reset();
   anglePid->reset();
@@ -121,7 +123,7 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
 
   const double newTarget = itarget.convert(meter) * scales.straight * gearsetRatioPair.ratio;
 
-  logger->info("ChassisControllerPID: moving " + std::to_string(newTarget) + " motor degrees");
+  LOG_INFO("ChassisControllerPID: moving " + std::to_string(newTarget) + " motor degrees");
 
   distancePid->setTarget(newTarget);
   anglePid->setTarget(0);
@@ -146,8 +148,8 @@ void ChassisControllerPID::moveDistance(const double itarget) {
 }
 
 void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
-  logger->info("ChassisControllerPID: turning " + std::to_string(idegTarget.convert(degree)) +
-               " degrees");
+  LOG_INFO("ChassisControllerPID: turning " + std::to_string(idegTarget.convert(degree)) +
+           " degrees");
 
   turnPid->reset();
   turnPid->flipDisable(false);
@@ -158,7 +160,7 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   const double newTarget =
     idegTarget.convert(degree) * scales.turn * gearsetRatioPair.ratio * boolToSign(normalTurns);
 
-  logger->info("ChassisControllerPID: turning " + std::to_string(newTarget) + " motor degrees");
+  LOG_INFO("ChassisControllerPID: turning " + std::to_string(newTarget) + " motor degrees");
 
   turnPid->setTarget(newTarget);
 
@@ -182,7 +184,8 @@ void ChassisControllerPID::turnAngle(const double idegTarget) {
 }
 
 void ChassisControllerPID::waitUntilSettled() {
-  logger->info("ChassisControllerPID: Waiting to settle");
+  LOG_INFO_S("ChassisControllerPID: Waiting to settle");
+
   bool completelySettled = false;
 
   while (!completelySettled) {
@@ -201,10 +204,21 @@ void ChassisControllerPID::waitUntilSettled() {
     }
   }
 
-  stopAfterSettled();
+  // Order here is important
   mode = none;
   doneLooping.store(true, std::memory_order_release);
-  logger->info("ChassisControllerPID: Done waiting to settle");
+  doneLoopingSeen.store(false, std::memory_order_release);
+
+  // Wait for the thread to finish if it happens to be writing to motors
+  auto rate = timeUtil.getRate();
+  while (!doneLoopingSeen.load(std::memory_order_acquire)) {
+    rate->delayUntil(threadSleepTime);
+  }
+
+  // Stop after the thread has run at least once
+  stopAfterSettled();
+
+  LOG_INFO_S("ChassisControllerPID: Done waiting to settle");
 }
 
 /**
@@ -213,12 +227,13 @@ void ChassisControllerPID::waitUntilSettled() {
  * @return true if done settling; false if settling should be tried again
  */
 bool ChassisControllerPID::waitForDistanceSettled() {
-  logger->info("ChassisControllerPID: Waiting to settle in distance mode");
+  LOG_INFO_S("ChassisControllerPID: Waiting to settle in distance mode");
 
+  auto rate = timeUtil.getRate();
   while (!(distancePid->isSettled() && anglePid->isSettled())) {
     if (mode == angle) {
       // False will cause the loop to re-enter the switch
-      logger->warn("ChassisControllerPID: Mode changed to angle while waiting in distance!");
+      LOG_WARN_S("ChassisControllerPID: Mode changed to angle while waiting in distance!");
       return false;
     }
 
@@ -235,12 +250,13 @@ bool ChassisControllerPID::waitForDistanceSettled() {
  * @return true if done settling; false if settling should be tried again
  */
 bool ChassisControllerPID::waitForAngleSettled() {
-  logger->info("ChassisControllerPID: Waiting to settle in angle mode");
+  LOG_INFO_S("ChassisControllerPID: Waiting to settle in angle mode");
 
+  auto rate = timeUtil.getRate();
   while (!turnPid->isSettled()) {
     if (mode == distance) {
       // False will cause the loop to re-enter the switch
-      logger->warn("ChassisControllerPID: Mode changed to distance while waiting in angle!");
+      LOG_WARN_S("ChassisControllerPID: Mode changed to distance while waiting in angle!");
       return false;
     }
 
@@ -259,6 +275,8 @@ void ChassisControllerPID::stopAfterSettled() {
 }
 
 void ChassisControllerPID::stop() {
+  mode = none;
+  doneLooping.store(true, std::memory_order_release);
   stopAfterSettled();
   ChassisController::stop();
 }

@@ -98,7 +98,7 @@ AsyncPosControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
 
 std::shared_ptr<AsyncPositionController<double, double>> AsyncPosControllerBuilder::build() {
   if (!hasMotors) {
-    logger->error("AsyncPosControllerBuilder: No motors given.");
+    LOG_ERROR_S("AsyncPosControllerBuilder: No motors given.");
     throw std::runtime_error("AsyncPosControllerBuilder: No motors given.");
   }
 

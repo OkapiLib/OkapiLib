@@ -45,7 +45,7 @@ IterativePosPIDController::IterativePosPIDController(const Gains &igains,
 }
 
 void IterativePosPIDController::setTarget(const double itarget) {
-  logger->info("IterativePosPIDController: Set target to " + std::to_string(itarget));
+  LOG_INFO("IterativePosPIDController: Set target to " + std::to_string(itarget));
   target = itarget;
 }
 
@@ -132,15 +132,15 @@ void IterativePosPIDController::setErrorSumLimits(const double imax, const doubl
 }
 
 double IterativePosPIDController::step(const double inewReading) {
-  const double readingDiff = inewReading - lastReading;
-  lastReading = inewReading;
-
   if (controllerIsDisabled) {
     return 0;
   } else {
     loopDtTimer->placeHardMark();
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
+      const double readingDiff = inewReading - lastReading;
+      lastReading = inewReading;
+
       error = getError();
 
       if ((std::abs(error) < target - errorSumMin && std::abs(error) > target - errorSumMax) ||
@@ -176,12 +176,13 @@ void IterativePosPIDController::setGains(const double ikP,
   const double sampleTimeSec = sampleTime.convert(second);
   kP = ikP;
   kI = ikI * sampleTimeSec;
-  kD = ikD * sampleTimeSec;
+  kD = ikD / sampleTimeSec;
   kBias = ikBias;
 }
 
 void IterativePosPIDController::reset() {
-  logger->info("IterativePosPIDController: Reset");
+  LOG_INFO_S("IterativePosPIDController: Reset");
+
   error = 0;
   lastError = 0;
   lastReading = 0;
@@ -199,7 +200,7 @@ void IterativePosPIDController::flipDisable() {
 }
 
 void IterativePosPIDController::flipDisable(const bool iisDisabled) {
-  logger->info("IterativePosPIDController: flipDisable " + std::to_string(iisDisabled));
+  LOG_INFO("IterativePosPIDController: flipDisable " + std::to_string(iisDisabled));
   controllerIsDisabled = iisDisabled;
 }
 

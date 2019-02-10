@@ -2,4 +2,8 @@
 
 namespace okapi {
 AbstractButton::~AbstractButton() = default;
+
+bool AbstractButton::controllerGet() {
+  return isPressed();
 }
+} // namespace okapi

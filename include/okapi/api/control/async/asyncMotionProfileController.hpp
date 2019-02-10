@@ -122,9 +122,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   moveTo(std::initializer_list<Point> iwaypoints, bool ibackwards = false, bool imirrored = false);
 
   /**
-   * Returns the last error of the controller. This implementation always returns zero since the
-   * robot is assumed to perfectly follow the path. Subclasses can override this to be more
-   * accurate using odometry information.
+   * Returns the last error of the controller. Does not update when disabled. This implementation
+   * always returns zero since the robot is assumed to perfectly follow the path. Subclasses can
+   * override this to be more accurate using odometry information.
    *
    * @return the last error
    */

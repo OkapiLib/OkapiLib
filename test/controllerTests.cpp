@@ -156,3 +156,17 @@ TEST(SettledUtilTest, ZeroTime) {
   EXPECT_FALSE(settledUtil.isSettled(55));
   EXPECT_TRUE(settledUtil.isSettled(50));
 }
+
+TEST(SettledUtilTest, LargeErrorSignChange) {
+  MockRate rate;
+  SettledUtil settledUtil(std::make_unique<MockTimer>(), 50, 5, 250_ms);
+  EXPECT_FALSE(settledUtil.isSettled(-50000));
+  EXPECT_FALSE(settledUtil.isSettled(50000));
+}
+
+TEST(SettledUtilTest, LargeErrorSignChangeWithConstantTimer) {
+  MockRate rate;
+  SettledUtil settledUtil(createConstantTimeUtil(10_ms).getTimer(), 50, 5, 250_ms);
+  EXPECT_FALSE(settledUtil.isSettled(-50000));
+  EXPECT_FALSE(settledUtil.isSettled(50000));
+}

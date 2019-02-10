@@ -23,8 +23,8 @@ VelMath::VelMath(const double iticksPerRev,
     loopDtTimer(std::move(iloopDtTimer)),
     filter(std::move(ifilter)) {
   if (iticksPerRev == 0) {
-    logger->error(
-      "VelMath: The ticks per revolution cannot be zero! Check if you are using integer division.");
+    LOG_ERROR_S("VelMath: The ticks per revolution cannot be zero! Check if you are using integer "
+                "division.");
     throw std::invalid_argument(
       "VelMath: The ticks per revolution cannot be zero! Check if you are using integer division.");
   }

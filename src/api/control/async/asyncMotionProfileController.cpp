@@ -24,8 +24,8 @@ AsyncMotionProfileController::AsyncMotionProfileController(
     pair(ipair),
     timeUtil(itimeUtil) {
   if (ipair.ratio == 0) {
-    logger->error("AsyncMotionProfileController: The gear ratio cannot be zero! Check if you are "
-                  "using integer division.");
+    LOG_ERROR_S("AsyncMotionProfileController: The gear ratio cannot be zero! Check if you are "
+                "using integer division.");
     throw std::invalid_argument(
       "AsyncMotionProfileController: The gear ratio cannot be zero! Check "
       "if you are using integer division.");
@@ -34,7 +34,7 @@ AsyncMotionProfileController::AsyncMotionProfileController(
 
 AsyncMotionProfileController::AsyncMotionProfileController(
   AsyncMotionProfileController &&other) noexcept
-  : logger(other.logger),
+  : logger(std::move(other.logger)),
     paths(std::move(other.paths)),
     limits(other.limits),
     model(std::move(other.model)),
@@ -64,8 +64,9 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
                                                 const std::string &ipathId) {
   if (iwaypoints.size() == 0) {
     // No point in generating a path
-    logger->warn(
+    LOG_WARN_S(
       "AsyncMotionProfileController: Not generating a path because no waypoints were given.");
+
     return;
   }
 
@@ -76,8 +77,9 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
       Waypoint{point.x.convert(meter), point.y.convert(meter), point.theta.convert(radian)});
   }
 
+  LOG_INFO_S("AsyncMotionProfileController: Preparing trajectory");
+
   TrajectoryCandidate candidate;
-  logger->info("AsyncMotionProfileController: Preparing trajectory");
   pathfinder_prepare(points.data(),
                      static_cast<int>(points.size()),
                      FIT_HERMITE_CUBIC,
@@ -104,8 +106,6 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
                       pointToString(points.at(0)),
                       [&](std::string a, Waypoint b) { return a + ", " + pointToString(b); });
 
-    logger->error(message);
-
     if (candidate.laptr) {
       free(candidate.laptr);
     }
@@ -114,6 +114,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
       free(candidate.saptr);
     }
 
+    LOG_ERROR(message);
     throw std::runtime_error(message);
   }
 
@@ -123,7 +124,6 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
     std::string message =
       "AsyncMotionProfileController: Could not allocate trajectory. The path (length " +
       std::to_string(length) + ") is probably impossible.";
-    logger->error(message);
 
     if (candidate.laptr) {
       free(candidate.laptr);
@@ -133,10 +133,12 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
       free(candidate.saptr);
     }
 
+    LOG_ERROR(message);
     throw std::runtime_error(message);
   }
 
-  logger->info("AsyncMotionProfileController: Generating path");
+  LOG_INFO_S("AsyncMotionProfileController: Generating path");
+
   pathfinder_generate(&candidate, trajectory);
 
   auto *leftTrajectory = (Segment *)malloc(sizeof(Segment) * length);
@@ -146,7 +148,6 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
     std::string message = "AsyncMotionProfileController: Could not allocate left and/or right "
                           "trajectories. The path (length " +
                           std::to_string(length) + ") is probably impossible.";
-    logger->error(message);
 
     if (leftTrajectory) {
       free(leftTrajectory);
@@ -160,10 +161,11 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
       free(trajectory);
     }
 
+    LOG_ERROR(message);
     throw std::runtime_error(message);
   }
 
-  logger->info("AsyncMotionProfileController: Modifying for tank drive");
+  LOG_INFO_S("AsyncMotionProfileController: Modifying for tank drive");
   pathfinder_modify_tank(
     trajectory, length, leftTrajectory, rightTrajectory, scales.wheelbaseWidth.convert(meter));
 
@@ -173,8 +175,9 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
   removePath(ipathId);
 
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length});
-  logger->info("AsyncMotionProfileController: Completely done generating path");
-  logger->info("AsyncMotionProfileController: Path length: " + std::to_string(length));
+
+  LOG_INFO_S("AsyncMotionProfileController: Completely done generating path");
+  LOG_INFO("AsyncMotionProfileController: Path length: " + std::to_string(length));
 }
 
 void AsyncMotionProfileController::removePath(const std::string &ipathId) {
@@ -222,21 +225,20 @@ void AsyncMotionProfileController::loop() {
 
   while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
     if (isRunning.load(std::memory_order_acquire) && !isDisabled()) {
-      logger->info("AsyncMotionProfileController: Running with path: " + currentPath);
-      auto path = paths.find(currentPath);
+      LOG_INFO("AsyncMotionProfileController: Running with path: " + currentPath);
 
+      auto path = paths.find(currentPath);
       if (path == paths.end()) {
-        logger->warn(
-          "AsyncMotionProfileController: Target was set to non-existent path with name: " +
-          currentPath);
+        LOG_WARN("AsyncMotionProfileController: Target was set to non-existent path with name: " +
+                 currentPath);
       } else {
-        logger->debug("AsyncMotionProfileController: Path length is " +
-                      std::to_string(path->second.length));
+        LOG_DEBUG("AsyncMotionProfileController: Path length is " +
+                  std::to_string(path->second.length));
 
         executeSinglePath(path->second, timeUtil.getRate());
         model->stop();
 
-        logger->info("AsyncMotionProfileController: Done moving");
+        LOG_INFO_S("AsyncMotionProfileController: Done moving");
       }
 
       isRunning.store(false, std::memory_order_release);
@@ -285,14 +287,14 @@ void AsyncMotionProfileController::trampoline(void *context) {
 }
 
 void AsyncMotionProfileController::waitUntilSettled() {
-  logger->info("AsyncMotionProfileController: Waiting to settle");
+  LOG_INFO_S("AsyncMotionProfileController: Waiting to settle");
 
   auto rate = timeUtil.getRate();
   while (!isSettled()) {
     rate->delayUntil(10_ms);
   }
 
-  logger->info("AsyncMotionProfileController: Done waiting to settle");
+  LOG_INFO_S("AsyncMotionProfileController: Done waiting to settle");
 }
 
 void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints,
@@ -330,7 +332,7 @@ void AsyncMotionProfileController::flipDisable() {
 }
 
 void AsyncMotionProfileController::flipDisable(const bool iisDisabled) {
-  logger->info("AsyncMotionProfileController: flipDisable " + std::to_string(iisDisabled));
+  LOG_INFO("AsyncMotionProfileController: flipDisable " + std::to_string(iisDisabled));
   disabled.store(iisDisabled, std::memory_order_release);
   // loop() will stop the chassis when executeSinglePath() is done
   // the default implementation of executeSinglePath() breaks when disabled

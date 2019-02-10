@@ -19,10 +19,8 @@ EXTRA_CXXFLAGS=
 # Set this to 1 to add additional rules to compile your project as a PROS library template
 IS_LIBRARY:=1
 LIBNAME:=okapilib
-VERSION:=3.3.8
-EXCLUDE_SRC_FROM_LIB=$(SRCDIR)/test/testRunner.cpp
-EXCLUDE_SRC_FROM_LIB+=$(SRCDIR)/test/testMain.cpp
-EXCLUDE_SRC_FROM_LIB+=$(SRCDIR)/test/crossPlatformTestRunner.cpp
+VERSION:=3.3.11
+EXCLUDE_SRC_FROM_LIB=$(call rwildcard,$(SRCDIR)/test,*.*)
 # this line excludes opcontrol.c and similar files
 EXCLUDE_SRC_FROM_LIB+= $(foreach file, $(SRCDIR)/opcontrol $(SRCDIR)/initialize $(SRCDIR)/autonomous,$(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
 

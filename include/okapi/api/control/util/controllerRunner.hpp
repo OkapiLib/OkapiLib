@@ -37,15 +37,15 @@ template <typename Input, typename Output> class ControllerRunner {
    * @return the error when settled
    */
   virtual Output runUntilSettled(const Input itarget, AsyncController<Input, Output> &icontroller) {
-    logger->info("ControllerRunner: runUntilSettled(AsyncController): Set target to " +
-                 std::to_string(itarget));
+    LOG_INFO("ControllerRunner: runUntilSettled(AsyncController): Set target to " +
+             std::to_string(itarget));
     icontroller.setTarget(itarget);
 
     while (!icontroller.isSettled()) {
       rate->delay(10);
     }
 
-    logger->info("ControllerRunner: runUntilSettled(AsyncController): Done waiting to settle");
+    LOG_INFO_S("ControllerRunner: runUntilSettled(AsyncController): Done waiting to settle");
     return icontroller.getError();
   }
 
@@ -60,8 +60,8 @@ template <typename Input, typename Output> class ControllerRunner {
   virtual Output runUntilSettled(const Input itarget,
                                  IterativeController<Input, Output> &icontroller,
                                  ControllerOutput<Output> &ioutput) {
-    logger->info("ControllerRunner: runUntilSettled(IterativeController): Set target to " +
-                 std::to_string(itarget));
+    LOG_INFO("ControllerRunner: runUntilSettled(IterativeController): Set target to " +
+             std::to_string(itarget));
     icontroller.setTarget(itarget);
 
     while (!icontroller.isSettled()) {
@@ -69,7 +69,7 @@ template <typename Input, typename Output> class ControllerRunner {
       rate->delay(10);
     }
 
-    logger->info("ControllerRunner: runUntilSettled(IterativeController): Done waiting to settle");
+    LOG_INFO_S("ControllerRunner: runUntilSettled(IterativeController): Done waiting to settle");
     return icontroller.getError();
   }
 
@@ -82,8 +82,8 @@ template <typename Input, typename Output> class ControllerRunner {
    */
   virtual Output runUntilAtTarget(const Input itarget,
                                   AsyncController<Input, Output> &icontroller) {
-    logger->info("ControllerRunner: runUntilAtTarget(AsyncController): Set target to " +
-                 std::to_string(itarget));
+    LOG_INFO("ControllerRunner: runUntilAtTarget(AsyncController): Set target to " +
+             std::to_string(itarget));
     icontroller.setTarget(itarget);
 
     double error = icontroller.getError();
@@ -94,7 +94,7 @@ template <typename Input, typename Output> class ControllerRunner {
       error = icontroller.getError();
     }
 
-    logger->info("ControllerRunner: runUntilAtTarget(AsyncController): Done waiting to settle");
+    LOG_INFO_S("ControllerRunner: runUntilAtTarget(AsyncController): Done waiting to settle");
     return icontroller.getError();
   }
 
@@ -109,8 +109,8 @@ template <typename Input, typename Output> class ControllerRunner {
   virtual Output runUntilAtTarget(const Input itarget,
                                   IterativeController<Input, Output> &icontroller,
                                   ControllerOutput<Output> &ioutput) {
-    logger->info("ControllerRunner: runUntilAtTarget(IterativeController): Set target to " +
-                 std::to_string(itarget));
+    LOG_INFO("ControllerRunner: runUntilAtTarget(IterativeController): Set target to " +
+             std::to_string(itarget));
     icontroller.setTarget(itarget);
 
     double error = icontroller.getError();
@@ -122,7 +122,7 @@ template <typename Input, typename Output> class ControllerRunner {
       error = icontroller.getError();
     }
 
-    logger->info("ControllerRunner: runUntilAtTarget(IterativeController): Done waiting to settle");
+    LOG_INFO_S("ControllerRunner: runUntilAtTarget(IterativeController): Done waiting to settle");
     return icontroller.getError();
   }
 
