@@ -99,7 +99,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   /**
-   * Returns the last error of the controller.
+   * Returns the last error of the controller. Does not update when disabled.
    */
   Output getError() const override {
     return controller->getError();
