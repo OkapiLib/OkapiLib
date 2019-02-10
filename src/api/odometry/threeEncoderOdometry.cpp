@@ -22,13 +22,13 @@ ThreeEncoderOdometry::ThreeEncoderOdometry(const TimeUtil &itimeUtil,
     rate(itimeUtil.getRate()) {
   if (ichassisScales.middle == 0) {
     std::string msg = "ThreeEncoderOdometry: Middle scale cannot be zero.";
-    logger->error(msg);
+    LOG_ERROR(msg);
     throw std::invalid_argument(msg);
   }
 
   if (ichassisScales.middleWheelDistance == 0_m) {
     std::string msg = "ThreeEncoderOdometry: Middle wheel distance cannot be zero.";
-    logger->error(msg);
+    LOG_ERROR(msg);
     throw std::invalid_argument(msg);
   }
 }

@@ -45,9 +45,9 @@ void OdomChassisControllerPID::driveToPoint(const QLength ix,
     angle += 180_deg;
   }
 
-  logger->info("OdomChassisControllerPID: Computed length of " +
-               std::to_string(length.convert(meter)) + " meters and angle of " +
-               std::to_string(angle.convert(degree)) + " degrees");
+  LOG_INFO("OdomChassisControllerPID: Computed length of " +
+           std::to_string(length.convert(meter)) + " meters and angle of " +
+           std::to_string(angle.convert(degree)) + " degrees");
 
   if (angle.abs() > turnThreshold) {
     ChassisControllerPID::turnAngle(angle);

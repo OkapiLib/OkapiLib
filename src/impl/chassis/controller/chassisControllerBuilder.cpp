@@ -155,7 +155,7 @@ ChassisControllerBuilder::withOdometry(std::unique_ptr<Odometry> iodometry,
                                        const QLength &imoveThreshold,
                                        const QAngle &iturnThreshold) {
   if (iodometry == nullptr) {
-    logger->error("ChassisControllerBuilder: Odometry cannot be null.");
+    LOG_ERROR_S("ChassisControllerBuilder: Odometry cannot be null.");
     throw std::runtime_error("ChassisControllerBuilder: Odometry cannot be null.");
   }
 
@@ -222,12 +222,12 @@ std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
 
 std::shared_ptr<OdomChassisController> ChassisControllerBuilder::buildOdometry() {
   if (!hasMotors) {
-    logger->error("ChassisControllerBuilder: No motors given.");
+    LOG_ERROR_S("ChassisControllerBuilder: No motors given.");
     throw std::runtime_error("ChassisControllerBuilder: No motors given.");
   }
 
   if (!hasOdom) {
-    logger->error("ChassisControllerBuilder: No odometry information given.");
+    LOG_ERROR_S("ChassisControllerBuilder: No odometry information given.");
     throw std::runtime_error("ChassisControllerBuilder: No odometry information given.");
   }
 
@@ -272,7 +272,7 @@ std::shared_ptr<OdomChassisControllerPID> ChassisControllerBuilder::buildOCCPID(
     out->startThread();
     return out;
   } else {
-    logger->error("ChassisControllerBuilder: Odometry only support with skid-steer layout.");
+    LOG_ERROR_S("ChassisControllerBuilder: Odometry only support with skid-steer layout.");
     throw std::runtime_error(
       "ChassisControllerBuilder: Odometry only support with skid-steer layout.");
   }
@@ -313,7 +313,7 @@ std::shared_ptr<OdomChassisControllerIntegrated> ChassisControllerBuilder::build
       controllerLogger);
     return out;
   } else {
-    logger->error("ChassisControllerBuilder: Odometry only support with skid-steer layout.");
+    LOG_ERROR_S("ChassisControllerBuilder: Odometry only support with skid-steer layout.");
     throw std::runtime_error(
       "ChassisControllerBuilder: Odometry only support with skid-steer layout.");
   }
