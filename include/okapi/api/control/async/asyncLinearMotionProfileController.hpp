@@ -112,8 +112,8 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   void moveTo(double iposition, double itarget);
 
   /**
-   * Returns the last error of the controller. Returns zero if there is no path currently being
-   * followed.
+   * Returns the last error of the controller. Does not update when disabled. Returns zero if there
+   * is no path currently being followed.
    *
    * @return the last error
    */

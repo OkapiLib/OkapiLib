@@ -37,7 +37,7 @@ class ClosedLoopController : public ControllerOutput<Input> {
   virtual Input getTarget() = 0;
 
   /**
-   * Returns the last error of the controller.
+   * Returns the last error of the controller. Does not update when disabled.
    *
    * @return the last error
    */
