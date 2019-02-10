@@ -66,7 +66,7 @@ TEST_F(IterativeVelPIDControllerTest, DoesNotKeepTrackOfReadingsWhenDisabled) {
   EXPECT_EQ(controller->getTarget(), 2);
   EXPECT_EQ(controller->step(1), 0);
   EXPECT_EQ(controller->getOutput(), 0);
-  EXPECT_EQ(controller->getError(), 0);
+  EXPECT_EQ(controller->getError(), 2);
 }
 
 TEST_F(IterativeVelPIDControllerTest, StaticFrictionGainUsesTargetSign) {
