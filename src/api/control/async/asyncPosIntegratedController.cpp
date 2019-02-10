@@ -16,11 +16,11 @@ AsyncPosIntegratedController::AsyncPosIntegratedController(
   const TimeUtil &itimeUtil,
   const std::shared_ptr<Logger> &ilogger)
   : logger(ilogger),
+    timeUtil(itimeUtil),
     motor(imotor),
     pair(ipair),
     maxVelocity(imaxVelocity),
-    settledUtil(itimeUtil.getSettledUtil()),
-    rate(itimeUtil.getRate()) {
+    settledUtil(itimeUtil.getSettledUtil()) {
   if (ipair.ratio == 0) {
     LOG_ERROR_S("AsyncPosIntegratedController: The gear ratio cannot be zero! Check if you are "
                 "using integer division.");
@@ -88,6 +88,7 @@ void AsyncPosIntegratedController::resumeMovement() {
 void AsyncPosIntegratedController::waitUntilSettled() {
   LOG_INFO_S("AsyncPosIntegratedController: Waiting to settle");
 
+  auto rate = timeUtil.getRate();
   while (!isSettled()) {
     rate->delayUntil(motorUpdateRate);
   }

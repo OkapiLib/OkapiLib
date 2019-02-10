@@ -19,7 +19,7 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
   const std::shared_ptr<Logger> &ilogger)
   : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
     logger(ilogger),
-    rate(itimeUtil.getRate()),
+    timeUtil(itimeUtil),
     leftController(std::move(ileftController)),
     rightController(std::move(irightController)),
     lastTarget(0),
@@ -106,6 +106,7 @@ void ChassisControllerIntegrated::turnAngleAsync(const double idegTarget) {
 void ChassisControllerIntegrated::waitUntilSettled() {
   LOG_INFO_S("ChassisControllerIntegrated: Waiting to settle");
 
+  auto rate = timeUtil.getRate();
   while (!(leftController->isSettled() && rightController->isSettled())) {
     rate->delayUntil(10_ms);
   }

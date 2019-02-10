@@ -63,10 +63,9 @@ class PIDTuner {
   };
 
   std::shared_ptr<Logger> logger;
+  TimeUtil timeUtil;
   std::shared_ptr<ControllerInput<double>> input;
   std::shared_ptr<ControllerOutput<double>> output;
-  TimeUtil timeUtil;
-  std::unique_ptr<AbstractRate> rate;
 
   const QTime timeout;
   const std::int32_t goal;

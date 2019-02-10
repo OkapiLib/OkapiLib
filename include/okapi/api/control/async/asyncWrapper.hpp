@@ -41,21 +41,19 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
                const double iratio = 1,
                const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
     : logger(ilogger),
+      rateSupplier(irateSupplier),
       input(iinput),
       output(ioutput),
       controller(std::move(icontroller)),
-      loopRate(irateSupplier.get()),
-      settledRate(irateSupplier.get()),
       ratio(iratio) {
   }
 
   AsyncWrapper(AsyncWrapper<Input, Output> &&other) noexcept
     : logger(std::move(other.logger)),
+      rateSupplier(std::move(other.rateSupplier)),
       input(std::move(other.input)),
       output(std::move(other.output)),
       controller(std::move(other.controller)),
-      loopRate(std::move(other.loopRate)),
-      settledRate(std::move(other.settledRate)),
       ratio(other.ratio),
       dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
       task(other.task) {
@@ -217,8 +215,9 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   void waitUntilSettled() override {
     LOG_INFO_S("AsyncWrapper: Waiting to settle");
 
+    auto rate = rateSupplier.get();
     while (!isSettled()) {
-      loopRate->delayUntil(motorUpdateRate);
+      rate->delayUntil(motorUpdateRate);
     }
 
     LOG_INFO_S("AsyncWrapper: Done waiting to settle");
@@ -236,13 +235,12 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
 
   protected:
   std::shared_ptr<Logger> logger;
+  Supplier<std::unique_ptr<AbstractRate>> rateSupplier;
   std::shared_ptr<ControllerInput<Input>> input;
   std::shared_ptr<ControllerOutput<Output>> output;
   std::unique_ptr<IterativeController<Input, Output>> controller;
   bool hasFirstTarget{false};
   Input lastTarget;
-  std::unique_ptr<AbstractRate> loopRate;
-  std::unique_ptr<AbstractRate> settledRate;
   double ratio;
   std::atomic_bool dtorCalled{false};
   CrossplatformThread *task{nullptr};
@@ -254,12 +252,13 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   void loop() {
+    auto rate = rateSupplier.get();
     while (!dtorCalled.load(std::memory_order_acquire)) {
       if (!isDisabled()) {
         output->controllerSet(controller->step(input->controllerGet()));
       }
 
-      loopRate->delayUntil(controller->getSampleTime());
+      rate->delayUntil(controller->getSampleTime());
     }
   }
 

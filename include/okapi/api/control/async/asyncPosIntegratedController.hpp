@@ -122,6 +122,7 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
 
   protected:
   std::shared_ptr<Logger> logger;
+  TimeUtil timeUtil;
   std::shared_ptr<AbstractMotor> motor;
   AbstractMotor::GearsetRatioPair pair;
   std::int32_t maxVelocity;
@@ -130,7 +131,6 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
   bool controllerIsDisabled{false};
   bool hasFirstTarget{false};
   std::unique_ptr<SettledUtil> settledUtil;
-  std::unique_ptr<AbstractRate> rate;
 
   /**
    * Resumes moving after the controller is reset. Should not cause movement if the controller is

@@ -30,10 +30,9 @@ PIDTuner::PIDTuner(const std::shared_ptr<ControllerInput<double>> &iinput,
                    double ikITAE,
                    const std::shared_ptr<Logger> &ilogger)
   : logger(ilogger),
+    timeUtil(itimeUtil),
     input(iinput),
     output(ioutput),
-    timeUtil(itimeUtil),
-    rate(itimeUtil.getRate()),
     timeout(itimeout),
     goal(igoal),
     kPMin(ikPMin),
@@ -109,6 +108,7 @@ PIDTuner::Output PIDTuner::autotune() {
       QTime settleTime = 0_ms;
       double itae = 0;
       // Test constants then calculate fitness function
+      auto rate = timeUtil.getRate();
       while (!testController.isSettled()) {
         settleTime += loopDelta;
         if (settleTime > timeout)

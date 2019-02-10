@@ -106,6 +106,7 @@ class AsyncVelIntegratedController : public AsyncVelocityController<double, doub
 
   protected:
   std::shared_ptr<Logger> logger;
+  TimeUtil timeUtil;
   std::shared_ptr<AbstractMotor> motor;
   AbstractMotor::GearsetRatioPair pair;
   std::int32_t maxVelocity;
@@ -113,7 +114,6 @@ class AsyncVelIntegratedController : public AsyncVelocityController<double, doub
   bool controllerIsDisabled = false;
   bool hasFirstTarget = false;
   std::unique_ptr<SettledUtil> settledUtil;
-  std::unique_ptr<AbstractRate> rate;
 
   virtual void resumeMovement();
 };
