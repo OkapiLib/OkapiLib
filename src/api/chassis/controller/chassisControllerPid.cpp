@@ -85,6 +85,7 @@ void ChassisControllerPID::loop() {
         encVals = model->getSensorVals() - encStartVals;
         distanceElapsed = static_cast<double>((encVals[0] + encVals[1])) / 2.0;
         angleChange = static_cast<double>(encVals[0] - encVals[1]);
+
         model->driveVector(distancePid->step(distanceElapsed), anglePid->step(angleChange));
         break;
 
@@ -293,5 +294,9 @@ ChassisScales ChassisControllerPID::getChassisScales() const {
 
 AbstractMotor::GearsetRatioPair ChassisControllerPID::getGearsetRatioPair() const {
   return gearsetRatioPair;
+}
+
+void ChassisControllerPID::setVelocityMode(bool ivelocityMode) {
+  velocityMode = ivelocityMode;
 }
 } // namespace okapi

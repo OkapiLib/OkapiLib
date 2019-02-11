@@ -16,16 +16,21 @@ class MockChassisModel : public ChassisModel {
   MockChassisModel() : ChassisModel(100) {
   }
 
-  void forward(double ispeed) const override {
+  void forward(double ispeed) override {
     lastForward = ispeed;
   }
 
-  void driveVector(double iySpeed, double izRotation) const override {
+  void driveVector(double iySpeed, double izRotation) override {
     lastVectorY = iySpeed;
     lastVectorZ = izRotation;
   }
 
-  void rotate(double ispeed) const override {
+  void driveVectorVoltage(double iySpeed, double izRotation) override {
+    lastVectorY = iySpeed;
+    lastVectorZ = izRotation;
+  }
+
+  void rotate(double ispeed) override {
     lastRotate = ispeed;
   }
 
@@ -33,37 +38,37 @@ class MockChassisModel : public ChassisModel {
     stopWasCalled = true;
   }
 
-  void tank(double ileftSpeed, double irightSpeed, double) const override {
+  void tank(double ileftSpeed, double irightSpeed, double) override {
     lastTankLeft = ileftSpeed;
     lastTankRight = irightSpeed;
   }
 
-  void arcade(double iySpeed, double izRotation, double) const override {
+  void arcade(double iySpeed, double izRotation, double) override {
     lastArcadeY = iySpeed;
     lastArcadeZ = izRotation;
   }
 
-  void left(double ispeed) const override {
+  void left(double ispeed) override {
     lastLeft = ispeed;
   }
 
-  void right(double ispeed) const override {
+  void right(double ispeed) override {
     lastRight = ispeed;
   }
 
-  void resetSensors() const override {
+  void resetSensors() override {
     resetSensorsWasCalled = true;
   }
 
-  void setBrakeMode(AbstractMotor::brakeMode mode) const override {
+  void setBrakeMode(AbstractMotor::brakeMode mode) override {
     lastBrakeMode = mode;
   }
 
-  void setEncoderUnits(AbstractMotor::encoderUnits units) const override {
+  void setEncoderUnits(AbstractMotor::encoderUnits units) override {
     lastEncoderUnits = units;
   }
 
-  void setGearing(AbstractMotor::gearset gearset) const override {
+  void setGearing(AbstractMotor::gearset gearset) override {
     lastGearset = gearset;
   }
 
@@ -71,18 +76,16 @@ class MockChassisModel : public ChassisModel {
     return {0, 0};
   }
 
-  void setPosPID(double, double, double, double) const override {
+  void setPosPID(double, double, double, double) override {
   }
 
-  void
-  setPosPIDFull(double, double, double, double, double, double, double, double) const override {
+  void setPosPIDFull(double, double, double, double, double, double, double, double) override {
   }
 
-  void setVelPID(double, double, double, double) const override {
+  void setVelPID(double, double, double, double) override {
   }
 
-  void
-  setVelPIDFull(double, double, double, double, double, double, double, double) const override {
+  void setVelPIDFull(double, double, double, double, double, double, double, double) override {
   }
 
   mutable double lastForward{0};
