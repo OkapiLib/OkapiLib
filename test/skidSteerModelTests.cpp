@@ -77,6 +77,18 @@ TEST_F(SkidSteerModelTest, DriveVectorBoundsInput) {
   assertLeftAndRightMotorsLastVelocity(127, 71);
 }
 
+TEST_F(SkidSteerModelTest, DriveVectorAndRotateAreEquivalent) {
+  for (double i = -1; i < 1;) {
+    model.driveVector(0, i);
+    auto lastLeft = leftMotor->lastVelocity;
+    auto lastRight = rightMotor->lastVelocity;
+    model.rotate(i);
+    EXPECT_FLOAT_EQ(leftMotor->lastVelocity, lastLeft);
+    EXPECT_FLOAT_EQ(rightMotor->lastVelocity, lastRight);
+    i += 0.001;
+  }
+}
+
 TEST_F(SkidSteerModelTest, DriveVectorVoltageHalfPower) {
   model.driveVectorVoltage(0.25, 0.25);
   assertLeftAndRightMotorsLastVoltage(6000, 0);
