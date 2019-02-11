@@ -77,6 +77,16 @@ TEST_F(SkidSteerModelTest, DriveVectorBoundsInput) {
   assertLeftAndRightMotorsLastVelocity(127, 71);
 }
 
+TEST_F(SkidSteerModelTest, DriveVectorVoltageHalfPower) {
+  model.driveVectorVoltage(0.25, 0.25);
+  assertLeftAndRightMotorsLastVoltage(6000, 0);
+}
+
+TEST_F(SkidSteerModelTest, DriveVectorVoltageBoundsInput) {
+  model.driveVectorVoltage(0.9, 0.25);
+  assertLeftAndRightMotorsLastVoltage(12000, 6782);
+}
+
 TEST_F(SkidSteerModelTest, StopTest) {
   leftMotor->lastVelocity = 100;
   rightMotor->lastVelocity = 100;
@@ -157,7 +167,7 @@ TEST_F(SkidSteerModelTest, ArcadeThresholds) {
 
 TEST_F(SkidSteerModelTest, ArcadeNegativeZero) {
   model.arcade(-0.0, -1.0);
-  
+
   assertAllMotorsLastVelocity(0);
   assertLeftAndRightMotorsLastVoltage(-12000, 12000);
 }

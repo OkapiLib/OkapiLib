@@ -84,9 +84,9 @@ void XDriveModel::driveVectorVoltage(double iforwardSpeed, double iyaw) {
   }
 
   topLeftMotor->moveVoltage(static_cast<int16_t>(leftOutput * maxVoltage));
-  topRightMotor->moveVelocity(static_cast<int16_t>(rightOutput * maxVoltage));
-  bottomRightMotor->moveVelocity(static_cast<int16_t>(rightOutput * maxVoltage));
-  bottomLeftMotor->moveVelocity(static_cast<int16_t>(leftOutput * maxVoltage));
+  topRightMotor->moveVoltage(static_cast<int16_t>(rightOutput * maxVoltage));
+  bottomRightMotor->moveVoltage(static_cast<int16_t>(rightOutput * maxVoltage));
+  bottomLeftMotor->moveVoltage(static_cast<int16_t>(leftOutput * maxVoltage));
 }
 
 void XDriveModel::rotate(const double ispeed) {
