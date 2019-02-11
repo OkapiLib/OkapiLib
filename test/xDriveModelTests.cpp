@@ -94,6 +94,22 @@ TEST_F(XDriveModelTest, DriveVectorBoundsInput) {
   assertLeftAndRightMotorsLastVelocity(127, 71);
 }
 
+TEST_F(XDriveModelTest, DriveVectorAndRotateAreEquivalent) {
+  for (double i = -1; i < 1;) {
+    model.driveVector(0, i);
+    auto lastTopLeft = topLeftMotor->lastVelocity;
+    auto lastTopRight = topRightMotor->lastVelocity;
+    auto lastBottomRight = bottomRightMotor->lastVelocity;
+    auto lastBottomLeft = bottomLeftMotor->lastVelocity;
+    model.rotate(i);
+    EXPECT_FLOAT_EQ(topLeftMotor->lastVelocity, lastTopLeft);
+    EXPECT_FLOAT_EQ(topRightMotor->lastVelocity, lastTopRight);
+    EXPECT_FLOAT_EQ(bottomRightMotor->lastVelocity, lastBottomRight);
+    EXPECT_FLOAT_EQ(bottomLeftMotor->lastVelocity, lastBottomLeft);
+    i += 0.001;
+  }
+}
+
 TEST_F(XDriveModelTest, DriveVectorVoltageHalfPower) {
   model.driveVectorVoltage(0.25, 0.25);
   assertLeftAndRightMotorsLastVoltage(6000, 0);
