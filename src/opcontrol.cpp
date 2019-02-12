@@ -7,8 +7,7 @@ void opcontrol() {
 
   auto drive = ChassisControllerBuilder()
                  .withMotors(1, 2)
-                 .withSensors({'A', 'B'}, {'E', 'F'})
-                 .withMiddleEncoder({'C', 'D'})
+                 .withSensors({'A', 'B'}, {'E', 'F'}, {'C', 'D'})
                  .withDimensions({{4.125_in, 6_in}, quadEncoderTPR})
                  .withOdometry()
                  .buildOdometry();

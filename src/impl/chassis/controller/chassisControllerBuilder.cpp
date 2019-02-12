@@ -114,16 +114,6 @@ ChassisControllerBuilder::withSensors(const std::shared_ptr<ContinuousRotarySens
   return *this;
 }
 
-ChassisControllerBuilder &ChassisControllerBuilder::withMiddleEncoder(const ADIEncoder &imiddle) {
-  return withMiddleEncoder(std::make_shared<ADIEncoder>(imiddle));
-}
-
-ChassisControllerBuilder &ChassisControllerBuilder::withMiddleEncoder(
-  const std::shared_ptr<ContinuousRotarySensor> &imiddle) {
-  middleSensor = imiddle;
-  return *this;
-}
-
 ChassisControllerBuilder &ChassisControllerBuilder::withSensors(
   const std::shared_ptr<okapi::ContinuousRotarySensor> &ileft,
   const std::shared_ptr<okapi::ContinuousRotarySensor> &iright,
