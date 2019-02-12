@@ -34,13 +34,13 @@ SkidSteerModel::SkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMo
     rightSensor(irightSideMotor->getEncoder()) {
 }
 
-void SkidSteerModel::forward(const double ispeed) const {
+void SkidSteerModel::forward(const double ispeed) {
   const double speed = std::clamp(ispeed, -1.0, 1.0);
   leftSideMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
   rightSideMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
 }
 
-void SkidSteerModel::driveVector(const double iforwardSpeed, const double iyaw) const {
+void SkidSteerModel::driveVector(const double iforwardSpeed, const double iyaw) {
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   const double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
@@ -58,7 +58,25 @@ void SkidSteerModel::driveVector(const double iforwardSpeed, const double iyaw) 
   rightSideMotor->moveVelocity(static_cast<int16_t>(rightOutput * maxVelocity));
 }
 
-void SkidSteerModel::rotate(const double ispeed) const {
+void SkidSteerModel::driveVectorVoltage(double iforwardSpeed, double iyaw) {
+  // This code is taken from WPIlib. All credit goes to them. Link:
+  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  const double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
+  const double yaw = std::clamp(iyaw, -1.0, 1.0);
+
+  double leftOutput = forwardSpeed + yaw;
+  double rightOutput = forwardSpeed - yaw;
+  if (const double maxInputMag = std::max<double>(std::abs(leftOutput), std::abs(rightOutput));
+      maxInputMag > 1) {
+    leftOutput /= maxInputMag;
+    rightOutput /= maxInputMag;
+  }
+
+  leftSideMotor->moveVoltage(static_cast<int16_t>(leftOutput * maxVoltage));
+  rightSideMotor->moveVoltage(static_cast<int16_t>(rightOutput * maxVoltage));
+}
+
+void SkidSteerModel::rotate(const double ispeed) {
   const double speed = std::clamp(ispeed, -1.0, 1.0);
   leftSideMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
   rightSideMotor->moveVelocity(static_cast<int16_t>(-1 * speed * maxVelocity));
@@ -71,7 +89,7 @@ void SkidSteerModel::stop() {
 
 void SkidSteerModel::tank(const double ileftSpeed,
                           const double irightSpeed,
-                          const double ithreshold) const {
+                          const double ithreshold) {
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   double leftSpeed = std::clamp(ileftSpeed, -1.0, 1.0);
@@ -90,7 +108,7 @@ void SkidSteerModel::tank(const double ileftSpeed,
 
 void SkidSteerModel::arcade(const double iforwardSpeed,
                             const double iyaw,
-                            const double ithreshold) const {
+                            const double ithreshold) {
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
@@ -130,11 +148,11 @@ void SkidSteerModel::arcade(const double iforwardSpeed,
     static_cast<int16_t>(std::clamp(rightOutput, -1.0, 1.0) * maxVoltage));
 }
 
-void SkidSteerModel::left(const double ispeed) const {
+void SkidSteerModel::left(const double ispeed) {
   leftSideMotor->moveVelocity(static_cast<int16_t>(std::clamp(ispeed, -1.0, 1.0) * maxVelocity));
 }
 
-void SkidSteerModel::right(const double ispeed) const {
+void SkidSteerModel::right(const double ispeed) {
   rightSideMotor->moveVelocity(static_cast<int16_t>(std::clamp(ispeed, -1.0, 1.0) * maxVelocity));
 }
 
@@ -143,22 +161,22 @@ std::valarray<std::int32_t> SkidSteerModel::getSensorVals() const {
                                      static_cast<std::int32_t>(rightSensor->get())};
 }
 
-void SkidSteerModel::resetSensors() const {
+void SkidSteerModel::resetSensors() {
   leftSensor->reset();
   rightSensor->reset();
 }
 
-void SkidSteerModel::setBrakeMode(const AbstractMotor::brakeMode mode) const {
+void SkidSteerModel::setBrakeMode(const AbstractMotor::brakeMode mode) {
   leftSideMotor->setBrakeMode(mode);
   rightSideMotor->setBrakeMode(mode);
 }
 
-void SkidSteerModel::setEncoderUnits(const AbstractMotor::encoderUnits units) const {
+void SkidSteerModel::setEncoderUnits(const AbstractMotor::encoderUnits units) {
   leftSideMotor->setEncoderUnits(units);
   rightSideMotor->setEncoderUnits(units);
 }
 
-void SkidSteerModel::setGearing(const AbstractMotor::gearset gearset) const {
+void SkidSteerModel::setGearing(const AbstractMotor::gearset gearset) {
   leftSideMotor->setGearing(gearset);
   rightSideMotor->setGearing(gearset);
 }
@@ -166,7 +184,7 @@ void SkidSteerModel::setGearing(const AbstractMotor::gearset gearset) const {
 void SkidSteerModel::setPosPID(const double ikF,
                                const double ikP,
                                const double ikI,
-                               const double ikD) const {
+                               const double ikD) {
   leftSideMotor->setPosPID(ikF, ikP, ikI, ikD);
   rightSideMotor->setPosPID(ikF, ikP, ikI, ikD);
 }
@@ -178,7 +196,7 @@ void SkidSteerModel::setPosPIDFull(const double ikF,
                                    const double ifilter,
                                    const double ilimit,
                                    const double ithreshold,
-                                   const double iloopSpeed) const {
+                                   const double iloopSpeed) {
   leftSideMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
   rightSideMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
 }
@@ -186,7 +204,7 @@ void SkidSteerModel::setPosPIDFull(const double ikF,
 void SkidSteerModel::setVelPID(const double ikF,
                                const double ikP,
                                const double ikI,
-                               const double ikD) const {
+                               const double ikD) {
   leftSideMotor->setVelPID(ikF, ikP, ikI, ikD);
   rightSideMotor->setVelPID(ikF, ikP, ikI, ikD);
 }
@@ -198,7 +216,7 @@ void SkidSteerModel::setVelPIDFull(const double ikF,
                                    const double ifilter,
                                    const double ilimit,
                                    const double ithreshold,
-                                   const double iloopSpeed) const {
+                                   const double iloopSpeed) {
   leftSideMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
   rightSideMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
 }

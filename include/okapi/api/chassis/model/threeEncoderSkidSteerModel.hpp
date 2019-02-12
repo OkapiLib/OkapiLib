@@ -40,7 +40,7 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
   /**
    * Reset the sensors to their zero point.
    */
-  void resetSensors() const override;
+  void resetSensors() override;
 
   protected:
   std::shared_ptr<ContinuousRotarySensor> middleSensor;
