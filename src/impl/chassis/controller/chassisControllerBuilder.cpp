@@ -7,6 +7,7 @@
  */
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 #include "okapi/api/odometry/threeEncoderOdometry.hpp"
+#include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
 #include <stdexcept>
 
 namespace okapi {
@@ -81,10 +82,27 @@ ChassisControllerBuilder &ChassisControllerBuilder::withSensors(const ADIEncoder
   return withSensors(std::make_shared<ADIEncoder>(ileft), std::make_shared<ADIEncoder>(iright));
 }
 
+ChassisControllerBuilder &ChassisControllerBuilder::withSensors(const okapi::ADIEncoder &ileft,
+                                                                const okapi::ADIEncoder &iright,
+                                                                const okapi::ADIEncoder &imiddle) {
+  return withSensors(std::make_shared<ADIEncoder>(ileft),
+                     std::make_shared<ADIEncoder>(iright),
+                     std::make_shared<ADIEncoder>(imiddle));
+}
+
 ChassisControllerBuilder &ChassisControllerBuilder::withSensors(const IntegratedEncoder &ileft,
                                                                 const IntegratedEncoder &iright) {
   return withSensors(std::make_shared<IntegratedEncoder>(ileft),
                      std::make_shared<IntegratedEncoder>(iright));
+}
+
+ChassisControllerBuilder &
+ChassisControllerBuilder::withSensors(const okapi::IntegratedEncoder &ileft,
+                                      const okapi::IntegratedEncoder &iright,
+                                      const okapi::ADIEncoder &imiddle) {
+  return withSensors(std::make_shared<IntegratedEncoder>(ileft),
+                     std::make_shared<IntegratedEncoder>(iright),
+                     std::make_shared<ADIEncoder>(imiddle));
 }
 
 ChassisControllerBuilder &
@@ -102,6 +120,17 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMiddleEncoder(const ADIE
 
 ChassisControllerBuilder &ChassisControllerBuilder::withMiddleEncoder(
   const std::shared_ptr<ContinuousRotarySensor> &imiddle) {
+  middleSensor = imiddle;
+  return *this;
+}
+
+ChassisControllerBuilder &ChassisControllerBuilder::withSensors(
+  const std::shared_ptr<okapi::ContinuousRotarySensor> &ileft,
+  const std::shared_ptr<okapi::ContinuousRotarySensor> &iright,
+  const std::shared_ptr<okapi::ContinuousRotarySensor> &imiddle) {
+  sensorsSetByUser = true;
+  leftSensor = ileft;
+  rightSensor = iright;
   middleSensor = imiddle;
   return *this;
 }
@@ -398,15 +427,7 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
 }
 
 std::shared_ptr<SkidSteerModel> ChassisControllerBuilder::makeSkidSteerModel() {
-  if (middleSensor == nullptr) {
-    return std::make_shared<SkidSteerModel>(skidSteerMotors.left,
-                                            skidSteerMotors.right,
-                                            leftSensor,
-                                            rightSensor,
-                                            maxVelocity,
-                                            maxVoltage);
-
-  } else {
+  if (middleSensor != nullptr) {
     return std::make_shared<ThreeEncoderSkidSteerModel>(skidSteerMotors.left,
                                                         skidSteerMotors.right,
                                                         leftSensor,
@@ -414,6 +435,13 @@ std::shared_ptr<SkidSteerModel> ChassisControllerBuilder::makeSkidSteerModel() {
                                                         rightSensor,
                                                         maxVelocity,
                                                         maxVoltage);
+  } else {
+    return std::make_shared<SkidSteerModel>(skidSteerMotors.left,
+                                            skidSteerMotors.right,
+                                            leftSensor,
+                                            rightSensor,
+                                            maxVelocity,
+                                            maxVoltage);
   }
 }
 
