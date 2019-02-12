@@ -116,6 +116,17 @@ class ChassisControllerBuilder {
    *
    * @param ileft The left side sensor.
    * @param iright The right side sensor.
+   * @param imiddle The middle sensor.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &
+  withSensors(const ADIEncoder &ileft, const ADIEncoder &iright, const ADIEncoder &imiddle);
+
+  /**
+   * Sets the sensors. The default sensors are the motor's integrated encoders.
+   *
+   * @param ileft The left side sensor.
+   * @param iright The right side sensor.
    * @return An ongoing builder.
    */
   ChassisControllerBuilder &withSensors(const IntegratedEncoder &ileft,
@@ -126,10 +137,34 @@ class ChassisControllerBuilder {
    *
    * @param ileft The left side sensor.
    * @param iright The right side sensor.
+   * @param imiddle The middle sensor.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withSensors(const IntegratedEncoder &ileft,
+                                        const IntegratedEncoder &iright,
+                                        const ADIEncoder &imiddle);
+
+  /**
+   * Sets the sensors. The default sensors are the motor's integrated encoders.
+   *
+   * @param ileft The left side sensor.
+   * @param iright The right side sensor.
    * @return An ongoing builder.
    */
   ChassisControllerBuilder &withSensors(const std::shared_ptr<ContinuousRotarySensor> &ileft,
                                         const std::shared_ptr<ContinuousRotarySensor> &iright);
+
+  /**
+   * Sets the sensors. The default sensors are the motor's integrated encoders.
+   *
+   * @param ileft The left side sensor.
+   * @param iright The right side sensor.
+   * @param imiddle The middle sensor.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withSensors(const std::shared_ptr<ContinuousRotarySensor> &ileft,
+                                        const std::shared_ptr<ContinuousRotarySensor> &iright,
+                                        const std::shared_ptr<ContinuousRotarySensor> &imiddle);
 
   /**
    * Sets the PID controller gains, causing the builder to generate a ChassisControllerPID. Uses the
@@ -274,8 +309,9 @@ class ChassisControllerBuilder {
   XDriveMotors xDriveMotors;
 
   bool sensorsSetByUser{false}; // Used so motors don't overwrite sensors set manually
-  std::shared_ptr<ContinuousRotarySensor> leftSensor;
-  std::shared_ptr<ContinuousRotarySensor> rightSensor;
+  std::shared_ptr<ContinuousRotarySensor> leftSensor{nullptr};
+  std::shared_ptr<ContinuousRotarySensor> rightSensor{nullptr};
+  std::shared_ptr<ContinuousRotarySensor> middleSensor{nullptr};
 
   bool hasGains{false}; // Whether gains were passed, no gains means CCI
   IterativePosPIDController::Gains distanceGains;

@@ -40,7 +40,7 @@ std::valarray<std::int32_t> ThreeEncoderSkidSteerModel::getSensorVals() const {
                                      static_cast<std::int32_t>(middleSensor->get())};
 }
 
-void ThreeEncoderSkidSteerModel::resetSensors() const {
+void ThreeEncoderSkidSteerModel::resetSensors() {
   SkidSteerModel::resetSensors();
   middleSensor->reset();
 }

@@ -25,9 +25,12 @@ class ChassisControllerPIDIntegrationTest : public ::testing::Test {
     leftMotor = new ThreadedMockMotor();
     rightMotor = new ThreadedMockMotor();
 
-    distanceController = new IterativePosPIDController(0.1, 0, 0, 0, createTimeUtil());
-    angleController = new IterativePosPIDController(0.1, 0, 0, 0, createTimeUtil());
-    turnController = new IterativePosPIDController(0.1, 0, 0, 0, createTimeUtil());
+    auto controllerTimeUtil = createTimeUtil(
+      Supplier<std::unique_ptr<SettledUtil>>([]() { return createSettledUtilPtr(250, 5, 1_s); }));
+
+    distanceController = new IterativePosPIDController(0.1, 0, 0, 0, controllerTimeUtil);
+    angleController = new IterativePosPIDController(0.1, 0, 0, 0, controllerTimeUtil);
+    turnController = new IterativePosPIDController(0.1, 0, 0, 0, controllerTimeUtil);
 
     model = new SkidSteerModel(
       std::unique_ptr<AbstractMotor>(leftMotor), std::unique_ptr<AbstractMotor>(rightMotor), 200);

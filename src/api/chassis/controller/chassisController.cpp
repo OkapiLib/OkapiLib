@@ -21,15 +21,19 @@ void ChassisController::setTurnsMirrored(const bool ishouldMirror) {
   normalTurns = !ishouldMirror;
 }
 
-void ChassisController::forward(const double ispeed) const {
+void ChassisController::forward(const double ispeed) {
   model->forward(ispeed);
 }
 
-void ChassisController::driveVector(const double iforwardSpeed, const double iyaw) const {
+void ChassisController::driveVector(const double iforwardSpeed, const double iyaw) {
   model->driveVector(iforwardSpeed, iyaw);
 }
 
-void ChassisController::rotate(const double ispeed) const {
+void ChassisController::driveVectorVoltage(double iforwardSpeed, double iyaw) {
+  model->driveVectorVoltage(iforwardSpeed, iyaw);
+}
+
+void ChassisController::rotate(const double ispeed) {
   model->rotate(ispeed);
 }
 
@@ -39,21 +43,21 @@ void ChassisController::stop() {
 
 void ChassisController::tank(const double ileftSpeed,
                              const double irightSpeed,
-                             const double ithreshold) const {
+                             const double ithreshold) {
   model->tank(ileftSpeed, irightSpeed, ithreshold);
 }
 
 void ChassisController::arcade(const double iforwardSpeed,
                                const double iyaw,
-                               const double ithreshold) const {
+                               const double ithreshold) {
   model->arcade(iforwardSpeed, iyaw, ithreshold);
 }
 
-void ChassisController::left(const double ispeed) const {
+void ChassisController::left(const double ispeed) {
   model->left(ispeed);
 }
 
-void ChassisController::right(const double ispeed) const {
+void ChassisController::right(const double ispeed) {
   model->right(ispeed);
 }
 
@@ -61,26 +65,26 @@ std::valarray<std::int32_t> ChassisController::getSensorVals() const {
   return model->getSensorVals();
 }
 
-void ChassisController::resetSensors() const {
+void ChassisController::resetSensors() {
   model->resetSensors();
 }
 
-void ChassisController::setBrakeMode(const AbstractMotor::brakeMode mode) const {
+void ChassisController::setBrakeMode(const AbstractMotor::brakeMode mode) {
   model->setBrakeMode(mode);
 }
 
-void ChassisController::setEncoderUnits(const AbstractMotor::encoderUnits units) const {
+void ChassisController::setEncoderUnits(const AbstractMotor::encoderUnits units) {
   model->setEncoderUnits(units);
 }
 
-void ChassisController::setGearing(const AbstractMotor::gearset gearset) const {
+void ChassisController::setGearing(const AbstractMotor::gearset gearset) {
   model->setGearing(gearset);
 }
 
 void ChassisController::setPosPID(const double ikF,
                                   const double ikP,
                                   const double ikI,
-                                  const double ikD) const {
+                                  const double ikD) {
   model->setPosPID(ikF, ikP, ikI, ikD);
 }
 
@@ -91,14 +95,14 @@ void ChassisController::setPosPIDFull(const double ikF,
                                       const double ifilter,
                                       const double ilimit,
                                       const double ithreshold,
-                                      const double iloopSpeed) const {
+                                      const double iloopSpeed) {
   model->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
 }
 
 void ChassisController::setVelPID(const double ikF,
                                   const double ikP,
                                   const double ikI,
-                                  const double ikD) const {
+                                  const double ikD) {
   model->setVelPID(ikF, ikP, ikI, ikD);
 }
 
@@ -109,7 +113,7 @@ void ChassisController::setVelPIDFull(const double ikF,
                                       const double ifilter,
                                       const double ilimit,
                                       const double ithreshold,
-                                      const double iloopSpeed) const {
+                                      const double iloopSpeed) {
   model->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
 }
 
