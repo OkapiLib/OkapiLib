@@ -80,10 +80,7 @@ double IterativeVelPIDController::step(const double inewReading) {
     loopDtTimer->placeHardMark();
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
-      if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
-        stepVel(inewReading);
-      }
-
+      stepVel(inewReading);
       error = getError();
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
