@@ -100,14 +100,14 @@ class ChassisController : public ChassisModel {
   virtual void waitUntilSettled() = 0;
 
   /**
-   * Drive the robot forwards (using open-loop control).
+   * Drive the robot forwards (using open-loop control). Uses velocity mode.
    *
    * @param ipower motor power
    */
   void forward(double ispeed) override;
 
   /**
-   * Drive the robot in an arc (using open-loop control).
+   * Drive the robot in an arc (using open-loop control). Uses velocity mode.
    * The algorithm is (approximately):
    *   leftPower = forwardSpeed + yaw
    *   rightPower = forwardSpeed - yaw
@@ -129,14 +129,14 @@ class ChassisController : public ChassisModel {
   void driveVectorVoltage(double iforwardSpeed, double iyaw) override;
 
   /**
-   * Turn the robot clockwise (using open-loop control).
+   * Turn the robot clockwise (using open-loop control). Uses velocity mode.
    *
    * @param ipower motor power
    */
   void rotate(double ispeed) override;
 
   /**
-   * Stop the robot (set all the motors to 0).
+   * Stop the robot (set all the motors to 0). Uses velocity mode.
    */
   void stop() override;
 
@@ -150,7 +150,7 @@ class ChassisController : public ChassisModel {
   void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) override;
 
   /**
-   * Drive the robot with an arcade drive layout.
+   * Drive the robot with an arcade drive layout. Uses voltage mode.
    *
    * @param iforwardSpeed speed in the forward direction
    * @param iyaw speed around the vertical axis
@@ -159,14 +159,14 @@ class ChassisController : public ChassisModel {
   void arcade(double iforwardSpeed, double iyaw, double ithreshold = 0) override;
 
   /**
-   * Power the left side motors.
+   * Power the left side motors. Uses velocity mode.
    *
    * @param ipower motor power
    */
   void left(double ispeed) override;
 
   /**
-   * Power the right side motors.
+   * Power the right side motors. Uses velocity mode.
    *
    * @param ipower motor power
    */
