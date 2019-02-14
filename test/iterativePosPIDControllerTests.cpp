@@ -148,10 +148,10 @@ TEST_F(IterativePosPIDControllerTest, TestDerivativeTermWithDefaultFilter) {
 }
 
 TEST_F(IterativePosPIDControllerTest, TestGetGainsReturnsTheOriginalGains) {
-  controller->setGains({0.1, 0.1, 0.1, 0.1});
+  controller->setGains({0.1, 0.2, 0.3, 0.4});
   auto gains = controller->getGains();
-  EXPECT_EQ(gains.kP, 0.1);
-  EXPECT_EQ(gains.kI, 0.1);
-  EXPECT_EQ(gains.kD, 0.1);
-  EXPECT_EQ(gains.kBias, 0.1);
+  EXPECT_FLOAT_EQ(gains.kP, 0.1);
+  EXPECT_FLOAT_EQ(gains.kI, 0.2);
+  EXPECT_FLOAT_EQ(gains.kD, 0.3);
+  EXPECT_FLOAT_EQ(gains.kBias, 0.4);
 }

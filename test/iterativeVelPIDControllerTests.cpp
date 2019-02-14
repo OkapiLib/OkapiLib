@@ -149,10 +149,10 @@ TEST_F(IterativeVelPIDControllerTest, TestDerivativeTermWithDefaultFilter) {
 }
 
 TEST_F(IterativeVelPIDControllerTest, TestGetGainsReturnsTheOriginalGains) {
-  controller->setGains({0.1, 0.1, 0.1, 0.1});
+  controller->setGains({0.1, 0.2, 0.3, 0.4});
   auto gains = controller->getGains();
-  EXPECT_EQ(gains.kP, 0.1);
-  EXPECT_EQ(gains.kD, 0.1);
-  EXPECT_EQ(gains.kF, 0.1);
-  EXPECT_EQ(gains.kSF, 0.1);
+  EXPECT_FLOAT_EQ(gains.kP, 0.1);
+  EXPECT_FLOAT_EQ(gains.kD, 0.2);
+  EXPECT_FLOAT_EQ(gains.kF, 0.3);
+  EXPECT_FLOAT_EQ(gains.kSF, 0.4);
 }
