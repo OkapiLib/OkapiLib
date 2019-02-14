@@ -14,6 +14,7 @@
 #include "okapi/api/util/timeUtil.hpp"
 #include <atomic>
 #include <memory>
+#include <tuple>
 
 namespace okapi {
 class ChassisControllerPID : public virtual ChassisController {
@@ -133,6 +134,27 @@ class ChassisControllerPID : public virtual ChassisController {
    * @param ivelocityMode Whether the controller should be in velocity or voltage mode.
    */
   void setVelocityMode(bool ivelocityMode);
+
+  /**
+   * Sets the gains for all controllers.
+   *
+   * @param idistanceGains The distance controller gains.
+   * @param iturnGains The turn controller gains.
+   * @param iangleGains The angle controller gains.
+   */
+  void setGains(const IterativePosPIDController::Gains &idistanceGains,
+                const IterativePosPIDController::Gains &iturnGains,
+                const IterativePosPIDController::Gains &iangleGains);
+
+  /**
+   * Gets the current controller gains.
+   *
+   * @return The current controller gains in the order: distance, turn, angle.
+   */
+  std::tuple<IterativePosPIDController::Gains,
+             IterativePosPIDController::Gains,
+             IterativePosPIDController::Gains>
+  getGains() const;
 
   protected:
   std::shared_ptr<Logger> logger;

@@ -315,4 +315,19 @@ AbstractMotor::GearsetRatioPair ChassisControllerPID::getGearsetRatioPair() cons
 void ChassisControllerPID::setVelocityMode(bool ivelocityMode) {
   velocityMode = ivelocityMode;
 }
+
+void ChassisControllerPID::setGains(const okapi::IterativePosPIDController::Gains &idistanceGains,
+                                    const okapi::IterativePosPIDController::Gains &iturnGains,
+                                    const okapi::IterativePosPIDController::Gains &iangleGains) {
+  distancePid->setGains(idistanceGains);
+  turnPid->setGains(iturnGains);
+  anglePid->setGains(iangleGains);
+}
+
+std::tuple<IterativePosPIDController::Gains,
+           IterativePosPIDController::Gains,
+           IterativePosPIDController::Gains>
+ChassisControllerPID::getGains() const {
+  return std::make_tuple(distancePid->getGains(), turnPid->getGains(), anglePid->getGains());
+}
 } // namespace okapi
