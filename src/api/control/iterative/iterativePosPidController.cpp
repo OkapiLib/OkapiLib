@@ -37,7 +37,7 @@ IterativePosPIDController::IterativePosPIDController(const Gains &igains,
   if (igains.kI != 0) {
     setIntegralLimits(1 / igains.kI, -1 / igains.kI);
   }
-  setOutputLimits(-1, 1);
+  setOutputLimits(1, -1);
   setGains(igains);
 }
 

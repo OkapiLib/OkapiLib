@@ -36,6 +36,7 @@ IterativeVelPIDController::IterativeVelPIDController(const Gains &igains,
     derivativeFilter(std::move(iderivativeFilter)),
     loopDtTimer(itimeUtil.getTimer()),
     settledUtil(itimeUtil.getSettledUtil()) {
+  setOutputLimits(1, -1);
   setGains(igains);
 }
 
