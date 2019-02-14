@@ -19,22 +19,24 @@ IterativeVelPIDController::IterativeVelPIDController(const double ikP,
                                                      const TimeUtil &itimeUtil,
                                                      std::unique_ptr<Filter> iderivativeFilter,
                                                      const std::shared_ptr<Logger> &ilogger)
+  : IterativeVelPIDController({ikP, ikD, ikF, ikSF},
+                              std::move(ivelMath),
+                              itimeUtil,
+                              std::move(iderivativeFilter),
+                              ilogger) {
+}
+
+IterativeVelPIDController::IterativeVelPIDController(const Gains &igains,
+                                                     std::unique_ptr<VelMath> ivelMath,
+                                                     const TimeUtil &itimeUtil,
+                                                     std::unique_ptr<Filter> iderivativeFilter,
+                                                     const std::shared_ptr<Logger> &ilogger)
   : logger(ilogger),
     velMath(std::move(ivelMath)),
     derivativeFilter(std::move(iderivativeFilter)),
     loopDtTimer(itimeUtil.getTimer()),
     settledUtil(itimeUtil.getSettledUtil()) {
-  setGains(ikP, ikD, ikF, ikSF);
-}
-
-void IterativeVelPIDController::setGains(const double ikP,
-                                         const double ikD,
-                                         const double ikF,
-                                         const double ikSF) {
-  kP = ikP;
-  kD = ikD * sampleTime.convert(second);
-  kF = ikF;
-  kSF = ikSF;
+  setGains(igains);
 }
 
 void IterativeVelPIDController::setSampleTime(const QTime isampleTime) {
@@ -155,6 +157,17 @@ void IterativeVelPIDController::flipDisable(const bool iisDisabled) {
 
 bool IterativeVelPIDController::isDisabled() const {
   return controllerIsDisabled;
+}
+
+void IterativeVelPIDController::setGains(const Gains &igains) {
+  kP = igains.kP;
+  kD = igains.kD / sampleTime.convert(second);
+  kF = igains.kF;
+  kSF = igains.kSF;
+}
+
+IterativeVelPIDController::Gains IterativeVelPIDController::getGains() const {
+  return {kP, kD * sampleTime.convert(second), kF, kSF};
 }
 
 void IterativeVelPIDController::setTicksPerRev(const double tpr) {
