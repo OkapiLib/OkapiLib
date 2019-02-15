@@ -178,7 +178,6 @@ add_executable(OkapiLibV5
         test/threeEncoderSkidSteerModelTests.cpp
         test/chassisControllerIntegratedTests.cpp
         test/chassisControllerPidTest.cpp
-        test/chassisControllerPidIntegrationTest.cpp
         test/chassisControllerTests.cpp
         test/chassisScalesTests.cpp
         test/asyncPosIntegratedControllerTests.cpp

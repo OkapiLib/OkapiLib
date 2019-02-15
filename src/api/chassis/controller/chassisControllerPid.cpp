@@ -85,13 +85,30 @@ void ChassisControllerPID::loop() {
         encVals = model->getSensorVals() - encStartVals;
         distanceElapsed = static_cast<double>((encVals[0] + encVals[1])) / 2.0;
         angleChange = static_cast<double>(encVals[0] - encVals[1]);
-        model->driveVector(distancePid->step(distanceElapsed), anglePid->step(angleChange));
+
+        distancePid->step(distanceElapsed);
+        anglePid->step(angleChange);
+
+        if (velocityMode) {
+          model->driveVector(distancePid->getOutput(), anglePid->getOutput());
+        } else {
+          model->driveVectorVoltage(distancePid->getOutput(), anglePid->getOutput());
+        }
+
         break;
 
       case angle:
         encVals = model->getSensorVals() - encStartVals;
         angleChange = (encVals[0] - encVals[1]) / 2.0;
-        model->rotate(turnPid->step(angleChange));
+
+        turnPid->step(angleChange);
+
+        if (velocityMode) {
+          model->driveVector(0, turnPid->getOutput());
+        } else {
+          model->driveVectorVoltage(0, turnPid->getOutput());
+        }
+
         break;
 
       default:
@@ -287,6 +304,25 @@ ChassisScales ChassisControllerPID::getChassisScales() const {
 
 AbstractMotor::GearsetRatioPair ChassisControllerPID::getGearsetRatioPair() const {
   return gearsetRatioPair;
+}
+
+void ChassisControllerPID::setVelocityMode(bool ivelocityMode) {
+  velocityMode = ivelocityMode;
+}
+
+void ChassisControllerPID::setGains(const okapi::IterativePosPIDController::Gains &idistanceGains,
+                                    const okapi::IterativePosPIDController::Gains &iturnGains,
+                                    const okapi::IterativePosPIDController::Gains &iangleGains) {
+  distancePid->setGains(idistanceGains);
+  turnPid->setGains(iturnGains);
+  anglePid->setGains(iangleGains);
+}
+
+std::tuple<IterativePosPIDController::Gains,
+           IterativePosPIDController::Gains,
+           IterativePosPIDController::Gains>
+ChassisControllerPID::getGains() const {
+  return std::make_tuple(distancePid->getGains(), turnPid->getGains(), anglePid->getGains());
 }
 
 void ChassisControllerPID::startThread() {

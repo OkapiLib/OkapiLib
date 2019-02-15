@@ -42,7 +42,7 @@ class IterativeVelPIDControllerTest : public ::testing::Test {
 };
 
 TEST_F(IterativeVelPIDControllerTest, SettledWhenDisabled) {
-  controller->setGains(0.1, 0.1, 0.1, 0.1);
+  controller->setGains({0.1, 0.1, 0.1, 0.1});
   assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }
 
@@ -70,7 +70,7 @@ TEST_F(IterativeVelPIDControllerTest, DoesNotKeepTrackOfReadingsWhenDisabled) {
 }
 
 TEST_F(IterativeVelPIDControllerTest, StaticFrictionGainUsesTargetSign) {
-  controller->setGains(0, 0, 0, 0.1);
+  controller->setGains({0, 0, 0, 0.1});
 
   controller->setTarget(1);
   EXPECT_DOUBLE_EQ(controller->step(0), 1 * 0.1);
@@ -141,9 +141,18 @@ TEST_F(IterativeVelPIDControllerTest, ControllerSetWithModifiedTargetLimits) {
 }
 
 TEST_F(IterativeVelPIDControllerTest, TestDerivativeTermWithDefaultFilter) {
-  controller->setGains(0, 1, 0, 0);
-  EXPECT_NEAR(controller->step(1), -0.349, 0.0001);
+  controller->setGains({0, 0.0001, 0, 0});
+  EXPECT_NEAR(controller->step(1), -0.35, 0.01);
   EXPECT_EQ(controller->step(1), 0);
-  EXPECT_NEAR(controller->step(2), -0.349, 0.0001);
+  EXPECT_NEAR(controller->step(2), -0.35, 0.01);
   EXPECT_EQ(controller->step(2), 0);
+}
+
+TEST_F(IterativeVelPIDControllerTest, TestGetGainsReturnsTheOriginalGains) {
+  controller->setGains({0.1, 0.2, 0.3, 0.4});
+  auto gains = controller->getGains();
+  EXPECT_FLOAT_EQ(gains.kP, 0.1);
+  EXPECT_FLOAT_EQ(gains.kD, 0.2);
+  EXPECT_FLOAT_EQ(gains.kF, 0.3);
+  EXPECT_FLOAT_EQ(gains.kSF, 0.4);
 }

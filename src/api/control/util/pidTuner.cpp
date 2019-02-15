@@ -90,9 +90,9 @@ PIDTuner::Output PIDTuner::autotune() {
     for (std::size_t particleIndex = 0; particleIndex < numParticles; particleIndex++) {
       LOG_INFO("PIDTuner: Particle number " + std::to_string(particleIndex));
 
-      testController.setGains(particles.at(particleIndex).kP.pos,
-                              particles.at(particleIndex).kI.pos,
-                              particles.at(particleIndex).kD.pos);
+      testController.setGains({particles.at(particleIndex).kP.pos,
+                               particles.at(particleIndex).kI.pos,
+                               particles.at(particleIndex).kD.pos});
 
       // Reverse the goal every iteration to stay in the same general area
       std::int32_t target = goal;

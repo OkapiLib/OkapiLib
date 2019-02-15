@@ -20,28 +20,25 @@ IterativePosPIDController::IterativePosPIDController(const double ikP,
                                                      const TimeUtil &itimeUtil,
                                                      std::unique_ptr<Filter> iderivativeFilter,
                                                      const std::shared_ptr<Logger> &ilogger)
-  : logger(ilogger),
-    derivativeFilter(std::move(iderivativeFilter)),
-    loopDtTimer(itimeUtil.getTimer()),
-    settledUtil(itimeUtil.getSettledUtil()) {
-  if (ikI != 0) {
-    setIntegralLimits(1 / ikI, -1 / ikI);
-  }
-  setOutputLimits(-1, 1);
-  setGains(ikP, ikI, ikD, ikBias);
+  : IterativePosPIDController({ikP, ikI, ikD, ikBias},
+                              itimeUtil,
+                              std::move(iderivativeFilter),
+                              ilogger) {
 }
 
 IterativePosPIDController::IterativePosPIDController(const Gains &igains,
                                                      const TimeUtil &itimeUtil,
                                                      std::unique_ptr<Filter> iderivativeFilter,
                                                      const std::shared_ptr<Logger> &ilogger)
-  : IterativePosPIDController(igains.kP,
-                              igains.kI,
-                              igains.kD,
-                              igains.kBias,
-                              itimeUtil,
-                              std::move(iderivativeFilter),
-                              ilogger) {
+  : logger(ilogger),
+    derivativeFilter(std::move(iderivativeFilter)),
+    loopDtTimer(itimeUtil.getTimer()),
+    settledUtil(itimeUtil.getSettledUtil()) {
+  if (igains.kI != 0) {
+    setIntegralLimits(1 / igains.kI, -1 / igains.kI);
+  }
+  setOutputLimits(1, -1);
+  setGains(igains);
 }
 
 void IterativePosPIDController::setTarget(const double itarget) {
@@ -112,25 +109,6 @@ void IterativePosPIDController::setControllerSetTargetLimits(double itargetMax, 
   controllerSetTargetMin = itargetMin;
 }
 
-void IterativePosPIDController::setIntegralLimits(double imax, double imin) {
-  // Always use larger value as max
-  if (imin > imax) {
-    const double temp = imax;
-    imax = imin;
-    imin = temp;
-  }
-
-  integralMax = imax;
-  integralMin = imin;
-
-  integral = std::clamp(integral, integralMin, integralMax);
-}
-
-void IterativePosPIDController::setErrorSumLimits(const double imax, const double imin) {
-  errorSumMax = imax;
-  errorSumMin = imin;
-}
-
 double IterativePosPIDController::step(const double inewReading) {
   if (controllerIsDisabled) {
     return 0;
@@ -169,17 +147,6 @@ double IterativePosPIDController::step(const double inewReading) {
   return output;
 }
 
-void IterativePosPIDController::setGains(const double ikP,
-                                         const double ikI,
-                                         const double ikD,
-                                         const double ikBias) {
-  const double sampleTimeSec = sampleTime.convert(second);
-  kP = ikP;
-  kI = ikI * sampleTimeSec;
-  kD = ikD / sampleTimeSec;
-  kBias = ikBias;
-}
-
 void IterativePosPIDController::reset() {
   LOG_INFO_S("IterativePosPIDController: Reset");
 
@@ -210,5 +177,36 @@ bool IterativePosPIDController::isDisabled() const {
 
 QTime IterativePosPIDController::getSampleTime() const {
   return sampleTime;
+}
+
+void IterativePosPIDController::setIntegralLimits(double imax, double imin) {
+  // Always use larger value as max
+  if (imin > imax) {
+    const double temp = imax;
+    imax = imin;
+    imin = temp;
+  }
+
+  integralMax = imax;
+  integralMin = imin;
+
+  integral = std::clamp(integral, integralMin, integralMax);
+}
+
+void IterativePosPIDController::setErrorSumLimits(const double imax, const double imin) {
+  errorSumMax = imax;
+  errorSumMin = imin;
+}
+
+void IterativePosPIDController::setGains(const Gains &igains) {
+  const double sampleTimeSec = sampleTime.convert(second);
+  kP = igains.kP;
+  kI = igains.kI * sampleTimeSec;
+  kD = igains.kD / sampleTimeSec;
+  kBias = igains.kBias;
+}
+
+IterativePosPIDController::Gains IterativePosPIDController::getGains() const {
+  return {kP, kI / sampleTime.convert(second), kD * sampleTime.convert(second), kBias};
 }
 } // namespace okapi

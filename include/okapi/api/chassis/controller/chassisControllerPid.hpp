@@ -14,6 +14,7 @@
 #include "okapi/api/util/timeUtil.hpp"
 #include <atomic>
 #include <memory>
+#include <tuple>
 
 namespace okapi {
 class ChassisControllerPID : public virtual ChassisController {
@@ -104,19 +105,50 @@ class ChassisControllerPID : public virtual ChassisController {
   void waitUntilSettled() override;
 
   /**
-   * Stop the robot (set all the motors to 0 and stops the PID controllers).
+   * Stops the robot (set all the motors to 0 and stops the PID controllers).
    */
   void stop() override;
 
   /**
-   * Get the ChassisScales.
+   * Gets the ChassisScales.
    */
   ChassisScales getChassisScales() const override;
 
   /**
-   * Get the GearsetRatioPair.
+   * Gets the GearsetRatioPair.
    */
   AbstractMotor::GearsetRatioPair getGearsetRatioPair() const override;
+
+  /**
+   * Sets the velocity mode flag. When the controller is in velocity mode, the control loop will
+   * set motor velocities. When the controller is in voltage mode (ivelocityMode = false), the
+   * control loop will set motor voltages. Additionally, when the controller is in voltage mode,
+   * it will not obey maximum velocity limits.
+   *
+   * @param ivelocityMode Whether the controller should be in velocity or voltage mode.
+   */
+  void setVelocityMode(bool ivelocityMode);
+
+  /**
+   * Sets the gains for all controllers.
+   *
+   * @param idistanceGains The distance controller gains.
+   * @param iturnGains The turn controller gains.
+   * @param iangleGains The angle controller gains.
+   */
+  void setGains(const IterativePosPIDController::Gains &idistanceGains,
+                const IterativePosPIDController::Gains &iturnGains,
+                const IterativePosPIDController::Gains &iangleGains);
+
+  /**
+   * Gets the current controller gains.
+   *
+   * @return The current controller gains in the order: distance, turn, angle.
+   */
+  std::tuple<IterativePosPIDController::Gains,
+             IterativePosPIDController::Gains,
+             IterativePosPIDController::Gains>
+  getGains() const;
 
   /**
    * Starts the internal thread. This should not be called by normal users. This method is called
@@ -139,6 +171,7 @@ class ChassisControllerPID : public virtual ChassisController {
   std::unique_ptr<IterativePosPIDController> anglePid;
   ChassisScales scales;
   AbstractMotor::GearsetRatioPair gearsetRatioPair;
+  bool velocityMode{true};
   std::atomic_bool doneLooping{true};
   std::atomic_bool doneLoopingSeen{true};
   std::atomic_bool newMovement{false};

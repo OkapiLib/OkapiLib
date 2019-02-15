@@ -324,3 +324,23 @@ TEST_F(ChassisControllerPIDTest, SetMaxVelocityTest) {
   controller->setMaxVelocity(42);
   EXPECT_EQ(model->maxVelocity, 42);
 }
+
+TEST_F(ChassisControllerPIDTest, GetGainsReturnsTheSetGains) {
+  controller->setGains({0.1, 0.2, 0.3, 0.4}, {0.5, 0.6, 0.7, 0.8}, {0.9, 1.0, 1.1, 1.2});
+  auto [distanceGains, turnGains, angleGains] = controller->getGains();
+
+  EXPECT_FLOAT_EQ(distanceGains.kP, 0.1);
+  EXPECT_FLOAT_EQ(distanceGains.kI, 0.2);
+  EXPECT_FLOAT_EQ(distanceGains.kD, 0.3);
+  EXPECT_FLOAT_EQ(distanceGains.kBias, 0.4);
+
+  EXPECT_FLOAT_EQ(turnGains.kP, 0.5);
+  EXPECT_FLOAT_EQ(turnGains.kI, 0.6);
+  EXPECT_FLOAT_EQ(turnGains.kD, 0.7);
+  EXPECT_FLOAT_EQ(turnGains.kBias, 0.8);
+
+  EXPECT_FLOAT_EQ(angleGains.kP, 0.9);
+  EXPECT_FLOAT_EQ(angleGains.kI, 1.0);
+  EXPECT_FLOAT_EQ(angleGains.kD, 1.1);
+  EXPECT_FLOAT_EQ(angleGains.kBias, 1.2);
+}
