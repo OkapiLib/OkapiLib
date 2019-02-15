@@ -208,12 +208,14 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
     auto out = std::make_shared<ChassisControllerPID>(
       TimeUtilFactory::create(),
       makeSkidSteerModel(),
+      std::make_unique<IterativePosPIDController>(distanceGains,
+                                                  controllerTimeUtilFactory.create(),
+                                                  std::move(distanceFilter),
+                                                  controllerLogger),
       std::make_unique<IterativePosPIDController>(
-        distanceGains, controllerTimeUtilFactory.create(), std::move(distanceFilter)),
+        angleGains, controllerTimeUtilFactory.create(), std::move(angleFilter), controllerLogger),
       std::make_unique<IterativePosPIDController>(
-        angleGains, controllerTimeUtilFactory.create(), std::move(angleFilter)),
-      std::make_unique<IterativePosPIDController>(
-        turnGains, controllerTimeUtilFactory.create(), std::move(turnFilter)),
+        turnGains, controllerTimeUtilFactory.create(), std::move(turnFilter), controllerLogger),
       gearset,
       scales,
       controllerLogger);
@@ -224,12 +226,14 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
     auto out = std::make_shared<ChassisControllerPID>(
       TimeUtilFactory::create(),
       makeXDriveModel(),
+      std::make_unique<IterativePosPIDController>(distanceGains,
+                                                  controllerTimeUtilFactory.create(),
+                                                  std::move(distanceFilter),
+                                                  controllerLogger),
       std::make_unique<IterativePosPIDController>(
-        distanceGains, controllerTimeUtilFactory.create(), std::move(distanceFilter)),
+        angleGains, controllerTimeUtilFactory.create(), std::move(angleFilter), controllerLogger),
       std::make_unique<IterativePosPIDController>(
-        angleGains, controllerTimeUtilFactory.create(), std::move(angleFilter)),
-      std::make_unique<IterativePosPIDController>(
-        turnGains, controllerTimeUtilFactory.create(), std::move(turnFilter)),
+        turnGains, controllerTimeUtilFactory.create(), std::move(turnFilter), controllerLogger),
       gearset,
       scales,
       controllerLogger);
@@ -247,11 +251,13 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
       std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
                                                      gearset,
                                                      toUnderlyingType(gearset.internalGearset),
-                                                     controllerTimeUtilFactory.create()),
+                                                     controllerTimeUtilFactory.create(),
+                                                     controllerLogger),
       std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.right,
                                                      gearset,
                                                      toUnderlyingType(gearset.internalGearset),
-                                                     controllerTimeUtilFactory.create()),
+                                                     controllerTimeUtilFactory.create(),
+                                                     controllerLogger),
       gearset,
       scales,
       controllerLogger);
@@ -263,11 +269,13 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
       std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
                                                      gearset,
                                                      toUnderlyingType(gearset.internalGearset),
-                                                     controllerTimeUtilFactory.create()),
+                                                     controllerTimeUtilFactory.create(),
+                                                     controllerLogger),
       std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.right,
                                                      gearset,
                                                      toUnderlyingType(gearset.internalGearset),
-                                                     controllerTimeUtilFactory.create()),
+                                                     controllerTimeUtilFactory.create(),
+                                                     controllerLogger),
       gearset,
       scales,
       controllerLogger);
