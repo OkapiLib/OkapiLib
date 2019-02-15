@@ -48,10 +48,14 @@ void OdomChassisControllerIntegrated::driveToPoint(const QLength ix,
            std::to_string(angle.convert(degree)) + " degrees");
 
   if (angle.abs() > turnThreshold) {
+    LOG_INFO("OdomChassisControllerIntegrated: Turning " + std::to_string(angle.convert(degree)) +
+             " degrees");
     ChassisControllerIntegrated::turnAngle(angle);
   }
 
   if ((length - ioffset).abs() > moveThreshold) {
+    LOG_INFO("OdomChassisControllerIntegrated: Driving " +
+             std::to_string((length - ioffset).convert(meter)) + " meters");
     ChassisControllerIntegrated::moveDistance(length - ioffset);
   }
 }
@@ -59,6 +63,8 @@ void OdomChassisControllerIntegrated::driveToPoint(const QLength ix,
 void OdomChassisControllerIntegrated::turnToAngle(const QAngle iangle) {
   const auto angleDiff = iangle - odom->getState().theta;
   if (angleDiff.abs() > turnThreshold) {
+    LOG_INFO("OdomChassisControllerIntegrated: Turning " +
+             std::to_string(angleDiff.convert(degree)) + " degrees");
     ChassisControllerIntegrated::turnAngle(angleDiff);
   }
 }
