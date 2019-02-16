@@ -41,7 +41,10 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
     const AbstractMotor::GearsetRatioPair &ipair,
     const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
-  AsyncLinearMotionProfileController(AsyncLinearMotionProfileController &&other) noexcept;
+  AsyncLinearMotionProfileController(AsyncLinearMotionProfileController &&other) = delete;
+
+  AsyncLinearMotionProfileController &
+  operator=(AsyncLinearMotionProfileController &&other) = delete;
 
   ~AsyncLinearMotionProfileController() override;
 

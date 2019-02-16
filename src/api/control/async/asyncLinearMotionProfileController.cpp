@@ -25,23 +25,6 @@ AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
     timeUtil(itimeUtil) {
 }
 
-AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
-  AsyncLinearMotionProfileController &&other) noexcept
-  : logger(std::move(other.logger)),
-    paths(std::move(other.paths)),
-    limits(other.limits),
-    output(std::move(other.output)),
-    diameter(other.diameter),
-    pair(other.pair),
-    timeUtil(std::move(other.timeUtil)),
-    currentPath(std::move(other.currentPath)),
-    isRunning(other.isRunning.load(std::memory_order_acquire)),
-    direction(other.direction.load(std::memory_order_acquire)),
-    disabled(other.disabled.load(std::memory_order_acquire)),
-    dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
-    task(other.task) {
-}
-
 AsyncLinearMotionProfileController::~AsyncLinearMotionProfileController() {
   dtorCalled.store(true, std::memory_order_release);
 
