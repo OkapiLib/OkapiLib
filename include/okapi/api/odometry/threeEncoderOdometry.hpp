@@ -19,24 +19,21 @@ class ThreeEncoderOdometry : public Odometry {
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
    * relative to the start (assumed to be (0, 0)).
    *
-   * @param imodelArgs ChassisModel for reading sensors
+   * @param itimeUtil The TimeUtil.
+   * @param imodel The chassis model for reading sensors.
    * @param ichassisScales See ChassisScales docs (the middle wheel scale is the third member)
+   * @param iwheelVelDelta The maximum delta between wheel velocities to consider the robot as
+   * driving straight.
+   * @param ilogger The logger this instance will log to.
    */
-  ThreeEncoderOdometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
+  ThreeEncoderOdometry(const TimeUtil &itimeUtil,
+                       std::shared_ptr<ReadOnlyChassisModel> imodel,
                        const ChassisScales &ichassisScales,
                        const QSpeed &iwheelVelDelta = 0.0001_mps,
                        const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
-  /**
-   * Do odometry math in an infinite loop.
-   */
-  void step() override;
-
   protected:
-  std::shared_ptr<Logger> logger;
   std::shared_ptr<ReadOnlyChassisModel> model;
-  std::unique_ptr<AbstractRate> rate;
-  std::valarray<std::int32_t> newTicks{0, 0, 0}, tickDiff{0, 0, 0}, lastTicks{0, 0, 0};
 
   /**
    * Does the math, side-effect free, for one odom step.

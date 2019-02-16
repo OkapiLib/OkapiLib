@@ -16,12 +16,12 @@ Odometry::Odometry(const TimeUtil &itimeUtil,
                    const ChassisScales &ichassisScales,
                    const QSpeed &iwheelVelDelta,
                    const std::shared_ptr<Logger> &ilogger)
-  : rate(itimeUtil.getRate()),
+  : logger(ilogger),
+    rate(itimeUtil.getRate()),
     timer(itimeUtil.getTimer()),
     model(imodel),
     chassisScales(ichassisScales),
-    wheelVelDelta(iwheelVelDelta),
-    logger(ilogger) {
+    wheelVelDelta(iwheelVelDelta) {
 }
 
 void Odometry::setScales(const ChassisScales &ichassisScales) {
