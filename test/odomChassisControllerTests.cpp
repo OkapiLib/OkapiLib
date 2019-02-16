@@ -139,10 +139,11 @@ class OdomChassisControllerPIDTest : public ::testing::Test {
                                    modelPtr,
                                    std::unique_ptr<Odometry>(odom),
                                    std::unique_ptr<IterativePosPIDController>(distanceController),
-                                   std::unique_ptr<IterativePosPIDController>(angleController),
                                    std::unique_ptr<IterativePosPIDController>(turnController),
+                                   std::unique_ptr<IterativePosPIDController>(angleController),
                                    AbstractMotor::gearset::red,
                                    {{1, 1}, imev5GreenTPR});
+    drive->startThread();
   }
 
   void TearDown() override {

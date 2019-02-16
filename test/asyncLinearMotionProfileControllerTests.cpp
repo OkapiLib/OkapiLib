@@ -46,6 +46,7 @@ class AsyncLinearMotionProfileControllerTest : public ::testing::Test {
 };
 
 TEST_F(AsyncLinearMotionProfileControllerTest, SettledWhenDisabled) {
+  controller->generatePath({0_m, 3_m}, "A");
   assertControllerIsSettledWhenDisabled(*controller, std::string("A"));
 }
 

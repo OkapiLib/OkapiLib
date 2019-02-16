@@ -42,7 +42,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
                                const AbstractMotor::GearsetRatioPair &ipair,
                                const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
-  AsyncMotionProfileController(AsyncMotionProfileController &&other) noexcept;
+  AsyncMotionProfileController(AsyncMotionProfileController &&other) = delete;
+
+  AsyncMotionProfileController &operator=(AsyncMotionProfileController &&other) = delete;
 
   ~AsyncMotionProfileController() override;
 
@@ -219,5 +221,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @return motor frame speed
    */
   QAngularSpeed convertLinearToRotational(QSpeed linear) const;
+
+  std::string getPathErrorMessage(const std::vector<Waypoint> &points, int length);
 };
 } // namespace okapi
