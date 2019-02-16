@@ -34,8 +34,4 @@ void ThreeEncoderOdometry::step() {
   state.y += mm * std::sin(state.theta.convert(radian)) +
              (tickDiff[2] * chassisScales.middle * meter) * std::cos(state.theta.convert(radian));
 }
-
-void ThreeEncoderOdometry::trampoline(void *context) {
-  static_cast<ThreeEncoderOdometry *>(context)->loop();
-}
 } // namespace okapi

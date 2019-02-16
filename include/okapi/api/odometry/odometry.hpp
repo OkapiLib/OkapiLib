@@ -37,7 +37,7 @@ class Odometry {
            std::unique_ptr<AbstractRate> irate,
            const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
-  virtual ~Odometry();
+  virtual ~Odometry() = default;
 
   /**
    * Sets the drive and turn scales.
@@ -45,23 +45,9 @@ class Odometry {
   virtual void setScales(const ChassisScales &ichassisScales);
 
   /**
-   * Do odometry math in an infinite loop.
-   */
-  virtual void loop();
-
-  /**
-   * Do one odometry step. Do not use this and loop in combination, only one may be used per
-   * Odometry object. It is recommended to use loop.
+   * Do one odometry step.
    */
   virtual void step();
-
-  /**
-   * Treat the input as an Odometry pointer and call loop. Meant to be used to bounce into a
-   * thread because loop runs forever.
-   *
-   * @param context pointer to an Odometry object
-   */
-  static void trampoline(void *context);
 
   /**
    * Returns the current state.
@@ -77,11 +63,6 @@ class Odometry {
    */
   virtual void setState(const OdomState &istate);
 
-  /**
-   * Stop the loop from loop() so the thread called loop() can exit safely.
-   */
-  void stopLooping();
-
   protected:
   std::shared_ptr<Logger> logger;
   std::shared_ptr<ReadOnlyChassisModel> model;
@@ -90,6 +71,5 @@ class Odometry {
   ChassisScales chassisScales;
   std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0}, lastTicks{0, 0};
   QLength mm{0_m};
-  std::atomic_bool dtorCalled{false};
 };
 } // namespace okapi

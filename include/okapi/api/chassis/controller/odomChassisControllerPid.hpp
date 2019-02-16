@@ -26,20 +26,25 @@ class OdomChassisControllerPID : public OdomChassisController, public ChassisCon
    * turn some amount, you instead tell it to drive to a specific point on the field or turn to
    * a specific angle, relative to its starting position.
    *
+   * @param itimeUtil The TimeUtil.
    * @param imodel chassis model to use
    * @param iscale straight scale
    * @param iturnScale turn scale
    * @param idistanceController distance PID controller
-   * @param idistanceController angle PID controller (keeps the robot straight)
+   * @param iturnController turn PID controller (handles turning)
+   * @param iangleController angle PID controller (keeps the robot straight)
+   * @param igearset The motor gearset.
+   * @param iscales The chassis scales.
    * @param imoveThreshold minimum length movement (smaller movements will be skipped)
    * @param iturnThreshold minimum angle turn (smaller turns will be skipped)
+   * @param ilogger The logger this instance will log to.
    */
   OdomChassisControllerPID(const TimeUtil &itimeUtil,
                            const std::shared_ptr<SkidSteerModel> &imodel,
                            std::unique_ptr<Odometry> iodometry,
                            std::unique_ptr<IterativePosPIDController> idistanceController,
-                           std::unique_ptr<IterativePosPIDController> iangleController,
                            std::unique_ptr<IterativePosPIDController> iturnController,
+                           std::unique_ptr<IterativePosPIDController> iangleController,
                            const AbstractMotor::GearsetRatioPair &igearset,
                            const ChassisScales &iscales,
                            const QLength &imoveThreshold = 10_mm,

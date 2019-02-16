@@ -17,19 +17,8 @@ Odometry::Odometry(const std::shared_ptr<ReadOnlyChassisModel> &imodel,
   : logger(ilogger), model(imodel), rate(std::move(irate)), chassisScales(ichassisScales) {
 }
 
-Odometry::~Odometry() {
-  dtorCalled.store(true, std::memory_order_release);
-}
-
 void Odometry::setScales(const ChassisScales &ichassisScales) {
   chassisScales = ichassisScales;
-}
-
-void Odometry::loop() {
-  while (!dtorCalled.load(std::memory_order_acquire)) {
-    step();
-    rate->delayUntil(10_ms);
-  }
 }
 
 void Odometry::step() {
@@ -49,12 +38,6 @@ void Odometry::step() {
   state.y += mm * std::sin(state.theta.convert(radian));
 }
 
-void Odometry::trampoline(void *context) {
-  if (context) {
-    static_cast<Odometry *>(context)->loop();
-  }
-}
-
 OdomState Odometry::getState() const {
   return state;
 }
@@ -63,9 +46,5 @@ void Odometry::setState(const OdomState &istate) {
   state = istate;
   lastTicks[0] = 0;
   lastTicks[1] = 0;
-}
-
-void Odometry::stopLooping() {
-  dtorCalled.store(true, std::memory_order_release);
 }
 } // namespace okapi

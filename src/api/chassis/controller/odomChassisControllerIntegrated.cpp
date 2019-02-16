@@ -22,7 +22,7 @@ OdomChassisControllerIntegrated::OdomChassisControllerIntegrated(
   const QAngle iturnThreshold,
   const std::shared_ptr<Logger> &ilogger)
   : ChassisController(imodel, imodel->getMaxVelocity(), imodel->getMaxVoltage()),
-    OdomChassisController(imodel, std::move(iodometry), imoveThreshold, iturnThreshold),
+    OdomChassisController(itimeUtil, imodel, std::move(iodometry), imoveThreshold, iturnThreshold),
     ChassisControllerIntegrated(itimeUtil,
                                 imodel,
                                 std::move(ileftController),
