@@ -128,16 +128,6 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   bool isSettled() override;
 
   /**
-   * Set controller gains.
-   *
-   * @param ikP proportional gain
-   * @param ikI integral gain
-   * @param ikD derivative gain
-   * @param ikBias bias (constant offset added to the output)
-   */
-  virtual void setGains(double ikP, double ikI, double ikD, double ikBias = 0);
-
-  /**
    * Set time between loops in ms.
    *
    * @param isampleTime time between loops
@@ -162,35 +152,10 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   void setControllerSetTargetLimits(double itargetMax, double itargetMin) override;
 
   /**
-   * Set integrator bounds. Default bounds are [-1, 1].
-   *
-   * @param imax max integrator value
-   * @param imin min integrator value
-   */
-  virtual void setIntegralLimits(double imax, double imin);
-
-  /**
-   * Set the error sum bounds. Default bounds are [0, std::numeric_limits<double>::max()]. Error
-   * will only be added to the integral term when its absolute value is between these bounds of
-   * either side of the target.
-   *
-   * @param imax max error value that will be summed
-   * @param imin min error value that will be summed
-   */
-  virtual void setErrorSumLimits(double imax, double imin);
-
-  /**
    * Resets the controller's internal state so it is similar to when it was first initialized, while
    * keeping any user-configured information.
    */
   void reset() override;
-
-  /**
-   * Set whether the integrator should be reset when error is 0 or changes sign.
-   *
-   * @param iresetOnZero true to reset
-   */
-  virtual void setIntegratorReset(bool iresetOnZero);
 
   /**
    * Changes whether the controller is off or on. Turning the controller on after it was off will
@@ -219,6 +184,45 @@ class IterativePosPIDController : public IterativePositionController<double, dou
    * @return sample time
    */
   QTime getSampleTime() const override;
+
+  /**
+   * Set integrator bounds. Default bounds are [-1, 1].
+   *
+   * @param imax max integrator value
+   * @param imin min integrator value
+   */
+  virtual void setIntegralLimits(double imax, double imin);
+
+  /**
+   * Set the error sum bounds. Default bounds are [0, std::numeric_limits<double>::max()]. Error
+   * will only be added to the integral term when its absolute value is between these bounds of
+   * either side of the target.
+   *
+   * @param imax max error value that will be summed
+   * @param imin min error value that will be summed
+   */
+  virtual void setErrorSumLimits(double imax, double imin);
+
+  /**
+   * Set whether the integrator should be reset when error is 0 or changes sign.
+   *
+   * @param iresetOnZero true to reset
+   */
+  virtual void setIntegratorReset(bool iresetOnZero);
+
+  /**
+   * Set controller gains.
+   *
+   * @param igains The new gains.
+   */
+  virtual void setGains(const Gains &igains);
+
+  /**
+   * Gets the current gains.
+   *
+   * @return The current gains.
+   */
+  Gains getGains() const;
 
   protected:
   std::shared_ptr<Logger> logger;

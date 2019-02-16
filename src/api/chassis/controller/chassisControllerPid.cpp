@@ -38,23 +38,6 @@ ChassisControllerPID::ChassisControllerPID(
   setEncoderUnits(AbstractMotor::encoderUnits::degrees);
 }
 
-ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcept
-  : ChassisController(other.model, other.maxVelocity, other.maxVoltage),
-    logger(std::move(other.logger)),
-    timeUtil(other.timeUtil),
-    distancePid(std::move(other.distancePid)),
-    turnPid(std::move(other.turnPid)),
-    anglePid(std::move(other.anglePid)),
-    scales(other.scales),
-    gearsetRatioPair(other.gearsetRatioPair),
-    doneLooping(other.doneLooping.load(std::memory_order_acquire)),
-    newMovement(other.newMovement.load(std::memory_order_acquire)),
-    dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
-    mode(other.mode),
-    task(other.task) {
-  other.task = nullptr;
-}
-
 ChassisControllerPID::~ChassisControllerPID() {
   dtorCalled.store(true, std::memory_order_release);
   delete task;
@@ -292,6 +275,8 @@ void ChassisControllerPID::stopAfterSettled() {
 }
 
 void ChassisControllerPID::stop() {
+  LOG_INFO_S("ChassisControllerPID: Stopping");
+
   mode = none;
   doneLooping.store(true, std::memory_order_release);
   stopAfterSettled();
@@ -314,5 +299,20 @@ AbstractMotor::GearsetRatioPair ChassisControllerPID::getGearsetRatioPair() cons
 
 void ChassisControllerPID::setVelocityMode(bool ivelocityMode) {
   velocityMode = ivelocityMode;
+}
+
+void ChassisControllerPID::setGains(const okapi::IterativePosPIDController::Gains &idistanceGains,
+                                    const okapi::IterativePosPIDController::Gains &iturnGains,
+                                    const okapi::IterativePosPIDController::Gains &iangleGains) {
+  distancePid->setGains(idistanceGains);
+  turnPid->setGains(iturnGains);
+  anglePid->setGains(iangleGains);
+}
+
+std::tuple<IterativePosPIDController::Gains,
+           IterativePosPIDController::Gains,
+           IterativePosPIDController::Gains>
+ChassisControllerPID::getGains() const {
+  return std::make_tuple(distancePid->getGains(), turnPid->getGains(), anglePid->getGains());
 }
 } // namespace okapi

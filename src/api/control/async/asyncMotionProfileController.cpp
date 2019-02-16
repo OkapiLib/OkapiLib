@@ -32,23 +32,6 @@ AsyncMotionProfileController::AsyncMotionProfileController(
   }
 }
 
-AsyncMotionProfileController::AsyncMotionProfileController(
-  AsyncMotionProfileController &&other) noexcept
-  : logger(std::move(other.logger)),
-    paths(std::move(other.paths)),
-    limits(other.limits),
-    model(std::move(other.model)),
-    scales(other.scales),
-    pair(other.pair),
-    timeUtil(std::move(other.timeUtil)),
-    currentPath(std::move(other.currentPath)),
-    isRunning(other.isRunning.load(std::memory_order_acquire)),
-    direction(other.direction.load(std::memory_order_acquire)),
-    disabled(other.disabled.load(std::memory_order_acquire)),
-    dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
-    task(other.task) {
-}
-
 AsyncMotionProfileController::~AsyncMotionProfileController() {
   dtorCalled.store(true, std::memory_order_release);
 
@@ -66,7 +49,6 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
     // No point in generating a path
     LOG_WARN_S(
       "AsyncMotionProfileController: Not generating a path because no waypoints were given.");
-
     return;
   }
 
@@ -93,18 +75,8 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
   const int length = candidate.length;
 
   if (length < 0) {
-    auto pointToString = [](Waypoint point) {
-      return "Point{x = " + std::to_string(point.x) + ", y = " + std::to_string(point.y) +
-             ", theta = " + std::to_string(point.angle) + "}";
-    };
-
     std::string message =
-      "AsyncMotionProfileController: The path (length " + std::to_string(length) +
-      ") is impossible with waypoints: " +
-      std::accumulate(std::next(points.begin()),
-                      points.end(),
-                      pointToString(points.at(0)),
-                      [&](std::string a, Waypoint b) { return a + ", " + pointToString(b); });
+      "AsyncMotionProfileController: Length was negative. " + getPathErrorMessage(points, length);
 
     if (candidate.laptr) {
       free(candidate.laptr);
@@ -121,9 +93,8 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
   auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
 
   if (trajectory == nullptr) {
-    std::string message =
-      "AsyncMotionProfileController: Could not allocate trajectory. The path (length " +
-      std::to_string(length) + ") is probably impossible.";
+    std::string message = "AsyncMotionProfileController: Could not allocate trajectory. " +
+                          getPathErrorMessage(points, length);
 
     if (candidate.laptr) {
       free(candidate.laptr);
@@ -146,8 +117,8 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
 
   if (leftTrajectory == nullptr || rightTrajectory == nullptr) {
     std::string message = "AsyncMotionProfileController: Could not allocate left and/or right "
-                          "trajectories. The path (length " +
-                          std::to_string(length) + ") is probably impossible.";
+                          "trajectories. " +
+                          getPathErrorMessage(points, length);
 
     if (leftTrajectory) {
       free(leftTrajectory);
@@ -177,7 +148,21 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length});
 
   LOG_INFO_S("AsyncMotionProfileController: Completely done generating path");
-  LOG_INFO("AsyncMotionProfileController: Path length: " + std::to_string(length));
+  LOG_DEBUG("AsyncMotionProfileController: Path length: " + std::to_string(length));
+}
+
+std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<Waypoint> &points,
+                                                              int length) {
+  auto pointToString = [](Waypoint point) {
+    return "Point{x=" + std::to_string(point.x) + ", y=" + std::to_string(point.y) +
+           ", theta=" + std::to_string(point.angle) + "}";
+  };
+
+  return "The path (length " + std::to_string(length) + ") is impossible with waypoints: " +
+         std::accumulate(std::next(points.begin()),
+                         points.end(),
+                         pointToString(points.at(0)),
+                         [&](std::string a, Waypoint b) { return a + ", " + pointToString(b); });
 }
 
 void AsyncMotionProfileController::removePath(const std::string &ipathId) {
@@ -206,6 +191,9 @@ void AsyncMotionProfileController::setTarget(std::string ipathId) {
 void AsyncMotionProfileController::setTarget(std::string ipathId,
                                              const bool ibackwards,
                                              const bool imirrored) {
+  LOG_INFO("AsyncMotionProfileController: Set target to: " + ipathId + " (" +
+           std::to_string(ibackwards) + ", " + std::to_string(imirrored) + ")");
+
   currentPath = ipathId;
   isRunning.store(true, std::memory_order_release);
   direction.store(boolToSign(!ibackwards), std::memory_order_release);
@@ -318,6 +306,8 @@ bool AsyncMotionProfileController::isSettled() {
 void AsyncMotionProfileController::reset() {
   // Interrupt executeSinglePath() by disabling the controller
   flipDisable(true);
+
+  LOG_INFO_S("AsyncMotionProfileController: Waiting to reset");
 
   auto rate = timeUtil.getRate();
   while (isRunning.load(std::memory_order_acquire)) {
