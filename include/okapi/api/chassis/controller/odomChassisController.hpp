@@ -11,6 +11,7 @@
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/coreProsAPI.hpp"
 #include "okapi/api/odometry/odometry.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
 class OdomChassisController : public virtual ChassisController {
@@ -22,11 +23,13 @@ class OdomChassisController : public virtual ChassisController {
    * turn some amount, you instead tell it to drive to a specific point on the field or turn to
    * a specific angle relative to its starting position.
    *
+   * @param itimeUtil The TimeUtil.
    * @param iparams odometry parameters for the internal odometry math
    * @param imoveThreshold minimum length movement (smaller movements will be skipped)
    * @param iturnThreshold minimum angle turn (smaller turns will be skipped)
    */
-  OdomChassisController(const std::shared_ptr<SkidSteerModel> &imodel,
+  OdomChassisController(const TimeUtil &itimeUtil,
+                        const std::shared_ptr<SkidSteerModel> &imodel,
                         std::unique_ptr<Odometry> iodometry,
                         const QLength &imoveThreshold = 10_mm,
                         const QAngle &iturnThreshold = 1_deg);
@@ -79,10 +82,20 @@ class OdomChassisController : public virtual ChassisController {
    */
   virtual void setTurnThreshold(QAngle iturnTreshold);
 
+  /**
+   * Starts the internal odometry thread. This should not be called by normal users.
+   */
+  void startOdomThread();
+
   protected:
+  TimeUtil timeUtil;
   QLength moveThreshold;
   QAngle turnThreshold;
   std::unique_ptr<Odometry> odom;
-  CrossplatformThread task;
+  CrossplatformThread *odomTask{nullptr};
+  std::atomic_bool dtorCalled{false};
+
+  static void trampoline(void *context);
+  void loop();
 };
 } // namespace okapi

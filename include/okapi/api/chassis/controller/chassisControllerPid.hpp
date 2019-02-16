@@ -23,8 +23,10 @@ class ChassisControllerPID : public virtual ChassisController {
    * ChassisController using PID control. Puts the motors into encoder degree units. Throws a
    * std::invalid_argument exception if the gear ratio is zero.
    *
+   * @param itimeUtil The TimeUtil.
    * @param imodelArgs ChassisModelArgs
    * @param idistanceController distance PID controller
+   * @param iturnController turn PID controller (handles turning)
    * @param iangleController angle PID controller (keeps the robot straight)
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs

@@ -8,19 +8,21 @@
 #include "okapi/api/chassis/controller/odomChassisController.hpp"
 
 namespace okapi {
-OdomChassisController::OdomChassisController(const std::shared_ptr<SkidSteerModel> &imodel,
+OdomChassisController::OdomChassisController(const TimeUtil &itimeUtil,
+                                             const std::shared_ptr<SkidSteerModel> &imodel,
                                              std::unique_ptr<Odometry> iodometry,
                                              const QLength &imoveThreshold,
                                              const QAngle &iturnThreshold)
   : ChassisController(imodel, imodel->getMaxVelocity(), imodel->getMaxVoltage()),
+    timeUtil(itimeUtil),
     moveThreshold(imoveThreshold),
     turnThreshold(iturnThreshold),
-    odom(std::move(iodometry)),
-    task(Odometry::trampoline, odom.get()) {
+    odom(std::move(iodometry)) {
 }
 
 OdomChassisController::~OdomChassisController() {
-  odom->stopLooping();
+  dtorCalled.store(true, std::memory_order_release);
+  delete odomTask;
 }
 
 OdomState OdomChassisController::getState() const {
@@ -37,5 +39,25 @@ void OdomChassisController::setMoveThreshold(const QLength imoveThreshold) {
 
 void OdomChassisController::setTurnThreshold(QAngle iturnTreshold) {
   turnThreshold = iturnTreshold;
+}
+
+void OdomChassisController::startOdomThread() {
+  if (!odomTask) {
+    odomTask = new CrossplatformThread(trampoline, this);
+  }
+}
+
+void OdomChassisController::trampoline(void *context) {
+  if (context) {
+    static_cast<OdomChassisController *>(context)->loop();
+  }
+}
+
+void OdomChassisController::loop() {
+  auto rate = timeUtil.getRate();
+  while (!dtorCalled.load(std::memory_order_acquire)) {
+    odom->step();
+    rate->delayUntil(10_ms);
+  }
 }
 } // namespace okapi

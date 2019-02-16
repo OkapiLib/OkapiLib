@@ -24,19 +24,8 @@ Odometry::Odometry(const TimeUtil &itimeUtil,
     logger(ilogger) {
 }
 
-Odometry::~Odometry() {
-  dtorCalled.store(true, std::memory_order_release);
-}
-
 void Odometry::setScales(const ChassisScales &ichassisScales) {
   chassisScales = ichassisScales;
-}
-
-void Odometry::loop() {
-  while (!dtorCalled.load(std::memory_order_acquire)) {
-    step();
-    rate->delayUntil(10_ms);
-  }
 }
 
 void Odometry::step() {
@@ -94,21 +83,11 @@ OdomState Odometry::odomMathStep(std::valarray<std::int32_t> &tickDiff, const QT
   return OdomState{dX * meter, dY * meter, deltaTheta * radian};
 }
 
-void Odometry::trampoline(void *context) {
-  if (context) {
-    static_cast<Odometry *>(context)->loop();
-  }
-}
-
 OdomState Odometry::getState() const {
   return state;
 }
 
 void Odometry::setState(const OdomState &istate) {
   state = istate;
-}
-
-void Odometry::stopLooping() {
-  dtorCalled.store(true, std::memory_order_release);
 }
 } // namespace okapi

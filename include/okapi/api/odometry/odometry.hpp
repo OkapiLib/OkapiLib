@@ -42,7 +42,7 @@ class Odometry {
            const QSpeed &iwheelVelDelta = 0.0001_mps,
            const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
-  virtual ~Odometry();
+  virtual ~Odometry() = default;
 
   /**
    * Sets the drive and turn scales.
@@ -50,23 +50,9 @@ class Odometry {
   virtual void setScales(const ChassisScales &ichassisScales);
 
   /**
-   * Do odometry math in an infinite loop.
-   */
-  virtual void loop();
-
-  /**
-   * Do one odometry step. Do not use this and loop in combination, only one may be used per
-   * Odometry object. It is recommended to use loop.
+   * Do one odometry step.
    */
   virtual void step();
-
-  /**
-   * Treat the input as an Odometry pointer and call loop. Meant to be used to bounce into a
-   * thread because loop runs forever.
-   *
-   * @param context pointer to an Odometry object
-   */
-  static void trampoline(void *context);
 
   /**
    * Returns the current state.
@@ -82,11 +68,6 @@ class Odometry {
    */
   virtual void setState(const OdomState &istate);
 
-  /**
-   * Stop the loop from loop() so the thread called loop() can exit safely.
-   */
-  void stopLooping();
-
   protected:
   std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<AbstractTimer> timer;
@@ -96,7 +77,6 @@ class Odometry {
   std::shared_ptr<Logger> logger;
   OdomState state;
   std::valarray<std::int32_t> newTicks{0, 0, 0}, tickDiff{0, 0, 0}, lastTicks{0, 0, 0};
-  std::atomic_bool dtorCalled{false};
 
   /**
    * Does the math, side-effect free, for one odom step.
@@ -106,5 +86,7 @@ class Odometry {
    * @return The estimated position/orientation offset, sinTheta, cosTheta.
    */
   virtual OdomState odomMathStep(std::valarray<std::int32_t> &tickDiff, const QTime &deltaT);
+  std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0}, lastTicks{0, 0};
+  QLength mm{0_m};
 };
 } // namespace okapi

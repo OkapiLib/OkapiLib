@@ -19,6 +19,7 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    * ChassisController using the V5 motor's integrated control. Puts the motors into degree units.
    * Throws a std::invalid_argument exception if the gear ratio is zero.
    *
+   * @param itimeUtil The TimeUtil.
    * @param imodelArgs ChassisModelArgs
    * @param ileftControllerArgs left side controller params
    * @param irightControllerArgs right side controller params

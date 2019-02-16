@@ -25,13 +25,16 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
    * turn some amount, you instead tell it to drive to a specific point on the field or turn to
    * a specific angle, relative to its starting position.
    *
+   * @param itimeUtil The TimeUtil.
    * @param imodel chassis model to use
-   * @param iscale straight scale
-   * @param iturnScale turn scale
+   * @param iodometry The odometry.
    * @param ileftController left side controller
    * @param irightController right side controller
+   * @param igearset The motor gearset.
+   * @param iscales The chassis scales.
    * @param imoveThreshold minimum length movement (smaller movements will be skipped)
    * @param iturnThreshold minimum angle turn (smaller turns will be skipped)
+   * @param ilogger The logger this instance will log to.
    */
   OdomChassisControllerIntegrated(
     const TimeUtil &itimeUtil,

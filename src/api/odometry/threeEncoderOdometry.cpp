@@ -76,8 +76,4 @@ OdomState ThreeEncoderOdometry::odomMathStep(std::valarray<std::int32_t> &tickDi
 
   return OdomState{dX * meter, dY * meter, deltaTheta * radian};
 }
-
-void ThreeEncoderOdometry::trampoline(void *context) {
-  static_cast<ThreeEncoderOdometry *>(context)->loop();
-}
 } // namespace okapi
