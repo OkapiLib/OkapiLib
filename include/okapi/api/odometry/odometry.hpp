@@ -35,6 +35,7 @@ class Odometry {
    * @param ichassisScales The chassis dimensions.
    * @param iwheelVelDelta The maximum delta between wheel velocities to consider the robot as
    * driving straight.
+   * @param ilogger The logger this instance will log to.
    */
   Odometry(const TimeUtil &itimeUtil,
            const std::shared_ptr<ReadOnlyChassisModel> &imodel,
@@ -69,12 +70,12 @@ class Odometry {
   virtual void setState(const OdomState &istate);
 
   protected:
+  std::shared_ptr<Logger> logger;
   std::unique_ptr<AbstractRate> rate;
   std::unique_ptr<AbstractTimer> timer;
   std::shared_ptr<ReadOnlyChassisModel> model;
   ChassisScales chassisScales;
   QSpeed wheelVelDelta;
-  std::shared_ptr<Logger> logger;
   OdomState state;
   std::valarray<std::int32_t> newTicks{0, 0, 0}, tickDiff{0, 0, 0}, lastTicks{0, 0, 0};
 

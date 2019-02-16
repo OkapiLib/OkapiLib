@@ -10,16 +10,13 @@
 #include <math.h>
 
 namespace okapi {
-ThreeEncoderOdometry::ThreeEncoderOdometry(const TimeUtil &itimeUtil,
-                                           std::shared_ptr<ReadOnlyChassisModel> imodel,
+ThreeEncoderOdometry::ThreeEncoderOdometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
                                            const ChassisScales &ichassisScales,
-
                                            const QSpeed &iwheelVelDelta,
                                            const std::shared_ptr<Logger> &ilogger)
-  : Odometry(itimeUtil, imodel, ichassisScales, iwheelVelDelta, ilogger),
+  : Odometry(imodel, ichassisScales, iwheelVelDelta, ilogger),
     logger(ilogger),
-    model(imodel),
-    rate(itimeUtil.getRate()) {
+    model(imodel) {
   if (ichassisScales.middle == 0) {
     std::string msg = "ThreeEncoderOdometry: Middle scale cannot be zero.";
     LOG_ERROR(msg);
