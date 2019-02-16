@@ -129,7 +129,7 @@ PIDTuner::Output PIDTuner::autotune() {
 
       const double error = kSettle * settleTime.convert(millisecond) + kITAE * itae;
 
-      LOG_INFO("PIDTuner: New error is " + std::to_string(error));
+      LOG_DEBUG("PIDTuner: New error is " + std::to_string(error));
 
       if (error < particles.at(particleIndex).bestError) {
         particles.at(particleIndex).kP.best = particles.at(particleIndex).kP.pos;
