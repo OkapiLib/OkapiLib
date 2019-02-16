@@ -29,14 +29,6 @@ class ThreeEncoderOdometry : public Odometry {
                        const QSpeed &iwheelVelDelta = 0.0001_mps,
                        const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
-  /**
-   * Treat the input as a ThreeEncoderOdometry pointer and call loop. Meant to be used to bounce
-   * into a thread because loop runs forever.
-   *
-   * @param context pointer to a ThreeEncoderOdometry object
-   */
-  static void trampoline(void *context);
-
   protected:
   std::shared_ptr<Logger> logger;
   std::shared_ptr<ReadOnlyChassisModel> model;
