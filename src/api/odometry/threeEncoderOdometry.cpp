@@ -9,11 +9,8 @@
 
 namespace okapi {
 ThreeEncoderOdometry::ThreeEncoderOdometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
-                                           const ChassisScales &ichassisScales,
-                                           const TimeUtil &itimeUtil)
-  : Odometry(imodel, ichassisScales, itimeUtil.getRate()),
-    model(imodel),
-    rate(itimeUtil.getRate()) {
+                                           const ChassisScales &ichassisScales)
+  : Odometry(imodel, ichassisScales), model(imodel) {
 }
 
 void ThreeEncoderOdometry::step() {

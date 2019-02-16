@@ -30,11 +30,10 @@ class Odometry {
    *
    * @param imodel The chassis model for reading sensors.
    * @param ichassisScales The chassis dimensions.
-   * @param irate The rate.
+   * @param ilogger The logger this instance will log to.
    */
   Odometry(const std::shared_ptr<ReadOnlyChassisModel> &imodel,
            const ChassisScales &ichassisScales,
-           std::unique_ptr<AbstractRate> irate,
            const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   virtual ~Odometry() = default;
@@ -66,7 +65,6 @@ class Odometry {
   protected:
   std::shared_ptr<Logger> logger;
   std::shared_ptr<ReadOnlyChassisModel> model;
-  std::unique_ptr<AbstractRate> rate;
   OdomState state;
   ChassisScales chassisScales;
   std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0}, lastTicks{0, 0};

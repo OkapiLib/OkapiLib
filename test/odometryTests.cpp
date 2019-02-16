@@ -42,9 +42,7 @@ class OdometryTest : public ::testing::Test {
   protected:
   void SetUp() override {
     model = new MockModel();
-    odom = new Odometry(std::shared_ptr<MockModel>(model),
-                        ChassisScales({1, 1}, imev5GreenTPR),
-                        std::make_unique<MockRate>());
+    odom = new Odometry(std::shared_ptr<MockModel>(model), ChassisScales({1, 1}, imev5GreenTPR));
   }
 
   void TearDown() override {
@@ -127,8 +125,7 @@ class ThreeEncoderOdometryTest : public ::testing::Test {
   void SetUp() override {
     model = new MockThreeEncoderModel();
     odom = new ThreeEncoderOdometry(std::shared_ptr<MockThreeEncoderModel>(model),
-                                    ChassisScales({1, 1, 1}, imev5GreenTPR),
-                                    createTimeUtil());
+                                    ChassisScales({1, 1, 1}, imev5GreenTPR));
   }
 
   void TearDown() override {

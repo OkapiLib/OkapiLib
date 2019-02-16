@@ -21,11 +21,9 @@ class ThreeEncoderOdometry : public Odometry {
    *
    * @param imodelArgs ChassisModel for reading sensors
    * @param ichassisScales See ChassisScales docs (the middle wheel scale is the third member)
-   * @param irateSupplier a supplier of AbstractRate implementations
    */
   ThreeEncoderOdometry(std::shared_ptr<ReadOnlyChassisModel> imodel,
-                       const ChassisScales &ichassisScales,
-                       const TimeUtil &itimeUtil);
+                       const ChassisScales &ichassisScales);
 
   /**
    * Do odometry math in an infinite loop.
@@ -34,7 +32,6 @@ class ThreeEncoderOdometry : public Odometry {
 
   protected:
   std::shared_ptr<ReadOnlyChassisModel> model;
-  std::unique_ptr<AbstractRate> rate;
   std::valarray<std::int32_t> newTicks{0, 0, 0}, tickDiff{0, 0, 0}, lastTicks{0, 0, 0};
 };
 } // namespace okapi

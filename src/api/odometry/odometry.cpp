@@ -12,9 +12,8 @@
 namespace okapi {
 Odometry::Odometry(const std::shared_ptr<ReadOnlyChassisModel> &imodel,
                    const ChassisScales &ichassisScales,
-                   std::unique_ptr<AbstractRate> irate,
                    const std::shared_ptr<Logger> &ilogger)
-  : logger(ilogger), model(imodel), rate(std::move(irate)), chassisScales(ichassisScales) {
+  : logger(ilogger), model(imodel), chassisScales(ichassisScales) {
 }
 
 void Odometry::setScales(const ChassisScales &ichassisScales) {

@@ -28,7 +28,7 @@ class OdomChassisControllerPIDTest : public ::testing::Test {
 
     std::shared_ptr<SkidSteerModel> modelPtr = std::shared_ptr<SkidSteerModel>(model);
 
-    odom = new Odometry(modelPtr, *scales, createTimeUtil().getRate());
+    odom = new Odometry(modelPtr, *scales);
 
     drive =
       new OdomChassisControllerPID(createTimeUtil(),
