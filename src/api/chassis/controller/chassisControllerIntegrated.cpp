@@ -119,6 +119,8 @@ void ChassisControllerIntegrated::waitUntilSettled() {
 }
 
 void ChassisControllerIntegrated::stop() {
+  LOG_INFO_S("ChassisControllerIntegrated: Stopping");
+
   leftController->flipDisable(true);
   rightController->flipDisable(true);
 

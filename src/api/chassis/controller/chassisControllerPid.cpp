@@ -275,6 +275,8 @@ void ChassisControllerPID::stopAfterSettled() {
 }
 
 void ChassisControllerPID::stop() {
+  LOG_INFO_S("ChassisControllerPID: Stopping");
+
   mode = none;
   doneLooping.store(true, std::memory_order_release);
   stopAfterSettled();

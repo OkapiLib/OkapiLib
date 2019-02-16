@@ -14,9 +14,10 @@ IterativeControllerFactory::posPID(const double ikP,
                                    const double ikI,
                                    const double ikD,
                                    const double ikBias,
-                                   std::unique_ptr<Filter> iderivativeFilter) {
+                                   std::unique_ptr<Filter> iderivativeFilter,
+                                   const std::shared_ptr<Logger> &ilogger) {
   return IterativePosPIDController(
-    ikP, ikI, ikD, ikBias, TimeUtilFactory::create(), std::move(iderivativeFilter));
+    ikP, ikI, ikD, ikBias, TimeUtilFactory::create(), std::move(iderivativeFilter), ilogger);
 }
 
 IterativeVelPIDController
@@ -25,14 +26,16 @@ IterativeControllerFactory::velPID(const double ikP,
                                    const double ikF,
                                    const double ikSF,
                                    std::unique_ptr<VelMath> ivelMath,
-                                   std::unique_ptr<Filter> iderivativeFilter) {
+                                   std::unique_ptr<Filter> iderivativeFilter,
+                                   const std::shared_ptr<Logger> &ilogger) {
   return IterativeVelPIDController(ikP,
                                    ikD,
                                    ikF,
                                    ikSF,
                                    std::move(ivelMath),
                                    TimeUtilFactory::create(),
-                                   std::move(iderivativeFilter));
+                                   std::move(iderivativeFilter),
+                                   ilogger);
 }
 
 IterativeMotorVelocityController
@@ -41,10 +44,13 @@ IterativeControllerFactory::motorVelocity(Motor imotor,
                                           const double ikD,
                                           const double ikF,
                                           const double ikSF,
-                                          std::unique_ptr<VelMath> ivelMath) {
+                                          std::unique_ptr<VelMath> ivelMath,
+                                          std::unique_ptr<Filter> iderivativeFilter,
+                                          const std::shared_ptr<Logger> &ilogger) {
   return IterativeMotorVelocityController(
     std::make_shared<Motor>(imotor),
-    std::make_shared<IterativeVelPIDController>(velPID(ikP, ikD, ikF, ikSF, std::move(ivelMath))));
+    std::make_shared<IterativeVelPIDController>(
+      velPID(ikP, ikD, ikF, ikSF, std::move(ivelMath), std::move(iderivativeFilter), ilogger)));
 }
 
 IterativeMotorVelocityController
@@ -53,10 +59,13 @@ IterativeControllerFactory::motorVelocity(MotorGroup imotor,
                                           const double ikD,
                                           const double ikF,
                                           const double ikSF,
-                                          std::unique_ptr<VelMath> ivelMath) {
+                                          std::unique_ptr<VelMath> ivelMath,
+                                          std::unique_ptr<Filter> iderivativeFilter,
+                                          const std::shared_ptr<Logger> &ilogger) {
   return IterativeMotorVelocityController(
     std::make_shared<MotorGroup>(imotor),
-    std::make_shared<IterativeVelPIDController>(velPID(ikP, ikD, ikF, ikSF, std::move(ivelMath))));
+    std::make_shared<IterativeVelPIDController>(
+      velPID(ikP, ikD, ikF, ikSF, std::move(ivelMath), std::move(iderivativeFilter), ilogger)));
 }
 
 IterativeMotorVelocityController IterativeControllerFactory::motorVelocity(
