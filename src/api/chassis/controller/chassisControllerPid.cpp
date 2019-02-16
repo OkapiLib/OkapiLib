@@ -38,23 +38,6 @@ ChassisControllerPID::ChassisControllerPID(
   setEncoderUnits(AbstractMotor::encoderUnits::degrees);
 }
 
-ChassisControllerPID::ChassisControllerPID(ChassisControllerPID &&other) noexcept
-  : ChassisController(other.model, other.maxVelocity, other.maxVoltage),
-    logger(std::move(other.logger)),
-    timeUtil(other.timeUtil),
-    distancePid(std::move(other.distancePid)),
-    turnPid(std::move(other.turnPid)),
-    anglePid(std::move(other.anglePid)),
-    scales(other.scales),
-    gearsetRatioPair(other.gearsetRatioPair),
-    doneLooping(other.doneLooping.load(std::memory_order_acquire)),
-    newMovement(other.newMovement.load(std::memory_order_acquire)),
-    dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
-    mode(other.mode),
-    task(other.task) {
-  other.task = nullptr;
-}
-
 ChassisControllerPID::~ChassisControllerPID() {
   dtorCalled.store(true, std::memory_order_release);
   delete task;
