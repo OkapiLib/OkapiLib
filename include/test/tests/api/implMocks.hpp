@@ -16,6 +16,7 @@
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
+#include "okapi/api/odometry/odometry.hpp"
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/timeUtil.hpp"
@@ -480,4 +481,7 @@ void assertIterativeControllerScalesControllerSetTargets(
 
 void assertAsyncWrapperScalesControllerSetTargets(AsyncWrapper<double, double> &controller);
 
+void assertOdomStateEquals(double x, double y, double theta, const OdomState &actual);
+
+void assertOdomStateEquals(const OdomState &expected, const OdomState &actual);
 } // namespace okapi
