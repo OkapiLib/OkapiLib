@@ -27,8 +27,8 @@ OdomChassisControllerPID::OdomChassisControllerPID(
     ChassisControllerPID(itimeUtil,
                          imodel,
                          std::move(idistanceController),
-                         std::move(iangleController),
                          std::move(iturnController),
+                         std::move(iangleController),
                          igearset,
                          iscales),
     logger(ilogger) {
