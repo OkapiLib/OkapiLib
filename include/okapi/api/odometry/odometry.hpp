@@ -86,7 +86,5 @@ class Odometry {
    * @return The estimated position/orientation offset, sinTheta, cosTheta.
    */
   virtual OdomState odomMathStep(std::valarray<std::int32_t> &tickDiff, const QTime &deltaT);
-  std::valarray<std::int32_t> newTicks{0, 0}, tickDiff{0, 0}, lastTicks{0, 0};
-  QLength mm{0_m};
 };
 } // namespace okapi
