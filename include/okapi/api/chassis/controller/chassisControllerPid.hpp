@@ -39,7 +39,9 @@ class ChassisControllerPID : public virtual ChassisController {
                        const ChassisScales &iscales = ChassisScales({1, 1}),
                        const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
-  ChassisControllerPID(ChassisControllerPID &&other) noexcept;
+  ChassisControllerPID(ChassisControllerPID &&other) = delete;
+
+  ChassisControllerPID &operator=(ChassisControllerPID &&other) = delete;
 
   ~ChassisControllerPID() override;
 

@@ -48,16 +48,9 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
       ratio(iratio) {
   }
 
-  AsyncWrapper(AsyncWrapper<Input, Output> &&other) noexcept
-    : logger(std::move(other.logger)),
-      rateSupplier(std::move(other.rateSupplier)),
-      input(std::move(other.input)),
-      output(std::move(other.output)),
-      controller(std::move(other.controller)),
-      ratio(other.ratio),
-      dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
-      task(other.task) {
-  }
+  AsyncWrapper(AsyncWrapper<Input, Output> &&other) = delete;
+
+  AsyncWrapper<Input, Output> &operator=(AsyncWrapper<Input, Output> &&other) = delete;
 
   ~AsyncWrapper() override {
     dtorCalled.store(true, std::memory_order_release);

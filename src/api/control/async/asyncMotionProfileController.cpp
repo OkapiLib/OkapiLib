@@ -32,23 +32,6 @@ AsyncMotionProfileController::AsyncMotionProfileController(
   }
 }
 
-AsyncMotionProfileController::AsyncMotionProfileController(
-  AsyncMotionProfileController &&other) noexcept
-  : logger(std::move(other.logger)),
-    paths(std::move(other.paths)),
-    limits(other.limits),
-    model(std::move(other.model)),
-    scales(other.scales),
-    pair(other.pair),
-    timeUtil(std::move(other.timeUtil)),
-    currentPath(std::move(other.currentPath)),
-    isRunning(other.isRunning.load(std::memory_order_acquire)),
-    direction(other.direction.load(std::memory_order_acquire)),
-    disabled(other.disabled.load(std::memory_order_acquire)),
-    dtorCalled(other.dtorCalled.load(std::memory_order_acquire)),
-    task(other.task) {
-}
-
 AsyncMotionProfileController::~AsyncMotionProfileController() {
   dtorCalled.store(true, std::memory_order_release);
 
