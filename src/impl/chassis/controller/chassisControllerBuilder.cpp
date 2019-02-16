@@ -259,8 +259,7 @@ std::shared_ptr<OdomChassisControllerPID> ChassisControllerBuilder::buildOCCPID(
     auto model = makeSkidSteerModel();
 
     if (odometry == nullptr) {
-      odometry = std::make_unique<Odometry>(
-        model, scales, TimeUtilFactory::create().getRate(), controllerLogger);
+      odometry = std::make_unique<Odometry>(model, scales, controllerLogger);
     }
 
     auto out = std::make_shared<OdomChassisControllerPID>(
@@ -294,8 +293,7 @@ std::shared_ptr<OdomChassisControllerIntegrated> ChassisControllerBuilder::build
     auto model = makeSkidSteerModel();
 
     if (odometry == nullptr) {
-      odometry = std::make_unique<Odometry>(
-        model, scales, TimeUtilFactory::create().getRate(), controllerLogger);
+      odometry = std::make_unique<Odometry>(model, scales, controllerLogger);
     }
 
     auto out = std::make_shared<OdomChassisControllerIntegrated>(
