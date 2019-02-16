@@ -32,14 +32,6 @@ class ThreeEncoderOdometry : public Odometry {
    */
   void step() override;
 
-  /**
-   * Treat the input as a ThreeEncoderOdometry pointer and call loop. Meant to be used to bounce
-   * into a thread because loop runs forever.
-   *
-   * @param context pointer to a ThreeEncoderOdometry object
-   */
-  static void trampoline(void *context);
-
   protected:
   std::shared_ptr<ReadOnlyChassisModel> model;
   std::unique_ptr<AbstractRate> rate;
