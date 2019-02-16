@@ -201,7 +201,8 @@ add_executable(OkapiLibV5
         test/iterativeVelPIDControllerTests.cpp
         test/iterativeMotorVelocityControllerTest.cpp
         test/iterativePosPIDControllerTests.cpp
-        test/odomChassisControllerTests.cpp
+        test/odomChassisControllerIntegratedTest.cpp
+        test/odomChassisControllerPidTest.cpp
         test/asyncWrapperTests.cpp
         test/offsettableControllerInputTests.cpp
         test/asyncPosPIDControllerTests.cpp test/threeEncoderOdometryTests.cpp)

@@ -766,6 +766,18 @@ void ThreadedMockMotor::threadFunc() {
   }
 }
 
+void assertOdomStateEquals(double x, double y, double theta, const OdomState &actual) {
+  EXPECT_DOUBLE_EQ(actual.x.convert(meter), x);
+  EXPECT_DOUBLE_EQ(actual.y.convert(meter), y);
+  EXPECT_DOUBLE_EQ(actual.theta.convert(degree), theta);
+}
+
+void assertOdomStateEquals(const OdomState &expected, const OdomState &actual) {
+  assertOdomStateEquals(
+    expected.x.convert(meter), expected.y.convert(meter), expected.theta.convert(degree), actual);
+}
+
+
 void assertOdomStateEquals(Odometry *odom, QLength x, QLength y, QAngle theta) {
   const auto error = 1e-4;
   EXPECT_NEAR(odom->getState().x.convert(meter), x.convert(meter), error);
