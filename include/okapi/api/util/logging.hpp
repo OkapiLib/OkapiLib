@@ -7,6 +7,7 @@
  */
 #pragma once
 
+#include "okapi/api/coreProsAPI.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include <memory>
@@ -72,8 +73,9 @@ class Logger {
   template <typename T> constexpr void debug(T ilazyMessage) const noexcept {
     if (isDebugLevelEnabled() && logfile && timer) {
       fprintf(logfile,
-              "%ld DEBUG: %s\n",
+              "%ld (%s) DEBUG: %s\n",
               static_cast<long>(timer->millis().convert(millisecond)),
+              CrossplatformThread::getName().c_str(),
               ilazyMessage());
     }
   }
@@ -85,8 +87,9 @@ class Logger {
   template <typename T> constexpr void info(T ilazyMessage) const noexcept {
     if (isInfoLevelEnabled() && logfile && timer) {
       fprintf(logfile,
-              "%ld INFO: %s\n",
+              "%ld (%s) INFO: %s\n",
               static_cast<long>(timer->millis().convert(millisecond)),
+              CrossplatformThread::getName().c_str(),
               ilazyMessage());
     }
   }
@@ -98,8 +101,9 @@ class Logger {
   template <typename T> constexpr void warn(T ilazyMessage) const noexcept {
     if (isWarnLevelEnabled() && logfile && timer) {
       fprintf(logfile,
-              "%ld WARN: %s\n",
+              "%ld (%s) WARN: %s\n",
               static_cast<long>(timer->millis().convert(millisecond)),
+              CrossplatformThread::getName().c_str(),
               ilazyMessage());
     }
   }
@@ -111,8 +115,9 @@ class Logger {
   template <typename T> constexpr void error(T ilazyMessage) const noexcept {
     if (isErrorLevelEnabled() && logfile && timer) {
       fprintf(logfile,
-              "%ld ERROR: %s\n",
+              "%ld (%s) ERROR: %s\n",
               static_cast<long>(timer->millis().convert(millisecond)),
+              CrossplatformThread::getName().c_str(),
               ilazyMessage());
     }
   }

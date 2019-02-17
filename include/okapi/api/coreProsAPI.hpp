@@ -76,5 +76,13 @@ class CrossplatformThread {
   }
 #endif
 
+  static std::string getName() {
+#ifdef THREADS_STD
+    return std::to_string(std::this_thread::get_id());
+#else
+    return std::string(pros::c::task_get_name(NULL));
+#endif
+  }
+
   CROSSPLATFORM_THREAD_T thread;
 };
