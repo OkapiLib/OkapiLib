@@ -211,7 +211,7 @@ std::string AsyncMotionProfileController::getTarget() {
 void AsyncMotionProfileController::loop() {
   auto rate = timeUtil.getRate();
 
-  while (!dtorCalled.load(std::memory_order_acquire)) {
+  while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
     if (isRunning.load(std::memory_order_acquire) && !isDisabled()) {
       LOG_INFO("AsyncMotionProfileController: Running with path: " + currentPath);
 
@@ -339,5 +339,9 @@ void AsyncMotionProfileController::startThread() {
   if (!task) {
     task = new CrossplatformThread(trampoline, this);
   }
+}
+
+CrossplatformThread *AsyncMotionProfileController::getThread() const {
+  return task;
 }
 } // namespace okapi

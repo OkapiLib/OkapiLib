@@ -20,6 +20,7 @@
 #define CROSSPLATFORM_THREAD_T std::thread
 #else
 #include "api.h"
+#include "pros/apix.h"
 #define CROSSPLATFORM_THREAD_T pros::task_t
 #endif
 
@@ -47,6 +48,33 @@ class CrossplatformThread {
 #endif
   }
 
-  protected:
+#ifdef THREADS_STD
+  void notifyWhenDeleting(CrossplatformThread *) {
+  }
+#else
+  void notifyWhenDeleting(CrossplatformThread *parent) {
+    pros::c::task_notify_when_deleting(parent->thread, thread, 1, pros::E_NOTIFY_ACTION_INCR);
+  }
+#endif
+
+#ifdef THREADS_STD
+  void notifyWhenDeletingRaw(CROSSPLATFORM_THREAD_T *) {
+  }
+#else
+  void notifyWhenDeletingRaw(CROSSPLATFORM_THREAD_T parent) {
+    pros::c::task_notify_when_deleting(parent, thread, 1, pros::E_NOTIFY_ACTION_INCR);
+  }
+#endif
+
+#ifdef THREADS_STD
+  std::uint32_t notifyTake(const std::uint32_t) {
+    return 0;
+  }
+#else
+  std::uint32_t notifyTake(const std::uint32_t itimeout) {
+    return pros::c::task_notify_take(true, itimeout);
+  }
+#endif
+
   CROSSPLATFORM_THREAD_T thread;
 };

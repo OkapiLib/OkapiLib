@@ -226,6 +226,15 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
     }
   }
 
+  /**
+   * Returns the underlying thread handle.
+   *
+   * @return The underlying thread handle.
+   */
+  CrossplatformThread *getThread() const {
+    return task;
+  }
+
   protected:
   std::shared_ptr<Logger> logger;
   Supplier<std::unique_ptr<AbstractRate>> rateSupplier;
@@ -246,7 +255,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
 
   void loop() {
     auto rate = rateSupplier.get();
-    while (!dtorCalled.load(std::memory_order_acquire)) {
+    while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
       if (!isDisabled()) {
         output->controllerSet(controller->step(input->controllerGet()));
       }
