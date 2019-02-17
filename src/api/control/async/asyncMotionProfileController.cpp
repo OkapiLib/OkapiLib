@@ -197,9 +197,9 @@ void AsyncMotionProfileController::setTarget(std::string ipathId,
            std::to_string(ibackwards) + ", " + std::to_string(imirrored) + ")");
 
   currentPath = ipathId;
-  isRunning.store(true, std::memory_order_release);
   direction.store(boolToSign(!ibackwards), std::memory_order_release);
   mirrored.store(imirrored, std::memory_order_release);
+  isRunning.store(true, std::memory_order_release);
 }
 
 void AsyncMotionProfileController::controllerSet(std::string ivalue) {

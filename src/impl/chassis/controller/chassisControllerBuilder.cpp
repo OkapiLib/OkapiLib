@@ -230,9 +230,9 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
                                                   std::move(distanceFilter),
                                                   controllerLogger),
       std::make_unique<IterativePosPIDController>(
-        angleGains, controllerTimeUtilFactory.create(), std::move(angleFilter), controllerLogger),
-      std::make_unique<IterativePosPIDController>(
         turnGains, controllerTimeUtilFactory.create(), std::move(turnFilter), controllerLogger),
+      std::make_unique<IterativePosPIDController>(
+        angleGains, controllerTimeUtilFactory.create(), std::move(angleFilter), controllerLogger),
       gearset,
       scales,
       controllerLogger);
@@ -248,9 +248,9 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
                                                   std::move(distanceFilter),
                                                   controllerLogger),
       std::make_unique<IterativePosPIDController>(
-        angleGains, controllerTimeUtilFactory.create(), std::move(angleFilter), controllerLogger),
-      std::make_unique<IterativePosPIDController>(
         turnGains, controllerTimeUtilFactory.create(), std::move(turnFilter), controllerLogger),
+      std::make_unique<IterativePosPIDController>(
+        angleGains, controllerTimeUtilFactory.create(), std::move(angleFilter), controllerLogger),
       gearset,
       scales,
       controllerLogger);

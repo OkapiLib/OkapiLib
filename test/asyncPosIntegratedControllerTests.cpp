@@ -17,7 +17,7 @@ class AsyncPosIntegratedControllerTest : public ::testing::Test {
   void SetUp() override {
     motor = std::make_shared<MockMotor>();
     controller = new AsyncPosIntegratedController(
-      motor, motor->gearset, toUnderlyingType(motor->gearset), createTimeUtil());
+      motor, motor->gearset * 1.5, toUnderlyingType(motor->gearset), createTimeUtil());
   }
 
   void TearDown() override {
@@ -33,6 +33,11 @@ TEST_F(AsyncPosIntegratedControllerTest, GetTargetTest) {
   EXPECT_EQ(controller->getTarget(), 10);
 }
 
+TEST_F(AsyncPosIntegratedControllerTest, GetErrorTest) {
+  controller->setTarget(10);
+  EXPECT_EQ(controller->getError(), 10);
+}
+
 TEST_F(AsyncPosIntegratedControllerTest, SettledWhenDisabled) {
   assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }
@@ -43,7 +48,7 @@ TEST_F(AsyncPosIntegratedControllerTest, WaitUntilSettledWorksWhenDisabled) {
 
 TEST_F(AsyncPosIntegratedControllerTest, FollowsDisableLifecycle) {
   assertAsyncControllerFollowsDisableLifecycle(
-    *controller, motor->lastPosition, motor->lastVoltage, 100);
+    *controller, motor->lastPosition, motor->lastVoltage, 150);
 }
 
 TEST_F(AsyncPosIntegratedControllerTest, FollowsTargetLifecycle) {
@@ -82,9 +87,9 @@ TEST_F(AsyncPosIntegratedControllerTest, ProfiledMovementUsesMaxVelocityForGreen
 TEST_F(AsyncPosIntegratedControllerTest, TarePositionWorksWithSetTarget) {
   controller->setTarget(10);
   EXPECT_EQ(controller->getError(), 10);
-  EXPECT_EQ(motor->lastPosition, 10);
+  EXPECT_EQ(motor->lastPosition, 15);
 
-  motor->encoder->value = 10;
+  motor->encoder->value = 15;
   EXPECT_EQ(controller->getError(), 0);
 
   controller->tarePosition();
@@ -93,7 +98,7 @@ TEST_F(AsyncPosIntegratedControllerTest, TarePositionWorksWithSetTarget) {
   motor->lastPosition = 7; // So we can detect if the controller wrote anything
   controller->setTarget(10);
   EXPECT_EQ(controller->getError(), 10);
-  EXPECT_EQ(motor->lastPosition, 20);
+  EXPECT_EQ(motor->lastPosition, 30);
 }
 
 TEST_F(AsyncPosIntegratedControllerTest, ExternalRatioWorksForPositiveInteger) {

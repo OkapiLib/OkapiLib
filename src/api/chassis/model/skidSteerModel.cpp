@@ -58,7 +58,7 @@ void SkidSteerModel::driveVector(const double iforwardSpeed, const double iyaw) 
   rightSideMotor->moveVelocity(static_cast<int16_t>(rightOutput * maxVelocity));
 }
 
-void SkidSteerModel::driveVectorVoltage(double iforwardSpeed, double iyaw) {
+void SkidSteerModel::driveVectorVoltage(const double iforwardSpeed, const double iyaw) {
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   const double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);

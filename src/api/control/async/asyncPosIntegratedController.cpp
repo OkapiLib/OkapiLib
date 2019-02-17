@@ -37,7 +37,7 @@ void AsyncPosIntegratedController::setTarget(const double itarget) {
   hasFirstTarget = true;
 
   if (!controllerIsDisabled) {
-    motor->moveAbsolute(itarget * pair.ratio + offset, maxVelocity);
+    motor->moveAbsolute((itarget + offset) * pair.ratio, maxVelocity);
   }
 
   lastTarget = itarget;
@@ -48,7 +48,7 @@ double AsyncPosIntegratedController::getTarget() {
 }
 
 double AsyncPosIntegratedController::getError() const {
-  return (lastTarget * pair.ratio + offset) - motor->getPosition();
+  return (lastTarget + offset) - motor->getPosition() / pair.ratio;
 }
 
 bool AsyncPosIntegratedController::isSettled() {
@@ -113,7 +113,7 @@ void AsyncPosIntegratedController::setMaxVelocity(const std::int32_t imaxVelocit
 }
 
 void AsyncPosIntegratedController::tarePosition() {
-  offset = motor->getPosition();
+  offset = motor->getPosition() / pair.ratio;
 }
 
 void AsyncPosIntegratedController::stop() {
