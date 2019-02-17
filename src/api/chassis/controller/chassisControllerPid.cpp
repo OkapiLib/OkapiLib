@@ -312,7 +312,7 @@ ChassisControllerPID::getGains() const {
 
 void ChassisControllerPID::startThread() {
   if (!task) {
-    task = new CrossplatformThread(trampoline, this);
+    task = new CrossplatformThread(trampoline, this, "ChassisControllerPID");
   }
 }
 

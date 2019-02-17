@@ -67,7 +67,8 @@ TEST_F(LoggerTest, ErrorLevel) {
   size_t len;
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 ERROR: MSG\n");
+  std::string expected = "0 (" + CrossplatformThread::getName() + ") ERROR: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   if (line) {
     free(line);
@@ -84,10 +85,12 @@ TEST_F(LoggerTest, WarningLevel) {
   size_t len;
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 ERROR: MSG\n");
+  std::string expected = "0 (" + CrossplatformThread::getName() + ") ERROR: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 WARN: MSG\n");
+  expected = "0 (" + CrossplatformThread::getName() + ") WARN: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   if (line) {
     free(line);
@@ -104,13 +107,16 @@ TEST_F(LoggerTest, InfoLevel) {
   size_t len;
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 ERROR: MSG\n");
+  std::string expected = "0 (" + CrossplatformThread::getName() + ") ERROR: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 WARN: MSG\n");
+  expected = "0 (" + CrossplatformThread::getName() + ") WARN: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 INFO: MSG\n");
+  expected = "0 (" + CrossplatformThread::getName() + ") INFO: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   if (line) {
     free(line);
@@ -127,16 +133,20 @@ TEST_F(LoggerTest, DebugLevel) {
   size_t len;
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 ERROR: MSG\n");
+  std::string expected = "0 (" + CrossplatformThread::getName() + ") ERROR: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 WARN: MSG\n");
+  expected = "0 (" + CrossplatformThread::getName() + ") WARN: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 INFO: MSG\n");
+  expected = "0 (" + CrossplatformThread::getName() + ") INFO: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 DEBUG: MSG\n");
+  expected = "0 (" + CrossplatformThread::getName() + ") DEBUG: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   if (line) {
     free(line);

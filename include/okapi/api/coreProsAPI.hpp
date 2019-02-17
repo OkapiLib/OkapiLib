@@ -14,6 +14,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <functional>
+#include <sstream>
 
 #ifdef THREADS_STD
 #include <thread>
@@ -26,16 +27,21 @@
 
 class CrossplatformThread {
   public:
-  CrossplatformThread(void (*ptr)(void *), void *params)
+#ifdef THREADS_STD
+  CrossplatformThread(void (*ptr)(void *),
+                      void *params,
+                      const char *const = "OkapiLibCrossplatformTask")
+#else
+  CrossplatformThread(void (*ptr)(void *),
+                      void *params,
+                      const char *const name = "OkapiLibCrossplatformTask")
+#endif
     :
 #ifdef THREADS_STD
       thread(ptr, params)
 #else
-      thread(pros::c::task_create(ptr,
-                                  params,
-                                  TASK_PRIORITY_DEFAULT,
-                                  TASK_STACK_DEPTH_DEFAULT,
-                                  "OkapiLibCrossplatformTask"))
+      thread(
+        pros::c::task_create(ptr, params, TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, name))
 #endif
   {
   }
@@ -75,6 +81,16 @@ class CrossplatformThread {
     return pros::c::task_notify_take(true, itimeout);
   }
 #endif
+
+  static std::string getName() {
+#ifdef THREADS_STD
+    std::ostringstream ss;
+    ss << std::this_thread::get_id();
+    return ss.str();
+#else
+    return std::string(pros::c::task_get_name(NULL));
+#endif
+  }
 
   CROSSPLATFORM_THREAD_T thread;
 };

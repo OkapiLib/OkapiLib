@@ -229,6 +229,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    */
   QAngularSpeed convertLinearToRotational(QSpeed linear) const;
 
-  std::string getPathErrorMessage(const std::vector<Waypoint> &points, int length);
+  std::string
+  getPathErrorMessage(const std::vector<Waypoint> &points, const std::string &ipathId, int length);
 };
 } // namespace okapi
