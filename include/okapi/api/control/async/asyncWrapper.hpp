@@ -222,7 +222,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    */
   void startThread() {
     if (!task) {
-      task = new CrossplatformThread(trampoline, this);
+      task = new CrossplatformThread(trampoline, this, "AsyncWrapper");
     }
   }
 

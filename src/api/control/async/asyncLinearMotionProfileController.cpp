@@ -67,7 +67,7 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
 
   if (length < 0) {
     std::string message = "AsyncLinearMotionProfileController: Length was negative. " +
-                          getPathErrorMessage(points, length);
+                          getPathErrorMessage(points, ipathId, length);
 
     if (candidate.laptr) {
       free(candidate.laptr);
@@ -85,7 +85,7 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
 
   if (trajectory == nullptr) {
     std::string message = "AsyncLinearMotionProfileController: Could not allocate trajectory. " +
-                          getPathErrorMessage(points, length);
+                          getPathErrorMessage(points, ipathId, length);
 
     if (candidate.laptr) {
       free(candidate.laptr);
@@ -108,19 +108,21 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
 
   paths.emplace(ipathId, TrajectoryPair{trajectory, length});
 
-  LOG_INFO_S("AsyncLinearMotionProfileController: Completely done generating path");
+  LOG_INFO("AsyncLinearMotionProfileController: Completely done generating path " + ipathId);
   LOG_DEBUG("AsyncLinearMotionProfileController: Path length: " + std::to_string(length));
 }
 
 std::string
 AsyncLinearMotionProfileController::getPathErrorMessage(const std::vector<Waypoint> &points,
+                                                        const std::string &ipathId,
                                                         const int length) {
   auto pointToString = [](Waypoint point) {
     return "Point{x=" + std::to_string(point.x) + ", y=" + std::to_string(point.y) +
            ", theta=" + std::to_string(point.angle) + "}";
   };
 
-  return "The path (length " + std::to_string(length) + ") is impossible with waypoints: " +
+  return "The path (id " + ipathId + ", length " + std::to_string(length) +
+         ") is impossible with waypoints: " +
          std::accumulate(std::next(points.begin()),
                          points.end(),
                          pointToString(points.at(0)),
@@ -289,7 +291,7 @@ bool AsyncLinearMotionProfileController::isDisabled() const {
 
 void AsyncLinearMotionProfileController::startThread() {
   if (!task) {
-    task = new CrossplatformThread(trampoline, this);
+    task = new CrossplatformThread(trampoline, this, "AsyncLinearMotionProfileController");
   }
 }
 
