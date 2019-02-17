@@ -187,6 +187,13 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    */
   void startThread();
 
+  /**
+   * Returns the underlying thread handle.
+   *
+   * @return The underlying thread handle.
+   */
+  CrossplatformThread *getThread() const;
+
   protected:
   struct TrajectoryPair {
     Segment *segment;
@@ -225,6 +232,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    */
   QAngularSpeed convertLinearToRotational(QSpeed linear) const;
 
-  std::string getPathErrorMessage(const std::vector<Waypoint> &points, int length);
+  std::string
+  getPathErrorMessage(const std::vector<Waypoint> &points, const std::string &ipathId, int length);
 };
 } // namespace okapi

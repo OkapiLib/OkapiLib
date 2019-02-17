@@ -340,6 +340,7 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
       scales,
       controllerLogger);
     out->startThread();
+    out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
     return out;
   } else {
     auto out = std::make_shared<ChassisControllerPID>(
@@ -357,6 +358,7 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
       scales,
       controllerLogger);
     out->startThread();
+    out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
     return out;
   }
 }

@@ -50,7 +50,7 @@ void ChassisControllerPID::loop() {
   modeType pastMode = none;
   auto rate = timeUtil.getRate();
 
-  while (!dtorCalled.load(std::memory_order_acquire)) {
+  while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
     /**
      * doneLooping is set to false by moveDistanceAsync and turnAngleAsync and then set to true by
      * waitUntilSettled
@@ -283,12 +283,6 @@ void ChassisControllerPID::stop() {
   ChassisController::stop();
 }
 
-void ChassisControllerPID::startThread() {
-  if (!task) {
-    task = new CrossplatformThread(trampoline, this);
-  }
-}
-
 ChassisScales ChassisControllerPID::getChassisScales() const {
   return scales;
 }
@@ -314,5 +308,15 @@ std::tuple<IterativePosPIDController::Gains,
            IterativePosPIDController::Gains>
 ChassisControllerPID::getGains() const {
   return std::make_tuple(distancePid->getGains(), turnPid->getGains(), anglePid->getGains());
+}
+
+void ChassisControllerPID::startThread() {
+  if (!task) {
+    task = new CrossplatformThread(trampoline, this, "ChassisControllerPID");
+  }
+}
+
+CrossplatformThread *ChassisControllerPID::getThread() const {
+  return task;
 }
 } // namespace okapi
