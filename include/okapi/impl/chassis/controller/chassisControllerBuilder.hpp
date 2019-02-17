@@ -290,7 +290,8 @@ class ChassisControllerBuilder {
   std::unique_ptr<Filter> turnFilter = std::make_unique<PassthroughFilter>();
   TimeUtilFactory controllerTimeUtilFactory = TimeUtilFactory();
 
-  AbstractMotor::GearsetRatioPair gearset = AbstractMotor::gearset::red;
+  bool gearsetSetByUser{false}; // Used so motors don't overwrite gearset set manually
+  AbstractMotor::GearsetRatioPair gearset{AbstractMotor::gearset::invalid};
   ChassisScales scales = {1, 1};
   std::shared_ptr<Logger> controllerLogger = std::make_shared<Logger>();
 

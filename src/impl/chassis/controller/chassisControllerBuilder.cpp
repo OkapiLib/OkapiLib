@@ -36,6 +36,14 @@ ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &ileft
     rightSensor = iright->getEncoder();
   }
 
+  if (!maxVelSetByUser) {
+    maxVelocity = toUnderlyingType(ileft->getGearing());
+  }
+
+  if (!gearsetSetByUser) {
+    gearset = ileft->getGearing();
+  }
+
   return *this;
 }
 
@@ -71,6 +79,14 @@ ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &itopL
   if (!sensorsSetByUser) {
     leftSensor = itopLeft->getEncoder();
     rightSensor = itopRight->getEncoder();
+  }
+
+  if (!maxVelSetByUser) {
+    maxVelocity = toUnderlyingType(itopLeft->getGearing());
+  }
+
+  if (!gearsetSetByUser) {
+    gearset = itopLeft->getGearing();
   }
 
   return *this;
@@ -159,6 +175,7 @@ ChassisControllerBuilder::withTimeUtilFactory(const TimeUtilFactory &itimeUtilFa
 
 ChassisControllerBuilder &
 ChassisControllerBuilder::withGearset(const AbstractMotor::GearsetRatioPair &igearset) {
+  gearsetSetByUser = true;
   gearset = igearset;
 
   if (!maxVelSetByUser) {
