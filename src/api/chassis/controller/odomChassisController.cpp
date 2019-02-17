@@ -43,7 +43,7 @@ void OdomChassisController::setTurnThreshold(QAngle iturnTreshold) {
 
 void OdomChassisController::startOdomThread() {
   if (!odomTask) {
-    odomTask = new CrossplatformThread(trampoline, this);
+    odomTask = new CrossplatformThread(trampoline, this, "OdomChassisController");
   }
 }
 
@@ -55,9 +55,13 @@ void OdomChassisController::trampoline(void *context) {
 
 void OdomChassisController::loop() {
   auto rate = timeUtil.getRate();
-  while (!dtorCalled.load(std::memory_order_acquire)) {
+  while (!dtorCalled.load(std::memory_order_acquire) && !odomTask->notifyTake(0)) {
     odom->step();
     rate->delayUntil(10_ms);
   }
+}
+
+CrossplatformThread *OdomChassisController::getOdomThread() const {
+  return odomTask;
 }
 } // namespace okapi

@@ -6,8 +6,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
-#include "okapi/api/odometry/threeEncoderOdometry.hpp"
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
+#include "okapi/api/odometry/threeEncoderOdometry.hpp"
 #include <stdexcept>
 
 namespace okapi {
@@ -288,12 +288,18 @@ std::shared_ptr<OdomChassisControllerPID> ChassisControllerBuilder::buildOCCPID(
       moveThreshold,
       turnThreshold,
       controllerLogger);
+
     out->startThread();
+    out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+
+    out->startOdomThread();
+    out->getOdomThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+
     return out;
   } else {
-    LOG_ERROR_S("ChassisControllerBuilder: Odometry only support with skid-steer layout.");
+    LOG_ERROR_S("ChassisControllerBuilder: Odometry is only supported with skid-steer layout.");
     throw std::runtime_error(
-      "ChassisControllerBuilder: Odometry only support with skid-steer layout.");
+      "ChassisControllerBuilder: Odometry is only supported with skid-steer layout.");
   }
 }
 
@@ -330,11 +336,15 @@ std::shared_ptr<OdomChassisControllerIntegrated> ChassisControllerBuilder::build
       moveThreshold,
       turnThreshold,
       controllerLogger);
+
+    out->startOdomThread();
+    out->getOdomThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+
     return out;
   } else {
-    LOG_ERROR_S("ChassisControllerBuilder: Odometry only support with skid-steer layout.");
+    LOG_ERROR_S("ChassisControllerBuilder: Odometry is only supported with skid-steer layout.");
     throw std::runtime_error(
-      "ChassisControllerBuilder: Odometry only support with skid-steer layout.");
+      "ChassisControllerBuilder: Odometry is only supported with skid-steer layout.");
   }
 }
 
@@ -354,8 +364,10 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
       gearset,
       scales,
       controllerLogger);
+
     out->startThread();
     out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+
     return out;
   } else {
     auto out = std::make_shared<ChassisControllerPID>(
@@ -372,15 +384,17 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
       gearset,
       scales,
       controllerLogger);
+
     out->startThread();
     out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+
     return out;
   }
 }
 
 std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI() {
   if (isSkidSteer) {
-    auto out = std::make_shared<ChassisControllerIntegrated>(
+    return std::make_shared<ChassisControllerIntegrated>(
       TimeUtilFactory::create(),
       makeSkidSteerModel(),
       std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
@@ -396,9 +410,8 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
       gearset,
       scales,
       controllerLogger);
-    return out;
   } else {
-    auto out = std::make_shared<ChassisControllerIntegrated>(
+    return std::make_shared<ChassisControllerIntegrated>(
       TimeUtilFactory::create(),
       makeXDriveModel(),
       std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
@@ -414,7 +427,6 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
       gearset,
       scales,
       controllerLogger);
-    return out;
   }
 }
 
