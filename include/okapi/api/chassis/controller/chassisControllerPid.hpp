@@ -114,12 +114,6 @@ class ChassisControllerPID : public virtual ChassisController {
   void stop() override;
 
   /**
-   * Starts the internal thread. This should not be called by normal users. This method is called
-   * by the ChassisControllerFactory when making a new instance of this class.
-   */
-  void startThread();
-
-  /**
    * Gets the ChassisScales.
    */
   ChassisScales getChassisScales() const override;
@@ -159,6 +153,19 @@ class ChassisControllerPID : public virtual ChassisController {
              IterativePosPIDController::Gains,
              IterativePosPIDController::Gains>
   getGains() const;
+
+  /**
+   * Starts the internal thread. This should not be called by normal users. This method is called
+   * by the ChassisControllerFactory when making a new instance of this class.
+   */
+  void startThread();
+
+  /**
+   * Returns the underlying thread handle.
+   *
+   * @return The underlying thread handle.
+   */
+  CrossplatformThread *getThread() const;
 
   protected:
   std::shared_ptr<Logger> logger;

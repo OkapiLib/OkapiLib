@@ -222,8 +222,17 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    */
   void startThread() {
     if (!task) {
-      task = new CrossplatformThread(trampoline, this);
+      task = new CrossplatformThread(trampoline, this, "AsyncWrapper");
     }
+  }
+
+  /**
+   * Returns the underlying thread handle.
+   *
+   * @return The underlying thread handle.
+   */
+  CrossplatformThread *getThread() const {
+    return task;
   }
 
   protected:
@@ -246,7 +255,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
 
   void loop() {
     auto rate = rateSupplier.get();
-    while (!dtorCalled.load(std::memory_order_acquire)) {
+    while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
       if (!isDisabled()) {
         output->controllerSet(controller->step(input->controllerGet()));
       }
