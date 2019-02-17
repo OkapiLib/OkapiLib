@@ -14,6 +14,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <functional>
+#include <sstream>
 
 #ifdef THREADS_STD
 #include <thread>
@@ -78,7 +79,9 @@ class CrossplatformThread {
 
   static std::string getName() {
 #ifdef THREADS_STD
-    return std::to_string(std::this_thread::get_id());
+    std::ostringstream ss;
+    ss << std::this_thread::get_id();
+    return ss.str();
 #else
     return std::string(pros::c::task_get_name(NULL));
 #endif
