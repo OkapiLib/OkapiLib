@@ -32,7 +32,7 @@ TEMPLATE_FILES=$(INCDIR)/okapi/**/*.h $(INCDIR)/okapi/**/*.hpp
 .DEFAULT_GOAL=quick
 
 # Set to 1 to enable hot/cold linking
-USE_PACKAGE:=0
+USE_PACKAGE:=1
 
 ################################################################################
 ################################################################################
