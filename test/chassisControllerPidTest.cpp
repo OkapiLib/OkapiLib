@@ -21,7 +21,7 @@ class MockSkidSteerModel : public SkidSteerModel {
 class ChassisControllerPIDTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    scales = new ChassisScales({2, 2});
+    scales = new ChassisScales({2, 2}, quadEncoderTPR);
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
 

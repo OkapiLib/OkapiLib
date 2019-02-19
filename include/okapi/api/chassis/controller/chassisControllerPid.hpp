@@ -36,7 +36,7 @@ class ChassisControllerPID : public virtual ChassisController {
                        std::unique_ptr<IterativePosPIDController> iturnController,
                        std::unique_ptr<IterativePosPIDController> iangleController,
                        AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::green,
-                       const ChassisScales &iscales = ChassisScales({1, 1}),
+                       const ChassisScales &iscales = ChassisScales({1, 1}, imev5GreenTPR),
                        const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   ChassisControllerPID(ChassisControllerPID &&other) = delete;

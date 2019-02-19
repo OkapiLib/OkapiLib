@@ -137,7 +137,7 @@ class MockChassisController : public ChassisController {
   }
 
   ChassisScales getChassisScales() const override {
-    return ChassisScales({1, 1});
+    return ChassisScales({1, 1}, imev5GreenTPR);
   }
 
   AbstractMotor::GearsetRatioPair getGearsetRatioPair() const override {
