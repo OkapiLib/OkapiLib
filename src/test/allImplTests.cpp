@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/tests/impl/allImplTests.hpp"
+#include "test/testRunner.hpp"
 #include "test/tests/impl/asyncPosIntegratedControllerTests.hpp"
 #include "test/tests/impl/chassisControllerPidTests.hpp"
 #include "test/tests/impl/controllerTests.hpp"
@@ -16,4 +17,5 @@ void runAllImplTests() {
   runUtilTests();
   runControllerTests();
   runChassisControllerPidTests();
+  okapi::test_print_report();
 }
