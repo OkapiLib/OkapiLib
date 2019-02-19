@@ -29,15 +29,15 @@ class ChassisScales {
     straight = vec.at(0);
     turn = vec.at(1);
     wheelDiameter = (360 / (straight * 1_pi)) * meter;
-    wheelbaseWidth = turn * wheelDiameter;
+    wheelTrack = turn * wheelDiameter;
   }
 
   /**
    * The two scales a Chassis Controller needs to do all of its closed-loop control. First index is
-   * the wheel diameter, second index is the wheelbase width. Read the clawbot programming tutorial
+   * the wheel diameter, second index is the wheel track. Read the clawbot programming tutorial
    * for more information behind the meaning of these two numbers.
    *
-   * The wheelbase diameter is the center-to-center distance between the wheels (center-to-center
+   * The wheel track is the center-to-center distance between the wheels (center-to-center
    * meaning the width between the centers of both wheels). For example, if you are using four inch
    * omni wheels and there are 11.5 inches between the centers of each wheel, you would call the
    * constructor like so:
@@ -53,7 +53,7 @@ class ChassisScales {
    *                     |         +               +
    *                     |        ++---------------++
    *                     |        |                 |
-   *    Wheelbase Width  |        |                 |
+   *       Wheel track   |        |                 |
    *                     |        |                 |
    *                     |        |                 |
    *                     |        ++---------------++
@@ -61,14 +61,14 @@ class ChassisScales {
    *                     +--->    ===             ===
    *
    *
-   * @param  iwheelbase {wheel diameter, wheelbase width}
+   * @param  idimensions {wheel diameter, wheel track}
    */
-  ChassisScales(const std::initializer_list<QLength> &iwheelbase) {
-    std::vector<QLength> vec(iwheelbase);
+  ChassisScales(const std::initializer_list<QLength> &idimensions) {
+    std::vector<QLength> vec(idimensions);
     wheelDiameter = vec.at(0);
-    wheelbaseWidth = vec.at(1);
+    wheelTrack = vec.at(1);
     straight = static_cast<double>(360 / (wheelDiameter.convert(meter) * 1_pi));
-    turn = wheelbaseWidth.convert(meter) / wheelDiameter.convert(meter);
+    turn = wheelTrack.convert(meter) / wheelDiameter.convert(meter);
   }
 
   virtual ~ChassisScales() = default;
@@ -76,6 +76,6 @@ class ChassisScales {
   double straight;
   double turn;
   QLength wheelDiameter;
-  QLength wheelbaseWidth;
+  QLength wheelTrack;
 };
 } // namespace okapi

@@ -18,7 +18,7 @@ TEST(ChassisScalesTest, RawScales) {
   EXPECT_DOUBLE_EQ(scales.turn, 0.3);
 }
 
-TEST(ChassisScalesTest, ScalesFromWheelbase) {
+TEST(ChassisScalesTest, ScalesFromWheelTrack) {
   ChassisScales scales({4_in, 11.5_in});
   EXPECT_FLOAT_EQ(scales.straight, 1127.8696);
   EXPECT_FLOAT_EQ(scales.turn, 2.875);
@@ -26,5 +26,5 @@ TEST(ChassisScalesTest, ScalesFromWheelbase) {
   // Feed the raw scales back in to get the lengths out
   ChassisScales reverse({1127.8696, 2.875});
   EXPECT_NEAR(reverse.wheelDiameter.convert(meter), (4_in).convert(meter), 0.0001);
-  EXPECT_NEAR(reverse.wheelbaseWidth.convert(meter), (11.5_in).convert(meter), 0.0001);
+  EXPECT_NEAR(reverse.wheelTrack.convert(meter), (11.5_in).convert(meter), 0.0001);
 }

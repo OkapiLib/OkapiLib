@@ -3,6 +3,9 @@
 
 using namespace okapi;
 void opcontrol() {
-  pros::delay(100);
-  runAllImplTests();
+  auto drive =
+    ChassisControllerBuilder()
+      .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
+      .withLogger(TimeUtilFactory::create().getTimer(), "/ser/sout", Logger::LogLevel::debug)
+      .build();
 }

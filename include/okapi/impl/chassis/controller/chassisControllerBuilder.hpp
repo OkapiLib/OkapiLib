@@ -201,13 +201,12 @@ class ChassisControllerBuilder {
     std::unique_ptr<Filter> iangleFilter = std::make_unique<PassthroughFilter>());
 
   /**
-   * Sets the TimeUtilFactory used for creating a TimeUtil for each controller. Uses the static
-   * TimeUtilFactory by default.
+   * Sets the TimeUtil for each controller.
    *
-   * @param itimeUtilFactory The TimeUtilFactory.
+   * @param itimeUtil The TimeUtil.
    * @return An ongoing builder.
    */
-  ChassisControllerBuilder &withTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
+  ChassisControllerBuilder &withTimeUtil(const TimeUtil &itimeUtil);
 
   /**
    * Sets the gearset. The default gearset is derived from the motor's.
@@ -288,7 +287,7 @@ class ChassisControllerBuilder {
   std::unique_ptr<Filter> angleFilter = std::make_unique<PassthroughFilter>();
   IterativePosPIDController::Gains turnGains;
   std::unique_ptr<Filter> turnFilter = std::make_unique<PassthroughFilter>();
-  TimeUtilFactory controllerTimeUtilFactory = TimeUtilFactory();
+  TimeUtil timeUtil = TimeUtilFactory::create();
 
   bool gearsetSetByUser{false}; // Used so motors don't overwrite gearset set manually
   AbstractMotor::GearsetRatioPair gearset{AbstractMotor::gearset::invalid};

@@ -138,7 +138,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
 
   LOG_INFO_S("AsyncMotionProfileController: Modifying for tank drive");
   pathfinder_modify_tank(
-    trajectory, length, leftTrajectory, rightTrajectory, scales.wheelbaseWidth.convert(meter));
+    trajectory, length, leftTrajectory, rightTrajectory, scales.wheelTrack.convert(meter));
 
   free(trajectory);
 
