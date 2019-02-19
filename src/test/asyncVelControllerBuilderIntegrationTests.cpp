@@ -19,8 +19,8 @@ static void testMaxVelOnPIDController() {
   auto controller = AsyncVelControllerBuilder()
                       .withMaxVelocity(maxVel)
                       .withMotor(MOTOR_1_PORT)
-                      .withGains({0.01, 0, 0})
-                      .withVelMath(VelMathFactory::createPtr(imev5RedTPR))
+                      .withGains({0.001, 0, 0})
+                      .withVelMath(VelMathFactory::createPtr(imev5GreenTPR))
                       .build();
 
   Motor motor(MOTOR_1_PORT);

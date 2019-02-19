@@ -28,7 +28,7 @@
 namespace okapi {
 static const int MOTOR_1_PORT = 18;
 static const int MOTOR_2_PORT = 19;
-static const auto MOTOR_GEARSET = AbstractMotor::gearset::red;
+static const auto MOTOR_GEARSET = AbstractMotor::gearset::green;
 
 /**
  * Setup hardware before a test.
