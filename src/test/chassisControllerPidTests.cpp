@@ -18,7 +18,7 @@ void testWaitUntilSettledExitsProperly() {
   auto drive = ChassisControllerBuilder()
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
                  .withGearset(MOTOR_GEARSET)
-                 .withGains({}, {0.004})
+                 .withGains({}, {0.007})
                  .build();
 
   for (int i = 0; i < 10; ++i) {
@@ -37,6 +37,8 @@ void testWaitUntilSettledExitsProperly() {
 
       pros::delay(10);
     }
+
+    test("Iteration " + std::to_string(i + 1), TEST_BODY(AssertThat, true, Equals(true)));
   }
 
   drive->stop();

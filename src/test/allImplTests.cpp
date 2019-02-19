@@ -27,5 +27,5 @@ void runAllImplTests() {
   runUtilTests();
   runControllerTests();
   runChassisControllerPidTests();
-  test_print_report();
+  okapi::test_print_report();
 }
