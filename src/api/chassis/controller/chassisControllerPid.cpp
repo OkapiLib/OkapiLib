@@ -35,7 +35,7 @@ ChassisControllerPID::ChassisControllerPID(
   }
 
   setGearing(igearset.internalGearset);
-  setEncoderUnits(AbstractMotor::encoderUnits::degrees);
+  setEncoderUnits(AbstractMotor::encoderUnits::counts);
 }
 
 ChassisControllerPID::~ChassisControllerPID() {
@@ -157,8 +157,8 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   anglePid->flipDisable(true);
   mode = angle;
 
-  const double newTarget =
-    idegTarget.convert(degree) * scales.turn * gearsetRatioPair.ratio * boolToSign(normalTurns);
+  const double newTarget = idegTarget.convert(degree) * scales.turn * (scales.tpr / 360.0) *
+                           gearsetRatioPair.ratio * boolToSign(normalTurns);
 
   LOG_INFO("ChassisControllerPID: turning " + std::to_string(newTarget) + " motor degrees");
 
