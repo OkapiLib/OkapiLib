@@ -19,8 +19,7 @@ class ChassisScales {
   /**
    * The two scales a Chassis Controller needs to do all of its closed-loop control. First index is
    * the straight scale, second index is the turn scale. The straight scale converts motor degrees
-   * to meters and the turn scale converts motor degrees to robot turn degrees. Read the clawbot
-   * programming tutorial for more information behind the meaning of these two numbers.
+   * to meters and the turn scale converts motor degrees to robot turn degrees.
    *
    * @param  iscales {straight scale, turn scale}
    */
@@ -34,8 +33,7 @@ class ChassisScales {
 
   /**
    * The two scales a Chassis Controller needs to do all of its closed-loop control. First index is
-   * the wheel diameter, second index is the wheel track. Read the clawbot programming tutorial
-   * for more information behind the meaning of these two numbers.
+   * the wheel diameter, second index is the wheel track.
    *
    * The wheel track is the center-to-center distance between the wheels (center-to-center
    * meaning the width between the centers of both wheels). For example, if you are using four inch
