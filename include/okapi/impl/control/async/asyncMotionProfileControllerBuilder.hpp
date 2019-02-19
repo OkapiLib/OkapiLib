@@ -144,7 +144,7 @@ class AsyncMotionProfileControllerBuilder {
 
   bool hasModel{false};
   std::shared_ptr<ChassisModel> model;
-  ChassisScales scales{1, 1};
+  ChassisScales scales{{1, 1}, imev5GreenTPR};
   AbstractMotor::GearsetRatioPair pair{AbstractMotor::gearset::invalid};
   TimeUtilFactory timeUtilFactory = TimeUtilFactory();
   std::shared_ptr<Logger> controllerLogger = std::make_shared<Logger>();
