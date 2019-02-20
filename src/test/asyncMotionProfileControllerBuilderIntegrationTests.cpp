@@ -21,7 +21,7 @@ static void testMotionProfileController() {
   auto drive = ChassisControllerBuilder()
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
                  .withGearset(MOTOR_GEARSET)
-                 .withDimensions({{imaginaryDiameter, 10_in}, quadEncoderTPR})
+                 .withDimensions({{imaginaryDiameter, 10_in}, toUnderlyingType(MOTOR_GEARSET)})
                  .build();
 
   auto controller = AsyncMotionProfileControllerBuilder()
