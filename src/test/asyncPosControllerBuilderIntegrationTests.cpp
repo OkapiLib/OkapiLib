@@ -21,6 +21,7 @@ static void testMaxVelOnPIDController() {
                       .withMaxVelocity(maxVel)
                       .withMotor(MOTOR_1_PORT)
                       .withGains({0.01, 0, 0})
+                      .withGearset(MOTOR_GEARSET)
                       .build();
 
   Motor motor(MOTOR_1_PORT);

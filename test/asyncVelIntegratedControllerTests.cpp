@@ -18,7 +18,7 @@ class AsyncVelIntegratedControllerTest : public ::testing::Test {
   void SetUp() override {
     motor = std::make_shared<MockMotor>();
     controller = new AsyncVelIntegratedController(
-      motor, motor->gearset, toUnderlyingType(motor->gearset), createTimeUtil());
+      motor, motor->gearset * 1.5, toUnderlyingType(motor->gearset), createTimeUtil());
   }
 
   void TearDown() override {
@@ -34,6 +34,12 @@ TEST_F(AsyncVelIntegratedControllerTest, GetTargetTest) {
   EXPECT_EQ(controller->getTarget(), 10);
 }
 
+
+TEST_F(AsyncVelIntegratedControllerTest, GetErrorTest) {
+  controller->setTarget(10);
+  EXPECT_EQ(controller->getError(), 10);
+}
+
 TEST_F(AsyncVelIntegratedControllerTest, SettledWhenDisabled) {
   assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }
@@ -44,7 +50,7 @@ TEST_F(AsyncVelIntegratedControllerTest, WaitUntilSettledWorksWhenDisabled) {
 
 TEST_F(AsyncVelIntegratedControllerTest, FollowsDisableLifecycle) {
   assertAsyncControllerFollowsDisableLifecycle(
-    *controller, motor->lastVelocity, motor->lastVoltage, 100);
+    *controller, motor->lastVelocity, motor->lastVoltage, 150);
 }
 
 TEST_F(AsyncVelIntegratedControllerTest, FollowsTargetLifecycle) {

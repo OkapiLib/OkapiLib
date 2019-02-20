@@ -8,14 +8,10 @@
 #include "okapi/impl/device/adiUltrasonic.hpp"
 
 namespace okapi {
-ADIUltrasonic::ADIUltrasonic(const uint8_t iportTop, const uint8_t iportBottom)
-  : ADIUltrasonic(iportTop, iportBottom, std::make_unique<MedianFilter<5>>()) {
-}
-
-ADIUltrasonic::ADIUltrasonic(const std::uint8_t iportTop,
-                             const std::uint8_t iportBottom,
+ADIUltrasonic::ADIUltrasonic(const std::uint8_t iportPing,
+                             const std::uint8_t iportEcho,
                              std::unique_ptr<Filter> ifilter)
-  : ultra(iportTop, iportBottom), filter(std::move(ifilter)) {
+  : ultra(iportPing, iportEcho), filter(std::move(ifilter)) {
 }
 
 ADIUltrasonic::~ADIUltrasonic() = default;

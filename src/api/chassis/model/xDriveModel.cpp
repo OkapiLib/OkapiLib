@@ -69,7 +69,7 @@ void XDriveModel::driveVector(const double iforwardSpeed, const double iyaw) {
   bottomLeftMotor->moveVelocity(static_cast<int16_t>(leftOutput * maxVelocity));
 }
 
-void XDriveModel::driveVectorVoltage(double iforwardSpeed, double iyaw) {
+void XDriveModel::driveVectorVoltage(const double iforwardSpeed, const double iyaw) {
   // This code is taken from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   const double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);

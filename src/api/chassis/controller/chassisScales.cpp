@@ -8,15 +8,15 @@
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 
 namespace okapi {
-ChassisScales::ChassisScales(const std::initializer_list<QLength> &iwheelbase,
+ChassisScales::ChassisScales(const std::initializer_list<QLength> &idimensions,
                              const std::int32_t itpr,
                              const std::shared_ptr<Logger> &ilogger)
   : tpr(itpr) {
-  validateInput(iwheelbase.size(), ilogger);
+  validateInput(idimensions.size(), ilogger);
 
-  std::vector<QLength> vec(iwheelbase);
+  std::vector<QLength> vec(idimensions);
   wheelDiameter = vec.at(0);
-  wheelbaseWidth = vec.at(1);
+  wheelTrack = vec.at(1);
 
   if (vec.size() >= 3) {
     middleWheelDistance = vec.at(2);
@@ -31,7 +31,7 @@ ChassisScales::ChassisScales(const std::initializer_list<QLength> &iwheelbase,
   }
 
   straight = static_cast<double>(tpr / (wheelDiameter.convert(meter) * 1_pi));
-  turn = wheelbaseWidth.convert(meter) / wheelDiameter.convert(meter);
+  turn = wheelTrack.convert(meter) / wheelDiameter.convert(meter);
   middle = static_cast<double>(tpr / (middleWheelDiameter.convert(meter) * 1_pi));
 }
 
@@ -58,7 +58,7 @@ ChassisScales::ChassisScales(const std::initializer_list<double> &iscales,
   }
 
   wheelDiameter = (tpr / (straight * 1_pi)) * meter;
-  wheelbaseWidth = turn * wheelDiameter;
+  wheelTrack = turn * wheelDiameter;
   middleWheelDiameter = (tpr / (middle * 1_pi)) * meter;
 
   if (vec.size() >= 4) {

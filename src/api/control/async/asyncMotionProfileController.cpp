@@ -138,7 +138,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
 
   LOG_INFO_S("AsyncMotionProfileController: Modifying for tank drive");
   pathfinder_modify_tank(
-    trajectory, length, leftTrajectory, rightTrajectory, scales.wheelbaseWidth.convert(meter));
+    trajectory, length, leftTrajectory, rightTrajectory, scales.wheelTrack.convert(meter));
 
   free(trajectory);
 
@@ -197,9 +197,9 @@ void AsyncMotionProfileController::setTarget(std::string ipathId,
            std::to_string(ibackwards) + ", " + std::to_string(imirrored) + ")");
 
   currentPath = ipathId;
-  isRunning.store(true, std::memory_order_release);
   direction.store(boolToSign(!ibackwards), std::memory_order_release);
   mirrored.store(imirrored, std::memory_order_release);
+  isRunning.store(true, std::memory_order_release);
 }
 
 void AsyncMotionProfileController::controllerSet(std::string ivalue) {

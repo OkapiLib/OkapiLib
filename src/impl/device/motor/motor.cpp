@@ -277,11 +277,11 @@ void Motor::controllerSet(const double ivalue) {
 
 inline namespace literals {
 okapi::Motor operator"" _mtr(const unsigned long long iport) {
-  return okapi::Motor(static_cast<uint8_t>(iport), false, AbstractMotor::gearset::red);
+  return okapi::Motor(static_cast<uint8_t>(iport), false, AbstractMotor::gearset::green);
 }
 
 okapi::Motor operator"" _rmtr(const unsigned long long iport) {
-  return okapi::Motor(static_cast<uint8_t>(iport), true, AbstractMotor::gearset::red);
+  return okapi::Motor(static_cast<uint8_t>(iport), true, AbstractMotor::gearset::green);
 }
 } // namespace literals
 } // namespace okapi

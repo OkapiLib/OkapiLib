@@ -130,6 +130,7 @@ add_executable(OkapiLibV5
         src/api/chassis/controller/chassisControllerIntegrated.cpp
         src/api/chassis/controller/chassisControllerPid.cpp
         src/api/chassis/controller/chassisScales.cpp
+        src/api/chassis/controller/chassisScales.cpp
         src/api/chassis/controller/odomChassisController.cpp
         src/api/chassis/controller/odomChassisControllerIntegrated.cpp
         src/api/chassis/controller/odomChassisControllerPid.cpp
@@ -205,7 +206,8 @@ add_executable(OkapiLibV5
         test/odomChassisControllerPidTest.cpp
         test/asyncWrapperTests.cpp
         test/offsettableControllerInputTests.cpp
-        test/asyncPosPIDControllerTests.cpp test/threeEncoderOdometryTests.cpp)
+        test/asyncPosPIDControllerTests.cpp
+        test/threeEncoderOdometryTests.cpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)

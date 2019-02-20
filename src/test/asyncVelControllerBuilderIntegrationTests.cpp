@@ -15,12 +15,13 @@ static void testMaxVelOnPIDController() {
   printf("Testing PID controller obeys maximum velocity\n");
   resetHardware();
 
-  const double maxVel = 20;
+  const double maxVel = 30;
   auto controller = AsyncVelControllerBuilder()
                       .withMaxVelocity(maxVel)
                       .withMotor(MOTOR_1_PORT)
-                      .withGains({0.01, 0, 0})
-                      .withVelMath(VelMathFactory::createPtr(imev5RedTPR))
+                      .withGains({0.0005, 0, 0})
+                      .withGearset(MOTOR_GEARSET)
+                      .withVelMath(VelMathFactory::createPtr(toUnderlyingType(MOTOR_GEARSET)))
                       .build();
 
   Motor motor(MOTOR_1_PORT);
@@ -37,7 +38,7 @@ static void testMaxVelOnPIDController() {
   motor.moveVelocity(0);
 
   test("Steady-state average RPM should be equal to max velocity",
-       TEST_BODY(AssertThat, filter.getOutput(), EqualsWithDelta(maxVel, 2)));
+       TEST_BODY(AssertThat, filter.getOutput(), EqualsWithDelta(maxVel, 5)));
 
   resetHardware();
   pros::delay(500);

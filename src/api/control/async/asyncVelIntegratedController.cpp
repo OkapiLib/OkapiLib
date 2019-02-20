@@ -46,7 +46,7 @@ void AsyncVelIntegratedController::setTarget(const double itarget) {
     motor->moveVelocity(static_cast<int16_t>(boundedTarget));
   }
 
-  lastTarget = boundedTarget;
+  lastTarget = itarget;
 }
 
 double AsyncVelIntegratedController::getTarget() {
@@ -54,7 +54,7 @@ double AsyncVelIntegratedController::getTarget() {
 }
 
 double AsyncVelIntegratedController::getError() const {
-  return lastTarget * pair.ratio - motor->getActualVelocity();
+  return lastTarget - motor->getActualVelocity() / pair.ratio;
 }
 
 bool AsyncVelIntegratedController::isSettled() {

@@ -29,7 +29,7 @@ void ChassisController::driveVector(const double iforwardSpeed, const double iya
   model->driveVector(iforwardSpeed, iyaw);
 }
 
-void ChassisController::driveVectorVoltage(double iforwardSpeed, double iyaw) {
+void ChassisController::driveVectorVoltage(const double iforwardSpeed, const double iyaw) {
   model->driveVectorVoltage(iforwardSpeed, iyaw);
 }
 

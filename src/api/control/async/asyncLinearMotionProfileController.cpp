@@ -156,8 +156,8 @@ void AsyncLinearMotionProfileController::setTarget(std::string ipathId, const bo
            std::to_string(ibackwards) + ")");
 
   currentPath = ipathId;
-  isRunning.store(true, std::memory_order_release);
   direction.store(boolToSign(!ibackwards), std::memory_order_release);
+  isRunning.store(true, std::memory_order_release);
 }
 
 void AsyncLinearMotionProfileController::controllerSet(const std::string ivalue) {

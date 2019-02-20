@@ -20,11 +20,10 @@ class ChassisScales {
   public:
   /**
    * The scales a Chassis Controller needs to do all of its closed-loop control. First index is
-   * the wheel diameter, second index is the wheelbase width. An optional third index is the middle
-   * wheel diameter if you are using a 3-encoder setup. Read the clawbot programming tutorial for
-   * more information behind the meaning of these two numbers.
+   * the wheel diameter, second index is the wheel track. An optional third index is the middle
+   * wheel diameter if you are using a 3-encoder setup.
    *
-   * The wheelbase diameter is the center-to-center distance between the wheels (center-to-center
+   * The wheel track is the center-to-center distance between the wheels (center-to-center
    * meaning the width between the centers of both wheels). For example, if you are using four inch
    * omni wheels and there are 11.5 inches between the centers of each wheel, you would call the
    * constructor like so:
@@ -40,7 +39,7 @@ class ChassisScales {
    *                     |         +       v       +  |
    *                     |        ++---------------++ |
    *                     |        |                 | v
-   *    Wheelbase Width  |        |                 |
+   *       Wheel Track   |        |                 |
    *                     |        |        x        |+|  <-- Middle wheel
    *                     |        |                 |
    *                     |        |                 |
@@ -49,12 +48,12 @@ class ChassisScales {
    *                     +--->    ===             ===
    *
    *
-   * @param  iwheelbase {wheel diameter, wheelbase width} or {wheel diameter, wheelbase width,
+   * @param  idimensions {wheel diameter, wheel track} or {wheel diameter, wheel track,
    * length to middle wheel, middle wheel diameter}
    * @param itpr The ticks per revolution of the encoders.
    * @param ilogger The logger this instance will log to.
    */
-  ChassisScales(const std::initializer_list<QLength> &iwheelbase,
+  ChassisScales(const std::initializer_list<QLength> &idimensions,
                 std::int32_t itpr,
                 const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
@@ -63,8 +62,6 @@ class ChassisScales {
    * the straight scale, second index is the turn scale. An optional third index is the middle
    * scale. The straight scale converts motor degrees to meters, the turn scale converts motor
    * degrees to robot turn degrees, and the middle scale converts middle wheel degrees to meters.
-   * Read the clawbot programming tutorial for more information behind the meaning of these two
-   * numbers.
    *
    * @param  iscales {straight scale, turn scale} or {straight scale, turn scale, length to middle
    * wheel in meters, middle scale}
@@ -76,7 +73,7 @@ class ChassisScales {
                 const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
   QLength wheelDiameter;
-  QLength wheelbaseWidth;
+  QLength wheelTrack;
   QLength middleWheelDistance;
   QLength middleWheelDiameter;
   double straight;
