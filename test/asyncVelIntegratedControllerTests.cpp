@@ -34,7 +34,6 @@ TEST_F(AsyncVelIntegratedControllerTest, GetTargetTest) {
   EXPECT_EQ(controller->getTarget(), 10);
 }
 
-
 TEST_F(AsyncVelIntegratedControllerTest, GetErrorTest) {
   controller->setTarget(10);
   EXPECT_EQ(controller->getError(), 10);
