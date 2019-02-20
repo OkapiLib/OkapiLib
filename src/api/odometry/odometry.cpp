@@ -48,13 +48,13 @@ OdomState Odometry::odomMathStep(std::valarray<std::int32_t> &tickDiff, const QT
   const double deltaL = tickDiff[0] / chassisScales.straight;
   const double deltaR = tickDiff[1] / chassisScales.straight;
 
-  double deltaTheta = (deltaL - deltaR) / chassisScales.wheelbaseWidth.convert(meter);
+  double deltaTheta = (deltaL - deltaR) / chassisScales.wheelTrack.convert(meter);
   double localOffX, localOffY;
 
   if (deltaTheta != 0) {
     localOffX = 2 * sin(deltaTheta / 2) * chassisScales.middleWheelDistance.convert(meter);
-    localOffY = 2 * sin(deltaTheta / 2) *
-                (deltaR / deltaTheta + chassisScales.wheelbaseWidth.convert(meter) / 2);
+    localOffY =
+      2 * sin(deltaTheta / 2) * (deltaR / deltaTheta + chassisScales.wheelTrack.convert(meter) / 2);
   } else {
     localOffX = 0;
     localOffY = deltaR;

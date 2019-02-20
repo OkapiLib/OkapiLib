@@ -33,7 +33,7 @@ OdomState ThreeEncoderOdometry::odomMathStep(std::valarray<std::int32_t> &tickDi
   const double deltaL = tickDiff[0] / chassisScales.straight;
   const double deltaR = tickDiff[1] / chassisScales.straight;
 
-  double deltaTheta = (deltaL - deltaR) / chassisScales.wheelbaseWidth.convert(meter);
+  double deltaTheta = (deltaL - deltaR) / chassisScales.wheelTrack.convert(meter);
   double localOffX, localOffY;
 
   const auto deltaM = static_cast<const double>(
@@ -46,8 +46,8 @@ OdomState ThreeEncoderOdometry::odomMathStep(std::valarray<std::int32_t> &tickDi
   } else {
     localOffX = 2 * sin(deltaTheta / 2) *
                 (deltaM / deltaTheta + chassisScales.middleWheelDistance.convert(meter));
-    localOffY = 2 * sin(deltaTheta / 2) *
-                (deltaR / deltaTheta + chassisScales.wheelbaseWidth.convert(meter) / 2);
+    localOffY =
+      2 * sin(deltaTheta / 2) * (deltaR / deltaTheta + chassisScales.wheelTrack.convert(meter) / 2);
   }
 
   double avgA = state.theta.convert(radian) + (deltaTheta / 2);
