@@ -7,6 +7,7 @@
  */
 #pragma once
 
+#include "okapi/api/device/motor/abstractMotor.hpp"
 #include <algorithm>
 #include <cstdint>
 #include <math.h>
@@ -125,5 +126,23 @@ constexpr auto boolToSign(const bool b) noexcept {
  */
 constexpr long modulus(const long lhs, const long rhs) noexcept {
   return ((lhs % rhs) + rhs) % rhs;
+}
+
+/**
+ * Converts a gearset to its TPR.
+ *
+ * @param igearset The gearset.
+ * @return The TPR.
+ */
+constexpr std::int32_t gearsetToTPR(const AbstractMotor::gearset igearset) noexcept {
+  switch (igearset) {
+  case AbstractMotor::gearset::red:
+    return imev5RedTPR;
+  case AbstractMotor::gearset::green:
+    return imev5GreenTPR;
+  case AbstractMotor::gearset::blue:
+  case AbstractMotor::gearset::invalid:
+    return imev5BlueTPR;
+  }
 }
 } // namespace okapi
