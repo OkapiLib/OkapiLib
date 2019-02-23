@@ -88,8 +88,8 @@ void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
   leftController->flipDisable(false);
   rightController->flipDisable(false);
 
-  const double newTarget = idegTarget.convert(degree) * scales.turn * (scales.tpr / 360.0) *
-                           gearsetRatioPair.ratio * boolToSign(normalTurns);
+  const double newTarget =
+    idegTarget.convert(degree) * scales.turn * gearsetRatioPair.ratio * boolToSign(normalTurns);
 
   LOG_INFO("ChassisControllerIntegrated: turning " + std::to_string(newTarget) + " motor degrees");
 

@@ -21,7 +21,7 @@ static void testMaxVelOnPIDController() {
                       .withMotor(MOTOR_1_PORT)
                       .withGains({0.0005, 0, 0})
                       .withGearset(MOTOR_GEARSET)
-                      .withVelMath(VelMathFactory::createPtr(toUnderlyingType(MOTOR_GEARSET)))
+                      .withVelMath(VelMathFactory::createPtr(gearsetToTPR(MOTOR_GEARSET)))
                       .build();
 
   Motor motor(MOTOR_1_PORT);
