@@ -35,8 +35,15 @@ AsyncLinearMotionProfileController::~AsyncLinearMotionProfileController() {
   delete task;
 }
 
+void AsyncLinearMotionProfileController::generatePath(
+  std::initializer_list<okapi::QLength> iwaypoints,
+  const std::string &ipathId) {
+  generatePath(iwaypoints, ipathId, limits);
+}
+
 void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLength> iwaypoints,
-                                                      const std::string &ipathId) {
+                                                      const std::string &ipathId,
+                                                      const PathfinderLimits &ilimits) {
   if (iwaypoints.size() == 0) {
     // No point in generating a path
     LOG_WARN_S("AsyncLinearMotionProfileController: Not generating a path because no waypoints were"
@@ -58,9 +65,9 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
                      FIT_HERMITE_CUBIC,
                      PATHFINDER_SAMPLES_FAST,
                      0.001,
-                     limits.maxVel,
-                     limits.maxAccel,
-                     limits.maxJerk,
+                     ilimits.maxVel,
+                     ilimits.maxAccel,
+                     ilimits.maxJerk,
                      &candidate);
 
   const int length = candidate.length;
@@ -237,11 +244,18 @@ void AsyncLinearMotionProfileController::waitUntilSettled() {
   LOG_INFO_S("AsyncLinearMotionProfileController: Done waiting to settle");
 }
 
+void AsyncLinearMotionProfileController::moveTo(const okapi::QLength &iposition,
+                                                const okapi::QLength &itarget,
+                                                bool ibackwards) {
+  moveTo(iposition, itarget, limits, ibackwards);
+}
+
 void AsyncLinearMotionProfileController::moveTo(const QLength &iposition,
                                                 const QLength &itarget,
+                                                const PathfinderLimits &ilimits,
                                                 const bool ibackwards) {
   std::string name = reinterpret_cast<const char *>(this); // hmmmm...
-  generatePath({iposition, itarget}, name);
+  generatePath({iposition, itarget}, name, ilimits);
   setTarget(name, ibackwards);
   waitUntilSettled();
   removePath(name);

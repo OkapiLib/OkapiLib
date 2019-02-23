@@ -27,7 +27,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   /**
    * An Async Controller which generates and follows 1D motion profiles.
    *
-   * @param ilimits The limits.
+   * @param ilimits The default limits.
    * @param ioutput The output to write velocity targets to.
    * @param idiameter The effective diameter for whatever the motor spins.
    * @param ipair The gearset.
@@ -60,6 +60,22 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * @param ipathId A unique identifier to save the path with.
    */
   void generatePath(std::initializer_list<QLength> iwaypoints, const std::string &ipathId);
+
+  /**
+   * Generates a path which intersects the given waypoints and saves it internally with a key of
+   * pathId. Call executePath() with the same pathId to run it.
+   *
+   * If the waypoints form a path which is impossible to achieve, an instance of std::runtime_error
+   * is thrown (and an error is logged) which describes the waypoints. If there are no waypoints,
+   * no path is generated.
+   *
+   * @param iwaypoints The waypoints to hit on the path.
+   * @param ipathId A unique identifier to save the path with.
+   * @param ilimits The limits to use for this path only.
+   */
+  void generatePath(std::initializer_list<QLength> iwaypoints,
+                    const std::string &ipathId,
+                    const PathfinderLimits &ilimits);
 
   /**
    * Removes a path and frees the memory it used.
@@ -127,6 +143,20 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * @param ibackwards Whether to follow the profile backwards.
    */
   void moveTo(const QLength &iposition, const QLength &itarget, bool ibackwards = false);
+
+  /**
+   * Generates a new path from the position (typically the current position) to the target and
+   * blocks until the controller has settled. Does not save the path which was generated.
+   *
+   * @param iposition The starting position.
+   * @param itarget The target position.
+   * @param ilimits The limits to use for this path only.
+   * @param ibackwards Whether to follow the profile backwards.
+   */
+  void moveTo(const QLength &iposition,
+              const QLength &itarget,
+              const PathfinderLimits &ilimits,
+              bool ibackwards = false);
 
   /**
    * Returns the last error of the controller. Does not update when disabled. Returns zero if there
