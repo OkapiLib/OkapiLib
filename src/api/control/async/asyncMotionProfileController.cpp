@@ -45,6 +45,12 @@ AsyncMotionProfileController::~AsyncMotionProfileController() {
 
 void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwaypoints,
                                                 const std::string &ipathId) {
+  generatePath(iwaypoints, ipathId, limits);
+}
+
+void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwaypoints,
+                                                const std::string &ipathId,
+                                                const PathfinderLimits &ilimits) {
   if (iwaypoints.size() == 0) {
     // No point in generating a path
     LOG_WARN_S(
@@ -67,9 +73,9 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
                      FIT_HERMITE_CUBIC,
                      PATHFINDER_SAMPLES_FAST,
                      0.001,
-                     limits.maxVel,
-                     limits.maxAccel,
-                     limits.maxJerk,
+                     ilimits.maxVel,
+                     ilimits.maxAccel,
+                     ilimits.maxJerk,
                      &candidate);
 
   const int length = candidate.length;
@@ -288,10 +294,17 @@ void AsyncMotionProfileController::waitUntilSettled() {
 }
 
 void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints,
+                                          bool ibackwards,
+                                          bool imirrored) {
+  moveTo(iwaypoints, limits, ibackwards, imirrored);
+}
+
+void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints,
+                                          const PathfinderLimits &ilimits,
                                           const bool ibackwards,
                                           const bool imirrored) {
   std::string name = reinterpret_cast<const char *>(this); // hmmmm...
-  generatePath(iwaypoints, name);
+  generatePath(iwaypoints, name, ilimits);
   setTarget(name, ibackwards, imirrored);
   waitUntilSettled();
   removePath(name);
