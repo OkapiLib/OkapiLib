@@ -43,7 +43,7 @@ AsyncMotionProfileController::~AsyncMotionProfileController() {
   delete task;
 }
 
-void AsyncMotionProfileController::generatePath(std::initializer_list<okapi::Point> iwaypoints,
+void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwaypoints,
                                                 const std::string &ipathId) {
   generatePath(iwaypoints, ipathId, limits);
 }
@@ -293,7 +293,7 @@ void AsyncMotionProfileController::waitUntilSettled() {
   LOG_INFO_S("AsyncMotionProfileController: Done waiting to settle");
 }
 
-void AsyncMotionProfileController::moveTo(std::initializer_list<okapi::Point> iwaypoints,
+void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints,
                                           bool ibackwards,
                                           bool imirrored) {
   moveTo(iwaypoints, limits, ibackwards, imirrored);

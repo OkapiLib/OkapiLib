@@ -35,9 +35,8 @@ AsyncLinearMotionProfileController::~AsyncLinearMotionProfileController() {
   delete task;
 }
 
-void AsyncLinearMotionProfileController::generatePath(
-  std::initializer_list<okapi::QLength> iwaypoints,
-  const std::string &ipathId) {
+void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLength> iwaypoints,
+                                                      const std::string &ipathId) {
   generatePath(iwaypoints, ipathId, limits);
 }
 
@@ -244,8 +243,8 @@ void AsyncLinearMotionProfileController::waitUntilSettled() {
   LOG_INFO_S("AsyncLinearMotionProfileController: Done waiting to settle");
 }
 
-void AsyncLinearMotionProfileController::moveTo(const okapi::QLength &iposition,
-                                                const okapi::QLength &itarget,
+void AsyncLinearMotionProfileController::moveTo(const QLength &iposition,
+                                                const QLength &itarget,
                                                 bool ibackwards) {
   moveTo(iposition, itarget, limits, ibackwards);
 }
