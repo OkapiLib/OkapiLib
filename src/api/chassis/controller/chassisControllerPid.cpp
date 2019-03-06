@@ -123,7 +123,7 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
 
   const double newTarget = itarget.convert(meter) * scales.straight * gearsetRatioPair.ratio;
 
-  LOG_INFO("ChassisControllerPID: moving " + std::to_string(newTarget) + " motor degrees");
+  LOG_INFO("ChassisControllerPID: moving " + std::to_string(newTarget) + " motor ticks");
 
   distancePid->setTarget(newTarget);
   anglePid->setTarget(0);
@@ -133,7 +133,7 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
 }
 
 void ChassisControllerPID::moveDistanceAsync(const double itarget) {
-  // Divide by straightScale so the final result turns back into motor degrees
+  // Divide by straightScale so the final result turns back into motor ticks
   moveDistanceAsync((itarget / scales.straight) * meter);
 }
 
@@ -143,7 +143,7 @@ void ChassisControllerPID::moveDistance(const QLength itarget) {
 }
 
 void ChassisControllerPID::moveDistance(const double itarget) {
-  // Divide by straightScale so the final result turns back into motor degrees
+  // Divide by straightScale so the final result turns back into motor ticks
   moveDistance((itarget / scales.straight) * meter);
 }
 
@@ -160,7 +160,7 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   const double newTarget =
     idegTarget.convert(degree) * scales.turn * gearsetRatioPair.ratio * boolToSign(normalTurns);
 
-  LOG_INFO("ChassisControllerPID: turning " + std::to_string(newTarget) + " motor degrees");
+  LOG_INFO("ChassisControllerPID: turning " + std::to_string(newTarget) + " motor ticks");
 
   turnPid->setTarget(newTarget);
 
@@ -169,7 +169,7 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
 }
 
 void ChassisControllerPID::turnAngleAsync(const double idegTarget) {
-  // Divide by turnScale so the final result turns back into motor degrees
+  // Divide by turnScale so the final result turns back into motor ticks
   turnAngleAsync((idegTarget / scales.turn) * degree);
 }
 
@@ -179,7 +179,7 @@ void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
 }
 
 void ChassisControllerPID::turnAngle(const double idegTarget) {
-  // Divide by turnScale so the final result turns back into motor degrees
+  // Divide by turnScale so the final result turns back into motor ticks
   turnAngle((idegTarget / scales.turn) * degree);
 }
 

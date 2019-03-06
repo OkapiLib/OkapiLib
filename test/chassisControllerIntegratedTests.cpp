@@ -21,7 +21,7 @@ class MockSkidSteerModel : public SkidSteerModel {
 class ChassisControllerIntegratedTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    scales = new ChassisScales({2, 2}, quadEncoderTPR);
+    scales = new ChassisScales({6_in, 11_in}, imev5GreenTPR);
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
 
@@ -36,7 +36,7 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
       std::shared_ptr<ChassisModel>(model),
       std::unique_ptr<AsyncPosIntegratedController>(leftController),
       std::unique_ptr<AsyncPosIntegratedController>(rightController),
-      AbstractMotor::gearset::red,
+      AbstractMotor::gearset::green,
       *scales);
   }
 
@@ -54,6 +54,12 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
   MockSkidSteerModel *model;
 };
 
+TEST_F(ChassisControllerIntegratedTest, GearsetIsCorrect) {
+  EXPECT_EQ(AbstractMotor::gearset::green, controller->getGearsetRatioPair().internalGearset);
+  EXPECT_EQ(imev5GreenTPR, gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_EQ(1, controller->getGearsetRatioPair().ratio);
+}
+
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceRawUnitsTest) {
   controller->moveDistance(100);
 
@@ -67,10 +73,12 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceUnitsTest) {
-  controller->moveDistance(1_m);
+  controller->moveDistance(6_in * 1_pi);
 
-  EXPECT_DOUBLE_EQ(leftController->getTarget(), 2);
-  EXPECT_DOUBLE_EQ(rightController->getTarget(), 2);
+  EXPECT_DOUBLE_EQ(leftController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_DOUBLE_EQ(rightController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   EXPECT_TRUE(leftController->isDisabled());
   EXPECT_TRUE(rightController->isDisabled());
@@ -96,18 +104,22 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceAsyncRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceAsyncUnitsTest) {
-  controller->moveDistanceAsync(1_m);
+  controller->moveDistanceAsync(6_in * 1_pi);
 
-  EXPECT_DOUBLE_EQ(leftController->getTarget(), 2);
-  EXPECT_DOUBLE_EQ(rightController->getTarget(), 2);
+  EXPECT_DOUBLE_EQ(leftController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_DOUBLE_EQ(rightController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   EXPECT_FALSE(leftController->isDisabled());
   EXPECT_FALSE(rightController->isDisabled());
 
   controller->waitUntilSettled();
 
-  EXPECT_DOUBLE_EQ(leftController->getTarget(), 2);
-  EXPECT_DOUBLE_EQ(rightController->getTarget(), 2);
+  EXPECT_DOUBLE_EQ(leftController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_DOUBLE_EQ(rightController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   EXPECT_TRUE(leftController->isDisabled());
   EXPECT_TRUE(rightController->isDisabled());
@@ -128,10 +140,13 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, TurnAngleUnitsTest) {
-  controller->turnAngle(45_deg);
+  controller->turnAngle(gearsetToTPR(controller->getGearsetRatioPair().internalGearset) *
+                        (6.0 / 11.0) * degree);
 
-  EXPECT_DOUBLE_EQ(leftController->getTarget(), 90);
-  EXPECT_DOUBLE_EQ(rightController->getTarget(), -90);
+  EXPECT_DOUBLE_EQ(leftController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_DOUBLE_EQ(rightController->getTarget(),
+                   -1 * gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   EXPECT_TRUE(leftController->isDisabled());
   EXPECT_TRUE(rightController->isDisabled());
@@ -157,10 +172,13 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleAsyncRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, TurnAngleAsyncUnitsTest) {
-  controller->turnAngleAsync(45_deg);
+  controller->turnAngleAsync(gearsetToTPR(controller->getGearsetRatioPair().internalGearset) *
+                             (6.0 / 11.0) * degree);
 
-  EXPECT_DOUBLE_EQ(leftController->getTarget(), 90);
-  EXPECT_DOUBLE_EQ(rightController->getTarget(), -90);
+  EXPECT_DOUBLE_EQ(leftController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_DOUBLE_EQ(rightController->getTarget(),
+                   -1 * gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   EXPECT_FALSE(leftController->isDisabled());
   EXPECT_FALSE(rightController->isDisabled());
@@ -175,10 +193,13 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleAsyncUnitsTest) {
 
 TEST_F(ChassisControllerIntegratedTest, MirrorTurnTest) {
   controller->setTurnsMirrored(true);
-  controller->turnAngle(45_deg);
+  controller->turnAngle(gearsetToTPR(controller->getGearsetRatioPair().internalGearset) *
+                        (6.0 / 11.0) * degree);
 
-  EXPECT_DOUBLE_EQ(leftController->getTarget(), -90);
-  EXPECT_DOUBLE_EQ(rightController->getTarget(), 90);
+  EXPECT_DOUBLE_EQ(leftController->getTarget(),
+                   -1 * gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_DOUBLE_EQ(rightController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 }
 
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceThenTurnAngleAsyncTest) {

@@ -42,7 +42,7 @@ void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
 }
 
 void ChassisControllerIntegrated::moveDistance(const double itarget) {
-  // Divide by straightScale so the final result turns back into motor degrees
+  // Divide by straightScale so the final result turns back into motor ticks
   moveDistance((itarget / scales.straight) * meter);
 }
 
@@ -57,7 +57,7 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
 
   const double newTarget = itarget.convert(meter) * scales.straight * gearsetRatioPair.ratio;
 
-  LOG_INFO("ChassisControllerIntegrated: moving " + std::to_string(newTarget) + " motor degrees");
+  LOG_INFO("ChassisControllerIntegrated: moving " + std::to_string(newTarget) + " motor ticks");
 
   const auto enc = model->getSensorVals();
   leftController->setTarget(newTarget + enc[0]);
@@ -65,7 +65,7 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
 }
 
 void ChassisControllerIntegrated::moveDistanceAsync(const double itarget) {
-  // Divide by straightScale so the final result turns back into motor degrees
+  // Divide by straightScale so the final result turns back into motor ticks
   moveDistanceAsync((itarget / scales.straight) * meter);
 }
 
@@ -75,7 +75,7 @@ void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
 }
 
 void ChassisControllerIntegrated::turnAngle(const double idegTarget) {
-  // Divide by turnScale so the final result turns back into motor degrees
+  // Divide by turnScale so the final result turns back into motor ticks
   turnAngle((idegTarget / scales.turn) * degree);
 }
 
@@ -91,7 +91,7 @@ void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
   const double newTarget =
     idegTarget.convert(degree) * scales.turn * gearsetRatioPair.ratio * boolToSign(normalTurns);
 
-  LOG_INFO("ChassisControllerIntegrated: turning " + std::to_string(newTarget) + " motor degrees");
+  LOG_INFO("ChassisControllerIntegrated: turning " + std::to_string(newTarget) + " motor ticks");
 
   const auto enc = model->getSensorVals();
   leftController->setTarget(newTarget + enc[0]);
@@ -99,7 +99,7 @@ void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
 }
 
 void ChassisControllerIntegrated::turnAngleAsync(const double idegTarget) {
-  // Divide by turnScale so the final result turns back into motor degrees
+  // Divide by turnScale so the final result turns back into motor ticks
   turnAngleAsync((idegTarget / scales.turn) * degree);
 }
 
