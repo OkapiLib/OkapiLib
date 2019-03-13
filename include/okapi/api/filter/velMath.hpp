@@ -78,7 +78,7 @@ class VelMath {
   Logger *logger;
   QAngularSpeed vel{0_rpm};
   QAngularSpeed lastVel{0_rpm};
-  QAngularAcceleration accel{0_rpm / 0_s};
+  QAngularAcceleration accel{0.0};
   double lastPos{0};
   double ticksPerRev;
 
