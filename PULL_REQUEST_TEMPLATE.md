@@ -6,7 +6,7 @@ We must be able to understand the design of your change from this description. I
 
 ### Motivation
 
-<!-- Why do this change need to be made? -->
+<!-- Why does this change need to be made? -->
 
 ### Possible Drawbacks
 
