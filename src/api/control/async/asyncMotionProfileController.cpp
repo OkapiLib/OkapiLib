@@ -8,6 +8,7 @@
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include <numeric>
+#include <algorithm>
 
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(
@@ -361,35 +362,53 @@ CrossplatformThread *AsyncMotionProfileController::getThread() const {
 }
 
 void AsyncMotionProfileController::storePath(std::string idirectory, std::string ipathId) {
-  // todo this makes the assumption that idirectory doesn't have a trailing / and that
-  // ipathId is a valid part of a filename-which is not necessarily true
-  FILE* leftPathFile = fopen((idirectory + "/" + ipathId + ".left.csv").c_str(), "w");
-  FILE* rightPathFile = fopen((idirectory + "/" + ipathId + ".right.csv").c_str(), "w");
-  // todo file error checking
+  FILE* leftPathFile = fopen(makePath(idirectory, ipathId + ".left.csv").c_str(), "w");
+  FILE* rightPathFile = fopen(makePath(idirectory, ipathId + ".right.csv").c_str(), "w");
 
-  // todo make sure this is an actual loaded path that exists
+  // Make sure we can open the file successfully
+  if (leftPathFile == NULL || rightPathFile == NULL) {
+    logger->warn(
+      "AsyncMotionProfileController: Couldn't store path " +
+      ipathId + " in directory " + idirectory);
+    return;
+  }
+
   auto pathData = this->paths.find(ipathId);
-  int len = pathData->second.length;
 
-  // Serialize paths
-  pathfinder_serialize_csv(leftPathFile, pathData->second.left, len);
-  pathfinder_serialize_csv(rightPathFile, pathData->second.right, len);
+  // Make sure path exists
+  if (pathData == paths.end()) {
+    logger->warn(
+      "AsyncMotionProfileController: Controller was asked to serialize non-existent path " +
+      ipathId);
+    // Do nothing- can't serialize nonexistent path
+  }
+  else {
+    int len = pathData->second.length;
+
+    // Serialize paths
+    pathfinder_serialize_csv(leftPathFile, pathData->second.left, len);
+    pathfinder_serialize_csv(rightPathFile, pathData->second.right, len);
+  }
   
   fclose(leftPathFile);
   fclose(rightPathFile);
 }
 
 void AsyncMotionProfileController::loadPath(std::string idirectory, std::string ipathId) {
-  // todo this makes the assumption that idirectory doesn't have a trailing / and that
-  // ipathId is a valid part of a filename-which is not necessarily true
-  FILE* leftPathFile = fopen((idirectory + "/" + ipathId + ".left.csv").c_str(), "w");
-  FILE* rightPathFile = fopen((idirectory + "/" + ipathId + ".right.csv").c_str(), "w");
+  FILE* leftPathFile = fopen(makePath(idirectory, ipathId + ".left.csv").c_str(), "r");
+  FILE* rightPathFile = fopen(makePath(idirectory, ipathId + ".right.csv").c_str(), "r");
 
-  // todo file error checking
+  // Make sure we can open the file successfully
+  if (leftPathFile == NULL || rightPathFile == NULL) {
+    logger->warn(
+      "AsyncMotionProfileController: Couldn't load path " +
+      ipathId + " in directory " + idirectory + ". Make sure the file exists.");
+    return;
+  }
 
   // Count lines in file, remove one for headers
   int count = 0;
-  for (char c = getc(leftPathFile); c != EOF; c = getc(leftPathFile)) {
+  for (int c = getc(leftPathFile); c != EOF; c = getc(leftPathFile)) {
     if (c == '\n') {
       ++count;
     }
@@ -403,6 +422,28 @@ void AsyncMotionProfileController::loadPath(std::string idirectory, std::string 
 
   pathfinder_deserialize_csv(leftPathFile, leftTrajectory);
   pathfinder_deserialize_csv(rightPathFile, rightTrajectory);
+
+  fclose(leftPathFile);
+  fclose(rightPathFile);
+
+  // Remove the old path if it exists
+  removePath(ipathId);
+
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, count});
+}
+
+std::string AsyncMotionProfileController::makePath(std::string directory, std::string filename) {
+  std::string path(directory);
+  if (directory.length() == 0 || directory.back() != '/') {
+    path.append("/");
+  }
+  std::string filenameCopy(filename);
+  // Remove / from filename
+  // Requires testing- unsure of filename limitations
+  std::replace(filenameCopy.begin(), filenameCopy.end(), '/', '_');
+
+  path.append(filenameCopy);
+
+  return path;
 }
 } // namespace okapi
