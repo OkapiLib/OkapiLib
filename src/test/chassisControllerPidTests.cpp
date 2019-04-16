@@ -15,10 +15,11 @@ void testWaitUntilSettledExitsProperly() {
   printf("Testing waitUntilSettled() exits properly\n");
 
   auto drive = ChassisControllerFactory::create(
-    MOTOR_1_PORT * -1, MOTOR_2_PORT, {0.003}, {0}, {0.004}, AbstractMotor::gearset::green, {1, 1});
+    MOTOR_1_PORT * -1, MOTOR_2_PORT, {0.003}, {0}, {0.007}, AbstractMotor::gearset::green, {1, 1});
 
   for (int i = 0; i < 10; ++i) {
     drive.turnAngle(45_deg);
+
     for (int i = 0; i < 100; ++i) {
       int32_t mtr1Vel = pros::c::motor_get_target_velocity(MOTOR_1_PORT);
       int32_t mtr2Vel = pros::c::motor_get_target_velocity(MOTOR_2_PORT);
@@ -33,6 +34,8 @@ void testWaitUntilSettledExitsProperly() {
 
       pros::delay(10);
     }
+
+    test("Iteration " + std::to_string(i + 1), TEST_BODY(AssertThat, true, Equals(true)));
   }
 
   drive.stop();
