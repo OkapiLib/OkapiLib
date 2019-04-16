@@ -359,4 +359,50 @@ void AsyncMotionProfileController::startThread() {
 CrossplatformThread *AsyncMotionProfileController::getThread() const {
   return task;
 }
+
+void AsyncMotionProfileController::storePath(std::string idirectory, std::string ipathId) {
+  // todo this makes the assumption that idirectory doesn't have a trailing / and that
+  // ipathId is a valid part of a filename-which is not necessarily true
+  FILE* leftPathFile = fopen((idirectory + "/" + ipathId + ".left.csv").c_str(), "w");
+  FILE* rightPathFile = fopen((idirectory + "/" + ipathId + ".right.csv").c_str(), "w");
+  // todo file error checking
+
+  // todo make sure this is an actual loaded path that exists
+  auto pathData = this->paths.find(ipathId);
+  int len = pathData->second.length;
+
+  // Serialize paths
+  pathfinder_serialize_csv(leftPathFile, pathData->second.left, len);
+  pathfinder_serialize_csv(rightPathFile, pathData->second.right, len);
+  
+  fclose(leftPathFile);
+  fclose(rightPathFile);
+}
+
+void AsyncMotionProfileController::loadPath(std::string idirectory, std::string ipathId) {
+  // todo this makes the assumption that idirectory doesn't have a trailing / and that
+  // ipathId is a valid part of a filename-which is not necessarily true
+  FILE* leftPathFile = fopen((idirectory + "/" + ipathId + ".left.csv").c_str(), "w");
+  FILE* rightPathFile = fopen((idirectory + "/" + ipathId + ".right.csv").c_str(), "w");
+
+  // todo file error checking
+
+  // Count lines in file, remove one for headers
+  int count = 0;
+  for (char c = getc(leftPathFile); c != EOF; c = getc(leftPathFile)) {
+    if (c == '\n') {
+      ++count;
+    }
+  }
+  count--;
+  rewind(leftPathFile);
+
+  // Allocate memory
+  auto *leftTrajectory = (Segment *)malloc(sizeof(Segment) * count);
+  auto *rightTrajectory = (Segment *)malloc(sizeof(Segment) * count);
+
+  pathfinder_deserialize_csv(leftPathFile, leftTrajectory);
+  pathfinder_deserialize_csv(rightPathFile, rightTrajectory);
+  paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, count});
+}
 } // namespace okapi

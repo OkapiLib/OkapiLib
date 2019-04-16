@@ -220,6 +220,24 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    */
   CrossplatformThread *getThread() const;
 
+  /**
+   * Saves a generated path to files.
+   * Paths are stored as <ipathId>.<left/right>.csv
+   * The directory must exist.
+   * 
+   * @param idirectory The directory to store the path files in
+   * @param ipathId The path ID of the generated path
+   */
+  void storePath(std::string idirectory, std::string ipathId);
+
+  /**
+   * Loads a path from a directory containing path CSV files.
+   * 
+   * @param idirectory The directory that the path files are stored in
+   * @param ipathId The path ID that the paths are stored under (and will be loaded into)
+   */
+  void loadPath(std::string ifilename, std::string ipathId);
+
   protected:
   struct TrajectoryPair {
     Segment *left;
