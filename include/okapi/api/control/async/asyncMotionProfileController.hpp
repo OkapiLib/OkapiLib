@@ -236,7 +236,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param idirectory The directory that the path files are stored in
    * @param ipathId The path ID that the paths are stored under (and will be loaded into)
    */
-  void loadPath(std::string ifilename, std::string ipathId);
+  void loadPath(std::string idirectory, std::string ipathId);
 
   protected:
   struct TrajectoryPair {
