@@ -286,6 +286,6 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param filename The file name in the directory
    * @return the fully qualified and legal path name
    */
-  static std::string makePath(std::string directory, std::string filename);
+  static std::string makeFilePath(std::string directory, std::string filename);
 };
 } // namespace okapi

@@ -362,8 +362,8 @@ CrossplatformThread *AsyncMotionProfileController::getThread() const {
 }
 
 void AsyncMotionProfileController::storePath(std::string idirectory, std::string ipathId) {
-  FILE* leftPathFile = fopen(makePath(idirectory, ipathId + ".left.csv").c_str(), "w");
-  FILE* rightPathFile = fopen(makePath(idirectory, ipathId + ".right.csv").c_str(), "w");
+  FILE* leftPathFile = fopen(makeFilePath(idirectory, ipathId + ".left.csv").c_str(), "w");
+  FILE* rightPathFile = fopen(makeFilePath(idirectory, ipathId + ".right.csv").c_str(), "w");
 
   // Make sure we can open the file successfully
   if (leftPathFile == NULL || rightPathFile == NULL) {
@@ -395,8 +395,8 @@ void AsyncMotionProfileController::storePath(std::string idirectory, std::string
 }
 
 void AsyncMotionProfileController::loadPath(std::string idirectory, std::string ipathId) {
-  FILE* leftPathFile = fopen(makePath(idirectory, ipathId + ".left.csv").c_str(), "r");
-  FILE* rightPathFile = fopen(makePath(idirectory, ipathId + ".right.csv").c_str(), "r");
+  FILE* leftPathFile = fopen(makeFilePath(idirectory, ipathId + ".left.csv").c_str(), "r");
+  FILE* rightPathFile = fopen(makeFilePath(idirectory, ipathId + ".right.csv").c_str(), "r");
 
   // Make sure we can open the file successfully
   if (leftPathFile == NULL || rightPathFile == NULL) {
@@ -432,7 +432,7 @@ void AsyncMotionProfileController::loadPath(std::string idirectory, std::string 
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, count});
 }
 
-std::string AsyncMotionProfileController::makePath(std::string directory, std::string filename) {
+std::string AsyncMotionProfileController::makeFilePath(std::string directory, std::string filename) {
   std::string path(directory);
   if (directory.length() == 0 || directory.back() != '/') {
     path.append("/");
