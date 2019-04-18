@@ -481,9 +481,13 @@ std::string AsyncMotionProfileController::makeFilePath(std::string directory,
     path.append("/");
   }
   std::string filenameCopy(filename);
-  // Remove / from filename
-  // Requires testing- unsure of filename limitations
-  std::replace(filenameCopy.begin(), filenameCopy.end(), '/', '_');
+  // Remove restricted characters from filename
+  static const std::string illegalChars = "\\/:?*\"<>|";
+  for (auto it = filenameCopy.begin() ; it < filenameCopy.end(); it++) {
+    if (illegalChars.rfind(*it) != std::string::npos) {
+      it = filenameCopy.erase(it);
+    }
+  }
 
   path.append(filenameCopy);
 

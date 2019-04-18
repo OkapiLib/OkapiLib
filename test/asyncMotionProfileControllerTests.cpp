@@ -60,6 +60,8 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
   }
 
   void TearDown() override {
+    fclose(leftPathFile);
+    fclose(rightPathFile);
     free(leftFileBuf);
     free(rightFileBuf);
     delete controller;
@@ -310,6 +312,10 @@ TEST_F(AsyncMotionProfileControllerTest, FilePathJoin) {
                "/usd/subdir/test");
   EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("/subdir/", "test").c_str(),
                "/usd/subdir/test");
+}
+
+TEST_F(AsyncMotionProfileControllerTest, FilePathRestrict) {
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("", "t>e<s\"t\\F:i*l|e/").c_str(), "/usd/testFile");
 }
 
 TEST_F(AsyncMotionProfileControllerTest, SaveLoadPath) {
