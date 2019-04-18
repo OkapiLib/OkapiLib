@@ -371,11 +371,15 @@ void AsyncMotionProfileController::storePath(std::string idirectory, std::string
   // Make sure we can open the file successfully
   if (leftPathFile == NULL) {
     LOG_WARN("AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for writing");
+    if (rightPathFile != NULL) {
+      fclose(rightPathFile);
+    }
     return;
   }
   if (rightPathFile == NULL) {
     LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for writing");
-    return; // cppcheck thinks this is a resource leak, but fclose(NULL) is undefined behavior
+    fclose(leftPathFile);
+    return;
   }
 
   auto pathData = this->paths.find(ipathId);
@@ -406,11 +410,15 @@ void AsyncMotionProfileController::loadPath(std::string idirectory, std::string 
   // Make sure we can open the file successfully
   if (leftPathFile == NULL) {
     LOG_WARN("AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for reading");
-    return;
+    if (rightPathFile != NULL) {
+      fclose(rightPathFile);
+    }
+    return; 
   }
   if (rightPathFile == NULL) {
     LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for reading");
-    return; // cppcheck thinks this is a resource leak, but fclose(NULL) is undefined behavior
+    fclose(leftPathFile);
+    return;
   }
 
   // Count lines in file, remove one for headers
