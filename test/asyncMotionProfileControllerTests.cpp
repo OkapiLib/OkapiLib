@@ -21,6 +21,10 @@ class MockAsyncMotionProfileController : public AsyncMotionProfileController {
     AsyncMotionProfileController::executeSinglePath(path, std::move(rate));
   }
 
+  static std::string makeFilePath(std::string directory, std::string filename) {
+    return AsyncMotionProfileController::makeFilePath(directory, filename);
+  }
+
   bool executeSinglePathCalled{false};
 };
 
@@ -257,4 +261,21 @@ TEST_F(AsyncMotionProfileControllerTest, FollowPathMirrored) {
   // Disable the controller so gtest doesn't clean up the test fixture while the internal thread is
   // still running
   controller->flipDisable(true);
+}
+
+TEST_F(AsyncMotionProfileControllerTest, MakeFilePath) {
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/", "test").c_str(), "/usd/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/", "test").c_str(), "/usd/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd", "test").c_str(), "/usd/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd", "test").c_str(), "/usd/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("", "test").c_str(), "/usd/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/", "test").c_str(), "/usd/test");
+
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/subdir", "test").c_str(), "/usd/subdir/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/subdir", "test").c_str(), "/usd/subdir/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/subdir/", "test").c_str(), "/usd/subdir/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/subdir/", "test").c_str(), "/usd/subdir/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("subdir", "test").c_str(), "/usd/subdir/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("subdir/", "test").c_str(), "/usd/subdir/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/subdir/", "test").c_str(), "/usd/subdir/test");
 }

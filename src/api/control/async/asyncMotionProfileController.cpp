@@ -9,6 +9,7 @@
 #include "okapi/api/util/mathUtil.hpp"
 #include <numeric>
 #include <algorithm>
+#include <iostream>
 
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(
@@ -362,14 +363,20 @@ CrossplatformThread *AsyncMotionProfileController::getThread() const {
 }
 
 void AsyncMotionProfileController::storePath(std::string idirectory, std::string ipathId) {
-  FILE* leftPathFile = fopen(makeFilePath(idirectory, ipathId + ".left.csv").c_str(), "w");
-  FILE* rightPathFile = fopen(makeFilePath(idirectory, ipathId + ".right.csv").c_str(), "w");
+  std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
+  std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
+  FILE* leftPathFile = fopen(leftFilePath.c_str(), "w");
+  FILE* rightPathFile = fopen(rightFilePath.c_str(), "w");
 
   // Make sure we can open the file successfully
-  if (leftPathFile == NULL || rightPathFile == NULL) {
-    logger->warn(
-      "AsyncMotionProfileController: Couldn't store path " +
-      ipathId + " in directory " + idirectory);
+  if (leftPathFile == NULL) {
+    LOG_WARN(
+      "AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for writing");
+    return;
+  }
+  if (rightPathFile == NULL) {
+    LOG_WARN(
+      "AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for writing");
     return;
   }
 
@@ -377,7 +384,7 @@ void AsyncMotionProfileController::storePath(std::string idirectory, std::string
 
   // Make sure path exists
   if (pathData == paths.end()) {
-    logger->warn(
+    LOG_WARN(
       "AsyncMotionProfileController: Controller was asked to serialize non-existent path " +
       ipathId);
     // Do nothing- can't serialize nonexistent path
@@ -395,14 +402,20 @@ void AsyncMotionProfileController::storePath(std::string idirectory, std::string
 }
 
 void AsyncMotionProfileController::loadPath(std::string idirectory, std::string ipathId) {
-  FILE* leftPathFile = fopen(makeFilePath(idirectory, ipathId + ".left.csv").c_str(), "r");
-  FILE* rightPathFile = fopen(makeFilePath(idirectory, ipathId + ".right.csv").c_str(), "r");
+  std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
+  std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
+  FILE* leftPathFile = fopen(leftFilePath.c_str(), "r");
+  FILE* rightPathFile = fopen(rightFilePath.c_str(), "r");
 
   // Make sure we can open the file successfully
-  if (leftPathFile == NULL || rightPathFile == NULL) {
-    logger->warn(
-      "AsyncMotionProfileController: Couldn't load path " +
-      ipathId + " in directory " + idirectory + ". Make sure the file exists.");
+  if (leftPathFile == NULL) {
+    LOG_WARN(
+      "AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for reading");
+    return;
+  }
+  if (rightPathFile == NULL) {
+    LOG_WARN(
+      "AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for reading");
     return;
   }
 
@@ -413,7 +426,7 @@ void AsyncMotionProfileController::loadPath(std::string idirectory, std::string 
       ++count;
     }
   }
-  count--;
+  --count;
   rewind(leftPathFile);
 
   // Allocate memory
@@ -434,7 +447,28 @@ void AsyncMotionProfileController::loadPath(std::string idirectory, std::string 
 
 std::string AsyncMotionProfileController::makeFilePath(std::string directory, std::string filename) {
   std::string path(directory);
-  if (directory.length() == 0 || directory.back() != '/') {
+
+  // Make sure this is an absolute path beginning /usd/<subdirs>
+
+  // Checks first substring
+  if (path.rfind("/usd", 0) == std::string::npos) {
+    if (path.rfind("usd", 0) != std::string::npos) {
+      // There's a usd, but no beginning slash
+      path.insert(0, "/"); // We just need a slash
+    } 
+    else { // There's nothing at all
+      if (path.front() == '/') {
+        // Don't double up on slashes
+        path.insert(0, "/usd");
+      }
+      else {
+        path.insert(0, "/usd/");
+      }
+    }
+  }
+
+  // Add trailing slash if there isn't one
+  if (path.back() != '/') {
     path.append("/");
   }
   std::string filenameCopy(filename);

@@ -223,7 +223,8 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   /**
    * Saves a generated path to files.
    * Paths are stored as <ipathId>.<left/right>.csv
-   * The directory must exist.
+   * An SD card must be inserted into the brain and the directory must exist.
+   * idirectory can be prefixed with /usd/, but it this is not required.
    * 
    * @param idirectory The directory to store the path files in
    * @param ipathId The path ID of the generated path
@@ -231,7 +232,8 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   void storePath(std::string idirectory, std::string ipathId);
 
   /**
-   * Loads a path from a directory containing path CSV files.
+   * Loads a path from a directory on the SD card containing path CSV files.
+   * /usd/ is automatically prepended to idirectory if it is not specified.
    * 
    * @param idirectory The directory that the path files are stored in
    * @param ipathId The path ID that the paths are stored under (and will be loaded into)
