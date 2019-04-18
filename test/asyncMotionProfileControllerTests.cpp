@@ -15,22 +15,13 @@ class MockAsyncMotionProfileController : public AsyncMotionProfileController {
   public:
   using AsyncMotionProfileController::AsyncMotionProfileController;
   using AsyncMotionProfileController::convertLinearToRotational;
+  using AsyncMotionProfileController::internalLoadPath;
+  using AsyncMotionProfileController::internalStorePath;
+  using AsyncMotionProfileController::makeFilePath;
 
   void executeSinglePath(const TrajectoryPair &path, std::unique_ptr<AbstractRate> rate) override {
     executeSinglePathCalled = true;
     AsyncMotionProfileController::executeSinglePath(path, std::move(rate));
-  }
-
-  static std::string makeFilePath(std::string directory, std::string filename) {
-    return AsyncMotionProfileController::makeFilePath(directory, filename);
-  }
-
-  void internalStorePath(FILE *leftPathFile, FILE *rightPathFile, std::string ipathId) {
-    AsyncMotionProfileController::internalStorePath(leftPathFile, rightPathFile, ipathId);
-  }
-
-  void internalLoadPath(FILE *leftPathFile, FILE *rightPathFile, std::string ipathId) {
-    AsyncMotionProfileController::internalLoadPath(leftPathFile, rightPathFile, ipathId);
   }
 
   TrajectoryPair getPathData(std::string ipathId) {

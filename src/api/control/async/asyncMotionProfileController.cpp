@@ -463,8 +463,6 @@ std::string AsyncMotionProfileController::makeFilePath(std::string directory,
                                                        std::string filename) {
   std::string path(directory);
 
-  // Make sure this is an absolute path beginning /usd/<subdirs>
-
   // Checks first substring
   if (path.rfind("/usd", 0) == std::string::npos) {
     if (path.rfind("usd", 0) != std::string::npos) {
