@@ -264,18 +264,26 @@ TEST_F(AsyncMotionProfileControllerTest, FollowPathMirrored) {
 }
 
 TEST_F(AsyncMotionProfileControllerTest, MakeFilePath) {
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/", "test").c_str(), "/usd/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/", "test").c_str(),
+               "/usd/test");
   ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/", "test").c_str(), "/usd/test");
   ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd", "test").c_str(), "/usd/test");
   ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd", "test").c_str(), "/usd/test");
   ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("", "test").c_str(), "/usd/test");
   ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/", "test").c_str(), "/usd/test");
 
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/subdir", "test").c_str(), "/usd/subdir/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/subdir", "test").c_str(), "/usd/subdir/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/subdir/", "test").c_str(), "/usd/subdir/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/subdir/", "test").c_str(), "/usd/subdir/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("subdir", "test").c_str(), "/usd/subdir/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("subdir/", "test").c_str(), "/usd/subdir/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/subdir/", "test").c_str(), "/usd/subdir/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/subdir", "test").c_str(),
+               "/usd/subdir/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/subdir", "test").c_str(),
+               "/usd/subdir/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/subdir/", "test").c_str(),
+               "/usd/subdir/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/subdir/", "test").c_str(),
+               "/usd/subdir/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("subdir", "test").c_str(),
+               "/usd/subdir/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("subdir/", "test").c_str(),
+               "/usd/subdir/test");
+  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/subdir/", "test").c_str(),
+               "/usd/subdir/test");
 }

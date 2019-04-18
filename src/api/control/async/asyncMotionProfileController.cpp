@@ -7,9 +7,9 @@
  */
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
 #include "okapi/api/util/mathUtil.hpp"
-#include <numeric>
 #include <algorithm>
 #include <iostream>
+#include <numeric>
 
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(
@@ -365,38 +365,34 @@ CrossplatformThread *AsyncMotionProfileController::getThread() const {
 void AsyncMotionProfileController::storePath(std::string idirectory, std::string ipathId) {
   std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
   std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
-  FILE* leftPathFile = fopen(leftFilePath.c_str(), "w");
-  FILE* rightPathFile = fopen(rightFilePath.c_str(), "w");
+  FILE *leftPathFile = fopen(leftFilePath.c_str(), "w");
+  FILE *rightPathFile = fopen(rightFilePath.c_str(), "w");
 
   // Make sure we can open the file successfully
   if (leftPathFile == NULL) {
-    LOG_WARN(
-      "AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for writing");
+    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for writing");
     return;
   }
   if (rightPathFile == NULL) {
-    LOG_WARN(
-      "AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for writing");
-    return;
+    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for writing");
+    return; // cppcheck thinks this is a resource leak, but fclose(NULL) is undefined behavior
   }
 
   auto pathData = this->paths.find(ipathId);
 
   // Make sure path exists
   if (pathData == paths.end()) {
-    LOG_WARN(
-      "AsyncMotionProfileController: Controller was asked to serialize non-existent path " +
-      ipathId);
+    LOG_WARN("AsyncMotionProfileController: Controller was asked to serialize non-existent path " +
+             ipathId);
     // Do nothing- can't serialize nonexistent path
-  }
-  else {
+  } else {
     int len = pathData->second.length;
 
     // Serialize paths
     pathfinder_serialize_csv(leftPathFile, pathData->second.left, len);
     pathfinder_serialize_csv(rightPathFile, pathData->second.right, len);
   }
-  
+
   fclose(leftPathFile);
   fclose(rightPathFile);
 }
@@ -404,19 +400,17 @@ void AsyncMotionProfileController::storePath(std::string idirectory, std::string
 void AsyncMotionProfileController::loadPath(std::string idirectory, std::string ipathId) {
   std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
   std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
-  FILE* leftPathFile = fopen(leftFilePath.c_str(), "r");
-  FILE* rightPathFile = fopen(rightFilePath.c_str(), "r");
+  FILE *leftPathFile = fopen(leftFilePath.c_str(), "r");
+  FILE *rightPathFile = fopen(rightFilePath.c_str(), "r");
 
   // Make sure we can open the file successfully
   if (leftPathFile == NULL) {
-    LOG_WARN(
-      "AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for reading");
+    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for reading");
     return;
   }
   if (rightPathFile == NULL) {
-    LOG_WARN(
-      "AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for reading");
-    return;
+    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for reading");
+    return; // cppcheck thinks this is a resource leak, but fclose(NULL) is undefined behavior
   }
 
   // Count lines in file, remove one for headers
@@ -445,7 +439,8 @@ void AsyncMotionProfileController::loadPath(std::string idirectory, std::string 
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, count});
 }
 
-std::string AsyncMotionProfileController::makeFilePath(std::string directory, std::string filename) {
+std::string AsyncMotionProfileController::makeFilePath(std::string directory,
+                                                       std::string filename) {
   std::string path(directory);
 
   // Make sure this is an absolute path beginning /usd/<subdirs>
@@ -455,13 +450,11 @@ std::string AsyncMotionProfileController::makeFilePath(std::string directory, st
     if (path.rfind("usd", 0) != std::string::npos) {
       // There's a usd, but no beginning slash
       path.insert(0, "/"); // We just need a slash
-    } 
-    else { // There's nothing at all
+    } else {               // There's nothing at all
       if (path.front() == '/') {
         // Don't double up on slashes
         path.insert(0, "/usd");
-      }
-      else {
+      } else {
         path.insert(0, "/usd/");
       }
     }
