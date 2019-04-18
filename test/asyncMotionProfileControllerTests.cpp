@@ -25,12 +25,27 @@ class MockAsyncMotionProfileController : public AsyncMotionProfileController {
     return AsyncMotionProfileController::makeFilePath(directory, filename);
   }
 
+  void internalStorePath(FILE* leftPathFile, FILE* rightPathFile, std::string ipathId) {
+    AsyncMotionProfileController::internalStorePath(leftPathFile, rightPathFile, ipathId);
+  }
+
+  void internalLoadPath(FILE* leftPathFile, FILE* rightPathFile, std::string ipathId) {
+    AsyncMotionProfileController::internalLoadPath(leftPathFile, rightPathFile, ipathId);
+  }
+
+  TrajectoryPair getPathData(std::string ipathId) {
+    return paths.at(ipathId);
+  }
+
   bool executeSinglePathCalled{false};
 };
 
 class AsyncMotionProfileControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
+    leftPathFile = open_memstream(&leftFileBuf, &leftFileSize);
+    rightPathFile = open_memstream(&rightFileBuf, &rightFileSize);
+
     leftMotor = std::make_shared<MockMotor>();
     rightMotor = std::make_shared<MockMotor>();
 
@@ -45,6 +60,8 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
   }
 
   void TearDown() override {
+    free(leftFileBuf);
+    free(rightFileBuf);
     delete controller;
   }
 
@@ -52,6 +69,13 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
   std::shared_ptr<MockMotor> rightMotor;
   SkidSteerModel *model;
   MockAsyncMotionProfileController *controller;
+
+  FILE* leftPathFile;
+  FILE* rightPathFile;
+  char* leftFileBuf;
+  char* rightFileBuf;
+  size_t leftFileSize;
+  size_t rightFileSize;
 };
 
 TEST_F(AsyncMotionProfileControllerTest, SettledWhenDisabled) {
@@ -263,27 +287,43 @@ TEST_F(AsyncMotionProfileControllerTest, FollowPathMirrored) {
   controller->flipDisable(true);
 }
 
-TEST_F(AsyncMotionProfileControllerTest, MakeFilePath) {
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/", "test").c_str(),
+TEST_F(AsyncMotionProfileControllerTest, FilePathJoin) {
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/", "test").c_str(),
                "/usd/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/", "test").c_str(), "/usd/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd", "test").c_str(), "/usd/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd", "test").c_str(), "/usd/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("", "test").c_str(), "/usd/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/", "test").c_str(), "/usd/test");
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/", "test").c_str(), "/usd/test");
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd", "test").c_str(), "/usd/test");
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd", "test").c_str(), "/usd/test");
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("", "test").c_str(), "/usd/test");
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("/", "test").c_str(), "/usd/test");
 
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/subdir", "test").c_str(),
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/subdir", "test").c_str(),
                "/usd/subdir/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/subdir", "test").c_str(),
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/subdir", "test").c_str(),
                "/usd/subdir/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/subdir/", "test").c_str(),
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("/usd/subdir/", "test").c_str(),
                "/usd/subdir/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/subdir/", "test").c_str(),
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("usd/subdir/", "test").c_str(),
                "/usd/subdir/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("subdir", "test").c_str(),
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("subdir", "test").c_str(),
                "/usd/subdir/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("subdir/", "test").c_str(),
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("subdir/", "test").c_str(),
                "/usd/subdir/test");
-  ASSERT_STREQ(MockAsyncMotionProfileController::makeFilePath("/subdir/", "test").c_str(),
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("/subdir/", "test").c_str(),
                "/usd/subdir/test");
+}
+
+TEST_F(AsyncMotionProfileControllerTest, SaveLoadPath) {
+  controller->generatePath({Point{0_in, 0_in, 0_deg}, Point{3_ft, 0_in, 45_deg}}, "A");
+  controller->internalStorePath(leftPathFile, rightPathFile, "A");
+
+  int genPathLen = controller->getPathData("A").length;
+
+  controller->removePath("A");
+  controller->internalLoadPath(leftPathFile, rightPathFile, "A");
+  EXPECT_EQ(controller->getPaths().front(), "A");
+  EXPECT_EQ(controller->getPaths().size(), 1);
+  EXPECT_EQ(controller->getPathData("A").length, genPathLen);
+
+  controller->setTarget("A");
+  EXPECT_EQ(controller->getTarget(), "A");
 }

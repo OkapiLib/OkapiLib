@@ -382,20 +382,7 @@ void AsyncMotionProfileController::storePath(std::string idirectory, std::string
     return;
   }
 
-  auto pathData = this->paths.find(ipathId);
-
-  // Make sure path exists
-  if (pathData == paths.end()) {
-    LOG_WARN("AsyncMotionProfileController: Controller was asked to serialize non-existent path " +
-             ipathId);
-    // Do nothing- can't serialize nonexistent path
-  } else {
-    int len = pathData->second.length;
-
-    // Serialize paths
-    pathfinder_serialize_csv(leftPathFile, pathData->second.left, len);
-    pathfinder_serialize_csv(rightPathFile, pathData->second.right, len);
-  }
+  internalStorePath(leftPathFile, rightPathFile, ipathId);
 
   fclose(leftPathFile);
   fclose(rightPathFile);
@@ -421,6 +408,30 @@ void AsyncMotionProfileController::loadPath(std::string idirectory, std::string 
     return;
   }
 
+  internalLoadPath(leftPathFile, rightPathFile, ipathId);
+
+  fclose(leftPathFile);
+  fclose(rightPathFile);
+}
+
+void AsyncMotionProfileController::internalStorePath(FILE* leftPathFile, FILE* rightPathFile, std::string ipathId) {
+  auto pathData = this->paths.find(ipathId);
+
+  // Make sure path exists
+  if (pathData == paths.end()) {
+    LOG_WARN("AsyncMotionProfileController: Controller was asked to serialize non-existent path " +
+             ipathId);
+    // Do nothing- can't serialize nonexistent path
+  } else {
+    int len = pathData->second.length;
+
+    // Serialize paths
+    pathfinder_serialize_csv(leftPathFile, pathData->second.left, len);
+    pathfinder_serialize_csv(rightPathFile, pathData->second.right, len);
+  }
+}
+
+void AsyncMotionProfileController::internalLoadPath(FILE* leftPathFile, FILE* rightPathFile, std::string ipathId) {
   // Count lines in file, remove one for headers
   int count = 0;
   for (int c = getc(leftPathFile); c != EOF; c = getc(leftPathFile)) {
@@ -437,9 +448,6 @@ void AsyncMotionProfileController::loadPath(std::string idirectory, std::string 
 
   pathfinder_deserialize_csv(leftPathFile, leftTrajectory);
   pathfinder_deserialize_csv(rightPathFile, rightTrajectory);
-
-  fclose(leftPathFile);
-  fclose(rightPathFile);
 
   // Remove the old path if it exists
   removePath(ipathId);
