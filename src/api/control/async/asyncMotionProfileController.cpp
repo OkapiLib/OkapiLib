@@ -400,7 +400,7 @@ void AsyncMotionProfileController::loadPath(std::string idirectory, std::string 
     if (rightPathFile != NULL) {
       fclose(rightPathFile);
     }
-    return; 
+    return;
   }
   if (rightPathFile == NULL) {
     LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for reading");
@@ -414,7 +414,9 @@ void AsyncMotionProfileController::loadPath(std::string idirectory, std::string 
   fclose(rightPathFile);
 }
 
-void AsyncMotionProfileController::internalStorePath(FILE* leftPathFile, FILE* rightPathFile, std::string ipathId) {
+void AsyncMotionProfileController::internalStorePath(FILE *leftPathFile,
+                                                     FILE *rightPathFile,
+                                                     std::string ipathId) {
   auto pathData = this->paths.find(ipathId);
 
   // Make sure path exists
@@ -431,7 +433,9 @@ void AsyncMotionProfileController::internalStorePath(FILE* leftPathFile, FILE* r
   }
 }
 
-void AsyncMotionProfileController::internalLoadPath(FILE* leftPathFile, FILE* rightPathFile, std::string ipathId) {
+void AsyncMotionProfileController::internalLoadPath(FILE *leftPathFile,
+                                                    FILE *rightPathFile,
+                                                    std::string ipathId) {
   // Count lines in file, remove one for headers
   int count = 0;
   for (int c = getc(leftPathFile); c != EOF; c = getc(leftPathFile)) {
@@ -483,7 +487,7 @@ std::string AsyncMotionProfileController::makeFilePath(std::string directory,
   std::string filenameCopy(filename);
   // Remove restricted characters from filename
   static const std::string illegalChars = "\\/:?*\"<>|";
-  for (auto it = filenameCopy.begin() ; it < filenameCopy.end(); it++) {
+  for (auto it = filenameCopy.begin(); it < filenameCopy.end(); it++) {
     if (illegalChars.rfind(*it) != std::string::npos) {
       it = filenameCopy.erase(it);
     }

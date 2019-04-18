@@ -25,11 +25,11 @@ class MockAsyncMotionProfileController : public AsyncMotionProfileController {
     return AsyncMotionProfileController::makeFilePath(directory, filename);
   }
 
-  void internalStorePath(FILE* leftPathFile, FILE* rightPathFile, std::string ipathId) {
+  void internalStorePath(FILE *leftPathFile, FILE *rightPathFile, std::string ipathId) {
     AsyncMotionProfileController::internalStorePath(leftPathFile, rightPathFile, ipathId);
   }
 
-  void internalLoadPath(FILE* leftPathFile, FILE* rightPathFile, std::string ipathId) {
+  void internalLoadPath(FILE *leftPathFile, FILE *rightPathFile, std::string ipathId) {
     AsyncMotionProfileController::internalLoadPath(leftPathFile, rightPathFile, ipathId);
   }
 
@@ -72,10 +72,10 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
   SkidSteerModel *model;
   MockAsyncMotionProfileController *controller;
 
-  FILE* leftPathFile;
-  FILE* rightPathFile;
-  char* leftFileBuf;
-  char* rightFileBuf;
+  FILE *leftPathFile;
+  FILE *rightPathFile;
+  char *leftFileBuf;
+  char *rightFileBuf;
   size_t leftFileSize;
   size_t rightFileSize;
 };
@@ -315,7 +315,8 @@ TEST_F(AsyncMotionProfileControllerTest, FilePathJoin) {
 }
 
 TEST_F(AsyncMotionProfileControllerTest, FilePathRestrict) {
-  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("", "t>e<s\"t\\F:i*l|e/").c_str(), "/usd/testFile");
+  EXPECT_STREQ(MockAsyncMotionProfileController::makeFilePath("", "t>e<s\"t\\F:i*l|e/").c_str(),
+               "/usd/testFile");
 }
 
 TEST_F(AsyncMotionProfileControllerTest, SaveLoadPath) {
