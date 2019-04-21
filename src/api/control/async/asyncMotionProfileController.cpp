@@ -7,6 +7,8 @@
  */
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
 #include "okapi/api/util/mathUtil.hpp"
+#include <algorithm>
+#include <iostream>
 #include <numeric>
 
 namespace okapi {
@@ -358,5 +360,139 @@ void AsyncMotionProfileController::startThread() {
 
 CrossplatformThread *AsyncMotionProfileController::getThread() const {
   return task;
+}
+
+void AsyncMotionProfileController::storePath(std::string idirectory, std::string ipathId) {
+  std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
+  std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
+  FILE *leftPathFile = fopen(leftFilePath.c_str(), "w");
+  FILE *rightPathFile = fopen(rightFilePath.c_str(), "w");
+
+  // Make sure we can open the file successfully
+  if (leftPathFile == NULL) {
+    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for writing");
+    if (rightPathFile != NULL) {
+      fclose(rightPathFile);
+    }
+    return;
+  }
+  if (rightPathFile == NULL) {
+    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for writing");
+    fclose(leftPathFile);
+    return;
+  }
+
+  internalStorePath(leftPathFile, rightPathFile, ipathId);
+
+  fclose(leftPathFile);
+  fclose(rightPathFile);
+}
+
+void AsyncMotionProfileController::loadPath(std::string idirectory, std::string ipathId) {
+  std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
+  std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
+  FILE *leftPathFile = fopen(leftFilePath.c_str(), "r");
+  FILE *rightPathFile = fopen(rightFilePath.c_str(), "r");
+
+  // Make sure we can open the file successfully
+  if (leftPathFile == NULL) {
+    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for reading");
+    if (rightPathFile != NULL) {
+      fclose(rightPathFile);
+    }
+    return;
+  }
+  if (rightPathFile == NULL) {
+    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for reading");
+    fclose(leftPathFile);
+    return;
+  }
+
+  internalLoadPath(leftPathFile, rightPathFile, ipathId);
+
+  fclose(leftPathFile);
+  fclose(rightPathFile);
+}
+
+void AsyncMotionProfileController::internalStorePath(FILE *leftPathFile,
+                                                     FILE *rightPathFile,
+                                                     std::string ipathId) {
+  auto pathData = this->paths.find(ipathId);
+
+  // Make sure path exists
+  if (pathData == paths.end()) {
+    LOG_WARN("AsyncMotionProfileController: Controller was asked to serialize non-existent path " +
+             ipathId);
+    // Do nothing- can't serialize nonexistent path
+  } else {
+    int len = pathData->second.length;
+
+    // Serialize paths
+    pathfinder_serialize_csv(leftPathFile, pathData->second.left, len);
+    pathfinder_serialize_csv(rightPathFile, pathData->second.right, len);
+  }
+}
+
+void AsyncMotionProfileController::internalLoadPath(FILE *leftPathFile,
+                                                    FILE *rightPathFile,
+                                                    std::string ipathId) {
+  // Count lines in file, remove one for headers
+  int count = 0;
+  for (int c = getc(leftPathFile); c != EOF; c = getc(leftPathFile)) {
+    if (c == '\n') {
+      ++count;
+    }
+  }
+  --count;
+  rewind(leftPathFile);
+
+  // Allocate memory
+  auto *leftTrajectory = (Segment *)malloc(sizeof(Segment) * count);
+  auto *rightTrajectory = (Segment *)malloc(sizeof(Segment) * count);
+
+  pathfinder_deserialize_csv(leftPathFile, leftTrajectory);
+  pathfinder_deserialize_csv(rightPathFile, rightTrajectory);
+
+  // Remove the old path if it exists
+  removePath(ipathId);
+
+  paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, count});
+}
+
+std::string AsyncMotionProfileController::makeFilePath(std::string directory,
+                                                       std::string filename) {
+  std::string path(directory);
+
+  // Checks first substring
+  if (path.rfind("/usd", 0) == std::string::npos) {
+    if (path.rfind("usd", 0) != std::string::npos) {
+      // There's a usd, but no beginning slash
+      path.insert(0, "/"); // We just need a slash
+    } else {               // There's nothing at all
+      if (path.front() == '/') {
+        // Don't double up on slashes
+        path.insert(0, "/usd");
+      } else {
+        path.insert(0, "/usd/");
+      }
+    }
+  }
+
+  // Add trailing slash if there isn't one
+  if (path.back() != '/') {
+    path.append("/");
+  }
+  std::string filenameCopy(filename);
+  // Remove restricted characters from filename
+  static const std::string illegalChars = "\\/:?*\"<>|";
+  for (auto it = filenameCopy.begin(); it < filenameCopy.end(); it++) {
+    if (illegalChars.rfind(*it) != std::string::npos) {
+      it = filenameCopy.erase(it);
+    }
+  }
+
+  path.append(filenameCopy);
+
+  return path;
 }
 } // namespace okapi

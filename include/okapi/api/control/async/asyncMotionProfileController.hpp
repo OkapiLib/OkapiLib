@@ -220,6 +220,26 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    */
   CrossplatformThread *getThread() const;
 
+  /**
+   * Saves a generated path to files.
+   * Paths are stored as <ipathId>.<left/right>.csv
+   * An SD card must be inserted into the brain and the directory must exist.
+   * idirectory can be prefixed with /usd/, but it this is not required.
+   *
+   * @param idirectory The directory to store the path files in
+   * @param ipathId The path ID of the generated path
+   */
+  void storePath(std::string idirectory, std::string ipathId);
+
+  /**
+   * Loads a path from a directory on the SD card containing path CSV files.
+   * /usd/ is automatically prepended to idirectory if it is not specified.
+   *
+   * @param idirectory The directory that the path files are stored in
+   * @param ipathId The path ID that the paths are stored under (and will be loaded into)
+   */
+  void loadPath(std::string idirectory, std::string ipathId);
+
   protected:
   struct TrajectoryPair {
     Segment *left;
@@ -261,5 +281,18 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
 
   std::string
   getPathErrorMessage(const std::vector<Waypoint> &points, const std::string &ipathId, int length);
+
+  /**
+   * Joins and escapes a directory and file name
+   *
+   * @param directory The directory path, separated by forward slashes (/) and with or without a
+   * trailing slash
+   * @param filename The file name in the directory
+   * @return the fully qualified and legal path name
+   */
+  static std::string makeFilePath(std::string directory, std::string filename);
+
+  void internalStorePath(FILE *leftPathFile, FILE *rightPathFile, std::string ipathId);
+  void internalLoadPath(FILE *leftPathFile, FILE *rightPathFile, std::string ipathId);
 };
 } // namespace okapi
