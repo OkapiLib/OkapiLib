@@ -229,7 +229,7 @@ TEST(VelMathTest, ZeroTPRThrowsException) {
 
 TEST(VelMathTest, VelEqualToZeroWithoutStep) {
   VelMath velMath(
-    360, std::make_shared<PassthroughFilter>(), 10_ms, std::make_unique<ConstantMockTimer>(10_ms));
+    360, std::make_unique<PassthroughFilter>(), 10_ms, std::make_unique<ConstantMockTimer>(10_ms));
 
   EXPECT_EQ(velMath.getVelocity().convert(rpm), 0);
   EXPECT_EQ(velMath.getAccel().convert(rpm / second), 0);
