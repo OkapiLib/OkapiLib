@@ -90,9 +90,9 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceUnitsTest) {
-  controller->moveDistance(1_m);
+  controller->moveDistance(0.1_m);
 
-  EXPECT_NEAR(distanceController->getTarget(), 2820, 1);
+  EXPECT_NEAR(distanceController->getTarget(), 282, 1);
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
 
   EXPECT_TRUE(turnController->isDisabled());
@@ -102,8 +102,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 2820, 10);
-  EXPECT_NEAR(controller->getSensorVals()[1], 2820, 10);
+  EXPECT_NEAR(controller->getSensorVals()[0], 282, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], 282, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -134,9 +134,9 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncUnitsTest) {
-  controller->moveDistanceAsync(1_m);
+  controller->moveDistanceAsync(0.1_m);
 
-  EXPECT_NEAR(distanceController->getTarget(), 2820, 1);
+  EXPECT_NEAR(distanceController->getTarget(), 282, 1);
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
 
   EXPECT_TRUE(turnController->isDisabled());
@@ -152,8 +152,8 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 2820, 10);
-  EXPECT_NEAR(controller->getSensorVals()[1], 2820, 10);
+  EXPECT_NEAR(controller->getSensorVals()[0], 282, 10);
+  EXPECT_NEAR(controller->getSensorVals()[1], 282, 10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }

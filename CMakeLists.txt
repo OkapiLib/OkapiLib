@@ -192,6 +192,7 @@ add_executable(OkapiLibV5
         test/xDriveModelTests.cpp
         test/threeEncoderSkidSteerModelTests.cpp
         test/chassisControllerIntegratedTests.cpp
+        test/chassisControllerPidIntegrationTest.cpp
         test/chassisControllerPidTest.cpp
         test/chassisControllerTests.cpp
         test/chassisScalesTests.cpp
