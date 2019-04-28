@@ -62,10 +62,10 @@ class VelMath {
 
   protected:
   std::shared_ptr<Logger> logger;
-  QAngularSpeed vel;
-  QAngularSpeed lastVel;
-  QAngularAcceleration accel;
-  double lastPos = 0;
+  QAngularSpeed vel{0_rpm};
+  QAngularSpeed lastVel{0_rpm};
+  QAngularAcceleration accel{0.0};
+  double lastPos{0};
   double ticksPerRev;
 
   QTime sampleTime;
