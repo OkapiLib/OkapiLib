@@ -178,6 +178,17 @@ class AbstractMotor : public ControllerOutput<double> {
   virtual double getPosition() = 0;
 
   /**
+   * Gets the positional error (target position minus actual position) of the motor in its encoder units.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @return The motor's positional error in its encoder units or PROS_ERR_F if the operation
+   * failed, setting errno.
+   */
+  double getPositionError();
+
+  /**
    * Sets the "absolute" zero position of the motor to its current position.
    *
    * This function uses the following values of errno when an error state is reached:
@@ -208,6 +219,17 @@ class AbstractMotor : public ControllerOutput<double> {
    * errno.
    */
   virtual double getActualVelocity() = 0;
+
+  /**
+   * Gets the difference between the target velocity of the motor and the actual velocity of the motor.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @return The motor's velocity error in RPM or PROS_ERR_F if the operation failed, setting
+   * errno.
+   */
+  double getVelocityError();
 
   /**
    * Gets the current drawn by the motor in mA.
