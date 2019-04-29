@@ -74,7 +74,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
                      static_cast<int>(points.size()),
                      FIT_HERMITE_CUBIC,
                      PATHFINDER_SAMPLES_FAST,
-                     0.001,
+                     0.010,
                      ilimits.maxVel,
                      ilimits.maxAccel,
                      ilimits.maxJerk,
@@ -253,23 +253,25 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
 
   if (followMirrored) {
     for (int i = 0; i < path.length && !isDisabled(); ++i) {
+      const auto segDT = path.left[i].dt * second;
       const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
       const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
 
       model->left(rightRPM / toUnderlyingType(pair.internalGearset) * reversed);
       model->right(leftRPM / toUnderlyingType(pair.internalGearset) * reversed);
 
-      rate->delayUntil(1_ms);
+      rate->delayUntil(segDT);
     }
   } else {
     for (int i = 0; i < path.length && !isDisabled(); ++i) {
+      const auto segDT = path.left[i].dt * second;
       const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
       const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
 
       model->left(leftRPM / toUnderlyingType(pair.internalGearset) * reversed);
       model->right(rightRPM / toUnderlyingType(pair.internalGearset) * reversed);
 
-      rate->delayUntil(1_ms);
+      rate->delayUntil(segDT);
     }
   }
 }
