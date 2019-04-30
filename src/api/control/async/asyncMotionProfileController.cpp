@@ -251,29 +251,24 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
   const int reversed = direction.load(std::memory_order_acquire);
   const bool followMirrored = mirrored.load(std::memory_order_acquire);
 
-  if (followMirrored) {
-    for (int i = 0; i < path.length && !isDisabled(); ++i) {
-      const auto segDT = path.left[i].dt * second;
-      const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
-      const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
+  for (int i = 0; i < path.length && !isDisabled(); ++i) {
+    const auto segDT = path.left[i].dt * second;
+    const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
+    const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
 
-      model->left(rightRPM / toUnderlyingType(pair.internalGearset) * reversed);
-      model->right(leftRPM / toUnderlyingType(pair.internalGearset) * reversed);
-
-      rate->delayUntil(segDT);
+    double rightSpeed = rightRPM / toUnderlyingType(pair.internalGearset) * reversed;
+    double leftSpeed = leftRPM / toUnderlyingType(pair.internalGearset) * reversed;
+    if (followMirrored) {
+      model->left(rightSpeed);
+      model->right(leftSpeed);
+    } else {
+      model->left(leftSpeed);
+      model->right(rightSpeed);
     }
-  } else {
-    for (int i = 0; i < path.length && !isDisabled(); ++i) {
-      const auto segDT = path.left[i].dt * second;
-      const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
-      const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
 
-      model->left(leftRPM / toUnderlyingType(pair.internalGearset) * reversed);
-      model->right(rightRPM / toUnderlyingType(pair.internalGearset) * reversed);
-
-      rate->delayUntil(segDT);
-    }
+    rate->delayUntil(segDT);
   }
+  
 }
 
 QAngularSpeed AsyncMotionProfileController::convertLinearToRotational(QSpeed linear) const {
