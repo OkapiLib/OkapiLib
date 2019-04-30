@@ -16,10 +16,10 @@ AbstractMotor::GearsetRatioPair operator*(const AbstractMotor::gearset gearset,
 }
 
 double AbstractMotor::getPositionError() {
-  return this->getTargetPosition() - this->getPosition();
+  return getTargetPosition() - getPosition();
 }
 
 double AbstractMotor::getVelocityError() {
-  return this->getTargetVelocity() - this->getActualVelocity();
+  return getTargetVelocity() - getActualVelocity();
 }
 } // namespace okapi
