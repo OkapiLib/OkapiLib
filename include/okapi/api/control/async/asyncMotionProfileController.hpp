@@ -83,7 +83,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * It returns false if the path could not be removed because it is running.
    *
    * @param ipathId A unique identifier for the path, previously passed to generatePath()
-   * @return Whether the path no longer exists
+   * @return True if the path no longer exists
    */
   bool removePath(const std::string &ipathId);
 
