@@ -180,12 +180,14 @@ bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
     LOG_WARN("Attempted to remove currently running path " + ipathId);
     return false;
   } 
+  
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
     free(oldPath->second.left);
     free(oldPath->second.right);
     paths.erase(ipathId);
   }
+
   // Return true whether we actually did anything or not
   return true;
 }
@@ -262,8 +264,8 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
     const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
     const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
 
-    double rightSpeed = rightRPM / toUnderlyingType(pair.internalGearset) * reversed;
-    double leftSpeed = leftRPM / toUnderlyingType(pair.internalGearset) * reversed;
+    const double rightSpeed = rightRPM / toUnderlyingType(pair.internalGearset) * reversed;
+    const double leftSpeed = leftRPM / toUnderlyingType(pair.internalGearset) * reversed;
     if (followMirrored) {
       model->left(rightSpeed);
       model->right(leftSpeed);

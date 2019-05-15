@@ -108,15 +108,28 @@ TEST_F(AsyncLinearMotionProfileControllerTest, RemoveAPath) {
   EXPECT_EQ(controller->getPaths().front(), "A");
   EXPECT_EQ(controller->getPaths().size(), 1);
 
-  controller->removePath("A");
+  EXPECT_TRUE(controller->removePath("A"));
 
   EXPECT_EQ(controller->getPaths().size(), 0);
+}
+
+TEST_F(AsyncLinearMotionProfileControllerTest, RemoveRunningPath) {
+  controller->generatePath({0_m, 3_m}, "A");
+
+  EXPECT_EQ(controller->getPaths().front(), "A");
+  EXPECT_EQ(controller->getPaths().size(), 1);
+
+  controller->setTarget("A");
+
+  EXPECT_FALSE(controller->removePath("A"));
+
+  EXPECT_EQ(controller->getPaths().size(), 1);
 }
 
 TEST_F(AsyncLinearMotionProfileControllerTest, RemoveAPathWhichDoesNotExist) {
   EXPECT_EQ(controller->getPaths().size(), 0);
 
-  controller->removePath("A");
+  EXPECT_TRUE(controller->removePath("A"));
 
   EXPECT_EQ(controller->getPaths().size(), 0);
 }
