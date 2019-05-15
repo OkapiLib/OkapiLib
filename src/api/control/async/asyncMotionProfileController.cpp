@@ -175,13 +175,19 @@ std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<
                          [&](std::string a, Waypoint b) { return a + ", " + pointToString(b); });
 }
 
-void AsyncMotionProfileController::removePath(const std::string &ipathId) {
+bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
+  if (isRunning.load(std::memory_order_acquire) && getTarget() == ipathId) {
+    LOG_WARN("Attempted to remove currently running path " + ipathId);
+    return false;
+  } 
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
     free(oldPath->second.left);
     free(oldPath->second.right);
     paths.erase(ipathId);
   }
+  // Return true whether we actually did anything or not
+  return true;
 }
 
 std::vector<std::string> AsyncMotionProfileController::getPaths() {
