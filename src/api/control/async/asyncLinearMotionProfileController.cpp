@@ -63,7 +63,7 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
                      static_cast<int>(points.size()),
                      FIT_HERMITE_CUBIC,
                      PATHFINDER_SAMPLES_FAST,
-                     0.001,
+                     0.010,
                      ilimits.maxVel,
                      ilimits.maxAccel,
                      ilimits.maxJerk,
@@ -213,12 +213,13 @@ void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair 
   const auto reversed = direction.load(std::memory_order_acquire);
 
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
+    const auto segDT = path.segment[i].dt * second;
     currentProfilePosition = path.segment[i].position;
 
     const auto motorRPM = convertLinearToRotational(path.segment[i].velocity * mps).convert(rpm);
     output->controllerSet(motorRPM / toUnderlyingType(pair.internalGearset) * reversed);
 
-    rate->delayUntil(1_ms);
+    rate->delayUntil(segDT);
   }
 }
 
