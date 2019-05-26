@@ -124,6 +124,7 @@ class Controller {
   protected:
   ControllerId m_id;
   pros::Controller controller;
-  static std::array<ControllerButton *, 12> buttonArray;
+  static std::array<ControllerButton *, 12> masterButtonArray;
+  static std::array<ControllerButton *, 12> partnerButtonArray;
 };
 } // namespace okapi
