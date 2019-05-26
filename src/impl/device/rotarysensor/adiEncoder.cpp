@@ -12,10 +12,12 @@ ADIEncoder::ADIEncoder(const std::uint8_t iportTop,
                        const std::uint8_t iportBottom,
                        const bool ireversed)
   : enc(iportTop, iportBottom, ireversed) {
+  printf("ADIEncoder top %c bottom %c\n", iportTop, iportBottom);
+    printf("ADIEncoder %d\n", errno);
 }
 
 double ADIEncoder::get() const {
-  return enc.get_value();
+  return static_cast<double>(enc.get_value());
 }
 
 std::int32_t ADIEncoder::reset() {

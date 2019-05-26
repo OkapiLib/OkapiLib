@@ -27,7 +27,7 @@ void runAllImplTests() {
 //  runAsyncVelControllerBuilderIntegrationTests();
 //  runUtilTests();
 //  runControllerTests();
-  runChassisControllerPidTests();
-//  runChassisControllerIntegratedTests();
+//  runChassisControllerPidTests();
+  runChassisControllerIntegratedTests();
   test_print_report();
 }
