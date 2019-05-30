@@ -10,9 +10,6 @@
 #include "okapi/impl/device/controllerUtil.hpp"
 
 namespace okapi {
-std::array<ControllerButton *, 12> Controller::masterButtonArray{nullptr};
-std::array<ControllerButton *, 12> Controller::partnerButtonArray{nullptr};
-
 Controller::Controller(const ControllerId iid)
   : m_id(iid), controller(ControllerUtil::idToProsEnum(iid)) {
 }
@@ -44,8 +41,6 @@ bool Controller::getDigital(const ControllerDigital ibutton) {
 
 ControllerButton &Controller::operator[](const ControllerDigital ibtn) {
   const auto index = toUnderlyingType(ibtn) - toUnderlyingType(ControllerDigital::L1);
-
-  auto &buttonArray = m_id == ControllerId::master ? masterButtonArray : partnerButtonArray;
 
   if (buttonArray[index] == nullptr) {
     buttonArray[index] = new ControllerButton(m_id, ibtn);
