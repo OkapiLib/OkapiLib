@@ -31,7 +31,7 @@ ChassisScales::ChassisScales(const std::initializer_list<QLength> &idimensions,
   }
 
   straight = static_cast<double>(tpr / (wheelDiameter.convert(meter) * 1_pi));
-  turn = wheelTrack.convert(meter) / wheelDiameter.convert(meter);
+  turn = wheelTrack.convert(meter) / wheelDiameter.convert(meter) * itpr / 360.0;
   middle = static_cast<double>(tpr / (middleWheelDiameter.convert(meter) * 1_pi));
 }
 

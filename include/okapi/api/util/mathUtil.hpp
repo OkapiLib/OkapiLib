@@ -142,6 +142,7 @@ constexpr std::int32_t gearsetToTPR(const AbstractMotor::gearset igearset) noexc
     return imev5GreenTPR;
   case AbstractMotor::gearset::blue:
   case AbstractMotor::gearset::invalid:
+  default:
     return imev5BlueTPR;
   }
 }

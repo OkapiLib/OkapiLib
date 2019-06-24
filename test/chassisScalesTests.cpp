@@ -48,7 +48,7 @@ TEST_F(ChassisScalesTest, TestDifferentTPR) {
   ChassisScales scalesBlue({4_in, 10_in}, imev5BlueTPR);
 
   EXPECT_FLOAT_EQ(scalesGreen.straight / 3.0, scalesBlue.straight);
-  EXPECT_FLOAT_EQ(scalesGreen.turn, scalesBlue.turn);
+  EXPECT_FLOAT_EQ(scalesGreen.turn, scalesBlue.turn * imev5GreenTPR / imev5BlueTPR);
   EXPECT_FLOAT_EQ(scalesGreen.middle / 3.0, scalesBlue.middle);
 }
 

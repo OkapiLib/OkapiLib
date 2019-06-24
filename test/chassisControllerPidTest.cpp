@@ -21,7 +21,7 @@ class MockSkidSteerModel : public SkidSteerModel {
 class ChassisControllerPIDTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    scales = new ChassisScales({6_in, 11_in}, imev5GreenTPR);
+    scales = new ChassisScales({wheelDiam, wheelTrack}, gearsetToTPR(gearset));
     leftMotor = new MockMotor();
     rightMotor = new MockMotor();
 
@@ -38,7 +38,7 @@ class ChassisControllerPIDTest : public ::testing::Test {
                                std::unique_ptr<IterativePosPIDController>(distanceController),
                                std::unique_ptr<IterativePosPIDController>(turnController),
                                std::unique_ptr<IterativePosPIDController>(angleController),
-                               AbstractMotor::gearset::green,
+                               gearset, // must match the tpr given to ChassisScales
                                *scales);
     controller->startThread();
   }
@@ -48,6 +48,9 @@ class ChassisControllerPIDTest : public ::testing::Test {
     delete controller;
   }
 
+  QLength wheelDiam = 4_in;
+  QLength wheelTrack = 8_in;
+  AbstractMotor::gearset gearset = AbstractMotor::gearset::green;
   ChassisScales *scales;
   ChassisControllerPID *controller;
   MockMotor *leftMotor;
@@ -78,7 +81,7 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerPIDTest, MoveDistanceUnitsTest) {
-  controller->moveDistance(6_in * 1_pi);
+  controller->moveDistance(wheelDiam * 1_pi);
 
   EXPECT_DOUBLE_EQ(distanceController->getTarget(),
                    gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
@@ -111,7 +114,7 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceAsyncRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerPIDTest, MoveDistanceAsyncUnitsTest) {
-  controller->moveDistanceAsync(6_in * 1_pi);
+  controller->moveDistanceAsync(wheelDiam * 1_pi);
 
   EXPECT_DOUBLE_EQ(distanceController->getTarget(),
                    gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
@@ -144,8 +147,7 @@ TEST_F(ChassisControllerPIDTest, TurnAngleRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerPIDTest, TurnAngleUnitsTest) {
-  controller->turnAngle(gearsetToTPR(controller->getGearsetRatioPair().internalGearset) *
-                        (6.0 / 11.0) * degree);
+  controller->turnAngle(wheelDiam / wheelTrack * 360_deg);
 
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
   EXPECT_DOUBLE_EQ(turnController->getTarget(),
@@ -178,8 +180,7 @@ TEST_F(ChassisControllerPIDTest, TurnAngleAsyncRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerPIDTest, TurnAngleAsyncUnitsTest) {
-  controller->turnAngleAsync(gearsetToTPR(controller->getGearsetRatioPair().internalGearset) *
-                             (6.0 / 11.0) * degree);
+  controller->turnAngleAsync(wheelDiam / wheelTrack * 360_deg);
 
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
   EXPECT_DOUBLE_EQ(turnController->getTarget(),
@@ -200,8 +201,7 @@ TEST_F(ChassisControllerPIDTest, TurnAngleAsyncUnitsTest) {
 
 TEST_F(ChassisControllerPIDTest, MirrorTurnTest) {
   controller->setTurnsMirrored(true);
-  controller->turnAngle(gearsetToTPR(controller->getGearsetRatioPair().internalGearset) *
-                        (6.0 / 11.0) * degree);
+  controller->turnAngle(wheelDiam / wheelTrack * 360_deg);
 
   EXPECT_DOUBLE_EQ(distanceController->getTarget(), 0);
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
