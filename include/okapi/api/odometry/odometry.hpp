@@ -70,14 +70,14 @@ class Odometry {
    * Returns the current state.
    *
    * @param imode The mode to return the state in.
-   * @return current state
+   * @return The current state in the given format.
    */
   virtual OdomState getState(const StateMode &imode = StateMode::FRAME_TRANSFORMATION) const;
 
   /**
    * Sets a new state to be the current state.
    *
-   * @param istate new state
+   * @param istate The new state in the given format.
    * @param imode The mode to treat the input state as.
    */
   virtual void setState(const OdomState &istate, const StateMode &imode = StateMode::FRAME_TRANSFORMATION);
