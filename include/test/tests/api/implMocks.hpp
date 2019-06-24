@@ -483,7 +483,5 @@ void assertAsyncWrapperScalesControllerSetTargets(AsyncWrapper<double, double> &
 
 void assertOdomStateEquals(double x, double y, double theta, const OdomState &actual);
 
-void assertOdomStateEquals(const OdomState &expected, const OdomState &actual);
-
 void assertOdomStateEquals(Odometry *odom, QLength x, QLength y, QAngle theta);
 } // namespace okapi

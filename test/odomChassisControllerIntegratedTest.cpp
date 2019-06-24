@@ -101,6 +101,16 @@ TEST_F(OdomChassisControllerIntegratedTest, SetStateTest) {
   OdomState newState{1_m, 2_m, 3_deg};
   drive->setState(newState);
 
-  auto stateAfter = drive->getState();
-  assertOdomStateEquals(stateAfter, newState);
+  auto stateAfter = drive->getState();EXPECT_EQ(stateAfter, newState);
+}
+
+TEST_F(OdomChassisControllerIntegratedTest, SetStateInCartesianTest) {
+    auto stateBefore = drive->getState();
+    assertOdomStateEquals(0, 0, 0, stateBefore);
+
+    OdomState newState{2_m, 1_m, 3_deg};
+    drive->setState(newState, StateMode::CARTESIAN);
+
+    auto stateAfter = drive->getState(StateMode::CARTESIAN);
+    EXPECT_EQ(stateAfter, newState);
 }
