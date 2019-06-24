@@ -29,15 +29,16 @@ ThreeEncoderOdometry::ThreeEncoderOdometry(const TimeUtil &itimeUtil,
   }
 }
 
-OdomState ThreeEncoderOdometry::odomMathStep(std::valarray<std::int32_t> &tickDiff, const QTime &) {
-  const double deltaL = tickDiff[0] / chassisScales.straight;
-  const double deltaR = tickDiff[1] / chassisScales.straight;
+OdomState ThreeEncoderOdometry::odomMathStep(const std::valarray<std::int32_t> &itickDiff,
+                                             const QTime &) {
+  const double deltaL = itickDiff[0] / chassisScales.straight;
+  const double deltaR = itickDiff[1] / chassisScales.straight;
 
   double deltaTheta = (deltaL - deltaR) / chassisScales.wheelTrack.convert(meter);
   double localOffX, localOffY;
 
   const auto deltaM = static_cast<const double>(
-    tickDiff[2] / chassisScales.middle -
+    itickDiff[2] / chassisScales.middle -
     ((deltaTheta / 2_pi) * 1_pi * chassisScales.middleWheelDistance.convert(meter)));
 
   if (deltaL == deltaR) {

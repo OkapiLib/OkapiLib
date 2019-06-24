@@ -80,7 +80,8 @@ class Odometry {
    * @param istate The new state in the given format.
    * @param imode The mode to treat the input state as.
    */
-  virtual void setState(const OdomState &istate, const StateMode &imode = StateMode::FRAME_TRANSFORMATION);
+  virtual void setState(const OdomState &istate,
+                        const StateMode &imode = StateMode::FRAME_TRANSFORMATION);
 
   protected:
   std::shared_ptr<Logger> logger;
@@ -95,10 +96,11 @@ class Odometry {
   /**
    * Does the math, side-effect free, for one odom step.
    *
-   * @param tickDiff The tick difference from the previous step to this step.
-   * @param deltaT The time difference from the previous step to this step.
+   * @param itickDiff The tick difference from the previous step to this step.
+   * @param ideltaT The time difference from the previous step to this step.
    * @return The estimated position/orientation offset, sinTheta, cosTheta.
    */
-  virtual OdomState odomMathStep(std::valarray<std::int32_t> &tickDiff, const QTime &deltaT);
+  virtual OdomState odomMathStep(const std::valarray<std::int32_t> &itickDiff,
+                                 const QTime &ideltaT);
 };
 } // namespace okapi

@@ -44,9 +44,9 @@ void Odometry::step() {
   }
 }
 
-OdomState Odometry::odomMathStep(std::valarray<std::int32_t> &tickDiff, const QTime &) {
-  const double deltaL = tickDiff[0] / chassisScales.straight;
-  const double deltaR = tickDiff[1] / chassisScales.straight;
+OdomState Odometry::odomMathStep(const std::valarray<std::int32_t> &itickDiff, const QTime &) {
+  const double deltaL = itickDiff[0] / chassisScales.straight;
+  const double deltaR = itickDiff[1] / chassisScales.straight;
 
   double deltaTheta = (deltaL - deltaR) / chassisScales.wheelTrack.convert(meter);
   double localOffX, localOffY;

@@ -38,10 +38,11 @@ class ThreeEncoderOdometry : public Odometry {
   /**
    * Does the math, side-effect free, for one odom step.
    *
-   * @param tickDiff The tick difference from the previous step to this step.
-   * @param deltaT The time difference from the previous step to this step.
+   * @param itickDiff The tick difference from the previous step to this step.
+   * @param ideltaT The time difference from the previous step to this step.
    * @return The estimated position/orientation offset.
    */
-  OdomState odomMathStep(std::valarray<std::int32_t> &tickDiff, const QTime &deltaT) override;
+  OdomState odomMathStep(const std::valarray<std::int32_t> &itickDiff,
+                         const QTime &ideltaT) override;
 };
 } // namespace okapi
