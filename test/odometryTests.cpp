@@ -101,3 +101,16 @@ TEST_F(OdometryTest, TurnAndDriveTest) {
                         calculateDistanceTraveled(90) * std::sin((36_deg).convert(radian)),
                         36_deg);
 }
+
+TEST_F(OdometryTest, GetStateInFrameTransformationTest) {
+  OdomState inputState{1_in, 2_in, 1_deg};
+  odom->setState(inputState);
+  EXPECT_EQ(odom->getState(StateMode::FRAME_TRANSFORMATION), inputState);
+}
+
+TEST_F(OdometryTest, GetStateInCartesianTest) {
+  OdomState inputState{1_in, 2_in, 1_deg};
+  OdomState expected{inputState.y, inputState.x, 1_deg};
+  odom->setState(inputState);
+  EXPECT_EQ(odom->getState(StateMode::CARTESIAN), expected);
+}

@@ -94,4 +94,12 @@ OdomState Odometry::getState(const StateMode &imode) const {
 void Odometry::setState(const OdomState &istate) {
   state = istate;
 }
+
+bool OdomState::operator==(const OdomState &rhs) const {
+  return x == rhs.x && y == rhs.y && theta == rhs.theta;
+}
+
+bool OdomState::operator!=(const OdomState &rhs) const {
+  return !(rhs == *this);
+}
 } // namespace okapi

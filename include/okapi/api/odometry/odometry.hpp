@@ -22,6 +22,10 @@ struct OdomState {
   QLength x{0_m};
   QLength y{0_m};
   QAngle theta{0_deg};
+
+  bool operator==(const OdomState &rhs) const;
+
+  bool operator!=(const OdomState &rhs) const;
 };
 
 /**
