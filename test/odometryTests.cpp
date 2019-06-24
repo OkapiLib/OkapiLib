@@ -122,8 +122,8 @@ TEST_F(OdometryTest, SetStateInFrameTransformationTest) {
 }
 
 TEST_F(OdometryTest, SetStateInCartesianTest) {
-  OdomState inputState{2_in, 1_in, 1_deg};
-  OdomState expected{inputState.y, inputState.x, 1_deg};
+  OdomState expected{1_in, 2_in, 1_deg};
+  OdomState inputState{expected.y, expected.x, 1_deg};
   odom->setState(inputState, StateMode::CARTESIAN);
   EXPECT_EQ(odom->getState(StateMode::FRAME_TRANSFORMATION), expected);
 }
