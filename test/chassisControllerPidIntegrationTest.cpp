@@ -21,7 +21,7 @@ class MockSkidSteerModel : public SkidSteerModel {
 class ChassisControllerPIDIntegrationTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    scales = new ChassisScales({4_in, 11.5_in}, imev5GreenTPR);
+    scales = new ChassisScales({wheelDiam, wheelTrack}, gearsetToTPR(gearset));
     leftMotor = new ThreadedMockMotor();
     rightMotor = new ThreadedMockMotor();
 
@@ -41,7 +41,7 @@ class ChassisControllerPIDIntegrationTest : public ::testing::Test {
                                std::unique_ptr<IterativePosPIDController>(distanceController),
                                std::unique_ptr<IterativePosPIDController>(turnController),
                                std::unique_ptr<IterativePosPIDController>(angleController),
-                               AbstractMotor::gearset::red,
+                               gearset, // must match the tpr given to ChassisScales
                                *scales);
 
     leftMotor->startThread();
@@ -60,6 +60,9 @@ class ChassisControllerPIDIntegrationTest : public ::testing::Test {
     delete controller;
   }
 
+  QLength wheelDiam = 4_in;
+  QLength wheelTrack = 8_in;
+  AbstractMotor::gearset gearset = AbstractMotor::gearset::green;
   ChassisScales *scales;
   ChassisControllerPID *controller;
   ThreadedMockMotor *leftMotor;
@@ -90,9 +93,10 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceUnitsTest) {
-  controller->moveDistance(0.1_m);
+  controller->moveDistance(wheelDiam * 1_pi);
 
-  EXPECT_NEAR(distanceController->getTarget(), 282, 1);
+  EXPECT_DOUBLE_EQ(distanceController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
 
   EXPECT_TRUE(turnController->isDisabled());
@@ -102,8 +106,12 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 282, 10);
-  EXPECT_NEAR(controller->getSensorVals()[1], 282, 10);
+  EXPECT_NEAR(controller->getSensorVals()[0],
+              gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
+              10);
+  EXPECT_NEAR(controller->getSensorVals()[1],
+              gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
+              10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -134,9 +142,10 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncUnitsTest) {
-  controller->moveDistanceAsync(0.1_m);
+  controller->moveDistanceAsync(wheelDiam * 1_pi);
 
-  EXPECT_NEAR(distanceController->getTarget(), 282, 1);
+  EXPECT_DOUBLE_EQ(distanceController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
 
   EXPECT_TRUE(turnController->isDisabled());
@@ -152,8 +161,12 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 282, 10);
-  EXPECT_NEAR(controller->getSensorVals()[1], 282, 10);
+  EXPECT_NEAR(controller->getSensorVals()[0],
+              gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
+              10);
+  EXPECT_NEAR(controller->getSensorVals()[1],
+              gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
+              10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -161,6 +174,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncUnitsTest) {
 TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleRawUnitsTest) {
   controller->turnAngle(100);
 
+  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
   EXPECT_DOUBLE_EQ(turnController->getTarget(), 100);
 
   EXPECT_TRUE(distanceController->isDisabled());
@@ -177,9 +191,11 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleUnitsTest) {
-  controller->turnAngle(45_deg);
+  controller->turnAngle(wheelDiam / wheelTrack * 360_deg);
 
-  EXPECT_NEAR(turnController->getTarget(), 129, 1);
+  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
+  EXPECT_DOUBLE_EQ(turnController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   EXPECT_TRUE(distanceController->isDisabled());
   EXPECT_TRUE(angleController->isDisabled());
@@ -188,8 +204,12 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 129, 10);
-  EXPECT_NEAR(controller->getSensorVals()[1], -129, 10);
+  EXPECT_NEAR(controller->getSensorVals()[0],
+              gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
+              10);
+  EXPECT_NEAR(controller->getSensorVals()[1],
+              -1 * gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
+              10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
@@ -197,6 +217,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleUnitsTest) {
 TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncRawUnitsTest) {
   controller->turnAngleAsync(100);
 
+  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
   EXPECT_DOUBLE_EQ(turnController->getTarget(), 100);
 
   EXPECT_TRUE(distanceController->isDisabled());
@@ -219,9 +240,11 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncUnitsTest) {
-  controller->turnAngleAsync(45_deg);
+  controller->turnAngleAsync(wheelDiam / wheelTrack * 360_deg);
 
-  EXPECT_NEAR(turnController->getTarget(), 129, 1);
+  EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
+  EXPECT_DOUBLE_EQ(turnController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   EXPECT_TRUE(distanceController->isDisabled());
   EXPECT_TRUE(angleController->isDisabled());
@@ -236,23 +259,32 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncUnitsTest) {
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], 129, 10);
-  EXPECT_NEAR(controller->getSensorVals()[1], -129, 10);
+  EXPECT_NEAR(controller->getSensorVals()[0],
+              gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
+              10);
+  EXPECT_NEAR(controller->getSensorVals()[1],
+              -1 * gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
+              10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
 
 TEST_F(ChassisControllerPIDIntegrationTest, MirrorTurnTest) {
   controller->setTurnsMirrored(true);
-  controller->turnAngle(45_deg);
+  controller->turnAngle(wheelDiam / wheelTrack * 360_deg);
 
-  EXPECT_NEAR(turnController->getTarget(), -129, 1);
+  EXPECT_DOUBLE_EQ(turnController->getTarget(),
+                   -1 * gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   // Wait a bit extra in case the thread is still writing to the motors
   std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-  EXPECT_NEAR(controller->getSensorVals()[0], -129, 10);
-  EXPECT_NEAR(controller->getSensorVals()[1], 129, 10);
+  EXPECT_NEAR(controller->getSensorVals()[0],
+              -1 * gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
+              10);
+  EXPECT_NEAR(controller->getSensorVals()[1],
+              gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
+              10);
   EXPECT_EQ(leftMotor->getTargetVelocity(), 0);
   EXPECT_EQ(rightMotor->getTargetVelocity(), 0);
 }
