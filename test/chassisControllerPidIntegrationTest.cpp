@@ -202,7 +202,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleUnitsTest) {
   EXPECT_TRUE(turnController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0],
               gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
