@@ -57,16 +57,19 @@ class OdomChassisController : public virtual ChassisController {
   /**
    * Returns the current state.
    *
-   * @return current state
+   * @param imode The mode to return the state in.
+   * @return The current state in the given format.
    */
-  virtual OdomState getState() const;
+  virtual OdomState getState(const StateMode &imode = StateMode::FRAME_TRANSFORMATION) const;
 
   /**
    * Set a new state to be the current state.
    *
-   * @param istate new state
+   * @param istate The new state in the given format.
+   * @param imode The mode to treat the input state as.
    */
-  virtual void setState(const OdomState &istate);
+  virtual void setState(const OdomState &istate,
+                        const StateMode &imode = StateMode::FRAME_TRANSFORMATION);
 
   /**
    * Set a new move threshold. Any requested movements smaller than this threshold will be skipped.

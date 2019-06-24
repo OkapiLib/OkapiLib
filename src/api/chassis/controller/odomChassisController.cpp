@@ -25,12 +25,12 @@ OdomChassisController::~OdomChassisController() {
   delete odomTask;
 }
 
-OdomState OdomChassisController::getState() const {
-  return odom->getState();
+OdomState OdomChassisController::getState(const StateMode &imode) const {
+  return odom->getState(imode);
 }
 
-void OdomChassisController::setState(const OdomState &istate) {
-  odom->setState(istate);
+void OdomChassisController::setState(const OdomState &istate, const StateMode &imode) {
+  odom->setState(istate, imode);
 }
 
 void OdomChassisController::setMoveThreshold(const QLength imoveThreshold) {
