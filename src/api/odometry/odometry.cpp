@@ -83,8 +83,12 @@ OdomState Odometry::odomMathStep(std::valarray<std::int32_t> &tickDiff, const QT
   return OdomState{dX * meter, dY * meter, deltaTheta * radian};
 }
 
-OdomState Odometry::getState() const {
-  return state;
+OdomState Odometry::getState(const StateMode &imode) const {
+  if (imode == StateMode::FRAME_TRANSFORMATION) {
+    return state;
+  } else {
+    return OdomState{state.y, state.x, state.theta};
+  }
 }
 
 void Odometry::setState(const OdomState &istate) {

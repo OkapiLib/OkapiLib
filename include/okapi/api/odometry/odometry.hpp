@@ -24,6 +24,13 @@ struct OdomState {
   QAngle theta{0_deg};
 };
 
+/**
+ * The mode for the state calculated by odometry.
+ * FRAME_TRANSFORMATION: +x is forward, +y is right
+ * CARTESIAN: +x is right, +y is forward
+ */
+enum class StateMode { FRAME_TRANSFORMATION, CARTESIAN };
+
 class Odometry {
   public:
   /**
@@ -58,9 +65,10 @@ class Odometry {
   /**
    * Returns the current state.
    *
+   * @param imode The mode to return the state in.
    * @return current state
    */
-  virtual OdomState getState() const;
+  virtual OdomState getState(const StateMode &imode = StateMode::FRAME_TRANSFORMATION) const;
 
   /**
    * Sets a new state to be the current state.
