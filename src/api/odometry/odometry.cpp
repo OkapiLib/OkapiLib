@@ -91,8 +91,12 @@ OdomState Odometry::getState(const StateMode &imode) const {
   }
 }
 
-void Odometry::setState(const OdomState &istate) {
-  state = istate;
+void Odometry::setState(const OdomState &istate, const StateMode &imode) {
+  if (imode == StateMode::FRAME_TRANSFORMATION) {
+    state = istate;
+  } else {
+    state = OdomState{istate.y, istate.x, istate.theta};
+  }
 }
 
 bool OdomState::operator==(const OdomState &rhs) const {

@@ -78,8 +78,9 @@ class Odometry {
    * Sets a new state to be the current state.
    *
    * @param istate new state
+   * @param imode The mode to treat the input state as.
    */
-  virtual void setState(const OdomState &istate);
+  virtual void setState(const OdomState &istate, const StateMode &imode = StateMode::FRAME_TRANSFORMATION);
 
   protected:
   std::shared_ptr<Logger> logger;
