@@ -84,7 +84,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceRawUnitsTest) {
   EXPECT_TRUE(angleController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
   EXPECT_NEAR(controller->getSensorVals()[1], 100, 10);
@@ -104,7 +104,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceUnitsTest) {
   EXPECT_TRUE(angleController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0],
               gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
@@ -133,7 +133,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncRawUnitsTest) {
   EXPECT_TRUE(angleController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
   EXPECT_NEAR(controller->getSensorVals()[1], 100, 10);
@@ -159,7 +159,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncUnitsTest) {
   EXPECT_TRUE(angleController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0],
               gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
@@ -182,7 +182,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleRawUnitsTest) {
   EXPECT_TRUE(turnController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
   EXPECT_NEAR(controller->getSensorVals()[1], -100, 10);
@@ -231,7 +231,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncRawUnitsTest) {
   EXPECT_TRUE(turnController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
   EXPECT_NEAR(controller->getSensorVals()[1], -100, 10);
@@ -257,7 +257,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncUnitsTest) {
   EXPECT_TRUE(turnController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0],
               gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
@@ -277,7 +277,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, MirrorTurnTest) {
                    -1 * gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0],
               -1 * gearsetToTPR(controller->getGearsetRatioPair().internalGearset),
@@ -314,7 +314,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceThenTurnAngleAsyncTest) 
   EXPECT_TRUE(turnController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0], 200, 10);
   EXPECT_NEAR(controller->getSensorVals()[1], -200, 10);
@@ -347,7 +347,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleThenMoveDistanceAsyncTest) 
   EXPECT_TRUE(turnController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
   EXPECT_NEAR(controller->getSensorVals()[1], 100, 10);
@@ -364,7 +364,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAndWaitTest) {
   EXPECT_TRUE(turnController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
   EXPECT_NEAR(controller->getSensorVals()[1], 100, 10);
@@ -381,7 +381,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAndWaitTest) {
   EXPECT_TRUE(turnController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0], 100, 10);
   EXPECT_NEAR(controller->getSensorVals()[1], -100, 10);
@@ -398,7 +398,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, MoveDistanceAsyncAndStopTest) {
   EXPECT_TRUE(turnController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0], 0, 10);
   EXPECT_NEAR(controller->getSensorVals()[1], 0, 10);
@@ -415,7 +415,7 @@ TEST_F(ChassisControllerPIDIntegrationTest, TurnAngleAsyncAndStopTest) {
   EXPECT_TRUE(turnController->isDisabled());
 
   // Wait a bit extra in case the thread is still writing to the motors
-  std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
   EXPECT_NEAR(controller->getSensorVals()[0], 0, 10);
   EXPECT_NEAR(controller->getSensorVals()[1], 0, 10);
