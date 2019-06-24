@@ -10,11 +10,8 @@
 #include "okapi/impl/device/controllerUtil.hpp"
 
 namespace okapi {
-std::array<ControllerButton *, 12> Controller::buttonArray;
-
 Controller::Controller(const ControllerId iid)
   : m_id(iid), controller(ControllerUtil::idToProsEnum(iid)) {
-  std::fill(buttonArray.begin(), buttonArray.end(), nullptr);
 }
 
 Controller::~Controller() = default;

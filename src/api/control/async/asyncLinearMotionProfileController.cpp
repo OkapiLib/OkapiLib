@@ -37,6 +37,12 @@ AsyncLinearMotionProfileController::~AsyncLinearMotionProfileController() {
 
 void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLength> iwaypoints,
                                                       const std::string &ipathId) {
+  generatePath(iwaypoints, ipathId, limits);
+}
+
+void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLength> iwaypoints,
+                                                      const std::string &ipathId,
+                                                      const PathfinderLimits &ilimits) {
   if (iwaypoints.size() == 0) {
     // No point in generating a path
     LOG_WARN_S("AsyncLinearMotionProfileController: Not generating a path because no waypoints were"
@@ -57,10 +63,10 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
                      static_cast<int>(points.size()),
                      FIT_HERMITE_CUBIC,
                      PATHFINDER_SAMPLES_FAST,
-                     0.001,
-                     limits.maxVel,
-                     limits.maxAccel,
-                     limits.maxJerk,
+                     0.010,
+                     ilimits.maxVel,
+                     ilimits.maxAccel,
+                     ilimits.maxJerk,
                      &candidate);
 
   const int length = candidate.length;
@@ -207,12 +213,13 @@ void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair 
   const auto reversed = direction.load(std::memory_order_acquire);
 
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
+    const auto segDT = path.segment[i].dt * second;
     currentProfilePosition = path.segment[i].position;
 
     const auto motorRPM = convertLinearToRotational(path.segment[i].velocity * mps).convert(rpm);
     output->controllerSet(motorRPM / toUnderlyingType(pair.internalGearset) * reversed);
 
-    rate->delayUntil(1_ms);
+    rate->delayUntil(segDT);
   }
 }
 
@@ -239,9 +246,16 @@ void AsyncLinearMotionProfileController::waitUntilSettled() {
 
 void AsyncLinearMotionProfileController::moveTo(const QLength &iposition,
                                                 const QLength &itarget,
+                                                bool ibackwards) {
+  moveTo(iposition, itarget, limits, ibackwards);
+}
+
+void AsyncLinearMotionProfileController::moveTo(const QLength &iposition,
+                                                const QLength &itarget,
+                                                const PathfinderLimits &ilimits,
                                                 const bool ibackwards) {
   std::string name = reinterpret_cast<const char *>(this); // hmmmm...
-  generatePath({iposition, itarget}, name);
+  generatePath({iposition, itarget}, name, ilimits);
   setTarget(name, ibackwards);
   waitUntilSettled();
   removePath(name);

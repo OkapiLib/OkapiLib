@@ -43,7 +43,7 @@ void resetHardware();
 void test_printf(const std::string &istring);
 
 /**
- * Run a test. The lambda can have any body, or it can be a sinlge function call. In that case, use
+ * Run a test. The lambda can have any body, or it can be a single function call. In that case, use
  * TEST_BODY for a more succinct way of writing the test.
  *
  * @param iname test name (describe what it does)

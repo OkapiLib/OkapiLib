@@ -9,9 +9,7 @@
 
 namespace okapi {
 ControllerButton::ControllerButton(const ControllerDigital ibtn, const bool iinverted)
-  : ButtonBase(iinverted),
-    controller(ControllerUtil::idToProsEnum(ControllerId::master)),
-    btn(ibtn) {
+  : ControllerButton(ControllerId::master, ibtn, iinverted) {
 }
 
 ControllerButton::ControllerButton(const ControllerId icontroller,
@@ -22,6 +20,6 @@ ControllerButton::ControllerButton(const ControllerId icontroller,
 
 bool ControllerButton::currentlyPressed() {
   const bool pressed = controller.get_digital(ControllerUtil::digitalToProsEnum(btn)) != 0;
-  return inverted ? !pressed : pressed;
+  return inverted == !pressed;
 }
 } // namespace okapi

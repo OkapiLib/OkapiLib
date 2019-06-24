@@ -29,7 +29,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * An Async Controller which generates and follows 2D motion profiles. Throws a
    * std::invalid_argument exception if the gear ratio is zero.
    *
-   * @param ilimits The limits.
+   * @param ilimits The default limits.
    * @param imodel The chassis model to control.
    * @param iscales The chassis dimensions.
    * @param ipair The gearset.
@@ -60,6 +60,22 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param ipathId A unique identifier to save the path with.
    */
   void generatePath(std::initializer_list<Point> iwaypoints, const std::string &ipathId);
+
+  /**
+   * Generates a path which intersects the given waypoints and saves it internally with a key of
+   * pathId. Call executePath() with the same pathId to run it.
+   *
+   * If the waypoints form a path which is impossible to achieve, an instance of std::runtime_error
+   * is thrown (and an error is logged) which describes the waypoints. If there are no waypoints,
+   * no path is generated.
+   *
+   * @param iwaypoints The waypoints to hit on the path.
+   * @param ipathId A unique identifier to save the path with.
+   * @param ilimits The limits to use for this path only.
+   */
+  void generatePath(std::initializer_list<Point> iwaypoints,
+                    const std::string &ipathId,
+                    const PathfinderLimits &ilimits);
 
   /**
    * Removes a path and frees the memory it used.
@@ -122,6 +138,20 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    */
   void
   moveTo(std::initializer_list<Point> iwaypoints, bool ibackwards = false, bool imirrored = false);
+
+  /**
+   * Generates a new path from the position (typically the current position) to the target and
+   * blocks until the controller has settled. Does not save the path which was generated.
+   *
+   * @param iwaypoints The waypoints to hit on the path.
+   * @param ilimits The limits to use for this path only.
+   * @param ibackwards Whether to follow the profile backwards.
+   * @param imirrored Whether to follow the profile mirrored.
+   */
+  void moveTo(std::initializer_list<Point> iwaypoints,
+              const PathfinderLimits &ilimits,
+              bool ibackwards = false,
+              bool imirrored = false);
 
   /**
    * Returns the last error of the controller. Does not update when disabled. This implementation
@@ -190,6 +220,26 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    */
   CrossplatformThread *getThread() const;
 
+  /**
+   * Saves a generated path to files.
+   * Paths are stored as <ipathId>.<left/right>.csv
+   * An SD card must be inserted into the brain and the directory must exist.
+   * idirectory can be prefixed with /usd/, but it this is not required.
+   *
+   * @param idirectory The directory to store the path files in
+   * @param ipathId The path ID of the generated path
+   */
+  void storePath(std::string idirectory, std::string ipathId);
+
+  /**
+   * Loads a path from a directory on the SD card containing path CSV files.
+   * /usd/ is automatically prepended to idirectory if it is not specified.
+   *
+   * @param idirectory The directory that the path files are stored in
+   * @param ipathId The path ID that the paths are stored under (and will be loaded into)
+   */
+  void loadPath(std::string idirectory, std::string ipathId);
+
   protected:
   struct TrajectoryPair {
     Segment *left;
@@ -231,5 +281,18 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
 
   std::string
   getPathErrorMessage(const std::vector<Waypoint> &points, const std::string &ipathId, int length);
+
+  /**
+   * Joins and escapes a directory and file name
+   *
+   * @param directory The directory path, separated by forward slashes (/) and with or without a
+   * trailing slash
+   * @param filename The file name in the directory
+   * @return the fully qualified and legal path name
+   */
+  static std::string makeFilePath(std::string directory, std::string filename);
+
+  void internalStorePath(FILE *leftPathFile, FILE *rightPathFile, std::string ipathId);
+  void internalLoadPath(FILE *leftPathFile, FILE *rightPathFile, std::string ipathId);
 };
 } // namespace okapi
