@@ -233,20 +233,24 @@ class ChassisControllerBuilder {
   ChassisControllerBuilder &withMaxVoltage(double imaxVoltage);
 
   /**
-   * Sets the TimeUtil for each ChassisController.
+   * Sets the TimeUtilFactory used when building a ChassisController. The default is the static
+   * TimeUtilFactory.
    *
-   * @param itimeUtil The TimeUtil.
+   * @param itimeUtilFactory The TimeUtilFactory.
    * @return An ongoing builder.
    */
-  ChassisControllerBuilder &withChassisControllerTimeUtil(const TimeUtil &itimeUtil);
+  ChassisControllerBuilder &
+  withChassisControllerTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
 
   /**
-   * Sets the TimeUtil for each ClosedLoopController.
+   * Sets the TimeUtilFactory used when building a ClosedLoopController. The default is the static
+   * TimeUtilFactory.
    *
-   * @param itimeUtil The TimeUtil.
+   * @param itimeUtilFactory The TimeUtilFactory.
    * @return An ongoing builder.
    */
-  ChassisControllerBuilder &withClosedLoopControllerTimeUtil(const TimeUtil &itimeUtil);
+  ChassisControllerBuilder &
+  withClosedLoopControllerTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
 
   /**
    * Sets the logger used for the ChassisController and ClosedLoopControllers.
@@ -295,8 +299,8 @@ class ChassisControllerBuilder {
   std::unique_ptr<Filter> angleFilter = std::make_unique<PassthroughFilter>();
   IterativePosPIDController::Gains turnGains;
   std::unique_ptr<Filter> turnFilter = std::make_unique<PassthroughFilter>();
-  TimeUtil chassisControllerTimeUtil = TimeUtilFactory::create();
-  TimeUtil closedLoopControllerTimeUtil = TimeUtilFactory::create();
+  TimeUtilFactory chassisControllerTimeUtilFactory = TimeUtilFactory();
+  TimeUtilFactory closedLoopControllerTimeUtilFactory = TimeUtilFactory();
 
   bool gearsetSetByUser{false}; // Used so motors don't overwrite gearset set manually
   AbstractMotor::GearsetRatioPair gearset{AbstractMotor::gearset::invalid};
