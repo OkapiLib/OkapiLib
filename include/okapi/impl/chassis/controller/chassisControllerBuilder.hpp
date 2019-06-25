@@ -280,6 +280,15 @@ class ChassisControllerBuilder {
   withClosedLoopControllerTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
 
   /**
+   * Sets the TimeUtilFactory used when building an Odometry. The default is the static
+   * TimeUtilFactory.
+   *
+   * @param itimeUtilFactory The TimeUtilFactory.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withOdometryTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
+
+  /**
    * Sets the logger used for the ChassisController and ClosedLoopControllers.
    *
    * @param ilogger The logger.
@@ -336,6 +345,7 @@ class ChassisControllerBuilder {
   std::unique_ptr<Filter> turnFilter = std::make_unique<PassthroughFilter>();
   TimeUtilFactory chassisControllerTimeUtilFactory = TimeUtilFactory();
   TimeUtilFactory closedLoopControllerTimeUtilFactory = TimeUtilFactory();
+  TimeUtilFactory odometryTimeUtilFactory = TimeUtilFactory();
 
   bool gearsetSetByUser{false}; // Used so motors don't overwrite gearset set manually
   AbstractMotor::GearsetRatioPair gearset{AbstractMotor::gearset::invalid};

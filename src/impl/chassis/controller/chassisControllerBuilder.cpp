@@ -236,6 +236,12 @@ ChassisControllerBuilder &ChassisControllerBuilder::withClosedLoopControllerTime
 }
 
 ChassisControllerBuilder &
+ChassisControllerBuilder::withOdometryTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory) {
+  odometryTimeUtilFactory = itimeUtilFactory;
+  return *this;
+}
+
+ChassisControllerBuilder &
 ChassisControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
   controllerLogger = ilogger;
   return *this;
@@ -287,23 +293,29 @@ std::shared_ptr<OdomChassisControllerPID> ChassisControllerBuilder::buildOCCPID(
     if (odometry == nullptr) {
       if (middleSensor == nullptr) {
         odometry = std::make_unique<Odometry>(
-          TimeUtilFactory::create(), model, scales, wheelVelDelta, controllerLogger);
+          odometryTimeUtilFactory.create(), model, scales, wheelVelDelta, controllerLogger);
       } else {
         odometry = std::make_unique<ThreeEncoderOdometry>(
-          TimeUtilFactory::create(), model, scales, wheelVelDelta, controllerLogger);
+          odometryTimeUtilFactory.create(), model, scales, wheelVelDelta, controllerLogger);
       }
     }
 
     auto out = std::make_shared<OdomChassisControllerPID>(
-      TimeUtilFactory::create(),
+      chassisControllerTimeUtilFactory.create(),
       model,
       std::move(odometry),
-      std::make_unique<IterativePosPIDController>(
-        distanceGains, timeUtil, std::move(distanceFilter), controllerLogger),
-      std::make_unique<IterativePosPIDController>(
-        angleGains, timeUtil, std::move(angleFilter), controllerLogger),
-      std::make_unique<IterativePosPIDController>(
-        turnGains, timeUtil, std::move(turnFilter), controllerLogger),
+      std::make_unique<IterativePosPIDController>(distanceGains,
+                                                  closedLoopControllerTimeUtilFactory.create(),
+                                                  std::move(distanceFilter),
+                                                  controllerLogger),
+      std::make_unique<IterativePosPIDController>(angleGains,
+                                                  closedLoopControllerTimeUtilFactory.create(),
+                                                  std::move(angleFilter),
+                                                  controllerLogger),
+      std::make_unique<IterativePosPIDController>(turnGains,
+                                                  closedLoopControllerTimeUtilFactory.create(),
+                                                  std::move(turnFilter),
+                                                  controllerLogger),
       gearset,
       scales,
       moveThreshold,
@@ -331,26 +343,26 @@ std::shared_ptr<OdomChassisControllerIntegrated> ChassisControllerBuilder::build
     if (odometry == nullptr) {
       if (middleSensor == nullptr) {
         odometry = std::make_unique<Odometry>(
-          TimeUtilFactory::create(), model, scales, wheelVelDelta, controllerLogger);
+          odometryTimeUtilFactory.create(), model, scales, wheelVelDelta, controllerLogger);
       } else {
         odometry = std::make_unique<ThreeEncoderOdometry>(
-          TimeUtilFactory::create(), model, scales, wheelVelDelta, controllerLogger);
+          odometryTimeUtilFactory.create(), model, scales, wheelVelDelta, controllerLogger);
       }
     }
 
     auto out = std::make_shared<OdomChassisControllerIntegrated>(
-      TimeUtilFactory::create(),
+      chassisControllerTimeUtilFactory.create(),
       model,
       std::move(odometry),
       std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
                                                      gearset,
                                                      toUnderlyingType(gearset.internalGearset),
-                                                     timeUtil,
+                                                     closedLoopControllerTimeUtilFactory.create(),
                                                      controllerLogger),
       std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.right,
                                                      gearset,
                                                      toUnderlyingType(gearset.internalGearset),
-                                                     timeUtil,
+                                                     closedLoopControllerTimeUtilFactory.create(),
                                                      controllerLogger),
       gearset,
       scales,
@@ -423,7 +435,7 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
 
 std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI() {
   if (isSkidSteer) {
-    return out = std::make_shared<ChassisControllerIntegrated>(
+    return std::make_shared<ChassisControllerIntegrated>(
       chassisControllerTimeUtilFactory.create(),
       makeSkidSteerModel(),
       std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
@@ -440,7 +452,7 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
       scales,
       controllerLogger);
   } else {
-    return out = std::make_shared<ChassisControllerIntegrated>(
+    return std::make_shared<ChassisControllerIntegrated>(
       chassisControllerTimeUtilFactory.create(),
       makeXDriveModel(),
       std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
