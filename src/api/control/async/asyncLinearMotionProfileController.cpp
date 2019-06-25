@@ -110,7 +110,12 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
   pathfinder_generate(&candidate, trajectory);
 
   // Free the old path before overwriting it
-  removePath(ipathId);
+  if (!removePath(ipathId)) {
+    std::string message = "AsyncLinearMotionProfileController: Could not remove path " + ipathId + 
+                          " to overwrite. Path may be running.";
+    LOG_ERROR(message);
+    throw std::runtime_error(message);
+  }
 
   paths.emplace(ipathId, TrajectoryPair{trajectory, length});
 
@@ -147,7 +152,8 @@ bool AsyncLinearMotionProfileController::removePath(const std::string &ipathId) 
     paths.erase(ipathId);
   }
   
-  // Return true whether we actually did anything or not
+  // Return true whether the path was actually removed or not
+  // Thus, a true return value mirrors the previous behavior of removePath
   return true;
 }
 
@@ -262,11 +268,15 @@ void AsyncLinearMotionProfileController::moveTo(const QLength &iposition,
                                                 const QLength &itarget,
                                                 const PathfinderLimits &ilimits,
                                                 const bool ibackwards) {
-  std::string name = reinterpret_cast<const char *>(this); // hmmmm...
+  static int moveToCount = 0;
+  std::string name = "__moveTo" + std::to_string(moveToCount++);
   generatePath({iposition, itarget}, name, ilimits);
   setTarget(name, ibackwards);
   waitUntilSettled();
-  removePath(name);
+  if (!removePath(name)) {
+    // Failed to remove path (Warn and move on)
+    LOG_WARN_S("AsyncLinearMotionProfileController: Couldn't remove path after moveTo");
+  }
 }
 
 double AsyncLinearMotionProfileController::getError() const {

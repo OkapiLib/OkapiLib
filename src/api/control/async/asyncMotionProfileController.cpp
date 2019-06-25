@@ -151,7 +151,12 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
   free(trajectory);
 
   // Free the old path before overwriting it
-  removePath(ipathId);
+  if (!removePath(ipathId)) {
+    std::string message = "AsyncMotionProfileController: Could not remove path " + ipathId + 
+                          " to overwrite. Path may be running.";
+    LOG_ERROR(message);
+    throw std::runtime_error(message);
+  }
 
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length});
 
@@ -188,7 +193,8 @@ bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
     paths.erase(ipathId);
   }
 
-  // Return true whether we actually did anything or not
+  // Return true whether the path was actually removed or not
+  // Thus, a true return value mirrors the previous behavior of removePath
   return true;
 }
 
@@ -310,11 +316,15 @@ void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoint
                                           const PathfinderLimits &ilimits,
                                           const bool ibackwards,
                                           const bool imirrored) {
-  std::string name = reinterpret_cast<const char *>(this); // hmmmm...
+  static int moveToCount = 0;
+  std::string name = "__moveTo" + std::to_string(moveToCount++);
   generatePath(iwaypoints, name, ilimits);
   setTarget(name, ibackwards, imirrored);
   waitUntilSettled();
-  removePath(name);
+  if (!removePath(name)) {
+    // Failed to remove path (Warn and move on)
+    LOG_WARN_S("AsyncMotionProfileController: Couldn't remove path after moveTo");
+  }
 }
 
 Point AsyncMotionProfileController::getError() const {
@@ -459,7 +469,12 @@ void AsyncMotionProfileController::internalLoadPath(FILE *leftPathFile,
   pathfinder_deserialize_csv(rightPathFile, rightTrajectory);
 
   // Remove the old path if it exists
-  removePath(ipathId);
+  if (!removePath(ipathId)) {
+    std::string message = "AsyncMotionProfileController: Could not remove path " + ipathId + 
+                          " to overwrite. Path may be running.";
+    LOG_ERROR(message);
+    throw std::runtime_error(message);
+  }
 
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, count});
 }
