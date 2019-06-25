@@ -167,6 +167,18 @@ TEST_F(AsyncMotionProfileControllerTest, RemoveRunningPath) {
   EXPECT_EQ(controller->getPaths().size(), 1);
 }
 
+TEST_F(AsyncMotionProfileControllerTest, ReplaceRunningPath) {
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 0_m, 45_deg}}, "A");
+
+  controller->setTarget("A");
+  controller->flipDisable(false);
+
+  controller->generatePath({Point{0_m, 0_m, 0_deg}, Point{3_ft, 3_ft, 45_deg}}, "A");
+  EXPECT_EQ(controller->isDisabled(), true);
+
+  EXPECT_EQ(controller->getPaths().size(), 1);
+}
+
 TEST_F(AsyncMotionProfileControllerTest, RemoveAPathWhichDoesNotExist) {
   EXPECT_EQ(controller->getPaths().size(), 0);
 
