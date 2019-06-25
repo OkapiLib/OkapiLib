@@ -201,14 +201,6 @@ class ChassisControllerBuilder {
     std::unique_ptr<Filter> iangleFilter = std::make_unique<PassthroughFilter>());
 
   /**
-   * Sets the TimeUtil for each controller.
-   *
-   * @param itimeUtil The TimeUtil.
-   * @return An ongoing builder.
-   */
-  ChassisControllerBuilder &withTimeUtil(const TimeUtil &itimeUtil);
-
-  /**
    * Sets the gearset. The default gearset is derived from the motor's.
    *
    * @param igearset The gearset.
@@ -241,7 +233,27 @@ class ChassisControllerBuilder {
   ChassisControllerBuilder &withMaxVoltage(double imaxVoltage);
 
   /**
-   * Sets the logger.
+   * Sets the TimeUtilFactory used when building a ChassisController. The default is the static
+   * TimeUtilFactory.
+   *
+   * @param itimeUtilFactory The TimeUtilFactory.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &
+  withChassisControllerTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
+
+  /**
+   * Sets the TimeUtilFactory used when building a ClosedLoopController. The default is the static
+   * TimeUtilFactory.
+   *
+   * @param itimeUtilFactory The TimeUtilFactory.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &
+  withClosedLoopControllerTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
+
+  /**
+   * Sets the logger used for the ChassisController and ClosedLoopControllers.
    *
    * @param ilogger The logger.
    * @return An ongoing builder.
@@ -287,7 +299,8 @@ class ChassisControllerBuilder {
   std::unique_ptr<Filter> angleFilter = std::make_unique<PassthroughFilter>();
   IterativePosPIDController::Gains turnGains;
   std::unique_ptr<Filter> turnFilter = std::make_unique<PassthroughFilter>();
-  TimeUtil timeUtil = TimeUtilFactory::create();
+  TimeUtilFactory chassisControllerTimeUtilFactory = TimeUtilFactory();
+  TimeUtilFactory closedLoopControllerTimeUtilFactory = TimeUtilFactory();
 
   bool gearsetSetByUser{false}; // Used so motors don't overwrite gearset set manually
   AbstractMotor::GearsetRatioPair gearset{AbstractMotor::gearset::invalid};
