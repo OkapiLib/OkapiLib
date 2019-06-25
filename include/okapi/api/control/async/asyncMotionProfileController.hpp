@@ -297,5 +297,12 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
 
   void internalStorePath(FILE *leftPathFile, FILE *rightPathFile, std::string ipathId);
   void internalLoadPath(FILE *leftPathFile, FILE *rightPathFile, std::string ipathId);
+
+  /**
+   * Attempts to remove a path without stopping execution, then if that fails,
+   * disables the controller and removes the path
+   * TODO: expose this?
+   */
+  void safeRemovePath(std::string ipathId);
 };
 } // namespace okapi

@@ -267,5 +267,12 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
 
   std::string
   getPathErrorMessage(const std::vector<Waypoint> &points, const std::string &ipathId, int length);
+
+  /**
+   * Attempts to remove a path without stopping execution, then if that fails,
+   * disables the controller and removes the path
+   * TODO: expose this?
+   */
+  void safeRemovePath(std::string ipathId);
 };
 } // namespace okapi

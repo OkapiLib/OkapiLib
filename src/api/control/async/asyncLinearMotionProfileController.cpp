@@ -110,12 +110,7 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
   pathfinder_generate(&candidate, trajectory);
 
   // Free the old path before overwriting it
-  if (!removePath(ipathId)) {
-    std::string message = "AsyncLinearMotionProfileController: Could not remove path " + ipathId + 
-                          " to overwrite. Path may be running.";
-    LOG_ERROR(message);
-    throw std::runtime_error(message);
-  }
+  safeRemovePath(ipathId);
 
   paths.emplace(ipathId, TrajectoryPair{trajectory, length});
 
@@ -141,7 +136,7 @@ AsyncLinearMotionProfileController::getPathErrorMessage(const std::vector<Waypoi
 }
 
 bool AsyncLinearMotionProfileController::removePath(const std::string &ipathId) {
-  if (isRunning.load(std::memory_order_acquire) && getTarget() == ipathId) {
+  if (!isDisabled() && isRunning.load(std::memory_order_acquire) && getTarget() == ipathId) {
     LOG_WARN("Attempted to remove currently running path " + ipathId);
     return false;
   }
@@ -151,7 +146,7 @@ bool AsyncLinearMotionProfileController::removePath(const std::string &ipathId) 
     free(oldPath->second.segment);
     paths.erase(ipathId);
   }
-  
+
   // Return true whether the path was actually removed or not
   // Thus, a true return value mirrors the previous behavior of removePath
   return true;
@@ -333,4 +328,12 @@ CrossplatformThread *AsyncLinearMotionProfileController::getThread() const {
 
 void AsyncLinearMotionProfileController::tarePosition() {
 }
+
+void AsyncLinearMotionProfileController::safeRemovePath(std::string ipathId) {
+  if (!removePath(ipathId)) {
+    this->flipDisable(true);
+    removePath(ipathId);
+  }
+}
+
 } // namespace okapi

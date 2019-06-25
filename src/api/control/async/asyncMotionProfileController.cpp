@@ -151,12 +151,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
   free(trajectory);
 
   // Free the old path before overwriting it
-  if (!removePath(ipathId)) {
-    std::string message = "AsyncMotionProfileController: Could not remove path " + ipathId + 
-                          " to overwrite. Path may be running.";
-    LOG_ERROR(message);
-    throw std::runtime_error(message);
-  }
+  safeRemovePath(ipathId);
 
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length});
 
@@ -181,11 +176,11 @@ std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<
 }
 
 bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
-  if (isRunning.load(std::memory_order_acquire) && getTarget() == ipathId) {
+  if (!isDisabled() && isRunning.load(std::memory_order_acquire) && getTarget() == ipathId) {
     LOG_WARN("Attempted to remove currently running path " + ipathId);
     return false;
-  } 
-  
+  }
+
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
     free(oldPath->second.left);
@@ -282,7 +277,6 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
 
     rate->delayUntil(segDT);
   }
-  
 }
 
 QAngularSpeed AsyncMotionProfileController::convertLinearToRotational(QSpeed linear) const {
@@ -469,13 +463,7 @@ void AsyncMotionProfileController::internalLoadPath(FILE *leftPathFile,
   pathfinder_deserialize_csv(rightPathFile, rightTrajectory);
 
   // Remove the old path if it exists
-  if (!removePath(ipathId)) {
-    std::string message = "AsyncMotionProfileController: Could not remove path " + ipathId + 
-                          " to overwrite. Path may be running.";
-    LOG_ERROR(message);
-    throw std::runtime_error(message);
-  }
-
+  safeRemovePath(ipathId);
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, count});
 }
 
@@ -514,5 +502,12 @@ std::string AsyncMotionProfileController::makeFilePath(std::string directory,
   path.append(filenameCopy);
 
   return path;
+}
+
+void AsyncMotionProfileController::safeRemovePath(std::string ipathId) {
+  if (!removePath(ipathId)) {
+    this->flipDisable(true);
+    removePath(ipathId);
+  }
 }
 } // namespace okapi
