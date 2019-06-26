@@ -8,6 +8,7 @@
 #include "okapi/api/control/async/asyncLinearMotionProfileController.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include <numeric>
+#include <mutex>
 
 namespace okapi {
 AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
@@ -110,7 +111,7 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
   pathfinder_generate(&candidate, trajectory);
 
   // Free the old path before overwriting it
-  safeRemovePath(ipathId);
+  forceRemovePath(ipathId);
 
   paths.emplace(ipathId, TrajectoryPair{trajectory, length});
 
@@ -141,14 +142,19 @@ bool AsyncLinearMotionProfileController::removePath(const std::string &ipathId) 
     return false;
   }
 
+  pathRemoveMutex.lock();
+
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
     free(oldPath->second.segment);
     paths.erase(ipathId);
   }
 
-  // Return true whether the path was actually removed or not
-  // Thus, a true return value mirrors the previous behavior of removePath
+  pathRemoveMutex.unlock();
+
+  // A return value of true mirrors the previous behavior of removePath
+  // providing no feedback about whether the path was actually removed
+  // but instead telling us that the path does not exist at this moment
   return true;
 }
 
@@ -222,12 +228,17 @@ void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair 
   const auto reversed = direction.load(std::memory_order_acquire);
 
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
+    // This mutex is used to combat an edge case of an edge case
+    // if a running path is asked to be removed at the moment this loop is executing
+    pathRemoveMutex.lock();
+
     const auto segDT = path.segment[i].dt * second;
     currentProfilePosition = path.segment[i].position;
 
     const auto motorRPM = convertLinearToRotational(path.segment[i].velocity * mps).convert(rpm);
     output->controllerSet(motorRPM / toUnderlyingType(pair.internalGearset) * reversed);
 
+    pathRemoveMutex.unlock();
     rate->delayUntil(segDT);
   }
 }
@@ -329,7 +340,7 @@ CrossplatformThread *AsyncLinearMotionProfileController::getThread() const {
 void AsyncLinearMotionProfileController::tarePosition() {
 }
 
-void AsyncLinearMotionProfileController::safeRemovePath(std::string ipathId) {
+void AsyncLinearMotionProfileController::forceRemovePath(std::string ipathId) {
   if (!removePath(ipathId)) {
     std::string message = "AsyncLinearMotionProfileController: Disabling controller to remove path " + ipathId;
     LOG_WARN(message);

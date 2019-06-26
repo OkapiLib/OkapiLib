@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <iostream>
 #include <numeric>
+#include <mutex>
 
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(
@@ -151,7 +152,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
   free(trajectory);
 
   // Free the old path before overwriting it
-  safeRemovePath(ipathId);
+  forceRemovePath(ipathId);
 
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length});
 
@@ -180,6 +181,7 @@ bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
     LOG_WARN("Attempted to remove currently running path " + ipathId);
     return false;
   }
+  pathRemoveMutex.lock();
 
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
@@ -188,8 +190,11 @@ bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
     paths.erase(ipathId);
   }
 
-  // Return true whether the path was actually removed or not
-  // Thus, a true return value mirrors the previous behavior of removePath
+  pathRemoveMutex.unlock();
+
+  // A return value of true mirrors the previous behavior of removePath
+  // providing no feedback about whether the path was actually removed
+  // but instead telling us that the path does not exist at this moment
   return true;
 }
 
@@ -261,6 +266,10 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
   const bool followMirrored = mirrored.load(std::memory_order_acquire);
 
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
+    // This mutex is used to combat an edge case of an edge case
+    // if a running path is asked to be removed at the moment this loop is executing
+    pathRemoveMutex.lock();
+
     const auto segDT = path.left[i].dt * second;
     const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
     const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
@@ -274,6 +283,7 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
       model->left(leftSpeed);
       model->right(rightSpeed);
     }
+    pathRemoveMutex.unlock();
 
     rate->delayUntil(segDT);
   }
@@ -463,7 +473,7 @@ void AsyncMotionProfileController::internalLoadPath(FILE *leftPathFile,
   pathfinder_deserialize_csv(rightPathFile, rightTrajectory);
 
   // Remove the old path if it exists
-  safeRemovePath(ipathId);
+  forceRemovePath(ipathId);
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, count});
 }
 
@@ -504,7 +514,7 @@ std::string AsyncMotionProfileController::makeFilePath(std::string directory,
   return path;
 }
 
-void AsyncMotionProfileController::safeRemovePath(std::string ipathId) {
+void AsyncMotionProfileController::forceRemovePath(std::string ipathId) {
   if (!removePath(ipathId)) {
     std::string message = "AsyncMotionProfileController: Disabling controller to remove path " + ipathId;
     LOG_WARN(message);

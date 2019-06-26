@@ -16,6 +16,7 @@
 #include "okapi/api/util/timeUtil.hpp"
 #include <atomic>
 #include <map>
+#include <mutex>
 
 extern "C" {
 #include "okapi/pathfinder/include/pathfinder.h"
@@ -227,6 +228,14 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    */
   CrossplatformThread *getThread() const;
 
+  /**
+   * Attempts to remove a path without stopping execution, then if that fails,
+   * disables the controller and removes the path
+   * 
+   * @param ipathId The path ID that will be removed
+   */
+  void forceRemovePath(std::string ipathId);
+
   protected:
   struct TrajectoryPair {
     Segment *segment;
@@ -241,6 +250,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   AbstractMotor::GearsetRatioPair pair;
   double currentProfilePosition{0};
   TimeUtil timeUtil;
+  std::mutex pathRemoveMutex;
 
   std::string currentPath{""};
   std::atomic_bool isRunning{false};
@@ -267,12 +277,5 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
 
   std::string
   getPathErrorMessage(const std::vector<Waypoint> &points, const std::string &ipathId, int length);
-
-  /**
-   * Attempts to remove a path without stopping execution, then if that fails,
-   * disables the controller and removes the path
-   * TODO: expose this?
-   */
-  void safeRemovePath(std::string ipathId);
 };
 } // namespace okapi
