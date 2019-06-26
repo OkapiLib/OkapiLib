@@ -10,7 +10,6 @@
 #include <algorithm>
 #include <iostream>
 #include <numeric>
-#include <mutex>
 
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(
@@ -516,7 +515,8 @@ std::string AsyncMotionProfileController::makeFilePath(std::string directory,
 
 void AsyncMotionProfileController::forceRemovePath(std::string ipathId) {
   if (!removePath(ipathId)) {
-    std::string message = "AsyncMotionProfileController: Disabling controller to remove path " + ipathId;
+    std::string message =
+      "AsyncMotionProfileController: Disabling controller to remove path " + ipathId;
     LOG_WARN(message);
     this->flipDisable(true);
     removePath(ipathId);

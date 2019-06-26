@@ -8,7 +8,6 @@
 #include "okapi/api/control/async/asyncLinearMotionProfileController.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include <numeric>
-#include <mutex>
 
 namespace okapi {
 AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
@@ -342,7 +341,8 @@ void AsyncLinearMotionProfileController::tarePosition() {
 
 void AsyncLinearMotionProfileController::forceRemovePath(std::string ipathId) {
   if (!removePath(ipathId)) {
-    std::string message = "AsyncLinearMotionProfileController: Disabling controller to remove path " + ipathId;
+    std::string message =
+      "AsyncLinearMotionProfileController: Disabling controller to remove path " + ipathId;
     LOG_WARN(message);
     this->flipDisable(true);
     removePath(ipathId);
