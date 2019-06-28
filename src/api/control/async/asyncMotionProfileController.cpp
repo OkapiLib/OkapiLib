@@ -181,7 +181,8 @@ bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
     LOG_WARN("Attempted to remove currently running path " + ipathId);
     return false;
   }
-  std::lock_guard<CrossplatformMutex> lock(pathRemoveMutex);
+
+  std::scoped_lock<CrossplatformMutex> lock(pathRemoveMutex);
 
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
@@ -190,11 +191,8 @@ bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
     paths.erase(ipathId);
   }
 
-  /* 
-   * A return value of true provides no feedback about whether the 
-   * path was actually removed but instead tells us that the path 
-   * does not exist at this moment 
-   */
+  // A return value of true provides no feedback about whether the path was actually removed but
+  // instead tells us that the path does not exist at this moment
   return true;
 }
 
@@ -268,7 +266,7 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
     // This mutex is used to combat an edge case of an edge case
     // if a running path is asked to be removed at the moment this loop is executing
-    std::lock_guard<CrossplatformMutex> lock(pathRemoveMutex);
+    std::scoped_lock<CrossplatformMutex> lock(pathRemoveMutex);
 
     const auto segDT = path.left[i].dt * second;
     const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
@@ -325,10 +323,7 @@ void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoint
   generatePath(iwaypoints, name, ilimits);
   setTarget(name, ibackwards, imirrored);
   waitUntilSettled();
-  if (!removePath(name)) {
-    // Failed to remove path (Warn and move on)
-    LOG_WARN_S("AsyncMotionProfileController: Couldn't remove path after moveTo");
-  }
+  forceRemovePath(name);
 }
 
 Point AsyncMotionProfileController::getError() const {
@@ -381,7 +376,7 @@ CrossplatformThread *AsyncMotionProfileController::getThread() const {
   return task;
 }
 
-void AsyncMotionProfileController::storePath(const std::string &idirectory, 
+void AsyncMotionProfileController::storePath(const std::string &idirectory,
                                              const std::string &ipathId) {
   std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
   std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
@@ -408,7 +403,7 @@ void AsyncMotionProfileController::storePath(const std::string &idirectory,
   fclose(rightPathFile);
 }
 
-void AsyncMotionProfileController::loadPath(const std::string &idirectory, 
+void AsyncMotionProfileController::loadPath(const std::string &idirectory,
                                             const std::string &ipathId) {
   std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
   std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
