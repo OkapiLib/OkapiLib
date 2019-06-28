@@ -343,10 +343,8 @@ void AsyncLinearMotionProfileController::tarePosition() {
 
 void AsyncLinearMotionProfileController::forceRemovePath(const std::string ipathId) {
   if (!removePath(ipathId)) {
-    std::string message =
-      "AsyncLinearMotionProfileController: Disabling controller to remove path " + ipathId;
-    LOG_WARN(message);
-    this->flipDisable(true);
+    LOG_WARN("AsyncLinearMotionProfileController: Disabling controller to remove path " + ipathId);
+    flipDisable(true);
     removePath(ipathId);
   }
 }

@@ -517,10 +517,8 @@ std::string AsyncMotionProfileController::makeFilePath(std::string directory,
 
 void AsyncMotionProfileController::forceRemovePath(const std::string ipathId) {
   if (!removePath(ipathId)) {
-    std::string message =
-      "AsyncMotionProfileController: Disabling controller to remove path " + ipathId;
-    LOG_WARN(message);
-    this->flipDisable(true);
+    LOG_WARN("AsyncMotionProfileController: Disabling controller to remove path " + ipathId);
+    flipDisable(true);
     removePath(ipathId);
   }
 }
