@@ -249,7 +249,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    *
    * @param ipathId The path ID that will be removed
    */
-  void forceRemovePath(std::string ipathId);
+  void forceRemovePath(const std::string ipathId);
 
   protected:
   struct TrajectoryPair {

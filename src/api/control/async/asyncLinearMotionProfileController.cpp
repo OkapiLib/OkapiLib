@@ -151,9 +151,11 @@ bool AsyncLinearMotionProfileController::removePath(const std::string &ipathId) 
 
   pathRemoveMutex.unlock();
 
-  // A return value of true mirrors the previous behavior of removePath
-  // providing no feedback about whether the path was actually removed
-  // but instead telling us that the path does not exist at this moment
+  /* 
+   * A return value of true provides no feedback about whether the 
+   * path was actually removed but instead tells us that the path 
+   * does not exist at this moment 
+   */
   return true;
 }
 
@@ -339,7 +341,7 @@ CrossplatformThread *AsyncLinearMotionProfileController::getThread() const {
 void AsyncLinearMotionProfileController::tarePosition() {
 }
 
-void AsyncLinearMotionProfileController::forceRemovePath(std::string ipathId) {
+void AsyncLinearMotionProfileController::forceRemovePath(const std::string ipathId) {
   if (!removePath(ipathId)) {
     std::string message =
       "AsyncLinearMotionProfileController: Disabling controller to remove path " + ipathId;
