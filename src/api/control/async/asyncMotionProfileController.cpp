@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <iostream>
 #include <numeric>
+#include <mutex>
 
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(
@@ -180,7 +181,7 @@ bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
     LOG_WARN("Attempted to remove currently running path " + ipathId);
     return false;
   }
-  pathRemoveMutex.lock();
+  std::lock_guard<CrossplatformMutex> lock(pathRemoveMutex);
 
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
@@ -188,8 +189,6 @@ bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
     free(oldPath->second.right);
     paths.erase(ipathId);
   }
-
-  pathRemoveMutex.unlock();
 
   /* 
    * A return value of true provides no feedback about whether the 
@@ -269,7 +268,7 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
     // This mutex is used to combat an edge case of an edge case
     // if a running path is asked to be removed at the moment this loop is executing
-    pathRemoveMutex.lock();
+    std::lock_guard<CrossplatformMutex> lock(pathRemoveMutex);
 
     const auto segDT = path.left[i].dt * second;
     const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);

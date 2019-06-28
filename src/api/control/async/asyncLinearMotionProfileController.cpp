@@ -8,6 +8,7 @@
 #include "okapi/api/control/async/asyncLinearMotionProfileController.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include <numeric>
+#include <mutex>
 
 namespace okapi {
 AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
@@ -141,15 +142,13 @@ bool AsyncLinearMotionProfileController::removePath(const std::string &ipathId) 
     return false;
   }
 
-  pathRemoveMutex.lock();
+  std::lock_guard<CrossplatformMutex> lock(pathRemoveMutex);
 
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
     free(oldPath->second.segment);
     paths.erase(ipathId);
   }
-
-  pathRemoveMutex.unlock();
 
   /* 
    * A return value of true provides no feedback about whether the 
@@ -231,7 +230,7 @@ void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair 
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
     // This mutex is used to combat an edge case of an edge case
     // if a running path is asked to be removed at the moment this loop is executing
-    pathRemoveMutex.lock();
+    std::lock_guard<CrossplatformMutex> lock(pathRemoveMutex);
 
     const auto segDT = path.segment[i].dt * second;
     currentProfilePosition = path.segment[i].position;
