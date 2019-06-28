@@ -340,7 +340,7 @@ CrossplatformThread *AsyncLinearMotionProfileController::getThread() const {
 void AsyncLinearMotionProfileController::tarePosition() {
 }
 
-void AsyncLinearMotionProfileController::forceRemovePath(const std::string ipathId) {
+void AsyncLinearMotionProfileController::forceRemovePath(const std::string &ipathId) {
   if (!removePath(ipathId)) {
     LOG_WARN("AsyncLinearMotionProfileController: Disabling controller to remove path " + ipathId);
     flipDisable(true);

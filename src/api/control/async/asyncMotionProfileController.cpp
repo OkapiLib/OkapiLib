@@ -381,7 +381,8 @@ CrossplatformThread *AsyncMotionProfileController::getThread() const {
   return task;
 }
 
-void AsyncMotionProfileController::storePath(std::string idirectory, std::string ipathId) {
+void AsyncMotionProfileController::storePath(const std::string &idirectory, 
+                                             const std::string &ipathId) {
   std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
   std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
   FILE *leftPathFile = fopen(leftFilePath.c_str(), "w");
@@ -407,7 +408,8 @@ void AsyncMotionProfileController::storePath(std::string idirectory, std::string
   fclose(rightPathFile);
 }
 
-void AsyncMotionProfileController::loadPath(std::string idirectory, std::string ipathId) {
+void AsyncMotionProfileController::loadPath(const std::string &idirectory, 
+                                            const std::string &ipathId) {
   std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
   std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
   FILE *leftPathFile = fopen(leftFilePath.c_str(), "r");
@@ -435,7 +437,7 @@ void AsyncMotionProfileController::loadPath(std::string idirectory, std::string 
 
 void AsyncMotionProfileController::internalStorePath(FILE *leftPathFile,
                                                      FILE *rightPathFile,
-                                                     std::string ipathId) {
+                                                     const std::string &ipathId) {
   auto pathData = this->paths.find(ipathId);
 
   // Make sure path exists
@@ -454,7 +456,7 @@ void AsyncMotionProfileController::internalStorePath(FILE *leftPathFile,
 
 void AsyncMotionProfileController::internalLoadPath(FILE *leftPathFile,
                                                     FILE *rightPathFile,
-                                                    std::string ipathId) {
+                                                    const std::string &ipathId) {
   // Count lines in file, remove one for headers
   int count = 0;
   for (int c = getc(leftPathFile); c != EOF; c = getc(leftPathFile)) {
@@ -477,8 +479,8 @@ void AsyncMotionProfileController::internalLoadPath(FILE *leftPathFile,
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, count});
 }
 
-std::string AsyncMotionProfileController::makeFilePath(std::string directory,
-                                                       std::string filename) {
+std::string AsyncMotionProfileController::makeFilePath(const std::string &directory,
+                                                       const std::string &filename) {
   std::string path(directory);
 
   // Checks first substring
@@ -514,7 +516,7 @@ std::string AsyncMotionProfileController::makeFilePath(std::string directory,
   return path;
 }
 
-void AsyncMotionProfileController::forceRemovePath(const std::string ipathId) {
+void AsyncMotionProfileController::forceRemovePath(const std::string &ipathId) {
   if (!removePath(ipathId)) {
     LOG_WARN("AsyncMotionProfileController: Disabling controller to remove path " + ipathId);
     flipDisable(true);

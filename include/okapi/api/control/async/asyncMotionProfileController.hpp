@@ -232,7 +232,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param idirectory The directory to store the path files in
    * @param ipathId The path ID of the generated path
    */
-  void storePath(std::string idirectory, std::string ipathId);
+  void storePath(const std::string &idirectory, const std::string &ipathId);
 
   /**
    * Loads a path from a directory on the SD card containing path CSV files.
@@ -241,7 +241,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param idirectory The directory that the path files are stored in
    * @param ipathId The path ID that the paths are stored under (and will be loaded into)
    */
-  void loadPath(std::string idirectory, std::string ipathId);
+  void loadPath(const std::string &idirectory, const std::string &ipathId);
 
   /**
    * Attempts to remove a path without stopping execution, then if that fails,
@@ -249,7 +249,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    *
    * @param ipathId The path ID that will be removed
    */
-  void forceRemovePath(const std::string ipathId);
+  void forceRemovePath(const std::string &ipathId);
 
   protected:
   struct TrajectoryPair {
@@ -302,9 +302,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param filename The file name in the directory
    * @return the fully qualified and legal path name
    */
-  static std::string makeFilePath(std::string directory, std::string filename);
+  static std::string makeFilePath(const std::string &directory, const std::string &filename);
 
-  void internalStorePath(FILE *leftPathFile, FILE *rightPathFile, std::string ipathId);
-  void internalLoadPath(FILE *leftPathFile, FILE *rightPathFile, std::string ipathId);
+  void internalStorePath(FILE *leftPathFile, FILE *rightPathFile, const std::string &ipathId);
+  void internalLoadPath(FILE *leftPathFile, FILE *rightPathFile, const std::string &ipathId);
 };
 } // namespace okapi
