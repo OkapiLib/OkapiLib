@@ -11,13 +11,13 @@ namespace okapi {
 ADIUltrasonic::ADIUltrasonic(const std::uint8_t iportPing,
                              const std::uint8_t iportEcho,
                              std::unique_ptr<Filter> ifilter)
-  : ultra(iportPing, iportEcho), filter(std::move(ifilter)) {
+  : ultra(pros::c::adi_ultrasonic_init(iportPing, iportEcho)), filter(std::move(ifilter)) {
 }
 
 ADIUltrasonic::~ADIUltrasonic() = default;
 
 double ADIUltrasonic::get() {
-  return filter->filter(ultra.get_value());
+  return filter->filter(pros::c::adi_ultrasonic_get(ultra));
 }
 
 double ADIUltrasonic::controllerGet() {
