@@ -101,8 +101,7 @@ class CrossplatformThread {
 
 class CrossplatformMutex {
   public:
-  CrossplatformMutex() {
-  }
+  CrossplatformMutex() = default;
 
   void lock() {
 #ifdef THREADS_STD

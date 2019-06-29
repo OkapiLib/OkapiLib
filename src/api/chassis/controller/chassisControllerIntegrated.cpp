@@ -26,10 +26,10 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     scales(iscales),
     gearsetRatioPair(igearset) {
   if (igearset.ratio == 0) {
-    LOG_ERROR_S("ChassisControllerIntegrated: The gear ratio cannot be zero! Check if you are "
-                "using integer division.");
-    throw std::invalid_argument("ChassisControllerIntegrated: The gear ratio cannot be zero! Check "
-                                "if you are using integer division.");
+    std::string msg("ChassisControllerIntegrated: The gear ratio cannot be zero! Check if you are "
+                    "using integer division.");
+    LOG_ERROR(msg);
+    throw std::invalid_argument(msg);
   }
 
   setGearing(igearset.internalGearset);
@@ -104,7 +104,7 @@ void ChassisControllerIntegrated::turnAngleAsync(const double idegTarget) {
 }
 
 void ChassisControllerIntegrated::waitUntilSettled() {
-  LOG_INFO_S("ChassisControllerIntegrated: Waiting to settle");
+  LOG_INFO(std::string("ChassisControllerIntegrated: Waiting to settle"));
 
   auto rate = timeUtil.getRate();
   while (!(leftController->isSettled() && rightController->isSettled())) {
@@ -115,11 +115,11 @@ void ChassisControllerIntegrated::waitUntilSettled() {
   rightController->flipDisable(true);
   model->stop();
 
-  LOG_INFO_S("ChassisControllerIntegrated: Done waiting to settle");
+  LOG_INFO(std::string("ChassisControllerIntegrated: Done waiting to settle"));
 }
 
 void ChassisControllerIntegrated::stop() {
-  LOG_INFO_S("ChassisControllerIntegrated: Stopping");
+  LOG_INFO(std::string("ChassisControllerIntegrated: Stopping"));
 
   leftController->flipDisable(true);
   rightController->flipDisable(true);

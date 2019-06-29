@@ -9,8 +9,8 @@
 #include "okapi/api/util/mathUtil.hpp"
 #include <algorithm>
 #include <iostream>
-#include <numeric>
 #include <mutex>
+#include <numeric>
 
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(
@@ -27,11 +27,10 @@ AsyncMotionProfileController::AsyncMotionProfileController(
     pair(ipair),
     timeUtil(itimeUtil) {
   if (ipair.ratio == 0) {
-    LOG_ERROR_S("AsyncMotionProfileController: The gear ratio cannot be zero! Check if you are "
-                "using integer division.");
-    throw std::invalid_argument(
-      "AsyncMotionProfileController: The gear ratio cannot be zero! Check "
-      "if you are using integer division.");
+    std::string msg("AsyncMotionProfileController: The gear ratio cannot be zero! Check if you are "
+                    "using integer division.");
+    LOG_ERROR(msg);
+    throw std::invalid_argument(msg);
   }
 }
 
@@ -56,8 +55,8 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
                                                 const PathfinderLimits &ilimits) {
   if (iwaypoints.size() == 0) {
     // No point in generating a path
-    LOG_WARN_S(
-      "AsyncMotionProfileController: Not generating a path because no waypoints were given.");
+    LOG_WARN(std::string(
+      "AsyncMotionProfileController: Not generating a path because no waypoints were given."));
     return;
   }
 
@@ -68,7 +67,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
       Waypoint{point.x.convert(meter), point.y.convert(meter), point.theta.convert(radian)});
   }
 
-  LOG_INFO_S("AsyncMotionProfileController: Preparing trajectory");
+  LOG_INFO(std::string("AsyncMotionProfileController: Preparing trajectory"));
 
   TrajectoryCandidate candidate;
   pathfinder_prepare(points.data(),
@@ -117,7 +116,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
     throw std::runtime_error(message);
   }
 
-  LOG_INFO_S("AsyncMotionProfileController: Generating path");
+  LOG_INFO(std::string("AsyncMotionProfileController: Generating path"));
 
   pathfinder_generate(&candidate, trajectory);
 
@@ -145,7 +144,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
     throw std::runtime_error(message);
   }
 
-  LOG_INFO_S("AsyncMotionProfileController: Modifying for tank drive");
+  LOG_INFO(std::string("AsyncMotionProfileController: Modifying for tank drive"));
   pathfinder_modify_tank(
     trajectory, length, leftTrajectory, rightTrajectory, scales.wheelTrack.convert(meter));
 
@@ -182,7 +181,7 @@ bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
     return false;
   }
 
-  std::scoped_lock<CrossplatformMutex> lock(pathRemoveMutex);
+  std::scoped_lock lock(pathRemoveMutex);
 
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
@@ -248,7 +247,7 @@ void AsyncMotionProfileController::loop() {
         executeSinglePath(path->second, timeUtil.getRate());
         model->stop();
 
-        LOG_INFO_S("AsyncMotionProfileController: Done moving");
+        LOG_INFO(std::string("AsyncMotionProfileController: Done moving"));
       }
 
       isRunning.store(false, std::memory_order_release);
@@ -266,7 +265,7 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
     // This mutex is used to combat an edge case of an edge case
     // if a running path is asked to be removed at the moment this loop is executing
-    std::scoped_lock<CrossplatformMutex> lock(pathRemoveMutex);
+    std::scoped_lock lock(pathRemoveMutex);
 
     const auto segDT = path.left[i].dt * second;
     const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
@@ -298,14 +297,14 @@ void AsyncMotionProfileController::trampoline(void *context) {
 }
 
 void AsyncMotionProfileController::waitUntilSettled() {
-  LOG_INFO_S("AsyncMotionProfileController: Waiting to settle");
+  LOG_INFO(std::string("AsyncMotionProfileController: Waiting to settle"));
 
   auto rate = timeUtil.getRate();
   while (!isSettled()) {
     rate->delayUntil(10_ms);
   }
 
-  LOG_INFO_S("AsyncMotionProfileController: Done waiting to settle");
+  LOG_INFO(std::string("AsyncMotionProfileController: Done waiting to settle"));
 }
 
 void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints,
@@ -338,7 +337,7 @@ void AsyncMotionProfileController::reset() {
   // Interrupt executeSinglePath() by disabling the controller
   flipDisable(true);
 
-  LOG_INFO_S("AsyncMotionProfileController: Waiting to reset");
+  LOG_INFO(std::string("AsyncMotionProfileController: Waiting to reset"));
 
   auto rate = timeUtil.getRate();
   while (isRunning.load(std::memory_order_acquire)) {

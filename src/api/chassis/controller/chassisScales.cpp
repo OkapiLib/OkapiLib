@@ -42,9 +42,9 @@ ChassisScales::ChassisScales(const std::initializer_list<double> &iscales,
   validateInput(iscales.size(), logger);
 
   if (iscales.size() == 3) {
-    LOG_ERROR_S("Middle wheel distance and scale must both be supplied, not just one.");
-    throw std::invalid_argument(
-      "Middle wheel distance and scale must both be supplied, not just one.");
+    std::string msg("Middle wheel distance and scale must both be supplied, not just one.");
+    LOG_ERROR(msg);
+    throw std::invalid_argument(msg);
   }
 
   std::vector<double> vec(iscales);
@@ -71,9 +71,10 @@ ChassisScales::ChassisScales(const std::initializer_list<double> &iscales,
 void ChassisScales::validateInput(const std::size_t inputSize,
                                   const std::shared_ptr<Logger> &logger) {
   if (inputSize < 2) {
-    LOG_ERROR("At least two measurements must be given to ChassisScales. Got " +
-              std::to_string(inputSize) + "measurements.");
-    throw std::invalid_argument("At least two measurements must be given to ChassisScales.");
+    std::string msg("At least two measurements must be given to ChassisScales. Got " +
+                    std::to_string(inputSize) + "measurements.");
+    LOG_ERROR(msg);
+    throw std::invalid_argument(msg);
   }
 }
 } // namespace okapi
