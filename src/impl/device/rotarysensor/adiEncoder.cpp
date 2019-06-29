@@ -11,17 +11,15 @@ namespace okapi {
 ADIEncoder::ADIEncoder(const std::uint8_t iportTop,
                        const std::uint8_t iportBottom,
                        const bool ireversed)
-  : enc(iportTop, iportBottom, ireversed) {
-  printf("ADIEncoder top %c bottom %c\n", iportTop, iportBottom);
-    printf("ADIEncoder %d\n", errno);
+  : enc(pros::c::adi_encoder_init(iportTop, iportBottom, ireversed)) {
 }
 
 double ADIEncoder::get() const {
-  return static_cast<double>(enc.get_value());
+  return static_cast<double>(pros::c::adi_encoder_get(enc));
 }
 
 std::int32_t ADIEncoder::reset() {
-  return enc.reset();
+  return pros::c::adi_encoder_reset(enc);
 }
 
 double ADIEncoder::controllerGet() {
