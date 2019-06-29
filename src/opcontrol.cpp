@@ -21,7 +21,7 @@ void opcontrol() {
     .withMotors({16, -17, -14}, {-18, 19, 20})
     .withDimensions({{4.1_in, 11.375_in}, imev5GreenTPR})
     .withGains({0.01}, {})
-    .withSensors({'D', 'E'}, {'G', 'H'})
+    .withSensors({'E', 'F'}, {'G', 'H'})
       //    .withLogger(
       //      std::make_shared<Logger>(std::make_unique<Timer>(), "/ser/sout",
       //      Logger::LogLevel::debug))
