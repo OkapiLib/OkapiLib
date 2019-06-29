@@ -45,7 +45,7 @@ template <typename Input, typename Output> class ControllerRunner {
       rate->delay(10);
     }
 
-    LOG_INFO_S("ControllerRunner: runUntilSettled(AsyncController): Done waiting to settle");
+    LOG_INFO("ControllerRunner: runUntilSettled(AsyncController): Done waiting to settle");
     return icontroller.getError();
   }
 
@@ -69,7 +69,7 @@ template <typename Input, typename Output> class ControllerRunner {
       rate->delay(10);
     }
 
-    LOG_INFO_S("ControllerRunner: runUntilSettled(IterativeController): Done waiting to settle");
+    LOG_INFO("ControllerRunner: runUntilSettled(IterativeController): Done waiting to settle");
     return icontroller.getError();
   }
 
@@ -94,7 +94,7 @@ template <typename Input, typename Output> class ControllerRunner {
       error = icontroller.getError();
     }
 
-    LOG_INFO_S("ControllerRunner: runUntilAtTarget(AsyncController): Done waiting to settle");
+    LOG_INFO("ControllerRunner: runUntilAtTarget(AsyncController): Done waiting to settle");
     return icontroller.getError();
   }
 
@@ -122,7 +122,7 @@ template <typename Input, typename Output> class ControllerRunner {
       error = icontroller.getError();
     }
 
-    LOG_INFO_S("ControllerRunner: runUntilAtTarget(IterativeController): Done waiting to settle");
+    LOG_INFO("ControllerRunner: runUntilAtTarget(IterativeController): Done waiting to settle");
     return icontroller.getError();
   }
 

@@ -19,10 +19,14 @@
 #ifdef THREADS_STD
 #include <thread>
 #define CROSSPLATFORM_THREAD_T std::thread
+
+#include <mutex>
+#define CROSSPLATFORM_MUTEX_T std::mutex
 #else
 #include "api.h"
 #include "pros/apix.h"
 #define CROSSPLATFORM_THREAD_T pros::task_t
+#define CROSSPLATFORM_MUTEX_T pros::Mutex
 #endif
 
 class CrossplatformThread {
@@ -93,4 +97,29 @@ class CrossplatformThread {
   }
 
   CROSSPLATFORM_THREAD_T thread;
+};
+
+class CrossplatformMutex {
+  public:
+  CrossplatformMutex() = default;
+
+  void lock() {
+#ifdef THREADS_STD
+    mutex.lock();
+#else
+    while (!mutex.take(1)) {
+    }
+#endif
+  }
+
+  void unlock() {
+#ifdef THREADS_STD
+    mutex.unlock();
+#else
+    mutex.give();
+#endif
+  }
+
+  protected:
+  CROSSPLATFORM_MUTEX_T mutex;
 };

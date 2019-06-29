@@ -87,13 +87,15 @@ AsyncMotionProfileControllerBuilder::withLogger(const std::shared_ptr<Logger> &i
 std::shared_ptr<AsyncLinearMotionProfileController>
 AsyncMotionProfileControllerBuilder::buildLinearMotionProfileController() {
   if (!hasOutput) {
-    LOG_ERROR_S("AsyncMotionProfileControllerBuilder: No output given.");
-    throw std::runtime_error("AsyncMotionProfileControllerBuilder: No output given.");
+    std::string msg("AsyncMotionProfileControllerBuilder: No output given.");
+    LOG_ERROR(msg);
+    throw std::runtime_error(msg);
   }
 
   if (!hasLimits) {
-    LOG_ERROR_S("AsyncMotionProfileControllerBuilder: No limits given.");
-    throw std::runtime_error("AsyncMotionProfileControllerBuilder: No limits given.");
+    std::string msg("AsyncMotionProfileControllerBuilder: No limits given.");
+    LOG_ERROR(msg);
+    throw std::runtime_error(msg);
   }
 
   auto out = std::make_shared<AsyncLinearMotionProfileController>(
@@ -106,13 +108,15 @@ AsyncMotionProfileControllerBuilder::buildLinearMotionProfileController() {
 std::shared_ptr<AsyncMotionProfileController>
 AsyncMotionProfileControllerBuilder::buildMotionProfileController() {
   if (!hasModel) {
-    LOG_ERROR_S("AsyncMotionProfileControllerBuilder: No model given.");
-    throw std::runtime_error("AsyncMotionProfileControllerBuilder: No model given.");
+    std::string msg("AsyncMotionProfileControllerBuilder: No model given.");
+    LOG_ERROR(msg);
+    throw std::runtime_error(msg);
   }
 
   if (!hasLimits) {
-    LOG_ERROR_S("AsyncMotionProfileControllerBuilder: No limits given.");
-    throw std::runtime_error("AsyncMotionProfileControllerBuilder: No limits given.");
+    std::string msg("AsyncMotionProfileControllerBuilder: No limits given.");
+    LOG_ERROR(msg);
+    throw std::runtime_error(msg);
   }
 
   auto out = std::make_shared<AsyncMotionProfileController>(
