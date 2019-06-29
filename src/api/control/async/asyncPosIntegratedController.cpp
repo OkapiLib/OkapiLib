@@ -22,10 +22,10 @@ AsyncPosIntegratedController::AsyncPosIntegratedController(
     maxVelocity(imaxVelocity),
     settledUtil(itimeUtil.getSettledUtil()) {
   if (ipair.ratio == 0) {
-    LOG_ERROR_S("AsyncPosIntegratedController: The gear ratio cannot be zero! Check if you are "
-                "using integer division.");
-    throw std::invalid_argument("AsyncPosIntegratedController: The gear ratio cannot be zero! "
-                                "Check if you are using integer division.");
+    std::string msg("AsyncPosIntegratedController: The gear ratio cannot be zero! Check if you are "
+                    "using integer division.");
+    LOG_ERROR(msg);
+    throw std::invalid_argument(msg);
   }
 
   motor->setGearing(ipair.internalGearset);
@@ -56,7 +56,7 @@ bool AsyncPosIntegratedController::isSettled() {
 }
 
 void AsyncPosIntegratedController::reset() {
-  LOG_INFO_S("AsyncPosIntegratedController: Reset");
+  LOG_INFO(std::string("AsyncPosIntegratedController: Reset"));
   hasFirstTarget = false;
   settledUtil->reset();
 }
@@ -86,14 +86,14 @@ void AsyncPosIntegratedController::resumeMovement() {
 }
 
 void AsyncPosIntegratedController::waitUntilSettled() {
-  LOG_INFO_S("AsyncPosIntegratedController: Waiting to settle");
+  LOG_INFO(std::string("AsyncPosIntegratedController: Waiting to settle"));
 
   auto rate = timeUtil.getRate();
   while (!isSettled()) {
     rate->delayUntil(motorUpdateRate);
   }
 
-  LOG_INFO_S("AsyncPosIntegratedController: Done waiting to settle");
+  LOG_INFO(std::string("AsyncPosIntegratedController: Done waiting to settle"));
 }
 
 void AsyncPosIntegratedController::controllerSet(double ivalue) {

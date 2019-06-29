@@ -165,7 +165,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * keeping any user-configured information.
    */
   void reset() override {
-    LOG_INFO_S("AsyncWrapper: Reset");
+    LOG_INFO(std::string("AsyncWrapper: Reset"));
     controller->reset();
     hasFirstTarget = false;
   }
@@ -206,14 +206,14 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * implementation-dependent.
    */
   void waitUntilSettled() override {
-    LOG_INFO_S("AsyncWrapper: Waiting to settle");
+    LOG_INFO(std::string("AsyncWrapper: Waiting to settle"));
 
     auto rate = rateSupplier.get();
     while (!isSettled()) {
       rate->delayUntil(motorUpdateRate);
     }
 
-    LOG_INFO_S("AsyncWrapper: Done waiting to settle");
+    LOG_INFO(std::string("AsyncWrapper: Done waiting to settle"));
   }
 
   /**

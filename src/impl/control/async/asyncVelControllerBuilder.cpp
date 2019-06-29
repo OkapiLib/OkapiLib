@@ -105,14 +105,16 @@ AsyncVelControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
 
 std::shared_ptr<AsyncVelocityController<double, double>> AsyncVelControllerBuilder::build() {
   if (!hasMotors) {
-    LOG_ERROR_S("AsyncVelControllerBuilder: No motors given.");
-    throw std::runtime_error("AsyncVelControllerBuilder: No motors given.");
+    std::string msg("AsyncVelControllerBuilder: No motors given.");
+    LOG_ERROR(msg);
+    throw std::runtime_error(msg);
   }
 
   if (hasGains) {
     if (!hasVelMath) {
-      LOG_ERROR_S("AsyncVelControllerBuilder: No VelMath given.");
-      throw std::runtime_error("AsyncVelControllerBuilder: No VelMath given.");
+      std::string msg("AsyncVelControllerBuilder: No VelMath given.");
+      LOG_ERROR(msg);
+      throw std::runtime_error(msg);
     }
 
     return buildAVPC();

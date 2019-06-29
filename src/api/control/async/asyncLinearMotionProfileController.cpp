@@ -7,6 +7,7 @@
  */
 #include "okapi/api/control/async/asyncLinearMotionProfileController.hpp"
 #include "okapi/api/util/mathUtil.hpp"
+#include <mutex>
 #include <numeric>
 
 namespace okapi {
@@ -45,8 +46,8 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
                                                       const PathfinderLimits &ilimits) {
   if (iwaypoints.size() == 0) {
     // No point in generating a path
-    LOG_WARN_S("AsyncLinearMotionProfileController: Not generating a path because no waypoints were"
-               " given.");
+    LOG_WARN(std::string("AsyncLinearMotionProfileController: Not generating a path because no "
+                         "waypoints were given."));
     return;
   }
 
@@ -56,7 +57,7 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
     points.push_back(Waypoint{point.convert(meter), 0, 0});
   }
 
-  LOG_INFO_S("AsyncLinearMotionProfileController: Preparing trajectory");
+  LOG_INFO(std::string("AsyncLinearMotionProfileController: Preparing trajectory"));
 
   TrajectoryCandidate candidate;
   pathfinder_prepare(points.data(),
@@ -105,12 +106,12 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
     throw std::runtime_error(message);
   }
 
-  LOG_INFO_S("AsyncLinearMotionProfileController: Generating path");
+  LOG_INFO(std::string("AsyncLinearMotionProfileController: Generating path"));
 
   pathfinder_generate(&candidate, trajectory);
 
   // Free the old path before overwriting it
-  removePath(ipathId);
+  forceRemovePath(ipathId);
 
   paths.emplace(ipathId, TrajectoryPair{trajectory, length});
 
@@ -135,12 +136,26 @@ AsyncLinearMotionProfileController::getPathErrorMessage(const std::vector<Waypoi
                          [&](std::string a, Waypoint b) { return a + ", " + pointToString(b); });
 }
 
-void AsyncLinearMotionProfileController::removePath(const std::string &ipathId) {
+bool AsyncLinearMotionProfileController::removePath(const std::string &ipathId) {
+  if (!isDisabled() && isRunning.load(std::memory_order_acquire) && getTarget() == ipathId) {
+    LOG_WARN("Attempted to remove currently running path " + ipathId);
+    return false;
+  }
+
+  std::lock_guard<CrossplatformMutex> lock(pathRemoveMutex);
+
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
     free(oldPath->second.segment);
     paths.erase(ipathId);
   }
+
+  /*
+   * A return value of true provides no feedback about whether the
+   * path was actually removed but instead tells us that the path
+   * does not exist at this moment
+   */
+  return true;
 }
 
 std::vector<std::string> AsyncLinearMotionProfileController::getPaths() {
@@ -198,7 +213,7 @@ void AsyncLinearMotionProfileController::loop() {
         executeSinglePath(path->second, timeUtil.getRate());
         output->controllerSet(0);
 
-        LOG_INFO_S("AsyncLinearMotionProfileController: Done moving");
+        LOG_INFO(std::string("AsyncLinearMotionProfileController: Done moving"));
       }
 
       isRunning.store(false, std::memory_order_release);
@@ -213,12 +228,17 @@ void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair 
   const auto reversed = direction.load(std::memory_order_acquire);
 
   for (int i = 0; i < path.length && !isDisabled(); ++i) {
+    // This mutex is used to combat an edge case of an edge case
+    // if a running path is asked to be removed at the moment this loop is executing
+    std::lock_guard<CrossplatformMutex> lock(pathRemoveMutex);
+
     const auto segDT = path.segment[i].dt * second;
     currentProfilePosition = path.segment[i].position;
 
     const auto motorRPM = convertLinearToRotational(path.segment[i].velocity * mps).convert(rpm);
     output->controllerSet(motorRPM / toUnderlyingType(pair.internalGearset) * reversed);
 
+    pathRemoveMutex.unlock();
     rate->delayUntil(segDT);
   }
 }
@@ -234,14 +254,14 @@ void AsyncLinearMotionProfileController::trampoline(void *context) {
 }
 
 void AsyncLinearMotionProfileController::waitUntilSettled() {
-  LOG_INFO_S("AsyncLinearMotionProfileController: Waiting to settle");
+  LOG_INFO(std::string("AsyncLinearMotionProfileController: Waiting to settle"));
 
   auto rate = timeUtil.getRate();
   while (!isSettled()) {
     rate->delayUntil(10_ms);
   }
 
-  LOG_INFO_S("AsyncLinearMotionProfileController: Done waiting to settle");
+  LOG_INFO(std::string("AsyncLinearMotionProfileController: Done waiting to settle"));
 }
 
 void AsyncLinearMotionProfileController::moveTo(const QLength &iposition,
@@ -254,11 +274,15 @@ void AsyncLinearMotionProfileController::moveTo(const QLength &iposition,
                                                 const QLength &itarget,
                                                 const PathfinderLimits &ilimits,
                                                 const bool ibackwards) {
-  std::string name = reinterpret_cast<const char *>(this); // hmmmm...
+  static int moveToCount = 0;
+  std::string name = "__moveTo" + std::to_string(moveToCount++);
   generatePath({iposition, itarget}, name, ilimits);
   setTarget(name, ibackwards);
   waitUntilSettled();
-  removePath(name);
+  if (!removePath(name)) {
+    // Failed to remove path (Warn and move on)
+    LOG_WARN(std::string("AsyncLinearMotionProfileController: Couldn't remove path after moveTo"));
+  }
 }
 
 double AsyncLinearMotionProfileController::getError() const {
@@ -278,7 +302,7 @@ void AsyncLinearMotionProfileController::reset() {
   // Interrupt executeSinglePath() by disabling the controller
   flipDisable(true);
 
-  LOG_INFO_S("AsyncLinearMotionProfileController: Waiting to reset");
+  LOG_INFO(std::string("AsyncLinearMotionProfileController: Waiting to reset"));
 
   auto rate = timeUtil.getRate();
   while (isRunning.load(std::memory_order_acquire)) {
@@ -315,4 +339,13 @@ CrossplatformThread *AsyncLinearMotionProfileController::getThread() const {
 
 void AsyncLinearMotionProfileController::tarePosition() {
 }
+
+void AsyncLinearMotionProfileController::forceRemovePath(const std::string &ipathId) {
+  if (!removePath(ipathId)) {
+    LOG_WARN("AsyncLinearMotionProfileController: Disabling controller to remove path " + ipathId);
+    flipDisable(true);
+    removePath(ipathId);
+  }
+}
+
 } // namespace okapi

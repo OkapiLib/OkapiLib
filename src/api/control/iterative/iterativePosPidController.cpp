@@ -148,7 +148,7 @@ double IterativePosPIDController::step(const double inewReading) {
 }
 
 void IterativePosPIDController::reset() {
-  LOG_INFO_S("IterativePosPIDController: Reset");
+  LOG_INFO(std::string("IterativePosPIDController: Reset"));
 
   error = 0;
   lastError = 0;

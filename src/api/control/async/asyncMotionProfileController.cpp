@@ -9,6 +9,7 @@
 #include "okapi/api/util/mathUtil.hpp"
 #include <algorithm>
 #include <iostream>
+#include <mutex>
 #include <numeric>
 
 namespace okapi {
@@ -26,11 +27,10 @@ AsyncMotionProfileController::AsyncMotionProfileController(
     pair(ipair),
     timeUtil(itimeUtil) {
   if (ipair.ratio == 0) {
-    LOG_ERROR_S("AsyncMotionProfileController: The gear ratio cannot be zero! Check if you are "
-                "using integer division.");
-    throw std::invalid_argument(
-      "AsyncMotionProfileController: The gear ratio cannot be zero! Check "
-      "if you are using integer division.");
+    std::string msg("AsyncMotionProfileController: The gear ratio cannot be zero! Check if you are "
+                    "using integer division.");
+    LOG_ERROR(msg);
+    throw std::invalid_argument(msg);
   }
 }
 
@@ -55,8 +55,8 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
                                                 const PathfinderLimits &ilimits) {
   if (iwaypoints.size() == 0) {
     // No point in generating a path
-    LOG_WARN_S(
-      "AsyncMotionProfileController: Not generating a path because no waypoints were given.");
+    LOG_WARN(std::string(
+      "AsyncMotionProfileController: Not generating a path because no waypoints were given."));
     return;
   }
 
@@ -67,7 +67,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
       Waypoint{point.x.convert(meter), point.y.convert(meter), point.theta.convert(radian)});
   }
 
-  LOG_INFO_S("AsyncMotionProfileController: Preparing trajectory");
+  LOG_INFO(std::string("AsyncMotionProfileController: Preparing trajectory"));
 
   TrajectoryCandidate candidate;
   pathfinder_prepare(points.data(),
@@ -116,7 +116,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
     throw std::runtime_error(message);
   }
 
-  LOG_INFO_S("AsyncMotionProfileController: Generating path");
+  LOG_INFO(std::string("AsyncMotionProfileController: Generating path"));
 
   pathfinder_generate(&candidate, trajectory);
 
@@ -144,14 +144,14 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwa
     throw std::runtime_error(message);
   }
 
-  LOG_INFO_S("AsyncMotionProfileController: Modifying for tank drive");
+  LOG_INFO(std::string("AsyncMotionProfileController: Modifying for tank drive"));
   pathfinder_modify_tank(
     trajectory, length, leftTrajectory, rightTrajectory, scales.wheelTrack.convert(meter));
 
   free(trajectory);
 
   // Free the old path before overwriting it
-  removePath(ipathId);
+  forceRemovePath(ipathId);
 
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, length});
 
@@ -175,13 +175,24 @@ std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<
                          [&](std::string a, Waypoint b) { return a + ", " + pointToString(b); });
 }
 
-void AsyncMotionProfileController::removePath(const std::string &ipathId) {
+bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
+  if (!isDisabled() && isRunning.load(std::memory_order_acquire) && getTarget() == ipathId) {
+    LOG_WARN("Attempted to remove currently running path " + ipathId);
+    return false;
+  }
+
+  std::scoped_lock lock(pathRemoveMutex);
+
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
     free(oldPath->second.left);
     free(oldPath->second.right);
     paths.erase(ipathId);
   }
+
+  // A return value of true provides no feedback about whether the path was actually removed but
+  // instead tells us that the path does not exist at this moment
+  return true;
 }
 
 std::vector<std::string> AsyncMotionProfileController::getPaths() {
@@ -236,7 +247,7 @@ void AsyncMotionProfileController::loop() {
         executeSinglePath(path->second, timeUtil.getRate());
         model->stop();
 
-        LOG_INFO_S("AsyncMotionProfileController: Done moving");
+        LOG_INFO(std::string("AsyncMotionProfileController: Done moving"));
       }
 
       isRunning.store(false, std::memory_order_release);
@@ -251,28 +262,27 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
   const int reversed = direction.load(std::memory_order_acquire);
   const bool followMirrored = mirrored.load(std::memory_order_acquire);
 
-  if (followMirrored) {
-    for (int i = 0; i < path.length && !isDisabled(); ++i) {
-      const auto segDT = path.left[i].dt * second;
-      const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
-      const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
+  for (int i = 0; i < path.length && !isDisabled(); ++i) {
+    // This mutex is used to combat an edge case of an edge case
+    // if a running path is asked to be removed at the moment this loop is executing
+    std::scoped_lock lock(pathRemoveMutex);
 
-      model->left(rightRPM / toUnderlyingType(pair.internalGearset) * reversed);
-      model->right(leftRPM / toUnderlyingType(pair.internalGearset) * reversed);
+    const auto segDT = path.left[i].dt * second;
+    const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
+    const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
 
-      rate->delayUntil(segDT);
+    const double rightSpeed = rightRPM / toUnderlyingType(pair.internalGearset) * reversed;
+    const double leftSpeed = leftRPM / toUnderlyingType(pair.internalGearset) * reversed;
+    if (followMirrored) {
+      model->left(rightSpeed);
+      model->right(leftSpeed);
+    } else {
+      model->left(leftSpeed);
+      model->right(rightSpeed);
     }
-  } else {
-    for (int i = 0; i < path.length && !isDisabled(); ++i) {
-      const auto segDT = path.left[i].dt * second;
-      const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
-      const auto rightRPM = convertLinearToRotational(path.right[i].velocity * mps).convert(rpm);
+    pathRemoveMutex.unlock();
 
-      model->left(leftRPM / toUnderlyingType(pair.internalGearset) * reversed);
-      model->right(rightRPM / toUnderlyingType(pair.internalGearset) * reversed);
-
-      rate->delayUntil(segDT);
-    }
+    rate->delayUntil(segDT);
   }
 }
 
@@ -287,14 +297,14 @@ void AsyncMotionProfileController::trampoline(void *context) {
 }
 
 void AsyncMotionProfileController::waitUntilSettled() {
-  LOG_INFO_S("AsyncMotionProfileController: Waiting to settle");
+  LOG_INFO(std::string("AsyncMotionProfileController: Waiting to settle"));
 
   auto rate = timeUtil.getRate();
   while (!isSettled()) {
     rate->delayUntil(10_ms);
   }
 
-  LOG_INFO_S("AsyncMotionProfileController: Done waiting to settle");
+  LOG_INFO(std::string("AsyncMotionProfileController: Done waiting to settle"));
 }
 
 void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints,
@@ -307,11 +317,12 @@ void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoint
                                           const PathfinderLimits &ilimits,
                                           const bool ibackwards,
                                           const bool imirrored) {
-  std::string name = reinterpret_cast<const char *>(this); // hmmmm...
+  static int moveToCount = 0;
+  std::string name = "__moveTo" + std::to_string(moveToCount++);
   generatePath(iwaypoints, name, ilimits);
   setTarget(name, ibackwards, imirrored);
   waitUntilSettled();
-  removePath(name);
+  forceRemovePath(name);
 }
 
 Point AsyncMotionProfileController::getError() const {
@@ -326,7 +337,7 @@ void AsyncMotionProfileController::reset() {
   // Interrupt executeSinglePath() by disabling the controller
   flipDisable(true);
 
-  LOG_INFO_S("AsyncMotionProfileController: Waiting to reset");
+  LOG_INFO(std::string("AsyncMotionProfileController: Waiting to reset"));
 
   auto rate = timeUtil.getRate();
   while (isRunning.load(std::memory_order_acquire)) {
@@ -364,7 +375,8 @@ CrossplatformThread *AsyncMotionProfileController::getThread() const {
   return task;
 }
 
-void AsyncMotionProfileController::storePath(std::string idirectory, std::string ipathId) {
+void AsyncMotionProfileController::storePath(const std::string &idirectory,
+                                             const std::string &ipathId) {
   std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
   std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
   FILE *leftPathFile = fopen(leftFilePath.c_str(), "w");
@@ -390,7 +402,8 @@ void AsyncMotionProfileController::storePath(std::string idirectory, std::string
   fclose(rightPathFile);
 }
 
-void AsyncMotionProfileController::loadPath(std::string idirectory, std::string ipathId) {
+void AsyncMotionProfileController::loadPath(const std::string &idirectory,
+                                            const std::string &ipathId) {
   std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
   std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
   FILE *leftPathFile = fopen(leftFilePath.c_str(), "r");
@@ -418,7 +431,7 @@ void AsyncMotionProfileController::loadPath(std::string idirectory, std::string 
 
 void AsyncMotionProfileController::internalStorePath(FILE *leftPathFile,
                                                      FILE *rightPathFile,
-                                                     std::string ipathId) {
+                                                     const std::string &ipathId) {
   auto pathData = this->paths.find(ipathId);
 
   // Make sure path exists
@@ -437,7 +450,7 @@ void AsyncMotionProfileController::internalStorePath(FILE *leftPathFile,
 
 void AsyncMotionProfileController::internalLoadPath(FILE *leftPathFile,
                                                     FILE *rightPathFile,
-                                                    std::string ipathId) {
+                                                    const std::string &ipathId) {
   // Count lines in file, remove one for headers
   int count = 0;
   for (int c = getc(leftPathFile); c != EOF; c = getc(leftPathFile)) {
@@ -456,13 +469,12 @@ void AsyncMotionProfileController::internalLoadPath(FILE *leftPathFile,
   pathfinder_deserialize_csv(rightPathFile, rightTrajectory);
 
   // Remove the old path if it exists
-  removePath(ipathId);
-
+  forceRemovePath(ipathId);
   paths.emplace(ipathId, TrajectoryPair{leftTrajectory, rightTrajectory, count});
 }
 
-std::string AsyncMotionProfileController::makeFilePath(std::string directory,
-                                                       std::string filename) {
+std::string AsyncMotionProfileController::makeFilePath(const std::string &directory,
+                                                       const std::string &filename) {
   std::string path(directory);
 
   // Checks first substring
@@ -496,5 +508,13 @@ std::string AsyncMotionProfileController::makeFilePath(std::string directory,
   path.append(filenameCopy);
 
   return path;
+}
+
+void AsyncMotionProfileController::forceRemovePath(const std::string &ipathId) {
+  if (!removePath(ipathId)) {
+    LOG_WARN("AsyncMotionProfileController: Disabling controller to remove path " + ipathId);
+    flipDisable(true);
+    removePath(ipathId);
+  }
 }
 } // namespace okapi

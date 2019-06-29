@@ -139,7 +139,7 @@ bool IterativeVelPIDController::isSettled() {
 }
 
 void IterativeVelPIDController::reset() {
-  LOG_INFO_S("IterativeVelPIDController: Reset");
+  LOG_INFO(std::string("IterativeVelPIDController: Reset"));
 
   error = 0;
   outputSum = 0;
