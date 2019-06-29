@@ -39,7 +39,9 @@ class Logger {
   Logger(std::unique_ptr<AbstractTimer> itimer,
          std::string_view ifileName,
          const LogLevel &ilevel) noexcept
-    : Logger(std::move(itimer), fopen(ifileName.data(), "a"), ilevel) {
+    : Logger(std::move(itimer),
+             fopen(ifileName.data(), ifileName.find("/ser/") ? "a" : "w"),
+             ilevel) {
   }
 
   /**
