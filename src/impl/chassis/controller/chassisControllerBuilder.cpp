@@ -254,19 +254,26 @@ std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
     throw std::runtime_error(msg);
   }
 
+  std::shared_ptr<ChassisController> out;
+
   if (hasOdom) {
     if (hasGains) {
-      return buildOCCPID();
+      out = buildOCCPID();
     } else {
-      return buildOCCI();
+      out = buildOCCI();
     }
   } else {
     if (hasGains) {
-      return buildCCPID();
+      out = buildCCPID();
     } else {
-      return buildCCI();
+      out = buildCCI();
     }
   }
+
+  // Delay so the encoders don't return erroneous values
+  pros::delay(30);
+
+  return out;
 }
 
 std::shared_ptr<OdomChassisController> ChassisControllerBuilder::buildOdometry() {
