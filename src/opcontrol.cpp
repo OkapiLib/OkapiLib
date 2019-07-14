@@ -18,27 +18,23 @@ void opcontrol() {
   pros::delay(100);
 
   drive = ChassisControllerBuilder()
-    .withMotors({16, -17, -14}, {-18, 19, 20})
-    .withDimensions({{4.1_in, 11.375_in}, imev5GreenTPR})
-    .withGains({0.01}, {})
-    .withSensors({'E', 'F'}, {'G', 'H'})
-      //    .withLogger(
-      //      std::make_shared<Logger>(std::make_unique<Timer>(), "/ser/sout",
-      //      Logger::LogLevel::debug))
-    .build();
+            .withMotors({-18, 19, 20}, {16, -17, -14})
+            .withDimensions({{4.1_in, 11.375_in}, imev5GreenTPR})
+            // .withGains({0.006, 0, 0.0001}, {0.006, 0, 0.0001})
+            // .withSensors({'E', 'F'}, {'G', 'H'})
+            .withLogger(std::make_shared<Logger>(
+              std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug))
+            .withMaxVelocity(100)
+            .withOdometry()
+            .build();
 
   pros::Task printSensorValsTask(printSensorVals);
+
+  drive->moveDistance(6_in);
+  drive->turnAngle(90_deg);
 
   while (true) {
     printf("opcontrol %d\n", errno);
     pros::delay(50);
   }
-
-  //  drive->setMaxVelocity(40);
-  //  drive->moveDistance(-6_in);
-  //  ADIEncoder enc('E', 'F');
-  //  while (true) {
-  //    printf("%f\n", enc.get());
-  //    pros::delay(50);
-  //  }
 }

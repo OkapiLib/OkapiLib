@@ -30,7 +30,7 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
       std::shared_ptr<ChassisModel>(model),
       std::unique_ptr<AsyncPosIntegratedController>(leftController),
       std::unique_ptr<AsyncPosIntegratedController>(rightController),
-      gearset, // must match the tpr given to ChassisScales
+      gearset,
       *scales);
   }
 
