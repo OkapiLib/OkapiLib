@@ -78,6 +78,16 @@ class DefaultOdomChassisController : public OdomChassisController {
   std::shared_ptr<ChassisModel> getModel() override;
   ChassisModel &model() override;
 
+  /**
+   * @return The internal chassis controller.
+   */
+  std::shared_ptr<ChassisController> getChassisController();
+
+  /**
+   * @return The internal chassis controller.
+   */
+  ChassisController &chassisController();
+
   protected:
   std::shared_ptr<Logger> logger;
   std::shared_ptr<ChassisController> controller;

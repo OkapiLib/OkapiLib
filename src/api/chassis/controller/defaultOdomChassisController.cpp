@@ -103,4 +103,10 @@ std::shared_ptr<ChassisModel> DefaultOdomChassisController::getModel() {
 ChassisModel &DefaultOdomChassisController::model() {
   return controller->model();
 }
+std::shared_ptr<ChassisController> DefaultOdomChassisController::getChassisController() {
+  return controller;
+}
+ChassisController &DefaultOdomChassisController::chassisController() {
+  return *controller;
+}
 } // namespace okapi
