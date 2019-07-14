@@ -14,7 +14,7 @@
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
-class OdomChassisController {
+class OdomChassisController : public ChassisController {
   public:
   /**
    * Odometry based chassis controller. Starts task at the default for odometry when constructed.
@@ -33,7 +33,7 @@ class OdomChassisController {
                         const QLength &imoveThreshold = 10_mm,
                         const QAngle &iturnThreshold = 1_deg);
 
-  virtual ~OdomChassisController();
+  ~OdomChassisController() override;
 
   /**
    * Drives the robot straight to a point in the odom frame.

@@ -21,7 +21,7 @@ static void testForwardUsesCorrectMaximumVelocityForAGearset() {
                  .withGearset(MOTOR_GEARSET)
                  .build();
 
-  drive->forward(power);
+  drive->model().forward(power);
   pros::delay(500);
 
   auto sampleRPM = Motor(MOTOR_1_PORT).getActualVelocity();
@@ -45,7 +45,7 @@ static void testMaxVelWorksOutOfOrder() {
                  .withGearset(MOTOR_GEARSET)
                  .build();
 
-  drive->forward(1);
+  drive->model().forward(1);
   pros::delay(500);
 
   auto sampleRPM = Motor(MOTOR_1_PORT).getActualVelocity();
@@ -71,15 +71,15 @@ static void testSensorsWork() {
   Motor leftMtr(MOTOR_1_PORT);
   Motor rightMtr(MOTOR_2_PORT);
 
-  auto sensorValsBefore = drive->getSensorVals();
+  auto sensorValsBefore = drive->model().getSensorVals();
   auto leftBefore = leftMtr.getPosition();
   auto rightBefore = rightMtr.getPosition();
 
-  drive->forward(power);
+  drive->model().forward(power);
   pros::delay(250);
 
   drive->stop();
-  auto sensorValsAfter = drive->getSensorVals();
+  auto sensorValsAfter = drive->model().getSensorVals();
   auto sensorDiff = sensorValsAfter - sensorValsBefore;
   auto leftAfter = leftMtr.getPosition();
   auto rightAfter = rightMtr.getPosition();

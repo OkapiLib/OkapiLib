@@ -7,7 +7,7 @@ std::shared_ptr<ChassisController> drive;
 
 void printSensorVals(void *) {
   while (true) {
-    auto state = drive->getSensorVals();
+    auto state = drive->model().getSensorVals();
     printf("left: %ld, right: %ld\n", state[0], state[1]);
     printf("printSensorVals %d\n", errno);
     pros::delay(50);

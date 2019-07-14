@@ -256,18 +256,10 @@ std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
 
   std::shared_ptr<ChassisController> out;
 
-  if (hasOdom) {
-    if (hasGains) {
-      out = buildOCCPID();
-    } else {
-      out = buildOCCI();
-    }
+  if (hasGains) {
+    out = buildCCPID();
   } else {
-    if (hasGains) {
-      out = buildCCPID();
-    } else {
-      out = buildCCI();
-    }
+    out = buildCCI();
   }
 
   // Delay so the encoders don't return erroneous values
@@ -277,108 +269,41 @@ std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
 }
 
 std::shared_ptr<OdomChassisController> ChassisControllerBuilder::buildOdometry() {
-  if (!hasMotors) {
-    std::string msg("ChassisControllerBuilder: No motors given.");
-    LOG_ERROR(msg);
-    throw std::runtime_error(msg);
-  }
-
   if (!hasOdom) {
     std::string msg("ChassisControllerBuilder: No odometry information given.");
     LOG_ERROR(msg);
     throw std::runtime_error(msg);
   }
 
-  if (hasGains) {
-    return buildOCCPID();
-  } else {
-    return buildOCCI();
-  }
+  return buildDOCC(build());
 }
 
-std::shared_ptr<OdomChassisControllerPID> ChassisControllerBuilder::buildOCCPID() {
+std::shared_ptr<DefaultOdomChassisController>
+ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisController) {
   if (isSkidSteer) {
-    auto model = makeSkidSteerModel();
-
     if (odometry == nullptr) {
       if (middleSensor == nullptr) {
-        odometry = std::make_unique<Odometry>(
-          odometryTimeUtilFactory.create(), model, scales, wheelVelDelta, controllerLogger);
+        odometry = std::make_unique<Odometry>(odometryTimeUtilFactory.create(),
+                                              chassisController->getModel(),
+                                              chassisController->getChassisScales(),
+                                              wheelVelDelta,
+                                              controllerLogger);
       } else {
-        odometry = std::make_unique<ThreeEncoderOdometry>(
-          odometryTimeUtilFactory.create(), model, scales, wheelVelDelta, controllerLogger);
+        odometry = std::make_unique<ThreeEncoderOdometry>(odometryTimeUtilFactory.create(),
+                                                          chassisController->getModel(),
+                                                          chassisController->getChassisScales(),
+                                                          wheelVelDelta,
+                                                          controllerLogger);
       }
     }
 
-    auto out = std::make_shared<OdomChassisControllerPID>(
-      chassisControllerTimeUtilFactory.create(),
-      model,
-      std::move(odometry),
-      std::make_unique<IterativePosPIDController>(distanceGains,
-                                                  closedLoopControllerTimeUtilFactory.create(),
-                                                  std::move(distanceFilter),
-                                                  controllerLogger),
-      std::make_unique<IterativePosPIDController>(angleGains,
-                                                  closedLoopControllerTimeUtilFactory.create(),
-                                                  std::move(angleFilter),
-                                                  controllerLogger),
-      std::make_unique<IterativePosPIDController>(turnGains,
-                                                  closedLoopControllerTimeUtilFactory.create(),
-                                                  std::move(turnFilter),
-                                                  controllerLogger),
-      gearset,
-      scales,
-      moveThreshold,
-      turnThreshold,
-      controllerLogger);
-
-    out->startThread();
-    out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
-
-    out->startOdomThread();
-    out->getOdomThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
-
-    return out;
-  } else {
-    std::string msg("ChassisControllerBuilder: Odometry is only supported with skid-steer layout.");
-    LOG_ERROR(msg);
-    throw std::runtime_error(msg);
-  }
-}
-
-std::shared_ptr<OdomChassisControllerIntegrated> ChassisControllerBuilder::buildOCCI() {
-  if (isSkidSteer) {
-    auto model = makeSkidSteerModel();
-
-    if (odometry == nullptr) {
-      if (middleSensor == nullptr) {
-        odometry = std::make_unique<Odometry>(
-          odometryTimeUtilFactory.create(), model, scales, wheelVelDelta, controllerLogger);
-      } else {
-        odometry = std::make_unique<ThreeEncoderOdometry>(
-          odometryTimeUtilFactory.create(), model, scales, wheelVelDelta, controllerLogger);
-      }
-    }
-
-    auto out = std::make_shared<OdomChassisControllerIntegrated>(
-      chassisControllerTimeUtilFactory.create(),
-      model,
-      std::move(odometry),
-      std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
-                                                     gearset,
-                                                     toUnderlyingType(gearset.internalGearset),
-                                                     closedLoopControllerTimeUtilFactory.create(),
-                                                     controllerLogger),
-      std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.right,
-                                                     gearset,
-                                                     toUnderlyingType(gearset.internalGearset),
-                                                     closedLoopControllerTimeUtilFactory.create(),
-                                                     controllerLogger),
-      gearset,
-      scales,
-      moveThreshold,
-      turnThreshold,
-      controllerLogger);
+    auto out =
+      std::make_shared<DefaultOdomChassisController>(chassisControllerTimeUtilFactory.create(),
+                                                     std::move(odometry),
+                                                     chassisController,
+                                                     moveThreshold,
+                                                     turnThreshold,
+                                                     controllerLogger);
 
     out->startOdomThread();
     out->getOdomThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
@@ -465,11 +390,13 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
     return std::make_shared<ChassisControllerIntegrated>(
       chassisControllerTimeUtilFactory.create(),
       makeXDriveModel(),
+      // TODO: Use the left side motors
       std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
                                                      gearset,
                                                      maxVelocity,
                                                      closedLoopControllerTimeUtilFactory.create(),
                                                      controllerLogger),
+      // TODO: Use the right side motors
       std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.right,
                                                      gearset,
                                                      maxVelocity,

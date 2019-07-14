@@ -14,7 +14,7 @@
 #include <memory>
 
 namespace okapi {
-class DefaultOdomChassisController : public OdomChassisController, public ChassisController {
+class DefaultOdomChassisController : public OdomChassisController {
   public:
   /**
    * Odometry based chassis controller that moves using the V5 motor's integrated control. Spins up

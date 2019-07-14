@@ -9,8 +9,7 @@
 
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"
-#include "okapi/api/chassis/controller/odomChassisControllerIntegrated.hpp"
-#include "okapi/api/chassis/controller/odomChassisControllerPid.hpp"
+#include "okapi/api/chassis/controller/defaultOdomChassisController.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/api/util/logging.hpp"
@@ -365,8 +364,8 @@ class ChassisControllerBuilder {
 
   std::shared_ptr<ChassisControllerPID> buildCCPID();
   std::shared_ptr<ChassisControllerIntegrated> buildCCI();
-  std::shared_ptr<OdomChassisControllerPID> buildOCCPID();
-  std::shared_ptr<OdomChassisControllerIntegrated> buildOCCI();
+  std::shared_ptr<DefaultOdomChassisController>
+  buildDOCC(std::shared_ptr<ChassisController> chassisController);
   std::shared_ptr<SkidSteerModel> makeSkidSteerModel();
   std::shared_ptr<XDriveModel> makeXDriveModel();
 };

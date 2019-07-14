@@ -27,12 +27,14 @@ static void testMoveDistanceGoesTheRightDistance() {
   drive->moveDistance(wheelDiam * 1_pi);
 
   test("Left sensor values should equal " + std::to_string(gearsetToTPR(MOTOR_GEARSET)),
-       TEST_BODY(
-         AssertThat, drive->getSensorVals()[0], EqualsWithDelta(gearsetToTPR(MOTOR_GEARSET), 10)));
+       TEST_BODY(AssertThat,
+                 drive->model().getSensorVals()[0],
+                 EqualsWithDelta(gearsetToTPR(MOTOR_GEARSET), 10)));
 
   test("Right sensor values should equal " + std::to_string(gearsetToTPR(MOTOR_GEARSET)),
-       TEST_BODY(
-         AssertThat, drive->getSensorVals()[1], EqualsWithDelta(gearsetToTPR(MOTOR_GEARSET), 10)));
+       TEST_BODY(AssertThat,
+                 drive->model().getSensorVals()[1],
+                 EqualsWithDelta(gearsetToTPR(MOTOR_GEARSET), 10)));
 
   drive->stop();
   resetHardware();
@@ -54,10 +56,10 @@ static void testTurnAngleGoesTheRightDistance() {
 
   double turnTicks = (11.375 / 4.125) * (90 / 360) * gearsetToTPR(MOTOR_GEARSET);
   test("Left sensor values should equal " + std::to_string(turnTicks),
-       TEST_BODY(AssertThat, drive->getSensorVals()[0], EqualsWithDelta(turnTicks, 10)));
+       TEST_BODY(AssertThat, drive->model().getSensorVals()[0], EqualsWithDelta(turnTicks, 10)));
 
   test("Right sensor values should equal " + std::to_string(-turnTicks),
-       TEST_BODY(AssertThat, drive->getSensorVals()[1], EqualsWithDelta(-turnTicks, 10)));
+       TEST_BODY(AssertThat, drive->model().getSensorVals()[1], EqualsWithDelta(-turnTicks, 10)));
 
   drive->stop();
   resetHardware();

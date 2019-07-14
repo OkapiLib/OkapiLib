@@ -70,7 +70,7 @@ class AsyncMotionProfileControllerBuilder {
    * @param icontroller The chassis controller to use.
    * @return An ongoing builder.
    */
-  AsyncMotionProfileControllerBuilder &withOutput(const ChassisController &icontroller);
+  AsyncMotionProfileControllerBuilder &withOutput(ChassisController &icontroller);
 
   /**
    * Sets the output. This must be used with buildMotionProfileController().
