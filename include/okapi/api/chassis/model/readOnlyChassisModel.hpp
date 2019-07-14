@@ -18,7 +18,7 @@ namespace okapi {
  */
 class ReadOnlyChassisModel {
   public:
-  virtual ~ReadOnlyChassisModel();
+  virtual ~ReadOnlyChassisModel() = default;
 
   /**
    * Read the sensors.

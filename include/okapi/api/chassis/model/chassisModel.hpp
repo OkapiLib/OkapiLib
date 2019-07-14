@@ -22,7 +22,7 @@ namespace okapi {
  */
 class ChassisModel : public ReadOnlyChassisModel {
   public:
-  ChassisModel(double imaxVelocity, double imaxVoltage = 12000);
+  explicit ChassisModel() = default;
   ChassisModel(const ChassisModel &) = delete;
   ChassisModel &operator=(const ChassisModel &) = delete;
 
@@ -192,31 +192,27 @@ class ChassisModel : public ReadOnlyChassisModel {
    *
    * @param imaxVelocity the new maximum velocity
    */
-  virtual void setMaxVelocity(double imaxVelocity);
+  virtual void setMaxVelocity(double imaxVelocity) = 0;
 
   /**
    * Returns the maximum velocity in RPM [0-600].
    *
    * @return The maximum velocity in RPM [0-600].
    */
-  virtual double getMaxVelocity() const;
+  virtual double getMaxVelocity() const = 0;
 
   /**
    * Sets a new maximum voltage in mV [0-12000].
    *
    * @param imaxVoltage the new maximum voltage
    */
-  virtual void setMaxVoltage(double imaxVoltage);
+  virtual void setMaxVoltage(double imaxVoltage) = 0;
 
   /**
    * Returns the maximum voltage in mV [0-12000].
    *
    * @return The maximum voltage in mV [0-12000].
    */
-  virtual double getMaxVoltage() const;
-
-  protected:
-  double maxVelocity;
-  double maxVoltage;
+  virtual double getMaxVoltage() const = 0;
 };
 } // namespace okapi

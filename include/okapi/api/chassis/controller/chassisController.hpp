@@ -16,7 +16,7 @@
 #include <valarray>
 
 namespace okapi {
-class ChassisController : public ChassisModel {
+class ChassisController {
   public:
   /**
    * A ChassisController adds a closed-loop layer on top of a ChassisModel. moveDistance and
@@ -25,11 +25,9 @@ class ChassisController : public ChassisModel {
    *
    * @param imodel underlying ChassisModel
    */
-  explicit ChassisController(const std::shared_ptr<ChassisModel> &imodel,
-                             double imaxVelocity,
-                             double imaxVoltage = 12000);
+  explicit ChassisController() = default;
 
-  ~ChassisController() override;
+  virtual ~ChassisController() = default;
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
@@ -92,7 +90,7 @@ class ChassisController : public ChassisModel {
    *
    * @param ishouldMirror whether turns should be mirrored
    */
-  virtual void setTurnsMirrored(bool ishouldMirror);
+  virtual void setTurnsMirrored(bool ishouldMirror) = 0;
 
   /**
    * Delays until the currently executing movement completes.
@@ -100,192 +98,9 @@ class ChassisController : public ChassisModel {
   virtual void waitUntilSettled() = 0;
 
   /**
-   * Drive the robot forwards (using open-loop control). Uses velocity mode.
-   *
-   * @param ipower motor power
+   * Interrupts the current movement to stop the robot.
    */
-  void forward(double ispeed) override;
-
-  /**
-   * Drive the robot in an arc (using open-loop control). Uses velocity mode.
-   * The algorithm is (approximately):
-   *   leftPower = forwardSpeed + yaw
-   *   rightPower = forwardSpeed - yaw
-   *
-   * @param iforwardSpeed speed in the forward direction
-   * @param iyaw speed around the vertical axis
-   */
-  void driveVector(double iforwardSpeed, double iyaw) override;
-
-  /**
-   * Drive the robot in an arc. Uses voltage mode.
-   * The algorithm is (approximately):
-   *   leftPower = forwardSpeed + yaw
-   *   rightPower = forwardSpeed - yaw
-   *
-   * @param iforwadSpeed speed in the forward direction
-   * @param iyaw speed around the vertical axis
-   */
-  void driveVectorVoltage(double iforwardSpeed, double iyaw) override;
-
-  /**
-   * Turn the robot clockwise (using open-loop control). Uses velocity mode.
-   *
-   * @param ipower motor power
-   */
-  void rotate(double ispeed) override;
-
-  /**
-   * Stop the robot (set all the motors to 0). Uses velocity mode.
-   */
-  void stop() override;
-
-  /**
-   * Drive the robot with a tank drive layout. Uses voltage mode.
-   *
-   * @param ileftSpeed left side speed
-   * @param irightSpeed right side speed
-   * @param ithreshold deadband on joystick values
-   */
-  void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) override;
-
-  /**
-   * Drive the robot with an arcade drive layout. Uses voltage mode.
-   *
-   * @param iforwardSpeed speed in the forward direction
-   * @param iyaw speed around the vertical axis
-   * @param ithreshold deadband on joystick values
-   */
-  void arcade(double iforwardSpeed, double iyaw, double ithreshold = 0) override;
-
-  /**
-   * Power the left side motors. Uses velocity mode.
-   *
-   * @param ipower motor power
-   */
-  void left(double ispeed) override;
-
-  /**
-   * Power the right side motors. Uses velocity mode.
-   *
-   * @param ipower motor power
-   */
-  void right(double ispeed) override;
-
-  /**
-   * Read the sensors.
-   *
-   * @return sensor readings in the format {left, right}
-   */
-  std::valarray<std::int32_t> getSensorVals() const override;
-
-  /**
-   * Reset the sensors to their zero point.
-   */
-  void resetSensors() override;
-
-  /**
-   * Set the brake mode for each motor.
-   *
-   * @param mode new brake mode
-   */
-  void setBrakeMode(AbstractMotor::brakeMode mode) override;
-
-  /**
-   * Set the encoder units for each motor.
-   *
-   * @param units new motor encoder units
-   */
-  void setEncoderUnits(AbstractMotor::encoderUnits units) override;
-
-  /**
-   * Set the gearset for each motor.
-   *
-   * @param gearset new motor gearset
-   */
-  void setGearing(AbstractMotor::gearset gearset) override;
-
-  /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   */
-  void setPosPID(double ikF, double ikP, double ikI, double ikD) override;
-
-  /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @param ifilter a constant used for filtering the profile acceleration
-   * @param ilimit the integral limit
-   * @param ithreshold the threshold for determining if a position movement has reached its goal
-   * @param iloopSpeed the rate at which the PID computation is run (in ms)
-   */
-  void setPosPIDFull(double ikF,
-                     double ikP,
-                     double ikI,
-                     double ikD,
-                     double ifilter,
-                     double ilimit,
-                     double ithreshold,
-                     double iloopSpeed) override;
-
-  /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   */
-  void setVelPID(double ikF, double ikP, double ikI, double ikD) override;
-
-  /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @param ifilter a constant used for filtering the profile acceleration
-   * @param ilimit the integral limit
-   * @param ithreshold the threshold for determining if a position movement has reached its goal
-   * @param iloopSpeed the rate at which the PID computation is run (in ms)
-   */
-  void setVelPIDFull(double ikF,
-                     double ikP,
-                     double ikI,
-                     double ikD,
-                     double ifilter,
-                     double ilimit,
-                     double ithreshold,
-                     double iloopSpeed) override;
-
-  /**
-   * Sets a new maximum velocity in RPM [0-600].
-   *
-   * @param imaxVelocity the new maximum velocity
-   */
-  void setMaxVelocity(double imaxVelocity) override;
-
-  /**
-   * Sets a new maximum voltage in mV [0-12000].
-   *
-   * @param imaxVoltage the new maximum voltage
-   */
-  void setMaxVoltage(double imaxVoltage) override;
-
-  /**
-   * Get the underlying ChassisModel. This should be used sparingly and carefully because it can
-   * result in multiple owners writing to the same set of motors.
-   */
-  std::shared_ptr<ChassisModel> getChassisModel() const;
+  virtual void stop() = 0;
 
   /**
    * Get the ChassisScales.
@@ -297,8 +112,14 @@ class ChassisController : public ChassisModel {
    */
   virtual AbstractMotor::GearsetRatioPair getGearsetRatioPair() const = 0;
 
-  protected:
-  std::shared_ptr<ChassisModel> model;
-  bool normalTurns{true};
+  /**
+   * @return The internal ChassisModel.
+   */
+  virtual std::shared_ptr<ChassisModel> getModel() = 0;
+
+  /**
+   * @return The internal ChassisModel.
+   */
+  virtual ChassisModel &model() = 0;
 };
 } // namespace okapi

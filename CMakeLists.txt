@@ -51,8 +51,7 @@ add_executable(OkapiLibV5
         include/okapi/api/chassis/controller/chassisControllerPid.hpp
         include/okapi/api/chassis/controller/chassisScales.hpp
         include/okapi/api/chassis/controller/odomChassisController.hpp
-        include/okapi/api/chassis/controller/odomChassisControllerIntegrated.hpp
-        include/okapi/api/chassis/controller/odomChassisControllerPid.hpp
+        include/okapi/api/chassis/controller/defaultOdomChassisController.hpp
         include/okapi/api/chassis/model/chassisModel.hpp
         include/okapi/api/chassis/model/readOnlyChassisModel.hpp
         include/okapi/api/chassis/model/skidSteerModel.hpp
@@ -126,17 +125,13 @@ add_executable(OkapiLibV5
         include/okapi/api/util/supplier.hpp
         include/okapi/api/coreProsAPI.hpp
         include/test/tests/api/implMocks.hpp
-        src/api/chassis/controller/chassisController.cpp
         src/api/chassis/controller/chassisControllerIntegrated.cpp
         src/api/chassis/controller/chassisControllerPid.cpp
         src/api/chassis/controller/chassisScales.cpp
         src/api/chassis/controller/chassisScales.cpp
         src/api/chassis/controller/odomChassisController.cpp
-        src/api/chassis/controller/odomChassisControllerIntegrated.cpp
-        src/api/chassis/controller/odomChassisControllerPid.cpp
-        src/api/chassis/model/chassisModel.cpp
+        src/api/chassis/controller/defaultOdomChassisController.cpp
         src/api/chassis/model/skidSteerModel.cpp
-        src/api/chassis/model/readOnlyChassisModel.cpp
         src/api/chassis/model/threeEncoderSkidSteerModel.cpp
         src/api/chassis/model/xDriveModel.cpp
         src/api/control/async/asyncLinearMotionProfileController.cpp
@@ -193,7 +188,6 @@ add_executable(OkapiLibV5
         test/threeEncoderSkidSteerModelTests.cpp
         test/chassisControllerIntegratedTests.cpp
         test/chassisControllerPidTest.cpp
-        test/chassisControllerTests.cpp
         test/chassisScalesTests.cpp
         test/asyncPosIntegratedControllerTests.cpp
         test/asyncVelIntegratedControllerTests.cpp
@@ -202,8 +196,7 @@ add_executable(OkapiLibV5
         test/iterativeVelPIDControllerTests.cpp
         test/iterativeMotorVelocityControllerTest.cpp
         test/iterativePosPIDControllerTests.cpp
-        test/odomChassisControllerIntegratedTest.cpp
-        test/odomChassisControllerPidTest.cpp
+        test/defaultOdomChassisControllerTest.cpp
         test/asyncWrapperTests.cpp
         test/offsettableControllerInputTests.cpp
         test/asyncPosPIDControllerTests.cpp

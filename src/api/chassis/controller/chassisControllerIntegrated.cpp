@@ -11,14 +11,14 @@
 namespace okapi {
 ChassisControllerIntegrated::ChassisControllerIntegrated(
   const TimeUtil &itimeUtil,
-  const std::shared_ptr<ChassisModel> &imodel,
+  std::shared_ptr<ChassisModel> ichassisModel,
   std::unique_ptr<AsyncPosIntegratedController> ileftController,
   std::unique_ptr<AsyncPosIntegratedController> irightController,
-  AbstractMotor::GearsetRatioPair igearset,
+  const AbstractMotor::GearsetRatioPair &igearset,
   const ChassisScales &iscales,
-  const std::shared_ptr<Logger> &ilogger)
-  : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
-    logger(ilogger),
+  std::shared_ptr<Logger> ilogger)
+  : logger(std::move(ilogger)),
+    chassisModel(std::move(ichassisModel)),
     timeUtil(itimeUtil),
     leftController(std::move(ileftController)),
     rightController(std::move(irightController)),
@@ -32,8 +32,10 @@ ChassisControllerIntegrated::ChassisControllerIntegrated(
     throw std::invalid_argument(msg);
   }
 
-  setGearing(igearset.internalGearset);
-  setEncoderUnits(AbstractMotor::encoderUnits::counts);
+  chassisModel->setGearing(igearset.internalGearset);
+  chassisModel->setEncoderUnits(AbstractMotor::encoderUnits::counts);
+  leftController->setMaxVelocity(chassisModel->getMaxVelocity());
+  rightController->setMaxVelocity(chassisModel->getMaxVelocity());
 }
 
 void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
@@ -59,7 +61,7 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
 
   LOG_INFO("ChassisControllerIntegrated: moving " + std::to_string(newTarget) + " motor ticks");
 
-  const auto enc = model->getSensorVals();
+  const auto enc = chassisModel->getSensorVals();
   leftController->setTarget(newTarget + enc[0]);
   rightController->setTarget(newTarget + enc[1]);
 }
@@ -93,7 +95,7 @@ void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
 
   LOG_INFO("ChassisControllerIntegrated: turning " + std::to_string(newTarget) + " motor ticks");
 
-  const auto enc = model->getSensorVals();
+  const auto enc = chassisModel->getSensorVals();
   leftController->setTarget(newTarget + enc[0]);
   rightController->setTarget(-1 * newTarget + enc[1]);
 }
@@ -101,6 +103,10 @@ void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
 void ChassisControllerIntegrated::turnAngleAsync(const double idegTarget) {
   // Divide by turnScale so the final result turns back into motor ticks
   turnAngleAsync((idegTarget / scales.turn) * degree);
+}
+
+void ChassisControllerIntegrated::setTurnsMirrored(const bool ishouldMirror) {
+  normalTurns = !ishouldMirror;
 }
 
 void ChassisControllerIntegrated::waitUntilSettled() {
@@ -113,7 +119,7 @@ void ChassisControllerIntegrated::waitUntilSettled() {
 
   leftController->flipDisable(true);
   rightController->flipDisable(true);
-  model->stop();
+  chassisModel->stop();
 
   LOG_INFO(std::string("ChassisControllerIntegrated: Done waiting to settle"));
 }
@@ -123,14 +129,7 @@ void ChassisControllerIntegrated::stop() {
 
   leftController->flipDisable(true);
   rightController->flipDisable(true);
-
-  ChassisController::stop();
-}
-
-void ChassisControllerIntegrated::setMaxVelocity(const double imaxVelocity) {
-  leftController->setMaxVelocity(imaxVelocity);
-  rightController->setMaxVelocity(imaxVelocity);
-  ChassisController::setMaxVelocity(imaxVelocity);
+  chassisModel->stop();
 }
 
 ChassisScales ChassisControllerIntegrated::getChassisScales() const {
@@ -139,5 +138,21 @@ ChassisScales ChassisControllerIntegrated::getChassisScales() const {
 
 AbstractMotor::GearsetRatioPair ChassisControllerIntegrated::getGearsetRatioPair() const {
   return gearsetRatioPair;
+}
+
+std::shared_ptr<ChassisModel> ChassisControllerIntegrated::getModel() {
+  return chassisModel;
+}
+
+ChassisModel &ChassisControllerIntegrated::model() {
+  return *chassisModel;
+}
+void ChassisControllerIntegrated::setMaxVelocity(double imaxVelocity) {
+  leftController->setMaxVelocity(imaxVelocity);
+  rightController->setMaxVelocity(imaxVelocity);
+  chassisModel->setMaxVelocity(imaxVelocity);
+}
+double ChassisControllerIntegrated::getMaxVelocity() const {
+  return chassisModel->getMaxVelocity();
 }
 } // namespace okapi

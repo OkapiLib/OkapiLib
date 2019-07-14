@@ -12,15 +12,15 @@
 namespace okapi {
 ChassisControllerPID::ChassisControllerPID(
   const TimeUtil &itimeUtil,
-  const std::shared_ptr<ChassisModel> &imodel,
+  std::shared_ptr<ChassisModel> ichassisModel,
   std::unique_ptr<IterativePosPIDController> idistanceController,
   std::unique_ptr<IterativePosPIDController> iturnController,
   std::unique_ptr<IterativePosPIDController> iangleController,
-  const AbstractMotor::GearsetRatioPair igearset,
+  const AbstractMotor::GearsetRatioPair &igearset,
   const ChassisScales &iscales,
-  const std::shared_ptr<Logger> &ilogger)
-  : ChassisController(imodel, toUnderlyingType(igearset.internalGearset)),
-    logger(ilogger),
+  std::shared_ptr<Logger> ilogger)
+  : logger(std::move(ilogger)),
+    chassisModel(std::move(ichassisModel)),
     timeUtil(itimeUtil),
     distancePid(std::move(idistanceController)),
     turnPid(std::move(iturnController)),
@@ -34,8 +34,8 @@ ChassisControllerPID::ChassisControllerPID(
     throw std::invalid_argument(msg);
   }
 
-  setGearing(igearset.internalGearset);
-  setEncoderUnits(AbstractMotor::encoderUnits::counts);
+  chassisModel->setGearing(igearset.internalGearset);
+  chassisModel->setEncoderUnits(AbstractMotor::encoderUnits::counts);
 }
 
 ChassisControllerPID::~ChassisControllerPID() {
@@ -44,7 +44,7 @@ ChassisControllerPID::~ChassisControllerPID() {
 }
 
 void ChassisControllerPID::loop() {
-  auto encStartVals = model->getSensorVals();
+  auto encStartVals = chassisModel->getSensorVals();
   std::valarray<std::int32_t> encVals;
   double distanceElapsed = 0, angleChange = 0;
   modeType pastMode = none;
@@ -59,13 +59,13 @@ void ChassisControllerPID::loop() {
       doneLoopingSeen.store(true, std::memory_order_release);
     } else {
       if (mode != pastMode || newMovement.load(std::memory_order_acquire)) {
-        encStartVals = model->getSensorVals();
+        encStartVals = chassisModel->getSensorVals();
         newMovement.store(false, std::memory_order_release);
       }
 
       switch (mode) {
       case distance:
-        encVals = model->getSensorVals() - encStartVals;
+        encVals = chassisModel->getSensorVals() - encStartVals;
         distanceElapsed = static_cast<double>((encVals[0] + encVals[1])) / 2.0;
         angleChange = static_cast<double>(encVals[0] - encVals[1]);
 
@@ -73,23 +73,23 @@ void ChassisControllerPID::loop() {
         anglePid->step(angleChange);
 
         if (velocityMode) {
-          model->driveVector(distancePid->getOutput(), anglePid->getOutput());
+          chassisModel->driveVector(distancePid->getOutput(), anglePid->getOutput());
         } else {
-          model->driveVectorVoltage(distancePid->getOutput(), anglePid->getOutput());
+          chassisModel->driveVectorVoltage(distancePid->getOutput(), anglePid->getOutput());
         }
 
         break;
 
       case angle:
-        encVals = model->getSensorVals() - encStartVals;
+        encVals = chassisModel->getSensorVals() - encStartVals;
         angleChange = (encVals[0] - encVals[1]) / 2.0;
 
         turnPid->step(angleChange);
 
         if (velocityMode) {
-          model->driveVector(0, turnPid->getOutput());
+          chassisModel->driveVector(0, turnPid->getOutput());
         } else {
-          model->driveVectorVoltage(0, turnPid->getOutput());
+          chassisModel->driveVectorVoltage(0, turnPid->getOutput());
         }
 
         break;
@@ -183,6 +183,10 @@ void ChassisControllerPID::turnAngle(const double idegTarget) {
   turnAngle((idegTarget / scales.turn) * degree);
 }
 
+void ChassisControllerPID::setTurnsMirrored(const bool ishouldMirror) {
+  normalTurns = !ishouldMirror;
+}
+
 void ChassisControllerPID::waitUntilSettled() {
   LOG_INFO(std::string("ChassisControllerPID: Waiting to settle"));
 
@@ -273,16 +277,7 @@ void ChassisControllerPID::stopAfterSettled() {
   distancePid->flipDisable(true);
   anglePid->flipDisable(true);
   turnPid->flipDisable(true);
-  model->stop();
-}
-
-void ChassisControllerPID::stop() {
-  LOG_INFO(std::string("ChassisControllerPID: Stopping"));
-
-  mode = none;
-  doneLooping.store(true, std::memory_order_release);
-  stopAfterSettled();
-  ChassisController::stop();
+  chassisModel->stop();
 }
 
 ChassisScales ChassisControllerPID::getChassisScales() const {
@@ -320,5 +315,22 @@ void ChassisControllerPID::startThread() {
 
 CrossplatformThread *ChassisControllerPID::getThread() const {
   return task;
+}
+
+void ChassisControllerPID::stop() {
+  LOG_INFO(std::string("ChassisControllerPID: Stopping"));
+
+  mode = none;
+  doneLooping.store(true, std::memory_order_release);
+  stopAfterSettled();
+  chassisModel->stop();
+}
+
+std::shared_ptr<ChassisModel> ChassisControllerPID::getModel() {
+  return chassisModel;
+}
+
+ChassisModel &ChassisControllerPID::model() {
+  return *chassisModel;
 }
 } // namespace okapi

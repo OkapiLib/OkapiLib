@@ -18,25 +18,6 @@ class XDriveModel : public ChassisModel {
    * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
    * +100%, the robot should move forward in a straight line.
    *
-   * This constructor infers the two sensors from the top left and top right motors (using the
-   * integrated encoders).
-   *
-   * @param itopLeftMotor top left motor
-   * @param itopRightMotor top right motor
-   * @param ibottomRightMotor bottom right motor
-   * @param ibottomLeftMotor bottom left motor
-   */
-  XDriveModel(const std::shared_ptr<AbstractMotor> &itopLeftMotor,
-              const std::shared_ptr<AbstractMotor> &itopRightMotor,
-              const std::shared_ptr<AbstractMotor> &ibottomRightMotor,
-              const std::shared_ptr<AbstractMotor> &ibottomLeftMotor,
-              double imaxVelocity,
-              double imaxVoltage = 12000);
-
-  /**
-   * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
-   * +100%, the robot should move forward in a straight line.
-   *
    * @param itopLeftMotor top left motor
    * @param itopRightMotor top right motor
    * @param ibottomRightMotor bottom right motor
@@ -44,14 +25,14 @@ class XDriveModel : public ChassisModel {
    * @param ileftEnc Left side encoder
    * @param irightEnc Right side encoder
    */
-  XDriveModel(const std::shared_ptr<AbstractMotor> &itopLeftMotor,
-              const std::shared_ptr<AbstractMotor> &itopRightMotor,
-              const std::shared_ptr<AbstractMotor> &ibottomRightMotor,
-              const std::shared_ptr<AbstractMotor> &ibottomLeftMotor,
-              const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
-              const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
+  XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
+              std::shared_ptr<AbstractMotor> itopRightMotor,
+              std::shared_ptr<AbstractMotor> ibottomRightMotor,
+              std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+              std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+              std::shared_ptr<ContinuousRotarySensor> irightEnc,
               double imaxVelocity,
-              double imaxVoltage = 12000);
+              double imaxVoltage);
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.
@@ -237,6 +218,34 @@ class XDriveModel : public ChassisModel {
                      double iloopSpeed) override;
 
   /**
+   * Sets a new maximum velocity in RPM [0-600].
+   *
+   * @param imaxVelocity the new maximum velocity
+   */
+  void setMaxVelocity(double imaxVelocity) override;
+
+  /**
+   * Returns the maximum velocity in RPM [0-600].
+   *
+   * @return The maximum velocity in RPM [0-600].
+   */
+  double getMaxVelocity() const override;
+
+  /**
+   * Sets a new maximum voltage in mV [0-12000].
+   *
+   * @param imaxVoltage the new maximum voltage
+   */
+  void setMaxVoltage(double imaxVoltage) override;
+
+  /**
+   * Returns the maximum voltage in mV [0-12000].
+   *
+   * @return The maximum voltage in mV [0-12000].
+   */
+  double getMaxVoltage() const override;
+
+  /**
    * Returns the top left motor.
    *
    * @return the top left motor
@@ -265,6 +274,8 @@ class XDriveModel : public ChassisModel {
   std::shared_ptr<AbstractMotor> getBottomLeftMotor() const;
 
   protected:
+  double maxVelocity;
+  double maxVoltage;
   std::shared_ptr<AbstractMotor> topLeftMotor;
   std::shared_ptr<AbstractMotor> topRightMotor;
   std::shared_ptr<AbstractMotor> bottomRightMotor;

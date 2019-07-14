@@ -20,7 +20,8 @@ class XDriveModelTest : public ::testing::Test {
             bottomLeftMotor,
             leftSensor,
             rightSensor,
-            127) {
+            127,
+            v5MotorMaxVoltage) {
   }
 
   void assertAllMotorsLastVelocity(const std::int16_t expectedLastVelocity) const {

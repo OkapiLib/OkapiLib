@@ -14,7 +14,7 @@
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
-class OdomChassisController : public virtual ChassisController {
+class OdomChassisController {
   public:
   /**
    * Odometry based chassis controller. Starts task at the default for odometry when constructed.
@@ -29,12 +29,11 @@ class OdomChassisController : public virtual ChassisController {
    * @param iturnThreshold minimum angle turn (smaller turns will be skipped)
    */
   OdomChassisController(const TimeUtil &itimeUtil,
-                        const std::shared_ptr<SkidSteerModel> &imodel,
                         std::unique_ptr<Odometry> iodometry,
                         const QLength &imoveThreshold = 10_mm,
                         const QAngle &iturnThreshold = 1_deg);
 
-  ~OdomChassisController() override;
+  virtual ~OdomChassisController();
 
   /**
    * Drives the robot straight to a point in the odom frame.
@@ -44,15 +43,17 @@ class OdomChassisController : public virtual ChassisController {
    * @param ibackwards whether to drive to the target point backwards
    * @param ioffset offset from target point in the direction pointing towards the robot
    */
-  virtual void
-  driveToPoint(QLength ix, QLength iy, bool ibackwards = false, QLength ioffset = 0_mm) = 0;
+  virtual void driveToPoint(const QLength &ix,
+                            const QLength &iy,
+                            bool ibackwards = false,
+                            const QLength &ioffset = 0_mm) = 0;
 
   /**
    * Turns the robot to face an angle in the odom frame.
    *
    * @param iangle angle to turn to
    */
-  virtual void turnToAngle(QAngle iangle) = 0;
+  virtual void turnToAngle(const QAngle &iangle) = 0;
 
   /**
    * Returns the current state.
@@ -76,14 +77,24 @@ class OdomChassisController : public virtual ChassisController {
    *
    * @param imoveThreshold new move threshold
    */
-  virtual void setMoveThreshold(QLength imoveThreshold);
+  virtual void setMoveThreshold(const QLength &imoveThreshold);
 
   /**
    * Set a new turn threshold. Any requested turns smaller than this threshold will be skipped.
    *
    * @param iturnTreshold new turn threshold
    */
-  virtual void setTurnThreshold(QAngle iturnTreshold);
+  virtual void setTurnThreshold(const QAngle &iturnTreshold);
+
+  /**
+   * @return The current move threshold.
+   */
+  virtual QLength getMoveThreshold() const;
+
+  /**
+   * @return The current turn threshold.
+   */
+  virtual QAngle getTurnThreshold() const;
 
   /**
    * Starts the internal odometry thread. This should not be called by normal users.

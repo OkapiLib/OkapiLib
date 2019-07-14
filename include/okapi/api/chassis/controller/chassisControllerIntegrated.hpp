@@ -13,7 +13,7 @@
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
-class ChassisControllerIntegrated : public virtual ChassisController {
+class ChassisControllerIntegrated : public ChassisController {
   public:
   /**
    * ChassisController using the V5 motor's integrated control. Puts the motors into degree units.
@@ -29,12 +29,12 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   ChassisControllerIntegrated(
     const TimeUtil &itimeUtil,
-    const std::shared_ptr<ChassisModel> &imodel,
+    std::shared_ptr<ChassisModel> imodel,
     std::unique_ptr<AsyncPosIntegratedController> ileftController,
     std::unique_ptr<AsyncPosIntegratedController> irightController,
-    AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::green,
+    const AbstractMotor::GearsetRatioPair &igearset = AbstractMotor::gearset::green,
     const ChassisScales &iscales = ChassisScales({1, 1}, imev5GreenTPR),
-    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+    std::shared_ptr<Logger> ilogger = std::make_shared<Logger>());
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
@@ -93,21 +93,21 @@ class ChassisControllerIntegrated : public virtual ChassisController {
   void turnAngleAsync(double idegTarget) override;
 
   /**
+   * Sets whether turns should be mirrored.
+   *
+   * @param ishouldMirror whether turns should be mirrored
+   */
+  void setTurnsMirrored(bool ishouldMirror) override;
+
+  /**
    * Delays until the currently executing movement completes.
    */
   void waitUntilSettled() override;
 
   /**
-   * Stop the robot (set all the motors to 0).
+   * Interrupts the current movement to stop the robot.
    */
   void stop() override;
-
-  /**
-   * Sets a new maximum velocity in RPM [0-600].
-   *
-   * @param imaxVelocity the new maximum velocity
-   */
-  void setMaxVelocity(double imaxVelocity) override;
 
   /**
    * Get the ChassisScales.
@@ -119,8 +119,34 @@ class ChassisControllerIntegrated : public virtual ChassisController {
    */
   AbstractMotor::GearsetRatioPair getGearsetRatioPair() const override;
 
+  /**
+   * @return The internal ChassisModel.
+   */
+  std::shared_ptr<ChassisModel> getModel() override;
+
+  /**
+   * @return The internal ChassisModel.
+   */
+  ChassisModel &model() override;
+
+  /**
+   * Sets a new maximum velocity in RPM [0-600].
+   *
+   * @param imaxVelocity the new maximum velocity
+   */
+  virtual void setMaxVelocity(double imaxVelocity);
+
+  /**
+   * Returns the maximum velocity in RPM [0-600].
+   *
+   * @return The maximum velocity in RPM [0-600].
+   */
+  virtual double getMaxVelocity() const;
+
   protected:
   std::shared_ptr<Logger> logger;
+  bool normalTurns{true};
+  std::shared_ptr<ChassisModel> chassisModel;
   TimeUtil timeUtil;
   std::unique_ptr<AsyncPosIntegratedController> leftController;
   std::unique_ptr<AsyncPosIntegratedController> rightController;

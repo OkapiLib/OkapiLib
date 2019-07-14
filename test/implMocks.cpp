@@ -96,6 +96,10 @@ std::shared_ptr<ContinuousRotarySensor> MockMotor::getEncoder() {
   return encoder;
 }
 
+std::shared_ptr<MockContinuousRotarySensor> MockMotor::getMockEncoder() {
+  return encoder;
+}
+
 std::int32_t MockMotor::moveVelocity(const std::int16_t ivelocity) {
   lastVelocity = ivelocity;
   if (ivelocity > maxVelocity) {

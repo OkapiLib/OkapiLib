@@ -14,8 +14,7 @@
 #include <memory>
 
 namespace okapi {
-class OdomChassisControllerIntegrated : public OdomChassisController,
-                                        public ChassisControllerIntegrated {
+class DefaultOdomChassisController : public OdomChassisController, public ChassisController {
   public:
   /**
    * Odometry based chassis controller that moves using the V5 motor's integrated control. Spins up
@@ -36,17 +35,12 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
    * @param iturnThreshold minimum angle turn (smaller turns will be skipped)
    * @param ilogger The logger this instance will log to.
    */
-  OdomChassisControllerIntegrated(
-    const TimeUtil &itimeUtil,
-    std::shared_ptr<SkidSteerModel> imodel,
-    std::unique_ptr<Odometry> iodometry,
-    std::unique_ptr<AsyncPosIntegratedController> ileftController,
-    std::unique_ptr<AsyncPosIntegratedController> irightController,
-    AbstractMotor::GearsetRatioPair igearset,
-    const ChassisScales &iscales,
-    QLength imoveThreshold = 10_mm,
-    QAngle iturnThreshold = 1_deg,
-    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+  DefaultOdomChassisController(const TimeUtil &itimeUtil,
+                               std::unique_ptr<Odometry> iodometry,
+                               std::shared_ptr<ChassisController> icontroller,
+                               QLength imoveThreshold = 10_mm,
+                               QAngle iturnThreshold = 1_deg,
+                               std::shared_ptr<Logger> ilogger = std::make_shared<Logger>());
 
   /**
    * Drives the robot straight to a point in the odom frame.
@@ -56,17 +50,36 @@ class OdomChassisControllerIntegrated : public OdomChassisController,
    * @param ibackwards whether to drive to the target point backwards
    * @param ioffset offset from target point in the direction pointing towards the robot
    */
-  void
-  driveToPoint(QLength ix, QLength iy, bool ibackwards = false, QLength ioffset = 0_mm) override;
+  void driveToPoint(const QLength &ix,
+                    const QLength &iy,
+                    bool ibackwards = false,
+                    const QLength &ioffset = 0_mm) override;
 
   /**
    * Turns the robot to face an angle in the odom frame.
    *
    * @param iangle angle to turn to
    */
-  void turnToAngle(QAngle iangle) override;
+  void turnToAngle(const QAngle &iangle) override;
+
+  void moveDistance(QLength itarget) override;
+  void moveDistance(double itarget) override;
+  void moveDistanceAsync(QLength itarget) override;
+  void moveDistanceAsync(double itarget) override;
+  void turnAngle(QAngle idegTarget) override;
+  void turnAngle(double idegTarget) override;
+  void turnAngleAsync(QAngle idegTarget) override;
+  void turnAngleAsync(double idegTarget) override;
+  void setTurnsMirrored(bool ishouldMirror) override;
+  void waitUntilSettled() override;
+  void stop() override;
+  ChassisScales getChassisScales() const override;
+  AbstractMotor::GearsetRatioPair getGearsetRatioPair() const override;
+  std::shared_ptr<ChassisModel> getModel() override;
+  ChassisModel &model() override;
 
   protected:
   std::shared_ptr<Logger> logger;
+  std::shared_ptr<ChassisController> controller;
 };
 } // namespace okapi

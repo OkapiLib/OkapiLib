@@ -13,7 +13,8 @@ using namespace okapi;
 
 class SkidSteerModelTest : public ::testing::Test {
   public:
-  SkidSteerModelTest() : model(leftMotor, rightMotor, leftSensor, rightSensor, 127) {
+  SkidSteerModelTest()
+    : model(leftMotor, rightMotor, leftSensor, rightSensor, 127, v5MotorMaxVoltage) {
   }
 
   void assertAllMotorsLastVelocity(const std::int16_t expectedLastVelocity) const {

@@ -8,36 +8,19 @@
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/odometry/odometry.hpp"
 #include "okapi/api/odometry/threeEncoderOdometry.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 #include <memory>
 
 using namespace okapi;
 
-class MockModel : public SkidSteerModel {
-  public:
-  MockModel() : SkidSteerModel(std::make_shared<MockMotor>(), std::make_shared<MockMotor>(), 600) {
-  }
-
-  std::valarray<std::int32_t> getSensorVals() const override {
-    return std::valarray<std::int32_t>{leftEnc, rightEnc};
-  }
-
-  void setSensorVals(std::int32_t left, std::int32_t right) {
-    leftEnc = left;
-    rightEnc = right;
-  }
-
-  std::int32_t leftEnc{0};
-  std::int32_t rightEnc{0};
-};
-
 class OdometryTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    model = new MockModel();
+    model = new MockSkidSteerModel();
     odom = new Odometry(createConstantTimeUtil(10_ms),
-                        std::shared_ptr<MockModel>(model),
+                        std::shared_ptr<MockSkidSteerModel>(model),
                         ChassisScales({{wheelDiam, wheelbaseWidth}, 360}));
   }
 
@@ -51,7 +34,7 @@ class OdometryTest : public ::testing::Test {
 
   QLength wheelDiam = 4_in;
   QLength wheelbaseWidth = 10_in;
-  MockModel *model;
+  MockSkidSteerModel *model;
   Odometry *odom;
 };
 

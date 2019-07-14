@@ -40,7 +40,12 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
     leftMotor = std::make_shared<MockMotor>();
     rightMotor = std::make_shared<MockMotor>();
 
-    model = new SkidSteerModel(leftMotor, rightMotor, 100);
+    model = new SkidSteerModel(leftMotor,
+                               rightMotor,
+                               leftMotor->getEncoder(),
+                               rightMotor->getEncoder(),
+                               100,
+                               v5MotorMaxVoltage);
 
     controller = new MockAsyncMotionProfileController(createTimeUtil(),
                                                       {1.0, 2.0, 10.0},

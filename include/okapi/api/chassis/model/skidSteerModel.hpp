@@ -18,32 +18,17 @@ class SkidSteerModel : public ChassisModel {
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
    * motors are powered +100%, the robot should move forward in a straight line.
    *
-   * This constructor infers the two sensors from the left and right motors (using the integrated
-   * encoders).
-   *
-   * @param ileftSideMotor left side motor
-   * @param irightSideMotor right side motor
-   */
-  SkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
-                 const std::shared_ptr<AbstractMotor> &irightSideMotor,
-                 double imaxVelocity,
-                 double imaxVoltage = 12000);
-
-  /**
-   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-   * motors are powered +100%, the robot should move forward in a straight line.
-   *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
    * @param ileftEnc  left side encoder
    * @param irightEnc right side encoder
    */
-  SkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
-                 const std::shared_ptr<AbstractMotor> &irightSideMotor,
-                 const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
-                 const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
+  SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                 std::shared_ptr<AbstractMotor> irightSideMotor,
+                 std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                 std::shared_ptr<ContinuousRotarySensor> irightEnc,
                  double imaxVelocity,
-                 double imaxVoltage = 12000);
+                 double imaxVoltage);
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.
@@ -218,6 +203,34 @@ class SkidSteerModel : public ChassisModel {
                      double iloopSpeed) override;
 
   /**
+   * Sets a new maximum velocity in RPM [0-600].
+   *
+   * @param imaxVelocity the new maximum velocity
+   */
+  void setMaxVelocity(double imaxVelocity) override;
+
+  /**
+   * Returns the maximum velocity in RPM [0-600].
+   *
+   * @return The maximum velocity in RPM [0-600].
+   */
+  double getMaxVelocity() const override;
+
+  /**
+   * Sets a new maximum voltage in mV [0-12000].
+   *
+   * @param imaxVoltage the new maximum voltage
+   */
+  void setMaxVoltage(double imaxVoltage) override;
+
+  /**
+   * Returns the maximum voltage in mV [0-12000].
+   *
+   * @return The maximum voltage in mV [0-12000].
+   */
+  double getMaxVoltage() const override;
+
+  /**
    * Returns the left side motor.
    *
    * @return the left side motor
@@ -232,6 +245,8 @@ class SkidSteerModel : public ChassisModel {
   std::shared_ptr<AbstractMotor> getRightSideMotor() const;
 
   protected:
+  double maxVelocity;
+  double maxVoltage;
   std::shared_ptr<AbstractMotor> leftSideMotor;
   std::shared_ptr<AbstractMotor> rightSideMotor;
   std::shared_ptr<ContinuousRotarySensor> leftSensor;

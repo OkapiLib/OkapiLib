@@ -32,6 +32,7 @@ static constexpr double pi2 = 1.5707963267948966;
 static constexpr double gravity = 9.80665;
 static constexpr auto OKAPI_PROS_ERR = INT32_MAX;
 static constexpr auto OKAPI_PROS_ERR_F = INFINITY;
+static constexpr double v5MotorMaxVoltage = 12000;
 
 static constexpr std::int8_t motorUpdateRate = 10;
 static constexpr std::int8_t adiUpdateRate = 10;

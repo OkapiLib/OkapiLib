@@ -19,7 +19,11 @@ class MockThreeEncoderModel : public ThreeEncoderSkidSteerModel {
   MockThreeEncoderModel()
     : ThreeEncoderSkidSteerModel(std::make_shared<MockMotor>(),
                                  std::make_shared<MockMotor>(),
-                                 std::make_shared<MockMotor>()->getEncoder()) {
+                                 std::make_shared<MockMotor>()->getEncoder(),
+                                 std::make_shared<MockMotor>()->getEncoder(),
+                                 std::make_shared<MockMotor>()->getEncoder(),
+                                 toUnderlyingType(AbstractMotor::gearset::green),
+                                 v5MotorMaxVoltage) {
   }
 
   std::valarray<std::int32_t> getSensorVals() const override {
