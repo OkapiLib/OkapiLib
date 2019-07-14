@@ -390,18 +390,21 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
     return std::make_shared<ChassisControllerIntegrated>(
       chassisControllerTimeUtilFactory.create(),
       makeXDriveModel(),
-      // TODO: Use the left side motors
-      std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.left,
-                                                     gearset,
-                                                     maxVelocity,
-                                                     closedLoopControllerTimeUtilFactory.create(),
-                                                     controllerLogger),
-      // TODO: Use the right side motors
-      std::make_unique<AsyncPosIntegratedController>(skidSteerMotors.right,
-                                                     gearset,
-                                                     maxVelocity,
-                                                     closedLoopControllerTimeUtilFactory.create(),
-                                                     controllerLogger),
+      std::make_unique<AsyncPosIntegratedController>(
+        std::make_shared<MotorGroup>(
+          std::initializer_list({xDriveMotors.topLeft, xDriveMotors.bottomLeft}), controllerLogger),
+        gearset,
+        maxVelocity,
+        closedLoopControllerTimeUtilFactory.create(),
+        controllerLogger),
+      std::make_unique<AsyncPosIntegratedController>(
+        std::make_shared<MotorGroup>(
+          std::initializer_list({xDriveMotors.topRight, xDriveMotors.bottomRight}),
+          controllerLogger),
+        gearset,
+        maxVelocity,
+        closedLoopControllerTimeUtilFactory.create(),
+        controllerLogger),
       gearset,
       scales,
       controllerLogger);
