@@ -20,7 +20,7 @@ namespace okapi {
 class ChassisControllerPID : public ChassisController {
   public:
   /**
-   * ChassisController using PID control. Puts the motors into encoder degree units. Throws a
+   * ChassisController using PID control. Puts the motors into encoder count units. Throws a
    * std::invalid_argument exception if the gear ratio is zero.
    *
    * @param itimeUtil The TimeUtil.

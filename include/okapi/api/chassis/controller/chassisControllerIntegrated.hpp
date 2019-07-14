@@ -16,8 +16,9 @@ namespace okapi {
 class ChassisControllerIntegrated : public ChassisController {
   public:
   /**
-   * ChassisController using the V5 motor's integrated control. Puts the motors into degree units.
-   * Throws a std::invalid_argument exception if the gear ratio is zero.
+   * ChassisController using the V5 motor's integrated control. Puts the motors into encoder count
+   * units. Throws a std::invalid_argument exception if the gear ratio is zero. The initial model's
+   * max velocity will be propagated to the controllers.
    *
    * @param itimeUtil The TimeUtil.
    * @param imodelArgs ChassisModelArgs
