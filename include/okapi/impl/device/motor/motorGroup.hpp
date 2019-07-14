@@ -27,6 +27,17 @@ class MotorGroup : public AbstractMotor {
   MotorGroup(const std::initializer_list<Motor> &imotors,
              const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
 
+  /**
+   * A group of V5 motors which act as one motor (i.e. they are mechanically linked). A MotorGroup
+   * requires at least one motor. If no motors are supplied, a std::invalid_argument exception is
+   * thrown.
+   *
+   * @param imotors the motors in this group
+   * @param ilogger The logger this instance will log to.
+   */
+  explicit MotorGroup(const std::initializer_list<std::shared_ptr<AbstractMotor>> &imotors,
+                      const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+
   /******************************************************************************/
   /**                         Motor movement functions                         **/
   /**                                                                          **/
@@ -546,6 +557,6 @@ class MotorGroup : public AbstractMotor {
   virtual std::shared_ptr<ContinuousRotarySensor> getEncoder() override;
 
   protected:
-  std::vector<Motor> motors;
+  std::vector<std::shared_ptr<AbstractMotor>> motors;
 };
 } // namespace okapi
