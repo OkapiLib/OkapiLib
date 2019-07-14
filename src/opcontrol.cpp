@@ -7,8 +7,8 @@ std::shared_ptr<OdomChassisController> drive;
 
 void printSensorVals(void *) {
   while (true) {
-    //    auto state = drive->model().getSensorVals();
-    //    printf("left: %ld, right: %ld\n", state[0], state[1]);
+    // auto state = drive->model().getSensorVals();
+    // printf("left: %ld, right: %ld\n", state[0], state[1]);
     auto state = drive->getState(StateMode::FRAME_TRANSFORMATION);
     printf("x=%f, y=%f, theta=%f\n",
            state.x.convert(inch),
@@ -24,8 +24,9 @@ void opcontrol() {
   drive = ChassisControllerBuilder()
             .withMotors({-18, 19, 20}, {16, -17, -14})
             .withDimensions({{4.1_in, 11.375_in}, imev5GreenTPR})
-            .withGains({0.006, 0, 0.0001}, {0.006, 0, 0.0001})
-            // .withSensors({'E', 'F'}, {'G', 'H'})
+            // .withDimensions({{3.125_in, 11.375_in}, 4096})
+            // .withGains({0.006, 0, 0.0001}, {0.006, 0, 0.0001})
+            // .withSensors({'G', 'H'}, {'E', 'F'})
             .withLogger(std::make_shared<Logger>(
               std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug))
             .withMaxVelocity(100)
