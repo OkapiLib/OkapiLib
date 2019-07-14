@@ -16,8 +16,6 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
   protected:
   void SetUp() override {
     scales = new ChassisScales({wheelDiam, wheelTrack}, gearsetToTPR(gearset));
-    leftMotor = new MockMotor();
-    rightMotor = new MockMotor();
 
     leftController = new MockAsyncPosIntegratedController();
     rightController = new MockAsyncPosIntegratedController();
