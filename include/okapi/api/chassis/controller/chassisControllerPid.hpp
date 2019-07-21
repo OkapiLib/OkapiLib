@@ -40,7 +40,7 @@ class ChassisControllerPID : public ChassisController {
     std::unique_ptr<IterativePosPIDController> iangleController,
     const AbstractMotor::GearsetRatioPair &igearset = AbstractMotor::gearset::green,
     const ChassisScales &iscales = ChassisScales({1, 1}, imev5GreenTPR),
-    std::shared_ptr<Logger> ilogger = std::make_shared<Logger>());
+    std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
   ChassisControllerPID(ChassisControllerPID &&other) = delete;
 

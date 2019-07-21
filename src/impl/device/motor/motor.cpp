@@ -18,7 +18,8 @@ Motor::Motor(const std::int8_t iport)
 Motor::Motor(const std::uint8_t iport,
              const bool ireverse,
              const AbstractMotor::gearset igearset,
-             const AbstractMotor::encoderUnits iencoderUnits)
+             const AbstractMotor::encoderUnits iencoderUnits,
+             const std::shared_ptr<Logger> &logger)
   : pros::Motor(iport,
                 igearset == AbstractMotor::gearset::red
                   ? pros::E_MOTOR_GEARSET_36
@@ -35,6 +36,21 @@ Motor::Motor(const std::uint8_t iport,
                           ? pros::E_MOTOR_ENCODER_ROTATIONS
                           : pros::E_MOTOR_ENCODER_INVALID),
     gearset(igearset) {
+  if (iport <= 0 || iport > 21) {
+    std::string msg = "Motor: The port number (" + std::to_string(iport) +
+                      ") is outside the expected range of values (1-21).";
+    LOG_ERROR(msg);
+    throw std::runtime_error(std::to_string(true) + ", " +
+                             std::to_string(logger->isDebugLevelEnabled()));
+  }
+
+  if (igearset == AbstractMotor::gearset::invalid) {
+    LOG_WARN(std::string("Motor: The gearset is invalid."));
+  }
+
+  if (iencoderUnits == AbstractMotor::encoderUnits::invalid) {
+    LOG_WARN(std::string("Motor: The encoder units are invalid."));
+  }
 }
 
 std::int32_t Motor::moveAbsolute(const double iposition, const std::int32_t ivelocity) {

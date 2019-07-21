@@ -52,7 +52,7 @@ class Odometry {
            const std::shared_ptr<ReadOnlyChassisModel> &imodel,
            const ChassisScales &ichassisScales,
            const QSpeed &iwheelVelDelta = 0.0001_mps,
-           const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+           const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   virtual ~Odometry() = default;
 

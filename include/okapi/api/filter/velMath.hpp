@@ -31,7 +31,7 @@ class VelMath {
           std::unique_ptr<Filter> ifilter,
           QTime isampleTime,
           std::unique_ptr<AbstractTimer> iloopDtTimer,
-          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+          const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   virtual ~VelMath();
 

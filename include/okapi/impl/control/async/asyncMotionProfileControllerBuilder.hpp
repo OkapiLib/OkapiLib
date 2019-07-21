@@ -25,7 +25,7 @@ class AsyncMotionProfileControllerBuilder {
    * @param ilogger The logger this instance will log to.
    */
   explicit AsyncMotionProfileControllerBuilder(
-    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+    const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Sets the output. This must be used with buildLinearMotionProfileController().
@@ -147,6 +147,6 @@ class AsyncMotionProfileControllerBuilder {
   ChassisScales scales{{1, 1}, imev5GreenTPR};
   AbstractMotor::GearsetRatioPair pair{AbstractMotor::gearset::invalid};
   TimeUtilFactory timeUtilFactory = TimeUtilFactory();
-  std::shared_ptr<Logger> controllerLogger = std::make_shared<Logger>();
+  std::shared_ptr<Logger> controllerLogger = Logger::getDefaultLogger();
 };
 } // namespace okapi

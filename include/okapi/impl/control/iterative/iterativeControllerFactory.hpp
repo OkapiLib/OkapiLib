@@ -34,7 +34,7 @@ class IterativeControllerFactory {
          double ikD,
          double ikBias = 0,
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-         const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+         const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity PD controller.
@@ -53,7 +53,7 @@ class IterativeControllerFactory {
          double ikSF = 0,
          std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5GreenTPR),
          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-         const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+         const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity PD controller that automatically writes to the motor.
@@ -75,7 +75,7 @@ class IterativeControllerFactory {
                 double ikSF = 0,
                 std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5GreenTPR),
                 std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-                const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+                const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity PD controller that automatically writes to the motor.
@@ -97,7 +97,7 @@ class IterativeControllerFactory {
                 double ikSF = 0,
                 std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5GreenTPR),
                 std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-                const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+                const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity PD controller that automatically writes to the motor.

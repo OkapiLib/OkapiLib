@@ -39,7 +39,7 @@ class PIDTuner {
            std::size_t inumParticles = 16,
            double ikSettle = 1,
            double ikITAE = 2,
-           const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+           const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   virtual ~PIDTuner();
 

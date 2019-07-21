@@ -56,15 +56,10 @@ TEST_F(ThreeEncoderSkidSteerModelTest, GetSensorValsIsCompatibleWithXDriveModel)
   middleSensor->value = 3;
 
   // nonsense motors because it doesn't matter
-  auto xDriveModelVals = XDriveModel(leftMotor,
-                                     rightMotor,
-                                     leftMotor,
-                                     rightMotor,
-                                     leftSensor,
-                                     rightSensor,
-                                     100,
-                                     v5MotorMaxVoltage)
-                           .getSensorVals();
+  auto xDriveModelVals =
+    XDriveModel(
+      leftMotor, rightMotor, leftMotor, rightMotor, leftSensor, rightSensor, 100, v5MotorMaxVoltage)
+      .getSensorVals();
   auto threeEncoderSkidSteerModelVals = model->getSensorVals();
 
   EXPECT_EQ(xDriveModelVals[0], threeEncoderSkidSteerModelVals[0]);

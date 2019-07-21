@@ -27,7 +27,7 @@ class AsyncPosControllerBuilder {
    * @param ilogger The logger this instance will log to.
    */
   explicit AsyncPosControllerBuilder(
-    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+    const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Sets the motor.
@@ -157,7 +157,7 @@ class AsyncPosControllerBuilder {
   double maxVelocity{600};
 
   TimeUtilFactory timeUtilFactory = TimeUtilFactory();
-  std::shared_ptr<Logger> controllerLogger = std::make_shared<Logger>();
+  std::shared_ptr<Logger> controllerLogger = Logger::getDefaultLogger();
 
   std::shared_ptr<AsyncPosIntegratedController> buildAPIC();
   std::shared_ptr<AsyncPosPIDController> buildAPPC();
