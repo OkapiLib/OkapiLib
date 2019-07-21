@@ -26,7 +26,7 @@ void opcontrol() {
 
   drive = ChassisControllerBuilder(Logger::getDefaultLogger())
             .withMotors({-18, 19, 20}, {16, -17, -14})
-            .withDimensions({{4.1_in, 11.375_in}, imev5GreenTPR})
+            .withDimensions({{11.375_in, 4.1_in}, imev5GreenTPR})
             // .withDimensions({{3.125_in, 11.375_in}, 4096})
             // .withGains({0.006, 0, 0.0001}, {0.006, 0, 0.0001})
             // .withSensors({'G', 'H'}, {'E', 'F'})

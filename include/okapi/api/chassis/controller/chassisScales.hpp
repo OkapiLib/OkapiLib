@@ -82,6 +82,6 @@ class ChassisScales {
   std::int32_t tpr;
 
   protected:
-  void validateInput(std::size_t inputSize, const std::shared_ptr<Logger> &logger);
+  void validateInputSize(std::size_t inputSize, const std::shared_ptr<Logger> &logger);
 };
 } // namespace okapi

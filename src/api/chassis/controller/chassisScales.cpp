@@ -10,13 +10,20 @@
 namespace okapi {
 ChassisScales::ChassisScales(const std::initializer_list<QLength> &idimensions,
                              const std::int32_t itpr,
-                             const std::shared_ptr<Logger> &ilogger)
+                             const std::shared_ptr<Logger> &logger)
   : tpr(itpr) {
-  validateInput(idimensions.size(), ilogger);
+  validateInputSize(idimensions.size(), logger);
 
   std::vector<QLength> vec(idimensions);
   wheelDiameter = vec.at(0);
   wheelTrack = vec.at(1);
+
+  if (wheelDiameter > wheelTrack) {
+    LOG_WARN(std::string(
+      "ChassisScales: Wheel diameter (" + std::to_string(wheelDiameter.convert(meter)) +
+      " meters) is greater than wheel track (" + std::to_string(wheelTrack.convert(meter)) +
+      " meters). This is probably an error."));
+  }
 
   if (vec.size() >= 3) {
     middleWheelDistance = vec.at(2);
@@ -39,7 +46,7 @@ ChassisScales::ChassisScales(const std::initializer_list<double> &iscales,
                              const std::int32_t itpr,
                              const std::shared_ptr<Logger> &logger)
   : tpr(itpr) {
-  validateInput(iscales.size(), logger);
+  validateInputSize(iscales.size(), logger);
 
   if (iscales.size() == 3) {
     std::string msg("Middle wheel distance and scale must both be supplied, not just one.");
@@ -68,11 +75,11 @@ ChassisScales::ChassisScales(const std::initializer_list<double> &iscales,
   }
 }
 
-void ChassisScales::validateInput(const std::size_t inputSize,
-                                  const std::shared_ptr<Logger> &logger) {
+void ChassisScales::validateInputSize(size_t inputSize, const std::shared_ptr<Logger> &logger) {
   if (inputSize < 2) {
-    std::string msg("At least two measurements must be given to ChassisScales. Got " +
-                    std::to_string(inputSize) + "measurements.");
+    std::string msg(
+      "ChassisScales: At least two measurements must be given to ChassisScales. Got " +
+      std::to_string(inputSize) + "measurements.");
     LOG_ERROR(msg);
     throw std::invalid_argument(msg);
   }
