@@ -55,7 +55,7 @@ class ChassisScales {
    */
   ChassisScales(const std::initializer_list<QLength> &idimensions,
                 std::int32_t itpr,
-                const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+                const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * The scales a Chassis Controller needs to do all of its closed-loop control. First index is
@@ -70,7 +70,7 @@ class ChassisScales {
    */
   ChassisScales(const std::initializer_list<double> &iscales,
                 std::int32_t itpr,
-                const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+                const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   QLength wheelDiameter;
   QLength wheelTrack;

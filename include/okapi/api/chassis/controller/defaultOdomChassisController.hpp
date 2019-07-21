@@ -40,7 +40,7 @@ class DefaultOdomChassisController : public OdomChassisController {
                                std::shared_ptr<ChassisController> icontroller,
                                QLength imoveThreshold = 10_mm,
                                QAngle iturnThreshold = 1_deg,
-                               std::shared_ptr<Logger> ilogger = std::make_shared<Logger>());
+                               std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
   /**
    * Drives the robot straight to a point in the odom frame.

@@ -35,7 +35,7 @@ class ChassisControllerIntegrated : public ChassisController {
     std::unique_ptr<AsyncPosIntegratedController> irightController,
     const AbstractMotor::GearsetRatioPair &igearset = AbstractMotor::gearset::green,
     const ChassisScales &iscales = ChassisScales({1, 1}, imev5GreenTPR),
-    std::shared_ptr<Logger> ilogger = std::make_shared<Logger>());
+    std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).

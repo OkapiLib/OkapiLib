@@ -40,7 +40,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
                                const std::shared_ptr<ChassisModel> &imodel,
                                const ChassisScales &iscales,
                                const AbstractMotor::GearsetRatioPair &ipair,
-                               const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+                               const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   AsyncMotionProfileController(AsyncMotionProfileController &&other) = delete;
 

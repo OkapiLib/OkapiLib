@@ -9,6 +9,7 @@
 
 #include "api.h"
 #include "okapi/api/device/motor/abstractMotor.hpp"
+#include "okapi/api/util/logging.hpp"
 
 namespace okapi {
 class Motor : public AbstractMotor, public pros::Motor {
@@ -23,7 +24,8 @@ class Motor : public AbstractMotor, public pros::Motor {
   explicit Motor(std::uint8_t port,
                  bool reverse,
                  AbstractMotor::gearset igearset,
-                 AbstractMotor::encoderUnits encoderUnits = AbstractMotor::encoderUnits::degrees);
+                 AbstractMotor::encoderUnits encoderUnits = AbstractMotor::encoderUnits::degrees,
+                 const std::shared_ptr<Logger> &logger = Logger::getDefaultLogger());
 
   /******************************************************************************/
   /**                         Motor movement functions                         **/

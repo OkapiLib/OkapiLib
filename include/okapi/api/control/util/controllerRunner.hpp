@@ -25,7 +25,7 @@ template <typename Input, typename Output> class ControllerRunner {
    * @param ilogger The logger this instance will log to.
    */
   explicit ControllerRunner(const TimeUtil &itimeUtil,
-                            const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
+                            const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger())
     : logger(ilogger), rate(itimeUtil.getRate()) {
   }
 

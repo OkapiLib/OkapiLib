@@ -163,6 +163,7 @@ add_executable(OkapiLibV5
         src/api/odometry/threeEncoderOdometry.cpp
         src/api/util/abstractRate.cpp
         src/api/util/abstractTimer.cpp
+        src/api/util/logging.cpp
         src/api/util/timeUtil.cpp
         src/pathfinder/generator.c
         src/pathfinder/io.c

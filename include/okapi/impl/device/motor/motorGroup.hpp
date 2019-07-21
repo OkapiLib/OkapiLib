@@ -25,7 +25,7 @@ class MotorGroup : public AbstractMotor {
    * @param ilogger The logger this instance will log to.
    */
   MotorGroup(const std::initializer_list<Motor> &imotors,
-             const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+             const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * A group of V5 motors which act as one motor (i.e. they are mechanically linked). A MotorGroup
@@ -36,7 +36,7 @@ class MotorGroup : public AbstractMotor {
    * @param ilogger The logger this instance will log to.
    */
   MotorGroup(const std::initializer_list<std::shared_ptr<AbstractMotor>> &imotors,
-             const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+             const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /******************************************************************************/
   /**                         Motor movement functions                         **/

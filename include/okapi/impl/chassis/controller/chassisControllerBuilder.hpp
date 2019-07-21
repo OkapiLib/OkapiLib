@@ -29,7 +29,7 @@ class ChassisControllerBuilder {
    * @param ilogger The logger this instance will log to.
    */
   explicit ChassisControllerBuilder(
-    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+    const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Sets the motors using a skid-steer layout.
@@ -349,7 +349,7 @@ class ChassisControllerBuilder {
   bool gearsetSetByUser{false}; // Used so motors don't overwrite gearset set manually
   AbstractMotor::GearsetRatioPair gearset{AbstractMotor::gearset::invalid};
   ChassisScales scales{{1, 1}, imev5GreenTPR};
-  std::shared_ptr<Logger> controllerLogger = std::make_shared<Logger>();
+  std::shared_ptr<Logger> controllerLogger = Logger::getDefaultLogger();
 
   bool hasOdom{false}; // Whether odometry was passed
   std::unique_ptr<Odometry> odometry;
