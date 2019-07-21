@@ -24,21 +24,17 @@ void opcontrol() {
   Logger::setDefaultLogger(
     std::make_shared<Logger>(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug));
 
-  drive = ChassisControllerBuilder(Logger::getDefaultLogger())
+  drive = ChassisControllerBuilder()
             .withMotors({-18, 19, 20}, {16, -17, -14})
-            .withDimensions({{11.375_in, 4.1_in}, imev5GreenTPR})
+            .withDimensions({{4.1_in, 11.375_in}, imev5GreenTPR})
             // .withDimensions({{3.125_in, 11.375_in}, 4096})
             // .withGains({0.006, 0, 0.0001}, {0.006, 0, 0.0001})
             // .withSensors({'G', 'H'}, {'E', 'F'})
             //            .withLogger(std::make_shared<Logger>(
             //              std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug))
-            .withLogger(Logger::getDefaultLogger())
             .withMaxVelocity(100)
             .withOdometry()
             .buildOdometry();
-
-  auto logger = Logger::getDefaultLogger();
-  LOG_INFO(std::string("opcontrol: uiyewryiuweryiuwyiue"));
 
   //  pros::Task printSensorValsTask(printSensorVals);
 
