@@ -9,14 +9,14 @@
 
 namespace okapi {
 ADIMotor::ADIMotor(const std::uint8_t iport, const bool ireverse)
-  : motor(iport), reversed(ireverse ? -1 : 1) {
+  : port(iport), reversed(ireverse ? -1 : 1) {
 }
 
-void ADIMotor::moveVoltage(const std::int32_t ivoltage) const {
-  motor.set_value(ivoltage * reversed);
+void ADIMotor::moveVoltage(const std::int8_t ivoltage) const {
+  pros::c::adi_motor_set(port, ivoltage * reversed);
 }
 
 void ADIMotor::controllerSet(const double ivalue) {
-  motor.set_value(ivalue * reversed * 127);
+  pros::c::adi_motor_set(port, ivalue * reversed * 127);
 }
 } // namespace okapi
