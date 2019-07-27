@@ -11,22 +11,19 @@
 
 namespace okapi {
 Controller::Controller(const ControllerId iid)
-  : m_id(iid), controller(ControllerUtil::idToProsEnum(iid)) {
+  : okapiId(iid), prosId(ControllerUtil::idToProsEnum(iid)) {
 }
 
 Controller::~Controller() = default;
 
 bool Controller::isConnected() {
-  const std::int32_t state = controller.is_connected();
+  const std::int32_t state = pros::c::controller_is_connected(prosId);
   return state == 1 || state == 2;
 }
 
-std::int32_t Controller::getConnectionState() {
-  return controller.is_connected();
-}
-
 float Controller::getAnalog(const ControllerAnalog ichannel) {
-  const auto val = controller.get_analog(ControllerUtil::analogToProsEnum(ichannel));
+  const auto val =
+    pros::c::controller_get_analog(prosId, ControllerUtil::analogToProsEnum(ichannel));
 
   if (val == PROS_ERR) {
     return 0;
@@ -36,40 +33,40 @@ float Controller::getAnalog(const ControllerAnalog ichannel) {
 }
 
 bool Controller::getDigital(const ControllerDigital ibutton) {
-  return controller.get_digital(ControllerUtil::digitalToProsEnum(ibutton)) == 1;
+  return pros::c::controller_get_digital(prosId, ControllerUtil::digitalToProsEnum(ibutton)) == 1;
 }
 
 ControllerButton &Controller::operator[](const ControllerDigital ibtn) {
   const auto index = toUnderlyingType(ibtn) - toUnderlyingType(ControllerDigital::L1);
 
   if (buttonArray[index] == nullptr) {
-    buttonArray[index] = new ControllerButton(m_id, ibtn);
+    buttonArray[index] = new ControllerButton(okapiId, ibtn);
   }
 
   return *buttonArray[index];
 }
 
 std::int32_t Controller::setText(std::uint8_t iline, std::uint8_t icol, std::string itext) {
-  return controller.set_text(iline, icol, itext.c_str());
+  return pros::c::controller_set_text(prosId, iline, icol, itext.c_str());
 }
 
 std::int32_t Controller::clear() {
-  return controller.clear();
+  return pros::c::controller_clear(prosId);
 }
 
 std::int32_t Controller::clearLine(std::uint8_t iline) {
-  return controller.clear_line(iline);
+  return pros::c::controller_clear_line(prosId, iline);
 }
 
 std::int32_t Controller::rumble(std::string irumblePattern) {
-  return controller.rumble(irumblePattern.c_str());
+  return pros::c::controller_rumble(prosId, irumblePattern.c_str());
 }
 
 std::int32_t Controller::getBatteryCapacity() {
-  return controller.get_battery_capacity();
+  return pros::c::controller_get_battery_capacity(prosId);
 }
 
 std::int32_t Controller::getBatteryLevel() {
-  return controller.get_battery_level();
+  return pros::c::controller_get_battery_level(prosId);
 }
 } // namespace okapi
