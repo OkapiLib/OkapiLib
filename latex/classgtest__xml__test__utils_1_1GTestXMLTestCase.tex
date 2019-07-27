@@ -1,0 +1,98 @@
+\hypertarget{classgtest__xml__test__utils_1_1GTestXMLTestCase}{}\section{gtest\+\_\+xml\+\_\+test\+\_\+utils.\+G\+Test\+X\+M\+L\+Test\+Case Class Reference}
+\label{classgtest__xml__test__utils_1_1GTestXMLTestCase}\index{gtest\_xml\_test\_utils.GTestXMLTestCase@{gtest\_xml\_test\_utils.GTestXMLTestCase}}
+Inheritance diagram for gtest\+\_\+xml\+\_\+test\+\_\+utils.\+G\+Test\+X\+M\+L\+Test\+Case\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.781457cm]{classgtest__xml__test__utils_1_1GTestXMLTestCase}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classgtest__xml__test__utils_1_1GTestXMLTestCase_a977273e8863f4f41d121bb5a64b08d32}{Assert\+Equivalent\+Nodes}} (self, expected\+\_\+node, actual\+\_\+node)
+\item 
+def \mbox{\hyperlink{classgtest__xml__test__utils_1_1GTestXMLTestCase_ac4823e96c3b5327b25a340a3605447d9}{Normalize\+Xml}} (self, element)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+dictionary \mbox{\hyperlink{classgtest__xml__test__utils_1_1GTestXMLTestCase_a0e3a4e84e18f29d2248dcd670a0a6ae6}{identifying\+\_\+attribute}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}Base class for tests of Google Test's XML output functionality.
+\end{DoxyVerb}
+ 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgtest__xml__test__utils_1_1GTestXMLTestCase_a977273e8863f4f41d121bb5a64b08d32}\label{classgtest__xml__test__utils_1_1GTestXMLTestCase_a977273e8863f4f41d121bb5a64b08d32}} 
+\index{gtest\_xml\_test\_utils.GTestXMLTestCase@{gtest\_xml\_test\_utils.GTestXMLTestCase}!AssertEquivalentNodes@{AssertEquivalentNodes}}
+\index{AssertEquivalentNodes@{AssertEquivalentNodes}!gtest\_xml\_test\_utils.GTestXMLTestCase@{gtest\_xml\_test\_utils.GTestXMLTestCase}}
+\subsubsection{\texorpdfstring{AssertEquivalentNodes()}{AssertEquivalentNodes()}}
+{\footnotesize\ttfamily def gtest\+\_\+xml\+\_\+test\+\_\+utils.\+G\+Test\+X\+M\+L\+Test\+Case.\+Assert\+Equivalent\+Nodes (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{expected\+\_\+node,  }\item[{}]{actual\+\_\+node }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Asserts that actual_node (a DOM node object) is equivalent to
+expected_node (another DOM node object), in that either both of
+them are CDATA nodes and have the same value, or both are DOM
+elements and actual_node meets all of the following conditions:
+
+*  It has the same tag name as expected_node.
+*  It has the same set of attributes as expected_node, each with
+   the same value as the corresponding attribute of expected_node.
+   Exceptions are any attribute named "time", which needs only be
+   convertible to a floating-point number and any attribute named
+   "type_param" which only has to be non-empty.
+*  It has an equivalent set of child nodes (including elements and
+   CDATA sections) as expected_node.  Note that we ignore the
+   order of the children as they are not guaranteed to be in any
+   particular order.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classgtest__xml__test__utils_1_1GTestXMLTestCase_ac4823e96c3b5327b25a340a3605447d9}\label{classgtest__xml__test__utils_1_1GTestXMLTestCase_ac4823e96c3b5327b25a340a3605447d9}} 
+\index{gtest\_xml\_test\_utils.GTestXMLTestCase@{gtest\_xml\_test\_utils.GTestXMLTestCase}!NormalizeXml@{NormalizeXml}}
+\index{NormalizeXml@{NormalizeXml}!gtest\_xml\_test\_utils.GTestXMLTestCase@{gtest\_xml\_test\_utils.GTestXMLTestCase}}
+\subsubsection{\texorpdfstring{NormalizeXml()}{NormalizeXml()}}
+{\footnotesize\ttfamily def gtest\+\_\+xml\+\_\+test\+\_\+utils.\+G\+Test\+X\+M\+L\+Test\+Case.\+Normalize\+Xml (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{element }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Normalizes Google Test's XML output to eliminate references to transient
+information that may change from run to run.
+
+*  The "time" attribute of <testsuites>, <testsuite> and <testcase>
+   elements is replaced with a single asterisk, if it contains
+   only digit characters.
+*  The "timestamp" attribute of <testsuites> elements is replaced with a
+   single asterisk, if it contains a valid ISO8601 datetime value.
+*  The "type_param" attribute of <testcase> elements is replaced with a
+   single asterisk (if it sn non-empty) as it is the type name returned
+   by the compiler and is platform dependent.
+*  The line info reported in the first line of the "message"
+   attribute and CDATA section of <failure> elements is replaced with the
+   file's basename and a single asterisk for the line number.
+*  The directory names in file paths are removed.
+*  The stack traces are removed.
+\end{DoxyVerb}
+ 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classgtest__xml__test__utils_1_1GTestXMLTestCase_a0e3a4e84e18f29d2248dcd670a0a6ae6}\label{classgtest__xml__test__utils_1_1GTestXMLTestCase_a0e3a4e84e18f29d2248dcd670a0a6ae6}} 
+\index{gtest\_xml\_test\_utils.GTestXMLTestCase@{gtest\_xml\_test\_utils.GTestXMLTestCase}!identifying\_attribute@{identifying\_attribute}}
+\index{identifying\_attribute@{identifying\_attribute}!gtest\_xml\_test\_utils.GTestXMLTestCase@{gtest\_xml\_test\_utils.GTestXMLTestCase}}
+\subsubsection{\texorpdfstring{identifying\_attribute}{identifying\_attribute}}
+{\footnotesize\ttfamily dictionary gtest\+\_\+xml\+\_\+test\+\_\+utils.\+G\+Test\+X\+M\+L\+Test\+Case.\+identifying\+\_\+attribute\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{      \textcolor{stringliteral}{'testsuites'}: \textcolor{stringliteral}{'name'},}
+\DoxyCodeLine{      \textcolor{stringliteral}{'testsuite'}: \textcolor{stringliteral}{'name'},}
+\DoxyCodeLine{      \textcolor{stringliteral}{'testcase'}: \textcolor{stringliteral}{'name'},}
+\DoxyCodeLine{      \textcolor{stringliteral}{'failure'}: \textcolor{stringliteral}{'message'},}
+\DoxyCodeLine{      \textcolor{stringliteral}{'property'}: \textcolor{stringliteral}{'name'},}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cmake-\/build-\/debug/googletest-\/src/googletest/test/\mbox{\hyperlink{gtest__xml__test__utils_8py}{gtest\+\_\+xml\+\_\+test\+\_\+utils.\+py}}\end{DoxyCompactItemize}

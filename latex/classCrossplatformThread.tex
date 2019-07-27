@@ -1,0 +1,85 @@
+\hypertarget{classCrossplatformThread}{}\section{Crossplatform\+Thread Class Reference}
+\label{classCrossplatformThread}\index{CrossplatformThread@{CrossplatformThread}}
+
+
+{\ttfamily \#include $<$core\+Pros\+A\+P\+I.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCrossplatformThread_a21fe128e5e9daa9a892ebefca6f1c4ed}{Crossplatform\+Thread}} (void($\ast$ptr)(void $\ast$), void $\ast$params, const char $\ast$const name=\char`\"{}Okapi\+Lib\+Crossplatform\+Task\char`\"{})
+\item 
+\mbox{\hyperlink{classCrossplatformThread_a3381be75780fb920e4787d3bfbac0042}{$\sim$\+Crossplatform\+Thread}} ()
+\item 
+void \mbox{\hyperlink{classCrossplatformThread_a6bce45b009db95074707b96858f63f33}{notify\+When\+Deleting}} (\mbox{\hyperlink{classCrossplatformThread}{Crossplatform\+Thread}} $\ast$parent)
+\item 
+void \mbox{\hyperlink{classCrossplatformThread_a231ab0d069a7f2dc2dc9f6a2ebe314ab}{notify\+When\+Deleting\+Raw}} (\mbox{\hyperlink{coreProsAPI_8hpp_a1b1c38d4f3c04da38ebb34cb7dec488b}{C\+R\+O\+S\+S\+P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+T}} parent)
+\item 
+std\+::uint32\+\_\+t \mbox{\hyperlink{classCrossplatformThread_a1341b0d1b14cf779c5bd47a5a848fdef}{notify\+Take}} (const std\+::uint32\+\_\+t itimeout)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{classCrossplatformThread_ac14c3ade9c664d777c1a1f88abd8ac77}{get\+Name}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{coreProsAPI_8hpp_a1b1c38d4f3c04da38ebb34cb7dec488b}{C\+R\+O\+S\+S\+P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+T}} \mbox{\hyperlink{classCrossplatformThread_a6717570c6d2ecd9e1750d631594ae206}{thread}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCrossplatformThread_a21fe128e5e9daa9a892ebefca6f1c4ed}\label{classCrossplatformThread_a21fe128e5e9daa9a892ebefca6f1c4ed}} 
+\index{CrossplatformThread@{CrossplatformThread}!CrossplatformThread@{CrossplatformThread}}
+\index{CrossplatformThread@{CrossplatformThread}!CrossplatformThread@{CrossplatformThread}}
+\subsubsection{\texorpdfstring{CrossplatformThread()}{CrossplatformThread()}}
+{\footnotesize\ttfamily Crossplatform\+Thread\+::\+Crossplatform\+Thread (\begin{DoxyParamCaption}\item[{void($\ast$)(void $\ast$)}]{ptr,  }\item[{void $\ast$}]{params,  }\item[{const char $\ast$const}]{name = {\ttfamily \char`\"{}OkapiLibCrossplatformTask\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classCrossplatformThread_a3381be75780fb920e4787d3bfbac0042}\label{classCrossplatformThread_a3381be75780fb920e4787d3bfbac0042}} 
+\index{CrossplatformThread@{CrossplatformThread}!````~CrossplatformThread@{$\sim$CrossplatformThread}}
+\index{````~CrossplatformThread@{$\sim$CrossplatformThread}!CrossplatformThread@{CrossplatformThread}}
+\subsubsection{\texorpdfstring{$\sim$CrossplatformThread()}{~CrossplatformThread()}}
+{\footnotesize\ttfamily Crossplatform\+Thread\+::$\sim$\+Crossplatform\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classCrossplatformThread_ac14c3ade9c664d777c1a1f88abd8ac77}\label{classCrossplatformThread_ac14c3ade9c664d777c1a1f88abd8ac77}} 
+\index{CrossplatformThread@{CrossplatformThread}!getName@{getName}}
+\index{getName@{getName}!CrossplatformThread@{CrossplatformThread}}
+\subsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily static std\+::string Crossplatform\+Thread\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{classCrossplatformThread_a1341b0d1b14cf779c5bd47a5a848fdef}\label{classCrossplatformThread_a1341b0d1b14cf779c5bd47a5a848fdef}} 
+\index{CrossplatformThread@{CrossplatformThread}!notifyTake@{notifyTake}}
+\index{notifyTake@{notifyTake}!CrossplatformThread@{CrossplatformThread}}
+\subsubsection{\texorpdfstring{notifyTake()}{notifyTake()}}
+{\footnotesize\ttfamily std\+::uint32\+\_\+t Crossplatform\+Thread\+::notify\+Take (\begin{DoxyParamCaption}\item[{const std\+::uint32\+\_\+t}]{itimeout }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classCrossplatformThread_a6bce45b009db95074707b96858f63f33}\label{classCrossplatformThread_a6bce45b009db95074707b96858f63f33}} 
+\index{CrossplatformThread@{CrossplatformThread}!notifyWhenDeleting@{notifyWhenDeleting}}
+\index{notifyWhenDeleting@{notifyWhenDeleting}!CrossplatformThread@{CrossplatformThread}}
+\subsubsection{\texorpdfstring{notifyWhenDeleting()}{notifyWhenDeleting()}}
+{\footnotesize\ttfamily void Crossplatform\+Thread\+::notify\+When\+Deleting (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCrossplatformThread}{Crossplatform\+Thread}} $\ast$}]{parent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classCrossplatformThread_a231ab0d069a7f2dc2dc9f6a2ebe314ab}\label{classCrossplatformThread_a231ab0d069a7f2dc2dc9f6a2ebe314ab}} 
+\index{CrossplatformThread@{CrossplatformThread}!notifyWhenDeletingRaw@{notifyWhenDeletingRaw}}
+\index{notifyWhenDeletingRaw@{notifyWhenDeletingRaw}!CrossplatformThread@{CrossplatformThread}}
+\subsubsection{\texorpdfstring{notifyWhenDeletingRaw()}{notifyWhenDeletingRaw()}}
+{\footnotesize\ttfamily void Crossplatform\+Thread\+::notify\+When\+Deleting\+Raw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{coreProsAPI_8hpp_a1b1c38d4f3c04da38ebb34cb7dec488b}{C\+R\+O\+S\+S\+P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+T}}}]{parent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classCrossplatformThread_a6717570c6d2ecd9e1750d631594ae206}\label{classCrossplatformThread_a6717570c6d2ecd9e1750d631594ae206}} 
+\index{CrossplatformThread@{CrossplatformThread}!thread@{thread}}
+\index{thread@{thread}!CrossplatformThread@{CrossplatformThread}}
+\subsubsection{\texorpdfstring{thread}{thread}}
+{\footnotesize\ttfamily \mbox{\hyperlink{coreProsAPI_8hpp_a1b1c38d4f3c04da38ebb34cb7dec488b}{C\+R\+O\+S\+S\+P\+L\+A\+T\+F\+O\+R\+M\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+T}} Crossplatform\+Thread\+::thread}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/\mbox{\hyperlink{coreProsAPI_8hpp}{core\+Pros\+A\+P\+I.\+hpp}}\end{DoxyCompactItemize}

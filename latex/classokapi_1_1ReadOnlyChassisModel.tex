@@ -1,0 +1,54 @@
+\hypertarget{classokapi_1_1ReadOnlyChassisModel}{}\section{okapi\+::Read\+Only\+Chassis\+Model Class Reference}
+\label{classokapi_1_1ReadOnlyChassisModel}\index{okapi::ReadOnlyChassisModel@{okapi::ReadOnlyChassisModel}}
+
+
+{\ttfamily \#include $<$read\+Only\+Chassis\+Model.\+hpp$>$}
+
+Inheritance diagram for okapi\+::Read\+Only\+Chassis\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classokapi_1_1ReadOnlyChassisModel}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classokapi_1_1ReadOnlyChassisModel_a1994ed80cbfdc34f30f90083d4c8620d}{$\sim$\+Read\+Only\+Chassis\+Model}} ()=default
+\item 
+virtual std\+::valarray$<$ std\+::int32\+\_\+t $>$ \mbox{\hyperlink{classokapi_1_1ReadOnlyChassisModel_af2d844d9e12bb7c778ac9a5a0074f848}{get\+Sensor\+Vals}} () const =0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A version of the \mbox{\hyperlink{classokapi_1_1ChassisModel}{Chassis\+Model}} that only supports read methods, such as querying sensor values. This class does not let you write to motors, so it supports having multiple owners and as a result copying is enabled. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1ReadOnlyChassisModel_a1994ed80cbfdc34f30f90083d4c8620d}\label{classokapi_1_1ReadOnlyChassisModel_a1994ed80cbfdc34f30f90083d4c8620d}} 
+\index{okapi::ReadOnlyChassisModel@{okapi::ReadOnlyChassisModel}!````~ReadOnlyChassisModel@{$\sim$ReadOnlyChassisModel}}
+\index{````~ReadOnlyChassisModel@{$\sim$ReadOnlyChassisModel}!okapi::ReadOnlyChassisModel@{okapi::ReadOnlyChassisModel}}
+\subsubsection{\texorpdfstring{$\sim$ReadOnlyChassisModel()}{~ReadOnlyChassisModel()}}
+{\footnotesize\ttfamily virtual okapi\+::\+Read\+Only\+Chassis\+Model\+::$\sim$\+Read\+Only\+Chassis\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1ReadOnlyChassisModel_af2d844d9e12bb7c778ac9a5a0074f848}\label{classokapi_1_1ReadOnlyChassisModel_af2d844d9e12bb7c778ac9a5a0074f848}} 
+\index{okapi::ReadOnlyChassisModel@{okapi::ReadOnlyChassisModel}!getSensorVals@{getSensorVals}}
+\index{getSensorVals@{getSensorVals}!okapi::ReadOnlyChassisModel@{okapi::ReadOnlyChassisModel}}
+\subsubsection{\texorpdfstring{getSensorVals()}{getSensorVals()}}
+{\footnotesize\ttfamily virtual std\+::valarray$<$std\+::int32\+\_\+t$>$ okapi\+::\+Read\+Only\+Chassis\+Model\+::get\+Sensor\+Vals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Read the sensors.
+
+\begin{DoxyReturn}{Returns}
+sensor readings (format is implementation dependent) 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classokapi_1_1XDriveModel_a3beef170f1e7fd988d815f335cafad1e}{okapi\+::\+X\+Drive\+Model}}, \mbox{\hyperlink{classokapi_1_1SkidSteerModel_a850e4de7ab3a30a354ac39f30a1e8603}{okapi\+::\+Skid\+Steer\+Model}}, and \mbox{\hyperlink{classokapi_1_1ThreeEncoderSkidSteerModel_a39af35aa25e5385584b3834911aed341}{okapi\+::\+Three\+Encoder\+Skid\+Steer\+Model}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/chassis/model/\mbox{\hyperlink{readOnlyChassisModel_8hpp}{read\+Only\+Chassis\+Model.\+hpp}}\end{DoxyCompactItemize}

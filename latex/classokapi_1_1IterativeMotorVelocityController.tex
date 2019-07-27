@@ -1,0 +1,340 @@
+\hypertarget{classokapi_1_1IterativeMotorVelocityController}{}\section{okapi\+::Iterative\+Motor\+Velocity\+Controller Class Reference}
+\label{classokapi_1_1IterativeMotorVelocityController}\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+
+
+{\ttfamily \#include $<$iterative\+Motor\+Velocity\+Controller.\+hpp$>$}
+
+Inheritance diagram for okapi\+::Iterative\+Motor\+Velocity\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classokapi_1_1IterativeMotorVelocityController}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a89b1a3956de3965a8552600283a1ec1b}{Iterative\+Motor\+Velocity\+Controller}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&imotor, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1IterativeVelocityController}{Iterative\+Velocity\+Controller}}$<$ double, double $>$$>$ \&icontroller)
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a71f514d22293dc2e23de26ecd994d57c}{step}} (double ireading) override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a9a5a1d57df3faa75474245200ed34a18}{set\+Target}} (double itarget) override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a5a36064df12b3d34f2bfa09ca1992b9e}{controller\+Set}} (double ivalue) override
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a3e54865f6b424954f3846cd1361077c5}{get\+Target}} () override
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a078d0d0d20118e374d01d2b9eba23da3}{get\+Output}} () const override
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a48d88a7c9cec2c7046d0f7f61d8777c9}{get\+Max\+Output}} () override
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a32942ed7359481ede1fba86d7dc44795}{get\+Min\+Output}} () override
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_aee5e0bfdaa45c2748b9f4bf8b549f286}{get\+Error}} () const override
+\item 
+bool \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_ade18c38b1ec3196b25b0ea323d8e1075}{is\+Settled}} () override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_ab94173452bbba03ffe51a4e700e2a870}{set\+Sample\+Time}} (Q\+Time isample\+Time) override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a7614e53a0847e47e5418df21670c1ddd}{set\+Output\+Limits}} (double imax, double imin) override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a083db063a4f8f15787a0c97068eef755}{set\+Controller\+Set\+Target\+Limits}} (double itarget\+Max, double itarget\+Min) override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a404105de7fd0e34dd50f09d47c8b110f}{reset}} () override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a24d2200fe82b8f454839caaa511483f6}{flip\+Disable}} () override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a8419fd62ca804f0446204b59ce37d01c}{flip\+Disable}} (bool iis\+Disabled) override
+\item 
+bool \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a3d0383caf0fb0b982806e224492af473}{is\+Disabled}} () const override
+\item 
+Q\+Time \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_ae67b1aec831d3711f12beb85f69eb7f0}{get\+Sample\+Time}} () const override
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a155aefa9df71ea938c1395d25089442d}{motor}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1IterativeVelocityController}{Iterative\+Velocity\+Controller}}$<$ double, double $>$ $>$ \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a77872f2c9391330ce05e0e356922a396}{controller}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a89b1a3956de3965a8552600283a1ec1b}\label{classokapi_1_1IterativeMotorVelocityController_a89b1a3956de3965a8552600283a1ec1b}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!IterativeMotorVelocityController@{IterativeMotorVelocityController}}
+\index{IterativeMotorVelocityController@{IterativeMotorVelocityController}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{IterativeMotorVelocityController()}{IterativeMotorVelocityController()}}
+{\footnotesize\ttfamily okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::\+Iterative\+Motor\+Velocity\+Controller (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&}]{imotor,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1IterativeVelocityController}{Iterative\+Velocity\+Controller}}$<$ double, double $>$$>$ \&}]{icontroller }\end{DoxyParamCaption})}
+
+Velocity controller that automatically writes to the motor. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a5a36064df12b3d34f2bfa09ca1992b9e}\label{classokapi_1_1IterativeMotorVelocityController_a5a36064df12b3d34f2bfa09ca1992b9e}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!controllerSet@{controllerSet}}
+\index{controllerSet@{controllerSet}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{controllerSet()}{controllerSet()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::controller\+Set (\begin{DoxyParamCaption}\item[{double}]{ivalue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Writes the value of the controller output. This method might be automatically called in another thread by the controller. The range of input values is expected to be \mbox{[}-\/1, 1\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ivalue} & the controller\textquotesingle{}s output in the range \mbox{[}-\/1, 1\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ControllerOutput_a360c08f0c10b36f882d6d3100c2cad49}{okapi\+::\+Controller\+Output$<$ double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a24d2200fe82b8f454839caaa511483f6}\label{classokapi_1_1IterativeMotorVelocityController_a24d2200fe82b8f454839caaa511483f6}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!flipDisable@{flipDisable}}
+\index{flipDisable@{flipDisable}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{flipDisable()}{flipDisable()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::flip\+Disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Changes whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time. 
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a9de69b60885df41cd2164fe1a23f34d3}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a8419fd62ca804f0446204b59ce37d01c}\label{classokapi_1_1IterativeMotorVelocityController_a8419fd62ca804f0446204b59ce37d01c}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!flipDisable@{flipDisable}}
+\index{flipDisable@{flipDisable}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{flipDisable()}{flipDisable()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::flip\+Disable (\begin{DoxyParamCaption}\item[{bool}]{iis\+Disabled }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Sets whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iis\+Disabled} & whether the controller is disabled \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a768cd1db40ce9cd5c89b20be6e838ccc}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_aee5e0bfdaa45c2748b9f4bf8b549f286}\label{classokapi_1_1IterativeMotorVelocityController_aee5e0bfdaa45c2748b9f4bf8b549f286}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!getError@{getError}}
+\index{getError@{getError}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{getError()}{getError()}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::get\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the last error of the controller. Does not update when disabled. 
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a50c73444ff6e3e631951c43d0f951953}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a48d88a7c9cec2c7046d0f7f61d8777c9}\label{classokapi_1_1IterativeMotorVelocityController_a48d88a7c9cec2c7046d0f7f61d8777c9}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!getMaxOutput@{getMaxOutput}}
+\index{getMaxOutput@{getMaxOutput}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{getMaxOutput()}{getMaxOutput()}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::get\+Max\+Output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the upper output bound.
+
+\begin{DoxyReturn}{Returns}
+the upper output bound 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_a09bdba3a6d7854d943ed5401210b0595}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a32942ed7359481ede1fba86d7dc44795}\label{classokapi_1_1IterativeMotorVelocityController_a32942ed7359481ede1fba86d7dc44795}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!getMinOutput@{getMinOutput}}
+\index{getMinOutput@{getMinOutput}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{getMinOutput()}{getMinOutput()}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::get\+Min\+Output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the lower output bound.
+
+\begin{DoxyReturn}{Returns}
+the lower output bound 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_a4d271df97caeedbcc807b714a48eaa30}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a078d0d0d20118e374d01d2b9eba23da3}\label{classokapi_1_1IterativeMotorVelocityController_a078d0d0d20118e374d01d2b9eba23da3}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!getOutput@{getOutput}}
+\index{getOutput@{getOutput}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{getOutput()}{getOutput()}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::get\+Output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the last calculated output of the controller. 
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_a83e0aac640804974f0e06936b9f7898a}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_ae67b1aec831d3711f12beb85f69eb7f0}\label{classokapi_1_1IterativeMotorVelocityController_ae67b1aec831d3711f12beb85f69eb7f0}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!getSampleTime@{getSampleTime}}
+\index{getSampleTime@{getSampleTime}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{getSampleTime()}{getSampleTime()}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::get\+Sample\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the last set sample time.
+
+\begin{DoxyReturn}{Returns}
+sample time 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_a48cd86626af7036db4f36b4124df4f98}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a3e54865f6b424954f3846cd1361077c5}\label{classokapi_1_1IterativeMotorVelocityController_a3e54865f6b424954f3846cd1361077c5}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!getTarget@{getTarget}}
+\index{getTarget@{getTarget}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{getTarget()}{getTarget()}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::get\+Target (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Gets the last set target, or the default target if none was set.
+
+\begin{DoxyReturn}{Returns}
+the last target 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a22012bedbfaff6e5a3a508f274ec2497}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a3d0383caf0fb0b982806e224492af473}\label{classokapi_1_1IterativeMotorVelocityController_a3d0383caf0fb0b982806e224492af473}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!isDisabled@{isDisabled}}
+\index{isDisabled@{isDisabled}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{isDisabled()}{isDisabled()}}
+{\footnotesize\ttfamily bool okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::is\+Disabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns whether the controller is currently disabled.
+
+\begin{DoxyReturn}{Returns}
+whether the controller is currently disabled 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a40bd4ec2b8c75503fbf6f494fd7cbe69}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_ade18c38b1ec3196b25b0ea323d8e1075}\label{classokapi_1_1IterativeMotorVelocityController_ade18c38b1ec3196b25b0ea323d8e1075}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!isSettled@{isSettled}}
+\index{isSettled@{isSettled}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{isSettled()}{isSettled()}}
+{\footnotesize\ttfamily bool okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::is\+Settled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns whether the controller has settled at the target. Determining what settling means is implementation-\/dependent.
+
+\begin{DoxyReturn}{Returns}
+whether the controller is settled 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_aed7aa0e94b6474c28314f8517d6cb4d8}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a404105de7fd0e34dd50f09d47c8b110f}\label{classokapi_1_1IterativeMotorVelocityController_a404105de7fd0e34dd50f09d47c8b110f}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!reset@{reset}}
+\index{reset@{reset}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Resets the controller\textquotesingle{}s internal state so it is similar to when it was first initialized, while keeping any user-\/configured information. 
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a7dd6ce28b3e38bdf987514a1b6c83c8c}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a083db063a4f8f15787a0c97068eef755}\label{classokapi_1_1IterativeMotorVelocityController_a083db063a4f8f15787a0c97068eef755}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!setControllerSetTargetLimits@{setControllerSetTargetLimits}}
+\index{setControllerSetTargetLimits@{setControllerSetTargetLimits}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{setControllerSetTargetLimits()}{setControllerSetTargetLimits()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::set\+Controller\+Set\+Target\+Limits (\begin{DoxyParamCaption}\item[{double}]{itarget\+Max,  }\item[{double}]{itarget\+Min }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Sets the (soft) limits for the target range that \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a5a36064df12b3d34f2bfa09ca1992b9e}{controller\+Set()}} scales into. The target computed by \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a5a36064df12b3d34f2bfa09ca1992b9e}{controller\+Set()}} is scaled into the range \mbox{[}-\/itarget\+Min, itarget\+Max\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em itarget\+Max} & The new max target for \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a5a36064df12b3d34f2bfa09ca1992b9e}{controller\+Set()}}. \\
+\hline
+{\em itarget\+Min} & The new min target for \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController_a5a36064df12b3d34f2bfa09ca1992b9e}{controller\+Set()}}. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_a7c514b702b78be6c45c03b718edce035}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a7614e53a0847e47e5418df21670c1ddd}\label{classokapi_1_1IterativeMotorVelocityController_a7614e53a0847e47e5418df21670c1ddd}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!setOutputLimits@{setOutputLimits}}
+\index{setOutputLimits@{setOutputLimits}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{setOutputLimits()}{setOutputLimits()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::set\+Output\+Limits (\begin{DoxyParamCaption}\item[{double}]{imax,  }\item[{double}]{imin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Set controller output bounds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imax} & max output \\
+\hline
+{\em imin} & min output \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_ae1a7d9bd29d176a26bcc70c741f0d50f}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_ab94173452bbba03ffe51a4e700e2a870}\label{classokapi_1_1IterativeMotorVelocityController_ab94173452bbba03ffe51a4e700e2a870}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!setSampleTime@{setSampleTime}}
+\index{setSampleTime@{setSampleTime}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{setSampleTime()}{setSampleTime()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::set\+Sample\+Time (\begin{DoxyParamCaption}\item[{Q\+Time}]{isample\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Set time between loops in ms.
+
+
+\begin{DoxyParams}{Parameters}
+{\em isample\+Time} & time between loops in ms \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_ac4cfb1b37a3c707b2fc8f2fbda526f3e}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a9a5a1d57df3faa75474245200ed34a18}\label{classokapi_1_1IterativeMotorVelocityController_a9a5a1d57df3faa75474245200ed34a18}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!setTarget@{setTarget}}
+\index{setTarget@{setTarget}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{setTarget()}{setTarget()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::set\+Target (\begin{DoxyParamCaption}\item[{double}]{itarget }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Sets the target for the controller. 
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_ac14482d0768b3f157d52e0214a4c36d7}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a71f514d22293dc2e23de26ecd994d57c}\label{classokapi_1_1IterativeMotorVelocityController_a71f514d22293dc2e23de26ecd994d57c}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!step@{step}}
+\index{step@{step}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{step()}{step()}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::step (\begin{DoxyParamCaption}\item[{double}]{ireading }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Do one iteration of the controller.
+
+
+\begin{DoxyParams}{Parameters}
+{\em inew\+Reading} & new measurement \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+controller output 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_a751bcad1407099e629e3ffbe395daf2b}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a77872f2c9391330ce05e0e356922a396}\label{classokapi_1_1IterativeMotorVelocityController_a77872f2c9391330ce05e0e356922a396}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!controller@{controller}}
+\index{controller@{controller}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{controller}{controller}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1IterativeVelocityController}{Iterative\+Velocity\+Controller}}$<$double, double$>$ $>$ okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::controller\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativeMotorVelocityController_a155aefa9df71ea938c1395d25089442d}\label{classokapi_1_1IterativeMotorVelocityController_a155aefa9df71ea938c1395d25089442d}} 
+\index{okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}!motor@{motor}}
+\index{motor@{motor}!okapi::IterativeMotorVelocityController@{okapi::IterativeMotorVelocityController}}
+\subsubsection{\texorpdfstring{motor}{motor}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}}$>$ okapi\+::\+Iterative\+Motor\+Velocity\+Controller\+::motor\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/control/iterative/\mbox{\hyperlink{iterativeMotorVelocityController_8hpp}{iterative\+Motor\+Velocity\+Controller.\+hpp}}\item 
+src/api/control/iterative/\mbox{\hyperlink{iterativeMotorVelocityController_8cpp}{iterative\+Motor\+Velocity\+Controller.\+cpp}}\end{DoxyCompactItemize}

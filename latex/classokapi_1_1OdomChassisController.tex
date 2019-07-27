@@ -1,0 +1,286 @@
+\hypertarget{classokapi_1_1OdomChassisController}{}\section{okapi\+::Odom\+Chassis\+Controller Class Reference}
+\label{classokapi_1_1OdomChassisController}\index{okapi::OdomChassisController@{okapi::OdomChassisController}}
+
+
+{\ttfamily \#include $<$odom\+Chassis\+Controller.\+hpp$>$}
+
+Inheritance diagram for okapi\+::Odom\+Chassis\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classokapi_1_1OdomChassisController}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1OdomChassisController_a91015290cdd5f9c459adfb59115bc92d}{Odom\+Chassis\+Controller}} (const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&itime\+Util, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} $>$ iodometry, const Q\+Length \&imove\+Threshold=10\+\_\+mm, const Q\+Angle \&iturn\+Threshold=1\+\_\+deg)
+\item 
+\mbox{\hyperlink{classokapi_1_1OdomChassisController_a25ee4fe0432b6cdc8052a869856cfc7c}{$\sim$\+Odom\+Chassis\+Controller}} () override
+\item 
+virtual void \mbox{\hyperlink{classokapi_1_1OdomChassisController_a5e87dea6c90a200bc6a9dc638e45365a}{drive\+To\+Point}} (const Q\+Length \&ix, const Q\+Length \&iy, bool ibackwards=false, const Q\+Length \&ioffset=0\+\_\+mm)=0
+\item 
+virtual void \mbox{\hyperlink{classokapi_1_1OdomChassisController_ac90298bb9081d95c52800dbf679dd658}{turn\+To\+Angle}} (const Q\+Angle \&iangle)=0
+\item 
+virtual \mbox{\hyperlink{structokapi_1_1OdomState}{Odom\+State}} \mbox{\hyperlink{classokapi_1_1OdomChassisController_aa7b4675edd3cdd920e287fc5e824892f}{get\+State}} (const \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07}{State\+Mode}} \&imode=\mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b}{State\+Mode\+::\+F\+R\+A\+M\+E\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON}}) const
+\item 
+virtual void \mbox{\hyperlink{classokapi_1_1OdomChassisController_a843ab24d9ed26ba68833ece0b28bf345}{set\+State}} (const \mbox{\hyperlink{structokapi_1_1OdomState}{Odom\+State}} \&istate, const \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07}{State\+Mode}} \&imode=\mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b}{State\+Mode\+::\+F\+R\+A\+M\+E\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON}})
+\item 
+virtual void \mbox{\hyperlink{classokapi_1_1OdomChassisController_adf98b0e1b91d1f72cce5b76b992257a0}{set\+Move\+Threshold}} (const Q\+Length \&imove\+Threshold)
+\item 
+virtual void \mbox{\hyperlink{classokapi_1_1OdomChassisController_a771daa37b47909a523571e9173f676d5}{set\+Turn\+Threshold}} (const Q\+Angle \&iturn\+Treshold)
+\item 
+virtual Q\+Length \mbox{\hyperlink{classokapi_1_1OdomChassisController_a6523c9291a330272edcf951e6653ae02}{get\+Move\+Threshold}} () const
+\item 
+virtual Q\+Angle \mbox{\hyperlink{classokapi_1_1OdomChassisController_a17e3855a8b8ecdb9a027828d604722d9}{get\+Turn\+Threshold}} () const
+\item 
+void \mbox{\hyperlink{classokapi_1_1OdomChassisController_a519c7ad1905fbf9132c95e1e14bc973c}{start\+Odom\+Thread}} ()
+\item 
+\mbox{\hyperlink{classCrossplatformThread}{Crossplatform\+Thread}} $\ast$ \mbox{\hyperlink{classokapi_1_1OdomChassisController_a6ab78730e502dc551894e7efdb9f4edf}{get\+Odom\+Thread}} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classokapi_1_1OdomChassisController_aafdbc13dae2d14e13b879dd7d93993c7}{loop}} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classokapi_1_1OdomChassisController_a11be9684a858686cfc3204b493422308}{trampoline}} (void $\ast$context)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \mbox{\hyperlink{classokapi_1_1OdomChassisController_a3afde0b7a16a998873923f41fedb041a}{time\+Util}}
+\item 
+Q\+Length \mbox{\hyperlink{classokapi_1_1OdomChassisController_a8fc34ac66535e1a2afaf8856f09a9f95}{move\+Threshold}}
+\item 
+Q\+Angle \mbox{\hyperlink{classokapi_1_1OdomChassisController_ac0d74721713d2928a047562675ae25ef}{turn\+Threshold}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} $>$ \mbox{\hyperlink{classokapi_1_1OdomChassisController_a7167160f48f0f75fb1bc7964c4cc608b}{odom}}
+\item 
+\mbox{\hyperlink{classCrossplatformThread}{Crossplatform\+Thread}} $\ast$ \mbox{\hyperlink{classokapi_1_1OdomChassisController_a75246d7a17442c9a63afaef68bbf95e0}{odom\+Task}} \{nullptr\}
+\item 
+std\+::atomic\+\_\+bool \mbox{\hyperlink{classokapi_1_1OdomChassisController_a2af36f833e8ac382c4386f729f904bae}{dtor\+Called}} \{false\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a91015290cdd5f9c459adfb59115bc92d}\label{classokapi_1_1OdomChassisController_a91015290cdd5f9c459adfb59115bc92d}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!OdomChassisController@{OdomChassisController}}
+\index{OdomChassisController@{OdomChassisController}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{OdomChassisController()}{OdomChassisController()}}
+{\footnotesize\ttfamily okapi\+::\+Odom\+Chassis\+Controller\+::\+Odom\+Chassis\+Controller (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&}]{itime\+Util,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} $>$}]{iodometry,  }\item[{const Q\+Length \&}]{imove\+Threshold = {\ttfamily 10\+\_\+mm},  }\item[{const Q\+Angle \&}]{iturn\+Threshold = {\ttfamily 1\+\_\+deg} }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} based chassis controller. Starts task at the default for odometry when constructed.
+
+Moves the robot around in the odom frame. Instead of telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific point on the field or turn to a specific angle relative to its starting position.
+
+
+\begin{DoxyParams}{Parameters}
+{\em itime\+Util} & The \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}}. \\
+\hline
+{\em iparams} & odometry parameters for the internal odometry math \\
+\hline
+{\em imove\+Threshold} & minimum length movement (smaller movements will be skipped) \\
+\hline
+{\em iturn\+Threshold} & minimum angle turn (smaller turns will be skipped) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a25ee4fe0432b6cdc8052a869856cfc7c}\label{classokapi_1_1OdomChassisController_a25ee4fe0432b6cdc8052a869856cfc7c}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!````~OdomChassisController@{$\sim$OdomChassisController}}
+\index{````~OdomChassisController@{$\sim$OdomChassisController}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{$\sim$OdomChassisController()}{~OdomChassisController()}}
+{\footnotesize\ttfamily okapi\+::\+Odom\+Chassis\+Controller\+::$\sim$\+Odom\+Chassis\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a5e87dea6c90a200bc6a9dc638e45365a}\label{classokapi_1_1OdomChassisController_a5e87dea6c90a200bc6a9dc638e45365a}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!driveToPoint@{driveToPoint}}
+\index{driveToPoint@{driveToPoint}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{driveToPoint()}{driveToPoint()}}
+{\footnotesize\ttfamily virtual void okapi\+::\+Odom\+Chassis\+Controller\+::drive\+To\+Point (\begin{DoxyParamCaption}\item[{const Q\+Length \&}]{ix,  }\item[{const Q\+Length \&}]{iy,  }\item[{bool}]{ibackwards = {\ttfamily false},  }\item[{const Q\+Length \&}]{ioffset = {\ttfamily 0\+\_\+mm} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Drives the robot straight to a point in the odom frame.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ix} & x coordinate \\
+\hline
+{\em iy} & y coordinate \\
+\hline
+{\em ibackwards} & whether to drive to the target point backwards \\
+\hline
+{\em ioffset} & offset from target point in the direction pointing towards the robot \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classokapi_1_1DefaultOdomChassisController_a31474749c8a6c0dca45a4c02418fadab}{okapi\+::\+Default\+Odom\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a6523c9291a330272edcf951e6653ae02}\label{classokapi_1_1OdomChassisController_a6523c9291a330272edcf951e6653ae02}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!getMoveThreshold@{getMoveThreshold}}
+\index{getMoveThreshold@{getMoveThreshold}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{getMoveThreshold()}{getMoveThreshold()}}
+{\footnotesize\ttfamily Q\+Length okapi\+::\+Odom\+Chassis\+Controller\+::get\+Move\+Threshold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+The current move threshold. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a6ab78730e502dc551894e7efdb9f4edf}\label{classokapi_1_1OdomChassisController_a6ab78730e502dc551894e7efdb9f4edf}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!getOdomThread@{getOdomThread}}
+\index{getOdomThread@{getOdomThread}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{getOdomThread()}{getOdomThread()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCrossplatformThread}{Crossplatform\+Thread}} $\ast$ okapi\+::\+Odom\+Chassis\+Controller\+::get\+Odom\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the underlying thread handle.
+
+\begin{DoxyReturn}{Returns}
+The underlying thread handle. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_aa7b4675edd3cdd920e287fc5e824892f}\label{classokapi_1_1OdomChassisController_aa7b4675edd3cdd920e287fc5e824892f}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!getState@{getState}}
+\index{getState@{getState}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{getState()}{getState()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structokapi_1_1OdomState}{Odom\+State}} okapi\+::\+Odom\+Chassis\+Controller\+::get\+State (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07}{State\+Mode}} \&}]{imode = {\ttfamily \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b}{State\+Mode\+::\+F\+R\+A\+M\+E\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON}}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the current state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imode} & The mode to return the state in. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current state in the given format. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a17e3855a8b8ecdb9a027828d604722d9}\label{classokapi_1_1OdomChassisController_a17e3855a8b8ecdb9a027828d604722d9}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!getTurnThreshold@{getTurnThreshold}}
+\index{getTurnThreshold@{getTurnThreshold}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{getTurnThreshold()}{getTurnThreshold()}}
+{\footnotesize\ttfamily Q\+Angle okapi\+::\+Odom\+Chassis\+Controller\+::get\+Turn\+Threshold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+The current turn threshold. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_aafdbc13dae2d14e13b879dd7d93993c7}\label{classokapi_1_1OdomChassisController_aafdbc13dae2d14e13b879dd7d93993c7}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!loop@{loop}}
+\index{loop@{loop}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily void okapi\+::\+Odom\+Chassis\+Controller\+::loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_adf98b0e1b91d1f72cce5b76b992257a0}\label{classokapi_1_1OdomChassisController_adf98b0e1b91d1f72cce5b76b992257a0}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!setMoveThreshold@{setMoveThreshold}}
+\index{setMoveThreshold@{setMoveThreshold}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{setMoveThreshold()}{setMoveThreshold()}}
+{\footnotesize\ttfamily void okapi\+::\+Odom\+Chassis\+Controller\+::set\+Move\+Threshold (\begin{DoxyParamCaption}\item[{const Q\+Length \&}]{imove\+Threshold }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Set a new move threshold. Any requested movements smaller than this threshold will be skipped.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imove\+Threshold} & new move threshold \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a843ab24d9ed26ba68833ece0b28bf345}\label{classokapi_1_1OdomChassisController_a843ab24d9ed26ba68833ece0b28bf345}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!setState@{setState}}
+\index{setState@{setState}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{setState()}{setState()}}
+{\footnotesize\ttfamily void okapi\+::\+Odom\+Chassis\+Controller\+::set\+State (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structokapi_1_1OdomState}{Odom\+State}} \&}]{istate,  }\item[{const \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07}{State\+Mode}} \&}]{imode = {\ttfamily \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b}{State\+Mode\+::\+F\+R\+A\+M\+E\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Set a new state to be the current state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em istate} & The new state in the given format. \\
+\hline
+{\em imode} & The mode to treat the input state as. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a771daa37b47909a523571e9173f676d5}\label{classokapi_1_1OdomChassisController_a771daa37b47909a523571e9173f676d5}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!setTurnThreshold@{setTurnThreshold}}
+\index{setTurnThreshold@{setTurnThreshold}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{setTurnThreshold()}{setTurnThreshold()}}
+{\footnotesize\ttfamily void okapi\+::\+Odom\+Chassis\+Controller\+::set\+Turn\+Threshold (\begin{DoxyParamCaption}\item[{const Q\+Angle \&}]{iturn\+Treshold }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Set a new turn threshold. Any requested turns smaller than this threshold will be skipped.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iturn\+Treshold} & new turn threshold \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a519c7ad1905fbf9132c95e1e14bc973c}\label{classokapi_1_1OdomChassisController_a519c7ad1905fbf9132c95e1e14bc973c}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!startOdomThread@{startOdomThread}}
+\index{startOdomThread@{startOdomThread}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{startOdomThread()}{startOdomThread()}}
+{\footnotesize\ttfamily void okapi\+::\+Odom\+Chassis\+Controller\+::start\+Odom\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Starts the internal odometry thread. This should not be called by normal users. \mbox{\Hypertarget{classokapi_1_1OdomChassisController_a11be9684a858686cfc3204b493422308}\label{classokapi_1_1OdomChassisController_a11be9684a858686cfc3204b493422308}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!trampoline@{trampoline}}
+\index{trampoline@{trampoline}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{trampoline()}{trampoline()}}
+{\footnotesize\ttfamily void okapi\+::\+Odom\+Chassis\+Controller\+::trampoline (\begin{DoxyParamCaption}\item[{void $\ast$}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_ac90298bb9081d95c52800dbf679dd658}\label{classokapi_1_1OdomChassisController_ac90298bb9081d95c52800dbf679dd658}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!turnToAngle@{turnToAngle}}
+\index{turnToAngle@{turnToAngle}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{turnToAngle()}{turnToAngle()}}
+{\footnotesize\ttfamily virtual void okapi\+::\+Odom\+Chassis\+Controller\+::turn\+To\+Angle (\begin{DoxyParamCaption}\item[{const Q\+Angle \&}]{iangle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Turns the robot to face an angle in the odom frame.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iangle} & angle to turn to \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classokapi_1_1DefaultOdomChassisController_aaf6e4d74384b87510d35b639e45f9dc2}{okapi\+::\+Default\+Odom\+Chassis\+Controller}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a2af36f833e8ac382c4386f729f904bae}\label{classokapi_1_1OdomChassisController_a2af36f833e8ac382c4386f729f904bae}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!dtorCalled@{dtorCalled}}
+\index{dtorCalled@{dtorCalled}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{dtorCalled}{dtorCalled}}
+{\footnotesize\ttfamily std\+::atomic\+\_\+bool okapi\+::\+Odom\+Chassis\+Controller\+::dtor\+Called \{false\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a8fc34ac66535e1a2afaf8856f09a9f95}\label{classokapi_1_1OdomChassisController_a8fc34ac66535e1a2afaf8856f09a9f95}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!moveThreshold@{moveThreshold}}
+\index{moveThreshold@{moveThreshold}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{moveThreshold}{moveThreshold}}
+{\footnotesize\ttfamily Q\+Length okapi\+::\+Odom\+Chassis\+Controller\+::move\+Threshold\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a7167160f48f0f75fb1bc7964c4cc608b}\label{classokapi_1_1OdomChassisController_a7167160f48f0f75fb1bc7964c4cc608b}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!odom@{odom}}
+\index{odom@{odom}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{odom}{odom}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}}$>$ okapi\+::\+Odom\+Chassis\+Controller\+::odom\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a75246d7a17442c9a63afaef68bbf95e0}\label{classokapi_1_1OdomChassisController_a75246d7a17442c9a63afaef68bbf95e0}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!odomTask@{odomTask}}
+\index{odomTask@{odomTask}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{odomTask}{odomTask}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCrossplatformThread}{Crossplatform\+Thread}}$\ast$ okapi\+::\+Odom\+Chassis\+Controller\+::odom\+Task \{nullptr\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_a3afde0b7a16a998873923f41fedb041a}\label{classokapi_1_1OdomChassisController_a3afde0b7a16a998873923f41fedb041a}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!timeUtil@{timeUtil}}
+\index{timeUtil@{timeUtil}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{timeUtil}{timeUtil}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} okapi\+::\+Odom\+Chassis\+Controller\+::time\+Util\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1OdomChassisController_ac0d74721713d2928a047562675ae25ef}\label{classokapi_1_1OdomChassisController_ac0d74721713d2928a047562675ae25ef}} 
+\index{okapi::OdomChassisController@{okapi::OdomChassisController}!turnThreshold@{turnThreshold}}
+\index{turnThreshold@{turnThreshold}!okapi::OdomChassisController@{okapi::OdomChassisController}}
+\subsubsection{\texorpdfstring{turnThreshold}{turnThreshold}}
+{\footnotesize\ttfamily Q\+Angle okapi\+::\+Odom\+Chassis\+Controller\+::turn\+Threshold\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/chassis/controller/\mbox{\hyperlink{odomChassisController_8hpp}{odom\+Chassis\+Controller.\+hpp}}\item 
+src/api/chassis/controller/\mbox{\hyperlink{odomChassisController_8cpp}{odom\+Chassis\+Controller.\+cpp}}\end{DoxyCompactItemize}

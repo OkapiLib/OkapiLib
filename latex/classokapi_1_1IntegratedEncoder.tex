@@ -1,0 +1,122 @@
+\hypertarget{classokapi_1_1IntegratedEncoder}{}\section{okapi\+::Integrated\+Encoder Class Reference}
+\label{classokapi_1_1IntegratedEncoder}\index{okapi::IntegratedEncoder@{okapi::IntegratedEncoder}}
+
+
+{\ttfamily \#include $<$integrated\+Encoder.\+hpp$>$}
+
+Inheritance diagram for okapi\+::Integrated\+Encoder\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classokapi_1_1IntegratedEncoder}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1IntegratedEncoder_a286d2b7796770ea5a91f498687cbe858}{Integrated\+Encoder}} (const pros\+::\+Motor \&imotor)
+\item 
+\mbox{\hyperlink{classokapi_1_1IntegratedEncoder_a05d0256b51e3631d9ee9177c4eafcb99}{Integrated\+Encoder}} (const \mbox{\hyperlink{classokapi_1_1Motor}{okapi\+::\+Motor}} \&imotor)
+\item 
+virtual double \mbox{\hyperlink{classokapi_1_1IntegratedEncoder_af3fe091ddf4b7f36443a5616bfedc3cb}{get}} () const override
+\item 
+virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1IntegratedEncoder_a1f95f00f59911a87a9a38633343f4311}{reset}} () override
+\item 
+virtual double \mbox{\hyperlink{classokapi_1_1IntegratedEncoder_a5898ddc979b9cf2bcee0da3d440f28f8}{controller\+Get}} () override
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+pros\+::\+Motor \mbox{\hyperlink{classokapi_1_1IntegratedEncoder_a2610609752fafa3cf548b328e15e15db}{motor}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1IntegratedEncoder_a286d2b7796770ea5a91f498687cbe858}\label{classokapi_1_1IntegratedEncoder_a286d2b7796770ea5a91f498687cbe858}} 
+\index{okapi::IntegratedEncoder@{okapi::IntegratedEncoder}!IntegratedEncoder@{IntegratedEncoder}}
+\index{IntegratedEncoder@{IntegratedEncoder}!okapi::IntegratedEncoder@{okapi::IntegratedEncoder}}
+\subsubsection{\texorpdfstring{IntegratedEncoder()}{IntegratedEncoder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily okapi\+::\+Integrated\+Encoder\+::\+Integrated\+Encoder (\begin{DoxyParamCaption}\item[{const pros\+::\+Motor \&}]{imotor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Integrated motor encoder. Uses the encoder inside the V5 motor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imotor} & the motor to use the encoder from. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1IntegratedEncoder_a05d0256b51e3631d9ee9177c4eafcb99}\label{classokapi_1_1IntegratedEncoder_a05d0256b51e3631d9ee9177c4eafcb99}} 
+\index{okapi::IntegratedEncoder@{okapi::IntegratedEncoder}!IntegratedEncoder@{IntegratedEncoder}}
+\index{IntegratedEncoder@{IntegratedEncoder}!okapi::IntegratedEncoder@{okapi::IntegratedEncoder}}
+\subsubsection{\texorpdfstring{IntegratedEncoder()}{IntegratedEncoder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily okapi\+::\+Integrated\+Encoder\+::\+Integrated\+Encoder (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1Motor}{okapi\+::\+Motor}} \&}]{imotor }\end{DoxyParamCaption})}
+
+Integrated motor encoder. Uses the encoder inside the V5 motor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imotor} & the motor to use the encoder from. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1IntegratedEncoder_a5898ddc979b9cf2bcee0da3d440f28f8}\label{classokapi_1_1IntegratedEncoder_a5898ddc979b9cf2bcee0da3d440f28f8}} 
+\index{okapi::IntegratedEncoder@{okapi::IntegratedEncoder}!controllerGet@{controllerGet}}
+\index{controllerGet@{controllerGet}!okapi::IntegratedEncoder@{okapi::IntegratedEncoder}}
+\subsubsection{\texorpdfstring{controllerGet()}{controllerGet()}}
+{\footnotesize\ttfamily double okapi\+::\+Integrated\+Encoder\+::controller\+Get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the sensor value for use in a control loop. This method might be automatically called in another thread by the controller.
+
+\begin{DoxyReturn}{Returns}
+the current sensor value, or {\ttfamily P\+R\+O\+S\+\_\+\+E\+RR} on a failure. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ControllerInput_a3c6c86d897983f367928a93890551e17}{okapi\+::\+Controller\+Input$<$ double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IntegratedEncoder_af3fe091ddf4b7f36443a5616bfedc3cb}\label{classokapi_1_1IntegratedEncoder_af3fe091ddf4b7f36443a5616bfedc3cb}} 
+\index{okapi::IntegratedEncoder@{okapi::IntegratedEncoder}!get@{get}}
+\index{get@{get}!okapi::IntegratedEncoder@{okapi::IntegratedEncoder}}
+\subsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily double okapi\+::\+Integrated\+Encoder\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the current sensor value.
+
+\begin{DoxyReturn}{Returns}
+the current sensor value, or {\ttfamily P\+R\+O\+S\+\_\+\+E\+RR} on a failure. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1RotarySensor_ac5534dc6c3bcbd8ea2f4e54a04cda734}{okapi\+::\+Rotary\+Sensor}}.
+
+\mbox{\Hypertarget{classokapi_1_1IntegratedEncoder_a1f95f00f59911a87a9a38633343f4311}\label{classokapi_1_1IntegratedEncoder_a1f95f00f59911a87a9a38633343f4311}} 
+\index{okapi::IntegratedEncoder@{okapi::IntegratedEncoder}!reset@{reset}}
+\index{reset@{reset}!okapi::IntegratedEncoder@{okapi::IntegratedEncoder}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t okapi\+::\+Integrated\+Encoder\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Reset the sensor to zero.
+
+\begin{DoxyReturn}{Returns}
+1 on success, P\+R\+O\+S\+\_\+\+E\+RR on fail 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor_ae7268b0603097ac2d93a67e4fefa43e0}{okapi\+::\+Continuous\+Rotary\+Sensor}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1IntegratedEncoder_a2610609752fafa3cf548b328e15e15db}\label{classokapi_1_1IntegratedEncoder_a2610609752fafa3cf548b328e15e15db}} 
+\index{okapi::IntegratedEncoder@{okapi::IntegratedEncoder}!motor@{motor}}
+\index{motor@{motor}!okapi::IntegratedEncoder@{okapi::IntegratedEncoder}}
+\subsubsection{\texorpdfstring{motor}{motor}}
+{\footnotesize\ttfamily pros\+::\+Motor okapi\+::\+Integrated\+Encoder\+::motor\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/impl/device/rotarysensor/\mbox{\hyperlink{integratedEncoder_8hpp}{integrated\+Encoder.\+hpp}}\item 
+src/impl/device/rotarysensor/\mbox{\hyperlink{integratedEncoder_8cpp}{integrated\+Encoder.\+cpp}}\end{DoxyCompactItemize}

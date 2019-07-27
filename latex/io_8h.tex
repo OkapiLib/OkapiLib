@@ -1,0 +1,123 @@
+\hypertarget{io_8h}{}\section{include/okapi/pathfinder/include/pathfinder/io.h File Reference}
+\label{io_8h}\index{include/okapi/pathfinder/include/pathfinder/io.h@{include/okapi/pathfinder/include/pathfinder/io.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}okapi/pathfinder/include/pathfinder/structs.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}okapi/pathfinder/include/pathfinder/lib.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{io_8h_a00b53a63736d0ec1df596d4de3b6de91}{C\+S\+V\+\_\+\+L\+E\+A\+D\+I\+N\+G\+\_\+\+S\+T\+R\+I\+NG}}~\char`\"{}dt,x,y,position,velocity,acceleration,jerk,heading\textbackslash{}n\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} void \mbox{\hyperlink{io_8h_ab9357929888b0c0412ffab759fff049f}{int\+To\+Bytes}} (int n, char $\ast$bytes)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} int \mbox{\hyperlink{io_8h_aef0c6c84357e198f22f184e63067ca2d}{bytes\+To\+Int}} (char $\ast$bytes)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} void \mbox{\hyperlink{io_8h_a96ffc45dae6900219796a61bf9cf7dc7}{long\+To\+Bytes}} (unsigned long long n, char $\ast$bytes)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} unsigned long long \mbox{\hyperlink{io_8h_aa2b91e3979af09fb914876d206e89068}{bytes\+To\+Long}} (char $\ast$bytes)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double \mbox{\hyperlink{io_8h_aabb7b6bc609838d27a4ece46d9c6cfd5}{long\+To\+Double}} (unsigned long long l)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} unsigned long long \mbox{\hyperlink{io_8h_ab5d2e77695147b5e344185740b80af80}{double\+To\+Long}} (double d)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} void \mbox{\hyperlink{io_8h_ad878e5495922facd4b421aaee69ef1b5}{double\+To\+Bytes}} (double n, char $\ast$bytes)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double \mbox{\hyperlink{io_8h_ab87b12a27d51b06e1074261ab7d0b9a6}{bytes\+To\+Double}} (char $\ast$bytes)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} void \mbox{\hyperlink{io_8h_acaa6e9258172766cac4edcc56c5b66ff}{pathfinder\+\_\+serialize}} (F\+I\+LE $\ast$fp, \mbox{\hyperlink{structSegment}{Segment}} $\ast$trajectory, int trajectory\+\_\+length)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} int \mbox{\hyperlink{io_8h_a4b14b6c835e3cb6ecdffffc7599a2ecc}{pathfinder\+\_\+deserialize}} (F\+I\+LE $\ast$fp, \mbox{\hyperlink{structSegment}{Segment}} $\ast$target)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} void \mbox{\hyperlink{io_8h_a0759f7e8c399db0055da57acea71e48d}{pathfinder\+\_\+serialize\+\_\+csv}} (F\+I\+LE $\ast$fp, \mbox{\hyperlink{structSegment}{Segment}} $\ast$trajectory, int trajectory\+\_\+length)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} int \mbox{\hyperlink{io_8h_a9631b8bedc2588526a143e1a8844b3ec}{pathfinder\+\_\+deserialize\+\_\+csv}} (F\+I\+LE $\ast$fp, \mbox{\hyperlink{structSegment}{Segment}} $\ast$target)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{io_8h_a00b53a63736d0ec1df596d4de3b6de91}\label{io_8h_a00b53a63736d0ec1df596d4de3b6de91}} 
+\index{io.h@{io.h}!CSV\_LEADING\_STRING@{CSV\_LEADING\_STRING}}
+\index{CSV\_LEADING\_STRING@{CSV\_LEADING\_STRING}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{CSV\_LEADING\_STRING}{CSV\_LEADING\_STRING}}
+{\footnotesize\ttfamily \#define C\+S\+V\+\_\+\+L\+E\+A\+D\+I\+N\+G\+\_\+\+S\+T\+R\+I\+NG~\char`\"{}dt,x,y,position,velocity,acceleration,jerk,heading\textbackslash{}n\char`\"{}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{io_8h_ab87b12a27d51b06e1074261ab7d0b9a6}\label{io_8h_ab87b12a27d51b06e1074261ab7d0b9a6}} 
+\index{io.h@{io.h}!bytesToDouble@{bytesToDouble}}
+\index{bytesToDouble@{bytesToDouble}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{bytesToDouble()}{bytesToDouble()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double bytes\+To\+Double (\begin{DoxyParamCaption}\item[{char $\ast$}]{bytes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{io_8h_aef0c6c84357e198f22f184e63067ca2d}\label{io_8h_aef0c6c84357e198f22f184e63067ca2d}} 
+\index{io.h@{io.h}!bytesToInt@{bytesToInt}}
+\index{bytesToInt@{bytesToInt}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{bytesToInt()}{bytesToInt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} int bytes\+To\+Int (\begin{DoxyParamCaption}\item[{char $\ast$}]{bytes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{io_8h_aa2b91e3979af09fb914876d206e89068}\label{io_8h_aa2b91e3979af09fb914876d206e89068}} 
+\index{io.h@{io.h}!bytesToLong@{bytesToLong}}
+\index{bytesToLong@{bytesToLong}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{bytesToLong()}{bytesToLong()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} unsigned long long bytes\+To\+Long (\begin{DoxyParamCaption}\item[{char $\ast$}]{bytes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{io_8h_ad878e5495922facd4b421aaee69ef1b5}\label{io_8h_ad878e5495922facd4b421aaee69ef1b5}} 
+\index{io.h@{io.h}!doubleToBytes@{doubleToBytes}}
+\index{doubleToBytes@{doubleToBytes}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{doubleToBytes()}{doubleToBytes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} void double\+To\+Bytes (\begin{DoxyParamCaption}\item[{double}]{n,  }\item[{char $\ast$}]{bytes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{io_8h_ab5d2e77695147b5e344185740b80af80}\label{io_8h_ab5d2e77695147b5e344185740b80af80}} 
+\index{io.h@{io.h}!doubleToLong@{doubleToLong}}
+\index{doubleToLong@{doubleToLong}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{doubleToLong()}{doubleToLong()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} unsigned long long double\+To\+Long (\begin{DoxyParamCaption}\item[{double}]{d }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{io_8h_ab9357929888b0c0412ffab759fff049f}\label{io_8h_ab9357929888b0c0412ffab759fff049f}} 
+\index{io.h@{io.h}!intToBytes@{intToBytes}}
+\index{intToBytes@{intToBytes}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{intToBytes()}{intToBytes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} void int\+To\+Bytes (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{char $\ast$}]{bytes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{io_8h_a96ffc45dae6900219796a61bf9cf7dc7}\label{io_8h_a96ffc45dae6900219796a61bf9cf7dc7}} 
+\index{io.h@{io.h}!longToBytes@{longToBytes}}
+\index{longToBytes@{longToBytes}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{longToBytes()}{longToBytes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} void long\+To\+Bytes (\begin{DoxyParamCaption}\item[{unsigned long long}]{n,  }\item[{char $\ast$}]{bytes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{io_8h_aabb7b6bc609838d27a4ece46d9c6cfd5}\label{io_8h_aabb7b6bc609838d27a4ece46d9c6cfd5}} 
+\index{io.h@{io.h}!longToDouble@{longToDouble}}
+\index{longToDouble@{longToDouble}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{longToDouble()}{longToDouble()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double long\+To\+Double (\begin{DoxyParamCaption}\item[{unsigned long long}]{l }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{io_8h_a4b14b6c835e3cb6ecdffffc7599a2ecc}\label{io_8h_a4b14b6c835e3cb6ecdffffc7599a2ecc}} 
+\index{io.h@{io.h}!pathfinder\_deserialize@{pathfinder\_deserialize}}
+\index{pathfinder\_deserialize@{pathfinder\_deserialize}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{pathfinder\_deserialize()}{pathfinder\_deserialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} int pathfinder\+\_\+deserialize (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structSegment}{Segment}} $\ast$}]{target }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{io_8h_a9631b8bedc2588526a143e1a8844b3ec}\label{io_8h_a9631b8bedc2588526a143e1a8844b3ec}} 
+\index{io.h@{io.h}!pathfinder\_deserialize\_csv@{pathfinder\_deserialize\_csv}}
+\index{pathfinder\_deserialize\_csv@{pathfinder\_deserialize\_csv}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{pathfinder\_deserialize\_csv()}{pathfinder\_deserialize\_csv()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} int pathfinder\+\_\+deserialize\+\_\+csv (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structSegment}{Segment}} $\ast$}]{target }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{io_8h_acaa6e9258172766cac4edcc56c5b66ff}\label{io_8h_acaa6e9258172766cac4edcc56c5b66ff}} 
+\index{io.h@{io.h}!pathfinder\_serialize@{pathfinder\_serialize}}
+\index{pathfinder\_serialize@{pathfinder\_serialize}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{pathfinder\_serialize()}{pathfinder\_serialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} void pathfinder\+\_\+serialize (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structSegment}{Segment}} $\ast$}]{trajectory,  }\item[{int}]{trajectory\+\_\+length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{io_8h_a0759f7e8c399db0055da57acea71e48d}\label{io_8h_a0759f7e8c399db0055da57acea71e48d}} 
+\index{io.h@{io.h}!pathfinder\_serialize\_csv@{pathfinder\_serialize\_csv}}
+\index{pathfinder\_serialize\_csv@{pathfinder\_serialize\_csv}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{pathfinder\_serialize\_csv()}{pathfinder\_serialize\_csv()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} void pathfinder\+\_\+serialize\+\_\+csv (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{structSegment}{Segment}} $\ast$}]{trajectory,  }\item[{int}]{trajectory\+\_\+length }\end{DoxyParamCaption})}
+

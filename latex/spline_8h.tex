@@ -1,0 +1,88 @@
+\hypertarget{spline_8h}{}\section{include/okapi/pathfinder/include/pathfinder/spline.h File Reference}
+\label{spline_8h}\index{include/okapi/pathfinder/include/pathfinder/spline.h@{include/okapi/pathfinder/include/pathfinder/spline.h}}
+{\ttfamily \#include \char`\"{}okapi/pathfinder/include/pathfinder/lib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}okapi/pathfinder/include/pathfinder/structs.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{spline_8h_ae41f7d59c53f6053e98f5101b0ff1a21}{P\+A\+T\+H\+F\+I\+N\+D\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+F\+A\+ST}}~(int)1000
+\item 
+\#define \mbox{\hyperlink{spline_8h_ad1ae8ebc583ccb089755a63d453782d8}{P\+A\+T\+H\+F\+I\+N\+D\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+L\+OW}}~(int)\mbox{\hyperlink{spline_8h_ae41f7d59c53f6053e98f5101b0ff1a21}{P\+A\+T\+H\+F\+I\+N\+D\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+F\+A\+ST}}$\ast$10
+\item 
+\#define \mbox{\hyperlink{spline_8h_a13ec226f1979712c33c0b355aef08dda}{P\+A\+T\+H\+F\+I\+N\+D\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+H\+I\+GH}}~(int)\mbox{\hyperlink{spline_8h_ad1ae8ebc583ccb089755a63d453782d8}{P\+A\+T\+H\+F\+I\+N\+D\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+L\+OW}}$\ast$10
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} \mbox{\hyperlink{structCoord}{Coord}} \mbox{\hyperlink{spline_8h_a2e4e04663d382d8af72cf03e7e3000b0}{pf\+\_\+spline\+\_\+coords}} (\mbox{\hyperlink{structSpline}{Spline}} s, double percentage)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double \mbox{\hyperlink{spline_8h_a0b97876338d59958caa6a66ce9fdfa59}{pf\+\_\+spline\+\_\+deriv}} (\mbox{\hyperlink{structSpline}{Spline}} s, double percentage)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double \mbox{\hyperlink{spline_8h_a669ae3da8772f1dc2d3405f95bb87bc1}{pf\+\_\+spline\+\_\+deriv\+\_\+2}} (double a, double b, double c, double d, double e, double k, double p)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double \mbox{\hyperlink{spline_8h_ac10b13b263e0293c45c7df398df5593e}{pf\+\_\+spline\+\_\+angle}} (\mbox{\hyperlink{structSpline}{Spline}} s, double percentage)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double \mbox{\hyperlink{spline_8h_a90a18b8cf028a0893bc2192881007fed}{pf\+\_\+spline\+\_\+distance}} (\mbox{\hyperlink{structSpline}{Spline}} $\ast$s, int sample\+\_\+count)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double \mbox{\hyperlink{spline_8h_a956bd857a328a565d60ec1791dab482f}{pf\+\_\+spline\+\_\+progress\+\_\+for\+\_\+distance}} (\mbox{\hyperlink{structSpline}{Spline}} s, double distance, int sample\+\_\+count)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{spline_8h_ae41f7d59c53f6053e98f5101b0ff1a21}\label{spline_8h_ae41f7d59c53f6053e98f5101b0ff1a21}} 
+\index{spline.h@{spline.h}!PATHFINDER\_SAMPLES\_FAST@{PATHFINDER\_SAMPLES\_FAST}}
+\index{PATHFINDER\_SAMPLES\_FAST@{PATHFINDER\_SAMPLES\_FAST}!spline.h@{spline.h}}
+\subsubsection{\texorpdfstring{PATHFINDER\_SAMPLES\_FAST}{PATHFINDER\_SAMPLES\_FAST}}
+{\footnotesize\ttfamily \#define P\+A\+T\+H\+F\+I\+N\+D\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+F\+A\+ST~(int)1000}
+
+\mbox{\Hypertarget{spline_8h_a13ec226f1979712c33c0b355aef08dda}\label{spline_8h_a13ec226f1979712c33c0b355aef08dda}} 
+\index{spline.h@{spline.h}!PATHFINDER\_SAMPLES\_HIGH@{PATHFINDER\_SAMPLES\_HIGH}}
+\index{PATHFINDER\_SAMPLES\_HIGH@{PATHFINDER\_SAMPLES\_HIGH}!spline.h@{spline.h}}
+\subsubsection{\texorpdfstring{PATHFINDER\_SAMPLES\_HIGH}{PATHFINDER\_SAMPLES\_HIGH}}
+{\footnotesize\ttfamily \#define P\+A\+T\+H\+F\+I\+N\+D\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+H\+I\+GH~(int)\mbox{\hyperlink{spline_8h_ad1ae8ebc583ccb089755a63d453782d8}{P\+A\+T\+H\+F\+I\+N\+D\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+L\+OW}}$\ast$10}
+
+\mbox{\Hypertarget{spline_8h_ad1ae8ebc583ccb089755a63d453782d8}\label{spline_8h_ad1ae8ebc583ccb089755a63d453782d8}} 
+\index{spline.h@{spline.h}!PATHFINDER\_SAMPLES\_LOW@{PATHFINDER\_SAMPLES\_LOW}}
+\index{PATHFINDER\_SAMPLES\_LOW@{PATHFINDER\_SAMPLES\_LOW}!spline.h@{spline.h}}
+\subsubsection{\texorpdfstring{PATHFINDER\_SAMPLES\_LOW}{PATHFINDER\_SAMPLES\_LOW}}
+{\footnotesize\ttfamily \#define P\+A\+T\+H\+F\+I\+N\+D\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+L\+OW~(int)\mbox{\hyperlink{spline_8h_ae41f7d59c53f6053e98f5101b0ff1a21}{P\+A\+T\+H\+F\+I\+N\+D\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+F\+A\+ST}}$\ast$10}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{spline_8h_ac10b13b263e0293c45c7df398df5593e}\label{spline_8h_ac10b13b263e0293c45c7df398df5593e}} 
+\index{spline.h@{spline.h}!pf\_spline\_angle@{pf\_spline\_angle}}
+\index{pf\_spline\_angle@{pf\_spline\_angle}!spline.h@{spline.h}}
+\subsubsection{\texorpdfstring{pf\_spline\_angle()}{pf\_spline\_angle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double pf\+\_\+spline\+\_\+angle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpline}{Spline}}}]{s,  }\item[{double}]{percentage }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{spline_8h_a2e4e04663d382d8af72cf03e7e3000b0}\label{spline_8h_a2e4e04663d382d8af72cf03e7e3000b0}} 
+\index{spline.h@{spline.h}!pf\_spline\_coords@{pf\_spline\_coords}}
+\index{pf\_spline\_coords@{pf\_spline\_coords}!spline.h@{spline.h}}
+\subsubsection{\texorpdfstring{pf\_spline\_coords()}{pf\_spline\_coords()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} \mbox{\hyperlink{structCoord}{Coord}} pf\+\_\+spline\+\_\+coords (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpline}{Spline}}}]{s,  }\item[{double}]{percentage }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{spline_8h_a0b97876338d59958caa6a66ce9fdfa59}\label{spline_8h_a0b97876338d59958caa6a66ce9fdfa59}} 
+\index{spline.h@{spline.h}!pf\_spline\_deriv@{pf\_spline\_deriv}}
+\index{pf\_spline\_deriv@{pf\_spline\_deriv}!spline.h@{spline.h}}
+\subsubsection{\texorpdfstring{pf\_spline\_deriv()}{pf\_spline\_deriv()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double pf\+\_\+spline\+\_\+deriv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpline}{Spline}}}]{s,  }\item[{double}]{percentage }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{spline_8h_a669ae3da8772f1dc2d3405f95bb87bc1}\label{spline_8h_a669ae3da8772f1dc2d3405f95bb87bc1}} 
+\index{spline.h@{spline.h}!pf\_spline\_deriv\_2@{pf\_spline\_deriv\_2}}
+\index{pf\_spline\_deriv\_2@{pf\_spline\_deriv\_2}!spline.h@{spline.h}}
+\subsubsection{\texorpdfstring{pf\_spline\_deriv\_2()}{pf\_spline\_deriv\_2()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double pf\+\_\+spline\+\_\+deriv\+\_\+2 (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double}]{c,  }\item[{double}]{d,  }\item[{double}]{e,  }\item[{double}]{k,  }\item[{double}]{p }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{spline_8h_a90a18b8cf028a0893bc2192881007fed}\label{spline_8h_a90a18b8cf028a0893bc2192881007fed}} 
+\index{spline.h@{spline.h}!pf\_spline\_distance@{pf\_spline\_distance}}
+\index{pf\_spline\_distance@{pf\_spline\_distance}!spline.h@{spline.h}}
+\subsubsection{\texorpdfstring{pf\_spline\_distance()}{pf\_spline\_distance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double pf\+\_\+spline\+\_\+distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpline}{Spline}} $\ast$}]{s,  }\item[{int}]{sample\+\_\+count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{spline_8h_a956bd857a328a565d60ec1791dab482f}\label{spline_8h_a956bd857a328a565d60ec1791dab482f}} 
+\index{spline.h@{spline.h}!pf\_spline\_progress\_for\_distance@{pf\_spline\_progress\_for\_distance}}
+\index{pf\_spline\_progress\_for\_distance@{pf\_spline\_progress\_for\_distance}!spline.h@{spline.h}}
+\subsubsection{\texorpdfstring{pf\_spline\_progress\_for\_distance()}{pf\_spline\_progress\_for\_distance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double pf\+\_\+spline\+\_\+progress\+\_\+for\+\_\+distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpline}{Spline}}}]{s,  }\item[{double}]{distance,  }\item[{int}]{sample\+\_\+count }\end{DoxyParamCaption})}
+

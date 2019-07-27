@@ -1,0 +1,116 @@
+\hypertarget{classokapi_1_1AsyncPosPIDController}{}\section{okapi\+::Async\+Pos\+P\+I\+D\+Controller Class Reference}
+\label{classokapi_1_1AsyncPosPIDController}\index{okapi::AsyncPosPIDController@{okapi::AsyncPosPIDController}}
+
+
+{\ttfamily \#include $<$async\+Pos\+Pid\+Controller.\+hpp$>$}
+
+Inheritance diagram for okapi\+::Async\+Pos\+P\+I\+D\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.651163cm]{classokapi_1_1AsyncPosPIDController}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncPosPIDController_ad66e9890d43f60ed304a356b52baad80}{Async\+Pos\+P\+I\+D\+Controller}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}}$<$ double $>$$>$ \&iinput, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerOutput}{Controller\+Output}}$<$ double $>$$>$ \&ioutput, const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&itime\+Util, double ikP, double ikI, double ikD, double ik\+Bias=0, double iratio=1, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ iderivative\+Filter=std\+::make\+\_\+unique$<$ \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} $>$(), const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncPosPIDController_a4038bde6275c8c69fc22edfbead726d2}{Async\+Pos\+P\+I\+D\+Controller}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1OffsetableControllerInput}{Offsetable\+Controller\+Input}} $>$ \&iinput, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerOutput}{Controller\+Output}}$<$ double $>$$>$ \&ioutput, const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&itime\+Util, double ikP, double ikI, double ikD, double ik\+Bias=0, double iratio=1, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ iderivative\+Filter=std\+::make\+\_\+unique$<$ \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} $>$(), const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\item 
+void \mbox{\hyperlink{classokapi_1_1AsyncPosPIDController_a4d5bb5646dcdc3bc80f15c1d6ae72747}{tare\+Position}} () override
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1OffsetableControllerInput}{Offsetable\+Controller\+Input}} $>$ \mbox{\hyperlink{classokapi_1_1AsyncPosPIDController_a6e7a064075af197d89f4369e3c8e48b6}{offsettable\+Input}}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1AsyncPosPIDController_ad66e9890d43f60ed304a356b52baad80}\label{classokapi_1_1AsyncPosPIDController_ad66e9890d43f60ed304a356b52baad80}} 
+\index{okapi::AsyncPosPIDController@{okapi::AsyncPosPIDController}!AsyncPosPIDController@{AsyncPosPIDController}}
+\index{AsyncPosPIDController@{AsyncPosPIDController}!okapi::AsyncPosPIDController@{okapi::AsyncPosPIDController}}
+\subsubsection{\texorpdfstring{AsyncPosPIDController()}{AsyncPosPIDController()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily okapi\+::\+Async\+Pos\+P\+I\+D\+Controller\+::\+Async\+Pos\+P\+I\+D\+Controller (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}}$<$ double $>$$>$ \&}]{iinput,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerOutput}{Controller\+Output}}$<$ double $>$$>$ \&}]{ioutput,  }\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&}]{itime\+Util,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD,  }\item[{double}]{ik\+Bias = {\ttfamily 0},  }\item[{double}]{iratio = {\ttfamily 1},  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{iderivative\+Filter = {\ttfamily std\+:\+:make\+\_\+unique$<$\mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}}$>$()},  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
+
+An async position P\+ID controller.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iinput} & The controller input. Will be turned into an Offsettable\+Controller\+Input. \\
+\hline
+{\em ioutput} & The controller output. \\
+\hline
+{\em itime\+Util} & The \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}}. \\
+\hline
+{\em ikP} & The proportional gain. \\
+\hline
+{\em ikI} & The integral gain. \\
+\hline
+{\em ikD} & The derivative gain. \\
+\hline
+{\em ik\+Bias} & The controller bias. \\
+\hline
+{\em iratio} & Any external gear ratio. \\
+\hline
+{\em iderivative\+Filter} & The derivative filter. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1AsyncPosPIDController_a4038bde6275c8c69fc22edfbead726d2}\label{classokapi_1_1AsyncPosPIDController_a4038bde6275c8c69fc22edfbead726d2}} 
+\index{okapi::AsyncPosPIDController@{okapi::AsyncPosPIDController}!AsyncPosPIDController@{AsyncPosPIDController}}
+\index{AsyncPosPIDController@{AsyncPosPIDController}!okapi::AsyncPosPIDController@{okapi::AsyncPosPIDController}}
+\subsubsection{\texorpdfstring{AsyncPosPIDController()}{AsyncPosPIDController()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily okapi\+::\+Async\+Pos\+P\+I\+D\+Controller\+::\+Async\+Pos\+P\+I\+D\+Controller (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1OffsetableControllerInput}{Offsetable\+Controller\+Input}} $>$ \&}]{iinput,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerOutput}{Controller\+Output}}$<$ double $>$$>$ \&}]{ioutput,  }\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&}]{itime\+Util,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD,  }\item[{double}]{ik\+Bias = {\ttfamily 0},  }\item[{double}]{iratio = {\ttfamily 1},  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{iderivative\+Filter = {\ttfamily std\+:\+:make\+\_\+unique$<$\mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}}$>$()},  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
+
+An async position P\+ID controller.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iinput} & The controller input. \\
+\hline
+{\em ioutput} & The controller output. \\
+\hline
+{\em itime\+Util} & The \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}}. \\
+\hline
+{\em ikP} & The proportional gain. \\
+\hline
+{\em ikI} & The integral gain. \\
+\hline
+{\em ikD} & The derivative gain. \\
+\hline
+{\em ik\+Bias} & The controller bias. \\
+\hline
+{\em iratio} & Any external gear ratio. \\
+\hline
+{\em iderivative\+Filter} & The derivative filter. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1AsyncPosPIDController_a4d5bb5646dcdc3bc80f15c1d6ae72747}\label{classokapi_1_1AsyncPosPIDController_a4d5bb5646dcdc3bc80f15c1d6ae72747}} 
+\index{okapi::AsyncPosPIDController@{okapi::AsyncPosPIDController}!tarePosition@{tarePosition}}
+\index{tarePosition@{tarePosition}!okapi::AsyncPosPIDController@{okapi::AsyncPosPIDController}}
+\subsubsection{\texorpdfstring{tarePosition()}{tarePosition()}}
+{\footnotesize\ttfamily void okapi\+::\+Async\+Pos\+P\+I\+D\+Controller\+::tare\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Sets the \char`\"{}absolute\char`\"{} zero position of the controller to its current position. 
+
+Implements \mbox{\hyperlink{classokapi_1_1AsyncPositionController_a0af03d0035343cbf843a19374f38a059}{okapi\+::\+Async\+Position\+Controller$<$ double, double $>$}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1AsyncPosPIDController_a6e7a064075af197d89f4369e3c8e48b6}\label{classokapi_1_1AsyncPosPIDController_a6e7a064075af197d89f4369e3c8e48b6}} 
+\index{okapi::AsyncPosPIDController@{okapi::AsyncPosPIDController}!offsettableInput@{offsettableInput}}
+\index{offsettableInput@{offsettableInput}!okapi::AsyncPosPIDController@{okapi::AsyncPosPIDController}}
+\subsubsection{\texorpdfstring{offsettableInput}{offsettableInput}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1OffsetableControllerInput}{Offsetable\+Controller\+Input}}$>$ okapi\+::\+Async\+Pos\+P\+I\+D\+Controller\+::offsettable\+Input\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/control/async/\mbox{\hyperlink{asyncPosPidController_8hpp}{async\+Pos\+Pid\+Controller.\+hpp}}\item 
+src/api/control/async/\mbox{\hyperlink{asyncPosPidController_8cpp}{async\+Pos\+Pid\+Controller.\+cpp}}\end{DoxyCompactItemize}

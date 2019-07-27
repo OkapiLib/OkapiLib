@@ -1,0 +1,224 @@
+\hypertarget{lv__indev_8h}{}\section{include/display/lv\+\_\+core/lv\+\_\+indev.h File Reference}
+\label{lv__indev_8h}\index{include/display/lv\_core/lv\_indev.h@{include/display/lv\_core/lv\_indev.h}}
+{\ttfamily \#include \char`\"{}display/lv\+\_\+core/lv\+\_\+group.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}display/lv\+\_\+hal/lv\+\_\+hal\+\_\+indev.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lv\+\_\+obj.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{lv__indev_8h_a9e8fc1320d77c9f222f1714b59dba482}{lv\+\_\+indev\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the display input device subsystem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$ \mbox{\hyperlink{lv__indev_8h_a7371c50b9253f035dbd1991ffb3dd46e}{lv\+\_\+indev\+\_\+get\+\_\+act}} (void)
+\begin{DoxyCompactList}\small\item\em Get the currently processed input device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__indev_8h_aac3072a490f6f83146166727b45293a2}{lv\+\_\+indev\+\_\+reset}} (\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$indev)
+\begin{DoxyCompactList}\small\item\em Reset one or all input devices. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__indev_8h_a20435b398fbdaaf2db78d92b9ba4052c}{lv\+\_\+indev\+\_\+reset\+\_\+lpr}} (\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$indev)
+\begin{DoxyCompactList}\small\item\em Reset the long press state of an input device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__indev_8h_adec553d091aaee99a21575ec4ce6f830}{lv\+\_\+indev\+\_\+enable}} (\mbox{\hyperlink{lv__hal__indev_8h_a30b748dff15060d49ba99560ba012439}{lv\+\_\+hal\+\_\+indev\+\_\+type\+\_\+t}} type, bool enable)
+\begin{DoxyCompactList}\small\item\em Enable input devices device by type. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__indev_8h_a007c53b2a7d206c77bc1d30ad03bb18e}{lv\+\_\+indev\+\_\+set\+\_\+cursor}} (\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$indev, \mbox{\hyperlink{lv__obj_8h_a38023c894dabf8ae85bf86aa79981ceb}{lv\+\_\+obj\+\_\+t}} $\ast$cur\+\_\+obj)
+\begin{DoxyCompactList}\small\item\em Set a cursor for a pointer input device (for L\+V\+\_\+\+I\+N\+P\+U\+T\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+O\+I\+N\+T\+ER and L\+V\+\_\+\+I\+N\+P\+U\+T\+\_\+\+T\+Y\+P\+E\+\_\+\+B\+U\+T\+T\+ON) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__indev_8h_a5050e65f4da822d02ac6d004005b7dab}{lv\+\_\+indev\+\_\+set\+\_\+button\+\_\+points}} (\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$indev, \mbox{\hyperlink{structlv__point__t}{lv\+\_\+point\+\_\+t}} $\ast$points)
+\begin{DoxyCompactList}\small\item\em Set the an array of points for L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+B\+U\+T\+T\+ON. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__indev_8h_a0a74d6a448766e65ea94ba23ffb7a0f4}{lv\+\_\+indev\+\_\+get\+\_\+point}} (\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$indev, \mbox{\hyperlink{structlv__point__t}{lv\+\_\+point\+\_\+t}} $\ast$point)
+\begin{DoxyCompactList}\small\item\em Get the last point of an input device (for L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+O\+I\+N\+T\+ER and L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+B\+U\+T\+T\+ON) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{lv__indev_8h_a17f7593efdbc65c08b8ec0626b224a8c}{lv\+\_\+indev\+\_\+is\+\_\+dragging}} (\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$indev)
+\begin{DoxyCompactList}\small\item\em Check if there is dragging with an input device or not (for L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+O\+I\+N\+T\+ER and L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+B\+U\+T\+T\+ON) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__indev_8h_a7360f360d1d82c82a8f5e675f82315d8}{lv\+\_\+indev\+\_\+get\+\_\+vect}} (\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$indev, \mbox{\hyperlink{structlv__point__t}{lv\+\_\+point\+\_\+t}} $\ast$point)
+\begin{DoxyCompactList}\small\item\em Get the vector of dragging of an input device (for L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+O\+I\+N\+T\+ER and L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+B\+U\+T\+T\+ON) \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{lv__indev_8h_a31607bfe1cab133788e466e680c746f5}{lv\+\_\+indev\+\_\+get\+\_\+inactive\+\_\+time}} (\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$indev)
+\begin{DoxyCompactList}\small\item\em Get elapsed time since last press. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__indev_8h_acafef51429b0390becb80d9f940cc3f4}{lv\+\_\+indev\+\_\+wait\+\_\+release}} (\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$indev)
+\begin{DoxyCompactList}\small\item\em Do nothing until the next release. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{lv__indev_8h_adec553d091aaee99a21575ec4ce6f830}\label{lv__indev_8h_adec553d091aaee99a21575ec4ce6f830}} 
+\index{lv\_indev.h@{lv\_indev.h}!lv\_indev\_enable@{lv\_indev\_enable}}
+\index{lv\_indev\_enable@{lv\_indev\_enable}!lv\_indev.h@{lv\_indev.h}}
+\subsubsection{\texorpdfstring{lv\_indev\_enable()}{lv\_indev\_enable()}}
+{\footnotesize\ttfamily void lv\+\_\+indev\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lv__hal__indev_8h_a30b748dff15060d49ba99560ba012439}{lv\+\_\+hal\+\_\+indev\+\_\+type\+\_\+t}}}]{type,  }\item[{bool}]{enable }\end{DoxyParamCaption})}
+
+
+
+Enable input devices device by type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Input device type \\
+\hline
+{\em enable} & true\+: enable this type; false\+: disable this type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__indev_8h_a7371c50b9253f035dbd1991ffb3dd46e}\label{lv__indev_8h_a7371c50b9253f035dbd1991ffb3dd46e}} 
+\index{lv\_indev.h@{lv\_indev.h}!lv\_indev\_get\_act@{lv\_indev\_get\_act}}
+\index{lv\_indev\_get\_act@{lv\_indev\_get\_act}!lv\_indev.h@{lv\_indev.h}}
+\subsubsection{\texorpdfstring{lv\_indev\_get\_act()}{lv\_indev\_get\_act()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}}$\ast$ lv\+\_\+indev\+\_\+get\+\_\+act (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the currently processed input device. 
+
+Can be used in action functions too. \begin{DoxyReturn}{Returns}
+pointer to the currently processed input device or N\+U\+LL if no input device processing right now 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__indev_8h_a31607bfe1cab133788e466e680c746f5}\label{lv__indev_8h_a31607bfe1cab133788e466e680c746f5}} 
+\index{lv\_indev.h@{lv\_indev.h}!lv\_indev\_get\_inactive\_time@{lv\_indev\_get\_inactive\_time}}
+\index{lv\_indev\_get\_inactive\_time@{lv\_indev\_get\_inactive\_time}!lv\_indev.h@{lv\_indev.h}}
+\subsubsection{\texorpdfstring{lv\_indev\_get\_inactive\_time()}{lv\_indev\_get\_inactive\_time()}}
+{\footnotesize\ttfamily uint32\+\_\+t lv\+\_\+indev\+\_\+get\+\_\+inactive\+\_\+time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$}]{indev }\end{DoxyParamCaption})}
+
+
+
+Get elapsed time since last press. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indev} & pointer to an input device (N\+U\+LL to get the overall smallest inactivity) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Elapsed ticks (milliseconds) since last press 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__indev_8h_a0a74d6a448766e65ea94ba23ffb7a0f4}\label{lv__indev_8h_a0a74d6a448766e65ea94ba23ffb7a0f4}} 
+\index{lv\_indev.h@{lv\_indev.h}!lv\_indev\_get\_point@{lv\_indev\_get\_point}}
+\index{lv\_indev\_get\_point@{lv\_indev\_get\_point}!lv\_indev.h@{lv\_indev.h}}
+\subsubsection{\texorpdfstring{lv\_indev\_get\_point()}{lv\_indev\_get\_point()}}
+{\footnotesize\ttfamily void lv\+\_\+indev\+\_\+get\+\_\+point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$}]{indev,  }\item[{\mbox{\hyperlink{structlv__point__t}{lv\+\_\+point\+\_\+t}} $\ast$}]{point }\end{DoxyParamCaption})}
+
+
+
+Get the last point of an input device (for L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+O\+I\+N\+T\+ER and L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+B\+U\+T\+T\+ON) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indev} & pointer to an input device \\
+\hline
+{\em point} & pointer to a point to store the result \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__indev_8h_a7360f360d1d82c82a8f5e675f82315d8}\label{lv__indev_8h_a7360f360d1d82c82a8f5e675f82315d8}} 
+\index{lv\_indev.h@{lv\_indev.h}!lv\_indev\_get\_vect@{lv\_indev\_get\_vect}}
+\index{lv\_indev\_get\_vect@{lv\_indev\_get\_vect}!lv\_indev.h@{lv\_indev.h}}
+\subsubsection{\texorpdfstring{lv\_indev\_get\_vect()}{lv\_indev\_get\_vect()}}
+{\footnotesize\ttfamily void lv\+\_\+indev\+\_\+get\+\_\+vect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$}]{indev,  }\item[{\mbox{\hyperlink{structlv__point__t}{lv\+\_\+point\+\_\+t}} $\ast$}]{point }\end{DoxyParamCaption})}
+
+
+
+Get the vector of dragging of an input device (for L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+O\+I\+N\+T\+ER and L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+B\+U\+T\+T\+ON) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indev} & pointer to an input device \\
+\hline
+{\em point} & pointer to a point to store the vector \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__indev_8h_a9e8fc1320d77c9f222f1714b59dba482}\label{lv__indev_8h_a9e8fc1320d77c9f222f1714b59dba482}} 
+\index{lv\_indev.h@{lv\_indev.h}!lv\_indev\_init@{lv\_indev\_init}}
+\index{lv\_indev\_init@{lv\_indev\_init}!lv\_indev.h@{lv\_indev.h}}
+\subsubsection{\texorpdfstring{lv\_indev\_init()}{lv\_indev\_init()}}
+{\footnotesize\ttfamily void lv\+\_\+indev\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the display input device subsystem. 
+
+\mbox{\Hypertarget{lv__indev_8h_a17f7593efdbc65c08b8ec0626b224a8c}\label{lv__indev_8h_a17f7593efdbc65c08b8ec0626b224a8c}} 
+\index{lv\_indev.h@{lv\_indev.h}!lv\_indev\_is\_dragging@{lv\_indev\_is\_dragging}}
+\index{lv\_indev\_is\_dragging@{lv\_indev\_is\_dragging}!lv\_indev.h@{lv\_indev.h}}
+\subsubsection{\texorpdfstring{lv\_indev\_is\_dragging()}{lv\_indev\_is\_dragging()}}
+{\footnotesize\ttfamily bool lv\+\_\+indev\+\_\+is\+\_\+dragging (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$}]{indev }\end{DoxyParamCaption})}
+
+
+
+Check if there is dragging with an input device or not (for L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+O\+I\+N\+T\+ER and L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+B\+U\+T\+T\+ON) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indev} & pointer to an input device \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true\+: drag is in progress 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__indev_8h_aac3072a490f6f83146166727b45293a2}\label{lv__indev_8h_aac3072a490f6f83146166727b45293a2}} 
+\index{lv\_indev.h@{lv\_indev.h}!lv\_indev\_reset@{lv\_indev\_reset}}
+\index{lv\_indev\_reset@{lv\_indev\_reset}!lv\_indev.h@{lv\_indev.h}}
+\subsubsection{\texorpdfstring{lv\_indev\_reset()}{lv\_indev\_reset()}}
+{\footnotesize\ttfamily void lv\+\_\+indev\+\_\+reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$}]{indev }\end{DoxyParamCaption})}
+
+
+
+Reset one or all input devices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indev} & pointer to an input device to reset or N\+U\+LL to reset all of them \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__indev_8h_a20435b398fbdaaf2db78d92b9ba4052c}\label{lv__indev_8h_a20435b398fbdaaf2db78d92b9ba4052c}} 
+\index{lv\_indev.h@{lv\_indev.h}!lv\_indev\_reset\_lpr@{lv\_indev\_reset\_lpr}}
+\index{lv\_indev\_reset\_lpr@{lv\_indev\_reset\_lpr}!lv\_indev.h@{lv\_indev.h}}
+\subsubsection{\texorpdfstring{lv\_indev\_reset\_lpr()}{lv\_indev\_reset\_lpr()}}
+{\footnotesize\ttfamily void lv\+\_\+indev\+\_\+reset\+\_\+lpr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$}]{indev }\end{DoxyParamCaption})}
+
+
+
+Reset the long press state of an input device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indev\+\_\+proc} & pointer to an input device \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__indev_8h_a5050e65f4da822d02ac6d004005b7dab}\label{lv__indev_8h_a5050e65f4da822d02ac6d004005b7dab}} 
+\index{lv\_indev.h@{lv\_indev.h}!lv\_indev\_set\_button\_points@{lv\_indev\_set\_button\_points}}
+\index{lv\_indev\_set\_button\_points@{lv\_indev\_set\_button\_points}!lv\_indev.h@{lv\_indev.h}}
+\subsubsection{\texorpdfstring{lv\_indev\_set\_button\_points()}{lv\_indev\_set\_button\_points()}}
+{\footnotesize\ttfamily void lv\+\_\+indev\+\_\+set\+\_\+button\+\_\+points (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$}]{indev,  }\item[{\mbox{\hyperlink{structlv__point__t}{lv\+\_\+point\+\_\+t}} $\ast$}]{points }\end{DoxyParamCaption})}
+
+
+
+Set the an array of points for L\+V\+\_\+\+I\+N\+D\+E\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+B\+U\+T\+T\+ON. 
+
+These points will be assigned to the buttons to press a specific point on the screen 
+\begin{DoxyParams}{Parameters}
+{\em indev} & pointer to an input device \\
+\hline
+{\em group} & point to a group \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__indev_8h_a007c53b2a7d206c77bc1d30ad03bb18e}\label{lv__indev_8h_a007c53b2a7d206c77bc1d30ad03bb18e}} 
+\index{lv\_indev.h@{lv\_indev.h}!lv\_indev\_set\_cursor@{lv\_indev\_set\_cursor}}
+\index{lv\_indev\_set\_cursor@{lv\_indev\_set\_cursor}!lv\_indev.h@{lv\_indev.h}}
+\subsubsection{\texorpdfstring{lv\_indev\_set\_cursor()}{lv\_indev\_set\_cursor()}}
+{\footnotesize\ttfamily void lv\+\_\+indev\+\_\+set\+\_\+cursor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$}]{indev,  }\item[{\mbox{\hyperlink{lv__obj_8h_a38023c894dabf8ae85bf86aa79981ceb}{lv\+\_\+obj\+\_\+t}} $\ast$}]{cur\+\_\+obj }\end{DoxyParamCaption})}
+
+
+
+Set a cursor for a pointer input device (for L\+V\+\_\+\+I\+N\+P\+U\+T\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+O\+I\+N\+T\+ER and L\+V\+\_\+\+I\+N\+P\+U\+T\+\_\+\+T\+Y\+P\+E\+\_\+\+B\+U\+T\+T\+ON) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indev} & pointer to an input device \\
+\hline
+{\em cur\+\_\+obj} & pointer to an object to be used as cursor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__indev_8h_acafef51429b0390becb80d9f940cc3f4}\label{lv__indev_8h_acafef51429b0390becb80d9f940cc3f4}} 
+\index{lv\_indev.h@{lv\_indev.h}!lv\_indev\_wait\_release@{lv\_indev\_wait\_release}}
+\index{lv\_indev\_wait\_release@{lv\_indev\_wait\_release}!lv\_indev.h@{lv\_indev.h}}
+\subsubsection{\texorpdfstring{lv\_indev\_wait\_release()}{lv\_indev\_wait\_release()}}
+{\footnotesize\ttfamily void lv\+\_\+indev\+\_\+wait\+\_\+release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lv__hal__indev_8h_a21cbd71ad2a47405c19d01ac641e7155}{lv\+\_\+indev\+\_\+t}} $\ast$}]{indev }\end{DoxyParamCaption})}
+
+
+
+Do nothing until the next release. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indev} & pointer to an input device \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,693 @@
+\hypertarget{structfakeit_1_1InvocationUtils}{}\section{fakeit\+::Invocation\+Utils Struct Reference}
+\label{structfakeit_1_1InvocationUtils}\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+
+
+{\ttfamily \#include $<$Sort\+Invocations.\+hpp$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}{sort\+By\+Invocation\+Order}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&ivocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&result)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}{collect\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&invocation\+Sources)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}{select\+Non\+Verified\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&into, const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&mock, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&vec, const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&sequence, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}{collect\+Involved\+Mocks}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&all\+Sequences, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&involved\+Mocks)
+\item 
+{\footnotesize template$<$class T $>$ }\\static T \& \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}{remove\+\_\+const}} (const T \&s)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}{sort\+By\+Invocation\+Order}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&ivocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&result)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}{collect\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&invocation\+Sources)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}{select\+Non\+Verified\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&into, const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&mock, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&vec, const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&sequence, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}{collect\+Involved\+Mocks}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&all\+Sequences, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&involved\+Mocks)
+\item 
+{\footnotesize template$<$class T $>$ }\\static T \& \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}{remove\+\_\+const}} (const T \&s)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}{sort\+By\+Invocation\+Order}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&ivocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&result)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}{collect\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&invocation\+Sources)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}{select\+Non\+Verified\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&into, const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&mock, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&vec, const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&sequence, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}{collect\+Involved\+Mocks}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&all\+Sequences, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&involved\+Mocks)
+\item 
+{\footnotesize template$<$class T $>$ }\\static T \& \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}{remove\+\_\+const}} (const T \&s)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}{sort\+By\+Invocation\+Order}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&ivocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&result)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}{collect\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&invocation\+Sources)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}{select\+Non\+Verified\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&into, const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&mock, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&vec, const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&sequence, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}{collect\+Involved\+Mocks}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&all\+Sequences, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&involved\+Mocks)
+\item 
+{\footnotesize template$<$class T $>$ }\\static T \& \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}{remove\+\_\+const}} (const T \&s)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}{sort\+By\+Invocation\+Order}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&ivocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&result)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}{collect\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&invocation\+Sources)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}{select\+Non\+Verified\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&into, const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&mock, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&vec, const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&sequence, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}{collect\+Involved\+Mocks}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&all\+Sequences, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&involved\+Mocks)
+\item 
+{\footnotesize template$<$class T $>$ }\\static T \& \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}{remove\+\_\+const}} (const T \&s)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}{sort\+By\+Invocation\+Order}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&ivocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&result)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}{collect\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&invocation\+Sources)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}{select\+Non\+Verified\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&into, const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&mock, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&vec, const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&sequence, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}{collect\+Involved\+Mocks}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&all\+Sequences, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&involved\+Mocks)
+\item 
+{\footnotesize template$<$class T $>$ }\\static T \& \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}{remove\+\_\+const}} (const T \&s)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}{sort\+By\+Invocation\+Order}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&ivocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&result)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}{collect\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&invocation\+Sources)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}{select\+Non\+Verified\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&into, const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&mock, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&vec, const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&sequence, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}{collect\+Involved\+Mocks}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&all\+Sequences, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&involved\+Mocks)
+\item 
+{\footnotesize template$<$class T $>$ }\\static T \& \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}{remove\+\_\+const}} (const T \&s)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}{sort\+By\+Invocation\+Order}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&ivocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&result)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}{collect\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&invocation\+Sources)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}{select\+Non\+Verified\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&into, const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&mock, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&vec, const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&sequence, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}{collect\+Involved\+Mocks}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&all\+Sequences, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&involved\+Mocks)
+\item 
+{\footnotesize template$<$class T $>$ }\\static T \& \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}{remove\+\_\+const}} (const T \&s)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}{sort\+By\+Invocation\+Order}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&ivocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&result)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}{collect\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&invocation\+Sources)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}{select\+Non\+Verified\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&actual\+Invocations, std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}{collect\+Invocation\+Sources}} (std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&into, const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&mock, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&)
+\item 
+{\footnotesize template$<$typename ... list$>$ }\\static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}{collect\+Sequences}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&vec, const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&sequence, const list \&... tail)
+\item 
+static void \mbox{\hyperlink{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}{collect\+Involved\+Mocks}} (std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&all\+Sequences, std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&involved\+Mocks)
+\item 
+{\footnotesize template$<$class T $>$ }\\static T \& \mbox{\hyperlink{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}{remove\+\_\+const}} (const T \&s)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}\label{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectActualInvocations@{collectActualInvocations}}
+\index{collectActualInvocations@{collectActualInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectActualInvocations()}{collectActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{invocation\+Sources }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}\label{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectActualInvocations@{collectActualInvocations}}
+\index{collectActualInvocations@{collectActualInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectActualInvocations()}{collectActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{invocation\+Sources }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}\label{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectActualInvocations@{collectActualInvocations}}
+\index{collectActualInvocations@{collectActualInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectActualInvocations()}{collectActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{invocation\+Sources }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}\label{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectActualInvocations@{collectActualInvocations}}
+\index{collectActualInvocations@{collectActualInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectActualInvocations()}{collectActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{invocation\+Sources }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}\label{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectActualInvocations@{collectActualInvocations}}
+\index{collectActualInvocations@{collectActualInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectActualInvocations()}{collectActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{invocation\+Sources }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}\label{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectActualInvocations@{collectActualInvocations}}
+\index{collectActualInvocations@{collectActualInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectActualInvocations()}{collectActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{invocation\+Sources }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}\label{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectActualInvocations@{collectActualInvocations}}
+\index{collectActualInvocations@{collectActualInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectActualInvocations()}{collectActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{invocation\+Sources }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}\label{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectActualInvocations@{collectActualInvocations}}
+\index{collectActualInvocations@{collectActualInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectActualInvocations()}{collectActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{invocation\+Sources }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}\label{structfakeit_1_1InvocationUtils_a0bb553d912e1d41f5fc1cf2d16ae9e55}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectActualInvocations@{collectActualInvocations}}
+\index{collectActualInvocations@{collectActualInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectActualInvocations()}{collectActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{invocation\+Sources }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}\label{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [1/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}\label{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [2/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{into,  }\item[{const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&}]{mock,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}\label{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [3/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}\label{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [4/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{into,  }\item[{const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&}]{mock,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}\label{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [5/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}\label{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [6/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}\label{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [7/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{into,  }\item[{const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&}]{mock,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}\label{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [8/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{into,  }\item[{const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&}]{mock,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}\label{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [9/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}\label{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [10/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{into,  }\item[{const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&}]{mock,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}\label{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [11/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}\label{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [12/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}\label{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [13/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{into,  }\item[{const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&}]{mock,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}\label{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [14/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{into,  }\item[{const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&}]{mock,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}\label{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [15/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}\label{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [16/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{into,  }\item[{const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&}]{mock,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}\label{structfakeit_1_1InvocationUtils_abf6eefccad9f9e43592a11ed5772c2ab}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [17/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}\label{structfakeit_1_1InvocationUtils_aa88116bb054d94ddc8a3a942f5fc3dd2}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvocationSources@{collectInvocationSources}}
+\index{collectInvocationSources@{collectInvocationSources}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvocationSources()}{collectInvocationSources()}\hspace{0.1cm}{\footnotesize\ttfamily [18/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Invocation\+Sources (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{into,  }\item[{const \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} \&}]{mock,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}\label{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvolvedMocks@{collectInvolvedMocks}}
+\index{collectInvolvedMocks@{collectInvolvedMocks}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvolvedMocks()}{collectInvolvedMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Involved\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{all\+Sequences,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{involved\+Mocks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}\label{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvolvedMocks@{collectInvolvedMocks}}
+\index{collectInvolvedMocks@{collectInvolvedMocks}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvolvedMocks()}{collectInvolvedMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Involved\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{all\+Sequences,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{involved\+Mocks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}\label{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvolvedMocks@{collectInvolvedMocks}}
+\index{collectInvolvedMocks@{collectInvolvedMocks}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvolvedMocks()}{collectInvolvedMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Involved\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{all\+Sequences,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{involved\+Mocks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}\label{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvolvedMocks@{collectInvolvedMocks}}
+\index{collectInvolvedMocks@{collectInvolvedMocks}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvolvedMocks()}{collectInvolvedMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Involved\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{all\+Sequences,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{involved\+Mocks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}\label{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvolvedMocks@{collectInvolvedMocks}}
+\index{collectInvolvedMocks@{collectInvolvedMocks}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvolvedMocks()}{collectInvolvedMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Involved\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{all\+Sequences,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{involved\+Mocks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}\label{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvolvedMocks@{collectInvolvedMocks}}
+\index{collectInvolvedMocks@{collectInvolvedMocks}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvolvedMocks()}{collectInvolvedMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Involved\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{all\+Sequences,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{involved\+Mocks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}\label{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvolvedMocks@{collectInvolvedMocks}}
+\index{collectInvolvedMocks@{collectInvolvedMocks}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvolvedMocks()}{collectInvolvedMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Involved\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{all\+Sequences,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{involved\+Mocks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}\label{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvolvedMocks@{collectInvolvedMocks}}
+\index{collectInvolvedMocks@{collectInvolvedMocks}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvolvedMocks()}{collectInvolvedMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Involved\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{all\+Sequences,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{involved\+Mocks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}\label{structfakeit_1_1InvocationUtils_a8a2610f9bc4c88cb2705221970bb93d6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectInvolvedMocks@{collectInvolvedMocks}}
+\index{collectInvolvedMocks@{collectInvolvedMocks}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectInvolvedMocks()}{collectInvolvedMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Involved\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{all\+Sequences,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1ActualInvocationsSource}{Actual\+Invocations\+Source}} $\ast$ $>$ \&}]{involved\+Mocks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}\label{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [1/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}\label{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [2/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{vec,  }\item[{const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&}]{sequence,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}\label{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [3/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}\label{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [4/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{vec,  }\item[{const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&}]{sequence,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}\label{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [5/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}\label{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [6/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}\label{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [7/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{vec,  }\item[{const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&}]{sequence,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}\label{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [8/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{vec,  }\item[{const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&}]{sequence,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}\label{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [9/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}\label{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [10/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{vec,  }\item[{const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&}]{sequence,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}\label{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [11/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}\label{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [12/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}\label{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [13/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{vec,  }\item[{const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&}]{sequence,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}\label{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [14/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{vec,  }\item[{const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&}]{sequence,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}\label{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [15/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}\label{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [16/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{vec,  }\item[{const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&}]{sequence,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}\label{structfakeit_1_1InvocationUtils_ac2d11afbe797cdd0978cf42a25c4c1a6}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [17/18]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}\label{structfakeit_1_1InvocationUtils_a43b674a2f1109acf4c870e8fb9c2571d}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!collectSequences@{collectSequences}}
+\index{collectSequences@{collectSequences}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{collectSequences()}{collectSequences()}\hspace{0.1cm}{\footnotesize\ttfamily [18/18]}}
+{\footnotesize\ttfamily template$<$typename ... list$>$ \\
+static void fakeit\+::\+Invocation\+Utils\+::collect\+Sequences (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} $\ast$ $>$ \&}]{vec,  }\item[{const \mbox{\hyperlink{classfakeit_1_1Sequence}{Sequence}} \&}]{sequence,  }\item[{const list \&...}]{tail }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}\label{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!remove\_const@{remove\_const}}
+\index{remove\_const@{remove\_const}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{remove\_const()}{remove\_const()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static T\& fakeit\+::\+Invocation\+Utils\+::remove\+\_\+const (\begin{DoxyParamCaption}\item[{const T \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}\label{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!remove\_const@{remove\_const}}
+\index{remove\_const@{remove\_const}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{remove\_const()}{remove\_const()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static T\& fakeit\+::\+Invocation\+Utils\+::remove\+\_\+const (\begin{DoxyParamCaption}\item[{const T \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}\label{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!remove\_const@{remove\_const}}
+\index{remove\_const@{remove\_const}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{remove\_const()}{remove\_const()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static T\& fakeit\+::\+Invocation\+Utils\+::remove\+\_\+const (\begin{DoxyParamCaption}\item[{const T \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}\label{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!remove\_const@{remove\_const}}
+\index{remove\_const@{remove\_const}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{remove\_const()}{remove\_const()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static T\& fakeit\+::\+Invocation\+Utils\+::remove\+\_\+const (\begin{DoxyParamCaption}\item[{const T \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}\label{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!remove\_const@{remove\_const}}
+\index{remove\_const@{remove\_const}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{remove\_const()}{remove\_const()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static T\& fakeit\+::\+Invocation\+Utils\+::remove\+\_\+const (\begin{DoxyParamCaption}\item[{const T \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}\label{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!remove\_const@{remove\_const}}
+\index{remove\_const@{remove\_const}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{remove\_const()}{remove\_const()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static T\& fakeit\+::\+Invocation\+Utils\+::remove\+\_\+const (\begin{DoxyParamCaption}\item[{const T \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}\label{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!remove\_const@{remove\_const}}
+\index{remove\_const@{remove\_const}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{remove\_const()}{remove\_const()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static T\& fakeit\+::\+Invocation\+Utils\+::remove\+\_\+const (\begin{DoxyParamCaption}\item[{const T \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}\label{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!remove\_const@{remove\_const}}
+\index{remove\_const@{remove\_const}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{remove\_const()}{remove\_const()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static T\& fakeit\+::\+Invocation\+Utils\+::remove\+\_\+const (\begin{DoxyParamCaption}\item[{const T \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}\label{structfakeit_1_1InvocationUtils_ad92724e2654997a1db229644d7f2ada9}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!remove\_const@{remove\_const}}
+\index{remove\_const@{remove\_const}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{remove\_const()}{remove\_const()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static T\& fakeit\+::\+Invocation\+Utils\+::remove\+\_\+const (\begin{DoxyParamCaption}\item[{const T \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}\label{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!selectNonVerifiedInvocations@{selectNonVerifiedInvocations}}
+\index{selectNonVerifiedInvocations@{selectNonVerifiedInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{selectNonVerifiedInvocations()}{selectNonVerifiedInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::select\+Non\+Verified\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}\label{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!selectNonVerifiedInvocations@{selectNonVerifiedInvocations}}
+\index{selectNonVerifiedInvocations@{selectNonVerifiedInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{selectNonVerifiedInvocations()}{selectNonVerifiedInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::select\+Non\+Verified\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}\label{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!selectNonVerifiedInvocations@{selectNonVerifiedInvocations}}
+\index{selectNonVerifiedInvocations@{selectNonVerifiedInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{selectNonVerifiedInvocations()}{selectNonVerifiedInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::select\+Non\+Verified\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}\label{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!selectNonVerifiedInvocations@{selectNonVerifiedInvocations}}
+\index{selectNonVerifiedInvocations@{selectNonVerifiedInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{selectNonVerifiedInvocations()}{selectNonVerifiedInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::select\+Non\+Verified\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}\label{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!selectNonVerifiedInvocations@{selectNonVerifiedInvocations}}
+\index{selectNonVerifiedInvocations@{selectNonVerifiedInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{selectNonVerifiedInvocations()}{selectNonVerifiedInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::select\+Non\+Verified\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}\label{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!selectNonVerifiedInvocations@{selectNonVerifiedInvocations}}
+\index{selectNonVerifiedInvocations@{selectNonVerifiedInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{selectNonVerifiedInvocations()}{selectNonVerifiedInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::select\+Non\+Verified\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}\label{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!selectNonVerifiedInvocations@{selectNonVerifiedInvocations}}
+\index{selectNonVerifiedInvocations@{selectNonVerifiedInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{selectNonVerifiedInvocations()}{selectNonVerifiedInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::select\+Non\+Verified\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}\label{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!selectNonVerifiedInvocations@{selectNonVerifiedInvocations}}
+\index{selectNonVerifiedInvocations@{selectNonVerifiedInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{selectNonVerifiedInvocations()}{selectNonVerifiedInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::select\+Non\+Verified\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}\label{structfakeit_1_1InvocationUtils_a333ea33ae42d98d58c0cf5cbb9a1d3cb}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!selectNonVerifiedInvocations@{selectNonVerifiedInvocations}}
+\index{selectNonVerifiedInvocations@{selectNonVerifiedInvocations}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{selectNonVerifiedInvocations()}{selectNonVerifiedInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::select\+Non\+Verified\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{actual\+Invocations,  }\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}\label{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!sortByInvocationOrder@{sortByInvocationOrder}}
+\index{sortByInvocationOrder@{sortByInvocationOrder}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{sortByInvocationOrder()}{sortByInvocationOrder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::sort\+By\+Invocation\+Order (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{ivocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}\label{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!sortByInvocationOrder@{sortByInvocationOrder}}
+\index{sortByInvocationOrder@{sortByInvocationOrder}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{sortByInvocationOrder()}{sortByInvocationOrder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::sort\+By\+Invocation\+Order (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{ivocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}\label{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!sortByInvocationOrder@{sortByInvocationOrder}}
+\index{sortByInvocationOrder@{sortByInvocationOrder}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{sortByInvocationOrder()}{sortByInvocationOrder()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::sort\+By\+Invocation\+Order (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{ivocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}\label{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!sortByInvocationOrder@{sortByInvocationOrder}}
+\index{sortByInvocationOrder@{sortByInvocationOrder}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{sortByInvocationOrder()}{sortByInvocationOrder()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::sort\+By\+Invocation\+Order (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{ivocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}\label{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!sortByInvocationOrder@{sortByInvocationOrder}}
+\index{sortByInvocationOrder@{sortByInvocationOrder}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{sortByInvocationOrder()}{sortByInvocationOrder()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::sort\+By\+Invocation\+Order (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{ivocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}\label{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!sortByInvocationOrder@{sortByInvocationOrder}}
+\index{sortByInvocationOrder@{sortByInvocationOrder}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{sortByInvocationOrder()}{sortByInvocationOrder()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::sort\+By\+Invocation\+Order (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{ivocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}\label{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!sortByInvocationOrder@{sortByInvocationOrder}}
+\index{sortByInvocationOrder@{sortByInvocationOrder}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{sortByInvocationOrder()}{sortByInvocationOrder()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::sort\+By\+Invocation\+Order (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{ivocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}\label{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!sortByInvocationOrder@{sortByInvocationOrder}}
+\index{sortByInvocationOrder@{sortByInvocationOrder}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{sortByInvocationOrder()}{sortByInvocationOrder()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::sort\+By\+Invocation\+Order (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{ivocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}\label{structfakeit_1_1InvocationUtils_a0badf7e54dd25b44d90b174d6ac39fa3}} 
+\index{fakeit::InvocationUtils@{fakeit::InvocationUtils}!sortByInvocationOrder@{sortByInvocationOrder}}
+\index{sortByInvocationOrder@{sortByInvocationOrder}!fakeit::InvocationUtils@{fakeit::InvocationUtils}}
+\subsubsection{\texorpdfstring{sortByInvocationOrder()}{sortByInvocationOrder()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily static void fakeit\+::\+Invocation\+Utils\+::sort\+By\+Invocation\+Order (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{ivocations,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/test/\+Fake\+It/include/fakeit/\mbox{\hyperlink{SortInvocations_8hpp}{Sort\+Invocations.\+hpp}}\item 
+include/test/\+Fake\+It/single\+\_\+header/boost/\mbox{\hyperlink{single__header_2boost_2fakeit_8hpp}{fakeit.\+hpp}}\end{DoxyCompactItemize}

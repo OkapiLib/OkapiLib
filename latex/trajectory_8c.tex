@@ -1,0 +1,42 @@
+\hypertarget{trajectory_8c}{}\section{src/pathfinder/trajectory.c File Reference}
+\label{trajectory_8c}\index{src/pathfinder/trajectory.c@{src/pathfinder/trajectory.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}okapi/pathfinder/include/pathfinder.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{trajectory_8c_a6a5c177ced6a6834ac3578ef969f8de2}{pf\+\_\+trajectory\+\_\+copy}} (\mbox{\hyperlink{structSegment}{Segment}} $\ast$src, \mbox{\hyperlink{structSegment}{Segment}} $\ast$dest, int length)
+\item 
+\mbox{\hyperlink{structTrajectoryInfo}{Trajectory\+Info}} \mbox{\hyperlink{trajectory_8c_a2e525d9f3519e0feae662f16a688a8ab}{pf\+\_\+trajectory\+\_\+prepare}} (\mbox{\hyperlink{structTrajectoryConfig}{Trajectory\+Config}} c)
+\item 
+int \mbox{\hyperlink{trajectory_8c_acbc1465c4d063e935d057a415db001be}{pf\+\_\+trajectory\+\_\+create}} (\mbox{\hyperlink{structTrajectoryInfo}{Trajectory\+Info}} info, \mbox{\hyperlink{structTrajectoryConfig}{Trajectory\+Config}} c, \mbox{\hyperlink{structSegment}{Segment}} $\ast$seg)
+\item 
+int \mbox{\hyperlink{trajectory_8c_a513b9c304660928c5afdf0783ed9e312}{pf\+\_\+trajectory\+\_\+from\+Second\+Order\+Filter}} (int filter\+\_\+1\+\_\+l, int filter\+\_\+2\+\_\+l, double dt, double u, double v, double impulse, int len, \mbox{\hyperlink{structSegment}{Segment}} $\ast$t)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{trajectory_8c_a6a5c177ced6a6834ac3578ef969f8de2}\label{trajectory_8c_a6a5c177ced6a6834ac3578ef969f8de2}} 
+\index{trajectory.c@{trajectory.c}!pf\_trajectory\_copy@{pf\_trajectory\_copy}}
+\index{pf\_trajectory\_copy@{pf\_trajectory\_copy}!trajectory.c@{trajectory.c}}
+\subsubsection{\texorpdfstring{pf\_trajectory\_copy()}{pf\_trajectory\_copy()}}
+{\footnotesize\ttfamily void pf\+\_\+trajectory\+\_\+copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSegment}{Segment}} $\ast$}]{src,  }\item[{\mbox{\hyperlink{structSegment}{Segment}} $\ast$}]{dest,  }\item[{int}]{length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{trajectory_8c_acbc1465c4d063e935d057a415db001be}\label{trajectory_8c_acbc1465c4d063e935d057a415db001be}} 
+\index{trajectory.c@{trajectory.c}!pf\_trajectory\_create@{pf\_trajectory\_create}}
+\index{pf\_trajectory\_create@{pf\_trajectory\_create}!trajectory.c@{trajectory.c}}
+\subsubsection{\texorpdfstring{pf\_trajectory\_create()}{pf\_trajectory\_create()}}
+{\footnotesize\ttfamily int pf\+\_\+trajectory\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTrajectoryInfo}{Trajectory\+Info}}}]{info,  }\item[{\mbox{\hyperlink{structTrajectoryConfig}{Trajectory\+Config}}}]{c,  }\item[{\mbox{\hyperlink{structSegment}{Segment}} $\ast$}]{seg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{trajectory_8c_a513b9c304660928c5afdf0783ed9e312}\label{trajectory_8c_a513b9c304660928c5afdf0783ed9e312}} 
+\index{trajectory.c@{trajectory.c}!pf\_trajectory\_fromSecondOrderFilter@{pf\_trajectory\_fromSecondOrderFilter}}
+\index{pf\_trajectory\_fromSecondOrderFilter@{pf\_trajectory\_fromSecondOrderFilter}!trajectory.c@{trajectory.c}}
+\subsubsection{\texorpdfstring{pf\_trajectory\_fromSecondOrderFilter()}{pf\_trajectory\_fromSecondOrderFilter()}}
+{\footnotesize\ttfamily int pf\+\_\+trajectory\+\_\+from\+Second\+Order\+Filter (\begin{DoxyParamCaption}\item[{int}]{filter\+\_\+1\+\_\+l,  }\item[{int}]{filter\+\_\+2\+\_\+l,  }\item[{double}]{dt,  }\item[{double}]{u,  }\item[{double}]{v,  }\item[{double}]{impulse,  }\item[{int}]{len,  }\item[{\mbox{\hyperlink{structSegment}{Segment}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{trajectory_8c_a2e525d9f3519e0feae662f16a688a8ab}\label{trajectory_8c_a2e525d9f3519e0feae662f16a688a8ab}} 
+\index{trajectory.c@{trajectory.c}!pf\_trajectory\_prepare@{pf\_trajectory\_prepare}}
+\index{pf\_trajectory\_prepare@{pf\_trajectory\_prepare}!trajectory.c@{trajectory.c}}
+\subsubsection{\texorpdfstring{pf\_trajectory\_prepare()}{pf\_trajectory\_prepare()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structTrajectoryInfo}{Trajectory\+Info}} pf\+\_\+trajectory\+\_\+prepare (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTrajectoryConfig}{Trajectory\+Config}}}]{c }\end{DoxyParamCaption})}
+

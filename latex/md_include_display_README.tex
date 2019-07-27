@@ -1,0 +1,86 @@
+
+
+Littlev\+GL provides everything you need to create a Graphical User \mbox{\hyperlink{classInterface}{Interface}} (G\+UI) on embedded systems with easy-\/to-\/use graphical elements, beautiful visual effects and low memory footprint.
+
+Homepage\+: \href{https://littlevgl.com}{\texttt{ https\+://littlevgl.\+com}}
+
+\subsubsection*{Table Of Content}
+
+
+\begin{DoxyItemize}
+\item \href{\#key-features}{\texttt{ Key features}}
+\item \href{\#porting}{\texttt{ Porting}}
+\item \href{\#project-set-up}{\texttt{ Project set-\/up}}
+\item \href{\#pc-simulator}{\texttt{ PC simulator}}
+\item \href{\#screenshots}{\texttt{ Screenshots}}
+\item \href{\#contributing}{\texttt{ Contributing}}
+\item \href{\#donate}{\texttt{ Donate}}
+\end{DoxyItemize}
+
+\subsection*{Key features}
+
+
+\begin{DoxyItemize}
+\item Powerful building blocks buttons, charts, lists, sliders, images etc
+\item Advanced graphics with animations, anti-\/aliasing, opacity, smooth scrolling
+\item Various input devices touch pad, mouse, keyboard, encoder, buttons etc
+\item Multi language support with U\+T\+F-\/8 decoding
+\item Fully customizable graphical elements
+\item Hardware independent to use with any microcontroller or display
+\item Scalable to operate with few memory (50 kB Flash, 10 kB R\+AM)
+\item OS, External memory and G\+PU supported but not required
+\item Single frame buffer operation even with advances graphical effects
+\item Written in C for maximal compatibility
+\item Simulator to develop on PC without embedded hardware
+\item Tutorials, examples, themes for rapid development
+\item Documentation and A\+PI references online
+\end{DoxyItemize}
+
+\subsection*{Porting}
+
+In the most sime case you need 4 things\+:
+\begin{DoxyEnumerate}
+\item Call {\ttfamily lv\+\_\+tick\+\_\+inc(1)} in every millisecods in a Timer or Task
+\item Register a function which can {\bfseries{copy a pixel array}} to an area of the screen
+\item Register a function which can {\bfseries{read an input device}}. (E.\+g. touch pad)
+\item Call {\ttfamily \mbox{\hyperlink{lv__task_8h_a846d4e9f73a30f1aa81088695fc54cad}{lv\+\_\+task\+\_\+handler()}}} periodically in every few milliseconds For more information visit \href{https://littlevgl.com/porting}{\texttt{ https\+://littlevgl.\+com/porting}}
+\end{DoxyEnumerate}
+
+\subsection*{Project set-\/up}
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Clone}} or \href{https://littlevgl.com/download}{\texttt{ Download}} the lvgl repository\+: {\ttfamily git clone \href{https://github.com/littlevgl/lvgl.git}{\texttt{ https\+://github.\+com/littlevgl/lvgl.\+git}}}
+\item {\bfseries{Create project}} with your preferred I\+DE and add the {\itshape lvgl} folder
+\item Copy {\bfseries{lvgl/lv\+\_\+conf\+\_\+templ.\+h}} as {\bfseries{\mbox{\hyperlink{lv__conf_8h}{lv\+\_\+conf.\+h}}}} next to the {\itshape lvgl} folder
+\item In the \mbox{\hyperlink{lv__conf_8h}{lv\+\_\+conf.\+h}} delete the first {\ttfamily \#if 0} and its {\ttfamily \#endif}. Let the default configurations at first.
+\item In your {\itshape main.\+c}\+: \#include \char`\"{}lvgl/lvgl.\+h\char`\"{}
+\item In your {\itshape main function}\+:
+\begin{DoxyItemize}
+\item lvgl\+\_\+init();
+\item tick, display and input device initialization (see above)
+\end{DoxyItemize}
+\item To {\bfseries{test}} create a label\+: {\ttfamily lv\+\_\+obj\+\_\+t $\ast$ label = lv\+\_\+label\+\_\+create(lv\+\_\+scr\+\_\+act(), N\+U\+L\+L);}
+\item In the main {\itshape while(1)} call {\ttfamily \mbox{\hyperlink{lv__task_8h_a846d4e9f73a30f1aa81088695fc54cad}{lv\+\_\+task\+\_\+handler()}};} and make a few milliseconds delay (e.\+g. {\ttfamily my\+\_\+delay\+\_\+ms(5);})
+\item Compile the code and load it to your embedded hardware
+\end{DoxyEnumerate}
+
+\subsection*{PC Simulator}
+
+If you don\textquotesingle{}t have got an embedded hardware you can test the graphics library in a PC simulator. The simulator uses \href{https://www.libsdl.org/}{\texttt{ S\+D\+L2}} to emulate a display on your monitor and a touch pad with your mouse.
+
+There is a pre-\/configured PC project for {\bfseries{Eclipse C\+DT}} in this repository\+: \href{https://github.com/littlevgl/pc_simulator}{\texttt{ https\+://github.\+com/littlevgl/pc\+\_\+simulator}}
+
+\subsection*{Screenshots}
+
+   
+
+\subsection*{Contributing}
+
+See C\+O\+N\+T\+R\+I\+B\+U\+T\+I\+NG.md
+
+\subsection*{Donate}
+
+If you are pleased with the graphics library, found it useful or be happy with the support you got, please help its further development\+:
+
+\href{https://littlevgl.com/donate}{\texttt{ }} 

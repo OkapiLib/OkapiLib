@@ -1,0 +1,74 @@
+\hypertarget{classtesting_1_1internal_1_1ParamIteratorInterface}{}\section{testing\+::internal\+::Param\+Iterator\+Interface$<$ T $>$ Class Template Reference}
+\label{classtesting_1_1internal_1_1ParamIteratorInterface}\index{testing::internal::ParamIteratorInterface$<$ T $>$@{testing::internal::ParamIteratorInterface$<$ T $>$}}
+
+
+{\ttfamily \#include $<$gtest-\/param-\/util.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface_adf6ba49e6b54a6e3b15dbd5733988bef}{$\sim$\+Param\+Iterator\+Interface}} ()
+\item 
+virtual const \mbox{\hyperlink{classtesting_1_1internal_1_1ParamGeneratorInterface}{Param\+Generator\+Interface}}$<$ T $>$ $\ast$ \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface_a17500953df75ecda1ace46c08ff731e9}{Base\+Generator}} () const =0
+\item 
+virtual void \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface_a600dbd35fcb551463e379516a1abea48}{Advance}} ()=0
+\item 
+virtual \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface}{Param\+Iterator\+Interface}} $\ast$ \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface_a4998c23e27e2943d97546011aa35db80}{Clone}} () const =0
+\item 
+virtual const T $\ast$ \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface_adfff808576d929085679c315b255af7e}{Current}} () const =0
+\item 
+virtual bool \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface_a9d811697a752d46f7bd6a0082f9040a3}{Equals}} (const \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface}{Param\+Iterator\+Interface}} \&other) const =0
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIteratorInterface_adf6ba49e6b54a6e3b15dbd5733988bef}\label{classtesting_1_1internal_1_1ParamIteratorInterface_adf6ba49e6b54a6e3b15dbd5733988bef}} 
+\index{testing::internal::ParamIteratorInterface$<$ T $>$@{testing::internal::ParamIteratorInterface$<$ T $>$}!````~ParamIteratorInterface@{$\sim$ParamIteratorInterface}}
+\index{````~ParamIteratorInterface@{$\sim$ParamIteratorInterface}!testing::internal::ParamIteratorInterface$<$ T $>$@{testing::internal::ParamIteratorInterface$<$ T $>$}}
+\subsubsection{\texorpdfstring{$\sim$ParamIteratorInterface()}{~ParamIteratorInterface()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+virtual \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface}{testing\+::internal\+::\+Param\+Iterator\+Interface}}$<$ T $>$\+::$\sim$\mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface}{Param\+Iterator\+Interface}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIteratorInterface_a600dbd35fcb551463e379516a1abea48}\label{classtesting_1_1internal_1_1ParamIteratorInterface_a600dbd35fcb551463e379516a1abea48}} 
+\index{testing::internal::ParamIteratorInterface$<$ T $>$@{testing::internal::ParamIteratorInterface$<$ T $>$}!Advance@{Advance}}
+\index{Advance@{Advance}!testing::internal::ParamIteratorInterface$<$ T $>$@{testing::internal::ParamIteratorInterface$<$ T $>$}}
+\subsubsection{\texorpdfstring{Advance()}{Advance()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+virtual void \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface}{testing\+::internal\+::\+Param\+Iterator\+Interface}}$<$ T $>$\+::Advance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIteratorInterface_a17500953df75ecda1ace46c08ff731e9}\label{classtesting_1_1internal_1_1ParamIteratorInterface_a17500953df75ecda1ace46c08ff731e9}} 
+\index{testing::internal::ParamIteratorInterface$<$ T $>$@{testing::internal::ParamIteratorInterface$<$ T $>$}!BaseGenerator@{BaseGenerator}}
+\index{BaseGenerator@{BaseGenerator}!testing::internal::ParamIteratorInterface$<$ T $>$@{testing::internal::ParamIteratorInterface$<$ T $>$}}
+\subsubsection{\texorpdfstring{BaseGenerator()}{BaseGenerator()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+virtual const \mbox{\hyperlink{classtesting_1_1internal_1_1ParamGeneratorInterface}{Param\+Generator\+Interface}}$<$T$>$$\ast$ \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface}{testing\+::internal\+::\+Param\+Iterator\+Interface}}$<$ T $>$\+::Base\+Generator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIteratorInterface_a4998c23e27e2943d97546011aa35db80}\label{classtesting_1_1internal_1_1ParamIteratorInterface_a4998c23e27e2943d97546011aa35db80}} 
+\index{testing::internal::ParamIteratorInterface$<$ T $>$@{testing::internal::ParamIteratorInterface$<$ T $>$}!Clone@{Clone}}
+\index{Clone@{Clone}!testing::internal::ParamIteratorInterface$<$ T $>$@{testing::internal::ParamIteratorInterface$<$ T $>$}}
+\subsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+virtual \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface}{Param\+Iterator\+Interface}}$\ast$ \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface}{testing\+::internal\+::\+Param\+Iterator\+Interface}}$<$ T $>$\+::Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIteratorInterface_adfff808576d929085679c315b255af7e}\label{classtesting_1_1internal_1_1ParamIteratorInterface_adfff808576d929085679c315b255af7e}} 
+\index{testing::internal::ParamIteratorInterface$<$ T $>$@{testing::internal::ParamIteratorInterface$<$ T $>$}!Current@{Current}}
+\index{Current@{Current}!testing::internal::ParamIteratorInterface$<$ T $>$@{testing::internal::ParamIteratorInterface$<$ T $>$}}
+\subsubsection{\texorpdfstring{Current()}{Current()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+virtual const T$\ast$ \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface}{testing\+::internal\+::\+Param\+Iterator\+Interface}}$<$ T $>$\+::Current (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIteratorInterface_a9d811697a752d46f7bd6a0082f9040a3}\label{classtesting_1_1internal_1_1ParamIteratorInterface_a9d811697a752d46f7bd6a0082f9040a3}} 
+\index{testing::internal::ParamIteratorInterface$<$ T $>$@{testing::internal::ParamIteratorInterface$<$ T $>$}!Equals@{Equals}}
+\index{Equals@{Equals}!testing::internal::ParamIteratorInterface$<$ T $>$@{testing::internal::ParamIteratorInterface$<$ T $>$}}
+\subsubsection{\texorpdfstring{Equals()}{Equals()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+virtual bool \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface}{testing\+::internal\+::\+Param\+Iterator\+Interface}}$<$ T $>$\+::Equals (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIteratorInterface}{Param\+Iterator\+Interface}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cmake-\/build-\/debug/googletest-\/src/googletest/include/gtest/internal/\mbox{\hyperlink{gtest-param-util_8h}{gtest-\/param-\/util.\+h}}\end{DoxyCompactItemize}

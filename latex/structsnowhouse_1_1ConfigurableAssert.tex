@@ -1,0 +1,75 @@
+\hypertarget{structsnowhouse_1_1ConfigurableAssert}{}\section{snowhouse\+::Configurable\+Assert$<$ Failure\+Handler $>$ Struct Template Reference}
+\label{structsnowhouse_1_1ConfigurableAssert}\index{snowhouse::ConfigurableAssert$<$ FailureHandler $>$@{snowhouse::ConfigurableAssert$<$ FailureHandler $>$}}
+
+
+{\ttfamily \#include $<$assert.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Actual\+Type , typename Constraint\+List\+Type $>$ }\\static void \mbox{\hyperlink{structsnowhouse_1_1ConfigurableAssert_acbd3370fc5497894fc9f9db3f533e9a3}{That}} (const Actual\+Type \&actual, \mbox{\hyperlink{structsnowhouse_1_1ExpressionBuilder}{Expression\+Builder}}$<$ Constraint\+List\+Type $>$ expression, const char $\ast$file\+\_\+name=\char`\"{}\char`\"{}, int line\+\_\+number=0)
+\item 
+{\footnotesize template$<$typename Constraint\+List\+Type $>$ }\\static void \mbox{\hyperlink{structsnowhouse_1_1ConfigurableAssert_ac72d0d7325152192b8e8c8504bebe4fd}{That}} (const char $\ast$actual, \mbox{\hyperlink{structsnowhouse_1_1ExpressionBuilder}{Expression\+Builder}}$<$ Constraint\+List\+Type $>$ expression, const char $\ast$file\+\_\+name=\char`\"{}\char`\"{}, int line\+\_\+number=0)
+\item 
+{\footnotesize template$<$typename Actual\+Type , typename Expression\+Type $>$ }\\static void \mbox{\hyperlink{structsnowhouse_1_1ConfigurableAssert_ac3914cf3e2af0b4d0cc4a5826e51b331}{That}} (const Actual\+Type \&actual, const Expression\+Type \&expression, const char $\ast$file\+\_\+name=\char`\"{}\char`\"{}, int line\+\_\+number=0)
+\item 
+{\footnotesize template$<$typename Expression\+Type $>$ }\\static void \mbox{\hyperlink{structsnowhouse_1_1ConfigurableAssert_accf57cd0ec4adf4811ad6ae5304263b9}{That}} (const char $\ast$actual, const Expression\+Type \&expression, const char $\ast$file\+\_\+name=\char`\"{}\char`\"{}, int line\+\_\+number=0)
+\item 
+static void \mbox{\hyperlink{structsnowhouse_1_1ConfigurableAssert_a92fb92e2cbdc18889915c6effa87b89f}{That}} (bool actual)
+\item 
+static void \mbox{\hyperlink{structsnowhouse_1_1ConfigurableAssert_a08eabf3ac0349791258e771e07618107}{Failure}} (const std\+::string \&message)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structsnowhouse_1_1ConfigurableAssert_a08eabf3ac0349791258e771e07618107}\label{structsnowhouse_1_1ConfigurableAssert_a08eabf3ac0349791258e771e07618107}} 
+\index{snowhouse::ConfigurableAssert$<$ FailureHandler $>$@{snowhouse::ConfigurableAssert$<$ FailureHandler $>$}!Failure@{Failure}}
+\index{Failure@{Failure}!snowhouse::ConfigurableAssert$<$ FailureHandler $>$@{snowhouse::ConfigurableAssert$<$ FailureHandler $>$}}
+\subsubsection{\texorpdfstring{Failure()}{Failure()}}
+{\footnotesize\ttfamily template$<$typename Failure\+Handler $>$ \\
+static void \mbox{\hyperlink{structsnowhouse_1_1ConfigurableAssert}{snowhouse\+::\+Configurable\+Assert}}$<$ Failure\+Handler $>$\+::Failure (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structsnowhouse_1_1ConfigurableAssert_acbd3370fc5497894fc9f9db3f533e9a3}\label{structsnowhouse_1_1ConfigurableAssert_acbd3370fc5497894fc9f9db3f533e9a3}} 
+\index{snowhouse::ConfigurableAssert$<$ FailureHandler $>$@{snowhouse::ConfigurableAssert$<$ FailureHandler $>$}!That@{That}}
+\index{That@{That}!snowhouse::ConfigurableAssert$<$ FailureHandler $>$@{snowhouse::ConfigurableAssert$<$ FailureHandler $>$}}
+\subsubsection{\texorpdfstring{That()}{That()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename Failure\+Handler $>$ \\
+template$<$typename Actual\+Type , typename Constraint\+List\+Type $>$ \\
+static void \mbox{\hyperlink{structsnowhouse_1_1ConfigurableAssert}{snowhouse\+::\+Configurable\+Assert}}$<$ Failure\+Handler $>$\+::That (\begin{DoxyParamCaption}\item[{const Actual\+Type \&}]{actual,  }\item[{\mbox{\hyperlink{structsnowhouse_1_1ExpressionBuilder}{Expression\+Builder}}$<$ Constraint\+List\+Type $>$}]{expression,  }\item[{const char $\ast$}]{file\+\_\+name = {\ttfamily \char`\"{}\char`\"{}},  }\item[{int}]{line\+\_\+number = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structsnowhouse_1_1ConfigurableAssert_ac72d0d7325152192b8e8c8504bebe4fd}\label{structsnowhouse_1_1ConfigurableAssert_ac72d0d7325152192b8e8c8504bebe4fd}} 
+\index{snowhouse::ConfigurableAssert$<$ FailureHandler $>$@{snowhouse::ConfigurableAssert$<$ FailureHandler $>$}!That@{That}}
+\index{That@{That}!snowhouse::ConfigurableAssert$<$ FailureHandler $>$@{snowhouse::ConfigurableAssert$<$ FailureHandler $>$}}
+\subsubsection{\texorpdfstring{That()}{That()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename Failure\+Handler $>$ \\
+template$<$typename Constraint\+List\+Type $>$ \\
+static void \mbox{\hyperlink{structsnowhouse_1_1ConfigurableAssert}{snowhouse\+::\+Configurable\+Assert}}$<$ Failure\+Handler $>$\+::That (\begin{DoxyParamCaption}\item[{const char $\ast$}]{actual,  }\item[{\mbox{\hyperlink{structsnowhouse_1_1ExpressionBuilder}{Expression\+Builder}}$<$ Constraint\+List\+Type $>$}]{expression,  }\item[{const char $\ast$}]{file\+\_\+name = {\ttfamily \char`\"{}\char`\"{}},  }\item[{int}]{line\+\_\+number = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structsnowhouse_1_1ConfigurableAssert_ac3914cf3e2af0b4d0cc4a5826e51b331}\label{structsnowhouse_1_1ConfigurableAssert_ac3914cf3e2af0b4d0cc4a5826e51b331}} 
+\index{snowhouse::ConfigurableAssert$<$ FailureHandler $>$@{snowhouse::ConfigurableAssert$<$ FailureHandler $>$}!That@{That}}
+\index{That@{That}!snowhouse::ConfigurableAssert$<$ FailureHandler $>$@{snowhouse::ConfigurableAssert$<$ FailureHandler $>$}}
+\subsubsection{\texorpdfstring{That()}{That()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename Failure\+Handler $>$ \\
+template$<$typename Actual\+Type , typename Expression\+Type $>$ \\
+static void \mbox{\hyperlink{structsnowhouse_1_1ConfigurableAssert}{snowhouse\+::\+Configurable\+Assert}}$<$ Failure\+Handler $>$\+::That (\begin{DoxyParamCaption}\item[{const Actual\+Type \&}]{actual,  }\item[{const Expression\+Type \&}]{expression,  }\item[{const char $\ast$}]{file\+\_\+name = {\ttfamily \char`\"{}\char`\"{}},  }\item[{int}]{line\+\_\+number = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structsnowhouse_1_1ConfigurableAssert_accf57cd0ec4adf4811ad6ae5304263b9}\label{structsnowhouse_1_1ConfigurableAssert_accf57cd0ec4adf4811ad6ae5304263b9}} 
+\index{snowhouse::ConfigurableAssert$<$ FailureHandler $>$@{snowhouse::ConfigurableAssert$<$ FailureHandler $>$}!That@{That}}
+\index{That@{That}!snowhouse::ConfigurableAssert$<$ FailureHandler $>$@{snowhouse::ConfigurableAssert$<$ FailureHandler $>$}}
+\subsubsection{\texorpdfstring{That()}{That()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename Failure\+Handler $>$ \\
+template$<$typename Expression\+Type $>$ \\
+static void \mbox{\hyperlink{structsnowhouse_1_1ConfigurableAssert}{snowhouse\+::\+Configurable\+Assert}}$<$ Failure\+Handler $>$\+::That (\begin{DoxyParamCaption}\item[{const char $\ast$}]{actual,  }\item[{const Expression\+Type \&}]{expression,  }\item[{const char $\ast$}]{file\+\_\+name = {\ttfamily \char`\"{}\char`\"{}},  }\item[{int}]{line\+\_\+number = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structsnowhouse_1_1ConfigurableAssert_a92fb92e2cbdc18889915c6effa87b89f}\label{structsnowhouse_1_1ConfigurableAssert_a92fb92e2cbdc18889915c6effa87b89f}} 
+\index{snowhouse::ConfigurableAssert$<$ FailureHandler $>$@{snowhouse::ConfigurableAssert$<$ FailureHandler $>$}!That@{That}}
+\index{That@{That}!snowhouse::ConfigurableAssert$<$ FailureHandler $>$@{snowhouse::ConfigurableAssert$<$ FailureHandler $>$}}
+\subsubsection{\texorpdfstring{That()}{That()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename Failure\+Handler $>$ \\
+static void \mbox{\hyperlink{structsnowhouse_1_1ConfigurableAssert}{snowhouse\+::\+Configurable\+Assert}}$<$ Failure\+Handler $>$\+::That (\begin{DoxyParamCaption}\item[{bool}]{actual }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/test/snowhouse/\mbox{\hyperlink{assert_8h}{assert.\+h}}\end{DoxyCompactItemize}

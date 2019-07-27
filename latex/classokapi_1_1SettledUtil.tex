@@ -1,0 +1,120 @@
+\hypertarget{classokapi_1_1SettledUtil}{}\section{okapi\+::Settled\+Util Class Reference}
+\label{classokapi_1_1SettledUtil}\index{okapi::SettledUtil@{okapi::SettledUtil}}
+
+
+{\ttfamily \#include $<$settled\+Util.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1SettledUtil_acf531d726b2652977335a713a9853dc6}{Settled\+Util}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractTimer}{Abstract\+Timer}} $>$ iat\+Target\+Timer, double iat\+Target\+Error=50, double iat\+Target\+Derivative=5, Q\+Time iat\+Target\+Time=250\+\_\+ms)
+\item 
+virtual \mbox{\hyperlink{classokapi_1_1SettledUtil_abb15aef3ece1e9911b7e26db1c77b2e8}{$\sim$\+Settled\+Util}} ()
+\item 
+virtual bool \mbox{\hyperlink{classokapi_1_1SettledUtil_aa651d2e0197b73f568993b4cf2520ca5}{is\+Settled}} (double ierror)
+\item 
+virtual void \mbox{\hyperlink{classokapi_1_1SettledUtil_a5341b7db25eaff4acafbe59b1b385ada}{reset}} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classokapi_1_1SettledUtil_ae90caf556f0702edea6c86bd6e9a888f}{at\+Target\+Error}} = 50
+\item 
+double \mbox{\hyperlink{classokapi_1_1SettledUtil_a972febaf6427ee6ea67d007da2ffbf0a}{at\+Target\+Derivative}} = 5
+\item 
+Q\+Time \mbox{\hyperlink{classokapi_1_1SettledUtil_a723f415c2860413c22b8467db4a55586}{at\+Target\+Time}} = 250\+\_\+ms
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractTimer}{Abstract\+Timer}} $>$ \mbox{\hyperlink{classokapi_1_1SettledUtil_aebaa16b34b04ee6c7938418f83d47e56}{at\+Target\+Timer}}
+\item 
+double \mbox{\hyperlink{classokapi_1_1SettledUtil_ac1316106ec5932cc9f6de5cd83d3e155}{last\+Error}} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1SettledUtil_acf531d726b2652977335a713a9853dc6}\label{classokapi_1_1SettledUtil_acf531d726b2652977335a713a9853dc6}} 
+\index{okapi::SettledUtil@{okapi::SettledUtil}!SettledUtil@{SettledUtil}}
+\index{SettledUtil@{SettledUtil}!okapi::SettledUtil@{okapi::SettledUtil}}
+\subsubsection{\texorpdfstring{SettledUtil()}{SettledUtil()}}
+{\footnotesize\ttfamily okapi\+::\+Settled\+Util\+::\+Settled\+Util (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractTimer}{Abstract\+Timer}} $>$}]{iat\+Target\+Timer,  }\item[{double}]{iat\+Target\+Error = {\ttfamily 50},  }\item[{double}]{iat\+Target\+Derivative = {\ttfamily 5},  }\item[{Q\+Time}]{iat\+Target\+Time = {\ttfamily 250\+\_\+ms} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+A utility class to determine if a control loop has settled based on error. A control loop is settled if the error is within at\+Target\+Error and at\+Target\+Derivative for at\+Target\+Time.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iat\+Target\+Error} & minimum error to be considered settled \\
+\hline
+{\em iat\+Target\+Derivative} & minimum error derivative to be considered settled \\
+\hline
+{\em iat\+Target\+Time} & minimum time within at\+Target\+Error to be considered settled \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1SettledUtil_abb15aef3ece1e9911b7e26db1c77b2e8}\label{classokapi_1_1SettledUtil_abb15aef3ece1e9911b7e26db1c77b2e8}} 
+\index{okapi::SettledUtil@{okapi::SettledUtil}!````~SettledUtil@{$\sim$SettledUtil}}
+\index{````~SettledUtil@{$\sim$SettledUtil}!okapi::SettledUtil@{okapi::SettledUtil}}
+\subsubsection{\texorpdfstring{$\sim$SettledUtil()}{~SettledUtil()}}
+{\footnotesize\ttfamily okapi\+::\+Settled\+Util\+::$\sim$\+Settled\+Util (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1SettledUtil_aa651d2e0197b73f568993b4cf2520ca5}\label{classokapi_1_1SettledUtil_aa651d2e0197b73f568993b4cf2520ca5}} 
+\index{okapi::SettledUtil@{okapi::SettledUtil}!isSettled@{isSettled}}
+\index{isSettled@{isSettled}!okapi::SettledUtil@{okapi::SettledUtil}}
+\subsubsection{\texorpdfstring{isSettled()}{isSettled()}}
+{\footnotesize\ttfamily bool okapi\+::\+Settled\+Util\+::is\+Settled (\begin{DoxyParamCaption}\item[{double}]{ierror }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns whether the controller is settled.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ierror} & current error \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the controller is settled 
+\end{DoxyReturn}
+Timer\+::get\+Dt\+Fromhard\+Mark() returns 0\+\_\+ms if there is no hard mark set, so this needs to be special-\/cased. Setting at\+Target\+Time to 0\+\_\+ms means that the user wants to exit immediately when in range of the target.\mbox{\Hypertarget{classokapi_1_1SettledUtil_a5341b7db25eaff4acafbe59b1b385ada}\label{classokapi_1_1SettledUtil_a5341b7db25eaff4acafbe59b1b385ada}} 
+\index{okapi::SettledUtil@{okapi::SettledUtil}!reset@{reset}}
+\index{reset@{reset}!okapi::SettledUtil@{okapi::SettledUtil}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void okapi\+::\+Settled\+Util\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Resets the \char`\"{}at target\char`\"{} timer. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1SettledUtil_a972febaf6427ee6ea67d007da2ffbf0a}\label{classokapi_1_1SettledUtil_a972febaf6427ee6ea67d007da2ffbf0a}} 
+\index{okapi::SettledUtil@{okapi::SettledUtil}!atTargetDerivative@{atTargetDerivative}}
+\index{atTargetDerivative@{atTargetDerivative}!okapi::SettledUtil@{okapi::SettledUtil}}
+\subsubsection{\texorpdfstring{atTargetDerivative}{atTargetDerivative}}
+{\footnotesize\ttfamily double okapi\+::\+Settled\+Util\+::at\+Target\+Derivative = 5\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1SettledUtil_ae90caf556f0702edea6c86bd6e9a888f}\label{classokapi_1_1SettledUtil_ae90caf556f0702edea6c86bd6e9a888f}} 
+\index{okapi::SettledUtil@{okapi::SettledUtil}!atTargetError@{atTargetError}}
+\index{atTargetError@{atTargetError}!okapi::SettledUtil@{okapi::SettledUtil}}
+\subsubsection{\texorpdfstring{atTargetError}{atTargetError}}
+{\footnotesize\ttfamily double okapi\+::\+Settled\+Util\+::at\+Target\+Error = 50\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1SettledUtil_a723f415c2860413c22b8467db4a55586}\label{classokapi_1_1SettledUtil_a723f415c2860413c22b8467db4a55586}} 
+\index{okapi::SettledUtil@{okapi::SettledUtil}!atTargetTime@{atTargetTime}}
+\index{atTargetTime@{atTargetTime}!okapi::SettledUtil@{okapi::SettledUtil}}
+\subsubsection{\texorpdfstring{atTargetTime}{atTargetTime}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Settled\+Util\+::at\+Target\+Time = 250\+\_\+ms\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1SettledUtil_aebaa16b34b04ee6c7938418f83d47e56}\label{classokapi_1_1SettledUtil_aebaa16b34b04ee6c7938418f83d47e56}} 
+\index{okapi::SettledUtil@{okapi::SettledUtil}!atTargetTimer@{atTargetTimer}}
+\index{atTargetTimer@{atTargetTimer}!okapi::SettledUtil@{okapi::SettledUtil}}
+\subsubsection{\texorpdfstring{atTargetTimer}{atTargetTimer}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1AbstractTimer}{Abstract\+Timer}}$>$ okapi\+::\+Settled\+Util\+::at\+Target\+Timer\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1SettledUtil_ac1316106ec5932cc9f6de5cd83d3e155}\label{classokapi_1_1SettledUtil_ac1316106ec5932cc9f6de5cd83d3e155}} 
+\index{okapi::SettledUtil@{okapi::SettledUtil}!lastError@{lastError}}
+\index{lastError@{lastError}!okapi::SettledUtil@{okapi::SettledUtil}}
+\subsubsection{\texorpdfstring{lastError}{lastError}}
+{\footnotesize\ttfamily double okapi\+::\+Settled\+Util\+::last\+Error = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/control/util/\mbox{\hyperlink{settledUtil_8hpp}{settled\+Util.\+hpp}}\item 
+src/api/control/util/\mbox{\hyperlink{settledUtil_8cpp}{settled\+Util.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,55 @@
+\hypertarget{gtest-port_8cc}{}\section{cmake-\/build-\/debug/googletest-\/src/googletest/src/gtest-\/port.cc File Reference}
+\label{gtest-port_8cc}\index{cmake-\/build-\/debug/googletest-\/src/googletest/src/gtest-\/port.cc@{cmake-\/build-\/debug/googletest-\/src/googletest/src/gtest-\/port.cc}}
+{\ttfamily \#include \char`\"{}gtest/internal/gtest-\/port.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gtest/gtest-\/spi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gtest/gtest-\/message.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gtest/internal/gtest-\/internal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gtest/internal/gtest-\/string.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}src/gtest-\/internal-\/inl.\+h\char`\"{}}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacetesting}{testing}}
+\item 
+ \mbox{\hyperlink{namespacetesting_1_1internal}{testing\+::internal}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gtest-port_8h_aa73be6f0ba4a7456180a94904ce17790}{G\+T\+E\+S\+T\+\_\+\+A\+P\+I\+\_\+}} size\+\_\+t \mbox{\hyperlink{namespacetesting_1_1internal_a3b9b3649cd04558bf46c75de52a7ef34}{testing\+::internal\+::\+Get\+Thread\+Count}} ()
+\item 
+\mbox{\hyperlink{gtest-port_8h_aa73be6f0ba4a7456180a94904ce17790}{G\+T\+E\+S\+T\+\_\+\+A\+P\+I\+\_\+}} \+::std\+::string \mbox{\hyperlink{namespacetesting_1_1internal_a31b7c3abed4a7c395f42c61e993989f4}{testing\+::internal\+::\+Format\+File\+Location}} (const char $\ast$file, int line)
+\item 
+\mbox{\hyperlink{gtest-port_8h_aa73be6f0ba4a7456180a94904ce17790}{G\+T\+E\+S\+T\+\_\+\+A\+P\+I\+\_\+}} \+::std\+::string \mbox{\hyperlink{namespacetesting_1_1internal_a1ee4cde97868c53e442d3182496a9f3c}{testing\+::internal\+::\+Format\+Compiler\+Independent\+File\+Location}} (const char $\ast$file, int line)
+\item 
+\mbox{\hyperlink{gtest-port_8h_aa73be6f0ba4a7456180a94904ce17790}{G\+T\+E\+S\+T\+\_\+\+A\+P\+I\+\_\+}} size\+\_\+t \mbox{\hyperlink{namespacetesting_1_1internal_a06ca3f65f5e85c9ce7299b9e4cd52408}{testing\+::internal\+::\+Get\+File\+Size}} (F\+I\+LE $\ast$file)
+\item 
+\mbox{\hyperlink{gtest-port_8h_aa73be6f0ba4a7456180a94904ce17790}{G\+T\+E\+S\+T\+\_\+\+A\+P\+I\+\_\+}} std\+::string \mbox{\hyperlink{namespacetesting_1_1internal_a2cc0be60c54a8701423fe5297e1349ee}{testing\+::internal\+::\+Read\+Entire\+File}} (F\+I\+LE $\ast$file)
+\item 
+static std\+::string \mbox{\hyperlink{namespacetesting_1_1internal_a7540386ecf74d7ab7e2fa6089db94682}{testing\+::internal\+::\+Flag\+To\+Env\+Var}} (const char $\ast$flag)
+\item 
+bool \mbox{\hyperlink{namespacetesting_1_1internal_ac06fc81336a3d80755f4020d34321766}{testing\+::internal\+::\+Parse\+Int32}} (const Message \&src\+\_\+text, const char $\ast$str, Int32 $\ast$value)
+\item 
+bool \mbox{\hyperlink{namespacetesting_1_1internal_a67132cdce23fb71b6c38ee34ef81eb4c}{testing\+::internal\+::\+Bool\+From\+G\+Test\+Env}} (const char $\ast$flag, bool default\+\_\+val)
+\item 
+\mbox{\hyperlink{gtest-port_8h_aa73be6f0ba4a7456180a94904ce17790}{G\+T\+E\+S\+T\+\_\+\+A\+P\+I\+\_\+}} Int32 \mbox{\hyperlink{namespacetesting_1_1internal_a0f7e728793f9e6cb0aa2b69eaa468bf3}{testing\+::internal\+::\+Int32\+From\+G\+Test\+Env}} (const char $\ast$flag, Int32 default\+\_\+val)
+\item 
+std\+::string \mbox{\hyperlink{namespacetesting_1_1internal_a0c793c6d84760d900299916c077a1af4}{testing\+::internal\+::\+Output\+Flag\+Also\+Check\+Env\+Var}} ()
+\item 
+const char $\ast$ \mbox{\hyperlink{namespacetesting_1_1internal_a7ed785df46a339403b0f749d3a879201}{testing\+::internal\+::\+String\+From\+G\+Test\+Env}} (const char $\ast$flag, const char $\ast$default\+\_\+val)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{namespacetesting_1_1internal_a24f0a3d50cac54a9132f4828ec9b96d9}{testing\+::internal\+::k\+Std\+Out\+Fileno}} = S\+T\+D\+O\+U\+T\+\_\+\+F\+I\+L\+E\+NO
+\item 
+const int \mbox{\hyperlink{namespacetesting_1_1internal_a747eccfdbdee3ff8af3bedc476a57c85}{testing\+::internal\+::k\+Std\+Err\+Fileno}} = S\+T\+D\+E\+R\+R\+\_\+\+F\+I\+L\+E\+NO
+\item 
+const char \mbox{\hyperlink{namespacetesting_1_1internal_abae7a5775c901f2fd12b058b00d09840}{testing\+::internal\+::k\+Unknown\+File}} \mbox{[}$\,$\mbox{]} = \char`\"{}unknown file\char`\"{}
+\end{DoxyCompactItemize}

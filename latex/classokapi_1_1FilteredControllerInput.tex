@@ -1,0 +1,101 @@
+\hypertarget{classokapi_1_1FilteredControllerInput}{}\section{okapi\+::Filtered\+Controller\+Input$<$ Input\+Type, Filter\+Type $>$ Class Template Reference}
+\label{classokapi_1_1FilteredControllerInput}\index{okapi::FilteredControllerInput$<$ InputType, FilterType $>$@{okapi::FilteredControllerInput$<$ InputType, FilterType $>$}}
+
+
+{\ttfamily \#include $<$filtered\+Controller\+Input.\+hpp$>$}
+
+Inheritance diagram for okapi\+::Filtered\+Controller\+Input$<$ Input\+Type, Filter\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classokapi_1_1FilteredControllerInput}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1FilteredControllerInput_af39910d3a47b6b6bda5ca86b40667ace}{Filtered\+Controller\+Input}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}}$<$ Input\+Type $>$$>$ iinput, std\+::unique\+\_\+ptr$<$ Filter\+Type $>$ ifilter)
+\item 
+double \mbox{\hyperlink{classokapi_1_1FilteredControllerInput_abc48c2eb875b0e927d0fd6b462d391d6}{controller\+Get}} () override
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}}$<$ Input\+Type $>$ $>$ \mbox{\hyperlink{classokapi_1_1FilteredControllerInput_a402aed1f5ce334f1f2894026dfc80250}{input}}
+\item 
+std\+::unique\+\_\+ptr$<$ Filter\+Type $>$ \mbox{\hyperlink{classokapi_1_1FilteredControllerInput_abe6797c377795f6bf995053bbb46c870}{filter}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Input\+Type, typename Filter\+Type$>$\newline
+class okapi\+::\+Filtered\+Controller\+Input$<$ Input\+Type, Filter\+Type $>$}
+
+A \mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}} with a filter built in.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Input\+Type} & the type of the \mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}} \\
+\hline
+{\em Filter\+Type} & the type of the \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1FilteredControllerInput_af39910d3a47b6b6bda5ca86b40667ace}\label{classokapi_1_1FilteredControllerInput_af39910d3a47b6b6bda5ca86b40667ace}} 
+\index{okapi::FilteredControllerInput$<$ InputType, FilterType $>$@{okapi::FilteredControllerInput$<$ InputType, FilterType $>$}!FilteredControllerInput@{FilteredControllerInput}}
+\index{FilteredControllerInput@{FilteredControllerInput}!okapi::FilteredControllerInput$<$ InputType, FilterType $>$@{okapi::FilteredControllerInput$<$ InputType, FilterType $>$}}
+\subsubsection{\texorpdfstring{FilteredControllerInput()}{FilteredControllerInput()}}
+{\footnotesize\ttfamily template$<$typename Input\+Type , typename Filter\+Type $>$ \\
+\mbox{\hyperlink{classokapi_1_1FilteredControllerInput}{okapi\+::\+Filtered\+Controller\+Input}}$<$ Input\+Type, Filter\+Type $>$\+::\mbox{\hyperlink{classokapi_1_1FilteredControllerInput}{Filtered\+Controller\+Input}} (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}}$<$ Input\+Type $>$$>$}]{iinput,  }\item[{std\+::unique\+\_\+ptr$<$ Filter\+Type $>$}]{ifilter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+A filtered controller input. Applies a filter to the controller input. Useful if you want to place a filter between a control input and a control loop.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iinput} & \mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}} type \\
+\hline
+{\em ifilter} & \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} type \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1FilteredControllerInput_abc48c2eb875b0e927d0fd6b462d391d6}\label{classokapi_1_1FilteredControllerInput_abc48c2eb875b0e927d0fd6b462d391d6}} 
+\index{okapi::FilteredControllerInput$<$ InputType, FilterType $>$@{okapi::FilteredControllerInput$<$ InputType, FilterType $>$}!controllerGet@{controllerGet}}
+\index{controllerGet@{controllerGet}!okapi::FilteredControllerInput$<$ InputType, FilterType $>$@{okapi::FilteredControllerInput$<$ InputType, FilterType $>$}}
+\subsubsection{\texorpdfstring{controllerGet()}{controllerGet()}}
+{\footnotesize\ttfamily template$<$typename Input\+Type , typename Filter\+Type $>$ \\
+double \mbox{\hyperlink{classokapi_1_1FilteredControllerInput}{okapi\+::\+Filtered\+Controller\+Input}}$<$ Input\+Type, Filter\+Type $>$\+::controller\+Get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Gets the sensor value for use in a control loop. This method might be automatically called in another thread by the controller.
+
+\begin{DoxyReturn}{Returns}
+the current filtered sensor value. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ControllerInput_a3c6c86d897983f367928a93890551e17}{okapi\+::\+Controller\+Input$<$ double $>$}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1FilteredControllerInput_abe6797c377795f6bf995053bbb46c870}\label{classokapi_1_1FilteredControllerInput_abe6797c377795f6bf995053bbb46c870}} 
+\index{okapi::FilteredControllerInput$<$ InputType, FilterType $>$@{okapi::FilteredControllerInput$<$ InputType, FilterType $>$}!filter@{filter}}
+\index{filter@{filter}!okapi::FilteredControllerInput$<$ InputType, FilterType $>$@{okapi::FilteredControllerInput$<$ InputType, FilterType $>$}}
+\subsubsection{\texorpdfstring{filter}{filter}}
+{\footnotesize\ttfamily template$<$typename Input\+Type , typename Filter\+Type $>$ \\
+std\+::unique\+\_\+ptr$<$Filter\+Type$>$ \mbox{\hyperlink{classokapi_1_1FilteredControllerInput}{okapi\+::\+Filtered\+Controller\+Input}}$<$ Input\+Type, Filter\+Type $>$\+::filter\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1FilteredControllerInput_a402aed1f5ce334f1f2894026dfc80250}\label{classokapi_1_1FilteredControllerInput_a402aed1f5ce334f1f2894026dfc80250}} 
+\index{okapi::FilteredControllerInput$<$ InputType, FilterType $>$@{okapi::FilteredControllerInput$<$ InputType, FilterType $>$}!input@{input}}
+\index{input@{input}!okapi::FilteredControllerInput$<$ InputType, FilterType $>$@{okapi::FilteredControllerInput$<$ InputType, FilterType $>$}}
+\subsubsection{\texorpdfstring{input}{input}}
+{\footnotesize\ttfamily template$<$typename Input\+Type , typename Filter\+Type $>$ \\
+std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}}$<$Input\+Type$>$ $>$ \mbox{\hyperlink{classokapi_1_1FilteredControllerInput}{okapi\+::\+Filtered\+Controller\+Input}}$<$ Input\+Type, Filter\+Type $>$\+::input\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/filter/\mbox{\hyperlink{filteredControllerInput_8hpp}{filtered\+Controller\+Input.\+hpp}}\end{DoxyCompactItemize}

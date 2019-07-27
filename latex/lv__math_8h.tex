@@ -1,0 +1,61 @@
+\hypertarget{lv__math_8h}{}\section{include/display/lv\+\_\+misc/lv\+\_\+math.h File Reference}
+\label{lv__math_8h}\index{include/display/lv\_misc/lv\_math.h@{include/display/lv\_misc/lv\_math.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{lv__math_8h_a820d36c04e90020db62f563358910807}{L\+V\+\_\+\+M\+A\+T\+H\+\_\+\+M\+IN}}(a,  b)~(a $<$ b ? a \+: b)
+\item 
+\#define \mbox{\hyperlink{lv__math_8h_ae532fd7eb3f50c685401c8ddc49755aa}{L\+V\+\_\+\+M\+A\+T\+H\+\_\+\+M\+AX}}(a,  b)~(a $>$ b ? a \+: b)
+\item 
+\#define \mbox{\hyperlink{lv__math_8h_a866d44c53cb89e18ff0c2c693d42012f}{L\+V\+\_\+\+M\+A\+T\+H\+\_\+\+A\+BS}}(x)~((x) $>$ 0 ? (x) \+: (-\/(x)))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{lv__math_8h_a9e470148b17244e59b8cb5e5895d5b57}{lv\+\_\+math\+\_\+num\+\_\+to\+\_\+str}} (int32\+\_\+t num, char $\ast$buf)
+\begin{DoxyCompactList}\small\item\em Convert a number to string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{lv__math_8h_a866d44c53cb89e18ff0c2c693d42012f}\label{lv__math_8h_a866d44c53cb89e18ff0c2c693d42012f}} 
+\index{lv\_math.h@{lv\_math.h}!LV\_MATH\_ABS@{LV\_MATH\_ABS}}
+\index{LV\_MATH\_ABS@{LV\_MATH\_ABS}!lv\_math.h@{lv\_math.h}}
+\subsubsection{\texorpdfstring{LV\_MATH\_ABS}{LV\_MATH\_ABS}}
+{\footnotesize\ttfamily \#define L\+V\+\_\+\+M\+A\+T\+H\+\_\+\+A\+BS(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) $>$ 0 ? (x) \+: (-\/(x)))}
+
+\mbox{\Hypertarget{lv__math_8h_ae532fd7eb3f50c685401c8ddc49755aa}\label{lv__math_8h_ae532fd7eb3f50c685401c8ddc49755aa}} 
+\index{lv\_math.h@{lv\_math.h}!LV\_MATH\_MAX@{LV\_MATH\_MAX}}
+\index{LV\_MATH\_MAX@{LV\_MATH\_MAX}!lv\_math.h@{lv\_math.h}}
+\subsubsection{\texorpdfstring{LV\_MATH\_MAX}{LV\_MATH\_MAX}}
+{\footnotesize\ttfamily \#define L\+V\+\_\+\+M\+A\+T\+H\+\_\+\+M\+AX(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(a $>$ b ? a \+: b)}
+
+\mbox{\Hypertarget{lv__math_8h_a820d36c04e90020db62f563358910807}\label{lv__math_8h_a820d36c04e90020db62f563358910807}} 
+\index{lv\_math.h@{lv\_math.h}!LV\_MATH\_MIN@{LV\_MATH\_MIN}}
+\index{LV\_MATH\_MIN@{LV\_MATH\_MIN}!lv\_math.h@{lv\_math.h}}
+\subsubsection{\texorpdfstring{LV\_MATH\_MIN}{LV\_MATH\_MIN}}
+{\footnotesize\ttfamily \#define L\+V\+\_\+\+M\+A\+T\+H\+\_\+\+M\+IN(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(a $<$ b ? a \+: b)}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{lv__math_8h_a9e470148b17244e59b8cb5e5895d5b57}\label{lv__math_8h_a9e470148b17244e59b8cb5e5895d5b57}} 
+\index{lv\_math.h@{lv\_math.h}!lv\_math\_num\_to\_str@{lv\_math\_num\_to\_str}}
+\index{lv\_math\_num\_to\_str@{lv\_math\_num\_to\_str}!lv\_math.h@{lv\_math.h}}
+\subsubsection{\texorpdfstring{lv\_math\_num\_to\_str()}{lv\_math\_num\_to\_str()}}
+{\footnotesize\ttfamily char$\ast$ lv\+\_\+math\+\_\+num\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{num,  }\item[{char $\ast$}]{buf }\end{DoxyParamCaption})}
+
+
+
+Convert a number to string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & a number \\
+\hline
+{\em buf} & pointer to a {\ttfamily char} buffer. The result will be stored here (max 10 elements) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+same as {\ttfamily buf} (just for convenience) 
+\end{DoxyReturn}

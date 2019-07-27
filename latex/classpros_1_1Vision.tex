@@ -1,0 +1,530 @@
+\hypertarget{classpros_1_1Vision}{}\section{pros\+::Vision Class Reference}
+\label{classpros_1_1Vision}\index{pros::Vision@{pros::Vision}}
+
+
+{\ttfamily \#include $<$vision.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpros_1_1Vision_a46cdaf74713f630b5bb5f4d0d3259dcd}{Vision}} (std\+::uint8\+\_\+t port, \mbox{\hyperlink{vision_8h_a2e8bc1c48f8aab12275bfc1868fbbad6}{vision\+\_\+zero\+\_\+e\+\_\+t}} zero\+\_\+point=\mbox{\hyperlink{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5a0ff244c5f3e9771f962986e25b00ff3d}{E\+\_\+\+V\+I\+S\+I\+O\+N\+\_\+\+Z\+E\+R\+O\+\_\+\+T\+O\+P\+L\+E\+FT}})
+\begin{DoxyCompactList}\small\item\em Create a \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor object on the given port. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_a00f02cfb09ca224c2a7735be918e941d}{clear\+\_\+led}} (void) const
+\begin{DoxyCompactList}\small\item\em Clears the vision sensor L\+ED color, reseting it back to its default behavior, displaying the most prominent object signature color. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}} \mbox{\hyperlink{classpros_1_1Vision_ab50bcfb700b591e2f1654962baac400f}{create\+\_\+color\+\_\+code}} (const std\+::uint32\+\_\+t sig\+\_\+id1, const std\+::uint32\+\_\+t sig\+\_\+id2, const std\+::uint32\+\_\+t sig\+\_\+id3=0, const std\+::uint32\+\_\+t sig\+\_\+id4=0, const std\+::uint32\+\_\+t sig\+\_\+id5=0) const
+\begin{DoxyCompactList}\small\item\em Creates a color code that represents a combination of the given signature I\+Ds. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} \mbox{\hyperlink{classpros_1_1Vision_aa5cca450a5b80278a97bbea786195733}{get\+\_\+by\+\_\+size}} (const std\+::uint32\+\_\+t size\+\_\+id) const
+\begin{DoxyCompactList}\small\item\em Gets the nth largest object according to size\+\_\+id. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} \mbox{\hyperlink{classpros_1_1Vision_a10fd89ed3c5e8fe5ce25046a877c7d84}{get\+\_\+by\+\_\+sig}} (const std\+::uint32\+\_\+t size\+\_\+id, const std\+::uint32\+\_\+t sig\+\_\+id) const
+\begin{DoxyCompactList}\small\item\em Gets the nth largest object of the given signature according to size\+\_\+id. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} \mbox{\hyperlink{classpros_1_1Vision_a4b96f92a2ae2f29fd37709958f48e514}{get\+\_\+by\+\_\+code}} (const std\+::uint32\+\_\+t size\+\_\+id, const \mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}} color\+\_\+code) const
+\begin{DoxyCompactList}\small\item\em Gets the nth largest object of the given color code according to size\+\_\+id. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_a80552b2897b8edcdb68bc56477213f2e}{get\+\_\+exposure}} (void) const
+\begin{DoxyCompactList}\small\item\em Gets the exposure parameter of the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_a73869f85b3d2e468ffc51957d80f5a75}{get\+\_\+object\+\_\+count}} (void) const
+\begin{DoxyCompactList}\small\item\em Gets the number of objects currently detected by the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} \mbox{\hyperlink{classpros_1_1Vision_af1d1bc18fd7dacfd23d9dfc403b7d419}{get\+\_\+signature}} (const std\+::uint8\+\_\+t signature\+\_\+id) const
+\begin{DoxyCompactList}\small\item\em Gets the object detection signature with the given id number. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_a7a89ad6812bfd46e24e69e1dc2f55039}{get\+\_\+white\+\_\+balance}} (void) const
+\begin{DoxyCompactList}\small\item\em Get the white balance parameter of the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_adb2a3e6a7c483cda5a32a341d5be0cc6}{read\+\_\+by\+\_\+size}} (const std\+::uint32\+\_\+t size\+\_\+id, const std\+::uint32\+\_\+t object\+\_\+count, \mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} $\ast$const object\+\_\+arr) const
+\begin{DoxyCompactList}\small\item\em Reads up to object\+\_\+count object descriptors into object\+\_\+arr. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_af5bb50d41d63d6ff9cf4f6a642046fca}{read\+\_\+by\+\_\+sig}} (const std\+::uint32\+\_\+t size\+\_\+id, const std\+::uint32\+\_\+t sig\+\_\+id, const std\+::uint32\+\_\+t object\+\_\+count, \mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} $\ast$const object\+\_\+arr) const
+\begin{DoxyCompactList}\small\item\em Reads up to object\+\_\+count object descriptors into object\+\_\+arr. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_afbe909146f5cf396b322467885731d04}{read\+\_\+by\+\_\+code}} (const std\+::uint32\+\_\+t size\+\_\+id, const \mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}} color\+\_\+code, const std\+::uint32\+\_\+t object\+\_\+count, \mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} $\ast$const object\+\_\+arr) const
+\begin{DoxyCompactList}\small\item\em Reads up to object\+\_\+count object descriptors into object\+\_\+arr. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_a19cf2d7cf34b763b80da2c6511a61a49}{set\+\_\+auto\+\_\+white\+\_\+balance}} (const std\+::uint8\+\_\+t enable) const
+\begin{DoxyCompactList}\small\item\em Enables/disables auto white-\/balancing on the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_a2ad6faaad1abb936f52022022611ac7f}{set\+\_\+exposure}} (const std\+::uint8\+\_\+t exposure) const
+\begin{DoxyCompactList}\small\item\em Sets the exposure parameter of the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_ada3f1fdd2cc24c15af26bdd7c17bf604}{set\+\_\+led}} (const std\+::int32\+\_\+t rgb) const
+\begin{DoxyCompactList}\small\item\em Sets the vision sensor L\+ED color, overriding the automatic behavior. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_a71c3c083ad5538a544e377ebc510cb75}{set\+\_\+signature}} (const std\+::uint8\+\_\+t signature\+\_\+id, \mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} $\ast$const signature\+\_\+ptr) const
+\begin{DoxyCompactList}\small\item\em Stores the supplied object detection signature onto the vision sensor. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_a923fc18c2b50a42b9c5c6292a476c9b5}{set\+\_\+white\+\_\+balance}} (const std\+::int32\+\_\+t rgb) const
+\begin{DoxyCompactList}\small\item\em Sets the white balance parameter of the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_a89e0a23b112b8632171ef27cc6f57a6c}{set\+\_\+zero\+\_\+point}} (\mbox{\hyperlink{vision_8h_a2e8bc1c48f8aab12275bfc1868fbbad6}{vision\+\_\+zero\+\_\+e\+\_\+t}} zero\+\_\+point) const
+\begin{DoxyCompactList}\small\item\em Sets the (0,0) coordinate for the Field of View. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_aa41af827ad6f9d6c050ca28c51d173ad}{set\+\_\+wifi\+\_\+mode}} (const std\+::uint8\+\_\+t enable) const
+\begin{DoxyCompactList}\small\item\em Sets the Wi-\/\+Fi mode of the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} \mbox{\hyperlink{classpros_1_1Vision_aa46f3bfb4956c7061b34764c92fc68fd}{signature\+\_\+from\+\_\+utility}} (const std\+::int32\+\_\+t id, const std\+::int32\+\_\+t u\+\_\+min, const std\+::int32\+\_\+t u\+\_\+max, const std\+::int32\+\_\+t u\+\_\+mean, const std\+::int32\+\_\+t v\+\_\+min, const std\+::int32\+\_\+t v\+\_\+max, const std\+::int32\+\_\+t v\+\_\+mean, const float range, const std\+::int32\+\_\+t type)
+\begin{DoxyCompactList}\small\item\em Creates a signature from the vision sensor utility. \end{DoxyCompactList}\item 
+static std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1Vision_ada22311366ce088fa9ac08a8e3510800}{print\+\_\+signature}} (const \mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} sig)
+\begin{DoxyCompactList}\small\item\em Prints the contents of the signature as an initializer list to the terminal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpros_1_1Vision_a46cdaf74713f630b5bb5f4d0d3259dcd}\label{classpros_1_1Vision_a46cdaf74713f630b5bb5f4d0d3259dcd}} 
+\index{pros::Vision@{pros::Vision}!Vision@{Vision}}
+\index{Vision@{Vision}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{Vision()}{Vision()}}
+{\footnotesize\ttfamily pros\+::\+Vision\+::\+Vision (\begin{DoxyParamCaption}\item[{std\+::uint8\+\_\+t}]{port,  }\item[{\mbox{\hyperlink{vision_8h_a2e8bc1c48f8aab12275bfc1868fbbad6}{vision\+\_\+zero\+\_\+e\+\_\+t}}}]{zero\+\_\+point = {\ttfamily \mbox{\hyperlink{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5a0ff244c5f3e9771f962986e25b00ff3d}{E\+\_\+\+V\+I\+S\+I\+O\+N\+\_\+\+Z\+E\+R\+O\+\_\+\+T\+O\+P\+L\+E\+FT}}} }\end{DoxyParamCaption})}
+
+
+
+Create a \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor object on the given port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em zero\+\_\+point} & One of vision\+\_\+zero\+\_\+e\+\_\+t to set the (0,0) coordinate for the F\+OV \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classpros_1_1Vision_a00f02cfb09ca224c2a7735be918e941d}\label{classpros_1_1Vision_a00f02cfb09ca224c2a7735be918e941d}} 
+\index{pros::Vision@{pros::Vision}!clear\_led@{clear\_led}}
+\index{clear\_led@{clear\_led}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{clear\_led()}{clear\_led()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+Vision\+::clear\+\_\+led (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Clears the vision sensor L\+ED color, reseting it back to its default behavior, displaying the most prominent object signature color. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_ab50bcfb700b591e2f1654962baac400f}\label{classpros_1_1Vision_ab50bcfb700b591e2f1654962baac400f}} 
+\index{pros::Vision@{pros::Vision}!create\_color\_code@{create\_color\_code}}
+\index{create\_color\_code@{create\_color\_code}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{create\_color\_code()}{create\_color\_code()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}} pros\+::\+Vision\+::create\+\_\+color\+\_\+code (\begin{DoxyParamCaption}\item[{const std\+::uint32\+\_\+t}]{sig\+\_\+id1,  }\item[{const std\+::uint32\+\_\+t}]{sig\+\_\+id2,  }\item[{const std\+::uint32\+\_\+t}]{sig\+\_\+id3 = {\ttfamily 0},  }\item[{const std\+::uint32\+\_\+t}]{sig\+\_\+id4 = {\ttfamily 0},  }\item[{const std\+::uint32\+\_\+t}]{sig\+\_\+id5 = {\ttfamily 0} }\end{DoxyParamCaption}) const}
+
+
+
+Creates a color code that represents a combination of the given signature I\+Ds. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ Fewer than two signatures have been provided, or one of the signatures is out of its \mbox{[}1-\/7\mbox{]} range.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig\+\_\+id1} & The first signature id \mbox{[}1-\/7\mbox{]} to add to the color code \\
+\hline
+{\em sig\+\_\+id2} & The second signature id \mbox{[}1-\/7\mbox{]} to add to the color code \\
+\hline
+{\em sig\+\_\+id3} & The third signature id \mbox{[}1-\/7\mbox{]} to add to the color code \\
+\hline
+{\em sig\+\_\+id4} & The fourth signature id \mbox{[}1-\/7\mbox{]} to add to the color code \\
+\hline
+{\em sig\+\_\+id5} & The fifth signature id \mbox{[}1-\/7\mbox{]} to add to the color code\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} vision\+\_\+color\+\_\+code\+\_\+t object containing the color code information. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_a4b96f92a2ae2f29fd37709958f48e514}\label{classpros_1_1Vision_a4b96f92a2ae2f29fd37709958f48e514}} 
+\index{pros::Vision@{pros::Vision}!get\_by\_code@{get\_by\_code}}
+\index{get\_by\_code@{get\_by\_code}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{get\_by\_code()}{get\_by\_code()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} pros\+::\+Vision\+::get\+\_\+by\+\_\+code (\begin{DoxyParamCaption}\item[{const std\+::uint32\+\_\+t}]{size\+\_\+id,  }\item[{const \mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}}}]{color\+\_\+code }\end{DoxyParamCaption}) const}
+
+
+
+Gets the nth largest object of the given color code according to size\+\_\+id. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port. E\+A\+G\+A\+IN -\/ Reading the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor failed for an unknown reason.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size\+\_\+id} & The object to read from a list roughly ordered by object size (0 is the largest item, 1 is the second largest, etc.) \\
+\hline
+{\em color\+\_\+code} & The vision\+\_\+color\+\_\+code\+\_\+t for which an object will be returned\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vision\+\_\+object\+\_\+s\+\_\+t object corresponding to the given color code and size\+\_\+id, or P\+R\+O\+S\+\_\+\+E\+RR if an error occurred. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_a10fd89ed3c5e8fe5ce25046a877c7d84}\label{classpros_1_1Vision_a10fd89ed3c5e8fe5ce25046a877c7d84}} 
+\index{pros::Vision@{pros::Vision}!get\_by\_sig@{get\_by\_sig}}
+\index{get\_by\_sig@{get\_by\_sig}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{get\_by\_sig()}{get\_by\_sig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} pros\+::\+Vision\+::get\+\_\+by\+\_\+sig (\begin{DoxyParamCaption}\item[{const std\+::uint32\+\_\+t}]{size\+\_\+id,  }\item[{const std\+::uint32\+\_\+t}]{sig\+\_\+id }\end{DoxyParamCaption}) const}
+
+
+
+Gets the nth largest object of the given signature according to size\+\_\+id. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port. E\+D\+OM -\/ size\+\_\+id is greater than the number of available objects. E\+H\+O\+S\+T\+D\+O\+WN -\/ Reading the vision sensor failed for an unknown reason.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size\+\_\+id} & The object to read from a list roughly ordered by object size (0 is the largest item, 1 is the second largest, etc.) \\
+\hline
+{\em signature} & The vision\+\_\+signature\+\_\+s\+\_\+t signature for which an object will be returned.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vision\+\_\+object\+\_\+s\+\_\+t object corresponding to the given signature and size\+\_\+id, or P\+R\+O\+S\+\_\+\+E\+RR if an error occurred. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_aa5cca450a5b80278a97bbea786195733}\label{classpros_1_1Vision_aa5cca450a5b80278a97bbea786195733}} 
+\index{pros::Vision@{pros::Vision}!get\_by\_size@{get\_by\_size}}
+\index{get\_by\_size@{get\_by\_size}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{get\_by\_size()}{get\_by\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} pros\+::\+Vision\+::get\+\_\+by\+\_\+size (\begin{DoxyParamCaption}\item[{const std\+::uint32\+\_\+t}]{size\+\_\+id }\end{DoxyParamCaption}) const}
+
+
+
+Gets the nth largest object according to size\+\_\+id. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port. E\+D\+OM -\/ size\+\_\+id is greater than the number of available objects. E\+H\+O\+S\+T\+D\+O\+WN -\/ Reading the vision sensor failed for an unknown reason.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size\+\_\+id} & The object to read from a list roughly ordered by object size (0 is the largest item, 1 is the second largest, etc.)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vision\+\_\+object\+\_\+s\+\_\+t object corresponding to the given size id, or P\+R\+O\+S\+\_\+\+E\+RR if an error occurred. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_a80552b2897b8edcdb68bc56477213f2e}\label{classpros_1_1Vision_a80552b2897b8edcdb68bc56477213f2e}} 
+\index{pros::Vision@{pros::Vision}!get\_exposure@{get\_exposure}}
+\index{get\_exposure@{get\_exposure}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{get\_exposure()}{get\_exposure()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+Vision\+::get\+\_\+exposure (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the exposure parameter of the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor. 
+
+See \href{https://pros.cs.purdue.edu/v5/tutorials/topical/vision.html\#exposure-setting}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/vision.\+html\#exposure-\/setting}} for more detials.
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+\begin{DoxyReturn}{Returns}
+The current exposure parameter from \mbox{[}0,150\mbox{]}, P\+R\+O\+S\+\_\+\+E\+RR if an error occurred 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_a73869f85b3d2e468ffc51957d80f5a75}\label{classpros_1_1Vision_a73869f85b3d2e468ffc51957d80f5a75}} 
+\index{pros::Vision@{pros::Vision}!get\_object\_count@{get\_object\_count}}
+\index{get\_object\_count@{get\_object\_count}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{get\_object\_count()}{get\_object\_count()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+Vision\+::get\+\_\+object\+\_\+count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the number of objects currently detected by the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+\begin{DoxyReturn}{Returns}
+The number of objects detected on the specified vision sensor. Returns P\+R\+O\+S\+\_\+\+E\+RR if the port was invalid or an error occurred. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_af1d1bc18fd7dacfd23d9dfc403b7d419}\label{classpros_1_1Vision_af1d1bc18fd7dacfd23d9dfc403b7d419}} 
+\index{pros::Vision@{pros::Vision}!get\_signature@{get\_signature}}
+\index{get\_signature@{get\_signature}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{get\_signature()}{get\_signature()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} pros\+::\+Vision\+::get\+\_\+signature (\begin{DoxyParamCaption}\item[{const std\+::uint8\+\_\+t}]{signature\+\_\+id }\end{DoxyParamCaption}) const}
+
+
+
+Gets the object detection signature with the given id number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em signature\+\_\+id} & The signature id to read\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} vision\+\_\+signature\+\_\+s\+\_\+t containing information about the signature. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_a7a89ad6812bfd46e24e69e1dc2f55039}\label{classpros_1_1Vision_a7a89ad6812bfd46e24e69e1dc2f55039}} 
+\index{pros::Vision@{pros::Vision}!get\_white\_balance@{get\_white\_balance}}
+\index{get\_white\_balance@{get\_white\_balance}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{get\_white\_balance()}{get\_white\_balance()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+Vision\+::get\+\_\+white\+\_\+balance (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the white balance parameter of the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+\begin{DoxyReturn}{Returns}
+The current R\+GB white balance setting of the sensor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_ada22311366ce088fa9ac08a8e3510800}\label{classpros_1_1Vision_ada22311366ce088fa9ac08a8e3510800}} 
+\index{pros::Vision@{pros::Vision}!print\_signature@{print\_signature}}
+\index{print\_signature@{print\_signature}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{print\_signature()}{print\_signature()}}
+{\footnotesize\ttfamily static std\+::int32\+\_\+t pros\+::\+Vision\+::print\+\_\+signature (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}}}]{sig }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Prints the contents of the signature as an initializer list to the terminal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature for which the contents will be printed\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if no errors occured, P\+R\+O\+S\+\_\+\+E\+RR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_afbe909146f5cf396b322467885731d04}\label{classpros_1_1Vision_afbe909146f5cf396b322467885731d04}} 
+\index{pros::Vision@{pros::Vision}!read\_by\_code@{read\_by\_code}}
+\index{read\_by\_code@{read\_by\_code}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{read\_by\_code()}{read\_by\_code()}}
+{\footnotesize\ttfamily int32\+\_\+t pros\+::\+Vision\+::read\+\_\+by\+\_\+code (\begin{DoxyParamCaption}\item[{const std\+::uint32\+\_\+t}]{size\+\_\+id,  }\item[{const \mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}}}]{color\+\_\+code,  }\item[{const std\+::uint32\+\_\+t}]{object\+\_\+count,  }\item[{\mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} $\ast$const}]{object\+\_\+arr }\end{DoxyParamCaption}) const}
+
+
+
+Reads up to object\+\_\+count object descriptors into object\+\_\+arr. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ Fewer than object\+\_\+count number of objects were found. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em object\+\_\+count} & The number of objects to read \\
+\hline
+ & {\em size\+\_\+id} & The object to read from a list roughly ordered by object size (0 is the largest item, 1 is the second largest, etc.) \\
+\hline
+ & {\em color\+\_\+code} & The vision\+\_\+color\+\_\+code\+\_\+t for which objects will be returned \\
+\hline
+\mbox{\texttt{ out}}  & {\em object\+\_\+arr} & \mbox{\hyperlink{structA}{A}} pointer to copy the objects into\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of object signatures copied. This number will be less than object\+\_\+count if there are fewer objects detected by the vision sensor. Returns P\+R\+O\+S\+\_\+\+E\+RR if the port was invalid, an error occurred, or fewer objects than size\+\_\+id were found. All objects in object\+\_\+arr that were not found are given V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+E\+R\+R\+\_\+\+S\+IG as their signature. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_af5bb50d41d63d6ff9cf4f6a642046fca}\label{classpros_1_1Vision_af5bb50d41d63d6ff9cf4f6a642046fca}} 
+\index{pros::Vision@{pros::Vision}!read\_by\_sig@{read\_by\_sig}}
+\index{read\_by\_sig@{read\_by\_sig}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{read\_by\_sig()}{read\_by\_sig()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+Vision\+::read\+\_\+by\+\_\+sig (\begin{DoxyParamCaption}\item[{const std\+::uint32\+\_\+t}]{size\+\_\+id,  }\item[{const std\+::uint32\+\_\+t}]{sig\+\_\+id,  }\item[{const std\+::uint32\+\_\+t}]{object\+\_\+count,  }\item[{\mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} $\ast$const}]{object\+\_\+arr }\end{DoxyParamCaption}) const}
+
+
+
+Reads up to object\+\_\+count object descriptors into object\+\_\+arr. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port. E\+D\+OM -\/ size\+\_\+id is greater than the number of available objects. E\+H\+O\+S\+T\+D\+O\+WN -\/ Reading the vision sensor failed for an unknown reason.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em object\+\_\+count} & The number of objects to read \\
+\hline
+ & {\em size\+\_\+id} & The object to read from a list roughly ordered by object size (0 is the largest item, 1 is the second largest, etc.) \\
+\hline
+ & {\em signature} & The vision\+\_\+signature\+\_\+s\+\_\+t signature for which an object will be returned. \\
+\hline
+\mbox{\texttt{ out}}  & {\em object\+\_\+arr} & \mbox{\hyperlink{structA}{A}} pointer to copy the objects into\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of object signatures copied. This number will be less than object\+\_\+count if there are fewer objects detected by the vision sensor. Returns P\+R\+O\+S\+\_\+\+E\+RR if the port was invalid, an error occurred, or fewer objects than size\+\_\+id were found. All objects in object\+\_\+arr that were not found are given V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+E\+R\+R\+\_\+\+S\+IG as their signature. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_adb2a3e6a7c483cda5a32a341d5be0cc6}\label{classpros_1_1Vision_adb2a3e6a7c483cda5a32a341d5be0cc6}} 
+\index{pros::Vision@{pros::Vision}!read\_by\_size@{read\_by\_size}}
+\index{read\_by\_size@{read\_by\_size}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{read\_by\_size()}{read\_by\_size()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+Vision\+::read\+\_\+by\+\_\+size (\begin{DoxyParamCaption}\item[{const std\+::uint32\+\_\+t}]{size\+\_\+id,  }\item[{const std\+::uint32\+\_\+t}]{object\+\_\+count,  }\item[{\mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} $\ast$const}]{object\+\_\+arr }\end{DoxyParamCaption}) const}
+
+
+
+Reads up to object\+\_\+count object descriptors into object\+\_\+arr. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port. E\+D\+OM -\/ size\+\_\+id is greater than the number of available objects.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em size\+\_\+id} & The object to read from a list roughly ordered by object size (0 is the largest item, 1 is the second largest, etc.) \\
+\hline
+ & {\em object\+\_\+count} & The number of objects to read \\
+\hline
+\mbox{\texttt{ out}}  & {\em object\+\_\+arr} & \mbox{\hyperlink{structA}{A}} pointer to copy the objects into\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of object signatures copied. This number will be less than object\+\_\+count if there are fewer objects detected by the vision sensor. Returns P\+R\+O\+S\+\_\+\+E\+RR if the port was invalid, an error occurred, or fewer objects than size\+\_\+id were found. All objects in object\+\_\+arr that were not found are given V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+E\+R\+R\+\_\+\+S\+IG as their signature. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_a19cf2d7cf34b763b80da2c6511a61a49}\label{classpros_1_1Vision_a19cf2d7cf34b763b80da2c6511a61a49}} 
+\index{pros::Vision@{pros::Vision}!set\_auto\_white\_balance@{set\_auto\_white\_balance}}
+\index{set\_auto\_white\_balance@{set\_auto\_white\_balance}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{set\_auto\_white\_balance()}{set\_auto\_white\_balance()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+Vision\+::set\+\_\+auto\+\_\+white\+\_\+balance (\begin{DoxyParamCaption}\item[{const std\+::uint8\+\_\+t}]{enable }\end{DoxyParamCaption}) const}
+
+
+
+Enables/disables auto white-\/balancing on the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em enabled} & Pass 0 to disable, 1 to enable\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_a2ad6faaad1abb936f52022022611ac7f}\label{classpros_1_1Vision_a2ad6faaad1abb936f52022022611ac7f}} 
+\index{pros::Vision@{pros::Vision}!set\_exposure@{set\_exposure}}
+\index{set\_exposure@{set\_exposure}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{set\_exposure()}{set\_exposure()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+Vision\+::set\+\_\+exposure (\begin{DoxyParamCaption}\item[{const std\+::uint8\+\_\+t}]{exposure }\end{DoxyParamCaption}) const}
+
+
+
+Sets the exposure parameter of the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor. 
+
+See \href{https://pros.cs.purdue.edu/v5/tutorials/topical/vision.html\#exposure-setting}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/vision.\+html\#exposure-\/setting}} for more detials.
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em percent} & The new exposure setting from \mbox{[}0,150\mbox{]}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_ada3f1fdd2cc24c15af26bdd7c17bf604}\label{classpros_1_1Vision_ada3f1fdd2cc24c15af26bdd7c17bf604}} 
+\index{pros::Vision@{pros::Vision}!set\_led@{set\_led}}
+\index{set\_led@{set\_led}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{set\_led()}{set\_led()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+Vision\+::set\+\_\+led (\begin{DoxyParamCaption}\item[{const std\+::int32\+\_\+t}]{rgb }\end{DoxyParamCaption}) const}
+
+
+
+Sets the vision sensor L\+ED color, overriding the automatic behavior. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rgb} & An R\+GB code to set the L\+ED to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_a71c3c083ad5538a544e377ebc510cb75}\label{classpros_1_1Vision_a71c3c083ad5538a544e377ebc510cb75}} 
+\index{pros::Vision@{pros::Vision}!set\_signature@{set\_signature}}
+\index{set\_signature@{set\_signature}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{set\_signature()}{set\_signature()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+Vision\+::set\+\_\+signature (\begin{DoxyParamCaption}\item[{const std\+::uint8\+\_\+t}]{signature\+\_\+id,  }\item[{\mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} $\ast$const}]{signature\+\_\+ptr }\end{DoxyParamCaption}) const}
+
+
+
+Stores the supplied object detection signature onto the vision sensor. 
+
+N\+O\+TE\+: This saves the signature in volatile memory, and the signature will be lost as soon as the sensor is powered down.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em signature\+\_\+id} & The signature id to store into \\
+\hline
+\mbox{\texttt{ in}}  & {\em signature\+\_\+ptr} & \mbox{\hyperlink{structA}{A}} pointer to the signature to save\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if no errors occured, P\+R\+O\+S\+\_\+\+E\+RR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_a923fc18c2b50a42b9c5c6292a476c9b5}\label{classpros_1_1Vision_a923fc18c2b50a42b9c5c6292a476c9b5}} 
+\index{pros::Vision@{pros::Vision}!set\_white\_balance@{set\_white\_balance}}
+\index{set\_white\_balance@{set\_white\_balance}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{set\_white\_balance()}{set\_white\_balance()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+Vision\+::set\+\_\+white\+\_\+balance (\begin{DoxyParamCaption}\item[{const std\+::int32\+\_\+t}]{rgb }\end{DoxyParamCaption}) const}
+
+
+
+Sets the white balance parameter of the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} Sensor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rgb} & The new R\+GB white balance setting of the sensor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_aa41af827ad6f9d6c050ca28c51d173ad}\label{classpros_1_1Vision_aa41af827ad6f9d6c050ca28c51d173ad}} 
+\index{pros::Vision@{pros::Vision}!set\_wifi\_mode@{set\_wifi\_mode}}
+\index{set\_wifi\_mode@{set\_wifi\_mode}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{set\_wifi\_mode()}{set\_wifi\_mode()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+Vision\+::set\+\_\+wifi\+\_\+mode (\begin{DoxyParamCaption}\item[{const std\+::uint8\+\_\+t}]{enable }\end{DoxyParamCaption}) const}
+
+
+
+Sets the Wi-\/\+Fi mode of the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} sensor. 
+
+This functions uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given port is not within the range of V5 ports (1-\/21) E\+A\+C\+C\+E\+SS -\/ Anothe resources is currently trying to access the port
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & Disable Wi-\/\+Fi on the \mbox{\hyperlink{classpros_1_1Vision}{Vision}} sensor if 0, enable otherwise (e.\+g. 1)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_a89e0a23b112b8632171ef27cc6f57a6c}\label{classpros_1_1Vision_a89e0a23b112b8632171ef27cc6f57a6c}} 
+\index{pros::Vision@{pros::Vision}!set\_zero\_point@{set\_zero\_point}}
+\index{set\_zero\_point@{set\_zero\_point}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{set\_zero\_point()}{set\_zero\_point()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+Vision\+::set\+\_\+zero\+\_\+point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{vision_8h_a2e8bc1c48f8aab12275bfc1868fbbad6}{vision\+\_\+zero\+\_\+e\+\_\+t}}}]{zero\+\_\+point }\end{DoxyParamCaption}) const}
+
+
+
+Sets the (0,0) coordinate for the Field of View. 
+
+This will affect the coordinates returned for each request for a vision\+\_\+object\+\_\+s\+\_\+t from the sensor, so it is recommended that this function only be used to configure the sensor at the beginning of its use.
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em zero\+\_\+point} & One of vision\+\_\+zero\+\_\+e\+\_\+t to set the (0,0) coordinate for the F\+OV\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1Vision_aa46f3bfb4956c7061b34764c92fc68fd}\label{classpros_1_1Vision_aa46f3bfb4956c7061b34764c92fc68fd}} 
+\index{pros::Vision@{pros::Vision}!signature\_from\_utility@{signature\_from\_utility}}
+\index{signature\_from\_utility@{signature\_from\_utility}!pros::Vision@{pros::Vision}}
+\subsubsection{\texorpdfstring{signature\_from\_utility()}{signature\_from\_utility()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} pros\+::\+Vision\+::signature\+\_\+from\+\_\+utility (\begin{DoxyParamCaption}\item[{const std\+::int32\+\_\+t}]{id,  }\item[{const std\+::int32\+\_\+t}]{u\+\_\+min,  }\item[{const std\+::int32\+\_\+t}]{u\+\_\+max,  }\item[{const std\+::int32\+\_\+t}]{u\+\_\+mean,  }\item[{const std\+::int32\+\_\+t}]{v\+\_\+min,  }\item[{const std\+::int32\+\_\+t}]{v\+\_\+max,  }\item[{const std\+::int32\+\_\+t}]{v\+\_\+mean,  }\item[{const float}]{range,  }\item[{const std\+::int32\+\_\+t}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Creates a signature from the vision sensor utility. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The signature ID \\
+\hline
+{\em u\+\_\+min} & Minimum value on U axis \\
+\hline
+{\em u\+\_\+max} & Maximum value on U axis \\
+\hline
+{\em u\+\_\+mean} & Mean value on U axis \\
+\hline
+{\em v\+\_\+min} & Minimum value on V axis \\
+\hline
+{\em v\+\_\+max} & Maximum value on V axis \\
+\hline
+{\em v\+\_\+mean} & Mean value on V axis \\
+\hline
+{\em rgb} & Scale factor \\
+\hline
+{\em type} & Signature type\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} vision\+\_\+signature\+\_\+s\+\_\+t that can be set using \mbox{\hyperlink{classpros_1_1Vision_a71c3c083ad5538a544e377ebc510cb75}{Vision\+::set\+\_\+signature}} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/pros/\mbox{\hyperlink{pros_2vision_8hpp}{vision.\+hpp}}\end{DoxyCompactItemize}

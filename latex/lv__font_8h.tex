@@ -1,0 +1,254 @@
+\hypertarget{lv__font_8h}{}\section{include/display/lv\+\_\+misc/lv\+\_\+font.h File Reference}
+\label{lv__font_8h}\index{include/display/lv\_misc/lv\_font.h@{include/display/lv\_misc/lv\_font.h}}
+{\ttfamily \#include \char`\"{}display/lv\+\_\+conf.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}lv\+\_\+fonts/lv\+\_\+symbol\+\_\+def.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlv__font__glyph__dsc__t}{lv\+\_\+font\+\_\+glyph\+\_\+dsc\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structlv__font__unicode__map__t}{lv\+\_\+font\+\_\+unicode\+\_\+map\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{struct__lv__font__struct}{\+\_\+lv\+\_\+font\+\_\+struct}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{lv__font_8h_a7b776ba2e672a202cf82eefddd9f1cac}{L\+V\+\_\+\+F\+O\+N\+T\+\_\+\+D\+E\+C\+L\+A\+RE}}(font\+\_\+name)~extern \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} font\+\_\+name;
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct__lv__font__struct}{\+\_\+lv\+\_\+font\+\_\+struct}} \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{lv__font_8h_a14e0c57453397c27bf6d0354eb1b591a}{lv\+\_\+font\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the built-\/in fonts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__font_8h_a9aba1317c37bb22092c4a640e7292b39}{lv\+\_\+font\+\_\+add}} (\mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$child, \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Create a pair from font name and font dsc. \end{DoxyCompactList}\item 
+const uint8\+\_\+t $\ast$ \mbox{\hyperlink{lv__font_8h_a9165bee41c7af0d0a0c3aa974f2536aa}{lv\+\_\+font\+\_\+get\+\_\+bitmap}} (const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$font\+\_\+p, uint32\+\_\+t letter)
+\begin{DoxyCompactList}\small\item\em Return with the bitmap of a font. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{lv__font_8h_a2d4963445eb6de80446361f868e9427b}{lv\+\_\+font\+\_\+get\+\_\+height}} (const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$font\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Get the height of a font. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{lv__font_8h_a9e02e2f3e5832a79237e4b1ae031bb29}{lv\+\_\+font\+\_\+get\+\_\+width}} (const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$font\+\_\+p, uint32\+\_\+t letter)
+\begin{DoxyCompactList}\small\item\em Get the width of a letter in a font. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{lv__font_8h_a92fd36545ae82b41662d023790a32d7d}{lv\+\_\+font\+\_\+get\+\_\+bpp}} (const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$font, uint32\+\_\+t letter)
+\begin{DoxyCompactList}\small\item\em Get the bit-\/per-\/pixel of font. \end{DoxyCompactList}\item 
+const uint8\+\_\+t $\ast$ \mbox{\hyperlink{lv__font_8h_a1d0757d182cf40366ca33b1a549065e2}{lv\+\_\+font\+\_\+get\+\_\+bitmap\+\_\+continuous}} (const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$font, uint32\+\_\+t unicode\+\_\+letter)
+\begin{DoxyCompactList}\small\item\em Generic bitmap get function used in \textquotesingle{}font-\/$>$get\+\_\+bitmap\textquotesingle{} when the font contains all characters in the range. \end{DoxyCompactList}\item 
+const uint8\+\_\+t $\ast$ \mbox{\hyperlink{lv__font_8h_af63feef277f0bc366b47a1dbca12a9d4}{lv\+\_\+font\+\_\+get\+\_\+bitmap\+\_\+sparse}} (const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$font, uint32\+\_\+t unicode\+\_\+letter)
+\begin{DoxyCompactList}\small\item\em Generic bitmap get function used in \textquotesingle{}font-\/$>$get\+\_\+bitmap\textquotesingle{} when the font N\+OT contains all characters in the range (sparse) \end{DoxyCompactList}\item 
+const int16\+\_\+t \mbox{\hyperlink{lv__font_8h_a0aa21741a7774f56f1078cbeb4955fc2}{lv\+\_\+font\+\_\+get\+\_\+width\+\_\+continuous}} (const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$font, uint32\+\_\+t unicode\+\_\+letter)
+\begin{DoxyCompactList}\small\item\em Generic glyph width get function used in \textquotesingle{}font-\/$>$get\+\_\+width\textquotesingle{} when the font contains all characters in the range. \end{DoxyCompactList}\item 
+const int16\+\_\+t \mbox{\hyperlink{lv__font_8h_a1e3e8c2c4c2f4247c0c856c520df954a}{lv\+\_\+font\+\_\+get\+\_\+width\+\_\+sparse}} (const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$font, uint32\+\_\+t unicode\+\_\+letter)
+\begin{DoxyCompactList}\small\item\em Generic glyph width get function used in \textquotesingle{}font-\/$>$get\+\_\+bitmap\textquotesingle{} when the font N\+OT contains all characters in the range (sparse) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{lv__font_8h_a7b776ba2e672a202cf82eefddd9f1cac}\label{lv__font_8h_a7b776ba2e672a202cf82eefddd9f1cac}} 
+\index{lv\_font.h@{lv\_font.h}!LV\_FONT\_DECLARE@{LV\_FONT\_DECLARE}}
+\index{LV\_FONT\_DECLARE@{LV\_FONT\_DECLARE}!lv\_font.h@{lv\_font.h}}
+\subsubsection{\texorpdfstring{LV\_FONT\_DECLARE}{LV\_FONT\_DECLARE}}
+{\footnotesize\ttfamily \#define L\+V\+\_\+\+F\+O\+N\+T\+\_\+\+D\+E\+C\+L\+A\+RE(\begin{DoxyParamCaption}\item[{}]{font\+\_\+name }\end{DoxyParamCaption})~extern \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} font\+\_\+name;}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}\label{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}} 
+\index{lv\_font.h@{lv\_font.h}!lv\_font\_t@{lv\_font\_t}}
+\index{lv\_font\_t@{lv\_font\_t}!lv\_font.h@{lv\_font.h}}
+\subsubsection{\texorpdfstring{lv\_font\_t}{lv\_font\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__lv__font__struct}{\+\_\+lv\+\_\+font\+\_\+struct}}  \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{lv__font_8h_a9aba1317c37bb22092c4a640e7292b39}\label{lv__font_8h_a9aba1317c37bb22092c4a640e7292b39}} 
+\index{lv\_font.h@{lv\_font.h}!lv\_font\_add@{lv\_font\_add}}
+\index{lv\_font\_add@{lv\_font\_add}!lv\_font.h@{lv\_font.h}}
+\subsubsection{\texorpdfstring{lv\_font\_add()}{lv\_font\_add()}}
+{\footnotesize\ttfamily void lv\+\_\+font\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$}]{child,  }\item[{\mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$}]{parent }\end{DoxyParamCaption})}
+
+
+
+Create a pair from font name and font dsc. 
+
+get function. After it \textquotesingle{}font\+\_\+get\textquotesingle{} can be used for this font 
+\begin{DoxyParams}{Parameters}
+{\em child} & pointer to a font to join to the \textquotesingle{}parent\textquotesingle{} \\
+\hline
+{\em parent} & pointer to a font. \textquotesingle{}child\textquotesingle{} will be joined here \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__font_8h_a9165bee41c7af0d0a0c3aa974f2536aa}\label{lv__font_8h_a9165bee41c7af0d0a0c3aa974f2536aa}} 
+\index{lv\_font.h@{lv\_font.h}!lv\_font\_get\_bitmap@{lv\_font\_get\_bitmap}}
+\index{lv\_font\_get\_bitmap@{lv\_font\_get\_bitmap}!lv\_font.h@{lv\_font.h}}
+\subsubsection{\texorpdfstring{lv\_font\_get\_bitmap()}{lv\_font\_get\_bitmap()}}
+{\footnotesize\ttfamily const uint8\+\_\+t$\ast$ lv\+\_\+font\+\_\+get\+\_\+bitmap (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$}]{font\+\_\+p,  }\item[{uint32\+\_\+t}]{letter }\end{DoxyParamCaption})}
+
+
+
+Return with the bitmap of a font. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+\_\+p} & pointer to a font \\
+\hline
+{\em letter} & a letter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the bitmap of the letter 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__font_8h_a1d0757d182cf40366ca33b1a549065e2}\label{lv__font_8h_a1d0757d182cf40366ca33b1a549065e2}} 
+\index{lv\_font.h@{lv\_font.h}!lv\_font\_get\_bitmap\_continuous@{lv\_font\_get\_bitmap\_continuous}}
+\index{lv\_font\_get\_bitmap\_continuous@{lv\_font\_get\_bitmap\_continuous}!lv\_font.h@{lv\_font.h}}
+\subsubsection{\texorpdfstring{lv\_font\_get\_bitmap\_continuous()}{lv\_font\_get\_bitmap\_continuous()}}
+{\footnotesize\ttfamily const uint8\+\_\+t$\ast$ lv\+\_\+font\+\_\+get\+\_\+bitmap\+\_\+continuous (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$}]{font,  }\item[{uint32\+\_\+t}]{unicode\+\_\+letter }\end{DoxyParamCaption})}
+
+
+
+Generic bitmap get function used in \textquotesingle{}font-\/$>$get\+\_\+bitmap\textquotesingle{} when the font contains all characters in the range. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & pointer to font \\
+\hline
+{\em unicode\+\_\+letter} & an unicode letter which bitmap should be get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the bitmap or N\+U\+LL if not found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__font_8h_af63feef277f0bc366b47a1dbca12a9d4}\label{lv__font_8h_af63feef277f0bc366b47a1dbca12a9d4}} 
+\index{lv\_font.h@{lv\_font.h}!lv\_font\_get\_bitmap\_sparse@{lv\_font\_get\_bitmap\_sparse}}
+\index{lv\_font\_get\_bitmap\_sparse@{lv\_font\_get\_bitmap\_sparse}!lv\_font.h@{lv\_font.h}}
+\subsubsection{\texorpdfstring{lv\_font\_get\_bitmap\_sparse()}{lv\_font\_get\_bitmap\_sparse()}}
+{\footnotesize\ttfamily const uint8\+\_\+t$\ast$ lv\+\_\+font\+\_\+get\+\_\+bitmap\+\_\+sparse (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$}]{font,  }\item[{uint32\+\_\+t}]{unicode\+\_\+letter }\end{DoxyParamCaption})}
+
+
+
+Generic bitmap get function used in \textquotesingle{}font-\/$>$get\+\_\+bitmap\textquotesingle{} when the font N\+OT contains all characters in the range (sparse) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & pointer to font \\
+\hline
+{\em unicode\+\_\+letter} & an unicode letter which bitmap should be get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the bitmap or N\+U\+LL if not found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__font_8h_a92fd36545ae82b41662d023790a32d7d}\label{lv__font_8h_a92fd36545ae82b41662d023790a32d7d}} 
+\index{lv\_font.h@{lv\_font.h}!lv\_font\_get\_bpp@{lv\_font\_get\_bpp}}
+\index{lv\_font\_get\_bpp@{lv\_font\_get\_bpp}!lv\_font.h@{lv\_font.h}}
+\subsubsection{\texorpdfstring{lv\_font\_get\_bpp()}{lv\_font\_get\_bpp()}}
+{\footnotesize\ttfamily uint8\+\_\+t lv\+\_\+font\+\_\+get\+\_\+bpp (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$}]{font,  }\item[{uint32\+\_\+t}]{letter }\end{DoxyParamCaption})}
+
+
+
+Get the bit-\/per-\/pixel of font. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & pointer to font \\
+\hline
+{\em letter} & a letter from font (font extensions can have different bpp) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bpp of the font (or font extension) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__font_8h_a2d4963445eb6de80446361f868e9427b}\label{lv__font_8h_a2d4963445eb6de80446361f868e9427b}} 
+\index{lv\_font.h@{lv\_font.h}!lv\_font\_get\_height@{lv\_font\_get\_height}}
+\index{lv\_font\_get\_height@{lv\_font\_get\_height}!lv\_font.h@{lv\_font.h}}
+\subsubsection{\texorpdfstring{lv\_font\_get\_height()}{lv\_font\_get\_height()}}
+{\footnotesize\ttfamily static uint8\+\_\+t lv\+\_\+font\+\_\+get\+\_\+height (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$}]{font\+\_\+p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get the height of a font. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+\_\+p} & pointer to a font \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the height of a font 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__font_8h_a9e02e2f3e5832a79237e4b1ae031bb29}\label{lv__font_8h_a9e02e2f3e5832a79237e4b1ae031bb29}} 
+\index{lv\_font.h@{lv\_font.h}!lv\_font\_get\_width@{lv\_font\_get\_width}}
+\index{lv\_font\_get\_width@{lv\_font\_get\_width}!lv\_font.h@{lv\_font.h}}
+\subsubsection{\texorpdfstring{lv\_font\_get\_width()}{lv\_font\_get\_width()}}
+{\footnotesize\ttfamily uint8\+\_\+t lv\+\_\+font\+\_\+get\+\_\+width (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$}]{font\+\_\+p,  }\item[{uint32\+\_\+t}]{letter }\end{DoxyParamCaption})}
+
+
+
+Get the width of a letter in a font. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+\_\+p} & pointer to a font \\
+\hline
+{\em letter} & a letter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the width of a letter 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__font_8h_a0aa21741a7774f56f1078cbeb4955fc2}\label{lv__font_8h_a0aa21741a7774f56f1078cbeb4955fc2}} 
+\index{lv\_font.h@{lv\_font.h}!lv\_font\_get\_width\_continuous@{lv\_font\_get\_width\_continuous}}
+\index{lv\_font\_get\_width\_continuous@{lv\_font\_get\_width\_continuous}!lv\_font.h@{lv\_font.h}}
+\subsubsection{\texorpdfstring{lv\_font\_get\_width\_continuous()}{lv\_font\_get\_width\_continuous()}}
+{\footnotesize\ttfamily const int16\+\_\+t lv\+\_\+font\+\_\+get\+\_\+width\+\_\+continuous (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$}]{font,  }\item[{uint32\+\_\+t}]{unicode\+\_\+letter }\end{DoxyParamCaption})}
+
+
+
+Generic glyph width get function used in \textquotesingle{}font-\/$>$get\+\_\+width\textquotesingle{} when the font contains all characters in the range. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & pointer to font \\
+\hline
+{\em unicode\+\_\+letter} & an unicode letter which width should be get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+width of the gylph or -\/1 if not found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__font_8h_a1e3e8c2c4c2f4247c0c856c520df954a}\label{lv__font_8h_a1e3e8c2c4c2f4247c0c856c520df954a}} 
+\index{lv\_font.h@{lv\_font.h}!lv\_font\_get\_width\_sparse@{lv\_font\_get\_width\_sparse}}
+\index{lv\_font\_get\_width\_sparse@{lv\_font\_get\_width\_sparse}!lv\_font.h@{lv\_font.h}}
+\subsubsection{\texorpdfstring{lv\_font\_get\_width\_sparse()}{lv\_font\_get\_width\_sparse()}}
+{\footnotesize\ttfamily const int16\+\_\+t lv\+\_\+font\+\_\+get\+\_\+width\+\_\+sparse (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{lv__font_8h_aa379967edc40a171f22ab760d1292cf0}{lv\+\_\+font\+\_\+t}} $\ast$}]{font,  }\item[{uint32\+\_\+t}]{unicode\+\_\+letter }\end{DoxyParamCaption})}
+
+
+
+Generic glyph width get function used in \textquotesingle{}font-\/$>$get\+\_\+bitmap\textquotesingle{} when the font N\+OT contains all characters in the range (sparse) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & pointer to font \\
+\hline
+{\em unicode\+\_\+letter} & an unicode letter which width should be get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+width of the glyph or -\/1 if not found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__font_8h_a14e0c57453397c27bf6d0354eb1b591a}\label{lv__font_8h_a14e0c57453397c27bf6d0354eb1b591a}} 
+\index{lv\_font.h@{lv\_font.h}!lv\_font\_init@{lv\_font\_init}}
+\index{lv\_font\_init@{lv\_font\_init}!lv\_font.h@{lv\_font.h}}
+\subsubsection{\texorpdfstring{lv\_font\_init()}{lv\_font\_init()}}
+{\footnotesize\ttfamily void lv\+\_\+font\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the built-\/in fonts. 
+

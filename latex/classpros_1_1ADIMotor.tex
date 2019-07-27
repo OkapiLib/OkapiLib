@@ -1,0 +1,103 @@
+\hypertarget{classpros_1_1ADIMotor}{}\section{pros\+::A\+D\+I\+Motor Class Reference}
+\label{classpros_1_1ADIMotor}\index{pros::ADIMotor@{pros::ADIMotor}}
+
+
+{\ttfamily \#include $<$adi.\+hpp$>$}
+
+Inheritance diagram for pros\+::A\+D\+I\+Motor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpros_1_1ADIMotor}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpros_1_1ADIMotor_afd2da0e8c53a8bc0c999d5232242069a}{A\+D\+I\+Motor}} (std\+::uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Configures an A\+DI port to act as a \mbox{\hyperlink{classpros_1_1Motor}{Motor}}. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1ADIMotor_ad8e9be8dfbc022e893a4d15996fe3bcd}{stop}} (void) const
+\begin{DoxyCompactList}\small\item\em Stops the motor on the given port. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1ADIMotor_ae6711117fbceb3bb6e3602c4ef63aff1}{set\+\_\+value}} (std\+::int32\+\_\+t value) const
+\begin{DoxyCompactList}\small\item\em Sets the speed of the motor on the given port. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1ADIMotor_ac79b5fd3ce67ae6ffc4b1fbbb306e997}{get\+\_\+value}} (void) const
+\begin{DoxyCompactList}\small\item\em Gets the last set speed of the motor on the given port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpros_1_1ADIMotor_afd2da0e8c53a8bc0c999d5232242069a}\label{classpros_1_1ADIMotor_afd2da0e8c53a8bc0c999d5232242069a}} 
+\index{pros::ADIMotor@{pros::ADIMotor}!ADIMotor@{ADIMotor}}
+\index{ADIMotor@{ADIMotor}!pros::ADIMotor@{pros::ADIMotor}}
+\subsubsection{\texorpdfstring{ADIMotor()}{ADIMotor()}}
+{\footnotesize\ttfamily pros\+::\+A\+D\+I\+Motor\+::\+A\+D\+I\+Motor (\begin{DoxyParamCaption}\item[{std\+::uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Configures an A\+DI port to act as a \mbox{\hyperlink{classpros_1_1Motor}{Motor}}. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port number (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{}) to configure \\
+\hline
+{\em type} & The configuration type for the port \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classpros_1_1ADIMotor_ac79b5fd3ce67ae6ffc4b1fbbb306e997}\label{classpros_1_1ADIMotor_ac79b5fd3ce67ae6ffc4b1fbbb306e997}} 
+\index{pros::ADIMotor@{pros::ADIMotor}!get\_value@{get\_value}}
+\index{get\_value@{get\_value}!pros::ADIMotor@{pros::ADIMotor}}
+\subsubsection{\texorpdfstring{get\_value()}{get\_value()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+A\+D\+I\+Port\+::get\+\_\+value}
+
+
+
+Gets the last set speed of the motor on the given port. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+\begin{DoxyReturn}{Returns}
+The last set speed of the motor on the given port 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1ADIMotor_ae6711117fbceb3bb6e3602c4ef63aff1}\label{classpros_1_1ADIMotor_ae6711117fbceb3bb6e3602c4ef63aff1}} 
+\index{pros::ADIMotor@{pros::ADIMotor}!set\_value@{set\_value}}
+\index{set\_value@{set\_value}!pros::ADIMotor@{pros::ADIMotor}}
+\subsubsection{\texorpdfstring{set\_value()}{set\_value()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+A\+D\+I\+Port\+::set\+\_\+value}
+
+
+
+Sets the speed of the motor on the given port. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The new signed speed; -\/127 is full reverse and 127 is full forward, with 0 being off\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1ADIMotor_ad8e9be8dfbc022e893a4d15996fe3bcd}\label{classpros_1_1ADIMotor_ad8e9be8dfbc022e893a4d15996fe3bcd}} 
+\index{pros::ADIMotor@{pros::ADIMotor}!stop@{stop}}
+\index{stop@{stop}!pros::ADIMotor@{pros::ADIMotor}}
+\subsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+A\+D\+I\+Motor\+::stop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Stops the motor on the given port. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/pros/\mbox{\hyperlink{adi_8hpp}{adi.\+hpp}}\end{DoxyCompactItemize}

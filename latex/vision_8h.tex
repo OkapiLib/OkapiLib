@@ -1,0 +1,722 @@
+\hypertarget{vision_8h}{}\section{include/pros/vision.h File Reference}
+\label{vision_8h}\index{include/pros/vision.h@{include/pros/vision.h}}
+
+
+Contains prototypes for the V\+EX Vision Sensor-\/related functions.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{vision_8h_abe53b5e2ba20b09f7f5c7173021d02f0}{V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+E\+R\+R\+\_\+\+S\+IG}}~255
+\item 
+\#define \mbox{\hyperlink{vision_8h_a7dd7d66361f62ce2ca94e21bb4779962}{V\+I\+S\+I\+O\+N\+\_\+\+F\+O\+V\+\_\+\+W\+I\+D\+TH}}~316
+\item 
+\#define \mbox{\hyperlink{vision_8h_a8e72354ed1150786745094bbd1c0ae00}{V\+I\+S\+I\+O\+N\+\_\+\+F\+O\+V\+\_\+\+H\+E\+I\+G\+HT}}~212
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{vision_8h_a23584b6ec115e81fd6c715c462683970}{vision\+\_\+object\+\_\+type}} \mbox{\hyperlink{vision_8h_aead17814e0309d449090f68d4104981f}{vision\+\_\+object\+\_\+type\+\_\+e\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em This enumeration defines the different types of objects that can be detected by the Vision Sensor. \end{DoxyCompactList}\item 
+typedef uint16\+\_\+t \mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Color codes are just signatures with multiple I\+Ds and a different type. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5}{vision\+\_\+zero}} \mbox{\hyperlink{vision_8h_a2e8bc1c48f8aab12275bfc1868fbbad6}{vision\+\_\+zero\+\_\+e\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{vision_8h_a23584b6ec115e81fd6c715c462683970}{vision\+\_\+object\+\_\+type}} \{ \mbox{\hyperlink{vision_8h_a23584b6ec115e81fd6c715c462683970a8ce71cf51da913d1ea77a4b732890778}{E\+\_\+\+V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+N\+O\+R\+M\+AL}} = 0, 
+\mbox{\hyperlink{vision_8h_a23584b6ec115e81fd6c715c462683970a44bed4e1e753397aae03dc37b8e55983}{E\+\_\+\+V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+C\+O\+L\+O\+R\+\_\+\+C\+O\+DE}} = 1, 
+\mbox{\hyperlink{vision_8h_a23584b6ec115e81fd6c715c462683970a9502bdf4e794b257cdc86c23374ffcbc}{E\+\_\+\+V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+L\+I\+NE}} = 2
+ \}
+\begin{DoxyCompactList}\small\item\em This enumeration defines the different types of objects that can be detected by the Vision Sensor. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5}{vision\+\_\+zero}} \{ \mbox{\hyperlink{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5a0ff244c5f3e9771f962986e25b00ff3d}{E\+\_\+\+V\+I\+S\+I\+O\+N\+\_\+\+Z\+E\+R\+O\+\_\+\+T\+O\+P\+L\+E\+FT}} = 0, 
+\mbox{\hyperlink{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5ac4bfba95a9c18805da897280e18387c1}{E\+\_\+\+V\+I\+S\+I\+O\+N\+\_\+\+Z\+E\+R\+O\+\_\+\+C\+E\+N\+T\+ER}} = 1
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{vision_8h_ae55a6efc231c3cf6ab009c08ae920a8b}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((\+\_\+\+\_\+packed\+\_\+\+\_\+)) vision\+\_\+signature
+\begin{DoxyCompactList}\small\item\em This structure contains the parameters used by the Vision Sensor to detect objects. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_a92834afc57fa21039a4221608e01e592}{vision\+\_\+clear\+\_\+led}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Clears the vision sensor L\+ED color, reseting it back to its default behavior, displaying the most prominent object signature color. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} \mbox{\hyperlink{vision_8h_a452a6732e27d1496360f69b84af7609f}{vision\+\_\+signature\+\_\+from\+\_\+utility}} (const int32\+\_\+t id, const int32\+\_\+t u\+\_\+min, const int32\+\_\+t u\+\_\+max, const int32\+\_\+t u\+\_\+mean, const int32\+\_\+t v\+\_\+min, const int32\+\_\+t v\+\_\+max, const int32\+\_\+t v\+\_\+mean, const float range, const int32\+\_\+t type)
+\begin{DoxyCompactList}\small\item\em Creates a signature from the vision sensor utility. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}} \mbox{\hyperlink{vision_8h_a675146281c6f575b3b95e1b20fb16a6a}{vision\+\_\+create\+\_\+color\+\_\+code}} (uint8\+\_\+t port, const uint32\+\_\+t sig\+\_\+id1, const uint32\+\_\+t sig\+\_\+id2, const uint32\+\_\+t sig\+\_\+id3, const uint32\+\_\+t sig\+\_\+id4, const uint32\+\_\+t sig\+\_\+id5)
+\begin{DoxyCompactList}\small\item\em Creates a color code that represents a combination of the given signature I\+Ds. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} \mbox{\hyperlink{vision_8h_a89cf079d79ec4b805b2baec609e810ee}{vision\+\_\+get\+\_\+by\+\_\+size}} (uint8\+\_\+t port, const uint32\+\_\+t size\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Gets the nth largest object according to size\+\_\+id. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} \mbox{\hyperlink{vision_8h_ae7d3f64f0a84d842e1c07c83cbbc1318}{vision\+\_\+get\+\_\+by\+\_\+sig}} (uint8\+\_\+t port, const uint32\+\_\+t size\+\_\+id, const uint32\+\_\+t sig\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Gets the nth largest object of the given signature according to size\+\_\+id. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} \mbox{\hyperlink{vision_8h_acd5c817b31e522688e6f661246a374f5}{vision\+\_\+get\+\_\+by\+\_\+code}} (uint8\+\_\+t port, const uint32\+\_\+t size\+\_\+id, const \mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}} color\+\_\+code)
+\begin{DoxyCompactList}\small\item\em Gets the nth largest object of the given color code according to size\+\_\+id. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_af23dbc1294b67885665c7c1e81780a1f}{vision\+\_\+get\+\_\+exposure}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the exposure parameter of the Vision Sensor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_ac50ece961223bd8ff99f513543d2323c}{vision\+\_\+get\+\_\+object\+\_\+count}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the number of objects currently detected by the Vision Sensor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_a21a5a2aa09cf4d16021120ce0325eac1}{vision\+\_\+get\+\_\+white\+\_\+balance}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Get the white balance parameter of the Vision Sensor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_a2fc1d334e9d0a312a5d07378d4a95f18}{vision\+\_\+print\+\_\+signature}} (const \mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} sig)
+\begin{DoxyCompactList}\small\item\em Prints the contents of the signature as an initializer list to the terminal. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_a5091bfb5dadeb9a5a854c13d684f3f23}{vision\+\_\+read\+\_\+by\+\_\+size}} (uint8\+\_\+t port, const uint32\+\_\+t size\+\_\+id, const uint32\+\_\+t object\+\_\+count, \mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} $\ast$const object\+\_\+arr)
+\begin{DoxyCompactList}\small\item\em Reads up to object\+\_\+count object descriptors into object\+\_\+arr. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_adfb6fcb835556086acfa82b23c3c6683}{vision\+\_\+read\+\_\+by\+\_\+sig}} (uint8\+\_\+t port, const uint32\+\_\+t size\+\_\+id, const uint32\+\_\+t sig\+\_\+id, const uint32\+\_\+t object\+\_\+count, \mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} $\ast$const object\+\_\+arr)
+\begin{DoxyCompactList}\small\item\em Reads up to object\+\_\+count object descriptors into object\+\_\+arr. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_a4b4978438d0d0e0173a05122ea7b205e}{vision\+\_\+read\+\_\+by\+\_\+code}} (uint8\+\_\+t port, const uint32\+\_\+t size\+\_\+id, const \mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}} color\+\_\+code, const uint32\+\_\+t object\+\_\+count, \mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} $\ast$const object\+\_\+arr)
+\begin{DoxyCompactList}\small\item\em Reads up to object\+\_\+count object descriptors into object\+\_\+arr. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} \mbox{\hyperlink{vision_8h_a4e530910b0cf333cfaad20509ed88c9b}{vision\+\_\+get\+\_\+signature}} (uint8\+\_\+t port, const uint8\+\_\+t signature\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Gets the object detection signature with the given id number. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_a16cf475074058c13bba0fcea12906d82}{vision\+\_\+set\+\_\+signature}} (uint8\+\_\+t port, const uint8\+\_\+t signature\+\_\+id, \mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} $\ast$const signature\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Stores the supplied object detection signature onto the vision sensor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_a842a2758f2cf0964a91e376061380122}{vision\+\_\+set\+\_\+auto\+\_\+white\+\_\+balance}} (uint8\+\_\+t port, const uint8\+\_\+t enable)
+\begin{DoxyCompactList}\small\item\em Enables/disables auto white-\/balancing on the Vision Sensor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_aa16405c90b21955c47960d814c9f8ef4}{vision\+\_\+set\+\_\+exposure}} (uint8\+\_\+t port, const uint8\+\_\+t exposure)
+\begin{DoxyCompactList}\small\item\em Sets the exposure parameter of the Vision Sensor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_a115ef040c736971c180c812932d97dc7}{vision\+\_\+set\+\_\+led}} (uint8\+\_\+t port, const int32\+\_\+t rgb)
+\begin{DoxyCompactList}\small\item\em Sets the vision sensor L\+ED color, overriding the automatic behavior. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_afe156ff40f90b71ef5bb1ce49d056d08}{vision\+\_\+set\+\_\+white\+\_\+balance}} (uint8\+\_\+t port, const int32\+\_\+t rgb)
+\begin{DoxyCompactList}\small\item\em Sets the white balance parameter of the Vision Sensor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_a17ba398060da4cff1dda541fde50773c}{vision\+\_\+set\+\_\+zero\+\_\+point}} (uint8\+\_\+t port, \mbox{\hyperlink{vision_8h_a2e8bc1c48f8aab12275bfc1868fbbad6}{vision\+\_\+zero\+\_\+e\+\_\+t}} zero\+\_\+point)
+\begin{DoxyCompactList}\small\item\em Sets the (0,0) coordinate for the Field of View. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{vision_8h_a446d8d1600570e573eb7afa9f0377e49}{vision\+\_\+set\+\_\+wifi\+\_\+mode}} (uint8\+\_\+t port, const uint8\+\_\+t enable)
+\begin{DoxyCompactList}\small\item\em Sets the Wi-\/\+Fi mode of the Vision sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}}
+\item 
+\mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains prototypes for the V\+EX Vision Sensor-\/related functions. 
+
+Visit \href{https://pros.cs.purdue.edu/v5/tutorials/topical/vision.html}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/vision.\+html}} to learn more.
+
+This file should not be modified by users, since it gets replaced whenever a kernel upgrade occurs.
+
+Copyright (c) 2017-\/2018, Purdue University A\+CM S\+I\+G\+Bots. All rights reserved.
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.\+0. If a copy of the M\+PL was not distributed with this file, You can obtain one at \href{http://mozilla.org/MPL/2.0/}{\texttt{ http\+://mozilla.\+org/\+M\+P\+L/2.\+0/}}. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{vision_8h_a8e72354ed1150786745094bbd1c0ae00}\label{vision_8h_a8e72354ed1150786745094bbd1c0ae00}} 
+\index{vision.h@{vision.h}!VISION\_FOV\_HEIGHT@{VISION\_FOV\_HEIGHT}}
+\index{VISION\_FOV\_HEIGHT@{VISION\_FOV\_HEIGHT}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{VISION\_FOV\_HEIGHT}{VISION\_FOV\_HEIGHT}}
+{\footnotesize\ttfamily \#define V\+I\+S\+I\+O\+N\+\_\+\+F\+O\+V\+\_\+\+H\+E\+I\+G\+HT~212}
+
+\mbox{\Hypertarget{vision_8h_a7dd7d66361f62ce2ca94e21bb4779962}\label{vision_8h_a7dd7d66361f62ce2ca94e21bb4779962}} 
+\index{vision.h@{vision.h}!VISION\_FOV\_WIDTH@{VISION\_FOV\_WIDTH}}
+\index{VISION\_FOV\_WIDTH@{VISION\_FOV\_WIDTH}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{VISION\_FOV\_WIDTH}{VISION\_FOV\_WIDTH}}
+{\footnotesize\ttfamily \#define V\+I\+S\+I\+O\+N\+\_\+\+F\+O\+V\+\_\+\+W\+I\+D\+TH~316}
+
+\mbox{\Hypertarget{vision_8h_abe53b5e2ba20b09f7f5c7173021d02f0}\label{vision_8h_abe53b5e2ba20b09f7f5c7173021d02f0}} 
+\index{vision.h@{vision.h}!VISION\_OBJECT\_ERR\_SIG@{VISION\_OBJECT\_ERR\_SIG}}
+\index{VISION\_OBJECT\_ERR\_SIG@{VISION\_OBJECT\_ERR\_SIG}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{VISION\_OBJECT\_ERR\_SIG}{VISION\_OBJECT\_ERR\_SIG}}
+{\footnotesize\ttfamily \#define V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+E\+R\+R\+\_\+\+S\+IG~255}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}\label{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}} 
+\index{vision.h@{vision.h}!vision\_color\_code\_t@{vision\_color\_code\_t}}
+\index{vision\_color\_code\_t@{vision\_color\_code\_t}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_color\_code\_t}{vision\_color\_code\_t}}
+{\footnotesize\ttfamily typedef uint16\+\_\+t \mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}}}
+
+
+
+Color codes are just signatures with multiple I\+Ds and a different type. 
+
+\mbox{\Hypertarget{vision_8h_aead17814e0309d449090f68d4104981f}\label{vision_8h_aead17814e0309d449090f68d4104981f}} 
+\index{vision.h@{vision.h}!vision\_object\_type\_e\_t@{vision\_object\_type\_e\_t}}
+\index{vision\_object\_type\_e\_t@{vision\_object\_type\_e\_t}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_object\_type\_e\_t}{vision\_object\_type\_e\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{vision_8h_a23584b6ec115e81fd6c715c462683970}{vision\+\_\+object\+\_\+type}}  \mbox{\hyperlink{vision_8h_aead17814e0309d449090f68d4104981f}{vision\+\_\+object\+\_\+type\+\_\+e\+\_\+t}}}
+
+
+
+This enumeration defines the different types of objects that can be detected by the Vision Sensor. 
+
+\mbox{\Hypertarget{vision_8h_a2e8bc1c48f8aab12275bfc1868fbbad6}\label{vision_8h_a2e8bc1c48f8aab12275bfc1868fbbad6}} 
+\index{vision.h@{vision.h}!vision\_zero\_e\_t@{vision\_zero\_e\_t}}
+\index{vision\_zero\_e\_t@{vision\_zero\_e\_t}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_zero\_e\_t}{vision\_zero\_e\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5}{vision\+\_\+zero}}  \mbox{\hyperlink{vision_8h_a2e8bc1c48f8aab12275bfc1868fbbad6}{vision\+\_\+zero\+\_\+e\+\_\+t}}}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{vision_8h_a23584b6ec115e81fd6c715c462683970}\label{vision_8h_a23584b6ec115e81fd6c715c462683970}} 
+\index{vision.h@{vision.h}!vision\_object\_type@{vision\_object\_type}}
+\index{vision\_object\_type@{vision\_object\_type}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_object\_type}{vision\_object\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{vision_8h_a23584b6ec115e81fd6c715c462683970}{vision\+\_\+object\+\_\+type}}}
+
+
+
+This enumeration defines the different types of objects that can be detected by the Vision Sensor. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_VISION\_OBJECT\_NORMAL@{E\_VISION\_OBJECT\_NORMAL}!vision.h@{vision.h}}\index{vision.h@{vision.h}!E\_VISION\_OBJECT\_NORMAL@{E\_VISION\_OBJECT\_NORMAL}}}\mbox{\Hypertarget{vision_8h_a23584b6ec115e81fd6c715c462683970a8ce71cf51da913d1ea77a4b732890778}\label{vision_8h_a23584b6ec115e81fd6c715c462683970a8ce71cf51da913d1ea77a4b732890778}} 
+E\+\_\+\+V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+N\+O\+R\+M\+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_VISION\_OBJECT\_COLOR\_CODE@{E\_VISION\_OBJECT\_COLOR\_CODE}!vision.h@{vision.h}}\index{vision.h@{vision.h}!E\_VISION\_OBJECT\_COLOR\_CODE@{E\_VISION\_OBJECT\_COLOR\_CODE}}}\mbox{\Hypertarget{vision_8h_a23584b6ec115e81fd6c715c462683970a44bed4e1e753397aae03dc37b8e55983}\label{vision_8h_a23584b6ec115e81fd6c715c462683970a44bed4e1e753397aae03dc37b8e55983}} 
+E\+\_\+\+V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+C\+O\+L\+O\+R\+\_\+\+C\+O\+DE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_VISION\_OBJECT\_LINE@{E\_VISION\_OBJECT\_LINE}!vision.h@{vision.h}}\index{vision.h@{vision.h}!E\_VISION\_OBJECT\_LINE@{E\_VISION\_OBJECT\_LINE}}}\mbox{\Hypertarget{vision_8h_a23584b6ec115e81fd6c715c462683970a9502bdf4e794b257cdc86c23374ffcbc}\label{vision_8h_a23584b6ec115e81fd6c715c462683970a9502bdf4e794b257cdc86c23374ffcbc}} 
+E\+\_\+\+V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+L\+I\+NE&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5}\label{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5}} 
+\index{vision.h@{vision.h}!vision\_zero@{vision\_zero}}
+\index{vision\_zero@{vision\_zero}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_zero}{vision\_zero}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5}{vision\+\_\+zero}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_VISION\_ZERO\_TOPLEFT@{E\_VISION\_ZERO\_TOPLEFT}!vision.h@{vision.h}}\index{vision.h@{vision.h}!E\_VISION\_ZERO\_TOPLEFT@{E\_VISION\_ZERO\_TOPLEFT}}}\mbox{\Hypertarget{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5a0ff244c5f3e9771f962986e25b00ff3d}\label{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5a0ff244c5f3e9771f962986e25b00ff3d}} 
+E\+\_\+\+V\+I\+S\+I\+O\+N\+\_\+\+Z\+E\+R\+O\+\_\+\+T\+O\+P\+L\+E\+FT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_VISION\_ZERO\_CENTER@{E\_VISION\_ZERO\_CENTER}!vision.h@{vision.h}}\index{vision.h@{vision.h}!E\_VISION\_ZERO\_CENTER@{E\_VISION\_ZERO\_CENTER}}}\mbox{\Hypertarget{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5ac4bfba95a9c18805da897280e18387c1}\label{vision_8h_aef7c8269b3fb0dfbf4e597b2d8dd7af5ac4bfba95a9c18805da897280e18387c1}} 
+E\+\_\+\+V\+I\+S\+I\+O\+N\+\_\+\+Z\+E\+R\+O\+\_\+\+C\+E\+N\+T\+ER&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{vision_8h_ae55a6efc231c3cf6ab009c08ae920a8b}\label{vision_8h_ae55a6efc231c3cf6ab009c08ae920a8b}} 
+\index{vision.h@{vision.h}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily struct \+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(\+\_\+\+\_\+packed\+\_\+\+\_\+)}]{ }\end{DoxyParamCaption})}
+
+
+
+This structure contains the parameters used by the Vision Sensor to detect objects. 
+
+This structure contains a descriptor of an object detected by the Vision Sensor. \mbox{\Hypertarget{vision_8h_a92834afc57fa21039a4221608e01e592}\label{vision_8h_a92834afc57fa21039a4221608e01e592}} 
+\index{vision.h@{vision.h}!vision\_clear\_led@{vision\_clear\_led}}
+\index{vision\_clear\_led@{vision\_clear\_led}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_clear\_led()}{vision\_clear\_led()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+clear\+\_\+led (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Clears the vision sensor L\+ED color, reseting it back to its default behavior, displaying the most prominent object signature color. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_a675146281c6f575b3b95e1b20fb16a6a}\label{vision_8h_a675146281c6f575b3b95e1b20fb16a6a}} 
+\index{vision.h@{vision.h}!vision\_create\_color\_code@{vision\_create\_color\_code}}
+\index{vision\_create\_color\_code@{vision\_create\_color\_code}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_create\_color\_code()}{vision\_create\_color\_code()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}} vision\+\_\+create\+\_\+color\+\_\+code (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const uint32\+\_\+t}]{sig\+\_\+id1,  }\item[{const uint32\+\_\+t}]{sig\+\_\+id2,  }\item[{const uint32\+\_\+t}]{sig\+\_\+id3,  }\item[{const uint32\+\_\+t}]{sig\+\_\+id4,  }\item[{const uint32\+\_\+t}]{sig\+\_\+id5 }\end{DoxyParamCaption})}
+
+
+
+Creates a color code that represents a combination of the given signature I\+Ds. 
+
+If fewer than 5 signatures are to be a part of the color code, pass 0 for the additional function parameters.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ Fewer than two signatures have been provided, or one of the signatures is out of its \mbox{[}1-\/7\mbox{]} range.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em sig\+\_\+id1} & The first signature id \mbox{[}1-\/7\mbox{]} to add to the color code \\
+\hline
+{\em sig\+\_\+id2} & The second signature id \mbox{[}1-\/7\mbox{]} to add to the color code \\
+\hline
+{\em sig\+\_\+id3} & The third signature id \mbox{[}1-\/7\mbox{]} to add to the color code \\
+\hline
+{\em sig\+\_\+id4} & The fourth signature id \mbox{[}1-\/7\mbox{]} to add to the color code \\
+\hline
+{\em sig\+\_\+id5} & The fifth signature id \mbox{[}1-\/7\mbox{]} to add to the color code\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} vision\+\_\+color\+\_\+code\+\_\+t object containing the color code information. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_acd5c817b31e522688e6f661246a374f5}\label{vision_8h_acd5c817b31e522688e6f661246a374f5}} 
+\index{vision.h@{vision.h}!vision\_get\_by\_code@{vision\_get\_by\_code}}
+\index{vision\_get\_by\_code@{vision\_get\_by\_code}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_get\_by\_code()}{vision\_get\_by\_code()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} vision\+\_\+get\+\_\+by\+\_\+code (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const uint32\+\_\+t}]{size\+\_\+id,  }\item[{const \mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}}}]{color\+\_\+code }\end{DoxyParamCaption})}
+
+
+
+Gets the nth largest object of the given color code according to size\+\_\+id. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port. E\+A\+G\+A\+IN -\/ Reading the Vision Sensor failed for an unknown reason.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em size\+\_\+id} & The object to read from a list roughly ordered by object size (0 is the largest item, 1 is the second largest, etc.) \\
+\hline
+{\em color\+\_\+code} & The vision\+\_\+color\+\_\+code\+\_\+t for which an object will be returned\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vision\+\_\+object\+\_\+s\+\_\+t object corresponding to the given color code and size\+\_\+id, or P\+R\+O\+S\+\_\+\+E\+RR if an error occurred. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_ae7d3f64f0a84d842e1c07c83cbbc1318}\label{vision_8h_ae7d3f64f0a84d842e1c07c83cbbc1318}} 
+\index{vision.h@{vision.h}!vision\_get\_by\_sig@{vision\_get\_by\_sig}}
+\index{vision\_get\_by\_sig@{vision\_get\_by\_sig}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_get\_by\_sig()}{vision\_get\_by\_sig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} vision\+\_\+get\+\_\+by\+\_\+sig (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const uint32\+\_\+t}]{size\+\_\+id,  }\item[{const uint32\+\_\+t}]{sig\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Gets the nth largest object of the given signature according to size\+\_\+id. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port. E\+D\+OM -\/ size\+\_\+id is greater than the number of available objects. E\+H\+O\+S\+T\+D\+O\+WN -\/ Reading the vision sensor failed for an unknown reason.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em size\+\_\+id} & The object to read from a list roughly ordered by object size (0 is the largest item, 1 is the second largest, etc.) \\
+\hline
+{\em signature} & The signature ID \mbox{[}1-\/7\mbox{]} for which an object will be returned.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vision\+\_\+object\+\_\+s\+\_\+t object corresponding to the given signature and size\+\_\+id, or P\+R\+O\+S\+\_\+\+E\+RR if an error occurred. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_a89cf079d79ec4b805b2baec609e810ee}\label{vision_8h_a89cf079d79ec4b805b2baec609e810ee}} 
+\index{vision.h@{vision.h}!vision\_get\_by\_size@{vision\_get\_by\_size}}
+\index{vision\_get\_by\_size@{vision\_get\_by\_size}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_get\_by\_size()}{vision\_get\_by\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} vision\+\_\+get\+\_\+by\+\_\+size (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const uint32\+\_\+t}]{size\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Gets the nth largest object according to size\+\_\+id. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port. E\+D\+OM -\/ size\+\_\+id is greater than the number of available objects. E\+H\+O\+S\+T\+D\+O\+WN -\/ Reading the vision sensor failed for an unknown reason.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em size\+\_\+id} & The object to read from a list roughly ordered by object size (0 is the largest item, 1 is the second largest, etc.)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vision\+\_\+object\+\_\+s\+\_\+t object corresponding to the given size id, or P\+R\+O\+S\+\_\+\+E\+RR if an error occurred. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_af23dbc1294b67885665c7c1e81780a1f}\label{vision_8h_af23dbc1294b67885665c7c1e81780a1f}} 
+\index{vision.h@{vision.h}!vision\_get\_exposure@{vision\_get\_exposure}}
+\index{vision\_get\_exposure@{vision\_get\_exposure}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_get\_exposure()}{vision\_get\_exposure()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+get\+\_\+exposure (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the exposure parameter of the Vision Sensor. 
+
+See \href{https://pros.cs.purdue.edu/v5/tutorials/topical/vision.html\#exposure-setting}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/vision.\+html\#exposure-\/setting}} for more detials.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current exposure setting from \mbox{[}0,150\mbox{]}, P\+R\+O\+S\+\_\+\+E\+RR if an error occurred 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_ac50ece961223bd8ff99f513543d2323c}\label{vision_8h_ac50ece961223bd8ff99f513543d2323c}} 
+\index{vision.h@{vision.h}!vision\_get\_object\_count@{vision\_get\_object\_count}}
+\index{vision\_get\_object\_count@{vision\_get\_object\_count}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_get\_object\_count()}{vision\_get\_object\_count()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+get\+\_\+object\+\_\+count (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the number of objects currently detected by the Vision Sensor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of objects detected on the specified vision sensor. Returns P\+R\+O\+S\+\_\+\+E\+RR if the port was invalid or an error occurred. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_a4e530910b0cf333cfaad20509ed88c9b}\label{vision_8h_a4e530910b0cf333cfaad20509ed88c9b}} 
+\index{vision.h@{vision.h}!vision\_get\_signature@{vision\_get\_signature}}
+\index{vision\_get\_signature@{vision\_get\_signature}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_get\_signature()}{vision\_get\_signature()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} vision\+\_\+get\+\_\+signature (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const uint8\+\_\+t}]{signature\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Gets the object detection signature with the given id number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em signature\+\_\+id} & The signature id to read\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} vision\+\_\+signature\+\_\+s\+\_\+t containing information about the signature. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_a21a5a2aa09cf4d16021120ce0325eac1}\label{vision_8h_a21a5a2aa09cf4d16021120ce0325eac1}} 
+\index{vision.h@{vision.h}!vision\_get\_white\_balance@{vision\_get\_white\_balance}}
+\index{vision\_get\_white\_balance@{vision\_get\_white\_balance}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_get\_white\_balance()}{vision\_get\_white\_balance()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+get\+\_\+white\+\_\+balance (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Get the white balance parameter of the Vision Sensor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current R\+GB white balance setting of the sensor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_a2fc1d334e9d0a312a5d07378d4a95f18}\label{vision_8h_a2fc1d334e9d0a312a5d07378d4a95f18}} 
+\index{vision.h@{vision.h}!vision\_print\_signature@{vision\_print\_signature}}
+\index{vision\_print\_signature@{vision\_print\_signature}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_print\_signature()}{vision\_print\_signature()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+print\+\_\+signature (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}}}]{sig }\end{DoxyParamCaption})}
+
+
+
+Prints the contents of the signature as an initializer list to the terminal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature for which the contents will be printed\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if no errors occured, P\+R\+O\+S\+\_\+\+E\+RR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_a4b4978438d0d0e0173a05122ea7b205e}\label{vision_8h_a4b4978438d0d0e0173a05122ea7b205e}} 
+\index{vision.h@{vision.h}!vision\_read\_by\_code@{vision\_read\_by\_code}}
+\index{vision\_read\_by\_code@{vision\_read\_by\_code}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_read\_by\_code()}{vision\_read\_by\_code()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+read\+\_\+by\+\_\+code (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const uint32\+\_\+t}]{size\+\_\+id,  }\item[{const \mbox{\hyperlink{vision_8h_a71f2011a47e95558bb534b05c16c7f2b}{vision\+\_\+color\+\_\+code\+\_\+t}}}]{color\+\_\+code,  }\item[{const uint32\+\_\+t}]{object\+\_\+count,  }\item[{\mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} $\ast$const}]{object\+\_\+arr }\end{DoxyParamCaption})}
+
+
+
+Reads up to object\+\_\+count object descriptors into object\+\_\+arr. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21), or fewer than object\+\_\+count number of objects were found. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em port} & The V5 port number from 1-\/21 \\
+\hline
+ & {\em object\+\_\+count} & The number of objects to read \\
+\hline
+ & {\em size\+\_\+id} & The object to read from a list roughly ordered by object size (0 is the largest item, 1 is the second largest, etc.) \\
+\hline
+ & {\em color\+\_\+code} & The vision\+\_\+color\+\_\+code\+\_\+t for which objects will be returned \\
+\hline
+\mbox{\texttt{ out}}  & {\em object\+\_\+arr} & \mbox{\hyperlink{structA}{A}} pointer to copy the objects into\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of object signatures copied. This number will be less than object\+\_\+count if there are fewer objects detected by the vision sensor. Returns P\+R\+O\+S\+\_\+\+E\+RR if the port was invalid, an error occurred, or fewer objects than size\+\_\+id were found. All objects in object\+\_\+arr that were not found are given V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+E\+R\+R\+\_\+\+S\+IG as their signature. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_adfb6fcb835556086acfa82b23c3c6683}\label{vision_8h_adfb6fcb835556086acfa82b23c3c6683}} 
+\index{vision.h@{vision.h}!vision\_read\_by\_sig@{vision\_read\_by\_sig}}
+\index{vision\_read\_by\_sig@{vision\_read\_by\_sig}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_read\_by\_sig()}{vision\_read\_by\_sig()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+read\+\_\+by\+\_\+sig (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const uint32\+\_\+t}]{size\+\_\+id,  }\item[{const uint32\+\_\+t}]{sig\+\_\+id,  }\item[{const uint32\+\_\+t}]{object\+\_\+count,  }\item[{\mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} $\ast$const}]{object\+\_\+arr }\end{DoxyParamCaption})}
+
+
+
+Reads up to object\+\_\+count object descriptors into object\+\_\+arr. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21), or fewer than object\+\_\+count number of objects were found. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port. E\+D\+OM -\/ size\+\_\+id is greater than the number of available objects.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em port} & The V5 port number from 1-\/21 \\
+\hline
+ & {\em object\+\_\+count} & The number of objects to read \\
+\hline
+ & {\em size\+\_\+id} & The object to read from a list roughly ordered by object size (0 is the largest item, 1 is the second largest, etc.) \\
+\hline
+ & {\em signature} & The signature ID \mbox{[}1-\/7\mbox{]} for which objects will be returned. \\
+\hline
+\mbox{\texttt{ out}}  & {\em object\+\_\+arr} & \mbox{\hyperlink{structA}{A}} pointer to copy the objects into\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of object signatures copied. This number will be less than object\+\_\+count if there are fewer objects detected by the vision sensor. Returns P\+R\+O\+S\+\_\+\+E\+RR if the port was invalid, an error occurred, or fewer objects than size\+\_\+id were found. All objects in object\+\_\+arr that were not found are given V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+E\+R\+R\+\_\+\+S\+IG as their signature. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_a5091bfb5dadeb9a5a854c13d684f3f23}\label{vision_8h_a5091bfb5dadeb9a5a854c13d684f3f23}} 
+\index{vision.h@{vision.h}!vision\_read\_by\_size@{vision\_read\_by\_size}}
+\index{vision\_read\_by\_size@{vision\_read\_by\_size}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_read\_by\_size()}{vision\_read\_by\_size()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+read\+\_\+by\+\_\+size (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const uint32\+\_\+t}]{size\+\_\+id,  }\item[{const uint32\+\_\+t}]{object\+\_\+count,  }\item[{\mbox{\hyperlink{vision_8h_ae619120558539c13e53b5a6f42fb4375}{vision\+\_\+object\+\_\+s\+\_\+t}} $\ast$const}]{object\+\_\+arr }\end{DoxyParamCaption})}
+
+
+
+Reads up to object\+\_\+count object descriptors into object\+\_\+arr. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21), or fewer than object\+\_\+count number of objects were found. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port. E\+D\+OM -\/ size\+\_\+id is greater than the number of available objects.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em port} & The V5 port number from 1-\/21 \\
+\hline
+ & {\em size\+\_\+id} & The object to read from a list roughly ordered by object size (0 is the largest item, 1 is the second largest, etc.) \\
+\hline
+ & {\em object\+\_\+count} & The number of objects to read \\
+\hline
+\mbox{\texttt{ out}}  & {\em object\+\_\+arr} & \mbox{\hyperlink{structA}{A}} pointer to copy the objects into\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of object signatures copied. This number will be less than object\+\_\+count if there are fewer objects detected by the vision sensor. Returns P\+R\+O\+S\+\_\+\+E\+RR if the port was invalid, an error occurred, or fewer objects than size\+\_\+id were found. All objects in object\+\_\+arr that were not found are given V\+I\+S\+I\+O\+N\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+E\+R\+R\+\_\+\+S\+IG as their signature. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_a842a2758f2cf0964a91e376061380122}\label{vision_8h_a842a2758f2cf0964a91e376061380122}} 
+\index{vision.h@{vision.h}!vision\_set\_auto\_white\_balance@{vision\_set\_auto\_white\_balance}}
+\index{vision\_set\_auto\_white\_balance@{vision\_set\_auto\_white\_balance}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_set\_auto\_white\_balance()}{vision\_set\_auto\_white\_balance()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+set\+\_\+auto\+\_\+white\+\_\+balance (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const uint8\+\_\+t}]{enable }\end{DoxyParamCaption})}
+
+
+
+Enables/disables auto white-\/balancing on the Vision Sensor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em enabled} & Pass 0 to disable, 1 to enable\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_aa16405c90b21955c47960d814c9f8ef4}\label{vision_8h_aa16405c90b21955c47960d814c9f8ef4}} 
+\index{vision.h@{vision.h}!vision\_set\_exposure@{vision\_set\_exposure}}
+\index{vision\_set\_exposure@{vision\_set\_exposure}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_set\_exposure()}{vision\_set\_exposure()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+set\+\_\+exposure (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const uint8\+\_\+t}]{exposure }\end{DoxyParamCaption})}
+
+
+
+Sets the exposure parameter of the Vision Sensor. 
+
+See \href{https://pros.cs.purdue.edu/v5/tutorials/topical/vision.html\#exposure-setting}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/vision.\+html\#exposure-\/setting}} for more detials.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em percent} & The new exposure setting from \mbox{[}0,150\mbox{]}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_a115ef040c736971c180c812932d97dc7}\label{vision_8h_a115ef040c736971c180c812932d97dc7}} 
+\index{vision.h@{vision.h}!vision\_set\_led@{vision\_set\_led}}
+\index{vision\_set\_led@{vision\_set\_led}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_set\_led()}{vision\_set\_led()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+set\+\_\+led (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const int32\+\_\+t}]{rgb }\end{DoxyParamCaption})}
+
+
+
+Sets the vision sensor L\+ED color, overriding the automatic behavior. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em rgb} & An R\+GB code to set the L\+ED to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_a16cf475074058c13bba0fcea12906d82}\label{vision_8h_a16cf475074058c13bba0fcea12906d82}} 
+\index{vision.h@{vision.h}!vision\_set\_signature@{vision\_set\_signature}}
+\index{vision\_set\_signature@{vision\_set\_signature}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_set\_signature()}{vision\_set\_signature()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+set\+\_\+signature (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const uint8\+\_\+t}]{signature\+\_\+id,  }\item[{\mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} $\ast$const}]{signature\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Stores the supplied object detection signature onto the vision sensor. 
+
+N\+O\+TE\+: This saves the signature in volatile memory, and the signature will be lost as soon as the sensor is powered down.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em port} & The V5 port number from 1-\/21 \\
+\hline
+ & {\em signature\+\_\+id} & The signature id to store into \\
+\hline
+\mbox{\texttt{ in}}  & {\em signature\+\_\+ptr} & \mbox{\hyperlink{structA}{A}} pointer to the signature to save\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if no errors occured, P\+R\+O\+S\+\_\+\+E\+RR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_afe156ff40f90b71ef5bb1ce49d056d08}\label{vision_8h_afe156ff40f90b71ef5bb1ce49d056d08}} 
+\index{vision.h@{vision.h}!vision\_set\_white\_balance@{vision\_set\_white\_balance}}
+\index{vision\_set\_white\_balance@{vision\_set\_white\_balance}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_set\_white\_balance()}{vision\_set\_white\_balance()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+set\+\_\+white\+\_\+balance (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const int32\+\_\+t}]{rgb }\end{DoxyParamCaption})}
+
+
+
+Sets the white balance parameter of the Vision Sensor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em rgb} & The new R\+GB white balance setting of the sensor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_a446d8d1600570e573eb7afa9f0377e49}\label{vision_8h_a446d8d1600570e573eb7afa9f0377e49}} 
+\index{vision.h@{vision.h}!vision\_set\_wifi\_mode@{vision\_set\_wifi\_mode}}
+\index{vision\_set\_wifi\_mode@{vision\_set\_wifi\_mode}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_set\_wifi\_mode()}{vision\_set\_wifi\_mode()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+set\+\_\+wifi\+\_\+mode (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const uint8\+\_\+t}]{enable }\end{DoxyParamCaption})}
+
+
+
+Sets the Wi-\/\+Fi mode of the Vision sensor. 
+
+This functions uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given port is not within the range of V5 ports (1-\/21) E\+A\+C\+C\+E\+SS -\/ Anothe resources is currently trying to access the port
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em enable} & Disable Wi-\/\+Fi on the Vision sensor if 0, enable otherwise (e.\+g. 1)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_a17ba398060da4cff1dda541fde50773c}\label{vision_8h_a17ba398060da4cff1dda541fde50773c}} 
+\index{vision.h@{vision.h}!vision\_set\_zero\_point@{vision\_set\_zero\_point}}
+\index{vision\_set\_zero\_point@{vision\_set\_zero\_point}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_set\_zero\_point()}{vision\_set\_zero\_point()}}
+{\footnotesize\ttfamily int32\+\_\+t vision\+\_\+set\+\_\+zero\+\_\+point (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{\mbox{\hyperlink{vision_8h_a2e8bc1c48f8aab12275bfc1868fbbad6}{vision\+\_\+zero\+\_\+e\+\_\+t}}}]{zero\+\_\+point }\end{DoxyParamCaption})}
+
+
+
+Sets the (0,0) coordinate for the Field of View. 
+
+This will affect the coordinates returned for each request for a vision\+\_\+object\+\_\+s\+\_\+t from the sensor, so it is recommended that this function only be used to configure the sensor at the beginning of its use.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em zero\+\_\+point} & One of vision\+\_\+zero\+\_\+e\+\_\+t to set the (0,0) coordinate for the F\+OV\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vision_8h_a452a6732e27d1496360f69b84af7609f}\label{vision_8h_a452a6732e27d1496360f69b84af7609f}} 
+\index{vision.h@{vision.h}!vision\_signature\_from\_utility@{vision\_signature\_from\_utility}}
+\index{vision\_signature\_from\_utility@{vision\_signature\_from\_utility}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_signature\_from\_utility()}{vision\_signature\_from\_utility()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vision_8h_a135c729c7277f6cc019c2924088a5fd5}{vision\+\_\+signature\+\_\+s\+\_\+t}} vision\+\_\+signature\+\_\+from\+\_\+utility (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{id,  }\item[{const int32\+\_\+t}]{u\+\_\+min,  }\item[{const int32\+\_\+t}]{u\+\_\+max,  }\item[{const int32\+\_\+t}]{u\+\_\+mean,  }\item[{const int32\+\_\+t}]{v\+\_\+min,  }\item[{const int32\+\_\+t}]{v\+\_\+max,  }\item[{const int32\+\_\+t}]{v\+\_\+mean,  }\item[{const float}]{range,  }\item[{const int32\+\_\+t}]{type }\end{DoxyParamCaption})}
+
+
+
+Creates a signature from the vision sensor utility. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The signature ID \\
+\hline
+{\em u\+\_\+min} & Minimum value on U axis \\
+\hline
+{\em u\+\_\+max} & Maximum value on U axis \\
+\hline
+{\em u\+\_\+mean} & Mean value on U axis \\
+\hline
+{\em v\+\_\+min} & Minimum value on V axis \\
+\hline
+{\em v\+\_\+max} & Maximum value on V axis \\
+\hline
+{\em v\+\_\+mean} & Mean value on V axis \\
+\hline
+{\em range} & Scale factor \\
+\hline
+{\em type} & Signature type\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} vision\+\_\+signature\+\_\+s\+\_\+t that can be set using vision\+\_\+set\+\_\+signature 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{vision_8h_ae619120558539c13e53b5a6f42fb4375}\label{vision_8h_ae619120558539c13e53b5a6f42fb4375}} 
+\index{vision.h@{vision.h}!vision\_object\_s\_t@{vision\_object\_s\_t}}
+\index{vision\_object\_s\_t@{vision\_object\_s\_t}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_object\_s\_t}{vision\_object\_s\_t}}
+{\footnotesize\ttfamily vision\+\_\+object\+\_\+s\+\_\+t}
+
+\mbox{\Hypertarget{vision_8h_a135c729c7277f6cc019c2924088a5fd5}\label{vision_8h_a135c729c7277f6cc019c2924088a5fd5}} 
+\index{vision.h@{vision.h}!vision\_signature\_s\_t@{vision\_signature\_s\_t}}
+\index{vision\_signature\_s\_t@{vision\_signature\_s\_t}!vision.h@{vision.h}}
+\subsubsection{\texorpdfstring{vision\_signature\_s\_t}{vision\_signature\_s\_t}}
+{\footnotesize\ttfamily vision\+\_\+signature\+\_\+s\+\_\+t}
+

@@ -1,0 +1,84 @@
+\hypertarget{classokapi_1_1OdomMath}{}\section{okapi\+::Odom\+Math Class Reference}
+\label{classokapi_1_1OdomMath}\index{okapi::OdomMath@{okapi::OdomMath}}
+
+
+{\ttfamily \#include $<$odom\+Math.\+hpp$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Q\+Length \mbox{\hyperlink{classokapi_1_1OdomMath_ac81f741da8bbd4563314b2f44b2d2098}{compute\+Distance\+To\+Point}} (Q\+Length ix, Q\+Length iy, const \mbox{\hyperlink{structokapi_1_1OdomState}{Odom\+State}} \&istate)
+\item 
+static Q\+Angle \mbox{\hyperlink{classokapi_1_1OdomMath_a96413a2d30c4bf9c5e17accf06c5ea4f}{compute\+Angle\+To\+Point}} (Q\+Length ix, Q\+Length iy, const \mbox{\hyperlink{structokapi_1_1OdomState}{Odom\+State}} \&istate)
+\item 
+static std\+::tuple$<$ Q\+Length, Q\+Angle $>$ \mbox{\hyperlink{classokapi_1_1OdomMath_a69dfaa5262378560c644cd56a6f495b0}{compute\+Distance\+And\+Angle\+To\+Point}} (Q\+Length ix, Q\+Length iy, const \mbox{\hyperlink{structokapi_1_1OdomState}{Odom\+State}} \&istate)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1OdomMath_a96413a2d30c4bf9c5e17accf06c5ea4f}\label{classokapi_1_1OdomMath_a96413a2d30c4bf9c5e17accf06c5ea4f}} 
+\index{okapi::OdomMath@{okapi::OdomMath}!computeAngleToPoint@{computeAngleToPoint}}
+\index{computeAngleToPoint@{computeAngleToPoint}!okapi::OdomMath@{okapi::OdomMath}}
+\subsubsection{\texorpdfstring{computeAngleToPoint()}{computeAngleToPoint()}}
+{\footnotesize\ttfamily Q\+Angle okapi\+::\+Odom\+Math\+::compute\+Angle\+To\+Point (\begin{DoxyParamCaption}\item[{Q\+Length}]{ix,  }\item[{Q\+Length}]{iy,  }\item[{const \mbox{\hyperlink{structokapi_1_1OdomState}{Odom\+State}} \&}]{istate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Computes the angle from the given \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} state to the given point.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ix} & x coordinate \\
+\hline
+{\em iy} & y coordinate \\
+\hline
+{\em istate} & odometry state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+angle to the point 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1OdomMath_a69dfaa5262378560c644cd56a6f495b0}\label{classokapi_1_1OdomMath_a69dfaa5262378560c644cd56a6f495b0}} 
+\index{okapi::OdomMath@{okapi::OdomMath}!computeDistanceAndAngleToPoint@{computeDistanceAndAngleToPoint}}
+\index{computeDistanceAndAngleToPoint@{computeDistanceAndAngleToPoint}!okapi::OdomMath@{okapi::OdomMath}}
+\subsubsection{\texorpdfstring{computeDistanceAndAngleToPoint()}{computeDistanceAndAngleToPoint()}}
+{\footnotesize\ttfamily std\+::tuple$<$ Q\+Length, Q\+Angle $>$ okapi\+::\+Odom\+Math\+::compute\+Distance\+And\+Angle\+To\+Point (\begin{DoxyParamCaption}\item[{Q\+Length}]{ix,  }\item[{Q\+Length}]{iy,  }\item[{const \mbox{\hyperlink{structokapi_1_1OdomState}{Odom\+State}} \&}]{istate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Computes the distance and angle from the given \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} state to the given point.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ix} & x coordinate \\
+\hline
+{\em iy} & y coordinate \\
+\hline
+{\em istate} & odometry state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+distance and angle to the point 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1OdomMath_ac81f741da8bbd4563314b2f44b2d2098}\label{classokapi_1_1OdomMath_ac81f741da8bbd4563314b2f44b2d2098}} 
+\index{okapi::OdomMath@{okapi::OdomMath}!computeDistanceToPoint@{computeDistanceToPoint}}
+\index{computeDistanceToPoint@{computeDistanceToPoint}!okapi::OdomMath@{okapi::OdomMath}}
+\subsubsection{\texorpdfstring{computeDistanceToPoint()}{computeDistanceToPoint()}}
+{\footnotesize\ttfamily Q\+Length okapi\+::\+Odom\+Math\+::compute\+Distance\+To\+Point (\begin{DoxyParamCaption}\item[{Q\+Length}]{ix,  }\item[{Q\+Length}]{iy,  }\item[{const \mbox{\hyperlink{structokapi_1_1OdomState}{Odom\+State}} \&}]{istate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Computes the distance from the given \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} state to the given point.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ix} & x coordinate \\
+\hline
+{\em iy} & y coordinate \\
+\hline
+{\em istate} & odometry state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+distance between the points 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/odometry/\mbox{\hyperlink{odomMath_8hpp}{odom\+Math.\+hpp}}\item 
+src/api/odometry/\mbox{\hyperlink{odomMath_8cpp}{odom\+Math.\+cpp}}\end{DoxyCompactItemize}

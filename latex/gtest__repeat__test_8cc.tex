@@ -1,0 +1,60 @@
+\hypertarget{gtest__repeat__test_8cc}{}\section{cmake-\/build-\/debug/googletest-\/src/googletest/test/gtest\+\_\+repeat\+\_\+test.cc File Reference}
+\label{gtest__repeat__test_8cc}\index{cmake-\/build-\/debug/googletest-\/src/googletest/test/gtest\_repeat\_test.cc@{cmake-\/build-\/debug/googletest-\/src/googletest/test/gtest\_repeat\_test.cc}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}gtest/gtest.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}src/gtest-\/internal-\/inl.\+h\char`\"{}}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacetesting}{testing}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gtest__repeat__test_8cc_a7e5ba7c523079f679398b4c730184de3}{G\+T\+E\+S\+T\+\_\+\+C\+H\+E\+C\+K\+\_\+\+I\+N\+T\+\_\+\+E\+Q\+\_\+}}(expected,  actual)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacetesting_a37b7e87f0a5f502c6918f37d1768c1f3}{testing\+::\+G\+T\+E\+S\+T\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+string\+\_\+}} (death\+\_\+test\+\_\+style)
+\item 
+\mbox{\hyperlink{namespacetesting_a20d69860ce843142c7f740262e6b0c9a}{testing\+::\+G\+T\+E\+S\+T\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+string\+\_\+}} (filter)
+\item 
+\mbox{\hyperlink{namespacetesting_a315ef0647e4f2795bf1705de8e9c9659}{testing\+::\+G\+T\+E\+S\+T\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+int32\+\_\+}} (repeat)
+\item 
+int \mbox{\hyperlink{gtest__repeat__test_8cc_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gtest__repeat__test_8cc_a7e5ba7c523079f679398b4c730184de3}\label{gtest__repeat__test_8cc_a7e5ba7c523079f679398b4c730184de3}} 
+\index{gtest\_repeat\_test.cc@{gtest\_repeat\_test.cc}!GTEST\_CHECK\_INT\_EQ\_@{GTEST\_CHECK\_INT\_EQ\_}}
+\index{GTEST\_CHECK\_INT\_EQ\_@{GTEST\_CHECK\_INT\_EQ\_}!gtest\_repeat\_test.cc@{gtest\_repeat\_test.cc}}
+\subsubsection{\texorpdfstring{GTEST\_CHECK\_INT\_EQ\_}{GTEST\_CHECK\_INT\_EQ\_}}
+{\footnotesize\ttfamily \#define G\+T\+E\+S\+T\+\_\+\+C\+H\+E\+C\+K\+\_\+\+I\+N\+T\+\_\+\+E\+Q\+\_\+(\begin{DoxyParamCaption}\item[{}]{expected,  }\item[{}]{actual }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{\(\backslash\)}
+\DoxyCodeLine{    const \textcolor{keywordtype}{int} expected\_val = (expected);\(\backslash\)}
+\DoxyCodeLine{    const \textcolor{keywordtype}{int} actual\_val = (actual);\(\backslash\)}
+\DoxyCodeLine{    if (::\mbox{\hyperlink{namespacetesting_1_1internal_a527b9bcc13669b9a16400c8514266254}{testing::internal::IsTrue}}(expected\_val != actual\_val)) \{\(\backslash\)}
+\DoxyCodeLine{      ::std::cout << \textcolor{stringliteral}{"Value of: "} \#actual \textcolor{stringliteral}{"\(\backslash\)n"}\(\backslash\)}
+\DoxyCodeLine{                  << \textcolor{stringliteral}{"  Actual: "} << actual\_val << \textcolor{stringliteral}{"\(\backslash\)n"}\(\backslash\)}
+\DoxyCodeLine{                  << \textcolor{stringliteral}{"Expected: "} \#expected \textcolor{stringliteral}{"\(\backslash\)n"}\(\backslash\)}
+\DoxyCodeLine{                  << \textcolor{stringliteral}{"Which is: "} << expected\_val << \textcolor{stringliteral}{"\(\backslash\)n"};\mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a69b8278c59359dd6a6f941b4643db9fb}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a69b8278c59359dd6a6f941b4643db9fb}{      ::testing::internal::posix::Abort}}();\(\backslash\)}
+\DoxyCodeLine{    \}\(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (::\mbox{\hyperlink{namespacetesting_1_1internal_a4b24c851ab13569b1b15b3d259b60d2e}{testing::internal::AlwaysFalse}}())}
+
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gtest__repeat__test_8cc_a3c04138a5bfe5d72780bb7e82a18e627}\label{gtest__repeat__test_8cc_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{gtest\_repeat\_test.cc@{gtest\_repeat\_test.cc}!main@{main}}
+\index{main@{main}!gtest\_repeat\_test.cc@{gtest\_repeat\_test.cc}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+

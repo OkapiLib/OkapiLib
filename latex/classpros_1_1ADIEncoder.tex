@@ -1,0 +1,87 @@
+\hypertarget{classpros_1_1ADIEncoder}{}\section{pros\+::A\+D\+I\+Encoder Class Reference}
+\label{classpros_1_1ADIEncoder}\index{pros::ADIEncoder@{pros::ADIEncoder}}
+
+
+{\ttfamily \#include $<$adi.\+hpp$>$}
+
+Inheritance diagram for pros\+::A\+D\+I\+Encoder\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpros_1_1ADIEncoder}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpros_1_1ADIEncoder_a927287940aedad3ea67f292908c623f7}{A\+D\+I\+Encoder}} (std\+::uint8\+\_\+t port\+\_\+top, std\+::uint8\+\_\+t port\+\_\+bottom, bool reversed=false)
+\begin{DoxyCompactList}\small\item\em Configures a set of A\+DI ports to act as an Encoder. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1ADIEncoder_a38a555946a841150b203f940b4b44cc8}{reset}} (void) const
+\begin{DoxyCompactList}\small\item\em Sets the encoder value to zero. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1ADIEncoder_acb4c087c7318028db25ae39dabb64700}{get\+\_\+value}} (void) const
+\begin{DoxyCompactList}\small\item\em Gets the number of ticks recorded by the encoder. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpros_1_1ADIEncoder_a927287940aedad3ea67f292908c623f7}\label{classpros_1_1ADIEncoder_a927287940aedad3ea67f292908c623f7}} 
+\index{pros::ADIEncoder@{pros::ADIEncoder}!ADIEncoder@{ADIEncoder}}
+\index{ADIEncoder@{ADIEncoder}!pros::ADIEncoder@{pros::ADIEncoder}}
+\subsubsection{\texorpdfstring{ADIEncoder()}{ADIEncoder()}}
+{\footnotesize\ttfamily pros\+::\+A\+D\+I\+Encoder\+::\+A\+D\+I\+Encoder (\begin{DoxyParamCaption}\item[{std\+::uint8\+\_\+t}]{port\+\_\+top,  }\item[{std\+::uint8\+\_\+t}]{port\+\_\+bottom,  }\item[{bool}]{reversed = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Configures a set of A\+DI ports to act as an Encoder. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port\+\_\+top} & The \char`\"{}top\char`\"{} wire from the encoder sensor with the removable cover side UP \\
+\hline
+{\em port\+\_\+bottom} & The \char`\"{}bottom\char`\"{} wire from the encoder sensor \\
+\hline
+{\em reverse} & If \char`\"{}true\char`\"{}, the sensor will count in the opposite direction \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classpros_1_1ADIEncoder_acb4c087c7318028db25ae39dabb64700}\label{classpros_1_1ADIEncoder_acb4c087c7318028db25ae39dabb64700}} 
+\index{pros::ADIEncoder@{pros::ADIEncoder}!get\_value@{get\_value}}
+\index{get\_value@{get\_value}!pros::ADIEncoder@{pros::ADIEncoder}}
+\subsubsection{\texorpdfstring{get\_value()}{get\_value()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+A\+D\+I\+Encoder\+::get\+\_\+value (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the number of ticks recorded by the encoder. 
+
+There are 360 ticks in one revolution.
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+\begin{DoxyReturn}{Returns}
+The signed and cumulative number of counts since the last start or reset 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classpros_1_1ADIEncoder_a38a555946a841150b203f940b4b44cc8}\label{classpros_1_1ADIEncoder_a38a555946a841150b203f940b4b44cc8}} 
+\index{pros::ADIEncoder@{pros::ADIEncoder}!reset@{reset}}
+\index{reset@{reset}!pros::ADIEncoder@{pros::ADIEncoder}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+A\+D\+I\+Encoder\+::reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Sets the encoder value to zero. 
+
+It is safe to use this method while an encoder is enabled. It is not necessary to call this method before stopping or starting an encoder.
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/pros/\mbox{\hyperlink{adi_8hpp}{adi.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,407 @@
+\hypertarget{tpunit_09_09_8hpp}{}\section{include/test/\+Fake\+It/tests/tpunit++.hpp File Reference}
+\label{tpunit_09_09_8hpp}\index{include/test/FakeIt/tests/tpunit++.hpp@{include/test/FakeIt/tests/tpunit++.hpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classtpunit_1_1TestFixture}{tpunit\+::\+Test\+Fixture}}
+\begin{DoxyCompactList}\small\item\em The primary class that provides the integration point for creating user defined test cases. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classtpunit_1_1Tests}{tpunit\+::\+Tests}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structA}{A}} class containing the primary entry point for running all registered tpunit++ test cases. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacetpunit}{tpunit}}
+\begin{DoxyCompactList}\small\item\em Try our best to detect compiler support for exception handling so we can catch and report Any unhandled exceptions as normal failures. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a7ee441aaaebce7194f4a268fddabae29}{T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+V\+E\+R\+S\+I\+ON}}~1001000
+\begin{DoxyCompactList}\small\item\em Copyright (c) 2013 Trevor Pounds \href{mailto:trevor.pounds@gmail.com}{\texttt{ trevor.\+pounds@gmail.\+com}} \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_ae9d56aa9860ae6a3e36950269aac0f83}{T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+M\+A\+J\+OR}}~1
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a755ce023b4d834cc764f44db4755ec3e}{T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+M\+I\+N\+OR}}~1
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_ac53c99db3c030d2134dce185992fd182}{T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+P\+A\+T\+CH}}~0
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}()~\+\_\+\+\_\+assert(\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+); return;
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+R\+T()}}; generates a failure, immediately returning from the currently executing test function. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}()~\+\_\+\+\_\+assert(\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+);
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}()~/$\ast$ do nothing $\ast$/
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a670dccd8f2591bf2f2f4732030c3a458}{T\+R\+A\+CE}}(message)~\+\_\+\+\_\+trace(\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, message);
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_ae9244bfbda562e8b798789b001993fa5}{A\+S\+S\+E\+R\+T\+\_\+\+T\+R\+UE}}(condition)~if(condition) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}
+\begin{DoxyCompactList}\small\item\em The set of core macros for basic predicate testing of boolean expressions and value comparisons. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_ac33e7cdfb5d44a7a0f0ab552eb5c3c6a}{E\+X\+P\+E\+C\+T\+\_\+\+T\+R\+UE}}(condition)~if(condition) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a8197fa52f3538588d20d8af4834c9003}{A\+S\+S\+E\+R\+T\+\_\+\+F\+A\+L\+SE}}(condition)~if(condition) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_aeb6c7ae89f440c90c1a1815951c836da}{E\+X\+P\+E\+C\+T\+\_\+\+F\+A\+L\+SE}}(condition)~if(condition) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a3e16b1fcae4faf6db06deb83f227eb51}{A\+S\+S\+E\+R\+T\+\_\+\+E\+Q\+U\+AL}}(lhs,  rhs)~if((lhs) == (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_ab37b1a70b17981a908f65f06deffc732}{E\+X\+P\+E\+C\+T\+\_\+\+E\+Q\+U\+AL}}(lhs,  rhs)~if((lhs) == (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a71b3e850f1b04dafe31067c9cfd63839}{A\+S\+S\+E\+R\+T\+\_\+\+N\+O\+T\+\_\+\+E\+Q\+U\+AL}}(lhs,  rhs)~if((lhs) != (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_ae1715589350871e3b611b9f36dcd5d20}{E\+X\+P\+E\+C\+T\+\_\+\+N\+O\+T\+\_\+\+E\+Q\+U\+AL}}(lhs,  rhs)~if((lhs) != (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_ab7712fe00d3ef9d8c5bba96a1c1ebd76}{A\+S\+S\+E\+R\+T\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+\+T\+H\+AN}}(lhs,  rhs)~if((lhs) $>$ (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_afa2e97fdd029c8e8e3756169cef43b36}{E\+X\+P\+E\+C\+T\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+\+T\+H\+AN}}(lhs,  rhs)~if((lhs) $>$ (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a3413bff9c45e39eb77d74b763e8894c2}{A\+S\+S\+E\+R\+T\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+\+T\+H\+A\+N\+\_\+\+E\+Q\+U\+AL}}(lhs,  rhs)~if((lhs) $>$= (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a2b575aa0efec325cbba0dfb6b560ecce}{E\+X\+P\+E\+C\+T\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+\+T\+H\+A\+N\+\_\+\+E\+Q\+U\+AL}}(lhs,  rhs)~if((lhs) $>$= (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a38f249b6d202b2c68e39adf6a4cace22}{A\+S\+S\+E\+R\+T\+\_\+\+L\+E\+S\+S\+\_\+\+T\+H\+AN}}(lhs,  rhs)~if((lhs) $<$ (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a6310c13fd75cc42c475ddc75e1433c50}{E\+X\+P\+E\+C\+T\+\_\+\+L\+E\+S\+S\+\_\+\+T\+H\+AN}}(lhs,  rhs)~if((lhs) $<$ (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a75a8035855f4e315ed11c71d79d0e672}{A\+S\+S\+E\+R\+T\+\_\+\+L\+E\+S\+S\+\_\+\+T\+H\+A\+N\+\_\+\+E\+Q\+U\+AL}}(lhs,  rhs)~if((lhs) $<$= (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a465480b9a1511a8d4b4c5910588d4d09}{E\+X\+P\+E\+C\+T\+\_\+\+L\+E\+S\+S\+\_\+\+T\+H\+A\+N\+\_\+\+E\+Q\+U\+AL}}(lhs,  rhs)~if((lhs) $<$= (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a7a84c21e114a6944923529f6e3d48479}{A\+S\+S\+E\+R\+T\+\_\+\+F\+L\+O\+A\+T\+\_\+\+E\+Q\+U\+AL}}(lhs,  rhs)~if(\+\_\+\+\_\+fp\+\_\+equal(lhs, rhs, 4)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}
+\begin{DoxyCompactList}\small\item\em The set of floating-\/point macros used to compare double/float values. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a8d8a248acaf71da130a2d80f81e4d214}{E\+X\+P\+E\+C\+T\+\_\+\+F\+L\+O\+A\+T\+\_\+\+E\+Q\+U\+AL}}(lhs,  rhs)~if(\+\_\+\+\_\+fp\+\_\+equal(lhs, rhs, 4)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_aa22f84970fde866e7244916c1977ecac}{A\+S\+S\+E\+R\+T\+\_\+\+F\+L\+O\+A\+T\+\_\+\+N\+E\+AR}}(lhs,  rhs,  abs\+\_\+error)~if((((lhs) $>$ (rhs)) ? (lhs) -\/ (rhs) \+: (rhs) -\/ (lhs)) $<$= (abs\+\_\+error)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a061727fd62c27901b613d43f620fb1a8}{E\+X\+P\+E\+C\+T\+\_\+\+F\+L\+O\+A\+T\+\_\+\+N\+E\+AR}}(lhs,  rhs,  abs\+\_\+error)~if((((lhs) $>$ (rhs)) ? (lhs) -\/ (rhs) \+: (rhs) -\/ (lhs)) $<$= (abs\+\_\+error)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_ac7d913ad1c823959b8cab6099aa76f23}{A\+S\+S\+E\+R\+T\+\_\+\+T\+H\+R\+OW}}(statement,  exception)~try \{ statement; \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \} catch(const exception\&) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} catch(...) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}
+\begin{DoxyCompactList}\small\item\em The set of macros for checking whether a statement will throw or not throw an exception. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a75edf3b7adbb695b41e1e89294b8e9b9}{E\+X\+P\+E\+C\+T\+\_\+\+T\+H\+R\+OW}}(statement,  exception)~try \{ statement; \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \} catch(const exception\&) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} catch(...) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a895c34d9b192cdc2ba46d2680623485d}{A\+S\+S\+E\+R\+T\+\_\+\+N\+O\+\_\+\+T\+H\+R\+OW}}(statement)~try \{ statement; \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} catch(...) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a2743a1438137ad857aa3f9fec3ff67ec}{E\+X\+P\+E\+C\+T\+\_\+\+N\+O\+\_\+\+T\+H\+R\+OW}}(statement)~try \{ statement; \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} catch(...) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_affadeef9379fe5aabf6f28d9eab9d3c0}{A\+S\+S\+E\+R\+T\+\_\+\+A\+N\+Y\+\_\+\+T\+H\+R\+OW}}(statement)~try \{ statement; \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \} catch(...) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a9be43f44d148e8a8d6a89c864bf4e461}{E\+X\+P\+E\+C\+T\+\_\+\+A\+N\+Y\+\_\+\+T\+H\+R\+OW}}(statement)~try \{ statement; \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \} catch(...) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \}
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a77fa5eae9b80301d6b1f931e23c96ab6}{A\+F\+T\+ER}}(M)~After(\&M, \char`\"{}After\+: \char`\"{} \#M)
+\begin{DoxyCompactList}\small\item\em The set of convenience macros for registering functions with the test fixture. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_aa231db4647765271f65760f1b13262bc}{A\+F\+T\+E\+R\+\_\+\+C\+L\+A\+SS}}(M)~After\+Class(\&M, \char`\"{}After\+Class\+: \char`\"{} \#M)
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a6826a4bbb4a02dbad146b503c9e22c6e}{B\+E\+F\+O\+RE}}(M)~Before(\&M, \char`\"{}Before\+: \char`\"{} \#M)
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a26f23b290ea6a4dacee1c986d8f9a723}{B\+E\+F\+O\+R\+E\+\_\+\+C\+L\+A\+SS}}(M)~Before\+Class(\&M, \char`\"{}Before\+Class\+: \char`\"{} \#M)
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_a0456f69f2946e7d465913c54791745fd}{T\+E\+ST}}(M)~Test(\&M, \#M)
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_ac06f0ac4effd595801ece83434cf1a09}{S\+E\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E\+\_\+\+M\+E\+T\+H\+OD}}(M)
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_aba9ffb3aead113665e6bc7c927a02dff}{\+\_\+\+\_\+\+T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+T\+RY}}~if(true)
+\item 
+\#define \mbox{\hyperlink{tpunit_09_09_8hpp_afaca5286317be2a960c0869d6ef85b4b}{\+\_\+\+\_\+\+T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+C\+A\+T\+CH}}(E)~if(false)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tpunit_09_09_8hpp_afaca5286317be2a960c0869d6ef85b4b}\label{tpunit_09_09_8hpp_afaca5286317be2a960c0869d6ef85b4b}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!\_\_TPUNITPP\_CATCH@{\_\_TPUNITPP\_CATCH}}
+\index{\_\_TPUNITPP\_CATCH@{\_\_TPUNITPP\_CATCH}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{\_\_TPUNITPP\_CATCH}{\_\_TPUNITPP\_CATCH}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+C\+A\+T\+CH(\begin{DoxyParamCaption}\item[{}]{E }\end{DoxyParamCaption})~if(false)}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_aba9ffb3aead113665e6bc7c927a02dff}\label{tpunit_09_09_8hpp_aba9ffb3aead113665e6bc7c927a02dff}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!\_\_TPUNITPP\_TRY@{\_\_TPUNITPP\_TRY}}
+\index{\_\_TPUNITPP\_TRY@{\_\_TPUNITPP\_TRY}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{\_\_TPUNITPP\_TRY}{\_\_TPUNITPP\_TRY}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+T\+RY~if(true)}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}\label{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ABORT@{ABORT}}
+\index{ABORT@{ABORT}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ABORT}{ABORT}}
+{\footnotesize\ttfamily \#define A\+B\+O\+RT(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\+\_\+\+\_\+assert(\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+); return;}
+
+
+
+\mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+R\+T()}}; generates a failure, immediately returning from the currently executing test function. 
+
+\mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+I\+L()}}; generates a failure, allowing the currently executing test function to continue. \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+S\+S()}}; does nothing, effectively considered a N\+OP but may be useful for annotating test cases with their desired intent. \mbox{\hyperlink{tpunit_09_09_8hpp_a670dccd8f2591bf2f2f4732030c3a458}{T\+R\+A\+C\+E(message)}}; adds a trace to the test output with a user specified string message. \mbox{\Hypertarget{tpunit_09_09_8hpp_a77fa5eae9b80301d6b1f931e23c96ab6}\label{tpunit_09_09_8hpp_a77fa5eae9b80301d6b1f931e23c96ab6}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!AFTER@{AFTER}}
+\index{AFTER@{AFTER}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{AFTER}{AFTER}}
+{\footnotesize\ttfamily \#define A\+F\+T\+ER(\begin{DoxyParamCaption}\item[{}]{M }\end{DoxyParamCaption})~After(\&M, \char`\"{}After\+: \char`\"{} \#M)}
+
+
+
+The set of convenience macros for registering functions with the test fixture. 
+
+\mbox{\hyperlink{tpunit_09_09_8hpp_a77fa5eae9b80301d6b1f931e23c96ab6}{A\+F\+T\+E\+R(function)}}; registers a function to run once after each subsequent test function within a test fixture. \mbox{\hyperlink{tpunit_09_09_8hpp_aa231db4647765271f65760f1b13262bc}{A\+F\+T\+E\+R\+\_\+\+C\+L\+A\+S\+S(function)}}; registers a function to run once after all test functions within a test fixture. Useful for cleaning up shared state used by all test functions. \mbox{\hyperlink{tpunit_09_09_8hpp_a6826a4bbb4a02dbad146b503c9e22c6e}{B\+E\+F\+O\+R\+E(function)}}; registers a function to run once before each subsequent test function within a test fixture. \mbox{\hyperlink{tpunit_09_09_8hpp_a26f23b290ea6a4dacee1c986d8f9a723}{B\+E\+F\+O\+R\+E\+\_\+\+C\+L\+A\+S\+S(function)}}; registers a function to run once before all test functions within a test fixture. Useful for initializing shared state used by all test functions. \mbox{\hyperlink{tpunit_09_09_8hpp_a0456f69f2946e7d465913c54791745fd}{T\+E\+S\+T(function)}}; registers a function to run as a test within a test fixture. \mbox{\Hypertarget{tpunit_09_09_8hpp_aa231db4647765271f65760f1b13262bc}\label{tpunit_09_09_8hpp_aa231db4647765271f65760f1b13262bc}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!AFTER\_CLASS@{AFTER\_CLASS}}
+\index{AFTER\_CLASS@{AFTER\_CLASS}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{AFTER\_CLASS}{AFTER\_CLASS}}
+{\footnotesize\ttfamily \#define A\+F\+T\+E\+R\+\_\+\+C\+L\+A\+SS(\begin{DoxyParamCaption}\item[{}]{M }\end{DoxyParamCaption})~After\+Class(\&M, \char`\"{}After\+Class\+: \char`\"{} \#M)}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_affadeef9379fe5aabf6f28d9eab9d3c0}\label{tpunit_09_09_8hpp_affadeef9379fe5aabf6f28d9eab9d3c0}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ASSERT\_ANY\_THROW@{ASSERT\_ANY\_THROW}}
+\index{ASSERT\_ANY\_THROW@{ASSERT\_ANY\_THROW}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ASSERT\_ANY\_THROW}{ASSERT\_ANY\_THROW}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+A\+N\+Y\+\_\+\+T\+H\+R\+OW(\begin{DoxyParamCaption}\item[{}]{statement }\end{DoxyParamCaption})~try \{ statement; \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \} catch(...) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a3e16b1fcae4faf6db06deb83f227eb51}\label{tpunit_09_09_8hpp_a3e16b1fcae4faf6db06deb83f227eb51}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ASSERT\_EQUAL@{ASSERT\_EQUAL}}
+\index{ASSERT\_EQUAL@{ASSERT\_EQUAL}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ASSERT\_EQUAL}{ASSERT\_EQUAL}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+E\+Q\+U\+AL(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if((lhs) == (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a8197fa52f3538588d20d8af4834c9003}\label{tpunit_09_09_8hpp_a8197fa52f3538588d20d8af4834c9003}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ASSERT\_FALSE@{ASSERT\_FALSE}}
+\index{ASSERT\_FALSE@{ASSERT\_FALSE}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ASSERT\_FALSE}{ASSERT\_FALSE}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+F\+A\+L\+SE(\begin{DoxyParamCaption}\item[{}]{condition }\end{DoxyParamCaption})~if(condition) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a7a84c21e114a6944923529f6e3d48479}\label{tpunit_09_09_8hpp_a7a84c21e114a6944923529f6e3d48479}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ASSERT\_FLOAT\_EQUAL@{ASSERT\_FLOAT\_EQUAL}}
+\index{ASSERT\_FLOAT\_EQUAL@{ASSERT\_FLOAT\_EQUAL}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ASSERT\_FLOAT\_EQUAL}{ASSERT\_FLOAT\_EQUAL}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+F\+L\+O\+A\+T\+\_\+\+E\+Q\+U\+AL(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if(\+\_\+\+\_\+fp\+\_\+equal(lhs, rhs, 4)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}}
+
+
+
+The set of floating-\/point macros used to compare double/float values. 
+
+A\+S\+S\+E\+R\+T$\vert$\+E\+X\+P\+E\+C\+T\+\_\+\+F\+L\+O\+A\+T\+\_\+\+E\+Q\+U\+AL(lhs, rhs); generates a failure if the given floating-\/point values are not within 4 U\+L\+Ps of each other. A\+S\+S\+E\+R\+T$\vert$\+E\+X\+P\+E\+C\+T\+\_\+\+F\+L\+O\+A\+T\+\_\+\+N\+E\+AR(lhs, rhs, abs\+\_\+error); generates a failure if the given floating-\/point values exceed the absolute error. \mbox{\Hypertarget{tpunit_09_09_8hpp_aa22f84970fde866e7244916c1977ecac}\label{tpunit_09_09_8hpp_aa22f84970fde866e7244916c1977ecac}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ASSERT\_FLOAT\_NEAR@{ASSERT\_FLOAT\_NEAR}}
+\index{ASSERT\_FLOAT\_NEAR@{ASSERT\_FLOAT\_NEAR}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ASSERT\_FLOAT\_NEAR}{ASSERT\_FLOAT\_NEAR}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+F\+L\+O\+A\+T\+\_\+\+N\+E\+AR(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs,  }\item[{}]{abs\+\_\+error }\end{DoxyParamCaption})~if((((lhs) $>$ (rhs)) ? (lhs) -\/ (rhs) \+: (rhs) -\/ (lhs)) $<$= (abs\+\_\+error)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_ab7712fe00d3ef9d8c5bba96a1c1ebd76}\label{tpunit_09_09_8hpp_ab7712fe00d3ef9d8c5bba96a1c1ebd76}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ASSERT\_GREATER\_THAN@{ASSERT\_GREATER\_THAN}}
+\index{ASSERT\_GREATER\_THAN@{ASSERT\_GREATER\_THAN}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ASSERT\_GREATER\_THAN}{ASSERT\_GREATER\_THAN}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+\+T\+H\+AN(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if((lhs) $>$ (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a3413bff9c45e39eb77d74b763e8894c2}\label{tpunit_09_09_8hpp_a3413bff9c45e39eb77d74b763e8894c2}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ASSERT\_GREATER\_THAN\_EQUAL@{ASSERT\_GREATER\_THAN\_EQUAL}}
+\index{ASSERT\_GREATER\_THAN\_EQUAL@{ASSERT\_GREATER\_THAN\_EQUAL}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ASSERT\_GREATER\_THAN\_EQUAL}{ASSERT\_GREATER\_THAN\_EQUAL}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+\+T\+H\+A\+N\+\_\+\+E\+Q\+U\+AL(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if((lhs) $>$= (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a38f249b6d202b2c68e39adf6a4cace22}\label{tpunit_09_09_8hpp_a38f249b6d202b2c68e39adf6a4cace22}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ASSERT\_LESS\_THAN@{ASSERT\_LESS\_THAN}}
+\index{ASSERT\_LESS\_THAN@{ASSERT\_LESS\_THAN}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ASSERT\_LESS\_THAN}{ASSERT\_LESS\_THAN}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+L\+E\+S\+S\+\_\+\+T\+H\+AN(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if((lhs) $<$ (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a75a8035855f4e315ed11c71d79d0e672}\label{tpunit_09_09_8hpp_a75a8035855f4e315ed11c71d79d0e672}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ASSERT\_LESS\_THAN\_EQUAL@{ASSERT\_LESS\_THAN\_EQUAL}}
+\index{ASSERT\_LESS\_THAN\_EQUAL@{ASSERT\_LESS\_THAN\_EQUAL}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ASSERT\_LESS\_THAN\_EQUAL}{ASSERT\_LESS\_THAN\_EQUAL}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+L\+E\+S\+S\+\_\+\+T\+H\+A\+N\+\_\+\+E\+Q\+U\+AL(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if((lhs) $<$= (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a895c34d9b192cdc2ba46d2680623485d}\label{tpunit_09_09_8hpp_a895c34d9b192cdc2ba46d2680623485d}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ASSERT\_NO\_THROW@{ASSERT\_NO\_THROW}}
+\index{ASSERT\_NO\_THROW@{ASSERT\_NO\_THROW}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ASSERT\_NO\_THROW}{ASSERT\_NO\_THROW}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+N\+O\+\_\+\+T\+H\+R\+OW(\begin{DoxyParamCaption}\item[{}]{statement }\end{DoxyParamCaption})~try \{ statement; \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} catch(...) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a71b3e850f1b04dafe31067c9cfd63839}\label{tpunit_09_09_8hpp_a71b3e850f1b04dafe31067c9cfd63839}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ASSERT\_NOT\_EQUAL@{ASSERT\_NOT\_EQUAL}}
+\index{ASSERT\_NOT\_EQUAL@{ASSERT\_NOT\_EQUAL}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ASSERT\_NOT\_EQUAL}{ASSERT\_NOT\_EQUAL}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+N\+O\+T\+\_\+\+E\+Q\+U\+AL(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if((lhs) != (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_ac7d913ad1c823959b8cab6099aa76f23}\label{tpunit_09_09_8hpp_ac7d913ad1c823959b8cab6099aa76f23}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ASSERT\_THROW@{ASSERT\_THROW}}
+\index{ASSERT\_THROW@{ASSERT\_THROW}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ASSERT\_THROW}{ASSERT\_THROW}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+T\+H\+R\+OW(\begin{DoxyParamCaption}\item[{}]{statement,  }\item[{}]{exception }\end{DoxyParamCaption})~try \{ statement; \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \} catch(const exception\&) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} catch(...) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}}
+
+
+
+The set of macros for checking whether a statement will throw or not throw an exception. 
+
+Note, the checked exception macros will generally not work with compilers that do not support exceptions or have them explicitly turned off using a compiler flag (e.\+g. -\/fno-\/exceptions).
+
+A\+S\+S\+E\+R\+T$\vert$\+E\+X\+P\+E\+C\+T\+\_\+\+T\+H\+R\+OW(statement, exception); generates a failure if the given statement does not throw the supplied excetion. A\+S\+S\+E\+R\+T$\vert$\+E\+X\+P\+E\+C\+T\+\_\+\+N\+O\+\_\+\+T\+H\+R\+OW(statement, exception); generates a failure if the given statement throws Any exception. Useful for ensuring a statement never throws an exception. A\+S\+S\+E\+R\+T$\vert$\+E\+X\+P\+E\+C\+T\+\_\+\+A\+N\+Y\+\_\+\+T\+H\+R\+OW(statement); generates a failure if the given statement does not throw Any exceptions. \mbox{\Hypertarget{tpunit_09_09_8hpp_ae9244bfbda562e8b798789b001993fa5}\label{tpunit_09_09_8hpp_ae9244bfbda562e8b798789b001993fa5}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!ASSERT\_TRUE@{ASSERT\_TRUE}}
+\index{ASSERT\_TRUE@{ASSERT\_TRUE}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{ASSERT\_TRUE}{ASSERT\_TRUE}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+T\+R\+UE(\begin{DoxyParamCaption}\item[{}]{condition }\end{DoxyParamCaption})~if(condition) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a83f1b9ca93564e467aea795ee0711be7}{A\+B\+O\+RT}}(); \}}
+
+
+
+The set of core macros for basic predicate testing of boolean expressions and value comparisons. 
+
+A\+S\+S\+E\+R\+T\+\_\+$\ast$(...); generates a failure, immediately returning from the currently executing test function if the supplied predicate is not satisfied. E\+X\+P\+E\+C\+T\+\_\+$\ast$(...); generates a failure, allowing the currently executing test function to continue if the supplied predicate is not satisified. \mbox{\Hypertarget{tpunit_09_09_8hpp_a6826a4bbb4a02dbad146b503c9e22c6e}\label{tpunit_09_09_8hpp_a6826a4bbb4a02dbad146b503c9e22c6e}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!BEFORE@{BEFORE}}
+\index{BEFORE@{BEFORE}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{BEFORE}{BEFORE}}
+{\footnotesize\ttfamily \#define B\+E\+F\+O\+RE(\begin{DoxyParamCaption}\item[{}]{M }\end{DoxyParamCaption})~Before(\&M, \char`\"{}Before\+: \char`\"{} \#M)}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a26f23b290ea6a4dacee1c986d8f9a723}\label{tpunit_09_09_8hpp_a26f23b290ea6a4dacee1c986d8f9a723}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!BEFORE\_CLASS@{BEFORE\_CLASS}}
+\index{BEFORE\_CLASS@{BEFORE\_CLASS}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{BEFORE\_CLASS}{BEFORE\_CLASS}}
+{\footnotesize\ttfamily \#define B\+E\+F\+O\+R\+E\+\_\+\+C\+L\+A\+SS(\begin{DoxyParamCaption}\item[{}]{M }\end{DoxyParamCaption})~Before\+Class(\&M, \char`\"{}Before\+Class\+: \char`\"{} \#M)}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a9be43f44d148e8a8d6a89c864bf4e461}\label{tpunit_09_09_8hpp_a9be43f44d148e8a8d6a89c864bf4e461}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!EXPECT\_ANY\_THROW@{EXPECT\_ANY\_THROW}}
+\index{EXPECT\_ANY\_THROW@{EXPECT\_ANY\_THROW}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{EXPECT\_ANY\_THROW}{EXPECT\_ANY\_THROW}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+A\+N\+Y\+\_\+\+T\+H\+R\+OW(\begin{DoxyParamCaption}\item[{}]{statement }\end{DoxyParamCaption})~try \{ statement; \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \} catch(...) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_ab37b1a70b17981a908f65f06deffc732}\label{tpunit_09_09_8hpp_ab37b1a70b17981a908f65f06deffc732}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!EXPECT\_EQUAL@{EXPECT\_EQUAL}}
+\index{EXPECT\_EQUAL@{EXPECT\_EQUAL}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{EXPECT\_EQUAL}{EXPECT\_EQUAL}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+E\+Q\+U\+AL(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if((lhs) == (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_aeb6c7ae89f440c90c1a1815951c836da}\label{tpunit_09_09_8hpp_aeb6c7ae89f440c90c1a1815951c836da}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!EXPECT\_FALSE@{EXPECT\_FALSE}}
+\index{EXPECT\_FALSE@{EXPECT\_FALSE}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{EXPECT\_FALSE}{EXPECT\_FALSE}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+F\+A\+L\+SE(\begin{DoxyParamCaption}\item[{}]{condition }\end{DoxyParamCaption})~if(condition) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a8d8a248acaf71da130a2d80f81e4d214}\label{tpunit_09_09_8hpp_a8d8a248acaf71da130a2d80f81e4d214}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!EXPECT\_FLOAT\_EQUAL@{EXPECT\_FLOAT\_EQUAL}}
+\index{EXPECT\_FLOAT\_EQUAL@{EXPECT\_FLOAT\_EQUAL}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{EXPECT\_FLOAT\_EQUAL}{EXPECT\_FLOAT\_EQUAL}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+F\+L\+O\+A\+T\+\_\+\+E\+Q\+U\+AL(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if(\+\_\+\+\_\+fp\+\_\+equal(lhs, rhs, 4)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a061727fd62c27901b613d43f620fb1a8}\label{tpunit_09_09_8hpp_a061727fd62c27901b613d43f620fb1a8}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!EXPECT\_FLOAT\_NEAR@{EXPECT\_FLOAT\_NEAR}}
+\index{EXPECT\_FLOAT\_NEAR@{EXPECT\_FLOAT\_NEAR}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{EXPECT\_FLOAT\_NEAR}{EXPECT\_FLOAT\_NEAR}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+F\+L\+O\+A\+T\+\_\+\+N\+E\+AR(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs,  }\item[{}]{abs\+\_\+error }\end{DoxyParamCaption})~if((((lhs) $>$ (rhs)) ? (lhs) -\/ (rhs) \+: (rhs) -\/ (lhs)) $<$= (abs\+\_\+error)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_afa2e97fdd029c8e8e3756169cef43b36}\label{tpunit_09_09_8hpp_afa2e97fdd029c8e8e3756169cef43b36}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!EXPECT\_GREATER\_THAN@{EXPECT\_GREATER\_THAN}}
+\index{EXPECT\_GREATER\_THAN@{EXPECT\_GREATER\_THAN}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{EXPECT\_GREATER\_THAN}{EXPECT\_GREATER\_THAN}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+\+T\+H\+AN(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if((lhs) $>$ (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a2b575aa0efec325cbba0dfb6b560ecce}\label{tpunit_09_09_8hpp_a2b575aa0efec325cbba0dfb6b560ecce}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!EXPECT\_GREATER\_THAN\_EQUAL@{EXPECT\_GREATER\_THAN\_EQUAL}}
+\index{EXPECT\_GREATER\_THAN\_EQUAL@{EXPECT\_GREATER\_THAN\_EQUAL}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{EXPECT\_GREATER\_THAN\_EQUAL}{EXPECT\_GREATER\_THAN\_EQUAL}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+\+T\+H\+A\+N\+\_\+\+E\+Q\+U\+AL(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if((lhs) $>$= (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a6310c13fd75cc42c475ddc75e1433c50}\label{tpunit_09_09_8hpp_a6310c13fd75cc42c475ddc75e1433c50}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!EXPECT\_LESS\_THAN@{EXPECT\_LESS\_THAN}}
+\index{EXPECT\_LESS\_THAN@{EXPECT\_LESS\_THAN}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{EXPECT\_LESS\_THAN}{EXPECT\_LESS\_THAN}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+L\+E\+S\+S\+\_\+\+T\+H\+AN(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if((lhs) $<$ (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a465480b9a1511a8d4b4c5910588d4d09}\label{tpunit_09_09_8hpp_a465480b9a1511a8d4b4c5910588d4d09}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!EXPECT\_LESS\_THAN\_EQUAL@{EXPECT\_LESS\_THAN\_EQUAL}}
+\index{EXPECT\_LESS\_THAN\_EQUAL@{EXPECT\_LESS\_THAN\_EQUAL}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{EXPECT\_LESS\_THAN\_EQUAL}{EXPECT\_LESS\_THAN\_EQUAL}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+L\+E\+S\+S\+\_\+\+T\+H\+A\+N\+\_\+\+E\+Q\+U\+AL(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if((lhs) $<$= (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a2743a1438137ad857aa3f9fec3ff67ec}\label{tpunit_09_09_8hpp_a2743a1438137ad857aa3f9fec3ff67ec}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!EXPECT\_NO\_THROW@{EXPECT\_NO\_THROW}}
+\index{EXPECT\_NO\_THROW@{EXPECT\_NO\_THROW}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{EXPECT\_NO\_THROW}{EXPECT\_NO\_THROW}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+N\+O\+\_\+\+T\+H\+R\+OW(\begin{DoxyParamCaption}\item[{}]{statement }\end{DoxyParamCaption})~try \{ statement; \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} catch(...) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_ae1715589350871e3b611b9f36dcd5d20}\label{tpunit_09_09_8hpp_ae1715589350871e3b611b9f36dcd5d20}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!EXPECT\_NOT\_EQUAL@{EXPECT\_NOT\_EQUAL}}
+\index{EXPECT\_NOT\_EQUAL@{EXPECT\_NOT\_EQUAL}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{EXPECT\_NOT\_EQUAL}{EXPECT\_NOT\_EQUAL}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+N\+O\+T\+\_\+\+E\+Q\+U\+AL(\begin{DoxyParamCaption}\item[{}]{lhs,  }\item[{}]{rhs }\end{DoxyParamCaption})~if((lhs) != (rhs)) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a75edf3b7adbb695b41e1e89294b8e9b9}\label{tpunit_09_09_8hpp_a75edf3b7adbb695b41e1e89294b8e9b9}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!EXPECT\_THROW@{EXPECT\_THROW}}
+\index{EXPECT\_THROW@{EXPECT\_THROW}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{EXPECT\_THROW}{EXPECT\_THROW}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+T\+H\+R\+OW(\begin{DoxyParamCaption}\item[{}]{statement,  }\item[{}]{exception }\end{DoxyParamCaption})~try \{ statement; \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \} catch(const exception\&) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} catch(...) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_ac33e7cdfb5d44a7a0f0ab552eb5c3c6a}\label{tpunit_09_09_8hpp_ac33e7cdfb5d44a7a0f0ab552eb5c3c6a}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!EXPECT\_TRUE@{EXPECT\_TRUE}}
+\index{EXPECT\_TRUE@{EXPECT\_TRUE}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{EXPECT\_TRUE}{EXPECT\_TRUE}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+T\+R\+UE(\begin{DoxyParamCaption}\item[{}]{condition }\end{DoxyParamCaption})~if(condition) \{ \mbox{\hyperlink{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}{P\+A\+SS}}(); \} else \{ \mbox{\hyperlink{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}{F\+A\+IL}}(); \}}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}\label{tpunit_09_09_8hpp_a3e26a8d27caa386ed0ea7ce9d5b7c4ed}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!FAIL@{FAIL}}
+\index{FAIL@{FAIL}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{FAIL}{FAIL}}
+{\footnotesize\ttfamily \#define F\+A\+IL(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\+\_\+\+\_\+assert(\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+);}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}\label{tpunit_09_09_8hpp_aa9f8c60ad6d32fc310f24cd1af3075e7}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!PASS@{PASS}}
+\index{PASS@{PASS}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{PASS}{PASS}}
+{\footnotesize\ttfamily \#define P\+A\+SS(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~/$\ast$ do nothing $\ast$/}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_ac06f0ac4effd595801ece83434cf1a09}\label{tpunit_09_09_8hpp_ac06f0ac4effd595801ece83434cf1a09}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!SET\_FIXTURE\_METHOD@{SET\_FIXTURE\_METHOD}}
+\index{SET\_FIXTURE\_METHOD@{SET\_FIXTURE\_METHOD}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{SET\_FIXTURE\_METHOD}{SET\_FIXTURE\_METHOD}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E\+\_\+\+M\+E\+T\+H\+OD(\begin{DoxyParamCaption}\item[{}]{M }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}(M) \(\backslash\)}
+\DoxyCodeLine{               \{ \(\backslash\)}
+\DoxyCodeLine{                  method** m = 0; \(\backslash\)}
+\DoxyCodeLine{                  switch(M->\_type) \(\backslash\)}
+\DoxyCodeLine{                  \{ \(\backslash\)}
+\DoxyCodeLine{                     case method::AFTER\_METHOD:        m = \&f->\_afters;         \textcolor{keywordflow}{break}; \(\backslash\)}
+\DoxyCodeLine{                     case method::AFTER\_CLASS\_METHOD:  m = \&f->\_after\_classes;  \textcolor{keywordflow}{break}; \(\backslash\)}
+\DoxyCodeLine{                     case method::BEFORE\_METHOD:       m = \&f->\_befores;        \textcolor{keywordflow}{break}; \(\backslash\)}
+\DoxyCodeLine{                     case method::BEFORE\_CLASS\_METHOD: m = \&f->\_before\_classes; \textcolor{keywordflow}{break}; \(\backslash\)}
+\DoxyCodeLine{                     case method::TEST\_METHOD:         m = \&f->\_tests;          \textcolor{keywordflow}{break}; \(\backslash\)}
+\DoxyCodeLine{                  \} \(\backslash\)}
+\DoxyCodeLine{                  while(*m \&\& (*m)->\_next) \{ m = \&(*m)->\_next; \} \(\backslash\)}
+\DoxyCodeLine{                  (*m) ? (*m)->\_next = M : *m = M; \(\backslash\)}
+\DoxyCodeLine{               \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a0456f69f2946e7d465913c54791745fd}\label{tpunit_09_09_8hpp_a0456f69f2946e7d465913c54791745fd}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!TEST@{TEST}}
+\index{TEST@{TEST}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{TEST}{TEST}}
+{\footnotesize\ttfamily \#define T\+E\+ST(\begin{DoxyParamCaption}\item[{}]{M }\end{DoxyParamCaption})~Test(\&M, \#M)}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a7ee441aaaebce7194f4a268fddabae29}\label{tpunit_09_09_8hpp_a7ee441aaaebce7194f4a268fddabae29}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!TPUNITPP\_VERSION@{TPUNITPP\_VERSION}}
+\index{TPUNITPP\_VERSION@{TPUNITPP\_VERSION}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{TPUNITPP\_VERSION}{TPUNITPP\_VERSION}}
+{\footnotesize\ttfamily \#define T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+V\+E\+R\+S\+I\+ON~1001000}
+
+
+
+Copyright (c) 2013 Trevor Pounds \href{mailto:trevor.pounds@gmail.com}{\texttt{ trevor.\+pounds@gmail.\+com}} 
+
+Permission is hereby granted, free of charge, to Any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+T\+HE S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED \char`\"{}\+A\+S I\+S\char`\"{}, W\+I\+T\+H\+O\+UT W\+A\+R\+R\+A\+N\+TY OF A\+NY K\+I\+ND, E\+X\+P\+R\+E\+SS OR I\+M\+P\+L\+I\+ED, I\+N\+C\+L\+U\+D\+I\+NG B\+UT N\+OT L\+I\+M\+I\+T\+ED TO T\+HE W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY, F\+I\+T\+N\+E\+SS F\+OR \mbox{\hyperlink{structA}{A}} P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+ND N\+O\+N\+I\+N\+F\+R\+I\+N\+G\+E\+M\+E\+NT. IN NO E\+V\+E\+NT S\+H\+A\+LL T\+HE A\+U\+T\+H\+O\+RS OR C\+O\+P\+Y\+R\+I\+G\+HT H\+O\+L\+D\+E\+RS BE L\+I\+A\+B\+LE F\+OR A\+NY C\+L\+A\+IM, D\+A\+M\+A\+G\+ES OR O\+T\+H\+ER L\+I\+A\+B\+I\+L\+I\+TY, W\+H\+E\+T\+H\+ER IN AN A\+C\+T\+I\+ON OF C\+O\+N\+T\+R\+A\+CT, T\+O\+RT OR O\+T\+H\+E\+R\+W\+I\+SE, A\+R\+I\+S\+I\+NG F\+R\+OM, O\+UT OF OR IN C\+O\+N\+N\+E\+C\+T\+I\+ON W\+I\+TH T\+HE S\+O\+F\+T\+W\+A\+RE OR T\+HE U\+SE OR O\+T\+H\+ER D\+E\+A\+L\+I\+N\+GS IN T\+HE S\+O\+F\+T\+W\+A\+R\+E.\+Declare printf dependency inline to workaround potential \#include $<$stdio.\+h$>$ compiler/linker bugs.\+T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+V\+E\+R\+S\+I\+ON macro contains an integer represented by the value (M$\ast$1000000 + N$\ast$1000 + P) where M is the major version, N is the minor version, and P is the patch version.
+
+T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+M\+A\+J\+OR is an integer of the major version. T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+M\+I\+N\+OR is an integer of the minor version. T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+P\+A\+T\+CH is an integer of the patch version. \mbox{\Hypertarget{tpunit_09_09_8hpp_ae9d56aa9860ae6a3e36950269aac0f83}\label{tpunit_09_09_8hpp_ae9d56aa9860ae6a3e36950269aac0f83}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!TPUNITPP\_VERSION\_MAJOR@{TPUNITPP\_VERSION\_MAJOR}}
+\index{TPUNITPP\_VERSION\_MAJOR@{TPUNITPP\_VERSION\_MAJOR}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{TPUNITPP\_VERSION\_MAJOR}{TPUNITPP\_VERSION\_MAJOR}}
+{\footnotesize\ttfamily \#define T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+M\+A\+J\+OR~1}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a755ce023b4d834cc764f44db4755ec3e}\label{tpunit_09_09_8hpp_a755ce023b4d834cc764f44db4755ec3e}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!TPUNITPP\_VERSION\_MINOR@{TPUNITPP\_VERSION\_MINOR}}
+\index{TPUNITPP\_VERSION\_MINOR@{TPUNITPP\_VERSION\_MINOR}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{TPUNITPP\_VERSION\_MINOR}{TPUNITPP\_VERSION\_MINOR}}
+{\footnotesize\ttfamily \#define T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+M\+I\+N\+OR~1}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_ac53c99db3c030d2134dce185992fd182}\label{tpunit_09_09_8hpp_ac53c99db3c030d2134dce185992fd182}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!TPUNITPP\_VERSION\_PATCH@{TPUNITPP\_VERSION\_PATCH}}
+\index{TPUNITPP\_VERSION\_PATCH@{TPUNITPP\_VERSION\_PATCH}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{TPUNITPP\_VERSION\_PATCH}{TPUNITPP\_VERSION\_PATCH}}
+{\footnotesize\ttfamily \#define T\+P\+U\+N\+I\+T\+P\+P\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+P\+A\+T\+CH~0}
+
+\mbox{\Hypertarget{tpunit_09_09_8hpp_a670dccd8f2591bf2f2f4732030c3a458}\label{tpunit_09_09_8hpp_a670dccd8f2591bf2f2f4732030c3a458}} 
+\index{tpunit++.hpp@{tpunit++.hpp}!TRACE@{TRACE}}
+\index{TRACE@{TRACE}!tpunit++.hpp@{tpunit++.hpp}}
+\subsubsection{\texorpdfstring{TRACE}{TRACE}}
+{\footnotesize\ttfamily \#define T\+R\+A\+CE(\begin{DoxyParamCaption}\item[{}]{message }\end{DoxyParamCaption})~\+\_\+\+\_\+trace(\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, message);}
+

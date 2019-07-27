@@ -1,0 +1,276 @@
+\hypertarget{lv__task_8h}{}\section{include/display/lv\+\_\+misc/lv\+\_\+task.h File Reference}
+\label{lv__task_8h}\index{include/display/lv\_misc/lv\_task.h@{include/display/lv\_misc/lv\_task.h}}
+{\ttfamily \#include \char`\"{}lv\+\_\+ll.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lv\+\_\+mem.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Descriptor of a lv\+\_\+task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{lv__task_8h_a0dfe5eb1776f2e16d001a4b8a667538e}{L\+V\+\_\+\+A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+T\+A\+S\+K\+\_\+\+H\+A\+N\+D\+L\+ER}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72ed}{lv\+\_\+task\+\_\+prio\+\_\+t}} \{ \newline
+\mbox{\hyperlink{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda63f1ed372b224a31b8da52ebab208af5}{L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+O\+FF}} = 0, 
+\mbox{\hyperlink{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda07a2ded65dab9ae8dcfa85fff6f77d23}{L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+L\+O\+W\+E\+ST}}, 
+\mbox{\hyperlink{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda0344c523bc7d1c7e3920abb5c0cfeeb5}{L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+L\+OW}}, 
+\mbox{\hyperlink{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda844c317809c97853d1f0959fe381448e}{L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+M\+ID}}, 
+\newline
+\mbox{\hyperlink{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda6e4148a4990dbfc98f449c9deb4c4ae9}{L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+H\+I\+GH}}, 
+\mbox{\hyperlink{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda0da23266b0380ef5e9adb95f59679228}{L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+H\+I\+G\+H\+E\+ST}}, 
+\mbox{\hyperlink{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72edaa5795d08265fd5675968c452d08883c5}{L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+N\+UM}}
+ \}
+\begin{DoxyCompactList}\small\item\em Possible priorities for lv\+\_\+tasks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{lv__task_8h_a2173a4df869df1f90ffade622cee6f0a}{lv\+\_\+task\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Init the lv\+\_\+task module. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{lv__task_8h_a0dfe5eb1776f2e16d001a4b8a667538e}{L\+V\+\_\+\+A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+T\+A\+S\+K\+\_\+\+H\+A\+N\+D\+L\+ER}} void \mbox{\hyperlink{lv__task_8h_a846d4e9f73a30f1aa81088695fc54cad}{lv\+\_\+task\+\_\+handler}} (void)
+\begin{DoxyCompactList}\small\item\em Call it periodically to handle lv\+\_\+tasks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}} $\ast$ \mbox{\hyperlink{lv__task_8h_a1e39ede45cf7048a5647dcf69efbf8d5}{lv\+\_\+task\+\_\+create}} (void($\ast$task)(void $\ast$), uint32\+\_\+t period, \mbox{\hyperlink{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72ed}{lv\+\_\+task\+\_\+prio\+\_\+t}} prio, void $\ast$param)
+\begin{DoxyCompactList}\small\item\em Create a new lv\+\_\+task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__task_8h_a7641e6a1c091a40ff44c165b69e35f16}{lv\+\_\+task\+\_\+del}} (\mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}} $\ast$lv\+\_\+task\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Delete a lv\+\_\+task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__task_8h_a0beb53db0ad248695a5ee44203b422df}{lv\+\_\+task\+\_\+set\+\_\+prio}} (\mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}} $\ast$lv\+\_\+task\+\_\+p, \mbox{\hyperlink{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72ed}{lv\+\_\+task\+\_\+prio\+\_\+t}} prio)
+\begin{DoxyCompactList}\small\item\em Set new priority for a lv\+\_\+task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__task_8h_a4aa0253fd9b13ab87f58ad639da450a9}{lv\+\_\+task\+\_\+set\+\_\+period}} (\mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}} $\ast$lv\+\_\+task\+\_\+p, uint32\+\_\+t period)
+\begin{DoxyCompactList}\small\item\em Set new period for a lv\+\_\+task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__task_8h_a51eadbcd0e49dfe3610039665ab5ed1a}{lv\+\_\+task\+\_\+ready}} (\mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}} $\ast$lv\+\_\+task\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Make a lv\+\_\+task ready. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__task_8h_ab039df10151f3865f88156bfc80f195b}{lv\+\_\+task\+\_\+once}} (\mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}} $\ast$lv\+\_\+task\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Delete the lv\+\_\+task after one call. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__task_8h_acdf2b9197da7b7d5ff84f49a37a2c438}{lv\+\_\+task\+\_\+reset}} (\mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}} $\ast$lv\+\_\+task\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Reset a lv\+\_\+task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__task_8h_a6d867c22a34e5150a1e3d0f376ada417}{lv\+\_\+task\+\_\+enable}} (bool en)
+\begin{DoxyCompactList}\small\item\em Enable or disable the whole lv\+\_\+task handling. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{lv__task_8h_aa1ed2cc262d5606bf7a5790d13b95c88}{lv\+\_\+task\+\_\+get\+\_\+idle}} (void)
+\begin{DoxyCompactList}\small\item\em Get idle percentage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{lv__task_8h_a0dfe5eb1776f2e16d001a4b8a667538e}\label{lv__task_8h_a0dfe5eb1776f2e16d001a4b8a667538e}} 
+\index{lv\_task.h@{lv\_task.h}!LV\_ATTRIBUTE\_TASK\_HANDLER@{LV\_ATTRIBUTE\_TASK\_HANDLER}}
+\index{LV\_ATTRIBUTE\_TASK\_HANDLER@{LV\_ATTRIBUTE\_TASK\_HANDLER}!lv\_task.h@{lv\_task.h}}
+\subsubsection{\texorpdfstring{LV\_ATTRIBUTE\_TASK\_HANDLER}{LV\_ATTRIBUTE\_TASK\_HANDLER}}
+{\footnotesize\ttfamily \#define L\+V\+\_\+\+A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+T\+A\+S\+K\+\_\+\+H\+A\+N\+D\+L\+ER}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72ed}\label{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72ed}} 
+\index{lv\_task.h@{lv\_task.h}!lv\_task\_prio\_t@{lv\_task\_prio\_t}}
+\index{lv\_task\_prio\_t@{lv\_task\_prio\_t}!lv\_task.h@{lv\_task.h}}
+\subsubsection{\texorpdfstring{lv\_task\_prio\_t}{lv\_task\_prio\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72ed}{lv\+\_\+task\+\_\+prio\+\_\+t}}}
+
+
+
+Possible priorities for lv\+\_\+tasks. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LV\_TASK\_PRIO\_OFF@{LV\_TASK\_PRIO\_OFF}!lv\_task.h@{lv\_task.h}}\index{lv\_task.h@{lv\_task.h}!LV\_TASK\_PRIO\_OFF@{LV\_TASK\_PRIO\_OFF}}}\mbox{\Hypertarget{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda63f1ed372b224a31b8da52ebab208af5}\label{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda63f1ed372b224a31b8da52ebab208af5}} 
+L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+O\+FF&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LV\_TASK\_PRIO\_LOWEST@{LV\_TASK\_PRIO\_LOWEST}!lv\_task.h@{lv\_task.h}}\index{lv\_task.h@{lv\_task.h}!LV\_TASK\_PRIO\_LOWEST@{LV\_TASK\_PRIO\_LOWEST}}}\mbox{\Hypertarget{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda07a2ded65dab9ae8dcfa85fff6f77d23}\label{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda07a2ded65dab9ae8dcfa85fff6f77d23}} 
+L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+L\+O\+W\+E\+ST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LV\_TASK\_PRIO\_LOW@{LV\_TASK\_PRIO\_LOW}!lv\_task.h@{lv\_task.h}}\index{lv\_task.h@{lv\_task.h}!LV\_TASK\_PRIO\_LOW@{LV\_TASK\_PRIO\_LOW}}}\mbox{\Hypertarget{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda0344c523bc7d1c7e3920abb5c0cfeeb5}\label{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda0344c523bc7d1c7e3920abb5c0cfeeb5}} 
+L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+L\+OW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LV\_TASK\_PRIO\_MID@{LV\_TASK\_PRIO\_MID}!lv\_task.h@{lv\_task.h}}\index{lv\_task.h@{lv\_task.h}!LV\_TASK\_PRIO\_MID@{LV\_TASK\_PRIO\_MID}}}\mbox{\Hypertarget{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda844c317809c97853d1f0959fe381448e}\label{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda844c317809c97853d1f0959fe381448e}} 
+L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+M\+ID&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LV\_TASK\_PRIO\_HIGH@{LV\_TASK\_PRIO\_HIGH}!lv\_task.h@{lv\_task.h}}\index{lv\_task.h@{lv\_task.h}!LV\_TASK\_PRIO\_HIGH@{LV\_TASK\_PRIO\_HIGH}}}\mbox{\Hypertarget{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda6e4148a4990dbfc98f449c9deb4c4ae9}\label{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda6e4148a4990dbfc98f449c9deb4c4ae9}} 
+L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+H\+I\+GH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LV\_TASK\_PRIO\_HIGHEST@{LV\_TASK\_PRIO\_HIGHEST}!lv\_task.h@{lv\_task.h}}\index{lv\_task.h@{lv\_task.h}!LV\_TASK\_PRIO\_HIGHEST@{LV\_TASK\_PRIO\_HIGHEST}}}\mbox{\Hypertarget{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda0da23266b0380ef5e9adb95f59679228}\label{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72eda0da23266b0380ef5e9adb95f59679228}} 
+L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+H\+I\+G\+H\+E\+ST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LV\_TASK\_PRIO\_NUM@{LV\_TASK\_PRIO\_NUM}!lv\_task.h@{lv\_task.h}}\index{lv\_task.h@{lv\_task.h}!LV\_TASK\_PRIO\_NUM@{LV\_TASK\_PRIO\_NUM}}}\mbox{\Hypertarget{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72edaa5795d08265fd5675968c452d08883c5}\label{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72edaa5795d08265fd5675968c452d08883c5}} 
+L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+N\+UM&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{lv__task_8h_a1e39ede45cf7048a5647dcf69efbf8d5}\label{lv__task_8h_a1e39ede45cf7048a5647dcf69efbf8d5}} 
+\index{lv\_task.h@{lv\_task.h}!lv\_task\_create@{lv\_task\_create}}
+\index{lv\_task\_create@{lv\_task\_create}!lv\_task.h@{lv\_task.h}}
+\subsubsection{\texorpdfstring{lv\_task\_create()}{lv\_task\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}}$\ast$ lv\+\_\+task\+\_\+create (\begin{DoxyParamCaption}\item[{void($\ast$)(void $\ast$)}]{task,  }\item[{uint32\+\_\+t}]{period,  }\item[{\mbox{\hyperlink{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72ed}{lv\+\_\+task\+\_\+prio\+\_\+t}}}]{prio,  }\item[{void $\ast$}]{param }\end{DoxyParamCaption})}
+
+
+
+Create a new lv\+\_\+task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & a function which is the task itself \\
+\hline
+{\em period} & call period in ms unit \\
+\hline
+{\em prio} & priority of the task (L\+V\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+O\+FF means the task is stopped) \\
+\hline
+{\em param} & free parameter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the new task 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__task_8h_a7641e6a1c091a40ff44c165b69e35f16}\label{lv__task_8h_a7641e6a1c091a40ff44c165b69e35f16}} 
+\index{lv\_task.h@{lv\_task.h}!lv\_task\_del@{lv\_task\_del}}
+\index{lv\_task\_del@{lv\_task\_del}!lv\_task.h@{lv\_task.h}}
+\subsubsection{\texorpdfstring{lv\_task\_del()}{lv\_task\_del()}}
+{\footnotesize\ttfamily void lv\+\_\+task\+\_\+del (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}} $\ast$}]{lv\+\_\+task\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Delete a lv\+\_\+task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lv\+\_\+task\+\_\+p} & pointer to task created by lv\+\_\+task\+\_\+p \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__task_8h_a6d867c22a34e5150a1e3d0f376ada417}\label{lv__task_8h_a6d867c22a34e5150a1e3d0f376ada417}} 
+\index{lv\_task.h@{lv\_task.h}!lv\_task\_enable@{lv\_task\_enable}}
+\index{lv\_task\_enable@{lv\_task\_enable}!lv\_task.h@{lv\_task.h}}
+\subsubsection{\texorpdfstring{lv\_task\_enable()}{lv\_task\_enable()}}
+{\footnotesize\ttfamily void lv\+\_\+task\+\_\+enable (\begin{DoxyParamCaption}\item[{bool}]{en }\end{DoxyParamCaption})}
+
+
+
+Enable or disable the whole lv\+\_\+task handling. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em en} & true\+: lv\+\_\+task handling is running, false\+: lv\+\_\+task handling is suspended \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__task_8h_aa1ed2cc262d5606bf7a5790d13b95c88}\label{lv__task_8h_aa1ed2cc262d5606bf7a5790d13b95c88}} 
+\index{lv\_task.h@{lv\_task.h}!lv\_task\_get\_idle@{lv\_task\_get\_idle}}
+\index{lv\_task\_get\_idle@{lv\_task\_get\_idle}!lv\_task.h@{lv\_task.h}}
+\subsubsection{\texorpdfstring{lv\_task\_get\_idle()}{lv\_task\_get\_idle()}}
+{\footnotesize\ttfamily uint8\+\_\+t lv\+\_\+task\+\_\+get\+\_\+idle (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get idle percentage. 
+
+\begin{DoxyReturn}{Returns}
+the lv\+\_\+task idle in percentage 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__task_8h_a846d4e9f73a30f1aa81088695fc54cad}\label{lv__task_8h_a846d4e9f73a30f1aa81088695fc54cad}} 
+\index{lv\_task.h@{lv\_task.h}!lv\_task\_handler@{lv\_task\_handler}}
+\index{lv\_task\_handler@{lv\_task\_handler}!lv\_task.h@{lv\_task.h}}
+\subsubsection{\texorpdfstring{lv\_task\_handler()}{lv\_task\_handler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lv__task_8h_a0dfe5eb1776f2e16d001a4b8a667538e}{L\+V\+\_\+\+A\+T\+T\+R\+I\+B\+U\+T\+E\+\_\+\+T\+A\+S\+K\+\_\+\+H\+A\+N\+D\+L\+ER}} void lv\+\_\+task\+\_\+handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Call it periodically to handle lv\+\_\+tasks. 
+
+\mbox{\Hypertarget{lv__task_8h_a2173a4df869df1f90ffade622cee6f0a}\label{lv__task_8h_a2173a4df869df1f90ffade622cee6f0a}} 
+\index{lv\_task.h@{lv\_task.h}!lv\_task\_init@{lv\_task\_init}}
+\index{lv\_task\_init@{lv\_task\_init}!lv\_task.h@{lv\_task.h}}
+\subsubsection{\texorpdfstring{lv\_task\_init()}{lv\_task\_init()}}
+{\footnotesize\ttfamily void lv\+\_\+task\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Init the lv\+\_\+task module. 
+
+\mbox{\Hypertarget{lv__task_8h_ab039df10151f3865f88156bfc80f195b}\label{lv__task_8h_ab039df10151f3865f88156bfc80f195b}} 
+\index{lv\_task.h@{lv\_task.h}!lv\_task\_once@{lv\_task\_once}}
+\index{lv\_task\_once@{lv\_task\_once}!lv\_task.h@{lv\_task.h}}
+\subsubsection{\texorpdfstring{lv\_task\_once()}{lv\_task\_once()}}
+{\footnotesize\ttfamily void lv\+\_\+task\+\_\+once (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}} $\ast$}]{lv\+\_\+task\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Delete the lv\+\_\+task after one call. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lv\+\_\+task\+\_\+p} & pointer to a lv\+\_\+task. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__task_8h_a51eadbcd0e49dfe3610039665ab5ed1a}\label{lv__task_8h_a51eadbcd0e49dfe3610039665ab5ed1a}} 
+\index{lv\_task.h@{lv\_task.h}!lv\_task\_ready@{lv\_task\_ready}}
+\index{lv\_task\_ready@{lv\_task\_ready}!lv\_task.h@{lv\_task.h}}
+\subsubsection{\texorpdfstring{lv\_task\_ready()}{lv\_task\_ready()}}
+{\footnotesize\ttfamily void lv\+\_\+task\+\_\+ready (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}} $\ast$}]{lv\+\_\+task\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Make a lv\+\_\+task ready. 
+
+It will not wait its period. 
+\begin{DoxyParams}{Parameters}
+{\em lv\+\_\+task\+\_\+p} & pointer to a lv\+\_\+task. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__task_8h_acdf2b9197da7b7d5ff84f49a37a2c438}\label{lv__task_8h_acdf2b9197da7b7d5ff84f49a37a2c438}} 
+\index{lv\_task.h@{lv\_task.h}!lv\_task\_reset@{lv\_task\_reset}}
+\index{lv\_task\_reset@{lv\_task\_reset}!lv\_task.h@{lv\_task.h}}
+\subsubsection{\texorpdfstring{lv\_task\_reset()}{lv\_task\_reset()}}
+{\footnotesize\ttfamily void lv\+\_\+task\+\_\+reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}} $\ast$}]{lv\+\_\+task\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Reset a lv\+\_\+task. 
+
+It will be called the previously set period milliseconds later. 
+\begin{DoxyParams}{Parameters}
+{\em lv\+\_\+task\+\_\+p} & pointer to a lv\+\_\+task. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__task_8h_a4aa0253fd9b13ab87f58ad639da450a9}\label{lv__task_8h_a4aa0253fd9b13ab87f58ad639da450a9}} 
+\index{lv\_task.h@{lv\_task.h}!lv\_task\_set\_period@{lv\_task\_set\_period}}
+\index{lv\_task\_set\_period@{lv\_task\_set\_period}!lv\_task.h@{lv\_task.h}}
+\subsubsection{\texorpdfstring{lv\_task\_set\_period()}{lv\_task\_set\_period()}}
+{\footnotesize\ttfamily void lv\+\_\+task\+\_\+set\+\_\+period (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}} $\ast$}]{lv\+\_\+task\+\_\+p,  }\item[{uint32\+\_\+t}]{period }\end{DoxyParamCaption})}
+
+
+
+Set new period for a lv\+\_\+task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lv\+\_\+task\+\_\+p} & pointer to a lv\+\_\+task \\
+\hline
+{\em period} & the new period \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__task_8h_a0beb53db0ad248695a5ee44203b422df}\label{lv__task_8h_a0beb53db0ad248695a5ee44203b422df}} 
+\index{lv\_task.h@{lv\_task.h}!lv\_task\_set\_prio@{lv\_task\_set\_prio}}
+\index{lv\_task\_set\_prio@{lv\_task\_set\_prio}!lv\_task.h@{lv\_task.h}}
+\subsubsection{\texorpdfstring{lv\_task\_set\_prio()}{lv\_task\_set\_prio()}}
+{\footnotesize\ttfamily void lv\+\_\+task\+\_\+set\+\_\+prio (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__task__t}{lv\+\_\+task\+\_\+t}} $\ast$}]{lv\+\_\+task\+\_\+p,  }\item[{\mbox{\hyperlink{lv__task_8h_a16909eccc40ce164e757bcc3ae2e72ed}{lv\+\_\+task\+\_\+prio\+\_\+t}}}]{prio }\end{DoxyParamCaption})}
+
+
+
+Set new priority for a lv\+\_\+task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lv\+\_\+task\+\_\+p} & pointer to a lv\+\_\+task \\
+\hline
+{\em prio} & the new priority \\
+\hline
+\end{DoxyParams}

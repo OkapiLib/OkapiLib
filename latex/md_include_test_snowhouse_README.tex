@@ -1,0 +1,545 @@
+\href{https://travis-ci.org/banditcpp/snowhouse}{\texttt{ }} \href{https://ci.appveyor.com/project/banditcpp/snowhouse}{\texttt{ }} \href{https://www.codacy.com/app/sbeyer/snowhouse?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=banditcpp/snowhouse&amp;utm_campaign=Badge_Grade}{\texttt{ }}
+
+An assertion library for C++
+
+Snowhouse is a stand-\/alone assertion framework for C++.
+
+It is a header-\/only library. You can simply use the {\ttfamily headers-\/only} branch as a submodule\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git submodule add -b headers-only https://github.com/banditcpp/snowhouse snowhouse}
+\DoxyCodeLine{git submodule update --init --recursive}
+\end{DoxyCode}
+
+
+\subsection*{Usage}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{C++\}}
+\DoxyCodeLine{\#include <snowhouse/snowhouse.h>}
+\DoxyCodeLine{}
+\DoxyCodeLine{using namespace snowhouse;}
+\DoxyCodeLine{}
+\DoxyCodeLine{int main()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  std::cout << "Testing that 23 is 23" << std::endl;}
+\DoxyCodeLine{  AssertThat(23, Is().EqualTo(23));}
+\DoxyCodeLine{}
+\DoxyCodeLine{  try}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    AssertThat(12, Is().LessThan(11).And().GreaterThan(99));}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{  catch(const AssertionException\& ex)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    std::cout << "Apparently this failed:" << std::endl;}
+\DoxyCodeLine{    std::cout << ex.GetMessage() << std::endl;}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  return 0;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+\subsubsection*{Assertions}
+
+Snowhouse uses a constraint-\/based assertion model that is heavily inspired by the model used in \href{http://nunit.org/}{\texttt{ N\+Unit}}. An assertion in Snowhouse is written using the following format\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(actual\_value, <constraint expression>);}
+\end{DoxyCode}
+
+
+where {\ttfamily $<$constraint expression$>$} is an expression that {\ttfamily actual\+\_\+value} is evaluated against when the test is executed.
+
+Constraint expressions come in two basic forms\+: composite and fluent expressions.
+
+\paragraph*{Composite Expressions}
+
+With composite expressions, you can create compact, powerful expressions that combine a set of predefined constraints with ones that you provide yourself.
+
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(length, \mbox{\hyperlink{namespacesnowhouse_a80f7a2eb02ff7f4cedaa75d3a2c87f18}{IsGreaterThan}}(4) \&\& !\mbox{\hyperlink{namespacesnowhouse_a39f889099be8440c98dab750540c10c1}{Equals}}(10));}
+\end{DoxyCode}
+
+
+Composite expressions can be any combination of constraints and the standard logical C++ operators.
+
+You can also add your own constraints to be used within composite expressions.
+
+\paragraph*{Fluent Expressions}
+
+With fluent expressions, you can create assertions that better convey the intent of a test without exposing implementation-\/specific details. Fluent expressions aim to help you create tests that are not just by developers for developers, but rather can be read and understood by domain experts.
+
+Fluent expressions also have the ability to make assertions on the elements in a container in a way you cannot achieve with composite expressions.
+
+Example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(length, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().\mbox{\hyperlink{namespacetesting_1_1gmock__matchers__test_a8cf8614a7c9adc8fb00e8af04895f97c}{GreaterThan}}(4).And().Not().EqualTo(10));}
+\end{DoxyCode}
+
+
+\subsubsection*{Basic Constraints}
+
+\paragraph*{Equality Constraint}
+
+Used to verify equality between actual and expected.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(x, \mbox{\hyperlink{namespacesnowhouse_a39f889099be8440c98dab750540c10c1}{Equals}}(12));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(x, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().EqualTo(12));}
+\end{DoxyCode}
+
+
+\paragraph*{Equality\+With\+Delta Constraint}
+
+Used to verify equality between actual and expected, allowing the two to differ by a delta.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(2.49, \mbox{\hyperlink{namespacesnowhouse_acfa1166262faee83b9871f0037d00208}{EqualsWithDelta}}(2.5, 0.1));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(2.49, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().EqualToWithDelta(2.5, 0.1));}
+\end{DoxyCode}
+
+
+\paragraph*{Greater\+Than Constraint}
+
+Used to verify that actual is greater than a value.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(x, \mbox{\hyperlink{namespacesnowhouse_a80f7a2eb02ff7f4cedaa75d3a2c87f18}{IsGreaterThan}}(4));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(x, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().\mbox{\hyperlink{namespacetesting_1_1gmock__matchers__test_a8cf8614a7c9adc8fb00e8af04895f97c}{GreaterThan}}(4));}
+\end{DoxyCode}
+
+
+\paragraph*{Less\+Than Constraint}
+
+Used to verify that actual is less than a value.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(x, \mbox{\hyperlink{namespacesnowhouse_a51cc77a599d046da4f1129abae92cd1f}{IsLessThan}}(3));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(x, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().LessThan(3));}
+\end{DoxyCode}
+
+
+\paragraph*{Greater\+Than\+Or\+Equal\+To Constraint}
+
+Used to verify that actual is greater than or equal to a value.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(x, \mbox{\hyperlink{namespacesnowhouse_a6a0accf040dae78744a15f7289b78fb1}{IsGreaterThanOrEqualTo}}(5));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(x, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().GreaterThanOrEqualTo(5));}
+\end{DoxyCode}
+
+
+\paragraph*{Less\+Than\+Or\+Equal\+To Constraint}
+
+Used to verify that actual is less than or equal to a value.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(x, \mbox{\hyperlink{namespacesnowhouse_a9e5d2797c368840b39f8f6664ce9621f}{IsLessThanOrEqualTo}}(6));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(x, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().LessThanOrEqualTo(6));}
+\end{DoxyCode}
+
+
+\subsubsection*{Pointer Constraints}
+
+Used to check for {\ttfamily nullptr} equality.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(x, \mbox{\hyperlink{namespacetesting_1_1internal_adcfd37a66bc4cb0e8291cf46e1a6c72b}{IsNull}}());}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(x, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().Null());}
+\end{DoxyCode}
+
+
+Note that this feature is only available for C++11-\/compliant compilers. In this case, the {\ttfamily S\+N\+O\+W\+H\+O\+U\+S\+E\+\_\+\+H\+A\+S\+\_\+\+N\+U\+L\+L\+P\+TR} macro is defined.
+
+\subsubsection*{String Constraints}
+
+String assertions in Snowhouse are used to verify the values of S\+TL strings ({\ttfamily std\+::string}).
+
+\paragraph*{Equality Constraints}
+
+Used to verify that actual is equal to an expected value.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(actual\_str, \mbox{\hyperlink{namespacesnowhouse_a39f889099be8440c98dab750540c10c1}{Equals}}(\textcolor{stringliteral}{"foo"}));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(actual\_str, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().EqualTo(\textcolor{stringliteral}{"foo"}));}
+\end{DoxyCode}
+
+
+\paragraph*{Contains Constraint}
+
+Used to verify that a string contains a substring.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(actual\_str, \mbox{\hyperlink{namespacesnowhouse_ac66321592f0a30a5c82bfc0a6bb9c43e}{Contains}}(\textcolor{stringliteral}{"foo"}));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(actual\_str, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().Containing(\textcolor{stringliteral}{"foo"}));}
+\end{DoxyCode}
+
+
+\paragraph*{Ends\+With Constraint}
+
+Used to verify that a string ends with an expected substring.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(actual\_str, \mbox{\hyperlink{namespacesnowhouse_a989264d50c4a959ccdb0041eb51b164a}{EndsWith}}(\textcolor{stringliteral}{"foo"}));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(actual\_str, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().EndingWith(\textcolor{stringliteral}{"foo"}));}
+\end{DoxyCode}
+
+
+\paragraph*{Starts\+With Constraint}
+
+Used to verify that a string starts with an expected substring.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(actual\_str, \mbox{\hyperlink{namespacepump_a9353db466a97e632058887a77c3b26aa}{StartsWith}}(\textcolor{stringliteral}{"foo"}));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(actual\_str, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().StartingWith(\textcolor{stringliteral}{"foo"}));}
+\end{DoxyCode}
+
+
+\paragraph*{Has\+Length Constraint}
+
+Used to verify that a string is of the expected length.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(actual\_str, \mbox{\hyperlink{namespacesnowhouse_af480379a538a0aac57f15bc8ccf25af5}{HasLength}}(5));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(actual\_str, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().OfLength(5));}
+\end{DoxyCode}
+
+
+\subsubsection*{Constraints on Multiline Strings}
+
+If you have a string that contains multiple lines, you can use the collection constraints to make assertions on the content of that string. This may be handy if you have a string that, for instance, represents the resulting content of a file or a network transmission.
+
+Snowhouse can handle both Windows (C\+R+\+LF) and Unix (LF) line endings.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{namespacetesting_1_1internal_a8e8ff5b11e64078831112677156cb111}{std::string}} lines = \textcolor{stringliteral}{"First line\(\backslash\)r\(\backslash\)nSecond line\(\backslash\)r\(\backslash\)nThird line"};}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(lines, \mbox{\hyperlink{namespacesnowhouse_a6611d88e19c4a79418f43de9647cbbb7}{Has}}().\mbox{\hyperlink{namespacetesting_aa9b1b32ba9e8d3db8ac0af0fc8785c8d}{Exactly}}(1).StartingWith(\textcolor{stringliteral}{"Second"}));}
+\end{DoxyCode}
+
+
+\subsubsection*{Container Constraints}
+
+The following constraints can be applied to containers in the standard template library.
+
+\paragraph*{Contains Constraint}
+
+Used to verify that a container contains an expected value.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(container, \mbox{\hyperlink{namespacesnowhouse_ac66321592f0a30a5c82bfc0a6bb9c43e}{Contains}}(12));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(container, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().Containing(12));}
+\end{DoxyCode}
+
+
+\paragraph*{Has\+Length Constraint}
+
+Used to verify that a container has the expected length.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(container, \mbox{\hyperlink{namespacesnowhouse_af480379a538a0aac57f15bc8ccf25af5}{HasLength}}(3));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(container, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().OfLength(3));}
+\end{DoxyCode}
+
+
+\paragraph*{Is\+Empty Constraint}
+
+Used to verify that a container is empty.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(container, \mbox{\hyperlink{namespacesnowhouse_abace5291129c2c329e287fad2a8344a2}{IsEmpty}}());}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(container, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().Empty());}
+\end{DoxyCode}
+
+
+\paragraph*{All}
+
+Used to verify that all elements of a S\+TL sequence container matches an expectation.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(container, \mbox{\hyperlink{namespacesnowhouse_a6611d88e19c4a79418f43de9647cbbb7}{Has}}().All().LessThan(5).Or().EqualTo(66));}
+\end{DoxyCode}
+
+
+\paragraph*{At\+Least}
+
+Used to verify that at least a specified amount of elements in a S\+TL sequence container matches an expectation.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(container, \mbox{\hyperlink{namespacesnowhouse_a6611d88e19c4a79418f43de9647cbbb7}{Has}}().\mbox{\hyperlink{namespacetesting_a137297cb3c582843989fbd937cf0fed2}{AtLeast}}(3).StartingWith(\textcolor{stringliteral}{"foo"}));}
+\end{DoxyCode}
+
+
+\paragraph*{At\+Most}
+
+Used to verify that at most a specified amount of elements in a S\+TL sequence container matches an expectation.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{namespacesnowhouse_a973f131b742877a7484a9bf8e1768515}{Assert}}:That(container, \mbox{\hyperlink{namespacesnowhouse_a6611d88e19c4a79418f43de9647cbbb7}{Has}}().\mbox{\hyperlink{namespacetesting_a5487cd1068c78821ced96fbf542a91bb}{AtMost}}(2).Not().Containing(\textcolor{stringliteral}{"failed"}));}
+\end{DoxyCode}
+
+
+\paragraph*{Exactly}
+
+Used to verify that a S\+TL sequence container has exactly a specified amount of elements that matches an expectation.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(container, \mbox{\hyperlink{namespacesnowhouse_a6611d88e19c4a79418f43de9647cbbb7}{Has}}().\mbox{\hyperlink{namespacetesting_aa9b1b32ba9e8d3db8ac0af0fc8785c8d}{Exactly}}(3).\mbox{\hyperlink{namespacetesting_1_1gmock__matchers__test_a8cf8614a7c9adc8fb00e8af04895f97c}{GreaterThan}}(10).And().LessThan(20));}
+\end{DoxyCode}
+
+
+\paragraph*{Equals\+Container}
+
+Used to verify that two S\+TL sequence containers are equal.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(container1, \mbox{\hyperlink{namespacesnowhouse_adcdb60feee213128183265a33b27708c}{EqualsContainer}}(container2));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(container1, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().EqualToContainer(container2));}
+\end{DoxyCode}
+
+
+\subparagraph*{Predicate functions}
+
+You can supply a predicate function or a functor to {\ttfamily Equals\+Container} to customize how to compare the elements in the two containers.
+
+With a predicate function\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{static} \textcolor{keywordtype}{bool} are\_my\_types\_equal(\textcolor{keyword}{const} my\_type\& lhs, \textcolor{keyword}{const} my\_type\& rhs)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keywordflow}{return} lhs.my\_val\_ == rhs.my\_val\_;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(container1, \mbox{\hyperlink{namespacesnowhouse_adcdb60feee213128183265a33b27708c}{EqualsContainer}}(container2, are\_my\_types\_equal));}
+\end{DoxyCode}
+
+
+With a functor as predicate\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{struct }within\_delta}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  within\_delta(\textcolor{keywordtype}{int} delta) : delta\_(delta) \{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordtype}{bool} operator()(\textcolor{keyword}{const} my\_type\& lhs, \textcolor{keyword}{const} my\_type\& rhs)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\textcolor{keyword}{  }\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} abs(lhs.my\_val\_ - rhs.my\_val\_) <= delta\_;}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{private}:}
+\DoxyCodeLine{  \textcolor{keywordtype}{int} delta\_;}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(container1, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().EqualToContainer(container1, within\_delta(1));}
+\end{DoxyCode}
+
+
+\subsubsection*{Exceptions}
+
+Exception constraints can be used to verify that your code throws the correct exceptions.
+
+\paragraph*{Assert\+Throws}
+
+{\ttfamily Assert\+Throws} succeeds if the exception thrown by the call is of the supplied type (or one of its subtypes).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{exceptions_8h_a86a8c9d0d1ac43a9b8c50b3093d470ac}{AssertThrows}}(std::logic\_error, myObject.a\_method(42));}
+\end{DoxyCode}
+
+
+\paragraph*{Making Assertions on the Thrown Exceptions}
+
+If {\ttfamily Assert\+Throws} succeeds, it will store the thrown exception so that you can make more detailed assertions on it.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{exceptions_8h_a86a8c9d0d1ac43a9b8c50b3093d470ac}{AssertThrows}}(std::logic\_error, myObject.a\_method(42));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(LastException<std::logic\_error>().what(), \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().Containing(\textcolor{stringliteral}{"logic failure"}));}
+\end{DoxyCode}
+
+
+The {\ttfamily Last\+Exception$<$$>$} is available in the scope of the call to {\ttfamily Assert\+Throws}. An exception is not available between specs in order to avoid the result of one spec contaminating another.
+
+\subsubsection*{Custom Constraints}
+
+You can add your own constraints to Snowhouse to create more expressive specifications.
+
+\paragraph*{Fulfills Constraints}
+
+By defining the following matcher
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{struct }IsEvenNumber}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keywordtype}{bool} Matches(\textcolor{keyword}{const} \textcolor{keywordtype}{int} actual)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\textcolor{keyword}{  }\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} (actual \% 2) == 0;}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keyword}{friend} std::ostream\& \mbox{\hyperlink{namespacetesting_1_1gmock__matchers__test_1_1convertible__from__any_a8bc42601c60dc9c5e42861c922d63e64}{operator<<}}(std::ostream\& stm, \textcolor{keyword}{const} IsEvenNumber\& );}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::ostream\& \mbox{\hyperlink{namespacetesting_1_1gmock__matchers__test_1_1convertible__from__any_a8bc42601c60dc9c5e42861c922d63e64}{operator<<}}(std::ostream\& stm, \textcolor{keyword}{const} IsEvenNumber\& )}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  stm << \textcolor{stringliteral}{"An even number"};}
+\DoxyCodeLine{  \textcolor{keywordflow}{return} stm;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+You can create the following constraints in Snowhouse\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(42, \mbox{\hyperlink{namespacesnowhouse_a776dc7f3d94c1d13eaeed62e7235d026}{Fulfills}}(IsEvenNumber()));}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(42, \mbox{\hyperlink{namespacesnowhouse_a93bfe2e092fb56b6554640d669ef2ee3}{Is}}().Fulfilling(IsEvenNumber()));}
+\end{DoxyCode}
+
+
+Your custom matcher should implement a method called {\ttfamily Matches()} that takes a parameter of the type you expect and returns true if the passed parameter fulfills the constraint.
+
+To get more expressive failure messages, you should also implement the streaming operator as in the example above.
+
+\subsection*{Getting better output for your types}
+
+Whenever Snowhouse prints an error message for a type, it will use the stream operator for that type, otherwise it will print \char`\"{}\mbox{[}unsupported type\mbox{]}\char`\"{} as a placeholder.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{struct }\mbox{\hyperlink{classMyType}{MyType}} \{ \textcolor{keywordtype}{int} x; \textcolor{keywordtype}{char} c; \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{assert_8h_a1b5449d4dcd80990b47cbd1f3f99066a}{AssertThat}}(myType, \mbox{\hyperlink{namespacesnowhouse_a776dc7f3d94c1d13eaeed62e7235d026}{Fulfills}}(MyConstraint());}
+\end{DoxyCode}
+
+
+Will output the following if the constraint fails\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Expected: To fulfill my constraint}
+\DoxyCodeLine{Actual: [unsupported type]}
+\end{DoxyCode}
+
+
+If we add a stream operator\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::ostream\& \mbox{\hyperlink{namespacetesting_1_1gmock__matchers__test_1_1convertible__from__any_a8bc42601c60dc9c5e42861c922d63e64}{operator<<}}(std::ostream\& stream, \textcolor{keyword}{const} \mbox{\hyperlink{classMyType}{MyType}}\& a)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  stream << a.c << a.x;}
+\DoxyCodeLine{  \textcolor{keywordflow}{return} stream;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+the output will be a bit more readable\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Expected: To fulfill my constraint}
+\DoxyCodeLine{Actual: f23}
+\end{DoxyCode}
+
+
+If it is necessary to print an object in a different manner than the usual output stream operator provides, for example, to output more detailed information, we can use a specialization of the {\ttfamily Stringizer} class template\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{namespace }\mbox{\hyperlink{namespacesnowhouse}{snowhouse}}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{template}<>}
+\DoxyCodeLine{  \textcolor{keyword}{struct }Stringizer<\mbox{\hyperlink{classMyType}{MyType}}>}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    \textcolor{keyword}{static} \mbox{\hyperlink{namespacetesting_1_1internal_a8e8ff5b11e64078831112677156cb111}{std::string}} \mbox{\hyperlink{structsnowhouse_1_1Stringizer_a5dd3d269fcde33d234b2c9704315f392}{ToString}}(\textcolor{keyword}{const} \mbox{\hyperlink{classMyType}{MyType}}\& a)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{      std::stringstream stream;}
+\DoxyCodeLine{      stream << \textcolor{stringliteral}{"MyType(x = "} << a.x << \textcolor{stringliteral}{", c = "} << int(a.c) << \textcolor{stringliteral}{"('"} << a.c << \textcolor{stringliteral}{"'))"};}
+\DoxyCodeLine{      \textcolor{keywordflow}{return} stream.str();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{  \};}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+with output\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Expected: To fulfill my constraint}
+\DoxyCodeLine{Actual: MyType(x = 23, c = 102('f'))}
+\end{DoxyCode}
+
+
+\subsection*{Configurable Failure Handlers}
+
+You can provide Snowhouse with custom failure handlers, for example to call {\ttfamily std\+::terminate} instead of throwing an exception. See {\ttfamily Default\+Failure\+Handler} for an example of a failure handler. You can derive your own macros with custom failure handlers using {\ttfamily S\+N\+O\+W\+H\+O\+U\+S\+E\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+T\+H\+AT} and {\ttfamily S\+N\+O\+W\+H\+O\+U\+S\+E\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+T\+H\+R\+O\+WS}. See the definitions of {\ttfamily Assert\+That} and {\ttfamily Assert\+Throws} for examples of these. Define {\ttfamily S\+N\+O\+W\+H\+O\+U\+S\+E\+\_\+\+N\+O\+\_\+\+M\+A\+C\+R\+OS} to disable the unprefixed macros {\ttfamily Assert\+That} and {\ttfamily Assert\+Throws}.
+
+\subsubsection*{Example Use Cases}
+
+\paragraph*{Assert Program State}
+
+Log an error immediately as we may crash if we try to continue. Do not attempt to unwind the stack as we may be inside a destructor or {\ttfamily nothrow} function. We may want to call {\ttfamily std\+::terminate}, or attempt to muddle along with the rest of the program.
+
+\paragraph*{Assert Program State in Safe Builds}
+
+As above, but only in debug builds.
+
+\paragraph*{Test Assert}
+
+Assert that a test behaved as expected. Throw an exception and let our testing framework deal with the test failure.
+
+\subsection*{Versioning}
+
+Snowhouse uses \href{http://semver.org/spec/v2.0.0.html}{\texttt{ Semantic Versioning 2.\+0.\+0}} since version 3.\+0.\+0. The macros {\ttfamily S\+N\+O\+W\+H\+O\+U\+S\+E\+\_\+\+M\+A\+J\+OR}, {\ttfamily S\+N\+O\+W\+H\+O\+U\+S\+E\+\_\+\+M\+I\+N\+OR} and {\ttfamily S\+N\+O\+W\+H\+O\+U\+S\+E\+\_\+\+P\+A\+T\+CH} are defined accordingly and {\ttfamily S\+N\+O\+W\+H\+O\+U\+S\+E\+\_\+\+V\+E\+R\+S\+I\+ON} contains the version string. Note that in prior versions {\ttfamily S\+N\+O\+W\+H\+O\+U\+S\+E\+\_\+\+V\+E\+R\+S\+I\+ON} was the only defined macro.
+
+\subsection*{Contributing}
+
+The development of Snowhouse takes place on \href{//github.com/banditcpp/snowhouse}{\texttt{ Git\+Hub}}.
+
+Snowhouse is licensed under the Boost Software License. See L\+I\+C\+E\+N\+S\+E\+\_\+1\+\_\+0.\+txt for further information.
+
+By making available code for inclusion into Snowhouse (e.\+g., by opening a pull request on Git\+Hub), you guarantee that the code is licensed under the same license as Snowhouse.
+
+Please make sure to be consistent with the project\textquotesingle{}s coding style. The {\ttfamily .clang-\/format} file allows easy checking and implementation of the coding style.
+
+C++ code should comply to C++98, C++03-\/ and C++11. Please use {\ttfamily \+\_\+\+\_\+cplusplus} guards if you want to use language features of a certain C++ version.
+
+\subsection*{Responsibilities}
+
+Snowhouse was originally developed as part of the \href{//github.com/joakimkarlsson/igloo}{\texttt{ Igloo}} testing framework by \href{//github.com/joakimkarlsson}{\texttt{ Joakim Karlsson}}. It has been extracted to be usable in other contexts, for example, \href{//github.com/banditcpp/bandit}{\texttt{ Bandit}}.
+
+Snowhouse is maintained by \href{//github.com/sbeyer}{\texttt{ Stephan Beyer}} since \href{//twitter.com/JHKarlsson/status/789332548799332352}{\texttt{ October 2016}}. 

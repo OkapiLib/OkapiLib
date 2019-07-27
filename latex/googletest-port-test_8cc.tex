@@ -1,0 +1,109 @@
+\hypertarget{googletest-port-test_8cc}{}\section{cmake-\/build-\/debug/googletest-\/src/googletest/test/googletest-\/port-\/test.cc File Reference}
+\label{googletest-port-test_8cc}\index{cmake-\/build-\/debug/googletest-\/src/googletest/test/googletest-\/port-\/test.cc@{cmake-\/build-\/debug/googletest-\/src/googletest/test/googletest-\/port-\/test.cc}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gtest/internal/gtest-\/port.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}gtest/gtest.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gtest/gtest-\/spi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}src/gtest-\/internal-\/inl.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classtesting_1_1internal_1_1Base}{testing\+::internal\+::\+Base}}
+\item 
+class \mbox{\hyperlink{classtesting_1_1internal_1_1Derived}{testing\+::internal\+::\+Derived}}
+\item 
+class \mbox{\hyperlink{classtesting_1_1internal_1_1Castable}{testing\+::internal\+::\+Castable}}
+\item 
+class \mbox{\hyperlink{classtesting_1_1internal_1_1ConstCastable}{testing\+::internal\+::\+Const\+Castable}}
+\item 
+class \mbox{\hyperlink{classtesting_1_1internal_1_1ConstAndNonConstCastable}{testing\+::internal\+::\+Const\+And\+Non\+Const\+Castable}}
+\item 
+class \mbox{\hyperlink{classtesting_1_1internal_1_1To}{testing\+::internal\+::\+To}}
+\item 
+class \mbox{\hyperlink{classtesting_1_1internal_1_1NoDefaultContructor}{testing\+::internal\+::\+No\+Default\+Contructor}}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacetesting}{testing}}
+\item 
+ \mbox{\hyperlink{namespacetesting_1_1internal}{testing\+::internal}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a0c1e055c001e4dbb874f00a46c25bb00}{testing\+::internal\+::\+T\+E\+ST}} (Is\+X\+Digit\+Test, Works\+For\+Narrow\+Ascii)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a7cd9d67d4164d2aeb4ceb3ed253c7d2d}{testing\+::internal\+::\+T\+E\+ST}} (Is\+X\+Digit\+Test, Returns\+False\+For\+Narrow\+Non\+Ascii)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_af76bca685fddffc0ecda1464b1b6a0a4}{testing\+::internal\+::\+T\+E\+ST}} (Is\+X\+Digit\+Test, Works\+For\+Wide\+Ascii)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a771232ed3801fa49cbd4bbe11b318fe3}{testing\+::internal\+::\+T\+E\+ST}} (Is\+X\+Digit\+Test, Returns\+False\+For\+Wide\+Non\+Ascii)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a5d2ec1128c80363b06070f403f682490}{testing\+::internal\+::\+T\+E\+ST}} (Implicit\+Cast\+Test, Converts\+Pointers)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a1b304dcd3ac71095f2e7d9e9b43c4755}{testing\+::internal\+::\+T\+E\+ST}} (Implicit\+Cast\+Test, Can\+Use\+Inheritance)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a8554484c7c0ea536bc393c254490aaff}{testing\+::internal\+::\+T\+E\+ST}} (Implicit\+Cast\+Test, Can\+Use\+Non\+Const\+Cast\+Operator)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_af7f631f9fbde27b19a65d50fc29e1420}{testing\+::internal\+::\+T\+E\+ST}} (Implicit\+Cast\+Test, Can\+Use\+Const\+Cast\+Operator\+On\+Const\+Values)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a62a3b62658f9d47733cb7b5c8f69b2ad}{testing\+::internal\+::\+T\+E\+ST}} (Implicit\+Cast\+Test, Can\+Select\+Between\+Const\+And\+Non\+Const\+Casr\+Appropriately)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_ad5c2cf37cc5aa78744012255cae78f9b}{testing\+::internal\+::\+T\+E\+ST}} (Implicit\+Cast\+Test, Can\+Use\+Implicit\+Constructor)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_abd56ca990c5b8c1aea44d15028a74f33}{testing\+::internal\+::\+T\+E\+ST}} (Iterator\+Traits\+Test, Works\+For\+S\+T\+L\+Container\+Iterators)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a642234d85836450bb8795cf0a8a9f908}{testing\+::internal\+::\+T\+E\+ST}} (Iterator\+Traits\+Test, Works\+For\+Pointer\+To\+Non\+Const)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_afc0e95a0472d243967fd4720c681c478}{testing\+::internal\+::\+T\+E\+ST}} (Iterator\+Traits\+Test, Works\+For\+Pointer\+To\+Const)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a99f56e2e9d5b30a879f877cc72bb0c0c}{testing\+::internal\+::\+T\+E\+ST}} (Scoped\+Ptr\+Test, Defines\+Element\+Type)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a26d00130a017a66d0d60dc5a02a13d25}{testing\+::internal\+::\+T\+E\+ST}} (Gtest\+Check\+Syntax\+Test, Behaves\+Like\+A\+Single\+Statement)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a4dfd147ff396984fca799878cb53dcea}{testing\+::internal\+::\+T\+E\+ST}} (Gtest\+Check\+Syntax\+Test, Works\+With\+Switch)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a1a1c20d78e9e75b9c7f2b767eb62611b}{testing\+::internal\+::\+T\+E\+ST}} (Format\+File\+Location\+Test, Formats\+File\+Location)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_ace2f5407afdfb0767035d44b6758e4a0}{testing\+::internal\+::\+T\+E\+ST}} (Format\+File\+Location\+Test, Formats\+Unknown\+File)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a17d1f472b6c1154de7b5b008b964ee32}{testing\+::internal\+::\+T\+E\+ST}} (Format\+File\+Location\+Test, Formats\+Uknown\+Line)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a1195aaf7258c5442de7aebd95acefb9f}{testing\+::internal\+::\+T\+E\+ST}} (Format\+File\+Location\+Test, Formats\+Uknown\+File\+And\+Line)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a9c12f8c1ebb19906e8fa0c430d139076}{testing\+::internal\+::\+T\+E\+ST}} (Format\+Compiler\+Independent\+File\+Location\+Test, Formats\+File\+Location)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a65ad1cad17717c1b8ac4c2d4bef5e079}{testing\+::internal\+::\+T\+E\+ST}} (Format\+Compiler\+Independent\+File\+Location\+Test, Formats\+Uknown\+File)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a0315a64a661f249628f2884080e0614f}{testing\+::internal\+::\+T\+E\+ST}} (Format\+Compiler\+Independent\+File\+Location\+Test, Formats\+Uknown\+Line)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a8b9aee556f3dec6e67c35830ba55e0bd}{testing\+::internal\+::\+T\+E\+ST}} (Format\+Compiler\+Independent\+File\+Location\+Test, Formats\+Uknown\+File\+And\+Line)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a5ad8299ae9325382f01b945f4f81711e}{testing\+::internal\+::\+T\+E\+ST}} (Get\+Thread\+Count\+Test, Returns\+Zero\+When\+Unable\+To\+Count\+Threads)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_afabff70df09a0e4fcda96dd36460c2b9}{testing\+::internal\+::\+T\+E\+ST}} (Gtest\+Check\+Death\+Test, Dies\+With\+Correct\+Output\+On\+Failure)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a198f7132f76dd44d48dac54dc5d38fbb}{testing\+::internal\+::\+T\+E\+ST}} (Regex\+Engine\+Selection\+Test, Selects\+Correct\+Regex\+Engine)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a0b658d88cea3a2fe6775b1b269c0204b}{testing\+::internal\+::\+T\+E\+ST}} (Capture\+Test, Captures\+Stdout)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_abbc9510a4f690912c32835213d95198f}{testing\+::internal\+::\+T\+E\+ST}} (Capture\+Test, Captures\+Stderr)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a341ff65f3ca44b27fc51f03a9a05bee8}{testing\+::internal\+::\+T\+E\+ST}} (Capture\+Test, Captures\+Stdout\+And\+Stderr)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a325a786fb22b87e5aa8d8f584b42ab09}{testing\+::internal\+::\+T\+E\+ST}} (Capture\+Death\+Test, Cannot\+Reenter\+Stdout\+Capture)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_af366e28e373f36480decc2ea586f48f0}{testing\+::internal\+::\+T\+E\+ST}} (Thread\+Local\+Test, Default\+Constructor\+Initializes\+To\+Default\+Values)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a5a52dd578217050e621ebd2aace97a70}{testing\+::internal\+::\+T\+E\+ST}} (Thread\+Local\+Test, Single\+Param\+Constructor\+Initializes\+To\+Param)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a6dffc8331590224259b60e855ad07d03}{testing\+::internal\+::\+T\+E\+ST}} (Thread\+Local\+Test, Value\+Default\+Contructor\+Is\+Not\+Required\+For\+Param\+Version)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a0e7c2d58a313bec0821df19f44351d84}{testing\+::internal\+::\+T\+E\+ST}} (Thread\+Local\+Test, Get\+And\+Pointer\+Return\+Same\+Value)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_aaed45d6ba960f02e8d3d042c606bc98e}{testing\+::internal\+::\+T\+E\+ST}} (Thread\+Local\+Test, Pointer\+And\+Const\+Pointer\+Return\+Same\+Value)
+\end{DoxyCompactItemize}

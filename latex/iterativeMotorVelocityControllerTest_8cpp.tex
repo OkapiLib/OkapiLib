@@ -1,0 +1,101 @@
+\hypertarget{iterativeMotorVelocityControllerTest_8cpp}{}\section{test/iterative\+Motor\+Velocity\+Controller\+Test.cpp File Reference}
+\label{iterativeMotorVelocityControllerTest_8cpp}\index{test/iterativeMotorVelocityControllerTest.cpp@{test/iterativeMotorVelocityControllerTest.cpp}}
+{\ttfamily \#include \char`\"{}okapi/api/control/iterative/iterative\+Motor\+Velocity\+Controller.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}okapi/api/control/iterative/iterative\+Vel\+Pid\+Controller.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}test/tests/api/impl\+Mocks.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classMockIterativeVelPIDController}{Mock\+Iterative\+Vel\+P\+I\+D\+Controller}}
+\item 
+class \mbox{\hyperlink{classMockIterativeMotorVelocityController}{Mock\+Iterative\+Motor\+Velocity\+Controller}}
+\item 
+class \mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{iterativeMotorVelocityControllerTest_8cpp_a0aef357839bedfa303bcdf9d639bcb62}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}, Settled\+When\+Disabled)
+\item 
+\mbox{\hyperlink{iterativeMotorVelocityControllerTest_8cpp_a4e0425b460a4ae562b7ae999f68209a7}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}, Disabled\+Lifecycle)
+\item 
+\mbox{\hyperlink{iterativeMotorVelocityControllerTest_8cpp_a2802271dae35041567170e296929ff1e}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}, Target\+Lifecycle)
+\item 
+\mbox{\hyperlink{iterativeMotorVelocityControllerTest_8cpp_a0b2a696395cfa46e2eabbc2d7028cadc}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}, Scales\+Controller\+Set\+Target)
+\item 
+\mbox{\hyperlink{iterativeMotorVelocityControllerTest_8cpp_a8e437360ed404d04559e2c1ad24bb7cc}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}, Static\+Friction\+Gain\+Uses\+Target\+Sign)
+\item 
+\mbox{\hyperlink{iterativeMotorVelocityControllerTest_8cpp_a93b18e003d524839397d6621bde68b8a}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}, Set\+Output\+Limits\+Test)
+\item 
+\mbox{\hyperlink{iterativeMotorVelocityControllerTest_8cpp_a1efbc8f035070289d102b548776d97e9}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}, Set\+Output\+Limits\+Reversed\+Test)
+\item 
+\mbox{\hyperlink{iterativeMotorVelocityControllerTest_8cpp_adf783c6a476d956d6129520c21ce4c0b}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}, No\+Output\+When\+Disabled)
+\item 
+\mbox{\hyperlink{iterativeMotorVelocityControllerTest_8cpp_af94f17f98c0168b4fe11765a71612857}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}, Set\+Target\+Works\+When\+Disabled)
+\item 
+\mbox{\hyperlink{iterativeMotorVelocityControllerTest_8cpp_a8d873386d7724fc498292eb5ea87b86d}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}, Sample\+Time)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{iterativeMotorVelocityControllerTest_8cpp_a0aef357839bedfa303bcdf9d639bcb62}\label{iterativeMotorVelocityControllerTest_8cpp_a0aef357839bedfa303bcdf9d639bcb62}} 
+\index{iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [1/10]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}}]{,  }\item[{Settled\+When\+Disabled}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iterativeMotorVelocityControllerTest_8cpp_a4e0425b460a4ae562b7ae999f68209a7}\label{iterativeMotorVelocityControllerTest_8cpp_a4e0425b460a4ae562b7ae999f68209a7}} 
+\index{iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [2/10]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}}]{,  }\item[{Disabled\+Lifecycle}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iterativeMotorVelocityControllerTest_8cpp_a2802271dae35041567170e296929ff1e}\label{iterativeMotorVelocityControllerTest_8cpp_a2802271dae35041567170e296929ff1e}} 
+\index{iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [3/10]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}}]{,  }\item[{Target\+Lifecycle}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iterativeMotorVelocityControllerTest_8cpp_a0b2a696395cfa46e2eabbc2d7028cadc}\label{iterativeMotorVelocityControllerTest_8cpp_a0b2a696395cfa46e2eabbc2d7028cadc}} 
+\index{iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [4/10]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}}]{,  }\item[{Scales\+Controller\+Set\+Target}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iterativeMotorVelocityControllerTest_8cpp_a8e437360ed404d04559e2c1ad24bb7cc}\label{iterativeMotorVelocityControllerTest_8cpp_a8e437360ed404d04559e2c1ad24bb7cc}} 
+\index{iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [5/10]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}}]{,  }\item[{Static\+Friction\+Gain\+Uses\+Target\+Sign}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iterativeMotorVelocityControllerTest_8cpp_a93b18e003d524839397d6621bde68b8a}\label{iterativeMotorVelocityControllerTest_8cpp_a93b18e003d524839397d6621bde68b8a}} 
+\index{iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [6/10]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}}]{,  }\item[{Set\+Output\+Limits\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iterativeMotorVelocityControllerTest_8cpp_a1efbc8f035070289d102b548776d97e9}\label{iterativeMotorVelocityControllerTest_8cpp_a1efbc8f035070289d102b548776d97e9}} 
+\index{iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [7/10]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}}]{,  }\item[{Set\+Output\+Limits\+Reversed\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iterativeMotorVelocityControllerTest_8cpp_adf783c6a476d956d6129520c21ce4c0b}\label{iterativeMotorVelocityControllerTest_8cpp_adf783c6a476d956d6129520c21ce4c0b}} 
+\index{iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [8/10]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}}]{,  }\item[{No\+Output\+When\+Disabled}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iterativeMotorVelocityControllerTest_8cpp_af94f17f98c0168b4fe11765a71612857}\label{iterativeMotorVelocityControllerTest_8cpp_af94f17f98c0168b4fe11765a71612857}} 
+\index{iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [9/10]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}}]{,  }\item[{Set\+Target\+Works\+When\+Disabled}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{iterativeMotorVelocityControllerTest_8cpp_a8d873386d7724fc498292eb5ea87b86d}\label{iterativeMotorVelocityControllerTest_8cpp_a8d873386d7724fc498292eb5ea87b86d}} 
+\index{iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!iterativeMotorVelocityControllerTest.cpp@{iterativeMotorVelocityControllerTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [10/10]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIterativeMotorVelocityControllerTest}{Iterative\+Motor\+Velocity\+Controller\+Test}}}]{,  }\item[{Sample\+Time}]{ }\end{DoxyParamCaption})}
+

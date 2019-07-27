@@ -1,0 +1,101 @@
+\hypertarget{classokapi_1_1ADIUltrasonic}{}\section{okapi\+::A\+D\+I\+Ultrasonic Class Reference}
+\label{classokapi_1_1ADIUltrasonic}\index{okapi::ADIUltrasonic@{okapi::ADIUltrasonic}}
+
+
+{\ttfamily \#include $<$adi\+Ultrasonic.\+hpp$>$}
+
+Inheritance diagram for okapi\+::A\+D\+I\+Ultrasonic\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classokapi_1_1ADIUltrasonic}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1ADIUltrasonic_aaa0b61d7e4d5657c4f1c6ce4925ee8e4}{A\+D\+I\+Ultrasonic}} (std\+::uint8\+\_\+t iport\+Ping, std\+::uint8\+\_\+t iport\+Echo, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ ifilter=std\+::make\+\_\+unique$<$ \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} $>$())
+\item 
+virtual \mbox{\hyperlink{classokapi_1_1ADIUltrasonic_abc31760e8928300d152eaeaf3d571341}{$\sim$\+A\+D\+I\+Ultrasonic}} ()
+\item 
+virtual double \mbox{\hyperlink{classokapi_1_1ADIUltrasonic_ac2447e1f1d415ee48989f9fa9d85560e}{get}} ()
+\item 
+virtual double \mbox{\hyperlink{classokapi_1_1ADIUltrasonic_a1ba1e2c1b71dba82c762ba941fe811c0}{controller\+Get}} () override
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+pros\+::c\+::adi\+\_\+ultrasonic\+\_\+t \mbox{\hyperlink{classokapi_1_1ADIUltrasonic_ac952316de8cf081e260e8da689dbc66f}{ultra}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ \mbox{\hyperlink{classokapi_1_1ADIUltrasonic_aa2537c5ffc44d18838b0710af72bf338}{filter}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1ADIUltrasonic_aaa0b61d7e4d5657c4f1c6ce4925ee8e4}\label{classokapi_1_1ADIUltrasonic_aaa0b61d7e4d5657c4f1c6ce4925ee8e4}} 
+\index{okapi::ADIUltrasonic@{okapi::ADIUltrasonic}!ADIUltrasonic@{ADIUltrasonic}}
+\index{ADIUltrasonic@{ADIUltrasonic}!okapi::ADIUltrasonic@{okapi::ADIUltrasonic}}
+\subsubsection{\texorpdfstring{ADIUltrasonic()}{ADIUltrasonic()}}
+{\footnotesize\ttfamily okapi\+::\+A\+D\+I\+Ultrasonic\+::\+A\+D\+I\+Ultrasonic (\begin{DoxyParamCaption}\item[{std\+::uint8\+\_\+t}]{iport\+Ping,  }\item[{std\+::uint8\+\_\+t}]{iport\+Echo,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{ifilter = {\ttfamily std\+:\+:make\+\_\+unique$<$\mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}}$>$()} }\end{DoxyParamCaption})}
+
+An ultrasonic sensor in the A\+DI (3-\/wire) ports.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iport\+Ping} & The port connected to the orange O\+U\+T\+P\+UT cable. This should be in the next highest port following iport\+Echo. \\
+\hline
+{\em iport\+Echo} & The port connected to the yellow I\+N\+P\+UT cable. This should be in port 1, 3, 5, or 7 (\textquotesingle{}A\textquotesingle{}, \textquotesingle{}C\textquotesingle{}, \textquotesingle{}E\textquotesingle{}, \textquotesingle{}G\textquotesingle{}). \\
+\hline
+{\em ifilter} & the filter to use for filtering measurements \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1ADIUltrasonic_abc31760e8928300d152eaeaf3d571341}\label{classokapi_1_1ADIUltrasonic_abc31760e8928300d152eaeaf3d571341}} 
+\index{okapi::ADIUltrasonic@{okapi::ADIUltrasonic}!````~ADIUltrasonic@{$\sim$ADIUltrasonic}}
+\index{````~ADIUltrasonic@{$\sim$ADIUltrasonic}!okapi::ADIUltrasonic@{okapi::ADIUltrasonic}}
+\subsubsection{\texorpdfstring{$\sim$ADIUltrasonic()}{~ADIUltrasonic()}}
+{\footnotesize\ttfamily okapi\+::\+A\+D\+I\+Ultrasonic\+::$\sim$\+A\+D\+I\+Ultrasonic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1ADIUltrasonic_a1ba1e2c1b71dba82c762ba941fe811c0}\label{classokapi_1_1ADIUltrasonic_a1ba1e2c1b71dba82c762ba941fe811c0}} 
+\index{okapi::ADIUltrasonic@{okapi::ADIUltrasonic}!controllerGet@{controllerGet}}
+\index{controllerGet@{controllerGet}!okapi::ADIUltrasonic@{okapi::ADIUltrasonic}}
+\subsubsection{\texorpdfstring{controllerGet()}{controllerGet()}}
+{\footnotesize\ttfamily double okapi\+::\+A\+D\+I\+Ultrasonic\+::controller\+Get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the sensor value for use in a control loop. This method might be automatically called in another thread by the controller. Calls \mbox{\hyperlink{classokapi_1_1ADIUltrasonic_ac2447e1f1d415ee48989f9fa9d85560e}{get()}}. 
+
+Implements \mbox{\hyperlink{classokapi_1_1ControllerInput_a3c6c86d897983f367928a93890551e17}{okapi\+::\+Controller\+Input$<$ double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1ADIUltrasonic_ac2447e1f1d415ee48989f9fa9d85560e}\label{classokapi_1_1ADIUltrasonic_ac2447e1f1d415ee48989f9fa9d85560e}} 
+\index{okapi::ADIUltrasonic@{okapi::ADIUltrasonic}!get@{get}}
+\index{get@{get}!okapi::ADIUltrasonic@{okapi::ADIUltrasonic}}
+\subsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily double okapi\+::\+A\+D\+I\+Ultrasonic\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the current filtered sensor value.
+
+\begin{DoxyReturn}{Returns}
+current value 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1ADIUltrasonic_aa2537c5ffc44d18838b0710af72bf338}\label{classokapi_1_1ADIUltrasonic_aa2537c5ffc44d18838b0710af72bf338}} 
+\index{okapi::ADIUltrasonic@{okapi::ADIUltrasonic}!filter@{filter}}
+\index{filter@{filter}!okapi::ADIUltrasonic@{okapi::ADIUltrasonic}}
+\subsubsection{\texorpdfstring{filter}{filter}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1Filter}{Filter}}$>$ okapi\+::\+A\+D\+I\+Ultrasonic\+::filter\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1ADIUltrasonic_ac952316de8cf081e260e8da689dbc66f}\label{classokapi_1_1ADIUltrasonic_ac952316de8cf081e260e8da689dbc66f}} 
+\index{okapi::ADIUltrasonic@{okapi::ADIUltrasonic}!ultra@{ultra}}
+\index{ultra@{ultra}!okapi::ADIUltrasonic@{okapi::ADIUltrasonic}}
+\subsubsection{\texorpdfstring{ultra}{ultra}}
+{\footnotesize\ttfamily pros\+::c\+::adi\+\_\+ultrasonic\+\_\+t okapi\+::\+A\+D\+I\+Ultrasonic\+::ultra\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/impl/device/\mbox{\hyperlink{adiUltrasonic_8hpp}{adi\+Ultrasonic.\+hpp}}\item 
+src/impl/device/\mbox{\hyperlink{adiUltrasonic_8cpp}{adi\+Ultrasonic.\+cpp}}\end{DoxyCompactItemize}

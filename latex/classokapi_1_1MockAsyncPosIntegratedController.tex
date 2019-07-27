@@ -1,0 +1,88 @@
+\hypertarget{classokapi_1_1MockAsyncPosIntegratedController}{}\section{okapi\+::Mock\+Async\+Pos\+Integrated\+Controller Class Reference}
+\label{classokapi_1_1MockAsyncPosIntegratedController}\index{okapi::MockAsyncPosIntegratedController@{okapi::MockAsyncPosIntegratedController}}
+
+
+{\ttfamily \#include $<$impl\+Mocks.\+hpp$>$}
+
+Inheritance diagram for okapi\+::Mock\+Async\+Pos\+Integrated\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=6.000000cm]{classokapi_1_1MockAsyncPosIntegratedController}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1MockAsyncPosIntegratedController_a9972a48754d00c2d9058755b20d384a4}{Mock\+Async\+Pos\+Integrated\+Controller}} ()
+\item 
+\mbox{\hyperlink{classokapi_1_1MockAsyncPosIntegratedController_a3a1f671cf057878894e495ed608ce992}{Mock\+Async\+Pos\+Integrated\+Controller}} (const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&itime\+Util)
+\item 
+bool \mbox{\hyperlink{classokapi_1_1MockAsyncPosIntegratedController_ac97459be83cf9ddb555092bc5e99a279}{is\+Settled}} () override
+\begin{DoxyCompactList}\small\item\em Returns whether the controller has settled at the target. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classokapi_1_1MockAsyncPosIntegratedController_accca10115217790de7658f65d4c3f9c9}{is\+Settled\+Override}} \{true\}
+\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1MockAsyncPosIntegratedController_a7a95aef2b429d73a6c8b1696f02727dd}{max\+Velocity}}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1MockAsyncPosIntegratedController_a9972a48754d00c2d9058755b20d384a4}\label{classokapi_1_1MockAsyncPosIntegratedController_a9972a48754d00c2d9058755b20d384a4}} 
+\index{okapi::MockAsyncPosIntegratedController@{okapi::MockAsyncPosIntegratedController}!MockAsyncPosIntegratedController@{MockAsyncPosIntegratedController}}
+\index{MockAsyncPosIntegratedController@{MockAsyncPosIntegratedController}!okapi::MockAsyncPosIntegratedController@{okapi::MockAsyncPosIntegratedController}}
+\subsubsection{\texorpdfstring{MockAsyncPosIntegratedController()}{MockAsyncPosIntegratedController()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily okapi\+::\+Mock\+Async\+Pos\+Integrated\+Controller\+::\+Mock\+Async\+Pos\+Integrated\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classokapi_1_1MockAsyncPosIntegratedController_a3a1f671cf057878894e495ed608ce992}\label{classokapi_1_1MockAsyncPosIntegratedController_a3a1f671cf057878894e495ed608ce992}} 
+\index{okapi::MockAsyncPosIntegratedController@{okapi::MockAsyncPosIntegratedController}!MockAsyncPosIntegratedController@{MockAsyncPosIntegratedController}}
+\index{MockAsyncPosIntegratedController@{MockAsyncPosIntegratedController}!okapi::MockAsyncPosIntegratedController@{okapi::MockAsyncPosIntegratedController}}
+\subsubsection{\texorpdfstring{MockAsyncPosIntegratedController()}{MockAsyncPosIntegratedController()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily okapi\+::\+Mock\+Async\+Pos\+Integrated\+Controller\+::\+Mock\+Async\+Pos\+Integrated\+Controller (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&}]{itime\+Util }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1MockAsyncPosIntegratedController_ac97459be83cf9ddb555092bc5e99a279}\label{classokapi_1_1MockAsyncPosIntegratedController_ac97459be83cf9ddb555092bc5e99a279}} 
+\index{okapi::MockAsyncPosIntegratedController@{okapi::MockAsyncPosIntegratedController}!isSettled@{isSettled}}
+\index{isSettled@{isSettled}!okapi::MockAsyncPosIntegratedController@{okapi::MockAsyncPosIntegratedController}}
+\subsubsection{\texorpdfstring{isSettled()}{isSettled()}}
+{\footnotesize\ttfamily bool okapi\+::\+Mock\+Async\+Pos\+Integrated\+Controller\+::is\+Settled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns whether the controller has settled at the target. 
+
+Determining what settling means is implementation-\/dependent.
+
+If the controller is disabled, this method must return true.
+
+\begin{DoxyReturn}{Returns}
+whether the controller is settled 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classokapi_1_1AsyncPosIntegratedController_a21b7ee29d335ee33aed1c41969a27f62}{okapi\+::\+Async\+Pos\+Integrated\+Controller}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1MockAsyncPosIntegratedController_accca10115217790de7658f65d4c3f9c9}\label{classokapi_1_1MockAsyncPosIntegratedController_accca10115217790de7658f65d4c3f9c9}} 
+\index{okapi::MockAsyncPosIntegratedController@{okapi::MockAsyncPosIntegratedController}!isSettledOverride@{isSettledOverride}}
+\index{isSettledOverride@{isSettledOverride}!okapi::MockAsyncPosIntegratedController@{okapi::MockAsyncPosIntegratedController}}
+\subsubsection{\texorpdfstring{isSettledOverride}{isSettledOverride}}
+{\footnotesize\ttfamily bool okapi\+::\+Mock\+Async\+Pos\+Integrated\+Controller\+::is\+Settled\+Override \{true\}}
+
+\mbox{\Hypertarget{classokapi_1_1MockAsyncPosIntegratedController_a7a95aef2b429d73a6c8b1696f02727dd}\label{classokapi_1_1MockAsyncPosIntegratedController_a7a95aef2b429d73a6c8b1696f02727dd}} 
+\index{okapi::MockAsyncPosIntegratedController@{okapi::MockAsyncPosIntegratedController}!maxVelocity@{maxVelocity}}
+\index{maxVelocity@{maxVelocity}!okapi::MockAsyncPosIntegratedController@{okapi::MockAsyncPosIntegratedController}}
+\subsubsection{\texorpdfstring{maxVelocity}{maxVelocity}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t okapi\+::\+Async\+Pos\+Integrated\+Controller\+::max\+Velocity}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/test/tests/api/\mbox{\hyperlink{implMocks_8hpp}{impl\+Mocks.\+hpp}}\end{DoxyCompactItemize}

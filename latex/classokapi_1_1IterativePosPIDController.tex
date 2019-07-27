@@ -1,0 +1,661 @@
+\hypertarget{classokapi_1_1IterativePosPIDController}{}\section{okapi\+::Iterative\+Pos\+P\+I\+D\+Controller Class Reference}
+\label{classokapi_1_1IterativePosPIDController}\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+
+
+{\ttfamily \#include $<$iterative\+Pos\+Pid\+Controller.\+hpp$>$}
+
+Inheritance diagram for okapi\+::Iterative\+Pos\+P\+I\+D\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classokapi_1_1IterativePosPIDController}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Gains}}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a2478d2d77267e78f3b8c0b1770569f1e}{Iterative\+Pos\+P\+I\+D\+Controller}} (double ikP, double ikI, double ikD, double ik\+Bias, const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&itime\+Util, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ iderivative\+Filter=std\+::make\+\_\+unique$<$ \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} $>$(), const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\item 
+\mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a974edf0efdbc9201c529552a7b2d9ebd}{Iterative\+Pos\+P\+I\+D\+Controller}} (const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Gains}} \&igains, const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&itime\+Util, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ iderivative\+Filter=std\+::make\+\_\+unique$<$ \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} $>$(), const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_acec6d9ee4c41f78b54b6b28317bcd1e9}{step}} (double inew\+Reading) override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a566f7d7834eefd6b542d2e231d6219f9}{set\+Target}} (double itarget) override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_ab77771ba39d01e5f8d29984fd43abd38}{controller\+Set}} (double ivalue) override
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a1c4c3a54b616e4250e65a88b0cb12276}{get\+Target}} () override
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_aeb015338c954bf1a7ef0b792ea6c490c}{get\+Output}} () const override
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a71538d55cd0a98812a749af84f8ec7aa}{get\+Max\+Output}} () override
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a51666c20236a2a9ff87e843cf746833e}{get\+Min\+Output}} () override
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a632611340113011f75c7ee1c389231e3}{get\+Error}} () const override
+\item 
+bool \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a856b633717128607fa8f1b52d91f89d6}{is\+Settled}} () override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a89e9f71510b9779282175fe3f5b071d6}{set\+Sample\+Time}} (Q\+Time isample\+Time) override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a64c3fddb91ceaac4e747404afc5295ae}{set\+Output\+Limits}} (double imax, double imin) override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a556937096c9a1331e705a8fa9175c884}{set\+Controller\+Set\+Target\+Limits}} (double itarget\+Max, double itarget\+Min) override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a038da11f8e6e16139423e2284afa797c}{reset}} () override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a8f7e1c7bc45f6b9df7a24edb60fc9e6a}{flip\+Disable}} () override
+\item 
+void \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a5b0755a4839a25af4c5fa7f4e03398ca}{flip\+Disable}} (bool iis\+Disabled) override
+\item 
+bool \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a8800531c198ae47c0e7b602db2dd10d3}{is\+Disabled}} () const override
+\item 
+Q\+Time \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a12d70574d5234d2928d77114e0c90df9}{get\+Sample\+Time}} () const override
+\item 
+virtual void \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a65dd3f1eb00a526ec191d80ec282f4ae}{set\+Integral\+Limits}} (double imax, double imin)
+\item 
+virtual void \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a76fc3c387e87ff2c6e08c54b8670eeb4}{set\+Error\+Sum\+Limits}} (double imax, double imin)
+\item 
+virtual void \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_afa74b0883996ed60c5d7b0090c1acae1}{set\+Integrator\+Reset}} (bool ireset\+On\+Zero)
+\item 
+virtual void \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_ae42e06f7c23ddff49cc2576f8417ce00}{set\+Gains}} (const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Gains}} \&igains)
+\item 
+\mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Gains}} \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_ad441fc988ded8fc2599b2c719fbcabe7}{get\+Gains}} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a8d102eed0557c04e1c59b759aa8fbcd6}{logger}}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a707afeb73c11b00fb53784a8221fbe94}{kP}}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a98520879b5b75344b98ef75561b74f66}{kI}}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a50e35510eaaf9f273b0b7d1d27b8e494}{kD}}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a67627d3b4d56a115812a4d3b52e10ff9}{k\+Bias}}
+\item 
+Q\+Time \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a336e78abe2cf481b2c8f7a389cdd26fb}{sample\+Time}} \{10\+\_\+ms\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a040f8b4e34511e33b41d1f25224c0da5}{target}} \{0\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a0dd811fb6ee7a75191b9d26bf1cd082b}{last\+Reading}} \{0\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a87682e04490754f69e922de57dda43bc}{error}} \{0\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_aee05c8d81c9ad92a8cf8bd32cc8ca474}{last\+Error}} \{0\}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a4c92203e64b3ebbda5660410904aa753}{derivative\+Filter}}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_aeb03bf7fa13e1c608c4a0a238846ce9a}{integral}} \{0\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a389846fb5a276111ac2fdb7009141b2f}{integral\+Max}} \{1\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a9be87c9081976f6960838d501985b191}{integral\+Min}} \{-\/1\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_abb73178d63994e9d2a5ec42630d6fb11}{error\+Sum\+Min}} \{0\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a5b6c38080cd4eb7a7a3bdbd3a926c546}{error\+Sum\+Max}} \{std\+::numeric\+\_\+limits$<$double$>$\+::max()\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a8d971804af5f429a91c71f6722e2f395}{derivative}} \{0\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a6cd04ec8b5112f71cc4c89e8ac795e41}{output}} \{0\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_adfa78710b50ab0a1fe50236370e4eecd}{output\+Max}} \{1\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_af283d92615f66697282d70b3298e16d5}{output\+Min}} \{-\/1\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a1522e92d11f219b6c6d3b857774dab9e}{controller\+Set\+Target\+Max}} \{1\}
+\item 
+double \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_ac53c0e9e57b94cbc7d733fd14daa9821}{controller\+Set\+Target\+Min}} \{-\/1\}
+\item 
+bool \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_af64cc9a0bca1738b49a3f9d6e84b010a}{should\+Reset\+On\+Cross}} \{true\}
+\item 
+bool \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a8e40c383cdba1a775dd73d366270cf83}{controller\+Is\+Disabled}} \{false\}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractTimer}{Abstract\+Timer}} $>$ \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_aaddc06f74a9f601d4d1a4b6dba45bf73}{loop\+Dt\+Timer}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1SettledUtil}{Settled\+Util}} $>$ \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_ada52e35922bbe26a1fd464547800d56f}{settled\+Util}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a2478d2d77267e78f3b8c0b1770569f1e}\label{classokapi_1_1IterativePosPIDController_a2478d2d77267e78f3b8c0b1770569f1e}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!IterativePosPIDController@{IterativePosPIDController}}
+\index{IterativePosPIDController@{IterativePosPIDController}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{IterativePosPIDController()}{IterativePosPIDController()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::\+Iterative\+Pos\+P\+I\+D\+Controller (\begin{DoxyParamCaption}\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD,  }\item[{double}]{ik\+Bias,  }\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&}]{itime\+Util,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{iderivative\+Filter = {\ttfamily std\+:\+:make\+\_\+unique$<$\mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}}$>$()},  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
+
+Position P\+ID controller.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ikP} & the proportional gain \\
+\hline
+{\em ikI} & the integration gain \\
+\hline
+{\em ikD} & the derivative gain \\
+\hline
+{\em ik\+Bias} & the controller bias \\
+\hline
+{\em itime\+Util} & see \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} docs \\
+\hline
+{\em iderivative\+Filter} & a filter for filtering the derivative term \\
+\hline
+{\em ilogger} & The logger this instance will log to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a974edf0efdbc9201c529552a7b2d9ebd}\label{classokapi_1_1IterativePosPIDController_a974edf0efdbc9201c529552a7b2d9ebd}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!IterativePosPIDController@{IterativePosPIDController}}
+\index{IterativePosPIDController@{IterativePosPIDController}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{IterativePosPIDController()}{IterativePosPIDController()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::\+Iterative\+Pos\+P\+I\+D\+Controller (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Gains}} \&}]{igains,  }\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&}]{itime\+Util,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{iderivative\+Filter = {\ttfamily std\+:\+:make\+\_\+unique$<$\mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}}$>$()},  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
+
+Position P\+ID controller.
+
+
+\begin{DoxyParams}{Parameters}
+{\em igains} & the controller gains \\
+\hline
+{\em itime\+Util} & see \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} docs \\
+\hline
+{\em iderivative\+Filter} & a filter for filtering the derivative term \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_ab77771ba39d01e5f8d29984fd43abd38}\label{classokapi_1_1IterativePosPIDController_ab77771ba39d01e5f8d29984fd43abd38}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!controllerSet@{controllerSet}}
+\index{controllerSet@{controllerSet}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{controllerSet()}{controllerSet()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::controller\+Set (\begin{DoxyParamCaption}\item[{double}]{ivalue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Writes the value of the controller output. This method might be automatically called in another thread by the controller. The range of input values is expected to be \mbox{[}-\/1, 1\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ivalue} & the controller\textquotesingle{}s output in the range \mbox{[}-\/1, 1\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ControllerOutput_a360c08f0c10b36f882d6d3100c2cad49}{okapi\+::\+Controller\+Output$<$ double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a8f7e1c7bc45f6b9df7a24edb60fc9e6a}\label{classokapi_1_1IterativePosPIDController_a8f7e1c7bc45f6b9df7a24edb60fc9e6a}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!flipDisable@{flipDisable}}
+\index{flipDisable@{flipDisable}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{flipDisable()}{flipDisable()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::flip\+Disable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Changes whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time. 
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a9de69b60885df41cd2164fe1a23f34d3}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a5b0755a4839a25af4c5fa7f4e03398ca}\label{classokapi_1_1IterativePosPIDController_a5b0755a4839a25af4c5fa7f4e03398ca}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!flipDisable@{flipDisable}}
+\index{flipDisable@{flipDisable}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{flipDisable()}{flipDisable()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::flip\+Disable (\begin{DoxyParamCaption}\item[{bool}]{iis\+Disabled }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Sets whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iis\+Disabled} & whether the controller is disabled \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a768cd1db40ce9cd5c89b20be6e838ccc}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a632611340113011f75c7ee1c389231e3}\label{classokapi_1_1IterativePosPIDController_a632611340113011f75c7ee1c389231e3}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!getError@{getError}}
+\index{getError@{getError}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{getError()}{getError()}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::get\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the last error of the controller. Does not update when disabled. 
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a50c73444ff6e3e631951c43d0f951953}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_ad441fc988ded8fc2599b2c719fbcabe7}\label{classokapi_1_1IterativePosPIDController_ad441fc988ded8fc2599b2c719fbcabe7}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!getGains@{getGains}}
+\index{getGains@{getGains}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{getGains()}{getGains()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::get\+Gains (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Gets the current gains.
+
+\begin{DoxyReturn}{Returns}
+The current gains. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a71538d55cd0a98812a749af84f8ec7aa}\label{classokapi_1_1IterativePosPIDController_a71538d55cd0a98812a749af84f8ec7aa}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!getMaxOutput@{getMaxOutput}}
+\index{getMaxOutput@{getMaxOutput}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{getMaxOutput()}{getMaxOutput()}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::get\+Max\+Output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the upper output bound.
+
+\begin{DoxyReturn}{Returns}
+the upper output bound 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_a09bdba3a6d7854d943ed5401210b0595}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a51666c20236a2a9ff87e843cf746833e}\label{classokapi_1_1IterativePosPIDController_a51666c20236a2a9ff87e843cf746833e}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!getMinOutput@{getMinOutput}}
+\index{getMinOutput@{getMinOutput}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{getMinOutput()}{getMinOutput()}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::get\+Min\+Output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the lower output bound.
+
+\begin{DoxyReturn}{Returns}
+the lower output bound 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_a4d271df97caeedbcc807b714a48eaa30}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_aeb015338c954bf1a7ef0b792ea6c490c}\label{classokapi_1_1IterativePosPIDController_aeb015338c954bf1a7ef0b792ea6c490c}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!getOutput@{getOutput}}
+\index{getOutput@{getOutput}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{getOutput()}{getOutput()}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::get\+Output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the last calculated output of the controller. Output is in the range \mbox{[}-\/1, 1\mbox{]} unless the bounds have been changed with \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a64c3fddb91ceaac4e747404afc5295ae}{set\+Output\+Limits()}}. 
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_a83e0aac640804974f0e06936b9f7898a}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a12d70574d5234d2928d77114e0c90df9}\label{classokapi_1_1IterativePosPIDController_a12d70574d5234d2928d77114e0c90df9}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!getSampleTime@{getSampleTime}}
+\index{getSampleTime@{getSampleTime}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{getSampleTime()}{getSampleTime()}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::get\+Sample\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Get the last set sample time.
+
+\begin{DoxyReturn}{Returns}
+sample time 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_a48cd86626af7036db4f36b4124df4f98}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a1c4c3a54b616e4250e65a88b0cb12276}\label{classokapi_1_1IterativePosPIDController_a1c4c3a54b616e4250e65a88b0cb12276}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!getTarget@{getTarget}}
+\index{getTarget@{getTarget}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{getTarget()}{getTarget()}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::get\+Target (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Gets the last set target, or the default target if none was set.
+
+\begin{DoxyReturn}{Returns}
+the last target 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a22012bedbfaff6e5a3a508f274ec2497}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a8800531c198ae47c0e7b602db2dd10d3}\label{classokapi_1_1IterativePosPIDController_a8800531c198ae47c0e7b602db2dd10d3}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!isDisabled@{isDisabled}}
+\index{isDisabled@{isDisabled}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{isDisabled()}{isDisabled()}}
+{\footnotesize\ttfamily bool okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::is\+Disabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns whether the controller is currently disabled.
+
+\begin{DoxyReturn}{Returns}
+whether the controller is currently disabled 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a40bd4ec2b8c75503fbf6f494fd7cbe69}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a856b633717128607fa8f1b52d91f89d6}\label{classokapi_1_1IterativePosPIDController_a856b633717128607fa8f1b52d91f89d6}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!isSettled@{isSettled}}
+\index{isSettled@{isSettled}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{isSettled()}{isSettled()}}
+{\footnotesize\ttfamily bool okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::is\+Settled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns whether the controller has settled at the target. Determining what settling means is implementation-\/dependent.
+
+If the controller is disabled, this method must return true.
+
+\begin{DoxyReturn}{Returns}
+whether the controller is settled 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_aed7aa0e94b6474c28314f8517d6cb4d8}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a038da11f8e6e16139423e2284afa797c}\label{classokapi_1_1IterativePosPIDController_a038da11f8e6e16139423e2284afa797c}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!reset@{reset}}
+\index{reset@{reset}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Resets the controller\textquotesingle{}s internal state so it is similar to when it was first initialized, while keeping any user-\/configured information. 
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a7dd6ce28b3e38bdf987514a1b6c83c8c}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a556937096c9a1331e705a8fa9175c884}\label{classokapi_1_1IterativePosPIDController_a556937096c9a1331e705a8fa9175c884}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!setControllerSetTargetLimits@{setControllerSetTargetLimits}}
+\index{setControllerSetTargetLimits@{setControllerSetTargetLimits}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{setControllerSetTargetLimits()}{setControllerSetTargetLimits()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::set\+Controller\+Set\+Target\+Limits (\begin{DoxyParamCaption}\item[{double}]{itarget\+Max,  }\item[{double}]{itarget\+Min }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Sets the (soft) limits for the target range that \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_ab77771ba39d01e5f8d29984fd43abd38}{controller\+Set()}} scales into. The target computed by \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_ab77771ba39d01e5f8d29984fd43abd38}{controller\+Set()}} is scaled into the range \mbox{[}-\/itarget\+Min, itarget\+Max\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em itarget\+Max} & The new max target for \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_ab77771ba39d01e5f8d29984fd43abd38}{controller\+Set()}}. \\
+\hline
+{\em itarget\+Min} & The new min target for \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_ab77771ba39d01e5f8d29984fd43abd38}{controller\+Set()}}. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_a7c514b702b78be6c45c03b718edce035}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a76fc3c387e87ff2c6e08c54b8670eeb4}\label{classokapi_1_1IterativePosPIDController_a76fc3c387e87ff2c6e08c54b8670eeb4}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!setErrorSumLimits@{setErrorSumLimits}}
+\index{setErrorSumLimits@{setErrorSumLimits}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{setErrorSumLimits()}{setErrorSumLimits()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::set\+Error\+Sum\+Limits (\begin{DoxyParamCaption}\item[{double}]{imax,  }\item[{double}]{imin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Set the error sum bounds. Default bounds are \mbox{[}0, std\+::numeric\+\_\+limits$<$double$>$\+::max()\mbox{]}. Error will only be added to the integral term when its absolute value is between these bounds of either side of the target.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imax} & max error value that will be summed \\
+\hline
+{\em imin} & min error value that will be summed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_ae42e06f7c23ddff49cc2576f8417ce00}\label{classokapi_1_1IterativePosPIDController_ae42e06f7c23ddff49cc2576f8417ce00}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!setGains@{setGains}}
+\index{setGains@{setGains}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{setGains()}{setGains()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::set\+Gains (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Gains}} \&}]{igains }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Set controller gains.
+
+
+\begin{DoxyParams}{Parameters}
+{\em igains} & The new gains. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a65dd3f1eb00a526ec191d80ec282f4ae}\label{classokapi_1_1IterativePosPIDController_a65dd3f1eb00a526ec191d80ec282f4ae}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!setIntegralLimits@{setIntegralLimits}}
+\index{setIntegralLimits@{setIntegralLimits}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{setIntegralLimits()}{setIntegralLimits()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::set\+Integral\+Limits (\begin{DoxyParamCaption}\item[{double}]{imax,  }\item[{double}]{imin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Set integrator bounds. Default bounds are \mbox{[}-\/1, 1\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imax} & max integrator value \\
+\hline
+{\em imin} & min integrator value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_afa74b0883996ed60c5d7b0090c1acae1}\label{classokapi_1_1IterativePosPIDController_afa74b0883996ed60c5d7b0090c1acae1}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!setIntegratorReset@{setIntegratorReset}}
+\index{setIntegratorReset@{setIntegratorReset}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{setIntegratorReset()}{setIntegratorReset()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::set\+Integrator\+Reset (\begin{DoxyParamCaption}\item[{bool}]{ireset\+On\+Zero }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Set whether the integrator should be reset when error is 0 or changes sign.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ireset\+On\+Zero} & true to reset \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a64c3fddb91ceaac4e747404afc5295ae}\label{classokapi_1_1IterativePosPIDController_a64c3fddb91ceaac4e747404afc5295ae}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!setOutputLimits@{setOutputLimits}}
+\index{setOutputLimits@{setOutputLimits}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{setOutputLimits()}{setOutputLimits()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::set\+Output\+Limits (\begin{DoxyParamCaption}\item[{double}]{imax,  }\item[{double}]{imin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Set controller output bounds. Default bounds are \mbox{[}-\/1, 1\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imax} & max output \\
+\hline
+{\em imin} & min output \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_ae1a7d9bd29d176a26bcc70c741f0d50f}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a89e9f71510b9779282175fe3f5b071d6}\label{classokapi_1_1IterativePosPIDController_a89e9f71510b9779282175fe3f5b071d6}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!setSampleTime@{setSampleTime}}
+\index{setSampleTime@{setSampleTime}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{setSampleTime()}{setSampleTime()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::set\+Sample\+Time (\begin{DoxyParamCaption}\item[{Q\+Time}]{isample\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Set time between loops in ms.
+
+
+\begin{DoxyParams}{Parameters}
+{\em isample\+Time} & time between loops \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_ac4cfb1b37a3c707b2fc8f2fbda526f3e}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a566f7d7834eefd6b542d2e231d6219f9}\label{classokapi_1_1IterativePosPIDController_a566f7d7834eefd6b542d2e231d6219f9}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!setTarget@{setTarget}}
+\index{setTarget@{setTarget}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{setTarget()}{setTarget()}}
+{\footnotesize\ttfamily void okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::set\+Target (\begin{DoxyParamCaption}\item[{double}]{itarget }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Sets the target for the controller.
+
+
+\begin{DoxyParams}{Parameters}
+{\em itarget} & new target position \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_ac14482d0768b3f157d52e0214a4c36d7}{okapi\+::\+Closed\+Loop\+Controller$<$ double, double $>$}}.
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_acec6d9ee4c41f78b54b6b28317bcd1e9}\label{classokapi_1_1IterativePosPIDController_acec6d9ee4c41f78b54b6b28317bcd1e9}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!step@{step}}
+\index{step@{step}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{step()}{step()}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::step (\begin{DoxyParamCaption}\item[{double}]{inew\+Reading }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Do one iteration of the controller. Returns the reading in the range \mbox{[}-\/1, 1\mbox{]} unless the bounds have been changed with \mbox{\hyperlink{classokapi_1_1IterativePosPIDController_a64c3fddb91ceaac4e747404afc5295ae}{set\+Output\+Limits()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em inew\+Reading} & new measurement \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+controller output 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1IterativeController_a751bcad1407099e629e3ffbe395daf2b}{okapi\+::\+Iterative\+Controller$<$ double, double $>$}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a8e40c383cdba1a775dd73d366270cf83}\label{classokapi_1_1IterativePosPIDController_a8e40c383cdba1a775dd73d366270cf83}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!controllerIsDisabled@{controllerIsDisabled}}
+\index{controllerIsDisabled@{controllerIsDisabled}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{controllerIsDisabled}{controllerIsDisabled}}
+{\footnotesize\ttfamily bool okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::controller\+Is\+Disabled \{false\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a1522e92d11f219b6c6d3b857774dab9e}\label{classokapi_1_1IterativePosPIDController_a1522e92d11f219b6c6d3b857774dab9e}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!controllerSetTargetMax@{controllerSetTargetMax}}
+\index{controllerSetTargetMax@{controllerSetTargetMax}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{controllerSetTargetMax}{controllerSetTargetMax}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::controller\+Set\+Target\+Max \{1\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_ac53c0e9e57b94cbc7d733fd14daa9821}\label{classokapi_1_1IterativePosPIDController_ac53c0e9e57b94cbc7d733fd14daa9821}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!controllerSetTargetMin@{controllerSetTargetMin}}
+\index{controllerSetTargetMin@{controllerSetTargetMin}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{controllerSetTargetMin}{controllerSetTargetMin}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::controller\+Set\+Target\+Min \{-\/1\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a8d971804af5f429a91c71f6722e2f395}\label{classokapi_1_1IterativePosPIDController_a8d971804af5f429a91c71f6722e2f395}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!derivative@{derivative}}
+\index{derivative@{derivative}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{derivative}{derivative}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::derivative \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a4c92203e64b3ebbda5660410904aa753}\label{classokapi_1_1IterativePosPIDController_a4c92203e64b3ebbda5660410904aa753}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!derivativeFilter@{derivativeFilter}}
+\index{derivativeFilter@{derivativeFilter}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{derivativeFilter}{derivativeFilter}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1Filter}{Filter}}$>$ okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::derivative\+Filter\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a87682e04490754f69e922de57dda43bc}\label{classokapi_1_1IterativePosPIDController_a87682e04490754f69e922de57dda43bc}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!error@{error}}
+\index{error@{error}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{error}{error}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::error \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a5b6c38080cd4eb7a7a3bdbd3a926c546}\label{classokapi_1_1IterativePosPIDController_a5b6c38080cd4eb7a7a3bdbd3a926c546}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!errorSumMax@{errorSumMax}}
+\index{errorSumMax@{errorSumMax}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{errorSumMax}{errorSumMax}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::error\+Sum\+Max \{std\+::numeric\+\_\+limits$<$double$>$\+::max()\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_abb73178d63994e9d2a5ec42630d6fb11}\label{classokapi_1_1IterativePosPIDController_abb73178d63994e9d2a5ec42630d6fb11}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!errorSumMin@{errorSumMin}}
+\index{errorSumMin@{errorSumMin}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{errorSumMin}{errorSumMin}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::error\+Sum\+Min \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_aeb03bf7fa13e1c608c4a0a238846ce9a}\label{classokapi_1_1IterativePosPIDController_aeb03bf7fa13e1c608c4a0a238846ce9a}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!integral@{integral}}
+\index{integral@{integral}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{integral}{integral}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::integral \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a389846fb5a276111ac2fdb7009141b2f}\label{classokapi_1_1IterativePosPIDController_a389846fb5a276111ac2fdb7009141b2f}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!integralMax@{integralMax}}
+\index{integralMax@{integralMax}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{integralMax}{integralMax}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::integral\+Max \{1\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a9be87c9081976f6960838d501985b191}\label{classokapi_1_1IterativePosPIDController_a9be87c9081976f6960838d501985b191}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!integralMin@{integralMin}}
+\index{integralMin@{integralMin}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{integralMin}{integralMin}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::integral\+Min \{-\/1\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a67627d3b4d56a115812a4d3b52e10ff9}\label{classokapi_1_1IterativePosPIDController_a67627d3b4d56a115812a4d3b52e10ff9}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!kBias@{kBias}}
+\index{kBias@{kBias}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{kBias}{kBias}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::k\+Bias\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a50e35510eaaf9f273b0b7d1d27b8e494}\label{classokapi_1_1IterativePosPIDController_a50e35510eaaf9f273b0b7d1d27b8e494}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!kD@{kD}}
+\index{kD@{kD}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{kD}{kD}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::kD\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a98520879b5b75344b98ef75561b74f66}\label{classokapi_1_1IterativePosPIDController_a98520879b5b75344b98ef75561b74f66}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!kI@{kI}}
+\index{kI@{kI}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{kI}{kI}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::kI\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a707afeb73c11b00fb53784a8221fbe94}\label{classokapi_1_1IterativePosPIDController_a707afeb73c11b00fb53784a8221fbe94}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!kP@{kP}}
+\index{kP@{kP}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{kP}{kP}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::kP\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_aee05c8d81c9ad92a8cf8bd32cc8ca474}\label{classokapi_1_1IterativePosPIDController_aee05c8d81c9ad92a8cf8bd32cc8ca474}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!lastError@{lastError}}
+\index{lastError@{lastError}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{lastError}{lastError}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::last\+Error \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a0dd811fb6ee7a75191b9d26bf1cd082b}\label{classokapi_1_1IterativePosPIDController_a0dd811fb6ee7a75191b9d26bf1cd082b}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!lastReading@{lastReading}}
+\index{lastReading@{lastReading}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{lastReading}{lastReading}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::last\+Reading \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a8d102eed0557c04e1c59b759aa8fbcd6}\label{classokapi_1_1IterativePosPIDController_a8d102eed0557c04e1c59b759aa8fbcd6}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!logger@{logger}}
+\index{logger@{logger}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1Logger}{Logger}}$>$ okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::logger\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_aaddc06f74a9f601d4d1a4b6dba45bf73}\label{classokapi_1_1IterativePosPIDController_aaddc06f74a9f601d4d1a4b6dba45bf73}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!loopDtTimer@{loopDtTimer}}
+\index{loopDtTimer@{loopDtTimer}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{loopDtTimer}{loopDtTimer}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1AbstractTimer}{Abstract\+Timer}}$>$ okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::loop\+Dt\+Timer\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a6cd04ec8b5112f71cc4c89e8ac795e41}\label{classokapi_1_1IterativePosPIDController_a6cd04ec8b5112f71cc4c89e8ac795e41}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!output@{output}}
+\index{output@{output}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{output}{output}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::output \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_adfa78710b50ab0a1fe50236370e4eecd}\label{classokapi_1_1IterativePosPIDController_adfa78710b50ab0a1fe50236370e4eecd}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!outputMax@{outputMax}}
+\index{outputMax@{outputMax}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{outputMax}{outputMax}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::output\+Max \{1\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_af283d92615f66697282d70b3298e16d5}\label{classokapi_1_1IterativePosPIDController_af283d92615f66697282d70b3298e16d5}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!outputMin@{outputMin}}
+\index{outputMin@{outputMin}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{outputMin}{outputMin}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::output\+Min \{-\/1\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a336e78abe2cf481b2c8f7a389cdd26fb}\label{classokapi_1_1IterativePosPIDController_a336e78abe2cf481b2c8f7a389cdd26fb}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!sampleTime@{sampleTime}}
+\index{sampleTime@{sampleTime}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{sampleTime}{sampleTime}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::sample\+Time \{10\+\_\+ms\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_ada52e35922bbe26a1fd464547800d56f}\label{classokapi_1_1IterativePosPIDController_ada52e35922bbe26a1fd464547800d56f}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!settledUtil@{settledUtil}}
+\index{settledUtil@{settledUtil}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{settledUtil}{settledUtil}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1SettledUtil}{Settled\+Util}}$>$ okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::settled\+Util\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_af64cc9a0bca1738b49a3f9d6e84b010a}\label{classokapi_1_1IterativePosPIDController_af64cc9a0bca1738b49a3f9d6e84b010a}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!shouldResetOnCross@{shouldResetOnCross}}
+\index{shouldResetOnCross@{shouldResetOnCross}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{shouldResetOnCross}{shouldResetOnCross}}
+{\footnotesize\ttfamily bool okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::should\+Reset\+On\+Cross \{true\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IterativePosPIDController_a040f8b4e34511e33b41d1f25224c0da5}\label{classokapi_1_1IterativePosPIDController_a040f8b4e34511e33b41d1f25224c0da5}} 
+\index{okapi::IterativePosPIDController@{okapi::IterativePosPIDController}!target@{target}}
+\index{target@{target}!okapi::IterativePosPIDController@{okapi::IterativePosPIDController}}
+\subsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily double okapi\+::\+Iterative\+Pos\+P\+I\+D\+Controller\+::target \{0\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/control/iterative/\mbox{\hyperlink{iterativePosPidController_8hpp}{iterative\+Pos\+Pid\+Controller.\+hpp}}\item 
+src/api/control/iterative/\mbox{\hyperlink{iterativePosPidController_8cpp}{iterative\+Pos\+Pid\+Controller.\+cpp}}\end{DoxyCompactItemize}

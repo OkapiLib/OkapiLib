@@ -1,0 +1,174 @@
+\hypertarget{namespacetesting_1_1internal_1_1posix}{}\section{testing\+::internal\+::posix Namespace Reference}
+\label{namespacetesting_1_1internal_1_1posix}\index{testing::internal::posix@{testing::internal::posix}}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct stat \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a8eb9f08d3af29941c2d2a964cfff3ecb}{Stat\+Struct}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a3117b067e1f942a2031e666953120ccc}{File\+No}} (F\+I\+LE $\ast$file)
+\item 
+int \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a16ebe936b3a8ea462a94191635aedc27}{Is\+A\+T\+TY}} (int fd)
+\item 
+int \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a2b87b7ff647a128614daf50667eb9304}{Stat}} (const char $\ast$path, \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a8eb9f08d3af29941c2d2a964cfff3ecb}{Stat\+Struct}} $\ast$buf)
+\item 
+int \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a1ef2385a7f8e4c706054da35967e76bd}{Str\+Case\+Cmp}} (const char $\ast$s1, const char $\ast$s2)
+\item 
+char $\ast$ \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a8e352884793a65ae8be144676f1a9136}{Str\+Dup}} (const char $\ast$src)
+\item 
+int \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_acbad5d4ea5b73fd1765f5f760642932a}{Rm\+Dir}} (const char $\ast$dir)
+\item 
+bool \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_af0d04ed5baeed28353fa38742748a421}{Is\+Dir}} (const \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a8eb9f08d3af29941c2d2a964cfff3ecb}{Stat\+Struct}} \&st)
+\item 
+const char $\ast$ \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a36fca815713332e5c6dc92c98b6b2574}{Str\+N\+Cpy}} (char $\ast$dest, const char $\ast$src, size\+\_\+t n)
+\item 
+int \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a1ddc8a4fc6bb21da372307485591a212}{Ch\+Dir}} (const char $\ast$dir)
+\item 
+F\+I\+LE $\ast$ \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a4042201dcc4932641d484e7ddf94de7d}{F\+Open}} (const char $\ast$path, const char $\ast$mode)
+\item 
+F\+I\+LE $\ast$ \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a9ef6d089cdae03f9d9e0e6d379c40703}{F\+Reopen}} (const char $\ast$path, const char $\ast$mode, F\+I\+LE $\ast$stream)
+\item 
+F\+I\+LE $\ast$ \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_af7c268eba32d5a718b36b6b3801302e0}{F\+D\+Open}} (int fd, const char $\ast$mode)
+\item 
+int \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_af4beeaaa8d62916d5e3b644a1ddfbd6b}{F\+Close}} (F\+I\+LE $\ast$fp)
+\item 
+int \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a3c6ab13e581a56f1b02f3eb7536c97fd}{Read}} (int fd, void $\ast$buf, unsigned int \mbox{\hyperlink{gmock__stress__test_8cc_afd9db40e3361ae09188795e8cbe19752}{count}})
+\item 
+int \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_af4acf9f78d55f815a18b43786511abef}{Write}} (int fd, const void $\ast$buf, unsigned int \mbox{\hyperlink{gmock__stress__test_8cc_afd9db40e3361ae09188795e8cbe19752}{count}})
+\item 
+int \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a15e5b8f2a535ef1b2529b85b861e4846}{Close}} (int fd)
+\item 
+const char $\ast$ \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a4b77b14af6f4d18f83d303b98e9349c4}{Str\+Error}} (int errnum)
+\item 
+const char $\ast$ \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a1d5e3da5a27eed25986859fa83cafe95}{Get\+Env}} (const char $\ast$name)
+\item 
+void \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a69b8278c59359dd6a6f941b4643db9fb}{Abort}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a8eb9f08d3af29941c2d2a964cfff3ecb}\label{namespacetesting_1_1internal_1_1posix_a8eb9f08d3af29941c2d2a964cfff3ecb}} 
+\index{testing::internal::posix@{testing::internal::posix}!StatStruct@{StatStruct}}
+\index{StatStruct@{StatStruct}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{StatStruct}{StatStruct}}
+{\footnotesize\ttfamily typedef struct stat \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a8eb9f08d3af29941c2d2a964cfff3ecb}{testing\+::internal\+::posix\+::\+Stat\+Struct}}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a69b8278c59359dd6a6f941b4643db9fb}\label{namespacetesting_1_1internal_1_1posix_a69b8278c59359dd6a6f941b4643db9fb}} 
+\index{testing::internal::posix@{testing::internal::posix}!Abort@{Abort}}
+\index{Abort@{Abort}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{Abort()}{Abort()}}
+{\footnotesize\ttfamily void testing\+::internal\+::posix\+::\+Abort (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a1ddc8a4fc6bb21da372307485591a212}\label{namespacetesting_1_1internal_1_1posix_a1ddc8a4fc6bb21da372307485591a212}} 
+\index{testing::internal::posix@{testing::internal::posix}!ChDir@{ChDir}}
+\index{ChDir@{ChDir}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{ChDir()}{ChDir()}}
+{\footnotesize\ttfamily int testing\+::internal\+::posix\+::\+Ch\+Dir (\begin{DoxyParamCaption}\item[{const char $\ast$}]{dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a15e5b8f2a535ef1b2529b85b861e4846}\label{namespacetesting_1_1internal_1_1posix_a15e5b8f2a535ef1b2529b85b861e4846}} 
+\index{testing::internal::posix@{testing::internal::posix}!Close@{Close}}
+\index{Close@{Close}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{Close()}{Close()}}
+{\footnotesize\ttfamily int testing\+::internal\+::posix\+::\+Close (\begin{DoxyParamCaption}\item[{int}]{fd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_af4beeaaa8d62916d5e3b644a1ddfbd6b}\label{namespacetesting_1_1internal_1_1posix_af4beeaaa8d62916d5e3b644a1ddfbd6b}} 
+\index{testing::internal::posix@{testing::internal::posix}!FClose@{FClose}}
+\index{FClose@{FClose}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{FClose()}{FClose()}}
+{\footnotesize\ttfamily int testing\+::internal\+::posix\+::\+F\+Close (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_af7c268eba32d5a718b36b6b3801302e0}\label{namespacetesting_1_1internal_1_1posix_af7c268eba32d5a718b36b6b3801302e0}} 
+\index{testing::internal::posix@{testing::internal::posix}!FDOpen@{FDOpen}}
+\index{FDOpen@{FDOpen}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{FDOpen()}{FDOpen()}}
+{\footnotesize\ttfamily F\+I\+LE$\ast$ testing\+::internal\+::posix\+::\+F\+D\+Open (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{const char $\ast$}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a3117b067e1f942a2031e666953120ccc}\label{namespacetesting_1_1internal_1_1posix_a3117b067e1f942a2031e666953120ccc}} 
+\index{testing::internal::posix@{testing::internal::posix}!FileNo@{FileNo}}
+\index{FileNo@{FileNo}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{FileNo()}{FileNo()}}
+{\footnotesize\ttfamily int testing\+::internal\+::posix\+::\+File\+No (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{file }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a4042201dcc4932641d484e7ddf94de7d}\label{namespacetesting_1_1internal_1_1posix_a4042201dcc4932641d484e7ddf94de7d}} 
+\index{testing::internal::posix@{testing::internal::posix}!FOpen@{FOpen}}
+\index{FOpen@{FOpen}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{FOpen()}{FOpen()}}
+{\footnotesize\ttfamily F\+I\+LE$\ast$ testing\+::internal\+::posix\+::\+F\+Open (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{const char $\ast$}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a9ef6d089cdae03f9d9e0e6d379c40703}\label{namespacetesting_1_1internal_1_1posix_a9ef6d089cdae03f9d9e0e6d379c40703}} 
+\index{testing::internal::posix@{testing::internal::posix}!FReopen@{FReopen}}
+\index{FReopen@{FReopen}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{FReopen()}{FReopen()}}
+{\footnotesize\ttfamily F\+I\+LE$\ast$ testing\+::internal\+::posix\+::\+F\+Reopen (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{const char $\ast$}]{mode,  }\item[{F\+I\+LE $\ast$}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a1d5e3da5a27eed25986859fa83cafe95}\label{namespacetesting_1_1internal_1_1posix_a1d5e3da5a27eed25986859fa83cafe95}} 
+\index{testing::internal::posix@{testing::internal::posix}!GetEnv@{GetEnv}}
+\index{GetEnv@{GetEnv}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{GetEnv()}{GetEnv()}}
+{\footnotesize\ttfamily const char$\ast$ testing\+::internal\+::posix\+::\+Get\+Env (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a16ebe936b3a8ea462a94191635aedc27}\label{namespacetesting_1_1internal_1_1posix_a16ebe936b3a8ea462a94191635aedc27}} 
+\index{testing::internal::posix@{testing::internal::posix}!IsATTY@{IsATTY}}
+\index{IsATTY@{IsATTY}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{IsATTY()}{IsATTY()}}
+{\footnotesize\ttfamily int testing\+::internal\+::posix\+::\+Is\+A\+T\+TY (\begin{DoxyParamCaption}\item[{int}]{fd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_af0d04ed5baeed28353fa38742748a421}\label{namespacetesting_1_1internal_1_1posix_af0d04ed5baeed28353fa38742748a421}} 
+\index{testing::internal::posix@{testing::internal::posix}!IsDir@{IsDir}}
+\index{IsDir@{IsDir}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{IsDir()}{IsDir()}}
+{\footnotesize\ttfamily bool testing\+::internal\+::posix\+::\+Is\+Dir (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a8eb9f08d3af29941c2d2a964cfff3ecb}{Stat\+Struct}} \&}]{st }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a3c6ab13e581a56f1b02f3eb7536c97fd}\label{namespacetesting_1_1internal_1_1posix_a3c6ab13e581a56f1b02f3eb7536c97fd}} 
+\index{testing::internal::posix@{testing::internal::posix}!Read@{Read}}
+\index{Read@{Read}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{Read()}{Read()}}
+{\footnotesize\ttfamily int testing\+::internal\+::posix\+::\+Read (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{void $\ast$}]{buf,  }\item[{unsigned int}]{count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_acbad5d4ea5b73fd1765f5f760642932a}\label{namespacetesting_1_1internal_1_1posix_acbad5d4ea5b73fd1765f5f760642932a}} 
+\index{testing::internal::posix@{testing::internal::posix}!RmDir@{RmDir}}
+\index{RmDir@{RmDir}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{RmDir()}{RmDir()}}
+{\footnotesize\ttfamily int testing\+::internal\+::posix\+::\+Rm\+Dir (\begin{DoxyParamCaption}\item[{const char $\ast$}]{dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a2b87b7ff647a128614daf50667eb9304}\label{namespacetesting_1_1internal_1_1posix_a2b87b7ff647a128614daf50667eb9304}} 
+\index{testing::internal::posix@{testing::internal::posix}!Stat@{Stat}}
+\index{Stat@{Stat}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{Stat()}{Stat()}}
+{\footnotesize\ttfamily int testing\+::internal\+::posix\+::\+Stat (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{\mbox{\hyperlink{namespacetesting_1_1internal_1_1posix_a8eb9f08d3af29941c2d2a964cfff3ecb}{Stat\+Struct}} $\ast$}]{buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a1ef2385a7f8e4c706054da35967e76bd}\label{namespacetesting_1_1internal_1_1posix_a1ef2385a7f8e4c706054da35967e76bd}} 
+\index{testing::internal::posix@{testing::internal::posix}!StrCaseCmp@{StrCaseCmp}}
+\index{StrCaseCmp@{StrCaseCmp}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{StrCaseCmp()}{StrCaseCmp()}}
+{\footnotesize\ttfamily int testing\+::internal\+::posix\+::\+Str\+Case\+Cmp (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s1,  }\item[{const char $\ast$}]{s2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a8e352884793a65ae8be144676f1a9136}\label{namespacetesting_1_1internal_1_1posix_a8e352884793a65ae8be144676f1a9136}} 
+\index{testing::internal::posix@{testing::internal::posix}!StrDup@{StrDup}}
+\index{StrDup@{StrDup}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{StrDup()}{StrDup()}}
+{\footnotesize\ttfamily char$\ast$ testing\+::internal\+::posix\+::\+Str\+Dup (\begin{DoxyParamCaption}\item[{const char $\ast$}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a4b77b14af6f4d18f83d303b98e9349c4}\label{namespacetesting_1_1internal_1_1posix_a4b77b14af6f4d18f83d303b98e9349c4}} 
+\index{testing::internal::posix@{testing::internal::posix}!StrError@{StrError}}
+\index{StrError@{StrError}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{StrError()}{StrError()}}
+{\footnotesize\ttfamily const char$\ast$ testing\+::internal\+::posix\+::\+Str\+Error (\begin{DoxyParamCaption}\item[{int}]{errnum }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_a36fca815713332e5c6dc92c98b6b2574}\label{namespacetesting_1_1internal_1_1posix_a36fca815713332e5c6dc92c98b6b2574}} 
+\index{testing::internal::posix@{testing::internal::posix}!StrNCpy@{StrNCpy}}
+\index{StrNCpy@{StrNCpy}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{StrNCpy()}{StrNCpy()}}
+{\footnotesize\ttfamily const char$\ast$ testing\+::internal\+::posix\+::\+Str\+N\+Cpy (\begin{DoxyParamCaption}\item[{char $\ast$}]{dest,  }\item[{const char $\ast$}]{src,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacetesting_1_1internal_1_1posix_af4acf9f78d55f815a18b43786511abef}\label{namespacetesting_1_1internal_1_1posix_af4acf9f78d55f815a18b43786511abef}} 
+\index{testing::internal::posix@{testing::internal::posix}!Write@{Write}}
+\index{Write@{Write}!testing::internal::posix@{testing::internal::posix}}
+\subsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily int testing\+::internal\+::posix\+::\+Write (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{const void $\ast$}]{buf,  }\item[{unsigned int}]{count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+

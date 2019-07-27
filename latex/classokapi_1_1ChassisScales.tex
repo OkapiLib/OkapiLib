@@ -1,0 +1,160 @@
+\hypertarget{classokapi_1_1ChassisScales}{}\section{okapi\+::Chassis\+Scales Class Reference}
+\label{classokapi_1_1ChassisScales}\index{okapi::ChassisScales@{okapi::ChassisScales}}
+
+
+{\ttfamily \#include $<$chassis\+Scales.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisScales_a12c534b3782cabe8fcfc12620ceb5b7e}{Chassis\+Scales}} (const std\+::initializer\+\_\+list$<$ Q\+Length $>$ \&idimensions, std\+::int32\+\_\+t itpr, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisScales_afde0418a58dc7ff688a4bde5b20ea923}{Chassis\+Scales}} (const std\+::initializer\+\_\+list$<$ double $>$ \&iscales, std\+::int32\+\_\+t itpr, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\+Length \mbox{\hyperlink{classokapi_1_1ChassisScales_a08c7c4f04b6906683a056077cce18ba0}{wheel\+Diameter}}
+\item 
+Q\+Length \mbox{\hyperlink{classokapi_1_1ChassisScales_af2e0c71b9daa9d4345de83967f9bf9c9}{wheel\+Track}}
+\item 
+Q\+Length \mbox{\hyperlink{classokapi_1_1ChassisScales_ab3b646546992e60d5b05d222b7f7f7c7}{middle\+Wheel\+Distance}}
+\item 
+Q\+Length \mbox{\hyperlink{classokapi_1_1ChassisScales_a0fc8563377e9f4c17a111b000d58e87b}{middle\+Wheel\+Diameter}}
+\item 
+double \mbox{\hyperlink{classokapi_1_1ChassisScales_aaf1ec10f7cfa955d6d8eaa2b16dd345f}{straight}}
+\item 
+double \mbox{\hyperlink{classokapi_1_1ChassisScales_aa4babba4794c8f61d41ef6282ba94b64}{turn}}
+\item 
+double \mbox{\hyperlink{classokapi_1_1ChassisScales_a32b8be3c63099900a27d816b47713930}{middle}}
+\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1ChassisScales_a9b6fa5ed7d24669f173d6439920890f2}{tpr}}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classokapi_1_1ChassisScales_a74052e85cf75704579b3dca6718acd87}{validate\+Input\+Size}} (std\+::size\+\_\+t input\+Size, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&logger)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1ChassisScales_a12c534b3782cabe8fcfc12620ceb5b7e}\label{classokapi_1_1ChassisScales_a12c534b3782cabe8fcfc12620ceb5b7e}} 
+\index{okapi::ChassisScales@{okapi::ChassisScales}!ChassisScales@{ChassisScales}}
+\index{ChassisScales@{ChassisScales}!okapi::ChassisScales@{okapi::ChassisScales}}
+\subsubsection{\texorpdfstring{ChassisScales()}{ChassisScales()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily okapi\+::\+Chassis\+Scales\+::\+Chassis\+Scales (\begin{DoxyParamCaption}\item[{const std\+::initializer\+\_\+list$<$ Q\+Length $>$ \&}]{idimensions,  }\item[{std\+::int32\+\_\+t}]{itpr,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
+
+The scales a Chassis \mbox{\hyperlink{classokapi_1_1Controller}{Controller}} needs to do all of its closed-\/loop control. First index is the wheel diameter, second index is the wheel track. An optional third index is the middle wheel diameter if you are using a 3-\/encoder setup.
+
+The wheel track is the center-\/to-\/center distance between the wheels (center-\/to-\/center meaning the width between the centers of both wheels). For example, if you are using four inch omni wheels and there are 11.\+5 inches between the centers of each wheel, you would call the constructor like so\+: \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} scales(\{4\+\_\+in, 11.\+5\+\_\+in\}); \begin{DoxyVerb}                      Wheel diameter
+
+                       +-+      Center of rotation
+                       | |      |
+                       v v      +----------+ Length to middle wheel
+                                |          | from center of rotation
+              +--->    ===      |      === |
+              |         +       v       +  |
+              |        ++---------------++ |
+              |        |                 | v
+Wheel track   |        |                 |
+              |        |        x        |+|  <-- Middle wheel
+              |        |                 |
+              |        |                 |
+              |        ++---------------++
+              |         +               +
+              +--->    ===             ===
+\end{DoxyVerb}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em idimensions} & \{wheel diameter, wheel track\} or \{wheel diameter, wheel track, length to middle wheel, middle wheel diameter\} \\
+\hline
+{\em itpr} & The ticks per revolution of the encoders. \\
+\hline
+{\em ilogger} & The logger this instance will log to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1ChassisScales_afde0418a58dc7ff688a4bde5b20ea923}\label{classokapi_1_1ChassisScales_afde0418a58dc7ff688a4bde5b20ea923}} 
+\index{okapi::ChassisScales@{okapi::ChassisScales}!ChassisScales@{ChassisScales}}
+\index{ChassisScales@{ChassisScales}!okapi::ChassisScales@{okapi::ChassisScales}}
+\subsubsection{\texorpdfstring{ChassisScales()}{ChassisScales()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily okapi\+::\+Chassis\+Scales\+::\+Chassis\+Scales (\begin{DoxyParamCaption}\item[{const std\+::initializer\+\_\+list$<$ double $>$ \&}]{iscales,  }\item[{std\+::int32\+\_\+t}]{itpr,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
+
+The scales a Chassis \mbox{\hyperlink{classokapi_1_1Controller}{Controller}} needs to do all of its closed-\/loop control. First index is the straight scale, second index is the turn scale. An optional third index is the middle scale. The straight scale converts motor degrees to meters, the turn scale converts motor degrees to robot turn degrees, and the middle scale converts middle wheel degrees to meters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iscales} & \{straight scale, turn scale\} or \{straight scale, turn scale, length to middle wheel in meters, middle scale\} \\
+\hline
+{\em itpr} & The ticks per revolution of the encoders. \\
+\hline
+{\em ilogger} & The logger this instance will log to. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1ChassisScales_a74052e85cf75704579b3dca6718acd87}\label{classokapi_1_1ChassisScales_a74052e85cf75704579b3dca6718acd87}} 
+\index{okapi::ChassisScales@{okapi::ChassisScales}!validateInputSize@{validateInputSize}}
+\index{validateInputSize@{validateInputSize}!okapi::ChassisScales@{okapi::ChassisScales}}
+\subsubsection{\texorpdfstring{validateInputSize()}{validateInputSize()}}
+{\footnotesize\ttfamily void okapi\+::\+Chassis\+Scales\+::validate\+Input\+Size (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{input\+Size,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1ChassisScales_a32b8be3c63099900a27d816b47713930}\label{classokapi_1_1ChassisScales_a32b8be3c63099900a27d816b47713930}} 
+\index{okapi::ChassisScales@{okapi::ChassisScales}!middle@{middle}}
+\index{middle@{middle}!okapi::ChassisScales@{okapi::ChassisScales}}
+\subsubsection{\texorpdfstring{middle}{middle}}
+{\footnotesize\ttfamily double okapi\+::\+Chassis\+Scales\+::middle}
+
+\mbox{\Hypertarget{classokapi_1_1ChassisScales_a0fc8563377e9f4c17a111b000d58e87b}\label{classokapi_1_1ChassisScales_a0fc8563377e9f4c17a111b000d58e87b}} 
+\index{okapi::ChassisScales@{okapi::ChassisScales}!middleWheelDiameter@{middleWheelDiameter}}
+\index{middleWheelDiameter@{middleWheelDiameter}!okapi::ChassisScales@{okapi::ChassisScales}}
+\subsubsection{\texorpdfstring{middleWheelDiameter}{middleWheelDiameter}}
+{\footnotesize\ttfamily Q\+Length okapi\+::\+Chassis\+Scales\+::middle\+Wheel\+Diameter}
+
+\mbox{\Hypertarget{classokapi_1_1ChassisScales_ab3b646546992e60d5b05d222b7f7f7c7}\label{classokapi_1_1ChassisScales_ab3b646546992e60d5b05d222b7f7f7c7}} 
+\index{okapi::ChassisScales@{okapi::ChassisScales}!middleWheelDistance@{middleWheelDistance}}
+\index{middleWheelDistance@{middleWheelDistance}!okapi::ChassisScales@{okapi::ChassisScales}}
+\subsubsection{\texorpdfstring{middleWheelDistance}{middleWheelDistance}}
+{\footnotesize\ttfamily Q\+Length okapi\+::\+Chassis\+Scales\+::middle\+Wheel\+Distance}
+
+\mbox{\Hypertarget{classokapi_1_1ChassisScales_aaf1ec10f7cfa955d6d8eaa2b16dd345f}\label{classokapi_1_1ChassisScales_aaf1ec10f7cfa955d6d8eaa2b16dd345f}} 
+\index{okapi::ChassisScales@{okapi::ChassisScales}!straight@{straight}}
+\index{straight@{straight}!okapi::ChassisScales@{okapi::ChassisScales}}
+\subsubsection{\texorpdfstring{straight}{straight}}
+{\footnotesize\ttfamily double okapi\+::\+Chassis\+Scales\+::straight}
+
+\mbox{\Hypertarget{classokapi_1_1ChassisScales_a9b6fa5ed7d24669f173d6439920890f2}\label{classokapi_1_1ChassisScales_a9b6fa5ed7d24669f173d6439920890f2}} 
+\index{okapi::ChassisScales@{okapi::ChassisScales}!tpr@{tpr}}
+\index{tpr@{tpr}!okapi::ChassisScales@{okapi::ChassisScales}}
+\subsubsection{\texorpdfstring{tpr}{tpr}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t okapi\+::\+Chassis\+Scales\+::tpr}
+
+\mbox{\Hypertarget{classokapi_1_1ChassisScales_aa4babba4794c8f61d41ef6282ba94b64}\label{classokapi_1_1ChassisScales_aa4babba4794c8f61d41ef6282ba94b64}} 
+\index{okapi::ChassisScales@{okapi::ChassisScales}!turn@{turn}}
+\index{turn@{turn}!okapi::ChassisScales@{okapi::ChassisScales}}
+\subsubsection{\texorpdfstring{turn}{turn}}
+{\footnotesize\ttfamily double okapi\+::\+Chassis\+Scales\+::turn}
+
+\mbox{\Hypertarget{classokapi_1_1ChassisScales_a08c7c4f04b6906683a056077cce18ba0}\label{classokapi_1_1ChassisScales_a08c7c4f04b6906683a056077cce18ba0}} 
+\index{okapi::ChassisScales@{okapi::ChassisScales}!wheelDiameter@{wheelDiameter}}
+\index{wheelDiameter@{wheelDiameter}!okapi::ChassisScales@{okapi::ChassisScales}}
+\subsubsection{\texorpdfstring{wheelDiameter}{wheelDiameter}}
+{\footnotesize\ttfamily Q\+Length okapi\+::\+Chassis\+Scales\+::wheel\+Diameter}
+
+\mbox{\Hypertarget{classokapi_1_1ChassisScales_af2e0c71b9daa9d4345de83967f9bf9c9}\label{classokapi_1_1ChassisScales_af2e0c71b9daa9d4345de83967f9bf9c9}} 
+\index{okapi::ChassisScales@{okapi::ChassisScales}!wheelTrack@{wheelTrack}}
+\index{wheelTrack@{wheelTrack}!okapi::ChassisScales@{okapi::ChassisScales}}
+\subsubsection{\texorpdfstring{wheelTrack}{wheelTrack}}
+{\footnotesize\ttfamily Q\+Length okapi\+::\+Chassis\+Scales\+::wheel\+Track}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/chassis/controller/\mbox{\hyperlink{chassisScales_8hpp}{chassis\+Scales.\+hpp}}\item 
+src/api/chassis/controller/\mbox{\hyperlink{chassisScales_8cpp}{chassis\+Scales.\+cpp}}\end{DoxyCompactItemize}

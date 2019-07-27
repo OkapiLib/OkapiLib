@@ -1,0 +1,240 @@
+\hypertarget{classokapi_1_1AsyncMotionProfileControllerBuilder}{}\section{okapi\+::Async\+Motion\+Profile\+Controller\+Builder Class Reference}
+\label{classokapi_1_1AsyncMotionProfileControllerBuilder}\index{okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}}
+
+
+{\ttfamily \#include $<$async\+Motion\+Profile\+Controller\+Builder.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_ab8f0219b48e74a8ceb72280f20f9b651}{Async\+Motion\+Profile\+Controller\+Builder}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a879afc5d6ea15d8bbebd737cd7e5a1d9}{with\+Output}} (const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&ioutput, const Q\+Length \&idiameter, const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&ipair)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a6afebe40f4ba878c23664ac34ccab860}{with\+Output}} (const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&ioutput, const Q\+Length \&idiameter, const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&ipair)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a61c92b25221ce023394b31c6d7fd8638}{with\+Output}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerOutput}{Controller\+Output}}$<$ double $>$$>$ \&ioutput, const Q\+Length \&idiameter, const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&ipair)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a74639573740c5476a99d57bfb6916aff}{with\+Output}} (\mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}} \&icontroller)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a1cf11bc17764b22afbabb500165b615b}{with\+Output}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}} $>$ \&icontroller)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a24a0d1b349d89502300fefdad1cfd925}{with\+Output}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ChassisModel}{Chassis\+Model}} $>$ \&imodel, const \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} \&iscales, const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&ipair)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a5808aa809738b4249e4f8551a423dc10}{with\+Limits}} (const \mbox{\hyperlink{structokapi_1_1PathfinderLimits}{Pathfinder\+Limits}} \&ilimits)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_af89ed6243e9e8c94d199906077fecd20}{with\+Time\+Util\+Factory}} (const \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} \&itime\+Util\+Factory)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_aca6d4826cbee5563bf5a664580ef10dc}{with\+Logger}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AsyncLinearMotionProfileController}{Async\+Linear\+Motion\+Profile\+Controller}} $>$ \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a8e10bfca343f885d73d7b8f370741815}{build\+Linear\+Motion\+Profile\+Controller}} ()
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController}{Async\+Motion\+Profile\+Controller}} $>$ \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a2cd170fa280414c388a0106fee23638c}{build\+Motion\+Profile\+Controller}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileControllerBuilder_ab8f0219b48e74a8ceb72280f20f9b651}\label{classokapi_1_1AsyncMotionProfileControllerBuilder_ab8f0219b48e74a8ceb72280f20f9b651}} 
+\index{okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}!AsyncMotionProfileControllerBuilder@{AsyncMotionProfileControllerBuilder}}
+\index{AsyncMotionProfileControllerBuilder@{AsyncMotionProfileControllerBuilder}!okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}}
+\subsubsection{\texorpdfstring{AsyncMotionProfileControllerBuilder()}{AsyncMotionProfileControllerBuilder()}}
+{\footnotesize\ttfamily okapi\+::\+Async\+Motion\+Profile\+Controller\+Builder\+::\+Async\+Motion\+Profile\+Controller\+Builder (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+A builder that creates async motion profile controllers. Use this to build an \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController}{Async\+Motion\+Profile\+Controller}} or an \mbox{\hyperlink{classokapi_1_1AsyncLinearMotionProfileController}{Async\+Linear\+Motion\+Profile\+Controller}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ilogger} & The logger this instance will log to. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileControllerBuilder_a8e10bfca343f885d73d7b8f370741815}\label{classokapi_1_1AsyncMotionProfileControllerBuilder_a8e10bfca343f885d73d7b8f370741815}} 
+\index{okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}!buildLinearMotionProfileController@{buildLinearMotionProfileController}}
+\index{buildLinearMotionProfileController@{buildLinearMotionProfileController}!okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}}
+\subsubsection{\texorpdfstring{buildLinearMotionProfileController()}{buildLinearMotionProfileController()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AsyncLinearMotionProfileController}{Async\+Linear\+Motion\+Profile\+Controller}} $>$ okapi\+::\+Async\+Motion\+Profile\+Controller\+Builder\+::build\+Linear\+Motion\+Profile\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Builds the \mbox{\hyperlink{classokapi_1_1AsyncLinearMotionProfileController}{Async\+Linear\+Motion\+Profile\+Controller}}.
+
+\begin{DoxyReturn}{Returns}
+A fully built \mbox{\hyperlink{classokapi_1_1AsyncLinearMotionProfileController}{Async\+Linear\+Motion\+Profile\+Controller}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileControllerBuilder_a2cd170fa280414c388a0106fee23638c}\label{classokapi_1_1AsyncMotionProfileControllerBuilder_a2cd170fa280414c388a0106fee23638c}} 
+\index{okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}!buildMotionProfileController@{buildMotionProfileController}}
+\index{buildMotionProfileController@{buildMotionProfileController}!okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}}
+\subsubsection{\texorpdfstring{buildMotionProfileController()}{buildMotionProfileController()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController}{Async\+Motion\+Profile\+Controller}} $>$ okapi\+::\+Async\+Motion\+Profile\+Controller\+Builder\+::build\+Motion\+Profile\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Builds the \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController}{Async\+Motion\+Profile\+Controller}}.
+
+\begin{DoxyReturn}{Returns}
+A fully built \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController}{Async\+Motion\+Profile\+Controller}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileControllerBuilder_a5808aa809738b4249e4f8551a423dc10}\label{classokapi_1_1AsyncMotionProfileControllerBuilder_a5808aa809738b4249e4f8551a423dc10}} 
+\index{okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}!withLimits@{withLimits}}
+\index{withLimits@{withLimits}!okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}}
+\subsubsection{\texorpdfstring{withLimits()}{withLimits()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& okapi\+::\+Async\+Motion\+Profile\+Controller\+Builder\+::with\+Limits (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structokapi_1_1PathfinderLimits}{Pathfinder\+Limits}} \&}]{ilimits }\end{DoxyParamCaption})}
+
+Sets the limits.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ilimits} & The limits. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileControllerBuilder_aca6d4826cbee5563bf5a664580ef10dc}\label{classokapi_1_1AsyncMotionProfileControllerBuilder_aca6d4826cbee5563bf5a664580ef10dc}} 
+\index{okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}!withLogger@{withLogger}}
+\index{withLogger@{withLogger}!okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}}
+\subsubsection{\texorpdfstring{withLogger()}{withLogger()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& okapi\+::\+Async\+Motion\+Profile\+Controller\+Builder\+::with\+Logger (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger }\end{DoxyParamCaption})}
+
+Sets the logger.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ilogger} & The logger. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileControllerBuilder_a879afc5d6ea15d8bbebd737cd7e5a1d9}\label{classokapi_1_1AsyncMotionProfileControllerBuilder_a879afc5d6ea15d8bbebd737cd7e5a1d9}} 
+\index{okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}!withOutput@{withOutput}}
+\index{withOutput@{withOutput}!okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}}
+\subsubsection{\texorpdfstring{withOutput()}{withOutput()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& okapi\+::\+Async\+Motion\+Profile\+Controller\+Builder\+::with\+Output (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&}]{ioutput,  }\item[{const Q\+Length \&}]{idiameter,  }\item[{const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&}]{ipair }\end{DoxyParamCaption})}
+
+Sets the output. This must be used with \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a8e10bfca343f885d73d7b8f370741815}{build\+Linear\+Motion\+Profile\+Controller()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ioutput} & The output. \\
+\hline
+{\em idiameter} & The diameter of the mechanical part the motor spins. \\
+\hline
+{\em ipair} & The gearset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileControllerBuilder_a6afebe40f4ba878c23664ac34ccab860}\label{classokapi_1_1AsyncMotionProfileControllerBuilder_a6afebe40f4ba878c23664ac34ccab860}} 
+\index{okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}!withOutput@{withOutput}}
+\index{withOutput@{withOutput}!okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}}
+\subsubsection{\texorpdfstring{withOutput()}{withOutput()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& okapi\+::\+Async\+Motion\+Profile\+Controller\+Builder\+::with\+Output (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&}]{ioutput,  }\item[{const Q\+Length \&}]{idiameter,  }\item[{const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&}]{ipair }\end{DoxyParamCaption})}
+
+Sets the output. This must be used with \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a8e10bfca343f885d73d7b8f370741815}{build\+Linear\+Motion\+Profile\+Controller()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ioutput} & The output. \\
+\hline
+{\em idiameter} & The diameter of the mechanical part the motor spins. \\
+\hline
+{\em ipair} & The gearset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileControllerBuilder_a61c92b25221ce023394b31c6d7fd8638}\label{classokapi_1_1AsyncMotionProfileControllerBuilder_a61c92b25221ce023394b31c6d7fd8638}} 
+\index{okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}!withOutput@{withOutput}}
+\index{withOutput@{withOutput}!okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}}
+\subsubsection{\texorpdfstring{withOutput()}{withOutput()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& okapi\+::\+Async\+Motion\+Profile\+Controller\+Builder\+::with\+Output (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerOutput}{Controller\+Output}}$<$ double $>$$>$ \&}]{ioutput,  }\item[{const Q\+Length \&}]{idiameter,  }\item[{const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&}]{ipair }\end{DoxyParamCaption})}
+
+Sets the output. This must be used with \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a8e10bfca343f885d73d7b8f370741815}{build\+Linear\+Motion\+Profile\+Controller()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ioutput} & The output. \\
+\hline
+{\em idiameter} & The diameter of the mechanical part the motor spins. \\
+\hline
+{\em ipair} & The gearset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileControllerBuilder_a74639573740c5476a99d57bfb6916aff}\label{classokapi_1_1AsyncMotionProfileControllerBuilder_a74639573740c5476a99d57bfb6916aff}} 
+\index{okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}!withOutput@{withOutput}}
+\index{withOutput@{withOutput}!okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}}
+\subsubsection{\texorpdfstring{withOutput()}{withOutput()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& okapi\+::\+Async\+Motion\+Profile\+Controller\+Builder\+::with\+Output (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}} \&}]{icontroller }\end{DoxyParamCaption})}
+
+Sets the output. This must be used with \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a2cd170fa280414c388a0106fee23638c}{build\+Motion\+Profile\+Controller()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em icontroller} & The chassis controller to use. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileControllerBuilder_a1cf11bc17764b22afbabb500165b615b}\label{classokapi_1_1AsyncMotionProfileControllerBuilder_a1cf11bc17764b22afbabb500165b615b}} 
+\index{okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}!withOutput@{withOutput}}
+\index{withOutput@{withOutput}!okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}}
+\subsubsection{\texorpdfstring{withOutput()}{withOutput()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& okapi\+::\+Async\+Motion\+Profile\+Controller\+Builder\+::with\+Output (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}} $>$ \&}]{icontroller }\end{DoxyParamCaption})}
+
+Sets the output. This must be used with \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a2cd170fa280414c388a0106fee23638c}{build\+Motion\+Profile\+Controller()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em icontroller} & The chassis controller to use. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileControllerBuilder_a24a0d1b349d89502300fefdad1cfd925}\label{classokapi_1_1AsyncMotionProfileControllerBuilder_a24a0d1b349d89502300fefdad1cfd925}} 
+\index{okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}!withOutput@{withOutput}}
+\index{withOutput@{withOutput}!okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}}
+\subsubsection{\texorpdfstring{withOutput()}{withOutput()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& okapi\+::\+Async\+Motion\+Profile\+Controller\+Builder\+::with\+Output (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ChassisModel}{Chassis\+Model}} $>$ \&}]{imodel,  }\item[{const \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} \&}]{iscales,  }\item[{const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&}]{ipair }\end{DoxyParamCaption})}
+
+Sets the output. This must be used with \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder_a2cd170fa280414c388a0106fee23638c}{build\+Motion\+Profile\+Controller()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imodel} & The chassis model to use. \\
+\hline
+{\em iscales} & The chassis dimensions. \\
+\hline
+{\em ipair} & The gearset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileControllerBuilder_af89ed6243e9e8c94d199906077fecd20}\label{classokapi_1_1AsyncMotionProfileControllerBuilder_af89ed6243e9e8c94d199906077fecd20}} 
+\index{okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}!withTimeUtilFactory@{withTimeUtilFactory}}
+\index{withTimeUtilFactory@{withTimeUtilFactory}!okapi::AsyncMotionProfileControllerBuilder@{okapi::AsyncMotionProfileControllerBuilder}}
+\subsubsection{\texorpdfstring{withTimeUtilFactory()}{withTimeUtilFactory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}} \& okapi\+::\+Async\+Motion\+Profile\+Controller\+Builder\+::with\+Time\+Util\+Factory (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} \&}]{itime\+Util\+Factory }\end{DoxyParamCaption})}
+
+Sets the \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} used when building the controller. The default is the static \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em itime\+Util\+Factory} & The \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/impl/control/async/\mbox{\hyperlink{asyncMotionProfileControllerBuilder_8hpp}{async\+Motion\+Profile\+Controller\+Builder.\+hpp}}\item 
+src/impl/control/async/\mbox{\hyperlink{asyncMotionProfileControllerBuilder_8cpp}{async\+Motion\+Profile\+Controller\+Builder.\+cpp}}\end{DoxyCompactItemize}

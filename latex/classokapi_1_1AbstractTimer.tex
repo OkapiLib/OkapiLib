@@ -1,0 +1,269 @@
+\hypertarget{classokapi_1_1AbstractTimer}{}\section{okapi\+::Abstract\+Timer Class Reference}
+\label{classokapi_1_1AbstractTimer}\index{okapi::AbstractTimer@{okapi::AbstractTimer}}
+
+
+{\ttfamily \#include $<$abstract\+Timer.\+hpp$>$}
+
+Inheritance diagram for okapi\+::Abstract\+Timer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classokapi_1_1AbstractTimer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1AbstractTimer_aec03f7e11e25f300ec1fd44aaff3596f}{Abstract\+Timer}} (Q\+Time ifirst\+Called)
+\item 
+virtual \mbox{\hyperlink{classokapi_1_1AbstractTimer_a720f854545bab2158135149174758736}{$\sim$\+Abstract\+Timer}} ()
+\item 
+virtual Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_a6871e119f74d8b6a8c928244e837e762}{millis}} () const =0
+\item 
+virtual Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_a6c79c35780dbc4e04e356167bb175424}{get\+Dt}} ()
+\item 
+virtual Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_a4208d7ef0b828422ba02dfd563306ab1}{read\+Dt}} () const
+\item 
+virtual Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_a4707dcc563e750ee491918d7c5755bc3}{get\+Starting\+Time}} () const
+\item 
+virtual Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_ac681cdd9a5147df0b796e9af836502c8}{get\+Dt\+From\+Start}} () const
+\item 
+virtual void \mbox{\hyperlink{classokapi_1_1AbstractTimer_a34c9be79510d23d702fd22188d542ec9}{place\+Mark}} ()
+\item 
+virtual Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_a78d62559bbd51a71372f37920af78261}{clear\+Mark}} ()
+\item 
+virtual void \mbox{\hyperlink{classokapi_1_1AbstractTimer_a177197191296d0d7a5c49c86d5a514fc}{place\+Hard\+Mark}} ()
+\item 
+virtual Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_af462e941170d1659dd04ab9d1ead3968}{clear\+Hard\+Mark}} ()
+\item 
+virtual Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_a11b84685aac3247ce5abdd11419e350e}{get\+Dt\+From\+Mark}} () const
+\item 
+virtual Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_ae32d95df73d640f248f987757163a164}{get\+Dt\+From\+Hard\+Mark}} () const
+\item 
+virtual bool \mbox{\hyperlink{classokapi_1_1AbstractTimer_a452be1d251e938ab4c69801ea2d52e20}{repeat}} (Q\+Time time)
+\item 
+virtual bool \mbox{\hyperlink{classokapi_1_1AbstractTimer_a9153fc8d0b6daf843fa533bf601a15dd}{repeat}} (Q\+Frequency frequency)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_ace6c48ceaa4736cca3d34345fc8a9f5b}{first\+Called}}
+\item 
+Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_aaac21f537a3729ac5d73bf13792b2e8a}{last\+Called}}
+\item 
+Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_ab33f65dd0d151c890307a86449eb74fc}{mark}}
+\item 
+Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_a306968ddbbae48420a16ac42de9bca1f}{hard\+Mark}}
+\item 
+Q\+Time \mbox{\hyperlink{classokapi_1_1AbstractTimer_ae3d1fd628749051d0b90b066bccd4e2b}{repeat\+Mark}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_aec03f7e11e25f300ec1fd44aaff3596f}\label{classokapi_1_1AbstractTimer_aec03f7e11e25f300ec1fd44aaff3596f}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!AbstractTimer@{AbstractTimer}}
+\index{AbstractTimer@{AbstractTimer}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{AbstractTimer()}{AbstractTimer()}}
+{\footnotesize\ttfamily okapi\+::\+Abstract\+Timer\+::\+Abstract\+Timer (\begin{DoxyParamCaption}\item[{Q\+Time}]{ifirst\+Called }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+A \mbox{\hyperlink{classokapi_1_1Timer}{Timer}} base class which implements its methods in terms of \mbox{\hyperlink{classokapi_1_1AbstractTimer_a6871e119f74d8b6a8c928244e837e762}{millis()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ifirst\+Called} & the current time \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_a720f854545bab2158135149174758736}\label{classokapi_1_1AbstractTimer_a720f854545bab2158135149174758736}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!````~AbstractTimer@{$\sim$AbstractTimer}}
+\index{````~AbstractTimer@{$\sim$AbstractTimer}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{$\sim$AbstractTimer()}{~AbstractTimer()}}
+{\footnotesize\ttfamily okapi\+::\+Abstract\+Timer\+::$\sim$\+Abstract\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_af462e941170d1659dd04ab9d1ead3968}\label{classokapi_1_1AbstractTimer_af462e941170d1659dd04ab9d1ead3968}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!clearHardMark@{clearHardMark}}
+\index{clearHardMark@{clearHardMark}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{clearHardMark()}{clearHardMark()}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Abstract\+Timer\+::clear\+Hard\+Mark (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Clears the hard marker.
+
+\begin{DoxyReturn}{Returns}
+The old hard marker 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_a78d62559bbd51a71372f37920af78261}\label{classokapi_1_1AbstractTimer_a78d62559bbd51a71372f37920af78261}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!clearMark@{clearMark}}
+\index{clearMark@{clearMark}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{clearMark()}{clearMark()}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Abstract\+Timer\+::clear\+Mark (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Clears the marker.
+
+\begin{DoxyReturn}{Returns}
+The old marker 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_a6c79c35780dbc4e04e356167bb175424}\label{classokapi_1_1AbstractTimer_a6c79c35780dbc4e04e356167bb175424}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!getDt@{getDt}}
+\index{getDt@{getDt}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{getDt()}{getDt()}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Abstract\+Timer\+::get\+Dt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the time passed in ms since the previous call of this function.
+
+\begin{DoxyReturn}{Returns}
+The time passed in ms since the previous call of this function 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_ae32d95df73d640f248f987757163a164}\label{classokapi_1_1AbstractTimer_ae32d95df73d640f248f987757163a164}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!getDtFromHardMark@{getDtFromHardMark}}
+\index{getDtFromHardMark@{getDtFromHardMark}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{getDtFromHardMark()}{getDtFromHardMark()}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Abstract\+Timer\+::get\+Dt\+From\+Hard\+Mark (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the time since the hard time marker. Returns 0\+\_\+ms if there is no hard marker set.
+
+\begin{DoxyReturn}{Returns}
+The time since the hard time marker 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_a11b84685aac3247ce5abdd11419e350e}\label{classokapi_1_1AbstractTimer_a11b84685aac3247ce5abdd11419e350e}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!getDtFromMark@{getDtFromMark}}
+\index{getDtFromMark@{getDtFromMark}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{getDtFromMark()}{getDtFromMark()}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Abstract\+Timer\+::get\+Dt\+From\+Mark (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the time since the time marker. Returns 0\+\_\+ms if there is no marker.
+
+\begin{DoxyReturn}{Returns}
+The time since the time marker 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_ac681cdd9a5147df0b796e9af836502c8}\label{classokapi_1_1AbstractTimer_ac681cdd9a5147df0b796e9af836502c8}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!getDtFromStart@{getDtFromStart}}
+\index{getDtFromStart@{getDtFromStart}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{getDtFromStart()}{getDtFromStart()}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Abstract\+Timer\+::get\+Dt\+From\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the time since the timer was first constructed.
+
+\begin{DoxyReturn}{Returns}
+The time since the timer was first constructed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_a4707dcc563e750ee491918d7c5755bc3}\label{classokapi_1_1AbstractTimer_a4707dcc563e750ee491918d7c5755bc3}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!getStartingTime@{getStartingTime}}
+\index{getStartingTime@{getStartingTime}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{getStartingTime()}{getStartingTime()}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Abstract\+Timer\+::get\+Starting\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the time the timer was first constructed.
+
+\begin{DoxyReturn}{Returns}
+The time the timer was first constructed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_a6871e119f74d8b6a8c928244e837e762}\label{classokapi_1_1AbstractTimer_a6871e119f74d8b6a8c928244e837e762}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!millis@{millis}}
+\index{millis@{millis}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{millis()}{millis()}}
+{\footnotesize\ttfamily virtual Q\+Time okapi\+::\+Abstract\+Timer\+::millis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns the current time in units of Q\+Time.
+
+\begin{DoxyReturn}{Returns}
+the current time 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classokapi_1_1Timer_aca51b21d6302021cd24b49b64648c13c}{okapi\+::\+Timer}}.
+
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_a177197191296d0d7a5c49c86d5a514fc}\label{classokapi_1_1AbstractTimer_a177197191296d0d7a5c49c86d5a514fc}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!placeHardMark@{placeHardMark}}
+\index{placeHardMark@{placeHardMark}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{placeHardMark()}{placeHardMark()}}
+{\footnotesize\ttfamily void okapi\+::\+Abstract\+Timer\+::place\+Hard\+Mark (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Place a hard time marker. Placing another hard marker will not overwrite the previous one; instead, call \mbox{\hyperlink{classokapi_1_1AbstractTimer_af462e941170d1659dd04ab9d1ead3968}{clear\+Hard\+Mark()}} and then place another. \mbox{\Hypertarget{classokapi_1_1AbstractTimer_a34c9be79510d23d702fd22188d542ec9}\label{classokapi_1_1AbstractTimer_a34c9be79510d23d702fd22188d542ec9}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!placeMark@{placeMark}}
+\index{placeMark@{placeMark}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{placeMark()}{placeMark()}}
+{\footnotesize\ttfamily void okapi\+::\+Abstract\+Timer\+::place\+Mark (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Place a time marker. Placing another marker will overwrite the previous one. \mbox{\Hypertarget{classokapi_1_1AbstractTimer_a4208d7ef0b828422ba02dfd563306ab1}\label{classokapi_1_1AbstractTimer_a4208d7ef0b828422ba02dfd563306ab1}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!readDt@{readDt}}
+\index{readDt@{readDt}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{readDt()}{readDt()}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Abstract\+Timer\+::read\+Dt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the time passed in ms since the previous call of \mbox{\hyperlink{classokapi_1_1AbstractTimer_a6c79c35780dbc4e04e356167bb175424}{get\+Dt()}}. Does not change the time recorded by \mbox{\hyperlink{classokapi_1_1AbstractTimer_a6c79c35780dbc4e04e356167bb175424}{get\+Dt()}}.
+
+\begin{DoxyReturn}{Returns}
+The time passed in ms since the previous call of \mbox{\hyperlink{classokapi_1_1AbstractTimer_a6c79c35780dbc4e04e356167bb175424}{get\+Dt()}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_a452be1d251e938ab4c69801ea2d52e20}\label{classokapi_1_1AbstractTimer_a452be1d251e938ab4c69801ea2d52e20}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!repeat@{repeat}}
+\index{repeat@{repeat}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{repeat()}{repeat()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool okapi\+::\+Abstract\+Timer\+::repeat (\begin{DoxyParamCaption}\item[{Q\+Time}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns true when the input time period has passed, then resets. Meant to be used in loops to run an action every time period without blocking.
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & time period \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true when the input time period has passed, false after reading true until the period has passed again 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_a9153fc8d0b6daf843fa533bf601a15dd}\label{classokapi_1_1AbstractTimer_a9153fc8d0b6daf843fa533bf601a15dd}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!repeat@{repeat}}
+\index{repeat@{repeat}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{repeat()}{repeat()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool okapi\+::\+Abstract\+Timer\+::repeat (\begin{DoxyParamCaption}\item[{Q\+Frequency}]{frequency }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns true when the input time period has passed, then resets. Meant to be used in loops to run an action every time period without blocking.
+
+
+\begin{DoxyParams}{Parameters}
+{\em frequency} & the repeat frequency \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true when the input time period has passed, false after reading true until the period has passed again 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_ace6c48ceaa4736cca3d34345fc8a9f5b}\label{classokapi_1_1AbstractTimer_ace6c48ceaa4736cca3d34345fc8a9f5b}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!firstCalled@{firstCalled}}
+\index{firstCalled@{firstCalled}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{firstCalled}{firstCalled}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Abstract\+Timer\+::first\+Called\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_a306968ddbbae48420a16ac42de9bca1f}\label{classokapi_1_1AbstractTimer_a306968ddbbae48420a16ac42de9bca1f}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!hardMark@{hardMark}}
+\index{hardMark@{hardMark}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{hardMark}{hardMark}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Abstract\+Timer\+::hard\+Mark\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_aaac21f537a3729ac5d73bf13792b2e8a}\label{classokapi_1_1AbstractTimer_aaac21f537a3729ac5d73bf13792b2e8a}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!lastCalled@{lastCalled}}
+\index{lastCalled@{lastCalled}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{lastCalled}{lastCalled}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Abstract\+Timer\+::last\+Called\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_ab33f65dd0d151c890307a86449eb74fc}\label{classokapi_1_1AbstractTimer_ab33f65dd0d151c890307a86449eb74fc}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!mark@{mark}}
+\index{mark@{mark}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{mark}{mark}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Abstract\+Timer\+::mark\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1AbstractTimer_ae3d1fd628749051d0b90b066bccd4e2b}\label{classokapi_1_1AbstractTimer_ae3d1fd628749051d0b90b066bccd4e2b}} 
+\index{okapi::AbstractTimer@{okapi::AbstractTimer}!repeatMark@{repeatMark}}
+\index{repeatMark@{repeatMark}!okapi::AbstractTimer@{okapi::AbstractTimer}}
+\subsubsection{\texorpdfstring{repeatMark}{repeatMark}}
+{\footnotesize\ttfamily Q\+Time okapi\+::\+Abstract\+Timer\+::repeat\+Mark\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/util/\mbox{\hyperlink{abstractTimer_8hpp}{abstract\+Timer.\+hpp}}\item 
+src/api/util/\mbox{\hyperlink{abstractTimer_8cpp}{abstract\+Timer.\+cpp}}\end{DoxyCompactItemize}

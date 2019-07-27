@@ -1,0 +1,42 @@
+\hypertarget{classokapi_1_1AsyncController}{}\section{okapi\+::Async\+Controller$<$ Input, Output $>$ Class Template Reference}
+\label{classokapi_1_1AsyncController}\index{okapi::AsyncController$<$ Input, Output $>$@{okapi::AsyncController$<$ Input, Output $>$}}
+
+
+{\ttfamily \#include $<$async\+Controller.\+hpp$>$}
+
+Inheritance diagram for okapi\+::Async\+Controller$<$ Input, Output $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.565865cm]{classokapi_1_1AsyncController}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classokapi_1_1AsyncController_a20e19f334e3dc7a3092e0e4355edcf49}{wait\+Until\+Settled}} ()=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Input, typename Output$>$\newline
+class okapi\+::\+Async\+Controller$<$ Input, Output $>$}
+
+Closed-\/loop controller that steps on its own in another thread and automatically writes to the output. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1AsyncController_a20e19f334e3dc7a3092e0e4355edcf49}\label{classokapi_1_1AsyncController_a20e19f334e3dc7a3092e0e4355edcf49}} 
+\index{okapi::AsyncController$<$ Input, Output $>$@{okapi::AsyncController$<$ Input, Output $>$}!waitUntilSettled@{waitUntilSettled}}
+\index{waitUntilSettled@{waitUntilSettled}!okapi::AsyncController$<$ Input, Output $>$@{okapi::AsyncController$<$ Input, Output $>$}}
+\subsubsection{\texorpdfstring{waitUntilSettled()}{waitUntilSettled()}}
+{\footnotesize\ttfamily template$<$typename Input, typename Output$>$ \\
+virtual void \mbox{\hyperlink{classokapi_1_1AsyncController}{okapi\+::\+Async\+Controller}}$<$ Input, Output $>$\+::wait\+Until\+Settled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Blocks the current task until the controller has settled. Determining what settling means is implementation-\/dependent. 
+
+Implemented in \mbox{\hyperlink{classokapi_1_1AsyncWrapper_a23435c257ac2d6df59ab5d96408e608a}{okapi\+::\+Async\+Wrapper$<$ Input, Output $>$}}, \mbox{\hyperlink{classokapi_1_1AsyncWrapper_a23435c257ac2d6df59ab5d96408e608a}{okapi\+::\+Async\+Wrapper$<$ double, double $>$}}, \mbox{\hyperlink{classokapi_1_1AsyncLinearMotionProfileController_ad2609e435baad67b73b86b48730fdc9c}{okapi\+::\+Async\+Linear\+Motion\+Profile\+Controller}}, \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController_a0b08d2f39d786739a734c50523db1eb2}{okapi\+::\+Async\+Motion\+Profile\+Controller}}, \mbox{\hyperlink{classokapi_1_1AsyncVelIntegratedController_aa1a838d836496ca5565c1d8379c2897a}{okapi\+::\+Async\+Vel\+Integrated\+Controller}}, and \mbox{\hyperlink{classokapi_1_1AsyncPosIntegratedController_a9f03807433a02bcbee583c1d85eaf55a}{okapi\+::\+Async\+Pos\+Integrated\+Controller}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/control/async/\mbox{\hyperlink{asyncController_8hpp}{async\+Controller.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,239 @@
+\hypertarget{classokapi_1_1PIDTuner}{}\section{okapi\+::P\+I\+D\+Tuner Class Reference}
+\label{classokapi_1_1PIDTuner}\index{okapi::PIDTuner@{okapi::PIDTuner}}
+
+
+{\ttfamily \#include $<$pid\+Tuner.\+hpp$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structokapi_1_1PIDTuner_1_1Output}{Output}}
+\item 
+struct \mbox{\hyperlink{structokapi_1_1PIDTuner_1_1Particle}{Particle}}
+\item 
+struct \mbox{\hyperlink{structokapi_1_1PIDTuner_1_1ParticleSet}{Particle\+Set}}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1PIDTuner_a44dc4eed9bb29fd51a18bb97f8fde038}{P\+I\+D\+Tuner}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}}$<$ double $>$$>$ \&iinput, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerOutput}{Controller\+Output}}$<$ double $>$$>$ \&ioutput, const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&itime\+Util, Q\+Time itimeout, std\+::int32\+\_\+t igoal, double ik\+P\+Min, double ik\+P\+Max, double ik\+I\+Min, double ik\+I\+Max, double ik\+D\+Min, double ik\+D\+Max, std\+::size\+\_\+t inum\+Iterations=5, std\+::size\+\_\+t inum\+Particles=16, double ik\+Settle=1, double ik\+I\+T\+AE=2, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\item 
+virtual \mbox{\hyperlink{classokapi_1_1PIDTuner_a7583fde6cec427e875f75dc33e2bf00f}{$\sim$\+P\+I\+D\+Tuner}} ()
+\item 
+virtual \mbox{\hyperlink{structokapi_1_1PIDTuner_1_1Output}{Output}} \mbox{\hyperlink{classokapi_1_1PIDTuner_af67c498c38c49118876d592bb54a251d}{autotune}} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \mbox{\hyperlink{classokapi_1_1PIDTuner_aaacb94d0dfe0aa5f5d60bb545d8f47c2}{logger}}
+\item 
+\mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \mbox{\hyperlink{classokapi_1_1PIDTuner_a60b56b9eb8afccaf712e9431cf7f081f}{time\+Util}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}}$<$ double $>$ $>$ \mbox{\hyperlink{classokapi_1_1PIDTuner_a40ac034c005ba51661547aa5bcfa489a}{input}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerOutput}{Controller\+Output}}$<$ double $>$ $>$ \mbox{\hyperlink{classokapi_1_1PIDTuner_ae97a91fa08ed6cfaabede054a550086a}{output}}
+\item 
+const Q\+Time \mbox{\hyperlink{classokapi_1_1PIDTuner_aaaffccb9f7957dd55231828eaea7d1aa}{timeout}}
+\item 
+const std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1PIDTuner_ab93cfb26d55a413ed1dbe4a3b3a4b593}{goal}}
+\item 
+const double \mbox{\hyperlink{classokapi_1_1PIDTuner_a9440d32122ec8700ba94a5814324f250}{k\+P\+Min}}
+\item 
+const double \mbox{\hyperlink{classokapi_1_1PIDTuner_a3997e68a567dbaaa0e4b5fccc930058e}{k\+P\+Max}}
+\item 
+const double \mbox{\hyperlink{classokapi_1_1PIDTuner_ab3bce230ab8d7599117de6d589fc5246}{k\+I\+Min}}
+\item 
+const double \mbox{\hyperlink{classokapi_1_1PIDTuner_a911b99991fe5d49e0065000481fa82b1}{k\+I\+Max}}
+\item 
+const double \mbox{\hyperlink{classokapi_1_1PIDTuner_ab8e1906b058523d1896e27db54a4cec7}{k\+D\+Min}}
+\item 
+const double \mbox{\hyperlink{classokapi_1_1PIDTuner_a68227ac895b938a1f227cc5af8145c57}{k\+D\+Max}}
+\item 
+const std\+::size\+\_\+t \mbox{\hyperlink{classokapi_1_1PIDTuner_ad37777a3d7646873c2384e40a567c2db}{num\+Iterations}}
+\item 
+const std\+::size\+\_\+t \mbox{\hyperlink{classokapi_1_1PIDTuner_ae95d28fbed3acea4722a8f24a15d7d0b}{num\+Particles}}
+\item 
+const double \mbox{\hyperlink{classokapi_1_1PIDTuner_a67bb281ee451f205cebd4f8dcd7b3c1f}{k\+Settle}}
+\item 
+const double \mbox{\hyperlink{classokapi_1_1PIDTuner_aacfd3c10e26b2c4001233904a66c7e5e}{k\+I\+T\+AE}}
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr double \mbox{\hyperlink{classokapi_1_1PIDTuner_af70d618cad57725e416a9efad2812384}{inertia}} = 0.\+5
+\item 
+static constexpr double \mbox{\hyperlink{classokapi_1_1PIDTuner_a7fdfc18fff603aeac1785649fdc92773}{conf\+Self}} = 1.\+1
+\item 
+static constexpr double \mbox{\hyperlink{classokapi_1_1PIDTuner_a6329b9e4c891a1e1dfdbdd68d553bcc4}{conf\+Swarm}} = 1.\+2
+\item 
+static constexpr int \mbox{\hyperlink{classokapi_1_1PIDTuner_a0aafbd52157a5fed3dcf995f88b30478}{increment}} = 5
+\item 
+static constexpr int \mbox{\hyperlink{classokapi_1_1PIDTuner_a5cc51a97600a9114104afb9923056c79}{divisor}} = 5
+\item 
+static constexpr Q\+Time \mbox{\hyperlink{classokapi_1_1PIDTuner_aedcb493e227469c2016d2267588a50bd}{loop\+Delta}} = 10\+\_\+ms
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_a44dc4eed9bb29fd51a18bb97f8fde038}\label{classokapi_1_1PIDTuner_a44dc4eed9bb29fd51a18bb97f8fde038}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!PIDTuner@{PIDTuner}}
+\index{PIDTuner@{PIDTuner}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{PIDTuner()}{PIDTuner()}}
+{\footnotesize\ttfamily okapi\+::\+P\+I\+D\+Tuner\+::\+P\+I\+D\+Tuner (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}}$<$ double $>$$>$ \&}]{iinput,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerOutput}{Controller\+Output}}$<$ double $>$$>$ \&}]{ioutput,  }\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&}]{itime\+Util,  }\item[{Q\+Time}]{itimeout,  }\item[{std\+::int32\+\_\+t}]{igoal,  }\item[{double}]{ik\+P\+Min,  }\item[{double}]{ik\+P\+Max,  }\item[{double}]{ik\+I\+Min,  }\item[{double}]{ik\+I\+Max,  }\item[{double}]{ik\+D\+Min,  }\item[{double}]{ik\+D\+Max,  }\item[{std\+::size\+\_\+t}]{inum\+Iterations = {\ttfamily 5},  }\item[{std\+::size\+\_\+t}]{inum\+Particles = {\ttfamily 16},  }\item[{double}]{ik\+Settle = {\ttfamily 1},  }\item[{double}]{ik\+I\+T\+AE = {\ttfamily 2},  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_a7583fde6cec427e875f75dc33e2bf00f}\label{classokapi_1_1PIDTuner_a7583fde6cec427e875f75dc33e2bf00f}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!````~PIDTuner@{$\sim$PIDTuner}}
+\index{````~PIDTuner@{$\sim$PIDTuner}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{$\sim$PIDTuner()}{~PIDTuner()}}
+{\footnotesize\ttfamily okapi\+::\+P\+I\+D\+Tuner\+::$\sim$\+P\+I\+D\+Tuner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_af67c498c38c49118876d592bb54a251d}\label{classokapi_1_1PIDTuner_af67c498c38c49118876d592bb54a251d}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!autotune@{autotune}}
+\index{autotune@{autotune}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{autotune()}{autotune()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structokapi_1_1PIDTuner_1_1Output}{P\+I\+D\+Tuner\+::\+Output}} okapi\+::\+P\+I\+D\+Tuner\+::autotune (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_a7fdfc18fff603aeac1785649fdc92773}\label{classokapi_1_1PIDTuner_a7fdfc18fff603aeac1785649fdc92773}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!confSelf@{confSelf}}
+\index{confSelf@{confSelf}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{confSelf}{confSelf}}
+{\footnotesize\ttfamily constexpr double okapi\+::\+P\+I\+D\+Tuner\+::conf\+Self = 1.\+1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_a6329b9e4c891a1e1dfdbdd68d553bcc4}\label{classokapi_1_1PIDTuner_a6329b9e4c891a1e1dfdbdd68d553bcc4}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!confSwarm@{confSwarm}}
+\index{confSwarm@{confSwarm}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{confSwarm}{confSwarm}}
+{\footnotesize\ttfamily constexpr double okapi\+::\+P\+I\+D\+Tuner\+::conf\+Swarm = 1.\+2\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_a5cc51a97600a9114104afb9923056c79}\label{classokapi_1_1PIDTuner_a5cc51a97600a9114104afb9923056c79}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!divisor@{divisor}}
+\index{divisor@{divisor}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{divisor}{divisor}}
+{\footnotesize\ttfamily constexpr int okapi\+::\+P\+I\+D\+Tuner\+::divisor = 5\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_ab93cfb26d55a413ed1dbe4a3b3a4b593}\label{classokapi_1_1PIDTuner_ab93cfb26d55a413ed1dbe4a3b3a4b593}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!goal@{goal}}
+\index{goal@{goal}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{goal}{goal}}
+{\footnotesize\ttfamily const std\+::int32\+\_\+t okapi\+::\+P\+I\+D\+Tuner\+::goal\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_a0aafbd52157a5fed3dcf995f88b30478}\label{classokapi_1_1PIDTuner_a0aafbd52157a5fed3dcf995f88b30478}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!increment@{increment}}
+\index{increment@{increment}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{increment}{increment}}
+{\footnotesize\ttfamily constexpr int okapi\+::\+P\+I\+D\+Tuner\+::increment = 5\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_af70d618cad57725e416a9efad2812384}\label{classokapi_1_1PIDTuner_af70d618cad57725e416a9efad2812384}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!inertia@{inertia}}
+\index{inertia@{inertia}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{inertia}{inertia}}
+{\footnotesize\ttfamily constexpr double okapi\+::\+P\+I\+D\+Tuner\+::inertia = 0.\+5\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_a40ac034c005ba51661547aa5bcfa489a}\label{classokapi_1_1PIDTuner_a40ac034c005ba51661547aa5bcfa489a}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!input@{input}}
+\index{input@{input}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{input}{input}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}}$<$double$>$ $>$ okapi\+::\+P\+I\+D\+Tuner\+::input\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_a68227ac895b938a1f227cc5af8145c57}\label{classokapi_1_1PIDTuner_a68227ac895b938a1f227cc5af8145c57}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!kDMax@{kDMax}}
+\index{kDMax@{kDMax}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{kDMax}{kDMax}}
+{\footnotesize\ttfamily const double okapi\+::\+P\+I\+D\+Tuner\+::k\+D\+Max\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_ab8e1906b058523d1896e27db54a4cec7}\label{classokapi_1_1PIDTuner_ab8e1906b058523d1896e27db54a4cec7}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!kDMin@{kDMin}}
+\index{kDMin@{kDMin}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{kDMin}{kDMin}}
+{\footnotesize\ttfamily const double okapi\+::\+P\+I\+D\+Tuner\+::k\+D\+Min\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_a911b99991fe5d49e0065000481fa82b1}\label{classokapi_1_1PIDTuner_a911b99991fe5d49e0065000481fa82b1}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!kIMax@{kIMax}}
+\index{kIMax@{kIMax}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{kIMax}{kIMax}}
+{\footnotesize\ttfamily const double okapi\+::\+P\+I\+D\+Tuner\+::k\+I\+Max\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_ab3bce230ab8d7599117de6d589fc5246}\label{classokapi_1_1PIDTuner_ab3bce230ab8d7599117de6d589fc5246}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!kIMin@{kIMin}}
+\index{kIMin@{kIMin}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{kIMin}{kIMin}}
+{\footnotesize\ttfamily const double okapi\+::\+P\+I\+D\+Tuner\+::k\+I\+Min\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_aacfd3c10e26b2c4001233904a66c7e5e}\label{classokapi_1_1PIDTuner_aacfd3c10e26b2c4001233904a66c7e5e}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!kITAE@{kITAE}}
+\index{kITAE@{kITAE}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{kITAE}{kITAE}}
+{\footnotesize\ttfamily const double okapi\+::\+P\+I\+D\+Tuner\+::k\+I\+T\+AE\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_a3997e68a567dbaaa0e4b5fccc930058e}\label{classokapi_1_1PIDTuner_a3997e68a567dbaaa0e4b5fccc930058e}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!kPMax@{kPMax}}
+\index{kPMax@{kPMax}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{kPMax}{kPMax}}
+{\footnotesize\ttfamily const double okapi\+::\+P\+I\+D\+Tuner\+::k\+P\+Max\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_a9440d32122ec8700ba94a5814324f250}\label{classokapi_1_1PIDTuner_a9440d32122ec8700ba94a5814324f250}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!kPMin@{kPMin}}
+\index{kPMin@{kPMin}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{kPMin}{kPMin}}
+{\footnotesize\ttfamily const double okapi\+::\+P\+I\+D\+Tuner\+::k\+P\+Min\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_a67bb281ee451f205cebd4f8dcd7b3c1f}\label{classokapi_1_1PIDTuner_a67bb281ee451f205cebd4f8dcd7b3c1f}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!kSettle@{kSettle}}
+\index{kSettle@{kSettle}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{kSettle}{kSettle}}
+{\footnotesize\ttfamily const double okapi\+::\+P\+I\+D\+Tuner\+::k\+Settle\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_aaacb94d0dfe0aa5f5d60bb545d8f47c2}\label{classokapi_1_1PIDTuner_aaacb94d0dfe0aa5f5d60bb545d8f47c2}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!logger@{logger}}
+\index{logger@{logger}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1Logger}{Logger}}$>$ okapi\+::\+P\+I\+D\+Tuner\+::logger\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_aedcb493e227469c2016d2267588a50bd}\label{classokapi_1_1PIDTuner_aedcb493e227469c2016d2267588a50bd}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!loopDelta@{loopDelta}}
+\index{loopDelta@{loopDelta}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{loopDelta}{loopDelta}}
+{\footnotesize\ttfamily constexpr Q\+Time okapi\+::\+P\+I\+D\+Tuner\+::loop\+Delta = 10\+\_\+ms\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_ad37777a3d7646873c2384e40a567c2db}\label{classokapi_1_1PIDTuner_ad37777a3d7646873c2384e40a567c2db}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!numIterations@{numIterations}}
+\index{numIterations@{numIterations}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{numIterations}{numIterations}}
+{\footnotesize\ttfamily const std\+::size\+\_\+t okapi\+::\+P\+I\+D\+Tuner\+::num\+Iterations\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_ae95d28fbed3acea4722a8f24a15d7d0b}\label{classokapi_1_1PIDTuner_ae95d28fbed3acea4722a8f24a15d7d0b}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!numParticles@{numParticles}}
+\index{numParticles@{numParticles}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{numParticles}{numParticles}}
+{\footnotesize\ttfamily const std\+::size\+\_\+t okapi\+::\+P\+I\+D\+Tuner\+::num\+Particles\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_ae97a91fa08ed6cfaabede054a550086a}\label{classokapi_1_1PIDTuner_ae97a91fa08ed6cfaabede054a550086a}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!output@{output}}
+\index{output@{output}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{output}{output}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1ControllerOutput}{Controller\+Output}}$<$double$>$ $>$ okapi\+::\+P\+I\+D\+Tuner\+::output\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_aaaffccb9f7957dd55231828eaea7d1aa}\label{classokapi_1_1PIDTuner_aaaffccb9f7957dd55231828eaea7d1aa}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!timeout@{timeout}}
+\index{timeout@{timeout}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{timeout}{timeout}}
+{\footnotesize\ttfamily const Q\+Time okapi\+::\+P\+I\+D\+Tuner\+::timeout\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1PIDTuner_a60b56b9eb8afccaf712e9431cf7f081f}\label{classokapi_1_1PIDTuner_a60b56b9eb8afccaf712e9431cf7f081f}} 
+\index{okapi::PIDTuner@{okapi::PIDTuner}!timeUtil@{timeUtil}}
+\index{timeUtil@{timeUtil}!okapi::PIDTuner@{okapi::PIDTuner}}
+\subsubsection{\texorpdfstring{timeUtil}{timeUtil}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} okapi\+::\+P\+I\+D\+Tuner\+::time\+Util\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/control/util/\mbox{\hyperlink{pidTuner_8hpp}{pid\+Tuner.\+hpp}}\item 
+src/api/control/util/\mbox{\hyperlink{pidTuner_8cpp}{pid\+Tuner.\+cpp}}\end{DoxyCompactItemize}

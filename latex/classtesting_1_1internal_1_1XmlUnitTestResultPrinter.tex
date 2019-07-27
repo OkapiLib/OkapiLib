@@ -1,0 +1,61 @@
+\hypertarget{classtesting_1_1internal_1_1XmlUnitTestResultPrinter}{}\section{testing\+::internal\+::Xml\+Unit\+Test\+Result\+Printer Class Reference}
+\label{classtesting_1_1internal_1_1XmlUnitTestResultPrinter}\index{testing::internal::XmlUnitTestResultPrinter@{testing::internal::XmlUnitTestResultPrinter}}
+Inheritance diagram for testing\+::internal\+::Xml\+Unit\+Test\+Result\+Printer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classtesting_1_1internal_1_1XmlUnitTestResultPrinter}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtesting_1_1internal_1_1XmlUnitTestResultPrinter_afdaf88e6764c18ce0dcc3733d7a06e31}{Xml\+Unit\+Test\+Result\+Printer}} (const char $\ast$output\+\_\+file)
+\item 
+virtual void \mbox{\hyperlink{classtesting_1_1internal_1_1XmlUnitTestResultPrinter_a2ae986dd2f4f2aed31cc6f3bc8c56898}{On\+Test\+Iteration\+End}} (const \mbox{\hyperlink{classtesting_1_1UnitTest}{Unit\+Test}} \&unit\+\_\+test, int iteration)
+\item 
+void \mbox{\hyperlink{classtesting_1_1internal_1_1XmlUnitTestResultPrinter_acbfdcacec7f668163fa0ccef771f72db}{List\+Tests\+Matching\+Filter}} (const std\+::vector$<$ \mbox{\hyperlink{classtesting_1_1TestCase}{Test\+Case}} $\ast$ $>$ \&test\+\_\+cases)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classtesting_1_1internal_1_1XmlUnitTestResultPrinter_aaefdb155fde088eea18310f23afd2daa}{Print\+Xml\+Tests\+List}} (std\+::ostream $\ast$stream, const std\+::vector$<$ \mbox{\hyperlink{classtesting_1_1TestCase}{Test\+Case}} $\ast$ $>$ \&test\+\_\+cases)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classtesting_1_1internal_1_1XmlUnitTestResultPrinter_afdaf88e6764c18ce0dcc3733d7a06e31}\label{classtesting_1_1internal_1_1XmlUnitTestResultPrinter_afdaf88e6764c18ce0dcc3733d7a06e31}} 
+\index{testing::internal::XmlUnitTestResultPrinter@{testing::internal::XmlUnitTestResultPrinter}!XmlUnitTestResultPrinter@{XmlUnitTestResultPrinter}}
+\index{XmlUnitTestResultPrinter@{XmlUnitTestResultPrinter}!testing::internal::XmlUnitTestResultPrinter@{testing::internal::XmlUnitTestResultPrinter}}
+\subsubsection{\texorpdfstring{XmlUnitTestResultPrinter()}{XmlUnitTestResultPrinter()}}
+{\footnotesize\ttfamily testing\+::internal\+::\+Xml\+Unit\+Test\+Result\+Printer\+::\+Xml\+Unit\+Test\+Result\+Printer (\begin{DoxyParamCaption}\item[{const char $\ast$}]{output\+\_\+file }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classtesting_1_1internal_1_1XmlUnitTestResultPrinter_acbfdcacec7f668163fa0ccef771f72db}\label{classtesting_1_1internal_1_1XmlUnitTestResultPrinter_acbfdcacec7f668163fa0ccef771f72db}} 
+\index{testing::internal::XmlUnitTestResultPrinter@{testing::internal::XmlUnitTestResultPrinter}!ListTestsMatchingFilter@{ListTestsMatchingFilter}}
+\index{ListTestsMatchingFilter@{ListTestsMatchingFilter}!testing::internal::XmlUnitTestResultPrinter@{testing::internal::XmlUnitTestResultPrinter}}
+\subsubsection{\texorpdfstring{ListTestsMatchingFilter()}{ListTestsMatchingFilter()}}
+{\footnotesize\ttfamily void testing\+::internal\+::\+Xml\+Unit\+Test\+Result\+Printer\+::\+List\+Tests\+Matching\+Filter (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classtesting_1_1TestCase}{Test\+Case}} $\ast$ $>$ \&}]{test\+\_\+cases }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1XmlUnitTestResultPrinter_a2ae986dd2f4f2aed31cc6f3bc8c56898}\label{classtesting_1_1internal_1_1XmlUnitTestResultPrinter_a2ae986dd2f4f2aed31cc6f3bc8c56898}} 
+\index{testing::internal::XmlUnitTestResultPrinter@{testing::internal::XmlUnitTestResultPrinter}!OnTestIterationEnd@{OnTestIterationEnd}}
+\index{OnTestIterationEnd@{OnTestIterationEnd}!testing::internal::XmlUnitTestResultPrinter@{testing::internal::XmlUnitTestResultPrinter}}
+\subsubsection{\texorpdfstring{OnTestIterationEnd()}{OnTestIterationEnd()}}
+{\footnotesize\ttfamily void testing\+::internal\+::\+Xml\+Unit\+Test\+Result\+Printer\+::\+On\+Test\+Iteration\+End (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesting_1_1UnitTest}{Unit\+Test}} \&}]{unit\+\_\+test,  }\item[{int}]{iteration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classtesting_1_1EmptyTestEventListener_a2253e5a18b3cf7bccd349567a252209d}{testing\+::\+Empty\+Test\+Event\+Listener}}.
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1XmlUnitTestResultPrinter_aaefdb155fde088eea18310f23afd2daa}\label{classtesting_1_1internal_1_1XmlUnitTestResultPrinter_aaefdb155fde088eea18310f23afd2daa}} 
+\index{testing::internal::XmlUnitTestResultPrinter@{testing::internal::XmlUnitTestResultPrinter}!PrintXmlTestsList@{PrintXmlTestsList}}
+\index{PrintXmlTestsList@{PrintXmlTestsList}!testing::internal::XmlUnitTestResultPrinter@{testing::internal::XmlUnitTestResultPrinter}}
+\subsubsection{\texorpdfstring{PrintXmlTestsList()}{PrintXmlTestsList()}}
+{\footnotesize\ttfamily void testing\+::internal\+::\+Xml\+Unit\+Test\+Result\+Printer\+::\+Print\+Xml\+Tests\+List (\begin{DoxyParamCaption}\item[{std\+::ostream $\ast$}]{stream,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classtesting_1_1TestCase}{Test\+Case}} $\ast$ $>$ \&}]{test\+\_\+cases }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cmake-\/build-\/debug/googletest-\/src/googletest/src/\mbox{\hyperlink{gtest_8cc}{gtest.\+cc}}\end{DoxyCompactItemize}

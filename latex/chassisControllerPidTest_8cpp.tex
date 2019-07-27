@@ -1,0 +1,177 @@
+\hypertarget{chassisControllerPidTest_8cpp}{}\section{test/chassis\+Controller\+Pid\+Test.cpp File Reference}
+\label{chassisControllerPidTest_8cpp}\index{test/chassisControllerPidTest.cpp@{test/chassisControllerPidTest.cpp}}
+{\ttfamily \#include \char`\"{}okapi/api/chassis/controller/chassis\+Controller\+Pid.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}okapi/api/chassis/model/skid\+Steer\+Model.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}test/tests/api/impl\+Mocks.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_ab7f1bbbbfa48c8f95a8077b728a4659d}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Gearset\+Is\+Correct)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a640ada1243f63b84384cfa9c8ffc2e6c}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Move\+Distance\+Raw\+Units\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a41d46b54bed368b241b1601c96b6db17}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Move\+Distance\+Units\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a48cc6550918c2ee08922a9aa52a2de44}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Move\+Distance\+Async\+Raw\+Units\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_ae3372c1360b3b951b2f6f94a6396b05e}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Move\+Distance\+Async\+Units\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_ac3d1219ec93e0c1151d244b1287cf6b7}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Turn\+Angle\+Raw\+Units\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a49a6071974cd0942ffc540d6e0c1e0e7}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Turn\+Angle\+Units\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a184bf799b7377eda1ae368d124609bef}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Turn\+Angle\+Async\+Raw\+Units\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a7c2ed5ec119080772d40ce17ed934a3f}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Turn\+Angle\+Async\+Units\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a2afe6591bf9b42e6e8e74138df74d087}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Mirror\+Turn\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a3573787418a4b4330fd9eb07a29ebee3}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Move\+Distance\+Then\+Turn\+Angle\+Async\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a595b55175f660a1a96eb1c1eed99b65a}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Turn\+Angle\+Then\+Move\+Distance\+Async\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a4fae1566ed1b5377e4008fd401c65af3}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Move\+Distance\+And\+Wait\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_aec62c1725640fb89d46033fdf05f4850}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Move\+Distance\+Get\+Bumped\+And\+Wait\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a04d9516fd4602c50eb73e4bd024ef261}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Turn\+Angle\+And\+Wait\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_ae0d5cf4a85a9ae62a3f61fcdb9ac0167}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Turn\+Angle\+Get\+Bumped\+And\+Wait\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a513ff24901b170cae8ee3382cc9c38c0}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Move\+Distance\+And\+Stop\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a21b275ea83a831e218cdb56cf9ffcb08}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Turn\+Angle\+And\+Stop\+Test)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_aef1faae2e0416c4e364418c4ebf227d4}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Wait\+Until\+Settled\+In\+Mode\+None)
+\item 
+\mbox{\hyperlink{chassisControllerPidTest_8cpp_a07676950170e31cf852579c8bf223bf9}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}, Get\+Gains\+Returns\+The\+Set\+Gains)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_ab7f1bbbbfa48c8f95a8077b728a4659d}\label{chassisControllerPidTest_8cpp_ab7f1bbbbfa48c8f95a8077b728a4659d}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [1/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Gearset\+Is\+Correct}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a640ada1243f63b84384cfa9c8ffc2e6c}\label{chassisControllerPidTest_8cpp_a640ada1243f63b84384cfa9c8ffc2e6c}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [2/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Move\+Distance\+Raw\+Units\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a41d46b54bed368b241b1601c96b6db17}\label{chassisControllerPidTest_8cpp_a41d46b54bed368b241b1601c96b6db17}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [3/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Move\+Distance\+Units\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a48cc6550918c2ee08922a9aa52a2de44}\label{chassisControllerPidTest_8cpp_a48cc6550918c2ee08922a9aa52a2de44}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [4/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Move\+Distance\+Async\+Raw\+Units\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_ae3372c1360b3b951b2f6f94a6396b05e}\label{chassisControllerPidTest_8cpp_ae3372c1360b3b951b2f6f94a6396b05e}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [5/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Move\+Distance\+Async\+Units\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_ac3d1219ec93e0c1151d244b1287cf6b7}\label{chassisControllerPidTest_8cpp_ac3d1219ec93e0c1151d244b1287cf6b7}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [6/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Turn\+Angle\+Raw\+Units\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a49a6071974cd0942ffc540d6e0c1e0e7}\label{chassisControllerPidTest_8cpp_a49a6071974cd0942ffc540d6e0c1e0e7}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [7/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Turn\+Angle\+Units\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a184bf799b7377eda1ae368d124609bef}\label{chassisControllerPidTest_8cpp_a184bf799b7377eda1ae368d124609bef}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [8/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Turn\+Angle\+Async\+Raw\+Units\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a7c2ed5ec119080772d40ce17ed934a3f}\label{chassisControllerPidTest_8cpp_a7c2ed5ec119080772d40ce17ed934a3f}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [9/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Turn\+Angle\+Async\+Units\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a2afe6591bf9b42e6e8e74138df74d087}\label{chassisControllerPidTest_8cpp_a2afe6591bf9b42e6e8e74138df74d087}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [10/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Mirror\+Turn\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a3573787418a4b4330fd9eb07a29ebee3}\label{chassisControllerPidTest_8cpp_a3573787418a4b4330fd9eb07a29ebee3}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [11/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Move\+Distance\+Then\+Turn\+Angle\+Async\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a595b55175f660a1a96eb1c1eed99b65a}\label{chassisControllerPidTest_8cpp_a595b55175f660a1a96eb1c1eed99b65a}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [12/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Turn\+Angle\+Then\+Move\+Distance\+Async\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a4fae1566ed1b5377e4008fd401c65af3}\label{chassisControllerPidTest_8cpp_a4fae1566ed1b5377e4008fd401c65af3}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [13/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Move\+Distance\+And\+Wait\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_aec62c1725640fb89d46033fdf05f4850}\label{chassisControllerPidTest_8cpp_aec62c1725640fb89d46033fdf05f4850}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [14/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Move\+Distance\+Get\+Bumped\+And\+Wait\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a04d9516fd4602c50eb73e4bd024ef261}\label{chassisControllerPidTest_8cpp_a04d9516fd4602c50eb73e4bd024ef261}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [15/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Turn\+Angle\+And\+Wait\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_ae0d5cf4a85a9ae62a3f61fcdb9ac0167}\label{chassisControllerPidTest_8cpp_ae0d5cf4a85a9ae62a3f61fcdb9ac0167}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [16/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Turn\+Angle\+Get\+Bumped\+And\+Wait\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a513ff24901b170cae8ee3382cc9c38c0}\label{chassisControllerPidTest_8cpp_a513ff24901b170cae8ee3382cc9c38c0}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [17/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Move\+Distance\+And\+Stop\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a21b275ea83a831e218cdb56cf9ffcb08}\label{chassisControllerPidTest_8cpp_a21b275ea83a831e218cdb56cf9ffcb08}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [18/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Turn\+Angle\+And\+Stop\+Test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_aef1faae2e0416c4e364418c4ebf227d4}\label{chassisControllerPidTest_8cpp_aef1faae2e0416c4e364418c4ebf227d4}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [19/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Wait\+Until\+Settled\+In\+Mode\+None}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{chassisControllerPidTest_8cpp_a07676950170e31cf852579c8bf223bf9}\label{chassisControllerPidTest_8cpp_a07676950170e31cf852579c8bf223bf9}} 
+\index{chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!chassisControllerPidTest.cpp@{chassisControllerPidTest.cpp}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [20/20]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChassisControllerPIDTest}{Chassis\+Controller\+P\+I\+D\+Test}}}]{,  }\item[{Get\+Gains\+Returns\+The\+Set\+Gains}]{ }\end{DoxyParamCaption})}
+

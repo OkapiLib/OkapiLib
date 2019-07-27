@@ -1,0 +1,123 @@
+\hypertarget{classgtest__help__test_1_1GTestHelpTest}{}\section{gtest\+\_\+help\+\_\+test.\+G\+Test\+Help\+Test Class Reference}
+\label{classgtest__help__test_1_1GTestHelpTest}\index{gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}}
+Inheritance diagram for gtest\+\_\+help\+\_\+test.\+G\+Test\+Help\+Test\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgtest__help__test_1_1GTestHelpTest}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classgtest__help__test_1_1GTestHelpTest_a26cc1a64bd67278252ebfcd0ac0dca0c}{Test\+Help\+Flag}} (self, flag)
+\item 
+def \mbox{\hyperlink{classgtest__help__test_1_1GTestHelpTest_a03ffa91ecf6193ed2ed80b53933112ab}{Test\+Non\+Help\+Flag}} (self, flag)
+\item 
+def \mbox{\hyperlink{classgtest__help__test_1_1GTestHelpTest_ad91b46ad4506ff52b337b63f6b6c2ad1}{test\+Prints\+Help\+With\+Full\+Flag}} (self)
+\item 
+def \mbox{\hyperlink{classgtest__help__test_1_1GTestHelpTest_a3dd96058d093a89350769b4e2cc36563}{test\+Prints\+Help\+With\+Short\+Flag}} (self)
+\item 
+def \mbox{\hyperlink{classgtest__help__test_1_1GTestHelpTest_aafd4d1857c2538c8b1f7cc5a5d1e38b4}{test\+Prints\+Help\+With\+Question\+Flag}} (self)
+\item 
+def \mbox{\hyperlink{classgtest__help__test_1_1GTestHelpTest_a7be99cd30193e2eecf79f9d65f561afc}{test\+Prints\+Help\+With\+Windows\+Style\+Question\+Flag}} (self)
+\item 
+def \mbox{\hyperlink{classgtest__help__test_1_1GTestHelpTest_a701abb8f34df726b9129d7654cb32066}{test\+Prints\+Help\+With\+Unrecognized\+Google\+Test\+Flag}} (self)
+\item 
+def \mbox{\hyperlink{classgtest__help__test_1_1GTestHelpTest_ab8d379bbb0da7403ced599f4ee498728}{test\+Prints\+Help\+With\+Incorrect\+Flag\+Style}} (self)
+\item 
+def \mbox{\hyperlink{classgtest__help__test_1_1GTestHelpTest_ae7831f92e8e3763c07afb908915b3d20}{test\+Runs\+Tests\+Without\+Help\+Flag}} (self)
+\item 
+def \mbox{\hyperlink{classgtest__help__test_1_1GTestHelpTest_a0ebec2e3154d22a63e362d2196f9c638}{test\+Runs\+Tests\+With\+Gtest\+Internal\+Flag}} (self)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}Tests the --help flag and its equivalent forms.\end{DoxyVerb}
+ 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgtest__help__test_1_1GTestHelpTest_a26cc1a64bd67278252ebfcd0ac0dca0c}\label{classgtest__help__test_1_1GTestHelpTest_a26cc1a64bd67278252ebfcd0ac0dca0c}} 
+\index{gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}!TestHelpFlag@{TestHelpFlag}}
+\index{TestHelpFlag@{TestHelpFlag}!gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}}
+\subsubsection{\texorpdfstring{TestHelpFlag()}{TestHelpFlag()}}
+{\footnotesize\ttfamily def gtest\+\_\+help\+\_\+test.\+G\+Test\+Help\+Test.\+Test\+Help\+Flag (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{flag }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Verifies correct behavior when help flag is specified.
+
+The right message must be printed and the tests must
+skipped when the given flag is specified.
+
+Args:
+  flag:  A flag to pass to the binary or None.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classgtest__help__test_1_1GTestHelpTest_a03ffa91ecf6193ed2ed80b53933112ab}\label{classgtest__help__test_1_1GTestHelpTest_a03ffa91ecf6193ed2ed80b53933112ab}} 
+\index{gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}!TestNonHelpFlag@{TestNonHelpFlag}}
+\index{TestNonHelpFlag@{TestNonHelpFlag}!gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}}
+\subsubsection{\texorpdfstring{TestNonHelpFlag()}{TestNonHelpFlag()}}
+{\footnotesize\ttfamily def gtest\+\_\+help\+\_\+test.\+G\+Test\+Help\+Test.\+Test\+Non\+Help\+Flag (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{flag }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Verifies correct behavior when no help flag is specified.
+
+Verifies that when no help flag is specified, the tests are run
+and the help message is not printed.
+
+Args:
+  flag:  A flag to pass to the binary or None.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classgtest__help__test_1_1GTestHelpTest_ad91b46ad4506ff52b337b63f6b6c2ad1}\label{classgtest__help__test_1_1GTestHelpTest_ad91b46ad4506ff52b337b63f6b6c2ad1}} 
+\index{gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}!testPrintsHelpWithFullFlag@{testPrintsHelpWithFullFlag}}
+\index{testPrintsHelpWithFullFlag@{testPrintsHelpWithFullFlag}!gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}}
+\subsubsection{\texorpdfstring{testPrintsHelpWithFullFlag()}{testPrintsHelpWithFullFlag()}}
+{\footnotesize\ttfamily def gtest\+\_\+help\+\_\+test.\+G\+Test\+Help\+Test.\+test\+Prints\+Help\+With\+Full\+Flag (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classgtest__help__test_1_1GTestHelpTest_ab8d379bbb0da7403ced599f4ee498728}\label{classgtest__help__test_1_1GTestHelpTest_ab8d379bbb0da7403ced599f4ee498728}} 
+\index{gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}!testPrintsHelpWithIncorrectFlagStyle@{testPrintsHelpWithIncorrectFlagStyle}}
+\index{testPrintsHelpWithIncorrectFlagStyle@{testPrintsHelpWithIncorrectFlagStyle}!gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}}
+\subsubsection{\texorpdfstring{testPrintsHelpWithIncorrectFlagStyle()}{testPrintsHelpWithIncorrectFlagStyle()}}
+{\footnotesize\ttfamily def gtest\+\_\+help\+\_\+test.\+G\+Test\+Help\+Test.\+test\+Prints\+Help\+With\+Incorrect\+Flag\+Style (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classgtest__help__test_1_1GTestHelpTest_aafd4d1857c2538c8b1f7cc5a5d1e38b4}\label{classgtest__help__test_1_1GTestHelpTest_aafd4d1857c2538c8b1f7cc5a5d1e38b4}} 
+\index{gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}!testPrintsHelpWithQuestionFlag@{testPrintsHelpWithQuestionFlag}}
+\index{testPrintsHelpWithQuestionFlag@{testPrintsHelpWithQuestionFlag}!gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}}
+\subsubsection{\texorpdfstring{testPrintsHelpWithQuestionFlag()}{testPrintsHelpWithQuestionFlag()}}
+{\footnotesize\ttfamily def gtest\+\_\+help\+\_\+test.\+G\+Test\+Help\+Test.\+test\+Prints\+Help\+With\+Question\+Flag (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classgtest__help__test_1_1GTestHelpTest_a3dd96058d093a89350769b4e2cc36563}\label{classgtest__help__test_1_1GTestHelpTest_a3dd96058d093a89350769b4e2cc36563}} 
+\index{gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}!testPrintsHelpWithShortFlag@{testPrintsHelpWithShortFlag}}
+\index{testPrintsHelpWithShortFlag@{testPrintsHelpWithShortFlag}!gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}}
+\subsubsection{\texorpdfstring{testPrintsHelpWithShortFlag()}{testPrintsHelpWithShortFlag()}}
+{\footnotesize\ttfamily def gtest\+\_\+help\+\_\+test.\+G\+Test\+Help\+Test.\+test\+Prints\+Help\+With\+Short\+Flag (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classgtest__help__test_1_1GTestHelpTest_a701abb8f34df726b9129d7654cb32066}\label{classgtest__help__test_1_1GTestHelpTest_a701abb8f34df726b9129d7654cb32066}} 
+\index{gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}!testPrintsHelpWithUnrecognizedGoogleTestFlag@{testPrintsHelpWithUnrecognizedGoogleTestFlag}}
+\index{testPrintsHelpWithUnrecognizedGoogleTestFlag@{testPrintsHelpWithUnrecognizedGoogleTestFlag}!gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}}
+\subsubsection{\texorpdfstring{testPrintsHelpWithUnrecognizedGoogleTestFlag()}{testPrintsHelpWithUnrecognizedGoogleTestFlag()}}
+{\footnotesize\ttfamily def gtest\+\_\+help\+\_\+test.\+G\+Test\+Help\+Test.\+test\+Prints\+Help\+With\+Unrecognized\+Google\+Test\+Flag (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classgtest__help__test_1_1GTestHelpTest_a7be99cd30193e2eecf79f9d65f561afc}\label{classgtest__help__test_1_1GTestHelpTest_a7be99cd30193e2eecf79f9d65f561afc}} 
+\index{gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}!testPrintsHelpWithWindowsStyleQuestionFlag@{testPrintsHelpWithWindowsStyleQuestionFlag}}
+\index{testPrintsHelpWithWindowsStyleQuestionFlag@{testPrintsHelpWithWindowsStyleQuestionFlag}!gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}}
+\subsubsection{\texorpdfstring{testPrintsHelpWithWindowsStyleQuestionFlag()}{testPrintsHelpWithWindowsStyleQuestionFlag()}}
+{\footnotesize\ttfamily def gtest\+\_\+help\+\_\+test.\+G\+Test\+Help\+Test.\+test\+Prints\+Help\+With\+Windows\+Style\+Question\+Flag (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classgtest__help__test_1_1GTestHelpTest_a0ebec2e3154d22a63e362d2196f9c638}\label{classgtest__help__test_1_1GTestHelpTest_a0ebec2e3154d22a63e362d2196f9c638}} 
+\index{gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}!testRunsTestsWithGtestInternalFlag@{testRunsTestsWithGtestInternalFlag}}
+\index{testRunsTestsWithGtestInternalFlag@{testRunsTestsWithGtestInternalFlag}!gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}}
+\subsubsection{\texorpdfstring{testRunsTestsWithGtestInternalFlag()}{testRunsTestsWithGtestInternalFlag()}}
+{\footnotesize\ttfamily def gtest\+\_\+help\+\_\+test.\+G\+Test\+Help\+Test.\+test\+Runs\+Tests\+With\+Gtest\+Internal\+Flag (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Verifies that the tests are run and no help message is printed when
+a flag starting with Google Test prefix and 'internal_' is supplied.\end{DoxyVerb}
+ \mbox{\Hypertarget{classgtest__help__test_1_1GTestHelpTest_ae7831f92e8e3763c07afb908915b3d20}\label{classgtest__help__test_1_1GTestHelpTest_ae7831f92e8e3763c07afb908915b3d20}} 
+\index{gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}!testRunsTestsWithoutHelpFlag@{testRunsTestsWithoutHelpFlag}}
+\index{testRunsTestsWithoutHelpFlag@{testRunsTestsWithoutHelpFlag}!gtest\_help\_test.GTestHelpTest@{gtest\_help\_test.GTestHelpTest}}
+\subsubsection{\texorpdfstring{testRunsTestsWithoutHelpFlag()}{testRunsTestsWithoutHelpFlag()}}
+{\footnotesize\ttfamily def gtest\+\_\+help\+\_\+test.\+G\+Test\+Help\+Test.\+test\+Runs\+Tests\+Without\+Help\+Flag (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Verifies that when no help flag is specified, the tests are run
+and the help message is not printed.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cmake-\/build-\/debug/googletest-\/src/googletest/test/\mbox{\hyperlink{gtest__help__test_8py}{gtest\+\_\+help\+\_\+test.\+py}}\end{DoxyCompactItemize}

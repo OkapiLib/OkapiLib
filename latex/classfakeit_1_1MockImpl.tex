@@ -1,0 +1,1174 @@
+\hypertarget{classfakeit_1_1MockImpl}{}\section{fakeit\+::Mock\+Impl$<$ C, baseclasses $>$ Class Template Reference}
+\label{classfakeit_1_1MockImpl}\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+
+
+{\ttfamily \#include $<$Mock\+Impl.\+hpp$>$}
+
+Inheritance diagram for fakeit\+::Mock\+Impl$<$ C, baseclasses $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classfakeit_1_1MockImpl}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit, C \&obj)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit)
+\item 
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}{$\sim$\+Mock\+Impl}} () N\+O\+\_\+\+T\+H\+R\+O\+WS
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}{detach}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}{get\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into) const override
+\begin{DoxyCompactList}\small\item\em Return all actual invocations of this mock. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}{init\+Data\+Members\+If\+Owner}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}{reset}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}{clear}} ()
+\item 
+virtual C \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}{get}} () override
+\item 
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}{get\+Fake\+It}} () override
+\item 
+{\footnotesize template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$ C, D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$member, const arglist \&... ctorargs)
+\item 
+{\footnotesize template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}{stub\+Method}} (R(T\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}{stub\+Dtor}} ()
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit, C \&obj)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit)
+\item 
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}{$\sim$\+Mock\+Impl}} () N\+O\+\_\+\+T\+H\+R\+O\+WS
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}{detach}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}{get\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into) const override
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}{init\+Data\+Members\+If\+Owner}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}{reset}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}{clear}} ()
+\item 
+virtual C \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}{get}} () override
+\item 
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}{get\+Fake\+It}} () override
+\item 
+{\footnotesize template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$ C, D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$member, const arglist \&... ctorargs)
+\item 
+{\footnotesize template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}{stub\+Method}} (R(T\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}{stub\+Dtor}} ()
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit, C \&obj)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit)
+\item 
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}{$\sim$\+Mock\+Impl}} () N\+O\+\_\+\+T\+H\+R\+O\+WS
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}{detach}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}{get\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into) const override
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}{init\+Data\+Members\+If\+Owner}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}{reset}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}{clear}} ()
+\item 
+virtual C \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}{get}} () override
+\item 
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}{get\+Fake\+It}} () override
+\item 
+{\footnotesize template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$ C, D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$member, const arglist \&... ctorargs)
+\item 
+{\footnotesize template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}{stub\+Method}} (R(T\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}{stub\+Dtor}} ()
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit, C \&obj)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit)
+\item 
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}{$\sim$\+Mock\+Impl}} () N\+O\+\_\+\+T\+H\+R\+O\+WS
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}{detach}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}{get\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into) const override
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}{init\+Data\+Members\+If\+Owner}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}{reset}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}{clear}} ()
+\item 
+virtual C \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}{get}} () override
+\item 
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}{get\+Fake\+It}} () override
+\item 
+{\footnotesize template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$ C, D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$member, const arglist \&... ctorargs)
+\item 
+{\footnotesize template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}{stub\+Method}} (R(T\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}{stub\+Dtor}} ()
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit, C \&obj)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit)
+\item 
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}{$\sim$\+Mock\+Impl}} () N\+O\+\_\+\+T\+H\+R\+O\+WS
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}{detach}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}{get\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into) const override
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}{init\+Data\+Members\+If\+Owner}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}{reset}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}{clear}} ()
+\item 
+virtual C \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}{get}} () override
+\item 
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}{get\+Fake\+It}} () override
+\item 
+{\footnotesize template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$ C, D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$member, const arglist \&... ctorargs)
+\item 
+{\footnotesize template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}{stub\+Method}} (R(T\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}{stub\+Dtor}} ()
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit, C \&obj)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit)
+\item 
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}{$\sim$\+Mock\+Impl}} () N\+O\+\_\+\+T\+H\+R\+O\+WS
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}{detach}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}{get\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into) const override
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}{init\+Data\+Members\+If\+Owner}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}{reset}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}{clear}} ()
+\item 
+virtual C \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}{get}} () override
+\item 
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}{get\+Fake\+It}} () override
+\item 
+{\footnotesize template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$ C, D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$member, const arglist \&... ctorargs)
+\item 
+{\footnotesize template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}{stub\+Method}} (R(T\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}{stub\+Dtor}} ()
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit, C \&obj)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit)
+\item 
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}{$\sim$\+Mock\+Impl}} () N\+O\+\_\+\+T\+H\+R\+O\+WS
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}{detach}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}{get\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into) const override
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}{init\+Data\+Members\+If\+Owner}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}{reset}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}{clear}} ()
+\item 
+virtual C \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}{get}} () override
+\item 
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}{get\+Fake\+It}} () override
+\item 
+{\footnotesize template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$ C, D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$member, const arglist \&... ctorargs)
+\item 
+{\footnotesize template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}{stub\+Method}} (R(T\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}{stub\+Dtor}} ()
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit, C \&obj)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit)
+\item 
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}{$\sim$\+Mock\+Impl}} () N\+O\+\_\+\+T\+H\+R\+O\+WS
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}{detach}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}{get\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into) const override
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}{init\+Data\+Members\+If\+Owner}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}{reset}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}{clear}} ()
+\item 
+virtual C \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}{get}} () override
+\item 
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}{get\+Fake\+It}} () override
+\item 
+{\footnotesize template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$ C, D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$member, const arglist \&... ctorargs)
+\item 
+{\footnotesize template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}{stub\+Method}} (R(T\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}{stub\+Dtor}} ()
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit, C \&obj)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}{Mock\+Impl}} (\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&fakeit)
+\item 
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}{$\sim$\+Mock\+Impl}} () N\+O\+\_\+\+T\+H\+R\+O\+WS
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}{detach}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}{get\+Actual\+Invocations}} (std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&into) const override
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}{init\+Data\+Members\+If\+Owner}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}{reset}} ()
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}{clear}} ()
+\item 
+virtual C \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}{get}} () override
+\item 
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \& \mbox{\hyperlink{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}{get\+Fake\+It}} () override
+\item 
+{\footnotesize template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$ C, D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$member, const arglist \&... ctorargs)
+\item 
+{\footnotesize template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \mbox{\hyperlink{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}{stub\+Method}} (R(T\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}{stub\+Dtor}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}\label{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [1/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit,  }\item[{C \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}\label{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [2/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}\label{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!````~MockImpl@{$\sim$MockImpl}}
+\index{````~MockImpl@{$\sim$MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$MockImpl()}{~MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}\label{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [3/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit,  }\item[{C \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}\label{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [4/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}\label{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!````~MockImpl@{$\sim$MockImpl}}
+\index{````~MockImpl@{$\sim$MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$MockImpl()}{~MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}\label{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [5/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit,  }\item[{C \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}\label{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [6/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}\label{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!````~MockImpl@{$\sim$MockImpl}}
+\index{````~MockImpl@{$\sim$MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$MockImpl()}{~MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}\label{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [7/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit,  }\item[{C \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}\label{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [8/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}\label{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!````~MockImpl@{$\sim$MockImpl}}
+\index{````~MockImpl@{$\sim$MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$MockImpl()}{~MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}\label{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [9/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit,  }\item[{C \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}\label{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [10/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}\label{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!````~MockImpl@{$\sim$MockImpl}}
+\index{````~MockImpl@{$\sim$MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$MockImpl()}{~MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}\label{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [11/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit,  }\item[{C \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}\label{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [12/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}\label{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!````~MockImpl@{$\sim$MockImpl}}
+\index{````~MockImpl@{$\sim$MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$MockImpl()}{~MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}\label{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [13/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit,  }\item[{C \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}\label{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [14/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}\label{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!````~MockImpl@{$\sim$MockImpl}}
+\index{````~MockImpl@{$\sim$MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$MockImpl()}{~MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}\label{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [15/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit,  }\item[{C \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}\label{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [16/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}\label{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!````~MockImpl@{$\sim$MockImpl}}
+\index{````~MockImpl@{$\sim$MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$MockImpl()}{~MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}\label{classfakeit_1_1MockImpl_aeabb99e36f2ef5fea7856db165fe01d3}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [17/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit,  }\item[{C \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}\label{classfakeit_1_1MockImpl_ae6f86001c16b110046453433ba2d36e8}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!MockImpl@{MockImpl}}
+\index{MockImpl@{MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{MockImpl()}{MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [18/18]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}} \&}]{fakeit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}\label{classfakeit_1_1MockImpl_aafbd9e9c1f6691f7cee440c52ae07220}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!````~MockImpl@{$\sim$MockImpl}}
+\index{````~MockImpl@{$\sim$MockImpl}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$MockImpl()}{~MockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{classfakeit_1_1MockImpl}{Mock\+Impl}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}\label{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!clear@{clear}}
+\index{clear@{clear}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{clear()}{clear()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}\label{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!clear@{clear}}
+\index{clear@{clear}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{clear()}{clear()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}\label{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!clear@{clear}}
+\index{clear@{clear}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{clear()}{clear()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}\label{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!clear@{clear}}
+\index{clear@{clear}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{clear()}{clear()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}\label{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!clear@{clear}}
+\index{clear@{clear}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{clear()}{clear()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}\label{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!clear@{clear}}
+\index{clear@{clear}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{clear()}{clear()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}\label{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!clear@{clear}}
+\index{clear@{clear}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{clear()}{clear()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}\label{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!clear@{clear}}
+\index{clear@{clear}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{clear()}{clear()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}\label{classfakeit_1_1MockImpl_a3985505d2ec7bd50a5d71f155c5ae458}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!clear@{clear}}
+\index{clear@{clear}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{clear()}{clear()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}\label{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}\label{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}\label{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}\label{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}\label{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}\label{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}\label{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}\label{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}\label{classfakeit_1_1MockImpl_a48e09b74451cf9c435aab31b077cce26}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}\label{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual C\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a0212799b76097b93a51993cb3af0894a}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}\label{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual C\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a0212799b76097b93a51993cb3af0894a}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}\label{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual C\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a0212799b76097b93a51993cb3af0894a}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}\label{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual C\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a0212799b76097b93a51993cb3af0894a}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}\label{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual C\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a0212799b76097b93a51993cb3af0894a}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}\label{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual C\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a0212799b76097b93a51993cb3af0894a}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}\label{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual C\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a0212799b76097b93a51993cb3af0894a}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}\label{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual C\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a0212799b76097b93a51993cb3af0894a}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}\label{classfakeit_1_1MockImpl_a8f287e857fde9a0941c618ff5459bd88}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual C\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a0212799b76097b93a51993cb3af0894a}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}\label{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getActualInvocations@{getActualInvocations}}
+\index{getActualInvocations@{getActualInvocations}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getActualInvocations()}{getActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+
+
+Return all actual invocations of this mock. 
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}\label{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getActualInvocations@{getActualInvocations}}
+\index{getActualInvocations@{getActualInvocations}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getActualInvocations()}{getActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}\label{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getActualInvocations@{getActualInvocations}}
+\index{getActualInvocations@{getActualInvocations}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getActualInvocations()}{getActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}\label{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getActualInvocations@{getActualInvocations}}
+\index{getActualInvocations@{getActualInvocations}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getActualInvocations()}{getActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}\label{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getActualInvocations@{getActualInvocations}}
+\index{getActualInvocations@{getActualInvocations}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getActualInvocations()}{getActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}\label{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getActualInvocations@{getActualInvocations}}
+\index{getActualInvocations@{getActualInvocations}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getActualInvocations()}{getActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}\label{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getActualInvocations@{getActualInvocations}}
+\index{getActualInvocations@{getActualInvocations}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getActualInvocations()}{getActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}\label{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getActualInvocations@{getActualInvocations}}
+\index{getActualInvocations@{getActualInvocations}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getActualInvocations()}{getActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}\label{classfakeit_1_1MockImpl_a04c3121eb7d380226f1beabf4b18ee82}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getActualInvocations@{getActualInvocations}}
+\index{getActualInvocations@{getActualInvocations}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getActualInvocations()}{getActualInvocations()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Actual\+Invocations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{structfakeit_1_1Invocation}{Invocation}} $\ast$ $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}\label{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getFakeIt@{getFakeIt}}
+\index{getFakeIt@{getFakeIt}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getFakeIt()}{getFakeIt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}}\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Fake\+It (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a26a2fa3fff133e8cb848b0757f58c6b6}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}\label{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getFakeIt@{getFakeIt}}
+\index{getFakeIt@{getFakeIt}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getFakeIt()}{getFakeIt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}}\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Fake\+It (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a26a2fa3fff133e8cb848b0757f58c6b6}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}\label{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getFakeIt@{getFakeIt}}
+\index{getFakeIt@{getFakeIt}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getFakeIt()}{getFakeIt()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}}\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Fake\+It (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a26a2fa3fff133e8cb848b0757f58c6b6}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}\label{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getFakeIt@{getFakeIt}}
+\index{getFakeIt@{getFakeIt}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getFakeIt()}{getFakeIt()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}}\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Fake\+It (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a26a2fa3fff133e8cb848b0757f58c6b6}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}\label{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getFakeIt@{getFakeIt}}
+\index{getFakeIt@{getFakeIt}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getFakeIt()}{getFakeIt()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}}\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Fake\+It (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a26a2fa3fff133e8cb848b0757f58c6b6}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}\label{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getFakeIt@{getFakeIt}}
+\index{getFakeIt@{getFakeIt}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getFakeIt()}{getFakeIt()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}}\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Fake\+It (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a26a2fa3fff133e8cb848b0757f58c6b6}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}\label{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getFakeIt@{getFakeIt}}
+\index{getFakeIt@{getFakeIt}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getFakeIt()}{getFakeIt()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}}\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Fake\+It (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a26a2fa3fff133e8cb848b0757f58c6b6}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}\label{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getFakeIt@{getFakeIt}}
+\index{getFakeIt@{getFakeIt}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getFakeIt()}{getFakeIt()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}}\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Fake\+It (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a26a2fa3fff133e8cb848b0757f58c6b6}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}\label{classfakeit_1_1MockImpl_a1b51dd1918a32ec5d450fc804ad37e63}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!getFakeIt@{getFakeIt}}
+\index{getFakeIt@{getFakeIt}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getFakeIt()}{getFakeIt()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+virtual \mbox{\hyperlink{structfakeit_1_1FakeitContext}{Fakeit\+Context}}\& \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::get\+Fake\+It (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structfakeit_1_1MockObject_a26a2fa3fff133e8cb848b0757f58c6b6}{fakeit\+::\+Mock\+Object$<$ C $>$}}.
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}\label{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!initDataMembersIfOwner@{initDataMembersIfOwner}}
+\index{initDataMembersIfOwner@{initDataMembersIfOwner}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{initDataMembersIfOwner()}{initDataMembersIfOwner()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::init\+Data\+Members\+If\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}\label{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!initDataMembersIfOwner@{initDataMembersIfOwner}}
+\index{initDataMembersIfOwner@{initDataMembersIfOwner}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{initDataMembersIfOwner()}{initDataMembersIfOwner()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::init\+Data\+Members\+If\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}\label{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!initDataMembersIfOwner@{initDataMembersIfOwner}}
+\index{initDataMembersIfOwner@{initDataMembersIfOwner}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{initDataMembersIfOwner()}{initDataMembersIfOwner()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::init\+Data\+Members\+If\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}\label{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!initDataMembersIfOwner@{initDataMembersIfOwner}}
+\index{initDataMembersIfOwner@{initDataMembersIfOwner}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{initDataMembersIfOwner()}{initDataMembersIfOwner()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::init\+Data\+Members\+If\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}\label{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!initDataMembersIfOwner@{initDataMembersIfOwner}}
+\index{initDataMembersIfOwner@{initDataMembersIfOwner}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{initDataMembersIfOwner()}{initDataMembersIfOwner()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::init\+Data\+Members\+If\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}\label{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!initDataMembersIfOwner@{initDataMembersIfOwner}}
+\index{initDataMembersIfOwner@{initDataMembersIfOwner}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{initDataMembersIfOwner()}{initDataMembersIfOwner()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::init\+Data\+Members\+If\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}\label{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!initDataMembersIfOwner@{initDataMembersIfOwner}}
+\index{initDataMembersIfOwner@{initDataMembersIfOwner}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{initDataMembersIfOwner()}{initDataMembersIfOwner()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::init\+Data\+Members\+If\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}\label{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!initDataMembersIfOwner@{initDataMembersIfOwner}}
+\index{initDataMembersIfOwner@{initDataMembersIfOwner}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{initDataMembersIfOwner()}{initDataMembersIfOwner()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::init\+Data\+Members\+If\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}\label{classfakeit_1_1MockImpl_ad403c33f4734e31196ead952fc4c4805}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!initDataMembersIfOwner@{initDataMembersIfOwner}}
+\index{initDataMembersIfOwner@{initDataMembersIfOwner}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{initDataMembersIfOwner()}{initDataMembersIfOwner()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::init\+Data\+Members\+If\+Owner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}\label{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!reset@{reset}}
+\index{reset@{reset}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}\label{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!reset@{reset}}
+\index{reset@{reset}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}\label{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!reset@{reset}}
+\index{reset@{reset}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}\label{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!reset@{reset}}
+\index{reset@{reset}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}\label{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!reset@{reset}}
+\index{reset@{reset}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}\label{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!reset@{reset}}
+\index{reset@{reset}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}\label{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!reset@{reset}}
+\index{reset@{reset}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}\label{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!reset@{reset}}
+\index{reset@{reset}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}\label{classfakeit_1_1MockImpl_aad69a9c36fc64d0890f21ff15318a206}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!reset@{reset}}
+\index{reset@{reset}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}\label{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$C, D\+A\+T\+A\+\_\+\+T\+Y\+PE$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$}]{member,  }\item[{const arglist \&...}]{ctorargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}\label{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$C, D\+A\+T\+A\+\_\+\+T\+Y\+PE$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$}]{member,  }\item[{const arglist \&...}]{ctorargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}\label{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$C, D\+A\+T\+A\+\_\+\+T\+Y\+PE$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$}]{member,  }\item[{const arglist \&...}]{ctorargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}\label{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$C, D\+A\+T\+A\+\_\+\+T\+Y\+PE$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$}]{member,  }\item[{const arglist \&...}]{ctorargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}\label{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$C, D\+A\+T\+A\+\_\+\+T\+Y\+PE$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$}]{member,  }\item[{const arglist \&...}]{ctorargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}\label{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$C, D\+A\+T\+A\+\_\+\+T\+Y\+PE$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$}]{member,  }\item[{const arglist \&...}]{ctorargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}\label{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$C, D\+A\+T\+A\+\_\+\+T\+Y\+PE$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$}]{member,  }\item[{const arglist \&...}]{ctorargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}\label{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$C, D\+A\+T\+A\+\_\+\+T\+Y\+PE$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$}]{member,  }\item[{const arglist \&...}]{ctorargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}\label{classfakeit_1_1MockImpl_acaa4bcb3984d3ca5fd1ecb3095393951}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$class D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DataMemberStubbingRoot}{Data\+Member\+Stubbing\+Root}}$<$C, D\+A\+T\+A\+\_\+\+T\+Y\+PE$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE T\+::$\ast$}]{member,  }\item[{const arglist \&...}]{ctorargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}\label{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}\label{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}\label{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}\label{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}\label{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}\label{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}\label{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}\label{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}\label{classfakeit_1_1MockImpl_ae64cb908c91a96faefbf0fabac948f29}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1DtorMockingContext}{Dtor\+Mocking\+Context}} \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}\label{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(T\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}\label{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(T\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}\label{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(T\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}\label{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(T\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}\label{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(T\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}\label{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(T\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}\label{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(T\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}\label{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(T\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}\label{classfakeit_1_1MockImpl_a603befd40e35ea88c7efee965f15bb60}} 
+\index{fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::MockImpl$<$ C, baseclasses $>$@{fakeit::MockImpl$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename T , typename ... arglist, class  = typename std\+::enable\+\_\+if$<$std\+::is\+\_\+base\+\_\+of$<$\+T, C$>$\+::value$>$\+::type$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$ \mbox{\hyperlink{classfakeit_1_1MockImpl}{fakeit\+::\+Mock\+Impl}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(T\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/test/\+Fake\+It/include/fakeit/\mbox{\hyperlink{MockImpl_8hpp}{Mock\+Impl.\+hpp}}\item 
+include/test/\+Fake\+It/single\+\_\+header/boost/\mbox{\hyperlink{single__header_2boost_2fakeit_8hpp}{fakeit.\+hpp}}\end{DoxyCompactItemize}

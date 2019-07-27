@@ -1,0 +1,180 @@
+\hypertarget{classupload_1_1GitVCS}{}\section{upload.\+Git\+V\+CS Class Reference}
+\label{classupload_1_1GitVCS}\index{upload.GitVCS@{upload.GitVCS}}
+Inheritance diagram for upload.\+Git\+V\+CS\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.245989cm]{classupload_1_1GitVCS}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classupload_1_1GitVCS_aba4e1dca1c4b3e5db7ba07f6bce3c839}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classupload_1_1VersionControlSystem_a4d57d043bc408887b94269fe4cea9556}{options}})
+\item 
+def \mbox{\hyperlink{classupload_1_1GitVCS_a3ebfc01cebc9b585706ad3f4389a8833}{Generate\+Diff}} (self, extra\+\_\+args)
+\item 
+def \mbox{\hyperlink{classupload_1_1GitVCS_ae4e8c0e9fa01619c6a5c76d1ab84b995}{Get\+Unknown\+Files}} (self)
+\item 
+def \mbox{\hyperlink{classupload_1_1GitVCS_a70ddb65a6b512b8cb8cc4affa37ff9b4}{Get\+Base\+File}} (self, filename)
+\item 
+def \mbox{\hyperlink{classupload_1_1GitVCS_aba4e1dca1c4b3e5db7ba07f6bce3c839}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classupload_1_1VersionControlSystem_a4d57d043bc408887b94269fe4cea9556}{options}})
+\item 
+def \mbox{\hyperlink{classupload_1_1GitVCS_a3ebfc01cebc9b585706ad3f4389a8833}{Generate\+Diff}} (self, extra\+\_\+args)
+\item 
+def \mbox{\hyperlink{classupload_1_1GitVCS_ae4e8c0e9fa01619c6a5c76d1ab84b995}{Get\+Unknown\+Files}} (self)
+\item 
+def \mbox{\hyperlink{classupload_1_1GitVCS_a70ddb65a6b512b8cb8cc4affa37ff9b4}{Get\+Base\+File}} (self, filename)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classupload_1_1GitVCS_a07e9469050a157f34fe804cdf6ecddac}{base\+\_\+hashes}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}Implementation of the VersionControlSystem interface for Git.\end{DoxyVerb}
+ 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classupload_1_1GitVCS_aba4e1dca1c4b3e5db7ba07f6bce3c839}\label{classupload_1_1GitVCS_aba4e1dca1c4b3e5db7ba07f6bce3c839}} 
+\index{upload.GitVCS@{upload.GitVCS}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!upload.GitVCS@{upload.GitVCS}}
+\subsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily def upload.\+Git\+V\+C\+S.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Constructor.
+
+Args:
+  options: Command line options.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classupload_1_1VersionControlSystem_ace97e5785a2b40011404ae6fbb956ecf}{upload.\+Version\+Control\+System}}.
+
+\mbox{\Hypertarget{classupload_1_1GitVCS_aba4e1dca1c4b3e5db7ba07f6bce3c839}\label{classupload_1_1GitVCS_aba4e1dca1c4b3e5db7ba07f6bce3c839}} 
+\index{upload.GitVCS@{upload.GitVCS}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!upload.GitVCS@{upload.GitVCS}}
+\subsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily def upload.\+Git\+V\+C\+S.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Constructor.
+
+Args:
+  options: Command line options.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classupload_1_1VersionControlSystem_ace97e5785a2b40011404ae6fbb956ecf}{upload.\+Version\+Control\+System}}.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classupload_1_1GitVCS_a3ebfc01cebc9b585706ad3f4389a8833}\label{classupload_1_1GitVCS_a3ebfc01cebc9b585706ad3f4389a8833}} 
+\index{upload.GitVCS@{upload.GitVCS}!GenerateDiff@{GenerateDiff}}
+\index{GenerateDiff@{GenerateDiff}!upload.GitVCS@{upload.GitVCS}}
+\subsubsection{\texorpdfstring{GenerateDiff()}{GenerateDiff()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily def upload.\+Git\+V\+C\+S.\+Generate\+Diff (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{args }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the current diff as a string.
+
+Args:
+  args: Extra arguments to pass to the diff command.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classupload_1_1VersionControlSystem_aa5eb260c96e7016dab36b5fc136c9f49}{upload.\+Version\+Control\+System}}.
+
+\mbox{\Hypertarget{classupload_1_1GitVCS_a3ebfc01cebc9b585706ad3f4389a8833}\label{classupload_1_1GitVCS_a3ebfc01cebc9b585706ad3f4389a8833}} 
+\index{upload.GitVCS@{upload.GitVCS}!GenerateDiff@{GenerateDiff}}
+\index{GenerateDiff@{GenerateDiff}!upload.GitVCS@{upload.GitVCS}}
+\subsubsection{\texorpdfstring{GenerateDiff()}{GenerateDiff()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily def upload.\+Git\+V\+C\+S.\+Generate\+Diff (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{args }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the current diff as a string.
+
+Args:
+  args: Extra arguments to pass to the diff command.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classupload_1_1VersionControlSystem_aa5eb260c96e7016dab36b5fc136c9f49}{upload.\+Version\+Control\+System}}.
+
+\mbox{\Hypertarget{classupload_1_1GitVCS_a70ddb65a6b512b8cb8cc4affa37ff9b4}\label{classupload_1_1GitVCS_a70ddb65a6b512b8cb8cc4affa37ff9b4}} 
+\index{upload.GitVCS@{upload.GitVCS}!GetBaseFile@{GetBaseFile}}
+\index{GetBaseFile@{GetBaseFile}!upload.GitVCS@{upload.GitVCS}}
+\subsubsection{\texorpdfstring{GetBaseFile()}{GetBaseFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily def upload.\+Git\+V\+C\+S.\+Get\+Base\+File (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the content of the upstream version of a file.
+
+Returns:
+  A tuple (base_content, new_content, is_binary, status)
+base_content: The contents of the base file.
+new_content: For text files, this is empty.  For binary files, this is
+  the contents of the new file, since the diff output won't contain
+  information to reconstruct the current file.
+is_binary: True iff the file is binary.
+status: The status of the file.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classupload_1_1VersionControlSystem_adfd9d4ecba422102233a2ba13e5bfaf5}{upload.\+Version\+Control\+System}}.
+
+\mbox{\Hypertarget{classupload_1_1GitVCS_a70ddb65a6b512b8cb8cc4affa37ff9b4}\label{classupload_1_1GitVCS_a70ddb65a6b512b8cb8cc4affa37ff9b4}} 
+\index{upload.GitVCS@{upload.GitVCS}!GetBaseFile@{GetBaseFile}}
+\index{GetBaseFile@{GetBaseFile}!upload.GitVCS@{upload.GitVCS}}
+\subsubsection{\texorpdfstring{GetBaseFile()}{GetBaseFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily def upload.\+Git\+V\+C\+S.\+Get\+Base\+File (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the content of the upstream version of a file.
+
+Returns:
+  A tuple (base_content, new_content, is_binary, status)
+base_content: The contents of the base file.
+new_content: For text files, this is empty.  For binary files, this is
+  the contents of the new file, since the diff output won't contain
+  information to reconstruct the current file.
+is_binary: True iff the file is binary.
+status: The status of the file.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classupload_1_1VersionControlSystem_adfd9d4ecba422102233a2ba13e5bfaf5}{upload.\+Version\+Control\+System}}.
+
+\mbox{\Hypertarget{classupload_1_1GitVCS_ae4e8c0e9fa01619c6a5c76d1ab84b995}\label{classupload_1_1GitVCS_ae4e8c0e9fa01619c6a5c76d1ab84b995}} 
+\index{upload.GitVCS@{upload.GitVCS}!GetUnknownFiles@{GetUnknownFiles}}
+\index{GetUnknownFiles@{GetUnknownFiles}!upload.GitVCS@{upload.GitVCS}}
+\subsubsection{\texorpdfstring{GetUnknownFiles()}{GetUnknownFiles()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily def upload.\+Git\+V\+C\+S.\+Get\+Unknown\+Files (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a list of files unknown to the VCS.\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classupload_1_1VersionControlSystem_a56a60e56aa9aff3df4001d2f84cab884}{upload.\+Version\+Control\+System}}.
+
+\mbox{\Hypertarget{classupload_1_1GitVCS_ae4e8c0e9fa01619c6a5c76d1ab84b995}\label{classupload_1_1GitVCS_ae4e8c0e9fa01619c6a5c76d1ab84b995}} 
+\index{upload.GitVCS@{upload.GitVCS}!GetUnknownFiles@{GetUnknownFiles}}
+\index{GetUnknownFiles@{GetUnknownFiles}!upload.GitVCS@{upload.GitVCS}}
+\subsubsection{\texorpdfstring{GetUnknownFiles()}{GetUnknownFiles()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily def upload.\+Git\+V\+C\+S.\+Get\+Unknown\+Files (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a list of files unknown to the VCS.\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classupload_1_1VersionControlSystem_a56a60e56aa9aff3df4001d2f84cab884}{upload.\+Version\+Control\+System}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classupload_1_1GitVCS_a07e9469050a157f34fe804cdf6ecddac}\label{classupload_1_1GitVCS_a07e9469050a157f34fe804cdf6ecddac}} 
+\index{upload.GitVCS@{upload.GitVCS}!base\_hashes@{base\_hashes}}
+\index{base\_hashes@{base\_hashes}!upload.GitVCS@{upload.GitVCS}}
+\subsubsection{\texorpdfstring{base\_hashes}{base\_hashes}}
+{\footnotesize\ttfamily upload.\+Git\+V\+C\+S.\+base\+\_\+hashes}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cmake-\/build-\/debug/googletest-\/src/googlemock/scripts/\mbox{\hyperlink{googlemock_2scripts_2upload_8py}{upload.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,392 @@
+\hypertarget{classokapi_1_1MockChassisController}{}\section{okapi\+::Mock\+Chassis\+Controller Class Reference}
+\label{classokapi_1_1MockChassisController}\index{okapi::MockChassisController@{okapi::MockChassisController}}
+
+
+{\ttfamily \#include $<$impl\+Mocks.\+hpp$>$}
+
+Inheritance diagram for okapi\+::Mock\+Chassis\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classokapi_1_1MockChassisController}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classokapi_1_1MockChassisController_a551b9b8784735664ed02738b80e897e8}{move\+Distance}} (Q\+Length itarget) override
+\begin{DoxyCompactList}\small\item\em Drives the robot straight for a distance (using closed-\/loop control). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classokapi_1_1MockChassisController_a69ca536bf75a880b76059cc5187e6172}{move\+Distance}} (double itarget) override
+\begin{DoxyCompactList}\small\item\em Drives the robot straight for a distance (using closed-\/loop control). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classokapi_1_1MockChassisController_a7d0f2e65c7c1c58394b825a6fad39a13}{move\+Distance\+Async}} (Q\+Length itarget) override
+\begin{DoxyCompactList}\small\item\em Sets the target distance for the robot to drive straight (using closed-\/loop control). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classokapi_1_1MockChassisController_acd06c9ba237eaef83546066643665642}{move\+Distance\+Async}} (double itarget) override
+\begin{DoxyCompactList}\small\item\em Sets the target distance for the robot to drive straight (using closed-\/loop control). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classokapi_1_1MockChassisController_a26eea2286c67ead1e06f667cc47bbdaf}{turn\+Angle}} (Q\+Angle ideg\+Target) override
+\begin{DoxyCompactList}\small\item\em Turns the robot clockwise in place (using closed-\/loop control). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classokapi_1_1MockChassisController_a4997a97da26d966dcec4f377cfc29434}{turn\+Angle}} (double ideg\+Target) override
+\begin{DoxyCompactList}\small\item\em Turns the robot clockwise in place (using closed-\/loop control). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classokapi_1_1MockChassisController_a1811d7daa6219c274bf57a2c58d96204}{turn\+Angle\+Async}} (Q\+Angle ideg\+Target) override
+\begin{DoxyCompactList}\small\item\em Sets the target angle for the robot to turn clockwise in place (using closed-\/loop control). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classokapi_1_1MockChassisController_a958241d32139ee7b709954e8d3d6cde1}{turn\+Angle\+Async}} (double ideg\+Target) override
+\begin{DoxyCompactList}\small\item\em Sets the target angle for the robot to turn clockwise in place (using closed-\/loop control). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classokapi_1_1MockChassisController_a3781df1ee6cd8fc94c2a3c8bc19986a0}{set\+Turns\+Mirrored}} (bool ishould\+Mirror) override
+\begin{DoxyCompactList}\small\item\em Sets whether turns should be mirrored. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classokapi_1_1MockChassisController_ae38ebe4f56aa14126103c9480214bfe7}{wait\+Until\+Settled}} () override
+\begin{DoxyCompactList}\small\item\em Delays until the currently executing movement completes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classokapi_1_1MockChassisController_ad447a57c58345fa98a1ee0504f71a8fe}{stop}} () override
+\begin{DoxyCompactList}\small\item\em Interrupts the current movement to stop the robot. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} \mbox{\hyperlink{classokapi_1_1MockChassisController_af5ce0b173f42ae48fb70f39eb986e781}{get\+Chassis\+Scales}} () const override
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \mbox{\hyperlink{classokapi_1_1MockChassisController_a78359e0cc41856703fe9b0d3dc414b13}{get\+Gearset\+Ratio\+Pair}} () const override
+\begin{DoxyCompactList}\small\item\em Get the Gearset\+Ratio\+Pair. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ChassisModel}{Chassis\+Model}} $>$ \mbox{\hyperlink{classokapi_1_1MockChassisController_a8c502c38c9547c425d7e47d849c05380}{get\+Model}} () override
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisModel}{Chassis\+Model}} \& \mbox{\hyperlink{classokapi_1_1MockChassisController_af70bde7c9c24071c7fa052d99c0e6059}{model}} () override
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\+Length \mbox{\hyperlink{classokapi_1_1MockChassisController_a5888e29de7126333af1fa09a9a31821f}{last\+Move\+Distance\+Target\+Q\+Length}}
+\item 
+double \mbox{\hyperlink{classokapi_1_1MockChassisController_ab3813bd7d83baa497d395be5022f8262}{last\+Move\+Distance\+Target\+Double}}
+\item 
+Q\+Angle \mbox{\hyperlink{classokapi_1_1MockChassisController_ad00fa209dcdff61228e43169aedbfcf3}{last\+Turn\+Angle\+Target\+Q\+Angle}}
+\item 
+double \mbox{\hyperlink{classokapi_1_1MockChassisController_a2318b7130fd6814f2f36d284f2beb323}{last\+Turn\+Angle\+Target\+Double}}
+\item 
+bool \mbox{\hyperlink{classokapi_1_1MockChassisController_a4a68a64d3336836a1f713c18d9490c52}{turns\+Mirrored}} \{false\}
+\item 
+int \mbox{\hyperlink{classokapi_1_1MockChassisController_a07d8dd68b0e94d9690d5ef1c3d0e741f}{wait\+Until\+Settled\+Called}} \{0\}
+\item 
+int \mbox{\hyperlink{classokapi_1_1MockChassisController_a8a78181ada8bda30a3cb92bb6cd66c0a}{stop\+Called}} \{0\}
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} \mbox{\hyperlink{classokapi_1_1MockChassisController_a750c1b743e827f2e128c27375a6db685}{scales}} \{\{4.\+125\+\_\+in, 10\+\_\+in\}, imev5\+Green\+T\+P\+R\}
+\item 
+\mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \mbox{\hyperlink{classokapi_1_1MockChassisController_a2556c9d70808bb6b2566c7f68f07b5e7}{gearset}} \{\mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5a9f27410725ab8cc8854a2769c7a516b8}{Abstract\+Motor\+::gearset\+::green}}\}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1MockChassisModel}{Mock\+Chassis\+Model}} $>$ \mbox{\hyperlink{classokapi_1_1MockChassisController_a698c575f9d7e064c6ecda7fb0c34ab97}{chassis\+Model}} = std\+::make\+\_\+shared$<$\mbox{\hyperlink{classokapi_1_1MockChassisModel}{Mock\+Chassis\+Model}}$>$()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_af5ce0b173f42ae48fb70f39eb986e781}\label{classokapi_1_1MockChassisController_af5ce0b173f42ae48fb70f39eb986e781}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!getChassisScales@{getChassisScales}}
+\index{getChassisScales@{getChassisScales}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{getChassisScales()}{getChassisScales()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} okapi\+::\+Mock\+Chassis\+Controller\+::get\+Chassis\+Scales (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}}. 
+
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a0a8e32fc7adad8567f550954505aaa06}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a78359e0cc41856703fe9b0d3dc414b13}\label{classokapi_1_1MockChassisController_a78359e0cc41856703fe9b0d3dc414b13}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!getGearsetRatioPair@{getGearsetRatioPair}}
+\index{getGearsetRatioPair@{getGearsetRatioPair}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{getGearsetRatioPair()}{getGearsetRatioPair()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} okapi\+::\+Mock\+Chassis\+Controller\+::get\+Gearset\+Ratio\+Pair (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the Gearset\+Ratio\+Pair. 
+
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_aa19351888b997d4a6596dac24520ebff}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a8c502c38c9547c425d7e47d849c05380}\label{classokapi_1_1MockChassisController_a8c502c38c9547c425d7e47d849c05380}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!getModel@{getModel}}
+\index{getModel@{getModel}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{getModel()}{getModel()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1ChassisModel}{Chassis\+Model}}$>$ okapi\+::\+Mock\+Chassis\+Controller\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+The internal \mbox{\hyperlink{classokapi_1_1ChassisModel}{Chassis\+Model}}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a1971d4b54b61718437824c026aca53c9}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_af70bde7c9c24071c7fa052d99c0e6059}\label{classokapi_1_1MockChassisController_af70bde7c9c24071c7fa052d99c0e6059}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!model@{model}}
+\index{model@{model}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{model()}{model()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisModel}{Chassis\+Model}}\& okapi\+::\+Mock\+Chassis\+Controller\+::model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+The internal \mbox{\hyperlink{classokapi_1_1ChassisModel}{Chassis\+Model}}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a239802eda7e4317a65d1a04994f7b97e}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a551b9b8784735664ed02738b80e897e8}\label{classokapi_1_1MockChassisController_a551b9b8784735664ed02738b80e897e8}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!moveDistance@{moveDistance}}
+\index{moveDistance@{moveDistance}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{moveDistance()}{moveDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void okapi\+::\+Mock\+Chassis\+Controller\+::move\+Distance (\begin{DoxyParamCaption}\item[{Q\+Length}]{itarget }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Drives the robot straight for a distance (using closed-\/loop control). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em itarget} & distance to travel \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a6d5b69139dfa8b814d05c74c22bcaa43}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a69ca536bf75a880b76059cc5187e6172}\label{classokapi_1_1MockChassisController_a69ca536bf75a880b76059cc5187e6172}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!moveDistance@{moveDistance}}
+\index{moveDistance@{moveDistance}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{moveDistance()}{moveDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void okapi\+::\+Mock\+Chassis\+Controller\+::move\+Distance (\begin{DoxyParamCaption}\item[{double}]{itarget }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Drives the robot straight for a distance (using closed-\/loop control). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em itarget} & distance to travel in motor degrees \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a58619e777fd1b3f8e1aae871d46a8ccf}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a7d0f2e65c7c1c58394b825a6fad39a13}\label{classokapi_1_1MockChassisController_a7d0f2e65c7c1c58394b825a6fad39a13}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!moveDistanceAsync@{moveDistanceAsync}}
+\index{moveDistanceAsync@{moveDistanceAsync}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{moveDistanceAsync()}{moveDistanceAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void okapi\+::\+Mock\+Chassis\+Controller\+::move\+Distance\+Async (\begin{DoxyParamCaption}\item[{Q\+Length}]{itarget }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sets the target distance for the robot to drive straight (using closed-\/loop control). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em itarget} & distance to travel \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a67a17268b871a4f1ae74d67891cbf5dd}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_acd06c9ba237eaef83546066643665642}\label{classokapi_1_1MockChassisController_acd06c9ba237eaef83546066643665642}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!moveDistanceAsync@{moveDistanceAsync}}
+\index{moveDistanceAsync@{moveDistanceAsync}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{moveDistanceAsync()}{moveDistanceAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void okapi\+::\+Mock\+Chassis\+Controller\+::move\+Distance\+Async (\begin{DoxyParamCaption}\item[{double}]{itarget }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sets the target distance for the robot to drive straight (using closed-\/loop control). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em itarget} & distance to travel in motor degrees \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a24b46ec1c42f32c0527d57738a07820a}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a3781df1ee6cd8fc94c2a3c8bc19986a0}\label{classokapi_1_1MockChassisController_a3781df1ee6cd8fc94c2a3c8bc19986a0}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!setTurnsMirrored@{setTurnsMirrored}}
+\index{setTurnsMirrored@{setTurnsMirrored}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{setTurnsMirrored()}{setTurnsMirrored()}}
+{\footnotesize\ttfamily void okapi\+::\+Mock\+Chassis\+Controller\+::set\+Turns\+Mirrored (\begin{DoxyParamCaption}\item[{bool}]{ishould\+Mirror }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sets whether turns should be mirrored. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ishould\+Mirror} & whether turns should be mirrored \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a37ae36ec8936272eb31e3baed7eed417}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_ad447a57c58345fa98a1ee0504f71a8fe}\label{classokapi_1_1MockChassisController_ad447a57c58345fa98a1ee0504f71a8fe}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!stop@{stop}}
+\index{stop@{stop}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void okapi\+::\+Mock\+Chassis\+Controller\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Interrupts the current movement to stop the robot. 
+
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_ac67edbbbe1c8480c4503b9875a3719cd}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a26eea2286c67ead1e06f667cc47bbdaf}\label{classokapi_1_1MockChassisController_a26eea2286c67ead1e06f667cc47bbdaf}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!turnAngle@{turnAngle}}
+\index{turnAngle@{turnAngle}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{turnAngle()}{turnAngle()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void okapi\+::\+Mock\+Chassis\+Controller\+::turn\+Angle (\begin{DoxyParamCaption}\item[{Q\+Angle}]{ideg\+Target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Turns the robot clockwise in place (using closed-\/loop control). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ideg\+Target} & angle to turn for \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_aab12308b3fad6793c007d7a33730a3f7}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a4997a97da26d966dcec4f377cfc29434}\label{classokapi_1_1MockChassisController_a4997a97da26d966dcec4f377cfc29434}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!turnAngle@{turnAngle}}
+\index{turnAngle@{turnAngle}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{turnAngle()}{turnAngle()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void okapi\+::\+Mock\+Chassis\+Controller\+::turn\+Angle (\begin{DoxyParamCaption}\item[{double}]{ideg\+Target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Turns the robot clockwise in place (using closed-\/loop control). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ideg\+Target} & angle to turn for in motor degrees \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a6aca227e35ececd02eed1cc42d09ad1d}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a1811d7daa6219c274bf57a2c58d96204}\label{classokapi_1_1MockChassisController_a1811d7daa6219c274bf57a2c58d96204}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!turnAngleAsync@{turnAngleAsync}}
+\index{turnAngleAsync@{turnAngleAsync}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{turnAngleAsync()}{turnAngleAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void okapi\+::\+Mock\+Chassis\+Controller\+::turn\+Angle\+Async (\begin{DoxyParamCaption}\item[{Q\+Angle}]{ideg\+Target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sets the target angle for the robot to turn clockwise in place (using closed-\/loop control). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ideg\+Target} & angle to turn for \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a87fc1f88bf06340d8f022a8c185b5e87}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a958241d32139ee7b709954e8d3d6cde1}\label{classokapi_1_1MockChassisController_a958241d32139ee7b709954e8d3d6cde1}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!turnAngleAsync@{turnAngleAsync}}
+\index{turnAngleAsync@{turnAngleAsync}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{turnAngleAsync()}{turnAngleAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void okapi\+::\+Mock\+Chassis\+Controller\+::turn\+Angle\+Async (\begin{DoxyParamCaption}\item[{double}]{ideg\+Target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sets the target angle for the robot to turn clockwise in place (using closed-\/loop control). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ideg\+Target} & angle to turn for in motor degrees \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a35cadd99478629637b4bd3a5e709871a}{okapi\+::\+Chassis\+Controller}}.
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_ae38ebe4f56aa14126103c9480214bfe7}\label{classokapi_1_1MockChassisController_ae38ebe4f56aa14126103c9480214bfe7}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!waitUntilSettled@{waitUntilSettled}}
+\index{waitUntilSettled@{waitUntilSettled}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{waitUntilSettled()}{waitUntilSettled()}}
+{\footnotesize\ttfamily void okapi\+::\+Mock\+Chassis\+Controller\+::wait\+Until\+Settled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Delays until the currently executing movement completes. 
+
+
+
+Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a01ed4e0eb7332cc149228387bbf1e91c}{okapi\+::\+Chassis\+Controller}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a698c575f9d7e064c6ecda7fb0c34ab97}\label{classokapi_1_1MockChassisController_a698c575f9d7e064c6ecda7fb0c34ab97}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!chassisModel@{chassisModel}}
+\index{chassisModel@{chassisModel}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{chassisModel}{chassisModel}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1MockChassisModel}{Mock\+Chassis\+Model}}$>$ okapi\+::\+Mock\+Chassis\+Controller\+::chassis\+Model = std\+::make\+\_\+shared$<$\mbox{\hyperlink{classokapi_1_1MockChassisModel}{Mock\+Chassis\+Model}}$>$()}
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a2556c9d70808bb6b2566c7f68f07b5e7}\label{classokapi_1_1MockChassisController_a2556c9d70808bb6b2566c7f68f07b5e7}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!gearset@{gearset}}
+\index{gearset@{gearset}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{gearset}{gearset}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} okapi\+::\+Mock\+Chassis\+Controller\+::gearset \{\mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5a9f27410725ab8cc8854a2769c7a516b8}{Abstract\+Motor\+::gearset\+::green}}\}}
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_ab3813bd7d83baa497d395be5022f8262}\label{classokapi_1_1MockChassisController_ab3813bd7d83baa497d395be5022f8262}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!lastMoveDistanceTargetDouble@{lastMoveDistanceTargetDouble}}
+\index{lastMoveDistanceTargetDouble@{lastMoveDistanceTargetDouble}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{lastMoveDistanceTargetDouble}{lastMoveDistanceTargetDouble}}
+{\footnotesize\ttfamily double okapi\+::\+Mock\+Chassis\+Controller\+::last\+Move\+Distance\+Target\+Double}
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a5888e29de7126333af1fa09a9a31821f}\label{classokapi_1_1MockChassisController_a5888e29de7126333af1fa09a9a31821f}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!lastMoveDistanceTargetQLength@{lastMoveDistanceTargetQLength}}
+\index{lastMoveDistanceTargetQLength@{lastMoveDistanceTargetQLength}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{lastMoveDistanceTargetQLength}{lastMoveDistanceTargetQLength}}
+{\footnotesize\ttfamily Q\+Length okapi\+::\+Mock\+Chassis\+Controller\+::last\+Move\+Distance\+Target\+Q\+Length}
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a2318b7130fd6814f2f36d284f2beb323}\label{classokapi_1_1MockChassisController_a2318b7130fd6814f2f36d284f2beb323}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!lastTurnAngleTargetDouble@{lastTurnAngleTargetDouble}}
+\index{lastTurnAngleTargetDouble@{lastTurnAngleTargetDouble}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{lastTurnAngleTargetDouble}{lastTurnAngleTargetDouble}}
+{\footnotesize\ttfamily double okapi\+::\+Mock\+Chassis\+Controller\+::last\+Turn\+Angle\+Target\+Double}
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_ad00fa209dcdff61228e43169aedbfcf3}\label{classokapi_1_1MockChassisController_ad00fa209dcdff61228e43169aedbfcf3}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!lastTurnAngleTargetQAngle@{lastTurnAngleTargetQAngle}}
+\index{lastTurnAngleTargetQAngle@{lastTurnAngleTargetQAngle}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{lastTurnAngleTargetQAngle}{lastTurnAngleTargetQAngle}}
+{\footnotesize\ttfamily Q\+Angle okapi\+::\+Mock\+Chassis\+Controller\+::last\+Turn\+Angle\+Target\+Q\+Angle}
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a750c1b743e827f2e128c27375a6db685}\label{classokapi_1_1MockChassisController_a750c1b743e827f2e128c27375a6db685}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!scales@{scales}}
+\index{scales@{scales}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{scales}{scales}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} okapi\+::\+Mock\+Chassis\+Controller\+::scales \{\{4.\+125\+\_\+in, 10\+\_\+in\}, imev5\+Green\+T\+P\+R\}}
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a8a78181ada8bda30a3cb92bb6cd66c0a}\label{classokapi_1_1MockChassisController_a8a78181ada8bda30a3cb92bb6cd66c0a}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!stopCalled@{stopCalled}}
+\index{stopCalled@{stopCalled}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{stopCalled}{stopCalled}}
+{\footnotesize\ttfamily int okapi\+::\+Mock\+Chassis\+Controller\+::stop\+Called \{0\}}
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a4a68a64d3336836a1f713c18d9490c52}\label{classokapi_1_1MockChassisController_a4a68a64d3336836a1f713c18d9490c52}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!turnsMirrored@{turnsMirrored}}
+\index{turnsMirrored@{turnsMirrored}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{turnsMirrored}{turnsMirrored}}
+{\footnotesize\ttfamily bool okapi\+::\+Mock\+Chassis\+Controller\+::turns\+Mirrored \{false\}}
+
+\mbox{\Hypertarget{classokapi_1_1MockChassisController_a07d8dd68b0e94d9690d5ef1c3d0e741f}\label{classokapi_1_1MockChassisController_a07d8dd68b0e94d9690d5ef1c3d0e741f}} 
+\index{okapi::MockChassisController@{okapi::MockChassisController}!waitUntilSettledCalled@{waitUntilSettledCalled}}
+\index{waitUntilSettledCalled@{waitUntilSettledCalled}!okapi::MockChassisController@{okapi::MockChassisController}}
+\subsubsection{\texorpdfstring{waitUntilSettledCalled}{waitUntilSettledCalled}}
+{\footnotesize\ttfamily int okapi\+::\+Mock\+Chassis\+Controller\+::wait\+Until\+Settled\+Called \{0\}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/test/tests/api/\mbox{\hyperlink{implMocks_8hpp}{impl\+Mocks.\+hpp}}\end{DoxyCompactItemize}

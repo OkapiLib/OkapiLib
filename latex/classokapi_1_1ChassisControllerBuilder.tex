@@ -1,0 +1,572 @@
+\hypertarget{classokapi_1_1ChassisControllerBuilder}{}\section{okapi\+::Chassis\+Controller\+Builder Class Reference}
+\label{classokapi_1_1ChassisControllerBuilder}\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+
+
+{\ttfamily \#include $<$chassis\+Controller\+Builder.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a47e82afd7b6f3e3076d153e6130820ed}{Chassis\+Controller\+Builder}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a1ceb7c4b4f0ccfd37a92d8ffd64fa64e}{with\+Motors}} (const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&ileft, const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&iright)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a98b304ce096222c0f3af8105ab61ee71}{with\+Motors}} (const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&ileft, const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&iright)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a4482565290d9433bff4dc6c48543e334}{with\+Motors}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&ileft, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&iright)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a0d0a144c1b600aa90cf19b6a76a7dd04}{with\+Motors}} (const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&itop\+Left, const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&itop\+Right, const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&ibottom\+Right, const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&ibottom\+Left)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a5f8ddcfcd9c00fc205c1ec0536db3118}{with\+Motors}} (const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&itop\+Left, const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&itop\+Right, const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&ibottom\+Right, const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&ibottom\+Left)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a423ebf033857cae3bfcf5542db6dffd2}{with\+Motors}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&itop\+Left, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&itop\+Right, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&ibottom\+Right, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&ibottom\+Left)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a0197aa35c2c36dd82476bc70c5824a56}{with\+Sensors}} (const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&ileft, const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&iright)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a5733a2198a3f10befcae5ee2a9a02d7e}{with\+Sensors}} (const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&ileft, const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&iright, const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&imiddle)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_adcc6c5e490cd2f51e319bd52f40b1d3f}{with\+Sensors}} (const \mbox{\hyperlink{classokapi_1_1IntegratedEncoder}{Integrated\+Encoder}} \&ileft, const \mbox{\hyperlink{classokapi_1_1IntegratedEncoder}{Integrated\+Encoder}} \&iright)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a9ba0a2bf4c4d0334f96bd08b08144cc3}{with\+Sensors}} (const \mbox{\hyperlink{classokapi_1_1IntegratedEncoder}{Integrated\+Encoder}} \&ileft, const \mbox{\hyperlink{classokapi_1_1IntegratedEncoder}{Integrated\+Encoder}} \&iright, const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&imiddle)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a10214db4bffeb20b0e7b3d5c956061fa}{with\+Sensors}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor}{Continuous\+Rotary\+Sensor}} $>$ \&ileft, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor}{Continuous\+Rotary\+Sensor}} $>$ \&iright)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a2c2d1276f03425ecbe97b55ce8832d9e}{with\+Sensors}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor}{Continuous\+Rotary\+Sensor}} $>$ \&ileft, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor}{Continuous\+Rotary\+Sensor}} $>$ \&iright, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor}{Continuous\+Rotary\+Sensor}} $>$ \&imiddle)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_ac7b348a81cda8897540db92f14d1d8e3}{with\+Gains}} (const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} \&idistance\+Gains, const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} \&iturn\+Gains)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a4fa2d56589f5a4c8e69b36238bc3f4de}{with\+Gains}} (const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} \&idistance\+Gains, const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} \&iturn\+Gains, const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} \&iangle\+Gains)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a2dfb66cd7cf160b8cce3e9c2ffec7c74}{with\+Odometry}} (const Q\+Length \&imove\+Threshold=10\+\_\+mm, const Q\+Angle \&iturn\+Threshold=1\+\_\+deg, const Q\+Speed \&iwheel\+Vel\+Delta=0.\+0001\+\_\+mps)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_ad581d48529b154b1335aada35465e3ac}{with\+Odometry}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} $>$ iodometry, const Q\+Length \&imove\+Threshold=10\+\_\+mm, const Q\+Angle \&iturn\+Threshold=1\+\_\+deg)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a4d65988fd98e4530dfa236fce6d4d99a}{with\+Derivative\+Filters}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ idistance\+Filter, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ iturn\+Filter=std\+::make\+\_\+unique$<$ \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} $>$(), std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ iangle\+Filter=std\+::make\+\_\+unique$<$ \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} $>$())
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_aea1e3d32abede99a1b565205275aea78}{with\+Gearset}} (const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&igearset)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a72a642f59112da74960942aae390a5ed}{with\+Dimensions}} (const \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} \&iscales)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_aee0580c75bf16663f065aad88fdc795d}{with\+Max\+Velocity}} (double imax\+Velocity)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a7bf0a781b124ae39c8fc46786d18243a}{with\+Max\+Voltage}} (double imax\+Voltage)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a1ca2919cbd6fa19b34aeaa1eeee98462}{with\+Chassis\+Controller\+Time\+Util\+Factory}} (const \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} \&itime\+Util\+Factory)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a5bf13424f9357099d6e4d336cc0cec98}{with\+Closed\+Loop\+Controller\+Time\+Util\+Factory}} (const \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} \&itime\+Util\+Factory)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_ab601ad0881616b9af271d19c820ca3f2}{with\+Odometry\+Time\+Util\+Factory}} (const \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} \&itime\+Util\+Factory)
+\item 
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_ac2ba4b3f5a3b08e611ea21e0d9406250}{with\+Logger}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}} $>$ \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a5dfd1f4d60a3c4bfcc28a57211c1a6a2}{build}} ()
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1OdomChassisController}{Odom\+Chassis\+Controller}} $>$ \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a9c631ea817466483aa2cfcb886f6d892}{build\+Odometry}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a47e82afd7b6f3e3076d153e6130820ed}\label{classokapi_1_1ChassisControllerBuilder_a47e82afd7b6f3e3076d153e6130820ed}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!ChassisControllerBuilder@{ChassisControllerBuilder}}
+\index{ChassisControllerBuilder@{ChassisControllerBuilder}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{ChassisControllerBuilder()}{ChassisControllerBuilder()}}
+{\footnotesize\ttfamily okapi\+::\+Chassis\+Controller\+Builder\+::\+Chassis\+Controller\+Builder (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+A builder that creates Chassis\+Controllers. Use this to create your \mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ilogger} & The logger this instance will log to. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a5dfd1f4d60a3c4bfcc28a57211c1a6a2}\label{classokapi_1_1ChassisControllerBuilder_a5dfd1f4d60a3c4bfcc28a57211c1a6a2}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!build@{build}}
+\index{build@{build}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{build()}{build()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}} $>$ okapi\+::\+Chassis\+Controller\+Builder\+::build (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Builds the \mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}}. Throws a std\+::runtime\+\_\+exception if no motors were set.
+
+\begin{DoxyReturn}{Returns}
+A fully built \mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a9c631ea817466483aa2cfcb886f6d892}\label{classokapi_1_1ChassisControllerBuilder_a9c631ea817466483aa2cfcb886f6d892}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!buildOdometry@{buildOdometry}}
+\index{buildOdometry@{buildOdometry}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{buildOdometry()}{buildOdometry()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1OdomChassisController}{Odom\+Chassis\+Controller}} $>$ okapi\+::\+Chassis\+Controller\+Builder\+::build\+Odometry (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Builds the \mbox{\hyperlink{classokapi_1_1OdomChassisController}{Odom\+Chassis\+Controller}}. Throws a std\+::runtime\+\_\+exception if no motors were set or if no odometry information was passed.
+
+\begin{DoxyReturn}{Returns}
+A fully built \mbox{\hyperlink{classokapi_1_1OdomChassisController}{Odom\+Chassis\+Controller}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a1ca2919cbd6fa19b34aeaa1eeee98462}\label{classokapi_1_1ChassisControllerBuilder_a1ca2919cbd6fa19b34aeaa1eeee98462}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withChassisControllerTimeUtilFactory@{withChassisControllerTimeUtilFactory}}
+\index{withChassisControllerTimeUtilFactory@{withChassisControllerTimeUtilFactory}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withChassisControllerTimeUtilFactory()}{withChassisControllerTimeUtilFactory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Chassis\+Controller\+Time\+Util\+Factory (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} \&}]{itime\+Util\+Factory }\end{DoxyParamCaption})}
+
+Sets the \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} used when building a \mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}}. The default is the static \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em itime\+Util\+Factory} & The \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a5bf13424f9357099d6e4d336cc0cec98}\label{classokapi_1_1ChassisControllerBuilder_a5bf13424f9357099d6e4d336cc0cec98}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withClosedLoopControllerTimeUtilFactory@{withClosedLoopControllerTimeUtilFactory}}
+\index{withClosedLoopControllerTimeUtilFactory@{withClosedLoopControllerTimeUtilFactory}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withClosedLoopControllerTimeUtilFactory()}{withClosedLoopControllerTimeUtilFactory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Closed\+Loop\+Controller\+Time\+Util\+Factory (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} \&}]{itime\+Util\+Factory }\end{DoxyParamCaption})}
+
+Sets the \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} used when building a \mbox{\hyperlink{classokapi_1_1ClosedLoopController}{Closed\+Loop\+Controller}}. The default is the static \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em itime\+Util\+Factory} & The \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a4d65988fd98e4530dfa236fce6d4d99a}\label{classokapi_1_1ChassisControllerBuilder_a4d65988fd98e4530dfa236fce6d4d99a}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withDerivativeFilters@{withDerivativeFilters}}
+\index{withDerivativeFilters@{withDerivativeFilters}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withDerivativeFilters()}{withDerivativeFilters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Derivative\+Filters (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{idistance\+Filter,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{iturn\+Filter = {\ttfamily std\+:\+:make\+\_\+unique$<$\mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}}$>$()},  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{iangle\+Filter = {\ttfamily std\+:\+:make\+\_\+unique$<$\mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}}$>$()} }\end{DoxyParamCaption})}
+
+Sets the derivative filters. Uses a \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} by default.
+
+
+\begin{DoxyParams}{Parameters}
+{\em idistance\+Filter} & The distance controller\textquotesingle{}s filter. \\
+\hline
+{\em iturn\+Filter} & The turn controller\textquotesingle{}s filter. \\
+\hline
+{\em iangle\+Filter} & The angle controller\textquotesingle{}s filter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a72a642f59112da74960942aae390a5ed}\label{classokapi_1_1ChassisControllerBuilder_a72a642f59112da74960942aae390a5ed}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withDimensions@{withDimensions}}
+\index{withDimensions@{withDimensions}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withDimensions()}{withDimensions()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Dimensions (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} \&}]{iscales }\end{DoxyParamCaption})}
+
+Sets the chassis dimensions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iscales} & The dimensions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_ac7b348a81cda8897540db92f14d1d8e3}\label{classokapi_1_1ChassisControllerBuilder_ac7b348a81cda8897540db92f14d1d8e3}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withGains@{withGains}}
+\index{withGains@{withGains}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withGains()}{withGains()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Gains (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} \&}]{idistance\+Gains,  }\item[{const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} \&}]{iturn\+Gains }\end{DoxyParamCaption})}
+
+Sets the P\+ID controller gains, causing the builder to generate a \mbox{\hyperlink{classokapi_1_1ChassisControllerPID}{Chassis\+Controller\+P\+ID}}. Uses the turn controller\textquotesingle{}s gains for the angle controller\textquotesingle{}s gains.
+
+
+\begin{DoxyParams}{Parameters}
+{\em idistance\+Gains} & The distance controller\textquotesingle{}s gains. \\
+\hline
+{\em iturn\+Gains} & The turn controller\textquotesingle{}s gains. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a4fa2d56589f5a4c8e69b36238bc3f4de}\label{classokapi_1_1ChassisControllerBuilder_a4fa2d56589f5a4c8e69b36238bc3f4de}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withGains@{withGains}}
+\index{withGains@{withGains}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withGains()}{withGains()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Gains (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} \&}]{idistance\+Gains,  }\item[{const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} \&}]{iturn\+Gains,  }\item[{const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} \&}]{iangle\+Gains }\end{DoxyParamCaption})}
+
+Sets the P\+ID controller gains, causing the builder to generate a \mbox{\hyperlink{classokapi_1_1ChassisControllerPID}{Chassis\+Controller\+P\+ID}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em idistance\+Gains} & The distance controller\textquotesingle{}s gains. \\
+\hline
+{\em iturn\+Gains} & The turn controller\textquotesingle{}s gains. \\
+\hline
+{\em iangle\+Gains} & The angle controller\textquotesingle{}s gains. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_aea1e3d32abede99a1b565205275aea78}\label{classokapi_1_1ChassisControllerBuilder_aea1e3d32abede99a1b565205275aea78}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withGearset@{withGearset}}
+\index{withGearset@{withGearset}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withGearset()}{withGearset()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Gearset (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&}]{igearset }\end{DoxyParamCaption})}
+
+Sets the gearset. The default gearset is derived from the motor\textquotesingle{}s.
+
+
+\begin{DoxyParams}{Parameters}
+{\em igearset} & The gearset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_ac2ba4b3f5a3b08e611ea21e0d9406250}\label{classokapi_1_1ChassisControllerBuilder_ac2ba4b3f5a3b08e611ea21e0d9406250}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withLogger@{withLogger}}
+\index{withLogger@{withLogger}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withLogger()}{withLogger()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Logger (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger }\end{DoxyParamCaption})}
+
+Sets the logger used for the \mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}} and Closed\+Loop\+Controllers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ilogger} & The logger. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_aee0580c75bf16663f065aad88fdc795d}\label{classokapi_1_1ChassisControllerBuilder_aee0580c75bf16663f065aad88fdc795d}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withMaxVelocity@{withMaxVelocity}}
+\index{withMaxVelocity@{withMaxVelocity}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withMaxVelocity()}{withMaxVelocity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Max\+Velocity (\begin{DoxyParamCaption}\item[{double}]{imax\+Velocity }\end{DoxyParamCaption})}
+
+Sets the max velocity. Overrides the max velocity of the gearset.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imax\+Velocity} & The max velocity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a7bf0a781b124ae39c8fc46786d18243a}\label{classokapi_1_1ChassisControllerBuilder_a7bf0a781b124ae39c8fc46786d18243a}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withMaxVoltage@{withMaxVoltage}}
+\index{withMaxVoltage@{withMaxVoltage}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withMaxVoltage()}{withMaxVoltage()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Max\+Voltage (\begin{DoxyParamCaption}\item[{double}]{imax\+Voltage }\end{DoxyParamCaption})}
+
+Sets the max voltage.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imax\+Voltage} & The max voltage. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a1ceb7c4b4f0ccfd37a92d8ffd64fa64e}\label{classokapi_1_1ChassisControllerBuilder_a1ceb7c4b4f0ccfd37a92d8ffd64fa64e}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withMotors@{withMotors}}
+\index{withMotors@{withMotors}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withMotors()}{withMotors()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Motors (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&}]{ileft,  }\item[{const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&}]{iright }\end{DoxyParamCaption})}
+
+Sets the motors using a skid-\/steer layout.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ileft} & The left motor. \\
+\hline
+{\em iright} & The right motor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a98b304ce096222c0f3af8105ab61ee71}\label{classokapi_1_1ChassisControllerBuilder_a98b304ce096222c0f3af8105ab61ee71}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withMotors@{withMotors}}
+\index{withMotors@{withMotors}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withMotors()}{withMotors()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Motors (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&}]{ileft,  }\item[{const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&}]{iright }\end{DoxyParamCaption})}
+
+Sets the motors using a skid-\/steer layout.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ileft} & The left motor. \\
+\hline
+{\em iright} & The right motor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a4482565290d9433bff4dc6c48543e334}\label{classokapi_1_1ChassisControllerBuilder_a4482565290d9433bff4dc6c48543e334}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withMotors@{withMotors}}
+\index{withMotors@{withMotors}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withMotors()}{withMotors()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Motors (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&}]{ileft,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&}]{iright }\end{DoxyParamCaption})}
+
+Sets the motors using a skid-\/steer layout.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ileft} & The left motor. \\
+\hline
+{\em iright} & The right motor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a0d0a144c1b600aa90cf19b6a76a7dd04}\label{classokapi_1_1ChassisControllerBuilder_a0d0a144c1b600aa90cf19b6a76a7dd04}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withMotors@{withMotors}}
+\index{withMotors@{withMotors}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withMotors()}{withMotors()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Motors (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&}]{itop\+Left,  }\item[{const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&}]{itop\+Right,  }\item[{const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&}]{ibottom\+Right,  }\item[{const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&}]{ibottom\+Left }\end{DoxyParamCaption})}
+
+Sets the motors using an x-\/drive layout.
+
+
+\begin{DoxyParams}{Parameters}
+{\em itop\+Left} & The top left motor. \\
+\hline
+{\em itop\+Right} & The top right motor. \\
+\hline
+{\em ibottom\+Right} & The bottom right motor. \\
+\hline
+{\em ibottom\+Left} & The bottom left motor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a5f8ddcfcd9c00fc205c1ec0536db3118}\label{classokapi_1_1ChassisControllerBuilder_a5f8ddcfcd9c00fc205c1ec0536db3118}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withMotors@{withMotors}}
+\index{withMotors@{withMotors}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withMotors()}{withMotors()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Motors (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&}]{itop\+Left,  }\item[{const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&}]{itop\+Right,  }\item[{const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&}]{ibottom\+Right,  }\item[{const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&}]{ibottom\+Left }\end{DoxyParamCaption})}
+
+Sets the motors using an x-\/drive layout.
+
+
+\begin{DoxyParams}{Parameters}
+{\em itop\+Left} & The top left motor. \\
+\hline
+{\em itop\+Right} & The top right motor. \\
+\hline
+{\em ibottom\+Right} & The bottom right motor. \\
+\hline
+{\em ibottom\+Left} & The bottom left motor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a423ebf033857cae3bfcf5542db6dffd2}\label{classokapi_1_1ChassisControllerBuilder_a423ebf033857cae3bfcf5542db6dffd2}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withMotors@{withMotors}}
+\index{withMotors@{withMotors}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withMotors()}{withMotors()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Motors (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&}]{itop\+Left,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&}]{itop\+Right,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&}]{ibottom\+Right,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&}]{ibottom\+Left }\end{DoxyParamCaption})}
+
+Sets the motors using an x-\/drive layout.
+
+
+\begin{DoxyParams}{Parameters}
+{\em itop\+Left} & The top left motor. \\
+\hline
+{\em itop\+Right} & The top right motor. \\
+\hline
+{\em ibottom\+Right} & The bottom right motor. \\
+\hline
+{\em ibottom\+Left} & The bottom left motor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a2dfb66cd7cf160b8cce3e9c2ffec7c74}\label{classokapi_1_1ChassisControllerBuilder_a2dfb66cd7cf160b8cce3e9c2ffec7c74}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withOdometry@{withOdometry}}
+\index{withOdometry@{withOdometry}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withOdometry()}{withOdometry()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Odometry (\begin{DoxyParamCaption}\item[{const Q\+Length \&}]{imove\+Threshold = {\ttfamily 10\+\_\+mm},  }\item[{const Q\+Angle \&}]{iturn\+Threshold = {\ttfamily 1\+\_\+deg},  }\item[{const Q\+Speed \&}]{iwheel\+Vel\+Delta = {\ttfamily 0.0001\+\_\+mps} }\end{DoxyParamCaption})}
+
+Sets the odometry information, causing the builder to generate an \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} variant.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imove\+Threshold} & The minimum length movement. \\
+\hline
+{\em iturn\+Threshold} & The minimum angle turn. \\
+\hline
+{\em iwheel\+Vel\+Delta} & The maximum delta between wheel velocities to consider the robot as driving straight. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_ad581d48529b154b1335aada35465e3ac}\label{classokapi_1_1ChassisControllerBuilder_ad581d48529b154b1335aada35465e3ac}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withOdometry@{withOdometry}}
+\index{withOdometry@{withOdometry}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withOdometry()}{withOdometry()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Odometry (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} $>$}]{iodometry,  }\item[{const Q\+Length \&}]{imove\+Threshold = {\ttfamily 10\+\_\+mm},  }\item[{const Q\+Angle \&}]{iturn\+Threshold = {\ttfamily 1\+\_\+deg} }\end{DoxyParamCaption})}
+
+Sets the odometry information, causing the builder to generate an \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} variant.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iodometry} & The odometry object. \\
+\hline
+{\em imove\+Threshold} & The minimum length movement. \\
+\hline
+{\em iturn\+Threshold} & The minimum angle turn. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_ab601ad0881616b9af271d19c820ca3f2}\label{classokapi_1_1ChassisControllerBuilder_ab601ad0881616b9af271d19c820ca3f2}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withOdometryTimeUtilFactory@{withOdometryTimeUtilFactory}}
+\index{withOdometryTimeUtilFactory@{withOdometryTimeUtilFactory}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withOdometryTimeUtilFactory()}{withOdometryTimeUtilFactory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Odometry\+Time\+Util\+Factory (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} \&}]{itime\+Util\+Factory }\end{DoxyParamCaption})}
+
+Sets the \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} used when building an \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}}. The default is the static \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em itime\+Util\+Factory} & The \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a0197aa35c2c36dd82476bc70c5824a56}\label{classokapi_1_1ChassisControllerBuilder_a0197aa35c2c36dd82476bc70c5824a56}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withSensors@{withSensors}}
+\index{withSensors@{withSensors}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withSensors()}{withSensors()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Sensors (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&}]{ileft,  }\item[{const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&}]{iright }\end{DoxyParamCaption})}
+
+Sets the sensors. The default sensors are the motor\textquotesingle{}s integrated encoders.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ileft} & The left side sensor. \\
+\hline
+{\em iright} & The right side sensor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a5733a2198a3f10befcae5ee2a9a02d7e}\label{classokapi_1_1ChassisControllerBuilder_a5733a2198a3f10befcae5ee2a9a02d7e}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withSensors@{withSensors}}
+\index{withSensors@{withSensors}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withSensors()}{withSensors()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Sensors (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&}]{ileft,  }\item[{const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&}]{iright,  }\item[{const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&}]{imiddle }\end{DoxyParamCaption})}
+
+Sets the sensors. The default sensors are the motor\textquotesingle{}s integrated encoders.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ileft} & The left side sensor. \\
+\hline
+{\em iright} & The right side sensor. \\
+\hline
+{\em imiddle} & The middle sensor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_adcc6c5e490cd2f51e319bd52f40b1d3f}\label{classokapi_1_1ChassisControllerBuilder_adcc6c5e490cd2f51e319bd52f40b1d3f}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withSensors@{withSensors}}
+\index{withSensors@{withSensors}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withSensors()}{withSensors()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Sensors (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1IntegratedEncoder}{Integrated\+Encoder}} \&}]{ileft,  }\item[{const \mbox{\hyperlink{classokapi_1_1IntegratedEncoder}{Integrated\+Encoder}} \&}]{iright }\end{DoxyParamCaption})}
+
+Sets the sensors. The default sensors are the motor\textquotesingle{}s integrated encoders.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ileft} & The left side sensor. \\
+\hline
+{\em iright} & The right side sensor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a9ba0a2bf4c4d0334f96bd08b08144cc3}\label{classokapi_1_1ChassisControllerBuilder_a9ba0a2bf4c4d0334f96bd08b08144cc3}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withSensors@{withSensors}}
+\index{withSensors@{withSensors}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withSensors()}{withSensors()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Sensors (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1IntegratedEncoder}{Integrated\+Encoder}} \&}]{ileft,  }\item[{const \mbox{\hyperlink{classokapi_1_1IntegratedEncoder}{Integrated\+Encoder}} \&}]{iright,  }\item[{const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&}]{imiddle }\end{DoxyParamCaption})}
+
+Sets the sensors. The default sensors are the motor\textquotesingle{}s integrated encoders.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ileft} & The left side sensor. \\
+\hline
+{\em iright} & The right side sensor. \\
+\hline
+{\em imiddle} & The middle sensor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a10214db4bffeb20b0e7b3d5c956061fa}\label{classokapi_1_1ChassisControllerBuilder_a10214db4bffeb20b0e7b3d5c956061fa}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withSensors@{withSensors}}
+\index{withSensors@{withSensors}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withSensors()}{withSensors()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Sensors (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor}{Continuous\+Rotary\+Sensor}} $>$ \&}]{ileft,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor}{Continuous\+Rotary\+Sensor}} $>$ \&}]{iright }\end{DoxyParamCaption})}
+
+Sets the sensors. The default sensors are the motor\textquotesingle{}s integrated encoders.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ileft} & The left side sensor. \\
+\hline
+{\em iright} & The right side sensor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a2c2d1276f03425ecbe97b55ce8832d9e}\label{classokapi_1_1ChassisControllerBuilder_a2c2d1276f03425ecbe97b55ce8832d9e}} 
+\index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withSensors@{withSensors}}
+\index{withSensors@{withSensors}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
+\subsubsection{\texorpdfstring{withSensors()}{withSensors()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}}\& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Sensors (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor}{Continuous\+Rotary\+Sensor}} $>$ \&}]{ileft,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor}{Continuous\+Rotary\+Sensor}} $>$ \&}]{iright,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor}{Continuous\+Rotary\+Sensor}} $>$ \&}]{imiddle }\end{DoxyParamCaption})}
+
+Sets the sensors. The default sensors are the motor\textquotesingle{}s integrated encoders.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ileft} & The left side sensor. \\
+\hline
+{\em iright} & The right side sensor. \\
+\hline
+{\em imiddle} & The middle sensor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/impl/chassis/controller/\mbox{\hyperlink{chassisControllerBuilder_8hpp}{chassis\+Controller\+Builder.\+hpp}}\item 
+src/impl/chassis/controller/\mbox{\hyperlink{chassisControllerBuilder_8cpp}{chassis\+Controller\+Builder.\+cpp}}\end{DoxyCompactItemize}

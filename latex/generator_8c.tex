@@ -1,0 +1,26 @@
+\hypertarget{generator_8c}{}\section{src/pathfinder/generator.c File Reference}
+\label{generator_8c}\index{src/pathfinder/generator.c@{src/pathfinder/generator.c}}
+{\ttfamily \#include \char`\"{}okapi/pathfinder/include/pathfinder.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{generator_8c_a8b1339752edfc0dd46c3c823a7d7df6b}{pathfinder\+\_\+prepare}} (\mbox{\hyperlink{structWaypoint}{Waypoint}} $\ast$path, int path\+\_\+length, void($\ast$fit)(\mbox{\hyperlink{structWaypoint}{Waypoint}}, \mbox{\hyperlink{structWaypoint}{Waypoint}}, \mbox{\hyperlink{structSpline}{Spline}} $\ast$), int sample\+\_\+count, double dt, double max\+\_\+velocity, double max\+\_\+acceleration, double max\+\_\+jerk, \mbox{\hyperlink{structTrajectoryCandidate}{Trajectory\+Candidate}} $\ast$cand)
+\item 
+int \mbox{\hyperlink{generator_8c_afbba85407b832bf0ad79bd073f546f02}{pathfinder\+\_\+generate}} (\mbox{\hyperlink{structTrajectoryCandidate}{Trajectory\+Candidate}} $\ast$c, \mbox{\hyperlink{structSegment}{Segment}} $\ast$segments)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{generator_8c_afbba85407b832bf0ad79bd073f546f02}\label{generator_8c_afbba85407b832bf0ad79bd073f546f02}} 
+\index{generator.c@{generator.c}!pathfinder\_generate@{pathfinder\_generate}}
+\index{pathfinder\_generate@{pathfinder\_generate}!generator.c@{generator.c}}
+\subsubsection{\texorpdfstring{pathfinder\_generate()}{pathfinder\_generate()}}
+{\footnotesize\ttfamily int pathfinder\+\_\+generate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTrajectoryCandidate}{Trajectory\+Candidate}} $\ast$}]{c,  }\item[{\mbox{\hyperlink{structSegment}{Segment}} $\ast$}]{segments }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{generator_8c_a8b1339752edfc0dd46c3c823a7d7df6b}\label{generator_8c_a8b1339752edfc0dd46c3c823a7d7df6b}} 
+\index{generator.c@{generator.c}!pathfinder\_prepare@{pathfinder\_prepare}}
+\index{pathfinder\_prepare@{pathfinder\_prepare}!generator.c@{generator.c}}
+\subsubsection{\texorpdfstring{pathfinder\_prepare()}{pathfinder\_prepare()}}
+{\footnotesize\ttfamily int pathfinder\+\_\+prepare (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structWaypoint}{Waypoint}} $\ast$}]{path,  }\item[{int}]{path\+\_\+length,  }\item[{void($\ast$)(\mbox{\hyperlink{structWaypoint}{Waypoint}}, \mbox{\hyperlink{structWaypoint}{Waypoint}}, \mbox{\hyperlink{structSpline}{Spline}} $\ast$)}]{fit,  }\item[{int}]{sample\+\_\+count,  }\item[{double}]{dt,  }\item[{double}]{max\+\_\+velocity,  }\item[{double}]{max\+\_\+acceleration,  }\item[{double}]{max\+\_\+jerk,  }\item[{\mbox{\hyperlink{structTrajectoryCandidate}{Trajectory\+Candidate}} $\ast$}]{cand }\end{DoxyParamCaption})}
+

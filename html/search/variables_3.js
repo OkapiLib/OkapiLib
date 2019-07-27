@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['data',['data',['../classokapi_1_1AverageFilter.html#a1aeb97bb7bda056a072281c974b074be',1,'okapi::AverageFilter::data()'],['../classokapi_1_1MedianFilter.html#a9a6648a537ca4aac1095ee6de6e02806',1,'okapi::MedianFilter::data()']]],
+  ['day',['day',['../namespaceokapi.html#a5bb9617e1f2db13eaad2fe9d47f49195',1,'okapi']]],
+  ['decimeter',['decimeter',['../namespaceokapi.html#adeefe08fd5193fd9090e198b1a3463b9',1,'okapi']]],
+  ['decimeter2',['decimeter2',['../namespaceokapi.html#a554ff440baa9c27432dcbc8068fbf47e',1,'okapi']]],
+  ['decimeter3',['decimeter3',['../namespaceokapi.html#a4f07207ec37be4257d882710d97a3de9',1,'okapi']]],
+  ['degree',['degree',['../namespaceokapi.html#a62211562b2e637742bd6e64748802211',1,'okapi']]],
+  ['degreetoradian',['degreeToRadian',['../namespaceokapi.html#a60e2f3e682c91a331aa5d89d8c0d6507',1,'okapi']]],
+  ['derivative',['derivative',['../classokapi_1_1IterativePosPIDController.html#a8d971804af5f429a91c71f6722e2f395',1,'okapi::IterativePosPIDController::derivative()'],['../classokapi_1_1IterativeVelPIDController.html#a3e99093a42c63df3a0fd226e109f9e2f',1,'okapi::IterativeVelPIDController::derivative()']]],
+  ['derivativefilter',['derivativeFilter',['../classokapi_1_1IterativePosPIDController.html#a4c92203e64b3ebbda5660410904aa753',1,'okapi::IterativePosPIDController::derivativeFilter()'],['../classokapi_1_1IterativeVelPIDController.html#af017ec38ad8aa08ef50459e957cc7e3a',1,'okapi::IterativeVelPIDController::derivativeFilter()']]],
+  ['diameter',['diameter',['../classokapi_1_1AsyncLinearMotionProfileController.html#a0b3cafe78cb551d68c2cb6ac31d1a753',1,'okapi::AsyncLinearMotionProfileController']]],
+  ['direction',['direction',['../classokapi_1_1AsyncLinearMotionProfileController.html#af82aa4936830711c126e7f00222fdbd8',1,'okapi::AsyncLinearMotionProfileController::direction()'],['../classokapi_1_1AsyncMotionProfileController.html#a7fc07f6d257d934fea7b40b18ab112cb',1,'okapi::AsyncMotionProfileController::direction()']]],
+  ['disabled',['disabled',['../classokapi_1_1AsyncLinearMotionProfileController.html#a6fc7e4b240646a8e2a8ecc06701e5ee0',1,'okapi::AsyncLinearMotionProfileController::disabled()'],['../classokapi_1_1AsyncMotionProfileController.html#a924ddedefab00c4e724dec77de37796f',1,'okapi::AsyncMotionProfileController::disabled()']]],
+  ['distancepid',['distancePid',['../classokapi_1_1ChassisControllerPID.html#a130a3d5ecf1e9dbb0d6884e4378b1887',1,'okapi::ChassisControllerPID']]],
+  ['divisor',['divisor',['../classokapi_1_1PIDTuner.html#a5cc51a97600a9114104afb9923056c79',1,'okapi::PIDTuner']]],
+  ['donelooping',['doneLooping',['../classokapi_1_1ChassisControllerPID.html#a73bdaf994929f7d81064159fba42a79f',1,'okapi::ChassisControllerPID']]],
+  ['doneloopingseen',['doneLoopingSeen',['../classokapi_1_1ChassisControllerPID.html#adc188c906f490119862f2de950a620d9',1,'okapi::ChassisControllerPID']]],
+  ['dtorcalled',['dtorCalled',['../classokapi_1_1ChassisControllerPID.html#a169c997aacc8ece4c23a87813bcdc0f2',1,'okapi::ChassisControllerPID::dtorCalled()'],['../classokapi_1_1OdomChassisController.html#a2af36f833e8ac382c4386f729f904bae',1,'okapi::OdomChassisController::dtorCalled()'],['../classokapi_1_1AsyncLinearMotionProfileController.html#aa876f79a2053e1f6b01519f17ccaebfa',1,'okapi::AsyncLinearMotionProfileController::dtorCalled()'],['../classokapi_1_1AsyncMotionProfileController.html#abd24ffe9b90ec6f85f1105d8f2bbf601',1,'okapi::AsyncMotionProfileController::dtorCalled()'],['../classokapi_1_1AsyncWrapper.html#aae007010b0b30b530f0b468ebe1d2aef',1,'okapi::AsyncWrapper::dtorCalled()']]]
+];

@@ -1,0 +1,104 @@
+\hypertarget{api__macros_8hpp}{}\section{include/test/\+Fake\+It/include/fakeit/api\+\_\+macros.hpp File Reference}
+\label{api__macros_8hpp}\index{include/test/FakeIt/include/fakeit/api\_macros.hpp@{include/test/FakeIt/include/fakeit/api\_macros.hpp}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{api__macros_8hpp_ab2ae4d9d7d3b240d7a7089b225ee6c26}{M\+O\+C\+K\+\_\+\+T\+Y\+PE}}(mock)~std\+::remove\+\_\+reference$<$decltype(mock.\+get())$>$\+::type
+\item 
+\#define \mbox{\hyperlink{api__macros_8hpp_a80696769693a59ac9cd8299070e03ab2}{O\+V\+E\+R\+L\+O\+A\+D\+E\+D\+\_\+\+M\+E\+T\+H\+O\+D\+\_\+\+P\+TR}}(mock,  method,  prototype)~\mbox{\hyperlink{structfakeit_1_1Prototype}{fakeit\+::\+Prototype}}$<$prototype$>$\+::Member\+Type$<$\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_ab2ae4d9d7d3b240d7a7089b225ee6c26}{M\+O\+C\+K\+\_\+\+T\+Y\+PE}}(mock)$>$\+::get(\&\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_ab2ae4d9d7d3b240d7a7089b225ee6c26}{M\+O\+C\+K\+\_\+\+T\+Y\+PE}}(mock)\+::method)
+\item 
+\#define \mbox{\hyperlink{api__macros_8hpp_ad3ab05f199996722c682099f5730e05b}{C\+O\+N\+S\+T\+\_\+\+O\+V\+E\+R\+L\+O\+A\+D\+E\+D\+\_\+\+M\+E\+T\+H\+O\+D\+\_\+\+P\+TR}}(mock,  method,  prototype)~\mbox{\hyperlink{structfakeit_1_1Prototype}{fakeit\+::\+Prototype}}$<$prototype$>$\+::Member\+Type$<$\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_ab2ae4d9d7d3b240d7a7089b225ee6c26}{M\+O\+C\+K\+\_\+\+T\+Y\+PE}}(mock)$>$\+::getconst(\&\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_ab2ae4d9d7d3b240d7a7089b225ee6c26}{M\+O\+C\+K\+\_\+\+T\+Y\+PE}}(mock)\+::method)
+\item 
+\#define \mbox{\hyperlink{api__macros_8hpp_abb4af6acfcbb11d6e09c0355beb8ce55}{Dtor}}(mock)~mock.\+dtor().set\+Method\+Details(\#mock,\char`\"{}destructor\char`\"{})
+\item 
+\#define \mbox{\hyperlink{api__macros_8hpp_a2e1d53dfd1e7c65ad24c24e0df3539b9}{Method}}(mock,  method)~mock.\+template stub$<$\+\_\+\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+\_\+$>$(\&\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_ab2ae4d9d7d3b240d7a7089b225ee6c26}{M\+O\+C\+K\+\_\+\+T\+Y\+PE}}(mock)\+::method).set\+Method\+Details(\#mock,\#method)
+\item 
+\#define \mbox{\hyperlink{api__macros_8hpp_a7eb5250291e77746af6424775a606bf1}{Overloaded\+Method}}(mock,  method,  prototype)~mock.\+template stub$<$\+\_\+\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+\_\+$>$(\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_a80696769693a59ac9cd8299070e03ab2}{O\+V\+E\+R\+L\+O\+A\+D\+E\+D\+\_\+\+M\+E\+T\+H\+O\+D\+\_\+\+P\+TR}}( mock , method, prototype )).set\+Method\+Details(\#mock,\#method)
+\item 
+\#define \mbox{\hyperlink{api__macros_8hpp_a58c765551b1252192a04cd705f6d0074}{Const\+Overloaded\+Method}}(mock,  method,  prototype)~mock.\+template stub$<$\+\_\+\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+\_\+$>$(\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_ad3ab05f199996722c682099f5730e05b}{C\+O\+N\+S\+T\+\_\+\+O\+V\+E\+R\+L\+O\+A\+D\+E\+D\+\_\+\+M\+E\+T\+H\+O\+D\+\_\+\+P\+TR}}( mock , method, prototype )).set\+Method\+Details(\#mock,\#method)
+\item 
+\#define \mbox{\hyperlink{api__macros_8hpp_a1e3ec08b9ed170cb7904d58090ef9914}{Verify}}(...)~Verify( \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+ ).set\+File\+Info(\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, \+\_\+\+\_\+func\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{api__macros_8hpp_a1f6c3f1eb50b678fbe4cfadb13063a9c}{Using}}(...)~Using( \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+ )
+\item 
+\#define \mbox{\hyperlink{api__macros_8hpp_a0666b9fc95278ea437266766d7b4dab1}{Verify\+No\+Other\+Invocations}}(...)~Verify\+No\+Other\+Invocations( \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+ ).set\+File\+Info(\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, \+\_\+\+\_\+func\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{api__macros_8hpp_ad5d195661cbff19d3a3a7653d001c222}{Fake}}(...)~Fake( \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+ )
+\item 
+\#define \mbox{\hyperlink{api__macros_8hpp_a665d1615d3ae3f21983056f052ab7f24}{When}}(call)~When(call)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{api__macros_8hpp_ad3ab05f199996722c682099f5730e05b}\label{api__macros_8hpp_ad3ab05f199996722c682099f5730e05b}} 
+\index{api\_macros.hpp@{api\_macros.hpp}!CONST\_OVERLOADED\_METHOD\_PTR@{CONST\_OVERLOADED\_METHOD\_PTR}}
+\index{CONST\_OVERLOADED\_METHOD\_PTR@{CONST\_OVERLOADED\_METHOD\_PTR}!api\_macros.hpp@{api\_macros.hpp}}
+\subsubsection{\texorpdfstring{CONST\_OVERLOADED\_METHOD\_PTR}{CONST\_OVERLOADED\_METHOD\_PTR}}
+{\footnotesize\ttfamily \#define C\+O\+N\+S\+T\+\_\+\+O\+V\+E\+R\+L\+O\+A\+D\+E\+D\+\_\+\+M\+E\+T\+H\+O\+D\+\_\+\+P\+TR(\begin{DoxyParamCaption}\item[{}]{mock,  }\item[{}]{method,  }\item[{}]{prototype }\end{DoxyParamCaption})~\mbox{\hyperlink{structfakeit_1_1Prototype}{fakeit\+::\+Prototype}}$<$prototype$>$\+::Member\+Type$<$\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_ab2ae4d9d7d3b240d7a7089b225ee6c26}{M\+O\+C\+K\+\_\+\+T\+Y\+PE}}(mock)$>$\+::getconst(\&\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_ab2ae4d9d7d3b240d7a7089b225ee6c26}{M\+O\+C\+K\+\_\+\+T\+Y\+PE}}(mock)\+::method)}
+
+\mbox{\Hypertarget{api__macros_8hpp_a58c765551b1252192a04cd705f6d0074}\label{api__macros_8hpp_a58c765551b1252192a04cd705f6d0074}} 
+\index{api\_macros.hpp@{api\_macros.hpp}!ConstOverloadedMethod@{ConstOverloadedMethod}}
+\index{ConstOverloadedMethod@{ConstOverloadedMethod}!api\_macros.hpp@{api\_macros.hpp}}
+\subsubsection{\texorpdfstring{ConstOverloadedMethod}{ConstOverloadedMethod}}
+{\footnotesize\ttfamily \#define Const\+Overloaded\+Method(\begin{DoxyParamCaption}\item[{}]{mock,  }\item[{}]{method,  }\item[{}]{prototype }\end{DoxyParamCaption})~mock.\+template stub$<$\+\_\+\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+\_\+$>$(\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_ad3ab05f199996722c682099f5730e05b}{C\+O\+N\+S\+T\+\_\+\+O\+V\+E\+R\+L\+O\+A\+D\+E\+D\+\_\+\+M\+E\+T\+H\+O\+D\+\_\+\+P\+TR}}( mock , method, prototype )).set\+Method\+Details(\#mock,\#method)}
+
+\mbox{\Hypertarget{api__macros_8hpp_abb4af6acfcbb11d6e09c0355beb8ce55}\label{api__macros_8hpp_abb4af6acfcbb11d6e09c0355beb8ce55}} 
+\index{api\_macros.hpp@{api\_macros.hpp}!Dtor@{Dtor}}
+\index{Dtor@{Dtor}!api\_macros.hpp@{api\_macros.hpp}}
+\subsubsection{\texorpdfstring{Dtor}{Dtor}}
+{\footnotesize\ttfamily \#define Dtor(\begin{DoxyParamCaption}\item[{}]{mock }\end{DoxyParamCaption})~mock.\+dtor().set\+Method\+Details(\#mock,\char`\"{}destructor\char`\"{})}
+
+\mbox{\Hypertarget{api__macros_8hpp_ad5d195661cbff19d3a3a7653d001c222}\label{api__macros_8hpp_ad5d195661cbff19d3a3a7653d001c222}} 
+\index{api\_macros.hpp@{api\_macros.hpp}!Fake@{Fake}}
+\index{Fake@{Fake}!api\_macros.hpp@{api\_macros.hpp}}
+\subsubsection{\texorpdfstring{Fake}{Fake}}
+{\footnotesize\ttfamily \#define Fake(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~Fake( \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+ )}
+
+\mbox{\Hypertarget{api__macros_8hpp_a2e1d53dfd1e7c65ad24c24e0df3539b9}\label{api__macros_8hpp_a2e1d53dfd1e7c65ad24c24e0df3539b9}} 
+\index{api\_macros.hpp@{api\_macros.hpp}!Method@{Method}}
+\index{Method@{Method}!api\_macros.hpp@{api\_macros.hpp}}
+\subsubsection{\texorpdfstring{Method}{Method}}
+{\footnotesize\ttfamily \#define Method(\begin{DoxyParamCaption}\item[{}]{mock,  }\item[{}]{method }\end{DoxyParamCaption})~mock.\+template stub$<$\+\_\+\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+\_\+$>$(\&\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_ab2ae4d9d7d3b240d7a7089b225ee6c26}{M\+O\+C\+K\+\_\+\+T\+Y\+PE}}(mock)\+::method).set\+Method\+Details(\#mock,\#method)}
+
+\mbox{\Hypertarget{api__macros_8hpp_ab2ae4d9d7d3b240d7a7089b225ee6c26}\label{api__macros_8hpp_ab2ae4d9d7d3b240d7a7089b225ee6c26}} 
+\index{api\_macros.hpp@{api\_macros.hpp}!MOCK\_TYPE@{MOCK\_TYPE}}
+\index{MOCK\_TYPE@{MOCK\_TYPE}!api\_macros.hpp@{api\_macros.hpp}}
+\subsubsection{\texorpdfstring{MOCK\_TYPE}{MOCK\_TYPE}}
+{\footnotesize\ttfamily \#define M\+O\+C\+K\+\_\+\+T\+Y\+PE(\begin{DoxyParamCaption}\item[{}]{mock }\end{DoxyParamCaption})~std\+::remove\+\_\+reference$<$decltype(mock.\+get())$>$\+::type}
+
+\mbox{\Hypertarget{api__macros_8hpp_a80696769693a59ac9cd8299070e03ab2}\label{api__macros_8hpp_a80696769693a59ac9cd8299070e03ab2}} 
+\index{api\_macros.hpp@{api\_macros.hpp}!OVERLOADED\_METHOD\_PTR@{OVERLOADED\_METHOD\_PTR}}
+\index{OVERLOADED\_METHOD\_PTR@{OVERLOADED\_METHOD\_PTR}!api\_macros.hpp@{api\_macros.hpp}}
+\subsubsection{\texorpdfstring{OVERLOADED\_METHOD\_PTR}{OVERLOADED\_METHOD\_PTR}}
+{\footnotesize\ttfamily \#define O\+V\+E\+R\+L\+O\+A\+D\+E\+D\+\_\+\+M\+E\+T\+H\+O\+D\+\_\+\+P\+TR(\begin{DoxyParamCaption}\item[{}]{mock,  }\item[{}]{method,  }\item[{}]{prototype }\end{DoxyParamCaption})~\mbox{\hyperlink{structfakeit_1_1Prototype}{fakeit\+::\+Prototype}}$<$prototype$>$\+::Member\+Type$<$\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_ab2ae4d9d7d3b240d7a7089b225ee6c26}{M\+O\+C\+K\+\_\+\+T\+Y\+PE}}(mock)$>$\+::get(\&\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_ab2ae4d9d7d3b240d7a7089b225ee6c26}{M\+O\+C\+K\+\_\+\+T\+Y\+PE}}(mock)\+::method)}
+
+\mbox{\Hypertarget{api__macros_8hpp_a7eb5250291e77746af6424775a606bf1}\label{api__macros_8hpp_a7eb5250291e77746af6424775a606bf1}} 
+\index{api\_macros.hpp@{api\_macros.hpp}!OverloadedMethod@{OverloadedMethod}}
+\index{OverloadedMethod@{OverloadedMethod}!api\_macros.hpp@{api\_macros.hpp}}
+\subsubsection{\texorpdfstring{OverloadedMethod}{OverloadedMethod}}
+{\footnotesize\ttfamily \#define Overloaded\+Method(\begin{DoxyParamCaption}\item[{}]{mock,  }\item[{}]{method,  }\item[{}]{prototype }\end{DoxyParamCaption})~mock.\+template stub$<$\+\_\+\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+\_\+$>$(\mbox{\hyperlink{single__header_2tpunit_2fakeit_8hpp_a80696769693a59ac9cd8299070e03ab2}{O\+V\+E\+R\+L\+O\+A\+D\+E\+D\+\_\+\+M\+E\+T\+H\+O\+D\+\_\+\+P\+TR}}( mock , method, prototype )).set\+Method\+Details(\#mock,\#method)}
+
+\mbox{\Hypertarget{api__macros_8hpp_a1f6c3f1eb50b678fbe4cfadb13063a9c}\label{api__macros_8hpp_a1f6c3f1eb50b678fbe4cfadb13063a9c}} 
+\index{api\_macros.hpp@{api\_macros.hpp}!Using@{Using}}
+\index{Using@{Using}!api\_macros.hpp@{api\_macros.hpp}}
+\subsubsection{\texorpdfstring{Using}{Using}}
+{\footnotesize\ttfamily \#define Using(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~Using( \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+ )}
+
+\mbox{\Hypertarget{api__macros_8hpp_a1e3ec08b9ed170cb7904d58090ef9914}\label{api__macros_8hpp_a1e3ec08b9ed170cb7904d58090ef9914}} 
+\index{api\_macros.hpp@{api\_macros.hpp}!Verify@{Verify}}
+\index{Verify@{Verify}!api\_macros.hpp@{api\_macros.hpp}}
+\subsubsection{\texorpdfstring{Verify}{Verify}}
+{\footnotesize\ttfamily \#define Verify(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~Verify( \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+ ).set\+File\+Info(\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, \+\_\+\+\_\+func\+\_\+\+\_\+)}
+
+\mbox{\Hypertarget{api__macros_8hpp_a0666b9fc95278ea437266766d7b4dab1}\label{api__macros_8hpp_a0666b9fc95278ea437266766d7b4dab1}} 
+\index{api\_macros.hpp@{api\_macros.hpp}!VerifyNoOtherInvocations@{VerifyNoOtherInvocations}}
+\index{VerifyNoOtherInvocations@{VerifyNoOtherInvocations}!api\_macros.hpp@{api\_macros.hpp}}
+\subsubsection{\texorpdfstring{VerifyNoOtherInvocations}{VerifyNoOtherInvocations}}
+{\footnotesize\ttfamily \#define Verify\+No\+Other\+Invocations(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~Verify\+No\+Other\+Invocations( \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+ ).set\+File\+Info(\+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, \+\_\+\+\_\+func\+\_\+\+\_\+)}
+
+\mbox{\Hypertarget{api__macros_8hpp_a665d1615d3ae3f21983056f052ab7f24}\label{api__macros_8hpp_a665d1615d3ae3f21983056f052ab7f24}} 
+\index{api\_macros.hpp@{api\_macros.hpp}!When@{When}}
+\index{When@{When}!api\_macros.hpp@{api\_macros.hpp}}
+\subsubsection{\texorpdfstring{When}{When}}
+{\footnotesize\ttfamily \#define When(\begin{DoxyParamCaption}\item[{}]{call }\end{DoxyParamCaption})~When(call)}
+

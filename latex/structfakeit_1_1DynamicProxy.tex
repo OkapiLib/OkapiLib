@@ -1,0 +1,1281 @@
+\hypertarget{structfakeit_1_1DynamicProxy}{}\section{fakeit\+::Dynamic\+Proxy$<$ C, baseclasses $>$ Struct Template Reference}
+\label{structfakeit_1_1DynamicProxy}\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+
+
+{\ttfamily \#include $<$Dynamic\+Proxy.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}{Dynamic\+Proxy}} (C \&inst)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}{detach}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}{$\sim$\+Dynamic\+Proxy}} ()
+\item 
+C \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}{get}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}{Reset}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}{Clear}} ()
+\item 
+{\footnotesize template$<$int id, typename R , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}{stub\+Method}} (R(C\+::$\ast$v\+Method)(arglist...), \mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$method\+Invocation\+Handler)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}{stub\+Dtor}} (\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$method\+Invocation\+Handler)
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}{is\+Method\+Stubbed}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}{is\+Dtor\+Stubbed}} ()
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}{get\+Method\+Mock}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}{get\+Dtor\+Mock}} ()
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$member, const arglist \&... initargs)
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}{get\+Method\+Mocks}} (std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&into) const
+\item 
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$ C, baseclasses... $>$ \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}{get\+Original\+VT}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}{Dynamic\+Proxy}} (C \&inst)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}{detach}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}{$\sim$\+Dynamic\+Proxy}} ()
+\item 
+C \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}{get}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}{Reset}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}{Clear}} ()
+\item 
+{\footnotesize template$<$int id, typename R , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}{stub\+Method}} (R(C\+::$\ast$v\+Method)(arglist...), \mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$method\+Invocation\+Handler)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}{stub\+Dtor}} (\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$method\+Invocation\+Handler)
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}{is\+Method\+Stubbed}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}{is\+Dtor\+Stubbed}} ()
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}{get\+Method\+Mock}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}{get\+Dtor\+Mock}} ()
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$member, const arglist \&... initargs)
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}{get\+Method\+Mocks}} (std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&into) const
+\item 
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$ C, baseclasses... $>$ \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}{get\+Original\+VT}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}{Dynamic\+Proxy}} (C \&inst)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}{detach}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}{$\sim$\+Dynamic\+Proxy}} ()
+\item 
+C \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}{get}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}{Reset}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}{Clear}} ()
+\item 
+{\footnotesize template$<$int id, typename R , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}{stub\+Method}} (R(C\+::$\ast$v\+Method)(arglist...), \mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$method\+Invocation\+Handler)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}{stub\+Dtor}} (\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$method\+Invocation\+Handler)
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}{is\+Method\+Stubbed}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}{is\+Dtor\+Stubbed}} ()
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}{get\+Method\+Mock}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}{get\+Dtor\+Mock}} ()
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$member, const arglist \&... initargs)
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}{get\+Method\+Mocks}} (std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&into) const
+\item 
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$ C, baseclasses... $>$ \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}{get\+Original\+VT}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}{Dynamic\+Proxy}} (C \&inst)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}{detach}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}{$\sim$\+Dynamic\+Proxy}} ()
+\item 
+C \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}{get}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}{Reset}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}{Clear}} ()
+\item 
+{\footnotesize template$<$int id, typename R , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}{stub\+Method}} (R(C\+::$\ast$v\+Method)(arglist...), \mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$method\+Invocation\+Handler)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}{stub\+Dtor}} (\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$method\+Invocation\+Handler)
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}{is\+Method\+Stubbed}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}{is\+Dtor\+Stubbed}} ()
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}{get\+Method\+Mock}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}{get\+Dtor\+Mock}} ()
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$member, const arglist \&... initargs)
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}{get\+Method\+Mocks}} (std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&into) const
+\item 
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$ C, baseclasses... $>$ \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}{get\+Original\+VT}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}{Dynamic\+Proxy}} (C \&inst)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}{detach}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}{$\sim$\+Dynamic\+Proxy}} ()
+\item 
+C \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}{get}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}{Reset}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}{Clear}} ()
+\item 
+{\footnotesize template$<$int id, typename R , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}{stub\+Method}} (R(C\+::$\ast$v\+Method)(arglist...), \mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$method\+Invocation\+Handler)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}{stub\+Dtor}} (\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$method\+Invocation\+Handler)
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}{is\+Method\+Stubbed}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}{is\+Dtor\+Stubbed}} ()
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}{get\+Method\+Mock}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}{get\+Dtor\+Mock}} ()
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$member, const arglist \&... initargs)
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}{get\+Method\+Mocks}} (std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&into) const
+\item 
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$ C, baseclasses... $>$ \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}{get\+Original\+VT}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}{Dynamic\+Proxy}} (C \&inst)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}{detach}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}{$\sim$\+Dynamic\+Proxy}} ()
+\item 
+C \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}{get}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}{Reset}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}{Clear}} ()
+\item 
+{\footnotesize template$<$int id, typename R , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}{stub\+Method}} (R(C\+::$\ast$v\+Method)(arglist...), \mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$method\+Invocation\+Handler)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}{stub\+Dtor}} (\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$method\+Invocation\+Handler)
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}{is\+Method\+Stubbed}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}{is\+Dtor\+Stubbed}} ()
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}{get\+Method\+Mock}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}{get\+Dtor\+Mock}} ()
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$member, const arglist \&... initargs)
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}{get\+Method\+Mocks}} (std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&into) const
+\item 
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$ C, baseclasses... $>$ \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}{get\+Original\+VT}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}{Dynamic\+Proxy}} (C \&inst)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}{detach}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}{$\sim$\+Dynamic\+Proxy}} ()
+\item 
+C \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}{get}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}{Reset}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}{Clear}} ()
+\item 
+{\footnotesize template$<$int id, typename R , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}{stub\+Method}} (R(C\+::$\ast$v\+Method)(arglist...), \mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$method\+Invocation\+Handler)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}{stub\+Dtor}} (\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$method\+Invocation\+Handler)
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}{is\+Method\+Stubbed}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}{is\+Dtor\+Stubbed}} ()
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}{get\+Method\+Mock}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}{get\+Dtor\+Mock}} ()
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$member, const arglist \&... initargs)
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}{get\+Method\+Mocks}} (std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&into) const
+\item 
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$ C, baseclasses... $>$ \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}{get\+Original\+VT}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}{Dynamic\+Proxy}} (C \&inst)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}{detach}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}{$\sim$\+Dynamic\+Proxy}} ()
+\item 
+C \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}{get}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}{Reset}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}{Clear}} ()
+\item 
+{\footnotesize template$<$int id, typename R , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}{stub\+Method}} (R(C\+::$\ast$v\+Method)(arglist...), \mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$method\+Invocation\+Handler)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}{stub\+Dtor}} (\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$method\+Invocation\+Handler)
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}{is\+Method\+Stubbed}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}{is\+Dtor\+Stubbed}} ()
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}{get\+Method\+Mock}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}{get\+Dtor\+Mock}} ()
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$member, const arglist \&... initargs)
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}{get\+Method\+Mocks}} (std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&into) const
+\item 
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$ C, baseclasses... $>$ \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}{get\+Original\+VT}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}{Dynamic\+Proxy}} (C \&inst)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}{detach}} ()
+\item 
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}{$\sim$\+Dynamic\+Proxy}} ()
+\item 
+C \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}{get}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}{Reset}} ()
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}{Clear}} ()
+\item 
+{\footnotesize template$<$int id, typename R , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}{stub\+Method}} (R(C\+::$\ast$v\+Method)(arglist...), \mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$method\+Invocation\+Handler)
+\item 
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}{stub\+Dtor}} (\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$method\+Invocation\+Handler)
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}{is\+Method\+Stubbed}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}{is\+Dtor\+Stubbed}} ()
+\item 
+{\footnotesize template$<$typename R , typename ... arglist$>$ }\\\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}{get\+Method\+Mock}} (R(C\+::$\ast$v\+Method)(arglist...))
+\item 
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}} $\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}{get\+Dtor\+Mock}} ()
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}{stub\+Data\+Member}} (D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$member, const arglist \&... initargs)
+\item 
+{\footnotesize template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ }\\void \mbox{\hyperlink{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}{get\+Method\+Mocks}} (std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&into) const
+\item 
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$ C, baseclasses... $>$ \& \mbox{\hyperlink{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}{get\+Original\+VT}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}\label{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!DynamicProxy@{DynamicProxy}}
+\index{DynamicProxy@{DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{DynamicProxy()}{DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}\item[{C \&}]{inst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}\label{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!````~DynamicProxy@{$\sim$DynamicProxy}}
+\index{````~DynamicProxy@{$\sim$DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$DynamicProxy()}{~DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}\label{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!DynamicProxy@{DynamicProxy}}
+\index{DynamicProxy@{DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{DynamicProxy()}{DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}\item[{C \&}]{inst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}\label{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!````~DynamicProxy@{$\sim$DynamicProxy}}
+\index{````~DynamicProxy@{$\sim$DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$DynamicProxy()}{~DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}\label{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!DynamicProxy@{DynamicProxy}}
+\index{DynamicProxy@{DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{DynamicProxy()}{DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}\item[{C \&}]{inst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}\label{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!````~DynamicProxy@{$\sim$DynamicProxy}}
+\index{````~DynamicProxy@{$\sim$DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$DynamicProxy()}{~DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}\label{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!DynamicProxy@{DynamicProxy}}
+\index{DynamicProxy@{DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{DynamicProxy()}{DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}\item[{C \&}]{inst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}\label{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!````~DynamicProxy@{$\sim$DynamicProxy}}
+\index{````~DynamicProxy@{$\sim$DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$DynamicProxy()}{~DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}\label{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!DynamicProxy@{DynamicProxy}}
+\index{DynamicProxy@{DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{DynamicProxy()}{DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}\item[{C \&}]{inst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}\label{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!````~DynamicProxy@{$\sim$DynamicProxy}}
+\index{````~DynamicProxy@{$\sim$DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$DynamicProxy()}{~DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}\label{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!DynamicProxy@{DynamicProxy}}
+\index{DynamicProxy@{DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{DynamicProxy()}{DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}\item[{C \&}]{inst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}\label{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!````~DynamicProxy@{$\sim$DynamicProxy}}
+\index{````~DynamicProxy@{$\sim$DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$DynamicProxy()}{~DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}\label{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!DynamicProxy@{DynamicProxy}}
+\index{DynamicProxy@{DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{DynamicProxy()}{DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}\item[{C \&}]{inst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}\label{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!````~DynamicProxy@{$\sim$DynamicProxy}}
+\index{````~DynamicProxy@{$\sim$DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$DynamicProxy()}{~DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}\label{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!DynamicProxy@{DynamicProxy}}
+\index{DynamicProxy@{DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{DynamicProxy()}{DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}\item[{C \&}]{inst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}\label{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!````~DynamicProxy@{$\sim$DynamicProxy}}
+\index{````~DynamicProxy@{$\sim$DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$DynamicProxy()}{~DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}\label{structfakeit_1_1DynamicProxy_a417e0221b7df3845b201a9e4a1f5028b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!DynamicProxy@{DynamicProxy}}
+\index{DynamicProxy@{DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{DynamicProxy()}{DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}\item[{C \&}]{inst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}\label{structfakeit_1_1DynamicProxy_a05e9d9c1bcaf4bcd14d1b6311e16c809}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!````~DynamicProxy@{$\sim$DynamicProxy}}
+\index{````~DynamicProxy@{$\sim$DynamicProxy}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{$\sim$DynamicProxy()}{~DynamicProxy()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::$\sim$\mbox{\hyperlink{structfakeit_1_1DynamicProxy}{Dynamic\+Proxy}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}\label{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Clear@{Clear}}
+\index{Clear@{Clear}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Clear()}{Clear()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}\label{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Clear@{Clear}}
+\index{Clear@{Clear}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Clear()}{Clear()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}\label{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Clear@{Clear}}
+\index{Clear@{Clear}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Clear()}{Clear()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}\label{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Clear@{Clear}}
+\index{Clear@{Clear}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Clear()}{Clear()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}\label{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Clear@{Clear}}
+\index{Clear@{Clear}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Clear()}{Clear()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}\label{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Clear@{Clear}}
+\index{Clear@{Clear}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Clear()}{Clear()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}\label{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Clear@{Clear}}
+\index{Clear@{Clear}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Clear()}{Clear()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}\label{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Clear@{Clear}}
+\index{Clear@{Clear}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Clear()}{Clear()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}\label{structfakeit_1_1DynamicProxy_a995c7e3dd97dc7707f18774eb4554b45}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Clear@{Clear}}
+\index{Clear@{Clear}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Clear()}{Clear()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}\label{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}\label{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}\label{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}\label{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}\label{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}\label{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}\label{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}\label{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}\label{structfakeit_1_1DynamicProxy_a154f25eeeb36c0635d9209dd5870943e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!detach@{detach}}
+\index{detach@{detach}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{detach()}{detach()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}\label{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+C\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}\label{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+C\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}\label{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+C\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}\label{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+C\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}\label{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+C\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}\label{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+C\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}\label{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+C\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}\label{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+C\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}\label{structfakeit_1_1DynamicProxy_af8e4100c2d995a26bf3209e68c11d12a}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!get@{get}}
+\index{get@{get}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+C\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}\label{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getDtorMock@{getDtorMock}}
+\index{getDtorMock@{getDtorMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getDtorMock()}{getDtorMock()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Dtor\+Mock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}\label{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getDtorMock@{getDtorMock}}
+\index{getDtorMock@{getDtorMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getDtorMock()}{getDtorMock()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Dtor\+Mock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}\label{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getDtorMock@{getDtorMock}}
+\index{getDtorMock@{getDtorMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getDtorMock()}{getDtorMock()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Dtor\+Mock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}\label{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getDtorMock@{getDtorMock}}
+\index{getDtorMock@{getDtorMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getDtorMock()}{getDtorMock()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Dtor\+Mock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}\label{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getDtorMock@{getDtorMock}}
+\index{getDtorMock@{getDtorMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getDtorMock()}{getDtorMock()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Dtor\+Mock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}\label{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getDtorMock@{getDtorMock}}
+\index{getDtorMock@{getDtorMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getDtorMock()}{getDtorMock()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Dtor\+Mock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}\label{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getDtorMock@{getDtorMock}}
+\index{getDtorMock@{getDtorMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getDtorMock()}{getDtorMock()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Dtor\+Mock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}\label{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getDtorMock@{getDtorMock}}
+\index{getDtorMock@{getDtorMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getDtorMock()}{getDtorMock()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Dtor\+Mock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}\label{structfakeit_1_1DynamicProxy_a32f8a09734ef6d70162d682fd593707b}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getDtorMock@{getDtorMock}}
+\index{getDtorMock@{getDtorMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getDtorMock()}{getDtorMock()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Dtor\+Mock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}\label{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMock@{getMethodMock}}
+\index{getMethodMock@{getMethodMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMock()}{getMethodMock()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mock (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}\label{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMock@{getMethodMock}}
+\index{getMethodMock@{getMethodMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMock()}{getMethodMock()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mock (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}\label{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMock@{getMethodMock}}
+\index{getMethodMock@{getMethodMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMock()}{getMethodMock()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mock (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}\label{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMock@{getMethodMock}}
+\index{getMethodMock@{getMethodMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMock()}{getMethodMock()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mock (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}\label{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMock@{getMethodMock}}
+\index{getMethodMock@{getMethodMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMock()}{getMethodMock()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mock (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}\label{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMock@{getMethodMock}}
+\index{getMethodMock@{getMethodMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMock()}{getMethodMock()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mock (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}\label{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMock@{getMethodMock}}
+\index{getMethodMock@{getMethodMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMock()}{getMethodMock()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mock (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}\label{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMock@{getMethodMock}}
+\index{getMethodMock@{getMethodMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMock()}{getMethodMock()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mock (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}\label{structfakeit_1_1DynamicProxy_a9774578f92b4d0258c72192dd16d6d0e}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMock@{getMethodMock}}
+\index{getMethodMock@{getMethodMock}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMock()}{getMethodMock()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1Destructible}{Destructible}}$\ast$ \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mock (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}\label{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMocks@{getMethodMocks}}
+\index{getMethodMocks@{getMethodMocks}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMocks()}{getMethodMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}\label{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMocks@{getMethodMocks}}
+\index{getMethodMocks@{getMethodMocks}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMocks()}{getMethodMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}\label{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMocks@{getMethodMocks}}
+\index{getMethodMocks@{getMethodMocks}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMocks()}{getMethodMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}\label{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMocks@{getMethodMocks}}
+\index{getMethodMocks@{getMethodMocks}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMocks()}{getMethodMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}\label{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMocks@{getMethodMocks}}
+\index{getMethodMocks@{getMethodMocks}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMocks()}{getMethodMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}\label{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMocks@{getMethodMocks}}
+\index{getMethodMocks@{getMethodMocks}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMocks()}{getMethodMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}\label{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMocks@{getMethodMocks}}
+\index{getMethodMocks@{getMethodMocks}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMocks()}{getMethodMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}\label{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMocks@{getMethodMocks}}
+\index{getMethodMocks@{getMethodMocks}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMocks()}{getMethodMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}\label{structfakeit_1_1DynamicProxy_a21e8fdd6bcf64b2d7e0b86261529da35}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getMethodMocks@{getMethodMocks}}
+\index{getMethodMocks@{getMethodMocks}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getMethodMocks()}{getMethodMocks()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Method\+Mocks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ D\+A\+T\+A\+\_\+\+T\+Y\+PE $>$ \&}]{into }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}\label{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getOriginalVT@{getOriginalVT}}
+\index{getOriginalVT@{getOriginalVT}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getOriginalVT()}{getOriginalVT()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$C, baseclasses...$>$\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Original\+VT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}\label{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getOriginalVT@{getOriginalVT}}
+\index{getOriginalVT@{getOriginalVT}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getOriginalVT()}{getOriginalVT()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$C, baseclasses...$>$\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Original\+VT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}\label{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getOriginalVT@{getOriginalVT}}
+\index{getOriginalVT@{getOriginalVT}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getOriginalVT()}{getOriginalVT()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$C, baseclasses...$>$\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Original\+VT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}\label{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getOriginalVT@{getOriginalVT}}
+\index{getOriginalVT@{getOriginalVT}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getOriginalVT()}{getOriginalVT()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$C, baseclasses...$>$\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Original\+VT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}\label{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getOriginalVT@{getOriginalVT}}
+\index{getOriginalVT@{getOriginalVT}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getOriginalVT()}{getOriginalVT()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$C, baseclasses...$>$\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Original\+VT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}\label{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getOriginalVT@{getOriginalVT}}
+\index{getOriginalVT@{getOriginalVT}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getOriginalVT()}{getOriginalVT()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$C, baseclasses...$>$\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Original\+VT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}\label{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getOriginalVT@{getOriginalVT}}
+\index{getOriginalVT@{getOriginalVT}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getOriginalVT()}{getOriginalVT()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$C, baseclasses...$>$\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Original\+VT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}\label{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getOriginalVT@{getOriginalVT}}
+\index{getOriginalVT@{getOriginalVT}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getOriginalVT()}{getOriginalVT()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$C, baseclasses...$>$\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Original\+VT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}\label{structfakeit_1_1DynamicProxy_aa34a496518156007196fd405dbf2e058}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!getOriginalVT@{getOriginalVT}}
+\index{getOriginalVT@{getOriginalVT}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{getOriginalVT()}{getOriginalVT()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+\mbox{\hyperlink{structfakeit_1_1VirtualTable}{Virtual\+Table}}$<$C, baseclasses...$>$\& \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::get\+Original\+VT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}\label{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isDtorStubbed@{isDtorStubbed}}
+\index{isDtorStubbed@{isDtorStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isDtorStubbed()}{isDtorStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Dtor\+Stubbed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}\label{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isDtorStubbed@{isDtorStubbed}}
+\index{isDtorStubbed@{isDtorStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isDtorStubbed()}{isDtorStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Dtor\+Stubbed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}\label{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isDtorStubbed@{isDtorStubbed}}
+\index{isDtorStubbed@{isDtorStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isDtorStubbed()}{isDtorStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Dtor\+Stubbed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}\label{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isDtorStubbed@{isDtorStubbed}}
+\index{isDtorStubbed@{isDtorStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isDtorStubbed()}{isDtorStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Dtor\+Stubbed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}\label{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isDtorStubbed@{isDtorStubbed}}
+\index{isDtorStubbed@{isDtorStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isDtorStubbed()}{isDtorStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Dtor\+Stubbed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}\label{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isDtorStubbed@{isDtorStubbed}}
+\index{isDtorStubbed@{isDtorStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isDtorStubbed()}{isDtorStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Dtor\+Stubbed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}\label{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isDtorStubbed@{isDtorStubbed}}
+\index{isDtorStubbed@{isDtorStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isDtorStubbed()}{isDtorStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Dtor\+Stubbed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}\label{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isDtorStubbed@{isDtorStubbed}}
+\index{isDtorStubbed@{isDtorStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isDtorStubbed()}{isDtorStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Dtor\+Stubbed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}\label{structfakeit_1_1DynamicProxy_a6d3f0dfa93dc98b37fb50002bc4ea2bc}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isDtorStubbed@{isDtorStubbed}}
+\index{isDtorStubbed@{isDtorStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isDtorStubbed()}{isDtorStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Dtor\+Stubbed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}\label{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isMethodStubbed@{isMethodStubbed}}
+\index{isMethodStubbed@{isMethodStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isMethodStubbed()}{isMethodStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Method\+Stubbed (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}\label{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isMethodStubbed@{isMethodStubbed}}
+\index{isMethodStubbed@{isMethodStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isMethodStubbed()}{isMethodStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Method\+Stubbed (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}\label{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isMethodStubbed@{isMethodStubbed}}
+\index{isMethodStubbed@{isMethodStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isMethodStubbed()}{isMethodStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Method\+Stubbed (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}\label{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isMethodStubbed@{isMethodStubbed}}
+\index{isMethodStubbed@{isMethodStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isMethodStubbed()}{isMethodStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Method\+Stubbed (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}\label{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isMethodStubbed@{isMethodStubbed}}
+\index{isMethodStubbed@{isMethodStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isMethodStubbed()}{isMethodStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Method\+Stubbed (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}\label{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isMethodStubbed@{isMethodStubbed}}
+\index{isMethodStubbed@{isMethodStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isMethodStubbed()}{isMethodStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Method\+Stubbed (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}\label{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isMethodStubbed@{isMethodStubbed}}
+\index{isMethodStubbed@{isMethodStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isMethodStubbed()}{isMethodStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Method\+Stubbed (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}\label{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isMethodStubbed@{isMethodStubbed}}
+\index{isMethodStubbed@{isMethodStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isMethodStubbed()}{isMethodStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Method\+Stubbed (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}\label{structfakeit_1_1DynamicProxy_aeccdd2a03ebbf8eecc3291ebe6ccbfc4}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!isMethodStubbed@{isMethodStubbed}}
+\index{isMethodStubbed@{isMethodStubbed}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{isMethodStubbed()}{isMethodStubbed()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename R , typename ... arglist$>$ \\
+bool \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::is\+Method\+Stubbed (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}\label{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Reset@{Reset}}
+\index{Reset@{Reset}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Reset()}{Reset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}\label{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Reset@{Reset}}
+\index{Reset@{Reset}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Reset()}{Reset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}\label{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Reset@{Reset}}
+\index{Reset@{Reset}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Reset()}{Reset()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}\label{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Reset@{Reset}}
+\index{Reset@{Reset}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Reset()}{Reset()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}\label{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Reset@{Reset}}
+\index{Reset@{Reset}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Reset()}{Reset()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}\label{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Reset@{Reset}}
+\index{Reset@{Reset}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Reset()}{Reset()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}\label{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Reset@{Reset}}
+\index{Reset@{Reset}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Reset()}{Reset()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}\label{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Reset@{Reset}}
+\index{Reset@{Reset}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Reset()}{Reset()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}\label{structfakeit_1_1DynamicProxy_a8f00dd7c68a247f715ec3925f662de9f}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!Reset@{Reset}}
+\index{Reset@{Reset}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{Reset()}{Reset()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}\label{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$}]{member,  }\item[{const arglist \&...}]{initargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}\label{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$}]{member,  }\item[{const arglist \&...}]{initargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}\label{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$}]{member,  }\item[{const arglist \&...}]{initargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}\label{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$}]{member,  }\item[{const arglist \&...}]{initargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}\label{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$}]{member,  }\item[{const arglist \&...}]{initargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}\label{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$}]{member,  }\item[{const arglist \&...}]{initargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}\label{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$}]{member,  }\item[{const arglist \&...}]{initargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}\label{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$}]{member,  }\item[{const arglist \&...}]{initargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}\label{structfakeit_1_1DynamicProxy_a872480e95dba48c6e690fb7cdc017f9d}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDataMember@{stubDataMember}}
+\index{stubDataMember@{stubDataMember}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDataMember()}{stubDataMember()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$typename D\+A\+T\+A\+\_\+\+T\+Y\+PE , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Data\+Member (\begin{DoxyParamCaption}\item[{D\+A\+T\+A\+\_\+\+T\+Y\+PE C\+::$\ast$}]{member,  }\item[{const arglist \&...}]{initargs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}\label{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}\label{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}\label{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}\label{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}\label{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}\label{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}\label{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}\label{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}\label{structfakeit_1_1DynamicProxy_a8ab5aa831398c6ee27cbdb12ee1f15cf}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubDtor@{stubDtor}}
+\index{stubDtor@{stubDtor}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubDtor()}{stubDtor()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Dtor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ void $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}\label{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method,  }\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}\label{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method,  }\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}\label{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method,  }\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}\label{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method,  }\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}\label{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method,  }\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}\label{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method,  }\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}\label{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method,  }\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}\label{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method,  }\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}\label{structfakeit_1_1DynamicProxy_ab1a98295698cf6eed3ff04ed4b838e51}} 
+\index{fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}!stubMethod@{stubMethod}}
+\index{stubMethod@{stubMethod}!fakeit::DynamicProxy$<$ C, baseclasses $>$@{fakeit::DynamicProxy$<$ C, baseclasses $>$}}
+\subsubsection{\texorpdfstring{stubMethod()}{stubMethod()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename C, typename ... baseclasses$>$ \\
+template$<$int id, typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{structfakeit_1_1DynamicProxy}{fakeit\+::\+Dynamic\+Proxy}}$<$ C, baseclasses $>$\+::stub\+Method (\begin{DoxyParamCaption}\item[{R(C\+::$\ast$)(arglist...)}]{v\+Method,  }\item[{\mbox{\hyperlink{structfakeit_1_1MethodInvocationHandler}{Method\+Invocation\+Handler}}$<$ R, arglist... $>$ $\ast$}]{method\+Invocation\+Handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/test/\+Fake\+It/include/mockutils/\mbox{\hyperlink{DynamicProxy_8hpp}{Dynamic\+Proxy.\+hpp}}\item 
+include/test/\+Fake\+It/single\+\_\+header/boost/\mbox{\hyperlink{single__header_2boost_2fakeit_8hpp}{fakeit.\+hpp}}\end{DoxyCompactItemize}

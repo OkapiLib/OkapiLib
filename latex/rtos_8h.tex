@@ -1,0 +1,662 @@
+\hypertarget{rtos_8h}{}\section{include/pros/rtos.h File Reference}
+\label{rtos_8h}\index{include/pros/rtos.h@{include/pros/rtos.h}}
+
+
+Contains declarations for the P\+R\+OS R\+T\+OS kernel for use by typical V\+EX programmers.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtos_8h_a87892f18571e88eba7fbe758759cac05}{T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+M\+AX}}~16
+\item 
+\#define \mbox{\hyperlink{rtos_8h_ae35baef65db45cef90a74266acb31b10}{T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+M\+IN}}~1
+\item 
+\#define \mbox{\hyperlink{rtos_8h_a3082a7e8f15691441dba683711bb823f}{T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+D\+E\+F\+A\+U\+LT}}~8
+\item 
+\#define \mbox{\hyperlink{rtos_8h_a9ffb33b9e3714ca949d9f45dde3cbf8f}{T\+A\+S\+K\+\_\+\+S\+T\+A\+C\+K\+\_\+\+D\+E\+P\+T\+H\+\_\+\+D\+E\+F\+A\+U\+LT}}~0x2000
+\item 
+\#define \mbox{\hyperlink{rtos_8h_afa551bbf9a2333b9241b2e99530a8767}{T\+A\+S\+K\+\_\+\+S\+T\+A\+C\+K\+\_\+\+D\+E\+P\+T\+H\+\_\+\+M\+IN}}~0x200
+\item 
+\#define \mbox{\hyperlink{rtos_8h_a6d22565b4bdfe36c8f8a0a376e565460}{T\+A\+S\+K\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+EN}}~32
+\item 
+\#define \mbox{\hyperlink{rtos_8h_a9146d5b264ff64b573607d62fc479c3f}{T\+I\+M\+E\+O\+U\+T\+\_\+\+M\+AX}}~((uint32\+\_\+t)0xffffffff\+U\+L)
+\item 
+\#define \mbox{\hyperlink{rtos_8h_ad028cb03c935557184a71a6c53915065}{C\+U\+R\+R\+E\+N\+T\+\_\+\+T\+A\+SK}}~((\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}})N\+U\+LL)
+\begin{DoxyCompactList}\small\item\em Refers to the current task handle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void $\ast$ \mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{rtos_8h_aece0aa29b1f1538115228d2197239f98}{task\+\_\+fn\+\_\+t}}) (void $\ast$)
+\item 
+typedef void $\ast$ \mbox{\hyperlink{rtos_8h_ab15ea84d90257d70b44e8e04519864d2}{mutex\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{rtos_8h_a23d5ffd47ed255206f177fe9d891335b}{task\+\_\+state\+\_\+e\+\_\+t}} \{ \newline
+\mbox{\hyperlink{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba3b7873566c73fb17191451f641f3f564}{E\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+T\+E\+\_\+\+R\+U\+N\+N\+I\+NG}} = 0, 
+\mbox{\hyperlink{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba7a9b05db250161908d541259cc9b6c08}{E\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+T\+E\+\_\+\+R\+E\+A\+DY}}, 
+\mbox{\hyperlink{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba833a2009d6613fe7f3357551c525e953}{E\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+T\+E\+\_\+\+B\+L\+O\+C\+K\+ED}}, 
+\mbox{\hyperlink{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba1c6ab831f17838fb926088f3353cb13c}{E\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+T\+E\+\_\+\+S\+U\+S\+P\+E\+N\+D\+ED}}, 
+\newline
+\mbox{\hyperlink{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba521c1585b4d885ca38cc463d74d1fa4d}{E\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+T\+E\+\_\+\+D\+E\+L\+E\+T\+ED}}, 
+\mbox{\hyperlink{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba4b91d8b231764bb6556618bdb78c34a0}{E\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+T\+E\+\_\+\+I\+N\+V\+A\+L\+ID}}
+ \}
+\item 
+enum \mbox{\hyperlink{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570}{notify\+\_\+action\+\_\+e\+\_\+t}} \{ \newline
+\mbox{\hyperlink{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570a8ef04ba61995d97d82fd7bf1ff4d772f}{E\+\_\+\+N\+O\+T\+I\+F\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+N\+O\+NE}}, 
+\mbox{\hyperlink{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570adc1fa6911e0d71db6404d3c8b7276e02}{E\+\_\+\+N\+O\+T\+I\+F\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+B\+I\+TS}}, 
+\mbox{\hyperlink{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570ab9b6a7e40e7b9553e8b1782b2c0bc155}{E\+\_\+\+N\+O\+T\+I\+F\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+I\+N\+CR}}, 
+\mbox{\hyperlink{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570a11be52cd9271cd1504f7555b73e5bd89}{E\+\_\+\+N\+O\+T\+I\+F\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+O\+W\+R\+I\+TE}}, 
+\newline
+\mbox{\hyperlink{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570a735b4ce042c8998c9432449b5f7efdc5}{E\+\_\+\+N\+O\+T\+I\+F\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+N\+O\+\_\+\+O\+W\+R\+I\+TE}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{rtos_8h_acd8d13c328bebdf9eddea27ff9448c2d}{millis}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the number of milliseconds since P\+R\+OS initialized. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} \mbox{\hyperlink{rtos_8h_a2e3ed8f26b8c1edcff493bc583f0a76a}{task\+\_\+create}} (\mbox{\hyperlink{rtos_8h_aece0aa29b1f1538115228d2197239f98}{task\+\_\+fn\+\_\+t}} function, void $\ast$const parameters, uint32\+\_\+t prio, const uint16\+\_\+t stack\+\_\+depth, const char $\ast$const name)
+\begin{DoxyCompactList}\small\item\em Creates a new task and add it to the list of tasks that are ready to run. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtos_8h_acf328f16126485ade810e438db996180}{task\+\_\+delete}} (\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} task)
+\begin{DoxyCompactList}\small\item\em Removes a task from the R\+T\+OS real time kernel\textquotesingle{}s management. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtos_8h_a3658dea4dcc916f72d05bd6a05bf3d19}{task\+\_\+delay}} (const uint32\+\_\+t milliseconds)
+\begin{DoxyCompactList}\small\item\em Delays a task for a given number of milliseconds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtos_8h_ab8c5a8048d5576a33d7f79b95a2fa0dd}{delay}} (const uint32\+\_\+t milliseconds)
+\item 
+void \mbox{\hyperlink{rtos_8h_a61c8ccf83a0dc79fc0e9fde5e87a0329}{task\+\_\+delay\+\_\+until}} (uint32\+\_\+t $\ast$const prev\+\_\+time, const uint32\+\_\+t delta)
+\begin{DoxyCompactList}\small\item\em Delays a task until a specified time. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{rtos_8h_a8d6d1ffc897a069346a6a1ee5d3acf87}{task\+\_\+get\+\_\+priority}} (\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} task)
+\begin{DoxyCompactList}\small\item\em Gets the priority of the specified task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtos_8h_aa906731a0dbda5c2382ca7e3cc32cc97}{task\+\_\+set\+\_\+priority}} (\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} task, uint32\+\_\+t prio)
+\begin{DoxyCompactList}\small\item\em Sets the priority of the specified task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{rtos_8h_a23d5ffd47ed255206f177fe9d891335b}{task\+\_\+state\+\_\+e\+\_\+t}} \mbox{\hyperlink{rtos_8h_a5d094df87681d230ebffa2cee23d6f07}{task\+\_\+get\+\_\+state}} (\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} task)
+\begin{DoxyCompactList}\small\item\em Gets the state of the specified task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtos_8h_a50ab98e83c207eaab4c2b9eb56d9ba0c}{task\+\_\+suspend}} (\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} task)
+\begin{DoxyCompactList}\small\item\em Suspends the specified task, making it ineligible to be scheduled. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtos_8h_a58bdeeedfe2d98fa57721bb7dad16fee}{task\+\_\+resume}} (\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} task)
+\begin{DoxyCompactList}\small\item\em Resumes the specified task, making it eligible to be scheduled. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{rtos_8h_a7c182e8b87526eb0e4b6ec5a4c858b4e}{task\+\_\+get\+\_\+count}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the number of tasks the kernel is currently managing, including all ready, blocked, or suspended tasks. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{rtos_8h_a81e2f8aab432c811c9e4c0028d99b284}{task\+\_\+get\+\_\+name}} (\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} task)
+\begin{DoxyCompactList}\small\item\em Gets the name of the specified task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} \mbox{\hyperlink{rtos_8h_aad54400367541c9cf7f4eaaec235a9e9}{task\+\_\+get\+\_\+by\+\_\+name}} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Gets a task handle from the specified name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} \mbox{\hyperlink{rtos_8h_ad8c64e24feaa08391eb61b62ea2cdbd5}{task\+\_\+get\+\_\+current}} ()
+\begin{DoxyCompactList}\small\item\em Get the currently running task handle. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{rtos_8h_a19e1a0a068f9d5e8493065f6b7944a63}{task\+\_\+notify}} (\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} task)
+\begin{DoxyCompactList}\small\item\em Sends a simple notification to task and increments the notification counter. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{rtos_8h_a81b5dad7acaef5dd60486ab85af5d54b}{task\+\_\+notify\+\_\+ext}} (\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} task, uint32\+\_\+t value, \mbox{\hyperlink{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570}{notify\+\_\+action\+\_\+e\+\_\+t}} action, uint32\+\_\+t $\ast$prev\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Sends a notification to a task, optionally performing some action. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{rtos_8h_aabfb0111c671a56176bc83bb1437635b}{task\+\_\+notify\+\_\+take}} (bool clear\+\_\+on\+\_\+exit, uint32\+\_\+t timeout)
+\begin{DoxyCompactList}\small\item\em Waits for a notification to be nonzero. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{rtos_8h_ae8697be0d552a81063536c88c0358f38}{task\+\_\+notify\+\_\+clear}} (\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} task)
+\begin{DoxyCompactList}\small\item\em Clears the notification for a task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{rtos_8h_ab15ea84d90257d70b44e8e04519864d2}{mutex\+\_\+t}} \mbox{\hyperlink{rtos_8h_a475d096afa3abcc9a276ca9fa54bafdf}{mutex\+\_\+create}} (void)
+\begin{DoxyCompactList}\small\item\em Creates a mutex. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{rtos_8h_a14452e92345bc1bab69e27f35c38e0f9}{mutex\+\_\+take}} (\mbox{\hyperlink{rtos_8h_ab15ea84d90257d70b44e8e04519864d2}{mutex\+\_\+t}} mutex, uint32\+\_\+t timeout)
+\begin{DoxyCompactList}\small\item\em Takes and locks a mutex, waiting for up to a certain number of milliseconds before timing out. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{rtos_8h_a600f042859f15dee6c34b236670ac3d9}{mutex\+\_\+give}} (\mbox{\hyperlink{rtos_8h_ab15ea84d90257d70b44e8e04519864d2}{mutex\+\_\+t}} mutex)
+\begin{DoxyCompactList}\small\item\em Unlocks a mutex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains declarations for the P\+R\+OS R\+T\+OS kernel for use by typical V\+EX programmers. 
+
+Visit \href{https://pros.cs.purdue.edu/v5/tutorials/topical/multitasking.html}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/multitasking.\+html}} to learn more.
+
+This file should not be modified by users, since it gets replaced whenever a kernel upgrade occurs.
+
+Copyright (c) 2017-\/2018, Purdue University A\+CM S\+I\+G\+Bots. All rights reserved.
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.\+0. If a copy of the M\+PL was not distributed with this file, You can obtain one at \href{http://mozilla.org/MPL/2.0/}{\texttt{ http\+://mozilla.\+org/\+M\+P\+L/2.\+0/}}. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtos_8h_ad028cb03c935557184a71a6c53915065}\label{rtos_8h_ad028cb03c935557184a71a6c53915065}} 
+\index{rtos.h@{rtos.h}!CURRENT\_TASK@{CURRENT\_TASK}}
+\index{CURRENT\_TASK@{CURRENT\_TASK}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{CURRENT\_TASK}{CURRENT\_TASK}}
+{\footnotesize\ttfamily \#define C\+U\+R\+R\+E\+N\+T\+\_\+\+T\+A\+SK~((\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}})N\+U\+LL)}
+
+
+
+Refers to the current task handle. 
+
+\mbox{\Hypertarget{rtos_8h_a6d22565b4bdfe36c8f8a0a376e565460}\label{rtos_8h_a6d22565b4bdfe36c8f8a0a376e565460}} 
+\index{rtos.h@{rtos.h}!TASK\_NAME\_MAX\_LEN@{TASK\_NAME\_MAX\_LEN}}
+\index{TASK\_NAME\_MAX\_LEN@{TASK\_NAME\_MAX\_LEN}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{TASK\_NAME\_MAX\_LEN}{TASK\_NAME\_MAX\_LEN}}
+{\footnotesize\ttfamily \#define T\+A\+S\+K\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+EN~32}
+
+\mbox{\Hypertarget{rtos_8h_a3082a7e8f15691441dba683711bb823f}\label{rtos_8h_a3082a7e8f15691441dba683711bb823f}} 
+\index{rtos.h@{rtos.h}!TASK\_PRIORITY\_DEFAULT@{TASK\_PRIORITY\_DEFAULT}}
+\index{TASK\_PRIORITY\_DEFAULT@{TASK\_PRIORITY\_DEFAULT}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{TASK\_PRIORITY\_DEFAULT}{TASK\_PRIORITY\_DEFAULT}}
+{\footnotesize\ttfamily \#define T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+D\+E\+F\+A\+U\+LT~8}
+
+\mbox{\Hypertarget{rtos_8h_a87892f18571e88eba7fbe758759cac05}\label{rtos_8h_a87892f18571e88eba7fbe758759cac05}} 
+\index{rtos.h@{rtos.h}!TASK\_PRIORITY\_MAX@{TASK\_PRIORITY\_MAX}}
+\index{TASK\_PRIORITY\_MAX@{TASK\_PRIORITY\_MAX}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{TASK\_PRIORITY\_MAX}{TASK\_PRIORITY\_MAX}}
+{\footnotesize\ttfamily \#define T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+M\+AX~16}
+
+\mbox{\Hypertarget{rtos_8h_ae35baef65db45cef90a74266acb31b10}\label{rtos_8h_ae35baef65db45cef90a74266acb31b10}} 
+\index{rtos.h@{rtos.h}!TASK\_PRIORITY\_MIN@{TASK\_PRIORITY\_MIN}}
+\index{TASK\_PRIORITY\_MIN@{TASK\_PRIORITY\_MIN}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{TASK\_PRIORITY\_MIN}{TASK\_PRIORITY\_MIN}}
+{\footnotesize\ttfamily \#define T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+M\+IN~1}
+
+\mbox{\Hypertarget{rtos_8h_a9ffb33b9e3714ca949d9f45dde3cbf8f}\label{rtos_8h_a9ffb33b9e3714ca949d9f45dde3cbf8f}} 
+\index{rtos.h@{rtos.h}!TASK\_STACK\_DEPTH\_DEFAULT@{TASK\_STACK\_DEPTH\_DEFAULT}}
+\index{TASK\_STACK\_DEPTH\_DEFAULT@{TASK\_STACK\_DEPTH\_DEFAULT}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{TASK\_STACK\_DEPTH\_DEFAULT}{TASK\_STACK\_DEPTH\_DEFAULT}}
+{\footnotesize\ttfamily \#define T\+A\+S\+K\+\_\+\+S\+T\+A\+C\+K\+\_\+\+D\+E\+P\+T\+H\+\_\+\+D\+E\+F\+A\+U\+LT~0x2000}
+
+\mbox{\Hypertarget{rtos_8h_afa551bbf9a2333b9241b2e99530a8767}\label{rtos_8h_afa551bbf9a2333b9241b2e99530a8767}} 
+\index{rtos.h@{rtos.h}!TASK\_STACK\_DEPTH\_MIN@{TASK\_STACK\_DEPTH\_MIN}}
+\index{TASK\_STACK\_DEPTH\_MIN@{TASK\_STACK\_DEPTH\_MIN}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{TASK\_STACK\_DEPTH\_MIN}{TASK\_STACK\_DEPTH\_MIN}}
+{\footnotesize\ttfamily \#define T\+A\+S\+K\+\_\+\+S\+T\+A\+C\+K\+\_\+\+D\+E\+P\+T\+H\+\_\+\+M\+IN~0x200}
+
+\mbox{\Hypertarget{rtos_8h_a9146d5b264ff64b573607d62fc479c3f}\label{rtos_8h_a9146d5b264ff64b573607d62fc479c3f}} 
+\index{rtos.h@{rtos.h}!TIMEOUT\_MAX@{TIMEOUT\_MAX}}
+\index{TIMEOUT\_MAX@{TIMEOUT\_MAX}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{TIMEOUT\_MAX}{TIMEOUT\_MAX}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+O\+U\+T\+\_\+\+M\+AX~((uint32\+\_\+t)0xffffffff\+U\+L)}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtos_8h_ab15ea84d90257d70b44e8e04519864d2}\label{rtos_8h_ab15ea84d90257d70b44e8e04519864d2}} 
+\index{rtos.h@{rtos.h}!mutex\_t@{mutex\_t}}
+\index{mutex\_t@{mutex\_t}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{mutex\_t}{mutex\_t}}
+{\footnotesize\ttfamily typedef void$\ast$ \mbox{\hyperlink{rtos_8h_ab15ea84d90257d70b44e8e04519864d2}{mutex\+\_\+t}}}
+
+\mbox{\Hypertarget{rtos_8h_aece0aa29b1f1538115228d2197239f98}\label{rtos_8h_aece0aa29b1f1538115228d2197239f98}} 
+\index{rtos.h@{rtos.h}!task\_fn\_t@{task\_fn\_t}}
+\index{task\_fn\_t@{task\_fn\_t}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_fn\_t}{task\_fn\_t}}
+{\footnotesize\ttfamily typedef void($\ast$ task\+\_\+fn\+\_\+t) (void $\ast$)}
+
+\mbox{\Hypertarget{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}\label{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}} 
+\index{rtos.h@{rtos.h}!task\_t@{task\_t}}
+\index{task\_t@{task\_t}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_t}{task\_t}}
+{\footnotesize\ttfamily typedef void$\ast$ \mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}}}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570}\label{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570}} 
+\index{rtos.h@{rtos.h}!notify\_action\_e\_t@{notify\_action\_e\_t}}
+\index{notify\_action\_e\_t@{notify\_action\_e\_t}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{notify\_action\_e\_t}{notify\_action\_e\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570}{notify\+\_\+action\+\_\+e\+\_\+t}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_NOTIFY\_ACTION\_NONE@{E\_NOTIFY\_ACTION\_NONE}!rtos.h@{rtos.h}}\index{rtos.h@{rtos.h}!E\_NOTIFY\_ACTION\_NONE@{E\_NOTIFY\_ACTION\_NONE}}}\mbox{\Hypertarget{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570a8ef04ba61995d97d82fd7bf1ff4d772f}\label{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570a8ef04ba61995d97d82fd7bf1ff4d772f}} 
+E\+\_\+\+N\+O\+T\+I\+F\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+N\+O\+NE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_NOTIFY\_ACTION\_BITS@{E\_NOTIFY\_ACTION\_BITS}!rtos.h@{rtos.h}}\index{rtos.h@{rtos.h}!E\_NOTIFY\_ACTION\_BITS@{E\_NOTIFY\_ACTION\_BITS}}}\mbox{\Hypertarget{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570adc1fa6911e0d71db6404d3c8b7276e02}\label{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570adc1fa6911e0d71db6404d3c8b7276e02}} 
+E\+\_\+\+N\+O\+T\+I\+F\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+B\+I\+TS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_NOTIFY\_ACTION\_INCR@{E\_NOTIFY\_ACTION\_INCR}!rtos.h@{rtos.h}}\index{rtos.h@{rtos.h}!E\_NOTIFY\_ACTION\_INCR@{E\_NOTIFY\_ACTION\_INCR}}}\mbox{\Hypertarget{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570ab9b6a7e40e7b9553e8b1782b2c0bc155}\label{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570ab9b6a7e40e7b9553e8b1782b2c0bc155}} 
+E\+\_\+\+N\+O\+T\+I\+F\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+I\+N\+CR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_NOTIFY\_ACTION\_OWRITE@{E\_NOTIFY\_ACTION\_OWRITE}!rtos.h@{rtos.h}}\index{rtos.h@{rtos.h}!E\_NOTIFY\_ACTION\_OWRITE@{E\_NOTIFY\_ACTION\_OWRITE}}}\mbox{\Hypertarget{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570a11be52cd9271cd1504f7555b73e5bd89}\label{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570a11be52cd9271cd1504f7555b73e5bd89}} 
+E\+\_\+\+N\+O\+T\+I\+F\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+O\+W\+R\+I\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_NOTIFY\_ACTION\_NO\_OWRITE@{E\_NOTIFY\_ACTION\_NO\_OWRITE}!rtos.h@{rtos.h}}\index{rtos.h@{rtos.h}!E\_NOTIFY\_ACTION\_NO\_OWRITE@{E\_NOTIFY\_ACTION\_NO\_OWRITE}}}\mbox{\Hypertarget{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570a735b4ce042c8998c9432449b5f7efdc5}\label{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570a735b4ce042c8998c9432449b5f7efdc5}} 
+E\+\_\+\+N\+O\+T\+I\+F\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+N\+O\+\_\+\+O\+W\+R\+I\+TE&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{rtos_8h_a23d5ffd47ed255206f177fe9d891335b}\label{rtos_8h_a23d5ffd47ed255206f177fe9d891335b}} 
+\index{rtos.h@{rtos.h}!task\_state\_e\_t@{task\_state\_e\_t}}
+\index{task\_state\_e\_t@{task\_state\_e\_t}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_state\_e\_t}{task\_state\_e\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{rtos_8h_a23d5ffd47ed255206f177fe9d891335b}{task\+\_\+state\+\_\+e\+\_\+t}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_TASK\_STATE\_RUNNING@{E\_TASK\_STATE\_RUNNING}!rtos.h@{rtos.h}}\index{rtos.h@{rtos.h}!E\_TASK\_STATE\_RUNNING@{E\_TASK\_STATE\_RUNNING}}}\mbox{\Hypertarget{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba3b7873566c73fb17191451f641f3f564}\label{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba3b7873566c73fb17191451f641f3f564}} 
+E\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+T\+E\+\_\+\+R\+U\+N\+N\+I\+NG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_TASK\_STATE\_READY@{E\_TASK\_STATE\_READY}!rtos.h@{rtos.h}}\index{rtos.h@{rtos.h}!E\_TASK\_STATE\_READY@{E\_TASK\_STATE\_READY}}}\mbox{\Hypertarget{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba7a9b05db250161908d541259cc9b6c08}\label{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba7a9b05db250161908d541259cc9b6c08}} 
+E\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+T\+E\+\_\+\+R\+E\+A\+DY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_TASK\_STATE\_BLOCKED@{E\_TASK\_STATE\_BLOCKED}!rtos.h@{rtos.h}}\index{rtos.h@{rtos.h}!E\_TASK\_STATE\_BLOCKED@{E\_TASK\_STATE\_BLOCKED}}}\mbox{\Hypertarget{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba833a2009d6613fe7f3357551c525e953}\label{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba833a2009d6613fe7f3357551c525e953}} 
+E\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+T\+E\+\_\+\+B\+L\+O\+C\+K\+ED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_TASK\_STATE\_SUSPENDED@{E\_TASK\_STATE\_SUSPENDED}!rtos.h@{rtos.h}}\index{rtos.h@{rtos.h}!E\_TASK\_STATE\_SUSPENDED@{E\_TASK\_STATE\_SUSPENDED}}}\mbox{\Hypertarget{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba1c6ab831f17838fb926088f3353cb13c}\label{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba1c6ab831f17838fb926088f3353cb13c}} 
+E\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+T\+E\+\_\+\+S\+U\+S\+P\+E\+N\+D\+ED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_TASK\_STATE\_DELETED@{E\_TASK\_STATE\_DELETED}!rtos.h@{rtos.h}}\index{rtos.h@{rtos.h}!E\_TASK\_STATE\_DELETED@{E\_TASK\_STATE\_DELETED}}}\mbox{\Hypertarget{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba521c1585b4d885ca38cc463d74d1fa4d}\label{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba521c1585b4d885ca38cc463d74d1fa4d}} 
+E\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+T\+E\+\_\+\+D\+E\+L\+E\+T\+ED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_TASK\_STATE\_INVALID@{E\_TASK\_STATE\_INVALID}!rtos.h@{rtos.h}}\index{rtos.h@{rtos.h}!E\_TASK\_STATE\_INVALID@{E\_TASK\_STATE\_INVALID}}}\mbox{\Hypertarget{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba4b91d8b231764bb6556618bdb78c34a0}\label{rtos_8h_a23d5ffd47ed255206f177fe9d891335ba4b91d8b231764bb6556618bdb78c34a0}} 
+E\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+T\+E\+\_\+\+I\+N\+V\+A\+L\+ID&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtos_8h_ab8c5a8048d5576a33d7f79b95a2fa0dd}\label{rtos_8h_ab8c5a8048d5576a33d7f79b95a2fa0dd}} 
+\index{rtos.h@{rtos.h}!delay@{delay}}
+\index{delay@{delay}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{delay()}{delay()}}
+{\footnotesize\ttfamily void delay (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{milliseconds }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{rtos_8h_acd8d13c328bebdf9eddea27ff9448c2d}\label{rtos_8h_acd8d13c328bebdf9eddea27ff9448c2d}} 
+\index{rtos.h@{rtos.h}!millis@{millis}}
+\index{millis@{millis}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{millis()}{millis()}}
+{\footnotesize\ttfamily uint32\+\_\+t millis (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Gets the number of milliseconds since P\+R\+OS initialized. 
+
+\begin{DoxyReturn}{Returns}
+The number of milliseconds since P\+R\+OS initialized 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_a475d096afa3abcc9a276ca9fa54bafdf}\label{rtos_8h_a475d096afa3abcc9a276ca9fa54bafdf}} 
+\index{rtos.h@{rtos.h}!mutex\_create@{mutex\_create}}
+\index{mutex\_create@{mutex\_create}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{mutex\_create()}{mutex\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtos_8h_ab15ea84d90257d70b44e8e04519864d2}{mutex\+\_\+t}} mutex\+\_\+create (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates a mutex. 
+
+See \href{https://pros.cs.purdue.edu/v5/tutorials/topical/multitasking.html\#mutexes}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/multitasking.\+html\#mutexes}} for details.
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} handle to a newly created mutex. If an error occurred, N\+U\+LL will be returned and errno can be checked for hints as to why mutex\+\_\+create failed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_a600f042859f15dee6c34b236670ac3d9}\label{rtos_8h_a600f042859f15dee6c34b236670ac3d9}} 
+\index{rtos.h@{rtos.h}!mutex\_give@{mutex\_give}}
+\index{mutex\_give@{mutex\_give}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{mutex\_give()}{mutex\_give()}}
+{\footnotesize\ttfamily bool mutex\+\_\+give (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtos_8h_ab15ea84d90257d70b44e8e04519864d2}{mutex\+\_\+t}}}]{mutex }\end{DoxyParamCaption})}
+
+
+
+Unlocks a mutex. 
+
+See \href{https://pros.cs.purdue.edu/v5/tutorials/topical/multitasking.html\#mutexes}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/multitasking.\+html\#mutexes}} for details.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mutex} & Mutex to unlock.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the mutex was successfully returned, false otherwise. If false is returned, then errno is set with a hint about why the mutex couldn\textquotesingle{}t be returned. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_a14452e92345bc1bab69e27f35c38e0f9}\label{rtos_8h_a14452e92345bc1bab69e27f35c38e0f9}} 
+\index{rtos.h@{rtos.h}!mutex\_take@{mutex\_take}}
+\index{mutex\_take@{mutex\_take}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{mutex\_take()}{mutex\_take()}}
+{\footnotesize\ttfamily bool mutex\+\_\+take (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtos_8h_ab15ea84d90257d70b44e8e04519864d2}{mutex\+\_\+t}}}]{mutex,  }\item[{uint32\+\_\+t}]{timeout }\end{DoxyParamCaption})}
+
+
+
+Takes and locks a mutex, waiting for up to a certain number of milliseconds before timing out. 
+
+See \href{https://pros.cs.purdue.edu/v5/tutorials/topical/multitasking.html\#mutexes}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/multitasking.\+html\#mutexes}} for details.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mutex} & Mutex to attempt to lock. \\
+\hline
+{\em timeout} & Time to wait before the mutex becomes available. \mbox{\hyperlink{structA}{A}} timeout of 0 can be used to poll the mutex. T\+I\+M\+E\+O\+U\+T\+\_\+\+M\+AX can be used to block indefinitely.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the mutex was successfully taken, false otherwise. If false is returned, then errno is set with a hint about why the the mutex couldn\textquotesingle{}t be taken. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_a2e3ed8f26b8c1edcff493bc583f0a76a}\label{rtos_8h_a2e3ed8f26b8c1edcff493bc583f0a76a}} 
+\index{rtos.h@{rtos.h}!task\_create@{task\_create}}
+\index{task\_create@{task\_create}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_create()}{task\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} task\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtos_8h_aece0aa29b1f1538115228d2197239f98}{task\+\_\+fn\+\_\+t}}}]{function,  }\item[{void $\ast$const}]{parameters,  }\item[{uint32\+\_\+t}]{prio,  }\item[{const uint16\+\_\+t}]{stack\+\_\+depth,  }\item[{const char $\ast$const}]{name }\end{DoxyParamCaption})}
+
+
+
+Creates a new task and add it to the list of tasks that are ready to run. 
+
+This function uses the following values of errno when an error state is reached\+: E\+N\+O\+M\+EM -\/ The stack cannot be used as the T\+CB was not created.
+
+
+\begin{DoxyParams}{Parameters}
+{\em function} & Pointer to the task entry function \\
+\hline
+{\em parameters} & Pointer to memory that will be used as a parameter for the task being created. This memory should not typically come from stack, but rather from dynamically (i.\+e., malloc\textquotesingle{}d) or statically allocated memory. \\
+\hline
+{\em prio} & The priority at which the task should run. T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+\_\+\+D\+E\+F\+A\+U\+LT plus/minus 1 or 2 is typically used. \\
+\hline
+{\em stack\+\_\+depth} & The number of words (i.\+e. 4 $\ast$ stack\+\_\+depth) available on the task\textquotesingle{}s stack. T\+A\+S\+K\+\_\+\+S\+T\+A\+C\+K\+\_\+\+D\+E\+P\+T\+H\+\_\+\+D\+E\+F\+A\+U\+LT is typically sufficienct. \\
+\hline
+{\em name} & \mbox{\hyperlink{structA}{A}} descriptive name for the task. This is mainly used to facilitate debugging. The name may be up to 32 characters long.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} handle by which the newly created task can be referenced. If an error occurred, N\+U\+LL will be returned and errno can be checked for hints as to why task\+\_\+create failed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_a3658dea4dcc916f72d05bd6a05bf3d19}\label{rtos_8h_a3658dea4dcc916f72d05bd6a05bf3d19}} 
+\index{rtos.h@{rtos.h}!task\_delay@{task\_delay}}
+\index{task\_delay@{task\_delay}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_delay()}{task\_delay()}}
+{\footnotesize\ttfamily void task\+\_\+delay (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{milliseconds }\end{DoxyParamCaption})}
+
+
+
+Delays a task for a given number of milliseconds. 
+
+This is not the best method to have a task execute code at predefined intervals, as the delay time is measured from when the delay is requested. To delay cyclically, use \mbox{\hyperlink{rtos_8h_a61c8ccf83a0dc79fc0e9fde5e87a0329}{task\+\_\+delay\+\_\+until()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em milliseconds} & The number of milliseconds to wait (1000 milliseconds per second) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtos_8h_a61c8ccf83a0dc79fc0e9fde5e87a0329}\label{rtos_8h_a61c8ccf83a0dc79fc0e9fde5e87a0329}} 
+\index{rtos.h@{rtos.h}!task\_delay\_until@{task\_delay\_until}}
+\index{task\_delay\_until@{task\_delay\_until}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_delay\_until()}{task\_delay\_until()}}
+{\footnotesize\ttfamily void task\+\_\+delay\+\_\+until (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$const}]{prev\+\_\+time,  }\item[{const uint32\+\_\+t}]{delta }\end{DoxyParamCaption})}
+
+
+
+Delays a task until a specified time. 
+
+This function can be used by periodic tasks to ensure a constant execution frequency.
+
+The task will be woken up at the time $\ast$prev\+\_\+time + delta, and $\ast$prev\+\_\+time will be updated to reflect the time at which the task will unblock.
+
+
+\begin{DoxyParams}{Parameters}
+{\em prev\+\_\+time} & \mbox{\hyperlink{structA}{A}} pointer to the location storing the setpoint time. This should typically be initialized to the return value of \mbox{\hyperlink{rtos_8h_acd8d13c328bebdf9eddea27ff9448c2d}{millis()}}. \\
+\hline
+{\em delta} & The number of milliseconds to wait (1000 milliseconds per second) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtos_8h_acf328f16126485ade810e438db996180}\label{rtos_8h_acf328f16126485ade810e438db996180}} 
+\index{rtos.h@{rtos.h}!task\_delete@{task\_delete}}
+\index{task\_delete@{task\_delete}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_delete()}{task\_delete()}}
+{\footnotesize\ttfamily void task\+\_\+delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}}}]{task }\end{DoxyParamCaption})}
+
+
+
+Removes a task from the R\+T\+OS real time kernel\textquotesingle{}s management. 
+
+The task being deleted will be removed from all ready, blocked, suspended and event lists.
+
+Memory dynamically allocated by the task is not automatically freed, and should be freed before the task is deleted.
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & The handle of the task to be deleted. Passing N\+U\+LL will cause the calling task to be deleted. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtos_8h_aad54400367541c9cf7f4eaaec235a9e9}\label{rtos_8h_aad54400367541c9cf7f4eaaec235a9e9}} 
+\index{rtos.h@{rtos.h}!task\_get\_by\_name@{task\_get\_by\_name}}
+\index{task\_get\_by\_name@{task\_get\_by\_name}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_get\_by\_name()}{task\_get\_by\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} task\+\_\+get\+\_\+by\+\_\+name (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Gets a task handle from the specified name. 
+
+The operation takes a relatively long time and should be used sparingly.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name to query\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} task handle with a matching name, or N\+U\+LL if none were found. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_a7c182e8b87526eb0e4b6ec5a4c858b4e}\label{rtos_8h_a7c182e8b87526eb0e4b6ec5a4c858b4e}} 
+\index{rtos.h@{rtos.h}!task\_get\_count@{task\_get\_count}}
+\index{task\_get\_count@{task\_get\_count}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_get\_count()}{task\_get\_count()}}
+{\footnotesize\ttfamily uint32\+\_\+t task\+\_\+get\+\_\+count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Gets the number of tasks the kernel is currently managing, including all ready, blocked, or suspended tasks. 
+
+\mbox{\hyperlink{structA}{A}} task that has been deleted, but not yet reaped by the idle task will also be included in the count. Tasks recently created may take one context switch to be counted.
+
+\begin{DoxyReturn}{Returns}
+The number of tasks that are currently being managed by the kernel. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_ad8c64e24feaa08391eb61b62ea2cdbd5}\label{rtos_8h_ad8c64e24feaa08391eb61b62ea2cdbd5}} 
+\index{rtos.h@{rtos.h}!task\_get\_current@{task\_get\_current}}
+\index{task\_get\_current@{task\_get\_current}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_get\_current()}{task\_get\_current()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}} task\+\_\+get\+\_\+current (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the currently running task handle. 
+
+This could be useful if a task wants to tell another task about itself.
+
+\begin{DoxyReturn}{Returns}
+The currently running task handle. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_a81e2f8aab432c811c9e4c0028d99b284}\label{rtos_8h_a81e2f8aab432c811c9e4c0028d99b284}} 
+\index{rtos.h@{rtos.h}!task\_get\_name@{task\_get\_name}}
+\index{task\_get\_name@{task\_get\_name}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_get\_name()}{task\_get\_name()}}
+{\footnotesize\ttfamily char$\ast$ task\+\_\+get\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}}}]{task }\end{DoxyParamCaption})}
+
+
+
+Gets the name of the specified task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & The task to check\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} pointer to the name of the task 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_a8d6d1ffc897a069346a6a1ee5d3acf87}\label{rtos_8h_a8d6d1ffc897a069346a6a1ee5d3acf87}} 
+\index{rtos.h@{rtos.h}!task\_get\_priority@{task\_get\_priority}}
+\index{task\_get\_priority@{task\_get\_priority}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_get\_priority()}{task\_get\_priority()}}
+{\footnotesize\ttfamily uint32\+\_\+t task\+\_\+get\+\_\+priority (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}}}]{task }\end{DoxyParamCaption})}
+
+
+
+Gets the priority of the specified task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & The task to check\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The priority of the task 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_a5d094df87681d230ebffa2cee23d6f07}\label{rtos_8h_a5d094df87681d230ebffa2cee23d6f07}} 
+\index{rtos.h@{rtos.h}!task\_get\_state@{task\_get\_state}}
+\index{task\_get\_state@{task\_get\_state}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_get\_state()}{task\_get\_state()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtos_8h_a23d5ffd47ed255206f177fe9d891335b}{task\+\_\+state\+\_\+e\+\_\+t}} task\+\_\+get\+\_\+state (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}}}]{task }\end{DoxyParamCaption})}
+
+
+
+Gets the state of the specified task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & The task to check\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The state of the task 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_a19e1a0a068f9d5e8493065f6b7944a63}\label{rtos_8h_a19e1a0a068f9d5e8493065f6b7944a63}} 
+\index{rtos.h@{rtos.h}!task\_notify@{task\_notify}}
+\index{task\_notify@{task\_notify}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_notify()}{task\_notify()}}
+{\footnotesize\ttfamily uint32\+\_\+t task\+\_\+notify (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}}}]{task }\end{DoxyParamCaption})}
+
+
+
+Sends a simple notification to task and increments the notification counter. 
+
+See \href{https://pros.cs.purdue.edu/v5/tutorials/topical/notifications.html}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/notifications.\+html}} for details.
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & The task to notify\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Always returns true. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_ae8697be0d552a81063536c88c0358f38}\label{rtos_8h_ae8697be0d552a81063536c88c0358f38}} 
+\index{rtos.h@{rtos.h}!task\_notify\_clear@{task\_notify\_clear}}
+\index{task\_notify\_clear@{task\_notify\_clear}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_notify\_clear()}{task\_notify\_clear()}}
+{\footnotesize\ttfamily bool task\+\_\+notify\+\_\+clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}}}]{task }\end{DoxyParamCaption})}
+
+
+
+Clears the notification for a task. 
+
+See \href{https://pros.cs.purdue.edu/v5/tutorials/topical/notifications.html}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/notifications.\+html}} for details.
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & The task to clear\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+False if there was not a notification waiting, true if there was 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_a81b5dad7acaef5dd60486ab85af5d54b}\label{rtos_8h_a81b5dad7acaef5dd60486ab85af5d54b}} 
+\index{rtos.h@{rtos.h}!task\_notify\_ext@{task\_notify\_ext}}
+\index{task\_notify\_ext@{task\_notify\_ext}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_notify\_ext()}{task\_notify\_ext()}}
+{\footnotesize\ttfamily uint32\+\_\+t task\+\_\+notify\+\_\+ext (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}}}]{task,  }\item[{uint32\+\_\+t}]{value,  }\item[{\mbox{\hyperlink{rtos_8h_a42ea99b5e5d38da0b98154609cf6c570}{notify\+\_\+action\+\_\+e\+\_\+t}}}]{action,  }\item[{uint32\+\_\+t $\ast$}]{prev\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Sends a notification to a task, optionally performing some action. 
+
+Will also retrieve the value of the notification in the target task before modifying the notification value.
+
+See \href{https://pros.cs.purdue.edu/v5/tutorials/topical/notifications.html}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/notifications.\+html}} for details.
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & The task to notify \\
+\hline
+{\em value} & The value used in performing the action \\
+\hline
+{\em action} & An action to optionally perform on the receiving task\textquotesingle{}s notification value \\
+\hline
+{\em prev\+\_\+value} & \mbox{\hyperlink{structA}{A}} pointer to store the previous value of the target task\textquotesingle{}s notification, may be N\+U\+LL\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dependent on the notification action. For N\+O\+T\+I\+F\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+N\+O\+\_\+\+W\+R\+I\+TE\+: return 0 if the value could be written without needing to overwrite, 1 otherwise. For all other N\+O\+T\+I\+F\+Y\+\_\+\+A\+C\+T\+I\+ON values\+: always return 0 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_aabfb0111c671a56176bc83bb1437635b}\label{rtos_8h_aabfb0111c671a56176bc83bb1437635b}} 
+\index{rtos.h@{rtos.h}!task\_notify\_take@{task\_notify\_take}}
+\index{task\_notify\_take@{task\_notify\_take}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_notify\_take()}{task\_notify\_take()}}
+{\footnotesize\ttfamily uint32\+\_\+t task\+\_\+notify\+\_\+take (\begin{DoxyParamCaption}\item[{bool}]{clear\+\_\+on\+\_\+exit,  }\item[{uint32\+\_\+t}]{timeout }\end{DoxyParamCaption})}
+
+
+
+Waits for a notification to be nonzero. 
+
+See \href{https://pros.cs.purdue.edu/v5/tutorials/topical/notifications.html}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/notifications.\+html}} for details.
+
+
+\begin{DoxyParams}{Parameters}
+{\em clear\+\_\+on\+\_\+exit} & If true (1), then the notification value is cleared. If false (0), then the notification value is decremented. \\
+\hline
+{\em timeout} & Specifies the amount of time to be spent waiting for a notification to occur.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the task\textquotesingle{}s notification value before it is decremented or cleared 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtos_8h_a58bdeeedfe2d98fa57721bb7dad16fee}\label{rtos_8h_a58bdeeedfe2d98fa57721bb7dad16fee}} 
+\index{rtos.h@{rtos.h}!task\_resume@{task\_resume}}
+\index{task\_resume@{task\_resume}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_resume()}{task\_resume()}}
+{\footnotesize\ttfamily void task\+\_\+resume (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}}}]{task }\end{DoxyParamCaption})}
+
+
+
+Resumes the specified task, making it eligible to be scheduled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & The task to resume \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtos_8h_aa906731a0dbda5c2382ca7e3cc32cc97}\label{rtos_8h_aa906731a0dbda5c2382ca7e3cc32cc97}} 
+\index{rtos.h@{rtos.h}!task\_set\_priority@{task\_set\_priority}}
+\index{task\_set\_priority@{task\_set\_priority}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_set\_priority()}{task\_set\_priority()}}
+{\footnotesize\ttfamily void task\+\_\+set\+\_\+priority (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}}}]{task,  }\item[{uint32\+\_\+t}]{prio }\end{DoxyParamCaption})}
+
+
+
+Sets the priority of the specified task. 
+
+If the specified task\textquotesingle{}s state is available to be scheduled (e.\+g. not blocked) and new priority is higher than the currently running task, a context switch may occur.
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & The task to set \\
+\hline
+{\em prio} & The new priority of the task \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtos_8h_a50ab98e83c207eaab4c2b9eb56d9ba0c}\label{rtos_8h_a50ab98e83c207eaab4c2b9eb56d9ba0c}} 
+\index{rtos.h@{rtos.h}!task\_suspend@{task\_suspend}}
+\index{task\_suspend@{task\_suspend}!rtos.h@{rtos.h}}
+\subsubsection{\texorpdfstring{task\_suspend()}{task\_suspend()}}
+{\footnotesize\ttfamily void task\+\_\+suspend (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtos_8h_a1d7e0825b8d8876e8cd8ece3f9115293}{task\+\_\+t}}}]{task }\end{DoxyParamCaption})}
+
+
+
+Suspends the specified task, making it ineligible to be scheduled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & The task to suspend \\
+\hline
+\end{DoxyParams}

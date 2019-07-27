@@ -39,7 +39,7 @@ class ChassisScales {
    *                     |         +       v       +  |
    *                     |        ++---------------++ |
    *                     |        |                 | v
-   *       Wheel Track   |        |                 |
+   *       Wheel track   |        |                 |
    *                     |        |        x        |+|  <-- Middle wheel
    *                     |        |                 |
    *                     |        |                 |

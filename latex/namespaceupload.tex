@@ -1,0 +1,308 @@
+\hypertarget{namespaceupload}{}\section{upload Namespace Reference}
+\label{namespaceupload}\index{upload@{upload}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classupload_1_1AbstractRpcServer}{Abstract\+Rpc\+Server}}
+\item 
+class \mbox{\hyperlink{classupload_1_1ClientLoginError}{Client\+Login\+Error}}
+\item 
+class \mbox{\hyperlink{classupload_1_1GitVCS}{Git\+V\+CS}}
+\item 
+class \mbox{\hyperlink{classupload_1_1HttpRpcServer}{Http\+Rpc\+Server}}
+\begin{DoxyCompactList}\small\item\em elif e.\+code $>$= 500 and e.\+code $<$ 600\+: \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classupload_1_1MercurialVCS}{Mercurial\+V\+CS}}
+\item 
+class \mbox{\hyperlink{classupload_1_1SubversionVCS}{Subversion\+V\+CS}}
+\item 
+class \mbox{\hyperlink{classupload_1_1VersionControlSystem}{Version\+Control\+System}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespaceupload_a4f169469a6d43221ebd38cfd546484e1}{Get\+Email}} (prompt)
+\item 
+def \mbox{\hyperlink{namespaceupload_a79ce84c196c018f3b0c7ff7a9b626b58}{Status\+Update}} (msg)
+\item 
+def \mbox{\hyperlink{namespaceupload_adea53186a1d73e92cc839b7c35c2c044}{Error\+Exit}} (msg)
+\item 
+def \mbox{\hyperlink{namespaceupload_a1dadef480a702dbc5d0fb66203b9abe7}{Get\+Rpc\+Server}} (options)
+\item 
+def \mbox{\hyperlink{namespaceupload_ae12985a2c860c124c502dd2099b702eb}{Encode\+Multipart\+Form\+Data}} (fields, files)
+\item 
+def \mbox{\hyperlink{namespaceupload_a753a004706d964335ad218628e07b063}{Get\+Content\+Type}} (filename)
+\item 
+def \mbox{\hyperlink{namespaceupload_afa542d3a5a4f4fce174a1c23644a9204}{Run\+Shell\+With\+Return\+Code}} (command, print\+\_\+output=False, universal\+\_\+newlines=True)
+\item 
+def \mbox{\hyperlink{namespaceupload_adddc423c49132e8879cbb25d6be2cf11}{Run\+Shell}} (command, silent\+\_\+ok=False, universal\+\_\+newlines=True, print\+\_\+output=False)
+\item 
+def \mbox{\hyperlink{namespaceupload_a9dd260785ca4cc97e245234811ef1949}{Split\+Patch}} (data)
+\item 
+def \mbox{\hyperlink{namespaceupload_a7ec83cb7f7bfb9109c19b6f91552b3ee}{Upload\+Separate\+Patches}} (issue, rpc\+\_\+server, patchset, data, options)
+\item 
+def \mbox{\hyperlink{namespaceupload_a31390568253accd22ee51861eaeb99bd}{Guess\+V\+CS}} (options)
+\item 
+def \mbox{\hyperlink{namespaceupload_ad6226af96c9f1905602b8002bd5de952}{Real\+Main}} (argv, data=None)
+\item 
+def \mbox{\hyperlink{namespaceupload_aef3fcf7a8d77d13ba75adbf58b6c43ee}{main}} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{namespaceupload_a79aff46409a98c4e5f608c8df1fd4612}{verbosity}} = 1
+\item 
+int \mbox{\hyperlink{namespaceupload_aad5b1a43823e2a710a2f78e33dde8901}{M\+A\+X\+\_\+\+U\+P\+L\+O\+A\+D\+\_\+\+S\+I\+ZE}} = 900 $\ast$ 1024
+\item 
+\mbox{\hyperlink{namespaceupload_af9e508d19dc2dd9cdb7c642dde0bdd21}{parser}} = optparse.\+Option\+Parser(usage=\char`\"{}\%prog \mbox{[}options\mbox{]} \mbox{[}-\/-\/ diff\+\_\+options\mbox{]}\char`\"{})
+\item 
+\mbox{\hyperlink{namespaceupload_a675d13c979f1c720866d22ed1736f580}{action}}
+\item 
+\mbox{\hyperlink{namespaceupload_a770d9c7b49b1fede80de6078d5e49af7}{dest}}
+\item 
+\mbox{\hyperlink{namespaceupload_af4be925d9a50d5ad134d86400509d0f2}{default}}
+\item 
+\mbox{\hyperlink{namespaceupload_abfc23c9aa2d9b777678da117a85929a5}{help}}
+\item 
+\mbox{\hyperlink{namespaceupload_a9d33d66de17175dced88ffe95f079226}{group}} = parser.\+add\+\_\+option\+\_\+group(\char`\"{}Logging options\char`\"{})
+\item 
+\mbox{\hyperlink{namespaceupload_a985aa9a71de3eb507344df65700c696d}{const}}
+\item 
+\mbox{\hyperlink{namespaceupload_af1cea8af5389f0ab2d8b65b2c0fd2fe0}{metavar}}
+\item 
+\mbox{\hyperlink{namespaceupload_a4fc56f0dd6613be15c3c4dc3af3619ce}{type}}
+\item 
+\mbox{\hyperlink{namespaceupload_afa85ceef00a65cd276a856404eb5f310}{use\+\_\+shell}} = sys.\+platform.\+startswith(\char`\"{}win\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespaceupload_ae12985a2c860c124c502dd2099b702eb}\label{namespaceupload_ae12985a2c860c124c502dd2099b702eb}} 
+\index{upload@{upload}!EncodeMultipartFormData@{EncodeMultipartFormData}}
+\index{EncodeMultipartFormData@{EncodeMultipartFormData}!upload@{upload}}
+\subsubsection{\texorpdfstring{EncodeMultipartFormData()}{EncodeMultipartFormData()}}
+{\footnotesize\ttfamily def upload.\+Encode\+Multipart\+Form\+Data (\begin{DoxyParamCaption}\item[{}]{fields,  }\item[{}]{files }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encode form fields for multipart/form-data.
+
+Args:
+  fields: A sequence of (name, value) elements for regular form fields.
+  files: A sequence of (name, filename, value) elements for data to be
+         uploaded as files.
+Returns:
+  (content_type, body) ready for httplib.HTTP instance.
+
+Source:
+  https://web.archive.org/web/20160116052001/code.activestate.com/recipes/146306
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceupload_adea53186a1d73e92cc839b7c35c2c044}\label{namespaceupload_adea53186a1d73e92cc839b7c35c2c044}} 
+\index{upload@{upload}!ErrorExit@{ErrorExit}}
+\index{ErrorExit@{ErrorExit}!upload@{upload}}
+\subsubsection{\texorpdfstring{ErrorExit()}{ErrorExit()}}
+{\footnotesize\ttfamily def upload.\+Error\+Exit (\begin{DoxyParamCaption}\item[{}]{msg }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Print an error message to stderr and exit.\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceupload_a753a004706d964335ad218628e07b063}\label{namespaceupload_a753a004706d964335ad218628e07b063}} 
+\index{upload@{upload}!GetContentType@{GetContentType}}
+\index{GetContentType@{GetContentType}!upload@{upload}}
+\subsubsection{\texorpdfstring{GetContentType()}{GetContentType()}}
+{\footnotesize\ttfamily def upload.\+Get\+Content\+Type (\begin{DoxyParamCaption}\item[{}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Helper to guess the content-type from the filename.\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceupload_a4f169469a6d43221ebd38cfd546484e1}\label{namespaceupload_a4f169469a6d43221ebd38cfd546484e1}} 
+\index{upload@{upload}!GetEmail@{GetEmail}}
+\index{GetEmail@{GetEmail}!upload@{upload}}
+\subsubsection{\texorpdfstring{GetEmail()}{GetEmail()}}
+{\footnotesize\ttfamily def upload.\+Get\+Email (\begin{DoxyParamCaption}\item[{}]{prompt }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Prompts the user for their email address and returns it.
+
+The last used email address is saved to a file and offered up as a suggestion
+to the user. If the user presses enter without typing in anything the last
+used email address is used. If the user enters a new address, it is saved
+for next time we prompt.\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceupload_a1dadef480a702dbc5d0fb66203b9abe7}\label{namespaceupload_a1dadef480a702dbc5d0fb66203b9abe7}} 
+\index{upload@{upload}!GetRpcServer@{GetRpcServer}}
+\index{GetRpcServer@{GetRpcServer}!upload@{upload}}
+\subsubsection{\texorpdfstring{GetRpcServer()}{GetRpcServer()}}
+{\footnotesize\ttfamily def upload.\+Get\+Rpc\+Server (\begin{DoxyParamCaption}\item[{}]{options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns an instance of an AbstractRpcServer.
+
+Returns:
+  A new AbstractRpcServer, on which RPC calls can be made.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceupload_a31390568253accd22ee51861eaeb99bd}\label{namespaceupload_a31390568253accd22ee51861eaeb99bd}} 
+\index{upload@{upload}!GuessVCS@{GuessVCS}}
+\index{GuessVCS@{GuessVCS}!upload@{upload}}
+\subsubsection{\texorpdfstring{GuessVCS()}{GuessVCS()}}
+{\footnotesize\ttfamily def upload.\+Guess\+V\+CS (\begin{DoxyParamCaption}\item[{}]{options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Helper to guess the version control system.
+
+This examines the current directory, guesses which VersionControlSystem
+we're using, and returns an instance of the appropriate class.  Exit with an
+error if we can't figure it out.
+
+Returns:
+  A VersionControlSystem instance. Exits if the VCS can't be guessed.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceupload_aef3fcf7a8d77d13ba75adbf58b6c43ee}\label{namespaceupload_aef3fcf7a8d77d13ba75adbf58b6c43ee}} 
+\index{upload@{upload}!main@{main}}
+\index{main@{main}!upload@{upload}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def upload.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceupload_ad6226af96c9f1905602b8002bd5de952}\label{namespaceupload_ad6226af96c9f1905602b8002bd5de952}} 
+\index{upload@{upload}!RealMain@{RealMain}}
+\index{RealMain@{RealMain}!upload@{upload}}
+\subsubsection{\texorpdfstring{RealMain()}{RealMain()}}
+{\footnotesize\ttfamily def upload.\+Real\+Main (\begin{DoxyParamCaption}\item[{}]{argv,  }\item[{}]{data = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The real main function.
+
+Args:
+  argv: Command line arguments.
+  data: Diff contents. If None (default) the diff is generated by
+    the VersionControlSystem implementation returned by GuessVCS().
+
+Returns:
+  A 2-tuple (issue id, patchset id).
+  The patchset id is None if the base files are not uploaded by this
+  script (applies only to SVN checkouts).
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceupload_adddc423c49132e8879cbb25d6be2cf11}\label{namespaceupload_adddc423c49132e8879cbb25d6be2cf11}} 
+\index{upload@{upload}!RunShell@{RunShell}}
+\index{RunShell@{RunShell}!upload@{upload}}
+\subsubsection{\texorpdfstring{RunShell()}{RunShell()}}
+{\footnotesize\ttfamily def upload.\+Run\+Shell (\begin{DoxyParamCaption}\item[{}]{command,  }\item[{}]{silent\+\_\+ok = {\ttfamily False},  }\item[{}]{universal\+\_\+newlines = {\ttfamily True},  }\item[{}]{print\+\_\+output = {\ttfamily False} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceupload_afa542d3a5a4f4fce174a1c23644a9204}\label{namespaceupload_afa542d3a5a4f4fce174a1c23644a9204}} 
+\index{upload@{upload}!RunShellWithReturnCode@{RunShellWithReturnCode}}
+\index{RunShellWithReturnCode@{RunShellWithReturnCode}!upload@{upload}}
+\subsubsection{\texorpdfstring{RunShellWithReturnCode()}{RunShellWithReturnCode()}}
+{\footnotesize\ttfamily def upload.\+Run\+Shell\+With\+Return\+Code (\begin{DoxyParamCaption}\item[{}]{command,  }\item[{}]{print\+\_\+output = {\ttfamily False},  }\item[{}]{universal\+\_\+newlines = {\ttfamily True} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Executes a command and returns the output from stdout and the return code.
+
+Args:
+  command: Command to execute.
+  print_output: If True, the output is printed to stdout.
+                If False, both stdout and stderr are ignored.
+  universal_newlines: Use universal_newlines flag (default: True).
+
+Returns:
+  Tuple (output, return code)
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceupload_a9dd260785ca4cc97e245234811ef1949}\label{namespaceupload_a9dd260785ca4cc97e245234811ef1949}} 
+\index{upload@{upload}!SplitPatch@{SplitPatch}}
+\index{SplitPatch@{SplitPatch}!upload@{upload}}
+\subsubsection{\texorpdfstring{SplitPatch()}{SplitPatch()}}
+{\footnotesize\ttfamily def upload.\+Split\+Patch (\begin{DoxyParamCaption}\item[{}]{data }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Splits a patch into separate pieces for each file.
+
+Args:
+  data: A string containing the output of svn diff.
+
+Returns:
+  A list of 2-tuple (filename, text) where text is the svn diff output
+    pertaining to filename.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceupload_a79ce84c196c018f3b0c7ff7a9b626b58}\label{namespaceupload_a79ce84c196c018f3b0c7ff7a9b626b58}} 
+\index{upload@{upload}!StatusUpdate@{StatusUpdate}}
+\index{StatusUpdate@{StatusUpdate}!upload@{upload}}
+\subsubsection{\texorpdfstring{StatusUpdate()}{StatusUpdate()}}
+{\footnotesize\ttfamily def upload.\+Status\+Update (\begin{DoxyParamCaption}\item[{}]{msg }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Print a status message to stdout.
+
+If 'verbosity' is greater than 0, print the message.
+
+Args:
+  msg: The string to print.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceupload_a7ec83cb7f7bfb9109c19b6f91552b3ee}\label{namespaceupload_a7ec83cb7f7bfb9109c19b6f91552b3ee}} 
+\index{upload@{upload}!UploadSeparatePatches@{UploadSeparatePatches}}
+\index{UploadSeparatePatches@{UploadSeparatePatches}!upload@{upload}}
+\subsubsection{\texorpdfstring{UploadSeparatePatches()}{UploadSeparatePatches()}}
+{\footnotesize\ttfamily def upload.\+Upload\+Separate\+Patches (\begin{DoxyParamCaption}\item[{}]{issue,  }\item[{}]{rpc\+\_\+server,  }\item[{}]{patchset,  }\item[{}]{data,  }\item[{}]{options }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Uploads a separate patch for each file in the diff output.
+
+Returns a list of [patch_key, filename] for each file.
+\end{DoxyVerb}
+ 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceupload_a675d13c979f1c720866d22ed1736f580}\label{namespaceupload_a675d13c979f1c720866d22ed1736f580}} 
+\index{upload@{upload}!action@{action}}
+\index{action@{action}!upload@{upload}}
+\subsubsection{\texorpdfstring{action}{action}}
+{\footnotesize\ttfamily upload.\+action}
+
+\mbox{\Hypertarget{namespaceupload_a985aa9a71de3eb507344df65700c696d}\label{namespaceupload_a985aa9a71de3eb507344df65700c696d}} 
+\index{upload@{upload}!const@{const}}
+\index{const@{const}!upload@{upload}}
+\subsubsection{\texorpdfstring{const}{const}}
+{\footnotesize\ttfamily upload.\+const}
+
+\mbox{\Hypertarget{namespaceupload_af4be925d9a50d5ad134d86400509d0f2}\label{namespaceupload_af4be925d9a50d5ad134d86400509d0f2}} 
+\index{upload@{upload}!default@{default}}
+\index{default@{default}!upload@{upload}}
+\subsubsection{\texorpdfstring{default}{default}}
+{\footnotesize\ttfamily upload.\+default}
+
+\mbox{\Hypertarget{namespaceupload_a770d9c7b49b1fede80de6078d5e49af7}\label{namespaceupload_a770d9c7b49b1fede80de6078d5e49af7}} 
+\index{upload@{upload}!dest@{dest}}
+\index{dest@{dest}!upload@{upload}}
+\subsubsection{\texorpdfstring{dest}{dest}}
+{\footnotesize\ttfamily upload.\+dest}
+
+\mbox{\Hypertarget{namespaceupload_a9d33d66de17175dced88ffe95f079226}\label{namespaceupload_a9d33d66de17175dced88ffe95f079226}} 
+\index{upload@{upload}!group@{group}}
+\index{group@{group}!upload@{upload}}
+\subsubsection{\texorpdfstring{group}{group}}
+{\footnotesize\ttfamily upload.\+group = parser.\+add\+\_\+option\+\_\+group(\char`\"{}Logging options\char`\"{})}
+
+\mbox{\Hypertarget{namespaceupload_abfc23c9aa2d9b777678da117a85929a5}\label{namespaceupload_abfc23c9aa2d9b777678da117a85929a5}} 
+\index{upload@{upload}!help@{help}}
+\index{help@{help}!upload@{upload}}
+\subsubsection{\texorpdfstring{help}{help}}
+{\footnotesize\ttfamily upload.\+help}
+
+\mbox{\Hypertarget{namespaceupload_aad5b1a43823e2a710a2f78e33dde8901}\label{namespaceupload_aad5b1a43823e2a710a2f78e33dde8901}} 
+\index{upload@{upload}!MAX\_UPLOAD\_SIZE@{MAX\_UPLOAD\_SIZE}}
+\index{MAX\_UPLOAD\_SIZE@{MAX\_UPLOAD\_SIZE}!upload@{upload}}
+\subsubsection{\texorpdfstring{MAX\_UPLOAD\_SIZE}{MAX\_UPLOAD\_SIZE}}
+{\footnotesize\ttfamily int upload.\+M\+A\+X\+\_\+\+U\+P\+L\+O\+A\+D\+\_\+\+S\+I\+ZE = 900 $\ast$ 1024}
+
+\mbox{\Hypertarget{namespaceupload_af1cea8af5389f0ab2d8b65b2c0fd2fe0}\label{namespaceupload_af1cea8af5389f0ab2d8b65b2c0fd2fe0}} 
+\index{upload@{upload}!metavar@{metavar}}
+\index{metavar@{metavar}!upload@{upload}}
+\subsubsection{\texorpdfstring{metavar}{metavar}}
+{\footnotesize\ttfamily upload.\+metavar}
+
+\mbox{\Hypertarget{namespaceupload_af9e508d19dc2dd9cdb7c642dde0bdd21}\label{namespaceupload_af9e508d19dc2dd9cdb7c642dde0bdd21}} 
+\index{upload@{upload}!parser@{parser}}
+\index{parser@{parser}!upload@{upload}}
+\subsubsection{\texorpdfstring{parser}{parser}}
+{\footnotesize\ttfamily upload.\+parser = optparse.\+Option\+Parser(usage=\char`\"{}\%prog \mbox{[}options\mbox{]} \mbox{[}-\/-\/ diff\+\_\+options\mbox{]}\char`\"{})}
+
+\mbox{\Hypertarget{namespaceupload_a4fc56f0dd6613be15c3c4dc3af3619ce}\label{namespaceupload_a4fc56f0dd6613be15c3c4dc3af3619ce}} 
+\index{upload@{upload}!type@{type}}
+\index{type@{type}!upload@{upload}}
+\subsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily upload.\+type}
+
+\mbox{\Hypertarget{namespaceupload_afa85ceef00a65cd276a856404eb5f310}\label{namespaceupload_afa85ceef00a65cd276a856404eb5f310}} 
+\index{upload@{upload}!use\_shell@{use\_shell}}
+\index{use\_shell@{use\_shell}!upload@{upload}}
+\subsubsection{\texorpdfstring{use\_shell}{use\_shell}}
+{\footnotesize\ttfamily upload.\+use\+\_\+shell = sys.\+platform.\+startswith(\char`\"{}win\char`\"{})}
+
+\mbox{\Hypertarget{namespaceupload_a79aff46409a98c4e5f608c8df1fd4612}\label{namespaceupload_a79aff46409a98c4e5f608c8df1fd4612}} 
+\index{upload@{upload}!verbosity@{verbosity}}
+\index{verbosity@{verbosity}!upload@{upload}}
+\subsubsection{\texorpdfstring{verbosity}{verbosity}}
+{\footnotesize\ttfamily int upload.\+verbosity = 1}
+

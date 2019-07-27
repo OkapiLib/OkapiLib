@@ -1,0 +1,34 @@
+\hypertarget{versiongenerate_8py}{}\section{cmake-\/build-\/debug/googletest-\/src/googletest/xcode/\+Scripts/versiongenerate.py File Reference}
+\label{versiongenerate_8py}\index{cmake-\/build-\/debug/googletest-\/src/googletest/xcode/Scripts/versiongenerate.py@{cmake-\/build-\/debug/googletest-\/src/googletest/xcode/Scripts/versiongenerate.py}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceversiongenerate}{versiongenerate}}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceversiongenerate_a68af424183a162a61507cdc378cf255e}{versiongenerate.\+input\+\_\+dir}} = sys.\+argv\mbox{[}1\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceversiongenerate_aab714e0aa9036025ba7c83eb7422c567}{versiongenerate.\+output\+\_\+dir}} = sys.\+argv\mbox{[}2\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceversiongenerate_afdfd8d6de9b62e742923b2b3326798e6}{versiongenerate.\+config\+\_\+file}} = open(\char`\"{}\%s/configure.\+ac\char`\"{} \% input\+\_\+dir, \textquotesingle{}r\textquotesingle{})
+\item 
+int \mbox{\hyperlink{namespaceversiongenerate_a5656c48d43f7e869041b6a30c124702e}{versiongenerate.\+buffer\+\_\+size}} = 1024
+\item 
+\mbox{\hyperlink{namespaceversiongenerate_a88cc36d80d757546e04817490ebb0640}{versiongenerate.\+opening\+\_\+string}} = config\+\_\+file.\+read(buffer\+\_\+size)
+\item 
+\mbox{\hyperlink{namespaceversiongenerate_a83861e707250395976fdfee3396a0fff}{versiongenerate.\+version\+\_\+expression}}
+\item 
+\mbox{\hyperlink{namespaceversiongenerate_a0ce22d4ba772e519b000413a3bf5445c}{versiongenerate.\+version\+\_\+values}} = version\+\_\+expression.\+search(opening\+\_\+string)
+\item 
+\mbox{\hyperlink{namespaceversiongenerate_a4b536109523f1bc805806f8d76ca34ac}{versiongenerate.\+major\+\_\+version}} = version\+\_\+values.\+group(1)
+\item 
+\mbox{\hyperlink{namespaceversiongenerate_af8027cbccfcda6a243f0544cc3c08b28}{versiongenerate.\+minor\+\_\+version}} = version\+\_\+values.\+group(2)
+\item 
+\mbox{\hyperlink{namespaceversiongenerate_aa92fb32c5f03f516f3b6224c620b66e4}{versiongenerate.\+fix\+\_\+version}} = version\+\_\+values.\+group(3)
+\item 
+string \mbox{\hyperlink{namespaceversiongenerate_aa7a8a587902d8dc493945992ec3fcf60}{versiongenerate.\+file\+\_\+data}}
+\item 
+\mbox{\hyperlink{namespaceversiongenerate_a3cb3deeb1538014cd32e4253fe298e27}{versiongenerate.\+version\+\_\+file}} = open(\char`\"{}\%s/Version.\+h\char`\"{} \% output\+\_\+dir, \textquotesingle{}w\textquotesingle{})
+\end{DoxyCompactItemize}

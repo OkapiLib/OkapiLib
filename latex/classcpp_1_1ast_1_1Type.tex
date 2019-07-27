@@ -1,0 +1,141 @@
+\hypertarget{classcpp_1_1ast_1_1Type}{}\section{cpp.\+ast.\+Type Class Reference}
+\label{classcpp_1_1ast_1_1Type}\index{cpp.ast.Type@{cpp.ast.Type}}
+Inheritance diagram for cpp.\+ast.\+Type\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classcpp_1_1ast_1_1Type}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classcpp_1_1ast_1_1Type_adc20d88db721b5d7b513c08a4d6753c9}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classcpp_1_1ast_1_1Node_a7b2aa97e6a049bb1a93aea48c48f1f44}{start}}, \mbox{\hyperlink{classcpp_1_1ast_1_1Node_a3c5e5246ccf619df28eca02e29d69647}{end}}, \mbox{\hyperlink{classcpp_1_1ast_1_1Type_a5905424e2b65f0215b6ecd73b4bfe24c}{name}}, \mbox{\hyperlink{classcpp_1_1ast_1_1Type_a7c38fcafa00dae6ee22bab783086a1a7}{templated\+\_\+types}}, \mbox{\hyperlink{classcpp_1_1ast_1_1Type_a0effa0a077eda79943e881955b4c51a5}{modifiers}}, \mbox{\hyperlink{classcpp_1_1ast_1_1Type_a8d2cddd631397c3bf86198cc420d584d}{reference}}, \mbox{\hyperlink{classcpp_1_1ast_1_1Type_a37234bb68915c93894cbc8e366c1eaad}{pointer}}, \mbox{\hyperlink{classcpp_1_1ast_1_1Type_a1fd0493e82da315bcb4c02b0cf2133a3}{array}})
+\item 
+def \mbox{\hyperlink{classcpp_1_1ast_1_1Type_a1a10eff21f6150b7e14bde3788fa069b}{\+\_\+\+\_\+str\+\_\+\+\_\+}} (self)
+\item 
+def \mbox{\hyperlink{classcpp_1_1ast_1_1Type_a590071a2bce7ea5140d7eb86c90f63bf}{Is\+Declaration}} (self)
+\item 
+def \mbox{\hyperlink{classcpp_1_1ast_1_1Type_aedff25dc3736e83388742e55fe29159b}{Is\+Definition}} (self)
+\item 
+def \mbox{\hyperlink{classcpp_1_1ast_1_1Type_a80dce781581c03e550ce51a9a33ca158}{Is\+Exportable}} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpp_1_1ast_1_1Type_a7c38fcafa00dae6ee22bab783086a1a7}{templated\+\_\+types}}
+\item 
+\mbox{\hyperlink{classcpp_1_1ast_1_1Type_a5905424e2b65f0215b6ecd73b4bfe24c}{name}}
+\item 
+\mbox{\hyperlink{classcpp_1_1ast_1_1Type_a0effa0a077eda79943e881955b4c51a5}{modifiers}}
+\item 
+\mbox{\hyperlink{classcpp_1_1ast_1_1Type_a8d2cddd631397c3bf86198cc420d584d}{reference}}
+\item 
+\mbox{\hyperlink{classcpp_1_1ast_1_1Type_a37234bb68915c93894cbc8e366c1eaad}{pointer}}
+\item 
+\mbox{\hyperlink{classcpp_1_1ast_1_1Type_a1fd0493e82da315bcb4c02b0cf2133a3}{array}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}Type used for any variable (eg class, primitive, struct, etc).\end{DoxyVerb}
+ 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcpp_1_1ast_1_1Type_adc20d88db721b5d7b513c08a4d6753c9}\label{classcpp_1_1ast_1_1Type_adc20d88db721b5d7b513c08a4d6753c9}} 
+\index{cpp.ast.Type@{cpp.ast.Type}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!cpp.ast.Type@{cpp.ast.Type}}
+\subsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def cpp.\+ast.\+Type.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start,  }\item[{}]{end,  }\item[{}]{name,  }\item[{}]{templated\+\_\+types,  }\item[{}]{modifiers,  }\item[{}]{reference,  }\item[{}]{pointer,  }\item[{}]{array }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Args:
+  name: str name of main type
+  templated_types: [Class (Type?)] template type info between <>
+  modifiers: [str] type modifiers (keywords) eg, const, mutable, etc.
+  reference, pointer, array: bools
+\end{DoxyVerb}
+ 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcpp_1_1ast_1_1Type_a1a10eff21f6150b7e14bde3788fa069b}\label{classcpp_1_1ast_1_1Type_a1a10eff21f6150b7e14bde3788fa069b}} 
+\index{cpp.ast.Type@{cpp.ast.Type}!\_\_str\_\_@{\_\_str\_\_}}
+\index{\_\_str\_\_@{\_\_str\_\_}!cpp.ast.Type@{cpp.ast.Type}}
+\subsubsection{\texorpdfstring{\_\_str\_\_()}{\_\_str\_\_()}}
+{\footnotesize\ttfamily def cpp.\+ast.\+Type.\+\_\+\+\_\+str\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classcpp_1_1ast_1_1Type_a590071a2bce7ea5140d7eb86c90f63bf}\label{classcpp_1_1ast_1_1Type_a590071a2bce7ea5140d7eb86c90f63bf}} 
+\index{cpp.ast.Type@{cpp.ast.Type}!IsDeclaration@{IsDeclaration}}
+\index{IsDeclaration@{IsDeclaration}!cpp.ast.Type@{cpp.ast.Type}}
+\subsubsection{\texorpdfstring{IsDeclaration()}{IsDeclaration()}}
+{\footnotesize\ttfamily def cpp.\+ast.\+Type.\+Is\+Declaration (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns bool if this node is a declaration.\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcpp_1_1ast_1_1Node_ab3eca703a79fb65bc25dfbcb7547c79e}{cpp.\+ast.\+Node}}.
+
+\mbox{\Hypertarget{classcpp_1_1ast_1_1Type_aedff25dc3736e83388742e55fe29159b}\label{classcpp_1_1ast_1_1Type_aedff25dc3736e83388742e55fe29159b}} 
+\index{cpp.ast.Type@{cpp.ast.Type}!IsDefinition@{IsDefinition}}
+\index{IsDefinition@{IsDefinition}!cpp.ast.Type@{cpp.ast.Type}}
+\subsubsection{\texorpdfstring{IsDefinition()}{IsDefinition()}}
+{\footnotesize\ttfamily def cpp.\+ast.\+Type.\+Is\+Definition (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns bool if this node is a definition.\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcpp_1_1ast_1_1Node_a684ee9a357168e7e07a24fc6812f66e6}{cpp.\+ast.\+Node}}.
+
+\mbox{\Hypertarget{classcpp_1_1ast_1_1Type_a80dce781581c03e550ce51a9a33ca158}\label{classcpp_1_1ast_1_1Type_a80dce781581c03e550ce51a9a33ca158}} 
+\index{cpp.ast.Type@{cpp.ast.Type}!IsExportable@{IsExportable}}
+\index{IsExportable@{IsExportable}!cpp.ast.Type@{cpp.ast.Type}}
+\subsubsection{\texorpdfstring{IsExportable()}{IsExportable()}}
+{\footnotesize\ttfamily def cpp.\+ast.\+Type.\+Is\+Exportable (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns bool if this node exportable from a header file.\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcpp_1_1ast_1_1Node_a313273874ccf578485006d4000128234}{cpp.\+ast.\+Node}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classcpp_1_1ast_1_1Type_a1fd0493e82da315bcb4c02b0cf2133a3}\label{classcpp_1_1ast_1_1Type_a1fd0493e82da315bcb4c02b0cf2133a3}} 
+\index{cpp.ast.Type@{cpp.ast.Type}!array@{array}}
+\index{array@{array}!cpp.ast.Type@{cpp.ast.Type}}
+\subsubsection{\texorpdfstring{array}{array}}
+{\footnotesize\ttfamily cpp.\+ast.\+Type.\+array}
+
+\mbox{\Hypertarget{classcpp_1_1ast_1_1Type_a0effa0a077eda79943e881955b4c51a5}\label{classcpp_1_1ast_1_1Type_a0effa0a077eda79943e881955b4c51a5}} 
+\index{cpp.ast.Type@{cpp.ast.Type}!modifiers@{modifiers}}
+\index{modifiers@{modifiers}!cpp.ast.Type@{cpp.ast.Type}}
+\subsubsection{\texorpdfstring{modifiers}{modifiers}}
+{\footnotesize\ttfamily cpp.\+ast.\+Type.\+modifiers}
+
+\mbox{\Hypertarget{classcpp_1_1ast_1_1Type_a5905424e2b65f0215b6ecd73b4bfe24c}\label{classcpp_1_1ast_1_1Type_a5905424e2b65f0215b6ecd73b4bfe24c}} 
+\index{cpp.ast.Type@{cpp.ast.Type}!name@{name}}
+\index{name@{name}!cpp.ast.Type@{cpp.ast.Type}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily cpp.\+ast.\+Type.\+name}
+
+\mbox{\Hypertarget{classcpp_1_1ast_1_1Type_a37234bb68915c93894cbc8e366c1eaad}\label{classcpp_1_1ast_1_1Type_a37234bb68915c93894cbc8e366c1eaad}} 
+\index{cpp.ast.Type@{cpp.ast.Type}!pointer@{pointer}}
+\index{pointer@{pointer}!cpp.ast.Type@{cpp.ast.Type}}
+\subsubsection{\texorpdfstring{pointer}{pointer}}
+{\footnotesize\ttfamily cpp.\+ast.\+Type.\+pointer}
+
+\mbox{\Hypertarget{classcpp_1_1ast_1_1Type_a8d2cddd631397c3bf86198cc420d584d}\label{classcpp_1_1ast_1_1Type_a8d2cddd631397c3bf86198cc420d584d}} 
+\index{cpp.ast.Type@{cpp.ast.Type}!reference@{reference}}
+\index{reference@{reference}!cpp.ast.Type@{cpp.ast.Type}}
+\subsubsection{\texorpdfstring{reference}{reference}}
+{\footnotesize\ttfamily cpp.\+ast.\+Type.\+reference}
+
+\mbox{\Hypertarget{classcpp_1_1ast_1_1Type_a7c38fcafa00dae6ee22bab783086a1a7}\label{classcpp_1_1ast_1_1Type_a7c38fcafa00dae6ee22bab783086a1a7}} 
+\index{cpp.ast.Type@{cpp.ast.Type}!templated\_types@{templated\_types}}
+\index{templated\_types@{templated\_types}!cpp.ast.Type@{cpp.ast.Type}}
+\subsubsection{\texorpdfstring{templated\_types}{templated\_types}}
+{\footnotesize\ttfamily cpp.\+ast.\+Type.\+templated\+\_\+types}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cmake-\/build-\/debug/googletest-\/src/googlemock/scripts/generator/cpp/\mbox{\hyperlink{ast_8py}{ast.\+py}}\end{DoxyCompactItemize}

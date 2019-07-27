@@ -1,0 +1,31 @@
+\hypertarget{testRunner_8cpp}{}\section{src/test/test\+Runner.cpp File Reference}
+\label{testRunner_8cpp}\index{src/test/testRunner.cpp@{src/test/testRunner.cpp}}
+{\ttfamily \#include \char`\"{}test/test\+Runner.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}okapi/impl/util/timer.\+hpp\char`\"{}}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceokapi}{okapi}}
+\begin{DoxyCompactList}\small\item\em Based on the Arduino P\+ID controller\+: \href{https://github.com/br3ttb/Arduino-PID-Library}{\texttt{ https\+://github.\+com/br3ttb/\+Arduino-\/\+P\+I\+D-\/\+Library}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespaceokapi_a78eb7d9a766b9424a9e9714cef694863}{okapi\+::reset\+Hardware}} ()
+\begin{DoxyCompactList}\small\item\em Setup hardware before a test. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceokapi_aae1102defde65c88b7b9dc1d63e7f12b}{okapi\+::test\+\_\+printf}} (const std\+::string \&istring)
+\begin{DoxyCompactList}\small\item\em Print the input string with an underline made from hyphens (\char`\"{}-\/\char`\"{}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceokapi_a2a497d5d32fa884924aa445e2b3137ef}{okapi\+::test}} (const std\+::string \&iname, std\+::function$<$ void()$>$ ifunc)
+\begin{DoxyCompactList}\small\item\em Run a test. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceokapi_aeedf37570e8d91d9f8b6758a92c75dcb}{okapi\+::test\+\_\+print\+\_\+report}} ()
+\begin{DoxyCompactList}\small\item\em Print out a test report detailing how long the tests took to run; how many tests passed; how many tests failed; and if any failed, which ones. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static size\+\_\+t \mbox{\hyperlink{namespaceokapi_a7784a71f3a06702aedb74baa52b9c752}{okapi\+::test\+Pass\+Count}} = 0
+\item 
+static size\+\_\+t \mbox{\hyperlink{namespaceokapi_a4732faf55d557c5a6811cd22ab69a868}{okapi\+::test\+Fail\+Count}} = 0
+\item 
+static std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespaceokapi_a7137647dcb53d085f1f7595b0695f28e}{okapi\+::test\+Fail\+Log}}
+\item 
+static Timer \mbox{\hyperlink{namespaceokapi_afc1827db6ea0d0ad29a813bbf774d2e5}{okapi\+::test\+Length\+Timer}}
+\end{DoxyCompactItemize}

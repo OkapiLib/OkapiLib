@@ -1,0 +1,72 @@
+\hypertarget{mathutil_8h}{}\section{include/okapi/pathfinder/include/pathfinder/mathutil.h File Reference}
+\label{mathutil_8h}\index{include/okapi/pathfinder/include/pathfinder/mathutil.h@{include/okapi/pathfinder/include/pathfinder/mathutil.h}}
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}okapi/pathfinder/include/pathfinder/lib.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mathutil_8h_a598a3330b3c21701223ee0ca14316eca}{PI}}~3.\+14159265358979323846
+\item 
+\#define \mbox{\hyperlink{mathutil_8h_a3d8c9c145887af5174ba4cc6789862ad}{T\+AU}}~\mbox{\hyperlink{mathutil_8h_a598a3330b3c21701223ee0ca14316eca}{PI}}$\ast$2
+\item 
+\#define \mbox{\hyperlink{mathutil_8h_a3acffbd305ee72dcd4593c0d8af64a4f}{M\+IN}}(a,  b)~(((a)$<$(b))?(a)\+:(b))
+\item 
+\#define \mbox{\hyperlink{mathutil_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}{M\+AX}}(a,  b)~(((a)$>$(b))?(a)\+:(b))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double \mbox{\hyperlink{mathutil_8h_ac5714721a413621e721f0da9f6988864}{bound\+\_\+radians}} (double angle)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double \mbox{\hyperlink{mathutil_8h_a6a55a596b201b8b6e9a098b9aaec86b4}{r2d}} (double angle\+In\+Rads)
+\item 
+\mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double \mbox{\hyperlink{mathutil_8h_a137abb5427a028ed16088471c9635b35}{d2r}} (double angle\+In\+Degrees)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mathutil_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}\label{mathutil_8h_afa99ec4acc4ecb2dc3c2d05da15d0e3f}} 
+\index{mathutil.h@{mathutil.h}!MAX@{MAX}}
+\index{MAX@{MAX}!mathutil.h@{mathutil.h}}
+\subsubsection{\texorpdfstring{MAX}{MAX}}
+{\footnotesize\ttfamily \#define M\+AX(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(((a)$>$(b))?(a)\+:(b))}
+
+\mbox{\Hypertarget{mathutil_8h_a3acffbd305ee72dcd4593c0d8af64a4f}\label{mathutil_8h_a3acffbd305ee72dcd4593c0d8af64a4f}} 
+\index{mathutil.h@{mathutil.h}!MIN@{MIN}}
+\index{MIN@{MIN}!mathutil.h@{mathutil.h}}
+\subsubsection{\texorpdfstring{MIN}{MIN}}
+{\footnotesize\ttfamily \#define M\+IN(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(((a)$<$(b))?(a)\+:(b))}
+
+\mbox{\Hypertarget{mathutil_8h_a598a3330b3c21701223ee0ca14316eca}\label{mathutil_8h_a598a3330b3c21701223ee0ca14316eca}} 
+\index{mathutil.h@{mathutil.h}!PI@{PI}}
+\index{PI@{PI}!mathutil.h@{mathutil.h}}
+\subsubsection{\texorpdfstring{PI}{PI}}
+{\footnotesize\ttfamily \#define PI~3.\+14159265358979323846}
+
+\mbox{\Hypertarget{mathutil_8h_a3d8c9c145887af5174ba4cc6789862ad}\label{mathutil_8h_a3d8c9c145887af5174ba4cc6789862ad}} 
+\index{mathutil.h@{mathutil.h}!TAU@{TAU}}
+\index{TAU@{TAU}!mathutil.h@{mathutil.h}}
+\subsubsection{\texorpdfstring{TAU}{TAU}}
+{\footnotesize\ttfamily \#define T\+AU~\mbox{\hyperlink{mathutil_8h_a598a3330b3c21701223ee0ca14316eca}{PI}}$\ast$2}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{mathutil_8h_ac5714721a413621e721f0da9f6988864}\label{mathutil_8h_ac5714721a413621e721f0da9f6988864}} 
+\index{mathutil.h@{mathutil.h}!bound\_radians@{bound\_radians}}
+\index{bound\_radians@{bound\_radians}!mathutil.h@{mathutil.h}}
+\subsubsection{\texorpdfstring{bound\_radians()}{bound\_radians()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double bound\+\_\+radians (\begin{DoxyParamCaption}\item[{double}]{angle }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mathutil_8h_a137abb5427a028ed16088471c9635b35}\label{mathutil_8h_a137abb5427a028ed16088471c9635b35}} 
+\index{mathutil.h@{mathutil.h}!d2r@{d2r}}
+\index{d2r@{d2r}!mathutil.h@{mathutil.h}}
+\subsubsection{\texorpdfstring{d2r()}{d2r()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double d2r (\begin{DoxyParamCaption}\item[{double}]{angle\+In\+Degrees }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mathutil_8h_a6a55a596b201b8b6e9a098b9aaec86b4}\label{mathutil_8h_a6a55a596b201b8b6e9a098b9aaec86b4}} 
+\index{mathutil.h@{mathutil.h}!r2d@{r2d}}
+\index{r2d@{r2d}!mathutil.h@{mathutil.h}}
+\subsubsection{\texorpdfstring{r2d()}{r2d()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{lib_8h_a0dfeadcd1d33bdae779670a54f92279c}{C\+A\+PI}} double r2d (\begin{DoxyParamCaption}\item[{double}]{angle\+In\+Rads }\end{DoxyParamCaption})}
+

@@ -1,0 +1,63 @@
+\hypertarget{gmock-matchers_8h}{}\section{cmake-\/build-\/debug/googletest-\/src/googlemock/include/gmock/gmock-\/matchers.h File Reference}
+\label{gmock-matchers_8h}\index{cmake-\/build-\/debug/googletest-\/src/googlemock/include/gmock/gmock-\/matchers.h@{cmake-\/build-\/debug/googletest-\/src/googlemock/include/gmock/gmock-\/matchers.h}}
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$ostream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}gtest/gtest.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gmock/internal/gmock-\/internal-\/utils.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gmock/internal/gmock-\/port.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gmock/internal/custom/gmock-\/matchers.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gmock-matchers_8h_a41d888579850c16583baea33ee8d057e}{A\+S\+S\+E\+R\+T\+\_\+\+T\+H\+AT}}(value,  matcher)
+\item 
+\#define \mbox{\hyperlink{gmock-matchers_8h_ac31e206123aa702e1152bb2735b31409}{E\+X\+P\+E\+C\+T\+\_\+\+T\+H\+AT}}(value,  matcher)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gmock-matchers_8h_a6a94bda146dc6f37279760c6fe12e3b9}{G\+T\+E\+S\+T\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+M\+S\+C\+\_\+\+W\+A\+R\+N\+I\+N\+G\+S\+\_\+\+P\+U\+S\+H\+\_\+}} (4251 5046) namespace testing
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gmock-matchers_8h_a41d888579850c16583baea33ee8d057e}\label{gmock-matchers_8h_a41d888579850c16583baea33ee8d057e}} 
+\index{gmock-\/matchers.h@{gmock-\/matchers.h}!ASSERT\_THAT@{ASSERT\_THAT}}
+\index{ASSERT\_THAT@{ASSERT\_THAT}!gmock-\/matchers.h@{gmock-\/matchers.h}}
+\subsubsection{\texorpdfstring{ASSERT\_THAT}{ASSERT\_THAT}}
+{\footnotesize\ttfamily \#define A\+S\+S\+E\+R\+T\+\_\+\+T\+H\+AT(\begin{DoxyParamCaption}\item[{}]{value,  }\item[{}]{matcher }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{gtest__pred__impl_8h_a3771ca0d1a72013aebc3d66e046491ed}{ASSERT\_PRED\_FORMAT1}}(\(\backslash\)}
+\DoxyCodeLine{    ::testing::internal::MakePredicateFormatterFromMatcher(matcher), value)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{gmock-matchers_8h_ac31e206123aa702e1152bb2735b31409}\label{gmock-matchers_8h_ac31e206123aa702e1152bb2735b31409}} 
+\index{gmock-\/matchers.h@{gmock-\/matchers.h}!EXPECT\_THAT@{EXPECT\_THAT}}
+\index{EXPECT\_THAT@{EXPECT\_THAT}!gmock-\/matchers.h@{gmock-\/matchers.h}}
+\subsubsection{\texorpdfstring{EXPECT\_THAT}{EXPECT\_THAT}}
+{\footnotesize\ttfamily \#define E\+X\+P\+E\+C\+T\+\_\+\+T\+H\+AT(\begin{DoxyParamCaption}\item[{}]{value,  }\item[{}]{matcher }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{gtest__pred__impl_8h_a07132aa62cf4902e50e68d0265f573b6}{EXPECT\_PRED\_FORMAT1}}(\(\backslash\)}
+\DoxyCodeLine{    ::testing::internal::MakePredicateFormatterFromMatcher(matcher), value)}
+
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gmock-matchers_8h_a6a94bda146dc6f37279760c6fe12e3b9}\label{gmock-matchers_8h_a6a94bda146dc6f37279760c6fe12e3b9}} 
+\index{gmock-\/matchers.h@{gmock-\/matchers.h}!GTEST\_DISABLE\_MSC\_WARNINGS\_PUSH\_@{GTEST\_DISABLE\_MSC\_WARNINGS\_PUSH\_}}
+\index{GTEST\_DISABLE\_MSC\_WARNINGS\_PUSH\_@{GTEST\_DISABLE\_MSC\_WARNINGS\_PUSH\_}!gmock-\/matchers.h@{gmock-\/matchers.h}}
+\subsubsection{\texorpdfstring{GTEST\_DISABLE\_MSC\_WARNINGS\_PUSH\_()}{GTEST\_DISABLE\_MSC\_WARNINGS\_PUSH\_()}}
+{\footnotesize\ttfamily G\+T\+E\+S\+T\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+M\+S\+C\+\_\+\+W\+A\+R\+N\+I\+N\+G\+S\+\_\+\+P\+U\+S\+H\+\_\+ (\begin{DoxyParamCaption}\item[{4251}]{5046 }\end{DoxyParamCaption})}
+

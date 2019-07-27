@@ -1,0 +1,942 @@
+\hypertarget{adi_8h}{}\section{include/pros/adi.h File Reference}
+\label{adi_8h}\index{include/pros/adi.h@{include/pros/adi.h}}
+
+
+Contains prototypes for interfacing with the A\+DI.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{adi_8h_a8748a4dfbe487cedaafa15f1ff7f2f38}{P\+R\+O\+S\+\_\+\+E\+RR}}~(I\+N\+T32\+\_\+\+M\+AX)
+\item 
+\#define \mbox{\hyperlink{adi_8h_a2a40a89102061b63ec36da8d0515bbc2}{\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN}}~\mbox{\hyperlink{vision_8h_ae55a6efc231c3cf6ab009c08ae920a8b}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((deprecated(\char`\"{}use \mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7faf9bb3aab6efa231ff5bfc014e880e7b6}{E\+\_\+\+A\+D\+I\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN}} instead\char`\"{}))) = E\+\_\+\+A\+D\+I\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN
+\item 
+\#define \mbox{\hyperlink{adi_8h_af66ad69b6d2d7504f09bf54f1598cb01}{\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN}}~\mbox{\hyperlink{vision_8h_ae55a6efc231c3cf6ab009c08ae920a8b}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((deprecated(\char`\"{}use \mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fad0a7bcc9cc1afab74574c968e398218e}{E\+\_\+\+A\+D\+I\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN}} instead\char`\"{}))) = E\+\_\+\+A\+D\+I\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN
+\item 
+\#define \mbox{\hyperlink{adi_8h_a281d641da695b40c26348155b93f910b}{N\+U\+M\+\_\+\+A\+D\+I\+\_\+\+P\+O\+R\+TS}}~8
+\item 
+\#define \mbox{\hyperlink{adi_8h_a5bb885982ff66a2e0a0a45a8ee9c35e2}{H\+I\+GH}}~1
+\begin{DoxyCompactList}\small\item\em P\+R\+OS 2 Compatibility Functions. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{adi_8h_ab811d8c6ff3a505312d3276590444289}{L\+OW}}~0
+\begin{DoxyCompactList}\small\item\em Used for \mbox{\hyperlink{adi_8h_acae2088603dfcad643b54c8ed3b26809}{adi\+\_\+digital\+\_\+write()}} to specify a logic L\+OW state to output. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{adi_8h_a1bb283bd7893b9855e2f23013891fc82}{I\+N\+P\+UT}}~0x00
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{adi_8h_afb4a2ceabb48fba6b4caf837f053bc18}{adi\+\_\+pin\+\_\+mode()}} state for a digital input. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{adi_8h_a61a3c9a18380aafb6e430e79bf596557}{O\+U\+T\+P\+UT}}~0x01
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{adi_8h_afb4a2ceabb48fba6b4caf837f053bc18}{adi\+\_\+pin\+\_\+mode()}} state for a digital output. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{adi_8h_a877f7490feac007f3a904ece06afe87a}{I\+N\+P\+U\+T\+\_\+\+A\+N\+A\+L\+OG}}~0x02
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{adi_8h_afb4a2ceabb48fba6b4caf837f053bc18}{adi\+\_\+pin\+\_\+mode()}} state for an analog input. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{adi_8h_af4be32f492e2bcaa4691e665df0592e7}{O\+U\+T\+P\+U\+T\+\_\+\+A\+N\+A\+L\+OG}}~0x03
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{adi_8h_afb4a2ceabb48fba6b4caf837f053bc18}{adi\+\_\+pin\+\_\+mode()}} state for an analog output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7f}{adi\+\_\+port\+\_\+config\+\_\+e}} \mbox{\hyperlink{adi_8h_a4efff81399e823764aa05cd5c172ea55}{adi\+\_\+port\+\_\+config\+\_\+e\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Represents the port type for an A\+DI port. \end{DoxyCompactList}\item 
+typedef int32\+\_\+t \mbox{\hyperlink{adi_8h_adc7331a863ca648693c688af1ae9a940}{adi\+\_\+encoder\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Reference type for an initialized encoder. \end{DoxyCompactList}\item 
+typedef int32\+\_\+t \mbox{\hyperlink{adi_8h_a642e06a44cad02177d4111261e17c3df}{adi\+\_\+ultrasonic\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Reference type for an initialized ultrasonic. \end{DoxyCompactList}\item 
+typedef int32\+\_\+t \mbox{\hyperlink{adi_8h_a9c451728d4193f1a4e59d7dc489ac292}{adi\+\_\+gyro\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Reference type for an initialized gyroscope. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7f}{adi\+\_\+port\+\_\+config\+\_\+e}} \{ \newline
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fad0a7bcc9cc1afab74574c968e398218e}{E\+\_\+\+A\+D\+I\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN}} = 0, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa38965ad11f779512181510198b1f295c}{E\+\_\+\+A\+D\+I\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+O\+UT}} = 1, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7faf9bb3aab6efa231ff5bfc014e880e7b6}{E\+\_\+\+A\+D\+I\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN}} = 2, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa291cfb590ab68d822095e2047d0c6b19}{E\+\_\+\+A\+D\+I\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+O\+UT}} = 3, 
+\newline
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa447a1279b6e1e10850802dd3359f104d}{\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN}}, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}{\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN}}, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa447a1279b6e1e10850802dd3359f104d}{\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN}}, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}{\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN}}, 
+\newline
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa447a1279b6e1e10850802dd3359f104d}{\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN}}, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}{\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN}}, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}{\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN}}, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}{\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN}}, 
+\newline
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7faa4353dc20c129036f937f582eb6f7541}{E\+\_\+\+A\+D\+I\+\_\+\+L\+E\+G\+A\+C\+Y\+\_\+\+G\+Y\+RO}} = 10, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}{\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN}}, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa64e8c424fa7583513860321fb268494c}{E\+\_\+\+A\+D\+I\+\_\+\+L\+E\+G\+A\+C\+Y\+\_\+\+S\+E\+R\+VO}} = 12, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa9676667cf9b2184460e7beda21f914e5}{E\+\_\+\+A\+D\+I\+\_\+\+L\+E\+G\+A\+C\+Y\+\_\+\+P\+WM}} = 13, 
+\newline
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa2f4f849fce4638f96c206d24049c4a5e}{E\+\_\+\+A\+D\+I\+\_\+\+L\+E\+G\+A\+C\+Y\+\_\+\+E\+N\+C\+O\+D\+ER}} = 14, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa112941f306553d05fd0dd1759d3c4d89}{E\+\_\+\+A\+D\+I\+\_\+\+L\+E\+G\+A\+C\+Y\+\_\+\+U\+L\+T\+R\+A\+S\+O\+N\+IC}} = 15, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa37e9d6ebc03d88c58db1904a7f2b7373}{E\+\_\+\+A\+D\+I\+\_\+\+T\+Y\+P\+E\+\_\+\+U\+N\+D\+E\+F\+I\+N\+ED}} = 255, 
+\mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa33d9a21daeabc122fcef7259fa6602f2}{E\+\_\+\+A\+D\+I\+\_\+\+E\+RR}} = P\+R\+O\+S\+\_\+\+E\+RR
+ \}
+\begin{DoxyCompactList}\small\item\em Represents the port type for an A\+DI port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{adi_8h_a4efff81399e823764aa05cd5c172ea55}{adi\+\_\+port\+\_\+config\+\_\+e\+\_\+t}} \mbox{\hyperlink{adi_8h_ae765689ac259267577a5441d1f601285}{adi\+\_\+port\+\_\+get\+\_\+config}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em General A\+DI Use Functions. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_a7713677aa3877b225e9f5c8eb7e1e060}{adi\+\_\+port\+\_\+get\+\_\+value}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the value for the given A\+DI port. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_a25018d32d3b1d4b40e25c6347a20f3b8}{adi\+\_\+port\+\_\+set\+\_\+config}} (uint8\+\_\+t port, \mbox{\hyperlink{adi_8h_a4efff81399e823764aa05cd5c172ea55}{adi\+\_\+port\+\_\+config\+\_\+e\+\_\+t}} type)
+\begin{DoxyCompactList}\small\item\em Configures an A\+DI port to act as a given sensor type. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_a197da3b30a5836e506205c207568ac19}{adi\+\_\+port\+\_\+set\+\_\+value}} (uint8\+\_\+t port, int32\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Sets the value for the given A\+DI port. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_adfc2e1620393d83cc6ffa1678fef3a76}{adi\+\_\+analog\+\_\+calibrate}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Calibrates the analog sensor on the specified port and returns the new calibration value. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_ac99e2c1d93be8925ad25e9011d7e1cc1}{adi\+\_\+analog\+\_\+read}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the 12-\/bit value of the specified port. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_a6564264464394376405fa4cadd1a5783}{adi\+\_\+analog\+\_\+read\+\_\+calibrated}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the 12 bit calibrated value of an analog input port. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_a6850735748a4d241ebe6b04cb71dbe04}{adi\+\_\+analog\+\_\+read\+\_\+calibrated\+\_\+\+HR}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the 16 bit calibrated value of an analog input port. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_ae81443abb3c04805627f6b99a5955481}{adi\+\_\+digital\+\_\+read}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the digital value (1 or 0) of a port configured as a digital input. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_aa5b002469ceb92edc1777e94a7e5a9a6}{adi\+\_\+digital\+\_\+get\+\_\+new\+\_\+press}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets a rising-\/edge case for a digital button press. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_acae2088603dfcad643b54c8ed3b26809}{adi\+\_\+digital\+\_\+write}} (uint8\+\_\+t port, const bool value)
+\begin{DoxyCompactList}\small\item\em Sets the digital value (1 or 0) of a port configured as a digital output. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_afb4a2ceabb48fba6b4caf837f053bc18}{adi\+\_\+pin\+\_\+mode}} (uint8\+\_\+t port, uint8\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Configures the port as an input or output with a variety of settings. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_ac287b7ef7aac3d428cd751a4999a97b4}{adi\+\_\+motor\+\_\+set}} (uint8\+\_\+t port, int8\+\_\+t speed)
+\begin{DoxyCompactList}\small\item\em Sets the speed of the motor on the given port. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_a2010f7bc94a5fb2fb097a2f1ff567bdb}{adi\+\_\+motor\+\_\+get}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the last set speed of the motor on the given port. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_a89f3d3179523755511b78c046d0fdd91}{adi\+\_\+motor\+\_\+stop}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Stops the motor on the given port. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_aaf191dc0497de4a8653922e136e382c6}{adi\+\_\+encoder\+\_\+get}} (\mbox{\hyperlink{adi_8h_adc7331a863ca648693c688af1ae9a940}{adi\+\_\+encoder\+\_\+t}} enc)
+\begin{DoxyCompactList}\small\item\em Gets the number of ticks recorded by the encoder. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{adi_8h_adc7331a863ca648693c688af1ae9a940}{adi\+\_\+encoder\+\_\+t}} \mbox{\hyperlink{adi_8h_a68a71dd59fce0ad9a6c6e2e49892639f}{adi\+\_\+encoder\+\_\+init}} (uint8\+\_\+t port\+\_\+top, uint8\+\_\+t port\+\_\+bottom, const bool reverse)
+\begin{DoxyCompactList}\small\item\em Creates an encoder object and configures the specified ports accordingly. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_a0504982be5ae8ff6437589b6b1fa0979}{adi\+\_\+encoder\+\_\+reset}} (\mbox{\hyperlink{adi_8h_adc7331a863ca648693c688af1ae9a940}{adi\+\_\+encoder\+\_\+t}} enc)
+\begin{DoxyCompactList}\small\item\em Sets the encoder value to zero. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_a76c17087e625a97b6e0b2a049cd029be}{adi\+\_\+encoder\+\_\+shutdown}} (\mbox{\hyperlink{adi_8h_adc7331a863ca648693c688af1ae9a940}{adi\+\_\+encoder\+\_\+t}} enc)
+\begin{DoxyCompactList}\small\item\em Disables the encoder and voids the configuration on its ports. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_a4e89e57b0adb1c89cfd76356914ab59e}{adi\+\_\+ultrasonic\+\_\+get}} (\mbox{\hyperlink{adi_8h_a642e06a44cad02177d4111261e17c3df}{adi\+\_\+ultrasonic\+\_\+t}} ult)
+\begin{DoxyCompactList}\small\item\em Gets the current ultrasonic sensor value in centimeters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{adi_8h_a642e06a44cad02177d4111261e17c3df}{adi\+\_\+ultrasonic\+\_\+t}} \mbox{\hyperlink{adi_8h_abc86207973ae101d00b51ffa7b4415e7}{adi\+\_\+ultrasonic\+\_\+init}} (uint8\+\_\+t port\+\_\+ping, uint8\+\_\+t port\+\_\+echo)
+\begin{DoxyCompactList}\small\item\em Creates an ultrasonic object and configures the specified ports accordingly. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_a411df541393bd49c3f8bec10d2d1d6df}{adi\+\_\+ultrasonic\+\_\+shutdown}} (\mbox{\hyperlink{adi_8h_a642e06a44cad02177d4111261e17c3df}{adi\+\_\+ultrasonic\+\_\+t}} ult)
+\begin{DoxyCompactList}\small\item\em Disables the ultrasonic sensor and voids the configuration on its ports. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{adi_8h_a8908f45ae2b30055a2d572ebd546ddce}{adi\+\_\+gyro\+\_\+get}} (\mbox{\hyperlink{adi_8h_a9c451728d4193f1a4e59d7dc489ac292}{adi\+\_\+gyro\+\_\+t}} gyro)
+\begin{DoxyCompactList}\small\item\em Gets the current gyro angle in tenths of a degree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{adi_8h_a9c451728d4193f1a4e59d7dc489ac292}{adi\+\_\+gyro\+\_\+t}} \mbox{\hyperlink{adi_8h_aade60da8093046af98dc7d53295d1df7}{adi\+\_\+gyro\+\_\+init}} (uint8\+\_\+t port, double multiplier)
+\begin{DoxyCompactList}\small\item\em Initializes a gyroscope on the given port. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_a6224671272cc8ed6164d9546cf72892d}{adi\+\_\+gyro\+\_\+reset}} (\mbox{\hyperlink{adi_8h_a9c451728d4193f1a4e59d7dc489ac292}{adi\+\_\+gyro\+\_\+t}} gyro)
+\begin{DoxyCompactList}\small\item\em Resets the gyroscope value to zero. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{adi_8h_ae9709dd9b6342d5631c80d558ae55d36}{adi\+\_\+gyro\+\_\+shutdown}} (\mbox{\hyperlink{adi_8h_a9c451728d4193f1a4e59d7dc489ac292}{adi\+\_\+gyro\+\_\+t}} gyro)
+\begin{DoxyCompactList}\small\item\em Disables the gyro and voids the configuration on its port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains prototypes for interfacing with the A\+DI. 
+
+Visit \href{https://pros.cs.purdue.edu/v5/tutorials/topical/adi.html}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/adi.\+html}} to learn more.
+
+This file should not be modified by users, since it gets replaced whenever a kernel upgrade occurs.
+
+Copyright (c) 2017-\/2018, Purdue University A\+CM S\+I\+G\+Bots.
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.\+0. If a copy of the M\+PL was not distributed with this file, You can obtain one at \href{http://mozilla.org/MPL/2.0/}{\texttt{ http\+://mozilla.\+org/\+M\+P\+L/2.\+0/}}. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{adi_8h_af66ad69b6d2d7504f09bf54f1598cb01}\label{adi_8h_af66ad69b6d2d7504f09bf54f1598cb01}} 
+\index{adi.h@{adi.h}!\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}}
+\index{\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{\_DEPRECATE\_ANALOG\_IN}{\_DEPRECATE\_ANALOG\_IN}}
+{\footnotesize\ttfamily \+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN~\mbox{\hyperlink{vision_8h_ae55a6efc231c3cf6ab009c08ae920a8b}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((deprecated(\char`\"{}use \mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fad0a7bcc9cc1afab74574c968e398218e}{E\+\_\+\+A\+D\+I\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN}} instead\char`\"{}))) = E\+\_\+\+A\+D\+I\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN}
+
+\mbox{\Hypertarget{adi_8h_a2a40a89102061b63ec36da8d0515bbc2}\label{adi_8h_a2a40a89102061b63ec36da8d0515bbc2}} 
+\index{adi.h@{adi.h}!\_DEPRECATE\_DIGITAL\_IN@{\_DEPRECATE\_DIGITAL\_IN}}
+\index{\_DEPRECATE\_DIGITAL\_IN@{\_DEPRECATE\_DIGITAL\_IN}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{\_DEPRECATE\_DIGITAL\_IN}{\_DEPRECATE\_DIGITAL\_IN}}
+{\footnotesize\ttfamily \+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN~\mbox{\hyperlink{vision_8h_ae55a6efc231c3cf6ab009c08ae920a8b}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((deprecated(\char`\"{}use \mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7faf9bb3aab6efa231ff5bfc014e880e7b6}{E\+\_\+\+A\+D\+I\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN}} instead\char`\"{}))) = E\+\_\+\+A\+D\+I\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN}
+
+\mbox{\Hypertarget{adi_8h_a5bb885982ff66a2e0a0a45a8ee9c35e2}\label{adi_8h_a5bb885982ff66a2e0a0a45a8ee9c35e2}} 
+\index{adi.h@{adi.h}!HIGH@{HIGH}}
+\index{HIGH@{HIGH}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{HIGH}{HIGH}}
+{\footnotesize\ttfamily \#define H\+I\+GH~1}
+
+
+
+P\+R\+OS 2 Compatibility Functions. 
+
+These functions provide similar functionality to the P\+R\+OS 2 A\+PI Used for \mbox{\hyperlink{adi_8h_acae2088603dfcad643b54c8ed3b26809}{adi\+\_\+digital\+\_\+write()}} to specify a logic H\+I\+GH state to output.
+
+In reality, using any non-\/zero expression or \char`\"{}true\char`\"{} will work to set a pin to H\+I\+GH. \mbox{\Hypertarget{adi_8h_a1bb283bd7893b9855e2f23013891fc82}\label{adi_8h_a1bb283bd7893b9855e2f23013891fc82}} 
+\index{adi.h@{adi.h}!INPUT@{INPUT}}
+\index{INPUT@{INPUT}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{INPUT}{INPUT}}
+{\footnotesize\ttfamily \#define I\+N\+P\+UT~0x00}
+
+
+
+\mbox{\hyperlink{adi_8h_afb4a2ceabb48fba6b4caf837f053bc18}{adi\+\_\+pin\+\_\+mode()}} state for a digital input. 
+
+\mbox{\Hypertarget{adi_8h_a877f7490feac007f3a904ece06afe87a}\label{adi_8h_a877f7490feac007f3a904ece06afe87a}} 
+\index{adi.h@{adi.h}!INPUT\_ANALOG@{INPUT\_ANALOG}}
+\index{INPUT\_ANALOG@{INPUT\_ANALOG}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{INPUT\_ANALOG}{INPUT\_ANALOG}}
+{\footnotesize\ttfamily \#define I\+N\+P\+U\+T\+\_\+\+A\+N\+A\+L\+OG~0x02}
+
+
+
+\mbox{\hyperlink{adi_8h_afb4a2ceabb48fba6b4caf837f053bc18}{adi\+\_\+pin\+\_\+mode()}} state for an analog input. 
+
+\mbox{\Hypertarget{adi_8h_ab811d8c6ff3a505312d3276590444289}\label{adi_8h_ab811d8c6ff3a505312d3276590444289}} 
+\index{adi.h@{adi.h}!LOW@{LOW}}
+\index{LOW@{LOW}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{LOW}{LOW}}
+{\footnotesize\ttfamily \#define L\+OW~0}
+
+
+
+Used for \mbox{\hyperlink{adi_8h_acae2088603dfcad643b54c8ed3b26809}{adi\+\_\+digital\+\_\+write()}} to specify a logic L\+OW state to output. 
+
+In reality, using a zero expression or \char`\"{}false\char`\"{} will work to set a pin to L\+OW. \mbox{\Hypertarget{adi_8h_a281d641da695b40c26348155b93f910b}\label{adi_8h_a281d641da695b40c26348155b93f910b}} 
+\index{adi.h@{adi.h}!NUM\_ADI\_PORTS@{NUM\_ADI\_PORTS}}
+\index{NUM\_ADI\_PORTS@{NUM\_ADI\_PORTS}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{NUM\_ADI\_PORTS}{NUM\_ADI\_PORTS}}
+{\footnotesize\ttfamily \#define N\+U\+M\+\_\+\+A\+D\+I\+\_\+\+P\+O\+R\+TS~8}
+
+\mbox{\Hypertarget{adi_8h_a61a3c9a18380aafb6e430e79bf596557}\label{adi_8h_a61a3c9a18380aafb6e430e79bf596557}} 
+\index{adi.h@{adi.h}!OUTPUT@{OUTPUT}}
+\index{OUTPUT@{OUTPUT}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{OUTPUT}{OUTPUT}}
+{\footnotesize\ttfamily \#define O\+U\+T\+P\+UT~0x01}
+
+
+
+\mbox{\hyperlink{adi_8h_afb4a2ceabb48fba6b4caf837f053bc18}{adi\+\_\+pin\+\_\+mode()}} state for a digital output. 
+
+\mbox{\Hypertarget{adi_8h_af4be32f492e2bcaa4691e665df0592e7}\label{adi_8h_af4be32f492e2bcaa4691e665df0592e7}} 
+\index{adi.h@{adi.h}!OUTPUT\_ANALOG@{OUTPUT\_ANALOG}}
+\index{OUTPUT\_ANALOG@{OUTPUT\_ANALOG}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{OUTPUT\_ANALOG}{OUTPUT\_ANALOG}}
+{\footnotesize\ttfamily \#define O\+U\+T\+P\+U\+T\+\_\+\+A\+N\+A\+L\+OG~0x03}
+
+
+
+\mbox{\hyperlink{adi_8h_afb4a2ceabb48fba6b4caf837f053bc18}{adi\+\_\+pin\+\_\+mode()}} state for an analog output. 
+
+\mbox{\Hypertarget{adi_8h_a8748a4dfbe487cedaafa15f1ff7f2f38}\label{adi_8h_a8748a4dfbe487cedaafa15f1ff7f2f38}} 
+\index{adi.h@{adi.h}!PROS\_ERR@{PROS\_ERR}}
+\index{PROS\_ERR@{PROS\_ERR}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{PROS\_ERR}{PROS\_ERR}}
+{\footnotesize\ttfamily \#define P\+R\+O\+S\+\_\+\+E\+RR~(I\+N\+T32\+\_\+\+M\+AX)}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{adi_8h_adc7331a863ca648693c688af1ae9a940}\label{adi_8h_adc7331a863ca648693c688af1ae9a940}} 
+\index{adi.h@{adi.h}!adi\_encoder\_t@{adi\_encoder\_t}}
+\index{adi\_encoder\_t@{adi\_encoder\_t}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_encoder\_t}{adi\_encoder\_t}}
+{\footnotesize\ttfamily typedef int32\+\_\+t \mbox{\hyperlink{adi_8h_adc7331a863ca648693c688af1ae9a940}{adi\+\_\+encoder\+\_\+t}}}
+
+
+
+Reference type for an initialized encoder. 
+
+This merely contains the port number for the encoder, unlike its use as an object to store encoder data in P\+R\+OS 2. \mbox{\Hypertarget{adi_8h_a9c451728d4193f1a4e59d7dc489ac292}\label{adi_8h_a9c451728d4193f1a4e59d7dc489ac292}} 
+\index{adi.h@{adi.h}!adi\_gyro\_t@{adi\_gyro\_t}}
+\index{adi\_gyro\_t@{adi\_gyro\_t}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_gyro\_t}{adi\_gyro\_t}}
+{\footnotesize\ttfamily typedef int32\+\_\+t \mbox{\hyperlink{adi_8h_a9c451728d4193f1a4e59d7dc489ac292}{adi\+\_\+gyro\+\_\+t}}}
+
+
+
+Reference type for an initialized gyroscope. 
+
+This merely contains the port number for the gyroscope, unlike its use as an object to store gyro data in P\+R\+OS 2. \mbox{\Hypertarget{adi_8h_a4efff81399e823764aa05cd5c172ea55}\label{adi_8h_a4efff81399e823764aa05cd5c172ea55}} 
+\index{adi.h@{adi.h}!adi\_port\_config\_e\_t@{adi\_port\_config\_e\_t}}
+\index{adi\_port\_config\_e\_t@{adi\_port\_config\_e\_t}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_port\_config\_e\_t}{adi\_port\_config\_e\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7f}{adi\+\_\+port\+\_\+config\+\_\+e}}  \mbox{\hyperlink{adi_8h_a4efff81399e823764aa05cd5c172ea55}{adi\+\_\+port\+\_\+config\+\_\+e\+\_\+t}}}
+
+
+
+Represents the port type for an A\+DI port. 
+
+\mbox{\Hypertarget{adi_8h_a642e06a44cad02177d4111261e17c3df}\label{adi_8h_a642e06a44cad02177d4111261e17c3df}} 
+\index{adi.h@{adi.h}!adi\_ultrasonic\_t@{adi\_ultrasonic\_t}}
+\index{adi\_ultrasonic\_t@{adi\_ultrasonic\_t}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_ultrasonic\_t}{adi\_ultrasonic\_t}}
+{\footnotesize\ttfamily typedef int32\+\_\+t \mbox{\hyperlink{adi_8h_a642e06a44cad02177d4111261e17c3df}{adi\+\_\+ultrasonic\+\_\+t}}}
+
+
+
+Reference type for an initialized ultrasonic. 
+
+This merely contains the port number for the ultrasonic, unlike its use as an object to store ultrasonic data in P\+R\+OS 2. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7f}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7f}} 
+\index{adi.h@{adi.h}!adi\_port\_config\_e@{adi\_port\_config\_e}}
+\index{adi\_port\_config\_e@{adi\_port\_config\_e}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_port\_config\_e}{adi\_port\_config\_e}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7f}{adi\+\_\+port\+\_\+config\+\_\+e}}}
+
+
+
+Represents the port type for an A\+DI port. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_ADI\_ANALOG\_IN@{E\_ADI\_ANALOG\_IN}!adi.h@{adi.h}}\index{adi.h@{adi.h}!E\_ADI\_ANALOG\_IN@{E\_ADI\_ANALOG\_IN}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fad0a7bcc9cc1afab74574c968e398218e}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fad0a7bcc9cc1afab74574c968e398218e}} 
+E\+\_\+\+A\+D\+I\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_ADI\_ANALOG\_OUT@{E\_ADI\_ANALOG\_OUT}!adi.h@{adi.h}}\index{adi.h@{adi.h}!E\_ADI\_ANALOG\_OUT@{E\_ADI\_ANALOG\_OUT}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa38965ad11f779512181510198b1f295c}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa38965ad11f779512181510198b1f295c}} 
+E\+\_\+\+A\+D\+I\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+O\+UT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_ADI\_DIGITAL\_IN@{E\_ADI\_DIGITAL\_IN}!adi.h@{adi.h}}\index{adi.h@{adi.h}!E\_ADI\_DIGITAL\_IN@{E\_ADI\_DIGITAL\_IN}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7faf9bb3aab6efa231ff5bfc014e880e7b6}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7faf9bb3aab6efa231ff5bfc014e880e7b6}} 
+E\+\_\+\+A\+D\+I\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_ADI\_DIGITAL\_OUT@{E\_ADI\_DIGITAL\_OUT}!adi.h@{adi.h}}\index{adi.h@{adi.h}!E\_ADI\_DIGITAL\_OUT@{E\_ADI\_DIGITAL\_OUT}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa291cfb590ab68d822095e2047d0c6b19}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa291cfb590ab68d822095e2047d0c6b19}} 
+E\+\_\+\+A\+D\+I\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+O\+UT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\_DEPRECATE\_DIGITAL\_IN@{\_DEPRECATE\_DIGITAL\_IN}!adi.h@{adi.h}}\index{adi.h@{adi.h}!\_DEPRECATE\_DIGITAL\_IN@{\_DEPRECATE\_DIGITAL\_IN}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa447a1279b6e1e10850802dd3359f104d}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa447a1279b6e1e10850802dd3359f104d}} 
+\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}!adi.h@{adi.h}}\index{adi.h@{adi.h}!\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}} 
+\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\_DEPRECATE\_DIGITAL\_IN@{\_DEPRECATE\_DIGITAL\_IN}!adi.h@{adi.h}}\index{adi.h@{adi.h}!\_DEPRECATE\_DIGITAL\_IN@{\_DEPRECATE\_DIGITAL\_IN}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa447a1279b6e1e10850802dd3359f104d}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa447a1279b6e1e10850802dd3359f104d}} 
+\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}!adi.h@{adi.h}}\index{adi.h@{adi.h}!\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}} 
+\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\_DEPRECATE\_DIGITAL\_IN@{\_DEPRECATE\_DIGITAL\_IN}!adi.h@{adi.h}}\index{adi.h@{adi.h}!\_DEPRECATE\_DIGITAL\_IN@{\_DEPRECATE\_DIGITAL\_IN}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa447a1279b6e1e10850802dd3359f104d}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa447a1279b6e1e10850802dd3359f104d}} 
+\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+IN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}!adi.h@{adi.h}}\index{adi.h@{adi.h}!\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}} 
+\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}!adi.h@{adi.h}}\index{adi.h@{adi.h}!\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}} 
+\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}!adi.h@{adi.h}}\index{adi.h@{adi.h}!\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}} 
+\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_ADI\_LEGACY\_GYRO@{E\_ADI\_LEGACY\_GYRO}!adi.h@{adi.h}}\index{adi.h@{adi.h}!E\_ADI\_LEGACY\_GYRO@{E\_ADI\_LEGACY\_GYRO}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7faa4353dc20c129036f937f582eb6f7541}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7faa4353dc20c129036f937f582eb6f7541}} 
+E\+\_\+\+A\+D\+I\+\_\+\+L\+E\+G\+A\+C\+Y\+\_\+\+G\+Y\+RO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}!adi.h@{adi.h}}\index{adi.h@{adi.h}!\_DEPRECATE\_ANALOG\_IN@{\_DEPRECATE\_ANALOG\_IN}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa89efbcdd587f93b76b92bbd6d337f397}} 
+\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+E\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+IN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_ADI\_LEGACY\_SERVO@{E\_ADI\_LEGACY\_SERVO}!adi.h@{adi.h}}\index{adi.h@{adi.h}!E\_ADI\_LEGACY\_SERVO@{E\_ADI\_LEGACY\_SERVO}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa64e8c424fa7583513860321fb268494c}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa64e8c424fa7583513860321fb268494c}} 
+E\+\_\+\+A\+D\+I\+\_\+\+L\+E\+G\+A\+C\+Y\+\_\+\+S\+E\+R\+VO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_ADI\_LEGACY\_PWM@{E\_ADI\_LEGACY\_PWM}!adi.h@{adi.h}}\index{adi.h@{adi.h}!E\_ADI\_LEGACY\_PWM@{E\_ADI\_LEGACY\_PWM}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa9676667cf9b2184460e7beda21f914e5}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa9676667cf9b2184460e7beda21f914e5}} 
+E\+\_\+\+A\+D\+I\+\_\+\+L\+E\+G\+A\+C\+Y\+\_\+\+P\+WM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_ADI\_LEGACY\_ENCODER@{E\_ADI\_LEGACY\_ENCODER}!adi.h@{adi.h}}\index{adi.h@{adi.h}!E\_ADI\_LEGACY\_ENCODER@{E\_ADI\_LEGACY\_ENCODER}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa2f4f849fce4638f96c206d24049c4a5e}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa2f4f849fce4638f96c206d24049c4a5e}} 
+E\+\_\+\+A\+D\+I\+\_\+\+L\+E\+G\+A\+C\+Y\+\_\+\+E\+N\+C\+O\+D\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_ADI\_LEGACY\_ULTRASONIC@{E\_ADI\_LEGACY\_ULTRASONIC}!adi.h@{adi.h}}\index{adi.h@{adi.h}!E\_ADI\_LEGACY\_ULTRASONIC@{E\_ADI\_LEGACY\_ULTRASONIC}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa112941f306553d05fd0dd1759d3c4d89}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa112941f306553d05fd0dd1759d3c4d89}} 
+E\+\_\+\+A\+D\+I\+\_\+\+L\+E\+G\+A\+C\+Y\+\_\+\+U\+L\+T\+R\+A\+S\+O\+N\+IC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_ADI\_TYPE\_UNDEFINED@{E\_ADI\_TYPE\_UNDEFINED}!adi.h@{adi.h}}\index{adi.h@{adi.h}!E\_ADI\_TYPE\_UNDEFINED@{E\_ADI\_TYPE\_UNDEFINED}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa37e9d6ebc03d88c58db1904a7f2b7373}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa37e9d6ebc03d88c58db1904a7f2b7373}} 
+E\+\_\+\+A\+D\+I\+\_\+\+T\+Y\+P\+E\+\_\+\+U\+N\+D\+E\+F\+I\+N\+ED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_ADI\_ERR@{E\_ADI\_ERR}!adi.h@{adi.h}}\index{adi.h@{adi.h}!E\_ADI\_ERR@{E\_ADI\_ERR}}}\mbox{\Hypertarget{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa33d9a21daeabc122fcef7259fa6602f2}\label{adi_8h_ad5f9ddf0fd9de73c4b23fa5485144b7fa33d9a21daeabc122fcef7259fa6602f2}} 
+E\+\_\+\+A\+D\+I\+\_\+\+E\+RR&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{adi_8h_adfc2e1620393d83cc6ffa1678fef3a76}\label{adi_8h_adfc2e1620393d83cc6ffa1678fef3a76}} 
+\index{adi.h@{adi.h}!adi\_analog\_calibrate@{adi\_analog\_calibrate}}
+\index{adi\_analog\_calibrate@{adi\_analog\_calibrate}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_analog\_calibrate()}{adi\_analog\_calibrate()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+analog\+\_\+calibrate (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Calibrates the analog sensor on the specified port and returns the new calibration value. 
+
+This method assumes that the true sensor value is not actively changing at this time and computes an average from approximately 500 samples, 1 ms apart, for a 0.\+5 s period of calibration. The average value thus calculated is returned and stored for later calls to the \mbox{\hyperlink{adi_8h_a6564264464394376405fa4cadd1a5783}{adi\+\_\+analog\+\_\+read\+\_\+calibrated()}} and \mbox{\hyperlink{adi_8h_a6850735748a4d241ebe6b04cb71dbe04}{adi\+\_\+analog\+\_\+read\+\_\+calibrated\+\_\+\+H\+R()}} functions. These functions will return the difference between this value and the current sensor value when called.
+
+Do not use this function when the sensor value might be unstable (gyro rotation, accelerometer movement).
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an analog input. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port to calibrate (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The average sensor value computed by this function 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_ac99e2c1d93be8925ad25e9011d7e1cc1}\label{adi_8h_ac99e2c1d93be8925ad25e9011d7e1cc1}} 
+\index{adi.h@{adi.h}!adi\_analog\_read@{adi\_analog\_read}}
+\index{adi\_analog\_read@{adi\_analog\_read}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_analog\_read()}{adi\_analog\_read()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+analog\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the 12-\/bit value of the specified port. 
+
+The value returned is undefined if the analog pin has been switched to a different mode.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an analog input. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{}) for which the value will be returned\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The analog sensor value, where a value of 0 reflects an input voltage of nearly 0 V and a value of 4095 reflects an input voltage of nearly 5 V 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a6564264464394376405fa4cadd1a5783}\label{adi_8h_a6564264464394376405fa4cadd1a5783}} 
+\index{adi.h@{adi.h}!adi\_analog\_read\_calibrated@{adi\_analog\_read\_calibrated}}
+\index{adi\_analog\_read\_calibrated@{adi\_analog\_read\_calibrated}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_analog\_read\_calibrated()}{adi\_analog\_read\_calibrated()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+analog\+\_\+read\+\_\+calibrated (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the 12 bit calibrated value of an analog input port. 
+
+The \mbox{\hyperlink{adi_8h_adfc2e1620393d83cc6ffa1678fef3a76}{adi\+\_\+analog\+\_\+calibrate()}} function must be run first. This function is inappropriate for sensor values intended for integration, as round-\/off error can accumulate causing drift over time. Use \mbox{\hyperlink{adi_8h_a6850735748a4d241ebe6b04cb71dbe04}{adi\+\_\+analog\+\_\+read\+\_\+calibrated\+\_\+\+H\+R()}} instead.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an analog input. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{}) for which the value will be returned\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The difference of the sensor value from its calibrated default from -\/4095 to 4095 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a6850735748a4d241ebe6b04cb71dbe04}\label{adi_8h_a6850735748a4d241ebe6b04cb71dbe04}} 
+\index{adi.h@{adi.h}!adi\_analog\_read\_calibrated\_HR@{adi\_analog\_read\_calibrated\_HR}}
+\index{adi\_analog\_read\_calibrated\_HR@{adi\_analog\_read\_calibrated\_HR}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_analog\_read\_calibrated\_HR()}{adi\_analog\_read\_calibrated\_HR()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+analog\+\_\+read\+\_\+calibrated\+\_\+\+HR (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the 16 bit calibrated value of an analog input port. 
+
+The \mbox{\hyperlink{adi_8h_adfc2e1620393d83cc6ffa1678fef3a76}{adi\+\_\+analog\+\_\+calibrate()}} function must be run first. This is intended for integrated sensor values such as gyros and accelerometers to reduce drift due to round-\/off, and should not be used on a sensor such as a line tracker or potentiometer.
+
+The value returned actually has 16 bits of \char`\"{}precision\char`\"{}, even though the A\+DC only reads 12 bits, so that error induced by the average value being between two values when integrated over time is trivial. Think of the value as the true value times 16.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an analog input. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{}) for which the value will be returned\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The difference of the sensor value from its calibrated default from -\/16384 to 16384 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_aa5b002469ceb92edc1777e94a7e5a9a6}\label{adi_8h_aa5b002469ceb92edc1777e94a7e5a9a6}} 
+\index{adi.h@{adi.h}!adi\_digital\_get\_new\_press@{adi\_digital\_get\_new\_press}}
+\index{adi\_digital\_get\_new\_press@{adi\_digital\_get\_new\_press}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_digital\_get\_new\_press()}{adi\_digital\_get\_new\_press()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+digital\+\_\+get\+\_\+new\+\_\+press (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets a rising-\/edge case for a digital button press. 
+
+This function is not thread-\/safe. Multiple tasks polling a single button may return different results under the same circumstances, so only one task should call this function for any given button. E.\+g., Task \mbox{\hyperlink{structA}{A}} calls this function for buttons 1 and 2. Task B may call this function for button 3, but should not for buttons 1 or 2. \mbox{\hyperlink{structA}{A}} typical use-\/case for this function is to call inside opcontrol to detect new button presses, and not in any other tasks.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as a digital input. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port to read (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the button is pressed and had not been pressed the last time this function was called, 0 otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_ae81443abb3c04805627f6b99a5955481}\label{adi_8h_ae81443abb3c04805627f6b99a5955481}} 
+\index{adi.h@{adi.h}!adi\_digital\_read@{adi\_digital\_read}}
+\index{adi\_digital\_read@{adi\_digital\_read}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_digital\_read()}{adi\_digital\_read()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+digital\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the digital value (1 or 0) of a port configured as a digital input. 
+
+If the port is configured as some other mode, the digital value which reflects the current state of the poprt is returned, which may or may not differ from the currently set value. The return value is undefined for ports configured as any mode other than a Digital Input.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as a digital input. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port to read (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the pin is H\+I\+GH, or false if it is L\+OW 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_acae2088603dfcad643b54c8ed3b26809}\label{adi_8h_acae2088603dfcad643b54c8ed3b26809}} 
+\index{adi.h@{adi.h}!adi\_digital\_write@{adi\_digital\_write}}
+\index{adi\_digital\_write@{adi\_digital\_write}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_digital\_write()}{adi\_digital\_write()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+digital\+\_\+write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const bool}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets the digital value (1 or 0) of a port configured as a digital output. 
+
+If the port is configured as some other mode, behavior is undefined.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as a digital output. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port to read (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{}) \\
+\hline
+{\em value} & An expression evaluating to \char`\"{}true\char`\"{} or \char`\"{}false\char`\"{} to set the output to H\+I\+GH or L\+OW respectively, or the constants H\+I\+GH or L\+OW themselves\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_aaf191dc0497de4a8653922e136e382c6}\label{adi_8h_aaf191dc0497de4a8653922e136e382c6}} 
+\index{adi.h@{adi.h}!adi\_encoder\_get@{adi\_encoder\_get}}
+\index{adi\_encoder\_get@{adi\_encoder\_get}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_encoder\_get()}{adi\_encoder\_get()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+encoder\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{adi_8h_adc7331a863ca648693c688af1ae9a940}{adi\+\_\+encoder\+\_\+t}}}]{enc }\end{DoxyParamCaption})}
+
+
+
+Gets the number of ticks recorded by the encoder. 
+
+There are 360 ticks in one revolution.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an A\+DI Encoder. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em enc} & The adi\+\_\+encoder\+\_\+t object from \mbox{\hyperlink{adi_8h_a68a71dd59fce0ad9a6c6e2e49892639f}{adi\+\_\+encoder\+\_\+init()}} to read\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The signed and cumulative number of counts since the last start or reset 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a68a71dd59fce0ad9a6c6e2e49892639f}\label{adi_8h_a68a71dd59fce0ad9a6c6e2e49892639f}} 
+\index{adi.h@{adi.h}!adi\_encoder\_init@{adi\_encoder\_init}}
+\index{adi\_encoder\_init@{adi\_encoder\_init}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_encoder\_init()}{adi\_encoder\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{adi_8h_adc7331a863ca648693c688af1ae9a940}{adi\+\_\+encoder\+\_\+t}} adi\+\_\+encoder\+\_\+init (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port\+\_\+top,  }\item[{uint8\+\_\+t}]{port\+\_\+bottom,  }\item[{const bool}]{reverse }\end{DoxyParamCaption})}
+
+
+
+Creates an encoder object and configures the specified ports accordingly. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an A\+DI Encoder. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port\+\_\+top} & The \char`\"{}top\char`\"{} wire from the encoder sensor with the removable cover side UP \\
+\hline
+{\em port\+\_\+bottom} & The \char`\"{}bottom\char`\"{} wire from the encoder sensor \\
+\hline
+{\em reverse} & If \char`\"{}true\char`\"{}, the sensor will count in the opposite direction\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An adi\+\_\+encoder\+\_\+t object to be stored and used for later calls to encoder functions 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a0504982be5ae8ff6437589b6b1fa0979}\label{adi_8h_a0504982be5ae8ff6437589b6b1fa0979}} 
+\index{adi.h@{adi.h}!adi\_encoder\_reset@{adi\_encoder\_reset}}
+\index{adi\_encoder\_reset@{adi\_encoder\_reset}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_encoder\_reset()}{adi\_encoder\_reset()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+encoder\+\_\+reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{adi_8h_adc7331a863ca648693c688af1ae9a940}{adi\+\_\+encoder\+\_\+t}}}]{enc }\end{DoxyParamCaption})}
+
+
+
+Sets the encoder value to zero. 
+
+It is safe to use this method while an encoder is enabled. It is not necessary to call this method before stopping or starting an encoder.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an A\+DI Encoder. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em enc} & The adi\+\_\+encoder\+\_\+t object from \mbox{\hyperlink{adi_8h_a68a71dd59fce0ad9a6c6e2e49892639f}{adi\+\_\+encoder\+\_\+init()}} to reset\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a76c17087e625a97b6e0b2a049cd029be}\label{adi_8h_a76c17087e625a97b6e0b2a049cd029be}} 
+\index{adi.h@{adi.h}!adi\_encoder\_shutdown@{adi\_encoder\_shutdown}}
+\index{adi\_encoder\_shutdown@{adi\_encoder\_shutdown}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_encoder\_shutdown()}{adi\_encoder\_shutdown()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+encoder\+\_\+shutdown (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{adi_8h_adc7331a863ca648693c688af1ae9a940}{adi\+\_\+encoder\+\_\+t}}}]{enc }\end{DoxyParamCaption})}
+
+
+
+Disables the encoder and voids the configuration on its ports. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an A\+DI Encoder. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em enc} & The adi\+\_\+encoder\+\_\+t object from \mbox{\hyperlink{adi_8h_a68a71dd59fce0ad9a6c6e2e49892639f}{adi\+\_\+encoder\+\_\+init()}} to stop\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a8908f45ae2b30055a2d572ebd546ddce}\label{adi_8h_a8908f45ae2b30055a2d572ebd546ddce}} 
+\index{adi.h@{adi.h}!adi\_gyro\_get@{adi\_gyro\_get}}
+\index{adi\_gyro\_get@{adi\_gyro\_get}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_gyro\_get()}{adi\_gyro\_get()}}
+{\footnotesize\ttfamily double adi\+\_\+gyro\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{adi_8h_a9c451728d4193f1a4e59d7dc489ac292}{adi\+\_\+gyro\+\_\+t}}}]{gyro }\end{DoxyParamCaption})}
+
+
+
+Gets the current gyro angle in tenths of a degree. 
+
+Unless a multiplier is applied to the gyro, the return value will be a whole number representing the number of degrees of rotation times 10.
+
+There are 360 degrees in a circle, thus the gyro will return 3600 for one whole rotation.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an A\+DI Gyro. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gyro} & The adi\+\_\+gyro\+\_\+t object for which the angle will be returned\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The gyro angle in degrees. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_aade60da8093046af98dc7d53295d1df7}\label{adi_8h_aade60da8093046af98dc7d53295d1df7}} 
+\index{adi.h@{adi.h}!adi\_gyro\_init@{adi\_gyro\_init}}
+\index{adi\_gyro\_init@{adi\_gyro\_init}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_gyro\_init()}{adi\_gyro\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{adi_8h_a9c451728d4193f1a4e59d7dc489ac292}{adi\+\_\+gyro\+\_\+t}} adi\+\_\+gyro\+\_\+init (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{double}]{multiplier }\end{DoxyParamCaption})}
+
+
+
+Initializes a gyroscope on the given port. 
+
+If the given port has not previously been configured as a gyro, then this function starts a 1300 ms calibration period.
+
+It is highly recommended that this function be called from \mbox{\hyperlink{initialize_8cpp_a25a40b6614565f755233080a384c35f1}{initialize()}} when the robot is stationary to ensure proper calibration.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port to initialize as a gyro (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{}) \\
+\hline
+{\em multiplier} & \mbox{\hyperlink{structA}{A}} scalar value that will be multiplied by the gyro heading value supplied by the A\+DI\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An adi\+\_\+gyro\+\_\+t object containing the given port, or P\+R\+O\+S\+\_\+\+E\+RR if the initialization failed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a6224671272cc8ed6164d9546cf72892d}\label{adi_8h_a6224671272cc8ed6164d9546cf72892d}} 
+\index{adi.h@{adi.h}!adi\_gyro\_reset@{adi\_gyro\_reset}}
+\index{adi\_gyro\_reset@{adi\_gyro\_reset}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_gyro\_reset()}{adi\_gyro\_reset()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+gyro\+\_\+reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{adi_8h_a9c451728d4193f1a4e59d7dc489ac292}{adi\+\_\+gyro\+\_\+t}}}]{gyro }\end{DoxyParamCaption})}
+
+
+
+Resets the gyroscope value to zero. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an A\+DI Gyro. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gyro} & The adi\+\_\+gyro\+\_\+t object for which the angle will be returned\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_ae9709dd9b6342d5631c80d558ae55d36}\label{adi_8h_ae9709dd9b6342d5631c80d558ae55d36}} 
+\index{adi.h@{adi.h}!adi\_gyro\_shutdown@{adi\_gyro\_shutdown}}
+\index{adi\_gyro\_shutdown@{adi\_gyro\_shutdown}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_gyro\_shutdown()}{adi\_gyro\_shutdown()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+gyro\+\_\+shutdown (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{adi_8h_a9c451728d4193f1a4e59d7dc489ac292}{adi\+\_\+gyro\+\_\+t}}}]{gyro }\end{DoxyParamCaption})}
+
+
+
+Disables the gyro and voids the configuration on its port. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an A\+DI Gyro. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gyro} & The adi\+\_\+gyro\+\_\+t object to be shut down\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a2010f7bc94a5fb2fb097a2f1ff567bdb}\label{adi_8h_a2010f7bc94a5fb2fb097a2f1ff567bdb}} 
+\index{adi.h@{adi.h}!adi\_motor\_get@{adi\_motor\_get}}
+\index{adi\_motor\_get@{adi\_motor\_get}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_motor\_get()}{adi\_motor\_get()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+motor\+\_\+get (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the last set speed of the motor on the given port. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an A\+DI Motor. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port to get (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The last set speed of the motor on the given port 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_ac287b7ef7aac3d428cd751a4999a97b4}\label{adi_8h_ac287b7ef7aac3d428cd751a4999a97b4}} 
+\index{adi.h@{adi.h}!adi\_motor\_set@{adi\_motor\_set}}
+\index{adi\_motor\_set@{adi\_motor\_set}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_motor\_set()}{adi\_motor\_set()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+motor\+\_\+set (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{int8\+\_\+t}]{speed }\end{DoxyParamCaption})}
+
+
+
+Sets the speed of the motor on the given port. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an A\+DI Motor. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port to set (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{}) \\
+\hline
+{\em speed} & The new signed speed; -\/127 is full reverse and 127 is full forward, with 0 being off\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a89f3d3179523755511b78c046d0fdd91}\label{adi_8h_a89f3d3179523755511b78c046d0fdd91}} 
+\index{adi.h@{adi.h}!adi\_motor\_stop@{adi\_motor\_stop}}
+\index{adi\_motor\_stop@{adi\_motor\_stop}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_motor\_stop()}{adi\_motor\_stop()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+motor\+\_\+stop (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Stops the motor on the given port. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an A\+DI Motor. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port to set (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_afb4a2ceabb48fba6b4caf837f053bc18}\label{adi_8h_afb4a2ceabb48fba6b4caf837f053bc18}} 
+\index{adi.h@{adi.h}!adi\_pin\_mode@{adi\_pin\_mode}}
+\index{adi\_pin\_mode@{adi\_pin\_mode}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_pin\_mode()}{adi\_pin\_mode()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+pin\+\_\+mode (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{uint8\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Configures the port as an input or output with a variety of settings. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port to read (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{}) \\
+\hline
+{\em mode} & One of I\+N\+P\+UT, I\+N\+P\+U\+T\+\_\+\+A\+N\+A\+L\+OG, I\+N\+P\+U\+T\+\_\+\+F\+L\+O\+A\+T\+I\+NG, O\+U\+T\+P\+UT, or O\+U\+T\+P\+U\+T\+\_\+\+OD\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_ae765689ac259267577a5441d1f601285}\label{adi_8h_ae765689ac259267577a5441d1f601285}} 
+\index{adi.h@{adi.h}!adi\_port\_get\_config@{adi\_port\_get\_config}}
+\index{adi\_port\_get\_config@{adi\_port\_get\_config}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_port\_get\_config()}{adi\_port\_get\_config()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{adi_8h_a4efff81399e823764aa05cd5c172ea55}{adi\+\_\+port\+\_\+config\+\_\+e\+\_\+t}} adi\+\_\+port\+\_\+get\+\_\+config (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+General A\+DI Use Functions. 
+
+These functions allow for interaction with any A\+DI port type Gets the configuration for the given A\+DI port.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port number (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{}) for which to return the configuration\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The A\+DI configuration for the given port 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a7713677aa3877b225e9f5c8eb7e1e060}\label{adi_8h_a7713677aa3877b225e9f5c8eb7e1e060}} 
+\index{adi.h@{adi.h}!adi\_port\_get\_value@{adi\_port\_get\_value}}
+\index{adi\_port\_get\_value@{adi\_port\_get\_value}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_port\_get\_value()}{adi\_port\_get\_value()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+port\+\_\+get\+\_\+value (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the value for the given A\+DI port. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port number (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{}) for which the value will be returned\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value stored for the given port 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a25018d32d3b1d4b40e25c6347a20f3b8}\label{adi_8h_a25018d32d3b1d4b40e25c6347a20f3b8}} 
+\index{adi.h@{adi.h}!adi\_port\_set\_config@{adi\_port\_set\_config}}
+\index{adi\_port\_set\_config@{adi\_port\_set\_config}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_port\_set\_config()}{adi\_port\_set\_config()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+port\+\_\+set\+\_\+config (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{\mbox{\hyperlink{adi_8h_a4efff81399e823764aa05cd5c172ea55}{adi\+\_\+port\+\_\+config\+\_\+e\+\_\+t}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Configures an A\+DI port to act as a given sensor type. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port number (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{}) to configure \\
+\hline
+{\em type} & The configuration type for the port\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a197da3b30a5836e506205c207568ac19}\label{adi_8h_a197da3b30a5836e506205c207568ac19}} 
+\index{adi.h@{adi.h}!adi\_port\_set\_value@{adi\_port\_set\_value}}
+\index{adi\_port\_set\_value@{adi\_port\_set\_value}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_port\_set\_value()}{adi\_port\_set\_value()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+port\+\_\+set\+\_\+value (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{int32\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets the value for the given A\+DI port. 
+
+This only works on ports configured as outputs, and the behavior will change depending on the configuration of the port.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port number (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{}) for which the value will be set \\
+\hline
+{\em value} & The value to set the A\+DI port to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a4e89e57b0adb1c89cfd76356914ab59e}\label{adi_8h_a4e89e57b0adb1c89cfd76356914ab59e}} 
+\index{adi.h@{adi.h}!adi\_ultrasonic\_get@{adi\_ultrasonic\_get}}
+\index{adi\_ultrasonic\_get@{adi\_ultrasonic\_get}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_ultrasonic\_get()}{adi\_ultrasonic\_get()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+ultrasonic\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{adi_8h_a642e06a44cad02177d4111261e17c3df}{adi\+\_\+ultrasonic\+\_\+t}}}]{ult }\end{DoxyParamCaption})}
+
+
+
+Gets the current ultrasonic sensor value in centimeters. 
+
+If no object was found, zero is returned. If the ultrasonic sensor was never started, the return value is undefined. Round and fluffy objects can cause inaccurate values to be returned.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an A\+DI Ultrasonic. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ult} & The adi\+\_\+ultrasonic\+\_\+t object from \mbox{\hyperlink{adi_8h_abc86207973ae101d00b51ffa7b4415e7}{adi\+\_\+ultrasonic\+\_\+init()}} to read\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The distance to the nearest object in m$^\wedge$-\/4 (10000 indicates 1 meter), measured from the sensor\textquotesingle{}s mounting points. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_abc86207973ae101d00b51ffa7b4415e7}\label{adi_8h_abc86207973ae101d00b51ffa7b4415e7}} 
+\index{adi.h@{adi.h}!adi\_ultrasonic\_init@{adi\_ultrasonic\_init}}
+\index{adi\_ultrasonic\_init@{adi\_ultrasonic\_init}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_ultrasonic\_init()}{adi\_ultrasonic\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{adi_8h_a642e06a44cad02177d4111261e17c3df}{adi\+\_\+ultrasonic\+\_\+t}} adi\+\_\+ultrasonic\+\_\+init (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port\+\_\+ping,  }\item[{uint8\+\_\+t}]{port\+\_\+echo }\end{DoxyParamCaption})}
+
+
+
+Creates an ultrasonic object and configures the specified ports accordingly. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an A\+DI Ultrasonic. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port\+\_\+ping} & The port connected to the orange O\+U\+T\+P\+UT cable. This should be in the next highest port following port\+\_\+echo. \\
+\hline
+{\em port\+\_\+echo} & The port connected to the yellow I\+N\+P\+UT cable. This should be in port 1, 3, 5, or 7 (\textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}, \textquotesingle{}C\textquotesingle{}, \textquotesingle{}E\textquotesingle{}, \textquotesingle{}G\textquotesingle{}).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An adi\+\_\+ultrasonic\+\_\+t object to be stored and used for later calls to ultrasonic functions 
+\end{DoxyReturn}
+\mbox{\Hypertarget{adi_8h_a411df541393bd49c3f8bec10d2d1d6df}\label{adi_8h_a411df541393bd49c3f8bec10d2d1d6df}} 
+\index{adi.h@{adi.h}!adi\_ultrasonic\_shutdown@{adi\_ultrasonic\_shutdown}}
+\index{adi\_ultrasonic\_shutdown@{adi\_ultrasonic\_shutdown}!adi.h@{adi.h}}
+\subsubsection{\texorpdfstring{adi\_ultrasonic\_shutdown()}{adi\_ultrasonic\_shutdown()}}
+{\footnotesize\ttfamily int32\+\_\+t adi\+\_\+ultrasonic\+\_\+shutdown (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{adi_8h_a642e06a44cad02177d4111261e17c3df}{adi\+\_\+ultrasonic\+\_\+t}}}]{ult }\end{DoxyParamCaption})}
+
+
+
+Disables the ultrasonic sensor and voids the configuration on its ports. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports, or the given port is not configured as an A\+DI Ultrasonic. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ult} & The adi\+\_\+ultrasonic\+\_\+t object from \mbox{\hyperlink{adi_8h_abc86207973ae101d00b51ffa7b4415e7}{adi\+\_\+ultrasonic\+\_\+init()}} to stop\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}

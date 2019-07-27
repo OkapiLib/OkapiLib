@@ -1,0 +1,201 @@
+\hypertarget{gmock-internal-utils_8h}{}\section{cmake-\/build-\/debug/googletest-\/src/googlemock/include/gmock/internal/gmock-\/internal-\/utils.h File Reference}
+\label{gmock-internal-utils_8h}\index{cmake-\/build-\/debug/googletest-\/src/googlemock/include/gmock/internal/gmock-\/internal-\/utils.h@{cmake-\/build-\/debug/googletest-\/src/googlemock/include/gmock/internal/gmock-\/internal-\/utils.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$ostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include \char`\"{}gmock/internal/gmock-\/generated-\/internal-\/utils.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gmock/internal/gmock-\/port.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gtest/gtest.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1PointeeOf}{testing\+::internal\+::\+Pointee\+Of$<$ Pointer $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1PointeeOf_3_01T_01_5_01_4}{testing\+::internal\+::\+Pointee\+Of$<$ T $\ast$ $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1LinkedPtrLessThan}{testing\+::internal\+::\+Linked\+Ptr\+Less\+Than$<$ T $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1KindOf}{testing\+::internal\+::\+Kind\+Of$<$ T $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1LosslessArithmeticConvertibleImpl}{testing\+::internal\+::\+Lossless\+Arithmetic\+Convertible\+Impl$<$ k\+From\+Kind, From, k\+To\+Kind, To $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1LosslessArithmeticConvertibleImpl_3_01kBool_00_01bool_00_01kBool_00_01bool_01_4}{testing\+::internal\+::\+Lossless\+Arithmetic\+Convertible\+Impl$<$ k\+Bool, bool, k\+Bool, bool $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1LosslessArithmeticConvertibleImpl_3_01kBool_00_01bool_00_01kInteger_00_01To_01_4}{testing\+::internal\+::\+Lossless\+Arithmetic\+Convertible\+Impl$<$ k\+Bool, bool, k\+Integer, To $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1LosslessArithmeticConvertibleImpl_3_01kBool_00_01bool_00_01kFloatingPoint_00_01To_01_4}{testing\+::internal\+::\+Lossless\+Arithmetic\+Convertible\+Impl$<$ k\+Bool, bool, k\+Floating\+Point, To $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1LosslessArithmeticConvertibleImpl_3_01kInteger_00_01From_00_01kBool_00_01bool_01_4}{testing\+::internal\+::\+Lossless\+Arithmetic\+Convertible\+Impl$<$ k\+Integer, From, k\+Bool, bool $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1LosslessArithmeticConvertibleImpl_3_01kInteger_00_01From_00_01kInteger_00_01To_01_4}{testing\+::internal\+::\+Lossless\+Arithmetic\+Convertible\+Impl$<$ k\+Integer, From, k\+Integer, To $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1LosslessArithmeticConvertibleImpl_3_01kInteger_00_01From_00_01kFloatingPoint_00_01To_01_4}{testing\+::internal\+::\+Lossless\+Arithmetic\+Convertible\+Impl$<$ k\+Integer, From, k\+Floating\+Point, To $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1LosslessArithmeticConvertibleImpl_3_01kFloatingPoint_00_01From_00_01kBool_00_01bool_01_4}{testing\+::internal\+::\+Lossless\+Arithmetic\+Convertible\+Impl$<$ k\+Floating\+Point, From, k\+Bool, bool $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1LosslessArithmeticConvertibleImpl_3_01kFloatingPoint_00_01From_00_01kInteger_00_01To_01_4}{testing\+::internal\+::\+Lossless\+Arithmetic\+Convertible\+Impl$<$ k\+Floating\+Point, From, k\+Integer, To $>$}}
+\item 
+class \mbox{\hyperlink{classtesting_1_1internal_1_1WithoutMatchers}{testing\+::internal\+::\+Without\+Matchers}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1is__reference}{testing\+::internal\+::is\+\_\+reference$<$ T $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1is__reference_3_01T_01_6_01_4}{testing\+::internal\+::is\+\_\+reference$<$ T \& $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1type__equals}{testing\+::internal\+::type\+\_\+equals$<$ T1, T2 $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1type__equals_3_01T_00_01T_01_4}{testing\+::internal\+::type\+\_\+equals$<$ T, T $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1remove__reference}{testing\+::internal\+::remove\+\_\+reference$<$ T $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1remove__reference_3_01T_01_6_01_4}{testing\+::internal\+::remove\+\_\+reference$<$ T \& $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1DecayArray}{testing\+::internal\+::\+Decay\+Array$<$ T $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1DecayArray_3_01T[N]_4}{testing\+::internal\+::\+Decay\+Array$<$ T\mbox{[}\+N\mbox{]}$>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1DecayArray_3_01T[]_4}{testing\+::internal\+::\+Decay\+Array$<$ T\mbox{[}$\,$\mbox{]}$>$}}
+\item 
+class \mbox{\hyperlink{classtesting_1_1internal_1_1StlContainerView}{testing\+::internal\+::\+Stl\+Container\+View$<$ Raw\+Container $>$}}
+\item 
+class \mbox{\hyperlink{classtesting_1_1internal_1_1StlContainerView_3_01Element[N]_4}{testing\+::internal\+::\+Stl\+Container\+View$<$ Element\mbox{[}\+N\mbox{]}$>$}}
+\item 
+class \mbox{\hyperlink{classtesting_1_1internal_1_1StlContainerView_3_01_1_1testing_1_1tuple_3_01ElementPointer_00_01Size_01_4_01_4}{testing\+::internal\+::\+Stl\+Container\+View$<$ \+::testing\+::tuple$<$ Element\+Pointer, Size $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1RemoveConstFromKey}{testing\+::internal\+::\+Remove\+Const\+From\+Key$<$ T $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1RemoveConstFromKey_3_01std_1_1pair_3_01const_01K_00_01V_01_4_01_4}{testing\+::internal\+::\+Remove\+Const\+From\+Key$<$ std\+::pair$<$ const K, V $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{structtesting_1_1internal_1_1BooleanConstant}{testing\+::internal\+::\+Boolean\+Constant$<$ k\+Value $>$}}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacetesting}{testing}}
+\item 
+ \mbox{\hyperlink{namespacetesting_1_1internal}{testing\+::internal}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gmock-internal-utils_8h_a0725bd2b3326d282677e5197e53cc5e9}{G\+M\+O\+C\+K\+\_\+\+W\+C\+H\+A\+R\+\_\+\+T\+\_\+\+I\+S\+\_\+\+N\+A\+T\+I\+V\+E\+\_\+}}~1
+\item 
+\#define \mbox{\hyperlink{gmock-internal-utils_8h_a7d8a1871d7a30543a4e1882a8b2bbcd8}{G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}}(type,  kind)~template $<$$>$ struct Kind\+Of$<$type$>$ \{ enum \{ value = kind \}; \}
+\item 
+\#define \mbox{\hyperlink{gmock-internal-utils_8h_a72b01bdd08b78e927270885ca880ead4}{G\+M\+O\+C\+K\+\_\+\+K\+I\+N\+D\+\_\+\+O\+F\+\_\+}}(type)
+\item 
+\#define \mbox{\hyperlink{gmock-internal-utils_8h_a8ee49a1af821b48fd83849c050d0d5a2}{G\+M\+O\+C\+K\+\_\+\+I\+S\+\_\+\+S\+I\+G\+N\+E\+D\+\_\+}}(T)~(static\+\_\+cast$<$T$>$(-\/1) $<$ 0)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacetesting_1_1internal_aa8747bda20137c9aa7f846dee830e686}{testing\+::internal\+::\+Type\+Kind}} \{ \mbox{\hyperlink{namespacetesting_1_1internal_aa8747bda20137c9aa7f846dee830e686a3af2191917fb1796599139b3615302fe}{testing\+::internal\+::k\+Bool}}, 
+\mbox{\hyperlink{namespacetesting_1_1internal_aa8747bda20137c9aa7f846dee830e686a8a52f0fd73e05da35c45d80653633cab}{testing\+::internal\+::k\+Integer}}, 
+\mbox{\hyperlink{namespacetesting_1_1internal_aa8747bda20137c9aa7f846dee830e686acdce59b8c136926ace18aa9c2995878d}{testing\+::internal\+::k\+Floating\+Point}}, 
+\mbox{\hyperlink{namespacetesting_1_1internal_aa8747bda20137c9aa7f846dee830e686ad47f29150ab7a9ec8ce2491f44537347}{testing\+::internal\+::k\+Other}}
+ \}
+\item 
+enum \mbox{\hyperlink{namespacetesting_1_1internal_a203d1a8a2147a53d12bbdae40d443914}{testing\+::internal\+::\+Log\+Severity}} \{ \mbox{\hyperlink{namespacetesting_1_1internal_a203d1a8a2147a53d12bbdae40d443914a396aacfaee2849eaab7c1de9773d624d}{testing\+::internal\+::k\+Info}} = 0, 
+\mbox{\hyperlink{namespacetesting_1_1internal_a203d1a8a2147a53d12bbdae40d443914a5beeeab1b0a3caabd0afb43356c1a271}{testing\+::internal\+::k\+Warning}} = 1
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gtest-port_8h_aa73be6f0ba4a7456180a94904ce17790}{G\+T\+E\+S\+T\+\_\+\+A\+P\+I\+\_\+}} std\+::string \mbox{\hyperlink{namespacetesting_1_1internal_a4ffe5309bf49f08145ed010a6d244e41}{testing\+::internal\+::\+Join\+As\+Tuple}} (const Strings \&fields)
+\item 
+\mbox{\hyperlink{gtest-port_8h_aa73be6f0ba4a7456180a94904ce17790}{G\+T\+E\+S\+T\+\_\+\+A\+P\+I\+\_\+}} std\+::string \mbox{\hyperlink{namespacetesting_1_1internal_a0b375abcf3081393e6c420194a541b29}{testing\+::internal\+::\+Convert\+Identifier\+Name\+To\+Words}} (const char $\ast$id\+\_\+name)
+\item 
+{\footnotesize template$<$typename Pointer $>$ }\\const Pointer\+::element\+\_\+type $\ast$ \mbox{\hyperlink{namespacetesting_1_1internal_ae88d1a6f95165c43c27a6c0e2d357e61}{testing\+::internal\+::\+Get\+Raw\+Pointer}} (const Pointer \&p)
+\item 
+{\footnotesize template$<$typename Element $>$ }\\Element $\ast$ \mbox{\hyperlink{namespacetesting_1_1internal_a4d17b114b61b805ac5f37e9c26e29e55}{testing\+::internal\+::\+Get\+Raw\+Pointer}} (Element $\ast$p)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a20f5584732e44a368e7acf295b639319}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (bool, k\+Bool)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_ac8f3722ca21d8b14f86e5c949e843508}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (char, k\+Integer)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_ae5b8e77d245fd0838ab22e439e92e9af}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (signed char, k\+Integer)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_ab13e89be2f0f22b1da9e22cd53bce5ce}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (unsigned char, k\+Integer)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_af191a2be9cff1d5900426ef5aa59851e}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (short, k\+Integer)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a6138ee5ce9f509d39e874e4eedb89ae1}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (unsigned short, k\+Integer)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a59fb8e3bb6f1fec656ed8bdab0048f9f}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (int, k\+Integer)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_abdce95ddf8b975d2a17e76a4c5a6c37f}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (unsigned int, k\+Integer)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a40597f856b3d94dc82e9fbbf9b027819}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (long, k\+Integer)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a8224329431c90b3d943cc43ac92e6e42}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (unsigned long, k\+Integer)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_af00aa2679c10ed170064e5ec5dd80e29}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (wchar\+\_\+t, k\+Integer)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_ae1d4cd9aef9a240d257364691ed3679e}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (Int64, k\+Integer)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_ae09394c3d07a5d99308fc3bbc9edc877}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (U\+Int64, k\+Integer)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_ad4ebf1b53b79ac38fbd18ccf4d63ceca}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (float, k\+Floating\+Point)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_a45748f4c08b868cb4939081769cdc7b1}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (double, k\+Floating\+Point)
+\item 
+\mbox{\hyperlink{namespacetesting_1_1internal_af46fdd94d8aea0da729b554de443315f}{testing\+::internal\+::\+G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+}} (long double, k\+Floating\+Point)
+\item 
+{\footnotesize template$<$typename From , typename To $>$ }\\void \mbox{\hyperlink{namespacetesting_1_1internal_a7a259643b7f2d23ce2b757728df42c99}{testing\+::internal\+::\+Assert}} (bool condition, const char $\ast$file, int line)
+\item 
+void \mbox{\hyperlink{namespacetesting_1_1internal_ad93379317e10862a77b9fb90aa96e083}{testing\+::internal\+::\+Expect}} (bool condition, const char $\ast$file, int line, const std\+::string \&msg)
+\item 
+void \mbox{\hyperlink{namespacetesting_1_1internal_a0dfe8a755bd02aa5ea162764b61a9d97}{testing\+::internal\+::\+Expect}} (bool condition, const char $\ast$file, int line)
+\item 
+\mbox{\hyperlink{gtest-port_8h_aa73be6f0ba4a7456180a94904ce17790}{G\+T\+E\+S\+T\+\_\+\+A\+P\+I\+\_\+}} bool \mbox{\hyperlink{namespacetesting_1_1internal_a69ffdba5ee36743e88d8f89b79e566ff}{testing\+::internal\+::\+Log\+Is\+Visible}} (Log\+Severity severity)
+\item 
+\mbox{\hyperlink{gtest-port_8h_aa73be6f0ba4a7456180a94904ce17790}{G\+T\+E\+S\+T\+\_\+\+A\+P\+I\+\_\+}} void \mbox{\hyperlink{namespacetesting_1_1internal_a8a57ce0412334a3f487bbaa8321febbe}{testing\+::internal\+::\+Log}} (Log\+Severity severity, const std\+::string \&message, int stack\+\_\+frames\+\_\+to\+\_\+skip)
+\item 
+\mbox{\hyperlink{gtest-port_8h_aa73be6f0ba4a7456180a94904ce17790}{G\+T\+E\+S\+T\+\_\+\+A\+P\+I\+\_\+}} Without\+Matchers \mbox{\hyperlink{namespacetesting_1_1internal_ad4e02ea077a717f95a10a03c10272f1c}{testing\+::internal\+::\+Get\+Without\+Matchers}} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{namespacetesting_1_1internal_a3316c24e8a79f5def3e85d763ae50854}{testing\+::internal\+::\+Invalid}} ()
+\item 
+\mbox{\hyperlink{gtest-port_8h_aa73be6f0ba4a7456180a94904ce17790}{G\+T\+E\+S\+T\+\_\+\+A\+P\+I\+\_\+}} void \mbox{\hyperlink{namespacetesting_1_1internal_aa67e1e9d28122eedffbb7b6636824f2d}{testing\+::internal\+::\+Illegal\+Do\+Default}} (const char $\ast$file, int line)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \mbox{\hyperlink{namespacetesting_1_1internal_a96274a788ffc75a6dffdfa8aa1f34fb9}{testing\+::internal\+::k\+Info\+Verbosity}} \mbox{[}$\,$\mbox{]} = \char`\"{}info\char`\"{}
+\item 
+const char \mbox{\hyperlink{namespacetesting_1_1internal_ad9386ccda6b6deac2f7b84784d3088c0}{testing\+::internal\+::k\+Warning\+Verbosity}} \mbox{[}$\,$\mbox{]} = \char`\"{}warning\char`\"{}
+\item 
+const char \mbox{\hyperlink{namespacetesting_1_1internal_a3d730761274e7b80dd66e5014171fcb5}{testing\+::internal\+::k\+Error\+Verbosity}} \mbox{[}$\,$\mbox{]} = \char`\"{}error\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gmock-internal-utils_8h_a7d8a1871d7a30543a4e1882a8b2bbcd8}\label{gmock-internal-utils_8h_a7d8a1871d7a30543a4e1882a8b2bbcd8}} 
+\index{gmock-\/internal-\/utils.h@{gmock-\/internal-\/utils.h}!GMOCK\_DECLARE\_KIND\_@{GMOCK\_DECLARE\_KIND\_}}
+\index{GMOCK\_DECLARE\_KIND\_@{GMOCK\_DECLARE\_KIND\_}!gmock-\/internal-\/utils.h@{gmock-\/internal-\/utils.h}}
+\subsubsection{\texorpdfstring{GMOCK\_DECLARE\_KIND\_}{GMOCK\_DECLARE\_KIND\_}}
+{\footnotesize\ttfamily \#define G\+M\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+K\+I\+N\+D\+\_\+(\begin{DoxyParamCaption}\item[{}]{type,  }\item[{}]{kind }\end{DoxyParamCaption})~template $<$$>$ struct Kind\+Of$<$type$>$ \{ enum \{ value = kind \}; \}}
+
+\mbox{\Hypertarget{gmock-internal-utils_8h_a8ee49a1af821b48fd83849c050d0d5a2}\label{gmock-internal-utils_8h_a8ee49a1af821b48fd83849c050d0d5a2}} 
+\index{gmock-\/internal-\/utils.h@{gmock-\/internal-\/utils.h}!GMOCK\_IS\_SIGNED\_@{GMOCK\_IS\_SIGNED\_}}
+\index{GMOCK\_IS\_SIGNED\_@{GMOCK\_IS\_SIGNED\_}!gmock-\/internal-\/utils.h@{gmock-\/internal-\/utils.h}}
+\subsubsection{\texorpdfstring{GMOCK\_IS\_SIGNED\_}{GMOCK\_IS\_SIGNED\_}}
+{\footnotesize\ttfamily \#define G\+M\+O\+C\+K\+\_\+\+I\+S\+\_\+\+S\+I\+G\+N\+E\+D\+\_\+(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~(static\+\_\+cast$<$T$>$(-\/1) $<$ 0)}
+
+\mbox{\Hypertarget{gmock-internal-utils_8h_a72b01bdd08b78e927270885ca880ead4}\label{gmock-internal-utils_8h_a72b01bdd08b78e927270885ca880ead4}} 
+\index{gmock-\/internal-\/utils.h@{gmock-\/internal-\/utils.h}!GMOCK\_KIND\_OF\_@{GMOCK\_KIND\_OF\_}}
+\index{GMOCK\_KIND\_OF\_@{GMOCK\_KIND\_OF\_}!gmock-\/internal-\/utils.h@{gmock-\/internal-\/utils.h}}
+\subsubsection{\texorpdfstring{GMOCK\_KIND\_OF\_}{GMOCK\_KIND\_OF\_}}
+{\footnotesize\ttfamily \#define G\+M\+O\+C\+K\+\_\+\+K\+I\+N\+D\+\_\+\+O\+F\+\_\+(\begin{DoxyParamCaption}\item[{}]{type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{static\_cast< ::testing::internal::TypeKind>( \(\backslash\)}
+\DoxyCodeLine{      ::\mbox{\hyperlink{structtesting_1_1internal_1_1KindOf}{testing::internal::KindOf<type>::value}})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{gmock-internal-utils_8h_a0725bd2b3326d282677e5197e53cc5e9}\label{gmock-internal-utils_8h_a0725bd2b3326d282677e5197e53cc5e9}} 
+\index{gmock-\/internal-\/utils.h@{gmock-\/internal-\/utils.h}!GMOCK\_WCHAR\_T\_IS\_NATIVE\_@{GMOCK\_WCHAR\_T\_IS\_NATIVE\_}}
+\index{GMOCK\_WCHAR\_T\_IS\_NATIVE\_@{GMOCK\_WCHAR\_T\_IS\_NATIVE\_}!gmock-\/internal-\/utils.h@{gmock-\/internal-\/utils.h}}
+\subsubsection{\texorpdfstring{GMOCK\_WCHAR\_T\_IS\_NATIVE\_}{GMOCK\_WCHAR\_T\_IS\_NATIVE\_}}
+{\footnotesize\ttfamily \#define G\+M\+O\+C\+K\+\_\+\+W\+C\+H\+A\+R\+\_\+\+T\+\_\+\+I\+S\+\_\+\+N\+A\+T\+I\+V\+E\+\_\+~1}
+

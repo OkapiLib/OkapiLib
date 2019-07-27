@@ -1,0 +1,140 @@
+\hypertarget{classtesting_1_1internal_1_1ParamIterator}{}\section{testing\+::internal\+::Param\+Iterator$<$ T $>$ Class Template Reference}
+\label{classtesting_1_1internal_1_1ParamIterator}\index{testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}}
+
+
+{\ttfamily \#include $<$gtest-\/param-\/util.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef T \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_a4afe3a68db0d0744753c8afe262e35df}{value\+\_\+type}}
+\item 
+typedef const T \& \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_ac96f133ffa06fc0f9faff5a1c7954382}{reference}}
+\item 
+typedef ptrdiff\+\_\+t \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_a6c37240a04ba3fc4c56f6c413cf4771d}{difference\+\_\+type}}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_aa10585055ee055e304703a3004f24f33}{Param\+Iterator}} (const \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}} \&other)
+\item 
+\mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}} \& \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_a8019f54ea1c66ca39ffdec47acfabfe6}{operator=}} (const \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}} \&other)
+\item 
+const T \& \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_aa024380a4cc0cfdcaa114e942c348fce}{operator $\ast$}} () const
+\item 
+const T $\ast$ \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_aad035d35e8f0c1412854959a94d4887e}{operator-\/$>$}} () const
+\item 
+\mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}} \& \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_ab0922f2f554fb3beaf13c442da605e8d}{operator++}} ()
+\item 
+\mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}} \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_af51e17827dd54977165937550c0fb030}{operator++}} (int)
+\item 
+bool \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_adc356b4789eb0c2a1b5b033c7874e5a6}{operator==}} (const \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}} \&other) const
+\item 
+bool \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_a7a6aee04e8e44b5c8294929951cfac2b}{operator!=}} (const \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}} \&other) const
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_ab73a355ae191f2f7eab54b65ca557714}{Param\+Generator$<$ T $>$}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIterator_a6c37240a04ba3fc4c56f6c413cf4771d}\label{classtesting_1_1internal_1_1ParamIterator_a6c37240a04ba3fc4c56f6c413cf4771d}} 
+\index{testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}!difference\_type@{difference\_type}}
+\index{difference\_type@{difference\_type}!testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}}
+\subsubsection{\texorpdfstring{difference\_type}{difference\_type}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+typedef ptrdiff\+\_\+t \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{testing\+::internal\+::\+Param\+Iterator}}$<$ T $>$\+::\mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_a6c37240a04ba3fc4c56f6c413cf4771d}{difference\+\_\+type}}}
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIterator_ac96f133ffa06fc0f9faff5a1c7954382}\label{classtesting_1_1internal_1_1ParamIterator_ac96f133ffa06fc0f9faff5a1c7954382}} 
+\index{testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}!reference@{reference}}
+\index{reference@{reference}!testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}}
+\subsubsection{\texorpdfstring{reference}{reference}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+typedef const T\& \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{testing\+::internal\+::\+Param\+Iterator}}$<$ T $>$\+::\mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_ac96f133ffa06fc0f9faff5a1c7954382}{reference}}}
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIterator_a4afe3a68db0d0744753c8afe262e35df}\label{classtesting_1_1internal_1_1ParamIterator_a4afe3a68db0d0744753c8afe262e35df}} 
+\index{testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}!value\_type@{value\_type}}
+\index{value\_type@{value\_type}!testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}}
+\subsubsection{\texorpdfstring{value\_type}{value\_type}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+typedef T \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{testing\+::internal\+::\+Param\+Iterator}}$<$ T $>$\+::\mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator_a4afe3a68db0d0744753c8afe262e35df}{value\+\_\+type}}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIterator_aa10585055ee055e304703a3004f24f33}\label{classtesting_1_1internal_1_1ParamIterator_aa10585055ee055e304703a3004f24f33}} 
+\index{testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}!ParamIterator@{ParamIterator}}
+\index{ParamIterator@{ParamIterator}!testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}}
+\subsubsection{\texorpdfstring{ParamIterator()}{ParamIterator()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{testing\+::internal\+::\+Param\+Iterator}}$<$ T $>$\+::\mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIterator_aa024380a4cc0cfdcaa114e942c348fce}\label{classtesting_1_1internal_1_1ParamIterator_aa024380a4cc0cfdcaa114e942c348fce}} 
+\index{testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$()}{operator *()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const T\& \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{testing\+::internal\+::\+Param\+Iterator}}$<$ T $>$\+::operator $\ast$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIterator_a7a6aee04e8e44b5c8294929951cfac2b}\label{classtesting_1_1internal_1_1ParamIterator_a7a6aee04e8e44b5c8294929951cfac2b}} 
+\index{testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{testing\+::internal\+::\+Param\+Iterator}}$<$ T $>$\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIterator_ab0922f2f554fb3beaf13c442da605e8d}\label{classtesting_1_1internal_1_1ParamIterator_ab0922f2f554fb3beaf13c442da605e8d}} 
+\index{testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}!operator++@{operator++}}
+\index{operator++@{operator++}!testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}}
+\subsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}}\& \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{testing\+::internal\+::\+Param\+Iterator}}$<$ T $>$\+::operator++ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIterator_af51e17827dd54977165937550c0fb030}\label{classtesting_1_1internal_1_1ParamIterator_af51e17827dd54977165937550c0fb030}} 
+\index{testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}!operator++@{operator++}}
+\index{operator++@{operator++}!testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}}
+\subsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}} \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{testing\+::internal\+::\+Param\+Iterator}}$<$ T $>$\+::operator++ (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIterator_aad035d35e8f0c1412854959a94d4887e}\label{classtesting_1_1internal_1_1ParamIterator_aad035d35e8f0c1412854959a94d4887e}} 
+\index{testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}!operator-\/$>$@{operator-\/$>$}}
+\index{operator-\/$>$@{operator-\/$>$}!testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}}
+\subsubsection{\texorpdfstring{operator-\/$>$()}{operator->()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const T$\ast$ \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{testing\+::internal\+::\+Param\+Iterator}}$<$ T $>$\+::operator-\/$>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIterator_a8019f54ea1c66ca39ffdec47acfabfe6}\label{classtesting_1_1internal_1_1ParamIterator_a8019f54ea1c66ca39ffdec47acfabfe6}} 
+\index{testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}}\& \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{testing\+::internal\+::\+Param\+Iterator}}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIterator_adc356b4789eb0c2a1b5b033c7874e5a6}\label{classtesting_1_1internal_1_1ParamIterator_adc356b4789eb0c2a1b5b033c7874e5a6}} 
+\index{testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{testing\+::internal\+::\+Param\+Iterator}}$<$ T $>$\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesting_1_1internal_1_1ParamIterator}{Param\+Iterator}}$<$ T $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classtesting_1_1internal_1_1ParamIterator_ab73a355ae191f2f7eab54b65ca557714}\label{classtesting_1_1internal_1_1ParamIterator_ab73a355ae191f2f7eab54b65ca557714}} 
+\index{testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}!ParamGenerator$<$ T $>$@{ParamGenerator$<$ T $>$}}
+\index{ParamGenerator$<$ T $>$@{ParamGenerator$<$ T $>$}!testing::internal::ParamIterator$<$ T $>$@{testing::internal::ParamIterator$<$ T $>$}}
+\subsubsection{\texorpdfstring{ParamGenerator$<$ T $>$}{ParamGenerator< T >}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+friend class \mbox{\hyperlink{classtesting_1_1internal_1_1ParamGenerator}{Param\+Generator}}$<$ T $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cmake-\/build-\/debug/googletest-\/src/googletest/include/gtest/internal/\mbox{\hyperlink{gtest-param-util_8h}{gtest-\/param-\/util.\+h}}\end{DoxyCompactItemize}

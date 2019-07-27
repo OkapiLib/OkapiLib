@@ -1,0 +1,77 @@
+\hypertarget{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest}{}\section{googletest-\/throw-\/on-\/failure-\/test.Throw\+On\+Failure\+Test Class Reference}
+\label{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest}\index{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest@{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest}}
+Inheritance diagram for googletest-\/throw-\/on-\/failure-\/test.Throw\+On\+Failure\+Test\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_ac9966623ba3bbd94be99aef689db43f3}{Run\+And\+Verify}} (self, env\+\_\+var\+\_\+value, flag\+\_\+value, should\+\_\+fail)
+\item 
+def \mbox{\hyperlink{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_a55494f56e9674d086077e82583e8f823}{test\+Default\+Behavior}} (self)
+\item 
+def \mbox{\hyperlink{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_a8ab58ce03ffb9fa474a6c9282bb13021}{test\+Throw\+On\+Failure\+Env\+Var}} (self)
+\item 
+def \mbox{\hyperlink{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_aeded6eb7d9c7e95f4d18768c4a767eaf}{test\+Throw\+On\+Failure\+Flag}} (self)
+\item 
+def \mbox{\hyperlink{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_a18515553dbfe7b3e6ed6449fa81893c1}{test\+Throw\+On\+Failure\+Flag\+Overrides\+Env\+Var}} (self)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}Tests the throw-on-failure mode.\end{DoxyVerb}
+ 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_ac9966623ba3bbd94be99aef689db43f3}\label{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_ac9966623ba3bbd94be99aef689db43f3}} 
+\index{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest@{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest}!RunAndVerify@{RunAndVerify}}
+\index{RunAndVerify@{RunAndVerify}!googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest@{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest}}
+\subsubsection{\texorpdfstring{RunAndVerify()}{RunAndVerify()}}
+{\footnotesize\ttfamily def googletest-\/throw-\/on-\/failure-\/test.\+Throw\+On\+Failure\+Test.\+Run\+And\+Verify (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{env\+\_\+var\+\_\+value,  }\item[{}]{flag\+\_\+value,  }\item[{}]{should\+\_\+fail }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Runs googletest-throw-on-failure-test_ and verifies that it does
+(or does not) exit with a non-zero code.
+
+Args:
+  env_var_value:    value of the GTEST_BREAK_ON_FAILURE environment
+                variable; None if the variable should be unset.
+  flag_value:       value of the --gtest_break_on_failure flag;
+                None if the flag should not be present.
+  should_fail:      True iff the program is expected to fail.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_a55494f56e9674d086077e82583e8f823}\label{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_a55494f56e9674d086077e82583e8f823}} 
+\index{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest@{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest}!testDefaultBehavior@{testDefaultBehavior}}
+\index{testDefaultBehavior@{testDefaultBehavior}!googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest@{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest}}
+\subsubsection{\texorpdfstring{testDefaultBehavior()}{testDefaultBehavior()}}
+{\footnotesize\ttfamily def googletest-\/throw-\/on-\/failure-\/test.\+Throw\+On\+Failure\+Test.\+test\+Default\+Behavior (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Tests the behavior of the default mode.\end{DoxyVerb}
+ \mbox{\Hypertarget{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_a8ab58ce03ffb9fa474a6c9282bb13021}\label{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_a8ab58ce03ffb9fa474a6c9282bb13021}} 
+\index{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest@{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest}!testThrowOnFailureEnvVar@{testThrowOnFailureEnvVar}}
+\index{testThrowOnFailureEnvVar@{testThrowOnFailureEnvVar}!googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest@{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest}}
+\subsubsection{\texorpdfstring{testThrowOnFailureEnvVar()}{testThrowOnFailureEnvVar()}}
+{\footnotesize\ttfamily def googletest-\/throw-\/on-\/failure-\/test.\+Throw\+On\+Failure\+Test.\+test\+Throw\+On\+Failure\+Env\+Var (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Tests using the GTEST_THROW_ON_FAILURE environment variable.\end{DoxyVerb}
+ \mbox{\Hypertarget{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_aeded6eb7d9c7e95f4d18768c4a767eaf}\label{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_aeded6eb7d9c7e95f4d18768c4a767eaf}} 
+\index{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest@{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest}!testThrowOnFailureFlag@{testThrowOnFailureFlag}}
+\index{testThrowOnFailureFlag@{testThrowOnFailureFlag}!googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest@{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest}}
+\subsubsection{\texorpdfstring{testThrowOnFailureFlag()}{testThrowOnFailureFlag()}}
+{\footnotesize\ttfamily def googletest-\/throw-\/on-\/failure-\/test.\+Throw\+On\+Failure\+Test.\+test\+Throw\+On\+Failure\+Flag (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Tests using the --gtest_throw_on_failure flag.\end{DoxyVerb}
+ \mbox{\Hypertarget{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_a18515553dbfe7b3e6ed6449fa81893c1}\label{classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest_a18515553dbfe7b3e6ed6449fa81893c1}} 
+\index{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest@{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest}!testThrowOnFailureFlagOverridesEnvVar@{testThrowOnFailureFlagOverridesEnvVar}}
+\index{testThrowOnFailureFlagOverridesEnvVar@{testThrowOnFailureFlagOverridesEnvVar}!googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest@{googletest-\/throw-\/on-\/failure-\/test.ThrowOnFailureTest}}
+\subsubsection{\texorpdfstring{testThrowOnFailureFlagOverridesEnvVar()}{testThrowOnFailureFlagOverridesEnvVar()}}
+{\footnotesize\ttfamily def googletest-\/throw-\/on-\/failure-\/test.\+Throw\+On\+Failure\+Test.\+test\+Throw\+On\+Failure\+Flag\+Overrides\+Env\+Var (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Tests that --gtest_throw_on_failure overrides GTEST_THROW_ON_FAILURE.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cmake-\/build-\/debug/googletest-\/src/googletest/test/\mbox{\hyperlink{googletest-throw-on-failure-test_8py}{googletest-\/throw-\/on-\/failure-\/test.\+py}}\end{DoxyCompactItemize}

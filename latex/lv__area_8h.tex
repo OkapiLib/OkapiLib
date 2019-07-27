@@ -1,0 +1,328 @@
+\hypertarget{lv__area_8h}{}\section{include/display/lv\+\_\+misc/lv\+\_\+area.h File Reference}
+\label{lv__area_8h}\index{include/display/lv\_misc/lv\_area.h@{include/display/lv\_misc/lv\_area.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlv__point__t}{lv\+\_\+point\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{lv__area_8h_afd59cbd057971f697443ef3cdfd44b9d}{L\+V\+\_\+\+C\+O\+O\+R\+D\+\_\+\+M\+AX}}~(16383) /$\ast$To avoid overflow don\textquotesingle{}t let the max \mbox{[}-\/32,32k\mbox{]} range $\ast$/
+\item 
+\#define \mbox{\hyperlink{lv__area_8h_aac556eabce2feec93116344fb2b87b25}{L\+V\+\_\+\+C\+O\+O\+R\+D\+\_\+\+M\+IN}}~(-\/16384)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int16\+\_\+t \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{lv__area_8h_a8a6f63df40693641307a31d39f44101d}{lv\+\_\+area\+\_\+set}} (\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$area\+\_\+p, \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}} x1, \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}} y1, \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}} x2, \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}} y2)
+\begin{DoxyCompactList}\small\item\em Initialize an area. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{lv__area_8h_a8cd923a44f2a33946baed7793072c24b}{lv\+\_\+area\+\_\+copy}} (\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$dest, const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$src)
+\begin{DoxyCompactList}\small\item\em Copy an area. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}} \mbox{\hyperlink{lv__area_8h_ab647b6dee16fa579c54ab6659caa8998}{lv\+\_\+area\+\_\+get\+\_\+width}} (const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$area\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Get the width of an area. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}} \mbox{\hyperlink{lv__area_8h_a425546b8d4b319859f313f50f3e5becf}{lv\+\_\+area\+\_\+get\+\_\+height}} (const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$area\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Get the height of an area. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__area_8h_a7cd8866c2312050e4541d5cdd862ed4a}{lv\+\_\+area\+\_\+set\+\_\+width}} (\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$area\+\_\+p, \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}} w)
+\begin{DoxyCompactList}\small\item\em Set the width of an area. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__area_8h_a092d265b43760f45dded850e64c175c7}{lv\+\_\+area\+\_\+set\+\_\+height}} (\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$area\+\_\+p, \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}} h)
+\begin{DoxyCompactList}\small\item\em Set the height of an area. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__area_8h_aa746f39b483e5368cabd6c56ea9f5736}{lv\+\_\+area\+\_\+set\+\_\+pos}} (\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$area\+\_\+p, \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}} x, \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}} y)
+\begin{DoxyCompactList}\small\item\em Set the position of an area (width and height will be kept) \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{lv__area_8h_a71b2b35191f41ba629245399ce5aaf39}{lv\+\_\+area\+\_\+get\+\_\+size}} (const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$area\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Return with area of an area (x $\ast$ y) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{lv__area_8h_a3a82d6bb62312a7ac68651f1dea921e8}{lv\+\_\+area\+\_\+union}} (\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$res\+\_\+p, const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$a1\+\_\+p, const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$a2\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Get the common parts of two areas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lv__area_8h_a5624f73deeed656fe3d830694f1095df}{lv\+\_\+area\+\_\+join}} (\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$a\+\_\+res\+\_\+p, const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$a1\+\_\+p, const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$a2\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Join two areas into a third which involves the other two. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{lv__area_8h_a5d63e038e924a898118c841d61d2a9f7}{lv\+\_\+area\+\_\+is\+\_\+point\+\_\+on}} (const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$a\+\_\+p, const \mbox{\hyperlink{structlv__point__t}{lv\+\_\+point\+\_\+t}} $\ast$p\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Check if a point is on an area. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{lv__area_8h_aa2a98c824a46cad50e1b5fa75fbaee10}{lv\+\_\+area\+\_\+is\+\_\+on}} (const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$a1\+\_\+p, const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$a2\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Check if two area has common parts. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{lv__area_8h_aca2cfda730417164f24a6120ca80cbc3}{lv\+\_\+area\+\_\+is\+\_\+in}} (const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$ain\+\_\+p, const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$aholder\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Check if an area is fully on an other. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{lv__area_8h_afd59cbd057971f697443ef3cdfd44b9d}\label{lv__area_8h_afd59cbd057971f697443ef3cdfd44b9d}} 
+\index{lv\_area.h@{lv\_area.h}!LV\_COORD\_MAX@{LV\_COORD\_MAX}}
+\index{LV\_COORD\_MAX@{LV\_COORD\_MAX}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{LV\_COORD\_MAX}{LV\_COORD\_MAX}}
+{\footnotesize\ttfamily \#define L\+V\+\_\+\+C\+O\+O\+R\+D\+\_\+\+M\+AX~(16383) /$\ast$To avoid overflow don\textquotesingle{}t let the max \mbox{[}-\/32,32k\mbox{]} range $\ast$/}
+
+\mbox{\Hypertarget{lv__area_8h_aac556eabce2feec93116344fb2b87b25}\label{lv__area_8h_aac556eabce2feec93116344fb2b87b25}} 
+\index{lv\_area.h@{lv\_area.h}!LV\_COORD\_MIN@{LV\_COORD\_MIN}}
+\index{LV\_COORD\_MIN@{LV\_COORD\_MIN}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{LV\_COORD\_MIN}{LV\_COORD\_MIN}}
+{\footnotesize\ttfamily \#define L\+V\+\_\+\+C\+O\+O\+R\+D\+\_\+\+M\+IN~(-\/16384)}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}\label{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_coord\_t@{lv\_coord\_t}}
+\index{lv\_coord\_t@{lv\_coord\_t}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_coord\_t}{lv\_coord\_t}}
+{\footnotesize\ttfamily typedef int16\+\_\+t \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{lv__area_8h_a8cd923a44f2a33946baed7793072c24b}\label{lv__area_8h_a8cd923a44f2a33946baed7793072c24b}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_area\_copy@{lv\_area\_copy}}
+\index{lv\_area\_copy@{lv\_area\_copy}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_area\_copy()}{lv\_area\_copy()}}
+{\footnotesize\ttfamily static void lv\+\_\+area\+\_\+copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{dest,  }\item[{const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Copy an area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & pointer to the destination area \\
+\hline
+{\em src} & pointer to the source area \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__area_8h_a425546b8d4b319859f313f50f3e5becf}\label{lv__area_8h_a425546b8d4b319859f313f50f3e5becf}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_area\_get\_height@{lv\_area\_get\_height}}
+\index{lv\_area\_get\_height@{lv\_area\_get\_height}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_area\_get\_height()}{lv\_area\_get\_height()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}} lv\+\_\+area\+\_\+get\+\_\+height (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{area\+\_\+p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get the height of an area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em area\+\_\+p} & pointer to an area \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the height of the area (if y1 == y2 -\/$>$ height = 1) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__area_8h_a71b2b35191f41ba629245399ce5aaf39}\label{lv__area_8h_a71b2b35191f41ba629245399ce5aaf39}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_area\_get\_size@{lv\_area\_get\_size}}
+\index{lv\_area\_get\_size@{lv\_area\_get\_size}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_area\_get\_size()}{lv\_area\_get\_size()}}
+{\footnotesize\ttfamily uint32\+\_\+t lv\+\_\+area\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{area\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Return with area of an area (x $\ast$ y) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em area\+\_\+p} & pointer to an area \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size of area 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__area_8h_ab647b6dee16fa579c54ab6659caa8998}\label{lv__area_8h_ab647b6dee16fa579c54ab6659caa8998}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_area\_get\_width@{lv\_area\_get\_width}}
+\index{lv\_area\_get\_width@{lv\_area\_get\_width}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_area\_get\_width()}{lv\_area\_get\_width()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}} lv\+\_\+area\+\_\+get\+\_\+width (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{area\+\_\+p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get the width of an area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em area\+\_\+p} & pointer to an area \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the width of the area (if x1 == x2 -\/$>$ width = 1) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__area_8h_aca2cfda730417164f24a6120ca80cbc3}\label{lv__area_8h_aca2cfda730417164f24a6120ca80cbc3}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_area\_is\_in@{lv\_area\_is\_in}}
+\index{lv\_area\_is\_in@{lv\_area\_is\_in}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_area\_is\_in()}{lv\_area\_is\_in()}}
+{\footnotesize\ttfamily bool lv\+\_\+area\+\_\+is\+\_\+in (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{ain\+\_\+p,  }\item[{const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{aholder\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Check if an area is fully on an other. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ain\+\_\+p} & pointer to an area which could be on aholder\+\_\+p \\
+\hline
+{\em aholder} & pointer to an area which could involve ain\+\_\+p \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__area_8h_aa2a98c824a46cad50e1b5fa75fbaee10}\label{lv__area_8h_aa2a98c824a46cad50e1b5fa75fbaee10}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_area\_is\_on@{lv\_area\_is\_on}}
+\index{lv\_area\_is\_on@{lv\_area\_is\_on}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_area\_is\_on()}{lv\_area\_is\_on()}}
+{\footnotesize\ttfamily bool lv\+\_\+area\+\_\+is\+\_\+on (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{a1\+\_\+p,  }\item[{const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{a2\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Check if two area has common parts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a1\+\_\+p} & pointer to an area. \\
+\hline
+{\em a2\+\_\+p} & pointer to an other area \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false\+: a1\+\_\+p and a2\+\_\+p has no common parts 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__area_8h_a5d63e038e924a898118c841d61d2a9f7}\label{lv__area_8h_a5d63e038e924a898118c841d61d2a9f7}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_area\_is\_point\_on@{lv\_area\_is\_point\_on}}
+\index{lv\_area\_is\_point\_on@{lv\_area\_is\_point\_on}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_area\_is\_point\_on()}{lv\_area\_is\_point\_on()}}
+{\footnotesize\ttfamily bool lv\+\_\+area\+\_\+is\+\_\+point\+\_\+on (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{a\+\_\+p,  }\item[{const \mbox{\hyperlink{structlv__point__t}{lv\+\_\+point\+\_\+t}} $\ast$}]{p\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Check if a point is on an area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+\_\+p} & pointer to an area \\
+\hline
+{\em p\+\_\+p} & pointer to a point \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false\+:the point is out of the area 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__area_8h_a5624f73deeed656fe3d830694f1095df}\label{lv__area_8h_a5624f73deeed656fe3d830694f1095df}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_area\_join@{lv\_area\_join}}
+\index{lv\_area\_join@{lv\_area\_join}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_area\_join()}{lv\_area\_join()}}
+{\footnotesize\ttfamily void lv\+\_\+area\+\_\+join (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{a\+\_\+res\+\_\+p,  }\item[{const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{a1\+\_\+p,  }\item[{const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{a2\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Join two areas into a third which involves the other two. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em res\+\_\+p} & pointer to an area, the result will be stored here \\
+\hline
+{\em a1\+\_\+p} & pointer to the first area \\
+\hline
+{\em a2\+\_\+p} & pointer to the second area \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__area_8h_a8a6f63df40693641307a31d39f44101d}\label{lv__area_8h_a8a6f63df40693641307a31d39f44101d}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_area\_set@{lv\_area\_set}}
+\index{lv\_area\_set@{lv\_area\_set}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_area\_set()}{lv\_area\_set()}}
+{\footnotesize\ttfamily void lv\+\_\+area\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{area\+\_\+p,  }\item[{\mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}}}]{x1,  }\item[{\mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}}}]{y1,  }\item[{\mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}}}]{x2,  }\item[{\mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}}}]{y2 }\end{DoxyParamCaption})}
+
+
+
+Initialize an area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em area\+\_\+p} & pointer to an area \\
+\hline
+{\em x1} & left coordinate of the area \\
+\hline
+{\em y1} & top coordinate of the area \\
+\hline
+{\em x2} & right coordinate of the area \\
+\hline
+{\em y2} & bottom coordinate of the area \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__area_8h_a092d265b43760f45dded850e64c175c7}\label{lv__area_8h_a092d265b43760f45dded850e64c175c7}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_area\_set\_height@{lv\_area\_set\_height}}
+\index{lv\_area\_set\_height@{lv\_area\_set\_height}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_area\_set\_height()}{lv\_area\_set\_height()}}
+{\footnotesize\ttfamily void lv\+\_\+area\+\_\+set\+\_\+height (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{area\+\_\+p,  }\item[{\mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}}}]{h }\end{DoxyParamCaption})}
+
+
+
+Set the height of an area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em area\+\_\+p} & pointer to an area \\
+\hline
+{\em h} & the new height of the area (h == 1 makes y1 == y2) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__area_8h_aa746f39b483e5368cabd6c56ea9f5736}\label{lv__area_8h_aa746f39b483e5368cabd6c56ea9f5736}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_area\_set\_pos@{lv\_area\_set\_pos}}
+\index{lv\_area\_set\_pos@{lv\_area\_set\_pos}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_area\_set\_pos()}{lv\_area\_set\_pos()}}
+{\footnotesize\ttfamily void lv\+\_\+area\+\_\+set\+\_\+pos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{area\+\_\+p,  }\item[{\mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}}}]{x,  }\item[{\mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}}}]{y }\end{DoxyParamCaption})}
+
+
+
+Set the position of an area (width and height will be kept) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em area\+\_\+p} & pointer to an area \\
+\hline
+{\em x} & the new x coordinate of the area \\
+\hline
+{\em y} & the new y coordinate of the area \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__area_8h_a7cd8866c2312050e4541d5cdd862ed4a}\label{lv__area_8h_a7cd8866c2312050e4541d5cdd862ed4a}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_area\_set\_width@{lv\_area\_set\_width}}
+\index{lv\_area\_set\_width@{lv\_area\_set\_width}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_area\_set\_width()}{lv\_area\_set\_width()}}
+{\footnotesize\ttfamily void lv\+\_\+area\+\_\+set\+\_\+width (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{area\+\_\+p,  }\item[{\mbox{\hyperlink{lv__area_8h_ad98932f5017f20988532bb68b32a6d76}{lv\+\_\+coord\+\_\+t}}}]{w }\end{DoxyParamCaption})}
+
+
+
+Set the width of an area. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em area\+\_\+p} & pointer to an area \\
+\hline
+{\em w} & the new width of the area (w == 1 makes x1 == x2) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lv__area_8h_a3a82d6bb62312a7ac68651f1dea921e8}\label{lv__area_8h_a3a82d6bb62312a7ac68651f1dea921e8}} 
+\index{lv\_area.h@{lv\_area.h}!lv\_area\_union@{lv\_area\_union}}
+\index{lv\_area\_union@{lv\_area\_union}!lv\_area.h@{lv\_area.h}}
+\subsubsection{\texorpdfstring{lv\_area\_union()}{lv\_area\_union()}}
+{\footnotesize\ttfamily bool lv\+\_\+area\+\_\+union (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{res\+\_\+p,  }\item[{const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{a1\+\_\+p,  }\item[{const \mbox{\hyperlink{structlv__area__t}{lv\+\_\+area\+\_\+t}} $\ast$}]{a2\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Get the common parts of two areas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em res\+\_\+p} & pointer to an area, the result will be stored her \\
+\hline
+{\em a1\+\_\+p} & pointer to the first area \\
+\hline
+{\em a2\+\_\+p} & pointer to the second area \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false\+: the two area has NO common parts, res\+\_\+p is invalid 
+\end{DoxyReturn}

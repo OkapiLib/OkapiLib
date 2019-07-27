@@ -1,0 +1,590 @@
+\hypertarget{misc_8h}{}\section{include/pros/misc.h File Reference}
+\label{misc_8h}\index{include/pros/misc.h@{include/pros/misc.h}}
+
+
+Contains prototypes for miscellaneous functions pertaining to the controller, battery, and competition control.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{misc_8h_acceaccd4cf9a93ef86e8f21206a6645a}{N\+U\+M\+\_\+\+V5\+\_\+\+P\+O\+R\+TS}}~(22)
+\item 
+\#define \mbox{\hyperlink{misc_8h_adefb84e79d34a20dc8dc91813f289323}{C\+O\+M\+P\+E\+T\+I\+T\+I\+O\+N\+\_\+\+D\+I\+S\+A\+B\+L\+ED}}~(1 $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em V5 Competition. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{misc_8h_ab1963437a4b6f9561d57f7e7e44bc853}{C\+O\+M\+P\+E\+T\+I\+T\+I\+O\+N\+\_\+\+A\+U\+T\+O\+N\+O\+M\+O\+US}}~(1 $<$$<$ 1)
+\item 
+\#define \mbox{\hyperlink{misc_8h_ae54538bebc289953e9238c59788a9649}{C\+O\+M\+P\+E\+T\+I\+T\+I\+O\+N\+\_\+\+C\+O\+N\+N\+E\+C\+T\+ED}}~(1 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{misc_8h_a1577cfc36f0d2d6f73a26263e9b518ce}{competition\+\_\+is\+\_\+disabled}}()~((\mbox{\hyperlink{misc_8h_a71a09bfc4dbfb9c07c917c701dc3e994}{competition\+\_\+get\+\_\+status}}() \& \mbox{\hyperlink{misc_8h_adefb84e79d34a20dc8dc91813f289323}{C\+O\+M\+P\+E\+T\+I\+T\+I\+O\+N\+\_\+\+D\+I\+S\+A\+B\+L\+ED}}) != 0)
+\item 
+\#define \mbox{\hyperlink{misc_8h_a5601e15718be476d66ecaf2cdcbe061f}{competition\+\_\+is\+\_\+connected}}()~((\mbox{\hyperlink{misc_8h_a71a09bfc4dbfb9c07c917c701dc3e994}{competition\+\_\+get\+\_\+status}}() \& \mbox{\hyperlink{misc_8h_ae54538bebc289953e9238c59788a9649}{C\+O\+M\+P\+E\+T\+I\+T\+I\+O\+N\+\_\+\+C\+O\+N\+N\+E\+C\+T\+ED}}) != 0)
+\item 
+\#define \mbox{\hyperlink{misc_8h_a6bbebf8507344dd452503249813923c8}{competition\+\_\+is\+\_\+autonomous}}()~((\mbox{\hyperlink{misc_8h_a71a09bfc4dbfb9c07c917c701dc3e994}{competition\+\_\+get\+\_\+status}}() \& \mbox{\hyperlink{misc_8h_ab1963437a4b6f9561d57f7e7e44bc853}{C\+O\+M\+P\+E\+T\+I\+T\+I\+O\+N\+\_\+\+A\+U\+T\+O\+N\+O\+M\+O\+US}}) != 0)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}} \{ \mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460a1c9d9311575877d185c44df1cadad226}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER}} = 0, 
+\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460a62d367ebc8ce395520d786f5c12614ac}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER}}
+ \}
+\begin{DoxyCompactList}\small\item\em V5 Controller. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5}{controller\+\_\+analog\+\_\+e\+\_\+t}} \{ \mbox{\hyperlink{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5ac73153bd6a186402cb8fad10c069ec55}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+L\+E\+F\+T\+\_\+X}} = 0, 
+\mbox{\hyperlink{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5ac68939b7adc180b25b95367fd0098e99}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+L\+E\+F\+T\+\_\+Y}}, 
+\mbox{\hyperlink{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5a1881009d58a89b01179876a44a768774}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+R\+I\+G\+H\+T\+\_\+X}}, 
+\mbox{\hyperlink{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5a3954a2f3b6de53400df445cc144a67ca}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+R\+I\+G\+H\+T\+\_\+Y}}
+ \}
+\item 
+enum \mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253ed}{controller\+\_\+digital\+\_\+e\+\_\+t}} \{ \newline
+\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253eda6152392f863b995bc682e6a7129dbdae}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+L1}} = 6, 
+\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253edab0b7af86329d2806c7e52b8396ca3a76}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+L2}}, 
+\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253edae3ae971723bd1d263b7661264df420fc}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+R1}}, 
+\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253eda982e210433ab2a7ba149c4008ad73851}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+R2}}, 
+\newline
+\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253eda092df532483a0b27281748df9d226772}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+UP}}, 
+\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253eda4290d3c38ae937a54b8409c7567be50d}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+D\+O\+WN}}, 
+\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253eda83537ab72f80c74cb4c06a195b885b6c}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+L\+E\+FT}}, 
+\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253eda6311765554410202cc2c099695640d91}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+R\+I\+G\+HT}}, 
+\newline
+\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253eda1ba98d2c4900c0ad3123f15090779fad}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+X}}, 
+\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253eda3b8c6ebc62fb8133413bb7090814ed54}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+B}}, 
+\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253eda89dfc687cc16e2e7b1ad022b47a698c4}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+Y}}, 
+\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253edabf8d8d50802f9417ba1f1512d2822f98}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+A}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{misc_8h_a71a09bfc4dbfb9c07c917c701dc3e994}{competition\+\_\+get\+\_\+status}} (void)
+\begin{DoxyCompactList}\small\item\em Get the current status of the competition control. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{misc_8h_afd1e850bd6613e2fb01960dc0cebb2ef}{controller\+\_\+is\+\_\+connected}} (\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}} id)
+\begin{DoxyCompactList}\small\item\em Checks if the controller is connected. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{misc_8h_aed67feb70cbdb115e9ec2c7cc28a5da8}{controller\+\_\+get\+\_\+analog}} (\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}} id, \mbox{\hyperlink{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5}{controller\+\_\+analog\+\_\+e\+\_\+t}} channel)
+\begin{DoxyCompactList}\small\item\em Gets the value of an analog channel (joystick) on a controller. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{misc_8h_a54033388f5d4e3f8b291d5a6f2122f5e}{controller\+\_\+get\+\_\+battery\+\_\+capacity}} (\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}} id)
+\begin{DoxyCompactList}\small\item\em Gets the battery capacity of the given controller. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{misc_8h_aeab690f86735cb6685f3c3184c54ba2d}{controller\+\_\+get\+\_\+battery\+\_\+level}} (\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}} id)
+\begin{DoxyCompactList}\small\item\em Gets the battery level of the given controller. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{misc_8h_af01b9e0d93d55a50b09c24f7ad5900fc}{controller\+\_\+get\+\_\+digital}} (\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}} id, \mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253ed}{controller\+\_\+digital\+\_\+e\+\_\+t}} button)
+\begin{DoxyCompactList}\small\item\em Checks if a digital channel (button) on the controller is currently pressed. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{misc_8h_a89d292cfe75a2abac6673a965697ac8c}{controller\+\_\+get\+\_\+digital\+\_\+new\+\_\+press}} (\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}} id, \mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253ed}{controller\+\_\+digital\+\_\+e\+\_\+t}} button)
+\begin{DoxyCompactList}\small\item\em Returns a rising-\/edge case for a controller button press. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{misc_8h_af7c72fcad599c9c0517ef22e6e813ae8}{controller\+\_\+print}} (\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}} id, uint8\+\_\+t line, uint8\+\_\+t col, const char $\ast$fmt,...)
+\begin{DoxyCompactList}\small\item\em Sets text to the controller L\+CD screen. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{misc_8h_a311402c942d9497ccb67e63ee2fa31a4}{controller\+\_\+set\+\_\+text}} (\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}} id, uint8\+\_\+t line, uint8\+\_\+t col, const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Sets text to the controller L\+CD screen. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{misc_8h_a22499128069a56f2ff041c11a9a33da7}{controller\+\_\+clear\+\_\+line}} (\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}} id, uint8\+\_\+t line)
+\begin{DoxyCompactList}\small\item\em Clears an individual line of the controller screen. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{misc_8h_a730715344d091ed017894cf907e9c3ab}{controller\+\_\+clear}} (\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}} id)
+\begin{DoxyCompactList}\small\item\em Clears all of the lines on the controller screen. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{misc_8h_aced0f39c3b2206489d1cc4bf97b91a82}{controller\+\_\+rumble}} (\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}} id, const char $\ast$rumble\+\_\+pattern)
+\begin{DoxyCompactList}\small\item\em Rumble the controller. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{misc_8h_a3e2a84e664eb602bd21a481259a94f56}{battery\+\_\+get\+\_\+voltage}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the current voltage of the battery, as reported by V\+E\+Xos. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{misc_8h_a20e84af87727a57282efd63cf76c8e78}{battery\+\_\+get\+\_\+current}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the current current of the battery, as reported by V\+E\+Xos. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{misc_8h_a60d32e15ea7ab1b2d7fa6b63c44a5027}{battery\+\_\+get\+\_\+temperature}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the current temperature of the battery, as reported by V\+E\+Xos. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{misc_8h_ae692171cfb44885421dc1ef873701e05}{battery\+\_\+get\+\_\+capacity}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the current capacity of the battery, as reported by V\+E\+Xos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains prototypes for miscellaneous functions pertaining to the controller, battery, and competition control. 
+
+Visit \href{https://pros.cs.purdue.edu/v5/tutorials/topical/controller.html}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/controller.\+html}} to learn more.
+
+This file should not be modified by users, since it gets replaced whenever a kernel upgrade occurs.
+
+Copyright (c) 2017-\/2018, Purdue University A\+CM S\+I\+G\+Bots. All rights reservered.
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.\+0. If a copy of the M\+PL was not distributed with this file, You can obtain one at \href{http://mozilla.org/MPL/2.0/}{\texttt{ http\+://mozilla.\+org/\+M\+P\+L/2.\+0/}}. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{misc_8h_ab1963437a4b6f9561d57f7e7e44bc853}\label{misc_8h_ab1963437a4b6f9561d57f7e7e44bc853}} 
+\index{misc.h@{misc.h}!COMPETITION\_AUTONOMOUS@{COMPETITION\_AUTONOMOUS}}
+\index{COMPETITION\_AUTONOMOUS@{COMPETITION\_AUTONOMOUS}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{COMPETITION\_AUTONOMOUS}{COMPETITION\_AUTONOMOUS}}
+{\footnotesize\ttfamily \#define C\+O\+M\+P\+E\+T\+I\+T\+I\+O\+N\+\_\+\+A\+U\+T\+O\+N\+O\+M\+O\+US~(1 $<$$<$ 1)}
+
+\mbox{\Hypertarget{misc_8h_ae54538bebc289953e9238c59788a9649}\label{misc_8h_ae54538bebc289953e9238c59788a9649}} 
+\index{misc.h@{misc.h}!COMPETITION\_CONNECTED@{COMPETITION\_CONNECTED}}
+\index{COMPETITION\_CONNECTED@{COMPETITION\_CONNECTED}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{COMPETITION\_CONNECTED}{COMPETITION\_CONNECTED}}
+{\footnotesize\ttfamily \#define C\+O\+M\+P\+E\+T\+I\+T\+I\+O\+N\+\_\+\+C\+O\+N\+N\+E\+C\+T\+ED~(1 $<$$<$ 2)}
+
+\mbox{\Hypertarget{misc_8h_adefb84e79d34a20dc8dc91813f289323}\label{misc_8h_adefb84e79d34a20dc8dc91813f289323}} 
+\index{misc.h@{misc.h}!COMPETITION\_DISABLED@{COMPETITION\_DISABLED}}
+\index{COMPETITION\_DISABLED@{COMPETITION\_DISABLED}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{COMPETITION\_DISABLED}{COMPETITION\_DISABLED}}
+{\footnotesize\ttfamily \#define C\+O\+M\+P\+E\+T\+I\+T\+I\+O\+N\+\_\+\+D\+I\+S\+A\+B\+L\+ED~(1 $<$$<$ 0)}
+
+
+
+V5 Competition. 
+
+\mbox{\Hypertarget{misc_8h_a6bbebf8507344dd452503249813923c8}\label{misc_8h_a6bbebf8507344dd452503249813923c8}} 
+\index{misc.h@{misc.h}!competition\_is\_autonomous@{competition\_is\_autonomous}}
+\index{competition\_is\_autonomous@{competition\_is\_autonomous}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{competition\_is\_autonomous}{competition\_is\_autonomous}}
+{\footnotesize\ttfamily \#define competition\+\_\+is\+\_\+autonomous(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~((\mbox{\hyperlink{misc_8h_a71a09bfc4dbfb9c07c917c701dc3e994}{competition\+\_\+get\+\_\+status}}() \& \mbox{\hyperlink{misc_8h_ab1963437a4b6f9561d57f7e7e44bc853}{C\+O\+M\+P\+E\+T\+I\+T\+I\+O\+N\+\_\+\+A\+U\+T\+O\+N\+O\+M\+O\+US}}) != 0)}
+
+\mbox{\Hypertarget{misc_8h_a5601e15718be476d66ecaf2cdcbe061f}\label{misc_8h_a5601e15718be476d66ecaf2cdcbe061f}} 
+\index{misc.h@{misc.h}!competition\_is\_connected@{competition\_is\_connected}}
+\index{competition\_is\_connected@{competition\_is\_connected}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{competition\_is\_connected}{competition\_is\_connected}}
+{\footnotesize\ttfamily \#define competition\+\_\+is\+\_\+connected(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~((\mbox{\hyperlink{misc_8h_a71a09bfc4dbfb9c07c917c701dc3e994}{competition\+\_\+get\+\_\+status}}() \& \mbox{\hyperlink{misc_8h_ae54538bebc289953e9238c59788a9649}{C\+O\+M\+P\+E\+T\+I\+T\+I\+O\+N\+\_\+\+C\+O\+N\+N\+E\+C\+T\+ED}}) != 0)}
+
+\mbox{\Hypertarget{misc_8h_a1577cfc36f0d2d6f73a26263e9b518ce}\label{misc_8h_a1577cfc36f0d2d6f73a26263e9b518ce}} 
+\index{misc.h@{misc.h}!competition\_is\_disabled@{competition\_is\_disabled}}
+\index{competition\_is\_disabled@{competition\_is\_disabled}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{competition\_is\_disabled}{competition\_is\_disabled}}
+{\footnotesize\ttfamily \#define competition\+\_\+is\+\_\+disabled(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~((\mbox{\hyperlink{misc_8h_a71a09bfc4dbfb9c07c917c701dc3e994}{competition\+\_\+get\+\_\+status}}() \& \mbox{\hyperlink{misc_8h_adefb84e79d34a20dc8dc91813f289323}{C\+O\+M\+P\+E\+T\+I\+T\+I\+O\+N\+\_\+\+D\+I\+S\+A\+B\+L\+ED}}) != 0)}
+
+\mbox{\Hypertarget{misc_8h_acceaccd4cf9a93ef86e8f21206a6645a}\label{misc_8h_acceaccd4cf9a93ef86e8f21206a6645a}} 
+\index{misc.h@{misc.h}!NUM\_V5\_PORTS@{NUM\_V5\_PORTS}}
+\index{NUM\_V5\_PORTS@{NUM\_V5\_PORTS}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{NUM\_V5\_PORTS}{NUM\_V5\_PORTS}}
+{\footnotesize\ttfamily \#define N\+U\+M\+\_\+\+V5\+\_\+\+P\+O\+R\+TS~(22)}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5}\label{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5}} 
+\index{misc.h@{misc.h}!controller\_analog\_e\_t@{controller\_analog\_e\_t}}
+\index{controller\_analog\_e\_t@{controller\_analog\_e\_t}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_analog\_e\_t}{controller\_analog\_e\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5}{controller\+\_\+analog\+\_\+e\+\_\+t}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_ANALOG\_LEFT\_X@{E\_CONTROLLER\_ANALOG\_LEFT\_X}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_ANALOG\_LEFT\_X@{E\_CONTROLLER\_ANALOG\_LEFT\_X}}}\mbox{\Hypertarget{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5ac73153bd6a186402cb8fad10c069ec55}\label{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5ac73153bd6a186402cb8fad10c069ec55}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+L\+E\+F\+T\+\_\+X&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_ANALOG\_LEFT\_Y@{E\_CONTROLLER\_ANALOG\_LEFT\_Y}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_ANALOG\_LEFT\_Y@{E\_CONTROLLER\_ANALOG\_LEFT\_Y}}}\mbox{\Hypertarget{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5ac68939b7adc180b25b95367fd0098e99}\label{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5ac68939b7adc180b25b95367fd0098e99}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+L\+E\+F\+T\+\_\+Y&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_ANALOG\_RIGHT\_X@{E\_CONTROLLER\_ANALOG\_RIGHT\_X}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_ANALOG\_RIGHT\_X@{E\_CONTROLLER\_ANALOG\_RIGHT\_X}}}\mbox{\Hypertarget{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5a1881009d58a89b01179876a44a768774}\label{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5a1881009d58a89b01179876a44a768774}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+R\+I\+G\+H\+T\+\_\+X&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_ANALOG\_RIGHT\_Y@{E\_CONTROLLER\_ANALOG\_RIGHT\_Y}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_ANALOG\_RIGHT\_Y@{E\_CONTROLLER\_ANALOG\_RIGHT\_Y}}}\mbox{\Hypertarget{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5a3954a2f3b6de53400df445cc144a67ca}\label{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5a3954a2f3b6de53400df445cc144a67ca}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+R\+I\+G\+H\+T\+\_\+Y&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{misc_8h_a8c380ff02828ee53954bc0ce274253ed}\label{misc_8h_a8c380ff02828ee53954bc0ce274253ed}} 
+\index{misc.h@{misc.h}!controller\_digital\_e\_t@{controller\_digital\_e\_t}}
+\index{controller\_digital\_e\_t@{controller\_digital\_e\_t}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_digital\_e\_t}{controller\_digital\_e\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253ed}{controller\+\_\+digital\+\_\+e\+\_\+t}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_DIGITAL\_L1@{E\_CONTROLLER\_DIGITAL\_L1}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_DIGITAL\_L1@{E\_CONTROLLER\_DIGITAL\_L1}}}\mbox{\Hypertarget{misc_8h_a8c380ff02828ee53954bc0ce274253eda6152392f863b995bc682e6a7129dbdae}\label{misc_8h_a8c380ff02828ee53954bc0ce274253eda6152392f863b995bc682e6a7129dbdae}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+L1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_DIGITAL\_L2@{E\_CONTROLLER\_DIGITAL\_L2}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_DIGITAL\_L2@{E\_CONTROLLER\_DIGITAL\_L2}}}\mbox{\Hypertarget{misc_8h_a8c380ff02828ee53954bc0ce274253edab0b7af86329d2806c7e52b8396ca3a76}\label{misc_8h_a8c380ff02828ee53954bc0ce274253edab0b7af86329d2806c7e52b8396ca3a76}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+L2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_DIGITAL\_R1@{E\_CONTROLLER\_DIGITAL\_R1}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_DIGITAL\_R1@{E\_CONTROLLER\_DIGITAL\_R1}}}\mbox{\Hypertarget{misc_8h_a8c380ff02828ee53954bc0ce274253edae3ae971723bd1d263b7661264df420fc}\label{misc_8h_a8c380ff02828ee53954bc0ce274253edae3ae971723bd1d263b7661264df420fc}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+R1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_DIGITAL\_R2@{E\_CONTROLLER\_DIGITAL\_R2}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_DIGITAL\_R2@{E\_CONTROLLER\_DIGITAL\_R2}}}\mbox{\Hypertarget{misc_8h_a8c380ff02828ee53954bc0ce274253eda982e210433ab2a7ba149c4008ad73851}\label{misc_8h_a8c380ff02828ee53954bc0ce274253eda982e210433ab2a7ba149c4008ad73851}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+R2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_DIGITAL\_UP@{E\_CONTROLLER\_DIGITAL\_UP}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_DIGITAL\_UP@{E\_CONTROLLER\_DIGITAL\_UP}}}\mbox{\Hypertarget{misc_8h_a8c380ff02828ee53954bc0ce274253eda092df532483a0b27281748df9d226772}\label{misc_8h_a8c380ff02828ee53954bc0ce274253eda092df532483a0b27281748df9d226772}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+UP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_DIGITAL\_DOWN@{E\_CONTROLLER\_DIGITAL\_DOWN}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_DIGITAL\_DOWN@{E\_CONTROLLER\_DIGITAL\_DOWN}}}\mbox{\Hypertarget{misc_8h_a8c380ff02828ee53954bc0ce274253eda4290d3c38ae937a54b8409c7567be50d}\label{misc_8h_a8c380ff02828ee53954bc0ce274253eda4290d3c38ae937a54b8409c7567be50d}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+D\+O\+WN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_DIGITAL\_LEFT@{E\_CONTROLLER\_DIGITAL\_LEFT}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_DIGITAL\_LEFT@{E\_CONTROLLER\_DIGITAL\_LEFT}}}\mbox{\Hypertarget{misc_8h_a8c380ff02828ee53954bc0ce274253eda83537ab72f80c74cb4c06a195b885b6c}\label{misc_8h_a8c380ff02828ee53954bc0ce274253eda83537ab72f80c74cb4c06a195b885b6c}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+L\+E\+FT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_DIGITAL\_RIGHT@{E\_CONTROLLER\_DIGITAL\_RIGHT}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_DIGITAL\_RIGHT@{E\_CONTROLLER\_DIGITAL\_RIGHT}}}\mbox{\Hypertarget{misc_8h_a8c380ff02828ee53954bc0ce274253eda6311765554410202cc2c099695640d91}\label{misc_8h_a8c380ff02828ee53954bc0ce274253eda6311765554410202cc2c099695640d91}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+\+R\+I\+G\+HT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_DIGITAL\_X@{E\_CONTROLLER\_DIGITAL\_X}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_DIGITAL\_X@{E\_CONTROLLER\_DIGITAL\_X}}}\mbox{\Hypertarget{misc_8h_a8c380ff02828ee53954bc0ce274253eda1ba98d2c4900c0ad3123f15090779fad}\label{misc_8h_a8c380ff02828ee53954bc0ce274253eda1ba98d2c4900c0ad3123f15090779fad}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+X&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_DIGITAL\_B@{E\_CONTROLLER\_DIGITAL\_B}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_DIGITAL\_B@{E\_CONTROLLER\_DIGITAL\_B}}}\mbox{\Hypertarget{misc_8h_a8c380ff02828ee53954bc0ce274253eda3b8c6ebc62fb8133413bb7090814ed54}\label{misc_8h_a8c380ff02828ee53954bc0ce274253eda3b8c6ebc62fb8133413bb7090814ed54}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+B&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_DIGITAL\_Y@{E\_CONTROLLER\_DIGITAL\_Y}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_DIGITAL\_Y@{E\_CONTROLLER\_DIGITAL\_Y}}}\mbox{\Hypertarget{misc_8h_a8c380ff02828ee53954bc0ce274253eda89dfc687cc16e2e7b1ad022b47a698c4}\label{misc_8h_a8c380ff02828ee53954bc0ce274253eda89dfc687cc16e2e7b1ad022b47a698c4}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+Y&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_DIGITAL\_A@{E\_CONTROLLER\_DIGITAL\_A}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_DIGITAL\_A@{E\_CONTROLLER\_DIGITAL\_A}}}\mbox{\Hypertarget{misc_8h_a8c380ff02828ee53954bc0ce274253edabf8d8d50802f9417ba1f1512d2822f98}\label{misc_8h_a8c380ff02828ee53954bc0ce274253edabf8d8d50802f9417ba1f1512d2822f98}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+G\+I\+T\+A\+L\+\_\+A&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{misc_8h_af1323f00203099060d46f722b1fbd460}\label{misc_8h_af1323f00203099060d46f722b1fbd460}} 
+\index{misc.h@{misc.h}!controller\_id\_e\_t@{controller\_id\_e\_t}}
+\index{controller\_id\_e\_t@{controller\_id\_e\_t}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_id\_e\_t}{controller\_id\_e\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}}}
+
+
+
+V5 Controller. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_MASTER@{E\_CONTROLLER\_MASTER}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_MASTER@{E\_CONTROLLER\_MASTER}}}\mbox{\Hypertarget{misc_8h_af1323f00203099060d46f722b1fbd460a1c9d9311575877d185c44df1cadad226}\label{misc_8h_af1323f00203099060d46f722b1fbd460a1c9d9311575877d185c44df1cadad226}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER\_PARTNER@{E\_CONTROLLER\_PARTNER}!misc.h@{misc.h}}\index{misc.h@{misc.h}!E\_CONTROLLER\_PARTNER@{E\_CONTROLLER\_PARTNER}}}\mbox{\Hypertarget{misc_8h_af1323f00203099060d46f722b1fbd460a62d367ebc8ce395520d786f5c12614ac}\label{misc_8h_af1323f00203099060d46f722b1fbd460a62d367ebc8ce395520d786f5c12614ac}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{misc_8h_ae692171cfb44885421dc1ef873701e05}\label{misc_8h_ae692171cfb44885421dc1ef873701e05}} 
+\index{misc.h@{misc.h}!battery\_get\_capacity@{battery\_get\_capacity}}
+\index{battery\_get\_capacity@{battery\_get\_capacity}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{battery\_get\_capacity()}{battery\_get\_capacity()}}
+{\footnotesize\ttfamily double battery\+\_\+get\+\_\+capacity (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current capacity of the battery, as reported by V\+E\+Xos. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the battery port.
+
+\begin{DoxyReturn}{Returns}
+The current capacity of the battery 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_a20e84af87727a57282efd63cf76c8e78}\label{misc_8h_a20e84af87727a57282efd63cf76c8e78}} 
+\index{misc.h@{misc.h}!battery\_get\_current@{battery\_get\_current}}
+\index{battery\_get\_current@{battery\_get\_current}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{battery\_get\_current()}{battery\_get\_current()}}
+{\footnotesize\ttfamily int32\+\_\+t battery\+\_\+get\+\_\+current (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current current of the battery, as reported by V\+E\+Xos. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the battery port.
+
+\begin{DoxyReturn}{Returns}
+The current current of the battery 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_a60d32e15ea7ab1b2d7fa6b63c44a5027}\label{misc_8h_a60d32e15ea7ab1b2d7fa6b63c44a5027}} 
+\index{misc.h@{misc.h}!battery\_get\_temperature@{battery\_get\_temperature}}
+\index{battery\_get\_temperature@{battery\_get\_temperature}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{battery\_get\_temperature()}{battery\_get\_temperature()}}
+{\footnotesize\ttfamily double battery\+\_\+get\+\_\+temperature (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current temperature of the battery, as reported by V\+E\+Xos. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the battery port.
+
+\begin{DoxyReturn}{Returns}
+The current temperature of the battery 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_a3e2a84e664eb602bd21a481259a94f56}\label{misc_8h_a3e2a84e664eb602bd21a481259a94f56}} 
+\index{misc.h@{misc.h}!battery\_get\_voltage@{battery\_get\_voltage}}
+\index{battery\_get\_voltage@{battery\_get\_voltage}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{battery\_get\_voltage()}{battery\_get\_voltage()}}
+{\footnotesize\ttfamily int32\+\_\+t battery\+\_\+get\+\_\+voltage (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current voltage of the battery, as reported by V\+E\+Xos. 
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the battery port.
+
+\begin{DoxyReturn}{Returns}
+The current voltage of the battery 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_a71a09bfc4dbfb9c07c917c701dc3e994}\label{misc_8h_a71a09bfc4dbfb9c07c917c701dc3e994}} 
+\index{misc.h@{misc.h}!competition\_get\_status@{competition\_get\_status}}
+\index{competition\_get\_status@{competition\_get\_status}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{competition\_get\_status()}{competition\_get\_status()}}
+{\footnotesize\ttfamily uint8\+\_\+t competition\+\_\+get\+\_\+status (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the current status of the competition control. 
+
+\begin{DoxyReturn}{Returns}
+The competition control status as a mask of bits with C\+O\+M\+P\+E\+T\+I\+T\+I\+O\+N\+\_\+\{E\+N\+A\+B\+L\+ED,A\+U\+T\+O\+N\+O\+M\+O\+US,C\+O\+N\+N\+E\+C\+T\+ED\}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_a730715344d091ed017894cf907e9c3ab}\label{misc_8h_a730715344d091ed017894cf907e9c3ab}} 
+\index{misc.h@{misc.h}!controller\_clear@{controller\_clear}}
+\index{controller\_clear@{controller\_clear}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_clear()}{controller\_clear()}}
+{\footnotesize\ttfamily int32\+\_\+t controller\+\_\+clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}}}]{id }\end{DoxyParamCaption})}
+
+
+
+Clears all of the lines on the controller screen. 
+
+\begin{DoxyNote}{Note}
+Controller text setting is currently in beta, so continuous, fast updates will not work well.
+\end{DoxyNote}
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ \mbox{\hyperlink{structA}{A}} value other than E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER is given. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the controller port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the controller (e.\+g. the master or partner controller). Must be one of C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_a22499128069a56f2ff041c11a9a33da7}\label{misc_8h_a22499128069a56f2ff041c11a9a33da7}} 
+\index{misc.h@{misc.h}!controller\_clear\_line@{controller\_clear\_line}}
+\index{controller\_clear\_line@{controller\_clear\_line}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_clear\_line()}{controller\_clear\_line()}}
+{\footnotesize\ttfamily int32\+\_\+t controller\+\_\+clear\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}}}]{id,  }\item[{uint8\+\_\+t}]{line }\end{DoxyParamCaption})}
+
+
+
+Clears an individual line of the controller screen. 
+
+\begin{DoxyNote}{Note}
+Controller text setting is currently in beta, so continuous, fast updates will not work well.
+\end{DoxyNote}
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ \mbox{\hyperlink{structA}{A}} value other than E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER is given. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the controller port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the controller (e.\+g. the master or partner controller). Must be one of C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER \\
+\hline
+{\em line} & The line number to clear \mbox{[}0-\/2\mbox{]}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_aed67feb70cbdb115e9ec2c7cc28a5da8}\label{misc_8h_aed67feb70cbdb115e9ec2c7cc28a5da8}} 
+\index{misc.h@{misc.h}!controller\_get\_analog@{controller\_get\_analog}}
+\index{controller\_get\_analog@{controller\_get\_analog}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_get\_analog()}{controller\_get\_analog()}}
+{\footnotesize\ttfamily int32\+\_\+t controller\+\_\+get\+\_\+analog (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}}}]{id,  }\item[{\mbox{\hyperlink{misc_8h_a8bdd0963e2bc0d4fbe03435eee8a5ca5}{controller\+\_\+analog\+\_\+e\+\_\+t}}}]{channel }\end{DoxyParamCaption})}
+
+
+
+Gets the value of an analog channel (joystick) on a controller. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ \mbox{\hyperlink{structA}{A}} value other than E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER is given. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the controller port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the controller (e.\+g. the master or partner controller). Must be one of C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER \\
+\hline
+{\em channel} & The analog channel to get. Must be one of A\+N\+A\+L\+O\+G\+\_\+\+L\+E\+F\+T\+\_\+X, A\+N\+A\+L\+O\+G\+\_\+\+L\+E\+F\+T\+\_\+Y, A\+N\+A\+L\+O\+G\+\_\+\+R\+I\+G\+H\+T\+\_\+X, A\+N\+A\+L\+O\+G\+\_\+\+R\+I\+G\+H\+T\+\_\+Y\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current reading of the analog channel\+: \mbox{[}-\/127, 127\mbox{]}. If the controller was not connected, then 0 is returned 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_a54033388f5d4e3f8b291d5a6f2122f5e}\label{misc_8h_a54033388f5d4e3f8b291d5a6f2122f5e}} 
+\index{misc.h@{misc.h}!controller\_get\_battery\_capacity@{controller\_get\_battery\_capacity}}
+\index{controller\_get\_battery\_capacity@{controller\_get\_battery\_capacity}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_get\_battery\_capacity()}{controller\_get\_battery\_capacity()}}
+{\footnotesize\ttfamily int32\+\_\+t controller\+\_\+get\+\_\+battery\+\_\+capacity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}}}]{id }\end{DoxyParamCaption})}
+
+
+
+Gets the battery capacity of the given controller. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ \mbox{\hyperlink{structA}{A}} value other than E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER is given. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the controller port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the controller (e.\+g. the master or partner controller). Must be one of E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The controller\textquotesingle{}s battery capacity 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_aeab690f86735cb6685f3c3184c54ba2d}\label{misc_8h_aeab690f86735cb6685f3c3184c54ba2d}} 
+\index{misc.h@{misc.h}!controller\_get\_battery\_level@{controller\_get\_battery\_level}}
+\index{controller\_get\_battery\_level@{controller\_get\_battery\_level}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_get\_battery\_level()}{controller\_get\_battery\_level()}}
+{\footnotesize\ttfamily int32\+\_\+t controller\+\_\+get\+\_\+battery\+\_\+level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}}}]{id }\end{DoxyParamCaption})}
+
+
+
+Gets the battery level of the given controller. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ \mbox{\hyperlink{structA}{A}} value other than E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER is given. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the controller port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the controller (e.\+g. the master or partner controller). Must be one of E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The controller\textquotesingle{}s battery level 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_af01b9e0d93d55a50b09c24f7ad5900fc}\label{misc_8h_af01b9e0d93d55a50b09c24f7ad5900fc}} 
+\index{misc.h@{misc.h}!controller\_get\_digital@{controller\_get\_digital}}
+\index{controller\_get\_digital@{controller\_get\_digital}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_get\_digital()}{controller\_get\_digital()}}
+{\footnotesize\ttfamily int32\+\_\+t controller\+\_\+get\+\_\+digital (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}}}]{id,  }\item[{\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253ed}{controller\+\_\+digital\+\_\+e\+\_\+t}}}]{button }\end{DoxyParamCaption})}
+
+
+
+Checks if a digital channel (button) on the controller is currently pressed. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ \mbox{\hyperlink{structA}{A}} value other than E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER is given. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the controller port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the controller (e.\+g. the master or partner controller). Must be one of C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER \\
+\hline
+{\em button} & The button to read. Must be one of D\+I\+G\+I\+T\+A\+L\+\_\+\{R\+I\+G\+HT,D\+O\+WN,L\+E\+FT,UP,\mbox{\hyperlink{structA}{A}},B,Y,X,R1,R2,L1,L2\}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the button on the controller is pressed. If the controller was not connected, then 0 is returned 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_a89d292cfe75a2abac6673a965697ac8c}\label{misc_8h_a89d292cfe75a2abac6673a965697ac8c}} 
+\index{misc.h@{misc.h}!controller\_get\_digital\_new\_press@{controller\_get\_digital\_new\_press}}
+\index{controller\_get\_digital\_new\_press@{controller\_get\_digital\_new\_press}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_get\_digital\_new\_press()}{controller\_get\_digital\_new\_press()}}
+{\footnotesize\ttfamily int32\+\_\+t controller\+\_\+get\+\_\+digital\+\_\+new\+\_\+press (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}}}]{id,  }\item[{\mbox{\hyperlink{misc_8h_a8c380ff02828ee53954bc0ce274253ed}{controller\+\_\+digital\+\_\+e\+\_\+t}}}]{button }\end{DoxyParamCaption})}
+
+
+
+Returns a rising-\/edge case for a controller button press. 
+
+This function is not thread-\/safe. Multiple tasks polling a single button may return different results under the same circumstances, so only one task should call this function for any given button. E.\+g., Task \mbox{\hyperlink{structA}{A}} calls this function for buttons 1 and 2. Task B may call this function for button 3, but should not for buttons 1 or 2. \mbox{\hyperlink{structA}{A}} typical use-\/case for this function is to call inside opcontrol to detect new button presses, and not in any other tasks.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ \mbox{\hyperlink{structA}{A}} value other than E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER is given. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the controller port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the controller (e.\+g. the master or partner controller). Must be one of C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER \\
+\hline
+{\em button} & The button to read. Must be one of D\+I\+G\+I\+T\+A\+L\+\_\+\{R\+I\+G\+HT,D\+O\+WN,L\+E\+FT,UP,\mbox{\hyperlink{structA}{A}},B,Y,X,R1,R2,L1,L2\}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the button on the controller is pressed and had not been pressed the last time this function was called, 0 otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_afd1e850bd6613e2fb01960dc0cebb2ef}\label{misc_8h_afd1e850bd6613e2fb01960dc0cebb2ef}} 
+\index{misc.h@{misc.h}!controller\_is\_connected@{controller\_is\_connected}}
+\index{controller\_is\_connected@{controller\_is\_connected}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_is\_connected()}{controller\_is\_connected()}}
+{\footnotesize\ttfamily int32\+\_\+t controller\+\_\+is\+\_\+connected (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}}}]{id }\end{DoxyParamCaption})}
+
+
+
+Checks if the controller is connected. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ \mbox{\hyperlink{structA}{A}} value other than E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER is given. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the controller port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the controller (e.\+g. the master or partner controller). Must be one of C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the controller is connected, 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_af7c72fcad599c9c0517ef22e6e813ae8}\label{misc_8h_af7c72fcad599c9c0517ef22e6e813ae8}} 
+\index{misc.h@{misc.h}!controller\_print@{controller\_print}}
+\index{controller\_print@{controller\_print}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_print()}{controller\_print()}}
+{\footnotesize\ttfamily int32\+\_\+t controller\+\_\+print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}}}]{id,  }\item[{uint8\+\_\+t}]{line,  }\item[{uint8\+\_\+t}]{col,  }\item[{const char $\ast$}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Sets text to the controller L\+CD screen. 
+
+\begin{DoxyNote}{Note}
+Controller text setting is currently in beta, so continuous, fast updates will not work well.
+\end{DoxyNote}
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ \mbox{\hyperlink{structA}{A}} value other than E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER is given. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the controller port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the controller (e.\+g. the master or partner controller). Must be one of C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER \\
+\hline
+{\em line} & The line number at which the text will be displayed \mbox{[}0-\/2\mbox{]} \\
+\hline
+{\em col} & The column number at which the text will be displayed \mbox{[}0-\/14\mbox{]} \\
+\hline
+{\em fmt} & The format string to print to the controller \\
+\hline
+{\em ...} & The argument list for the format string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_aced0f39c3b2206489d1cc4bf97b91a82}\label{misc_8h_aced0f39c3b2206489d1cc4bf97b91a82}} 
+\index{misc.h@{misc.h}!controller\_rumble@{controller\_rumble}}
+\index{controller\_rumble@{controller\_rumble}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_rumble()}{controller\_rumble()}}
+{\footnotesize\ttfamily int32\+\_\+t controller\+\_\+rumble (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}}}]{id,  }\item[{const char $\ast$}]{rumble\+\_\+pattern }\end{DoxyParamCaption})}
+
+
+
+Rumble the controller. 
+
+\begin{DoxyNote}{Note}
+Controller rumble activation is currently in beta, so continuous, fast updates will not work well.
+\end{DoxyNote}
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ \mbox{\hyperlink{structA}{A}} value other than E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER is given. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the controller port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the controller (e.\+g. the master or partner controller). Must be one of C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER \\
+\hline
+{\em rumble\+\_\+pattern} & \mbox{\hyperlink{structA}{A}} string consisting of the characters \textquotesingle{}.\textquotesingle{}, \textquotesingle{}-\/\textquotesingle{}, and \textquotesingle{} \textquotesingle{}, where dots are short rumbles, dashes are long rumbles, and spaces are pauses. Maximum supported length is 8 characters.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{misc_8h_a311402c942d9497ccb67e63ee2fa31a4}\label{misc_8h_a311402c942d9497ccb67e63ee2fa31a4}} 
+\index{misc.h@{misc.h}!controller\_set\_text@{controller\_set\_text}}
+\index{controller\_set\_text@{controller\_set\_text}!misc.h@{misc.h}}
+\subsubsection{\texorpdfstring{controller\_set\_text()}{controller\_set\_text()}}
+{\footnotesize\ttfamily int32\+\_\+t controller\+\_\+set\+\_\+text (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{misc_8h_af1323f00203099060d46f722b1fbd460}{controller\+\_\+id\+\_\+e\+\_\+t}}}]{id,  }\item[{uint8\+\_\+t}]{line,  }\item[{uint8\+\_\+t}]{col,  }\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Sets text to the controller L\+CD screen. 
+
+\begin{DoxyNote}{Note}
+Controller text setting is currently in beta, so continuous, fast updates will not work well.
+\end{DoxyNote}
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ \mbox{\hyperlink{structA}{A}} value other than E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER is given. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the controller port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the controller (e.\+g. the master or partner controller). Must be one of C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+M\+A\+S\+T\+ER or C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+T\+N\+ER \\
+\hline
+{\em line} & The line number at which the text will be displayed \mbox{[}0-\/2\mbox{]} \\
+\hline
+{\em col} & The column number at which the text will be displayed \mbox{[}0-\/14\mbox{]} \\
+\hline
+{\em str} & The pre-\/formatted string to print to the controller\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}

@@ -1,0 +1,1027 @@
+\hypertarget{classfakeit_1_1MockingContext}{}\section{fakeit\+::Mocking\+Context$<$ R, arglist $>$ Class Template Reference}
+\label{classfakeit_1_1MockingContext}\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+
+
+{\ttfamily \#include $<$Method\+Mocking\+Context.\+hpp$>$}
+
+Inheritance diagram for fakeit\+::Mocking\+Context$<$ R, arglist $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=10.000000cm]{classfakeit_1_1MockingContext}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}{Mocking\+Context}} (typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$stubbing\+Context)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&)=default
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&\&other)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}{set\+Method\+Details}} (std\+::string mock\+Name, std\+::string method\+Name)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}{Using}} (const arglist \&... args)
+\item 
+{\footnotesize template$<$class ... arg\+\_\+matcher$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}{Using}} (const arg\+\_\+matcher \&... arg\+\_\+matchers)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}{Matching}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}{operator()}} (const arglist \&... args)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}{operator()}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}{operator=}} (std\+::function$<$ R(arglist \&...)$>$ method)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}{operator=}} (const R \&r)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$ std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}{operator=}} (const R \&r)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}{Mocking\+Context}} (typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$stubbing\+Context)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&)=default
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&\&other)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}{set\+Method\+Details}} (std\+::string mock\+Name, std\+::string method\+Name)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}{Using}} (const arglist \&... args)
+\item 
+{\footnotesize template$<$class ... arg\+\_\+matcher$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}{Using}} (const arg\+\_\+matcher \&... arg\+\_\+matchers)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}{Matching}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}{operator()}} (const arglist \&... args)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}{operator()}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}{operator=}} (std\+::function$<$ R(arglist \&...)$>$ method)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}{operator=}} (const R \&r)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$ std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}{operator=}} (const R \&r)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}{Mocking\+Context}} (typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$stubbing\+Context)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&)=default
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&\&other)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}{set\+Method\+Details}} (std\+::string mock\+Name, std\+::string method\+Name)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}{Using}} (const arglist \&... args)
+\item 
+{\footnotesize template$<$class ... arg\+\_\+matcher$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}{Using}} (const arg\+\_\+matcher \&... arg\+\_\+matchers)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}{Matching}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}{operator()}} (const arglist \&... args)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}{operator()}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}{operator=}} (std\+::function$<$ R(arglist \&...)$>$ method)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}{operator=}} (const R \&r)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$ std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}{operator=}} (const R \&r)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}{Mocking\+Context}} (typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$stubbing\+Context)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&)=default
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&\&other)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}{set\+Method\+Details}} (std\+::string mock\+Name, std\+::string method\+Name)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}{Using}} (const arglist \&... args)
+\item 
+{\footnotesize template$<$class ... arg\+\_\+matcher$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}{Using}} (const arg\+\_\+matcher \&... arg\+\_\+matchers)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}{Matching}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}{operator()}} (const arglist \&... args)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}{operator()}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}{operator=}} (std\+::function$<$ R(arglist \&...)$>$ method)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}{operator=}} (const R \&r)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$ std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}{operator=}} (const R \&r)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}{Mocking\+Context}} (typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$stubbing\+Context)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&)=default
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&\&other)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}{set\+Method\+Details}} (std\+::string mock\+Name, std\+::string method\+Name)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}{Using}} (const arglist \&... args)
+\item 
+{\footnotesize template$<$class ... arg\+\_\+matcher$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}{Using}} (const arg\+\_\+matcher \&... arg\+\_\+matchers)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}{Matching}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}{operator()}} (const arglist \&... args)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}{operator()}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}{operator=}} (std\+::function$<$ R(arglist \&...)$>$ method)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}{operator=}} (const R \&r)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$ std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}{operator=}} (const R \&r)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}{Mocking\+Context}} (typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$stubbing\+Context)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&)=default
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&\&other)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}{set\+Method\+Details}} (std\+::string mock\+Name, std\+::string method\+Name)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}{Using}} (const arglist \&... args)
+\item 
+{\footnotesize template$<$class ... arg\+\_\+matcher$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}{Using}} (const arg\+\_\+matcher \&... arg\+\_\+matchers)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}{Matching}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}{operator()}} (const arglist \&... args)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}{operator()}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}{operator=}} (std\+::function$<$ R(arglist \&...)$>$ method)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}{operator=}} (const R \&r)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$ std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}{operator=}} (const R \&r)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}{Mocking\+Context}} (typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$stubbing\+Context)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&)=default
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&\&other)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}{set\+Method\+Details}} (std\+::string mock\+Name, std\+::string method\+Name)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}{Using}} (const arglist \&... args)
+\item 
+{\footnotesize template$<$class ... arg\+\_\+matcher$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}{Using}} (const arg\+\_\+matcher \&... arg\+\_\+matchers)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}{Matching}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}{operator()}} (const arglist \&... args)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}{operator()}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}{operator=}} (std\+::function$<$ R(arglist \&...)$>$ method)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}{operator=}} (const R \&r)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$ std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}{operator=}} (const R \&r)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}{Mocking\+Context}} (typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$stubbing\+Context)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&)=default
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&\&other)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}{set\+Method\+Details}} (std\+::string mock\+Name, std\+::string method\+Name)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}{Using}} (const arglist \&... args)
+\item 
+{\footnotesize template$<$class ... arg\+\_\+matcher$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}{Using}} (const arg\+\_\+matcher \&... arg\+\_\+matchers)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}{Matching}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}{operator()}} (const arglist \&... args)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}{operator()}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}{operator=}} (std\+::function$<$ R(arglist \&...)$>$ method)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}{operator=}} (const R \&r)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$ std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}{operator=}} (const R \&r)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}{Mocking\+Context}} (typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$stubbing\+Context)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&)=default
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}{Mocking\+Context}} (\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} \&\&other)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}{set\+Method\+Details}} (std\+::string mock\+Name, std\+::string method\+Name)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}{Using}} (const arglist \&... args)
+\item 
+{\footnotesize template$<$class ... arg\+\_\+matcher$>$ }\\\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}{Using}} (const arg\+\_\+matcher \&... arg\+\_\+matchers)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}{Matching}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}{operator()}} (const arglist \&... args)
+\item 
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist... $>$ \& \mbox{\hyperlink{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}{operator()}} (std\+::function$<$ bool(arglist \&...)$>$ matcher)
+\item 
+void \mbox{\hyperlink{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}{operator=}} (std\+::function$<$ R(arglist \&...)$>$ method)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}{operator=}} (const R \&r)
+\item 
+{\footnotesize template$<$typename U  = R$>$ }\\std\+::enable\+\_\+if$<$ std\+::is\+\_\+reference$<$ U $>$\+::value, void $>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}{operator=}} (const R \&r)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}\label{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [1/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$}]{stubbing\+Context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}\label{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [2/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}\label{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [3/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}\label{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [4/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$}]{stubbing\+Context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}\label{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [5/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}\label{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [6/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}\label{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [7/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$}]{stubbing\+Context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}\label{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [8/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}\label{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [9/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}\label{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [10/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$}]{stubbing\+Context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}\label{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [11/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}\label{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [12/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}\label{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [13/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$}]{stubbing\+Context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}\label{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [14/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}\label{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [15/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}\label{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [16/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$}]{stubbing\+Context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}\label{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [17/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}\label{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [18/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}\label{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [19/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$}]{stubbing\+Context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}\label{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [20/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}\label{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [21/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}\label{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [22/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$}]{stubbing\+Context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}\label{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [23/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}\label{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [24/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}\label{classfakeit_1_1MockingContext_a5700542bcb10d5ff297e389f9ea988e8}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [25/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{typename \mbox{\hyperlink{classfakeit_1_1MethodMockingContext}{Method\+Mocking\+Context}}$<$ R, arglist... $>$\+::Context $\ast$}]{stubbing\+Context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}\label{classfakeit_1_1MockingContext_aa4fec015b3088d8d98449f6a90525e0d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [26/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}\label{classfakeit_1_1MockingContext_a4611ccb2f40b25362c40316ec87c0da5}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!MockingContext@{MockingContext}}
+\index{MockingContext@{MockingContext}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{MockingContext()}{MockingContext()}\hspace{0.1cm}{\footnotesize\ttfamily [27/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$ R, arglist $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}\label{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Matching@{Matching}}
+\index{Matching@{Matching}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Matching()}{Matching()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Matching (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}\label{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Matching@{Matching}}
+\index{Matching@{Matching}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Matching()}{Matching()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Matching (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}\label{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Matching@{Matching}}
+\index{Matching@{Matching}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Matching()}{Matching()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Matching (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}\label{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Matching@{Matching}}
+\index{Matching@{Matching}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Matching()}{Matching()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Matching (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}\label{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Matching@{Matching}}
+\index{Matching@{Matching}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Matching()}{Matching()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Matching (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}\label{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Matching@{Matching}}
+\index{Matching@{Matching}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Matching()}{Matching()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Matching (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}\label{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Matching@{Matching}}
+\index{Matching@{Matching}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Matching()}{Matching()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Matching (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}\label{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Matching@{Matching}}
+\index{Matching@{Matching}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Matching()}{Matching()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Matching (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}\label{classfakeit_1_1MockingContext_a631dd9877017e082b2e1191b02f4c17a}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Matching@{Matching}}
+\index{Matching@{Matching}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Matching()}{Matching()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Matching (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}\label{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}\label{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}\label{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [3/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}\label{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [4/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}\label{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [5/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}\label{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [6/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}\label{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [7/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}\label{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [8/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}\label{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [9/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}\label{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [10/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}\label{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [11/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}\label{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [12/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}\label{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [13/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}\label{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [14/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}\label{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [15/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}\label{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [16/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}\label{classfakeit_1_1MockingContext_a70a55886680449fa36e8f5869af93389}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [17/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}\label{classfakeit_1_1MockingContext_aff3a6b6107f5bc4e028e75bf9b55f313}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [18/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(arglist \&...)$>$}]{matcher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}\label{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{std\+::function$<$ R(arglist \&...)$>$}]{method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}\label{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}\label{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}\label{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [4/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{std\+::function$<$ R(arglist \&...)$>$}]{method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}\label{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [5/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}\label{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [6/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{std\+::function$<$ R(arglist \&...)$>$}]{method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}\label{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [7/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{std\+::function$<$ R(arglist \&...)$>$}]{method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}\label{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [8/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}\label{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [9/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}\label{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [10/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}\label{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [11/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}\label{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [12/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}\label{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [13/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{std\+::function$<$ R(arglist \&...)$>$}]{method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}\label{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [14/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}\label{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [15/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{std\+::function$<$ R(arglist \&...)$>$}]{method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}\label{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [16/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{std\+::function$<$ R(arglist \&...)$>$}]{method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}\label{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [17/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}\label{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [18/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}\label{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [19/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}\label{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [20/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}\label{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [21/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}\label{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [22/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{std\+::function$<$ R(arglist \&...)$>$}]{method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}\label{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [23/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}\label{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [24/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}\label{classfakeit_1_1MockingContext_aadefb2bd6c1dee1f3aa8902277dd3fc2}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [25/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+void \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{std\+::function$<$ R(arglist \&...)$>$}]{method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}\label{classfakeit_1_1MockingContext_adfac3df2408adaa86efec81bd5533a6d}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [26/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$!std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}\label{classfakeit_1_1MockingContext_ad5e903b223858dbe67f1da1523ef0d60}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [27/27]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$typename U  = R$>$ \\
+std\+::enable\+\_\+if$<$std\+::is\+\_\+reference$<$U$>$\+::value, void$>$\+::type \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::operator= (\begin{DoxyParamCaption}\item[{const R \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}\label{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!setMethodDetails@{setMethodDetails}}
+\index{setMethodDetails@{setMethodDetails}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{setMethodDetails()}{setMethodDetails()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::set\+Method\+Details (\begin{DoxyParamCaption}\item[{std\+::string}]{mock\+Name,  }\item[{std\+::string}]{method\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}\label{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!setMethodDetails@{setMethodDetails}}
+\index{setMethodDetails@{setMethodDetails}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{setMethodDetails()}{setMethodDetails()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::set\+Method\+Details (\begin{DoxyParamCaption}\item[{std\+::string}]{mock\+Name,  }\item[{std\+::string}]{method\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}\label{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!setMethodDetails@{setMethodDetails}}
+\index{setMethodDetails@{setMethodDetails}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{setMethodDetails()}{setMethodDetails()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::set\+Method\+Details (\begin{DoxyParamCaption}\item[{std\+::string}]{mock\+Name,  }\item[{std\+::string}]{method\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}\label{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!setMethodDetails@{setMethodDetails}}
+\index{setMethodDetails@{setMethodDetails}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{setMethodDetails()}{setMethodDetails()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::set\+Method\+Details (\begin{DoxyParamCaption}\item[{std\+::string}]{mock\+Name,  }\item[{std\+::string}]{method\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}\label{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!setMethodDetails@{setMethodDetails}}
+\index{setMethodDetails@{setMethodDetails}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{setMethodDetails()}{setMethodDetails()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::set\+Method\+Details (\begin{DoxyParamCaption}\item[{std\+::string}]{mock\+Name,  }\item[{std\+::string}]{method\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}\label{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!setMethodDetails@{setMethodDetails}}
+\index{setMethodDetails@{setMethodDetails}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{setMethodDetails()}{setMethodDetails()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::set\+Method\+Details (\begin{DoxyParamCaption}\item[{std\+::string}]{mock\+Name,  }\item[{std\+::string}]{method\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}\label{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!setMethodDetails@{setMethodDetails}}
+\index{setMethodDetails@{setMethodDetails}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{setMethodDetails()}{setMethodDetails()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::set\+Method\+Details (\begin{DoxyParamCaption}\item[{std\+::string}]{mock\+Name,  }\item[{std\+::string}]{method\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}\label{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!setMethodDetails@{setMethodDetails}}
+\index{setMethodDetails@{setMethodDetails}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{setMethodDetails()}{setMethodDetails()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::set\+Method\+Details (\begin{DoxyParamCaption}\item[{std\+::string}]{mock\+Name,  }\item[{std\+::string}]{method\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}\label{classfakeit_1_1MockingContext_a07958a59915dcc84633818a9644e1921}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!setMethodDetails@{setMethodDetails}}
+\index{setMethodDetails@{setMethodDetails}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{setMethodDetails()}{setMethodDetails()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::set\+Method\+Details (\begin{DoxyParamCaption}\item[{std\+::string}]{mock\+Name,  }\item[{std\+::string}]{method\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}\label{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [1/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}\label{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [2/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$class ... arg\+\_\+matcher$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arg\+\_\+matcher \&...}]{arg\+\_\+matchers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}\label{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [3/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}\label{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [4/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$class ... arg\+\_\+matcher$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arg\+\_\+matcher \&...}]{arg\+\_\+matchers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}\label{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [5/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}\label{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [6/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}\label{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [7/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$class ... arg\+\_\+matcher$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arg\+\_\+matcher \&...}]{arg\+\_\+matchers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}\label{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [8/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$class ... arg\+\_\+matcher$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arg\+\_\+matcher \&...}]{arg\+\_\+matchers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}\label{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [9/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}\label{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [10/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$class ... arg\+\_\+matcher$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arg\+\_\+matcher \&...}]{arg\+\_\+matchers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}\label{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [11/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}\label{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [12/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}\label{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [13/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$class ... arg\+\_\+matcher$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arg\+\_\+matcher \&...}]{arg\+\_\+matchers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}\label{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [14/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$class ... arg\+\_\+matcher$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arg\+\_\+matcher \&...}]{arg\+\_\+matchers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}\label{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [15/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}\label{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [16/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$class ... arg\+\_\+matcher$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arg\+\_\+matcher \&...}]{arg\+\_\+matchers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}\label{classfakeit_1_1MockingContext_ade706bb68e9ffb128fad353a3b15758b}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [17/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arglist \&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}\label{classfakeit_1_1MockingContext_acb9bd9b011ac2ad88c8d08eebfa101ac}} 
+\index{fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}!Using@{Using}}
+\index{Using@{Using}!fakeit::MockingContext$<$ R, arglist $>$@{fakeit::MockingContext$<$ R, arglist $>$}}
+\subsubsection{\texorpdfstring{Using()}{Using()}\hspace{0.1cm}{\footnotesize\ttfamily [18/18]}}
+{\footnotesize\ttfamily template$<$typename R , typename ... arglist$>$ \\
+template$<$class ... arg\+\_\+matcher$>$ \\
+\mbox{\hyperlink{classfakeit_1_1MockingContext}{Mocking\+Context}}$<$R, arglist...$>$\& \mbox{\hyperlink{classfakeit_1_1MockingContext}{fakeit\+::\+Mocking\+Context}}$<$ R, arglist $>$\+::Using (\begin{DoxyParamCaption}\item[{const arg\+\_\+matcher \&...}]{arg\+\_\+matchers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/test/\+Fake\+It/include/fakeit/\mbox{\hyperlink{MethodMockingContext_8hpp}{Method\+Mocking\+Context.\+hpp}}\item 
+include/test/\+Fake\+It/single\+\_\+header/boost/\mbox{\hyperlink{single__header_2boost_2fakeit_8hpp}{fakeit.\+hpp}}\end{DoxyCompactItemize}

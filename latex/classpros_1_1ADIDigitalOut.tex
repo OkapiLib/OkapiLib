@@ -1,0 +1,71 @@
+\hypertarget{classpros_1_1ADIDigitalOut}{}\section{pros\+::A\+D\+I\+Digital\+Out Class Reference}
+\label{classpros_1_1ADIDigitalOut}\index{pros::ADIDigitalOut@{pros::ADIDigitalOut}}
+
+
+{\ttfamily \#include $<$adi.\+hpp$>$}
+
+Inheritance diagram for pros\+::A\+D\+I\+Digital\+Out\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpros_1_1ADIDigitalOut}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpros_1_1ADIDigitalOut_a1c5dbea7f767418550df8007cfb0d221}{A\+D\+I\+Digital\+Out}} (std\+::uint8\+\_\+t port, bool init\+\_\+state=\mbox{\hyperlink{adi_8h_ab811d8c6ff3a505312d3276590444289}{L\+OW}})
+\begin{DoxyCompactList}\small\item\em Configures an A\+DI port to act as a Digital Output. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classpros_1_1ADIDigitalOut_ae6711117fbceb3bb6e3602c4ef63aff1}{set\+\_\+value}} (std\+::int32\+\_\+t value) const
+\begin{DoxyCompactList}\small\item\em Sets the value for the given A\+DI port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpros_1_1ADIDigitalOut_a1c5dbea7f767418550df8007cfb0d221}\label{classpros_1_1ADIDigitalOut_a1c5dbea7f767418550df8007cfb0d221}} 
+\index{pros::ADIDigitalOut@{pros::ADIDigitalOut}!ADIDigitalOut@{ADIDigitalOut}}
+\index{ADIDigitalOut@{ADIDigitalOut}!pros::ADIDigitalOut@{pros::ADIDigitalOut}}
+\subsubsection{\texorpdfstring{ADIDigitalOut()}{ADIDigitalOut()}}
+{\footnotesize\ttfamily pros\+::\+A\+D\+I\+Digital\+Out\+::\+A\+D\+I\+Digital\+Out (\begin{DoxyParamCaption}\item[{std\+::uint8\+\_\+t}]{port,  }\item[{bool}]{init\+\_\+state = {\ttfamily \mbox{\hyperlink{adi_8h_ab811d8c6ff3a505312d3276590444289}{L\+OW}}} }\end{DoxyParamCaption})}
+
+
+
+Configures an A\+DI port to act as a Digital Output. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of A\+DI Ports. E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port number (from 1-\/8, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}h\textquotesingle{}, \textquotesingle{}\mbox{\hyperlink{structA}{A}}\textquotesingle{}-\/\textquotesingle{}H\textquotesingle{}) to configure \\
+\hline
+{\em type} & The configuration type for the port \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classpros_1_1ADIDigitalOut_ae6711117fbceb3bb6e3602c4ef63aff1}\label{classpros_1_1ADIDigitalOut_ae6711117fbceb3bb6e3602c4ef63aff1}} 
+\index{pros::ADIDigitalOut@{pros::ADIDigitalOut}!set\_value@{set\_value}}
+\index{set\_value@{set\_value}!pros::ADIDigitalOut@{pros::ADIDigitalOut}}
+\subsubsection{\texorpdfstring{set\_value()}{set\_value()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t pros\+::\+A\+D\+I\+Port\+::set\+\_\+value}
+
+
+
+Sets the value for the given A\+DI port. 
+
+This only works on ports configured as outputs, and the behavior will change depending on the configuration of the port.
+
+This function uses the following values of errno when an error state is reached\+: E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the A\+DI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to set the A\+DI port to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/pros/\mbox{\hyperlink{adi_8hpp}{adi.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,611 @@
+\subsection*{Why should test case names and test names not contain underscore?}
+
+Underscore ({\ttfamily \+\_\+}) is special, as C++ reserves the following to be used by the compiler and the standard library\+:
+
+
+\begin{DoxyEnumerate}
+\item any identifier that starts with an {\ttfamily \+\_\+} followed by an upper-\/case letter, and
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item any identifier that contains two consecutive underscores (i.\+e. {\ttfamily \+\_\+\+\_\+}) {\itshape anywhere} in its name.
+\end{DoxyEnumerate}
+
+User code is {\itshape prohibited} from using such identifiers.
+
+Now let\textquotesingle{}s look at what this means for {\ttfamily T\+E\+ST} and {\ttfamily T\+E\+S\+T\+\_\+F}.
+
+Currently {\ttfamily \mbox{\hyperlink{gtest_8h_ad8b332753515c0ab8baada563c2547eb}{T\+E\+S\+T(\+Test\+Case\+Name, Test\+Name)}}} generates a class named {\ttfamily Test\+Case\+Name\+\_\+\+Test\+Name\+\_\+\+Test}. What happens if {\ttfamily Test\+Case\+Name} or {\ttfamily Test\+Name} contains {\ttfamily \+\_\+}?
+
+
+\begin{DoxyEnumerate}
+\item If {\ttfamily Test\+Case\+Name} starts with an {\ttfamily \+\_\+} followed by an upper-\/case letter (say, {\ttfamily \+\_\+\+Foo}), we end up with {\ttfamily \+\_\+\+Foo\+\_\+\+Test\+Name\+\_\+\+Test}, which is reserved and thus invalid.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item If {\ttfamily Test\+Case\+Name} ends with an {\ttfamily \+\_\+} (say, {\ttfamily Foo\+\_\+}), we get {\ttfamily Foo\+\_\+\+\_\+\+Test\+Name\+\_\+\+Test}, which is invalid.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item If {\ttfamily Test\+Name} starts with an {\ttfamily \+\_\+} (say, {\ttfamily \+\_\+\+Bar}), we get {\ttfamily Test\+Case\+Name\+\_\+\+\_\+\+Bar\+\_\+\+Test}, which is invalid.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item If {\ttfamily Test\+Name} ends with an {\ttfamily \+\_\+} (say, {\ttfamily Bar\+\_\+}), we get {\ttfamily Test\+Case\+Name\+\_\+\+Bar\+\_\+\+\_\+\+Test}, which is invalid.
+\end{DoxyEnumerate}
+
+So clearly {\ttfamily Test\+Case\+Name} and {\ttfamily Test\+Name} cannot start or end with {\ttfamily \+\_\+} (Actually, {\ttfamily Test\+Case\+Name} can start with {\ttfamily \+\_\+} -- as long as the {\ttfamily \+\_\+} isn\textquotesingle{}t followed by an upper-\/case letter. But that\textquotesingle{}s getting complicated. So for simplicity we just say that it cannot start with {\ttfamily \+\_\+}.).
+
+It may seem fine for {\ttfamily Test\+Case\+Name} and {\ttfamily Test\+Name} to contain {\ttfamily \+\_\+} in the middle. However, consider this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{TEST(Time, Flies\_Like\_An\_Arrow) \{ ... \}}
+\DoxyCodeLine{TEST(Time\_Flies, Like\_An\_Arrow) \{ ... \}}
+\end{DoxyCode}
+
+
+Now, the two {\ttfamily T\+E\+ST}s will both generate the same class ({\ttfamily Time\+\_\+\+Flies\+\_\+\+Like\+\_\+\+An\+\_\+\+Arrow\+\_\+\+Test}). That\textquotesingle{}s not good.
+
+So for simplicity, we just ask the users to avoid {\ttfamily \+\_\+} in {\ttfamily Test\+Case\+Name} and {\ttfamily Test\+Name}. The rule is more constraining than necessary, but it\textquotesingle{}s simple and easy to remember. It also gives googletest some wiggle room in case its implementation needs to change in the future.
+
+If you violate the rule, there may not be immediate consequences, but your test may (just may) break with a new compiler (or a new version of the compiler you are using) or with a new version of googletest. Therefore it\textquotesingle{}s best to follow the rule.
+
+\subsection*{Why does googletest support {\ttfamily \mbox{\hyperlink{gtest_8h_a4159019abda84f5366acdb7604ff220a}{E\+X\+P\+E\+C\+T\+\_\+\+E\+Q(\+N\+U\+L\+L, ptr)}}} and {\ttfamily \mbox{\hyperlink{gtest_8h_a1a6db8b1338ee7040329322b77779086}{A\+S\+S\+E\+R\+T\+\_\+\+E\+Q(\+N\+U\+L\+L, ptr)}}} but not {\ttfamily \mbox{\hyperlink{gtest_8h_a6ae7443947f25abc58bfcfcfc56b0d75}{E\+X\+P\+E\+C\+T\+\_\+\+N\+E(\+N\+U\+L\+L, ptr)}}} and {\ttfamily \mbox{\hyperlink{gtest_8h_aa866c8dece57912e6f51495ed3e8d8d5}{A\+S\+S\+E\+R\+T\+\_\+\+N\+E(\+N\+U\+L\+L, ptr)}}}?}
+
+First of all you can use {\ttfamily \mbox{\hyperlink{gtest_8h_a6ae7443947f25abc58bfcfcfc56b0d75}{E\+X\+P\+E\+C\+T\+\_\+\+N\+E(nullptr, ptr)}}} and {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+NE(nullptr, ptr)}. This is the preferred syntax in the style guide because nullptr does not have the type problems that N\+U\+LL does. Which is why N\+U\+LL does not work.
+
+Due to some peculiarity of C++, it requires some non-\/trivial template meta programming tricks to support using {\ttfamily N\+U\+LL} as an argument of the {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+X\+X()} and {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+X\+X()} macros. Therefore we only do it where it\textquotesingle{}s most needed (otherwise we make the implementation of googletest harder to maintain and more error-\/prone than necessary).
+
+The {\ttfamily \mbox{\hyperlink{gtest_8h_a4159019abda84f5366acdb7604ff220a}{E\+X\+P\+E\+C\+T\+\_\+\+E\+Q()}}} macro takes the {\itshape expected} value as its first argument and the {\itshape actual} value as the second. It\textquotesingle{}s reasonable that someone wants to write {\ttfamily \mbox{\hyperlink{gtest_8h_a4159019abda84f5366acdb7604ff220a}{E\+X\+P\+E\+C\+T\+\_\+\+E\+Q(\+N\+U\+L\+L, some\+\_\+expression)}}}, and this indeed was requested several times. Therefore we implemented it.
+
+The need for {\ttfamily \mbox{\hyperlink{gtest_8h_a6ae7443947f25abc58bfcfcfc56b0d75}{E\+X\+P\+E\+C\+T\+\_\+\+N\+E(\+N\+U\+L\+L, ptr)}}} isn\textquotesingle{}t nearly as strong. When the assertion fails, you already know that {\ttfamily ptr} must be {\ttfamily N\+U\+LL}, so it doesn\textquotesingle{}t add any information to print {\ttfamily ptr} in this case. That means {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+T\+R\+UE(ptr != N\+U\+LL)} works just as well.
+
+If we were to support {\ttfamily \mbox{\hyperlink{gtest_8h_a6ae7443947f25abc58bfcfcfc56b0d75}{E\+X\+P\+E\+C\+T\+\_\+\+N\+E(\+N\+U\+L\+L, ptr)}}}, for consistency we\textquotesingle{}ll have to support {\ttfamily \mbox{\hyperlink{gtest_8h_a6ae7443947f25abc58bfcfcfc56b0d75}{E\+X\+P\+E\+C\+T\+\_\+\+N\+E(ptr, N\+U\+L\+L)}}} as well, as unlike {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+EQ}, we don\textquotesingle{}t have a convention on the order of the two arguments for {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+NE}. This means using the template meta programming tricks twice in the implementation, making it even harder to understand and maintain. We believe the benefit doesn\textquotesingle{}t justify the cost.
+
+Finally, with the growth of the g\+Mock matcher library, we are encouraging people to use the unified {\ttfamily \mbox{\hyperlink{gmock-matchers_8h_ac31e206123aa702e1152bb2735b31409}{E\+X\+P\+E\+C\+T\+\_\+\+T\+H\+A\+T(value, matcher)}}} syntax more often in tests. One significant advantage of the matcher approach is that matchers can be easily combined to form new matchers, while the {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+NE}, etc, macros cannot be easily combined. Therefore we want to invest more in the matchers than in the {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+X\+X()} macros.
+
+\subsection*{I need to test that different implementations of an interface satisfy some common requirements. Should I use typed tests or value-\/parameterized tests?}
+
+For testing various implementations of the same interface, either typed tests or value-\/parameterized tests can get it done. It\textquotesingle{}s really up to you the user to decide which is more convenient for you, depending on your particular case. Some rough guidelines\+:
+
+
+\begin{DoxyItemize}
+\item Typed tests can be easier to write if instances of the different implementations can be created the same way, modulo the type. For example, if all these implementations have a public default constructor (such that you can write {\ttfamily new Type\+Param}), or if their factory functions have the same form (e.\+g. {\ttfamily Create\+Instance$<$Type\+Param$>$()}).
+\item Value-\/parameterized tests can be easier to write if you need different code patterns to create different implementations\textquotesingle{} instances, e.\+g. {\ttfamily new Foo} vs {\ttfamily new Bar(5)}. To accommodate for the differences, you can write factory function wrappers and pass these function pointers to the tests as their parameters.
+\item When a typed test fails, the output includes the name of the type, which can help you quickly identify which implementation is wrong. Value-\/parameterized tests cannot do this, so there you\textquotesingle{}ll have to look at the iteration number to know which implementation the failure is from, which is less direct.
+\item If you make a mistake writing a typed test, the compiler errors can be harder to digest, as the code is templatized.
+\item When using typed tests, you need to make sure you are testing against the interface type, not the concrete types (in other words, you want to make sure {\ttfamily implicit\+\_\+cast$<$My\+Interface$\ast$$>$(my\+\_\+concrete\+\_\+impl)} works, not just that {\ttfamily my\+\_\+concrete\+\_\+impl} works). It\textquotesingle{}s less likely to make mistakes in this area when using value-\/parameterized tests.
+\end{DoxyItemize}
+
+I hope I didn\textquotesingle{}t confuse you more. \+:-\/) If you don\textquotesingle{}t mind, I\textquotesingle{}d suggest you to give both approaches a try. Practice is a much better way to grasp the subtle differences between the two tools. Once you have some concrete experience, you can much more easily decide which one to use the next time.
+
+\subsection*{My death tests became very slow -\/ what happened?}
+
+In August 2008 we had to switch the default death test style from {\ttfamily fast} to {\ttfamily threadsafe}, as the former is no longer safe now that threaded logging is the default. This caused many death tests to slow down. Unfortunately this change was necessary.
+
+Please read Fixing Failing Death Tests for what you can do.
+
+\subsection*{I got some run-\/time errors about invalid proto descriptors when using {\ttfamily Protocol\+Message\+Equals}. Help!}
+
+{\bfseries{Note\+:}} {\ttfamily Protocol\+Message\+Equals} and {\ttfamily Protocol\+Message\+Equiv} are {\itshape deprecated} now. Please use {\ttfamily Equals\+Proto}, etc instead.
+
+{\ttfamily Protocol\+Message\+Equals} and {\ttfamily Protocol\+Message\+Equiv} were redefined recently and are now less tolerant on invalid protocol buffer definitions. In particular, if you have a {\ttfamily foo.\+proto} that doesn\textquotesingle{}t fully qualify the type of a protocol message it references (e.\+g. {\ttfamily message$<$Bar$>$} where it should be {\ttfamily message$<$blah.\+Bar$>$}), you will now get run-\/time errors like\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{... descriptor.cc:...] Invalid proto descriptor for file "path/to/foo.proto":}
+\DoxyCodeLine{... descriptor.cc:...]  blah.MyMessage.my\_field: ".Bar" is not defined.}
+\end{DoxyCode}
+
+
+If you see this, your {\ttfamily .proto} file is broken and needs to be fixed by making the types fully qualified. The new definition of {\ttfamily Protocol\+Message\+Equals} and {\ttfamily Protocol\+Message\+Equiv} just happen to reveal your bug.
+
+\subsection*{My death test modifies some state, but the change seems lost after the death test finishes. Why?}
+
+Death tests ({\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+D\+E\+A\+TH}, etc) are executed in a sub-\/process s.\+t. the expected crash won\textquotesingle{}t kill the test program (i.\+e. the parent process). As a result, any in-\/memory side effects they incur are observable in their respective sub-\/processes, but not in the parent process. You can think of them as running in a parallel universe, more or less.
+
+In particular, if you use \href{../../googlemock}{\texttt{ g\+Mock}} and the death test statement invokes some mock methods, the parent process will think the calls have never occurred. Therefore, you may want to move your {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+LL} statements inside the {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+D\+E\+A\+TH} macro.
+
+\subsection*{\mbox{\hyperlink{gtest_8h_a4159019abda84f5366acdb7604ff220a}{E\+X\+P\+E\+C\+T\+\_\+\+E\+Q(htonl(blah), blah\+\_\+blah)}} generates weird compiler errors in opt mode. Is this a googletest bug?}
+
+Actually, the bug is in {\ttfamily htonl()}.
+
+According to `\textquotesingle{}man htonl'{\ttfamily ,}htonl(){\ttfamily is a $\ast$function$\ast$, which means it\textquotesingle{}s valid to use}htonl{\ttfamily as a function pointer. However, in opt mode}htonl()\`{} is defined as a {\itshape macro}, which breaks this usage.
+
+Worse, the macro definition of {\ttfamily htonl()} uses a {\ttfamily gcc} extension and is {\itshape not} standard C++. That hacky implementation has some ad hoc limitations. In particular, it prevents you from writing {\ttfamily Foo$<$sizeof(htonl(x))$>$()}, where {\ttfamily Foo} is a template that has an integral argument.
+
+The implementation of {\ttfamily \mbox{\hyperlink{gtest_8h_a4159019abda84f5366acdb7604ff220a}{E\+X\+P\+E\+C\+T\+\_\+\+E\+Q(a, b)}}} uses {\ttfamily sizeof(... a ...)} inside a template argument, and thus doesn\textquotesingle{}t compile in opt mode when {\ttfamily a} contains a call to {\ttfamily htonl()}. It is difficult to make {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+EQ} bypass the {\ttfamily htonl()} bug, as the solution must work with different compilers on various platforms.
+
+{\ttfamily htonl()} has some other problems as described in {\ttfamily //util/endian/endian.h}, which defines {\ttfamily ghtonl()} to replace it. {\ttfamily ghtonl()} does the same thing {\ttfamily htonl()} does, only without its problems. We suggest you to use {\ttfamily ghtonl()} instead of {\ttfamily htonl()}, both in your tests and production code.
+
+{\ttfamily //util/endian/endian.h} also defines {\ttfamily ghtons()}, which solves similar problems in {\ttfamily htons()}.
+
+Don\textquotesingle{}t forget to add {\ttfamily //util/endian} to the list of dependencies in the {\ttfamily B\+U\+I\+LD} file wherever {\ttfamily ghtonl()} and {\ttfamily ghtons()} are used. The library consists of a single header file and will not bloat your binary.
+
+\subsection*{The compiler complains about \char`\"{}undefined references\char`\"{} to some static const member variables, but I did define them in the class body. What\textquotesingle{}s wrong?}
+
+If your class has a static data member\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{// foo.h}
+\DoxyCodeLine{class Foo \{}
+\DoxyCodeLine{  ...}
+\DoxyCodeLine{  static const int kBar = 100;}
+\DoxyCodeLine{\};}
+\end{DoxyCode}
+
+
+You also need to define it {\itshape outside} of the class body in {\ttfamily foo.\+cc}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{const int Foo::kBar;  // No initializer here.}
+\end{DoxyCode}
+
+
+Otherwise your code is {\bfseries{invalid C++}}, and may break in unexpected ways. In particular, using it in googletest comparison assertions ({\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+EQ}, etc) will generate an \char`\"{}undefined reference\char`\"{} linker error. The fact that \char`\"{}it used to work\char`\"{} doesn\textquotesingle{}t mean it\textquotesingle{}s valid. It just means that you were lucky. \+:-\/)
+
+\subsection*{Can I derive a test fixture from another?}
+
+Yes.
+
+Each test fixture has a corresponding and same named test case. This means only one test case can use a particular fixture. Sometimes, however, multiple test cases may want to use the same or slightly different fixtures. For example, you may want to make sure that all of a G\+UI library\textquotesingle{}s test cases don\textquotesingle{}t leak important system resources like fonts and brushes.
+
+In googletest, you share a fixture among test cases by putting the shared logic in a base test fixture, then deriving from that base a separate fixture for each test case that wants to use this common logic. You then use {\ttfamily \mbox{\hyperlink{gtest_8h_a0ee66d464d1a06c20c1929cae09d8758}{T\+E\+S\+T\+\_\+\+F()}}} to write tests using each derived fixture.
+
+Typically, your code looks like this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{// Defines a base test fixture.}
+\DoxyCodeLine{class BaseTest : public ::testing::Test \{}
+\DoxyCodeLine{ protected:}
+\DoxyCodeLine{  ...}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{// Derives a fixture FooTest from BaseTest.}
+\DoxyCodeLine{class FooTest : public BaseTest \{}
+\DoxyCodeLine{ protected:}
+\DoxyCodeLine{  void SetUp() override \{}
+\DoxyCodeLine{    BaseTest::SetUp();  // Sets up the base fixture first.}
+\DoxyCodeLine{    ... additional set-up work ...}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  void TearDown() override \{}
+\DoxyCodeLine{    ... clean-up work for FooTest ...}
+\DoxyCodeLine{    BaseTest::TearDown();  // Remember to tear down the base fixture}
+\DoxyCodeLine{                           // after cleaning up FooTest!}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  ... functions and variables for FooTest ...}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{// Tests that use the fixture FooTest.}
+\DoxyCodeLine{TEST\_F(FooTest, Bar) \{ ... \}}
+\DoxyCodeLine{TEST\_F(FooTest, Baz) \{ ... \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{... additional fixtures derived from BaseTest ...}
+\end{DoxyCode}
+
+
+If necessary, you can continue to derive test fixtures from a derived fixture. googletest has no limit on how deep the hierarchy can be.
+
+For a complete example using derived test fixtures, see \href{https://github.com/google/googletest/blob/master/googletest/samples/sample5_unittest.cc}{\texttt{ googletest sample}}
+
+\subsection*{My compiler complains \char`\"{}void value not ignored as it ought to be.\char`\"{} What does this mean?}
+
+You\textquotesingle{}re probably using an {\ttfamily A\+S\+S\+E\+R\+T\+\_\+$\ast$()} in a function that doesn\textquotesingle{}t return {\ttfamily void}. {\ttfamily A\+S\+S\+E\+R\+T\+\_\+$\ast$()} can only be used in {\ttfamily void} functions, due to exceptions being disabled by our build system. Please see more details \href{advanced.md\#assertion-placement}{\texttt{ here}}.
+
+\subsection*{My death test hangs (or seg-\/faults). How do I fix it?}
+
+In googletest, death tests are run in a child process and the way they work is delicate. To write death tests you really need to understand how they work. Please make sure you have read \href{advanced.md\#how-it-works}{\texttt{ this}}.
+
+In particular, death tests don\textquotesingle{}t like having multiple threads in the parent process. So the first thing you can try is to eliminate creating threads outside of {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+D\+E\+A\+T\+H()}. For example, you may want to use \href{../../googlemock}{\texttt{ mocks}} or fake objects instead of real ones in your tests.
+
+Sometimes this is impossible as some library you must use may be creating threads before {\ttfamily \mbox{\hyperlink{3_814_83_2CompilerIdC_2CMakeCCompilerId_8c_a0ddf1224851353fc92bfbff6f499fa97}{main()}}} is even reached. In this case, you can try to minimize the chance of conflicts by either moving as many activities as possible inside {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+D\+E\+A\+T\+H()} (in the extreme case, you want to move everything inside), or leaving as few things as possible in it. Also, you can try to set the death test style to {\ttfamily \char`\"{}threadsafe\char`\"{}}, which is safer but slower, and see if it helps.
+
+If you go with thread-\/safe death tests, remember that they rerun the test program from the beginning in the child process. Therefore make sure your program can run side-\/by-\/side with itself and is deterministic.
+
+In the end, this boils down to good concurrent programming. You have to make sure that there is no race conditions or dead locks in your program. No silver bullet -\/ sorry!
+
+\subsection*{Should I use the constructor/destructor of the test fixture or Set\+Up()/\+Tear\+Down()?}
+
+The first thing to remember is that googletest does {\bfseries{not}} reuse the same test fixture object across multiple tests. For each {\ttfamily T\+E\+S\+T\+\_\+F}, googletest will create a {\bfseries{fresh}} test fixture object, immediately call {\ttfamily Set\+Up()}, run the test body, call {\ttfamily Tear\+Down()}, and then delete the test fixture object.
+
+When you need to write per-\/test set-\/up and tear-\/down logic, you have the choice between using the test fixture constructor/destructor or {\ttfamily Set\+Up()/\+Tear\+Down()}. The former is usually preferred, as it has the following benefits\+:
+
+
+\begin{DoxyItemize}
+\item By initializing a member variable in the constructor, we have the option to make it {\ttfamily const}, which helps prevent accidental changes to its value and makes the tests more obviously correct.
+\item In case we need to subclass the test fixture class, the subclass\textquotesingle{} constructor is guaranteed to call the base class\textquotesingle{} constructor {\itshape first}, and the subclass\textquotesingle{} destructor is guaranteed to call the base class\textquotesingle{} destructor {\itshape afterward}. With {\ttfamily Set\+Up()/\+Tear\+Down()}, a subclass may make the mistake of forgetting to call the base class\textquotesingle{} {\ttfamily Set\+Up()/\+Tear\+Down()} or call them at the wrong time.
+\end{DoxyItemize}
+
+You may still want to use {\ttfamily Set\+Up()/\+Tear\+Down()} in the following rare cases\+:
+
+
+\begin{DoxyItemize}
+\item In the body of a constructor (or destructor), it\textquotesingle{}s not possible to use the {\ttfamily A\+S\+S\+E\+R\+T\+\_\+xx} macros. Therefore, if the set-\/up operation could cause a fatal test failure that should prevent the test from running, it\textquotesingle{}s necessary to use a {\ttfamily C\+H\+E\+CK} macro or to use {\ttfamily Set\+Up()} instead of a constructor.
+\item If the tear-\/down operation could throw an exception, you must use {\ttfamily Tear\+Down()} as opposed to the destructor, as throwing in a destructor leads to undefined behavior and usually will kill your program right away. Note that many standard libraries (like S\+TL) may throw when exceptions are enabled in the compiler. Therefore you should prefer {\ttfamily Tear\+Down()} if you want to write portable tests that work with or without exceptions.
+\item The googletest team is considering making the assertion macros throw on platforms where exceptions are enabled (e.\+g. Windows, Mac OS, and Linux client-\/side), which will eliminate the need for the user to propagate failures from a subroutine to its caller. Therefore, you shouldn\textquotesingle{}t use googletest assertions in a destructor if your code could run on such a platform.
+\item In a constructor or destructor, you cannot make a virtual function call on this object. (You can call a method declared as virtual, but it will be statically bound.) Therefore, if you need to call a method that will be overridden in a derived class, you have to use {\ttfamily Set\+Up()/\+Tear\+Down()}.
+\end{DoxyItemize}
+
+\subsection*{The compiler complains \char`\"{}no matching function to call\char`\"{} when I use A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D$\ast$. How do I fix it?}
+
+If the predicate function you use in {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D$\ast$} or {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D$\ast$} is overloaded or a template, the compiler will have trouble figuring out which overloaded version it should use. {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T$\ast$} and {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T$\ast$} don\textquotesingle{}t have this problem.
+
+If you see this error, you might want to switch to {\ttfamily (A\+S\+S\+E\+R\+T$\vert$\+E\+X\+P\+E\+CT)\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T$\ast$}, which will also give you a better failure message. If, however, that is not an option, you can resolve the problem by explicitly telling the compiler which version to pick.
+
+For example, suppose you have
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{bool IsPositive(int n) \{}
+\DoxyCodeLine{  return n > 0;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{bool IsPositive(double x) \{}
+\DoxyCodeLine{  return x > 0;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+you will get a compiler error if you write
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{EXPECT\_PRED1(IsPositive, 5);}
+\end{DoxyCode}
+
+
+However, this will work\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{EXPECT\_PRED1(static\_cast<bool (*)(int)>(IsPositive), 5);}
+\end{DoxyCode}
+
+
+(The stuff inside the angled brackets for the {\ttfamily static\+\_\+cast} operator is the type of the function pointer for the {\ttfamily int}-\/version of {\ttfamily \mbox{\hyperlink{namespacetesting_1_1gmock__matchers__test_a70e728cf67d0224c3ebb9eb8959cc39d}{Is\+Positive()}}}.)
+
+As another example, when you have a template function
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{template <typename T>}
+\DoxyCodeLine{bool IsNegative(T x) \{}
+\DoxyCodeLine{  return x < 0;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+you can use it in a predicate assertion like this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{ASSERT\_PRED1(IsNegative<int>, -5);}
+\end{DoxyCode}
+
+
+Things are more interesting if your template has more than one parameters. The following won\textquotesingle{}t compile\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{ASSERT\_PRED2(GreaterThan<int, int>, 5, 0);}
+\end{DoxyCode}
+
+
+as the C++ pre-\/processor thinks you are giving {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D2} 4 arguments, which is one more than expected. The workaround is to wrap the predicate function in parentheses\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{ASSERT\_PRED2((GreaterThan<int, int>), 5, 0);}
+\end{DoxyCode}
+
+
+\subsection*{My compiler complains about \char`\"{}ignoring return value\char`\"{} when I call \mbox{\hyperlink{gtest_8h_a853a3792807489591d3d4a2f2ff9359f}{R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()}}. Why?}
+
+Some people had been ignoring the return value of {\ttfamily \mbox{\hyperlink{gtest_8h_a853a3792807489591d3d4a2f2ff9359f}{R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()}}}. That is, instead of
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{c++\}}
+\DoxyCodeLine{ return RUN\_ALL\_TESTS();}
+\end{DoxyCode}
+
+
+they write
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{c++\}}
+\DoxyCodeLine{ RUN\_ALL\_TESTS();}
+\end{DoxyCode}
+
+
+This is {\bfseries{wrong and dangerous}}. The testing services needs to see the return value of {\ttfamily \mbox{\hyperlink{gtest_8h_a853a3792807489591d3d4a2f2ff9359f}{R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()}}} in order to determine if a test has passed. If your {\ttfamily \mbox{\hyperlink{3_814_83_2CompilerIdC_2CMakeCCompilerId_8c_a0ddf1224851353fc92bfbff6f499fa97}{main()}}} function ignores it, your test will be considered successful even if it has a googletest assertion failure. Very bad.
+
+We have decided to fix this (thanks to Michael Chastain for the idea). Now, your code will no longer be able to ignore {\ttfamily \mbox{\hyperlink{gtest_8h_a853a3792807489591d3d4a2f2ff9359f}{R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()}}} when compiled with {\ttfamily gcc}. If you do so, you\textquotesingle{}ll get a compiler error.
+
+If you see the compiler complaining about you ignoring the return value of {\ttfamily \mbox{\hyperlink{gtest_8h_a853a3792807489591d3d4a2f2ff9359f}{R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()}}}, the fix is simple\+: just make sure its value is used as the return value of {\ttfamily \mbox{\hyperlink{3_814_83_2CompilerIdC_2CMakeCCompilerId_8c_a0ddf1224851353fc92bfbff6f499fa97}{main()}}}.
+
+But how could we introduce a change that breaks existing tests? Well, in this case, the code was already broken in the first place, so we didn\textquotesingle{}t break it. \+:-\/)
+
+\subsection*{My compiler complains that a constructor (or destructor) cannot return a value. What\textquotesingle{}s going on?}
+
+Due to a peculiarity of C++, in order to support the syntax for streaming messages to an {\ttfamily A\+S\+S\+E\+R\+T\+\_\+$\ast$}, e.\+g.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{c++\}}
+\DoxyCodeLine{ ASSERT\_EQ(1, Foo()) << "blah blah" << foo;}
+\end{DoxyCode}
+
+
+we had to give up using {\ttfamily A\+S\+S\+E\+R\+T$\ast$} and {\ttfamily F\+A\+I\+L$\ast$} (but not {\ttfamily E\+X\+P\+E\+C\+T$\ast$} and {\ttfamily A\+D\+D\+\_\+\+F\+A\+I\+L\+U\+R\+E$\ast$}) in constructors and destructors. The workaround is to move the content of your constructor/destructor to a private void member function, or switch to {\ttfamily E\+X\+P\+E\+C\+T\+\_\+$\ast$()} if that works. This \href{advanced.md\#assertion-placement}{\texttt{ section}} in the user\textquotesingle{}s guide explains it.
+
+\subsection*{My Set\+Up() function is not called. Why?}
+
+C++ is case-\/sensitive. Did you spell it as {\ttfamily Setup()}?
+
+Similarly, sometimes people spell {\ttfamily Set\+Up\+Test\+Case()} as {\ttfamily Setup\+Test\+Case()} and wonder why it\textquotesingle{}s never called.
+
+\subsection*{How do I jump to the line of a failure in Emacs directly?}
+
+googletest\textquotesingle{}s failure message format is understood by Emacs and many other I\+D\+Es, like acme and X\+Code. If a googletest message is in a compilation buffer in Emacs, then it\textquotesingle{}s clickable.
+
+\subsection*{I have several test cases which share the same test fixture logic, do I have to define a new test fixture class for each of them? This seems pretty tedious.}
+
+You don\textquotesingle{}t have to. Instead of
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{class FooTest : public BaseTest \{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{TEST\_F(FooTest, Abc) \{ ... \}}
+\DoxyCodeLine{TEST\_F(FooTest, Def) \{ ... \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{class BarTest : public BaseTest \{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{TEST\_F(BarTest, Abc) \{ ... \}}
+\DoxyCodeLine{TEST\_F(BarTest, Def) \{ ... \}}
+\end{DoxyCode}
+
+
+you can simply {\ttfamily typedef} the test fixtures\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{typedef BaseTest FooTest;}
+\DoxyCodeLine{}
+\DoxyCodeLine{TEST\_F(FooTest, Abc) \{ ... \}}
+\DoxyCodeLine{TEST\_F(FooTest, Def) \{ ... \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{typedef BaseTest BarTest;}
+\DoxyCodeLine{}
+\DoxyCodeLine{TEST\_F(BarTest, Abc) \{ ... \}}
+\DoxyCodeLine{TEST\_F(BarTest, Def) \{ ... \}}
+\end{DoxyCode}
+
+
+\subsection*{googletest output is buried in a whole bunch of L\+OG messages. What do I do?}
+
+The googletest output is meant to be a concise and human-\/friendly report. If your test generates textual output itself, it will mix with the googletest output, making it hard to read. However, there is an easy solution to this problem.
+
+Since {\ttfamily L\+OG} messages go to stderr, we decided to let googletest output go to stdout. This way, you can easily separate the two using redirection. For example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ ./my\_test > gtest\_output.txt}
+\end{DoxyCode}
+
+
+\subsection*{Why should I prefer test fixtures over global variables?}
+
+There are several good reasons\+:
+
+
+\begin{DoxyEnumerate}
+\item It\textquotesingle{}s likely your test needs to change the states of its global variables. This makes it difficult to keep side effects from escaping one test and contaminating others, making debugging difficult. By using fixtures, each test has a fresh set of variables that\textquotesingle{}s different (but with the same names). Thus, tests are kept independent of each other.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Global variables pollute the global namespace.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Test fixtures can be reused via subclassing, which cannot be done easily with global variables. This is useful if many test cases have something in common.
+\end{DoxyEnumerate}
+
+\begin{DoxyVerb}## What can the statement argument in ASSERT_DEATH() be?
+\end{DoxyVerb}
+
+
+{\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+D\+E\+A\+T\+H($\ast$statement$\ast$, $\ast$regex$\ast$)} (or any death assertion macro) can be used wherever {\ttfamily $\ast$statement$\ast$} is valid. So basically {\ttfamily $\ast$statement$\ast$} can be any C++ statement that makes sense in the current context. In particular, it can reference global and/or local variables, and can be\+:
+
+
+\begin{DoxyItemize}
+\item a simple function call (often the case),
+\item a complex expression, or
+\item a compound statement.
+\end{DoxyItemize}
+
+Some examples are shown here\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{// A death test can be a simple function call.}
+\DoxyCodeLine{TEST(MyDeathTest, FunctionCall) \{}
+\DoxyCodeLine{  ASSERT\_DEATH(Xyz(5), "Xyz failed");}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{// Or a complex expression that references variables and functions.}
+\DoxyCodeLine{TEST(MyDeathTest, ComplexExpression) \{}
+\DoxyCodeLine{  const bool c = Condition();}
+\DoxyCodeLine{  ASSERT\_DEATH((c ? Func1(0) : object2.Method("test")),}
+\DoxyCodeLine{               "(Func1|Method) failed");}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{// Death assertions can be used any where in a function.  In}
+\DoxyCodeLine{// particular, they can be inside a loop.}
+\DoxyCodeLine{TEST(MyDeathTest, InsideLoop) \{}
+\DoxyCodeLine{  // Verifies that Foo(0), Foo(1), ..., and Foo(4) all die.}
+\DoxyCodeLine{  for (int i = 0; i < 5; i++) \{}
+\DoxyCodeLine{    EXPECT\_DEATH\_M(Foo(i), "Foo has \(\backslash\)\(\backslash\)d+ errors",}
+\DoxyCodeLine{                   ::testing::Message() << "where i is " << i);}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{// A death assertion can contain a compound statement.}
+\DoxyCodeLine{TEST(MyDeathTest, CompoundStatement) \{}
+\DoxyCodeLine{  // Verifies that at lease one of Bar(0), Bar(1), ..., and}
+\DoxyCodeLine{  // Bar(4) dies.}
+\DoxyCodeLine{  ASSERT\_DEATH(\{}
+\DoxyCodeLine{    for (int i = 0; i < 5; i++) \{}
+\DoxyCodeLine{      Bar(i);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{  \},}
+\DoxyCodeLine{  "Bar has \(\backslash\)\(\backslash\)d+ errors");}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+gtest-\/death-\/test\+\_\+test.\+cc contains more examples if you are interested.
+
+\subsection*{I have a fixture class {\ttfamily \mbox{\hyperlink{classFooTest}{Foo\+Test}}}, but {\ttfamily \mbox{\hyperlink{gtest_8h_a0ee66d464d1a06c20c1929cae09d8758}{T\+E\+S\+T\+\_\+\+F(\+Foo\+Test, Bar)}}} gives me error {\ttfamily \char`\"{}no matching function for call to \`{}\+Foo\+Test\+::\+Foo\+Test()\textquotesingle{}\char`\"{}}. Why?}
+
+Googletest needs to be able to create objects of your test fixture class, so it must have a default constructor. Normally the compiler will define one for you. However, there are cases where you have to define your own\+:
+
+
+\begin{DoxyItemize}
+\item If you explicitly declare a non-\/default constructor for class {\ttfamily \mbox{\hyperlink{classFooTest}{Foo\+Test}}} ({\ttfamily D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+E\+V\+I\+L\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+O\+R\+S()} does this), then you need to define a default constructor, even if it would be empty.
+\item If {\ttfamily \mbox{\hyperlink{classFooTest}{Foo\+Test}}} has a const non-\/static data member, then you have to define the default constructor {\itshape and} initialize the const member in the initializer list of the constructor. (Early versions of {\ttfamily gcc} doesn\textquotesingle{}t force you to initialize the const member. It\textquotesingle{}s a bug that has been fixed in {\ttfamily gcc 4}.)
+\end{DoxyItemize}
+
+\subsection*{Why does A\+S\+S\+E\+R\+T\+\_\+\+D\+E\+A\+TH complain about previous threads that were already joined?}
+
+With the Linux pthread library, there is no turning back once you cross the line from single thread to multiple threads. The first time you create a thread, a manager thread is created in addition, so you get 3, not 2, threads. Later when the thread you create joins the main thread, the thread count decrements by 1, but the manager thread will never be killed, so you still have 2 threads, which means you cannot safely run a death test.
+
+The new N\+P\+TL thread library doesn\textquotesingle{}t suffer from this problem, as it doesn\textquotesingle{}t create a manager thread. However, if you don\textquotesingle{}t control which machine your test runs on, you shouldn\textquotesingle{}t depend on this.
+
+\subsection*{Why does googletest require the entire test case, instead of individual tests, to be named $\ast$\+Death\+Test when it uses A\+S\+S\+E\+R\+T\+\_\+\+D\+E\+A\+TH?}
+
+googletest does not interleave tests from different test cases. That is, it runs all tests in one test case first, and then runs all tests in the next test case, and so on. googletest does this because it needs to set up a test case before the first test in it is run, and tear it down afterwords. Splitting up the test case would require multiple set-\/up and tear-\/down processes, which is inefficient and makes the semantics unclean.
+
+If we were to determine the order of tests based on test name instead of test case name, then we would have a problem with the following situation\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{TEST\_F(FooTest, AbcDeathTest) \{ ... \}}
+\DoxyCodeLine{TEST\_F(FooTest, Uvw) \{ ... \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{TEST\_F(BarTest, DefDeathTest) \{ ... \}}
+\DoxyCodeLine{TEST\_F(BarTest, Xyz) \{ ... \}}
+\end{DoxyCode}
+
+
+Since {\ttfamily Foo\+Test.\+Abc\+Death\+Test} needs to run before {\ttfamily Bar\+Test.\+Xyz}, and we don\textquotesingle{}t interleave tests from different test cases, we need to run all tests in the {\ttfamily \mbox{\hyperlink{classFooTest}{Foo\+Test}}} case before running any test in the {\ttfamily Bar\+Test} case. This contradicts with the requirement to run {\ttfamily Bar\+Test.\+Def\+Death\+Test} before {\ttfamily Foo\+Test.\+Uvw}.
+
+\subsection*{But I don\textquotesingle{}t like calling my entire test case $\ast$\+Death\+Test when it contains both death tests and non-\/death tests. What do I do?}
+
+You don\textquotesingle{}t have to, but if you like, you may split up the test case into {\ttfamily \mbox{\hyperlink{classFooTest}{Foo\+Test}}} and {\ttfamily Foo\+Death\+Test}, where the names make it clear that they are related\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{class FooTest : public ::testing::Test \{ ... \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{TEST\_F(FooTest, Abc) \{ ... \}}
+\DoxyCodeLine{TEST\_F(FooTest, Def) \{ ... \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{using FooDeathTest = FooTest;}
+\DoxyCodeLine{}
+\DoxyCodeLine{TEST\_F(FooDeathTest, Uvw) \{ ... EXPECT\_DEATH(...) ... \}}
+\DoxyCodeLine{TEST\_F(FooDeathTest, Xyz) \{ ... ASSERT\_DEATH(...) ... \}}
+\end{DoxyCode}
+
+
+\subsection*{googletest prints the L\+OG messages in a death test\textquotesingle{}s child process only when the test fails. How can I see the L\+OG messages when the death test succeeds?}
+
+Printing the L\+OG messages generated by the statement inside {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+D\+E\+A\+T\+H()} makes it harder to search for real problems in the parent\textquotesingle{}s log. Therefore, googletest only prints them when the death test has failed.
+
+If you really need to see such L\+OG messages, a workaround is to temporarily break the death test (e.\+g. by changing the regex pattern it is expected to match). Admittedly, this is a hack. We\textquotesingle{}ll consider a more permanent solution after the fork-\/and-\/exec-\/style death tests are implemented.
+
+\subsection*{The compiler complains about \char`\"{}no match for \textquotesingle{}operator$<$$<$\textquotesingle{}\char`\"{} when I use an assertion. What gives?}
+
+If you use a user-\/defined type {\ttfamily Foo\+Type} in an assertion, you must make sure there is an {\ttfamily std\+::ostream\& operator$<$$<$(std\+::ostream\&, const Foo\+Type\&)} function defined such that we can print a value of {\ttfamily Foo\+Type}.
+
+In addition, if {\ttfamily Foo\+Type} is declared in a name space, the {\ttfamily $<$$<$} operator also needs to be defined in the {\itshape same} name space. See go/totw/49 for details.
+
+\subsection*{How do I suppress the memory leak messages on Windows?}
+
+Since the statically initialized googletest singleton requires allocations on the heap, the Visual C++ memory leak detector will report memory leaks at the end of the program run. The easiest way to avoid this is to use the {\ttfamily \+\_\+\+Crt\+Mem\+Checkpoint} and {\ttfamily \+\_\+\+Crt\+Mem\+Dump\+All\+Objects\+Since} calls to not report any statically initialized heap objects. See M\+S\+DN for more details and additional heap check/debug routines.
+
+\subsection*{How can my code detect if it is running in a test?}
+
+If you write code that sniffs whether it\textquotesingle{}s running in a test and does different things accordingly, you are leaking test-\/only logic into production code and there is no easy way to ensure that the test-\/only code paths aren\textquotesingle{}t run by mistake in production. Such cleverness also leads to \href{https://en.wikipedia.org/wiki/Heisenbug}{\texttt{ Heisenbugs}}. Therefore we strongly advise against the practice, and googletest doesn\textquotesingle{}t provide a way to do it.
+
+In general, the recommended way to cause the code to behave differently under test is \href{https://en.wikipedia.org/wiki/Dependency_injection}{\texttt{ Dependency Injection}}. You can inject different functionality from the test and from the production code. Since your production code doesn\textquotesingle{}t link in the for-\/test logic at all (the \href{https://docs.bazel.build/versions/master/be/common-definitions.html\#common.testonly}{\texttt{ {\ttfamily testonly}}} attribute for B\+U\+I\+LD targets helps to ensure that), there is no danger in accidentally running it.
+
+However, if you {\itshape really}, {\itshape really}, {\itshape really} have no choice, and if you follow the rule of ending your test program names with {\ttfamily \+\_\+test}, you can use the {\itshape horrible} hack of sniffing your executable name ({\ttfamily argv\mbox{[}0\mbox{]}} in {\ttfamily \mbox{\hyperlink{3_814_83_2CompilerIdC_2CMakeCCompilerId_8c_a0ddf1224851353fc92bfbff6f499fa97}{main()}}}) to know whether the code is under test.
+
+\subsection*{How do I temporarily disable a test?}
+
+If you have a broken test that you cannot fix right away, you can add the D\+I\+S\+A\+B\+L\+E\+D\+\_\+ prefix to its name. This will exclude it from execution. This is better than commenting out the code or using \#if 0, as disabled tests are still compiled (and thus won\textquotesingle{}t rot).
+
+To include disabled tests in test execution, just invoke the test program with the --gtest\+\_\+also\+\_\+run\+\_\+disabled\+\_\+tests flag.
+
+\subsection*{Is it OK if I have two separate {\ttfamily \mbox{\hyperlink{gtest_8h_ad8b332753515c0ab8baada563c2547eb}{T\+E\+S\+T(\+Foo, Bar)}}} test methods defined in different namespaces?}
+
+Yes.
+
+The rule is {\bfseries{all test methods in the same test case must use the same fixture class.}} This means that the following is {\bfseries{allowed}} because both tests use the same fixture class ({\ttfamily \mbox{\hyperlink{classtesting_1_1Test}{testing\+::\+Test}}}).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{namespace foo \{}
+\DoxyCodeLine{TEST(CoolTest, DoSomething) \{}
+\DoxyCodeLine{  SUCCEED();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\}  // namespace foo}
+\DoxyCodeLine{}
+\DoxyCodeLine{namespace bar \{}
+\DoxyCodeLine{TEST(CoolTest, DoSomething) \{}
+\DoxyCodeLine{  SUCCEED();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\}  // namespace bar}
+\end{DoxyCode}
+
+
+However, the following code is {\bfseries{not allowed}} and will produce a runtime error from googletest because the test methods are using different test fixture classes with the same test case name.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{c++\}}
+\DoxyCodeLine{namespace foo \{}
+\DoxyCodeLine{class CoolTest : public ::testing::Test \{\};  // Fixture foo::CoolTest}
+\DoxyCodeLine{TEST\_F(CoolTest, DoSomething) \{}
+\DoxyCodeLine{  SUCCEED();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\}  // namespace foo}
+\DoxyCodeLine{}
+\DoxyCodeLine{namespace bar \{}
+\DoxyCodeLine{class CoolTest : public ::testing::Test \{\};  // Fixture: bar::CoolTest}
+\DoxyCodeLine{TEST\_F(CoolTest, DoSomething) \{}
+\DoxyCodeLine{  SUCCEED();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\}  // namespace bar}
+\end{DoxyCode}
+ 

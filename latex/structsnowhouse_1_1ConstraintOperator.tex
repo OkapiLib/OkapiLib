@@ -1,0 +1,86 @@
+\hypertarget{structsnowhouse_1_1ConstraintOperator}{}\section{snowhouse\+::Constraint\+Operator Struct Reference}
+\label{structsnowhouse_1_1ConstraintOperator}\index{snowhouse::ConstraintOperator@{snowhouse::ConstraintOperator}}
+
+
+{\ttfamily \#include $<$constraintoperator.\+h$>$}
+
+Inheritance diagram for snowhouse\+::Constraint\+Operator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.705584cm]{structsnowhouse_1_1ConstraintOperator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{structsnowhouse_1_1ConstraintOperator_ab34ad26e971feefdc35cd56d8f289633}{$\sim$\+Constraint\+Operator}} ()
+\item 
+virtual void \mbox{\hyperlink{structsnowhouse_1_1ConstraintOperator_a885882868139127eb8ff3f3ec6a97737}{Perform\+Operation}} (\mbox{\hyperlink{namespacesnowhouse_a719169b1315a13161c15f25e600a8f51}{Result\+Stack}} \&result)=0
+\item 
+virtual int \mbox{\hyperlink{structsnowhouse_1_1ConstraintOperator_ac7c231c1a9f183c0a2cce8544566eeff}{Precedence}} () const =0
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Constraint\+List\+Type , typename Actual\+Type $>$ }\\static bool \mbox{\hyperlink{structsnowhouse_1_1ConstraintOperator_afbfbb1f5a56cd105ffbe8caceaaa7930}{Evaluate\+Element\+Against\+Rest\+Of\+Expression}} (Constraint\+List\+Type \&list, const Actual\+Type \&actual)
+\item 
+static void \mbox{\hyperlink{structsnowhouse_1_1ConstraintOperator_aafb0a6fce0186a0afc4854ffe69b6a23}{Evaluate\+Operators\+With\+Less\+Or\+Equal\+Precedence}} (const \mbox{\hyperlink{structsnowhouse_1_1ConstraintOperator}{Constraint\+Operator}} \&op, \mbox{\hyperlink{namespacesnowhouse_adcb10e215e6a4bbcb35722a9c7270fc6}{Operator\+Stack}} \&operators, \mbox{\hyperlink{namespacesnowhouse_a719169b1315a13161c15f25e600a8f51}{Result\+Stack}} \&result)
+\item 
+static void \mbox{\hyperlink{structsnowhouse_1_1ConstraintOperator_abccac090f8d0b6e400934dbb24e6d4e4}{Evaluate\+All\+Operators\+On\+Stack}} (\mbox{\hyperlink{namespacesnowhouse_adcb10e215e6a4bbcb35722a9c7270fc6}{Operator\+Stack}} \&operators, \mbox{\hyperlink{namespacesnowhouse_a719169b1315a13161c15f25e600a8f51}{Result\+Stack}} \&result)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structsnowhouse_1_1ConstraintOperator_ab34ad26e971feefdc35cd56d8f289633}\label{structsnowhouse_1_1ConstraintOperator_ab34ad26e971feefdc35cd56d8f289633}} 
+\index{snowhouse::ConstraintOperator@{snowhouse::ConstraintOperator}!````~ConstraintOperator@{$\sim$ConstraintOperator}}
+\index{````~ConstraintOperator@{$\sim$ConstraintOperator}!snowhouse::ConstraintOperator@{snowhouse::ConstraintOperator}}
+\subsubsection{\texorpdfstring{$\sim$ConstraintOperator()}{~ConstraintOperator()}}
+{\footnotesize\ttfamily virtual snowhouse\+::\+Constraint\+Operator\+::$\sim$\+Constraint\+Operator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structsnowhouse_1_1ConstraintOperator_abccac090f8d0b6e400934dbb24e6d4e4}\label{structsnowhouse_1_1ConstraintOperator_abccac090f8d0b6e400934dbb24e6d4e4}} 
+\index{snowhouse::ConstraintOperator@{snowhouse::ConstraintOperator}!EvaluateAllOperatorsOnStack@{EvaluateAllOperatorsOnStack}}
+\index{EvaluateAllOperatorsOnStack@{EvaluateAllOperatorsOnStack}!snowhouse::ConstraintOperator@{snowhouse::ConstraintOperator}}
+\subsubsection{\texorpdfstring{EvaluateAllOperatorsOnStack()}{EvaluateAllOperatorsOnStack()}}
+{\footnotesize\ttfamily static void snowhouse\+::\+Constraint\+Operator\+::\+Evaluate\+All\+Operators\+On\+Stack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacesnowhouse_adcb10e215e6a4bbcb35722a9c7270fc6}{Operator\+Stack}} \&}]{operators,  }\item[{\mbox{\hyperlink{namespacesnowhouse_a719169b1315a13161c15f25e600a8f51}{Result\+Stack}} \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structsnowhouse_1_1ConstraintOperator_afbfbb1f5a56cd105ffbe8caceaaa7930}\label{structsnowhouse_1_1ConstraintOperator_afbfbb1f5a56cd105ffbe8caceaaa7930}} 
+\index{snowhouse::ConstraintOperator@{snowhouse::ConstraintOperator}!EvaluateElementAgainstRestOfExpression@{EvaluateElementAgainstRestOfExpression}}
+\index{EvaluateElementAgainstRestOfExpression@{EvaluateElementAgainstRestOfExpression}!snowhouse::ConstraintOperator@{snowhouse::ConstraintOperator}}
+\subsubsection{\texorpdfstring{EvaluateElementAgainstRestOfExpression()}{EvaluateElementAgainstRestOfExpression()}}
+{\footnotesize\ttfamily template$<$typename Constraint\+List\+Type , typename Actual\+Type $>$ \\
+static bool snowhouse\+::\+Constraint\+Operator\+::\+Evaluate\+Element\+Against\+Rest\+Of\+Expression (\begin{DoxyParamCaption}\item[{Constraint\+List\+Type \&}]{list,  }\item[{const Actual\+Type \&}]{actual }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structsnowhouse_1_1ConstraintOperator_aafb0a6fce0186a0afc4854ffe69b6a23}\label{structsnowhouse_1_1ConstraintOperator_aafb0a6fce0186a0afc4854ffe69b6a23}} 
+\index{snowhouse::ConstraintOperator@{snowhouse::ConstraintOperator}!EvaluateOperatorsWithLessOrEqualPrecedence@{EvaluateOperatorsWithLessOrEqualPrecedence}}
+\index{EvaluateOperatorsWithLessOrEqualPrecedence@{EvaluateOperatorsWithLessOrEqualPrecedence}!snowhouse::ConstraintOperator@{snowhouse::ConstraintOperator}}
+\subsubsection{\texorpdfstring{EvaluateOperatorsWithLessOrEqualPrecedence()}{EvaluateOperatorsWithLessOrEqualPrecedence()}}
+{\footnotesize\ttfamily static void snowhouse\+::\+Constraint\+Operator\+::\+Evaluate\+Operators\+With\+Less\+Or\+Equal\+Precedence (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structsnowhouse_1_1ConstraintOperator}{Constraint\+Operator}} \&}]{op,  }\item[{\mbox{\hyperlink{namespacesnowhouse_adcb10e215e6a4bbcb35722a9c7270fc6}{Operator\+Stack}} \&}]{operators,  }\item[{\mbox{\hyperlink{namespacesnowhouse_a719169b1315a13161c15f25e600a8f51}{Result\+Stack}} \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{structsnowhouse_1_1ConstraintOperator_a885882868139127eb8ff3f3ec6a97737}\label{structsnowhouse_1_1ConstraintOperator_a885882868139127eb8ff3f3ec6a97737}} 
+\index{snowhouse::ConstraintOperator@{snowhouse::ConstraintOperator}!PerformOperation@{PerformOperation}}
+\index{PerformOperation@{PerformOperation}!snowhouse::ConstraintOperator@{snowhouse::ConstraintOperator}}
+\subsubsection{\texorpdfstring{PerformOperation()}{PerformOperation()}}
+{\footnotesize\ttfamily virtual void snowhouse\+::\+Constraint\+Operator\+::\+Perform\+Operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacesnowhouse_a719169b1315a13161c15f25e600a8f51}{Result\+Stack}} \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{structsnowhouse_1_1AndOperator_a59f6a119b0a03df13f7bb99b8fd8ecf9}{snowhouse\+::\+And\+Operator}}, \mbox{\hyperlink{structsnowhouse_1_1NotOperator_af2dc2b844260fd317207960087bd074f}{snowhouse\+::\+Not\+Operator}}, \mbox{\hyperlink{structsnowhouse_1_1OrOperator_abd9c1f7e6b6867e83a0e7b0bbaa75f02}{snowhouse\+::\+Or\+Operator}}, and \mbox{\hyperlink{structsnowhouse_1_1CollectionOperator_a7a7d525c230d238e0d643c2135be5f1d}{snowhouse\+::\+Collection\+Operator}}.
+
+\mbox{\Hypertarget{structsnowhouse_1_1ConstraintOperator_ac7c231c1a9f183c0a2cce8544566eeff}\label{structsnowhouse_1_1ConstraintOperator_ac7c231c1a9f183c0a2cce8544566eeff}} 
+\index{snowhouse::ConstraintOperator@{snowhouse::ConstraintOperator}!Precedence@{Precedence}}
+\index{Precedence@{Precedence}!snowhouse::ConstraintOperator@{snowhouse::ConstraintOperator}}
+\subsubsection{\texorpdfstring{Precedence()}{Precedence()}}
+{\footnotesize\ttfamily virtual int snowhouse\+::\+Constraint\+Operator\+::\+Precedence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{structsnowhouse_1_1AndOperator_a791ad296866bdf103cdb7905de1a3e0e}{snowhouse\+::\+And\+Operator}}, \mbox{\hyperlink{structsnowhouse_1_1OrOperator_af0c0077685e16330a75b0c96f29ed405}{snowhouse\+::\+Or\+Operator}}, \mbox{\hyperlink{structsnowhouse_1_1NotOperator_aa8efde1ec3fd4ff2fee91a6985b6c36c}{snowhouse\+::\+Not\+Operator}}, and \mbox{\hyperlink{structsnowhouse_1_1CollectionOperator_a07f46f3b8e9c56464624b55ba1b8189c}{snowhouse\+::\+Collection\+Operator}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/test/snowhouse/fluent/operators/\mbox{\hyperlink{constraintoperator_8h}{constraintoperator.\+h}}\end{DoxyCompactItemize}

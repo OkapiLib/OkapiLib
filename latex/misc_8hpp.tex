@@ -1,0 +1,55 @@
+\hypertarget{misc_8hpp}{}\section{include/pros/misc.hpp File Reference}
+\label{misc_8hpp}\index{include/pros/misc.hpp@{include/pros/misc.hpp}}
+
+
+Contains prototypes for miscellaneous functions pertaining to the controller, battery, and competition control.  
+
+
+{\ttfamily \#include \char`\"{}pros/misc.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classpros_1_1Controller}{pros\+::\+Controller}}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacepros}{pros}}
+\item 
+ \mbox{\hyperlink{namespacepros_1_1battery}{pros\+::battery}}
+\item 
+ \mbox{\hyperlink{namespacepros_1_1competition}{pros\+::competition}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{namespacepros_1_1battery_a42876357c2ed5a047a535aca84f4458e}{pros\+::battery\+::get\+\_\+capacity}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the current voltage of the battery, as reported by V\+E\+Xos. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{namespacepros_1_1battery_ad0f092e6341126d68ae15d41b5dba352}{pros\+::battery\+::get\+\_\+current}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the current current of the battery in milliamps, as reported by V\+E\+Xos. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacepros_1_1battery_a33d1a503808ed06148a1884e3ccf88ae}{pros\+::battery\+::get\+\_\+temperature}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the current temperature of the battery, as reported by V\+E\+Xos. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{namespacepros_1_1battery_a2c325b346f66c15ca7e5a844a66b20d9}{pros\+::battery\+::get\+\_\+voltage}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the current capacity of the battery in millivolts, as reported by V\+E\+Xos. \end{DoxyCompactList}\item 
+std\+::uint8\+\_\+t \mbox{\hyperlink{namespacepros_1_1competition_ad75e0e06e0817959c08798358eaa8ab0}{pros\+::competition\+::get\+\_\+status}} (void)
+\begin{DoxyCompactList}\small\item\em Get the current status of the competition control. \end{DoxyCompactList}\item 
+std\+::uint8\+\_\+t \mbox{\hyperlink{namespacepros_1_1competition_a88353a4f8e5e283558ee6504c54283af}{pros\+::competition\+::is\+\_\+autonomous}} (void)
+\item 
+std\+::uint8\+\_\+t \mbox{\hyperlink{namespacepros_1_1competition_aaf36367a2369390657f6bc4285f68c64}{pros\+::competition\+::is\+\_\+connected}} (void)
+\item 
+std\+::uint8\+\_\+t \mbox{\hyperlink{namespacepros_1_1competition_a2d4f4555af4c45f7f82ea75e1223899b}{pros\+::competition\+::is\+\_\+disabled}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains prototypes for miscellaneous functions pertaining to the controller, battery, and competition control. 
+
+Visit \href{https://pros.cs.purdue.edu/v5/tutorials/topical/controller.html}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/controller.\+html}} to learn more.
+
+This file should not be modified by users, since it gets replaced whenever a kernel upgrade occurs.
+
+Copyright (c) 2017-\/2018, Purdue University A\+CM S\+I\+G\+Bots. All rights reservered.
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.\+0. If a copy of the M\+PL was not distributed with this file, You can obtain one at \href{http://mozilla.org/MPL/2.0/}{\texttt{ http\+://mozilla.\+org/\+M\+P\+L/2.\+0/}}. 

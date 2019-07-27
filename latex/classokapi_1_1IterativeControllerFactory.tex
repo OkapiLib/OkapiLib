@@ -1,0 +1,160 @@
+\hypertarget{classokapi_1_1IterativeControllerFactory}{}\section{okapi\+::Iterative\+Controller\+Factory Class Reference}
+\label{classokapi_1_1IterativeControllerFactory}\index{okapi::IterativeControllerFactory@{okapi::IterativeControllerFactory}}
+
+
+{\ttfamily \#include $<$iterative\+Controller\+Factory.\+hpp$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classokapi_1_1IterativePosPIDController}{Iterative\+Pos\+P\+I\+D\+Controller}} \mbox{\hyperlink{classokapi_1_1IterativeControllerFactory_a2ff979d01d67cee2c0d86b07690a8081}{pos\+P\+ID}} (double ikP, double ikI, double ikD, double ik\+Bias=0, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ iderivative\+Filter=std\+::make\+\_\+unique$<$ \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} $>$(), const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\item 
+static \mbox{\hyperlink{classokapi_1_1IterativeVelPIDController}{Iterative\+Vel\+P\+I\+D\+Controller}} \mbox{\hyperlink{classokapi_1_1IterativeControllerFactory_a7b9d88febe596e3fd11eca8a91f2c05c}{vel\+P\+ID}} (double ikP, double ikD, double ikF=0, double ik\+SF=0, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1VelMath}{Vel\+Math}} $>$ ivel\+Math=\mbox{\hyperlink{classokapi_1_1VelMathFactory_a26b75e227e114812131c64d17015948f}{Vel\+Math\+Factory\+::create\+Ptr}}(\mbox{\hyperlink{namespaceokapi_a5263bab3bfecd482a573b6d04fb584ac}{imev5\+Green\+T\+PR}}), std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ iderivative\+Filter=std\+::make\+\_\+unique$<$ \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} $>$(), const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\item 
+static \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController}{Iterative\+Motor\+Velocity\+Controller}} \mbox{\hyperlink{classokapi_1_1IterativeControllerFactory_a55d93373ed17166b0f5747a76690d1de}{motor\+Velocity}} (\mbox{\hyperlink{classokapi_1_1Motor}{Motor}} imotor, double ikP, double ikD, double ikF=0, double ik\+SF=0, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1VelMath}{Vel\+Math}} $>$ ivel\+Math=\mbox{\hyperlink{classokapi_1_1VelMathFactory_a26b75e227e114812131c64d17015948f}{Vel\+Math\+Factory\+::create\+Ptr}}(\mbox{\hyperlink{namespaceokapi_a5263bab3bfecd482a573b6d04fb584ac}{imev5\+Green\+T\+PR}}), std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ iderivative\+Filter=std\+::make\+\_\+unique$<$ \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} $>$(), const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\item 
+static \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController}{Iterative\+Motor\+Velocity\+Controller}} \mbox{\hyperlink{classokapi_1_1IterativeControllerFactory_a5227fff05674d0165c02e02730a2a4c6}{motor\+Velocity}} (\mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} imotor, double ikP, double ikD, double ikF=0, double ik\+SF=0, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1VelMath}{Vel\+Math}} $>$ ivel\+Math=\mbox{\hyperlink{classokapi_1_1VelMathFactory_a26b75e227e114812131c64d17015948f}{Vel\+Math\+Factory\+::create\+Ptr}}(\mbox{\hyperlink{namespaceokapi_a5263bab3bfecd482a573b6d04fb584ac}{imev5\+Green\+T\+PR}}), std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ iderivative\+Filter=std\+::make\+\_\+unique$<$ \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} $>$(), const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\item 
+static \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController}{Iterative\+Motor\+Velocity\+Controller}} \mbox{\hyperlink{classokapi_1_1IterativeControllerFactory_a10580d88f6c4d2f4b7355068c1ab3def}{motor\+Velocity}} (\mbox{\hyperlink{classokapi_1_1Motor}{Motor}} imotor, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1IterativeVelocityController}{Iterative\+Velocity\+Controller}}$<$ double, double $>$$>$ icontroller)
+\item 
+static \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController}{Iterative\+Motor\+Velocity\+Controller}} \mbox{\hyperlink{classokapi_1_1IterativeControllerFactory_ac8c7d72464d57e7d891b13aab9d9efbb}{motor\+Velocity}} (\mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} imotor, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1IterativeVelocityController}{Iterative\+Velocity\+Controller}}$<$ double, double $>$$>$ icontroller)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1IterativeControllerFactory_a55d93373ed17166b0f5747a76690d1de}\label{classokapi_1_1IterativeControllerFactory_a55d93373ed17166b0f5747a76690d1de}} 
+\index{okapi::IterativeControllerFactory@{okapi::IterativeControllerFactory}!motorVelocity@{motorVelocity}}
+\index{motorVelocity@{motorVelocity}!okapi::IterativeControllerFactory@{okapi::IterativeControllerFactory}}
+\subsubsection{\texorpdfstring{motorVelocity()}{motorVelocity()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController}{Iterative\+Motor\+Velocity\+Controller}} okapi\+::\+Iterative\+Controller\+Factory\+::motor\+Velocity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classokapi_1_1Motor}{Motor}}}]{imotor,  }\item[{double}]{ikP,  }\item[{double}]{ikD,  }\item[{double}]{ikF = {\ttfamily 0},  }\item[{double}]{ik\+SF = {\ttfamily 0},  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1VelMath}{Vel\+Math}} $>$}]{ivel\+Math = {\ttfamily \mbox{\hyperlink{classokapi_1_1VelMathFactory_a26b75e227e114812131c64d17015948f}{Vel\+Math\+Factory\+::create\+Ptr}}(\mbox{\hyperlink{namespaceokapi_a5263bab3bfecd482a573b6d04fb584ac}{imev5\+Green\+T\+PR}})},  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{iderivative\+Filter = {\ttfamily std\+:\+:make\+\_\+unique$<$\mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}}$>$()},  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Velocity PD controller that automatically writes to the motor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imotor} & output motor \\
+\hline
+{\em ikP} & proportional gain \\
+\hline
+{\em ikD} & derivative gain \\
+\hline
+{\em ikF} & feed-\/forward gain \\
+\hline
+{\em ik\+SF} & a feed-\/forward gain to counteract static friction \\
+\hline
+{\em ivel\+Math} & The \mbox{\hyperlink{classokapi_1_1VelMath}{Vel\+Math}}. \\
+\hline
+{\em iderivative\+Filter} & A filter for filtering the derivative term. \\
+\hline
+{\em ilogger} & The logger this instance will log to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1IterativeControllerFactory_a5227fff05674d0165c02e02730a2a4c6}\label{classokapi_1_1IterativeControllerFactory_a5227fff05674d0165c02e02730a2a4c6}} 
+\index{okapi::IterativeControllerFactory@{okapi::IterativeControllerFactory}!motorVelocity@{motorVelocity}}
+\index{motorVelocity@{motorVelocity}!okapi::IterativeControllerFactory@{okapi::IterativeControllerFactory}}
+\subsubsection{\texorpdfstring{motorVelocity()}{motorVelocity()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController}{Iterative\+Motor\+Velocity\+Controller}} okapi\+::\+Iterative\+Controller\+Factory\+::motor\+Velocity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}}}]{imotor,  }\item[{double}]{ikP,  }\item[{double}]{ikD,  }\item[{double}]{ikF = {\ttfamily 0},  }\item[{double}]{ik\+SF = {\ttfamily 0},  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1VelMath}{Vel\+Math}} $>$}]{ivel\+Math = {\ttfamily \mbox{\hyperlink{classokapi_1_1VelMathFactory_a26b75e227e114812131c64d17015948f}{Vel\+Math\+Factory\+::create\+Ptr}}(\mbox{\hyperlink{namespaceokapi_a5263bab3bfecd482a573b6d04fb584ac}{imev5\+Green\+T\+PR}})},  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{iderivative\+Filter = {\ttfamily std\+:\+:make\+\_\+unique$<$\mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}}$>$()},  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Velocity PD controller that automatically writes to the motor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imotor} & output motor \\
+\hline
+{\em ikP} & proportional gain \\
+\hline
+{\em ikD} & derivative gain \\
+\hline
+{\em ikF} & feed-\/forward gain \\
+\hline
+{\em ik\+SF} & a feed-\/forward gain to counteract static friction \\
+\hline
+{\em ivel\+Math} & The \mbox{\hyperlink{classokapi_1_1VelMath}{Vel\+Math}}. \\
+\hline
+{\em iderivative\+Filter} & A filter for filtering the derivative term. \\
+\hline
+{\em ilogger} & The logger this instance will log to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1IterativeControllerFactory_a10580d88f6c4d2f4b7355068c1ab3def}\label{classokapi_1_1IterativeControllerFactory_a10580d88f6c4d2f4b7355068c1ab3def}} 
+\index{okapi::IterativeControllerFactory@{okapi::IterativeControllerFactory}!motorVelocity@{motorVelocity}}
+\index{motorVelocity@{motorVelocity}!okapi::IterativeControllerFactory@{okapi::IterativeControllerFactory}}
+\subsubsection{\texorpdfstring{motorVelocity()}{motorVelocity()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController}{Iterative\+Motor\+Velocity\+Controller}} okapi\+::\+Iterative\+Controller\+Factory\+::motor\+Velocity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classokapi_1_1Motor}{Motor}}}]{imotor,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1IterativeVelocityController}{Iterative\+Velocity\+Controller}}$<$ double, double $>$$>$}]{icontroller }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Velocity PD controller that automatically writes to the motor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imotor} & output motor \\
+\hline
+{\em icontroller} & controller to use \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1IterativeControllerFactory_ac8c7d72464d57e7d891b13aab9d9efbb}\label{classokapi_1_1IterativeControllerFactory_ac8c7d72464d57e7d891b13aab9d9efbb}} 
+\index{okapi::IterativeControllerFactory@{okapi::IterativeControllerFactory}!motorVelocity@{motorVelocity}}
+\index{motorVelocity@{motorVelocity}!okapi::IterativeControllerFactory@{okapi::IterativeControllerFactory}}
+\subsubsection{\texorpdfstring{motorVelocity()}{motorVelocity()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1IterativeMotorVelocityController}{Iterative\+Motor\+Velocity\+Controller}} okapi\+::\+Iterative\+Controller\+Factory\+::motor\+Velocity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}}}]{imotor,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1IterativeVelocityController}{Iterative\+Velocity\+Controller}}$<$ double, double $>$$>$}]{icontroller }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Velocity PD controller that automatically writes to the motor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imotor} & output motor \\
+\hline
+{\em icontroller} & controller to use \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1IterativeControllerFactory_a2ff979d01d67cee2c0d86b07690a8081}\label{classokapi_1_1IterativeControllerFactory_a2ff979d01d67cee2c0d86b07690a8081}} 
+\index{okapi::IterativeControllerFactory@{okapi::IterativeControllerFactory}!posPID@{posPID}}
+\index{posPID@{posPID}!okapi::IterativeControllerFactory@{okapi::IterativeControllerFactory}}
+\subsubsection{\texorpdfstring{posPID()}{posPID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1IterativePosPIDController}{Iterative\+Pos\+P\+I\+D\+Controller}} okapi\+::\+Iterative\+Controller\+Factory\+::pos\+P\+ID (\begin{DoxyParamCaption}\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD,  }\item[{double}]{ik\+Bias = {\ttfamily 0},  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{iderivative\+Filter = {\ttfamily std\+:\+:make\+\_\+unique$<$\mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}}$>$()},  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Position P\+ID controller.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ikP} & proportional gain \\
+\hline
+{\em ikI} & integral gain \\
+\hline
+{\em ikD} & derivative gain \\
+\hline
+{\em ik\+Bias} & controller bias (constant offset added to the output) \\
+\hline
+{\em iderivative\+Filter} & A filter for filtering the derivative term. \\
+\hline
+{\em ilogger} & The logger this instance will log to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1IterativeControllerFactory_a7b9d88febe596e3fd11eca8a91f2c05c}\label{classokapi_1_1IterativeControllerFactory_a7b9d88febe596e3fd11eca8a91f2c05c}} 
+\index{okapi::IterativeControllerFactory@{okapi::IterativeControllerFactory}!velPID@{velPID}}
+\index{velPID@{velPID}!okapi::IterativeControllerFactory@{okapi::IterativeControllerFactory}}
+\subsubsection{\texorpdfstring{velPID()}{velPID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1IterativeVelPIDController}{Iterative\+Vel\+P\+I\+D\+Controller}} okapi\+::\+Iterative\+Controller\+Factory\+::vel\+P\+ID (\begin{DoxyParamCaption}\item[{double}]{ikP,  }\item[{double}]{ikD,  }\item[{double}]{ikF = {\ttfamily 0},  }\item[{double}]{ik\+SF = {\ttfamily 0},  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1VelMath}{Vel\+Math}} $>$}]{ivel\+Math = {\ttfamily \mbox{\hyperlink{classokapi_1_1VelMathFactory_a26b75e227e114812131c64d17015948f}{Vel\+Math\+Factory\+::create\+Ptr}}(\mbox{\hyperlink{namespaceokapi_a5263bab3bfecd482a573b6d04fb584ac}{imev5\+Green\+T\+PR}})},  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{iderivative\+Filter = {\ttfamily std\+:\+:make\+\_\+unique$<$\mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}}$>$()},  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Velocity PD controller.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ikP} & proportional gain \\
+\hline
+{\em ikD} & derivative gain \\
+\hline
+{\em ikF} & feed-\/forward gain \\
+\hline
+{\em ik\+SF} & a feed-\/forward gain to counteract static friction \\
+\hline
+{\em iderivative\+Filter} & A filter for filtering the derivative term. \\
+\hline
+{\em ilogger} & The logger this instance will log to. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/impl/control/iterative/\mbox{\hyperlink{iterativeControllerFactory_8hpp}{iterative\+Controller\+Factory.\+hpp}}\item 
+src/impl/control/iterative/\mbox{\hyperlink{iterativeControllerFactory_8cpp}{iterative\+Controller\+Factory.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,190 @@
+\hypertarget{gtest__xml__output__unittest___8cc}{}\section{cmake-\/build-\/debug/googletest-\/src/googletest/test/gtest\+\_\+xml\+\_\+output\+\_\+unittest\+\_\+.cc File Reference}
+\label{gtest__xml__output__unittest___8cc}\index{cmake-\/build-\/debug/googletest-\/src/googletest/test/gtest\_xml\_output\_unittest\_.cc@{cmake-\/build-\/debug/googletest-\/src/googletest/test/gtest\_xml\_output\_unittest\_.cc}}
+{\ttfamily \#include \char`\"{}gtest/gtest.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classSuccessfulTest}{Successful\+Test}}
+\item 
+class \mbox{\hyperlink{classFailedTest}{Failed\+Test}}
+\item 
+class \mbox{\hyperlink{classDisabledTest}{Disabled\+Test}}
+\item 
+class \mbox{\hyperlink{classPropertyRecordingTest}{Property\+Recording\+Test}}
+\item 
+class \mbox{\hyperlink{classValueParamTest}{Value\+Param\+Test}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_aa6dc865a2584304f44da9f4b085f8e08}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classSuccessfulTest}{Successful\+Test}}, Succeeds)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_a0789e983f69fddd50cd6a2ad73a167c2}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classFailedTest}{Failed\+Test}}, Fails)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_a743749af716f6da79472d5a662e31723}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classDisabledTest}{Disabled\+Test}}, D\+I\+S\+A\+B\+L\+E\+D\+\_\+test\+\_\+not\+\_\+run)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_a32b81caf894a39956292191e0ac9efe8}{T\+E\+ST}} (Mixed\+Result\+Test, Succeeds)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_adb093d371e5672f26e82d2df1e66e311}{T\+E\+ST}} (Mixed\+Result\+Test, Fails)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_a34e71da1ce98b2984594c8db97018c75}{T\+E\+ST}} (Mixed\+Result\+Test, D\+I\+S\+A\+B\+L\+E\+D\+\_\+test)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_a6ac53dbcf6b02f01cc4f2486db8dd9dc}{T\+E\+ST}} (Xml\+Quoting\+Test, Outputs\+C\+Data)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_aa07f760144874b77158b9336bdc95c93}{T\+E\+ST}} (Invalid\+Characters\+Test, Invalid\+Characters\+In\+Message)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_af81998ca9ca595e3107c142ebd25e0d5}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classPropertyRecordingTest}{Property\+Recording\+Test}}, One\+Property)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_adb1f852fc00cf0ee498bdfeda3063904}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classPropertyRecordingTest}{Property\+Recording\+Test}}, Int\+Valued\+Property)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_ae2e5aa08a79eb9b086a145cc06accfc5}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classPropertyRecordingTest}{Property\+Recording\+Test}}, Three\+Properties)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_a261de6777fb791a7556366e938ddb98a}{T\+E\+S\+T\+\_\+F}} (\mbox{\hyperlink{classPropertyRecordingTest}{Property\+Recording\+Test}}, Two\+Values\+For\+One\+Key\+Uses\+Last\+Value)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_ab78e993a01acfc3e6b0b879351a1e679}{T\+E\+ST}} (No\+Fixture\+Test, Record\+Property)
+\item 
+void \mbox{\hyperlink{gtest__xml__output__unittest___8cc_a8a5eb3769c1d7482bf69f3a03862c6a6}{External\+Utility\+That\+Calls\+Record\+Property}} (const std\+::string \&key, int value)
+\item 
+void \mbox{\hyperlink{gtest__xml__output__unittest___8cc_a88d769551f5ca79a6668f6ef64a1abdd}{External\+Utility\+That\+Calls\+Record\+Property}} (const std\+::string \&key, const std\+::string \&value)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_abe7f5c93beecd6501a7b6ccf838f5b10}{T\+E\+ST}} (No\+Fixture\+Test, External\+Utility\+That\+Calls\+Record\+Int\+Valued\+Property)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_aabb1993df586239008c66c29009a8b72}{T\+E\+ST}} (No\+Fixture\+Test, External\+Utility\+That\+Calls\+Record\+String\+Valued\+Property)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_a615039c123426f44437f6119fce3333f}{T\+E\+S\+T\+\_\+P}} (\mbox{\hyperlink{classValueParamTest}{Value\+Param\+Test}}, Has\+Value\+Param\+Attribute)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_a45f95818a41865db8e0209f3f536fab0}{T\+E\+S\+T\+\_\+P}} (\mbox{\hyperlink{classValueParamTest}{Value\+Param\+Test}}, Another\+Test\+That\+Has\+Value\+Param\+Attribute)
+\item 
+\mbox{\hyperlink{gtest__xml__output__unittest___8cc_a6f0556593693ceebb2d31ff96025cebb}{I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+S\+E\+\_\+P}} (Single, \mbox{\hyperlink{classValueParamTest}{Value\+Param\+Test}}, Values(33, 42))
+\item 
+int \mbox{\hyperlink{gtest__xml__output__unittest___8cc_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_a8a5eb3769c1d7482bf69f3a03862c6a6}\label{gtest__xml__output__unittest___8cc_a8a5eb3769c1d7482bf69f3a03862c6a6}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!ExternalUtilityThatCallsRecordProperty@{ExternalUtilityThatCallsRecordProperty}}
+\index{ExternalUtilityThatCallsRecordProperty@{ExternalUtilityThatCallsRecordProperty}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{ExternalUtilityThatCallsRecordProperty()}{ExternalUtilityThatCallsRecordProperty()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void External\+Utility\+That\+Calls\+Record\+Property (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{key,  }\item[{int}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_a88d769551f5ca79a6668f6ef64a1abdd}\label{gtest__xml__output__unittest___8cc_a88d769551f5ca79a6668f6ef64a1abdd}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!ExternalUtilityThatCallsRecordProperty@{ExternalUtilityThatCallsRecordProperty}}
+\index{ExternalUtilityThatCallsRecordProperty@{ExternalUtilityThatCallsRecordProperty}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{ExternalUtilityThatCallsRecordProperty()}{ExternalUtilityThatCallsRecordProperty()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void External\+Utility\+That\+Calls\+Record\+Property (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{key,  }\item[{const std\+::string \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_a6f0556593693ceebb2d31ff96025cebb}\label{gtest__xml__output__unittest___8cc_a6f0556593693ceebb2d31ff96025cebb}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!INSTANTIATE\_TEST\_CASE\_P@{INSTANTIATE\_TEST\_CASE\_P}}
+\index{INSTANTIATE\_TEST\_CASE\_P@{INSTANTIATE\_TEST\_CASE\_P}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{INSTANTIATE\_TEST\_CASE\_P()}{INSTANTIATE\_TEST\_CASE\_P()}}
+{\footnotesize\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+C\+A\+S\+E\+\_\+P (\begin{DoxyParamCaption}\item[{Single}]{,  }\item[{\mbox{\hyperlink{classValueParamTest}{Value\+Param\+Test}}}]{,  }\item[{Values(33, 42)}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_a3c04138a5bfe5d72780bb7e82a18e627}\label{gtest__xml__output__unittest___8cc_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!main@{main}}
+\index{main@{main}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_a32b81caf894a39956292191e0ac9efe8}\label{gtest__xml__output__unittest___8cc_a32b81caf894a39956292191e0ac9efe8}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST@{TEST}}
+\index{TEST@{TEST}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/8]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Mixed\+Result\+Test}]{,  }\item[{Succeeds}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_adb093d371e5672f26e82d2df1e66e311}\label{gtest__xml__output__unittest___8cc_adb093d371e5672f26e82d2df1e66e311}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST@{TEST}}
+\index{TEST@{TEST}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/8]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Mixed\+Result\+Test}]{,  }\item[{Fails}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_a34e71da1ce98b2984594c8db97018c75}\label{gtest__xml__output__unittest___8cc_a34e71da1ce98b2984594c8db97018c75}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST@{TEST}}
+\index{TEST@{TEST}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/8]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Mixed\+Result\+Test}]{,  }\item[{D\+I\+S\+A\+B\+L\+E\+D\+\_\+test}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_a6ac53dbcf6b02f01cc4f2486db8dd9dc}\label{gtest__xml__output__unittest___8cc_a6ac53dbcf6b02f01cc4f2486db8dd9dc}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST@{TEST}}
+\index{TEST@{TEST}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [4/8]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Xml\+Quoting\+Test}]{,  }\item[{Outputs\+C\+Data}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_aa07f760144874b77158b9336bdc95c93}\label{gtest__xml__output__unittest___8cc_aa07f760144874b77158b9336bdc95c93}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST@{TEST}}
+\index{TEST@{TEST}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [5/8]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Invalid\+Characters\+Test}]{,  }\item[{Invalid\+Characters\+In\+Message}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_ab78e993a01acfc3e6b0b879351a1e679}\label{gtest__xml__output__unittest___8cc_ab78e993a01acfc3e6b0b879351a1e679}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST@{TEST}}
+\index{TEST@{TEST}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [6/8]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{No\+Fixture\+Test}]{,  }\item[{Record\+Property}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_abe7f5c93beecd6501a7b6ccf838f5b10}\label{gtest__xml__output__unittest___8cc_abe7f5c93beecd6501a7b6ccf838f5b10}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST@{TEST}}
+\index{TEST@{TEST}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [7/8]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{No\+Fixture\+Test}]{,  }\item[{External\+Utility\+That\+Calls\+Record\+Int\+Valued\+Property}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_aabb1993df586239008c66c29009a8b72}\label{gtest__xml__output__unittest___8cc_aabb1993df586239008c66c29009a8b72}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST@{TEST}}
+\index{TEST@{TEST}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [8/8]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{No\+Fixture\+Test}]{,  }\item[{External\+Utility\+That\+Calls\+Record\+String\+Valued\+Property}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_aa6dc865a2584304f44da9f4b085f8e08}\label{gtest__xml__output__unittest___8cc_aa6dc865a2584304f44da9f4b085f8e08}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSuccessfulTest}{Successful\+Test}}}]{,  }\item[{Succeeds}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_a0789e983f69fddd50cd6a2ad73a167c2}\label{gtest__xml__output__unittest___8cc_a0789e983f69fddd50cd6a2ad73a167c2}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classFailedTest}{Failed\+Test}}}]{,  }\item[{Fails}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_a743749af716f6da79472d5a662e31723}\label{gtest__xml__output__unittest___8cc_a743749af716f6da79472d5a662e31723}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDisabledTest}{Disabled\+Test}}}]{,  }\item[{D\+I\+S\+A\+B\+L\+E\+D\+\_\+test\+\_\+not\+\_\+run}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_af81998ca9ca595e3107c142ebd25e0d5}\label{gtest__xml__output__unittest___8cc_af81998ca9ca595e3107c142ebd25e0d5}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPropertyRecordingTest}{Property\+Recording\+Test}}}]{,  }\item[{One\+Property}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_adb1f852fc00cf0ee498bdfeda3063904}\label{gtest__xml__output__unittest___8cc_adb1f852fc00cf0ee498bdfeda3063904}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPropertyRecordingTest}{Property\+Recording\+Test}}}]{,  }\item[{Int\+Valued\+Property}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_ae2e5aa08a79eb9b086a145cc06accfc5}\label{gtest__xml__output__unittest___8cc_ae2e5aa08a79eb9b086a145cc06accfc5}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPropertyRecordingTest}{Property\+Recording\+Test}}}]{,  }\item[{Three\+Properties}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_a261de6777fb791a7556366e938ddb98a}\label{gtest__xml__output__unittest___8cc_a261de6777fb791a7556366e938ddb98a}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPropertyRecordingTest}{Property\+Recording\+Test}}}]{,  }\item[{Two\+Values\+For\+One\+Key\+Uses\+Last\+Value}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_a615039c123426f44437f6119fce3333f}\label{gtest__xml__output__unittest___8cc_a615039c123426f44437f6119fce3333f}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST\_P@{TEST\_P}}
+\index{TEST\_P@{TEST\_P}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST\_P()}{TEST\_P()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+P (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classValueParamTest}{Value\+Param\+Test}}}]{,  }\item[{Has\+Value\+Param\+Attribute}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gtest__xml__output__unittest___8cc_a45f95818a41865db8e0209f3f536fab0}\label{gtest__xml__output__unittest___8cc_a45f95818a41865db8e0209f3f536fab0}} 
+\index{gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}!TEST\_P@{TEST\_P}}
+\index{TEST\_P@{TEST\_P}!gtest\_xml\_output\_unittest\_.cc@{gtest\_xml\_output\_unittest\_.cc}}
+\subsubsection{\texorpdfstring{TEST\_P()}{TEST\_P()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily T\+E\+S\+T\+\_\+P (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classValueParamTest}{Value\+Param\+Test}}}]{,  }\item[{Another\+Test\+That\+Has\+Value\+Param\+Attribute}]{ }\end{DoxyParamCaption})}
+

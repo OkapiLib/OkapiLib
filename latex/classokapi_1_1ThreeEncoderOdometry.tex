@@ -1,0 +1,91 @@
+\hypertarget{classokapi_1_1ThreeEncoderOdometry}{}\section{okapi\+::Three\+Encoder\+Odometry Class Reference}
+\label{classokapi_1_1ThreeEncoderOdometry}\index{okapi::ThreeEncoderOdometry@{okapi::ThreeEncoderOdometry}}
+
+
+{\ttfamily \#include $<$three\+Encoder\+Odometry.\+hpp$>$}
+
+Inheritance diagram for okapi\+::Three\+Encoder\+Odometry\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classokapi_1_1ThreeEncoderOdometry}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1ThreeEncoderOdometry_ad65a58475f76fbfa90207b39e02d96dc}{Three\+Encoder\+Odometry}} (const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&itime\+Util, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ReadOnlyChassisModel}{Read\+Only\+Chassis\+Model}} $>$ imodel, const \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} \&ichassis\+Scales, const Q\+Speed \&iwheel\+Vel\+Delta=0.\+0001\+\_\+mps, const std\+::shared\+\_\+ptr$<$ Logger $>$ \&ilogger=\+Logger\+::get\+Default\+Logger())
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structokapi_1_1OdomState}{Odom\+State}} \mbox{\hyperlink{classokapi_1_1ThreeEncoderOdometry_a8c0811674b9da0623a3cece56a25cca6}{odom\+Math\+Step}} (const std\+::valarray$<$ std\+::int32\+\_\+t $>$ \&itick\+Diff, const Q\+Time \&ideltaT) override
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ReadOnlyChassisModel}{Read\+Only\+Chassis\+Model}} $>$ \mbox{\hyperlink{classokapi_1_1ThreeEncoderOdometry_ad2a5ed5af817d5d2cc6e49357fe6f1da}{model}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1ThreeEncoderOdometry_ad65a58475f76fbfa90207b39e02d96dc}\label{classokapi_1_1ThreeEncoderOdometry_ad65a58475f76fbfa90207b39e02d96dc}} 
+\index{okapi::ThreeEncoderOdometry@{okapi::ThreeEncoderOdometry}!ThreeEncoderOdometry@{ThreeEncoderOdometry}}
+\index{ThreeEncoderOdometry@{ThreeEncoderOdometry}!okapi::ThreeEncoderOdometry@{okapi::ThreeEncoderOdometry}}
+\subsubsection{\texorpdfstring{ThreeEncoderOdometry()}{ThreeEncoderOdometry()}}
+{\footnotesize\ttfamily okapi\+::\+Three\+Encoder\+Odometry\+::\+Three\+Encoder\+Odometry (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&}]{itime\+Util,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ReadOnlyChassisModel}{Read\+Only\+Chassis\+Model}} $>$}]{imodel,  }\item[{const \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} \&}]{ichassis\+Scales,  }\item[{const Q\+Speed \&}]{iwheel\+Vel\+Delta = {\ttfamily 0.0001\+\_\+mps},  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}}. Tracks the movement of the robot and estimates its position in coordinates relative to the start (assumed to be (0, 0)).
+
+
+\begin{DoxyParams}{Parameters}
+{\em itime\+Util} & The \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}}. \\
+\hline
+{\em imodel} & The chassis model for reading sensors. \\
+\hline
+{\em ichassis\+Scales} & See \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} docs (the middle wheel scale is the third member) \\
+\hline
+{\em iwheel\+Vel\+Delta} & The maximum delta between wheel velocities to consider the robot as driving straight. \\
+\hline
+{\em ilogger} & The logger this instance will log to. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1ThreeEncoderOdometry_a8c0811674b9da0623a3cece56a25cca6}\label{classokapi_1_1ThreeEncoderOdometry_a8c0811674b9da0623a3cece56a25cca6}} 
+\index{okapi::ThreeEncoderOdometry@{okapi::ThreeEncoderOdometry}!odomMathStep@{odomMathStep}}
+\index{odomMathStep@{odomMathStep}!okapi::ThreeEncoderOdometry@{okapi::ThreeEncoderOdometry}}
+\subsubsection{\texorpdfstring{odomMathStep()}{odomMathStep()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structokapi_1_1OdomState}{Odom\+State}} okapi\+::\+Three\+Encoder\+Odometry\+::odom\+Math\+Step (\begin{DoxyParamCaption}\item[{const std\+::valarray$<$ std\+::int32\+\_\+t $>$ \&}]{itick\+Diff,  }\item[{const Q\+Time \&}]{ideltaT }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Does the math, side-\/effect free, for one odom step.
+
+
+\begin{DoxyParams}{Parameters}
+{\em itick\+Diff} & The tick difference from the previous step to this step. \\
+\hline
+{\em ideltaT} & The time difference from the previous step to this step. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The estimated position/orientation offset. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classokapi_1_1Odometry_a8fc2c3d72a0c475a7333eb9affe593a5}{okapi\+::\+Odometry}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classokapi_1_1ThreeEncoderOdometry_ad2a5ed5af817d5d2cc6e49357fe6f1da}\label{classokapi_1_1ThreeEncoderOdometry_ad2a5ed5af817d5d2cc6e49357fe6f1da}} 
+\index{okapi::ThreeEncoderOdometry@{okapi::ThreeEncoderOdometry}!model@{model}}
+\index{model@{model}!okapi::ThreeEncoderOdometry@{okapi::ThreeEncoderOdometry}}
+\subsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classokapi_1_1ReadOnlyChassisModel}{Read\+Only\+Chassis\+Model}}$>$ okapi\+::\+Three\+Encoder\+Odometry\+::model\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/api/odometry/\mbox{\hyperlink{threeEncoderOdometry_8hpp}{three\+Encoder\+Odometry.\+hpp}}\item 
+src/api/odometry/\mbox{\hyperlink{threeEncoderOdometry_8cpp}{three\+Encoder\+Odometry.\+cpp}}\end{DoxyCompactItemize}

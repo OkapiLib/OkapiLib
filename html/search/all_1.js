@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['b',['B',['../namespaceokapi.html#af5040b3f1f33d27698871423e1453ab6a9d5ed678fe57bcca610140957afab571',1,'okapi']]],
+  ['bar',['bar',['../namespaceokapi.html#a0b54d28853182078db748ab94cb8cd45',1,'okapi']]],
+  ['best',['best',['../structokapi_1_1PIDTuner_1_1Particle.html#a5b52868df1aae1367f6ec138e2494e09',1,'okapi::PIDTuner::Particle']]],
+  ['besterror',['bestError',['../structokapi_1_1PIDTuner_1_1ParticleSet.html#aa81c4efddb45291d23eb13593bee6d25',1,'okapi::PIDTuner::ParticleSet']]],
+  ['beta',['beta',['../classokapi_1_1DemaFilter.html#ae3ed95c39828a178e68dd72078ddbfcc',1,'okapi::DemaFilter']]],
+  ['blue',['blue',['../classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5a48d6215903dff56238e52e8891380c8f',1,'okapi::AbstractMotor']]],
+  ['booltosign',['boolToSign',['../namespaceokapi.html#a8b21920388594f5d7da116069741deb4',1,'okapi']]],
+  ['bottomleftmotor',['bottomLeftMotor',['../classokapi_1_1XDriveModel.html#ac4c184a14b3431a1dda1136ca1133400',1,'okapi::XDriveModel']]],
+  ['bottomrightmotor',['bottomRightMotor',['../classokapi_1_1XDriveModel.html#a43ba3ac3a9750895b2bfd5b8c121ca7e',1,'okapi::XDriveModel']]],
+  ['brake',['brake',['../classokapi_1_1AbstractMotor.html#a132e0485dbb59a60c3f934338d8fa601ab4628ac934a343cc5df197f6a709633b',1,'okapi::AbstractMotor']]],
+  ['brakemode',['brakeMode',['../classokapi_1_1AbstractMotor.html#a132e0485dbb59a60c3f934338d8fa601',1,'okapi::AbstractMotor']]],
+  ['btn',['btn',['../classokapi_1_1ControllerButton.html#a1839a778e3a25b7cfcd954e733f74321',1,'okapi::ControllerButton']]],
+  ['build',['build',['../classokapi_1_1ChassisControllerBuilder.html#a5dfd1f4d60a3c4bfcc28a57211c1a6a2',1,'okapi::ChassisControllerBuilder::build()'],['../classokapi_1_1AsyncPosControllerBuilder.html#a15bce1f485fee03c7f1772736eea7075',1,'okapi::AsyncPosControllerBuilder::build()'],['../classokapi_1_1AsyncVelControllerBuilder.html#a23ecaa0969360f45c4f0266ff81fdb6d',1,'okapi::AsyncVelControllerBuilder::build()']]],
+  ['buildlinearmotionprofilecontroller',['buildLinearMotionProfileController',['../classokapi_1_1AsyncMotionProfileControllerBuilder.html#a8e10bfca343f885d73d7b8f370741815',1,'okapi::AsyncMotionProfileControllerBuilder']]],
+  ['buildmotionprofilecontroller',['buildMotionProfileController',['../classokapi_1_1AsyncMotionProfileControllerBuilder.html#a2cd170fa280414c388a0106fee23638c',1,'okapi::AsyncMotionProfileControllerBuilder']]],
+  ['buildodometry',['buildOdometry',['../classokapi_1_1ChassisControllerBuilder.html#a9c631ea817466483aa2cfcb886f6d892',1,'okapi::ChassisControllerBuilder']]],
+  ['buttonarray',['buttonArray',['../classokapi_1_1Controller.html#a687a8678fd01b6d62f013b96c1cac6e4',1,'okapi::Controller']]],
+  ['buttonbase',['ButtonBase',['../classokapi_1_1ButtonBase.html',1,'okapi::ButtonBase'],['../classokapi_1_1ButtonBase.html#a6327e273244bac5ca425f23999807849',1,'okapi::ButtonBase::ButtonBase()']]],
+  ['buttonbase_2ecpp',['buttonBase.cpp',['../buttonBase_8cpp.html',1,'']]],
+  ['buttonbase_2ehpp',['buttonBase.hpp',['../buttonBase_8hpp.html',1,'']]]
+];

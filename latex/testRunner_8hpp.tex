@@ -1,0 +1,114 @@
+\hypertarget{testRunner_8hpp}{}\section{include/test/test\+Runner.hpp File Reference}
+\label{testRunner_8hpp}\index{include/test/testRunner.hpp@{include/test/testRunner.hpp}}
+{\ttfamily \#include \char`\"{}api.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}okapi/api.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}test/\+Fake\+It/single\+\_\+header/standalone/fakeit.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}test/snowhouse/snowhouse.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceokapi}{okapi}}
+\begin{DoxyCompactList}\small\item\em Based on the Arduino P\+ID controller\+: \href{https://github.com/br3ttb/Arduino-PID-Library}{\texttt{ https\+://github.\+com/br3ttb/\+Arduino-\/\+P\+I\+D-\/\+Library}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{testRunner_8hpp_a07422c960c22d516836c8e0fa7100746}{T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+R\+ED}}~\char`\"{}\textbackslash{}x1B\mbox{[}31m\char`\"{}
+\item 
+\#define \mbox{\hyperlink{testRunner_8hpp_a1fdc7f939781f7336f74e845da0b7b45}{T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+G\+RN}}~\char`\"{}\textbackslash{}x1B\mbox{[}32m\char`\"{}
+\item 
+\#define \mbox{\hyperlink{testRunner_8hpp_ad2cc50ff18913d4d09de26bddba15bea}{T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+Y\+EL}}~\char`\"{}\textbackslash{}x1B\mbox{[}33m\char`\"{}
+\item 
+\#define \mbox{\hyperlink{testRunner_8hpp_ae2612f833b9555a5f1c4af201da681dd}{T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+B\+LU}}~\char`\"{}\textbackslash{}x1B\mbox{[}34m\char`\"{}
+\item 
+\#define \mbox{\hyperlink{testRunner_8hpp_ab958f962f9d63bbf5304c93909365a99}{T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+AG}}~\char`\"{}\textbackslash{}x1B\mbox{[}35m\char`\"{}
+\item 
+\#define \mbox{\hyperlink{testRunner_8hpp_a914b7870142be7e27db4ee67869cde12}{T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+C\+YN}}~\char`\"{}\textbackslash{}x1B\mbox{[}36m\char`\"{}
+\item 
+\#define \mbox{\hyperlink{testRunner_8hpp_af57906f956c81189767e0ce97e0cf80d}{T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+W\+HT}}~\char`\"{}\textbackslash{}x1B\mbox{[}37m\char`\"{}
+\item 
+\#define \mbox{\hyperlink{testRunner_8hpp_a456afe744eda2caf916e81a4c086d98b}{T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+R\+E\+S\+ET}}~\char`\"{}\textbackslash{}x1B\mbox{[}0m\char`\"{}
+\item 
+\#define \mbox{\hyperlink{testRunner_8hpp_a2d7c19d8059501561b3a8966251ff529}{T\+E\+S\+T\+\_\+\+B\+O\+DY}}(F\+U\+N\+C\+T\+I\+ON, ...)~\mbox{[}\&\mbox{]}() \{ F\+U\+N\+C\+T\+I\+ON(\+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+); \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespaceokapi_a78eb7d9a766b9424a9e9714cef694863}{okapi\+::reset\+Hardware}} ()
+\begin{DoxyCompactList}\small\item\em Setup hardware before a test. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceokapi_aae1102defde65c88b7b9dc1d63e7f12b}{okapi\+::test\+\_\+printf}} (const std\+::string \&istring)
+\begin{DoxyCompactList}\small\item\em Print the input string with an underline made from hyphens (\char`\"{}-\/\char`\"{}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceokapi_a2a497d5d32fa884924aa445e2b3137ef}{okapi\+::test}} (const std\+::string \&iname, std\+::function$<$ void()$>$ ifunc)
+\begin{DoxyCompactList}\small\item\em Run a test. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceokapi_aeedf37570e8d91d9f8b6758a92c75dcb}{okapi\+::test\+\_\+print\+\_\+report}} ()
+\begin{DoxyCompactList}\small\item\em Print out a test report detailing how long the tests took to run; how many tests passed; how many tests failed; and if any failed, which ones. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const int \mbox{\hyperlink{namespaceokapi_ab4eb606661bb82dcb58f9cd1ecd634dc}{okapi\+::\+M\+O\+T\+O\+R\+\_\+1\+\_\+\+P\+O\+RT}} = 18
+\item 
+static const int \mbox{\hyperlink{namespaceokapi_a6a2966a680fe00fb4936fa524f8f1191}{okapi\+::\+M\+O\+T\+O\+R\+\_\+2\+\_\+\+P\+O\+RT}} = 19
+\item 
+static const auto \mbox{\hyperlink{namespaceokapi_a4019fd431cf1381f135dcd7cecb3943a}{okapi\+::\+M\+O\+T\+O\+R\+\_\+\+G\+E\+A\+R\+S\+ET}} = Abstract\+Motor\+::gearset\+::green
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{testRunner_8hpp_a2d7c19d8059501561b3a8966251ff529}\label{testRunner_8hpp_a2d7c19d8059501561b3a8966251ff529}} 
+\index{testRunner.hpp@{testRunner.hpp}!TEST\_BODY@{TEST\_BODY}}
+\index{TEST\_BODY@{TEST\_BODY}!testRunner.hpp@{testRunner.hpp}}
+\subsubsection{\texorpdfstring{TEST\_BODY}{TEST\_BODY}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+B\+O\+DY(\begin{DoxyParamCaption}\item[{}]{F\+U\+N\+C\+T\+I\+ON,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{[}\&\mbox{]}() \{ F\+U\+N\+C\+T\+I\+ON(\+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+); \}}
+
+\mbox{\Hypertarget{testRunner_8hpp_ae2612f833b9555a5f1c4af201da681dd}\label{testRunner_8hpp_ae2612f833b9555a5f1c4af201da681dd}} 
+\index{testRunner.hpp@{testRunner.hpp}!TEST\_PRINT\_BLU@{TEST\_PRINT\_BLU}}
+\index{TEST\_PRINT\_BLU@{TEST\_PRINT\_BLU}!testRunner.hpp@{testRunner.hpp}}
+\subsubsection{\texorpdfstring{TEST\_PRINT\_BLU}{TEST\_PRINT\_BLU}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+B\+LU~\char`\"{}\textbackslash{}x1B\mbox{[}34m\char`\"{}}
+
+\mbox{\Hypertarget{testRunner_8hpp_a914b7870142be7e27db4ee67869cde12}\label{testRunner_8hpp_a914b7870142be7e27db4ee67869cde12}} 
+\index{testRunner.hpp@{testRunner.hpp}!TEST\_PRINT\_CYN@{TEST\_PRINT\_CYN}}
+\index{TEST\_PRINT\_CYN@{TEST\_PRINT\_CYN}!testRunner.hpp@{testRunner.hpp}}
+\subsubsection{\texorpdfstring{TEST\_PRINT\_CYN}{TEST\_PRINT\_CYN}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+C\+YN~\char`\"{}\textbackslash{}x1B\mbox{[}36m\char`\"{}}
+
+\mbox{\Hypertarget{testRunner_8hpp_a1fdc7f939781f7336f74e845da0b7b45}\label{testRunner_8hpp_a1fdc7f939781f7336f74e845da0b7b45}} 
+\index{testRunner.hpp@{testRunner.hpp}!TEST\_PRINT\_GRN@{TEST\_PRINT\_GRN}}
+\index{TEST\_PRINT\_GRN@{TEST\_PRINT\_GRN}!testRunner.hpp@{testRunner.hpp}}
+\subsubsection{\texorpdfstring{TEST\_PRINT\_GRN}{TEST\_PRINT\_GRN}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+G\+RN~\char`\"{}\textbackslash{}x1B\mbox{[}32m\char`\"{}}
+
+\mbox{\Hypertarget{testRunner_8hpp_ab958f962f9d63bbf5304c93909365a99}\label{testRunner_8hpp_ab958f962f9d63bbf5304c93909365a99}} 
+\index{testRunner.hpp@{testRunner.hpp}!TEST\_PRINT\_MAG@{TEST\_PRINT\_MAG}}
+\index{TEST\_PRINT\_MAG@{TEST\_PRINT\_MAG}!testRunner.hpp@{testRunner.hpp}}
+\subsubsection{\texorpdfstring{TEST\_PRINT\_MAG}{TEST\_PRINT\_MAG}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+AG~\char`\"{}\textbackslash{}x1B\mbox{[}35m\char`\"{}}
+
+\mbox{\Hypertarget{testRunner_8hpp_a07422c960c22d516836c8e0fa7100746}\label{testRunner_8hpp_a07422c960c22d516836c8e0fa7100746}} 
+\index{testRunner.hpp@{testRunner.hpp}!TEST\_PRINT\_RED@{TEST\_PRINT\_RED}}
+\index{TEST\_PRINT\_RED@{TEST\_PRINT\_RED}!testRunner.hpp@{testRunner.hpp}}
+\subsubsection{\texorpdfstring{TEST\_PRINT\_RED}{TEST\_PRINT\_RED}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+R\+ED~\char`\"{}\textbackslash{}x1B\mbox{[}31m\char`\"{}}
+
+\begin{DoxyAuthor}{Author}
+Ryan Benasutti, W\+PI
+\end{DoxyAuthor}
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.\+0. If a copy of the M\+PL was not distributed with this file, You can obtain one at \href{http://mozilla.org/MPL/2.0/}{\texttt{ http\+://mozilla.\+org/\+M\+P\+L/2.\+0/}}. \mbox{\Hypertarget{testRunner_8hpp_a456afe744eda2caf916e81a4c086d98b}\label{testRunner_8hpp_a456afe744eda2caf916e81a4c086d98b}} 
+\index{testRunner.hpp@{testRunner.hpp}!TEST\_PRINT\_RESET@{TEST\_PRINT\_RESET}}
+\index{TEST\_PRINT\_RESET@{TEST\_PRINT\_RESET}!testRunner.hpp@{testRunner.hpp}}
+\subsubsection{\texorpdfstring{TEST\_PRINT\_RESET}{TEST\_PRINT\_RESET}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+R\+E\+S\+ET~\char`\"{}\textbackslash{}x1B\mbox{[}0m\char`\"{}}
+
+\mbox{\Hypertarget{testRunner_8hpp_af57906f956c81189767e0ce97e0cf80d}\label{testRunner_8hpp_af57906f956c81189767e0ce97e0cf80d}} 
+\index{testRunner.hpp@{testRunner.hpp}!TEST\_PRINT\_WHT@{TEST\_PRINT\_WHT}}
+\index{TEST\_PRINT\_WHT@{TEST\_PRINT\_WHT}!testRunner.hpp@{testRunner.hpp}}
+\subsubsection{\texorpdfstring{TEST\_PRINT\_WHT}{TEST\_PRINT\_WHT}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+W\+HT~\char`\"{}\textbackslash{}x1B\mbox{[}37m\char`\"{}}
+
+\mbox{\Hypertarget{testRunner_8hpp_ad2cc50ff18913d4d09de26bddba15bea}\label{testRunner_8hpp_ad2cc50ff18913d4d09de26bddba15bea}} 
+\index{testRunner.hpp@{testRunner.hpp}!TEST\_PRINT\_YEL@{TEST\_PRINT\_YEL}}
+\index{TEST\_PRINT\_YEL@{TEST\_PRINT\_YEL}!testRunner.hpp@{testRunner.hpp}}
+\subsubsection{\texorpdfstring{TEST\_PRINT\_YEL}{TEST\_PRINT\_YEL}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+Y\+EL~\char`\"{}\textbackslash{}x1B\mbox{[}33m\char`\"{}}
+

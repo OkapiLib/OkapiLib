@@ -1,0 +1,1434 @@
+\hypertarget{motors_8h}{}\section{include/pros/motors.h File Reference}
+\label{motors_8h}\index{include/pros/motors.h@{include/pros/motors.h}}
+
+
+Contains prototypes for the V5 Motor-\/related functions.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmotor__pid__full__s}{motor\+\_\+pid\+\_\+full\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em Holds the information about a Motor\textquotesingle{}s position or velocity P\+ID controls. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmotor__pid__s}{motor\+\_\+pid\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em Holds just the constants for a Motor\textquotesingle{}s position or velocity P\+ID controls. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1}{motor\+\_\+fault\+\_\+e}} \mbox{\hyperlink{motors_8h_a78665db63d19fd4095b841542b8a6113}{motor\+\_\+fault\+\_\+e\+\_\+t}}
+\item 
+typedef enum \mbox{\hyperlink{motors_8h_aefb84700279103f329387cdf6cba0d2b}{motor\+\_\+flag\+\_\+e}} \mbox{\hyperlink{motors_8h_a3533fda394038870e788dfa4f6b60441}{motor\+\_\+flag\+\_\+e\+\_\+t}}
+\item 
+typedef enum \mbox{\hyperlink{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7}{motor\+\_\+brake\+\_\+mode\+\_\+e}} \mbox{\hyperlink{motors_8h_aa324a2881696428c9e3684f9ad23a83b}{motor\+\_\+brake\+\_\+mode\+\_\+e\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Motor configuration functions. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{motors_8h_a6d94b540f7c22cc42ba611576350193c}{motor\+\_\+encoder\+\_\+units\+\_\+e}} \mbox{\hyperlink{motors_8h_a6677ba23760c558fd8b7b4e1e00a6123}{motor\+\_\+encoder\+\_\+units\+\_\+e\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Indicates the units used by the motor encoders. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92}{motor\+\_\+gearset\+\_\+e}} \mbox{\hyperlink{motors_8h_aa2f1c305c998abc3bf8dd1f76fa4da8b}{motor\+\_\+gearset\+\_\+e\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Indicates the current internal gear ratio of a motor. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structmotor__pid__full__s}{motor\+\_\+pid\+\_\+full\+\_\+s}} \mbox{\hyperlink{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}{motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Holds the information about a Motor\textquotesingle{}s position or velocity P\+ID controls. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structmotor__pid__s}{motor\+\_\+pid\+\_\+s}} \mbox{\hyperlink{motors_8h_ad2e907c8d7ce53c1fd91f1b9801072e3}{motor\+\_\+pid\+\_\+s\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Holds just the constants for a Motor\textquotesingle{}s position or velocity P\+ID controls. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1}{motor\+\_\+fault\+\_\+e}} \{ \newline
+\mbox{\hyperlink{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1aa1763132e678a09c2a2299dcb8ca91f2}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+A\+U\+L\+T\+\_\+\+N\+O\+\_\+\+F\+A\+U\+L\+TS}} = 0x00, 
+\mbox{\hyperlink{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1a19697fdb3bda40d671908094d19bb816}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+A\+U\+L\+T\+\_\+\+M\+O\+T\+O\+R\+\_\+\+O\+V\+E\+R\+\_\+\+T\+E\+MP}} = 0x01, 
+\mbox{\hyperlink{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1a129793cdd6c08a6df63a4ce690a563e9}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+A\+U\+L\+T\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+F\+A\+U\+LT}} = 0x02, 
+\mbox{\hyperlink{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1ad58554131e6fe018bca28e8447e9da19}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+A\+U\+L\+T\+\_\+\+O\+V\+E\+R\+\_\+\+C\+U\+R\+R\+E\+NT}} = 0x04, 
+\newline
+\mbox{\hyperlink{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1a4261f9f8989960a7aed89cbc8821007c}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+A\+U\+L\+T\+\_\+\+D\+R\+V\+\_\+\+O\+V\+E\+R\+\_\+\+C\+U\+R\+R\+E\+NT}} = 0x08
+ \}
+\item 
+enum \mbox{\hyperlink{motors_8h_aefb84700279103f329387cdf6cba0d2b}{motor\+\_\+flag\+\_\+e}} \{ \mbox{\hyperlink{motors_8h_aefb84700279103f329387cdf6cba0d2bae402dfe134784f10ef577661e751cf25}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+L\+A\+G\+S\+\_\+\+N\+O\+NE}} = 0x00, 
+\mbox{\hyperlink{motors_8h_aefb84700279103f329387cdf6cba0d2bacb8e657551c89b6678660318961f8b6b}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+L\+A\+G\+S\+\_\+\+B\+U\+SY}} = 0x01, 
+\mbox{\hyperlink{motors_8h_aefb84700279103f329387cdf6cba0d2ba897fee9d51039554c0cda9e061c2a3e0}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+L\+A\+G\+S\+\_\+\+Z\+E\+R\+O\+\_\+\+V\+E\+L\+O\+C\+I\+TY}} = 0x02, 
+\mbox{\hyperlink{motors_8h_aefb84700279103f329387cdf6cba0d2bab9db9483c159e4bb272015e6507de0ac}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+L\+A\+G\+S\+\_\+\+Z\+E\+R\+O\+\_\+\+P\+O\+S\+I\+T\+I\+ON}} = 0x04
+ \}
+\item 
+enum \mbox{\hyperlink{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7}{motor\+\_\+brake\+\_\+mode\+\_\+e}} \{ \mbox{\hyperlink{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7aa2cc502049ad45801c2ce0a4b3d2069e}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+B\+R\+A\+K\+E\+\_\+\+C\+O\+A\+ST}} = 0, 
+\mbox{\hyperlink{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7a0ea7e0574d40f6db40525bb6b7aeeba0}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+B\+R\+A\+K\+E\+\_\+\+B\+R\+A\+KE}} = 1, 
+\mbox{\hyperlink{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7aaa23ffec0b250ce72e7159b8de3d4b8d}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+B\+R\+A\+K\+E\+\_\+\+H\+O\+LD}} = 2, 
+\mbox{\hyperlink{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7a23e68282557596c84cfecf5e6ec4a023}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+B\+R\+A\+K\+E\+\_\+\+I\+N\+V\+A\+L\+ID}} = I\+N\+T32\+\_\+\+M\+AX
+ \}
+\begin{DoxyCompactList}\small\item\em Motor configuration functions. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{motors_8h_a6d94b540f7c22cc42ba611576350193c}{motor\+\_\+encoder\+\_\+units\+\_\+e}} \{ \mbox{\hyperlink{motors_8h_a6d94b540f7c22cc42ba611576350193ca3f8b78d1687e80752406e90ca3bd9caf}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+D\+E\+G\+R\+E\+ES}} = 0, 
+\mbox{\hyperlink{motors_8h_a6d94b540f7c22cc42ba611576350193ca5ba6e5cdf81faac8a776a8ce3f735285}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+R\+O\+T\+A\+T\+I\+O\+NS}} = 1, 
+\mbox{\hyperlink{motors_8h_a6d94b540f7c22cc42ba611576350193cad1911b04d55f80e665634a2863386e86}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+C\+O\+U\+N\+TS}} = 2, 
+\mbox{\hyperlink{motors_8h_a6d94b540f7c22cc42ba611576350193ca4ab7c8effccd17c995a4abaf1fa4663f}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+I\+N\+V\+A\+L\+ID}} = I\+N\+T32\+\_\+\+M\+AX
+ \}
+\begin{DoxyCompactList}\small\item\em Indicates the units used by the motor encoders. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92}{motor\+\_\+gearset\+\_\+e}} \{ \mbox{\hyperlink{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92ad1b0135f1d6fde4ee29590836eb1b856}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+G\+E\+A\+R\+S\+E\+T\+\_\+36}} = 0, 
+\mbox{\hyperlink{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92a95444ef9bee438d4bcfebb0c0a399443}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+G\+E\+A\+R\+S\+E\+T\+\_\+18}} = 1, 
+\mbox{\hyperlink{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92a33f143e34739e15a553885015455db37}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+G\+E\+A\+R\+S\+E\+T\+\_\+06}} = 2, 
+\mbox{\hyperlink{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92a934f089388ca6bd6b92df6321dfbe45d}{E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+G\+E\+A\+R\+S\+E\+T\+\_\+\+I\+N\+V\+A\+L\+ID}} = I\+N\+T32\+\_\+\+M\+AX
+ \}
+\begin{DoxyCompactList}\small\item\em Indicates the current internal gear ratio of a motor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a7da9bf1e229e50bfeeaecf026a6d0d08}{motor\+\_\+move}} (uint8\+\_\+t port, int32\+\_\+t voltage)
+\begin{DoxyCompactList}\small\item\em Motor movement functions. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_ab70bf4937f1b5cefa15c11c15314c90e}{motor\+\_\+move\+\_\+absolute}} (uint8\+\_\+t port, const double position, const int32\+\_\+t velocity)
+\begin{DoxyCompactList}\small\item\em Sets the target absolute position for the motor to move to. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_ab4c1ba35d69e8e9b49df0e848fa305d3}{motor\+\_\+move\+\_\+relative}} (uint8\+\_\+t port, const double position, const int32\+\_\+t velocity)
+\begin{DoxyCompactList}\small\item\em Sets the relative target position for the motor to move to. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a5a366399c1ff416002641fd05e6d7808}{motor\+\_\+move\+\_\+velocity}} (uint8\+\_\+t port, const int32\+\_\+t velocity)
+\begin{DoxyCompactList}\small\item\em Sets the velocity for the motor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_af1b10ae862913214de91501e57303e49}{motor\+\_\+move\+\_\+voltage}} (uint8\+\_\+t port, const int32\+\_\+t voltage)
+\begin{DoxyCompactList}\small\item\em Sets the output voltage for the motor from -\/12000 to 12000 in millivolts. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a642c93d0481c8ce46cf452b39c2e4b7c}{motor\+\_\+modify\+\_\+profiled\+\_\+velocity}} (uint8\+\_\+t port, const int32\+\_\+t velocity)
+\begin{DoxyCompactList}\small\item\em Changes the output velocity for a profiled movement (motor\+\_\+move\+\_\+absolute or motor\+\_\+move\+\_\+relative). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{motors_8h_a7f8c14929ae19a2a9023f2f8be753ddd}{motor\+\_\+get\+\_\+target\+\_\+position}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the target position set for the motor by the user. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a70068f6b23a0300cfab39f4bf0fb3b5b}{motor\+\_\+get\+\_\+target\+\_\+velocity}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the velocity commanded to the motor by the user. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{motors_8h_ae4d8307b36224766a6d8322ad261047d}{motor\+\_\+get\+\_\+actual\+\_\+velocity}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Motor telemetry functions. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a0e9c4fa440d6dfde73c48269e461f38a}{motor\+\_\+get\+\_\+current\+\_\+draw}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the current drawn by the motor in mA. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_abc263b00bafab31e657c88c84f0eaeb5}{motor\+\_\+get\+\_\+direction}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the direction of movement for the motor. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{motors_8h_af9297fdfd1b4815d2f382311fdbb28c3}{motor\+\_\+get\+\_\+efficiency}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the efficiency of the motor in percent. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a9ed03089c4ae5ffd265c41c78c1efccc}{motor\+\_\+is\+\_\+over\+\_\+current}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Checks if the motor is drawing over its current limit. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a049a861a7ad84d5cee1f384e0ba170e9}{motor\+\_\+is\+\_\+over\+\_\+temp}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Checks if the motor\textquotesingle{}s temperature is above its limit. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a6816117ce4d9fbbfac810fb0464e0b27}{motor\+\_\+is\+\_\+stopped}} (uint32\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Checks if the motor is stopped. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_ad53d2e1af6d8fe86747f54e7faf96c99}{motor\+\_\+get\+\_\+zero\+\_\+position\+\_\+flag}} (uint32\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Checks if the motor is at its zero position. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{motors_8h_a4fd22f7eee8c9672c805b03ad7abc5f7}{motor\+\_\+get\+\_\+faults}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the faults experienced by the motor. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{motors_8h_a2a06711b4bb09f14108ba994184ce066}{motor\+\_\+get\+\_\+flags}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the flags set by the motor\textquotesingle{}s operation. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_ab83ee852fc58267f5ba03956fc11246a}{motor\+\_\+get\+\_\+raw\+\_\+position}} (uint8\+\_\+t port, uint32\+\_\+t $\ast$const timestamp)
+\begin{DoxyCompactList}\small\item\em Gets the raw encoder count of the motor at a given timestamp. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{motors_8h_a0bee0c860e6030d5b65221a39440e745}{motor\+\_\+get\+\_\+position}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the absolute position of the motor in its encoder units. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{motors_8h_ad47869403be5468eda1ec0af809b4539}{motor\+\_\+get\+\_\+power}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the power drawn by the motor in Watts. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{motors_8h_a512c12d6d2af3f63e186d300ea20623b}{motor\+\_\+get\+\_\+temperature}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the temperature of the motor in degrees Celsius. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{motors_8h_a9a6a297b10f6e90c02730a06ed000f3f}{motor\+\_\+get\+\_\+torque}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the torque generated by the motor in Newton Meters (Nm). \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_ab688d5f99c514b2e78c6809ef1d7303e}{motor\+\_\+get\+\_\+voltage}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the voltage delivered to the motor in millivolts. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a51584a697483c8c38335f30006acf6de}{motor\+\_\+set\+\_\+zero\+\_\+position}} (uint8\+\_\+t port, const double position)
+\begin{DoxyCompactList}\small\item\em Sets the position for the motor in its encoder units. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a6fd0b18bb335561dba7e0fdd5b5e571d}{motor\+\_\+tare\+\_\+position}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Sets the \char`\"{}absolute\char`\"{} zero position of the motor to its current position. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a715f771b51b89b07e8e14f383b50b1de}{motor\+\_\+set\+\_\+brake\+\_\+mode}} (uint8\+\_\+t port, const \mbox{\hyperlink{motors_8h_aa324a2881696428c9e3684f9ad23a83b}{motor\+\_\+brake\+\_\+mode\+\_\+e\+\_\+t}} mode)
+\begin{DoxyCompactList}\small\item\em Sets one of motor\+\_\+brake\+\_\+mode\+\_\+e\+\_\+t to the motor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_acee1e0677416e9e4516f4cb24d7f366f}{motor\+\_\+set\+\_\+current\+\_\+limit}} (uint8\+\_\+t port, const int32\+\_\+t limit)
+\begin{DoxyCompactList}\small\item\em Sets the current limit for the motor in mA. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a0b029d715338ee7601a41061af2eb5fc}{motor\+\_\+set\+\_\+encoder\+\_\+units}} (uint8\+\_\+t port, const \mbox{\hyperlink{motors_8h_a6677ba23760c558fd8b7b4e1e00a6123}{motor\+\_\+encoder\+\_\+units\+\_\+e\+\_\+t}} units)
+\begin{DoxyCompactList}\small\item\em Sets one of motor\+\_\+encoder\+\_\+units\+\_\+e\+\_\+t for the motor encoder. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a5d313d37deadfa7eebe410d064b52354}{motor\+\_\+set\+\_\+gearing}} (uint8\+\_\+t port, const \mbox{\hyperlink{motors_8h_aa2f1c305c998abc3bf8dd1f76fa4da8b}{motor\+\_\+gearset\+\_\+e\+\_\+t}} gearset)
+\begin{DoxyCompactList}\small\item\em Sets one of motor\+\_\+gearset\+\_\+e\+\_\+t for the motor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{motors_8h_ad2e907c8d7ce53c1fd91f1b9801072e3}{motor\+\_\+pid\+\_\+s\+\_\+t}} \mbox{\hyperlink{motors_8h_a7f1c3704af45fe6b1b762589848bc3e2}{motor\+\_\+convert\+\_\+pid}} (double kf, double kp, double ki, double kd)
+\begin{DoxyCompactList}\small\item\em Takes in floating point values and returns a properly formatted pid struct. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}{motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t}} \mbox{\hyperlink{motors_8h_a9ba5c8f64ceeb1013a58553426f8f526}{motor\+\_\+convert\+\_\+pid\+\_\+full}} (double kf, double kp, double ki, double kd, double filter, double limit, double threshold, double loopspeed)
+\begin{DoxyCompactList}\small\item\em Takes in floating point values and returns a properly formatted pid struct. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a389e60d01741d5947a9b7330c6c8bbf7}{motor\+\_\+set\+\_\+pos\+\_\+pid}} (uint8\+\_\+t port, const \mbox{\hyperlink{motors_8h_ad2e907c8d7ce53c1fd91f1b9801072e3}{motor\+\_\+pid\+\_\+s\+\_\+t}} pid)
+\begin{DoxyCompactList}\small\item\em Sets one of motor\+\_\+pid\+\_\+s\+\_\+t for the motor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a1d3273573e296507914d2626121f19ce}{motor\+\_\+set\+\_\+pos\+\_\+pid\+\_\+full}} (uint8\+\_\+t port, const \mbox{\hyperlink{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}{motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t}} pid)
+\begin{DoxyCompactList}\small\item\em Sets one of motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t for the motor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a4255880d012ed0ec856f302536755d8a}{motor\+\_\+set\+\_\+vel\+\_\+pid}} (uint8\+\_\+t port, const \mbox{\hyperlink{motors_8h_ad2e907c8d7ce53c1fd91f1b9801072e3}{motor\+\_\+pid\+\_\+s\+\_\+t}} pid)
+\begin{DoxyCompactList}\small\item\em Sets one of motor\+\_\+pid\+\_\+s\+\_\+t for the motor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_acdec538d8f08e8b5946294f84f017e8e}{motor\+\_\+set\+\_\+vel\+\_\+pid\+\_\+full}} (uint8\+\_\+t port, const \mbox{\hyperlink{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}{motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t}} pid)
+\begin{DoxyCompactList}\small\item\em Sets one of motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t for the motor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a3902b2e866601e4b3e30444910ba5cb8}{motor\+\_\+set\+\_\+reversed}} (uint8\+\_\+t port, const bool reverse)
+\begin{DoxyCompactList}\small\item\em Sets the reverse flag for the motor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a908ff9a818c05af4e485bf01f7761b3e}{motor\+\_\+set\+\_\+voltage\+\_\+limit}} (uint8\+\_\+t port, const int32\+\_\+t limit)
+\begin{DoxyCompactList}\small\item\em Sets the voltage limit for the motor in Volts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{motors_8h_aa324a2881696428c9e3684f9ad23a83b}{motor\+\_\+brake\+\_\+mode\+\_\+e\+\_\+t}} \mbox{\hyperlink{motors_8h_aa71aa22434adea13e08e105440c6f350}{motor\+\_\+get\+\_\+brake\+\_\+mode}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the brake mode that was set for the motor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a76f0807b5f196dad9661f7a674768356}{motor\+\_\+get\+\_\+current\+\_\+limit}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the current limit for the motor in mA. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{motors_8h_a6677ba23760c558fd8b7b4e1e00a6123}{motor\+\_\+encoder\+\_\+units\+\_\+e\+\_\+t}} \mbox{\hyperlink{motors_8h_a999667dd36a74e75f84a2b7c84c8991b}{motor\+\_\+get\+\_\+encoder\+\_\+units}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the encoder units that were set for the motor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{motors_8h_aa2f1c305c998abc3bf8dd1f76fa4da8b}{motor\+\_\+gearset\+\_\+e\+\_\+t}} \mbox{\hyperlink{motors_8h_a617d1def39e4bf36892dd5d9202ad77e}{motor\+\_\+get\+\_\+gearing}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the gearset that was set for the motor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}{motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t}} \mbox{\hyperlink{motors_8h_a0d26b8dabf8384430a8f5b83238110cd}{motor\+\_\+get\+\_\+pos\+\_\+pid}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the position P\+ID that was set for the motor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}{motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t}} \mbox{\hyperlink{motors_8h_a978b582b389ac2d9b0d3a1eb4f2f4c8d}{motor\+\_\+get\+\_\+vel\+\_\+pid}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the velocity P\+ID that was set for the motor. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_aa01f84009a0ed3312696d392818a2cee}{motor\+\_\+is\+\_\+reversed}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the operation direction of the motor as set by the user. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{motors_8h_a80dc1aba752eda42b9e27e9c27ae8b0a}{motor\+\_\+get\+\_\+voltage\+\_\+limit}} (uint8\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Gets the voltage limit set by the user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains prototypes for the V5 Motor-\/related functions. 
+
+Visit \href{https://pros.cs.purdue.edu/v5/tutorials/topical/motors.html}{\texttt{ https\+://pros.\+cs.\+purdue.\+edu/v5/tutorials/topical/motors.\+html}} to learn more.
+
+This file should not be modified by users, since it gets replaced whenever a kernel upgrade occurs.
+
+Copyright (c) 2017-\/2018, Purdue University A\+CM S\+I\+G\+Bots.
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.\+0. If a copy of the M\+PL was not distributed with this file, You can obtain one at \href{http://mozilla.org/MPL/2.0/}{\texttt{ http\+://mozilla.\+org/\+M\+P\+L/2.\+0/}}. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{motors_8h_aa324a2881696428c9e3684f9ad23a83b}\label{motors_8h_aa324a2881696428c9e3684f9ad23a83b}} 
+\index{motors.h@{motors.h}!motor\_brake\_mode\_e\_t@{motor\_brake\_mode\_e\_t}}
+\index{motor\_brake\_mode\_e\_t@{motor\_brake\_mode\_e\_t}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_brake\_mode\_e\_t}{motor\_brake\_mode\_e\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7}{motor\+\_\+brake\+\_\+mode\+\_\+e}}  \mbox{\hyperlink{motors_8h_aa324a2881696428c9e3684f9ad23a83b}{motor\+\_\+brake\+\_\+mode\+\_\+e\+\_\+t}}}
+
+
+
+Motor configuration functions. 
+
+These functions allow programmers to configure the behavior of motors Indicates the current \textquotesingle{}brake mode\textquotesingle{} of a motor. \mbox{\Hypertarget{motors_8h_a6677ba23760c558fd8b7b4e1e00a6123}\label{motors_8h_a6677ba23760c558fd8b7b4e1e00a6123}} 
+\index{motors.h@{motors.h}!motor\_encoder\_units\_e\_t@{motor\_encoder\_units\_e\_t}}
+\index{motor\_encoder\_units\_e\_t@{motor\_encoder\_units\_e\_t}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_encoder\_units\_e\_t}{motor\_encoder\_units\_e\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{motors_8h_a6d94b540f7c22cc42ba611576350193c}{motor\+\_\+encoder\+\_\+units\+\_\+e}}  \mbox{\hyperlink{motors_8h_a6677ba23760c558fd8b7b4e1e00a6123}{motor\+\_\+encoder\+\_\+units\+\_\+e\+\_\+t}}}
+
+
+
+Indicates the units used by the motor encoders. 
+
+\mbox{\Hypertarget{motors_8h_a78665db63d19fd4095b841542b8a6113}\label{motors_8h_a78665db63d19fd4095b841542b8a6113}} 
+\index{motors.h@{motors.h}!motor\_fault\_e\_t@{motor\_fault\_e\_t}}
+\index{motor\_fault\_e\_t@{motor\_fault\_e\_t}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_fault\_e\_t}{motor\_fault\_e\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1}{motor\+\_\+fault\+\_\+e}}  \mbox{\hyperlink{motors_8h_a78665db63d19fd4095b841542b8a6113}{motor\+\_\+fault\+\_\+e\+\_\+t}}}
+
+\mbox{\Hypertarget{motors_8h_a3533fda394038870e788dfa4f6b60441}\label{motors_8h_a3533fda394038870e788dfa4f6b60441}} 
+\index{motors.h@{motors.h}!motor\_flag\_e\_t@{motor\_flag\_e\_t}}
+\index{motor\_flag\_e\_t@{motor\_flag\_e\_t}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_flag\_e\_t}{motor\_flag\_e\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{motors_8h_aefb84700279103f329387cdf6cba0d2b}{motor\+\_\+flag\+\_\+e}}  \mbox{\hyperlink{motors_8h_a3533fda394038870e788dfa4f6b60441}{motor\+\_\+flag\+\_\+e\+\_\+t}}}
+
+\mbox{\Hypertarget{motors_8h_aa2f1c305c998abc3bf8dd1f76fa4da8b}\label{motors_8h_aa2f1c305c998abc3bf8dd1f76fa4da8b}} 
+\index{motors.h@{motors.h}!motor\_gearset\_e\_t@{motor\_gearset\_e\_t}}
+\index{motor\_gearset\_e\_t@{motor\_gearset\_e\_t}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_gearset\_e\_t}{motor\_gearset\_e\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92}{motor\+\_\+gearset\+\_\+e}}  \mbox{\hyperlink{motors_8h_aa2f1c305c998abc3bf8dd1f76fa4da8b}{motor\+\_\+gearset\+\_\+e\+\_\+t}}}
+
+
+
+Indicates the current internal gear ratio of a motor. 
+
+\mbox{\Hypertarget{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}\label{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}} 
+\index{motors.h@{motors.h}!motor\_pid\_full\_s\_t@{motor\_pid\_full\_s\_t}}
+\index{motor\_pid\_full\_s\_t@{motor\_pid\_full\_s\_t}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_pid\_full\_s\_t}{motor\_pid\_full\_s\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structmotor__pid__full__s}{motor\+\_\+pid\+\_\+full\+\_\+s}}  \mbox{\hyperlink{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}{motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t}}}
+
+
+
+Holds the information about a Motor\textquotesingle{}s position or velocity P\+ID controls. 
+
+These values are in 4.\+4 format, meaning that a value of 0x20 represents 2.\+0, 0x21 represents 2.\+0625, 0x22 represents 2.\+125, etc. \mbox{\Hypertarget{motors_8h_ad2e907c8d7ce53c1fd91f1b9801072e3}\label{motors_8h_ad2e907c8d7ce53c1fd91f1b9801072e3}} 
+\index{motors.h@{motors.h}!motor\_pid\_s\_t@{motor\_pid\_s\_t}}
+\index{motor\_pid\_s\_t@{motor\_pid\_s\_t}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_pid\_s\_t}{motor\_pid\_s\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structmotor__pid__s}{motor\+\_\+pid\+\_\+s}}  \mbox{\hyperlink{motors_8h_ad2e907c8d7ce53c1fd91f1b9801072e3}{motor\+\_\+pid\+\_\+s\+\_\+t}}}
+
+
+
+Holds just the constants for a Motor\textquotesingle{}s position or velocity P\+ID controls. 
+
+These values are in 4.\+4 format, meaning that a value of 0x20 represents 2.\+0, 0x21 represents 2.\+0625, 0x22 represents 2.\+125, etc. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7}\label{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7}} 
+\index{motors.h@{motors.h}!motor\_brake\_mode\_e@{motor\_brake\_mode\_e}}
+\index{motor\_brake\_mode\_e@{motor\_brake\_mode\_e}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_brake\_mode\_e}{motor\_brake\_mode\_e}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7}{motor\+\_\+brake\+\_\+mode\+\_\+e}}}
+
+
+
+Motor configuration functions. 
+
+These functions allow programmers to configure the behavior of motors Indicates the current \textquotesingle{}brake mode\textquotesingle{} of a motor. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_BRAKE\_COAST@{E\_MOTOR\_BRAKE\_COAST}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_BRAKE\_COAST@{E\_MOTOR\_BRAKE\_COAST}}}\mbox{\Hypertarget{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7aa2cc502049ad45801c2ce0a4b3d2069e}\label{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7aa2cc502049ad45801c2ce0a4b3d2069e}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+B\+R\+A\+K\+E\+\_\+\+C\+O\+A\+ST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_BRAKE\_BRAKE@{E\_MOTOR\_BRAKE\_BRAKE}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_BRAKE\_BRAKE@{E\_MOTOR\_BRAKE\_BRAKE}}}\mbox{\Hypertarget{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7a0ea7e0574d40f6db40525bb6b7aeeba0}\label{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7a0ea7e0574d40f6db40525bb6b7aeeba0}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+B\+R\+A\+K\+E\+\_\+\+B\+R\+A\+KE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_BRAKE\_HOLD@{E\_MOTOR\_BRAKE\_HOLD}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_BRAKE\_HOLD@{E\_MOTOR\_BRAKE\_HOLD}}}\mbox{\Hypertarget{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7aaa23ffec0b250ce72e7159b8de3d4b8d}\label{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7aaa23ffec0b250ce72e7159b8de3d4b8d}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+B\+R\+A\+K\+E\+\_\+\+H\+O\+LD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_BRAKE\_INVALID@{E\_MOTOR\_BRAKE\_INVALID}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_BRAKE\_INVALID@{E\_MOTOR\_BRAKE\_INVALID}}}\mbox{\Hypertarget{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7a23e68282557596c84cfecf5e6ec4a023}\label{motors_8h_abe00508f1ecabf2dad6bf6d8d323fec7a23e68282557596c84cfecf5e6ec4a023}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+B\+R\+A\+K\+E\+\_\+\+I\+N\+V\+A\+L\+ID&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{motors_8h_a6d94b540f7c22cc42ba611576350193c}\label{motors_8h_a6d94b540f7c22cc42ba611576350193c}} 
+\index{motors.h@{motors.h}!motor\_encoder\_units\_e@{motor\_encoder\_units\_e}}
+\index{motor\_encoder\_units\_e@{motor\_encoder\_units\_e}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_encoder\_units\_e}{motor\_encoder\_units\_e}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{motors_8h_a6d94b540f7c22cc42ba611576350193c}{motor\+\_\+encoder\+\_\+units\+\_\+e}}}
+
+
+
+Indicates the units used by the motor encoders. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_ENCODER\_DEGREES@{E\_MOTOR\_ENCODER\_DEGREES}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_ENCODER\_DEGREES@{E\_MOTOR\_ENCODER\_DEGREES}}}\mbox{\Hypertarget{motors_8h_a6d94b540f7c22cc42ba611576350193ca3f8b78d1687e80752406e90ca3bd9caf}\label{motors_8h_a6d94b540f7c22cc42ba611576350193ca3f8b78d1687e80752406e90ca3bd9caf}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+D\+E\+G\+R\+E\+ES&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_ENCODER\_ROTATIONS@{E\_MOTOR\_ENCODER\_ROTATIONS}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_ENCODER\_ROTATIONS@{E\_MOTOR\_ENCODER\_ROTATIONS}}}\mbox{\Hypertarget{motors_8h_a6d94b540f7c22cc42ba611576350193ca5ba6e5cdf81faac8a776a8ce3f735285}\label{motors_8h_a6d94b540f7c22cc42ba611576350193ca5ba6e5cdf81faac8a776a8ce3f735285}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+R\+O\+T\+A\+T\+I\+O\+NS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_ENCODER\_COUNTS@{E\_MOTOR\_ENCODER\_COUNTS}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_ENCODER\_COUNTS@{E\_MOTOR\_ENCODER\_COUNTS}}}\mbox{\Hypertarget{motors_8h_a6d94b540f7c22cc42ba611576350193cad1911b04d55f80e665634a2863386e86}\label{motors_8h_a6d94b540f7c22cc42ba611576350193cad1911b04d55f80e665634a2863386e86}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+C\+O\+U\+N\+TS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_ENCODER\_INVALID@{E\_MOTOR\_ENCODER\_INVALID}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_ENCODER\_INVALID@{E\_MOTOR\_ENCODER\_INVALID}}}\mbox{\Hypertarget{motors_8h_a6d94b540f7c22cc42ba611576350193ca4ab7c8effccd17c995a4abaf1fa4663f}\label{motors_8h_a6d94b540f7c22cc42ba611576350193ca4ab7c8effccd17c995a4abaf1fa4663f}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+I\+N\+V\+A\+L\+ID&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1}\label{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1}} 
+\index{motors.h@{motors.h}!motor\_fault\_e@{motor\_fault\_e}}
+\index{motor\_fault\_e@{motor\_fault\_e}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_fault\_e}{motor\_fault\_e}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1}{motor\+\_\+fault\+\_\+e}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_FAULT\_NO\_FAULTS@{E\_MOTOR\_FAULT\_NO\_FAULTS}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_FAULT\_NO\_FAULTS@{E\_MOTOR\_FAULT\_NO\_FAULTS}}}\mbox{\Hypertarget{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1aa1763132e678a09c2a2299dcb8ca91f2}\label{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1aa1763132e678a09c2a2299dcb8ca91f2}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+A\+U\+L\+T\+\_\+\+N\+O\+\_\+\+F\+A\+U\+L\+TS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_FAULT\_MOTOR\_OVER\_TEMP@{E\_MOTOR\_FAULT\_MOTOR\_OVER\_TEMP}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_FAULT\_MOTOR\_OVER\_TEMP@{E\_MOTOR\_FAULT\_MOTOR\_OVER\_TEMP}}}\mbox{\Hypertarget{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1a19697fdb3bda40d671908094d19bb816}\label{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1a19697fdb3bda40d671908094d19bb816}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+A\+U\+L\+T\+\_\+\+M\+O\+T\+O\+R\+\_\+\+O\+V\+E\+R\+\_\+\+T\+E\+MP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_FAULT\_DRIVER\_FAULT@{E\_MOTOR\_FAULT\_DRIVER\_FAULT}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_FAULT\_DRIVER\_FAULT@{E\_MOTOR\_FAULT\_DRIVER\_FAULT}}}\mbox{\Hypertarget{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1a129793cdd6c08a6df63a4ce690a563e9}\label{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1a129793cdd6c08a6df63a4ce690a563e9}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+A\+U\+L\+T\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+F\+A\+U\+LT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_FAULT\_OVER\_CURRENT@{E\_MOTOR\_FAULT\_OVER\_CURRENT}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_FAULT\_OVER\_CURRENT@{E\_MOTOR\_FAULT\_OVER\_CURRENT}}}\mbox{\Hypertarget{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1ad58554131e6fe018bca28e8447e9da19}\label{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1ad58554131e6fe018bca28e8447e9da19}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+A\+U\+L\+T\+\_\+\+O\+V\+E\+R\+\_\+\+C\+U\+R\+R\+E\+NT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_FAULT\_DRV\_OVER\_CURRENT@{E\_MOTOR\_FAULT\_DRV\_OVER\_CURRENT}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_FAULT\_DRV\_OVER\_CURRENT@{E\_MOTOR\_FAULT\_DRV\_OVER\_CURRENT}}}\mbox{\Hypertarget{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1a4261f9f8989960a7aed89cbc8821007c}\label{motors_8h_a6a794029fb7c8da16ee9c883b3c5f1d1a4261f9f8989960a7aed89cbc8821007c}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+A\+U\+L\+T\+\_\+\+D\+R\+V\+\_\+\+O\+V\+E\+R\+\_\+\+C\+U\+R\+R\+E\+NT&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{motors_8h_aefb84700279103f329387cdf6cba0d2b}\label{motors_8h_aefb84700279103f329387cdf6cba0d2b}} 
+\index{motors.h@{motors.h}!motor\_flag\_e@{motor\_flag\_e}}
+\index{motor\_flag\_e@{motor\_flag\_e}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_flag\_e}{motor\_flag\_e}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{motors_8h_aefb84700279103f329387cdf6cba0d2b}{motor\+\_\+flag\+\_\+e}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_FLAGS\_NONE@{E\_MOTOR\_FLAGS\_NONE}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_FLAGS\_NONE@{E\_MOTOR\_FLAGS\_NONE}}}\mbox{\Hypertarget{motors_8h_aefb84700279103f329387cdf6cba0d2bae402dfe134784f10ef577661e751cf25}\label{motors_8h_aefb84700279103f329387cdf6cba0d2bae402dfe134784f10ef577661e751cf25}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+L\+A\+G\+S\+\_\+\+N\+O\+NE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_FLAGS\_BUSY@{E\_MOTOR\_FLAGS\_BUSY}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_FLAGS\_BUSY@{E\_MOTOR\_FLAGS\_BUSY}}}\mbox{\Hypertarget{motors_8h_aefb84700279103f329387cdf6cba0d2bacb8e657551c89b6678660318961f8b6b}\label{motors_8h_aefb84700279103f329387cdf6cba0d2bacb8e657551c89b6678660318961f8b6b}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+L\+A\+G\+S\+\_\+\+B\+U\+SY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_FLAGS\_ZERO\_VELOCITY@{E\_MOTOR\_FLAGS\_ZERO\_VELOCITY}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_FLAGS\_ZERO\_VELOCITY@{E\_MOTOR\_FLAGS\_ZERO\_VELOCITY}}}\mbox{\Hypertarget{motors_8h_aefb84700279103f329387cdf6cba0d2ba897fee9d51039554c0cda9e061c2a3e0}\label{motors_8h_aefb84700279103f329387cdf6cba0d2ba897fee9d51039554c0cda9e061c2a3e0}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+L\+A\+G\+S\+\_\+\+Z\+E\+R\+O\+\_\+\+V\+E\+L\+O\+C\+I\+TY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_FLAGS\_ZERO\_POSITION@{E\_MOTOR\_FLAGS\_ZERO\_POSITION}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_FLAGS\_ZERO\_POSITION@{E\_MOTOR\_FLAGS\_ZERO\_POSITION}}}\mbox{\Hypertarget{motors_8h_aefb84700279103f329387cdf6cba0d2bab9db9483c159e4bb272015e6507de0ac}\label{motors_8h_aefb84700279103f329387cdf6cba0d2bab9db9483c159e4bb272015e6507de0ac}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+F\+L\+A\+G\+S\+\_\+\+Z\+E\+R\+O\+\_\+\+P\+O\+S\+I\+T\+I\+ON&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92}\label{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92}} 
+\index{motors.h@{motors.h}!motor\_gearset\_e@{motor\_gearset\_e}}
+\index{motor\_gearset\_e@{motor\_gearset\_e}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_gearset\_e}{motor\_gearset\_e}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92}{motor\+\_\+gearset\+\_\+e}}}
+
+
+
+Indicates the current internal gear ratio of a motor. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_GEARSET\_36@{E\_MOTOR\_GEARSET\_36}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_GEARSET\_36@{E\_MOTOR\_GEARSET\_36}}}\mbox{\Hypertarget{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92ad1b0135f1d6fde4ee29590836eb1b856}\label{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92ad1b0135f1d6fde4ee29590836eb1b856}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+G\+E\+A\+R\+S\+E\+T\+\_\+36&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_GEARSET\_18@{E\_MOTOR\_GEARSET\_18}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_GEARSET\_18@{E\_MOTOR\_GEARSET\_18}}}\mbox{\Hypertarget{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92a95444ef9bee438d4bcfebb0c0a399443}\label{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92a95444ef9bee438d4bcfebb0c0a399443}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+G\+E\+A\+R\+S\+E\+T\+\_\+18&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_GEARSET\_06@{E\_MOTOR\_GEARSET\_06}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_GEARSET\_06@{E\_MOTOR\_GEARSET\_06}}}\mbox{\Hypertarget{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92a33f143e34739e15a553885015455db37}\label{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92a33f143e34739e15a553885015455db37}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+G\+E\+A\+R\+S\+E\+T\+\_\+06&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_MOTOR\_GEARSET\_INVALID@{E\_MOTOR\_GEARSET\_INVALID}!motors.h@{motors.h}}\index{motors.h@{motors.h}!E\_MOTOR\_GEARSET\_INVALID@{E\_MOTOR\_GEARSET\_INVALID}}}\mbox{\Hypertarget{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92a934f089388ca6bd6b92df6321dfbe45d}\label{motors_8h_a20a5d12701ec52a5c6bde1c3fe14ab92a934f089388ca6bd6b92df6321dfbe45d}} 
+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+G\+E\+A\+R\+S\+E\+T\+\_\+\+I\+N\+V\+A\+L\+ID&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{motors_8h_a7f1c3704af45fe6b1b762589848bc3e2}\label{motors_8h_a7f1c3704af45fe6b1b762589848bc3e2}} 
+\index{motors.h@{motors.h}!motor\_convert\_pid@{motor\_convert\_pid}}
+\index{motor\_convert\_pid@{motor\_convert\_pid}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_convert\_pid()}{motor\_convert\_pid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{motors_8h_ad2e907c8d7ce53c1fd91f1b9801072e3}{motor\+\_\+pid\+\_\+s\+\_\+t}} motor\+\_\+convert\+\_\+pid (\begin{DoxyParamCaption}\item[{double}]{kf,  }\item[{double}]{kp,  }\item[{double}]{ki,  }\item[{double}]{kd }\end{DoxyParamCaption})}
+
+
+
+Takes in floating point values and returns a properly formatted pid struct. 
+
+The motor\+\_\+pid\+\_\+s\+\_\+t struct is in 4.\+4 format, i.\+e. 0x20 is 2.\+0, 0x21 is 2.\+0625, etc. This function will convert the floating point values to the nearest 4.\+4 value.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em kf} & The feedforward constant \\
+\hline
+{\em kp} & The proportional constant \\
+\hline
+{\em ki} & The integral constant \\
+\hline
+{\em kd} & The derivative constant\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} motor\+\_\+pid\+\_\+s\+\_\+t struct formatted properly in 4.\+4. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a9ba5c8f64ceeb1013a58553426f8f526}\label{motors_8h_a9ba5c8f64ceeb1013a58553426f8f526}} 
+\index{motors.h@{motors.h}!motor\_convert\_pid\_full@{motor\_convert\_pid\_full}}
+\index{motor\_convert\_pid\_full@{motor\_convert\_pid\_full}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_convert\_pid\_full()}{motor\_convert\_pid\_full()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}{motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t}} motor\+\_\+convert\+\_\+pid\+\_\+full (\begin{DoxyParamCaption}\item[{double}]{kf,  }\item[{double}]{kp,  }\item[{double}]{ki,  }\item[{double}]{kd,  }\item[{double}]{filter,  }\item[{double}]{limit,  }\item[{double}]{threshold,  }\item[{double}]{loopspeed }\end{DoxyParamCaption})}
+
+
+
+Takes in floating point values and returns a properly formatted pid struct. 
+
+The motor\+\_\+pid\+\_\+s\+\_\+t struct is in 4.\+4 format, i.\+e. 0x20 is 2.\+0, 0x21 is 2.\+0625, etc. This function will convert the floating point values to the nearest 4.\+4 value.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em kf} & The feedforward constant \\
+\hline
+{\em kp} & The proportional constant \\
+\hline
+{\em ki} & The integral constant \\
+\hline
+{\em kd} & The derivative constant \\
+\hline
+{\em filter} & \mbox{\hyperlink{structA}{A}} constant used for filtering the profile acceleration \\
+\hline
+{\em limit} & The integral limit \\
+\hline
+{\em threshold} & The threshold for determining if a position movement has reached its goal. This has no effect for velocity P\+ID calculations. \\
+\hline
+{\em loopspeed} & The rate at which the P\+ID computation is run in ms\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} motor\+\_\+pid\+\_\+s\+\_\+t struct formatted properly in 4.\+4. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_ae4d8307b36224766a6d8322ad261047d}\label{motors_8h_ae4d8307b36224766a6d8322ad261047d}} 
+\index{motors.h@{motors.h}!motor\_get\_actual\_velocity@{motor\_get\_actual\_velocity}}
+\index{motor\_get\_actual\_velocity@{motor\_get\_actual\_velocity}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_actual\_velocity()}{motor\_get\_actual\_velocity()}}
+{\footnotesize\ttfamily double motor\+\_\+get\+\_\+actual\+\_\+velocity (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Motor telemetry functions. 
+
+These functions allow programmers to collect telemetry from motors Gets the actual velocity of the motor.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The motor\textquotesingle{}s actual velocity in R\+PM or P\+R\+O\+S\+\_\+\+E\+R\+R\+\_\+F if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_aa71aa22434adea13e08e105440c6f350}\label{motors_8h_aa71aa22434adea13e08e105440c6f350}} 
+\index{motors.h@{motors.h}!motor\_get\_brake\_mode@{motor\_get\_brake\_mode}}
+\index{motor\_get\_brake\_mode@{motor\_get\_brake\_mode}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_brake\_mode()}{motor\_get\_brake\_mode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{motors_8h_aa324a2881696428c9e3684f9ad23a83b}{motor\+\_\+brake\+\_\+mode\+\_\+e\+\_\+t}} motor\+\_\+get\+\_\+brake\+\_\+mode (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the brake mode that was set for the motor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of motor\+\_\+brake\+\_\+mode\+\_\+e\+\_\+t, according to what was set for the motor, or E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+B\+R\+A\+K\+E\+\_\+\+I\+N\+V\+A\+L\+ID if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a0e9c4fa440d6dfde73c48269e461f38a}\label{motors_8h_a0e9c4fa440d6dfde73c48269e461f38a}} 
+\index{motors.h@{motors.h}!motor\_get\_current\_draw@{motor\_get\_current\_draw}}
+\index{motor\_get\_current\_draw@{motor\_get\_current\_draw}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_current\_draw()}{motor\_get\_current\_draw()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+get\+\_\+current\+\_\+draw (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the current drawn by the motor in mA. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The motor\textquotesingle{}s current in mA or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a76f0807b5f196dad9661f7a674768356}\label{motors_8h_a76f0807b5f196dad9661f7a674768356}} 
+\index{motors.h@{motors.h}!motor\_get\_current\_limit@{motor\_get\_current\_limit}}
+\index{motor\_get\_current\_limit@{motor\_get\_current\_limit}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_current\_limit()}{motor\_get\_current\_limit()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+get\+\_\+current\+\_\+limit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the current limit for the motor in mA. 
+
+The default value is 2500 mA.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The motor\textquotesingle{}s current limit in mA or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_abc263b00bafab31e657c88c84f0eaeb5}\label{motors_8h_abc263b00bafab31e657c88c84f0eaeb5}} 
+\index{motors.h@{motors.h}!motor\_get\_direction@{motor\_get\_direction}}
+\index{motor\_get\_direction@{motor\_get\_direction}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_direction()}{motor\_get\_direction()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+get\+\_\+direction (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the direction of movement for the motor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 for moving in the positive direction, -\/1 for moving in the negative direction, or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_af9297fdfd1b4815d2f382311fdbb28c3}\label{motors_8h_af9297fdfd1b4815d2f382311fdbb28c3}} 
+\index{motors.h@{motors.h}!motor\_get\_efficiency@{motor\_get\_efficiency}}
+\index{motor\_get\_efficiency@{motor\_get\_efficiency}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_efficiency()}{motor\_get\_efficiency()}}
+{\footnotesize\ttfamily double motor\+\_\+get\+\_\+efficiency (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the efficiency of the motor in percent. 
+
+An efficiency of 100\% means that the motor is moving electrically while drawing no electrical power, and an efficiency of 0\% means that the motor is drawing power but not moving.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The motor\textquotesingle{}s efficiency in percent or P\+R\+O\+S\+\_\+\+E\+R\+R\+\_\+F if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a999667dd36a74e75f84a2b7c84c8991b}\label{motors_8h_a999667dd36a74e75f84a2b7c84c8991b}} 
+\index{motors.h@{motors.h}!motor\_get\_encoder\_units@{motor\_get\_encoder\_units}}
+\index{motor\_get\_encoder\_units@{motor\_get\_encoder\_units}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_encoder\_units()}{motor\_get\_encoder\_units()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{motors_8h_a6677ba23760c558fd8b7b4e1e00a6123}{motor\+\_\+encoder\+\_\+units\+\_\+e\+\_\+t}} motor\+\_\+get\+\_\+encoder\+\_\+units (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the encoder units that were set for the motor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of motor\+\_\+encoder\+\_\+units\+\_\+e\+\_\+t according to what is set for the motor or E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+E\+N\+C\+O\+D\+E\+R\+\_\+\+I\+N\+V\+A\+L\+ID if the operation failed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a4fd22f7eee8c9672c805b03ad7abc5f7}\label{motors_8h_a4fd22f7eee8c9672c805b03ad7abc5f7}} 
+\index{motors.h@{motors.h}!motor\_get\_faults@{motor\_get\_faults}}
+\index{motor\_get\_faults@{motor\_get\_faults}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_faults()}{motor\_get\_faults()}}
+{\footnotesize\ttfamily uint32\+\_\+t motor\+\_\+get\+\_\+faults (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the faults experienced by the motor. 
+
+Compare this bitfield to the bitmasks in motor\+\_\+fault\+\_\+e\+\_\+t.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} bitfield containing the motor\textquotesingle{}s faults. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a2a06711b4bb09f14108ba994184ce066}\label{motors_8h_a2a06711b4bb09f14108ba994184ce066}} 
+\index{motors.h@{motors.h}!motor\_get\_flags@{motor\_get\_flags}}
+\index{motor\_get\_flags@{motor\_get\_flags}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_flags()}{motor\_get\_flags()}}
+{\footnotesize\ttfamily uint32\+\_\+t motor\+\_\+get\+\_\+flags (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the flags set by the motor\textquotesingle{}s operation. 
+
+Compare this bitfield to the bitmasks in motor\+\_\+flag\+\_\+e\+\_\+t.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} bitfield containing the motor\textquotesingle{}s flags. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a617d1def39e4bf36892dd5d9202ad77e}\label{motors_8h_a617d1def39e4bf36892dd5d9202ad77e}} 
+\index{motors.h@{motors.h}!motor\_get\_gearing@{motor\_get\_gearing}}
+\index{motor\_get\_gearing@{motor\_get\_gearing}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_gearing()}{motor\_get\_gearing()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{motors_8h_aa2f1c305c998abc3bf8dd1f76fa4da8b}{motor\+\_\+gearset\+\_\+e\+\_\+t}} motor\+\_\+get\+\_\+gearing (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the gearset that was set for the motor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+One of motor\+\_\+gearset\+\_\+e\+\_\+t according to what is set for the motor, or E\+\_\+\+G\+E\+A\+R\+S\+E\+T\+\_\+\+I\+N\+V\+A\+L\+ID if the operation failed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a0d26b8dabf8384430a8f5b83238110cd}\label{motors_8h_a0d26b8dabf8384430a8f5b83238110cd}} 
+\index{motors.h@{motors.h}!motor\_get\_pos\_pid@{motor\_get\_pos\_pid}}
+\index{motor\_get\_pos\_pid@{motor\_get\_pos\_pid}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_pos\_pid()}{motor\_get\_pos\_pid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}{motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t}} motor\+\_\+get\+\_\+pos\+\_\+pid (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the position P\+ID that was set for the motor. 
+
+This function will return zero for all of the parameters if the \mbox{\hyperlink{motors_8h_a389e60d01741d5947a9b7330c6c8bbf7}{motor\+\_\+set\+\_\+pos\+\_\+pid()}} or \mbox{\hyperlink{motors_8h_a1d3273573e296507914d2626121f19ce}{motor\+\_\+set\+\_\+pos\+\_\+pid\+\_\+full()}} functions have not been used.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+Additionally, in an error state all values of the returned struct are set to their negative maximum values.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t containing the position P\+ID constants last set to the given motor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a0bee0c860e6030d5b65221a39440e745}\label{motors_8h_a0bee0c860e6030d5b65221a39440e745}} 
+\index{motors.h@{motors.h}!motor\_get\_position@{motor\_get\_position}}
+\index{motor\_get\_position@{motor\_get\_position}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_position()}{motor\_get\_position()}}
+{\footnotesize\ttfamily double motor\+\_\+get\+\_\+position (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the absolute position of the motor in its encoder units. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The motor\textquotesingle{}s absolute position in its encoder units or P\+R\+O\+S\+\_\+\+E\+R\+R\+\_\+F if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_ad47869403be5468eda1ec0af809b4539}\label{motors_8h_ad47869403be5468eda1ec0af809b4539}} 
+\index{motors.h@{motors.h}!motor\_get\_power@{motor\_get\_power}}
+\index{motor\_get\_power@{motor\_get\_power}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_power()}{motor\_get\_power()}}
+{\footnotesize\ttfamily double motor\+\_\+get\+\_\+power (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the power drawn by the motor in Watts. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The motor\textquotesingle{}s power draw in Watts or P\+R\+O\+S\+\_\+\+E\+R\+R\+\_\+F if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_ab83ee852fc58267f5ba03956fc11246a}\label{motors_8h_ab83ee852fc58267f5ba03956fc11246a}} 
+\index{motors.h@{motors.h}!motor\_get\_raw\_position@{motor\_get\_raw\_position}}
+\index{motor\_get\_raw\_position@{motor\_get\_raw\_position}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_raw\_position()}{motor\_get\_raw\_position()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+get\+\_\+raw\+\_\+position (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{uint32\+\_\+t $\ast$const}]{timestamp }\end{DoxyParamCaption})}
+
+
+
+Gets the raw encoder count of the motor at a given timestamp. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em port} & The V5 port number from 1-\/21 \\
+\hline
+\mbox{\texttt{ in}}  & {\em timestamp} & \mbox{\hyperlink{structA}{A}} pointer to a time in milliseconds for which the encoder count will be returned. If N\+U\+LL, the timestamp at which the encoder count was read will not be supplied\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The raw encoder count at the given timestamp or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a7f8c14929ae19a2a9023f2f8be753ddd}\label{motors_8h_a7f8c14929ae19a2a9023f2f8be753ddd}} 
+\index{motors.h@{motors.h}!motor\_get\_target\_position@{motor\_get\_target\_position}}
+\index{motor\_get\_target\_position@{motor\_get\_target\_position}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_target\_position()}{motor\_get\_target\_position()}}
+{\footnotesize\ttfamily double motor\+\_\+get\+\_\+target\+\_\+position (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the target position set for the motor by the user. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The target position in its encoder units or P\+R\+O\+S\+\_\+\+E\+R\+R\+\_\+F if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a70068f6b23a0300cfab39f4bf0fb3b5b}\label{motors_8h_a70068f6b23a0300cfab39f4bf0fb3b5b}} 
+\index{motors.h@{motors.h}!motor\_get\_target\_velocity@{motor\_get\_target\_velocity}}
+\index{motor\_get\_target\_velocity@{motor\_get\_target\_velocity}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_target\_velocity()}{motor\_get\_target\_velocity()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+get\+\_\+target\+\_\+velocity (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the velocity commanded to the motor by the user. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The commanded motor velocity from +-\/100, +-\/200, or +-\/600, or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a512c12d6d2af3f63e186d300ea20623b}\label{motors_8h_a512c12d6d2af3f63e186d300ea20623b}} 
+\index{motors.h@{motors.h}!motor\_get\_temperature@{motor\_get\_temperature}}
+\index{motor\_get\_temperature@{motor\_get\_temperature}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_temperature()}{motor\_get\_temperature()}}
+{\footnotesize\ttfamily double motor\+\_\+get\+\_\+temperature (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the temperature of the motor in degrees Celsius. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The motor\textquotesingle{}s temperature in degrees Celsius or P\+R\+O\+S\+\_\+\+E\+R\+R\+\_\+F if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a9a6a297b10f6e90c02730a06ed000f3f}\label{motors_8h_a9a6a297b10f6e90c02730a06ed000f3f}} 
+\index{motors.h@{motors.h}!motor\_get\_torque@{motor\_get\_torque}}
+\index{motor\_get\_torque@{motor\_get\_torque}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_torque()}{motor\_get\_torque()}}
+{\footnotesize\ttfamily double motor\+\_\+get\+\_\+torque (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the torque generated by the motor in Newton Meters (Nm). 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The motor\textquotesingle{}s torque in Nm or P\+R\+O\+S\+\_\+\+E\+R\+R\+\_\+F if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a978b582b389ac2d9b0d3a1eb4f2f4c8d}\label{motors_8h_a978b582b389ac2d9b0d3a1eb4f2f4c8d}} 
+\index{motors.h@{motors.h}!motor\_get\_vel\_pid@{motor\_get\_vel\_pid}}
+\index{motor\_get\_vel\_pid@{motor\_get\_vel\_pid}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_vel\_pid()}{motor\_get\_vel\_pid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}{motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t}} motor\+\_\+get\+\_\+vel\+\_\+pid (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the velocity P\+ID that was set for the motor. 
+
+This function will return zero for all of the parameters if the \mbox{\hyperlink{motors_8h_a4255880d012ed0ec856f302536755d8a}{motor\+\_\+set\+\_\+vel\+\_\+pid()}} or \mbox{\hyperlink{motors_8h_acdec538d8f08e8b5946294f84f017e8e}{motor\+\_\+set\+\_\+vel\+\_\+pid\+\_\+full()}} functions have not been used.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+Additionally, in an error state all values of the returned struct are set to their negative maximum values.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structA}{A}} motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t containing the velocity P\+ID constants last set to the given motor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_ab688d5f99c514b2e78c6809ef1d7303e}\label{motors_8h_ab688d5f99c514b2e78c6809ef1d7303e}} 
+\index{motors.h@{motors.h}!motor\_get\_voltage@{motor\_get\_voltage}}
+\index{motor\_get\_voltage@{motor\_get\_voltage}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_voltage()}{motor\_get\_voltage()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+get\+\_\+voltage (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the voltage delivered to the motor in millivolts. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The motor\textquotesingle{}s voltage in mV or P\+R\+O\+S\+\_\+\+E\+R\+R\+\_\+F if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a80dc1aba752eda42b9e27e9c27ae8b0a}\label{motors_8h_a80dc1aba752eda42b9e27e9c27ae8b0a}} 
+\index{motors.h@{motors.h}!motor\_get\_voltage\_limit@{motor\_get\_voltage\_limit}}
+\index{motor\_get\_voltage\_limit@{motor\_get\_voltage\_limit}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_voltage\_limit()}{motor\_get\_voltage\_limit()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+get\+\_\+voltage\+\_\+limit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the voltage limit set by the user. 
+
+Default value is 0V, which means that there is no software limitation imposed on the voltage.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The motor\textquotesingle{}s voltage limit in V or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_ad53d2e1af6d8fe86747f54e7faf96c99}\label{motors_8h_ad53d2e1af6d8fe86747f54e7faf96c99}} 
+\index{motors.h@{motors.h}!motor\_get\_zero\_position\_flag@{motor\_get\_zero\_position\_flag}}
+\index{motor\_get\_zero\_position\_flag@{motor\_get\_zero\_position\_flag}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_get\_zero\_position\_flag()}{motor\_get\_zero\_position\_flag()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+get\+\_\+zero\+\_\+position\+\_\+flag (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Checks if the motor is at its zero position. 
+
+\begin{DoxyNote}{Note}
+Although this function forwards data from the motor, the motor presently does not provide any value. This function returns P\+R\+O\+S\+\_\+\+E\+RR with errno set to E\+N\+O\+S\+YS.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the motor is at zero absolute position, 0 if the motor has moved from its absolute zero, or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a9ed03089c4ae5ffd265c41c78c1efccc}\label{motors_8h_a9ed03089c4ae5ffd265c41c78c1efccc}} 
+\index{motors.h@{motors.h}!motor\_is\_over\_current@{motor\_is\_over\_current}}
+\index{motor\_is\_over\_current@{motor\_is\_over\_current}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_is\_over\_current()}{motor\_is\_over\_current()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+is\+\_\+over\+\_\+current (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Checks if the motor is drawing over its current limit. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the motor\textquotesingle{}s current limit is being exceeded and 0 if the current limit is not exceeded, or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a049a861a7ad84d5cee1f384e0ba170e9}\label{motors_8h_a049a861a7ad84d5cee1f384e0ba170e9}} 
+\index{motors.h@{motors.h}!motor\_is\_over\_temp@{motor\_is\_over\_temp}}
+\index{motor\_is\_over\_temp@{motor\_is\_over\_temp}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_is\_over\_temp()}{motor\_is\_over\_temp()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+is\+\_\+over\+\_\+temp (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Checks if the motor\textquotesingle{}s temperature is above its limit. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the temperature limit is exceeded and 0 if the the temperature is below the limit, or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_aa01f84009a0ed3312696d392818a2cee}\label{motors_8h_aa01f84009a0ed3312696d392818a2cee}} 
+\index{motors.h@{motors.h}!motor\_is\_reversed@{motor\_is\_reversed}}
+\index{motor\_is\_reversed@{motor\_is\_reversed}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_is\_reversed()}{motor\_is\_reversed()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+is\+\_\+reversed (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Gets the operation direction of the motor as set by the user. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the motor has been reversed and 0 if the motor was not reversed, or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a6816117ce4d9fbbfac810fb0464e0b27}\label{motors_8h_a6816117ce4d9fbbfac810fb0464e0b27}} 
+\index{motors.h@{motors.h}!motor\_is\_stopped@{motor\_is\_stopped}}
+\index{motor\_is\_stopped@{motor\_is\_stopped}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_is\_stopped()}{motor\_is\_stopped()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+is\+\_\+stopped (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Checks if the motor is stopped. 
+
+\begin{DoxyNote}{Note}
+Although this function forwards data from the motor, the motor presently does not provide any value. This function returns P\+R\+O\+S\+\_\+\+E\+RR with errno set to E\+N\+O\+S\+YS.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the motor is not moving, 0 if the motor is moving, or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a642c93d0481c8ce46cf452b39c2e4b7c}\label{motors_8h_a642c93d0481c8ce46cf452b39c2e4b7c}} 
+\index{motors.h@{motors.h}!motor\_modify\_profiled\_velocity@{motor\_modify\_profiled\_velocity}}
+\index{motor\_modify\_profiled\_velocity@{motor\_modify\_profiled\_velocity}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_modify\_profiled\_velocity()}{motor\_modify\_profiled\_velocity()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+modify\+\_\+profiled\+\_\+velocity (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const int32\+\_\+t}]{velocity }\end{DoxyParamCaption})}
+
+
+
+Changes the output velocity for a profiled movement (motor\+\_\+move\+\_\+absolute or motor\+\_\+move\+\_\+relative). 
+
+This will have no effect if the motor is not following a profiled movement.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em velocity} & The new motor velocity from +-\/100, +-\/200, or +-\/600 depending on the motor\textquotesingle{}s gearset\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a7da9bf1e229e50bfeeaecf026a6d0d08}\label{motors_8h_a7da9bf1e229e50bfeeaecf026a6d0d08}} 
+\index{motors.h@{motors.h}!motor\_move@{motor\_move}}
+\index{motor\_move@{motor\_move}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_move()}{motor\_move()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+move (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{int32\+\_\+t}]{voltage }\end{DoxyParamCaption})}
+
+
+
+Motor movement functions. 
+
+These functions allow programmers to make motors move Sets the voltage for the motor from -\/127 to 127.
+
+This is designed to map easily to the input from the controller\textquotesingle{}s analog stick for simple opcontrol use. The actual behavior of the motor is analogous to use of \mbox{\hyperlink{motors_8h_af1b10ae862913214de91501e57303e49}{motor\+\_\+move\+\_\+voltage()}}, or \mbox{\hyperlink{api__legacy_8h_a59a0d6bd050cd259ad488e68f856ae81}{motor\+Set()}} from the P\+R\+OS 2 A\+PI.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em voltage} & The new motor voltage from -\/127 to 127\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_ab70bf4937f1b5cefa15c11c15314c90e}\label{motors_8h_ab70bf4937f1b5cefa15c11c15314c90e}} 
+\index{motors.h@{motors.h}!motor\_move\_absolute@{motor\_move\_absolute}}
+\index{motor\_move\_absolute@{motor\_move\_absolute}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_move\_absolute()}{motor\_move\_absolute()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+move\+\_\+absolute (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const double}]{position,  }\item[{const int32\+\_\+t}]{velocity }\end{DoxyParamCaption})}
+
+
+
+Sets the target absolute position for the motor to move to. 
+
+This movement is relative to the position of the motor when initialized or the position when it was most recently reset with \mbox{\hyperlink{motors_8h_a51584a697483c8c38335f30006acf6de}{motor\+\_\+set\+\_\+zero\+\_\+position()}}.
+
+\begin{DoxyNote}{Note}
+This function simply sets the target for the motor, it does not block program execution until the movement finishes.
+\end{DoxyNote}
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em position} & The absolute position to move to in the motor\textquotesingle{}s encoder units \\
+\hline
+{\em velocity} & The maximum allowable velocity for the movement in R\+PM\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_ab4c1ba35d69e8e9b49df0e848fa305d3}\label{motors_8h_ab4c1ba35d69e8e9b49df0e848fa305d3}} 
+\index{motors.h@{motors.h}!motor\_move\_relative@{motor\_move\_relative}}
+\index{motor\_move\_relative@{motor\_move\_relative}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_move\_relative()}{motor\_move\_relative()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+move\+\_\+relative (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const double}]{position,  }\item[{const int32\+\_\+t}]{velocity }\end{DoxyParamCaption})}
+
+
+
+Sets the relative target position for the motor to move to. 
+
+This movement is relative to the current position of the motor as given in \mbox{\hyperlink{motors_8h_a0bee0c860e6030d5b65221a39440e745}{motor\+\_\+get\+\_\+position()}}. Providing 10.\+0 as the position parameter would result in the motor moving clockwise 10 units, no matter what the current position is.
+
+\begin{DoxyNote}{Note}
+This function simply sets the target for the motor, it does not block program execution until the movement finishes.
+\end{DoxyNote}
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em position} & The relative position to move to in the motor\textquotesingle{}s encoder units \\
+\hline
+{\em velocity} & The maximum allowable velocity for the movement in R\+PM\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a5a366399c1ff416002641fd05e6d7808}\label{motors_8h_a5a366399c1ff416002641fd05e6d7808}} 
+\index{motors.h@{motors.h}!motor\_move\_velocity@{motor\_move\_velocity}}
+\index{motor\_move\_velocity@{motor\_move\_velocity}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_move\_velocity()}{motor\_move\_velocity()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+move\+\_\+velocity (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const int32\+\_\+t}]{velocity }\end{DoxyParamCaption})}
+
+
+
+Sets the velocity for the motor. 
+
+This velocity corresponds to different actual speeds depending on the gearset used for the motor. This results in a range of +-\/100 for E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+G\+E\+A\+R\+S\+E\+T\+\_\+36, +-\/200 for E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+G\+E\+A\+R\+S\+E\+T\+\_\+18, and +-\/600 for E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+G\+E\+A\+R\+S\+E\+T\+\_\+6. The velocity is held with P\+ID to ensure consistent speed, as opposed to setting the motor\textquotesingle{}s voltage.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em velocity} & The new motor velocity from +-\/100, +-\/200, or +-\/600 depending on the motor\textquotesingle{}s gearset\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_af1b10ae862913214de91501e57303e49}\label{motors_8h_af1b10ae862913214de91501e57303e49}} 
+\index{motors.h@{motors.h}!motor\_move\_voltage@{motor\_move\_voltage}}
+\index{motor\_move\_voltage@{motor\_move\_voltage}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_move\_voltage()}{motor\_move\_voltage()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+move\+\_\+voltage (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const int32\+\_\+t}]{voltage }\end{DoxyParamCaption})}
+
+
+
+Sets the output voltage for the motor from -\/12000 to 12000 in millivolts. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em voltage} & The new voltage value from -\/12000 to 12000\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a715f771b51b89b07e8e14f383b50b1de}\label{motors_8h_a715f771b51b89b07e8e14f383b50b1de}} 
+\index{motors.h@{motors.h}!motor\_set\_brake\_mode@{motor\_set\_brake\_mode}}
+\index{motor\_set\_brake\_mode@{motor\_set\_brake\_mode}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_set\_brake\_mode()}{motor\_set\_brake\_mode()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+set\+\_\+brake\+\_\+mode (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const \mbox{\hyperlink{motors_8h_aa324a2881696428c9e3684f9ad23a83b}{motor\+\_\+brake\+\_\+mode\+\_\+e\+\_\+t}}}]{mode }\end{DoxyParamCaption})}
+
+
+
+Sets one of motor\+\_\+brake\+\_\+mode\+\_\+e\+\_\+t to the motor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em mode} & The motor\+\_\+brake\+\_\+mode\+\_\+e\+\_\+t to set for the motor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_acee1e0677416e9e4516f4cb24d7f366f}\label{motors_8h_acee1e0677416e9e4516f4cb24d7f366f}} 
+\index{motors.h@{motors.h}!motor\_set\_current\_limit@{motor\_set\_current\_limit}}
+\index{motor\_set\_current\_limit@{motor\_set\_current\_limit}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_set\_current\_limit()}{motor\_set\_current\_limit()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+set\+\_\+current\+\_\+limit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const int32\+\_\+t}]{limit }\end{DoxyParamCaption})}
+
+
+
+Sets the current limit for the motor in mA. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em limit} & The new current limit in mA\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a0b029d715338ee7601a41061af2eb5fc}\label{motors_8h_a0b029d715338ee7601a41061af2eb5fc}} 
+\index{motors.h@{motors.h}!motor\_set\_encoder\_units@{motor\_set\_encoder\_units}}
+\index{motor\_set\_encoder\_units@{motor\_set\_encoder\_units}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_set\_encoder\_units()}{motor\_set\_encoder\_units()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+set\+\_\+encoder\+\_\+units (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const \mbox{\hyperlink{motors_8h_a6677ba23760c558fd8b7b4e1e00a6123}{motor\+\_\+encoder\+\_\+units\+\_\+e\+\_\+t}}}]{units }\end{DoxyParamCaption})}
+
+
+
+Sets one of motor\+\_\+encoder\+\_\+units\+\_\+e\+\_\+t for the motor encoder. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em units} & The new motor encoder units\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a5d313d37deadfa7eebe410d064b52354}\label{motors_8h_a5d313d37deadfa7eebe410d064b52354}} 
+\index{motors.h@{motors.h}!motor\_set\_gearing@{motor\_set\_gearing}}
+\index{motor\_set\_gearing@{motor\_set\_gearing}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_set\_gearing()}{motor\_set\_gearing()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+set\+\_\+gearing (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const \mbox{\hyperlink{motors_8h_aa2f1c305c998abc3bf8dd1f76fa4da8b}{motor\+\_\+gearset\+\_\+e\+\_\+t}}}]{gearset }\end{DoxyParamCaption})}
+
+
+
+Sets one of motor\+\_\+gearset\+\_\+e\+\_\+t for the motor. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em gearset} & The new motor gearset\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a389e60d01741d5947a9b7330c6c8bbf7}\label{motors_8h_a389e60d01741d5947a9b7330c6c8bbf7}} 
+\index{motors.h@{motors.h}!motor\_set\_pos\_pid@{motor\_set\_pos\_pid}}
+\index{motor\_set\_pos\_pid@{motor\_set\_pos\_pid}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_set\_pos\_pid()}{motor\_set\_pos\_pid()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+set\+\_\+pos\+\_\+pid (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const \mbox{\hyperlink{motors_8h_ad2e907c8d7ce53c1fd91f1b9801072e3}{motor\+\_\+pid\+\_\+s\+\_\+t}}}]{pid }\end{DoxyParamCaption})}
+
+
+
+Sets one of motor\+\_\+pid\+\_\+s\+\_\+t for the motor. 
+
+This intended to just modify the main P\+ID constants.
+
+Only non-\/zero values of the struct will change the existing motor constants.
+
+\begin{DoxyNote}{Note}
+This feature is in beta, it is advised to use caution when modifying the P\+ID values. The motor could be damaged by particularly large constants.
+\end{DoxyNote}
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em pid} & The new motor P\+ID constants\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a1d3273573e296507914d2626121f19ce}\label{motors_8h_a1d3273573e296507914d2626121f19ce}} 
+\index{motors.h@{motors.h}!motor\_set\_pos\_pid\_full@{motor\_set\_pos\_pid\_full}}
+\index{motor\_set\_pos\_pid\_full@{motor\_set\_pos\_pid\_full}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_set\_pos\_pid\_full()}{motor\_set\_pos\_pid\_full()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+set\+\_\+pos\+\_\+pid\+\_\+full (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const \mbox{\hyperlink{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}{motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t}}}]{pid }\end{DoxyParamCaption})}
+
+
+
+Sets one of motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t for the motor. 
+
+Only non-\/zero values of the struct will change the existing motor constants.
+
+\begin{DoxyNote}{Note}
+This feature is in beta, it is advised to use caution when modifying the P\+ID values. The motor could be damaged by particularly large constants.
+\end{DoxyNote}
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em pid} & The new motor P\+ID constants\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a3902b2e866601e4b3e30444910ba5cb8}\label{motors_8h_a3902b2e866601e4b3e30444910ba5cb8}} 
+\index{motors.h@{motors.h}!motor\_set\_reversed@{motor\_set\_reversed}}
+\index{motor\_set\_reversed@{motor\_set\_reversed}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_set\_reversed()}{motor\_set\_reversed()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+set\+\_\+reversed (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const bool}]{reverse }\end{DoxyParamCaption})}
+
+
+
+Sets the reverse flag for the motor. 
+
+This will invert its movements and the values returned for its position.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em reverse} & True reverses the motor, false is default\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a4255880d012ed0ec856f302536755d8a}\label{motors_8h_a4255880d012ed0ec856f302536755d8a}} 
+\index{motors.h@{motors.h}!motor\_set\_vel\_pid@{motor\_set\_vel\_pid}}
+\index{motor\_set\_vel\_pid@{motor\_set\_vel\_pid}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_set\_vel\_pid()}{motor\_set\_vel\_pid()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+set\+\_\+vel\+\_\+pid (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const \mbox{\hyperlink{motors_8h_ad2e907c8d7ce53c1fd91f1b9801072e3}{motor\+\_\+pid\+\_\+s\+\_\+t}}}]{pid }\end{DoxyParamCaption})}
+
+
+
+Sets one of motor\+\_\+pid\+\_\+s\+\_\+t for the motor. 
+
+This intended to just modify the main P\+ID constants.
+
+Only non-\/zero values of the struct will change the existing motor constants.
+
+\begin{DoxyNote}{Note}
+This feature is in beta, it is advised to use caution when modifying the P\+ID values. The motor could be damaged by particularly large constants.
+\end{DoxyNote}
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em pid} & The new motor P\+ID constants\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_acdec538d8f08e8b5946294f84f017e8e}\label{motors_8h_acdec538d8f08e8b5946294f84f017e8e}} 
+\index{motors.h@{motors.h}!motor\_set\_vel\_pid\_full@{motor\_set\_vel\_pid\_full}}
+\index{motor\_set\_vel\_pid\_full@{motor\_set\_vel\_pid\_full}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_set\_vel\_pid\_full()}{motor\_set\_vel\_pid\_full()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+set\+\_\+vel\+\_\+pid\+\_\+full (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const \mbox{\hyperlink{motors_8h_a0295cbf49f5c70c17b5fa962bd25febd}{motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t}}}]{pid }\end{DoxyParamCaption})}
+
+
+
+Sets one of motor\+\_\+pid\+\_\+full\+\_\+s\+\_\+t for the motor. 
+
+Only non-\/zero values of the struct will change the existing motor constants.
+
+\begin{DoxyNote}{Note}
+This feature is in beta, it is advised to use caution when modifying the P\+ID values. The motor could be damaged by particularly large constants.
+\end{DoxyNote}
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em pid} & The new motor P\+ID constants\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a908ff9a818c05af4e485bf01f7761b3e}\label{motors_8h_a908ff9a818c05af4e485bf01f7761b3e}} 
+\index{motors.h@{motors.h}!motor\_set\_voltage\_limit@{motor\_set\_voltage\_limit}}
+\index{motor\_set\_voltage\_limit@{motor\_set\_voltage\_limit}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_set\_voltage\_limit()}{motor\_set\_voltage\_limit()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+set\+\_\+voltage\+\_\+limit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const int32\+\_\+t}]{limit }\end{DoxyParamCaption})}
+
+
+
+Sets the voltage limit for the motor in Volts. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em limit} & The new voltage limit in Volts\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a51584a697483c8c38335f30006acf6de}\label{motors_8h_a51584a697483c8c38335f30006acf6de}} 
+\index{motors.h@{motors.h}!motor\_set\_zero\_position@{motor\_set\_zero\_position}}
+\index{motor\_set\_zero\_position@{motor\_set\_zero\_position}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_set\_zero\_position()}{motor\_set\_zero\_position()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+set\+\_\+zero\+\_\+position (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{const double}]{position }\end{DoxyParamCaption})}
+
+
+
+Sets the position for the motor in its encoder units. 
+
+This will be the future reference point for the motor\textquotesingle{}s \char`\"{}absolute\char`\"{} position.
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21 \\
+\hline
+{\em position} & The new reference position in its encoder units\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motors_8h_a6fd0b18bb335561dba7e0fdd5b5e571d}\label{motors_8h_a6fd0b18bb335561dba7e0fdd5b5e571d}} 
+\index{motors.h@{motors.h}!motor\_tare\_position@{motor\_tare\_position}}
+\index{motor\_tare\_position@{motor\_tare\_position}!motors.h@{motors.h}}
+\subsubsection{\texorpdfstring{motor\_tare\_position()}{motor\_tare\_position()}}
+{\footnotesize\ttfamily int32\+\_\+t motor\+\_\+tare\+\_\+position (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+
+
+Sets the \char`\"{}absolute\char`\"{} zero position of the motor to its current position. 
+
+This function uses the following values of errno when an error state is reached\+: E\+I\+N\+V\+AL -\/ The given value is not within the range of V5 ports (1-\/21). E\+A\+C\+C\+ES -\/ Another resource is currently trying to access the port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The V5 port number from 1-\/21\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
+\end{DoxyReturn}

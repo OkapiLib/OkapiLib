@@ -1,0 +1,283 @@
+\hypertarget{classokapi_1_1AsyncVelControllerBuilder}{}\section{okapi\+::Async\+Vel\+Controller\+Builder Class Reference}
+\label{classokapi_1_1AsyncVelControllerBuilder}\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+
+
+{\ttfamily \#include $<$async\+Vel\+Controller\+Builder.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_a2240959e5feeb59b630fe93e6e993996}{Async\+Vel\+Controller\+Builder}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_a64b047406f6aa211691f99b2da80fd29}{with\+Motor}} (const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&imotor)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_a8c818cb67b99b64722df86a1e391c7da}{with\+Motor}} (const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&imotor)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_aadd1a0eb89fb1c5dad47b1700f953ff1}{with\+Motor}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&imotor)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_a611d50478ee813ce9b0c5b5ed113d6db}{with\+Sensor}} (const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&isensor)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_a3f21552feaedb4592289c32d3cd20b05}{with\+Sensor}} (const \mbox{\hyperlink{classokapi_1_1IntegratedEncoder}{Integrated\+Encoder}} \&isensor)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_a4bfe71bea3ec45c6b10ec66047b06c4c}{with\+Sensor}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1RotarySensor}{Rotary\+Sensor}} $>$ \&isensor)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_af919e427baf0c06790895f5cb9ce333d}{with\+Gains}} (const \mbox{\hyperlink{structokapi_1_1IterativeVelPIDController_1_1Gains}{Iterative\+Vel\+P\+I\+D\+Controller\+::\+Gains}} \&igains)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_aa385c0ae6f8464955a950465b7cff1b6}{with\+Vel\+Math}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1VelMath}{Vel\+Math}} $>$ ivel\+Math)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_ae3d54b49f57ed29410013d112f6141cc}{with\+Derivative\+Filter}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ iderivative\+Filter)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_a128d0a52035c576258bc3ca10958c45f}{with\+Gearset}} (const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&igearset)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_a7e4651e36c2a2dffa425a95c70bdd703}{with\+Max\+Velocity}} (double imax\+Velocity)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_a4996a83333f1affdd0b77054ece7d07d}{with\+Time\+Util\+Factory}} (const \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} \&itime\+Util\+Factory)
+\item 
+\mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_a39fc6798e638b770cd10674bfebbb844}{with\+Logger}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AsyncVelocityController}{Async\+Velocity\+Controller}}$<$ double, double $>$ $>$ \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder_a23ecaa0969360f45c4f0266ff81fdb6d}{build}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_a2240959e5feeb59b630fe93e6e993996}\label{classokapi_1_1AsyncVelControllerBuilder_a2240959e5feeb59b630fe93e6e993996}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!AsyncVelControllerBuilder@{AsyncVelControllerBuilder}}
+\index{AsyncVelControllerBuilder@{AsyncVelControllerBuilder}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{AsyncVelControllerBuilder()}{AsyncVelControllerBuilder()}}
+{\footnotesize\ttfamily okapi\+::\+Async\+Vel\+Controller\+Builder\+::\+Async\+Vel\+Controller\+Builder (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+A builder that creates async velocity controllers. Use this to create an \mbox{\hyperlink{classokapi_1_1AsyncVelIntegratedController}{Async\+Vel\+Integrated\+Controller}} or an \mbox{\hyperlink{classokapi_1_1AsyncVelPIDController}{Async\+Vel\+P\+I\+D\+Controller}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ilogger} & The logger this instance will log to. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_a23ecaa0969360f45c4f0266ff81fdb6d}\label{classokapi_1_1AsyncVelControllerBuilder_a23ecaa0969360f45c4f0266ff81fdb6d}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!build@{build}}
+\index{build@{build}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{build()}{build()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AsyncVelocityController}{Async\+Velocity\+Controller}}$<$ double, double $>$ $>$ okapi\+::\+Async\+Vel\+Controller\+Builder\+::build (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Builds the \mbox{\hyperlink{classokapi_1_1AsyncVelocityController}{Async\+Velocity\+Controller}}. Throws a std\+::runtime\+\_\+exception is no motors were set.
+
+\begin{DoxyReturn}{Returns}
+A fully built \mbox{\hyperlink{classokapi_1_1AsyncVelocityController}{Async\+Velocity\+Controller}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_ae3d54b49f57ed29410013d112f6141cc}\label{classokapi_1_1AsyncVelControllerBuilder_ae3d54b49f57ed29410013d112f6141cc}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!withDerivativeFilter@{withDerivativeFilter}}
+\index{withDerivativeFilter@{withDerivativeFilter}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{withDerivativeFilter()}{withDerivativeFilter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& okapi\+::\+Async\+Vel\+Controller\+Builder\+::with\+Derivative\+Filter (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{iderivative\+Filter }\end{DoxyParamCaption})}
+
+Sets the derivative filter which filters the derivative term before it is scaled by kD. The filter is ignored when using integrated control. The default derivative filter is a \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iderivative\+Filter} & The derivative filter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_af919e427baf0c06790895f5cb9ce333d}\label{classokapi_1_1AsyncVelControllerBuilder_af919e427baf0c06790895f5cb9ce333d}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!withGains@{withGains}}
+\index{withGains@{withGains}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{withGains()}{withGains()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& okapi\+::\+Async\+Vel\+Controller\+Builder\+::with\+Gains (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structokapi_1_1IterativeVelPIDController_1_1Gains}{Iterative\+Vel\+P\+I\+D\+Controller\+::\+Gains}} \&}]{igains }\end{DoxyParamCaption})}
+
+Sets the controller gains, causing the builder to generate an \mbox{\hyperlink{classokapi_1_1AsyncVelPIDController}{Async\+Vel\+P\+I\+D\+Controller}}. This does not set the integrated control\textquotesingle{}s gains.
+
+
+\begin{DoxyParams}{Parameters}
+{\em igains} & The gains. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_a128d0a52035c576258bc3ca10958c45f}\label{classokapi_1_1AsyncVelControllerBuilder_a128d0a52035c576258bc3ca10958c45f}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!withGearset@{withGearset}}
+\index{withGearset@{withGearset}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{withGearset()}{withGearset()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& okapi\+::\+Async\+Vel\+Controller\+Builder\+::with\+Gearset (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&}]{igearset }\end{DoxyParamCaption})}
+
+Sets the gearset. The default gearset is derived from the motor\textquotesingle{}s.
+
+
+\begin{DoxyParams}{Parameters}
+{\em igearset} & The gearset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_a39fc6798e638b770cd10674bfebbb844}\label{classokapi_1_1AsyncVelControllerBuilder_a39fc6798e638b770cd10674bfebbb844}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!withLogger@{withLogger}}
+\index{withLogger@{withLogger}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{withLogger()}{withLogger()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& okapi\+::\+Async\+Vel\+Controller\+Builder\+::with\+Logger (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger }\end{DoxyParamCaption})}
+
+Sets the logger.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ilogger} & The logger. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_a7e4651e36c2a2dffa425a95c70bdd703}\label{classokapi_1_1AsyncVelControllerBuilder_a7e4651e36c2a2dffa425a95c70bdd703}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!withMaxVelocity@{withMaxVelocity}}
+\index{withMaxVelocity@{withMaxVelocity}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{withMaxVelocity()}{withMaxVelocity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& okapi\+::\+Async\+Vel\+Controller\+Builder\+::with\+Max\+Velocity (\begin{DoxyParamCaption}\item[{double}]{imax\+Velocity }\end{DoxyParamCaption})}
+
+Sets the maximum velocity. The default maximum velocity is derived from the motor\textquotesingle{}s gearset. This parameter is ignored when using an \mbox{\hyperlink{classokapi_1_1AsyncVelPIDController}{Async\+Vel\+P\+I\+D\+Controller}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imax\+Velocity} & The maximum velocity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_a64b047406f6aa211691f99b2da80fd29}\label{classokapi_1_1AsyncVelControllerBuilder_a64b047406f6aa211691f99b2da80fd29}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!withMotor@{withMotor}}
+\index{withMotor@{withMotor}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{withMotor()}{withMotor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& okapi\+::\+Async\+Vel\+Controller\+Builder\+::with\+Motor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1Motor}{Motor}} \&}]{imotor }\end{DoxyParamCaption})}
+
+Sets the motor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imotor} & The motor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_a8c818cb67b99b64722df86a1e391c7da}\label{classokapi_1_1AsyncVelControllerBuilder_a8c818cb67b99b64722df86a1e391c7da}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!withMotor@{withMotor}}
+\index{withMotor@{withMotor}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{withMotor()}{withMotor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& okapi\+::\+Async\+Vel\+Controller\+Builder\+::with\+Motor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1MotorGroup}{Motor\+Group}} \&}]{imotor }\end{DoxyParamCaption})}
+
+Sets the motor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imotor} & The motor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_aadd1a0eb89fb1c5dad47b1700f953ff1}\label{classokapi_1_1AsyncVelControllerBuilder_aadd1a0eb89fb1c5dad47b1700f953ff1}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!withMotor@{withMotor}}
+\index{withMotor@{withMotor}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{withMotor()}{withMotor()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& okapi\+::\+Async\+Vel\+Controller\+Builder\+::with\+Motor (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractMotor}{Abstract\+Motor}} $>$ \&}]{imotor }\end{DoxyParamCaption})}
+
+Sets the motor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imotor} & The motor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_a611d50478ee813ce9b0c5b5ed113d6db}\label{classokapi_1_1AsyncVelControllerBuilder_a611d50478ee813ce9b0c5b5ed113d6db}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!withSensor@{withSensor}}
+\index{withSensor@{withSensor}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{withSensor()}{withSensor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& okapi\+::\+Async\+Vel\+Controller\+Builder\+::with\+Sensor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1ADIEncoder}{A\+D\+I\+Encoder}} \&}]{isensor }\end{DoxyParamCaption})}
+
+Sets the sensor. The default sensor is the motor\textquotesingle{}s integrated encoder.
+
+
+\begin{DoxyParams}{Parameters}
+{\em isensor} & The sensor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_a3f21552feaedb4592289c32d3cd20b05}\label{classokapi_1_1AsyncVelControllerBuilder_a3f21552feaedb4592289c32d3cd20b05}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!withSensor@{withSensor}}
+\index{withSensor@{withSensor}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{withSensor()}{withSensor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& okapi\+::\+Async\+Vel\+Controller\+Builder\+::with\+Sensor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1IntegratedEncoder}{Integrated\+Encoder}} \&}]{isensor }\end{DoxyParamCaption})}
+
+Sets the sensor. The default sensor is the motor\textquotesingle{}s integrated encoder.
+
+
+\begin{DoxyParams}{Parameters}
+{\em isensor} & The sensor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_a4bfe71bea3ec45c6b10ec66047b06c4c}\label{classokapi_1_1AsyncVelControllerBuilder_a4bfe71bea3ec45c6b10ec66047b06c4c}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!withSensor@{withSensor}}
+\index{withSensor@{withSensor}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{withSensor()}{withSensor()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& okapi\+::\+Async\+Vel\+Controller\+Builder\+::with\+Sensor (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1RotarySensor}{Rotary\+Sensor}} $>$ \&}]{isensor }\end{DoxyParamCaption})}
+
+Sets the sensor. The default sensor is the motor\textquotesingle{}s integrated encoder.
+
+
+\begin{DoxyParams}{Parameters}
+{\em isensor} & The sensor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_a4996a83333f1affdd0b77054ece7d07d}\label{classokapi_1_1AsyncVelControllerBuilder_a4996a83333f1affdd0b77054ece7d07d}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!withTimeUtilFactory@{withTimeUtilFactory}}
+\index{withTimeUtilFactory@{withTimeUtilFactory}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{withTimeUtilFactory()}{withTimeUtilFactory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& okapi\+::\+Async\+Vel\+Controller\+Builder\+::with\+Time\+Util\+Factory (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} \&}]{itime\+Util\+Factory }\end{DoxyParamCaption})}
+
+Sets the \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}} used when building the controller. The default is the static \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em itime\+Util\+Factory} & The \mbox{\hyperlink{classokapi_1_1TimeUtilFactory}{Time\+Util\+Factory}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1AsyncVelControllerBuilder_aa385c0ae6f8464955a950465b7cff1b6}\label{classokapi_1_1AsyncVelControllerBuilder_aa385c0ae6f8464955a950465b7cff1b6}} 
+\index{okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}!withVelMath@{withVelMath}}
+\index{withVelMath@{withVelMath}!okapi::AsyncVelControllerBuilder@{okapi::AsyncVelControllerBuilder}}
+\subsubsection{\texorpdfstring{withVelMath()}{withVelMath()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncVelControllerBuilder}{Async\+Vel\+Controller\+Builder}} \& okapi\+::\+Async\+Vel\+Controller\+Builder\+::with\+Vel\+Math (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1VelMath}{Vel\+Math}} $>$}]{ivel\+Math }\end{DoxyParamCaption})}
+
+Sets the \mbox{\hyperlink{classokapi_1_1VelMath}{Vel\+Math}} which calculates and filters velocity. This is ignored when using integrated controller. If using a P\+ID controller (by setting the gains), this is required.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ivel\+Math} & The \mbox{\hyperlink{classokapi_1_1VelMath}{Vel\+Math}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An ongoing builder. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/okapi/impl/control/async/\mbox{\hyperlink{asyncVelControllerBuilder_8hpp}{async\+Vel\+Controller\+Builder.\+hpp}}\item 
+src/impl/control/async/\mbox{\hyperlink{asyncVelControllerBuilder_8cpp}{async\+Vel\+Controller\+Builder.\+cpp}}\end{DoxyCompactItemize}

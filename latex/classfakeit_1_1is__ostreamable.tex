@@ -1,0 +1,36 @@
+\hypertarget{classfakeit_1_1is__ostreamable}{}\section{fakeit\+::is\+\_\+ostreamable$<$ T $>$ Class Template Reference}
+\label{classfakeit_1_1is__ostreamable}\index{fakeit::is\_ostreamable$<$ T $>$@{fakeit::is\_ostreamable$<$ T $>$}}
+
+
+{\ttfamily \#include $<$type\+\_\+utils.\+hpp$>$}
+
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const bool \mbox{\hyperlink{classfakeit_1_1is__ostreamable_a7e6abfa3af88d5d76ad4ebe116e58920}{value}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classfakeit_1_1is__ostreamable_a7e6abfa3af88d5d76ad4ebe116e58920}\label{classfakeit_1_1is__ostreamable_a7e6abfa3af88d5d76ad4ebe116e58920}} 
+\index{fakeit::is\_ostreamable$<$ T $>$@{fakeit::is\_ostreamable$<$ T $>$}!value@{value}}
+\index{value@{value}!fakeit::is\_ostreamable$<$ T $>$@{fakeit::is\_ostreamable$<$ T $>$}}
+\subsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static const bool \mbox{\hyperlink{classfakeit_1_1is__ostreamable}{fakeit\+::is\+\_\+ostreamable}}$<$ T $>$\+::value\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{            std::is\_arithmetic<T>::value ||}
+\DoxyCodeLine{            std::is\_pointer<T>::value ||}
+\DoxyCodeLine{            std::is\_same<decltype(test(*(std::ostream *)\textcolor{keyword}{nullptr},}
+\DoxyCodeLine{                std::declval<T>())), std::ostream \&>\mbox{\hyperlink{classfakeit_1_1is__ostreamable_a7e6abfa3af88d5d76ad4ebe116e58920}{::value}}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/test/\+Fake\+It/include/mockutils/\mbox{\hyperlink{type__utils_8hpp}{type\+\_\+utils.\+hpp}}\item 
+include/test/\+Fake\+It/single\+\_\+header/boost/\mbox{\hyperlink{single__header_2boost_2fakeit_8hpp}{fakeit.\+hpp}}\end{DoxyCompactItemize}

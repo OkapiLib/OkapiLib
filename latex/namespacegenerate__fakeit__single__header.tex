@@ -1,0 +1,150 @@
+\hypertarget{namespacegenerate__fakeit__single__header}{}\section{generate\+\_\+fakeit\+\_\+single\+\_\+header Namespace Reference}
+\label{namespacegenerate__fakeit__single__header}\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacegenerate__fakeit__single__header_a9bcd50ba9c1f6d846dab8186ebf61221}{write\+\_\+line}} (out, line)
+\item 
+def \mbox{\hyperlink{namespacegenerate__fakeit__single__header_a783f58bb10a5123efa33f4c60bfc323b}{parse\+File}} (out, \mbox{\hyperlink{namespacegenerate__fakeit__single__header_a8bc6420681fec1a1f97812159ea296c2}{config}}, filename)
+\item 
+def \mbox{\hyperlink{namespacegenerate__fakeit__single__header_ae679847c4f8cfaa4e40a795dea1c6f80}{write\+Header\+Comment}} (out, \mbox{\hyperlink{namespacegenerate__fakeit__single__header_a8bc6420681fec1a1f97812159ea296c2}{config}})
+\item 
+def \mbox{\hyperlink{namespacegenerate__fakeit__single__header_a1679add8f71bf7ee50c5aa9a2a190196}{generate\+Fakeit\+Include\+File}} (out, \mbox{\hyperlink{namespacegenerate__fakeit__single__header_a8bc6420681fec1a1f97812159ea296c2}{config}})
+\item 
+def \mbox{\hyperlink{namespacegenerate__fakeit__single__header_a95906064be1f87939d4725d66dfbdde9}{comment\+\_\+replacer}} (match)
+\item 
+def \mbox{\hyperlink{namespacegenerate__fakeit__single__header_a0186da228170e7785db504ca119dc370}{remove\+\_\+comments}} (\mbox{\hyperlink{namespacegenerate__fakeit__single__header_afac367357ef002b78b6d1f310d568c48}{text}})
+\item 
+def \mbox{\hyperlink{namespacegenerate__fakeit__single__header_a0315cb1aed7678bf0a9040b4414aee91}{remove\+\_\+pragma\+\_\+once}} (\mbox{\hyperlink{namespacegenerate__fakeit__single__header_afac367357ef002b78b6d1f310d568c48}{text}})
+\item 
+def \mbox{\hyperlink{namespacegenerate__fakeit__single__header_a706bc4d83a52c73779e880efbf2db60c}{create\+Fakeit\+File\+Text}} (\mbox{\hyperlink{namespacegenerate__fakeit__single__header_a8bc6420681fec1a1f97812159ea296c2}{config}})
+\item 
+def \mbox{\hyperlink{namespacegenerate__fakeit__single__header_a2ac20256d7e215ef5bb63d7c4926e8e2}{create\+Fakeit\+File}} (\mbox{\hyperlink{namespacegenerate__fakeit__single__header_a8bc6420681fec1a1f97812159ea296c2}{config}}, \mbox{\hyperlink{namespacegenerate__fakeit__single__header_afac367357ef002b78b6d1f310d568c48}{text}})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{namespacegenerate__fakeit__single__header_aa4b745b10438a939928b07b6872d7691}{fakeit\+Path}} = \char`\"{}.\char`\"{}
+\item 
+\mbox{\hyperlink{namespacegenerate__fakeit__single__header_a9eff8f76422a3186bf21e76772233fad}{includes\+Matcher}} = re.\+compile( r\textquotesingle{}\textbackslash{}s$\ast$\#include\textbackslash{}s$\ast$\char`\"{}(.$\ast$)\char`\"{}\textquotesingle{} )
+\item 
+\mbox{\hyperlink{namespacegenerate__fakeit__single__header_a4122af42570381536518e1082d365e02}{pragma\+Once\+Matcher}} = re.\+compile( r\textquotesingle{}\textbackslash{}s$\ast$\#pragma\textbackslash{}s$\ast$once\textbackslash{}s$\ast$\textquotesingle{} )
+\item 
+\mbox{\hyperlink{namespacegenerate__fakeit__single__header_a2c21ec2d3e729cc74e35aa01cde292c3}{processed\+Headers}} = set(\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{namespacegenerate__fakeit__single__header_a0ed06b5d78596a8a4d254080bac4bcfd}{comment\+\_\+re}}
+\item 
+\mbox{\hyperlink{namespacegenerate__fakeit__single__header_a8bc6420681fec1a1f97812159ea296c2}{config}} = sys.\+argv\mbox{[}1\mbox{]}
+\item 
+def \mbox{\hyperlink{namespacegenerate__fakeit__single__header_afac367357ef002b78b6d1f310d568c48}{text}} = \mbox{\hyperlink{namespacegenerate__fakeit__single__header_a706bc4d83a52c73779e880efbf2db60c}{create\+Fakeit\+File\+Text}}(\mbox{\hyperlink{namespacegenerate__fakeit__single__header_a8bc6420681fec1a1f97812159ea296c2}{config}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_a95906064be1f87939d4725d66dfbdde9}\label{namespacegenerate__fakeit__single__header_a95906064be1f87939d4725d66dfbdde9}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!comment\_replacer@{comment\_replacer}}
+\index{comment\_replacer@{comment\_replacer}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{comment\_replacer()}{comment\_replacer()}}
+{\footnotesize\ttfamily def generate\+\_\+fakeit\+\_\+single\+\_\+header.\+comment\+\_\+replacer (\begin{DoxyParamCaption}\item[{}]{match }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_a2ac20256d7e215ef5bb63d7c4926e8e2}\label{namespacegenerate__fakeit__single__header_a2ac20256d7e215ef5bb63d7c4926e8e2}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!createFakeitFile@{createFakeitFile}}
+\index{createFakeitFile@{createFakeitFile}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{createFakeitFile()}{createFakeitFile()}}
+{\footnotesize\ttfamily def generate\+\_\+fakeit\+\_\+single\+\_\+header.\+create\+Fakeit\+File (\begin{DoxyParamCaption}\item[{}]{config,  }\item[{}]{text }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_a706bc4d83a52c73779e880efbf2db60c}\label{namespacegenerate__fakeit__single__header_a706bc4d83a52c73779e880efbf2db60c}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!createFakeitFileText@{createFakeitFileText}}
+\index{createFakeitFileText@{createFakeitFileText}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{createFakeitFileText()}{createFakeitFileText()}}
+{\footnotesize\ttfamily def generate\+\_\+fakeit\+\_\+single\+\_\+header.\+create\+Fakeit\+File\+Text (\begin{DoxyParamCaption}\item[{}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_a1679add8f71bf7ee50c5aa9a2a190196}\label{namespacegenerate__fakeit__single__header_a1679add8f71bf7ee50c5aa9a2a190196}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!generateFakeitIncludeFile@{generateFakeitIncludeFile}}
+\index{generateFakeitIncludeFile@{generateFakeitIncludeFile}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{generateFakeitIncludeFile()}{generateFakeitIncludeFile()}}
+{\footnotesize\ttfamily def generate\+\_\+fakeit\+\_\+single\+\_\+header.\+generate\+Fakeit\+Include\+File (\begin{DoxyParamCaption}\item[{}]{out,  }\item[{}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_a783f58bb10a5123efa33f4c60bfc323b}\label{namespacegenerate__fakeit__single__header_a783f58bb10a5123efa33f4c60bfc323b}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!parseFile@{parseFile}}
+\index{parseFile@{parseFile}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{parseFile()}{parseFile()}}
+{\footnotesize\ttfamily def generate\+\_\+fakeit\+\_\+single\+\_\+header.\+parse\+File (\begin{DoxyParamCaption}\item[{}]{out,  }\item[{}]{config,  }\item[{}]{filename }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_a0186da228170e7785db504ca119dc370}\label{namespacegenerate__fakeit__single__header_a0186da228170e7785db504ca119dc370}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!remove\_comments@{remove\_comments}}
+\index{remove\_comments@{remove\_comments}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{remove\_comments()}{remove\_comments()}}
+{\footnotesize\ttfamily def generate\+\_\+fakeit\+\_\+single\+\_\+header.\+remove\+\_\+comments (\begin{DoxyParamCaption}\item[{}]{text }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_a0315cb1aed7678bf0a9040b4414aee91}\label{namespacegenerate__fakeit__single__header_a0315cb1aed7678bf0a9040b4414aee91}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!remove\_pragma\_once@{remove\_pragma\_once}}
+\index{remove\_pragma\_once@{remove\_pragma\_once}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{remove\_pragma\_once()}{remove\_pragma\_once()}}
+{\footnotesize\ttfamily def generate\+\_\+fakeit\+\_\+single\+\_\+header.\+remove\+\_\+pragma\+\_\+once (\begin{DoxyParamCaption}\item[{}]{text }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_a9bcd50ba9c1f6d846dab8186ebf61221}\label{namespacegenerate__fakeit__single__header_a9bcd50ba9c1f6d846dab8186ebf61221}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!write\_line@{write\_line}}
+\index{write\_line@{write\_line}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{write\_line()}{write\_line()}}
+{\footnotesize\ttfamily def generate\+\_\+fakeit\+\_\+single\+\_\+header.\+write\+\_\+line (\begin{DoxyParamCaption}\item[{}]{out,  }\item[{}]{line }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_ae679847c4f8cfaa4e40a795dea1c6f80}\label{namespacegenerate__fakeit__single__header_ae679847c4f8cfaa4e40a795dea1c6f80}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!writeHeaderComment@{writeHeaderComment}}
+\index{writeHeaderComment@{writeHeaderComment}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{writeHeaderComment()}{writeHeaderComment()}}
+{\footnotesize\ttfamily def generate\+\_\+fakeit\+\_\+single\+\_\+header.\+write\+Header\+Comment (\begin{DoxyParamCaption}\item[{}]{out,  }\item[{}]{config }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_a0ed06b5d78596a8a4d254080bac4bcfd}\label{namespacegenerate__fakeit__single__header_a0ed06b5d78596a8a4d254080bac4bcfd}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!comment\_re@{comment\_re}}
+\index{comment\_re@{comment\_re}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{comment\_re}{comment\_re}}
+{\footnotesize\ttfamily generate\+\_\+fakeit\+\_\+single\+\_\+header.\+comment\+\_\+re}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  re.compile(}
+\DoxyCodeLine{2     \textcolor{stringliteral}{r'(\string^)?[\string^\(\backslash\)S\(\backslash\)n]*/(?:\(\backslash\)*(.*?)\(\backslash\)*/[\string^\(\backslash\)S\(\backslash\)n]*|/[\string^\(\backslash\)n]*)(\$)?'},}
+\DoxyCodeLine{3     re.DOTALL | re.MULTILINE}
+\DoxyCodeLine{4 )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_a8bc6420681fec1a1f97812159ea296c2}\label{namespacegenerate__fakeit__single__header_a8bc6420681fec1a1f97812159ea296c2}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!config@{config}}
+\index{config@{config}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily generate\+\_\+fakeit\+\_\+single\+\_\+header.\+config = sys.\+argv\mbox{[}1\mbox{]}}
+
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_aa4b745b10438a939928b07b6872d7691}\label{namespacegenerate__fakeit__single__header_aa4b745b10438a939928b07b6872d7691}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!fakeitPath@{fakeitPath}}
+\index{fakeitPath@{fakeitPath}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{fakeitPath}{fakeitPath}}
+{\footnotesize\ttfamily string generate\+\_\+fakeit\+\_\+single\+\_\+header.\+fakeit\+Path = \char`\"{}.\char`\"{}}
+
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_a9eff8f76422a3186bf21e76772233fad}\label{namespacegenerate__fakeit__single__header_a9eff8f76422a3186bf21e76772233fad}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!includesMatcher@{includesMatcher}}
+\index{includesMatcher@{includesMatcher}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{includesMatcher}{includesMatcher}}
+{\footnotesize\ttfamily generate\+\_\+fakeit\+\_\+single\+\_\+header.\+includes\+Matcher = re.\+compile( r\textquotesingle{}\textbackslash{}s$\ast$\#include\textbackslash{}s$\ast$\char`\"{}(.$\ast$)\char`\"{}\textquotesingle{} )}
+
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_a4122af42570381536518e1082d365e02}\label{namespacegenerate__fakeit__single__header_a4122af42570381536518e1082d365e02}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!pragmaOnceMatcher@{pragmaOnceMatcher}}
+\index{pragmaOnceMatcher@{pragmaOnceMatcher}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{pragmaOnceMatcher}{pragmaOnceMatcher}}
+{\footnotesize\ttfamily generate\+\_\+fakeit\+\_\+single\+\_\+header.\+pragma\+Once\+Matcher = re.\+compile( r\textquotesingle{}\textbackslash{}s$\ast$\#pragma\textbackslash{}s$\ast$once\textbackslash{}s$\ast$\textquotesingle{} )}
+
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_a2c21ec2d3e729cc74e35aa01cde292c3}\label{namespacegenerate__fakeit__single__header_a2c21ec2d3e729cc74e35aa01cde292c3}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!processedHeaders@{processedHeaders}}
+\index{processedHeaders@{processedHeaders}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{processedHeaders}{processedHeaders}}
+{\footnotesize\ttfamily generate\+\_\+fakeit\+\_\+single\+\_\+header.\+processed\+Headers = set(\mbox{[}$\,$\mbox{]})}
+
+\mbox{\Hypertarget{namespacegenerate__fakeit__single__header_afac367357ef002b78b6d1f310d568c48}\label{namespacegenerate__fakeit__single__header_afac367357ef002b78b6d1f310d568c48}} 
+\index{generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}!text@{text}}
+\index{text@{text}!generate\_fakeit\_single\_header@{generate\_fakeit\_single\_header}}
+\subsubsection{\texorpdfstring{text}{text}}
+{\footnotesize\ttfamily def generate\+\_\+fakeit\+\_\+single\+\_\+header.\+text = \mbox{\hyperlink{namespacegenerate__fakeit__single__header_a706bc4d83a52c73779e880efbf2db60c}{create\+Fakeit\+File\+Text}}(\mbox{\hyperlink{namespacegenerate__fakeit__single__header_a8bc6420681fec1a1f97812159ea296c2}{config}})}
+

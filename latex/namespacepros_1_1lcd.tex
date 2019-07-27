@@ -1,0 +1,241 @@
+\hypertarget{namespacepros_1_1lcd}{}\section{pros\+::lcd Namespace Reference}
+\label{namespacepros_1_1lcd}\index{pros::lcd@{pros::lcd}}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespacepros_1_1lcd_ab5c0cdcf37795ff2a9dcaf546b087dd4}{lcd\+\_\+btn\+\_\+cb\+\_\+fn\+\_\+t}} = void($\ast$)(void)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespacepros_1_1lcd_a867eb9cd989e1c6c31982fe2b5c58dd9}{is\+\_\+initialized}} (void)
+\begin{DoxyCompactList}\small\item\em Checks whether the emulated three-\/button L\+CD has already been initialized. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacepros_1_1lcd_afb69bfa2fc5da3018b6886f612ed190e}{initialize}} (void)
+\begin{DoxyCompactList}\small\item\em Creates an emulation of the three-\/button, U\+A\+R\+T-\/based V\+EX L\+CD on the display. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacepros_1_1lcd_a7aa9a422049011de193f54bce8cc95ed}{shutdown}} (void)
+\begin{DoxyCompactList}\small\item\em Turns off the Legacy L\+CD Emulator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... Params$>$ }\\bool \mbox{\hyperlink{namespacepros_1_1lcd_aead67d10b420308d58883135f0d28099}{print}} (std\+::int16\+\_\+t line, const char $\ast$fmt, Params... args)
+\begin{DoxyCompactList}\small\item\em Displays a formatted string on the emulated three-\/button L\+CD screen. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacepros_1_1lcd_a515526f1d3069a6aa985512273aa7788}{set\+\_\+text}} (std\+::int16\+\_\+t line, std\+::string text)
+\begin{DoxyCompactList}\small\item\em Displays a string on the emulated three-\/button L\+CD screen. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacepros_1_1lcd_a8d22379bd680a36182d51d8e8ef02baf}{clear}} (void)
+\begin{DoxyCompactList}\small\item\em Clears the contents of the emulated three-\/button L\+CD screen. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacepros_1_1lcd_aef44947cea9006f86d4aaa2e32856835}{clear\+\_\+line}} (std\+::int16\+\_\+t line)
+\begin{DoxyCompactList}\small\item\em Clears the contents of a line of the emulated three-\/button L\+CD screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacepros_1_1lcd_a4d8f5121ac67ae7de816334e7b66f08d}{register\+\_\+btn0\+\_\+cb}} (\mbox{\hyperlink{namespacepros_1_1lcd_ab5c0cdcf37795ff2a9dcaf546b087dd4}{lcd\+\_\+btn\+\_\+cb\+\_\+fn\+\_\+t}} cb)
+\begin{DoxyCompactList}\small\item\em Registers a callback function for the leftmost button. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacepros_1_1lcd_a9a3a9342268b8a95d91190ab36574a0a}{register\+\_\+btn1\+\_\+cb}} (\mbox{\hyperlink{namespacepros_1_1lcd_ab5c0cdcf37795ff2a9dcaf546b087dd4}{lcd\+\_\+btn\+\_\+cb\+\_\+fn\+\_\+t}} cb)
+\begin{DoxyCompactList}\small\item\em Registers a callback function for the center button. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacepros_1_1lcd_a5b08f4244e366a738668a5c3f700e4be}{register\+\_\+btn2\+\_\+cb}} (\mbox{\hyperlink{namespacepros_1_1lcd_ab5c0cdcf37795ff2a9dcaf546b087dd4}{lcd\+\_\+btn\+\_\+cb\+\_\+fn\+\_\+t}} cb)
+\begin{DoxyCompactList}\small\item\em Registers a callback function for the rightmost button. \end{DoxyCompactList}\item 
+std\+::uint8\+\_\+t \mbox{\hyperlink{namespacepros_1_1lcd_aa6ba655373f3eb0d9ef702337e89f624}{read\+\_\+buttons}} (void)
+\begin{DoxyCompactList}\small\item\em Gets the button status from the emulated three-\/button L\+CD. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{namespacepros_1_1lcd_ab5c0cdcf37795ff2a9dcaf546b087dd4}\label{namespacepros_1_1lcd_ab5c0cdcf37795ff2a9dcaf546b087dd4}} 
+\index{pros::lcd@{pros::lcd}!lcd\_btn\_cb\_fn\_t@{lcd\_btn\_cb\_fn\_t}}
+\index{lcd\_btn\_cb\_fn\_t@{lcd\_btn\_cb\_fn\_t}!pros::lcd@{pros::lcd}}
+\subsubsection{\texorpdfstring{lcd\_btn\_cb\_fn\_t}{lcd\_btn\_cb\_fn\_t}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacepros_1_1lcd_ab5c0cdcf37795ff2a9dcaf546b087dd4}{pros\+::lcd\+::lcd\+\_\+btn\+\_\+cb\+\_\+fn\+\_\+t}} = typedef void ($\ast$)(void)}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacepros_1_1lcd_a8d22379bd680a36182d51d8e8ef02baf}\label{namespacepros_1_1lcd_a8d22379bd680a36182d51d8e8ef02baf}} 
+\index{pros::lcd@{pros::lcd}!clear@{clear}}
+\index{clear@{clear}!pros::lcd@{pros::lcd}}
+\subsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily bool pros\+::lcd\+::clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Clears the contents of the emulated three-\/button L\+CD screen. 
+
+This function uses the following values of errno when an error state is reached\+: E\+N\+X\+IO -\/ The L\+CD has not been initialized. Call \mbox{\hyperlink{llemu_8h_ae618494f080e95b506c0c18cb1ffb407}{lcd\+\_\+initialize()}} first. E\+I\+N\+V\+AL -\/ The line number specified is not in the range \mbox{[}0-\/7\mbox{]}
+
+\begin{DoxyReturn}{Returns}
+True if the operation was successful, or false otherwise, setting errno values as specified above. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacepros_1_1lcd_aef44947cea9006f86d4aaa2e32856835}\label{namespacepros_1_1lcd_aef44947cea9006f86d4aaa2e32856835}} 
+\index{pros::lcd@{pros::lcd}!clear\_line@{clear\_line}}
+\index{clear\_line@{clear\_line}!pros::lcd@{pros::lcd}}
+\subsubsection{\texorpdfstring{clear\_line()}{clear\_line()}}
+{\footnotesize\ttfamily bool pros\+::lcd\+::clear\+\_\+line (\begin{DoxyParamCaption}\item[{std\+::int16\+\_\+t}]{line }\end{DoxyParamCaption})}
+
+
+
+Clears the contents of a line of the emulated three-\/button L\+CD screen. 
+
+This function uses the following values of errno when an error state is reached\+: E\+N\+X\+IO -\/ The L\+CD has not been initialized. Call \mbox{\hyperlink{llemu_8h_ae618494f080e95b506c0c18cb1ffb407}{lcd\+\_\+initialize()}} first. E\+I\+N\+V\+AL -\/ The line number specified is not in the range \mbox{[}0-\/7\mbox{]}
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & The line to clear\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the operation was successful, or false otherwise, setting errno values as specified above. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacepros_1_1lcd_afb69bfa2fc5da3018b6886f612ed190e}\label{namespacepros_1_1lcd_afb69bfa2fc5da3018b6886f612ed190e}} 
+\index{pros::lcd@{pros::lcd}!initialize@{initialize}}
+\index{initialize@{initialize}!pros::lcd@{pros::lcd}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily bool pros\+::lcd\+::initialize (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Creates an emulation of the three-\/button, U\+A\+R\+T-\/based V\+EX L\+CD on the display. 
+
+\begin{DoxyReturn}{Returns}
+True if the L\+CD was successfully initialized, or false if it has already been initialized.
+\end{DoxyReturn}
+Creates an emulation of the three-\/button, U\+A\+R\+T-\/based V\+EX L\+CD on the display.
+
+This occurs as soon as the program is started.
+
+All other competition modes are blocked by initialize; it is recommended to keep execution time for this mode under a few seconds. \mbox{\Hypertarget{namespacepros_1_1lcd_a867eb9cd989e1c6c31982fe2b5c58dd9}\label{namespacepros_1_1lcd_a867eb9cd989e1c6c31982fe2b5c58dd9}} 
+\index{pros::lcd@{pros::lcd}!is\_initialized@{is\_initialized}}
+\index{is\_initialized@{is\_initialized}!pros::lcd@{pros::lcd}}
+\subsubsection{\texorpdfstring{is\_initialized()}{is\_initialized()}}
+{\footnotesize\ttfamily bool pros\+::lcd\+::is\+\_\+initialized (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Checks whether the emulated three-\/button L\+CD has already been initialized. 
+
+\begin{DoxyReturn}{Returns}
+True if the L\+CD has been initialized or false if not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacepros_1_1lcd_aead67d10b420308d58883135f0d28099}\label{namespacepros_1_1lcd_aead67d10b420308d58883135f0d28099}} 
+\index{pros::lcd@{pros::lcd}!print@{print}}
+\index{print@{print}!pros::lcd@{pros::lcd}}
+\subsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily template$<$typename... Params$>$ \\
+bool pros\+::lcd\+::print (\begin{DoxyParamCaption}\item[{std\+::int16\+\_\+t}]{line,  }\item[{const char $\ast$}]{fmt,  }\item[{Params...}]{args }\end{DoxyParamCaption})}
+
+
+
+Displays a formatted string on the emulated three-\/button L\+CD screen. 
+
+This function uses the following values of errno when an error state is reached\+: E\+N\+X\+IO -\/ The L\+CD has not been initialized. Call \mbox{\hyperlink{llemu_8h_ae618494f080e95b506c0c18cb1ffb407}{lcd\+\_\+initialize()}} first. E\+I\+N\+V\+AL -\/ The line number specified is not in the range \mbox{[}0-\/7\mbox{]}
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & The line on which to display the text \mbox{[}0-\/7\mbox{]} \\
+\hline
+{\em fmt} & Format string \\
+\hline
+{\em ...} & Optional list of arguments for the format string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the operation was successful, or false otherwise, setting errno values as specified above. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacepros_1_1lcd_aa6ba655373f3eb0d9ef702337e89f624}\label{namespacepros_1_1lcd_aa6ba655373f3eb0d9ef702337e89f624}} 
+\index{pros::lcd@{pros::lcd}!read\_buttons@{read\_buttons}}
+\index{read\_buttons@{read\_buttons}!pros::lcd@{pros::lcd}}
+\subsubsection{\texorpdfstring{read\_buttons()}{read\_buttons()}}
+{\footnotesize\ttfamily std\+::uint8\+\_\+t pros\+::lcd\+::read\+\_\+buttons (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Gets the button status from the emulated three-\/button L\+CD. 
+
+The value returned is a 3-\/bit integer where 1 0 0 indicates the left button is pressed, 0 1 0 indicates the center button is pressed, and 0 0 1 indicates the right button is pressed. 0 is returned if no buttons are currently being pressed.
+
+Note that this function is provided for legacy A\+PI compatibility purposes, with the caveat that the V5 touch screen does not actually support pressing multiple points on the screen at the same time.
+
+\begin{DoxyReturn}{Returns}
+The buttons pressed as a bit mask 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacepros_1_1lcd_a4d8f5121ac67ae7de816334e7b66f08d}\label{namespacepros_1_1lcd_a4d8f5121ac67ae7de816334e7b66f08d}} 
+\index{pros::lcd@{pros::lcd}!register\_btn0\_cb@{register\_btn0\_cb}}
+\index{register\_btn0\_cb@{register\_btn0\_cb}!pros::lcd@{pros::lcd}}
+\subsubsection{\texorpdfstring{register\_btn0\_cb()}{register\_btn0\_cb()}}
+{\footnotesize\ttfamily void pros\+::lcd\+::register\+\_\+btn0\+\_\+cb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacepros_1_1lcd_ab5c0cdcf37795ff2a9dcaf546b087dd4}{lcd\+\_\+btn\+\_\+cb\+\_\+fn\+\_\+t}}}]{cb }\end{DoxyParamCaption})}
+
+
+
+Registers a callback function for the leftmost button. 
+
+When the leftmost button on the emulated three-\/button L\+CD is pressed, the user-\/provided callback function will be invoked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & \mbox{\hyperlink{structA}{A}} callback function of type lcd\+\_\+btn\+\_\+cb\+\_\+fn\+\_\+t(void ($\ast$cb)(void)) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacepros_1_1lcd_a9a3a9342268b8a95d91190ab36574a0a}\label{namespacepros_1_1lcd_a9a3a9342268b8a95d91190ab36574a0a}} 
+\index{pros::lcd@{pros::lcd}!register\_btn1\_cb@{register\_btn1\_cb}}
+\index{register\_btn1\_cb@{register\_btn1\_cb}!pros::lcd@{pros::lcd}}
+\subsubsection{\texorpdfstring{register\_btn1\_cb()}{register\_btn1\_cb()}}
+{\footnotesize\ttfamily void pros\+::lcd\+::register\+\_\+btn1\+\_\+cb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacepros_1_1lcd_ab5c0cdcf37795ff2a9dcaf546b087dd4}{lcd\+\_\+btn\+\_\+cb\+\_\+fn\+\_\+t}}}]{cb }\end{DoxyParamCaption})}
+
+
+
+Registers a callback function for the center button. 
+
+When the center button on the emulated three-\/button L\+CD is pressed, the user-\/provided callback function will be invoked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & \mbox{\hyperlink{structA}{A}} callback function of type lcd\+\_\+btn\+\_\+cb\+\_\+fn\+\_\+t(void ($\ast$cb)(void)) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacepros_1_1lcd_a5b08f4244e366a738668a5c3f700e4be}\label{namespacepros_1_1lcd_a5b08f4244e366a738668a5c3f700e4be}} 
+\index{pros::lcd@{pros::lcd}!register\_btn2\_cb@{register\_btn2\_cb}}
+\index{register\_btn2\_cb@{register\_btn2\_cb}!pros::lcd@{pros::lcd}}
+\subsubsection{\texorpdfstring{register\_btn2\_cb()}{register\_btn2\_cb()}}
+{\footnotesize\ttfamily void pros\+::lcd\+::register\+\_\+btn2\+\_\+cb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacepros_1_1lcd_ab5c0cdcf37795ff2a9dcaf546b087dd4}{lcd\+\_\+btn\+\_\+cb\+\_\+fn\+\_\+t}}}]{cb }\end{DoxyParamCaption})}
+
+
+
+Registers a callback function for the rightmost button. 
+
+When the rightmost button on the emulated three-\/button L\+CD is pressed, the user-\/provided callback function will be invoked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & \mbox{\hyperlink{structA}{A}} callback function of type lcd\+\_\+btn\+\_\+cb\+\_\+fn\+\_\+t(void ($\ast$cb)(void)) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacepros_1_1lcd_a515526f1d3069a6aa985512273aa7788}\label{namespacepros_1_1lcd_a515526f1d3069a6aa985512273aa7788}} 
+\index{pros::lcd@{pros::lcd}!set\_text@{set\_text}}
+\index{set\_text@{set\_text}!pros::lcd@{pros::lcd}}
+\subsubsection{\texorpdfstring{set\_text()}{set\_text()}}
+{\footnotesize\ttfamily bool pros\+::lcd\+::set\+\_\+text (\begin{DoxyParamCaption}\item[{std\+::int16\+\_\+t}]{line,  }\item[{std\+::string}]{text }\end{DoxyParamCaption})}
+
+
+
+Displays a string on the emulated three-\/button L\+CD screen. 
+
+This function uses the following values of errno when an error state is reached\+: E\+N\+X\+IO -\/ The L\+CD has not been initialized. Call \mbox{\hyperlink{llemu_8h_ae618494f080e95b506c0c18cb1ffb407}{lcd\+\_\+initialize()}} first. E\+I\+N\+V\+AL -\/ The line number specified is not in the range \mbox{[}0-\/7\mbox{]}
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & The line on which to display the text \mbox{[}0-\/7\mbox{]} \\
+\hline
+{\em text} & The text to display\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the operation was successful, or false otherwise, setting errno values as specified above. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacepros_1_1lcd_a7aa9a422049011de193f54bce8cc95ed}\label{namespacepros_1_1lcd_a7aa9a422049011de193f54bce8cc95ed}} 
+\index{pros::lcd@{pros::lcd}!shutdown@{shutdown}}
+\index{shutdown@{shutdown}!pros::lcd@{pros::lcd}}
+\subsubsection{\texorpdfstring{shutdown()}{shutdown()}}
+{\footnotesize\ttfamily bool pros\+::lcd\+::shutdown (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Turns off the Legacy L\+CD Emulator. 
+
+Calling this function will clear the entire display, and you will not be able to call any further L\+L\+E\+MU functions until another call to lcd\+\_\+initialize.
+
+This function uses the following values of errno when an error state is reached\+: E\+N\+X\+IO -\/ The L\+CD has not been initialized. Call \mbox{\hyperlink{llemu_8h_ae618494f080e95b506c0c18cb1ffb407}{lcd\+\_\+initialize()}} first.
+
+\begin{DoxyReturn}{Returns}
+True if the operation was successful, or false otherwise, setting errno values as specified above. 
+\end{DoxyReturn}

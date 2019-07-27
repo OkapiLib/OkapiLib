@@ -1,0 +1,48 @@
+\hypertarget{lv__theme_8h}{}\section{include/display/lv\+\_\+themes/lv\+\_\+theme.h File Reference}
+\label{lv__theme_8h}\index{include/display/lv\_themes/lv\_theme.h@{include/display/lv\_themes/lv\_theme.h}}
+{\ttfamily \#include \char`\"{}display/lv\+\_\+conf.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}display/lv\+\_\+core/lv\+\_\+style.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lv\+\_\+theme\+\_\+alien.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlv__theme__t}{lv\+\_\+theme\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{lv__theme_8h_aab1ec1157f453ff6574005d3cfd21839}{lv\+\_\+theme\+\_\+set\+\_\+current}} (\mbox{\hyperlink{structlv__theme__t}{lv\+\_\+theme\+\_\+t}} $\ast$th)
+\begin{DoxyCompactList}\small\item\em Set a theme for the system. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structlv__theme__t}{lv\+\_\+theme\+\_\+t}} $\ast$ \mbox{\hyperlink{lv__theme_8h_a003fda4ba8c0ec6982186f943fb2f4dd}{lv\+\_\+theme\+\_\+get\+\_\+current}} (void)
+\begin{DoxyCompactList}\small\item\em Get the current system theme. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{lv__theme_8h_a003fda4ba8c0ec6982186f943fb2f4dd}\label{lv__theme_8h_a003fda4ba8c0ec6982186f943fb2f4dd}} 
+\index{lv\_theme.h@{lv\_theme.h}!lv\_theme\_get\_current@{lv\_theme\_get\_current}}
+\index{lv\_theme\_get\_current@{lv\_theme\_get\_current}!lv\_theme.h@{lv\_theme.h}}
+\subsubsection{\texorpdfstring{lv\_theme\_get\_current()}{lv\_theme\_get\_current()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structlv__theme__t}{lv\+\_\+theme\+\_\+t}}$\ast$ lv\+\_\+theme\+\_\+get\+\_\+current (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the current system theme. 
+
+\begin{DoxyReturn}{Returns}
+pointer to the current system theme. N\+U\+LL if not set. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lv__theme_8h_aab1ec1157f453ff6574005d3cfd21839}\label{lv__theme_8h_aab1ec1157f453ff6574005d3cfd21839}} 
+\index{lv\_theme.h@{lv\_theme.h}!lv\_theme\_set\_current@{lv\_theme\_set\_current}}
+\index{lv\_theme\_set\_current@{lv\_theme\_set\_current}!lv\_theme.h@{lv\_theme.h}}
+\subsubsection{\texorpdfstring{lv\_theme\_set\_current()}{lv\_theme\_set\_current()}}
+{\footnotesize\ttfamily void lv\+\_\+theme\+\_\+set\+\_\+current (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlv__theme__t}{lv\+\_\+theme\+\_\+t}} $\ast$}]{th }\end{DoxyParamCaption})}
+
+
+
+Set a theme for the system. 
+
+From now, all the created objects will use styles from this theme by default 
+\begin{DoxyParams}{Parameters}
+{\em th} & pointer to theme (return value of\+: \textquotesingle{}lv\+\_\+theme\+\_\+init\+\_\+xxx()\textquotesingle{}) \\
+\hline
+\end{DoxyParams}
