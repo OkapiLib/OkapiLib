@@ -12,7 +12,10 @@
 
 namespace okapi {
 Motor::Motor(const std::int8_t iport)
-  : Motor(std::abs(iport), iport < 0, AbstractMotor::gearset::green) {
+  : Motor(std::abs(iport),
+          iport < 0,
+          AbstractMotor::gearset::green,
+          AbstractMotor::encoderUnits::counts) {
 }
 
 Motor::Motor(const std::uint8_t iport,
@@ -20,24 +23,9 @@ Motor::Motor(const std::uint8_t iport,
              const AbstractMotor::gearset igearset,
              const AbstractMotor::encoderUnits iencoderUnits,
              const std::shared_ptr<Logger> &logger)
-  : pros::Motor(iport,
-                igearset == AbstractMotor::gearset::red
-                  ? pros::E_MOTOR_GEARSET_36
-                  : igearset == AbstractMotor::gearset::green
-                      ? pros::E_MOTOR_GEARSET_18
-                      : igearset == AbstractMotor::gearset::blue ? pros::E_MOTOR_GEARSET_06
-                                                                 : pros::E_MOTOR_GEARSET_INVALID,
-                ireverse,
-                iencoderUnits == AbstractMotor::encoderUnits::counts
-                  ? pros::E_MOTOR_ENCODER_COUNTS
-                  : iencoderUnits == AbstractMotor::encoderUnits::degrees
-                      ? pros::E_MOTOR_ENCODER_DEGREES
-                      : iencoderUnits == AbstractMotor::encoderUnits::rotations
-                          ? pros::E_MOTOR_ENCODER_ROTATIONS
-                          : pros::E_MOTOR_ENCODER_INVALID),
-    gearset(igearset) {
-  if (iport <= 0 || iport > 21) {
-    std::string msg = "Motor: The port number (" + std::to_string(iport) +
+  : port(iport), reversed(ireverse > 0 ? 1 : -1) {
+  if (port <= 0 || port > 21) {
+    std::string msg = "Motor: The port number (" + std::to_string(port) +
                       ") is outside the expected range of values (1-21).";
     LOG_ERROR(msg);
     throw std::runtime_error(std::to_string(true) + ", " +
@@ -54,117 +42,117 @@ Motor::Motor(const std::uint8_t iport,
 }
 
 std::int32_t Motor::moveAbsolute(const double iposition, const std::int32_t ivelocity) {
-  return move_absolute(iposition, ivelocity);
+  return pros::c::motor_move_absolute(port, iposition * reversed, ivelocity);
 }
 
 std::int32_t Motor::moveRelative(const double iposition, const std::int32_t ivelocity) {
-  return move_relative(iposition, ivelocity);
+  return pros::c::motor_move_relative(port, iposition * reversed, ivelocity);
 }
 
 std::int32_t Motor::moveVelocity(const std::int16_t ivelocity) {
-  return move_velocity(ivelocity);
+  return pros::c::motor_move_velocity(port, ivelocity * reversed);
 }
 
 std::int32_t Motor::moveVoltage(const std::int16_t ivoltage) {
-  return move_voltage(ivoltage);
+  return pros::c::motor_move_voltage(port, ivoltage * reversed);
 }
 
 std::int32_t Motor::modifyProfiledVelocity(std::int32_t ivelocity) {
-  return modify_profiled_velocity(ivelocity);
+  return pros::c::motor_modify_profiled_velocity(port, ivelocity * reversed);
 }
 
 double Motor::getTargetPosition() {
-  return get_target_position();
+  return pros::c::motor_get_target_position(port) * reversed;
 }
 
 double Motor::getPosition() {
-  return get_position();
+  return pros::c::motor_get_position(port) * reversed;
 }
 
 std::int32_t Motor::tarePosition() {
-  return tare_position();
+  return pros::c::motor_tare_position(port);
 }
 
 std::int32_t Motor::getTargetVelocity() {
-  return get_target_velocity();
+  return pros::c::motor_get_target_velocity(port) * reversed;
 }
 
 double Motor::getActualVelocity() {
-  return get_actual_velocity();
+  return pros::c::motor_get_actual_velocity(port) * reversed;
 }
 
 std::int32_t Motor::getCurrentDraw() {
-  return get_current_draw();
+  return pros::c::motor_get_current_draw(port);
 }
 
 std::int32_t Motor::getDirection() {
-  return get_direction();
+  return pros::c::motor_get_direction(port) * reversed;
 }
 
 double Motor::getEfficiency() {
-  return get_efficiency();
+  return pros::c::motor_get_efficiency(port);
 }
 
 std::int32_t Motor::isOverCurrent() {
-  return is_over_current();
+  return pros::c::motor_is_over_current(port);
 }
 
 std::int32_t Motor::isOverTemp() {
-  return is_over_temp();
+  return pros::c::motor_is_over_temp(port);
 }
 
 std::int32_t Motor::isStopped() {
-  return is_stopped();
+  return pros::c::motor_is_stopped(port);
 }
 
 std::int32_t Motor::getZeroPositionFlag() {
-  return get_zero_position_flag();
+  return pros::c::motor_get_zero_position_flag(port);
 }
 
 uint32_t Motor::getFaults() {
-  return get_faults();
+  return pros::c::motor_get_faults(port);
 }
 
 uint32_t Motor::getFlags() {
-  return get_flags();
+  return pros::c::motor_get_flags(port);
 }
 
 std::int32_t Motor::getRawPosition(std::uint32_t *timestamp) {
-  return get_raw_position(timestamp);
+  return pros::c::motor_get_raw_position(port, timestamp) * reversed;
 }
 
 double Motor::getPower() {
-  return get_power();
+  return pros::c::motor_get_power(port);
 }
 
 double Motor::getTemperature() {
-  return get_temperature();
+  return pros::c::motor_get_temperature(port);
 }
 
 double Motor::getTorque() {
-  return get_torque();
+  return pros::c::motor_get_torque(port);
 }
 
 std::int32_t Motor::getVoltage() {
-  return get_voltage();
+  return pros::c::motor_get_voltage(port) * reversed;
 }
 
 std::int32_t Motor::setBrakeMode(const AbstractMotor::brakeMode imode) {
   switch (imode) {
   case AbstractMotor::brakeMode::brake:
-    return set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+    return pros::c::motor_set_brake_mode(port, pros::E_MOTOR_BRAKE_BRAKE);
   case AbstractMotor::brakeMode::coast:
-    return set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    return pros::c::motor_set_brake_mode(port, pros::E_MOTOR_BRAKE_COAST);
   case AbstractMotor::brakeMode::hold:
-    return set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    return pros::c::motor_set_brake_mode(port, pros::E_MOTOR_BRAKE_HOLD);
   case AbstractMotor::brakeMode::invalid:
   default:
-    return set_brake_mode(pros::E_MOTOR_BRAKE_INVALID);
+    return pros::c::motor_set_brake_mode(port, pros::E_MOTOR_BRAKE_INVALID);
   }
 }
 
 AbstractMotor::brakeMode Motor::getBrakeMode() {
-  switch (get_brake_mode()) {
+  switch (pros::c::motor_get_brake_mode(port)) {
   case pros::E_MOTOR_BRAKE_COAST:
     return AbstractMotor::brakeMode::coast;
   case pros::E_MOTOR_BRAKE_BRAKE:
@@ -178,29 +166,29 @@ AbstractMotor::brakeMode Motor::getBrakeMode() {
 }
 
 std::int32_t Motor::setCurrentLimit(const std::int32_t ilimit) {
-  return set_current_limit(ilimit);
+  return pros::c::motor_set_current_limit(port, ilimit);
 }
 
 std::int32_t Motor::getCurrentLimit() {
-  return get_current_limit();
+  return pros::c::motor_get_current_limit(port);
 }
 
 std::int32_t Motor::setEncoderUnits(const AbstractMotor::encoderUnits iunits) {
   switch (iunits) {
   case AbstractMotor::encoderUnits::counts:
-    return set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+    return pros::c::motor_set_encoder_units(port, pros::E_MOTOR_ENCODER_COUNTS);
   case AbstractMotor::encoderUnits::degrees:
-    return set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+    return pros::c::motor_set_encoder_units(port, pros::E_MOTOR_ENCODER_DEGREES);
   case AbstractMotor::encoderUnits::rotations:
-    return set_encoder_units(pros::E_MOTOR_ENCODER_ROTATIONS);
+    return pros::c::motor_set_encoder_units(port, pros::E_MOTOR_ENCODER_ROTATIONS);
   case AbstractMotor::encoderUnits::invalid:
   default:
-    return set_encoder_units(pros::E_MOTOR_ENCODER_INVALID);
+    return pros::c::motor_set_encoder_units(port, pros::E_MOTOR_ENCODER_INVALID);
   }
 }
 
 AbstractMotor::encoderUnits Motor::getEncoderUnits() {
-  switch (get_encoder_units()) {
+  switch (pros::c::motor_get_encoder_units(port)) {
   case pros::E_MOTOR_ENCODER_DEGREES:
     return AbstractMotor::encoderUnits::degrees;
   case pros::E_MOTOR_ENCODER_ROTATIONS:
@@ -216,19 +204,19 @@ AbstractMotor::encoderUnits Motor::getEncoderUnits() {
 std::int32_t Motor::setGearing(const AbstractMotor::gearset igearset) {
   switch (igearset) {
   case AbstractMotor::gearset::blue:
-    return set_gearing(pros::E_MOTOR_GEARSET_06);
+    return pros::c::motor_set_gearing(port, pros::E_MOTOR_GEARSET_06);
   case AbstractMotor::gearset::green:
-    return set_gearing(pros::E_MOTOR_GEARSET_18);
+    return pros::c::motor_set_gearing(port, pros::E_MOTOR_GEARSET_18);
   case AbstractMotor::gearset::red:
-    return set_gearing(pros::E_MOTOR_GEARSET_36);
+    return pros::c::motor_set_gearing(port, pros::E_MOTOR_GEARSET_36);
   case AbstractMotor::gearset::invalid:
   default:
-    return set_gearing(pros::E_MOTOR_GEARSET_INVALID);
+    return pros::c::motor_set_gearing(port, pros::E_MOTOR_GEARSET_INVALID);
   }
 }
 
 AbstractMotor::gearset Motor::getGearing() {
-  switch (get_gearing()) {
+  switch (pros::c::motor_get_gearing(port)) {
   case pros::E_MOTOR_GEARSET_36:
     return AbstractMotor::gearset::red;
   case pros::E_MOTOR_GEARSET_18:
@@ -242,16 +230,17 @@ AbstractMotor::gearset Motor::getGearing() {
 }
 
 std::int32_t Motor::setReversed(const bool ireverse) {
-  return set_reversed(ireverse);
+  reversed = ireverse > 0 ? 1 : -1;
+  return 0;
 }
 
 std::int32_t Motor::setVoltageLimit(const std::int32_t ilimit) {
-  return set_voltage_limit(ilimit);
+  return pros::c::motor_set_voltage_limit(port, ilimit);
 }
 
 std::int32_t
 Motor::setPosPID(const double ikF, const double ikP, const double ikI, const double ikD) {
-  return set_pos_pid(convert_pid(ikF, ikP, ikI, ikD));
+  return pros::c::motor_set_pos_pid(port, pros::c::motor_convert_pid(ikF, ikP, ikI, ikD));
 }
 
 std::int32_t Motor::setPosPIDFull(const double ikF,
@@ -262,13 +251,14 @@ std::int32_t Motor::setPosPIDFull(const double ikF,
                                   const double ilimit,
                                   const double ithreshold,
                                   const double iloopSpeed) {
-  return set_pos_pid_full(
-    convert_pid_full(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed));
+  return pros::c::motor_set_pos_pid_full(
+    port,
+    pros::c::motor_convert_pid_full(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed));
 }
 
 std::int32_t
 Motor::setVelPID(const double ikF, const double ikP, const double ikI, const double ikD) {
-  return set_vel_pid(convert_pid(ikF, ikP, ikI, ikD));
+  return pros::c::motor_set_vel_pid(port, pros::c::motor_convert_pid(ikF, ikP, ikI, ikD));
 }
 
 std::int32_t Motor::setVelPIDFull(const double ikF,
@@ -279,25 +269,24 @@ std::int32_t Motor::setVelPIDFull(const double ikF,
                                   const double ilimit,
                                   const double ithreshold,
                                   const double iloopSpeed) {
-  return set_vel_pid_full(
-    convert_pid_full(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed));
+  return pros::c::motor_set_vel_pid_full(
+    port,
+    pros::c::motor_convert_pid_full(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed));
 }
 
 std::shared_ptr<ContinuousRotarySensor> Motor::getEncoder() {
-  return std::make_shared<IntegratedEncoder>(*this);
+  return std::make_shared<IntegratedEncoder>(port, isReversed());
 }
 
 void Motor::controllerSet(const double ivalue) {
-  move_velocity(ivalue * toUnderlyingType(gearset));
+  moveVelocity(ivalue * toUnderlyingType(getGearing()) * reversed);
 }
 
-inline namespace literals {
-okapi::Motor operator"" _mtr(const unsigned long long iport) {
-  return okapi::Motor(static_cast<uint8_t>(iport), false, AbstractMotor::gearset::green);
+std::uint8_t Motor::getPort() const {
+  return port;
 }
 
-okapi::Motor operator"" _rmtr(const unsigned long long iport) {
-  return okapi::Motor(static_cast<uint8_t>(iport), true, AbstractMotor::gearset::green);
+bool Motor::isReversed() const {
+  return reversed > 0;
 }
-} // namespace literals
 } // namespace okapi

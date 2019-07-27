@@ -17,16 +17,17 @@ class IntegratedEncoder : public ContinuousRotarySensor {
   /**
    * Integrated motor encoder. Uses the encoder inside the V5 motor.
    *
-   * @param imotor the motor to use the encoder from.
+   * @param imotor The motor to use the encoder from.
    */
-  explicit IntegratedEncoder(const pros::Motor &imotor);
+  IntegratedEncoder(const okapi::Motor &imotor);
 
   /**
    * Integrated motor encoder. Uses the encoder inside the V5 motor.
    *
-   * @param imotor the motor to use the encoder from.
+   * @param iport The motor's port number.
+   * @param ireversed Whether the encoder is reversed.
    */
-  IntegratedEncoder(const okapi::Motor &imotor);
+  IntegratedEncoder(std::int8_t iport, bool ireversed = false);
 
   /**
    * Get the current sensor value.
@@ -51,6 +52,7 @@ class IntegratedEncoder : public ContinuousRotarySensor {
   virtual double controllerGet() override;
 
   protected:
-  pros::Motor motor;
+  std::uint8_t port;
+  std::int8_t reversed{1};
 };
 } // namespace okapi
