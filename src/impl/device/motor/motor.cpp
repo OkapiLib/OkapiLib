@@ -39,6 +39,9 @@ Motor::Motor(const std::uint8_t iport,
   if (iencoderUnits == AbstractMotor::encoderUnits::invalid) {
     LOG_WARN(std::string("Motor: The encoder units are invalid."));
   }
+
+  setGearing(igearset);
+  setEncoderUnits(iencoderUnits);
 }
 
 std::int32_t Motor::moveAbsolute(const double iposition, const std::int32_t ivelocity) {
