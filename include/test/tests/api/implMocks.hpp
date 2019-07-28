@@ -111,28 +111,6 @@ class MockMotor : public AbstractMotor {
 
   int32_t modifyProfiledVelocity(std::int32_t ivelocity) override;
 
-  int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) override;
-
-  int32_t setPosPIDFull(double ikF,
-                        double ikP,
-                        double ikI,
-                        double ikD,
-                        double ifilter,
-                        double ilimit,
-                        double ithreshold,
-                        double iloopSpeed) override;
-
-  int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) override;
-
-  int32_t setVelPIDFull(double ikF,
-                        double ikP,
-                        double ikI,
-                        double ikD,
-                        double ifilter,
-                        double ilimit,
-                        double ithreshold,
-                        double iloopSpeed) override;
-
   AbstractMotor::brakeMode getBrakeMode() override;
 
   int32_t getCurrentLimit() override;
@@ -225,28 +203,6 @@ class ThreadedMockMotor : public AbstractMotor {
   int32_t setReversed(bool ireverse) override;
 
   int32_t setVoltageLimit(std::int32_t ilimit) override;
-
-  int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) override;
-
-  int32_t setPosPIDFull(double ikF,
-                        double ikP,
-                        double ikI,
-                        double ikD,
-                        double ifilter,
-                        double ilimit,
-                        double ithreshold,
-                        double iloopSpeed) override;
-
-  int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) override;
-
-  int32_t setVelPIDFull(double ikF,
-                        double ikP,
-                        double ikI,
-                        double ikD,
-                        double ifilter,
-                        double ilimit,
-                        double ithreshold,
-                        double iloopSpeed) override;
 
   std::shared_ptr<ContinuousRotarySensor> getEncoder() override;
 
@@ -558,18 +514,6 @@ class MockChassisModel : public ChassisModel {
 
   std::valarray<int32_t> getSensorVals() const override {
     return {0, 0};
-  }
-
-  void setPosPID(double, double, double, double) override {
-  }
-
-  void setPosPIDFull(double, double, double, double, double, double, double, double) override {
-  }
-
-  void setVelPID(double, double, double, double) override {
-  }
-
-  void setVelPIDFull(double, double, double, double, double, double, double, double) override {
   }
 
   void setMaxVelocity(double imaxVelocity) override {

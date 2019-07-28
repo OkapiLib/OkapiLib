@@ -479,7 +479,7 @@ class Motor : public AbstractMotor {
    * @param ikD the derivative constant
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) override;
+  virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD);
 
   /**
    * Sets new PID constants.
@@ -494,14 +494,14 @@ class Motor : public AbstractMotor {
    * @param iloopSpeed the rate at which the PID computation is run (in ms)
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  std::int32_t setPosPIDFull(double ikF,
-                             double ikP,
-                             double ikI,
-                             double ikD,
-                             double ifilter,
-                             double ilimit,
-                             double ithreshold,
-                             double iloopSpeed) override;
+  virtual std::int32_t setPosPIDFull(double ikF,
+                                     double ikP,
+                                     double ikI,
+                                     double ikD,
+                                     double ifilter,
+                                     double ilimit,
+                                     double ithreshold,
+                                     double iloopSpeed);
 
   /**
    * Sets new PID constants.
@@ -512,7 +512,7 @@ class Motor : public AbstractMotor {
    * @param ikD the derivative constant
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  std::int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) override;
+  virtual std::int32_t setVelPID(double ikF, double ikP, double ikI, double ikD);
 
   /**
    * Sets new PID constants.
@@ -527,14 +527,14 @@ class Motor : public AbstractMotor {
    * @param iloopSpeed the rate at which the PID computation is run (in ms)
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  std::int32_t setVelPIDFull(double ikF,
-                             double ikP,
-                             double ikI,
-                             double ikD,
-                             double ifilter,
-                             double ilimit,
-                             double ithreshold,
-                             double iloopSpeed) override;
+  virtual std::int32_t setVelPIDFull(double ikF,
+                                     double ikP,
+                                     double ikI,
+                                     double ikD,
+                                     double ifilter,
+                                     double ilimit,
+                                     double ithreshold,
+                                     double iloopSpeed);
 
   /**
    * Get the encoder associated with this motor.
