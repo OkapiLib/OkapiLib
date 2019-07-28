@@ -23,7 +23,7 @@ Motor::Motor(const std::uint8_t iport,
              const AbstractMotor::gearset igearset,
              const AbstractMotor::encoderUnits iencoderUnits,
              const std::shared_ptr<Logger> &logger)
-  : port(iport), reversed(ireverse > 0 ? 1 : -1) {
+  : port(iport), reversed(boolToSign(ireverse)) {
   if (port <= 0 || port > 21) {
     std::string msg = "Motor: The port number (" + std::to_string(port) +
                       ") is outside the expected range of values (1-21).";
