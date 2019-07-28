@@ -24,7 +24,7 @@ class IntegratedEncoder : public ContinuousRotarySensor {
   /**
    * Integrated motor encoder. Uses the encoder inside the V5 motor.
    *
-   * @param iport The motor's port number.
+   * @param iport The motor's port number in the range [1, 21].
    * @param ireversed Whether the encoder is reversed.
    */
   IntegratedEncoder(std::int8_t iport, bool ireversed = false);

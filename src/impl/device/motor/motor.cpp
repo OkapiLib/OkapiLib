@@ -23,7 +23,7 @@ Motor::Motor(const std::uint8_t iport,
              const AbstractMotor::gearset igearset,
              const AbstractMotor::encoderUnits iencoderUnits,
              const std::shared_ptr<Logger> &logger)
-  : port(iport), reversed(boolToSign(ireverse)) {
+  : port(iport), reversed(ireverse ? -1 : 1) {
   if (port <= 0 || port > 21) {
     std::string msg = "Motor: The port number (" + std::to_string(port) +
                       ") is outside the expected range of values (1-21).";
@@ -233,7 +233,7 @@ AbstractMotor::gearset Motor::getGearing() {
 }
 
 std::int32_t Motor::setReversed(const bool ireverse) {
-  reversed = boolToSign(ireverse);
+  reversed = ireverse ? -1 : 1;
   return 0;
 }
 
@@ -290,6 +290,6 @@ std::uint8_t Motor::getPort() const {
 }
 
 bool Motor::isReversed() const {
-  return reversed > 0;
+  return reversed < 0;
 }
 } // namespace okapi

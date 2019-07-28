@@ -17,7 +17,7 @@ class Motor : public AbstractMotor {
   /**
    * A V5 motor.
    *
-   * @param port The port number in the range [1-21]. A negative port number is shorthand for
+   * @param port The port number in the range [1, 21]. A negative port number is shorthand for
    * reversing the motor.
    */
   Motor(std::int8_t port);
@@ -25,7 +25,7 @@ class Motor : public AbstractMotor {
   /**
    * A V5 motor.
    *
-   * @param port The port number in the range [1-21].
+   * @param port The port number in the range [1, 21].
    * @param reverse Whether the motor is reversed (this setting is not written to the motor, it is
    * maintained by okapi::Motor instead).
    * @param igearset The internal gearset to set in the motor.
