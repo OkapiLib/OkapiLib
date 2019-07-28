@@ -16,8 +16,8 @@ VelMath::VelMath(const double iticksPerRev,
                  std::unique_ptr<Filter> ifilter,
                  QTime isampleTime,
                  std::unique_ptr<AbstractTimer> iloopDtTimer,
-                 const std::shared_ptr<Logger> &ilogger)
-  : logger(ilogger),
+                 std::shared_ptr<Logger> ilogger)
+  : logger(std::move(ilogger)),
     ticksPerRev(iticksPerRev),
     sampleTime(isampleTime),
     loopDtTimer(std::move(iloopDtTimer)),
@@ -47,6 +47,13 @@ QAngularSpeed VelMath::step(const double inewPos) {
 }
 
 void VelMath::setTicksPerRev(const double iTPR) {
+  if (iTPR == 0) {
+    std::string msg(
+      "VelMath: The ticks per revolution cannot be zero! Check if you are using integer division.");
+    LOG_ERROR(msg);
+    throw std::invalid_argument(msg);
+  }
+
   ticksPerRev = iTPR;
 }
 
