@@ -230,7 +230,7 @@ AbstractMotor::gearset Motor::getGearing() {
 }
 
 std::int32_t Motor::setReversed(const bool ireverse) {
-  reversed = ireverse > 0 ? 1 : -1;
+  reversed = boolToSign(ireverse);
   return 0;
 }
 
