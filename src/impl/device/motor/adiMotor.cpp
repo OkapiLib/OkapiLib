@@ -8,8 +8,15 @@
 #include "okapi/impl/device/motor/adiMotor.hpp"
 
 namespace okapi {
-ADIMotor::ADIMotor(const std::uint8_t iport, const bool ireverse)
-  : port(iport), reversed(ireverse ? -1 : 1) {
+ADIMotor::ADIMotor(const std::uint8_t iport,
+                   const bool ireverse,
+                   const std::shared_ptr<Logger> &logger)
+  : port(transformADIPort(iport)), reversed(ireverse ? -1 : 1) {
+  if (port < 1 || port > 8) {
+    std::string msg = "ADIMotor: The port number (" + std::to_string(port) +
+                      ") is outside the expected range of values [1, 8].";
+    LOG_ERROR(msg);
+  }
 }
 
 void ADIMotor::moveVoltage(const std::int8_t ivoltage) const {

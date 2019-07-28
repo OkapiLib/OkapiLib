@@ -24,12 +24,10 @@ Motor::Motor(const std::uint8_t iport,
              const AbstractMotor::encoderUnits iencoderUnits,
              const std::shared_ptr<Logger> &logger)
   : port(iport), reversed(ireverse ? -1 : 1) {
-  if (port <= 0 || port > 21) {
+  if (port < 1 || port > 21) {
     std::string msg = "Motor: The port number (" + std::to_string(port) +
-                      ") is outside the expected range of values (1-21).";
+                      ") is outside the expected range of values [1, 21].";
     LOG_ERROR(msg);
-    throw std::runtime_error(std::to_string(true) + ", " +
-                             std::to_string(logger->isDebugLevelEnabled()));
   }
 
   if (igearset == AbstractMotor::gearset::invalid) {

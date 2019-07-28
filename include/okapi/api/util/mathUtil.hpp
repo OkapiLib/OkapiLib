@@ -147,4 +147,27 @@ constexpr std::int32_t gearsetToTPR(const AbstractMotor::gearset igearset) noexc
     return imev5BlueTPR;
   }
 }
+
+/**
+ * Maps ADI port numbers/chars to numbers:
+ * ```
+ * when (port) {
+ *   in ['a', 'h'] -> [1, 8]
+ *   in ['A', 'H'] -> [1, 8]
+ *   else -> [1, 8]
+ * }
+ * ```
+ *
+ * @param port The ADI port number or char.
+ * @return An equivalent ADI port number.
+ */
+constexpr std::int8_t transformADIPort(const std::int8_t port) {
+  if (port >= 'a' && port <= 'h') {
+    return port - ('a' - 1);
+  } else if (port >= 'A' && port <= 'H') {
+    return port - ('A' - 1);
+  } else {
+    return port;
+  }
+}
 } // namespace okapi
