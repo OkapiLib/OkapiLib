@@ -193,14 +193,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a72a6a4eb9d237ad57b92401b08ad64fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f33faf946b99cd34e9a591ccc33d644"><td class="memItemLeft" align="right" valign="top">virtual std::int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1AbstractMotor.html#a2f33faf946b99cd34e9a591ccc33d644">setVoltageLimit</a> (std::int32_t ilimit)=0</td></tr>
 <tr class="separator:a2f33faf946b99cd34e9a591ccc33d644"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad979f7591071947ab3aec693f3c73c03"><td class="memItemLeft" align="right" valign="top">virtual std::int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1AbstractMotor.html#ad979f7591071947ab3aec693f3c73c03">setPosPID</a> (double ikF, double ikP, double ikI, double ikD)=0</td></tr>
-<tr class="separator:ad979f7591071947ab3aec693f3c73c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa440aaa9b5fa44e886a344e1e002485e"><td class="memItemLeft" align="right" valign="top">virtual std::int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1AbstractMotor.html#aa440aaa9b5fa44e886a344e1e002485e">setPosPIDFull</a> (double ikF, double ikP, double ikI, double ikD, double ifilter, double ilimit, double ithreshold, double iloopSpeed)=0</td></tr>
-<tr class="separator:aa440aaa9b5fa44e886a344e1e002485e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a314a495f2d7cb1ffe157c9dbdf8963b9"><td class="memItemLeft" align="right" valign="top">virtual std::int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1AbstractMotor.html#a314a495f2d7cb1ffe157c9dbdf8963b9">setVelPID</a> (double ikF, double ikP, double ikI, double ikD)=0</td></tr>
-<tr class="separator:a314a495f2d7cb1ffe157c9dbdf8963b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afff15a595bb33454aabfac99248e8324"><td class="memItemLeft" align="right" valign="top">virtual std::int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1AbstractMotor.html#afff15a595bb33454aabfac99248e8324">setVelPIDFull</a> (double ikF, double ikP, double ikI, double ikD, double ifilter, double ilimit, double ithreshold, double iloopSpeed)=0</td></tr>
-<tr class="separator:afff15a595bb33454aabfac99248e8324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87177280c20a855a74354dd8ba6e1d6a"><td class="memItemLeft" align="right" valign="top">virtual std::shared_ptr&lt; <a class="el" href="classokapi_1_1ContinuousRotarySensor.html">ContinuousRotarySensor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1AbstractMotor.html#a87177280c20a855a74354dd8ba6e1d6a">getEncoder</a> ()=0</td></tr>
 <tr class="separator:a87177280c20a855a74354dd8ba6e1d6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classokapi_1_1ControllerOutput"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classokapi_1_1ControllerOutput')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classokapi_1_1ControllerOutput.html">okapi::ControllerOutput&lt; double &gt;</a></td></tr>
@@ -348,7 +340,7 @@ Public Member Functions</h2></td></tr>
 <p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
 <dl class="section return"><dt>Returns</dt><dd>The motor's actual velocity in RPM or PROS_ERR_F if the operation failed, setting errno. </dd></dl>
 
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#a5cbb95146d4663440632a9e3ccc99ae9">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#a12dab94ff8e0636c01d3c568d9461655">okapi::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classokapi_1_1Motor.html#a12dab94ff8e0636c01d3c568d9461655">okapi::Motor</a>, and <a class="el" href="classokapi_1_1MotorGroup.html#a5cbb95146d4663440632a9e3ccc99ae9">okapi::MotorGroup</a>.</p>
 
 </div>
 </div>
@@ -408,7 +400,7 @@ Public Member Functions</h2></td></tr>
 <p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
 <dl class="section return"><dt>Returns</dt><dd>The motor's current in mA or PROS_ERR if the operation failed, setting errno. </dd></dl>
 
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#a5cdc06b92c943b2348130b162f6c5f16">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#ac5107f8aef228d4b4fec06d549c55cf6">okapi::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classokapi_1_1Motor.html#ac5107f8aef228d4b4fec06d549c55cf6">okapi::Motor</a>, and <a class="el" href="classokapi_1_1MotorGroup.html#a5cdc06b92c943b2348130b162f6c5f16">okapi::MotorGroup</a>.</p>
 
 </div>
 </div>
@@ -469,7 +461,7 @@ Public Member Functions</h2></td></tr>
 <p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
 <dl class="section return"><dt>Returns</dt><dd>1 for moving in the positive direction, -1 for moving in the negative direction, and PROS_ERR if the operation failed, setting errno. </dd></dl>
 
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#a5466d52a245b10765945b91c0194da66">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#a72c69d60e2ec69c126c84dc81f78742d">okapi::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classokapi_1_1Motor.html#a72c69d60e2ec69c126c84dc81f78742d">okapi::Motor</a>, and <a class="el" href="classokapi_1_1MotorGroup.html#a5466d52a245b10765945b91c0194da66">okapi::MotorGroup</a>.</p>
 
 </div>
 </div>
@@ -529,7 +521,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns the encoder associated with this motor.</p>
 <dl class="section return"><dt>Returns</dt><dd>the encoder for this motor </dd></dl>
 
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#a911d4c2a66deafb2e54f66411eceaa59">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#a57d8ddb900475fcfba56413e61e6e252">okapi::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classokapi_1_1Motor.html#a57d8ddb900475fcfba56413e61e6e252">okapi::Motor</a>, and <a class="el" href="classokapi_1_1MotorGroup.html#a911d4c2a66deafb2e54f66411eceaa59">okapi::MotorGroup</a>.</p>
 
 </div>
 </div>
@@ -679,7 +671,7 @@ Public Member Functions</h2></td></tr>
 <p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
 <dl class="section return"><dt>Returns</dt><dd>The motor's absolute position in its encoder units or PROS_ERR_F if the operation failed, setting errno. </dd></dl>
 
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#a6bf3c5a2f5caf0e5b02e8dcf2e8130d9">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#a4592f8a1cce4474f85ceabd3d7e2fe0b">okapi::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classokapi_1_1Motor.html#a4592f8a1cce4474f85ceabd3d7e2fe0b">okapi::Motor</a>, and <a class="el" href="classokapi_1_1MotorGroup.html#a6bf3c5a2f5caf0e5b02e8dcf2e8130d9">okapi::MotorGroup</a>.</p>
 
 </div>
 </div>
@@ -796,7 +788,7 @@ Public Member Functions</h2></td></tr>
 <p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
 <dl class="section return"><dt>Returns</dt><dd>The target position in its encoder units or PROS_ERR_F if the operation failed, setting errno. </dd></dl>
 
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#ad6332111f8b2642bc13fbd8822328121">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#af575af2b4d4cf5aea6e8aac50ef1cbbd">okapi::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classokapi_1_1Motor.html#af575af2b4d4cf5aea6e8aac50ef1cbbd">okapi::Motor</a>, and <a class="el" href="classokapi_1_1MotorGroup.html#ad6332111f8b2642bc13fbd8822328121">okapi::MotorGroup</a>.</p>
 
 </div>
 </div>
@@ -826,7 +818,7 @@ Public Member Functions</h2></td></tr>
 <p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
 <dl class="section return"><dt>Returns</dt><dd>The commanded motor velocity from +-100, +-200, or +-600, or PROS_ERR if the operation failed, setting errno. </dd></dl>
 
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#a841736ae664104fb38ffff33ef763394">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#aee4697f4e1f39bc0206062d0247caf47">okapi::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classokapi_1_1Motor.html#aee4697f4e1f39bc0206062d0247caf47">okapi::Motor</a>, and <a class="el" href="classokapi_1_1MotorGroup.html#a841736ae664104fb38ffff33ef763394">okapi::MotorGroup</a>.</p>
 
 </div>
 </div>
@@ -1093,7 +1085,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </dd></dl>
 
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#a616f20db24f1eff4d3641b86faef4fbd">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#a8778f90005a3add64d0dfd7574fb8289">okapi::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classokapi_1_1Motor.html#a8778f90005a3add64d0dfd7574fb8289">okapi::Motor</a>, and <a class="el" href="classokapi_1_1MotorGroup.html#a616f20db24f1eff4d3641b86faef4fbd">okapi::MotorGroup</a>.</p>
 
 </div>
 </div>
@@ -1143,7 +1135,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </dd></dl>
 
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#afe6800639a995d37d8963c72fb8526d4">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#a5f95fd5864805b57f16fa5defdbf1968">okapi::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classokapi_1_1Motor.html#a5f95fd5864805b57f16fa5defdbf1968">okapi::Motor</a>, and <a class="el" href="classokapi_1_1MotorGroup.html#afe6800639a995d37d8963c72fb8526d4">okapi::MotorGroup</a>.</p>
 
 </div>
 </div>
@@ -1193,7 +1185,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </dd></dl>
 
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#a4295103133b5cb721dfb457a8cc8c2bc">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#a40f6f70ed9b12d1834551d1232303ef1">okapi::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classokapi_1_1Motor.html#a40f6f70ed9b12d1834551d1232303ef1">okapi::Motor</a>, and <a class="el" href="classokapi_1_1MotorGroup.html#a4295103133b5cb721dfb457a8cc8c2bc">okapi::MotorGroup</a>.</p>
 
 </div>
 </div>
@@ -1231,7 +1223,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </dd></dl>
 
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#a9f31c14e92efe7ab492b2c335c51b488">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#afc3377b9b10a72de0c22e9a74cbcfd16">okapi::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classokapi_1_1Motor.html#afc3377b9b10a72de0c22e9a74cbcfd16">okapi::Motor</a>, and <a class="el" href="classokapi_1_1MotorGroup.html#a9f31c14e92efe7ab492b2c335c51b488">okapi::MotorGroup</a>.</p>
 
 </div>
 </div>
@@ -1268,7 +1260,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </dd></dl>
 
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#acebebe160f2c733ee497b1b8b50b0781">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#a64b53a041c90c7b7a3903c607a9b17eb">okapi::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classokapi_1_1Motor.html#a64b53a041c90c7b7a3903c607a9b17eb">okapi::Motor</a>, and <a class="el" href="classokapi_1_1MotorGroup.html#acebebe160f2c733ee497b1b8b50b0781">okapi::MotorGroup</a>.</p>
 
 </div>
 </div>
@@ -1420,156 +1412,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad979f7591071947ab3aec693f3c73c03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad979f7591071947ab3aec693f3c73c03">&#9670;&nbsp;</a></span>setPosPID()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual std::int32_t okapi::AbstractMotor::setPosPID </td>
-          <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikF</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikP</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikI</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikD</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Sets new PID constants.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ikF</td><td>the feed-forward constant </td></tr>
-    <tr><td class="paramname">ikP</td><td>the proportional constant </td></tr>
-    <tr><td class="paramname">ikI</td><td>the integral constant </td></tr>
-    <tr><td class="paramname">ikD</td><td>the derivative constant </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </dd></dl>
-
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#ae7a2e42c7e9843748503d97259a84a76">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#ae885a297c4471bddf5729c702f0b4a38">okapi::Motor</a>.</p>
-
-</div>
-</div>
-<a id="aa440aaa9b5fa44e886a344e1e002485e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa440aaa9b5fa44e886a344e1e002485e">&#9670;&nbsp;</a></span>setPosPIDFull()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual std::int32_t okapi::AbstractMotor::setPosPIDFull </td>
-          <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikF</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikP</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikI</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikD</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ifilter</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ilimit</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ithreshold</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>iloopSpeed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Sets new PID constants.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ikF</td><td>the feed-forward constant </td></tr>
-    <tr><td class="paramname">ikP</td><td>the proportional constant </td></tr>
-    <tr><td class="paramname">ikI</td><td>the integral constant </td></tr>
-    <tr><td class="paramname">ikD</td><td>the derivative constant </td></tr>
-    <tr><td class="paramname">ifilter</td><td>a constant used for filtering the profile acceleration </td></tr>
-    <tr><td class="paramname">ilimit</td><td>the integral limit </td></tr>
-    <tr><td class="paramname">ithreshold</td><td>the threshold for determining if a position movement has reached its goal </td></tr>
-    <tr><td class="paramname">iloopSpeed</td><td>the rate at which the PID computation is run (in ms) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </dd></dl>
-
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#ab92ec0964e1d66ff82ad26e2c68ad912">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#adb3656e96c31dd0a584cf6692459ad9b">okapi::Motor</a>.</p>
-
-</div>
-</div>
 <a id="a72a6a4eb9d237ad57b92401b08ad64fa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a72a6a4eb9d237ad57b92401b08ad64fa">&#9670;&nbsp;</a></span>setReversed()</h2>
 
@@ -1605,156 +1447,6 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </dd></dl>
 
 <p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#a5655accbdc1b548bc75ec49d40337fe0">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#a558e94850abf85132811a8b281e872df">okapi::Motor</a>.</p>
-
-</div>
-</div>
-<a id="a314a495f2d7cb1ffe157c9dbdf8963b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a314a495f2d7cb1ffe157c9dbdf8963b9">&#9670;&nbsp;</a></span>setVelPID()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual std::int32_t okapi::AbstractMotor::setVelPID </td>
-          <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikF</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikP</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikI</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikD</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Sets new PID constants.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ikF</td><td>the feed-forward constant </td></tr>
-    <tr><td class="paramname">ikP</td><td>the proportional constant </td></tr>
-    <tr><td class="paramname">ikI</td><td>the integral constant </td></tr>
-    <tr><td class="paramname">ikD</td><td>the derivative constant </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </dd></dl>
-
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#a719abeb463faa5a01d0a22148f2d6d9e">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#a6a78550fa3eee6efa092307e4b159d68">okapi::Motor</a>.</p>
-
-</div>
-</div>
-<a id="afff15a595bb33454aabfac99248e8324"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afff15a595bb33454aabfac99248e8324">&#9670;&nbsp;</a></span>setVelPIDFull()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual std::int32_t okapi::AbstractMotor::setVelPIDFull </td>
-          <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikF</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikP</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikI</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ikD</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ifilter</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ilimit</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>ithreshold</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>iloopSpeed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Sets new PID constants.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ikF</td><td>the feed-forward constant </td></tr>
-    <tr><td class="paramname">ikP</td><td>the proportional constant </td></tr>
-    <tr><td class="paramname">ikI</td><td>the integral constant </td></tr>
-    <tr><td class="paramname">ikD</td><td>the derivative constant </td></tr>
-    <tr><td class="paramname">ifilter</td><td>a constant used for filtering the profile acceleration </td></tr>
-    <tr><td class="paramname">ilimit</td><td>the integral limit </td></tr>
-    <tr><td class="paramname">ithreshold</td><td>the threshold for determining if a position movement has reached its goal </td></tr>
-    <tr><td class="paramname">iloopSpeed</td><td>the rate at which the PID computation is run (in ms) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </dd></dl>
-
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#aefc99f07b3b731ac2d24b3e380985ef4">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#af09e5a627843ec895b78077d8a5326a5">okapi::Motor</a>.</p>
 
 </div>
 </div>
@@ -1821,7 +1513,7 @@ Public Member Functions</h2></td></tr>
 <p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
 <dl class="section return"><dt>Returns</dt><dd>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </dd></dl>
 
-<p>Implemented in <a class="el" href="classokapi_1_1MotorGroup.html#a59aef8ea3c212e3466b67631978e47eb">okapi::MotorGroup</a>, and <a class="el" href="classokapi_1_1Motor.html#aa71f3d93b734caec5c9245b211d4a0ad">okapi::Motor</a>.</p>
+<p>Implemented in <a class="el" href="classokapi_1_1Motor.html#aa71f3d93b734caec5c9245b211d4a0ad">okapi::Motor</a>, and <a class="el" href="classokapi_1_1MotorGroup.html#a59aef8ea3c212e3466b67631978e47eb">okapi::MotorGroup</a>.</p>
 
 </div>
 </div>

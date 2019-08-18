@@ -13,9 +13,9 @@ Inheritance diagram for okapi\+::Integrated\+Encoder\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classokapi_1_1IntegratedEncoder_a286d2b7796770ea5a91f498687cbe858}{Integrated\+Encoder}} (const pros\+::\+Motor \&imotor)
-\item 
 \mbox{\hyperlink{classokapi_1_1IntegratedEncoder_a05d0256b51e3631d9ee9177c4eafcb99}{Integrated\+Encoder}} (const \mbox{\hyperlink{classokapi_1_1Motor}{okapi\+::\+Motor}} \&imotor)
+\item 
+\mbox{\hyperlink{classokapi_1_1IntegratedEncoder_a8bf2f0ca1b334f23b4aab5afe58cc578}{Integrated\+Encoder}} (std\+::int8\+\_\+t iport, bool ireversed=false)
 \item 
 virtual double \mbox{\hyperlink{classokapi_1_1IntegratedEncoder_af3fe091ddf4b7f36443a5616bfedc3cb}{get}} () const override
 \item 
@@ -26,35 +26,39 @@ virtual double \mbox{\hyperlink{classokapi_1_1IntegratedEncoder_a5898ddc979b9cf2
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-pros\+::\+Motor \mbox{\hyperlink{classokapi_1_1IntegratedEncoder_a2610609752fafa3cf548b328e15e15db}{motor}}
+std\+::uint8\+\_\+t \mbox{\hyperlink{classokapi_1_1IntegratedEncoder_a1eb50864ff5509d1d11073325f2353fa}{port}}
+\item 
+std\+::int8\+\_\+t \mbox{\hyperlink{classokapi_1_1IntegratedEncoder_a7a354457ac0f976c9aab65c73070c0ee}{reversed}} \{1\}
 \end{DoxyCompactItemize}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classokapi_1_1IntegratedEncoder_a286d2b7796770ea5a91f498687cbe858}\label{classokapi_1_1IntegratedEncoder_a286d2b7796770ea5a91f498687cbe858}} 
-\index{okapi::IntegratedEncoder@{okapi::IntegratedEncoder}!IntegratedEncoder@{IntegratedEncoder}}
-\index{IntegratedEncoder@{IntegratedEncoder}!okapi::IntegratedEncoder@{okapi::IntegratedEncoder}}
-\subsubsection{\texorpdfstring{IntegratedEncoder()}{IntegratedEncoder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily okapi\+::\+Integrated\+Encoder\+::\+Integrated\+Encoder (\begin{DoxyParamCaption}\item[{const pros\+::\+Motor \&}]{imotor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
-
-Integrated motor encoder. Uses the encoder inside the V5 motor.
-
-
-\begin{DoxyParams}{Parameters}
-{\em imotor} & the motor to use the encoder from. \\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{classokapi_1_1IntegratedEncoder_a05d0256b51e3631d9ee9177c4eafcb99}\label{classokapi_1_1IntegratedEncoder_a05d0256b51e3631d9ee9177c4eafcb99}} 
 \index{okapi::IntegratedEncoder@{okapi::IntegratedEncoder}!IntegratedEncoder@{IntegratedEncoder}}
 \index{IntegratedEncoder@{IntegratedEncoder}!okapi::IntegratedEncoder@{okapi::IntegratedEncoder}}
-\subsubsection{\texorpdfstring{IntegratedEncoder()}{IntegratedEncoder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\subsubsection{\texorpdfstring{IntegratedEncoder()}{IntegratedEncoder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily okapi\+::\+Integrated\+Encoder\+::\+Integrated\+Encoder (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1Motor}{okapi\+::\+Motor}} \&}]{imotor }\end{DoxyParamCaption})}
 
 Integrated motor encoder. Uses the encoder inside the V5 motor.
 
 
 \begin{DoxyParams}{Parameters}
-{\em imotor} & the motor to use the encoder from. \\
+{\em imotor} & The motor to use the encoder from. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1IntegratedEncoder_a8bf2f0ca1b334f23b4aab5afe58cc578}\label{classokapi_1_1IntegratedEncoder_a8bf2f0ca1b334f23b4aab5afe58cc578}} 
+\index{okapi::IntegratedEncoder@{okapi::IntegratedEncoder}!IntegratedEncoder@{IntegratedEncoder}}
+\index{IntegratedEncoder@{IntegratedEncoder}!okapi::IntegratedEncoder@{okapi::IntegratedEncoder}}
+\subsubsection{\texorpdfstring{IntegratedEncoder()}{IntegratedEncoder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily okapi\+::\+Integrated\+Encoder\+::\+Integrated\+Encoder (\begin{DoxyParamCaption}\item[{std\+::int8\+\_\+t}]{iport,  }\item[{bool}]{ireversed = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Integrated motor encoder. Uses the encoder inside the V5 motor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iport} & The motor\textquotesingle{}s port number in the range \mbox{[}1, 21\mbox{]}. \\
+\hline
+{\em ireversed} & Whether the encoder is reversed. \\
 \hline
 \end{DoxyParams}
 
@@ -108,11 +112,17 @@ Implements \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor_ae7268b0603097a
 
 
 \subsection{Member Data Documentation}
-\mbox{\Hypertarget{classokapi_1_1IntegratedEncoder_a2610609752fafa3cf548b328e15e15db}\label{classokapi_1_1IntegratedEncoder_a2610609752fafa3cf548b328e15e15db}} 
-\index{okapi::IntegratedEncoder@{okapi::IntegratedEncoder}!motor@{motor}}
-\index{motor@{motor}!okapi::IntegratedEncoder@{okapi::IntegratedEncoder}}
-\subsubsection{\texorpdfstring{motor}{motor}}
-{\footnotesize\ttfamily pros\+::\+Motor okapi\+::\+Integrated\+Encoder\+::motor\hspace{0.3cm}{\ttfamily [protected]}}
+\mbox{\Hypertarget{classokapi_1_1IntegratedEncoder_a1eb50864ff5509d1d11073325f2353fa}\label{classokapi_1_1IntegratedEncoder_a1eb50864ff5509d1d11073325f2353fa}} 
+\index{okapi::IntegratedEncoder@{okapi::IntegratedEncoder}!port@{port}}
+\index{port@{port}!okapi::IntegratedEncoder@{okapi::IntegratedEncoder}}
+\subsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily std\+::uint8\+\_\+t okapi\+::\+Integrated\+Encoder\+::port\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1IntegratedEncoder_a7a354457ac0f976c9aab65c73070c0ee}\label{classokapi_1_1IntegratedEncoder_a7a354457ac0f976c9aab65c73070c0ee}} 
+\index{okapi::IntegratedEncoder@{okapi::IntegratedEncoder}!reversed@{reversed}}
+\index{reversed@{reversed}!okapi::IntegratedEncoder@{okapi::IntegratedEncoder}}
+\subsubsection{\texorpdfstring{reversed}{reversed}}
+{\footnotesize\ttfamily std\+::int8\+\_\+t okapi\+::\+Integrated\+Encoder\+::reversed \{1\}\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 

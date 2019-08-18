@@ -45,14 +45,6 @@ virtual void \mbox{\hyperlink{classokapi_1_1ChassisModel_ae8ba9a72bf827af4c6feff
 \item 
 virtual void \mbox{\hyperlink{classokapi_1_1ChassisModel_a960d6ce2f21e5832fce1d7566408cb61}{set\+Gearing}} (\mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5}{Abstract\+Motor\+::gearset}} gearset)=0
 \item 
-virtual void \mbox{\hyperlink{classokapi_1_1ChassisModel_a9743f82c90635ae7fc9a21d65509ba9b}{set\+Pos\+P\+ID}} (double ikF, double ikP, double ikI, double ikD)=0
-\item 
-virtual void \mbox{\hyperlink{classokapi_1_1ChassisModel_ab45d282450fcf9efebae6a215bd6d410}{set\+Pos\+P\+I\+D\+Full}} (double ikF, double ikP, double ikI, double ikD, double ifilter, double ilimit, double ithreshold, double iloop\+Speed)=0
-\item 
-virtual void \mbox{\hyperlink{classokapi_1_1ChassisModel_ae47b2c71b8492dac8c6ae64f1cf36d22}{set\+Vel\+P\+ID}} (double ikF, double ikP, double ikI, double ikD)=0
-\item 
-virtual void \mbox{\hyperlink{classokapi_1_1ChassisModel_a01f72f1761683c82a04643adb5f1d270}{set\+Vel\+P\+I\+D\+Full}} (double ikF, double ikP, double ikI, double ikD, double ifilter, double ilimit, double ithreshold, double iloop\+Speed)=0
-\item 
 virtual void \mbox{\hyperlink{classokapi_1_1ChassisModel_ae7fcb4cc95fdd7fd3c8f8388b4a698b2}{set\+Max\+Velocity}} (double imax\+Velocity)=0
 \item 
 virtual double \mbox{\hyperlink{classokapi_1_1ChassisModel_ab45dd7430636ed1c1dee25dae6df5d46}{get\+Max\+Velocity}} () const =0
@@ -339,114 +331,6 @@ Sets a new maximum voltage in mV \mbox{[}0-\/12000\mbox{]}.
 
 
 Implemented in \mbox{\hyperlink{classokapi_1_1XDriveModel_a6d001a2147ecb642f60cd21ac73c64ea}{okapi\+::\+X\+Drive\+Model}}, and \mbox{\hyperlink{classokapi_1_1SkidSteerModel_ad4dc0f8e3877b23ffb8ae58903bdffb7}{okapi\+::\+Skid\+Steer\+Model}}.
-
-\mbox{\Hypertarget{classokapi_1_1ChassisModel_a9743f82c90635ae7fc9a21d65509ba9b}\label{classokapi_1_1ChassisModel_a9743f82c90635ae7fc9a21d65509ba9b}} 
-\index{okapi::ChassisModel@{okapi::ChassisModel}!setPosPID@{setPosPID}}
-\index{setPosPID@{setPosPID}!okapi::ChassisModel@{okapi::ChassisModel}}
-\subsubsection{\texorpdfstring{setPosPID()}{setPosPID()}}
-{\footnotesize\ttfamily virtual void okapi\+::\+Chassis\+Model\+::set\+Pos\+P\+ID (\begin{DoxyParamCaption}\item[{double}]{ikF,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
-
-Sets new P\+ID constants.
-
-
-\begin{DoxyParams}{Parameters}
-{\em ikF} & the feed-\/forward constant \\
-\hline
-{\em ikP} & the proportional constant \\
-\hline
-{\em ikI} & the integral constant \\
-\hline
-{\em ikD} & the derivative constant \\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \mbox{\hyperlink{classokapi_1_1XDriveModel_ad3769e5e46350c07665563e7acad2ad4}{okapi\+::\+X\+Drive\+Model}}, and \mbox{\hyperlink{classokapi_1_1SkidSteerModel_a17173fd3edc6a2b128a0cdec863e1ef3}{okapi\+::\+Skid\+Steer\+Model}}.
-
-\mbox{\Hypertarget{classokapi_1_1ChassisModel_ab45d282450fcf9efebae6a215bd6d410}\label{classokapi_1_1ChassisModel_ab45d282450fcf9efebae6a215bd6d410}} 
-\index{okapi::ChassisModel@{okapi::ChassisModel}!setPosPIDFull@{setPosPIDFull}}
-\index{setPosPIDFull@{setPosPIDFull}!okapi::ChassisModel@{okapi::ChassisModel}}
-\subsubsection{\texorpdfstring{setPosPIDFull()}{setPosPIDFull()}}
-{\footnotesize\ttfamily virtual void okapi\+::\+Chassis\+Model\+::set\+Pos\+P\+I\+D\+Full (\begin{DoxyParamCaption}\item[{double}]{ikF,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD,  }\item[{double}]{ifilter,  }\item[{double}]{ilimit,  }\item[{double}]{ithreshold,  }\item[{double}]{iloop\+Speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
-
-Sets new P\+ID constants.
-
-
-\begin{DoxyParams}{Parameters}
-{\em ikF} & the feed-\/forward constant \\
-\hline
-{\em ikP} & the proportional constant \\
-\hline
-{\em ikI} & the integral constant \\
-\hline
-{\em ikD} & the derivative constant \\
-\hline
-{\em ifilter} & a constant used for filtering the profile acceleration \\
-\hline
-{\em ilimit} & the integral limit \\
-\hline
-{\em ithreshold} & the threshold for determining if a position movement has reached its goal \\
-\hline
-{\em iloop\+Speed} & the rate at which the P\+ID computation is run (in ms) \\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \mbox{\hyperlink{classokapi_1_1XDriveModel_a1b9375f95eee0633ce9ba21ac459074c}{okapi\+::\+X\+Drive\+Model}}, and \mbox{\hyperlink{classokapi_1_1SkidSteerModel_a3e1aba898305edde1732ea3b2f08fb6a}{okapi\+::\+Skid\+Steer\+Model}}.
-
-\mbox{\Hypertarget{classokapi_1_1ChassisModel_ae47b2c71b8492dac8c6ae64f1cf36d22}\label{classokapi_1_1ChassisModel_ae47b2c71b8492dac8c6ae64f1cf36d22}} 
-\index{okapi::ChassisModel@{okapi::ChassisModel}!setVelPID@{setVelPID}}
-\index{setVelPID@{setVelPID}!okapi::ChassisModel@{okapi::ChassisModel}}
-\subsubsection{\texorpdfstring{setVelPID()}{setVelPID()}}
-{\footnotesize\ttfamily virtual void okapi\+::\+Chassis\+Model\+::set\+Vel\+P\+ID (\begin{DoxyParamCaption}\item[{double}]{ikF,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
-
-Sets new P\+ID constants.
-
-
-\begin{DoxyParams}{Parameters}
-{\em ikF} & the feed-\/forward constant \\
-\hline
-{\em ikP} & the proportional constant \\
-\hline
-{\em ikI} & the integral constant \\
-\hline
-{\em ikD} & the derivative constant \\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \mbox{\hyperlink{classokapi_1_1XDriveModel_a556be85eb445580508a1322407c78a7a}{okapi\+::\+X\+Drive\+Model}}, and \mbox{\hyperlink{classokapi_1_1SkidSteerModel_abf2ef82e52b9da670684fb5204ea45cb}{okapi\+::\+Skid\+Steer\+Model}}.
-
-\mbox{\Hypertarget{classokapi_1_1ChassisModel_a01f72f1761683c82a04643adb5f1d270}\label{classokapi_1_1ChassisModel_a01f72f1761683c82a04643adb5f1d270}} 
-\index{okapi::ChassisModel@{okapi::ChassisModel}!setVelPIDFull@{setVelPIDFull}}
-\index{setVelPIDFull@{setVelPIDFull}!okapi::ChassisModel@{okapi::ChassisModel}}
-\subsubsection{\texorpdfstring{setVelPIDFull()}{setVelPIDFull()}}
-{\footnotesize\ttfamily virtual void okapi\+::\+Chassis\+Model\+::set\+Vel\+P\+I\+D\+Full (\begin{DoxyParamCaption}\item[{double}]{ikF,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD,  }\item[{double}]{ifilter,  }\item[{double}]{ilimit,  }\item[{double}]{ithreshold,  }\item[{double}]{iloop\+Speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
-
-Sets new P\+ID constants.
-
-
-\begin{DoxyParams}{Parameters}
-{\em ikF} & the feed-\/forward constant \\
-\hline
-{\em ikP} & the proportional constant \\
-\hline
-{\em ikI} & the integral constant \\
-\hline
-{\em ikD} & the derivative constant \\
-\hline
-{\em ifilter} & a constant used for filtering the profile acceleration \\
-\hline
-{\em ilimit} & the integral limit \\
-\hline
-{\em ithreshold} & the threshold for determining if a position movement has reached its goal \\
-\hline
-{\em iloop\+Speed} & the rate at which the P\+ID computation is run (in ms) \\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \mbox{\hyperlink{classokapi_1_1XDriveModel_aa52cd97a543855a10728a956ed5f17a0}{okapi\+::\+X\+Drive\+Model}}, and \mbox{\hyperlink{classokapi_1_1SkidSteerModel_a11fd0eb2d7b0686c364169836fb05359}{okapi\+::\+Skid\+Steer\+Model}}.
 
 \mbox{\Hypertarget{classokapi_1_1ChassisModel_ad67ad9abae41c5441c2a2d671d0c8a55}\label{classokapi_1_1ChassisModel_ad67ad9abae41c5441c2a2d671d0c8a55}} 
 \index{okapi::ChassisModel@{okapi::ChassisModel}!stop@{stop}}

@@ -71,7 +71,7 @@ std\+::atomic\+\_\+bool \mbox{\hyperlink{classokapi_1_1OdomChassisController_a2a
 \subsubsection{\texorpdfstring{OdomChassisController()}{OdomChassisController()}}
 {\footnotesize\ttfamily okapi\+::\+Odom\+Chassis\+Controller\+::\+Odom\+Chassis\+Controller (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&}]{itime\+Util,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} $>$}]{iodometry,  }\item[{const Q\+Length \&}]{imove\+Threshold = {\ttfamily 10\+\_\+mm},  }\item[{const Q\+Angle \&}]{iturn\+Threshold = {\ttfamily 1\+\_\+deg} }\end{DoxyParamCaption})}
 
-\mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} based chassis controller. Starts task at the default for odometry when constructed.
+\mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} based chassis controller. Starts task at the default for odometry when constructed, which calls {\ttfamily \mbox{\hyperlink{classokapi_1_1Odometry_a04586a88418c606f7bbd0ac3287c730d}{Odometry\+::step}}} every {\ttfamily 10ms}.
 
 Moves the robot around in the odom frame. Instead of telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific point on the field or turn to a specific angle relative to its starting position.
 
@@ -79,7 +79,7 @@ Moves the robot around in the odom frame. Instead of telling the robot to drive 
 \begin{DoxyParams}{Parameters}
 {\em itime\+Util} & The \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}}. \\
 \hline
-{\em iparams} & odometry parameters for the internal odometry math \\
+{\em iodometry} & The odometry instance to run in a new task. \\
 \hline
 {\em imove\+Threshold} & minimum length movement (smaller movements will be skipped) \\
 \hline

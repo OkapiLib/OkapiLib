@@ -95,6 +95,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5fe023ef9ccab0532fd29d237bc91677"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31474749c8a6c0dca45a4c02418fadab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1DefaultOdomChassisController.html#a31474749c8a6c0dca45a4c02418fadab">driveToPoint</a> (const QLength &amp;ix, const QLength &amp;iy, bool ibackwards=false, const QLength &amp;ioffset=0_mm) override</td></tr>
 <tr class="separator:a31474749c8a6c0dca45a4c02418fadab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b5fc33c7fbe8d6fd49f4fd46fb84a2d"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1DefaultOdomChassisController.html#a2b5fc33c7fbe8d6fd49f4fd46fb84a2d">getChassisController</a> ()</td></tr>
+<tr class="separator:a2b5fc33c7fbe8d6fd49f4fd46fb84a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add1bed5d02d3da37306ef0016b7ad8a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1DefaultOdomChassisController.html#add1bed5d02d3da37306ef0016b7ad8a2">chassisController</a> ()</td></tr>
+<tr class="separator:add1bed5d02d3da37306ef0016b7ad8a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf6e4d74384b87510d35b639e45f9dc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1DefaultOdomChassisController.html#aaf6e4d74384b87510d35b639e45f9dc2">turnToAngle</a> (const QAngle &amp;iangle) override</td></tr>
 <tr class="separator:aaf6e4d74384b87510d35b639e45f9dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3143bc60f72ab8ff8f63aad9a810a1c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1DefaultOdomChassisController.html#a3143bc60f72ab8ff8f63aad9a810a1c6">moveDistance</a> (QLength itarget) override</td></tr>
@@ -127,10 +131,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a83e8bf7115086c331ada990ceb872bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa917086153b6298bf7792fd3b31ac240"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classokapi_1_1ChassisModel.html">ChassisModel</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1DefaultOdomChassisController.html#aa917086153b6298bf7792fd3b31ac240">model</a> () override</td></tr>
 <tr class="separator:aa917086153b6298bf7792fd3b31ac240"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b5fc33c7fbe8d6fd49f4fd46fb84a2d"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1DefaultOdomChassisController.html#a2b5fc33c7fbe8d6fd49f4fd46fb84a2d">getChassisController</a> ()</td></tr>
-<tr class="separator:a2b5fc33c7fbe8d6fd49f4fd46fb84a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add1bed5d02d3da37306ef0016b7ad8a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1DefaultOdomChassisController.html#add1bed5d02d3da37306ef0016b7ad8a2">chassisController</a> ()</td></tr>
-<tr class="separator:add1bed5d02d3da37306ef0016b7ad8a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classokapi_1_1OdomChassisController"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classokapi_1_1OdomChassisController')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classokapi_1_1OdomChassisController.html">okapi::OdomChassisController</a></td></tr>
 <tr class="memitem:a91015290cdd5f9c459adfb59115bc92d inherit pub_methods_classokapi_1_1OdomChassisController"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1OdomChassisController.html#a91015290cdd5f9c459adfb59115bc92d">OdomChassisController</a> (const <a class="el" href="classokapi_1_1TimeUtil.html">TimeUtil</a> &amp;itimeUtil, std::unique_ptr&lt; <a class="el" href="classokapi_1_1Odometry.html">Odometry</a> &gt; iodometry, const QLength &amp;imoveThreshold=10_mm, const QAngle &amp;iturnThreshold=1_deg)</td></tr>
 <tr class="separator:a91015290cdd5f9c459adfb59115bc92d inherit pub_methods_classokapi_1_1OdomChassisController"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -242,10 +242,8 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">itimeUtil</td><td>The <a class="el" href="classokapi_1_1TimeUtil.html">TimeUtil</a>. </td></tr>
-    <tr><td class="paramname">imodel</td><td>chassis model to use </td></tr>
-    <tr><td class="paramname">iodometry</td><td>The odometry. </td></tr>
-    <tr><td class="paramname">ileftController</td><td>left side controller </td></tr>
-    <tr><td class="paramname">irightController</td><td>right side controller </td></tr>
+    <tr><td class="paramname">iodometry</td><td>The odometry to read state estimates from. </td></tr>
+    <tr><td class="paramname">icontroller</td><td>The chassis controller to delegate to. </td></tr>
     <tr><td class="paramname">igearset</td><td>The motor gearset. </td></tr>
     <tr><td class="paramname">iscales</td><td>The chassis scales. </td></tr>
     <tr><td class="paramname">imoveThreshold</td><td>minimum length movement (smaller movements will be skipped) </td></tr>
@@ -272,7 +270,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>The internal chassis controller. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The internal <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </dd></dl>
 
 </div>
 </div>
@@ -350,7 +348,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>The internal chassis controller. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The internal <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </dd></dl>
 
 </div>
 </div>
@@ -376,7 +374,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the <a class="el" href="classokapi_1_1ChassisScales.html">ChassisScales</a>. </p>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#a0a8e32fc7adad8567f550954505aaa06">okapi::ChassisController</a>.</p>
 
@@ -404,7 +402,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the GearsetRatioPair. </p>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#aa19351888b997d4a6596dac24520ebff">okapi::ChassisController</a>.</p>
 
@@ -432,7 +430,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>The internal <a class="el" href="classokapi_1_1ChassisModel.html">ChassisModel</a>. </dd></dl>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#a1971d4b54b61718437824c026aca53c9">okapi::ChassisController</a>.</p>
 
@@ -460,7 +458,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>The internal <a class="el" href="classokapi_1_1ChassisModel.html">ChassisModel</a>. </dd></dl>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#a239802eda7e4317a65d1a04994f7b97e">okapi::ChassisController</a>.</p>
 
@@ -489,13 +487,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Drives the robot straight for a distance (using closed-loop control).</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">itarget</td><td>distance to travel </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#a6d5b69139dfa8b814d05c74c22bcaa43">okapi::ChassisController</a>.</p>
 
@@ -524,13 +516,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Drives the robot straight for a distance (using closed-loop control).</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">itarget</td><td>distance to travel in motor degrees </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#a58619e777fd1b3f8e1aae871d46a8ccf">okapi::ChassisController</a>.</p>
 
@@ -559,13 +545,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Sets the target distance for the robot to drive straight (using closed-loop control).</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">itarget</td><td>distance to travel </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#a67a17268b871a4f1ae74d67891cbf5dd">okapi::ChassisController</a>.</p>
 
@@ -594,13 +574,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Sets the target distance for the robot to drive straight (using closed-loop control).</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">itarget</td><td>distance to travel in motor degrees </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#a24b46ec1c42f32c0527d57738a07820a">okapi::ChassisController</a>.</p>
 
@@ -629,13 +603,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Sets whether turns should be mirrored.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ishouldMirror</td><td>whether turns should be mirrored </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#a37ae36ec8936272eb31e3baed7eed417">okapi::ChassisController</a>.</p>
 
@@ -663,7 +631,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Interrupts the current movement to stop the robot. </p>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#ac67edbbbe1c8480c4503b9875a3719cd">okapi::ChassisController</a>.</p>
 
@@ -692,13 +660,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Turns the robot clockwise in place (using closed-loop control).</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">idegTarget</td><td>angle to turn for </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#aab12308b3fad6793c007d7a33730a3f7">okapi::ChassisController</a>.</p>
 
@@ -727,13 +689,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Turns the robot clockwise in place (using closed-loop control).</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">idegTarget</td><td>angle to turn for in motor degrees </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#a6aca227e35ececd02eed1cc42d09ad1d">okapi::ChassisController</a>.</p>
 
@@ -762,13 +718,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">idegTarget</td><td>angle to turn for </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#a87fc1f88bf06340d8f022a8c185b5e87">okapi::ChassisController</a>.</p>
 
@@ -797,13 +747,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">idegTarget</td><td>angle to turn for in motor degrees </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#a35cadd99478629637b4bd3a5e709871a">okapi::ChassisController</a>.</p>
 
@@ -832,13 +776,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Turns the robot to face an angle in the odom frame.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">iangle</td><td>angle to turn to </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1OdomChassisController.html#ac90298bb9081d95c52800dbf679dd658">okapi::OdomChassisController</a>.</p>
 
@@ -866,7 +804,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Delays until the currently executing movement completes. </p>
+<p>This delegates to the input <a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ChassisController.html#a01ed4e0eb7332cc149228387bbf1e91c">okapi::ChassisController</a>.</p>
 

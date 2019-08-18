@@ -79,21 +79,21 @@ int \mbox{\hyperlink{classokapi_1_1ChassisControllerIntegrated_a8da00973b2828f04
 \subsubsection{\texorpdfstring{ChassisControllerIntegrated()}{ChassisControllerIntegrated()}}
 {\footnotesize\ttfamily okapi\+::\+Chassis\+Controller\+Integrated\+::\+Chassis\+Controller\+Integrated (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&}]{itime\+Util,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ChassisModel}{Chassis\+Model}} $>$}]{imodel,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AsyncPosIntegratedController}{Async\+Pos\+Integrated\+Controller}} $>$}]{ileft\+Controller,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AsyncPosIntegratedController}{Async\+Pos\+Integrated\+Controller}} $>$}]{iright\+Controller,  }\item[{const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&}]{igearset = {\ttfamily \mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5a9f27410725ab8cc8854a2769c7a516b8}{Abstract\+Motor\+::gearset\+::green}}},  }\item[{const \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} \&}]{iscales = {\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}}(\{1,~1\},~\mbox{\hyperlink{namespaceokapi_a5263bab3bfecd482a573b6d04fb584ac}{imev5\+Green\+T\+PR}})},  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
 
-\mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}} using the V5 motor\textquotesingle{}s integrated control. Puts the motors into encoder count units. Throws a std\+::invalid\+\_\+argument exception if the gear ratio is zero. The initial model\textquotesingle{}s max velocity will be propagated to the controllers.
+\mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}} using the V5 motor\textquotesingle{}s integrated control. Puts the motors into encoder count units. Throws a {\ttfamily std\+::invalid\+\_\+argument} exception if the gear ratio is zero. The initial model\textquotesingle{}s max velocity will be propagated to the controllers.
 
 
 \begin{DoxyParams}{Parameters}
 {\em itime\+Util} & The \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}}. \\
 \hline
-{\em imodel\+Args} & Chassis\+Model\+Args \\
+{\em imodel} & The \mbox{\hyperlink{classokapi_1_1ChassisModel}{Chassis\+Model}} used to read from sensors/write to motors. \\
 \hline
-{\em ileft\+Controller\+Args} & left side controller params \\
+{\em ileft\+Controller} & The controller used for the left side motors. \\
 \hline
-{\em iright\+Controller\+Args} & right side controller params \\
+{\em iright\+Controller} & The controller used for the right side motors. \\
 \hline
-{\em igearset} & motor internal gearset and gear ratio \\
+{\em igearset} & The internal gearset and external ratio used on the drive motors. \\
 \hline
-{\em iscales} & see \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} docs \\
+{\em iscales} & The \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}}. \\
 \hline
 {\em ilogger} & The logger this instance will log to. \\
 \hline
@@ -167,6 +167,16 @@ Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a239802eda7e4317a65d
 Drives the robot straight for a distance (using closed-\/loop control).
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Drive forward 6 inches}}
+\DoxyCodeLine{chassis->moveDistance(6\_in);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Drive backward 0.2 meters}}
+\DoxyCodeLine{chassis->moveDistance(-0.2\_m);}
+\end{DoxyCode}
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em itarget} & distance to travel \\
 \hline
@@ -182,6 +192,13 @@ Implements \mbox{\hyperlink{classokapi_1_1ChassisController_a6d5b69139dfa8b814d0
 {\footnotesize\ttfamily void okapi\+::\+Chassis\+Controller\+Integrated\+::move\+Distance (\begin{DoxyParamCaption}\item[{double}]{itarget }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 Drives the robot straight for a distance (using closed-\/loop control).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Drive forward by spinning the motors 400 degrees}}
+\DoxyCodeLine{chassis->moveDistance(400);}
+\end{DoxyCode}
+
 
 
 \begin{DoxyParams}{Parameters}
@@ -275,6 +292,13 @@ Implements \mbox{\hyperlink{classokapi_1_1ChassisController_ac67edbbbe1c8480c450
 Turns the robot clockwise in place (using closed-\/loop control).
 
 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Turn 90 degrees clockwise}}
+\DoxyCodeLine{chassis->turnAngle(90\_deg);}
+\end{DoxyCode}
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em ideg\+Target} & angle to turn for \\
 \hline
@@ -290,6 +314,13 @@ Implements \mbox{\hyperlink{classokapi_1_1ChassisController_aab12308b3fad6793c00
 {\footnotesize\ttfamily void okapi\+::\+Chassis\+Controller\+Integrated\+::turn\+Angle (\begin{DoxyParamCaption}\item[{double}]{ideg\+Target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 Turns the robot clockwise in place (using closed-\/loop control).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Turn clockwise by spinning the motors 200 degrees}}
+\DoxyCodeLine{chassis->turnAngle(200);}
+\end{DoxyCode}
+
 
 
 \begin{DoxyParams}{Parameters}

@@ -25,9 +25,9 @@ virtual bool \mbox{\hyperlink{classokapi_1_1ControllerButton_a35ee73925d03c31b19
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-pros\+::\+Controller \mbox{\hyperlink{classokapi_1_1ControllerButton_a7cbfbe335f633c6f7d12d12d51f0c830}{controller}}
+pros\+::controller\+\_\+id\+\_\+e\+\_\+t \mbox{\hyperlink{classokapi_1_1ControllerButton_a0e671c560eccd470d1a00f3f5444cc53}{id}}
 \item 
-const \mbox{\hyperlink{namespaceokapi_af5040b3f1f33d27698871423e1453ab6}{Controller\+Digital}} \mbox{\hyperlink{classokapi_1_1ControllerButton_a1839a778e3a25b7cfcd954e733f74321}{btn}}
+pros\+::controller\+\_\+digital\+\_\+e\+\_\+t \mbox{\hyperlink{classokapi_1_1ControllerButton_aec7d466c709dac6876d8f27245afde1e}{btn}}
 \end{DoxyCompactItemize}
 
 
@@ -38,12 +38,32 @@ const \mbox{\hyperlink{namespaceokapi_af5040b3f1f33d27698871423e1453ab6}{Control
 \subsubsection{\texorpdfstring{ControllerButton()}{ControllerButton()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily okapi\+::\+Controller\+Button\+::\+Controller\+Button (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceokapi_af5040b3f1f33d27698871423e1453ab6}{Controller\+Digital}}}]{ibtn,  }\item[{bool}]{iinverted = {\ttfamily false} }\end{DoxyParamCaption})}
 
+A button on a \mbox{\hyperlink{classokapi_1_1Controller}{Controller}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ibtn} & The button id. \\
+\hline
+{\em iinverted} & Whether the button is inverted (default pressed instead of default released). \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classokapi_1_1ControllerButton_a491473201555bb78fb5dc20666e12bcf}\label{classokapi_1_1ControllerButton_a491473201555bb78fb5dc20666e12bcf}} 
 \index{okapi::ControllerButton@{okapi::ControllerButton}!ControllerButton@{ControllerButton}}
 \index{ControllerButton@{ControllerButton}!okapi::ControllerButton@{okapi::ControllerButton}}
 \subsubsection{\texorpdfstring{ControllerButton()}{ControllerButton()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily okapi\+::\+Controller\+Button\+::\+Controller\+Button (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceokapi_a56349a0562b06c6ffc742e94cb1e4361}{Controller\+Id}}}]{icontroller,  }\item[{\mbox{\hyperlink{namespaceokapi_af5040b3f1f33d27698871423e1453ab6}{Controller\+Digital}}}]{ibtn,  }\item[{bool}]{iinverted = {\ttfamily false} }\end{DoxyParamCaption})}
 
+A button on a \mbox{\hyperlink{classokapi_1_1Controller}{Controller}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em icontroller} & The \mbox{\hyperlink{classokapi_1_1Controller}{Controller}} the button is on. \\
+\hline
+{\em ibtn} & The button id. \\
+\hline
+{\em iinverted} & Whether the button is inverted (default pressed instead of default released). \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
@@ -60,17 +80,17 @@ Implements \mbox{\hyperlink{classokapi_1_1ButtonBase_a748b6f2b5ebce9fa9f6bbc9d17
 
 
 \subsection{Member Data Documentation}
-\mbox{\Hypertarget{classokapi_1_1ControllerButton_a1839a778e3a25b7cfcd954e733f74321}\label{classokapi_1_1ControllerButton_a1839a778e3a25b7cfcd954e733f74321}} 
+\mbox{\Hypertarget{classokapi_1_1ControllerButton_aec7d466c709dac6876d8f27245afde1e}\label{classokapi_1_1ControllerButton_aec7d466c709dac6876d8f27245afde1e}} 
 \index{okapi::ControllerButton@{okapi::ControllerButton}!btn@{btn}}
 \index{btn@{btn}!okapi::ControllerButton@{okapi::ControllerButton}}
 \subsubsection{\texorpdfstring{btn}{btn}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{namespaceokapi_af5040b3f1f33d27698871423e1453ab6}{Controller\+Digital}} okapi\+::\+Controller\+Button\+::btn\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily pros\+::controller\+\_\+digital\+\_\+e\+\_\+t okapi\+::\+Controller\+Button\+::btn\hspace{0.3cm}{\ttfamily [protected]}}
 
-\mbox{\Hypertarget{classokapi_1_1ControllerButton_a7cbfbe335f633c6f7d12d12d51f0c830}\label{classokapi_1_1ControllerButton_a7cbfbe335f633c6f7d12d12d51f0c830}} 
-\index{okapi::ControllerButton@{okapi::ControllerButton}!controller@{controller}}
-\index{controller@{controller}!okapi::ControllerButton@{okapi::ControllerButton}}
-\subsubsection{\texorpdfstring{controller}{controller}}
-{\footnotesize\ttfamily pros\+::\+Controller okapi\+::\+Controller\+Button\+::controller\hspace{0.3cm}{\ttfamily [protected]}}
+\mbox{\Hypertarget{classokapi_1_1ControllerButton_a0e671c560eccd470d1a00f3f5444cc53}\label{classokapi_1_1ControllerButton_a0e671c560eccd470d1a00f3f5444cc53}} 
+\index{okapi::ControllerButton@{okapi::ControllerButton}!id@{id}}
+\index{id@{id}!okapi::ControllerButton@{okapi::ControllerButton}}
+\subsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily pros\+::controller\+\_\+id\+\_\+e\+\_\+t okapi\+::\+Controller\+Button\+::id\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 

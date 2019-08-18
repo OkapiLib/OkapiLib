@@ -25,7 +25,7 @@ var searchData=
   ['placemark',['placeMark',['../classokapi_1_1AbstractTimer.html#a34c9be79510d23d702fd22188d542ec9',1,'okapi::AbstractTimer']]],
   ['pminus',['Pminus',['../classokapi_1_1EKFFilter.html#a6ed132e10b9e4ed18c687af7709f4b7c',1,'okapi::EKFFilter']]],
   ['point',['Point',['../structokapi_1_1Point.html',1,'okapi']]],
-  ['port',['port',['../classokapi_1_1ADIButton.html#a0bded65076f7c921a55377a5abe0b407',1,'okapi::ADIButton::port()'],['../classokapi_1_1ADIMotor.html#aae748af2c07c58821db34dff7924f4b7',1,'okapi::ADIMotor::port()'],['../classokapi_1_1Potentiometer.html#ade12a9942bf6fd83f43e38f22ed210d3',1,'okapi::Potentiometer::port()']]],
+  ['port',['port',['../classokapi_1_1ADIButton.html#a0bded65076f7c921a55377a5abe0b407',1,'okapi::ADIButton::port()'],['../classokapi_1_1ADIMotor.html#aae748af2c07c58821db34dff7924f4b7',1,'okapi::ADIMotor::port()'],['../classokapi_1_1Motor.html#a25a8cc5b2fe8e50d83c42129b0d57b7e',1,'okapi::Motor::port()'],['../classokapi_1_1IntegratedEncoder.html#a1eb50864ff5509d1d11073325f2353fa',1,'okapi::IntegratedEncoder::port()'],['../classokapi_1_1Potentiometer.html#ade12a9942bf6fd83f43e38f22ed210d3',1,'okapi::Potentiometer::port()']]],
   ['pos',['pos',['../structokapi_1_1PIDTuner_1_1Particle.html#a59ef510201da8dc860a803c202044b2d',1,'okapi::PIDTuner::Particle']]],
   ['pospid',['posPID',['../classokapi_1_1IterativeControllerFactory.html#a2ff979d01d67cee2c0d86b07690a8081',1,'okapi::IterativeControllerFactory']]],
   ['potentiometer',['Potentiometer',['../classokapi_1_1Potentiometer.html',1,'okapi::Potentiometer'],['../classokapi_1_1Potentiometer.html#a1e528bdba36d41f3698f3f451d2a2510',1,'okapi::Potentiometer::Potentiometer()']]],

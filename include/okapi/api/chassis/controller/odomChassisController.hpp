@@ -17,14 +17,15 @@ namespace okapi {
 class OdomChassisController : public ChassisController {
   public:
   /**
-   * Odometry based chassis controller. Starts task at the default for odometry when constructed.
+   * Odometry based chassis controller. Starts task at the default for odometry when constructed,
+   * which calls `Odometry::step` every `10ms`.
    *
    * Moves the robot around in the odom frame. Instead of telling the robot to drive forward or
    * turn some amount, you instead tell it to drive to a specific point on the field or turn to
    * a specific angle relative to its starting position.
    *
    * @param itimeUtil The TimeUtil.
-   * @param iparams odometry parameters for the internal odometry math
+   * @param iodometry The odometry instance to run in a new task.
    * @param imoveThreshold minimum length movement (smaller movements will be skipped)
    * @param iturnThreshold minimum angle turn (smaller turns will be skipped)
    */

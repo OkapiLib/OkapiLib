@@ -7,7 +7,7 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classokapi_1_1VelMath_a47804f85fa8beb088602811217d0a996}{Vel\+Math}} (double iticks\+Per\+Rev, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ ifilter, Q\+Time isample\+Time, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractTimer}{Abstract\+Timer}} $>$ iloop\+Dt\+Timer, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\mbox{\hyperlink{classokapi_1_1VelMath_af70c4c5ae0a71719e833ba375f76b5d1}{Vel\+Math}} (double iticks\+Per\+Rev, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ ifilter, Q\+Time isample\+Time, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractTimer}{Abstract\+Timer}} $>$ iloop\+Dt\+Timer, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ ilogger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
 \item 
 virtual \mbox{\hyperlink{classokapi_1_1VelMath_a555b678899ad8e231543d6f206ae0db6}{$\sim$\+Vel\+Math}} ()
 \item 
@@ -43,21 +43,21 @@ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ \m
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classokapi_1_1VelMath_a47804f85fa8beb088602811217d0a996}\label{classokapi_1_1VelMath_a47804f85fa8beb088602811217d0a996}} 
+\mbox{\Hypertarget{classokapi_1_1VelMath_af70c4c5ae0a71719e833ba375f76b5d1}\label{classokapi_1_1VelMath_af70c4c5ae0a71719e833ba375f76b5d1}} 
 \index{okapi::VelMath@{okapi::VelMath}!VelMath@{VelMath}}
 \index{VelMath@{VelMath}!okapi::VelMath@{okapi::VelMath}}
 \subsubsection{\texorpdfstring{VelMath()}{VelMath()}}
-{\footnotesize\ttfamily okapi\+::\+Vel\+Math\+::\+Vel\+Math (\begin{DoxyParamCaption}\item[{double}]{iticks\+Per\+Rev,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{ifilter,  }\item[{Q\+Time}]{isample\+Time,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractTimer}{Abstract\+Timer}} $>$}]{iloop\+Dt\+Timer,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily okapi\+::\+Vel\+Math\+::\+Vel\+Math (\begin{DoxyParamCaption}\item[{double}]{iticks\+Per\+Rev,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$}]{ifilter,  }\item[{Q\+Time}]{isample\+Time,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractTimer}{Abstract\+Timer}} $>$}]{iloop\+Dt\+Timer,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
 
-Velocity math helper. Calculates filtered velocity. Throws a std\+::invalid\+\_\+argument exception if iticks\+Per\+Rev is zero.
+Velocity math helper. Calculates filtered velocity. Throws a {\ttfamily std\+::invalid\+\_\+argument} exception if {\ttfamily iticks\+Per\+Rev} is zero.
 
 
 \begin{DoxyParams}{Parameters}
-{\em iticks\+Per\+Rev} & number of ticks per revolution (or whatever units you are using) \\
+{\em iticks\+Per\+Rev} & The number of ticks per revolution (or whatever units you are using). \\
 \hline
-{\em ifilter} & filter used for filtering the calculated velocity \\
+{\em ifilter} & The filter used for filtering the calculated velocity. \\
 \hline
-{\em isample\+Time} & the minimum time between velocity measurements \\
+{\em isample\+Time} & The minimum time between velocity measurements. \\
 \hline
 {\em ilogger} & The logger this instance will log to. \\
 \hline
@@ -77,21 +77,32 @@ Velocity math helper. Calculates filtered velocity. Throws a std\+::invalid\+\_\
 \subsubsection{\texorpdfstring{getAccel()}{getAccel()}}
 {\footnotesize\ttfamily Q\+Angular\+Acceleration okapi\+::\+Vel\+Math\+::get\+Accel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
-Returns the last calculated acceleration. \mbox{\Hypertarget{classokapi_1_1VelMath_ae366b0895bfac15e986448aa9c22b26c}\label{classokapi_1_1VelMath_ae366b0895bfac15e986448aa9c22b26c}} 
+\begin{DoxyReturn}{Returns}
+The last calculated acceleration. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1VelMath_ae366b0895bfac15e986448aa9c22b26c}\label{classokapi_1_1VelMath_ae366b0895bfac15e986448aa9c22b26c}} 
 \index{okapi::VelMath@{okapi::VelMath}!getVelocity@{getVelocity}}
 \index{getVelocity@{getVelocity}!okapi::VelMath@{okapi::VelMath}}
 \subsubsection{\texorpdfstring{getVelocity()}{getVelocity()}}
 {\footnotesize\ttfamily Q\+Angular\+Speed okapi\+::\+Vel\+Math\+::get\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
-Returns the last calculated velocity. \mbox{\Hypertarget{classokapi_1_1VelMath_a0a95837a35bfb2702a170da95daba559}\label{classokapi_1_1VelMath_a0a95837a35bfb2702a170da95daba559}} 
+\begin{DoxyReturn}{Returns}
+The last calculated velocity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classokapi_1_1VelMath_a0a95837a35bfb2702a170da95daba559}\label{classokapi_1_1VelMath_a0a95837a35bfb2702a170da95daba559}} 
 \index{okapi::VelMath@{okapi::VelMath}!setTicksPerRev@{setTicksPerRev}}
 \index{setTicksPerRev@{setTicksPerRev}!okapi::VelMath@{okapi::VelMath}}
 \subsubsection{\texorpdfstring{setTicksPerRev()}{setTicksPerRev()}}
 {\footnotesize\ttfamily void okapi\+::\+Vel\+Math\+::set\+Ticks\+Per\+Rev (\begin{DoxyParamCaption}\item[{double}]{i\+T\+PR }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-Sets ticks per revolution (or whatever units you are using).
+Sets ticks per revolution (or whatever units you are using). Throws a {\ttfamily std\+::invalid\+\_\+argument} exception if iticks\+Per\+Rev is zero.
 
-@para i\+T\+PR ticks per revolution \mbox{\Hypertarget{classokapi_1_1VelMath_a4c6e14c7f2054512b59a30736f61982f}\label{classokapi_1_1VelMath_a4c6e14c7f2054512b59a30736f61982f}} 
+
+\begin{DoxyParams}{Parameters}
+{\em i\+T\+PR} & The number of ticks per revolution. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classokapi_1_1VelMath_a4c6e14c7f2054512b59a30736f61982f}\label{classokapi_1_1VelMath_a4c6e14c7f2054512b59a30736f61982f}} 
 \index{okapi::VelMath@{okapi::VelMath}!step@{step}}
 \index{step@{step}!okapi::VelMath@{okapi::VelMath}}
 \subsubsection{\texorpdfstring{step()}{step()}}
@@ -101,11 +112,11 @@ Calculates the current velocity and acceleration. Returns the (filtered) velocit
 
 
 \begin{DoxyParams}{Parameters}
-{\em inew\+Pos} & new position \\
+{\em inew\+Pos} & The new position measurement. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-current (filtered) velocity 
+The new velocity estimate. 
 \end{DoxyReturn}
 
 

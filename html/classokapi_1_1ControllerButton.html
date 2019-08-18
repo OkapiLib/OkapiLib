@@ -121,10 +121,10 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a7cbfbe335f633c6f7d12d12d51f0c830"><td class="memItemLeft" align="right" valign="top">pros::Controller&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ControllerButton.html#a7cbfbe335f633c6f7d12d12d51f0c830">controller</a></td></tr>
-<tr class="separator:a7cbfbe335f633c6f7d12d12d51f0c830"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1839a778e3a25b7cfcd954e733f74321"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceokapi.html#af5040b3f1f33d27698871423e1453ab6">ControllerDigital</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ControllerButton.html#a1839a778e3a25b7cfcd954e733f74321">btn</a></td></tr>
-<tr class="separator:a1839a778e3a25b7cfcd954e733f74321"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e671c560eccd470d1a00f3f5444cc53"><td class="memItemLeft" align="right" valign="top">pros::controller_id_e_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ControllerButton.html#a0e671c560eccd470d1a00f3f5444cc53">id</a></td></tr>
+<tr class="separator:a0e671c560eccd470d1a00f3f5444cc53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec7d466c709dac6876d8f27245afde1e"><td class="memItemLeft" align="right" valign="top">pros::controller_digital_e_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ControllerButton.html#aec7d466c709dac6876d8f27245afde1e">btn</a></td></tr>
+<tr class="separator:aec7d466c709dac6876d8f27245afde1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classokapi_1_1ButtonBase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classokapi_1_1ButtonBase')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classokapi_1_1ButtonBase.html">okapi::ButtonBase</a></td></tr>
 <tr class="memitem:a6eca82b96f124416c295520de271e91d inherit pro_attribs_classokapi_1_1ButtonBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ButtonBase.html#a6eca82b96f124416c295520de271e91d">inverted</a> {false}</td></tr>
 <tr class="separator:a6eca82b96f124416c295520de271e91d inherit pro_attribs_classokapi_1_1ButtonBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,6 +161,14 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>A button on a <a class="el" href="classokapi_1_1Controller.html">Controller</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ibtn</td><td>The button id. </td></tr>
+    <tr><td class="paramname">iinverted</td><td>Whether the button is inverted (default pressed instead of default released). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -195,6 +203,15 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>A button on a <a class="el" href="classokapi_1_1Controller.html">Controller</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">icontroller</td><td>The <a class="el" href="classokapi_1_1Controller.html">Controller</a> the button is on. </td></tr>
+    <tr><td class="paramname">ibtn</td><td>The button id. </td></tr>
+    <tr><td class="paramname">iinverted</td><td>Whether the button is inverted (default pressed instead of default released). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -227,8 +244,8 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a1839a778e3a25b7cfcd954e733f74321"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1839a778e3a25b7cfcd954e733f74321">&#9670;&nbsp;</a></span>btn</h2>
+<a id="aec7d466c709dac6876d8f27245afde1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec7d466c709dac6876d8f27245afde1e">&#9670;&nbsp;</a></span>btn</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -237,7 +254,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="namespaceokapi.html#af5040b3f1f33d27698871423e1453ab6">ControllerDigital</a> okapi::ControllerButton::btn</td>
+          <td class="memname">pros::controller_digital_e_t okapi::ControllerButton::btn</td>
         </tr>
       </table>
   </td>
@@ -249,8 +266,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a7cbfbe335f633c6f7d12d12d51f0c830"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7cbfbe335f633c6f7d12d12d51f0c830">&#9670;&nbsp;</a></span>controller</h2>
+<a id="a0e671c560eccd470d1a00f3f5444cc53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e671c560eccd470d1a00f3f5444cc53">&#9670;&nbsp;</a></span>id</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -259,7 +276,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">pros::Controller okapi::ControllerButton::controller</td>
+          <td class="memname">pros::controller_id_e_t okapi::ControllerButton::id</td>
         </tr>
       </table>
   </td>

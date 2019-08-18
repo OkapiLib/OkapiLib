@@ -92,10 +92,10 @@ Inheritance diagram for okapi::IntegratedEncoder:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a286d2b7796770ea5a91f498687cbe858"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1IntegratedEncoder.html#a286d2b7796770ea5a91f498687cbe858">IntegratedEncoder</a> (const pros::Motor &amp;imotor)</td></tr>
-<tr class="separator:a286d2b7796770ea5a91f498687cbe858"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05d0256b51e3631d9ee9177c4eafcb99"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1IntegratedEncoder.html#a05d0256b51e3631d9ee9177c4eafcb99">IntegratedEncoder</a> (const <a class="el" href="classokapi_1_1Motor.html">okapi::Motor</a> &amp;imotor)</td></tr>
 <tr class="separator:a05d0256b51e3631d9ee9177c4eafcb99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bf2f0ca1b334f23b4aab5afe58cc578"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1IntegratedEncoder.html#a8bf2f0ca1b334f23b4aab5afe58cc578">IntegratedEncoder</a> (std::int8_t iport, bool ireversed=false)</td></tr>
+<tr class="separator:a8bf2f0ca1b334f23b4aab5afe58cc578"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3fe091ddf4b7f36443a5616bfedc3cb"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1IntegratedEncoder.html#af3fe091ddf4b7f36443a5616bfedc3cb">get</a> () const override</td></tr>
 <tr class="separator:af3fe091ddf4b7f36443a5616bfedc3cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f95f00f59911a87a9a38633343f4311"><td class="memItemLeft" align="right" valign="top">virtual std::int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1IntegratedEncoder.html#a1f95f00f59911a87a9a38633343f4311">reset</a> () override</td></tr>
@@ -108,45 +108,14 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a2610609752fafa3cf548b328e15e15db"><td class="memItemLeft" align="right" valign="top">pros::Motor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1IntegratedEncoder.html#a2610609752fafa3cf548b328e15e15db">motor</a></td></tr>
-<tr class="separator:a2610609752fafa3cf548b328e15e15db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1eb50864ff5509d1d11073325f2353fa"><td class="memItemLeft" align="right" valign="top">std::uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1IntegratedEncoder.html#a1eb50864ff5509d1d11073325f2353fa">port</a></td></tr>
+<tr class="separator:a1eb50864ff5509d1d11073325f2353fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a354457ac0f976c9aab65c73070c0ee"><td class="memItemLeft" align="right" valign="top">std::int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1IntegratedEncoder.html#a7a354457ac0f976c9aab65c73070c0ee">reversed</a> {1}</td></tr>
+<tr class="separator:a7a354457ac0f976c9aab65c73070c0ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a286d2b7796770ea5a91f498687cbe858"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a286d2b7796770ea5a91f498687cbe858">&#9670;&nbsp;</a></span>IntegratedEncoder() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">okapi::IntegratedEncoder::IntegratedEncoder </td>
-          <td>(</td>
-          <td class="paramtype">const pros::Motor &amp;&#160;</td>
-          <td class="paramname"><em>imotor</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Integrated motor encoder. Uses the encoder inside the V5 motor.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">imotor</td><td>the motor to use the encoder from. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a05d0256b51e3631d9ee9177c4eafcb99"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05d0256b51e3631d9ee9177c4eafcb99">&#9670;&nbsp;</a></span>IntegratedEncoder() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a05d0256b51e3631d9ee9177c4eafcb99">&#9670;&nbsp;</a></span>IntegratedEncoder() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,7 +132,43 @@ Protected Attributes</h2></td></tr>
 <p>Integrated motor encoder. Uses the encoder inside the V5 motor.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">imotor</td><td>the motor to use the encoder from. </td></tr>
+    <tr><td class="paramname">imotor</td><td>The motor to use the encoder from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8bf2f0ca1b334f23b4aab5afe58cc578"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bf2f0ca1b334f23b4aab5afe58cc578">&#9670;&nbsp;</a></span>IntegratedEncoder() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">okapi::IntegratedEncoder::IntegratedEncoder </td>
+          <td>(</td>
+          <td class="paramtype">std::int8_t&#160;</td>
+          <td class="paramname"><em>iport</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>ireversed</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Integrated motor encoder. Uses the encoder inside the V5 motor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iport</td><td>The motor's port number in the range [1, 21]. </td></tr>
+    <tr><td class="paramname">ireversed</td><td>Whether the encoder is reversed. </td></tr>
   </table>
   </dd>
 </dl>
@@ -259,8 +264,8 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a2610609752fafa3cf548b328e15e15db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2610609752fafa3cf548b328e15e15db">&#9670;&nbsp;</a></span>motor</h2>
+<a id="a1eb50864ff5509d1d11073325f2353fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1eb50864ff5509d1d11073325f2353fa">&#9670;&nbsp;</a></span>port</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -269,7 +274,29 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">pros::Motor okapi::IntegratedEncoder::motor</td>
+          <td class="memname">std::uint8_t okapi::IntegratedEncoder::port</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7a354457ac0f976c9aab65c73070c0ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a354457ac0f976c9aab65c73070c0ee">&#9670;&nbsp;</a></span>reversed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::int8_t okapi::IntegratedEncoder::reversed {1}</td>
         </tr>
       </table>
   </td>

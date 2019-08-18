@@ -6,6 +6,6 @@ var searchData=
   ['beta',['beta',['../classokapi_1_1DemaFilter.html#ae3ed95c39828a178e68dd72078ddbfcc',1,'okapi::DemaFilter']]],
   ['bottomleftmotor',['bottomLeftMotor',['../classokapi_1_1XDriveModel.html#ac4c184a14b3431a1dda1136ca1133400',1,'okapi::XDriveModel']]],
   ['bottomrightmotor',['bottomRightMotor',['../classokapi_1_1XDriveModel.html#a43ba3ac3a9750895b2bfd5b8c121ca7e',1,'okapi::XDriveModel']]],
-  ['btn',['btn',['../classokapi_1_1ControllerButton.html#a1839a778e3a25b7cfcd954e733f74321',1,'okapi::ControllerButton']]],
+  ['btn',['btn',['../classokapi_1_1ControllerButton.html#aec7d466c709dac6876d8f27245afde1e',1,'okapi::ControllerButton']]],
   ['buttonarray',['buttonArray',['../classokapi_1_1Controller.html#a687a8678fd01b6d62f013b96c1cac6e4',1,'okapi::Controller']]]
 ];

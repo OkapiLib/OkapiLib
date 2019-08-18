@@ -216,12 +216,12 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><a class="el" href="classokapi_1_1Odometry.html">Odometry</a> based chassis controller. Starts task at the default for odometry when constructed.</p>
+<p><a class="el" href="classokapi_1_1Odometry.html">Odometry</a> based chassis controller. Starts task at the default for odometry when constructed, which calls <code><a class="el" href="classokapi_1_1Odometry.html#a04586a88418c606f7bbd0ac3287c730d">Odometry::step</a></code> every <code>10ms</code>.</p>
 <p>Moves the robot around in the odom frame. Instead of telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific point on the field or turn to a specific angle relative to its starting position.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">itimeUtil</td><td>The <a class="el" href="classokapi_1_1TimeUtil.html">TimeUtil</a>. </td></tr>
-    <tr><td class="paramname">iparams</td><td>odometry parameters for the internal odometry math </td></tr>
+    <tr><td class="paramname">iodometry</td><td>The odometry instance to run in a new task. </td></tr>
     <tr><td class="paramname">imoveThreshold</td><td>minimum length movement (smaller movements will be skipped) </td></tr>
     <tr><td class="paramname">iturnThreshold</td><td>minimum angle turn (smaller turns will be skipped) </td></tr>
   </table>

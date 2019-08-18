@@ -58,54 +58,71 @@ void DefaultOdomChassisController::turnToAngle(const QAngle &iangle) {
     controller->turnAngle(angleDiff);
   }
 }
+
 void DefaultOdomChassisController::moveDistance(QLength itarget) {
   controller->moveDistance(itarget);
 }
+
 void DefaultOdomChassisController::moveDistance(double itarget) {
   controller->moveDistance(itarget);
 }
+
 void DefaultOdomChassisController::moveDistanceAsync(QLength itarget) {
   controller->moveDistanceAsync(itarget);
 }
+
 void DefaultOdomChassisController::moveDistanceAsync(double itarget) {
   controller->moveDistanceAsync(itarget);
 }
+
 void DefaultOdomChassisController::turnAngle(QAngle idegTarget) {
   controller->turnAngle(idegTarget);
 }
+
 void DefaultOdomChassisController::turnAngle(double idegTarget) {
   controller->turnAngle(idegTarget);
 }
+
 void DefaultOdomChassisController::turnAngleAsync(QAngle idegTarget) {
   controller->turnAngleAsync(idegTarget);
 }
+
 void DefaultOdomChassisController::turnAngleAsync(double idegTarget) {
   controller->turnAngleAsync(idegTarget);
 }
+
 void DefaultOdomChassisController::setTurnsMirrored(bool ishouldMirror) {
   controller->setTurnsMirrored(ishouldMirror);
 }
+
 void DefaultOdomChassisController::waitUntilSettled() {
   controller->waitUntilSettled();
 }
+
 void DefaultOdomChassisController::stop() {
   controller->stop();
 }
+
 ChassisScales DefaultOdomChassisController::getChassisScales() const {
   return controller->getChassisScales();
 }
+
 AbstractMotor::GearsetRatioPair DefaultOdomChassisController::getGearsetRatioPair() const {
   return controller->getGearsetRatioPair();
 }
+
 std::shared_ptr<ChassisModel> DefaultOdomChassisController::getModel() {
   return controller->getModel();
 }
+
 ChassisModel &DefaultOdomChassisController::model() {
   return controller->model();
 }
+
 std::shared_ptr<ChassisController> DefaultOdomChassisController::getChassisController() {
   return controller;
 }
+
 ChassisController &DefaultOdomChassisController::chassisController() {
   return *controller;
 }

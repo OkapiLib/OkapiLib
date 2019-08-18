@@ -90,8 +90,8 @@ Inheritance diagram for okapi::ADIMotor:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab7a6273a01d5a0dccb4da0696b0b2050"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ADIMotor.html#ab7a6273a01d5a0dccb4da0696b0b2050">ADIMotor</a> (std::uint8_t iport, bool ireverse=false)</td></tr>
-<tr class="separator:ab7a6273a01d5a0dccb4da0696b0b2050"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44abc0f7804cc45e2ad98a54d4fea920"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ADIMotor.html#a44abc0f7804cc45e2ad98a54d4fea920">ADIMotor</a> (std::uint8_t iport, bool ireverse=false, const std::shared_ptr&lt; <a class="el" href="classokapi_1_1Logger.html">Logger</a> &gt; &amp;logger=<a class="el" href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2">Logger::getDefaultLogger</a>())</td></tr>
+<tr class="separator:a44abc0f7804cc45e2ad98a54d4fea920"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c992efbe21467c0339308fba926b1a6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ADIMotor.html#a4c992efbe21467c0339308fba926b1a6">moveVoltage</a> (std::int8_t ivoltage) const</td></tr>
 <tr class="separator:a4c992efbe21467c0339308fba926b1a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac290a47e904c728ff1e61ee85408a1be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ADIMotor.html#ac290a47e904c728ff1e61ee85408a1be">controllerSet</a> (double ivalue) override</td></tr>
@@ -105,8 +105,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a3abbe2875ba0abb35297d8dbe91cd4f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab7a6273a01d5a0dccb4da0696b0b2050"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7a6273a01d5a0dccb4da0696b0b2050">&#9670;&nbsp;</a></span>ADIMotor()</h2>
+<a id="a44abc0f7804cc45e2ad98a54d4fea920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44abc0f7804cc45e2ad98a54d4fea920">&#9670;&nbsp;</a></span>ADIMotor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -121,7 +121,13 @@ Protected Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>ireverse</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>ireverse</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classokapi_1_1Logger.html">Logger</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>logger</em> = <code><a class="el" href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2">Logger::getDefaultLogger</a>()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -130,6 +136,15 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>A motor on the ADI ports.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iport</td><td>The port number in the range ['A', 'H']. </td></tr>
+    <tr><td class="paramname">ireverse</td><td>Whether the motor is reversed. </td></tr>
+    <tr><td class="paramname">logger</td><td>The logger that initialization warnings will be logged to. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -209,15 +209,15 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a> using the V5 motor's integrated control. Puts the motors into encoder count units. Throws a std::invalid_argument exception if the gear ratio is zero. The initial model's max velocity will be propagated to the controllers.</p>
+<p><a class="el" href="classokapi_1_1ChassisController.html">ChassisController</a> using the V5 motor's integrated control. Puts the motors into encoder count units. Throws a <code>std::invalid_argument</code> exception if the gear ratio is zero. The initial model's max velocity will be propagated to the controllers.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">itimeUtil</td><td>The <a class="el" href="classokapi_1_1TimeUtil.html">TimeUtil</a>. </td></tr>
-    <tr><td class="paramname">imodelArgs</td><td>ChassisModelArgs </td></tr>
-    <tr><td class="paramname">ileftControllerArgs</td><td>left side controller params </td></tr>
-    <tr><td class="paramname">irightControllerArgs</td><td>right side controller params </td></tr>
-    <tr><td class="paramname">igearset</td><td>motor internal gearset and gear ratio </td></tr>
-    <tr><td class="paramname">iscales</td><td>see <a class="el" href="classokapi_1_1ChassisScales.html">ChassisScales</a> docs </td></tr>
+    <tr><td class="paramname">imodel</td><td>The <a class="el" href="classokapi_1_1ChassisModel.html">ChassisModel</a> used to read from sensors/write to motors. </td></tr>
+    <tr><td class="paramname">ileftController</td><td>The controller used for the left side motors. </td></tr>
+    <tr><td class="paramname">irightController</td><td>The controller used for the right side motors. </td></tr>
+    <tr><td class="paramname">igearset</td><td>The internal gearset and external ratio used on the drive motors. </td></tr>
+    <tr><td class="paramname">iscales</td><td>The <a class="el" href="classokapi_1_1ChassisScales.html">ChassisScales</a>. </td></tr>
     <tr><td class="paramname">ilogger</td><td>The logger this instance will log to. </td></tr>
   </table>
   </dd>
@@ -389,7 +389,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Drives the robot straight for a distance (using closed-loop control).</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<div class="fragment"><div class="line"><span class="comment">// Drive forward 6 inches</span></div><div class="line">chassis-&gt;moveDistance(6_in);</div><div class="line"></div><div class="line"><span class="comment">// Drive backward 0.2 meters</span></div><div class="line">chassis-&gt;moveDistance(-0.2_m);</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">itarget</td><td>distance to travel </td></tr>
   </table>
@@ -424,7 +424,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Drives the robot straight for a distance (using closed-loop control).</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<div class="fragment"><div class="line"><span class="comment">// Drive forward by spinning the motors 400 degrees</span></div><div class="line">chassis-&gt;moveDistance(400);</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">itarget</td><td>distance to travel in motor degrees </td></tr>
   </table>
@@ -625,7 +625,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Turns the robot clockwise in place (using closed-loop control).</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<div class="fragment"><div class="line"><span class="comment">// Turn 90 degrees clockwise</span></div><div class="line">chassis-&gt;turnAngle(90_deg);</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">idegTarget</td><td>angle to turn for </td></tr>
   </table>
@@ -660,7 +660,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Turns the robot clockwise in place (using closed-loop control).</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<div class="fragment"><div class="line"><span class="comment">// Turn clockwise by spinning the motors 200 degrees</span></div><div class="line">chassis-&gt;turnAngle(200);</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">idegTarget</td><td>angle to turn for in motor degrees </td></tr>
   </table>

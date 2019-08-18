@@ -81,8 +81,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a47804f85fa8beb088602811217d0a996"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1VelMath.html#a47804f85fa8beb088602811217d0a996">VelMath</a> (double iticksPerRev, std::unique_ptr&lt; <a class="el" href="classokapi_1_1Filter.html">Filter</a> &gt; ifilter, QTime isampleTime, std::unique_ptr&lt; <a class="el" href="classokapi_1_1AbstractTimer.html">AbstractTimer</a> &gt; iloopDtTimer, const std::shared_ptr&lt; <a class="el" href="classokapi_1_1Logger.html">Logger</a> &gt; &amp;ilogger=<a class="el" href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2">Logger::getDefaultLogger</a>())</td></tr>
-<tr class="separator:a47804f85fa8beb088602811217d0a996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af70c4c5ae0a71719e833ba375f76b5d1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1VelMath.html#af70c4c5ae0a71719e833ba375f76b5d1">VelMath</a> (double iticksPerRev, std::unique_ptr&lt; <a class="el" href="classokapi_1_1Filter.html">Filter</a> &gt; ifilter, QTime isampleTime, std::unique_ptr&lt; <a class="el" href="classokapi_1_1AbstractTimer.html">AbstractTimer</a> &gt; iloopDtTimer, std::shared_ptr&lt; <a class="el" href="classokapi_1_1Logger.html">Logger</a> &gt; ilogger=<a class="el" href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2">Logger::getDefaultLogger</a>())</td></tr>
+<tr class="separator:af70c4c5ae0a71719e833ba375f76b5d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a555b678899ad8e231543d6f206ae0db6"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1VelMath.html#a555b678899ad8e231543d6f206ae0db6">~VelMath</a> ()</td></tr>
 <tr class="separator:a555b678899ad8e231543d6f206ae0db6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c6e14c7f2054512b59a30736f61982f"><td class="memItemLeft" align="right" valign="top">virtual QAngularSpeed&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1VelMath.html#a4c6e14c7f2054512b59a30736f61982f">step</a> (double inewPos)</td></tr>
@@ -116,8 +116,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:ab100cf49e925d37139d5bf4c4aca87d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a47804f85fa8beb088602811217d0a996"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47804f85fa8beb088602811217d0a996">&#9670;&nbsp;</a></span>VelMath()</h2>
+<a id="af70c4c5ae0a71719e833ba375f76b5d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af70c4c5ae0a71719e833ba375f76b5d1">&#9670;&nbsp;</a></span>VelMath()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,7 +149,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classokapi_1_1Logger.html">Logger</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classokapi_1_1Logger.html">Logger</a> &gt;&#160;</td>
           <td class="paramname"><em>ilogger</em> = <code><a class="el" href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2">Logger::getDefaultLogger</a>()</code>&#160;</td>
         </tr>
         <tr>
@@ -159,12 +159,12 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Velocity math helper. Calculates filtered velocity. Throws a std::invalid_argument exception if iticksPerRev is zero.</p>
+<p>Velocity math helper. Calculates filtered velocity. Throws a <code>std::invalid_argument</code> exception if <code>iticksPerRev</code> is zero.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">iticksPerRev</td><td>number of ticks per revolution (or whatever units you are using) </td></tr>
-    <tr><td class="paramname">ifilter</td><td>filter used for filtering the calculated velocity </td></tr>
-    <tr><td class="paramname">isampleTime</td><td>the minimum time between velocity measurements </td></tr>
+    <tr><td class="paramname">iticksPerRev</td><td>The number of ticks per revolution (or whatever units you are using). </td></tr>
+    <tr><td class="paramname">ifilter</td><td>The filter used for filtering the calculated velocity. </td></tr>
+    <tr><td class="paramname">isampleTime</td><td>The minimum time between velocity measurements. </td></tr>
     <tr><td class="paramname">ilogger</td><td>The logger this instance will log to. </td></tr>
   </table>
   </dd>
@@ -220,7 +220,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Returns the last calculated acceleration. </p>
+<dl class="section return"><dt>Returns</dt><dd>The last calculated acceleration. </dd></dl>
 
 </div>
 </div>
@@ -246,7 +246,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Returns the last calculated velocity. </p>
+<dl class="section return"><dt>Returns</dt><dd>The last calculated velocity. </dd></dl>
 
 </div>
 </div>
@@ -273,8 +273,13 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Sets ticks per revolution (or whatever units you are using).</p>
-<p>@para iTPR ticks per revolution </p>
+<p>Sets ticks per revolution (or whatever units you are using). Throws a <code>std::invalid_argument</code> exception if iticksPerRev is zero.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iTPR</td><td>The number of ticks per revolution. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -304,11 +309,11 @@ Protected Attributes</h2></td></tr>
 <p>Calculates the current velocity and acceleration. Returns the (filtered) velocity.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">inewPos</td><td>new position </td></tr>
+    <tr><td class="paramname">inewPos</td><td>The new position measurement. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>current (filtered) velocity </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The new velocity estimate. </dd></dl>
 
 </div>
 </div>

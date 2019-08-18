@@ -90,16 +90,14 @@ Inheritance diagram for okapi::ComposableFilter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a02bc789153f129d7de29ff96bd8d79d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ComposableFilter.html#a02bc789153f129d7de29ff96bd8d79d6">ComposableFilter</a> ()</td></tr>
-<tr class="separator:a02bc789153f129d7de29ff96bd8d79d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab435425858bcf6710a9ffc1fdcd84fa0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ComposableFilter.html#ab435425858bcf6710a9ffc1fdcd84fa0">ComposableFilter</a> (const std::initializer_list&lt; std::shared_ptr&lt; <a class="el" href="classokapi_1_1Filter.html">Filter</a> &gt;&gt; &amp;ilist)</td></tr>
 <tr class="separator:ab435425858bcf6710a9ffc1fdcd84fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76925f04dcd186b249e5bfb169f27992"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ComposableFilter.html#a76925f04dcd186b249e5bfb169f27992">filter</a> (double ireading) override</td></tr>
 <tr class="separator:a76925f04dcd186b249e5bfb169f27992"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d54899ce84c463af2f22cfbf36c7c7c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ComposableFilter.html#a2d54899ce84c463af2f22cfbf36c7c7c">getOutput</a> () const override</td></tr>
 <tr class="separator:a2d54899ce84c463af2f22cfbf36c7c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61d20215a1d89357c8720d04b23a31ed"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ComposableFilter.html#a61d20215a1d89357c8720d04b23a31ed">addFilter</a> (const std::shared_ptr&lt; <a class="el" href="classokapi_1_1Filter.html">Filter</a> &gt; &amp;ifilter)</td></tr>
-<tr class="separator:a61d20215a1d89357c8720d04b23a31ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a051c89bddbccaaaffa83d868f6b289"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1ComposableFilter.html#a5a051c89bddbccaaaffa83d868f6b289">addFilter</a> (std::shared_ptr&lt; <a class="el" href="classokapi_1_1Filter.html">Filter</a> &gt; ifilter)</td></tr>
+<tr class="separator:a5a051c89bddbccaaaffa83d868f6b289"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classokapi_1_1Filter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classokapi_1_1Filter')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classokapi_1_1Filter.html">okapi::Filter</a></td></tr>
 <tr class="memitem:a7391c913f315e28947bbfc3d8e29bef8 inherit pub_methods_classokapi_1_1Filter"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classokapi_1_1Filter.html#a7391c913f315e28947bbfc3d8e29bef8">~Filter</a> ()</td></tr>
 <tr class="separator:a7391c913f315e28947bbfc3d8e29bef8 inherit pub_methods_classokapi_1_1Filter"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,34 +110,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:ab956536a303c97c86fd2ec3af3c35eef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a02bc789153f129d7de29ff96bd8d79d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02bc789153f129d7de29ff96bd8d79d6">&#9670;&nbsp;</a></span>ComposableFilter() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">okapi::ComposableFilter::ComposableFilter </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>A composable filter is a filter that consists of other filters. The input signal is passed through each filter in sequence. The final output of this filter is the output of the last filter. </p>
-
-</div>
-</div>
 <a id="ab435425858bcf6710a9ffc1fdcd84fa0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab435425858bcf6710a9ffc1fdcd84fa0">&#9670;&nbsp;</a></span>ComposableFilter() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab435425858bcf6710a9ffc1fdcd84fa0">&#9670;&nbsp;</a></span>ComposableFilter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,7 +128,7 @@ Protected Attributes</h2></td></tr>
 <p>A composable filter is a filter that consists of other filters. The input signal is passed through each filter in sequence. The final output of this filter is the output of the last filter.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ilist</td><td>the filters to use in sequence </td></tr>
+    <tr><td class="paramname">ilist</td><td>The filters to use in sequence. </td></tr>
   </table>
   </dd>
 </dl>
@@ -164,8 +136,8 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a61d20215a1d89357c8720d04b23a31ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61d20215a1d89357c8720d04b23a31ed">&#9670;&nbsp;</a></span>addFilter()</h2>
+<a id="a5a051c89bddbccaaaffa83d868f6b289"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a051c89bddbccaaaffa83d868f6b289">&#9670;&nbsp;</a></span>addFilter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -176,7 +148,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">void okapi::ComposableFilter::addFilter </td>
           <td>(</td>
-          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classokapi_1_1Filter.html">Filter</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classokapi_1_1Filter.html">Filter</a> &gt;&#160;</td>
           <td class="paramname"><em>ifilter</em></td><td>)</td>
           <td></td>
         </tr>
@@ -190,7 +162,7 @@ Protected Attributes</h2></td></tr>
 <p>Adds a filter to the end of the sequence.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ifilter</td><td>the filter to add </td></tr>
+    <tr><td class="paramname">ifilter</td><td>The filter to add. </td></tr>
   </table>
   </dd>
 </dl>
@@ -220,14 +192,14 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Filters a value, like a sensor reading.</p>
+<p>Filters a value.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ireading</td><td>new measurement </td></tr>
+    <tr><td class="paramname">ireading</td><td>A new measurement. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>filtered result </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The filtered result. </dd></dl>
 
 <p>Implements <a class="el" href="classokapi_1_1Filter.html#a7c2ea0b64b37b688900189856d58da15">okapi::Filter</a>.</p>
 
@@ -255,8 +227,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Returns the previous output from filter.</p>
-<dl class="section return"><dt>Returns</dt><dd>the previous output from filter </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The previous output from filter. </dd></dl>
 
 <p>Implements <a class="el" href="classokapi_1_1Filter.html#a3469cd4bc108f8accf300d9f5cc9f42f">okapi::Filter</a>.</p>
 

@@ -7,7 +7,7 @@ var searchData=
   ['pi',['pi',['../namespaceokapi.html#a3456eff6b02ec38b7771c227250f101c',1,'okapi']]],
   ['pi2',['pi2',['../namespaceokapi.html#a0f3c3909136daa4ae9532361a870a213',1,'okapi']]],
   ['pminus',['Pminus',['../classokapi_1_1EKFFilter.html#a6ed132e10b9e4ed18c687af7709f4b7c',1,'okapi::EKFFilter']]],
-  ['port',['port',['../classokapi_1_1ADIButton.html#a0bded65076f7c921a55377a5abe0b407',1,'okapi::ADIButton::port()'],['../classokapi_1_1ADIMotor.html#aae748af2c07c58821db34dff7924f4b7',1,'okapi::ADIMotor::port()'],['../classokapi_1_1Potentiometer.html#ade12a9942bf6fd83f43e38f22ed210d3',1,'okapi::Potentiometer::port()']]],
+  ['port',['port',['../classokapi_1_1ADIButton.html#a0bded65076f7c921a55377a5abe0b407',1,'okapi::ADIButton::port()'],['../classokapi_1_1ADIMotor.html#aae748af2c07c58821db34dff7924f4b7',1,'okapi::ADIMotor::port()'],['../classokapi_1_1Motor.html#a25a8cc5b2fe8e50d83c42129b0d57b7e',1,'okapi::Motor::port()'],['../classokapi_1_1IntegratedEncoder.html#a1eb50864ff5509d1d11073325f2353fa',1,'okapi::IntegratedEncoder::port()'],['../classokapi_1_1Potentiometer.html#ade12a9942bf6fd83f43e38f22ed210d3',1,'okapi::Potentiometer::port()']]],
   ['pos',['pos',['../structokapi_1_1PIDTuner_1_1Particle.html#a59ef510201da8dc860a803c202044b2d',1,'okapi::PIDTuner::Particle']]],
   ['pound',['pound',['../namespaceokapi.html#a15f5612272759c7efdcab4bae5b4fa09',1,'okapi']]],
   ['poundforce',['poundforce',['../namespaceokapi.html#a41fe97a6b959d171539cd48908544f77',1,'okapi']]],

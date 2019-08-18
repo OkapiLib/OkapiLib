@@ -2,11 +2,11 @@ var searchData=
 [
   ['abs',['abs',['../classokapi_1_1RQuantity.html#a6c2615772058175dec0223d662c04b29',1,'okapi::RQuantity']]],
   ['abstracttimer',['AbstractTimer',['../classokapi_1_1AbstractTimer.html#aec03f7e11e25f300ec1fd44aaff3596f',1,'okapi::AbstractTimer']]],
-  ['addfilter',['addFilter',['../classokapi_1_1ComposableFilter.html#a61d20215a1d89357c8720d04b23a31ed',1,'okapi::ComposableFilter']]],
+  ['addfilter',['addFilter',['../classokapi_1_1ComposableFilter.html#a5a051c89bddbccaaaffa83d868f6b289',1,'okapi::ComposableFilter']]],
   ['adibutton',['ADIButton',['../classokapi_1_1ADIButton.html#a84065174f1fd89bfb1aba7634c4c36d9',1,'okapi::ADIButton']]],
   ['adiencoder',['ADIEncoder',['../classokapi_1_1ADIEncoder.html#ae60daf46ded27335225cc9b6522054c6',1,'okapi::ADIEncoder']]],
   ['adigyro',['ADIGyro',['../classokapi_1_1ADIGyro.html#a04db661121327089b43d82f9aa21e168',1,'okapi::ADIGyro']]],
-  ['adimotor',['ADIMotor',['../classokapi_1_1ADIMotor.html#ab7a6273a01d5a0dccb4da0696b0b2050',1,'okapi::ADIMotor']]],
+  ['adimotor',['ADIMotor',['../classokapi_1_1ADIMotor.html#a44abc0f7804cc45e2ad98a54d4fea920',1,'okapi::ADIMotor']]],
   ['adiultrasonic',['ADIUltrasonic',['../classokapi_1_1ADIUltrasonic.html#aaa0b61d7e4d5657c4f1c6ce4925ee8e4',1,'okapi::ADIUltrasonic']]],
   ['analogtoprosenum',['analogToProsEnum',['../classokapi_1_1ControllerUtil.html#ae6459f27cc2567815ba9b6ce68c55239',1,'okapi::ControllerUtil']]],
   ['arcade',['arcade',['../classokapi_1_1ChassisModel.html#a632d4c0b74747ab3b9c5a159a36bdd03',1,'okapi::ChassisModel::arcade()'],['../classokapi_1_1SkidSteerModel.html#a145f671aa2dd1c6991945929e4a3d97d',1,'okapi::SkidSteerModel::arcade()'],['../classokapi_1_1XDriveModel.html#a0489ac1303ad42f65e346adf1dfc986f',1,'okapi::XDriveModel::arcade()']]],

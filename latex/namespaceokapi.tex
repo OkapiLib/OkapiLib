@@ -276,6 +276,8 @@ constexpr auto \mbox{\hyperlink{namespaceokapi_a8b21920388594f5d7da116069741deb4
 constexpr long \mbox{\hyperlink{namespaceokapi_a32aac326b5e0f0ba82bb5dea50852504}{modulus}} (const long lhs, const long rhs) noexcept
 \item 
 constexpr std\+::int32\+\_\+t \mbox{\hyperlink{namespaceokapi_a771e911293fb57115a4085904bd83663}{gearset\+To\+T\+PR}} (const \mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5}{Abstract\+Motor\+::gearset}} igearset) noexcept
+\item 
+constexpr std\+::int8\+\_\+t \mbox{\hyperlink{namespaceokapi_a9a07f99442516f34af3c1f22e26f75b8}{transform\+A\+D\+I\+Port}} (const std\+::int8\+\_\+t port)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -860,7 +862,31 @@ remapped value in the new range \mbox{[}new\+Min, new\+Max\mbox{]}
 {\footnotesize\ttfamily template$<$typename E $>$ \\
 constexpr auto okapi\+::to\+Underlying\+Type (\begin{DoxyParamCaption}\item[{const E}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
-Converts an enum to its value type. 
+Converts an enum to its value type. \mbox{\Hypertarget{namespaceokapi_a9a07f99442516f34af3c1f22e26f75b8}\label{namespaceokapi_a9a07f99442516f34af3c1f22e26f75b8}} 
+\index{okapi@{okapi}!transformADIPort@{transformADIPort}}
+\index{transformADIPort@{transformADIPort}!okapi@{okapi}}
+\subsubsection{\texorpdfstring{transformADIPort()}{transformADIPort()}}
+{\footnotesize\ttfamily constexpr std\+::int8\+\_\+t okapi\+::transform\+A\+D\+I\+Port (\begin{DoxyParamCaption}\item[{const std\+::int8\+\_\+t}]{port }\end{DoxyParamCaption})}
+
+Maps A\+DI port numbers/chars to numbers\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{when (port) \{}
+\DoxyCodeLine{  in [\textcolor{charliteral}{'a'}, \textcolor{charliteral}{'h'}] -> [1, 8]}
+\DoxyCodeLine{  in [\textcolor{charliteral}{'A'}, \textcolor{charliteral}{'H'}] -> [1, 8]}
+\DoxyCodeLine{  \textcolor{keywordflow}{else} -> [1, 8]}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The A\+DI port number or char. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An equivalent A\+DI port number. 
+\end{DoxyReturn}
+
 
 \subsection{Variable Documentation}
 \mbox{\Hypertarget{namespaceokapi_abf765c88ac34df87d378fb66ea5fd20c}\label{namespaceokapi_abf765c88ac34df87d378fb66ea5fd20c}} 

@@ -13,118 +13,139 @@ Inheritance diagram for okapi\+::Motor\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classokapi_1_1Motor_ae4d1eab9f7140508db8146adf6f4d8df}{Motor}} (std\+::int8\+\_\+t port)
+\mbox{\hyperlink{classokapi_1_1Motor_a6509ec14fe9e1c48c705fe74154873dd}{Motor}} (std\+::int8\+\_\+t iport)
 \item 
-\mbox{\hyperlink{classokapi_1_1Motor_afb244f7c74a9f6c6e2c40a8d7a5915ac}{Motor}} (std\+::uint8\+\_\+t port, bool reverse, \mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5}{Abstract\+Motor\+::gearset}} igearset, \mbox{\hyperlink{classokapi_1_1AbstractMotor_ae811cd825099f2defadeb1b7f7e7764c}{Abstract\+Motor\+::encoder\+Units}} \mbox{\hyperlink{classokapi_1_1AbstractMotor_ae811cd825099f2defadeb1b7f7e7764c}{encoder\+Units}}=\mbox{\hyperlink{classokapi_1_1AbstractMotor_ae811cd825099f2defadeb1b7f7e7764ca18daee01fc6e54aacd7f4c2eef60ff4d}{Abstract\+Motor\+::encoder\+Units\+::degrees}}, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&logger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
+\mbox{\hyperlink{classokapi_1_1Motor_a42ca0cde0ca0c3f987737385be9656f2}{Motor}} (std\+::uint8\+\_\+t iport, bool ireverse, \mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5}{Abstract\+Motor\+::gearset}} igearset, \mbox{\hyperlink{classokapi_1_1AbstractMotor_ae811cd825099f2defadeb1b7f7e7764c}{Abstract\+Motor\+::encoder\+Units}} iencoder\+Units, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&logger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a5f95fd5864805b57f16fa5defdbf1968}{move\+Absolute}} (double iposition, std\+::int32\+\_\+t ivelocity) override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a5f95fd5864805b57f16fa5defdbf1968}{move\+Absolute}} (double iposition, std\+::int32\+\_\+t ivelocity) override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a40f6f70ed9b12d1834551d1232303ef1}{move\+Relative}} (double iposition, std\+::int32\+\_\+t ivelocity) override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a40f6f70ed9b12d1834551d1232303ef1}{move\+Relative}} (double iposition, std\+::int32\+\_\+t ivelocity) override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_afc3377b9b10a72de0c22e9a74cbcfd16}{move\+Velocity}} (std\+::int16\+\_\+t ivelocity) override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_afc3377b9b10a72de0c22e9a74cbcfd16}{move\+Velocity}} (std\+::int16\+\_\+t ivelocity) override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a64b53a041c90c7b7a3903c607a9b17eb}{move\+Voltage}} (std\+::int16\+\_\+t ivoltage) override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a64b53a041c90c7b7a3903c607a9b17eb}{move\+Voltage}} (std\+::int16\+\_\+t ivoltage) override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a8778f90005a3add64d0dfd7574fb8289}{modify\+Profiled\+Velocity}} (std\+::int32\+\_\+t ivelocity) override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a8778f90005a3add64d0dfd7574fb8289}{modify\+Profiled\+Velocity}} (std\+::int32\+\_\+t ivelocity) override
 \item 
-virtual double \mbox{\hyperlink{classokapi_1_1Motor_af575af2b4d4cf5aea6e8aac50ef1cbbd}{get\+Target\+Position}} () override
+double \mbox{\hyperlink{classokapi_1_1Motor_af575af2b4d4cf5aea6e8aac50ef1cbbd}{get\+Target\+Position}} () override
 \item 
-virtual double \mbox{\hyperlink{classokapi_1_1Motor_a4592f8a1cce4474f85ceabd3d7e2fe0b}{get\+Position}} () override
+double \mbox{\hyperlink{classokapi_1_1Motor_a4592f8a1cce4474f85ceabd3d7e2fe0b}{get\+Position}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_aa71f3d93b734caec5c9245b211d4a0ad}{tare\+Position}} () override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_aa71f3d93b734caec5c9245b211d4a0ad}{tare\+Position}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_aee4697f4e1f39bc0206062d0247caf47}{get\+Target\+Velocity}} () override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_aee4697f4e1f39bc0206062d0247caf47}{get\+Target\+Velocity}} () override
 \item 
-virtual double \mbox{\hyperlink{classokapi_1_1Motor_a12dab94ff8e0636c01d3c568d9461655}{get\+Actual\+Velocity}} () override
+double \mbox{\hyperlink{classokapi_1_1Motor_a12dab94ff8e0636c01d3c568d9461655}{get\+Actual\+Velocity}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_ac5107f8aef228d4b4fec06d549c55cf6}{get\+Current\+Draw}} () override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_ac5107f8aef228d4b4fec06d549c55cf6}{get\+Current\+Draw}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a72c69d60e2ec69c126c84dc81f78742d}{get\+Direction}} () override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a72c69d60e2ec69c126c84dc81f78742d}{get\+Direction}} () override
 \item 
-virtual double \mbox{\hyperlink{classokapi_1_1Motor_a7703340c95e9e7dcafa243685a7d2d50}{get\+Efficiency}} () override
+double \mbox{\hyperlink{classokapi_1_1Motor_a7703340c95e9e7dcafa243685a7d2d50}{get\+Efficiency}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_aff882cb26c477355551d7bbf8e5c03bb}{is\+Over\+Current}} () override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_aff882cb26c477355551d7bbf8e5c03bb}{is\+Over\+Current}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a8a51f7dede42f768280b73d85a528d91}{is\+Over\+Temp}} () override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a8a51f7dede42f768280b73d85a528d91}{is\+Over\+Temp}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_ab4edaf8e4ed576fa2003d4cc8e02c364}{is\+Stopped}} () override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_ab4edaf8e4ed576fa2003d4cc8e02c364}{is\+Stopped}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a2640dea57e59a19aa6000da2c7cefdeb}{get\+Zero\+Position\+Flag}} () override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a2640dea57e59a19aa6000da2c7cefdeb}{get\+Zero\+Position\+Flag}} () override
 \item 
-virtual uint32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a7d16e9d0a3319a02a12476b5bec991d7}{get\+Faults}} () override
+uint32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a7d16e9d0a3319a02a12476b5bec991d7}{get\+Faults}} () override
 \item 
-virtual uint32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_acb0097ba7ac778674efaa2c0765f6f3f}{get\+Flags}} () override
+uint32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_acb0097ba7ac778674efaa2c0765f6f3f}{get\+Flags}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a74c579c35863bc5180c9551fd5185d94}{get\+Raw\+Position}} (std\+::uint32\+\_\+t $\ast$timestamp) override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a74c579c35863bc5180c9551fd5185d94}{get\+Raw\+Position}} (std\+::uint32\+\_\+t $\ast$timestamp) override
 \item 
-virtual double \mbox{\hyperlink{classokapi_1_1Motor_a992171c86829e52f5418988fada0b6fa}{get\+Power}} () override
+double \mbox{\hyperlink{classokapi_1_1Motor_a992171c86829e52f5418988fada0b6fa}{get\+Power}} () override
 \item 
-virtual double \mbox{\hyperlink{classokapi_1_1Motor_ab5b9208b001c1ab49f8c058eff58e5b3}{get\+Temperature}} () override
+double \mbox{\hyperlink{classokapi_1_1Motor_ab5b9208b001c1ab49f8c058eff58e5b3}{get\+Temperature}} () override
 \item 
-virtual double \mbox{\hyperlink{classokapi_1_1Motor_a4a8c14c49ae44d687772ff41591fdf1d}{get\+Torque}} () override
+double \mbox{\hyperlink{classokapi_1_1Motor_a4a8c14c49ae44d687772ff41591fdf1d}{get\+Torque}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_af60eb970996183d86bd4786869f5adb0}{get\+Voltage}} () override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_af60eb970996183d86bd4786869f5adb0}{get\+Voltage}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a2c40313fa5ff49c25947645885898f91}{set\+Brake\+Mode}} (\mbox{\hyperlink{classokapi_1_1AbstractMotor_a132e0485dbb59a60c3f934338d8fa601}{Abstract\+Motor\+::brake\+Mode}} imode) override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a2c40313fa5ff49c25947645885898f91}{set\+Brake\+Mode}} (\mbox{\hyperlink{classokapi_1_1AbstractMotor_a132e0485dbb59a60c3f934338d8fa601}{Abstract\+Motor\+::brake\+Mode}} imode) override
 \item 
-virtual \mbox{\hyperlink{classokapi_1_1AbstractMotor_a132e0485dbb59a60c3f934338d8fa601}{brake\+Mode}} \mbox{\hyperlink{classokapi_1_1Motor_aec419fead574828b4b1b2642a424dcbe}{get\+Brake\+Mode}} () override
+\mbox{\hyperlink{classokapi_1_1AbstractMotor_a132e0485dbb59a60c3f934338d8fa601}{brake\+Mode}} \mbox{\hyperlink{classokapi_1_1Motor_aec419fead574828b4b1b2642a424dcbe}{get\+Brake\+Mode}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_ab54e856d8d55c1f53e1be113a9e90a00}{set\+Current\+Limit}} (std\+::int32\+\_\+t ilimit) override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_ab54e856d8d55c1f53e1be113a9e90a00}{set\+Current\+Limit}} (std\+::int32\+\_\+t ilimit) override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_ae309fb32ea479cec950dfaa65f3ffebd}{get\+Current\+Limit}} () override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_ae309fb32ea479cec950dfaa65f3ffebd}{get\+Current\+Limit}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a96466636470045aa63d81cb0effc9486}{set\+Encoder\+Units}} (\mbox{\hyperlink{classokapi_1_1AbstractMotor_ae811cd825099f2defadeb1b7f7e7764c}{Abstract\+Motor\+::encoder\+Units}} iunits) override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a96466636470045aa63d81cb0effc9486}{set\+Encoder\+Units}} (\mbox{\hyperlink{classokapi_1_1AbstractMotor_ae811cd825099f2defadeb1b7f7e7764c}{Abstract\+Motor\+::encoder\+Units}} iunits) override
 \item 
-virtual \mbox{\hyperlink{classokapi_1_1AbstractMotor_ae811cd825099f2defadeb1b7f7e7764c}{encoder\+Units}} \mbox{\hyperlink{classokapi_1_1Motor_afcc6183588ce056927878dfc479e6fee}{get\+Encoder\+Units}} () override
+\mbox{\hyperlink{classokapi_1_1AbstractMotor_ae811cd825099f2defadeb1b7f7e7764c}{encoder\+Units}} \mbox{\hyperlink{classokapi_1_1Motor_afcc6183588ce056927878dfc479e6fee}{get\+Encoder\+Units}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a670cb230fe9686ce8fa71ee20607eb12}{set\+Gearing}} (\mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5}{Abstract\+Motor\+::gearset}} igearset) override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a670cb230fe9686ce8fa71ee20607eb12}{set\+Gearing}} (\mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5}{Abstract\+Motor\+::gearset}} igearset) override
 \item 
-virtual \mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5}{gearset}} \mbox{\hyperlink{classokapi_1_1Motor_a4dbe4aec1a4c6cb1cad659bada1ab8ed}{get\+Gearing}} () override
+\mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5}{gearset}} \mbox{\hyperlink{classokapi_1_1Motor_a4dbe4aec1a4c6cb1cad659bada1ab8ed}{get\+Gearing}} () override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a558e94850abf85132811a8b281e872df}{set\+Reversed}} (bool ireverse) override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a558e94850abf85132811a8b281e872df}{set\+Reversed}} (bool ireverse) override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a5aab4b416675b7f7ee324fff4d8cda30}{set\+Voltage\+Limit}} (std\+::int32\+\_\+t ilimit) override
+std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a5aab4b416675b7f7ee324fff4d8cda30}{set\+Voltage\+Limit}} (std\+::int32\+\_\+t ilimit) override
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_ae885a297c4471bddf5729c702f0b4a38}{set\+Pos\+P\+ID}} (double ikF, double ikP, double ikI, double ikD) override
+virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a13564c05ee3a9ce580850ef33280a7e9}{set\+Pos\+P\+ID}} (double ikF, double ikP, double ikI, double ikD)
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_adb3656e96c31dd0a584cf6692459ad9b}{set\+Pos\+P\+I\+D\+Full}} (double ikF, double ikP, double ikI, double ikD, double ifilter, double ilimit, double ithreshold, double iloop\+Speed) override
+virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_afe4ae812a9454167fc6ebef8713c716c}{set\+Pos\+P\+I\+D\+Full}} (double ikF, double ikP, double ikI, double ikD, double ifilter, double ilimit, double ithreshold, double iloop\+Speed)
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a6a78550fa3eee6efa092307e4b159d68}{set\+Vel\+P\+ID}} (double ikF, double ikP, double ikI, double ikD) override
+virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_afe462dda44723c4e39f9ef9d1a95e23e}{set\+Vel\+P\+ID}} (double ikF, double ikP, double ikI, double ikD)
 \item 
-virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_af09e5a627843ec895b78077d8a5326a5}{set\+Vel\+P\+I\+D\+Full}} (double ikF, double ikP, double ikI, double ikD, double ifilter, double ilimit, double ithreshold, double iloop\+Speed) override
+virtual std\+::int32\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a2719aabe6b89b8195c93614e5ce7b9f6}{set\+Vel\+P\+I\+D\+Full}} (double ikF, double ikP, double ikI, double ikD, double ifilter, double ilimit, double ithreshold, double iloop\+Speed)
 \item 
-virtual std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor}{Continuous\+Rotary\+Sensor}} $>$ \mbox{\hyperlink{classokapi_1_1Motor_a57d8ddb900475fcfba56413e61e6e252}{get\+Encoder}} () override
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ContinuousRotarySensor}{Continuous\+Rotary\+Sensor}} $>$ \mbox{\hyperlink{classokapi_1_1Motor_a57d8ddb900475fcfba56413e61e6e252}{get\+Encoder}} () override
 \item 
-virtual void \mbox{\hyperlink{classokapi_1_1Motor_a262c36a80a942d125e574d691b77b440}{controller\+Set}} (double ivalue) override
+void \mbox{\hyperlink{classokapi_1_1Motor_a262c36a80a942d125e574d691b77b440}{controller\+Set}} (double ivalue) override
+\item 
+std\+::uint8\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_ac1f1ac84ac7a96dab84cc0c0023a2ae4}{get\+Port}} () const
+\item 
+bool \mbox{\hyperlink{classokapi_1_1Motor_a75a2c72a1c941b07cea677bc4ba2e42d}{is\+Reversed}} () const
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5}{Abstract\+Motor\+::gearset}} \mbox{\hyperlink{classokapi_1_1Motor_a98f1ccfe295ebc9c4dd268f44d5f7c42}{gearset}} \{\mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5a9f27410725ab8cc8854a2769c7a516b8}{Abstract\+Motor\+::gearset\+::green}}\}
+std\+::uint8\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_a25a8cc5b2fe8e50d83c42129b0d57b7e}{port}}
+\item 
+std\+::int8\+\_\+t \mbox{\hyperlink{classokapi_1_1Motor_ad5d21f1324cc2dc887075eb11c38149d}{reversed}} \{1\}
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classokapi_1_1Motor_ae4d1eab9f7140508db8146adf6f4d8df}\label{classokapi_1_1Motor_ae4d1eab9f7140508db8146adf6f4d8df}} 
+\mbox{\Hypertarget{classokapi_1_1Motor_a6509ec14fe9e1c48c705fe74154873dd}\label{classokapi_1_1Motor_a6509ec14fe9e1c48c705fe74154873dd}} 
 \index{okapi::Motor@{okapi::Motor}!Motor@{Motor}}
 \index{Motor@{Motor}!okapi::Motor@{okapi::Motor}}
 \subsubsection{\texorpdfstring{Motor()}{Motor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily okapi\+::\+Motor\+::\+Motor (\begin{DoxyParamCaption}\item[{std\+::int8\+\_\+t}]{port }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily okapi\+::\+Motor\+::\+Motor (\begin{DoxyParamCaption}\item[{std\+::int8\+\_\+t}]{iport }\end{DoxyParamCaption})}
 
-A V5 motor. A negative port number is shorthand for reversing the motor.
+A V5 motor.
 
 
 \begin{DoxyParams}{Parameters}
-{\em port} & the port number \\
+{\em iport} & The port number in the range \mbox{[}1, 21\mbox{]}. A negative port number is shorthand for reversing the motor. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classokapi_1_1Motor_afb244f7c74a9f6c6e2c40a8d7a5915ac}\label{classokapi_1_1Motor_afb244f7c74a9f6c6e2c40a8d7a5915ac}} 
+\mbox{\Hypertarget{classokapi_1_1Motor_a42ca0cde0ca0c3f987737385be9656f2}\label{classokapi_1_1Motor_a42ca0cde0ca0c3f987737385be9656f2}} 
 \index{okapi::Motor@{okapi::Motor}!Motor@{Motor}}
 \index{Motor@{Motor}!okapi::Motor@{okapi::Motor}}
 \subsubsection{\texorpdfstring{Motor()}{Motor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily okapi\+::\+Motor\+::\+Motor (\begin{DoxyParamCaption}\item[{std\+::uint8\+\_\+t}]{port,  }\item[{bool}]{reverse,  }\item[{\mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5}{Abstract\+Motor\+::gearset}}}]{igearset,  }\item[{\mbox{\hyperlink{classokapi_1_1AbstractMotor_ae811cd825099f2defadeb1b7f7e7764c}{Abstract\+Motor\+::encoder\+Units}}}]{encoder\+Units = {\ttfamily \mbox{\hyperlink{classokapi_1_1AbstractMotor_ae811cd825099f2defadeb1b7f7e7764ca18daee01fc6e54aacd7f4c2eef60ff4d}{Abstract\+Motor\+::encoder\+Units\+::degrees}}},  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{logger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+{\footnotesize\ttfamily okapi\+::\+Motor\+::\+Motor (\begin{DoxyParamCaption}\item[{std\+::uint8\+\_\+t}]{iport,  }\item[{bool}]{ireverse,  }\item[{\mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5}{Abstract\+Motor\+::gearset}}}]{igearset,  }\item[{\mbox{\hyperlink{classokapi_1_1AbstractMotor_ae811cd825099f2defadeb1b7f7e7764c}{Abstract\+Motor\+::encoder\+Units}}}]{iencoder\+Units,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{logger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
 
+A V5 motor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iport} & The port number in the range \mbox{[}1, 21\mbox{]}. \\
+\hline
+{\em ireverse} & Whether the motor is reversed (this setting is not written to the motor, it is maintained by \mbox{\hyperlink{classokapi_1_1Motor}{okapi\+::\+Motor}} instead). \\
+\hline
+{\em igearset} & The internal gearset to set in the motor. \\
+\hline
+{\em iencoder\+Units} & The encoder units to set in the motor. \\
+\hline
+{\em logger} & The logger that initialization warnings will be logged to. \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
@@ -334,6 +355,15 @@ One of gearset according to what is set for the motor, or \mbox{\hyperlink{class
 
 Implements \mbox{\hyperlink{classokapi_1_1AbstractMotor_adc90f1fc8af6c34c4e833355693474bb}{okapi\+::\+Abstract\+Motor}}.
 
+\mbox{\Hypertarget{classokapi_1_1Motor_ac1f1ac84ac7a96dab84cc0c0023a2ae4}\label{classokapi_1_1Motor_ac1f1ac84ac7a96dab84cc0c0023a2ae4}} 
+\index{okapi::Motor@{okapi::Motor}!getPort@{getPort}}
+\index{getPort@{getPort}!okapi::Motor@{okapi::Motor}}
+\subsubsection{\texorpdfstring{getPort()}{getPort()}}
+{\footnotesize\ttfamily std\+::uint8\+\_\+t okapi\+::\+Motor\+::get\+Port (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+The port number. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classokapi_1_1Motor_a4592f8a1cce4474f85ceabd3d7e2fe0b}\label{classokapi_1_1Motor_a4592f8a1cce4474f85ceabd3d7e2fe0b}} 
 \index{okapi::Motor@{okapi::Motor}!getPosition@{getPosition}}
 \index{getPosition@{getPosition}!okapi::Motor@{okapi::Motor}}
@@ -526,6 +556,15 @@ This function uses the following values of errno when an error state is reached\
 
 Implements \mbox{\hyperlink{classokapi_1_1AbstractMotor_a61e24db43d1fe790b173cc0b4e27922f}{okapi\+::\+Abstract\+Motor}}.
 
+\mbox{\Hypertarget{classokapi_1_1Motor_a75a2c72a1c941b07cea677bc4ba2e42d}\label{classokapi_1_1Motor_a75a2c72a1c941b07cea677bc4ba2e42d}} 
+\index{okapi::Motor@{okapi::Motor}!isReversed@{isReversed}}
+\index{isReversed@{isReversed}!okapi::Motor@{okapi::Motor}}
+\subsubsection{\texorpdfstring{isReversed()}{isReversed()}}
+{\footnotesize\ttfamily bool okapi\+::\+Motor\+::is\+Reversed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Whether this motor is reversed. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classokapi_1_1Motor_ab4edaf8e4ed576fa2003d4cc8e02c364}\label{classokapi_1_1Motor_ab4edaf8e4ed576fa2003d4cc8e02c364}} 
 \index{okapi::Motor@{okapi::Motor}!isStopped@{isStopped}}
 \index{isStopped@{isStopped}!okapi::Motor@{okapi::Motor}}
@@ -755,11 +794,11 @@ This function uses the following values of errno when an error state is reached\
 
 Implements \mbox{\hyperlink{classokapi_1_1AbstractMotor_aba300f0e323cbdec60f1fee0f3197419}{okapi\+::\+Abstract\+Motor}}.
 
-\mbox{\Hypertarget{classokapi_1_1Motor_ae885a297c4471bddf5729c702f0b4a38}\label{classokapi_1_1Motor_ae885a297c4471bddf5729c702f0b4a38}} 
+\mbox{\Hypertarget{classokapi_1_1Motor_a13564c05ee3a9ce580850ef33280a7e9}\label{classokapi_1_1Motor_a13564c05ee3a9ce580850ef33280a7e9}} 
 \index{okapi::Motor@{okapi::Motor}!setPosPID@{setPosPID}}
 \index{setPosPID@{setPosPID}!okapi::Motor@{okapi::Motor}}
 \subsubsection{\texorpdfstring{setPosPID()}{setPosPID()}}
-{\footnotesize\ttfamily std\+::int32\+\_\+t okapi\+::\+Motor\+::set\+Pos\+P\+ID (\begin{DoxyParamCaption}\item[{double}]{ikF,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t okapi\+::\+Motor\+::set\+Pos\+P\+ID (\begin{DoxyParamCaption}\item[{double}]{ikF,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Sets new P\+ID constants.
 
@@ -777,15 +816,11 @@ Sets new P\+ID constants.
 \begin{DoxyReturn}{Returns}
 1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
 \end{DoxyReturn}
-
-
-Implements \mbox{\hyperlink{classokapi_1_1AbstractMotor_ad979f7591071947ab3aec693f3c73c03}{okapi\+::\+Abstract\+Motor}}.
-
-\mbox{\Hypertarget{classokapi_1_1Motor_adb3656e96c31dd0a584cf6692459ad9b}\label{classokapi_1_1Motor_adb3656e96c31dd0a584cf6692459ad9b}} 
+\mbox{\Hypertarget{classokapi_1_1Motor_afe4ae812a9454167fc6ebef8713c716c}\label{classokapi_1_1Motor_afe4ae812a9454167fc6ebef8713c716c}} 
 \index{okapi::Motor@{okapi::Motor}!setPosPIDFull@{setPosPIDFull}}
 \index{setPosPIDFull@{setPosPIDFull}!okapi::Motor@{okapi::Motor}}
 \subsubsection{\texorpdfstring{setPosPIDFull()}{setPosPIDFull()}}
-{\footnotesize\ttfamily std\+::int32\+\_\+t okapi\+::\+Motor\+::set\+Pos\+P\+I\+D\+Full (\begin{DoxyParamCaption}\item[{double}]{ikF,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD,  }\item[{double}]{ifilter,  }\item[{double}]{ilimit,  }\item[{double}]{ithreshold,  }\item[{double}]{iloop\+Speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t okapi\+::\+Motor\+::set\+Pos\+P\+I\+D\+Full (\begin{DoxyParamCaption}\item[{double}]{ikF,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD,  }\item[{double}]{ifilter,  }\item[{double}]{ilimit,  }\item[{double}]{ithreshold,  }\item[{double}]{iloop\+Speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Sets new P\+ID constants.
 
@@ -811,10 +846,6 @@ Sets new P\+ID constants.
 \begin{DoxyReturn}{Returns}
 1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
 \end{DoxyReturn}
-
-
-Implements \mbox{\hyperlink{classokapi_1_1AbstractMotor_aa440aaa9b5fa44e886a344e1e002485e}{okapi\+::\+Abstract\+Motor}}.
-
 \mbox{\Hypertarget{classokapi_1_1Motor_a558e94850abf85132811a8b281e872df}\label{classokapi_1_1Motor_a558e94850abf85132811a8b281e872df}} 
 \index{okapi::Motor@{okapi::Motor}!setReversed@{setReversed}}
 \index{setReversed@{setReversed}!okapi::Motor@{okapi::Motor}}
@@ -839,11 +870,11 @@ This function uses the following values of errno when an error state is reached\
 
 Implements \mbox{\hyperlink{classokapi_1_1AbstractMotor_a72a6a4eb9d237ad57b92401b08ad64fa}{okapi\+::\+Abstract\+Motor}}.
 
-\mbox{\Hypertarget{classokapi_1_1Motor_a6a78550fa3eee6efa092307e4b159d68}\label{classokapi_1_1Motor_a6a78550fa3eee6efa092307e4b159d68}} 
+\mbox{\Hypertarget{classokapi_1_1Motor_afe462dda44723c4e39f9ef9d1a95e23e}\label{classokapi_1_1Motor_afe462dda44723c4e39f9ef9d1a95e23e}} 
 \index{okapi::Motor@{okapi::Motor}!setVelPID@{setVelPID}}
 \index{setVelPID@{setVelPID}!okapi::Motor@{okapi::Motor}}
 \subsubsection{\texorpdfstring{setVelPID()}{setVelPID()}}
-{\footnotesize\ttfamily std\+::int32\+\_\+t okapi\+::\+Motor\+::set\+Vel\+P\+ID (\begin{DoxyParamCaption}\item[{double}]{ikF,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t okapi\+::\+Motor\+::set\+Vel\+P\+ID (\begin{DoxyParamCaption}\item[{double}]{ikF,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Sets new P\+ID constants.
 
@@ -861,15 +892,11 @@ Sets new P\+ID constants.
 \begin{DoxyReturn}{Returns}
 1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
 \end{DoxyReturn}
-
-
-Implements \mbox{\hyperlink{classokapi_1_1AbstractMotor_a314a495f2d7cb1ffe157c9dbdf8963b9}{okapi\+::\+Abstract\+Motor}}.
-
-\mbox{\Hypertarget{classokapi_1_1Motor_af09e5a627843ec895b78077d8a5326a5}\label{classokapi_1_1Motor_af09e5a627843ec895b78077d8a5326a5}} 
+\mbox{\Hypertarget{classokapi_1_1Motor_a2719aabe6b89b8195c93614e5ce7b9f6}\label{classokapi_1_1Motor_a2719aabe6b89b8195c93614e5ce7b9f6}} 
 \index{okapi::Motor@{okapi::Motor}!setVelPIDFull@{setVelPIDFull}}
 \index{setVelPIDFull@{setVelPIDFull}!okapi::Motor@{okapi::Motor}}
 \subsubsection{\texorpdfstring{setVelPIDFull()}{setVelPIDFull()}}
-{\footnotesize\ttfamily std\+::int32\+\_\+t okapi\+::\+Motor\+::set\+Vel\+P\+I\+D\+Full (\begin{DoxyParamCaption}\item[{double}]{ikF,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD,  }\item[{double}]{ifilter,  }\item[{double}]{ilimit,  }\item[{double}]{ithreshold,  }\item[{double}]{iloop\+Speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t okapi\+::\+Motor\+::set\+Vel\+P\+I\+D\+Full (\begin{DoxyParamCaption}\item[{double}]{ikF,  }\item[{double}]{ikP,  }\item[{double}]{ikI,  }\item[{double}]{ikD,  }\item[{double}]{ifilter,  }\item[{double}]{ilimit,  }\item[{double}]{ithreshold,  }\item[{double}]{iloop\+Speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Sets new P\+ID constants.
 
@@ -895,10 +922,6 @@ Sets new P\+ID constants.
 \begin{DoxyReturn}{Returns}
 1 if the operation was successful or P\+R\+O\+S\+\_\+\+E\+RR if the operation failed, setting errno. 
 \end{DoxyReturn}
-
-
-Implements \mbox{\hyperlink{classokapi_1_1AbstractMotor_afff15a595bb33454aabfac99248e8324}{okapi\+::\+Abstract\+Motor}}.
-
 \mbox{\Hypertarget{classokapi_1_1Motor_a5aab4b416675b7f7ee324fff4d8cda30}\label{classokapi_1_1Motor_a5aab4b416675b7f7ee324fff4d8cda30}} 
 \index{okapi::Motor@{okapi::Motor}!setVoltageLimit@{setVoltageLimit}}
 \index{setVoltageLimit@{setVoltageLimit}!okapi::Motor@{okapi::Motor}}
@@ -941,11 +964,17 @@ Implements \mbox{\hyperlink{classokapi_1_1AbstractMotor_ac36edbc92db85a11adcfee5
 
 
 \subsection{Member Data Documentation}
-\mbox{\Hypertarget{classokapi_1_1Motor_a98f1ccfe295ebc9c4dd268f44d5f7c42}\label{classokapi_1_1Motor_a98f1ccfe295ebc9c4dd268f44d5f7c42}} 
-\index{okapi::Motor@{okapi::Motor}!gearset@{gearset}}
-\index{gearset@{gearset}!okapi::Motor@{okapi::Motor}}
-\subsubsection{\texorpdfstring{gearset}{gearset}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5}{Abstract\+Motor\+::gearset}} \mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5}{okapi\+::\+Motor\+::gearset}} \{\mbox{\hyperlink{classokapi_1_1AbstractMotor_a88aaa6ea2fa10f5520a537bbf26774d5a9f27410725ab8cc8854a2769c7a516b8}{Abstract\+Motor\+::gearset\+::green}}\}\hspace{0.3cm}{\ttfamily [protected]}}
+\mbox{\Hypertarget{classokapi_1_1Motor_a25a8cc5b2fe8e50d83c42129b0d57b7e}\label{classokapi_1_1Motor_a25a8cc5b2fe8e50d83c42129b0d57b7e}} 
+\index{okapi::Motor@{okapi::Motor}!port@{port}}
+\index{port@{port}!okapi::Motor@{okapi::Motor}}
+\subsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily std\+::uint8\+\_\+t okapi\+::\+Motor\+::port\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classokapi_1_1Motor_ad5d21f1324cc2dc887075eb11c38149d}\label{classokapi_1_1Motor_ad5d21f1324cc2dc887075eb11c38149d}} 
+\index{okapi::Motor@{okapi::Motor}!reversed@{reversed}}
+\index{reversed@{reversed}!okapi::Motor@{okapi::Motor}}
+\subsubsection{\texorpdfstring{reversed}{reversed}}
+{\footnotesize\ttfamily std\+::int8\+\_\+t okapi\+::\+Motor\+::reversed \{1\}\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 

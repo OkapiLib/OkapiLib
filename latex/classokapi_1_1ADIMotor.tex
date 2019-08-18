@@ -13,7 +13,7 @@ Inheritance diagram for okapi\+::A\+D\+I\+Motor\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classokapi_1_1ADIMotor_ab7a6273a01d5a0dccb4da0696b0b2050}{A\+D\+I\+Motor}} (std\+::uint8\+\_\+t iport, bool ireverse=false)
+\mbox{\hyperlink{classokapi_1_1ADIMotor_a44abc0f7804cc45e2ad98a54d4fea920}{A\+D\+I\+Motor}} (std\+::uint8\+\_\+t iport, bool ireverse=false, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&logger=\mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}())
 \item 
 virtual void \mbox{\hyperlink{classokapi_1_1ADIMotor_a4c992efbe21467c0339308fba926b1a6}{move\+Voltage}} (std\+::int8\+\_\+t ivoltage) const
 \item 
@@ -29,12 +29,23 @@ const std\+::int8\+\_\+t \mbox{\hyperlink{classokapi_1_1ADIMotor_a3abbe2875ba0ab
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classokapi_1_1ADIMotor_ab7a6273a01d5a0dccb4da0696b0b2050}\label{classokapi_1_1ADIMotor_ab7a6273a01d5a0dccb4da0696b0b2050}} 
+\mbox{\Hypertarget{classokapi_1_1ADIMotor_a44abc0f7804cc45e2ad98a54d4fea920}\label{classokapi_1_1ADIMotor_a44abc0f7804cc45e2ad98a54d4fea920}} 
 \index{okapi::ADIMotor@{okapi::ADIMotor}!ADIMotor@{ADIMotor}}
 \index{ADIMotor@{ADIMotor}!okapi::ADIMotor@{okapi::ADIMotor}}
 \subsubsection{\texorpdfstring{ADIMotor()}{ADIMotor()}}
-{\footnotesize\ttfamily okapi\+::\+A\+D\+I\+Motor\+::\+A\+D\+I\+Motor (\begin{DoxyParamCaption}\item[{std\+::uint8\+\_\+t}]{iport,  }\item[{bool}]{ireverse = {\ttfamily false} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily okapi\+::\+A\+D\+I\+Motor\+::\+A\+D\+I\+Motor (\begin{DoxyParamCaption}\item[{std\+::uint8\+\_\+t}]{iport,  }\item[{bool}]{ireverse = {\ttfamily false},  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{logger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
 
+A motor on the A\+DI ports.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iport} & The port number in the range \mbox{[}\textquotesingle{}A\textquotesingle{}, \textquotesingle{}H\textquotesingle{}\mbox{]}. \\
+\hline
+{\em ireverse} & Whether the motor is reversed. \\
+\hline
+{\em logger} & The logger that initialization warnings will be logged to. \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
