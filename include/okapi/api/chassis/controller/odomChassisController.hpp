@@ -103,8 +103,6 @@ class OdomChassisController : public ChassisController {
   void startOdomThread();
 
   /**
-   * Returns the underlying thread handle.
-   *
    * @return The underlying thread handle.
    */
   CrossplatformThread *getOdomThread() const;

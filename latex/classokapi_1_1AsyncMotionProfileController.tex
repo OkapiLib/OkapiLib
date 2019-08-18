@@ -136,10 +136,12 @@ std\+::atomic\+\_\+bool \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControl
 \subsubsection{\texorpdfstring{AsyncMotionProfileController()}{AsyncMotionProfileController()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily okapi\+::\+Async\+Motion\+Profile\+Controller\+::\+Async\+Motion\+Profile\+Controller (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}} \&}]{itime\+Util,  }\item[{const \mbox{\hyperlink{structokapi_1_1PathfinderLimits}{Pathfinder\+Limits}} \&}]{ilimits,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ChassisModel}{Chassis\+Model}} $>$ \&}]{imodel,  }\item[{const \mbox{\hyperlink{classokapi_1_1ChassisScales}{Chassis\+Scales}} \&}]{iscales,  }\item[{const \mbox{\hyperlink{structokapi_1_1AbstractMotor_1_1GearsetRatioPair}{Abstract\+Motor\+::\+Gearset\+Ratio\+Pair}} \&}]{ipair,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})}
 
-An Async \mbox{\hyperlink{classokapi_1_1Controller}{Controller}} which generates and follows 2D motion profiles. Throws a std\+::invalid\+\_\+argument exception if the gear ratio is zero.
+An Async \mbox{\hyperlink{classokapi_1_1Controller}{Controller}} which generates and follows 2D motion profiles. Throws a {\ttfamily std\+::invalid\+\_\+argument} exception if the gear ratio is zero.
 
 
 \begin{DoxyParams}{Parameters}
+{\em itime\+Util} & The \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}}. \\
+\hline
 {\em ilimits} & The default limits. \\
 \hline
 {\em imodel} & The chassis model to control. \\
@@ -172,7 +174,7 @@ An Async \mbox{\hyperlink{classokapi_1_1Controller}{Controller}} which generates
 \subsubsection{\texorpdfstring{controllerSet()}{controllerSet()}}
 {\footnotesize\ttfamily void okapi\+::\+Async\+Motion\+Profile\+Controller\+::controller\+Set (\begin{DoxyParamCaption}\item[{std\+::string}]{ivalue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Writes the value of the controller output. This method might be automatically called in another thread by the controller. This just calls \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController_adf705d6bfd3d0a83d8a6c50a05ffd156}{set\+Target()}}. 
+Writes the value of the controller output. This method might be automatically called in another thread by the controller. This just calls {\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController_adf705d6bfd3d0a83d8a6c50a05ffd156}{set\+Target()}}}. 
 
 Implements \mbox{\hyperlink{classokapi_1_1ControllerOutput_a360c08f0c10b36f882d6d3100c2cad49}{okapi\+::\+Controller\+Output$<$ std\+::string $>$}}.
 
@@ -231,7 +233,7 @@ Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a768cd1db40ce9cd5
 \subsubsection{\texorpdfstring{forceRemovePath()}{forceRemovePath()}}
 {\footnotesize\ttfamily void okapi\+::\+Async\+Motion\+Profile\+Controller\+::force\+Remove\+Path (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ipath\+Id }\end{DoxyParamCaption})}
 
-Attempts to remove a path without stopping execution, then if that fails, disables the controller and removes the path
+Attempts to remove a path without stopping execution. If that fails, disables the controller and removes the path.
 
 
 \begin{DoxyParams}{Parameters}
@@ -244,9 +246,9 @@ Attempts to remove a path without stopping execution, then if that fails, disabl
 \subsubsection{\texorpdfstring{generatePath()}{generatePath()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily void okapi\+::\+Async\+Motion\+Profile\+Controller\+::generate\+Path (\begin{DoxyParamCaption}\item[{std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{structokapi_1_1Point}{Point}} $>$}]{iwaypoints,  }\item[{const std\+::string \&}]{ipath\+Id }\end{DoxyParamCaption})}
 
-Generates a path which intersects the given waypoints and saves it internally with a key of path\+Id. Call execute\+Path() with the same path\+Id to run it.
+Generates a path which intersects the given waypoints and saves it internally with a key of path\+Id. Call {\ttfamily execute\+Path()} with the same path\+Id to run it.
 
-If the waypoints form a path which is impossible to achieve, an instance of std\+::runtime\+\_\+error is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.
+If the waypoints form a path which is impossible to achieve, an instance of {\ttfamily std\+::runtime\+\_\+error} is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.
 
 
 \begin{DoxyParams}{Parameters}
@@ -261,9 +263,9 @@ If the waypoints form a path which is impossible to achieve, an instance of std\
 \subsubsection{\texorpdfstring{generatePath()}{generatePath()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily void okapi\+::\+Async\+Motion\+Profile\+Controller\+::generate\+Path (\begin{DoxyParamCaption}\item[{std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{structokapi_1_1Point}{Point}} $>$}]{iwaypoints,  }\item[{const std\+::string \&}]{ipath\+Id,  }\item[{const \mbox{\hyperlink{structokapi_1_1PathfinderLimits}{Pathfinder\+Limits}} \&}]{ilimits }\end{DoxyParamCaption})}
 
-Generates a path which intersects the given waypoints and saves it internally with a key of path\+Id. Call execute\+Path() with the same path\+Id to run it.
+Generates a path which intersects the given waypoints and saves it internally with a key of path\+Id. Call {\ttfamily execute\+Path()} with the same path\+Id to run it.
 
-If the waypoints form a path which is impossible to achieve, an instance of std\+::runtime\+\_\+error is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.
+If the waypoints form a path which is impossible to achieve, an instance of {\ttfamily std\+::runtime\+\_\+error} is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.
 
 
 \begin{DoxyParams}{Parameters}
@@ -301,7 +303,7 @@ Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a50c73444ff6e3e63
 \subsubsection{\texorpdfstring{getPaths()}{getPaths()}}
 {\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ okapi\+::\+Async\+Motion\+Profile\+Controller\+::get\+Paths (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Gets the identifiers of all paths saved in this \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController}{Async\+Motion\+Profile\+Controller}}.
+Gets the identifiers of all paths saved in this {\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController}{Async\+Motion\+Profile\+Controller}}}.
 
 \begin{DoxyReturn}{Returns}
 The identifiers of all paths 
@@ -326,8 +328,6 @@ Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a22012bedbfaff6e5
 \index{getThread@{getThread}!okapi::AsyncMotionProfileController@{okapi::AsyncMotionProfileController}}
 \subsubsection{\texorpdfstring{getThread()}{getThread()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classCrossplatformThread}{Crossplatform\+Thread}} $\ast$ okapi\+::\+Async\+Motion\+Profile\+Controller\+::get\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-Returns the underlying thread handle.
 
 \begin{DoxyReturn}{Returns}
 The underlying thread handle. 
@@ -382,7 +382,7 @@ Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_aed7aa0e94b6474c2
 \subsubsection{\texorpdfstring{loadPath()}{loadPath()}}
 {\footnotesize\ttfamily void okapi\+::\+Async\+Motion\+Profile\+Controller\+::load\+Path (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{idirectory,  }\item[{const std\+::string \&}]{ipath\+Id }\end{DoxyParamCaption})}
 
-Loads a path from a directory on the SD card containing path C\+SV files. /usd/ is automatically prepended to idirectory if it is not specified.
+Loads a path from a directory on the SD card containing path C\+SV files. {\ttfamily /usd/} is automatically prepended to {\ttfamily idirectory} if it is not specified.
 
 
 \begin{DoxyParams}{Parameters}
@@ -467,7 +467,7 @@ Removes a path and frees the memory it used. This function returns true if the p
 
 
 \begin{DoxyParams}{Parameters}
-{\em ipath\+Id} & A unique identifier for the path, previously passed to \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController_a767919702ab379bac5273010baf03cda}{generate\+Path()}} \\
+{\em ipath\+Id} & A unique identifier for the path, previously passed to {\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController_a767919702ab379bac5273010baf03cda}{generate\+Path()}}} \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -493,7 +493,7 @@ Executes a path with the given ID. If there is no path matching the ID, the meth
 
 
 \begin{DoxyParams}{Parameters}
-{\em ipath\+Id} & A unique identifier for the path, previously passed to \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController_a767919702ab379bac5273010baf03cda}{generate\+Path()}}. \\
+{\em ipath\+Id} & A unique identifier for the path, previously passed to {\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController_a767919702ab379bac5273010baf03cda}{generate\+Path()}}}. \\
 \hline
 \end{DoxyParams}
 
@@ -510,7 +510,7 @@ Executes a path with the given ID. If there is no path matching the ID, the meth
 
 
 \begin{DoxyParams}{Parameters}
-{\em ipath\+Id} & A unique identifier for the path, previously passed to \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController_a767919702ab379bac5273010baf03cda}{generate\+Path()}}. \\
+{\em ipath\+Id} & A unique identifier for the path, previously passed to {\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController_a767919702ab379bac5273010baf03cda}{generate\+Path()}}}. \\
 \hline
 {\em ibackwards} & Whether to follow the profile backwards. \\
 \hline
@@ -523,13 +523,13 @@ Executes a path with the given ID. If there is no path matching the ID, the meth
 \subsubsection{\texorpdfstring{startThread()}{startThread()}}
 {\footnotesize\ttfamily void okapi\+::\+Async\+Motion\+Profile\+Controller\+::start\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Starts the internal thread. This should not be called by normal users. This method is called by the Async\+Controller\+Factory when making a new instance of this class. \mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileController_ad588aa51d62169159ff5e4b05ad3982c}\label{classokapi_1_1AsyncMotionProfileController_ad588aa51d62169159ff5e4b05ad3982c}} 
+Starts the internal thread. This should not be called by normal users. This method is called by the {\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileControllerBuilder}{Async\+Motion\+Profile\+Controller\+Builder}}} when making a new instance of this class. \mbox{\Hypertarget{classokapi_1_1AsyncMotionProfileController_ad588aa51d62169159ff5e4b05ad3982c}\label{classokapi_1_1AsyncMotionProfileController_ad588aa51d62169159ff5e4b05ad3982c}} 
 \index{okapi::AsyncMotionProfileController@{okapi::AsyncMotionProfileController}!storePath@{storePath}}
 \index{storePath@{storePath}!okapi::AsyncMotionProfileController@{okapi::AsyncMotionProfileController}}
 \subsubsection{\texorpdfstring{storePath()}{storePath()}}
 {\footnotesize\ttfamily void okapi\+::\+Async\+Motion\+Profile\+Controller\+::store\+Path (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{idirectory,  }\item[{const std\+::string \&}]{ipath\+Id }\end{DoxyParamCaption})}
 
-Saves a generated path to files. Paths are stored as $<$ipath\+Id$>$.$<$left/right$>$.csv An SD card must be inserted into the brain and the directory must exist. idirectory can be prefixed with /usd/, but it this is not required.
+Saves a generated path to files. Paths are stored as {\ttfamily $<$ipath\+Id$>$.$<$left/right$>$.csv}. An SD card must be inserted into the brain and the directory must exist. {\ttfamily idirectory} can be prefixed with {\ttfamily /usd/}, but it this is not required.
 
 
 \begin{DoxyParams}{Parameters}

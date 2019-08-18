@@ -132,6 +132,8 @@ An Async \mbox{\hyperlink{classokapi_1_1Controller}{Controller}} which generates
 
 
 \begin{DoxyParams}{Parameters}
+{\em itime\+Util} & The \mbox{\hyperlink{classokapi_1_1TimeUtil}{Time\+Util}}. \\
+\hline
 {\em ilimits} & The default limits. \\
 \hline
 {\em ioutput} & The output to write velocity targets to. \\
@@ -164,7 +166,9 @@ An Async \mbox{\hyperlink{classokapi_1_1Controller}{Controller}} which generates
 \subsubsection{\texorpdfstring{controllerSet()}{controllerSet()}}
 {\footnotesize\ttfamily void okapi\+::\+Async\+Linear\+Motion\+Profile\+Controller\+::controller\+Set (\begin{DoxyParamCaption}\item[{std\+::string}]{ivalue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Writes the value of the controller output. This method might be automatically called in another thread by the controller. This just calls \mbox{\hyperlink{classokapi_1_1AsyncLinearMotionProfileController_a18e3ba77f08cb5dd93a9cba23d4c2a1e}{set\+Target()}}. 
+Writes the value of the controller output. This method might be automatically called in another thread by the controller.
+
+This just calls {\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncLinearMotionProfileController_a18e3ba77f08cb5dd93a9cba23d4c2a1e}{set\+Target()}}}. 
 
 Implements \mbox{\hyperlink{classokapi_1_1ControllerOutput_a360c08f0c10b36f882d6d3100c2cad49}{okapi\+::\+Controller\+Output$<$ std\+::string $>$}}.
 
@@ -223,7 +227,7 @@ Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a768cd1db40ce9cd5
 \subsubsection{\texorpdfstring{forceRemovePath()}{forceRemovePath()}}
 {\footnotesize\ttfamily void okapi\+::\+Async\+Linear\+Motion\+Profile\+Controller\+::force\+Remove\+Path (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ipath\+Id }\end{DoxyParamCaption})}
 
-Attempts to remove a path without stopping execution, then if that fails, disables the controller and removes the path
+Attempts to remove a path without stopping execution, then if that fails, disables the controller and removes the path.
 
 
 \begin{DoxyParams}{Parameters}
@@ -236,9 +240,9 @@ Attempts to remove a path without stopping execution, then if that fails, disabl
 \subsubsection{\texorpdfstring{generatePath()}{generatePath()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily void okapi\+::\+Async\+Linear\+Motion\+Profile\+Controller\+::generate\+Path (\begin{DoxyParamCaption}\item[{std\+::initializer\+\_\+list$<$ Q\+Length $>$}]{iwaypoints,  }\item[{const std\+::string \&}]{ipath\+Id }\end{DoxyParamCaption})}
 
-Generates a path which intersects the given waypoints and saves it internally with a key of path\+Id. Call execute\+Path() with the same path\+Id to run it.
+Generates a path which intersects the given waypoints and saves it internally with a key of path\+Id. Call {\ttfamily execute\+Path()} with the same {\ttfamily path\+Id} to run it.
 
-If the waypoints form a path which is impossible to achieve, an instance of std\+::runtime\+\_\+error is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.
+If the waypoints form a path which is impossible to achieve, an instance of {\ttfamily std\+::runtime\+\_\+error} is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.
 
 
 \begin{DoxyParams}{Parameters}
@@ -253,9 +257,9 @@ If the waypoints form a path which is impossible to achieve, an instance of std\
 \subsubsection{\texorpdfstring{generatePath()}{generatePath()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily void okapi\+::\+Async\+Linear\+Motion\+Profile\+Controller\+::generate\+Path (\begin{DoxyParamCaption}\item[{std\+::initializer\+\_\+list$<$ Q\+Length $>$}]{iwaypoints,  }\item[{const std\+::string \&}]{ipath\+Id,  }\item[{const \mbox{\hyperlink{structokapi_1_1PathfinderLimits}{Pathfinder\+Limits}} \&}]{ilimits }\end{DoxyParamCaption})}
 
-Generates a path which intersects the given waypoints and saves it internally with a key of path\+Id. Call execute\+Path() with the same path\+Id to run it.
+Generates a path which intersects the given waypoints and saves it internally with a key of path\+Id. Call {\ttfamily execute\+Path()} with the same path\+Id to run it.
 
-If the waypoints form a path which is impossible to achieve, an instance of std\+::runtime\+\_\+error is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.
+If the waypoints form a path which is impossible to achieve, an instance of {\ttfamily std\+::runtime\+\_\+error} is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.
 
 
 \begin{DoxyParams}{Parameters}
@@ -293,7 +297,7 @@ Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a50c73444ff6e3e63
 \subsubsection{\texorpdfstring{getPaths()}{getPaths()}}
 {\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ okapi\+::\+Async\+Linear\+Motion\+Profile\+Controller\+::get\+Paths (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Gets the identifiers of all paths saved in this \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController}{Async\+Motion\+Profile\+Controller}}.
+Gets the identifiers of all paths saved in this {\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncMotionProfileController}{Async\+Motion\+Profile\+Controller}}}.
 
 \begin{DoxyReturn}{Returns}
 The identifiers of all paths 
@@ -358,7 +362,7 @@ Implements \mbox{\hyperlink{classokapi_1_1ClosedLoopController_a40bd4ec2b8c75503
 
 Returns whether the controller has settled at the target. Determining what settling means is implementation-\/dependent.
 
-If the controller is disabled, this method must return true.
+If the controller is disabled, this method must return {\ttfamily true}.
 
 \begin{DoxyReturn}{Returns}
 whether the controller is settled 
@@ -421,7 +425,7 @@ Generates a new path from the position (typically the current position) to the t
 \subsubsection{\texorpdfstring{removePath()}{removePath()}}
 {\footnotesize\ttfamily bool okapi\+::\+Async\+Linear\+Motion\+Profile\+Controller\+::remove\+Path (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ipath\+Id }\end{DoxyParamCaption})}
 
-Removes a path and frees the memory it used. This function returns true if the path was either deleted or didn\textquotesingle{}t exist in the first place. It returns false if the path could not be removed because it is running.
+Removes a path and frees the memory it used. This function returns {\ttfamily true} if the path was either deleted or didn\textquotesingle{}t exist in the first place. It returns {\ttfamily false} if the path could not be removed because it is running.
 
 
 \begin{DoxyParams}{Parameters}
@@ -429,7 +433,7 @@ Removes a path and frees the memory it used. This function returns true if the p
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-True if the path no longer exists 
+{\ttfamily true} if the path no longer exists 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classokapi_1_1AsyncLinearMotionProfileController_a925381153aeda65c448489a8f2c3803c}\label{classokapi_1_1AsyncLinearMotionProfileController_a925381153aeda65c448489a8f2c3803c}} 
 \index{okapi::AsyncLinearMotionProfileController@{okapi::AsyncLinearMotionProfileController}!reset@{reset}}
@@ -451,7 +455,7 @@ Executes a path with the given ID. If there is no path matching the ID, the meth
 
 
 \begin{DoxyParams}{Parameters}
-{\em ipath\+Id} & A unique identifier for the path, previously passed to \mbox{\hyperlink{classokapi_1_1AsyncLinearMotionProfileController_aef2acba51417d929695ca38e309b0f6c}{generate\+Path()}}. \\
+{\em ipath\+Id} & A unique identifier for the path, previously passed to {\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncLinearMotionProfileController_aef2acba51417d929695ca38e309b0f6c}{generate\+Path()}}}. \\
 \hline
 \end{DoxyParams}
 
@@ -468,7 +472,7 @@ Executes a path with the given ID. If there is no path matching the ID, the meth
 
 
 \begin{DoxyParams}{Parameters}
-{\em ipath\+Id} & A unique identifier for the path, previously passed to \mbox{\hyperlink{classokapi_1_1AsyncLinearMotionProfileController_aef2acba51417d929695ca38e309b0f6c}{generate\+Path()}}. \\
+{\em ipath\+Id} & A unique identifier for the path, previously passed to {\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncLinearMotionProfileController_aef2acba51417d929695ca38e309b0f6c}{generate\+Path()}}}. \\
 \hline
 {\em ibackwards} & Whether to follow the profile backwards. \\
 \hline

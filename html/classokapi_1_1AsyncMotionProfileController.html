@@ -264,9 +264,10 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>An Async <a class="el" href="classokapi_1_1Controller.html">Controller</a> which generates and follows 2D motion profiles. Throws a std::invalid_argument exception if the gear ratio is zero.</p>
+<p>An Async <a class="el" href="classokapi_1_1Controller.html">Controller</a> which generates and follows 2D motion profiles. Throws a <code>std::invalid_argument</code> exception if the gear ratio is zero.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">itimeUtil</td><td>The <a class="el" href="classokapi_1_1TimeUtil.html">TimeUtil</a>. </td></tr>
     <tr><td class="paramname">ilimits</td><td>The default limits. </td></tr>
     <tr><td class="paramname">imodel</td><td>The chassis model to control. </td></tr>
     <tr><td class="paramname">iscales</td><td>The chassis dimensions. </td></tr>
@@ -353,7 +354,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Writes the value of the controller output. This method might be automatically called in another thread by the controller. This just calls <a class="el" href="classokapi_1_1AsyncMotionProfileController.html#adf705d6bfd3d0a83d8a6c50a05ffd156">setTarget()</a>. </p>
+<p>Writes the value of the controller output. This method might be automatically called in another thread by the controller. This just calls <code><a class="el" href="classokapi_1_1AsyncMotionProfileController.html#adf705d6bfd3d0a83d8a6c50a05ffd156">setTarget()</a></code>. </p>
 
 <p>Implements <a class="el" href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49">okapi::ControllerOutput&lt; std::string &gt;</a>.</p>
 
@@ -508,7 +509,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Attempts to remove a path without stopping execution, then if that fails, disables the controller and removes the path</p>
+<p>Attempts to remove a path without stopping execution. If that fails, disables the controller and removes the path.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ipathId</td><td>The path ID that will be removed </td></tr>
@@ -543,8 +544,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Generates a path which intersects the given waypoints and saves it internally with a key of pathId. Call executePath() with the same pathId to run it.</p>
-<p>If the waypoints form a path which is impossible to achieve, an instance of std::runtime_error is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.</p>
+<p>Generates a path which intersects the given waypoints and saves it internally with a key of pathId. Call <code>executePath()</code> with the same pathId to run it.</p>
+<p>If the waypoints form a path which is impossible to achieve, an instance of <code>std::runtime_error</code> is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iwaypoints</td><td>The waypoints to hit on the path. </td></tr>
@@ -586,8 +587,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Generates a path which intersects the given waypoints and saves it internally with a key of pathId. Call executePath() with the same pathId to run it.</p>
-<p>If the waypoints form a path which is impossible to achieve, an instance of std::runtime_error is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.</p>
+<p>Generates a path which intersects the given waypoints and saves it internally with a key of pathId. Call <code>executePath()</code> with the same pathId to run it.</p>
+<p>If the waypoints form a path which is impossible to achieve, an instance of <code>std::runtime_error</code> is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iwaypoints</td><td>The waypoints to hit on the path. </td></tr>
@@ -684,7 +685,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Gets the identifiers of all paths saved in this <a class="el" href="classokapi_1_1AsyncMotionProfileController.html">AsyncMotionProfileController</a>.</p>
+<p>Gets the identifiers of all paths saved in this <code><a class="el" href="classokapi_1_1AsyncMotionProfileController.html">AsyncMotionProfileController</a></code>.</p>
 <dl class="section return"><dt>Returns</dt><dd>The identifiers of all paths </dd></dl>
 
 </div>
@@ -732,7 +733,6 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns the underlying thread handle.</p>
 <dl class="section return"><dt>Returns</dt><dd>The underlying thread handle. </dd></dl>
 
 </div>
@@ -905,7 +905,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Loads a path from a directory on the SD card containing path CSV files. /usd/ is automatically prepended to idirectory if it is not specified.</p>
+<p>Loads a path from a directory on the SD card containing path CSV files. <code>/usd/</code> is automatically prepended to <code>idirectory</code> if it is not specified.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">idirectory</td><td>The directory that the path files are stored in </td></tr>
@@ -1123,7 +1123,7 @@ Protected Attributes</h2></td></tr>
 <p>Removes a path and frees the memory it used. This function returns true if the path was either deleted or didn't exist in the first place. It returns false if the path could not be removed because it is running.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ipathId</td><td>A unique identifier for the path, previously passed to <a class="el" href="classokapi_1_1AsyncMotionProfileController.html#a767919702ab379bac5273010baf03cda">generatePath()</a> </td></tr>
+    <tr><td class="paramname">ipathId</td><td>A unique identifier for the path, previously passed to <code><a class="el" href="classokapi_1_1AsyncMotionProfileController.html#a767919702ab379bac5273010baf03cda">generatePath()</a></code> </td></tr>
   </table>
   </dd>
 </dl>
@@ -1185,7 +1185,7 @@ Protected Attributes</h2></td></tr>
 <p>Executes a path with the given ID. If there is no path matching the ID, the method will return. Any targets set while a path is being followed will be ignored.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ipathId</td><td>A unique identifier for the path, previously passed to <a class="el" href="classokapi_1_1AsyncMotionProfileController.html#a767919702ab379bac5273010baf03cda">generatePath()</a>. </td></tr>
+    <tr><td class="paramname">ipathId</td><td>A unique identifier for the path, previously passed to <code><a class="el" href="classokapi_1_1AsyncMotionProfileController.html#a767919702ab379bac5273010baf03cda">generatePath()</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1228,7 +1228,7 @@ Protected Attributes</h2></td></tr>
 <p>Executes a path with the given ID. If there is no path matching the ID, the method will return. Any targets set while a path is being followed will be ignored.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ipathId</td><td>A unique identifier for the path, previously passed to <a class="el" href="classokapi_1_1AsyncMotionProfileController.html#a767919702ab379bac5273010baf03cda">generatePath()</a>. </td></tr>
+    <tr><td class="paramname">ipathId</td><td>A unique identifier for the path, previously passed to <code><a class="el" href="classokapi_1_1AsyncMotionProfileController.html#a767919702ab379bac5273010baf03cda">generatePath()</a></code>. </td></tr>
     <tr><td class="paramname">ibackwards</td><td>Whether to follow the profile backwards. </td></tr>
     <tr><td class="paramname">imirrored</td><td>Whether to follow the profile mirrored. </td></tr>
   </table>
@@ -1251,7 +1251,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Starts the internal thread. This should not be called by normal users. This method is called by the AsyncControllerFactory when making a new instance of this class. </p>
+<p>Starts the internal thread. This should not be called by normal users. This method is called by the <code><a class="el" href="classokapi_1_1AsyncMotionProfileControllerBuilder.html">AsyncMotionProfileControllerBuilder</a></code> when making a new instance of this class. </p>
 
 </div>
 </div>
@@ -1280,7 +1280,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Saves a generated path to files. Paths are stored as &lt;ipathId&gt;.&lt;left/right&gt;.csv An SD card must be inserted into the brain and the directory must exist. idirectory can be prefixed with /usd/, but it this is not required.</p>
+<p>Saves a generated path to files. Paths are stored as <code>&lt;ipathId&gt;.&lt;left/right&gt;.csv</code>. An SD card must be inserted into the brain and the directory must exist. <code>idirectory</code> can be prefixed with <code>/usd/</code>, but it this is not required.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">idirectory</td><td>The directory to store the path files in </td></tr>

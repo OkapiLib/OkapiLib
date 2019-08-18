@@ -136,7 +136,7 @@ Public Member Functions</h2></td></tr>
 class okapi::IterativeController&lt; Input, Output &gt;</h3>
 
 <p>Closed-loop controller that steps iteratively using the step method below.</p>
-<p><a class="el" href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49">ControllerOutput::controllerSet()</a> should set the controller's target to the input scaled by the output bounds. </p>
+<p><code><a class="el" href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49">ControllerOutput::controllerSet()</a></code> should set the controller's target to the input scaled by the output bounds. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a09bdba3a6d7854d943ed5401210b0595"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a09bdba3a6d7854d943ed5401210b0595">&#9670;&nbsp;</a></span>getMaxOutput()</h2>
@@ -296,7 +296,7 @@ template&lt;typename Input, typename Output&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Sets the (soft) limits for the target range that <a class="el" href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49">controllerSet()</a> scales into. The target computed by <a class="el" href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49">controllerSet()</a> is scaled into the range [-itargetMin, itargetMax].</p>
+<p>Sets the (soft) limits for the target range that <a class="el" href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49">controllerSet()</a> scales into. The target computed by <code><a class="el" href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49">controllerSet()</a></code> is scaled into the range <code>[-itargetMin, itargetMax]</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">itargetMax</td><td>The new max target for <a class="el" href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49">controllerSet()</a>. </td></tr>

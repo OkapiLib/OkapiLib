@@ -102,17 +102,17 @@ std\+::atomic\+\_\+bool \mbox{\hyperlink{classokapi_1_1AsyncWrapper_aae007010b0b
 {\footnotesize\ttfamily template$<$typename Input, typename Output$>$ \\
 \mbox{\hyperlink{classokapi_1_1AsyncWrapper}{okapi\+::\+Async\+Wrapper}}$<$ Input, Output $>$\+::\mbox{\hyperlink{classokapi_1_1AsyncWrapper}{Async\+Wrapper}} (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerInput}{Controller\+Input}}$<$ Input $>$$>$ \&}]{iinput,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1ControllerOutput}{Controller\+Output}}$<$ Output $>$$>$ \&}]{ioutput,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1IterativeController}{Iterative\+Controller}}$<$ Input, Output $>$$>$}]{icontroller,  }\item[{const \mbox{\hyperlink{classokapi_1_1Supplier}{Supplier}}$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractRate}{Abstract\+Rate}} $>$$>$ \&}]{irate\+Supplier,  }\item[{const double}]{iratio = {\ttfamily 1},  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Logger}{Logger}} $>$ \&}]{ilogger = {\ttfamily \mbox{\hyperlink{classokapi_1_1Logger_a5053cf778b4b55acba788a3797dc96d2}{Logger\+::get\+Default\+Logger}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-A wrapper class that transforms an \mbox{\hyperlink{classokapi_1_1IterativeController}{Iterative\+Controller}} into an \mbox{\hyperlink{classokapi_1_1AsyncController}{Async\+Controller}} by running it in another task. The input controller will act like an \mbox{\hyperlink{classokapi_1_1AsyncController}{Async\+Controller}}.
+A wrapper class that transforms an {\ttfamily \mbox{\hyperlink{classokapi_1_1IterativeController}{Iterative\+Controller}}} into an {\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncController}{Async\+Controller}}} by running it in another task. The input controller will act like an {\ttfamily \mbox{\hyperlink{classokapi_1_1AsyncController}{Async\+Controller}}}.
 
 
 \begin{DoxyParams}{Parameters}
-{\em iinput} & controller input, passed to the \mbox{\hyperlink{classokapi_1_1IterativeController}{Iterative\+Controller}} \\
+{\em iinput} & controller input, passed to the {\ttfamily \mbox{\hyperlink{classokapi_1_1IterativeController}{Iterative\+Controller}}} \\
 \hline
-{\em ioutput} & controller output, written to from the \mbox{\hyperlink{classokapi_1_1IterativeController}{Iterative\+Controller}} \\
+{\em ioutput} & controller output, written to from the {\ttfamily \mbox{\hyperlink{classokapi_1_1IterativeController}{Iterative\+Controller}}} \\
 \hline
 {\em icontroller} & the controller to use \\
 \hline
-{\em irate\+Supplier} & used for rates used in the main loop and in wait\+Until\+Settled \\
+{\em irate\+Supplier} & used for rates used in the main loop and in {\ttfamily wait\+Until\+Settled} \\
 \hline
 {\em iratio} & Any external gear ratio. \\
 \hline

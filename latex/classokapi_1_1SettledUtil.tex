@@ -37,7 +37,7 @@ double \mbox{\hyperlink{classokapi_1_1SettledUtil_ac1316106ec5932cc9f6de5cd83d3e
 \subsubsection{\texorpdfstring{SettledUtil()}{SettledUtil()}}
 {\footnotesize\ttfamily okapi\+::\+Settled\+Util\+::\+Settled\+Util (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1AbstractTimer}{Abstract\+Timer}} $>$}]{iat\+Target\+Timer,  }\item[{double}]{iat\+Target\+Error = {\ttfamily 50},  }\item[{double}]{iat\+Target\+Derivative = {\ttfamily 5},  }\item[{Q\+Time}]{iat\+Target\+Time = {\ttfamily 250\+\_\+ms} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
 
-A utility class to determine if a control loop has settled based on error. A control loop is settled if the error is within at\+Target\+Error and at\+Target\+Derivative for at\+Target\+Time.
+A utility class to determine if a control loop has settled based on error. A control loop is settled if the error is within {\ttfamily iat\+Target\+Error} and {\ttfamily iat\+Target\+Derivative} for {\ttfamily iat\+Target\+Time}.
 
 
 \begin{DoxyParams}{Parameters}
@@ -79,7 +79,7 @@ Timer\+::get\+Dt\+Fromhard\+Mark() returns 0\+\_\+ms if there is no hard mark se
 \subsubsection{\texorpdfstring{reset()}{reset()}}
 {\footnotesize\ttfamily void okapi\+::\+Settled\+Util\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-Resets the \char`\"{}at target\char`\"{} timer. 
+Resets the \char`\"{}at target\char`\"{} timer and clears the previous error. 
 
 \subsection{Member Data Documentation}
 \mbox{\Hypertarget{classokapi_1_1SettledUtil_a972febaf6427ee6ea67d007da2ffbf0a}\label{classokapi_1_1SettledUtil_a972febaf6427ee6ea67d007da2ffbf0a}} 
