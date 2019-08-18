@@ -35,6 +35,11 @@ class OdomChassisController : public ChassisController {
 
   ~OdomChassisController() override;
 
+  OdomChassisController(const OdomChassisController &) = delete;
+  OdomChassisController(OdomChassisController &&other) = delete;
+  OdomChassisController &operator=(const OdomChassisController &other) = delete;
+  OdomChassisController &operator=(OdomChassisController &&other) = delete;
+
   /**
    * Drives the robot straight to a point in the odom frame.
    *
