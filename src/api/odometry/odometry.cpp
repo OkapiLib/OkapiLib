@@ -111,8 +111,8 @@ bool OdomState::operator!=(const OdomState &rhs) const {
 std::string OdomState::str() const {
   std::ostringstream os;
   os << "OdomState(x=" << std::to_string(x.convert(meter))
-     << ", y=" << std::to_string(y.convert(meter))
-     << ", theta=" << std::to_string(theta.convert(degree)) << ")";
+     << "m, y=" << std::to_string(y.convert(meter))
+     << "m, theta=" << std::to_string(theta.convert(degree)) << "deg)";
   return os.str();
 }
 } // namespace okapi
