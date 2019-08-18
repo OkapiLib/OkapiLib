@@ -173,22 +173,6 @@ int32_t MockMotor::modifyProfiledVelocity(std::int32_t) {
   return 0;
 }
 
-int32_t MockMotor::setPosPID(double, double, double, double) {
-  return 0;
-}
-
-int32_t MockMotor::setPosPIDFull(double, double, double, double, double, double, double, double) {
-  return 0;
-}
-
-int32_t MockMotor::setVelPID(double, double, double, double) {
-  return 0;
-}
-
-int32_t MockMotor::setVelPIDFull(double, double, double, double, double, double, double, double) {
-  return 0;
-}
-
 AbstractMotor::brakeMode MockMotor::getBrakeMode() {
   return brakeMode;
 }
@@ -696,24 +680,6 @@ int32_t ThreadedMockMotor::setReversed(bool ireverse) {
 int32_t ThreadedMockMotor::setVoltageLimit(std::int32_t ilimit) {
   voltageLimit = ilimit;
   return 1;
-}
-
-int32_t ThreadedMockMotor::setPosPID(double, double, double, double) {
-  return 0;
-}
-
-int32_t
-ThreadedMockMotor::setPosPIDFull(double, double, double, double, double, double, double, double) {
-  return 0;
-}
-
-int32_t ThreadedMockMotor::setVelPID(double, double, double, double) {
-  return 0;
-}
-
-int32_t
-ThreadedMockMotor::setVelPIDFull(double, double, double, double, double, double, double, double) {
-  return 0;
 }
 
 std::shared_ptr<ContinuousRotarySensor> ThreadedMockMotor::getEncoder() {

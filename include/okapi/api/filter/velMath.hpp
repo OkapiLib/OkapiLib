@@ -19,44 +19,45 @@ namespace okapi {
 class VelMath {
   public:
   /**
-   * Velocity math helper. Calculates filtered velocity. Throws a std::invalid_argument exception
-   * if iticksPerRev is zero.
+   * Velocity math helper. Calculates filtered velocity. Throws a `std::invalid_argument` exception
+   * if `iticksPerRev` is zero.
    *
-   * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
-   * @param ifilter filter used for filtering the calculated velocity
-   * @param isampleTime the minimum time between velocity measurements
+   * @param iticksPerRev The number of ticks per revolution (or whatever units you are using).
+   * @param ifilter The filter used for filtering the calculated velocity.
+   * @param isampleTime The minimum time between velocity measurements.
    * @param ilogger The logger this instance will log to.
    */
   VelMath(double iticksPerRev,
           std::unique_ptr<Filter> ifilter,
           QTime isampleTime,
           std::unique_ptr<AbstractTimer> iloopDtTimer,
-          const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+          std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
   virtual ~VelMath();
 
   /**
    * Calculates the current velocity and acceleration. Returns the (filtered) velocity.
    *
-   * @param inewPos new position
-   * @return current (filtered) velocity
+   * @param inewPos The new position measurement.
+   * @return The new velocity estimate.
    */
   virtual QAngularSpeed step(double inewPos);
 
   /**
-   * Sets ticks per revolution (or whatever units you are using).
+   * Sets ticks per revolution (or whatever units you are using). Throws a `std::invalid_argument`
+   * exception if iticksPerRev is zero.
    *
-   * @para iTPR ticks per revolution
+   * @param iTPR The number of ticks per revolution.
    */
   virtual void setTicksPerRev(double iTPR);
 
   /**
-   * Returns the last calculated velocity.
+   * @return The last calculated velocity.
    */
   virtual QAngularSpeed getVelocity() const;
 
   /**
-   * Returns the last calculated acceleration.
+   * @return The last calculated acceleration.
    */
   virtual QAngularAcceleration getAccel() const;
 

@@ -126,68 +126,6 @@ class ChassisModel : public ReadOnlyChassisModel {
   virtual void setGearing(AbstractMotor::gearset gearset) = 0;
 
   /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   */
-  virtual void setPosPID(double ikF, double ikP, double ikI, double ikD) = 0;
-
-  /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @param ifilter a constant used for filtering the profile acceleration
-   * @param ilimit the integral limit
-   * @param ithreshold the threshold for determining if a position movement has reached its goal
-   * @param iloopSpeed the rate at which the PID computation is run (in ms)
-   */
-  virtual void setPosPIDFull(double ikF,
-                             double ikP,
-                             double ikI,
-                             double ikD,
-                             double ifilter,
-                             double ilimit,
-                             double ithreshold,
-                             double iloopSpeed) = 0;
-
-  /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   */
-  virtual void setVelPID(double ikF, double ikP, double ikI, double ikD) = 0;
-
-  /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @param ifilter a constant used for filtering the profile acceleration
-   * @param ilimit the integral limit
-   * @param ithreshold the threshold for determining if a position movement has reached its goal
-   * @param iloopSpeed the rate at which the PID computation is run (in ms)
-   */
-  virtual void setVelPIDFull(double ikF,
-                             double ikP,
-                             double ikI,
-                             double ikD,
-                             double ifilter,
-                             double ilimit,
-                             double ithreshold,
-                             double iloopSpeed) = 0;
-
-  /**
    * Sets a new maximum velocity in RPM [0-600].
    *
    * @param imaxVelocity the new maximum velocity

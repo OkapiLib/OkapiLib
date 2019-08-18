@@ -23,6 +23,11 @@ struct OdomState {
   QLength y{0_m};
   QAngle theta{0_deg};
 
+  /**
+   * @return A string representing the state.
+   */
+  std::string str() const;
+
   bool operator==(const OdomState &rhs) const;
 
   bool operator!=(const OdomState &rhs) const;

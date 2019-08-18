@@ -12,20 +12,31 @@
 #include "okapi/api/util/logging.hpp"
 
 namespace okapi {
-class Motor : public AbstractMotor, public pros::Motor {
+class Motor : public AbstractMotor {
   public:
   /**
-   * A V5 motor. A negative port number is shorthand for reversing the motor.
+   * A V5 motor.
    *
-   * @param port the port number
+   * @param iport The port number in the range [1, 21]. A negative port number is shorthand for
+   * reversing the motor.
    */
-  Motor(std::int8_t port);
+  Motor(std::int8_t iport);
 
-  explicit Motor(std::uint8_t port,
-                 bool reverse,
-                 AbstractMotor::gearset igearset,
-                 AbstractMotor::encoderUnits encoderUnits = AbstractMotor::encoderUnits::degrees,
-                 const std::shared_ptr<Logger> &logger = Logger::getDefaultLogger());
+  /**
+   * A V5 motor.
+   *
+   * @param iport The port number in the range [1, 21].
+   * @param ireverse Whether the motor is reversed (this setting is not written to the motor, it is
+   * maintained by okapi::Motor instead).
+   * @param igearset The internal gearset to set in the motor.
+   * @param iencoderUnits The encoder units to set in the motor.
+   * @param logger The logger that initialization warnings will be logged to.
+   */
+  Motor(std::uint8_t iport,
+        bool ireverse,
+        AbstractMotor::gearset igearset,
+        AbstractMotor::encoderUnits iencoderUnits,
+        const std::shared_ptr<Logger> &logger = Logger::getDefaultLogger());
 
   /******************************************************************************/
   /**                         Motor movement functions                         **/
@@ -49,7 +60,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param ivelocity The maximum allowable velocity for the movement in RPM
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveAbsolute(double iposition, std::int32_t ivelocity) override;
+  std::int32_t moveAbsolute(double iposition, std::int32_t ivelocity) override;
 
   /**
    * Sets the relative target position for the motor to move to.
@@ -68,7 +79,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param ivelocity The maximum allowable velocity for the movement in RPM
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveRelative(double iposition, std::int32_t ivelocity) override;
+  std::int32_t moveRelative(double iposition, std::int32_t ivelocity) override;
 
   /**
    * Sets the velocity for the motor.
@@ -86,7 +97,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveVelocity(std::int16_t ivelocity) override;
+  std::int32_t moveVelocity(std::int16_t ivelocity) override;
 
   /**
    * Sets the voltage for the motor from -12000 to 12000.
@@ -97,7 +108,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param ivoltage The new voltage value from -12000 to 12000.
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t moveVoltage(std::int16_t ivoltage) override;
+  std::int32_t moveVoltage(std::int16_t ivoltage) override;
 
   /**
    * Changes the output velocity for a profiled movement (moveAbsolute or moveRelative). This will
@@ -110,7 +121,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t modifyProfiledVelocity(std::int32_t ivelocity) override;
+  std::int32_t modifyProfiledVelocity(std::int32_t ivelocity) override;
 
   /******************************************************************************/
   /**                        Motor telemetry functions                         **/
@@ -127,7 +138,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return The target position in its encoder units or PROS_ERR_F if the operation failed,
    * setting errno.
    */
-  virtual double getTargetPosition() override;
+  double getTargetPosition() override;
 
   /**
    * Gets the absolute position of the motor in its encoder units.
@@ -138,7 +149,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return The motor's absolute position in its encoder units or PROS_ERR_F if the operation
    * failed, setting errno.
    */
-  virtual double getPosition() override;
+  double getPosition() override;
 
   /**
    * Sets the "absolute" zero position of the motor to its current position.
@@ -148,7 +159,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t tarePosition() override;
+  std::int32_t tarePosition() override;
 
   /**
    * Gets the velocity commanded to the motor by the user.
@@ -159,7 +170,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return The commanded motor velocity from +-100, +-200, or +-600, or PROS_ERR if the operation
    * failed, setting errno.
    */
-  virtual std::int32_t getTargetVelocity() override;
+  std::int32_t getTargetVelocity() override;
 
   /**
    * Gets the actual velocity of the motor.
@@ -170,7 +181,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return The motor's actual velocity in RPM or PROS_ERR_F if the operation failed, setting
    * errno.
    */
-  virtual double getActualVelocity() override;
+  double getActualVelocity() override;
 
   /**
    * Gets the current drawn by the motor in mA.
@@ -181,7 +192,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * @return The motor's current in mA or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t getCurrentDraw() override;
+  std::int32_t getCurrentDraw() override;
 
   /**
    * Gets the direction of movement for the motor.
@@ -193,7 +204,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return 1 for moving in the positive direction, -1 for moving in the negative direction, and
    * PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t getDirection() override;
+  std::int32_t getDirection() override;
 
   /**
    * Gets the efficiency of the motor in percent.
@@ -208,7 +219,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * @return The motor's efficiency in percent or PROS_ERR_F if the operation failed, setting errno.
    */
-  virtual double getEfficiency() override;
+  double getEfficiency() override;
 
   /**
    * Checks if the motor is drawing over its current limit.
@@ -220,7 +231,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return 1 if the motor's current limit is being exceeded and 0 if the current limit is not
    * exceeded, or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t isOverCurrent() override;
+  std::int32_t isOverCurrent() override;
 
   /**
    * Checks if the motor's temperature is above its limit.
@@ -232,7 +243,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return 1 if the temperature limit is exceeded and 0 if the the temperature is below the limit,
    * or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t isOverTemp() override;
+  std::int32_t isOverTemp() override;
 
   /**
    * Checks if the motor is stopped.
@@ -242,7 +253,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return 1 if the motor is not moving, 0 if the motor is moving, or PROS_ERR if the operation
    * failed, setting errno
    */
-  virtual std::int32_t isStopped() override;
+  std::int32_t isStopped() override;
 
   /**
    * Checks if the motor is at its zero position.
@@ -253,7 +264,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return 1 if the motor is at zero absolute position, 0 if the motor has moved from its absolute
    * zero, or PROS_ERR if the operation failed, setting errno
    */
-  virtual std::int32_t getZeroPositionFlag() override;
+  std::int32_t getZeroPositionFlag() override;
 
   /**
    * Gets the faults experienced by the motor. Compare this bitfield to the bitmasks in
@@ -266,7 +277,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return A currently unknown bitfield containing the motor's faults. 0b00000100 = Current Limit
    * Hit
    */
-  virtual uint32_t getFaults() override;
+  uint32_t getFaults() override;
 
   /**
    * Gets the flags set by the motor's operation. Compare this bitfield to the bitmasks in
@@ -279,7 +290,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return A currently unknown bitfield containing the motor's flags. These seem to be unrelated
    * to the individual get_specific_flag functions
    */
-  virtual uint32_t getFlags() override;
+  uint32_t getFlags() override;
 
   /**
    * Gets the raw encoder count of the motor at a given timestamp.
@@ -293,7 +304,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * @return The raw encoder count at the given timestamp or PROS_ERR if the operation failed.
    */
-  virtual std::int32_t getRawPosition(std::uint32_t *timestamp) override;
+  std::int32_t getRawPosition(std::uint32_t *timestamp) override;
 
   /**
    * Gets the power drawn by the motor in Watts.
@@ -304,7 +315,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * @return The motor's power draw in Watts or PROS_ERR_F if the operation failed, setting errno.
    */
-  virtual double getPower() override;
+  double getPower() override;
 
   /**
    * Gets the temperature of the motor in degrees Celsius.
@@ -316,7 +327,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return The motor's temperature in degrees Celsius or PROS_ERR_F if the operation failed,
    * setting errno.
    */
-  virtual double getTemperature() override;
+  double getTemperature() override;
 
   /**
    * Gets the torque generated by the motor in Newton Metres (Nm).
@@ -327,7 +338,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * @return The motor's torque in NM or PROS_ERR_F if the operation failed, setting errno.
    */
-  virtual double getTorque() override;
+  double getTorque() override;
 
   /**
    * Gets the voltage delivered to the motor in millivolts.
@@ -338,7 +349,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * @return The motor's voltage in V or PROS_ERR_F if the operation failed, setting errno.
    */
-  virtual std::int32_t getVoltage() override;
+  std::int32_t getVoltage() override;
 
   /******************************************************************************/
   /**                      Motor configuration functions                       **/
@@ -355,7 +366,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param imode The new motor brake mode to set for the motor
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setBrakeMode(AbstractMotor::brakeMode imode) override;
+  std::int32_t setBrakeMode(AbstractMotor::brakeMode imode) override;
 
   /**
    * Gets the brake mode that was set for the motor.
@@ -366,7 +377,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return One of brakeMode, according to what was set for the motor, or brakeMode::invalid if the
    * operation failed, setting errno.
    */
-  virtual brakeMode getBrakeMode() override;
+  brakeMode getBrakeMode() override;
 
   /**
    * Sets the current limit for the motor in mA.
@@ -377,7 +388,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param ilimit The new current limit in mA
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setCurrentLimit(std::int32_t ilimit) override;
+  std::int32_t setCurrentLimit(std::int32_t ilimit) override;
 
   /**
    * Gets the current limit for the motor in mA.
@@ -389,7 +400,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * @return The motor's current limit in mA or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t getCurrentLimit() override;
+  std::int32_t getCurrentLimit() override;
 
   /**
    * Sets one of AbstractMotor::encoderUnits for the motor encoder.
@@ -400,7 +411,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param iunits The new motor encoder units
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setEncoderUnits(AbstractMotor::encoderUnits iunits) override;
+  std::int32_t setEncoderUnits(AbstractMotor::encoderUnits iunits) override;
 
   /**
    * Gets the encoder units that were set for the motor.
@@ -411,7 +422,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return One of encoderUnits according to what is set for the motor or encoderUnits::invalid if
    * the operation failed.
    */
-  virtual encoderUnits getEncoderUnits() override;
+  encoderUnits getEncoderUnits() override;
 
   /**
    * Sets one of AbstractMotor::gearset for the motor.
@@ -422,7 +433,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param igearset The new motor gearset
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setGearing(AbstractMotor::gearset igearset) override;
+  std::int32_t setGearing(AbstractMotor::gearset igearset) override;
 
   /**
    * Gets the gearset that was set for the motor.
@@ -433,7 +444,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @return One of gearset according to what is set for the motor, or gearset::invalid if the
    * operation failed.
    */
-  virtual gearset getGearing() override;
+  gearset getGearing() override;
 
   /**
    * Sets the reverse flag for the motor.
@@ -446,7 +457,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param ireverse True reverses the motor, false is default
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setReversed(bool ireverse) override;
+  std::int32_t setReversed(bool ireverse) override;
 
   /**
    * Sets the voltage limit for the motor in Volts.
@@ -457,7 +468,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param ilimit The new voltage limit in Volts
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setVoltageLimit(std::int32_t ilimit) override;
+  std::int32_t setVoltageLimit(std::int32_t ilimit) override;
 
   /**
    * Sets new PID constants.
@@ -468,7 +479,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param ikD the derivative constant
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) override;
+  virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD);
 
   /**
    * Sets new PID constants.
@@ -490,7 +501,7 @@ class Motor : public AbstractMotor, public pros::Motor {
                                      double ifilter,
                                      double ilimit,
                                      double ithreshold,
-                                     double iloopSpeed) override;
+                                     double iloopSpeed);
 
   /**
    * Sets new PID constants.
@@ -501,7 +512,7 @@ class Motor : public AbstractMotor, public pros::Motor {
    * @param ikD the derivative constant
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
-  virtual std::int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) override;
+  virtual std::int32_t setVelPID(double ikF, double ikP, double ikI, double ikD);
 
   /**
    * Sets new PID constants.
@@ -523,14 +534,14 @@ class Motor : public AbstractMotor, public pros::Motor {
                                      double ifilter,
                                      double ilimit,
                                      double ithreshold,
-                                     double iloopSpeed) override;
+                                     double iloopSpeed);
 
   /**
    * Get the encoder associated with this motor.
    *
    * @return encoder for this motor
    */
-  virtual std::shared_ptr<ContinuousRotarySensor> getEncoder() override;
+  std::shared_ptr<ContinuousRotarySensor> getEncoder() override;
 
   /**
    * Writes the value of the controller output. This method might be automatically called in another
@@ -538,21 +549,20 @@ class Motor : public AbstractMotor, public pros::Motor {
    *
    * @param ivalue the controller's output in the range [-1, 1]
    */
-  virtual void controllerSet(double ivalue) override;
+  void controllerSet(double ivalue) override;
+
+  /**
+   * @return The port number.
+   */
+  std::uint8_t getPort() const;
+
+  /**
+   * @return Whether this motor is reversed.
+   */
+  bool isReversed() const;
 
   protected:
-  AbstractMotor::gearset gearset{AbstractMotor::gearset::green};
+  std::uint8_t port;
+  std::int8_t reversed{1};
 };
-
-inline namespace literals {
-/**
- * Non-reversed motor.
- **/
-okapi::Motor operator"" _mtr(unsigned long long iport);
-
-/**
- * Reversed motor.
- **/
-okapi::Motor operator"" _rmtr(unsigned long long iport);
-} // namespace literals
 } // namespace okapi

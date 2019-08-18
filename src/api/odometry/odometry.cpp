@@ -92,6 +92,7 @@ OdomState Odometry::getState(const StateMode &imode) const {
 }
 
 void Odometry::setState(const OdomState &istate, const StateMode &imode) {
+  LOG_DEBUG("State set to: " + istate.str());
   if (imode == StateMode::FRAME_TRANSFORMATION) {
     state = istate;
   } else {
@@ -105,5 +106,13 @@ bool OdomState::operator==(const OdomState &rhs) const {
 
 bool OdomState::operator!=(const OdomState &rhs) const {
   return !(rhs == *this);
+}
+
+std::string OdomState::str() const {
+  std::ostringstream os;
+  os << "OdomState(x=" << std::to_string(x.convert(meter))
+     << ", y=" << std::to_string(y.convert(meter))
+     << ", theta=" << std::to_string(theta.convert(degree)) << ")";
+  return os.str();
 }
 } // namespace okapi

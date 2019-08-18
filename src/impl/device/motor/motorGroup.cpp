@@ -260,69 +260,11 @@ void MotorGroup::controllerSet(const double ivalue) {
   }
 }
 
-std::int32_t
-MotorGroup::setPosPID(const double ikF, const double ikP, const double ikI, const double ikD) {
-  auto out = 1;
-  for (auto &&elem : motors) {
-    const auto errorCode = elem->setPosPID(ikF, ikP, ikI, ikD);
-    if (errorCode != 1) {
-      out = errorCode;
-    }
-  }
-  return out;
-}
-
-std::int32_t MotorGroup::setPosPIDFull(const double ikF,
-                                       const double ikP,
-                                       const double ikI,
-                                       const double ikD,
-                                       const double ifilter,
-                                       const double ilimit,
-                                       const double ithreshold,
-                                       const double iloopSpeed) {
-  auto out = 1;
-  for (auto &&elem : motors) {
-    const auto errorCode =
-      elem->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-    if (errorCode != 1) {
-      out = errorCode;
-    }
-  }
-  return out;
-}
-
-std::int32_t
-MotorGroup::setVelPID(const double ikF, const double ikP, const double ikI, const double ikD) {
-  auto out = 1;
-  for (auto &&elem : motors) {
-    const auto errorCode = elem->setVelPID(ikF, ikP, ikI, ikD);
-    if (errorCode != 1) {
-      out = errorCode;
-    }
-  }
-  return out;
-}
-
-std::int32_t MotorGroup::setVelPIDFull(const double ikF,
-                                       const double ikP,
-                                       const double ikI,
-                                       const double ikD,
-                                       const double ifilter,
-                                       const double ilimit,
-                                       const double ithreshold,
-                                       const double iloopSpeed) {
-  auto out = 1;
-  for (auto &&elem : motors) {
-    const auto errorCode =
-      elem->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-    if (errorCode != 1) {
-      out = errorCode;
-    }
-  }
-  return out;
-}
-
 std::shared_ptr<ContinuousRotarySensor> MotorGroup::getEncoder() {
-  return motors[0]->getEncoder();
+  return getEncoder(0);
+}
+
+std::shared_ptr<ContinuousRotarySensor> MotorGroup::getEncoder(const std::size_t index) {
+  return motors[index]->getEncoder();
 }
 } // namespace okapi

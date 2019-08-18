@@ -171,46 +171,6 @@ void SkidSteerModel::setGearing(const AbstractMotor::gearset gearset) {
   rightSideMotor->setGearing(gearset);
 }
 
-void SkidSteerModel::setPosPID(const double ikF,
-                               const double ikP,
-                               const double ikI,
-                               const double ikD) {
-  leftSideMotor->setPosPID(ikF, ikP, ikI, ikD);
-  rightSideMotor->setPosPID(ikF, ikP, ikI, ikD);
-}
-
-void SkidSteerModel::setPosPIDFull(const double ikF,
-                                   const double ikP,
-                                   const double ikI,
-                                   const double ikD,
-                                   const double ifilter,
-                                   const double ilimit,
-                                   const double ithreshold,
-                                   const double iloopSpeed) {
-  leftSideMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-  rightSideMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-}
-
-void SkidSteerModel::setVelPID(const double ikF,
-                               const double ikP,
-                               const double ikI,
-                               const double ikD) {
-  leftSideMotor->setVelPID(ikF, ikP, ikI, ikD);
-  rightSideMotor->setVelPID(ikF, ikP, ikI, ikD);
-}
-
-void SkidSteerModel::setVelPIDFull(const double ikF,
-                                   const double ikP,
-                                   const double ikI,
-                                   const double ikD,
-                                   const double ifilter,
-                                   const double ilimit,
-                                   const double ithreshold,
-                                   const double iloopSpeed) {
-  leftSideMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-  rightSideMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-}
-
 void SkidSteerModel::setMaxVelocity(double imaxVelocity) {
   maxVelocity = imaxVelocity;
 }
