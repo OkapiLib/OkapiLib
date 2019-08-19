@@ -240,7 +240,9 @@ void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair 
     const auto motorRPM = convertLinearToRotational(path.segment[i].velocity * mps).convert(rpm);
     output->controllerSet(motorRPM / toUnderlyingType(pair.internalGearset) * reversed);
 
+    // Unlock before the delay to be nice to other tasks
     currentPathMutex.unlock();
+
     rate->delayUntil(segDT);
   }
 }
