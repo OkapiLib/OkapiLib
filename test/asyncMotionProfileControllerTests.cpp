@@ -24,7 +24,7 @@ class MockAsyncMotionProfileController : public AsyncMotionProfileController {
     AsyncMotionProfileController::executeSinglePath(path, std::move(rate));
   }
 
-  TrajectoryPair getPathData(std::string ipathId) {
+  TrajectoryPair& getPathData(std::string ipathId) {
     return paths.at(ipathId);
   }
 
