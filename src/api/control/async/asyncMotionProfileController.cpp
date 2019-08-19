@@ -177,11 +177,11 @@ std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<
 
 bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
   if (!isDisabled() && isRunning.load(std::memory_order_acquire) && getTarget() == ipathId) {
-    LOG_WARN("Attempted to remove currently running path " + ipathId);
+    LOG_WARN("AsyncMotionProfileController: Attempted to remove currently running path " + ipathId);
     return false;
   }
 
-  std::scoped_lock lock(pathRemoveMutex);
+  std::scoped_lock lock(currentPathMutex);
 
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
@@ -261,11 +261,12 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
                                                      std::unique_ptr<AbstractRate> rate) {
   const int reversed = direction.load(std::memory_order_acquire);
   const bool followMirrored = mirrored.load(std::memory_order_acquire);
+  const int pathLength = getPathLength(path);
 
-  for (int i = 0; i < path.length && !isDisabled(); ++i) {
+  for (int i = 0; i < pathLength && !isDisabled(); ++i) {
     // This mutex is used to combat an edge case of an edge case
     // if a running path is asked to be removed at the moment this loop is executing
-    std::scoped_lock lock(pathRemoveMutex);
+    std::scoped_lock lock(currentPathMutex);
 
     const auto segDT = path.left[i].dt * second;
     const auto leftRPM = convertLinearToRotational(path.left[i].velocity * mps).convert(rpm);
@@ -280,10 +281,17 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
       model->left(leftSpeed);
       model->right(rightSpeed);
     }
-    pathRemoveMutex.unlock();
+
+    // Unlock before the delay to be nice to other tasks
+    currentPathMutex.unlock();
 
     rate->delayUntil(segDT);
   }
+}
+
+int AsyncMotionProfileController::getPathLength(const TrajectoryPair &path) {
+  std::scoped_lock lock(currentPathMutex);
+  return path.length;
 }
 
 QAngularSpeed AsyncMotionProfileController::convertLinearToRotational(QSpeed linear) const {

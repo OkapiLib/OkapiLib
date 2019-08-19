@@ -249,7 +249,9 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   AbstractMotor::GearsetRatioPair pair;
   double currentProfilePosition{0};
   TimeUtil timeUtil;
-  CrossplatformMutex pathRemoveMutex;
+
+  // This must be locked when accessing the current path
+  CrossplatformMutex currentPathMutex;
 
   std::string currentPath{""};
   std::atomic_bool isRunning{false};
@@ -276,5 +278,13 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
 
   std::string
   getPathErrorMessage(const std::vector<Waypoint> &points, const std::string &ipathId, int length);
+
+  /**
+   * Reads the length of the path in a thread-safe manner.
+   *
+   * @param path The path to read from.
+   * @return The length of the path.
+   */
+  int getPathLength(const TrajectoryPair &path);
 };
 } // namespace okapi
