@@ -252,9 +252,12 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   void forceRemovePath(const std::string &ipathId);
 
   protected:
+  using TrajectoryPtr = std::unique_ptr<TrajectoryCandidate, void (*)(TrajectoryCandidate *)>;
+  using SegmentPtr = std::unique_ptr<Segment, void (*)(void *)>;
+
   struct TrajectoryPair {
-    Segment *left;
-    Segment *right;
+    SegmentPtr left;
+    SegmentPtr right;
     int length;
   };
 
@@ -265,7 +268,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   ChassisScales scales;
   AbstractMotor::GearsetRatioPair pair;
   TimeUtil timeUtil;
-  CrossplatformMutex pathRemoveMutex;
+
+  // This must be locked when accessing the current path
+  CrossplatformMutex currentPathMutex;
 
   std::string currentPath{""};
   std::atomic_bool isRunning{false};
@@ -306,5 +311,13 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
 
   void internalStorePath(FILE *leftPathFile, FILE *rightPathFile, const std::string &ipathId);
   void internalLoadPath(FILE *leftPathFile, FILE *rightPathFile, const std::string &ipathId);
+
+  /**
+   * Reads the length of the path in a thread-safe manner.
+   *
+   * @param path The path to read from.
+   * @return The length of the path.
+   */
+  int getPathLength(const TrajectoryPair &path);
 };
 } // namespace okapi
