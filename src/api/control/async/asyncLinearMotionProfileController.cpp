@@ -138,11 +138,12 @@ AsyncLinearMotionProfileController::getPathErrorMessage(const std::vector<Waypoi
 
 bool AsyncLinearMotionProfileController::removePath(const std::string &ipathId) {
   if (!isDisabled() && isRunning.load(std::memory_order_acquire) && getTarget() == ipathId) {
-    LOG_WARN("Attempted to remove currently running path " + ipathId);
+    LOG_WARN("AsyncLinearMotionProfileController: Attempted to remove currently running path " +
+             ipathId);
     return false;
   }
 
-  std::lock_guard<CrossplatformMutex> lock(pathRemoveMutex);
+  std::scoped_lock lock(currentPathMutex);
 
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
@@ -227,10 +228,11 @@ void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair 
                                                            std::unique_ptr<AbstractRate> rate) {
   const auto reversed = direction.load(std::memory_order_acquire);
 
-  for (int i = 0; i < path.length && !isDisabled(); ++i) {
+  const int pathLength = getPathLength(path);
+  for (int i = 0; i < pathLength && !isDisabled(); ++i) {
     // This mutex is used to combat an edge case of an edge case
     // if a running path is asked to be removed at the moment this loop is executing
-    std::lock_guard<CrossplatformMutex> lock(pathRemoveMutex);
+    std::scoped_lock lock(currentPathMutex);
 
     const auto segDT = path.segment[i].dt * second;
     currentProfilePosition = path.segment[i].position;
@@ -238,9 +240,14 @@ void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair 
     const auto motorRPM = convertLinearToRotational(path.segment[i].velocity * mps).convert(rpm);
     output->controllerSet(motorRPM / toUnderlyingType(pair.internalGearset) * reversed);
 
-    pathRemoveMutex.unlock();
+    currentPathMutex.unlock();
     rate->delayUntil(segDT);
   }
+}
+
+int AsyncLinearMotionProfileController::getPathLength(const TrajectoryPair &path) {
+  std::scoped_lock lock(currentPathMutex);
+  return path.length;
 }
 
 QAngularSpeed AsyncLinearMotionProfileController::convertLinearToRotational(QSpeed linear) const {
