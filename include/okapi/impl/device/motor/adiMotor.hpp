@@ -17,7 +17,7 @@ class ADIMotor : public ControllerOutput<double> {
   /**
    * A motor on the ADI ports.
    *
-   * @param iport The port number in the range ['A', 'H'].
+   * @param iport The ADI port number.
    * @param ireverse Whether the motor is reversed.
    * @param logger The logger that initialization warnings will be logged to.
    */

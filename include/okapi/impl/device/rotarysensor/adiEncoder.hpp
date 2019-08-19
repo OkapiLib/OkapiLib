@@ -18,14 +18,14 @@ class ADIEncoder : public ContinuousRotarySensor {
   /**
    * Get the current sensor value.
    *
-   * @return the current sensor value, or ``PROS_ERR`` on a failure.
+   * @return the current sensor value, or `PROS_ERR` on a failure.
    */
   virtual double get() const override;
 
   /**
    * Reset the sensor to zero.
    *
-   * @return 1 on success, PROS_ERR on fail
+   * @return `1` on success, `PROS_ERR` on fail
    */
   virtual std::int32_t reset() override;
 
@@ -33,7 +33,7 @@ class ADIEncoder : public ContinuousRotarySensor {
    * Get the sensor value for use in a control loop. This method might be automatically called in
    * another thread by the controller.
    *
-   * @return the current sensor value, or ``PROS_ERR`` on a failure.
+   * @return the current sensor value, or `PROS_ERR` on a failure.
    */
   virtual double controllerGet() override;
 

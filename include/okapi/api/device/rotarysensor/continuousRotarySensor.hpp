@@ -15,7 +15,7 @@ class ContinuousRotarySensor : public RotarySensor {
   /**
    * Reset the sensor to zero.
    *
-   * @return 1 on success, PROS_ERR on fail
+   * @return `1` on success, `PROS_ERR` on fail
    */
   virtual std::int32_t reset() = 0;
 };

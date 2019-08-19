@@ -13,6 +13,13 @@
 namespace okapi {
 class ADIButton : public ButtonBase {
   public:
+  /**
+   * A button in an ADI port.
+   *
+   * @param iport The ADI port number.
+   * @param iinverted Whether the button is inverted (`true` meaning default pressed and `false`
+   * meaning default not pressed).
+   */
   ADIButton(std::uint8_t iport, bool iinverted = false);
 
   protected:
