@@ -28,10 +28,11 @@ AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
 
 AsyncLinearMotionProfileController::~AsyncLinearMotionProfileController() {
   dtorCalled.store(true, std::memory_order_release);
+  isDisabled();
 
-  for (auto path : paths) {
-    free(path.second.segment);
-  }
+  // Free paths before deleting the task
+  std::scoped_lock lock(currentPathMutex);
+  paths.clear();
 
   delete task;
 }
@@ -59,7 +60,18 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
 
   LOG_INFO(std::string("AsyncLinearMotionProfileController: Preparing trajectory"));
 
-  TrajectoryCandidate candidate;
+  TrajectoryPtr candidate(new TrajectoryCandidate, [](TrajectoryCandidate *c) {
+    if (c->laptr) {
+      free(c->laptr);
+    }
+
+    if (c->saptr) {
+      free(c->saptr);
+    }
+
+    delete c;
+  });
+
   pathfinder_prepare(points.data(),
                      static_cast<int>(points.size()),
                      FIT_HERMITE_CUBIC,
@@ -68,39 +80,23 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
                      ilimits.maxVel,
                      ilimits.maxAccel,
                      ilimits.maxJerk,
-                     &candidate);
+                     candidate.get());
 
-  const int length = candidate.length;
+  const int length = candidate->length;
 
   if (length < 0) {
     std::string message = "AsyncLinearMotionProfileController: Length was negative. " +
                           getPathErrorMessage(points, ipathId, length);
 
-    if (candidate.laptr) {
-      free(candidate.laptr);
-    }
-
-    if (candidate.saptr) {
-      free(candidate.saptr);
-    }
-
     LOG_ERROR(message);
     throw std::runtime_error(message);
   }
 
-  auto *trajectory = static_cast<Segment *>(malloc(length * sizeof(Segment)));
+  SegmentPtr trajectory(static_cast<Segment *>(malloc(length * sizeof(Segment))), free);
 
   if (trajectory == nullptr) {
     std::string message = "AsyncLinearMotionProfileController: Could not allocate trajectory. " +
                           getPathErrorMessage(points, ipathId, length);
-
-    if (candidate.laptr) {
-      free(candidate.laptr);
-    }
-
-    if (candidate.saptr) {
-      free(candidate.saptr);
-    }
 
     LOG_ERROR(message);
     throw std::runtime_error(message);
@@ -108,12 +104,12 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
 
   LOG_INFO(std::string("AsyncLinearMotionProfileController: Generating path"));
 
-  pathfinder_generate(&candidate, trajectory);
+  pathfinder_generate(candidate.get(), trajectory.get());
 
   // Free the old path before overwriting it
   forceRemovePath(ipathId);
 
-  paths.emplace(ipathId, TrajectoryPair{trajectory, length});
+  paths.emplace(ipathId, TrajectoryPair{std::move(trajectory), length});
 
   LOG_INFO("AsyncLinearMotionProfileController: Completely done generating path " + ipathId);
   LOG_DEBUG("AsyncLinearMotionProfileController: Path length: " + std::to_string(length));
@@ -147,7 +143,6 @@ bool AsyncLinearMotionProfileController::removePath(const std::string &ipathId) 
 
   auto oldPath = paths.find(ipathId);
   if (oldPath != paths.end()) {
-    free(oldPath->second.segment);
     paths.erase(ipathId);
   }
 
@@ -234,10 +229,11 @@ void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair 
     // if a running path is asked to be removed at the moment this loop is executing
     std::scoped_lock lock(currentPathMutex);
 
-    const auto segDT = path.segment[i].dt * second;
-    currentProfilePosition = path.segment[i].position;
+    const auto segDT = path.segment.get()[i].dt * second;
+    currentProfilePosition = path.segment.get()[i].position;
 
-    const auto motorRPM = convertLinearToRotational(path.segment[i].velocity * mps).convert(rpm);
+    const auto motorRPM =
+      convertLinearToRotational(path.segment.get()[i].velocity * mps).convert(rpm);
     output->controllerSet(motorRPM / toUnderlyingType(pair.internalGearset) * reversed);
 
     // Unlock before the delay to be nice to other tasks
@@ -299,7 +295,7 @@ double AsyncLinearMotionProfileController::getError() const {
     return 0;
   } else {
     // The last position in the path is the target position
-    return path->second.segment[path->second.length - 1].position - currentProfilePosition;
+    return path->second.segment.get()[path->second.length - 1].position - currentProfilePosition;
   }
 }
 
