@@ -169,7 +169,7 @@ void AsyncLinearMotionProfileController::setTarget(std::string ipathId) {
 }
 
 void AsyncLinearMotionProfileController::setTarget(std::string ipathId, const bool ibackwards) {
-  LOG_INFO("AsyncLinearMotionProfileController: Set target to: " + ipathId + " (" +
+  LOG_INFO("AsyncLinearMotionProfileController: Set target to: " + ipathId + " (ibackwards" +
            std::to_string(ibackwards) + ")");
 
   currentPath = ipathId;

@@ -195,8 +195,8 @@ void AsyncMotionProfileController::setTarget(std::string ipathId) {
 void AsyncMotionProfileController::setTarget(std::string ipathId,
                                              const bool ibackwards,
                                              const bool imirrored) {
-  LOG_INFO("AsyncMotionProfileController: Set target to: " + ipathId + " (" +
-           std::to_string(ibackwards) + ", " + std::to_string(imirrored) + ")");
+  LOG_INFO("AsyncMotionProfileController: Set target to: " + ipathId + " (ibackwards=" +
+           std::to_string(ibackwards) + ", imirrored=" + std::to_string(imirrored) + ")");
 
   currentPath = ipathId;
   direction.store(boolToSign(!ibackwards), std::memory_order_release);
