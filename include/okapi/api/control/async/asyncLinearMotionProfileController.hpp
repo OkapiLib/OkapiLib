@@ -236,8 +236,11 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   void forceRemovePath(const std::string &ipathId);
 
   protected:
+  using TrajectoryPtr = std::unique_ptr<TrajectoryCandidate, void (*)(TrajectoryCandidate *)>;
+  using SegmentPtr = std::unique_ptr<Segment, void (*)(void *)>;
+
   struct TrajectoryPair {
-    Segment *segment;
+    SegmentPtr segment;
     int length;
   };
 
