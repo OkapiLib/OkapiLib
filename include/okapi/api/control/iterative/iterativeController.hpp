@@ -23,8 +23,8 @@ class IterativeController : public ClosedLoopController<Input, Output> {
   /**
    * Do one iteration of the controller.
    *
-   * @param inewReading new measurement
-   * @return controller output
+   * @param ireading A new measurement.
+   * @return The controller output.
    */
   virtual Output step(Input ireading) = 0;
 
@@ -45,8 +45,8 @@ class IterativeController : public ClosedLoopController<Input, Output> {
    * Sets the (soft) limits for the target range that controllerSet() scales into. The target
    * computed by `controllerSet()` is scaled into the range `[-itargetMin, itargetMax]`.
    *
-   * @param itargetMax The new max target for controllerSet().
-   * @param itargetMin The new min target for controllerSet().
+   * @param itargetMax The new max target for `controllerSet()`.
+   * @param itargetMin The new min target for `controllerSet()`.
    */
   virtual void setControllerSetTargetLimits(Output itargetMax, Output itargetMin) = 0;
 
