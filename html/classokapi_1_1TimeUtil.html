@@ -45,8 +45,79 @@
       <div class="m-col-l-10 m-push-l-1">
         <h1>
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>TimeUtil <span class="m-thin">class</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="timeUtil_8hpp.html">&lt;include/okapi/api/util/timeUtil.hpp&gt;</a></div>
         </h1>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#pro-attribs">Protected variables</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
 <p>Utility class for holding an <a href="classokapi_1_1AbstractTimer.html" class="m-doc">AbstractTimer</a>, <a href="classokapi_1_1AbstractRate.html" class="m-doc">AbstractRate</a>, and <a href="classokapi_1_1SettledUtil.html" class="m-doc">SettledUtil</a> together in one class since they are commonly used together.</p>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt id="a5c723190393428cab7621d3f9e60fc85">
+              <span class="m-doc-wrap-bumper"><a href="#a5c723190393428cab7621d3f9e60fc85" class="m-doc-self">TimeUtil</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1Supplier.html" class="m-doc">Supplier</a>&lt;std::unique_ptr&lt;<a href="classokapi_1_1AbstractTimer.html" class="m-doc">AbstractTimer</a>&gt;&gt;&amp; itimerSupplier,
+              const <a href="classokapi_1_1Supplier.html" class="m-doc">Supplier</a>&lt;std::unique_ptr&lt;<a href="classokapi_1_1AbstractRate.html" class="m-doc">AbstractRate</a>&gt;&gt;&amp; irateSupplier,
+              const <a href="classokapi_1_1Supplier.html" class="m-doc">Supplier</a>&lt;std::unique_ptr&lt;<a href="classokapi_1_1SettledUtil.html" class="m-doc">SettledUtil</a>&gt;&gt;&amp; isettledUtilSupplier)</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt id="ad0c80313a31b0c43543fb470678f7ace">
+              <span class="m-doc-wrap-bumper">auto <a href="#ad0c80313a31b0c43543fb470678f7ace" class="m-doc-self">getTimer</a>(</span><span class="m-doc-wrap">) const -&gt; std::unique_ptr&lt;<a href="classokapi_1_1AbstractTimer.html" class="m-doc">AbstractTimer</a>&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a71a161d82855bcab94e128106c1646e9">
+              <span class="m-doc-wrap-bumper">auto <a href="#a71a161d82855bcab94e128106c1646e9" class="m-doc-self">getRate</a>(</span><span class="m-doc-wrap">) const -&gt; std::unique_ptr&lt;<a href="classokapi_1_1AbstractRate.html" class="m-doc">AbstractRate</a>&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="afd0b2bd0d14401b7284ec08d9fce2e77">
+              <span class="m-doc-wrap-bumper">auto <a href="#afd0b2bd0d14401b7284ec08d9fce2e77" class="m-doc-self">getSettledUtil</a>(</span><span class="m-doc-wrap">) const -&gt; std::unique_ptr&lt;<a href="classokapi_1_1SettledUtil.html" class="m-doc">SettledUtil</a>&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a4d5e56d45f13162ac4b08ff689883315">
+              <span class="m-doc-wrap-bumper">auto <a href="#a4d5e56d45f13162ac4b08ff689883315" class="m-doc-self">getTimerSupplier</a>(</span><span class="m-doc-wrap">) const -&gt; const <a href="classokapi_1_1Supplier.html" class="m-doc">Supplier</a>&lt;std::unique_ptr&lt;<a href="classokapi_1_1AbstractTimer.html" class="m-doc">AbstractTimer</a>&gt;&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a1baebd40208bd1ed9cc07facd6a1ce8e">
+              <span class="m-doc-wrap-bumper">auto <a href="#a1baebd40208bd1ed9cc07facd6a1ce8e" class="m-doc-self">getRateSupplier</a>(</span><span class="m-doc-wrap">) const -&gt; const <a href="classokapi_1_1Supplier.html" class="m-doc">Supplier</a>&lt;std::unique_ptr&lt;<a href="classokapi_1_1AbstractRate.html" class="m-doc">AbstractRate</a>&gt;&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a542fb3e832626bdd55a7c7abd471d218">
+              <span class="m-doc-wrap-bumper">auto <a href="#a542fb3e832626bdd55a7c7abd471d218" class="m-doc-self">getSettledUtilSupplier</a>(</span><span class="m-doc-wrap">) const -&gt; const <a href="classokapi_1_1Supplier.html" class="m-doc">Supplier</a>&lt;std::unique_ptr&lt;<a href="classokapi_1_1SettledUtil.html" class="m-doc">SettledUtil</a>&gt;&gt;</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pro-attribs">
+          <h2><a href="#pro-attribs">Protected variables</a></h2>
+          <dl class="m-doc">
+            <dt id="ac1d9f2cc535d5de97172645a3456e141">
+              <a href="classokapi_1_1Supplier.html" class="m-doc">Supplier</a>&lt;std::unique_ptr&lt;<a href="classokapi_1_1AbstractTimer.html" class="m-doc">AbstractTimer</a>&gt;&gt; <a href="#ac1d9f2cc535d5de97172645a3456e141" class="m-doc-self">timerSupplier</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="afdd2a5ab8f268868daf26ecd74580983">
+              <a href="classokapi_1_1Supplier.html" class="m-doc">Supplier</a>&lt;std::unique_ptr&lt;<a href="classokapi_1_1AbstractRate.html" class="m-doc">AbstractRate</a>&gt;&gt; <a href="#afdd2a5ab8f268868daf26ecd74580983" class="m-doc-self">rateSupplier</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aab5bc0e4f9c14b511c53211f2374fa1b">
+              <a href="classokapi_1_1Supplier.html" class="m-doc">Supplier</a>&lt;std::unique_ptr&lt;<a href="classokapi_1_1SettledUtil.html" class="m-doc">SettledUtil</a>&gt;&gt; <a href="#aab5bc0e4f9c14b511c53211f2374fa1b" class="m-doc-self">settledUtilSupplier</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
       </div>
     </div>
   </div>

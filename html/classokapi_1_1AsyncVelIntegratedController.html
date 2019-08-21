@@ -45,6 +45,7 @@
       <div class="m-col-l-10 m-push-l-1">
         <h1>
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>AsyncVelIntegratedController <span class="m-thin">class</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="asyncVelIntegratedController_8hpp.html">&lt;include/okapi/api/control/async/asyncVelIntegratedController.hpp&gt;</a></div>
         </h1>
         <div class="m-block m-default">
           <h3>Contents</h3>
@@ -52,13 +53,26 @@
             <li>
               Reference
               <ul>
+                <li><a href="#base-classes">Base classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#pro-methods">Protected functions</a></li>
+                <li><a href="#pro-attribs">Protected variables</a></li>
               </ul>
             </li>
           </ul>
         </div>
 <p>Closed-loop controller that uses the V5 motor&#x27;s onboard control to move. Input units are whatever units the motor is in.</p>
+        <section id="base-classes">
+          <h2><a href="#base-classes">Base classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <div class="m-doc-template">template&lt;typename Input, typename Output&gt;</div>
+              class <a href="classokapi_1_1AsyncVelocityController.html" class="m-doc">AsyncVelocityController</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
@@ -115,6 +129,56 @@
               <span class="m-doc-wrap-bumper">void <a href="#ae50c09f44077284278e4d8a80656077d" class="m-doc">controllerSet</a>(</span><span class="m-doc-wrap">double ivalue) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
+          </dl>
+        </section>
+        <section id="pro-methods">
+          <h2><a href="#pro-methods">Protected functions</a></h2>
+          <dl class="m-doc">
+            <dt id="ae017d0031a2ba76d199039cbf7a1465f">
+              <span class="m-doc-wrap-bumper">void <a href="#ae017d0031a2ba76d199039cbf7a1465f" class="m-doc-self">resumeMovement</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pro-attribs">
+          <h2><a href="#pro-attribs">Protected variables</a></h2>
+          <dl class="m-doc">
+            <dt id="afa4028d0303fcfcb7aa7f280b6df663a">
+              std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; <a href="#afa4028d0303fcfcb7aa7f280b6df663a" class="m-doc-self">logger</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a2cfa27f4610d93fa505a0c82f11c9d16">
+              <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a> <a href="#a2cfa27f4610d93fa505a0c82f11c9d16" class="m-doc-self">timeUtil</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a4160de7d42a6817cf037e6a7d91abf37">
+              std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt; <a href="#a4160de7d42a6817cf037e6a7d91abf37" class="m-doc-self">motor</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a76fcd4c095ff6202e0e9513f8081374d">
+              <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a> <a href="#a76fcd4c095ff6202e0e9513f8081374d" class="m-doc-self">pair</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ae6e7d75b066164832207df762b2928ef">
+              std::int32_t <a href="#ae6e7d75b066164832207df762b2928ef" class="m-doc-self">maxVelocity</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="adeffae970b04bf2d484dd19e449810fb">
+              double <a href="#adeffae970b04bf2d484dd19e449810fb" class="m-doc-self">lastTarget</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aed3ebba016794f5eb888edde33a929af">
+              bool <a href="#aed3ebba016794f5eb888edde33a929af" class="m-doc-self">controllerIsDisabled</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="acaf2cbb592c8011df80c5ce618bfb79b">
+              bool <a href="#acaf2cbb592c8011df80c5ce618bfb79b" class="m-doc-self">hasFirstTarget</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aa9890eed087ca10be20b6fc3936508b9">
+              std::unique_ptr&lt;<a href="classokapi_1_1SettledUtil.html" class="m-doc">SettledUtil</a>&gt; <a href="#aa9890eed087ca10be20b6fc3936508b9" class="m-doc-self">settledUtil</a>
+            </dt>
+            <dd><span></span></dd>
           </dl>
         </section>
         <section>

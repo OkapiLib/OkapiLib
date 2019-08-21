@@ -44,6 +44,7 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="averageFilter_8hpp.html">&lt;include/okapi/api/filter/averageFilter.hpp&gt;</a></div>
           <div class="m-doc-template">template&lt;std::size_t n&gt;</div>
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>AverageFilter <span class="m-thin">class</span>
         </h1>
@@ -64,13 +65,24 @@
             <li>
               Reference
               <ul>
+                <li><a href="#base-classes">Base classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#pro-attribs">Protected variables</a></li>
               </ul>
             </li>
           </ul>
         </div>
 <p>A filter which returns the average of a list of values.</p>
+        <section id="base-classes">
+          <h2><a href="#base-classes">Base classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              class <a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
@@ -91,6 +103,23 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a2ee104dfc880e779079dc8e1e242a44b" class="m-doc">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
+          </dl>
+        </section>
+        <section id="pro-attribs">
+          <h2><a href="#pro-attribs">Protected variables</a></h2>
+          <dl class="m-doc">
+            <dt id="a1aeb97bb7bda056a072281c974b074be">
+              std::array&lt;double, n&gt; <a href="#a1aeb97bb7bda056a072281c974b074be" class="m-doc-self">data</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab551add0adf7ec09120e73e3f83af411">
+              std::size_t <a href="#ab551add0adf7ec09120e73e3f83af411" class="m-doc-self">index</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ad01d62f539475ad62ca73bb92aa3968d">
+              double <a href="#ad01d62f539475ad62ca73bb92aa3968d" class="m-doc-self">output</a>
+            </dt>
+            <dd><span></span></dd>
           </dl>
         </section>
         <section>

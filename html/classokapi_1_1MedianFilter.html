@@ -44,6 +44,7 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="medianFilter_8hpp.html">&lt;include/okapi/api/filter/medianFilter.hpp&gt;</a></div>
           <div class="m-doc-template">template&lt;std::size_t n&gt;</div>
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>MedianFilter <span class="m-thin">class</span>
         </h1>
@@ -64,13 +65,34 @@
             <li>
               Reference
               <ul>
+                <li><a href="#base-classes">Base classes</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
                 <li><a href="#pro-methods">Protected functions</a></li>
+                <li><a href="#pro-attribs">Protected variables</a></li>
               </ul>
             </li>
           </ul>
         </div>
 <p>A filter which returns the median value of list of values.</p>
+        <section id="base-classes">
+          <h2><a href="#base-classes">Base classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              class <a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt id="ab48a9a26745bf3ba81275c2857e63838">
+              <span class="m-doc-wrap-bumper"><a href="#ab48a9a26745bf3ba81275c2857e63838" class="m-doc-self">MedianFilter</a>(</span><span class="m-doc-wrap">)</span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
@@ -91,6 +113,27 @@
               <span class="m-doc-wrap-bumper">auto <a href="#afe9b963e054b89cbdc13ea1acaaa900b" class="m-doc">kth_smallset</a>(</span><span class="m-doc-wrap">) -&gt; double</span>
             </dt>
             <dd></dd>
+          </dl>
+        </section>
+        <section id="pro-attribs">
+          <h2><a href="#pro-attribs">Protected variables</a></h2>
+          <dl class="m-doc">
+            <dt id="a9a6648a537ca4aac1095ee6de6e02806">
+              std::array&lt;double, n&gt; <a href="#a9a6648a537ca4aac1095ee6de6e02806" class="m-doc-self">data</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="af5188b3df2e2f5cffed1b8b903ce1ef9">
+              std::size_t <a href="#af5188b3df2e2f5cffed1b8b903ce1ef9" class="m-doc-self">index</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a1cd7af575ee6be29f36a6b920277ef21">
+              double <a href="#a1cd7af575ee6be29f36a6b920277ef21" class="m-doc-self">output</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a0730bda4e8ae740fc21ed98441d58fb2">
+              const size_t <a href="#a0730bda4e8ae740fc21ed98441d58fb2" class="m-doc-self">middleIndex</a>
+            </dt>
+            <dd><span></span></dd>
           </dl>
         </section>
         <section>

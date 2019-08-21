@@ -44,6 +44,7 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="supplier_8hpp.html">&lt;include/okapi/api/util/supplier.hpp&gt;</a></div>
           <div class="m-doc-template">template&lt;typename T&gt;</div>
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>Supplier <span class="m-thin">class</span>
         </h1>
@@ -64,12 +65,27 @@
             <li>
               Reference
               <ul>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#pro-attribs">Protected variables</a></li>
               </ul>
             </li>
           </ul>
         </div>
 <p>A supplier of instances of T.</p>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt id="a79da50ffa4a1f5b281915fd4200f361f">
+              <span class="m-doc-wrap-bumper"><a href="#a79da50ffa4a1f5b281915fd4200f361f" class="m-doc-self">Supplier</a>(</span><span class="m-doc-wrap">std::function&lt;T(void)&gt; ifunc) <span class="m-label m-flat m-info">explicit</span> </span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="aa77c64ed86dd8a0e1ea712b085138ae3">
+              <span class="m-doc-wrap-bumper"><a href="#aa77c64ed86dd8a0e1ea712b085138ae3" class="m-doc-self">~Supplier</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span> <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
@@ -77,6 +93,15 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a38d76d4c3dcc19fd74f5349660199efe" class="m-doc">get</a>(</span><span class="m-doc-wrap">) const -&gt; T</span>
             </dt>
             <dd></dd>
+          </dl>
+        </section>
+        <section id="pro-attribs">
+          <h2><a href="#pro-attribs">Protected variables</a></h2>
+          <dl class="m-doc">
+            <dt id="aad4dde721930a73ed5077011bab8203c">
+              std::function&lt;T(void)&gt; <a href="#aad4dde721930a73ed5077011bab8203c" class="m-doc-self">func</a>
+            </dt>
+            <dd><span></span></dd>
           </dl>
         </section>
         <section>

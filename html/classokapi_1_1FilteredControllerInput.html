@@ -44,6 +44,7 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
+          <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="filteredControllerInput_8hpp.html">&lt;include/okapi/api/filter/filteredControllerInput.hpp&gt;</a></div>
           <div class="m-doc-template">template&lt;typename InputType, typename FilterType&gt;</div>
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>FilteredControllerInput <span class="m-thin">class</span>
         </h1>
@@ -68,13 +69,25 @@
             <li>
               Reference
               <ul>
+                <li><a href="#base-classes">Base classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#pro-attribs">Protected variables</a></li>
               </ul>
             </li>
           </ul>
         </div>
 <p>A <a href="classokapi_1_1ControllerInput.html" class="m-doc">ControllerInput</a> with a filter built in.</p>
+        <section id="base-classes">
+          <h2><a href="#base-classes">Base classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <div class="m-doc-template">template&lt;typename T&gt;</div>
+              class <a href="classokapi_1_1ControllerInput.html" class="m-doc">ControllerInput</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
@@ -92,6 +105,19 @@
               <span class="m-doc-wrap-bumper">auto <a href="#abc48c2eb875b0e927d0fd6b462d391d6" class="m-doc">controllerGet</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
+          </dl>
+        </section>
+        <section id="pro-attribs">
+          <h2><a href="#pro-attribs">Protected variables</a></h2>
+          <dl class="m-doc">
+            <dt id="a402aed1f5ce334f1f2894026dfc80250">
+              std::unique_ptr&lt;<a href="classokapi_1_1ControllerInput.html" class="m-doc">ControllerInput</a>&lt;InputType&gt;&gt; <a href="#a402aed1f5ce334f1f2894026dfc80250" class="m-doc-self">input</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="abe6797c377795f6bf995053bbb46c870">
+              std::unique_ptr&lt;FilterType&gt; <a href="#abe6797c377795f6bf995053bbb46c870" class="m-doc-self">filter</a>
+            </dt>
+            <dd><span></span></dd>
           </dl>
         </section>
         <section>
