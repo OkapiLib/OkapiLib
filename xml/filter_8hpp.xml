@@ -1,0 +1,348 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="filter_8hpp" kind="file" language="C++">
+    <compoundname>filter.hpp</compoundname>
+    <includedby refid="iterativePosPidController_8hpp" local="yes">include/okapi/api/control/iterative/iterativePosPidController.hpp</includedby>
+    <includedby refid="averageFilter_8hpp" local="yes">include/okapi/api/filter/averageFilter.hpp</includedby>
+    <includedby refid="composableFilter_8hpp" local="yes">include/okapi/api/filter/composableFilter.hpp</includedby>
+    <includedby refid="demaFilter_8hpp" local="yes">include/okapi/api/filter/demaFilter.hpp</includedby>
+    <includedby refid="ekfFilter_8hpp" local="yes">include/okapi/api/filter/ekfFilter.hpp</includedby>
+    <includedby refid="emaFilter_8hpp" local="yes">include/okapi/api/filter/emaFilter.hpp</includedby>
+    <includedby refid="filteredControllerInput_8hpp" local="yes">include/okapi/api/filter/filteredControllerInput.hpp</includedby>
+    <includedby refid="medianFilter_8hpp" local="yes">include/okapi/api/filter/medianFilter.hpp</includedby>
+    <includedby refid="passthroughFilter_8hpp" local="yes">include/okapi/api/filter/passthroughFilter.hpp</includedby>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <includedby refid="filter_8cpp" local="yes">src/api/filter/filter.cpp</includedby>
+    <invincdepgraph>
+      <node id="2268">
+        <label>src/api/chassis/controller/chassisControllerPid.cpp</label>
+        <link refid="chassisControllerPid_8cpp"/>
+      </node>
+      <node id="2278">
+        <label>src/impl/control/iterative/iterativeControllerFactory.cpp</label>
+        <link refid="iterativeControllerFactory_8cpp"/>
+      </node>
+      <node id="2279">
+        <label>src/api/control/iterative/iterativePosPidController.cpp</label>
+        <link refid="iterativePosPidController_8cpp"/>
+      </node>
+      <node id="2303">
+        <label>src/impl/device/adiUltrasonic.cpp</label>
+        <link refid="adiUltrasonic_8cpp"/>
+      </node>
+      <node id="2272">
+        <label>src/api/control/async/asyncPosPidController.cpp</label>
+        <link refid="asyncPosPidController_8cpp"/>
+      </node>
+      <node id="2276">
+        <label>src/api/control/util/pidTuner.cpp</label>
+        <link refid="pidTuner_8cpp"/>
+      </node>
+      <node id="2282">
+        <label>src/impl/filter/velMathFactory.cpp</label>
+        <link refid="velMathFactory_8cpp"/>
+      </node>
+      <node id="2295">
+        <label>include/okapi/api/filter/ekfFilter.hpp</label>
+        <link refid="ekfFilter_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2296" relation="include">
+        </childnode>
+      </node>
+      <node id="2265">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="2271">
+        <label>src/impl/control/async/asyncPosControllerBuilder.cpp</label>
+        <link refid="asyncPosControllerBuilder_8cpp"/>
+      </node>
+      <node id="2289">
+        <label>src/api/control/async/asyncVelPidController.cpp</label>
+        <link refid="asyncVelPidController_8cpp"/>
+      </node>
+      <node id="2296">
+        <label>src/api/filter/ekfFilter.cpp</label>
+        <link refid="ekfFilter_8cpp"/>
+      </node>
+      <node id="2277">
+        <label>include/okapi/impl/control/iterative/iterativeControllerFactory.hpp</label>
+        <link refid="iterativeControllerFactory_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2278" relation="include">
+        </childnode>
+        <childnode refid="2275" relation="include">
+        </childnode>
+      </node>
+      <node id="2294">
+        <label>src/api/filter/demaFilter.cpp</label>
+        <link refid="demaFilter_8cpp"/>
+      </node>
+      <node id="2297">
+        <label>include/okapi/api/filter/emaFilter.hpp</label>
+        <link refid="emaFilter_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2298" relation="include">
+        </childnode>
+      </node>
+      <node id="2283">
+        <label>include/okapi/api/filter/composableFilter.hpp</label>
+        <link refid="composableFilter_8hpp"/>
+        <childnode refid="2284" relation="include">
+        </childnode>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2292" relation="include">
+        </childnode>
+      </node>
+      <node id="2298">
+        <label>src/api/filter/emaFilter.cpp</label>
+        <link refid="emaFilter_8cpp"/>
+      </node>
+      <node id="2273">
+        <label>include/okapi/api/control/util/pidTuner.hpp</label>
+        <link refid="pidTuner_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2274" relation="include">
+        </childnode>
+        <childnode refid="2276" relation="include">
+        </childnode>
+      </node>
+      <node id="2287">
+        <label>include/okapi/impl/control/async/asyncVelControllerBuilder.hpp</label>
+        <link refid="asyncVelControllerBuilder_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2288" relation="include">
+        </childnode>
+      </node>
+      <node id="2286">
+        <label>include/okapi/api/control/async/asyncVelPidController.hpp</label>
+        <link refid="asyncVelPidController_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2287" relation="include">
+        </childnode>
+        <childnode refid="2289" relation="include">
+        </childnode>
+      </node>
+      <node id="2266">
+        <label>include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp</label>
+        <link refid="chassisControllerBuilder_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2267" relation="include">
+        </childnode>
+      </node>
+      <node id="2280">
+        <label>include/okapi/api/filter/averageFilter.hpp</label>
+        <link refid="averageFilter_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2281" relation="include">
+        </childnode>
+        <childnode refid="2282" relation="include">
+        </childnode>
+      </node>
+      <node id="2301">
+        <label>include/okapi/api/filter/passthroughFilter.hpp</label>
+        <link refid="passthroughFilter_8hpp"/>
+        <childnode refid="2263" relation="include">
+        </childnode>
+        <childnode refid="2285" relation="include">
+        </childnode>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2302" relation="include">
+        </childnode>
+        <childnode refid="2304" relation="include">
+        </childnode>
+      </node>
+      <node id="2262">
+        <label>include/okapi/api/filter/filter.hpp</label>
+        <link refid="filter_8hpp"/>
+        <childnode refid="2263" relation="include">
+        </childnode>
+        <childnode refid="2280" relation="include">
+        </childnode>
+        <childnode refid="2283" relation="include">
+        </childnode>
+        <childnode refid="2293" relation="include">
+        </childnode>
+        <childnode refid="2295" relation="include">
+        </childnode>
+        <childnode refid="2297" relation="include">
+        </childnode>
+        <childnode refid="2299" relation="include">
+        </childnode>
+        <childnode refid="2300" relation="include">
+        </childnode>
+        <childnode refid="2301" relation="include">
+        </childnode>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2305" relation="include">
+        </childnode>
+      </node>
+      <node id="2264">
+        <label>include/okapi/api/chassis/controller/chassisControllerPid.hpp</label>
+        <link refid="chassisControllerPid_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2266" relation="include">
+        </childnode>
+        <childnode refid="2268" relation="include">
+        </childnode>
+      </node>
+      <node id="2284">
+        <label>include/okapi/api/filter/velMath.hpp</label>
+        <link refid="velMath_8hpp"/>
+        <childnode refid="2285" relation="include">
+        </childnode>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2291" relation="include">
+        </childnode>
+        <childnode refid="2281" relation="include">
+        </childnode>
+      </node>
+      <node id="2275">
+        <label>src/impl/control/util/pidTunerFactory.cpp</label>
+        <link refid="pidTunerFactory_8cpp"/>
+      </node>
+      <node id="2267">
+        <label>src/impl/chassis/controller/chassisControllerBuilder.cpp</label>
+        <link refid="chassisControllerBuilder_8cpp"/>
+      </node>
+      <node id="2270">
+        <label>include/okapi/impl/control/async/asyncPosControllerBuilder.hpp</label>
+        <link refid="asyncPosControllerBuilder_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2271" relation="include">
+        </childnode>
+      </node>
+      <node id="2302">
+        <label>include/okapi/impl/device/adiUltrasonic.hpp</label>
+        <link refid="adiUltrasonic_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2303" relation="include">
+        </childnode>
+      </node>
+      <node id="2263">
+        <label>include/okapi/api/control/iterative/iterativePosPidController.hpp</label>
+        <link refid="iterativePosPidController_8hpp"/>
+        <childnode refid="2264" relation="include">
+        </childnode>
+        <childnode refid="2269" relation="include">
+        </childnode>
+        <childnode refid="2273" relation="include">
+        </childnode>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2277" relation="include">
+        </childnode>
+        <childnode refid="2279" relation="include">
+        </childnode>
+      </node>
+      <node id="2285">
+        <label>include/okapi/api/control/iterative/iterativeVelPidController.hpp</label>
+        <link refid="iterativeVelPidController_8hpp"/>
+        <childnode refid="2286" relation="include">
+        </childnode>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2277" relation="include">
+        </childnode>
+        <childnode refid="2290" relation="include">
+        </childnode>
+      </node>
+      <node id="2269">
+        <label>include/okapi/api/control/async/asyncPosPidController.hpp</label>
+        <link refid="asyncPosPidController_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2270" relation="include">
+        </childnode>
+        <childnode refid="2272" relation="include">
+        </childnode>
+      </node>
+      <node id="2304">
+        <label>src/api/filter/passthroughFilter.cpp</label>
+        <link refid="passthroughFilter_8cpp"/>
+      </node>
+      <node id="2293">
+        <label>include/okapi/api/filter/demaFilter.hpp</label>
+        <link refid="demaFilter_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2294" relation="include">
+        </childnode>
+      </node>
+      <node id="2274">
+        <label>include/okapi/impl/control/util/pidTunerFactory.hpp</label>
+        <link refid="pidTunerFactory_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2275" relation="include">
+        </childnode>
+      </node>
+      <node id="2290">
+        <label>src/api/control/iterative/iterativeVelPidController.cpp</label>
+        <link refid="iterativeVelPidController_8cpp"/>
+      </node>
+      <node id="2291">
+        <label>include/okapi/impl/filter/velMathFactory.hpp</label>
+        <link refid="velMathFactory_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2277" relation="include">
+        </childnode>
+        <childnode refid="2282" relation="include">
+        </childnode>
+      </node>
+      <node id="2300">
+        <label>include/okapi/api/filter/medianFilter.hpp</label>
+        <link refid="medianFilter_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2281" relation="include">
+        </childnode>
+      </node>
+      <node id="2292">
+        <label>src/api/filter/composableFilter.cpp</label>
+        <link refid="composableFilter_8cpp"/>
+      </node>
+      <node id="2281">
+        <label>src/api/filter/velMath.cpp</label>
+        <link refid="velMath_8cpp"/>
+      </node>
+      <node id="2305">
+        <label>src/api/filter/filter.cpp</label>
+        <link refid="filter_8cpp"/>
+      </node>
+      <node id="2299">
+        <label>include/okapi/api/filter/filteredControllerInput.hpp</label>
+        <link refid="filteredControllerInput_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+      </node>
+      <node id="2288">
+        <label>src/impl/control/async/asyncVelControllerBuilder.cpp</label>
+        <link refid="asyncVelControllerBuilder_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1Filter" prot="public">okapi::Filter</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/filter/filter.hpp"/>
+  </compounddef>
+</doxygen>

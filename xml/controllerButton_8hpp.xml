@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="controllerButton_8hpp" kind="file" language="C++">
+    <compoundname>controllerButton.hpp</compoundname>
+    <includes local="yes">api.h</includes>
+    <includes refid="buttonBase_8hpp" local="yes">okapi/api/device/button/buttonBase.hpp</includes>
+    <includes refid="controllerUtil_8hpp" local="yes">okapi/impl/device/controllerUtil.hpp</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <includedby refid="controller_8hpp" local="yes">include/okapi/impl/device/controller.hpp</includedby>
+    <includedby refid="controllerButton_8cpp" local="yes">src/impl/device/button/controllerButton.cpp</includedby>
+    <incdepgraph>
+      <node id="3993">
+        <label>include/okapi/impl/device/button/controllerButton.hpp</label>
+        <link refid="controllerButton_8hpp"/>
+        <childnode refid="3994" relation="include">
+        </childnode>
+        <childnode refid="3995" relation="include">
+        </childnode>
+        <childnode refid="3998" relation="include">
+        </childnode>
+      </node>
+      <node id="3998">
+        <label>okapi/impl/device/controllerUtil.hpp</label>
+        <link refid="controllerUtil_8hpp"/>
+        <childnode refid="3994" relation="include">
+        </childnode>
+      </node>
+      <node id="3997">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="3994">
+        <label>api.h</label>
+      </node>
+      <node id="3996">
+        <label>okapi/api/device/button/abstractButton.hpp</label>
+        <link refid="abstractButton_8hpp"/>
+        <childnode refid="3997" relation="include">
+        </childnode>
+      </node>
+      <node id="3995">
+        <label>okapi/api/device/button/buttonBase.hpp</label>
+        <link refid="buttonBase_8hpp"/>
+        <childnode refid="3996" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4002">
+        <label>src/impl/device/controller.cpp</label>
+        <link refid="controller_8cpp"/>
+      </node>
+      <node id="3999">
+        <label>include/okapi/impl/device/button/controllerButton.hpp</label>
+        <link refid="controllerButton_8hpp"/>
+        <childnode refid="4000" relation="include">
+        </childnode>
+        <childnode refid="4001" relation="include">
+        </childnode>
+        <childnode refid="4003" relation="include">
+        </childnode>
+      </node>
+      <node id="4000">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="4003">
+        <label>src/impl/device/button/controllerButton.cpp</label>
+        <link refid="controllerButton_8cpp"/>
+      </node>
+      <node id="4001">
+        <label>include/okapi/impl/device/controller.hpp</label>
+        <link refid="controller_8hpp"/>
+        <childnode refid="4000" relation="include">
+        </childnode>
+        <childnode refid="4002" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1ControllerButton" prot="public">okapi::ControllerButton</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/device/button/controllerButton.hpp"/>
+  </compounddef>
+</doxygen>

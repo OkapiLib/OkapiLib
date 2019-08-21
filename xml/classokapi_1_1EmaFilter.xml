@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1EmaFilter" kind="class" language="C++" prot="public">
+    <compoundname>okapi::EmaFilter</compoundname>
+    <basecompoundref refid="classokapi_1_1Filter" prot="public" virt="non-virtual">okapi::Filter</basecompoundref>
+    <includes refid="emaFilter_8hpp" local="no">emaFilter.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1EmaFilter_1abaf5500df98574b5bf6f8d9a8a4331b5" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::EmaFilter::alpha</definition>
+        <argsstring></argsstring>
+        <name>alpha</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/emaFilter.hpp" line="45" column="1" bodyfile="include/okapi/api/filter/emaFilter.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1EmaFilter_1a015a76278c1b89144ff5a3b6bf03d7b8" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::EmaFilter::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/emaFilter.hpp" line="46" column="1" bodyfile="include/okapi/api/filter/emaFilter.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1EmaFilter_1a37c4fd3b6f355a49bc8b78790d3b3089" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::EmaFilter::lastOutput</definition>
+        <argsstring></argsstring>
+        <name>lastOutput</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/emaFilter.hpp" line="47" column="1" bodyfile="include/okapi/api/filter/emaFilter.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1EmaFilter_1a3e8e6387c71778a44fcdaee79b2f8f66" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::EmaFilter::EmaFilter</definition>
+        <argsstring>(double ialpha)</argsstring>
+        <name>EmaFilter</name>
+        <param>
+          <type>double</type>
+          <declname>ialpha</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Exponential moving average filter.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ialpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>alpha gain </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/emaFilter.hpp" line="20" column="1" bodyfile="src/api/filter/emaFilter.cpp" bodystart="11" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1EmaFilter_1aeb460ae6655441806591e076342245de" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double okapi::EmaFilter::filter</definition>
+        <argsstring>(double ireading) override</argsstring>
+        <name>filter</name>
+        <reimplements refid="classokapi_1_1Filter_1a7c2ea0b64b37b688900189856d58da15">filter</reimplements>
+        <param>
+          <type>double</type>
+          <declname>ireading</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Filters a value, like a sensor reading.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reading</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>new measurement </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>filtered result </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/emaFilter.hpp" line="28" column="1" bodyfile="src/api/filter/emaFilter.cpp" bodystart="14" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1EmaFilter_1a883bc02a7244be54f947b6daaa63c0fe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double okapi::EmaFilter::getOutput</definition>
+        <argsstring>() const override</argsstring>
+        <name>getOutput</name>
+        <reimplements refid="classokapi_1_1Filter_1a3469cd4bc108f8accf300d9f5cc9f42f">getOutput</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the previous output from filter.</para>
+<para><simplesect kind="return"><para>the previous output from filter </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/emaFilter.hpp" line="35" column="1" bodyfile="src/api/filter/emaFilter.cpp" bodystart="20" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1EmaFilter_1a7a06fdf0d25a489ac0bfc1a6a20b7d9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::EmaFilter::setGains</definition>
+        <argsstring>(double ialpha)</argsstring>
+        <name>setGains</name>
+        <param>
+          <type>double</type>
+          <declname>ialpha</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set filter gains.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ialpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>alpha gain </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/emaFilter.hpp" line="42" column="1" bodyfile="src/api/filter/emaFilter.cpp" bodystart="24" bodyend="26"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="305">
+        <label>okapi::EmaFilter</label>
+        <link refid="classokapi_1_1EmaFilter"/>
+        <childnode refid="306" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="306">
+        <label>okapi::Filter</label>
+        <link refid="classokapi_1_1Filter"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="307">
+        <label>okapi::EmaFilter</label>
+        <link refid="classokapi_1_1EmaFilter"/>
+        <childnode refid="308" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="308">
+        <label>okapi::Filter</label>
+        <link refid="classokapi_1_1Filter"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/filter/emaFilter.hpp" line="13" column="1" bodyfile="include/okapi/api/filter/emaFilter.hpp" bodystart="13" bodyend="48"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1EmaFilter_1abaf5500df98574b5bf6f8d9a8a4331b5" prot="protected" virt="non-virtual"><scope>okapi::EmaFilter</scope><name>alpha</name></member>
+      <member refid="classokapi_1_1EmaFilter_1a3e8e6387c71778a44fcdaee79b2f8f66" prot="public" virt="non-virtual"><scope>okapi::EmaFilter</scope><name>EmaFilter</name></member>
+      <member refid="classokapi_1_1EmaFilter_1aeb460ae6655441806591e076342245de" prot="public" virt="virtual"><scope>okapi::EmaFilter</scope><name>filter</name></member>
+      <member refid="classokapi_1_1EmaFilter_1a883bc02a7244be54f947b6daaa63c0fe" prot="public" virt="virtual"><scope>okapi::EmaFilter</scope><name>getOutput</name></member>
+      <member refid="classokapi_1_1EmaFilter_1a37c4fd3b6f355a49bc8b78790d3b3089" prot="protected" virt="non-virtual"><scope>okapi::EmaFilter</scope><name>lastOutput</name></member>
+      <member refid="classokapi_1_1EmaFilter_1a015a76278c1b89144ff5a3b6bf03d7b8" prot="protected" virt="non-virtual"><scope>okapi::EmaFilter</scope><name>output</name></member>
+      <member refid="classokapi_1_1EmaFilter_1a7a06fdf0d25a489ac0bfc1a6a20b7d9f" prot="public" virt="virtual"><scope>okapi::EmaFilter</scope><name>setGains</name></member>
+      <member refid="classokapi_1_1Filter_1a7391c913f315e28947bbfc3d8e29bef8" prot="public" virt="virtual"><scope>okapi::EmaFilter</scope><name>~Filter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

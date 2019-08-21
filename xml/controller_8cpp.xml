@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="controller_8cpp" kind="file" language="C++">
+    <compoundname>controller.cpp</compoundname>
+    <includes refid="controller_8hpp" local="yes">okapi/impl/device/controller.hpp</includes>
+    <includes refid="mathUtil_8hpp" local="yes">okapi/api/util/mathUtil.hpp</includes>
+    <includes refid="controllerUtil_8hpp" local="yes">okapi/impl/device/controllerUtil.hpp</includes>
+    <incdepgraph>
+      <node id="5978">
+        <label>functional</label>
+      </node>
+      <node id="5975">
+        <label>cstdint</label>
+      </node>
+      <node id="5957">
+        <label>src/impl/device/controller.cpp</label>
+        <link refid="controller_8cpp"/>
+        <childnode refid="5958" relation="include">
+        </childnode>
+        <childnode refid="5966" relation="include">
+        </childnode>
+        <childnode refid="5964" relation="include">
+        </childnode>
+      </node>
+      <node id="5960">
+        <label>okapi/impl/device/button/controllerButton.hpp</label>
+        <link refid="controllerButton_8hpp"/>
+        <childnode refid="5959" relation="include">
+        </childnode>
+        <childnode refid="5961" relation="include">
+        </childnode>
+        <childnode refid="5964" relation="include">
+        </childnode>
+      </node>
+      <node id="5964">
+        <label>okapi/impl/device/controllerUtil.hpp</label>
+        <link refid="controllerUtil_8hpp"/>
+        <childnode refid="5959" relation="include">
+        </childnode>
+      </node>
+      <node id="5963">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="5973">
+        <label>cstdbool</label>
+      </node>
+      <node id="5966">
+        <label>okapi/api/util/mathUtil.hpp</label>
+        <link refid="mathUtil_8hpp"/>
+        <childnode refid="5967" relation="include">
+        </childnode>
+        <childnode refid="5982" relation="include">
+        </childnode>
+        <childnode refid="5975" relation="include">
+        </childnode>
+        <childnode refid="5983" relation="include">
+        </childnode>
+        <childnode refid="5984" relation="include">
+        </childnode>
+      </node>
+      <node id="5972">
+        <label>cmath</label>
+      </node>
+      <node id="5969">
+        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
+        <link refid="continuousRotarySensor_8hpp"/>
+        <childnode refid="5970" relation="include">
+        </childnode>
+      </node>
+      <node id="5967">
+        <label>okapi/api/device/motor/abstractMotor.hpp</label>
+        <link refid="abstractMotor_8hpp"/>
+        <childnode refid="5968" relation="include">
+        </childnode>
+        <childnode refid="5969" relation="include">
+        </childnode>
+        <childnode refid="5981" relation="include">
+        </childnode>
+      </node>
+      <node id="5971">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="5972" relation="include">
+        </childnode>
+        <childnode refid="5973" relation="include">
+        </childnode>
+        <childnode refid="5974" relation="include">
+        </childnode>
+        <childnode refid="5975" relation="include">
+        </childnode>
+        <childnode refid="5976" relation="include">
+        </childnode>
+        <childnode refid="5977" relation="include">
+        </childnode>
+        <childnode refid="5978" relation="include">
+        </childnode>
+        <childnode refid="5979" relation="include">
+        </childnode>
+        <childnode refid="5959" relation="include">
+        </childnode>
+        <childnode refid="5980" relation="include">
+        </childnode>
+      </node>
+      <node id="5959">
+        <label>api.h</label>
+      </node>
+      <node id="5968">
+        <label>okapi/api/control/controllerOutput.hpp</label>
+        <link refid="controllerOutput_8hpp"/>
+      </node>
+      <node id="5976">
+        <label>cstdio</label>
+      </node>
+      <node id="5962">
+        <label>okapi/api/device/button/abstractButton.hpp</label>
+        <link refid="abstractButton_8hpp"/>
+        <childnode refid="5963" relation="include">
+        </childnode>
+      </node>
+      <node id="5965">
+        <label>array</label>
+      </node>
+      <node id="5979">
+        <label>sstream</label>
+      </node>
+      <node id="5970">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="5963" relation="include">
+        </childnode>
+        <childnode refid="5971" relation="include">
+        </childnode>
+      </node>
+      <node id="5983">
+        <label>math.h</label>
+      </node>
+      <node id="5977">
+        <label>cstdlib</label>
+      </node>
+      <node id="5958">
+        <label>okapi/impl/device/controller.hpp</label>
+        <link refid="controller_8hpp"/>
+        <childnode refid="5959" relation="include">
+        </childnode>
+        <childnode refid="5960" relation="include">
+        </childnode>
+        <childnode refid="5964" relation="include">
+        </childnode>
+        <childnode refid="5965" relation="include">
+        </childnode>
+      </node>
+      <node id="5974">
+        <label>cstddef</label>
+      </node>
+      <node id="5961">
+        <label>okapi/api/device/button/buttonBase.hpp</label>
+        <link refid="buttonBase_8hpp"/>
+        <childnode refid="5962" relation="include">
+        </childnode>
+      </node>
+      <node id="5984">
+        <label>type_traits</label>
+      </node>
+      <node id="5982">
+        <label>algorithm</label>
+      </node>
+      <node id="5980">
+        <label>pros/apix.h</label>
+      </node>
+      <node id="5981">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/impl/device/controller.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="settledUtilFactory_8cpp" kind="file" language="C++">
+    <compoundname>settledUtilFactory.cpp</compoundname>
+    <includes refid="settledUtilFactory_8hpp" local="yes">okapi/impl/control/util/settledUtilFactory.hpp</includes>
+    <includes refid="timer_8hpp" local="yes">okapi/impl/util/timer.hpp</includes>
+    <incdepgraph>
+      <node id="5929">
+        <label>okapi/api/util/abstractTimer.hpp</label>
+        <link refid="abstractTimer_8hpp"/>
+        <childnode refid="5930" relation="include">
+        </childnode>
+        <childnode refid="5925" relation="include">
+        </childnode>
+      </node>
+      <node id="5930">
+        <label>okapi/api/units/QFrequency.hpp</label>
+        <link refid="QFrequency_8hpp"/>
+        <childnode refid="5926" relation="include">
+        </childnode>
+      </node>
+      <node id="5927">
+        <label>cmath</label>
+      </node>
+      <node id="5925">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="5926" relation="include">
+        </childnode>
+      </node>
+      <node id="5922">
+        <label>src/impl/control/util/settledUtilFactory.cpp</label>
+        <link refid="settledUtilFactory_8cpp"/>
+        <childnode refid="5923" relation="include">
+        </childnode>
+        <childnode refid="5932" relation="include">
+        </childnode>
+      </node>
+      <node id="5928">
+        <label>ratio</label>
+      </node>
+      <node id="5923">
+        <label>okapi/impl/control/util/settledUtilFactory.hpp</label>
+        <link refid="settledUtilFactory_8hpp"/>
+        <childnode refid="5924" relation="include">
+        </childnode>
+        <childnode refid="5931" relation="include">
+        </childnode>
+      </node>
+      <node id="5926">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="5927" relation="include">
+        </childnode>
+        <childnode refid="5928" relation="include">
+        </childnode>
+      </node>
+      <node id="5932">
+        <label>okapi/impl/util/timer.hpp</label>
+        <link refid="timer_8hpp"/>
+        <childnode refid="5929" relation="include">
+        </childnode>
+      </node>
+      <node id="5924">
+        <label>okapi/api/control/util/settledUtil.hpp</label>
+        <link refid="settledUtil_8hpp"/>
+        <childnode refid="5925" relation="include">
+        </childnode>
+        <childnode refid="5929" relation="include">
+        </childnode>
+        <childnode refid="5931" relation="include">
+        </childnode>
+      </node>
+      <node id="5931">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/impl/control/util/settledUtilFactory.cpp"/>
+  </compounddef>
+</doxygen>

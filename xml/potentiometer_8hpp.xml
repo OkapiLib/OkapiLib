@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="potentiometer_8hpp" kind="file" language="C++">
+    <compoundname>potentiometer.hpp</compoundname>
+    <includes local="yes">api.h</includes>
+    <includes refid="rotarySensor_8hpp" local="yes">okapi/api/device/rotarysensor/rotarySensor.hpp</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <includedby refid="potentiometer_8cpp" local="yes">src/impl/device/rotarysensor/potentiometer.cpp</includedby>
+    <incdepgraph>
+      <node id="4241">
+        <label>functional</label>
+      </node>
+      <node id="4238">
+        <label>cstdint</label>
+      </node>
+      <node id="4233">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="4236">
+        <label>cstdbool</label>
+      </node>
+      <node id="4235">
+        <label>cmath</label>
+      </node>
+      <node id="4234">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="4235" relation="include">
+        </childnode>
+        <childnode refid="4236" relation="include">
+        </childnode>
+        <childnode refid="4237" relation="include">
+        </childnode>
+        <childnode refid="4238" relation="include">
+        </childnode>
+        <childnode refid="4239" relation="include">
+        </childnode>
+        <childnode refid="4240" relation="include">
+        </childnode>
+        <childnode refid="4241" relation="include">
+        </childnode>
+        <childnode refid="4242" relation="include">
+        </childnode>
+        <childnode refid="4231" relation="include">
+        </childnode>
+        <childnode refid="4243" relation="include">
+        </childnode>
+      </node>
+      <node id="4231">
+        <label>api.h</label>
+      </node>
+      <node id="4239">
+        <label>cstdio</label>
+      </node>
+      <node id="4242">
+        <label>sstream</label>
+      </node>
+      <node id="4232">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="4233" relation="include">
+        </childnode>
+        <childnode refid="4234" relation="include">
+        </childnode>
+      </node>
+      <node id="4240">
+        <label>cstdlib</label>
+      </node>
+      <node id="4237">
+        <label>cstddef</label>
+      </node>
+      <node id="4230">
+        <label>include/okapi/impl/device/rotarysensor/potentiometer.hpp</label>
+        <link refid="potentiometer_8hpp"/>
+        <childnode refid="4231" relation="include">
+        </childnode>
+        <childnode refid="4232" relation="include">
+        </childnode>
+      </node>
+      <node id="4243">
+        <label>pros/apix.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4245">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="4246">
+        <label>src/impl/device/rotarysensor/potentiometer.cpp</label>
+        <link refid="potentiometer_8cpp"/>
+      </node>
+      <node id="4244">
+        <label>include/okapi/impl/device/rotarysensor/potentiometer.hpp</label>
+        <link refid="potentiometer_8hpp"/>
+        <childnode refid="4245" relation="include">
+        </childnode>
+        <childnode refid="4246" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1Potentiometer" prot="public">okapi::Potentiometer</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/device/rotarysensor/potentiometer.hpp"/>
+  </compounddef>
+</doxygen>

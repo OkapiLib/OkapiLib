@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="QAngularAcceleration_8hpp" kind="file" language="C++">
+    <compoundname>QAngularAcceleration.hpp</compoundname>
+    <includes refid="RQuantity_8hpp" local="yes">okapi/api/units/RQuantity.hpp</includes>
+    <includedby refid="velMath_8hpp" local="yes">include/okapi/api/filter/velMath.hpp</includedby>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <incdepgraph>
+      <node id="2615">
+        <label>cmath</label>
+      </node>
+      <node id="2613">
+        <label>include/okapi/api/units/QAngularAcceleration.hpp</label>
+        <link refid="QAngularAcceleration_8hpp"/>
+        <childnode refid="2614" relation="include">
+        </childnode>
+      </node>
+      <node id="2616">
+        <label>ratio</label>
+      </node>
+      <node id="2614">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="2615" relation="include">
+        </childnode>
+        <childnode refid="2616" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2626">
+        <label>src/impl/control/iterative/iterativeControllerFactory.cpp</label>
+        <link refid="iterativeControllerFactory_8cpp"/>
+      </node>
+      <node id="2630">
+        <label>src/impl/filter/velMathFactory.cpp</label>
+        <link refid="velMathFactory_8cpp"/>
+      </node>
+      <node id="2621">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="2624">
+        <label>src/api/control/async/asyncVelPidController.cpp</label>
+        <link refid="asyncVelPidController_8cpp"/>
+      </node>
+      <node id="2625">
+        <label>include/okapi/impl/control/iterative/iterativeControllerFactory.hpp</label>
+        <link refid="iterativeControllerFactory_8hpp"/>
+        <childnode refid="2621" relation="include">
+        </childnode>
+        <childnode refid="2626" relation="include">
+        </childnode>
+        <childnode refid="2627" relation="include">
+        </childnode>
+      </node>
+      <node id="2617">
+        <label>include/okapi/api/units/QAngularAcceleration.hpp</label>
+        <link refid="QAngularAcceleration_8hpp"/>
+        <childnode refid="2618" relation="include">
+        </childnode>
+        <childnode refid="2621" relation="include">
+        </childnode>
+      </node>
+      <node id="2622">
+        <label>include/okapi/impl/control/async/asyncVelControllerBuilder.hpp</label>
+        <link refid="asyncVelControllerBuilder_8hpp"/>
+        <childnode refid="2621" relation="include">
+        </childnode>
+        <childnode refid="2623" relation="include">
+        </childnode>
+      </node>
+      <node id="2620">
+        <label>include/okapi/api/control/async/asyncVelPidController.hpp</label>
+        <link refid="asyncVelPidController_8hpp"/>
+        <childnode refid="2621" relation="include">
+        </childnode>
+        <childnode refid="2622" relation="include">
+        </childnode>
+        <childnode refid="2624" relation="include">
+        </childnode>
+      </node>
+      <node id="2618">
+        <label>include/okapi/api/filter/velMath.hpp</label>
+        <link refid="velMath_8hpp"/>
+        <childnode refid="2619" relation="include">
+        </childnode>
+        <childnode refid="2621" relation="include">
+        </childnode>
+        <childnode refid="2629" relation="include">
+        </childnode>
+        <childnode refid="2631" relation="include">
+        </childnode>
+      </node>
+      <node id="2627">
+        <label>src/impl/control/util/pidTunerFactory.cpp</label>
+        <link refid="pidTunerFactory_8cpp"/>
+      </node>
+      <node id="2619">
+        <label>include/okapi/api/control/iterative/iterativeVelPidController.hpp</label>
+        <link refid="iterativeVelPidController_8hpp"/>
+        <childnode refid="2620" relation="include">
+        </childnode>
+        <childnode refid="2621" relation="include">
+        </childnode>
+        <childnode refid="2625" relation="include">
+        </childnode>
+        <childnode refid="2628" relation="include">
+        </childnode>
+      </node>
+      <node id="2628">
+        <label>src/api/control/iterative/iterativeVelPidController.cpp</label>
+        <link refid="iterativeVelPidController_8cpp"/>
+      </node>
+      <node id="2629">
+        <label>include/okapi/impl/filter/velMathFactory.hpp</label>
+        <link refid="velMathFactory_8hpp"/>
+        <childnode refid="2621" relation="include">
+        </childnode>
+        <childnode refid="2625" relation="include">
+        </childnode>
+        <childnode refid="2630" relation="include">
+        </childnode>
+      </node>
+      <node id="2631">
+        <label>src/api/filter/velMath.cpp</label>
+        <link refid="velMath_8cpp"/>
+      </node>
+      <node id="2623">
+        <label>src/impl/control/async/asyncVelControllerBuilder.cpp</label>
+        <link refid="asyncVelControllerBuilder_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/units/QAngularAcceleration.hpp"/>
+  </compounddef>
+</doxygen>

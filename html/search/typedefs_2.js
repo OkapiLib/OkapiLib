@@ -1,5 +1,0 @@
-var searchData=
-[
-  ['const_5fiterator',['const_iterator',['../classtesting_1_1gmock__matchers__test_1_1Streamlike.html#a2eeb61dca56f70d0266f5f8ae91d2c7b',1,'testing::gmock_matchers_test::Streamlike::const_iterator()'],['../classtesting_1_1internal_1_1NativeArray.html#a9ce7c8408460d7158a2870456d134557',1,'testing::internal::NativeArray::const_iterator()']]],
-  ['const_5freference',['const_reference',['../classtesting_1_1internal_1_1StlContainerView.html#a9cd4f6ed689b3938cdb7b3c4cbf1b36b',1,'testing::internal::StlContainerView::const_reference()'],['../classtesting_1_1internal_1_1StlContainerView_3_01Element[N]_4.html#a481e6ab99316939484fad9c561af5e28',1,'testing::internal::StlContainerView&lt; Element[N]&gt;::const_reference()'],['../classtesting_1_1internal_1_1StlContainerView_3_01_1_1testing_1_1tuple_3_01ElementPointer_00_01Size_01_4_01_4.html#a4c69a4e22173b0e6f3eb55636d6a38f1',1,'testing::internal::StlContainerView&lt; ::testing::tuple&lt; ElementPointer, Size &gt; &gt;::const_reference()']]]
-];

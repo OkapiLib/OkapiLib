@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_cbfaa812b5a187f9f977bd73c61fc8cb" kind="dir">
+    <compoundname>include/okapi/impl/device</compoundname>
+    <innerdir refid="dir_85d559afbfcbdf6c84d9787c61f5a05a">include/okapi/impl/device/button</innerdir>
+    <innerdir refid="dir_01b54310dbb6efeaab63b7f1d72f5471">include/okapi/impl/device/motor</innerdir>
+    <innerdir refid="dir_bc643c72aed8e064b2fdc893d918342a">include/okapi/impl/device/rotarysensor</innerdir>
+    <innerfile refid="adiUltrasonic_8hpp">adiUltrasonic.hpp</innerfile>
+    <innerfile refid="controller_8hpp">controller.hpp</innerfile>
+    <innerfile refid="controllerUtil_8hpp">controllerUtil.hpp</innerfile>
+    <innerfile refid="vision_8hpp">vision.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/device/"/>
+  </compounddef>
+</doxygen>

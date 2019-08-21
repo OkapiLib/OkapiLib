@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_d5e88c66fec6cf921ee6ec56e9e91087" kind="dir">
+    <compoundname>src/api/chassis/controller</compoundname>
+    <innerfile refid="chassisControllerIntegrated_8cpp">chassisControllerIntegrated.cpp</innerfile>
+    <innerfile refid="chassisControllerPid_8cpp">chassisControllerPid.cpp</innerfile>
+    <innerfile refid="chassisScales_8cpp">chassisScales.cpp</innerfile>
+    <innerfile refid="defaultOdomChassisController_8cpp">defaultOdomChassisController.cpp</innerfile>
+    <innerfile refid="odomChassisController_8cpp">odomChassisController.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/chassis/controller/"/>
+  </compounddef>
+</doxygen>

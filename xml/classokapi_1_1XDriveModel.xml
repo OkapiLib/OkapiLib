@@ -1,0 +1,959 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1XDriveModel" kind="class" language="C++" prot="public">
+    <compoundname>okapi::XDriveModel</compoundname>
+    <basecompoundref refid="classokapi_1_1ChassisModel" prot="public" virt="non-virtual">okapi::ChassisModel</basecompoundref>
+    <includes refid="xDriveModel_8hpp" local="no">xDriveModel.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1XDriveModel_1ac260aafdba066b0a6b5af9bcef85558a" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::XDriveModel::maxVelocity</definition>
+        <argsstring></argsstring>
+        <name>maxVelocity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="211" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1XDriveModel_1a30569bcd27d696b44836f32d62688809" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::XDriveModel::maxVoltage</definition>
+        <argsstring></argsstring>
+        <name>maxVoltage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="212" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1XDriveModel_1a7fd97da22c4f052efd49e7c7554409aa" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;AbstractMotor&gt; okapi::XDriveModel::topLeftMotor</definition>
+        <argsstring></argsstring>
+        <name>topLeftMotor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="213" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1XDriveModel_1abe393384e83737181b5b836d99b0a480" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;AbstractMotor&gt; okapi::XDriveModel::topRightMotor</definition>
+        <argsstring></argsstring>
+        <name>topRightMotor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="214" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1XDriveModel_1a43ba3ac3a9750895b2bfd5b8c121ca7e" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;AbstractMotor&gt; okapi::XDriveModel::bottomRightMotor</definition>
+        <argsstring></argsstring>
+        <name>bottomRightMotor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="215" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1XDriveModel_1ac4c184a14b3431a1dda1136ca1133400" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;AbstractMotor&gt; okapi::XDriveModel::bottomLeftMotor</definition>
+        <argsstring></argsstring>
+        <name>bottomLeftMotor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="216" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1XDriveModel_1a16ef5d576e9b819d79b6762e706906c5" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;ContinuousRotarySensor&gt; okapi::XDriveModel::leftSensor</definition>
+        <argsstring></argsstring>
+        <name>leftSensor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="217" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1XDriveModel_1ab50a3276501ce448d46415361f8a422f" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;ContinuousRotarySensor&gt; okapi::XDriveModel::rightSensor</definition>
+        <argsstring></argsstring>
+        <name>rightSensor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="218" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a037b5cd463b8798b86e8bd9aa1098711" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::XDriveModel::XDriveModel</definition>
+        <argsstring>(std::shared_ptr&lt; AbstractMotor &gt; itopLeftMotor, std::shared_ptr&lt; AbstractMotor &gt; itopRightMotor, std::shared_ptr&lt; AbstractMotor &gt; ibottomRightMotor, std::shared_ptr&lt; AbstractMotor &gt; ibottomLeftMotor, std::shared_ptr&lt; ContinuousRotarySensor &gt; ileftEnc, std::shared_ptr&lt; ContinuousRotarySensor &gt; irightEnc, double imaxVelocity, double imaxVoltage)</argsstring>
+        <name>XDriveModel</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+          <declname>itopLeftMotor</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+          <declname>itopRightMotor</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+          <declname>ibottomRightMotor</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+          <declname>ibottomLeftMotor</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
+          <declname>ileftEnc</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
+          <declname>irightEnc</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>imaxVelocity</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>imaxVoltage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered +100%, the robot should move forward in a straight line.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itopLeftMotor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>top left motor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>itopRightMotor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>top right motor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ibottomRightMotor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>bottom right motor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ibottomLeftMotor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>bottom left motor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ileftEnc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Left side encoder </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>irightEnc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right side encoder </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="28" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="12" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a2a26c9bd57c26ca0251040a14272226c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::forward</definition>
+        <argsstring>(double ipower) override</argsstring>
+        <name>forward</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1ae39e8ccd15b6f84e32cd21fe99bdd6c9">forward</reimplements>
+        <param>
+          <type>double</type>
+          <declname>ipower</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drive the robot forwards (using open-loop control). Uses velocity mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ispeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motor power </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="42" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="30" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1ab36e677deea155bf9a691090f4b0f590" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::driveVector</definition>
+        <argsstring>(double iforwardSpeed, double iyaw) override</argsstring>
+        <name>driveVector</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1aa621ce62c2bc336e41b859e2cb10dda5">driveVector</reimplements>
+        <param>
+          <type>double</type>
+          <declname>iforwardSpeed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>iyaw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drive the robot in an arc (using open-loop control). Uses velocity mode. The algorithm is (approximately): leftPower = forwardSpeed + yaw rightPower = forwardSpeed - yaw</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iforwardSpeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed in the forward direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iyaw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed around the vertical axis </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="53" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="38" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a2a066629991985282b8205af6b03d9f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::driveVectorVoltage</definition>
+        <argsstring>(double iforwardSpeed, double iyaw) override</argsstring>
+        <name>driveVectorVoltage</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1a69115758be9e29888dce34f317d57150">driveVectorVoltage</reimplements>
+        <param>
+          <type>double</type>
+          <declname>iforwardSpeed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>iyaw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drive the robot in an arc. Uses voltage mode. The algorithm is (approximately): leftPower = forwardSpeed + yaw rightPower = forwardSpeed - yaw</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iforwadSpeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed in the forward direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iyaw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed around the vertical axis </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="64" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="58" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1ab9a2d6f5e1f44b2c8640d41a534d4869" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::rotate</definition>
+        <argsstring>(double ipower) override</argsstring>
+        <name>rotate</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1af13aa5281c762eb61a444f0b35176014">rotate</reimplements>
+        <param>
+          <type>double</type>
+          <declname>ipower</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Turn the robot clockwise (using open-loop control). Uses velocity mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ipower</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motor power </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="71" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="78" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a2fe09b755e8a6f321d6365cedc774e04" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::stop</definition>
+        <argsstring>() override</argsstring>
+        <name>stop</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1ad67ad9abae41c5441c2a2d671d0c8a55">stop</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Stop the robot (set all the motors to 0). Uses velocity mode. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="76" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="86" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a2d5bd618cae6e639083857f2ef310859" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::tank</definition>
+        <argsstring>(double ileftSpeed, double irightSpeed, double ithreshold=0) override</argsstring>
+        <name>tank</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1a185a667048f84c3a0fced6882c5f7980">tank</reimplements>
+        <param>
+          <type>double</type>
+          <declname>ileftSpeed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>irightSpeed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ithreshold</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drive the robot with a tank drive layout. Uses voltage mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ileftSpeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>left side speed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>irightSpeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>right side speed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ithreshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>deadband on joystick values </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="85" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="93" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a0489ac1303ad42f65e346adf1dfc986f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::arcade</definition>
+        <argsstring>(double iforwardSpeed, double iyaw, double ithreshold=0) override</argsstring>
+        <name>arcade</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1a632d4c0b74747ab3b9c5a159a36bdd03">arcade</reimplements>
+        <param>
+          <type>double</type>
+          <declname>iforwardSpeed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>iyaw</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ithreshold</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drive the robot with an arcade drive layout. Uses voltage mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iforwardSpeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed in the forward direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iyaw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed around the vertical axis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ithreshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>deadband on joystick values </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="94" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="112" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a473138faee428742772dee96b25031fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::xArcade</definition>
+        <argsstring>(double irightSpeed, double iforwardSpeed, double iyaw, double ithreshold=0)</argsstring>
+        <name>xArcade</name>
+        <param>
+          <type>double</type>
+          <declname>irightSpeed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>iforwardSpeed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>iyaw</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ithreshold</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drive the robot with an arcade drive layout. Uses voltage mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>irightSpeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed to the right </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iforwardSpeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed in the forward direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iyaw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed around the vertical axis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ithreshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>deadband on joystick values </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="105" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="156" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a0a4688df022b66164e81709e6eaa02e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::left</definition>
+        <argsstring>(double ipower) override</argsstring>
+        <name>left</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1aa2008856c169eb64c6648bc64c31c504">left</reimplements>
+        <param>
+          <type>double</type>
+          <declname>ipower</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Power the left side motors. Uses velocity mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ipower</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motor power </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="112" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="185" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a21bc8f93cda3b0b58ec6543a6dc02c24" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::right</definition>
+        <argsstring>(double ipower) override</argsstring>
+        <name>right</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1a282fcf947aea9630cadd2c673eb5f7e3">right</reimplements>
+        <param>
+          <type>double</type>
+          <declname>ipower</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Power the right side motors. Uses velocity mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ipower</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motor power </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="119" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="191" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a3beef170f1e7fd988d815f335cafad1e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>std::valarray&lt; std::int32_t &gt;</type>
+        <definition>std::valarray&lt; std::int32_t &gt; okapi::XDriveModel::getSensorVals</definition>
+        <argsstring>() const override</argsstring>
+        <name>getSensorVals</name>
+        <reimplements refid="classokapi_1_1ReadOnlyChassisModel_1af2d844d9e12bb7c778ac9a5a0074f848">getSensorVals</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Read the sensors.</para>
+<para><simplesect kind="return"><para>sensor readings in the format {left, right} </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="126" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="197" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1adbc23b11cde6aebb3c7eefb1f0251af7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::resetSensors</definition>
+        <argsstring>() override</argsstring>
+        <name>resetSensors</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1a6bd7e6bb60d41d3f1f5a5a129acfe1b6">resetSensors</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reset the sensors to their zero point. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="131" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="202" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a27356e54c9fd0361d01de4c81ff851e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::setBrakeMode</definition>
+        <argsstring>(AbstractMotor::brakeMode mode) override</argsstring>
+        <name>setBrakeMode</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1a20e3cde96d536e6c722aa5686e5cc8e8">setBrakeMode</reimplements>
+        <param>
+          <type><ref refid="classokapi_1_1AbstractMotor_1a132e0485dbb59a60c3f934338d8fa601" kindref="member">AbstractMotor::brakeMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the brake mode for each motor.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>new brake mode </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="138" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="207" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a56b590280c856259ad710e888d8e215c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::setEncoderUnits</definition>
+        <argsstring>(AbstractMotor::encoderUnits units) override</argsstring>
+        <name>setEncoderUnits</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1ae8ba9a72bf827af4c6feffaac99b33ee">setEncoderUnits</reimplements>
+        <param>
+          <type><ref refid="classokapi_1_1AbstractMotor_1ae811cd825099f2defadeb1b7f7e7764c" kindref="member">AbstractMotor::encoderUnits</ref></type>
+          <declname>units</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the encoder units for each motor.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>units</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>new motor encoder units </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="145" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="214" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1ae9205c16e581786fecabaeb5066edab6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::setGearing</definition>
+        <argsstring>(AbstractMotor::gearset gearset) override</argsstring>
+        <name>setGearing</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1a960d6ce2f21e5832fce1d7566408cb61">setGearing</reimplements>
+        <param>
+          <type><ref refid="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5" kindref="member">AbstractMotor::gearset</ref></type>
+          <declname>gearset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the gearset for each motor.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gearset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>new motor gearset </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="152" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="221" bodyend="226"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1aec91f0569213bbca770ad4a25529beb6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::setMaxVelocity</definition>
+        <argsstring>(double imaxVelocity) override</argsstring>
+        <name>setMaxVelocity</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1ae7fcb4cc95fdd7fd3c8f8388b4a698b2">setMaxVelocity</reimplements>
+        <param>
+          <type>double</type>
+          <declname>imaxVelocity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets a new maximum velocity in RPM [0-600].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>imaxVelocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new maximum velocity </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="159" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="228" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1aa5b5c3431c99c612ade5c97858478828" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double okapi::XDriveModel::getMaxVelocity</definition>
+        <argsstring>() const override</argsstring>
+        <name>getMaxVelocity</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1ab45dd7430636ed1c1dee25dae6df5d46">getMaxVelocity</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the maximum velocity in RPM [0-600].</para>
+<para><simplesect kind="return"><para>The maximum velocity in RPM [0-600]. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="166" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="232" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a6d001a2147ecb642f60cd21ac73c64ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::XDriveModel::setMaxVoltage</definition>
+        <argsstring>(double imaxVoltage) override</argsstring>
+        <name>setMaxVoltage</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1a2fb261636b79e118f22530cc3fce4f41">setMaxVoltage</reimplements>
+        <param>
+          <type>double</type>
+          <declname>imaxVoltage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets a new maximum voltage in mV [0-12000].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>imaxVoltage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new maximum voltage </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="173" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="236" bodyend="238"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a402487e35a717c47cfcc85ad1cfb0861" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double okapi::XDriveModel::getMaxVoltage</definition>
+        <argsstring>() const override</argsstring>
+        <name>getMaxVoltage</name>
+        <reimplements refid="classokapi_1_1ChassisModel_1a3ced2121524ae523592db64733c69472">getMaxVoltage</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the maximum voltage in mV [0-12000].</para>
+<para><simplesect kind="return"><para>The maximum voltage in mV [0-12000]. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="180" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="240" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a6ffd50946ef2655b3d8c74c0d211101b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; AbstractMotor &gt; okapi::XDriveModel::getTopLeftMotor</definition>
+        <argsstring>() const</argsstring>
+        <name>getTopLeftMotor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the top left motor.</para>
+<para><simplesect kind="return"><para>the top left motor </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="187" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="244" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1abd08edca41aa963c15fafc4b735c0e8d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; AbstractMotor &gt; okapi::XDriveModel::getTopRightMotor</definition>
+        <argsstring>() const</argsstring>
+        <name>getTopRightMotor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the top right motor.</para>
+<para><simplesect kind="return"><para>the top right motor </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="194" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="248" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1aa7305b4d70feaf3d7201c4b60f29b289" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; AbstractMotor &gt; okapi::XDriveModel::getBottomRightMotor</definition>
+        <argsstring>() const</argsstring>
+        <name>getBottomRightMotor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the bottom right motor.</para>
+<para><simplesect kind="return"><para>the bottom right motor </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="201" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="252" bodyend="254"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1XDriveModel_1a9d009ced4cfce5d1ba9ac2c4ad67212a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; AbstractMotor &gt; okapi::XDriveModel::getBottomLeftMotor</definition>
+        <argsstring>() const</argsstring>
+        <name>getBottomLeftMotor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the bottom left motor.</para>
+<para><simplesect kind="return"><para>the bottom left motor </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="208" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="256" bodyend="258"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="535">
+        <label>okapi::ReadOnlyChassisModel</label>
+        <link refid="classokapi_1_1ReadOnlyChassisModel"/>
+      </node>
+      <node id="533">
+        <label>okapi::XDriveModel</label>
+        <link refid="classokapi_1_1XDriveModel"/>
+        <childnode refid="534" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="534">
+        <label>okapi::ChassisModel</label>
+        <link refid="classokapi_1_1ChassisModel"/>
+        <childnode refid="535" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="538">
+        <label>okapi::ReadOnlyChassisModel</label>
+        <link refid="classokapi_1_1ReadOnlyChassisModel"/>
+      </node>
+      <node id="536">
+        <label>okapi::XDriveModel</label>
+        <link refid="classokapi_1_1XDriveModel"/>
+        <childnode refid="537" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="537">
+        <label>okapi::ChassisModel</label>
+        <link refid="classokapi_1_1ChassisModel"/>
+        <childnode refid="538" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="15" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="15" bodyend="219"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1XDriveModel_1a0489ac1303ad42f65e346adf1dfc986f" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>arcade</name></member>
+      <member refid="classokapi_1_1XDriveModel_1ac4c184a14b3431a1dda1136ca1133400" prot="protected" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>bottomLeftMotor</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a43ba3ac3a9750895b2bfd5b8c121ca7e" prot="protected" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>bottomRightMotor</name></member>
+      <member refid="classokapi_1_1ChassisModel_1ae292afae5511e46eec17cf0f9bad1bb6" prot="public" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>ChassisModel</name></member>
+      <member refid="classokapi_1_1ChassisModel_1a8201eb131b58c99a2b93630758e8367d" prot="public" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>ChassisModel</name></member>
+      <member refid="classokapi_1_1XDriveModel_1ab36e677deea155bf9a691090f4b0f590" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>driveVector</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a2a066629991985282b8205af6b03d9f6" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>driveVectorVoltage</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a2a26c9bd57c26ca0251040a14272226c" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>forward</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a9d009ced4cfce5d1ba9ac2c4ad67212a" prot="public" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>getBottomLeftMotor</name></member>
+      <member refid="classokapi_1_1XDriveModel_1aa7305b4d70feaf3d7201c4b60f29b289" prot="public" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>getBottomRightMotor</name></member>
+      <member refid="classokapi_1_1XDriveModel_1aa5b5c3431c99c612ade5c97858478828" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>getMaxVelocity</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a402487e35a717c47cfcc85ad1cfb0861" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>getMaxVoltage</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a3beef170f1e7fd988d815f335cafad1e" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>getSensorVals</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a6ffd50946ef2655b3d8c74c0d211101b" prot="public" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>getTopLeftMotor</name></member>
+      <member refid="classokapi_1_1XDriveModel_1abd08edca41aa963c15fafc4b735c0e8d" prot="public" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>getTopRightMotor</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a0a4688df022b66164e81709e6eaa02e5" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>left</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a16ef5d576e9b819d79b6762e706906c5" prot="protected" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>leftSensor</name></member>
+      <member refid="classokapi_1_1XDriveModel_1ac260aafdba066b0a6b5af9bcef85558a" prot="protected" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>maxVelocity</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a30569bcd27d696b44836f32d62688809" prot="protected" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>maxVoltage</name></member>
+      <member refid="classokapi_1_1ChassisModel_1ab6c89183b8a5317a1e149df5ed22dfb1" prot="public" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>operator=</name></member>
+      <member refid="classokapi_1_1XDriveModel_1adbc23b11cde6aebb3c7eefb1f0251af7" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>resetSensors</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a21bc8f93cda3b0b58ec6543a6dc02c24" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>right</name></member>
+      <member refid="classokapi_1_1XDriveModel_1ab50a3276501ce448d46415361f8a422f" prot="protected" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>rightSensor</name></member>
+      <member refid="classokapi_1_1XDriveModel_1ab9a2d6f5e1f44b2c8640d41a534d4869" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>rotate</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a27356e54c9fd0361d01de4c81ff851e7" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>setBrakeMode</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a56b590280c856259ad710e888d8e215c" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>setEncoderUnits</name></member>
+      <member refid="classokapi_1_1XDriveModel_1ae9205c16e581786fecabaeb5066edab6" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>setGearing</name></member>
+      <member refid="classokapi_1_1XDriveModel_1aec91f0569213bbca770ad4a25529beb6" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>setMaxVelocity</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a6d001a2147ecb642f60cd21ac73c64ea" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>setMaxVoltage</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a2fe09b755e8a6f321d6365cedc774e04" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>stop</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a2d5bd618cae6e639083857f2ef310859" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>tank</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a7fd97da22c4f052efd49e7c7554409aa" prot="protected" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>topLeftMotor</name></member>
+      <member refid="classokapi_1_1XDriveModel_1abe393384e83737181b5b836d99b0a480" prot="protected" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>topRightMotor</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a473138faee428742772dee96b25031fb" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>xArcade</name></member>
+      <member refid="classokapi_1_1XDriveModel_1a037b5cd463b8798b86e8bd9aa1098711" prot="public" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>XDriveModel</name></member>
+      <member refid="classokapi_1_1ReadOnlyChassisModel_1a1994ed80cbfdc34f30f90083d4c8620d" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>~ReadOnlyChassisModel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

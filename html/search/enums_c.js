@@ -1,4 +1,0 @@
-var searchData=
-[
-  ['unexpectedtype',['UnexpectedType',['../namespacefakeit.html#ae284671dc00c0fa5ee2aa4a6af02743b',1,'fakeit::UnexpectedType()'],['../namespacefakeit.html#ae284671dc00c0fa5ee2aa4a6af02743b',1,'fakeit::UnexpectedType()'],['../namespacefakeit.html#ae284671dc00c0fa5ee2aa4a6af02743b',1,'fakeit::UnexpectedType()'],['../namespacefakeit.html#ae284671dc00c0fa5ee2aa4a6af02743b',1,'fakeit::UnexpectedType()'],['../namespacefakeit.html#ae284671dc00c0fa5ee2aa4a6af02743b',1,'fakeit::UnexpectedType()'],['../namespacefakeit.html#ae284671dc00c0fa5ee2aa4a6af02743b',1,'fakeit::UnexpectedType()'],['../namespacefakeit.html#ae284671dc00c0fa5ee2aa4a6af02743b',1,'fakeit::UnexpectedType()'],['../namespacefakeit.html#ae284671dc00c0fa5ee2aa4a6af02743b',1,'fakeit::UnexpectedType()'],['../namespacefakeit.html#ae284671dc00c0fa5ee2aa4a6af02743b',1,'fakeit::UnexpectedType()']]]
-];

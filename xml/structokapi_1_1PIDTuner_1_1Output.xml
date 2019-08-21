@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="structokapi_1_1PIDTuner_1_1Output" kind="struct" language="C++" prot="public">
+    <compoundname>okapi::PIDTuner::Output</compoundname>
+    <includes refid="pidTuner_8hpp" local="no">pidTuner.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structokapi_1_1PIDTuner_1_1Output_1ac692f4d0b2eac40a7666718d484c172a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::PIDTuner::Output::kP</definition>
+        <argsstring></argsstring>
+        <name>kP</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/pidTuner.hpp" line="24" column="1" bodyfile="include/okapi/api/control/util/pidTuner.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1PIDTuner_1_1Output_1a30a8572d976d01e2ce855ae39251bc79" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::PIDTuner::Output::kI</definition>
+        <argsstring></argsstring>
+        <name>kI</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/pidTuner.hpp" line="24" column="1" bodyfile="include/okapi/api/control/util/pidTuner.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1PIDTuner_1_1Output_1a1b3d2be54d0aecaeeb2aaf4a97c7c5c8" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::PIDTuner::Output::kD</definition>
+        <argsstring></argsstring>
+        <name>kD</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/pidTuner.hpp" line="24" column="1" bodyfile="include/okapi/api/control/util/pidTuner.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/control/util/pidTuner.hpp" line="23" column="1" bodyfile="include/okapi/api/control/util/pidTuner.hpp" bodystart="23" bodyend="25"/>
+    <listofallmembers>
+      <member refid="structokapi_1_1PIDTuner_1_1Output_1a1b3d2be54d0aecaeeb2aaf4a97c7c5c8" prot="public" virt="non-virtual"><scope>okapi::PIDTuner::Output</scope><name>kD</name></member>
+      <member refid="structokapi_1_1PIDTuner_1_1Output_1a30a8572d976d01e2ce855ae39251bc79" prot="public" virt="non-virtual"><scope>okapi::PIDTuner::Output</scope><name>kI</name></member>
+      <member refid="structokapi_1_1PIDTuner_1_1Output_1ac692f4d0b2eac40a7666718d484c172a" prot="public" virt="non-virtual"><scope>okapi::PIDTuner::Output</scope><name>kP</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

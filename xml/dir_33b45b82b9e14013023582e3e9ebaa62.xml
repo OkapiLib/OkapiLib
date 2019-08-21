@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_33b45b82b9e14013023582e3e9ebaa62" kind="dir">
+    <compoundname>src/api/filter</compoundname>
+    <innerfile refid="composableFilter_8cpp">composableFilter.cpp</innerfile>
+    <innerfile refid="demaFilter_8cpp">demaFilter.cpp</innerfile>
+    <innerfile refid="ekfFilter_8cpp">ekfFilter.cpp</innerfile>
+    <innerfile refid="emaFilter_8cpp">emaFilter.cpp</innerfile>
+    <innerfile refid="filter_8cpp">filter.cpp</innerfile>
+    <innerfile refid="passthroughFilter_8cpp">passthroughFilter.cpp</innerfile>
+    <innerfile refid="velMath_8cpp">velMath.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/filter/"/>
+  </compounddef>
+</doxygen>

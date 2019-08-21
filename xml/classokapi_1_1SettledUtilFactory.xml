@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1SettledUtilFactory" kind="class" language="C++" prot="public">
+    <compoundname>okapi::SettledUtilFactory</compoundname>
+    <includes refid="settledUtilFactory_8hpp" local="no">settledUtilFactory.hpp</includes>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classokapi_1_1SettledUtilFactory_1aca5a5df435bcdaf7605c861f7da434b5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classokapi_1_1SettledUtil" kindref="compound">SettledUtil</ref></type>
+        <definition>SettledUtil okapi::SettledUtilFactory::create</definition>
+        <argsstring>(double iatTargetError=50, double iatTargetDerivative=5, QTime iatTargetTime=250_ms)</argsstring>
+        <name>create</name>
+        <param>
+          <type>double</type>
+          <declname>iatTargetError</declname>
+          <defval>50</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>iatTargetDerivative</declname>
+          <defval>5</defval>
+        </param>
+        <param>
+          <type>QTime</type>
+          <declname>iatTargetTime</declname>
+          <defval>250_ms</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A utility class to determine if a control loop has settled based on error. A control loop is settled if the error is within atTargetError for atTargetTime.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iatTargetError</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>minimum error to be considered settled </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iatTargetDerivative</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>minimum error derivative to be considered settled </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iatTargetTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>minimum time within atTargetError to be considered settled </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/control/util/settledUtilFactory.hpp" line="25" column="1" bodyfile="src/impl/control/util/settledUtilFactory.cpp" bodystart="12" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1SettledUtilFactory_1ab31a2df374065ec424ac74b2c2a1520e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::unique_ptr&lt; <ref refid="classokapi_1_1SettledUtil" kindref="compound">SettledUtil</ref> &gt;</type>
+        <definition>std::unique_ptr&lt; SettledUtil &gt; okapi::SettledUtilFactory::createPtr</definition>
+        <argsstring>(double iatTargetError=50, double iatTargetDerivative=5, QTime iatTargetTime=250_ms)</argsstring>
+        <name>createPtr</name>
+        <param>
+          <type>double</type>
+          <declname>iatTargetError</declname>
+          <defval>50</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>iatTargetDerivative</declname>
+          <defval>5</defval>
+        </param>
+        <param>
+          <type>QTime</type>
+          <declname>iatTargetTime</declname>
+          <defval>250_ms</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/control/util/settledUtilFactory.hpp" line="26" column="1" bodyfile="src/impl/control/util/settledUtilFactory.cpp" bodystart="18" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/control/util/settledUtilFactory.hpp" line="14" column="1" bodyfile="include/okapi/impl/control/util/settledUtilFactory.hpp" bodystart="14" bodyend="29"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1SettledUtilFactory_1aca5a5df435bcdaf7605c861f7da434b5" prot="public" virt="non-virtual"><scope>okapi::SettledUtilFactory</scope><name>create</name></member>
+      <member refid="classokapi_1_1SettledUtilFactory_1ab31a2df374065ec424ac74b2c2a1520e" prot="public" virt="non-virtual"><scope>okapi::SettledUtilFactory</scope><name>createPtr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

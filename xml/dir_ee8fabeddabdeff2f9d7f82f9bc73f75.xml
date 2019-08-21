@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_ee8fabeddabdeff2f9d7f82f9bc73f75" kind="dir">
+    <compoundname>include/okapi/api/control</compoundname>
+    <innerdir refid="dir_812a793c41a54bc67f87b9ba3131772c">include/okapi/api/control/async</innerdir>
+    <innerdir refid="dir_98667259adeb9581d7d9a26a21984dcf">include/okapi/api/control/iterative</innerdir>
+    <innerdir refid="dir_72ccae87f7209aff0e1ad89aa89987e8">include/okapi/api/control/util</innerdir>
+    <innerfile refid="closedLoopController_8hpp">closedLoopController.hpp</innerfile>
+    <innerfile refid="controllerInput_8hpp">controllerInput.hpp</innerfile>
+    <innerfile refid="controllerOutput_8hpp">controllerOutput.hpp</innerfile>
+    <innerfile refid="offsettableControllerInput_8hpp">offsettableControllerInput.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/control/"/>
+  </compounddef>
+</doxygen>

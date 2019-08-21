@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ContinuousRotarySensor" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>okapi::ContinuousRotarySensor</compoundname>
+    <basecompoundref refid="classokapi_1_1RotarySensor" prot="public" virt="non-virtual">okapi::RotarySensor</basecompoundref>
+    <derivedcompoundref refid="classokapi_1_1ADIEncoder" prot="public" virt="non-virtual">okapi::ADIEncoder</derivedcompoundref>
+    <derivedcompoundref refid="classokapi_1_1ADIGyro" prot="public" virt="non-virtual">okapi::ADIGyro</derivedcompoundref>
+    <derivedcompoundref refid="classokapi_1_1IntegratedEncoder" prot="public" virt="non-virtual">okapi::IntegratedEncoder</derivedcompoundref>
+    <includes refid="continuousRotarySensor_8hpp" local="no">continuousRotarySensor.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1ContinuousRotarySensor_1ae7268b0603097ac2d93a67e4fefa43e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::ContinuousRotarySensor::reset</definition>
+        <argsstring>()=0</argsstring>
+        <name>reset</name>
+        <reimplementedby refid="classokapi_1_1ADIEncoder_1a8df70f75e1f23aa03eaa3e331fcab381">reset</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IntegratedEncoder_1a1f95f00f59911a87a9a38633343f4311">reset</reimplementedby>
+        <reimplementedby refid="classokapi_1_1ADIGyro_1a316eec0bf6008c50fea6d1a621fd2e87">reset</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reset the sensor to zero.</para>
+<para><simplesect kind="return"><para><computeroutput>1</computeroutput> on success, <computeroutput>PROS_ERR</computeroutput> on fail </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/rotarysensor/continuousRotarySensor.hpp" line="20" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="256">
+        <label>okapi::ADIEncoder</label>
+        <link refid="classokapi_1_1ADIEncoder"/>
+        <childnode refid="253" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="257">
+        <label>okapi::ADIGyro</label>
+        <link refid="classokapi_1_1ADIGyro"/>
+        <childnode refid="253" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="254">
+        <label>okapi::RotarySensor</label>
+        <link refid="classokapi_1_1RotarySensor"/>
+        <childnode refid="255" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="253">
+        <label>okapi::ContinuousRotarySensor</label>
+        <link refid="classokapi_1_1ContinuousRotarySensor"/>
+        <childnode refid="254" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="255">
+        <label>okapi::ControllerInput&lt; double &gt;</label>
+        <link refid="classokapi_1_1ControllerInput"/>
+      </node>
+      <node id="258">
+        <label>okapi::IntegratedEncoder</label>
+        <link refid="classokapi_1_1IntegratedEncoder"/>
+        <childnode refid="253" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="260">
+        <label>okapi::RotarySensor</label>
+        <link refid="classokapi_1_1RotarySensor"/>
+        <childnode refid="261" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="259">
+        <label>okapi::ContinuousRotarySensor</label>
+        <link refid="classokapi_1_1ContinuousRotarySensor"/>
+        <childnode refid="260" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="261">
+        <label>okapi::ControllerInput&lt; double &gt;</label>
+        <link refid="classokapi_1_1ControllerInput"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/device/rotarysensor/continuousRotarySensor.hpp" line="13" column="1" bodyfile="include/okapi/api/device/rotarysensor/continuousRotarySensor.hpp" bodystart="13" bodyend="21"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ControllerInput_1a3c6c86d897983f367928a93890551e17" prot="public" virt="pure-virtual"><scope>okapi::ContinuousRotarySensor</scope><name>controllerGet</name></member>
+      <member refid="classokapi_1_1RotarySensor_1ac5534dc6c3bcbd8ea2f4e54a04cda734" prot="public" virt="pure-virtual"><scope>okapi::ContinuousRotarySensor</scope><name>get</name></member>
+      <member refid="classokapi_1_1ContinuousRotarySensor_1ae7268b0603097ac2d93a67e4fefa43e0" prot="public" virt="pure-virtual"><scope>okapi::ContinuousRotarySensor</scope><name>reset</name></member>
+      <member refid="classokapi_1_1RotarySensor_1ad34ebb82ce8e5487a286ce95c1aad086" prot="public" virt="virtual"><scope>okapi::ContinuousRotarySensor</scope><name>~RotarySensor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

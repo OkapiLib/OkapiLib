@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="offsettableControllerInput_8cpp" kind="file" language="C++">
+    <compoundname>offsettableControllerInput.cpp</compoundname>
+    <includes refid="offsettableControllerInput_8hpp" local="yes">okapi/api/control/offsettableControllerInput.hpp</includes>
+    <includes refid="mathUtil_8hpp" local="yes">okapi/api/util/mathUtil.hpp</includes>
+    <incdepgraph>
+      <node id="5110">
+        <label>functional</label>
+      </node>
+      <node id="5107">
+        <label>cstdint</label>
+      </node>
+      <node id="5096">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="5105">
+        <label>cstdbool</label>
+      </node>
+      <node id="5098">
+        <label>okapi/api/util/mathUtil.hpp</label>
+        <link refid="mathUtil_8hpp"/>
+        <childnode refid="5099" relation="include">
+        </childnode>
+        <childnode refid="5114" relation="include">
+        </childnode>
+        <childnode refid="5107" relation="include">
+        </childnode>
+        <childnode refid="5115" relation="include">
+        </childnode>
+        <childnode refid="5116" relation="include">
+        </childnode>
+      </node>
+      <node id="5104">
+        <label>cmath</label>
+      </node>
+      <node id="5101">
+        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
+        <link refid="continuousRotarySensor_8hpp"/>
+        <childnode refid="5102" relation="include">
+        </childnode>
+      </node>
+      <node id="5099">
+        <label>okapi/api/device/motor/abstractMotor.hpp</label>
+        <link refid="abstractMotor_8hpp"/>
+        <childnode refid="5100" relation="include">
+        </childnode>
+        <childnode refid="5101" relation="include">
+        </childnode>
+        <childnode refid="5097" relation="include">
+        </childnode>
+      </node>
+      <node id="5103">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="5104" relation="include">
+        </childnode>
+        <childnode refid="5105" relation="include">
+        </childnode>
+        <childnode refid="5106" relation="include">
+        </childnode>
+        <childnode refid="5107" relation="include">
+        </childnode>
+        <childnode refid="5108" relation="include">
+        </childnode>
+        <childnode refid="5109" relation="include">
+        </childnode>
+        <childnode refid="5110" relation="include">
+        </childnode>
+        <childnode refid="5111" relation="include">
+        </childnode>
+        <childnode refid="5112" relation="include">
+        </childnode>
+        <childnode refid="5113" relation="include">
+        </childnode>
+      </node>
+      <node id="5112">
+        <label>api.h</label>
+      </node>
+      <node id="5100">
+        <label>okapi/api/control/controllerOutput.hpp</label>
+        <link refid="controllerOutput_8hpp"/>
+      </node>
+      <node id="5108">
+        <label>cstdio</label>
+      </node>
+      <node id="5095">
+        <label>okapi/api/control/offsettableControllerInput.hpp</label>
+        <link refid="offsettableControllerInput_8hpp"/>
+        <childnode refid="5096" relation="include">
+        </childnode>
+        <childnode refid="5097" relation="include">
+        </childnode>
+      </node>
+      <node id="5111">
+        <label>sstream</label>
+      </node>
+      <node id="5102">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="5096" relation="include">
+        </childnode>
+        <childnode refid="5103" relation="include">
+        </childnode>
+      </node>
+      <node id="5115">
+        <label>math.h</label>
+      </node>
+      <node id="5109">
+        <label>cstdlib</label>
+      </node>
+      <node id="5106">
+        <label>cstddef</label>
+      </node>
+      <node id="5094">
+        <label>src/api/control/offsettableControllerInput.cpp</label>
+        <link refid="offsettableControllerInput_8cpp"/>
+        <childnode refid="5095" relation="include">
+        </childnode>
+        <childnode refid="5098" relation="include">
+        </childnode>
+      </node>
+      <node id="5116">
+        <label>type_traits</label>
+      </node>
+      <node id="5114">
+        <label>algorithm</label>
+      </node>
+      <node id="5113">
+        <label>pros/apix.h</label>
+      </node>
+      <node id="5097">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/control/offsettableControllerInput.cpp"/>
+  </compounddef>
+</doxygen>

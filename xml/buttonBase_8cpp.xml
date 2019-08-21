@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="buttonBase_8cpp" kind="file" language="C++">
+    <compoundname>buttonBase.cpp</compoundname>
+    <includes refid="buttonBase_8hpp" local="yes">okapi/api/device/button/buttonBase.hpp</includes>
+    <incdepgraph>
+      <node id="5204">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="5203">
+        <label>okapi/api/device/button/abstractButton.hpp</label>
+        <link refid="abstractButton_8hpp"/>
+        <childnode refid="5204" relation="include">
+        </childnode>
+      </node>
+      <node id="5202">
+        <label>okapi/api/device/button/buttonBase.hpp</label>
+        <link refid="buttonBase_8hpp"/>
+        <childnode refid="5203" relation="include">
+        </childnode>
+      </node>
+      <node id="5201">
+        <label>src/api/device/button/buttonBase.cpp</label>
+        <link refid="buttonBase_8cpp"/>
+        <childnode refid="5202" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/device/button/buttonBase.cpp"/>
+  </compounddef>
+</doxygen>

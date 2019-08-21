@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_da61e3e9a357748887e3ca8d7c5a0c16" kind="dir">
+    <compoundname>src/api</compoundname>
+    <innerdir refid="dir_c0959e89180861cd68fb4b3242aafadf">src/api/chassis</innerdir>
+    <innerdir refid="dir_329639348781c5d28c3b282d2258f951">src/api/control</innerdir>
+    <innerdir refid="dir_c93ca87059c82fd762816f42010ab1fd">src/api/device</innerdir>
+    <innerdir refid="dir_33b45b82b9e14013023582e3e9ebaa62">src/api/filter</innerdir>
+    <innerdir refid="dir_e21bf6c49265067d53af28061fee8994">src/api/odometry</innerdir>
+    <innerdir refid="dir_747c56ab96dfbdc61e1878e19fbe7572">src/api/util</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/"/>
+  </compounddef>
+</doxygen>

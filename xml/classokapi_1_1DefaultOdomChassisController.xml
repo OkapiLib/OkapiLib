@@ -1,0 +1,645 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1DefaultOdomChassisController" kind="class" language="C++" prot="public">
+    <compoundname>okapi::DefaultOdomChassisController</compoundname>
+    <basecompoundref refid="classokapi_1_1OdomChassisController" prot="public" virt="non-virtual">okapi::OdomChassisController</basecompoundref>
+    <includes refid="defaultOdomChassisController_8hpp" local="no">defaultOdomChassisController.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1DefaultOdomChassisController_1a1e34483ae1bcef368d80b69f54a3b091" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;Logger&gt; okapi::DefaultOdomChassisController::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="147" column="1" bodyfile="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1DefaultOdomChassisController_1a0513b32bd09e7af2b82a5d67895b6165" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;ChassisController&gt; okapi::DefaultOdomChassisController::controller</definition>
+        <argsstring></argsstring>
+        <name>controller</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="148" column="1" bodyfile="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1a5fe023ef9ccab0532fd29d237bc91677" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::DefaultOdomChassisController::DefaultOdomChassisController</definition>
+        <argsstring>(const TimeUtil &amp;itimeUtil, std::unique_ptr&lt; Odometry &gt; iodometry, std::shared_ptr&lt; ChassisController &gt; icontroller, QLength imoveThreshold=10_mm, QAngle iturnThreshold=1_deg, std::shared_ptr&lt; Logger &gt; ilogger=Logger::getDefaultLogger())</argsstring>
+        <name>DefaultOdomChassisController</name>
+        <param>
+          <type>const <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref> &amp;</type>
+          <declname>itimeUtil</declname>
+        </param>
+        <param>
+          <type>std::unique_ptr&lt; <ref refid="classokapi_1_1Odometry" kindref="compound">Odometry</ref> &gt;</type>
+          <declname>iodometry</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref> &gt;</type>
+          <declname>icontroller</declname>
+        </param>
+        <param>
+          <type>QLength</type>
+          <declname>imoveThreshold</declname>
+          <defval>10_mm</defval>
+        </param>
+        <param>
+          <type>QAngle</type>
+          <declname>iturnThreshold</declname>
+          <defval>1_deg</defval>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
+          <declname>ilogger</declname>
+          <defval><ref refid="classokapi_1_1Logger_1a5053cf778b4b55acba788a3797dc96d2" kindref="member">Logger::getDefaultLogger</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="classokapi_1_1Odometry" kindref="compound">Odometry</ref> based chassis controller that moves using the V5 motor&apos;s integrated control. Spins up a task at the default priority plus 1 for odometry when constructed.</para>
+<para>Moves the robot around in the odom frame. Instead of telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific point on the field or turn to a specific angle, relative to its starting position.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itimeUtil</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iodometry</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The odometry to read state estimates from. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>icontroller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The chassis controller to delegate to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>igearset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The motor gearset. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iscales</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The chassis scales. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>imoveThreshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>minimum length movement (smaller movements will be skipped) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iturnThreshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>minimum angle turn (smaller turns will be skipped) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ilogger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The logger this instance will log to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="36" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="13" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1a31474749c8a6c0dca45a4c02418fadab" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::DefaultOdomChassisController::driveToPoint</definition>
+        <argsstring>(const QLength &amp;ix, const QLength &amp;iy, bool ibackwards=false, const QLength &amp;ioffset=0_mm) override</argsstring>
+        <name>driveToPoint</name>
+        <reimplements refid="classokapi_1_1OdomChassisController_1a5e87dea6c90a200bc6a9dc638e45365a">driveToPoint</reimplements>
+        <param>
+          <type>const QLength &amp;</type>
+          <declname>ix</declname>
+        </param>
+        <param>
+          <type>const QLength &amp;</type>
+          <declname>iy</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>ibackwards</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>const QLength &amp;</type>
+          <declname>ioffset</declname>
+          <defval>0_mm</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drives the robot straight to a point in the odom frame.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>x coordinate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y coordinate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ibackwards</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether to drive to the target point backwards </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ioffset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>offset from target point in the direction pointing towards the robot </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="51" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="25" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1a2b5fc33c7fbe8d6fd49f4fd46fb84a2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; ChassisController &gt; okapi::DefaultOdomChassisController::getChassisController</definition>
+        <argsstring>()</argsstring>
+        <name>getChassisController</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The internal <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="59" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="122" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1add1bed5d02d3da37306ef0016b7ad8a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref> &amp;</type>
+        <definition>ChassisController &amp; okapi::DefaultOdomChassisController::chassisController</definition>
+        <argsstring>()</argsstring>
+        <name>chassisController</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The internal <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="64" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="126" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1aaf6e4d74384b87510d35b639e45f9dc2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::DefaultOdomChassisController::turnToAngle</definition>
+        <argsstring>(const QAngle &amp;iangle) override</argsstring>
+        <name>turnToAngle</name>
+        <reimplements refid="classokapi_1_1OdomChassisController_1ac90298bb9081d95c52800dbf679dd658">turnToAngle</reimplements>
+        <param>
+          <type>const QAngle &amp;</type>
+          <declname>iangle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="69" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="53" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1a3143bc60f72ab8ff8f63aad9a810a1c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::DefaultOdomChassisController::moveDistance</definition>
+        <argsstring>(QLength itarget) override</argsstring>
+        <name>moveDistance</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a6d5b69139dfa8b814d05c74c22bcaa43">moveDistance</reimplements>
+        <param>
+          <type>QLength</type>
+          <declname>itarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="74" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="62" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1a42abd53b9a0b96b722186ada8eb13d98" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::DefaultOdomChassisController::moveDistance</definition>
+        <argsstring>(double itarget) override</argsstring>
+        <name>moveDistance</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a58619e777fd1b3f8e1aae871d46a8ccf">moveDistance</reimplements>
+        <param>
+          <type>double</type>
+          <declname>itarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="79" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="66" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1a61ca0d303fcbfd08932157af9adbbb12" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::DefaultOdomChassisController::moveDistanceAsync</definition>
+        <argsstring>(QLength itarget) override</argsstring>
+        <name>moveDistanceAsync</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a67a17268b871a4f1ae74d67891cbf5dd">moveDistanceAsync</reimplements>
+        <param>
+          <type>QLength</type>
+          <declname>itarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="84" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="70" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1ab1abaec33ecce2515895d3a8af363c8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::DefaultOdomChassisController::moveDistanceAsync</definition>
+        <argsstring>(double itarget) override</argsstring>
+        <name>moveDistanceAsync</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a24b46ec1c42f32c0527d57738a07820a">moveDistanceAsync</reimplements>
+        <param>
+          <type>double</type>
+          <declname>itarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="89" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="74" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1a4ba07ac4bea9ff2d8aea30be72f6a0ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::DefaultOdomChassisController::turnAngle</definition>
+        <argsstring>(QAngle idegTarget) override</argsstring>
+        <name>turnAngle</name>
+        <reimplements refid="classokapi_1_1ChassisController_1aab12308b3fad6793c007d7a33730a3f7">turnAngle</reimplements>
+        <param>
+          <type>QAngle</type>
+          <declname>idegTarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="94" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="78" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1a05a8a6684b3afe4f7c2ecbc24699f70d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::DefaultOdomChassisController::turnAngle</definition>
+        <argsstring>(double idegTarget) override</argsstring>
+        <name>turnAngle</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a6aca227e35ececd02eed1cc42d09ad1d">turnAngle</reimplements>
+        <param>
+          <type>double</type>
+          <declname>idegTarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="99" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="82" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1a18d748097a7938e3102638d17be54c76" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::DefaultOdomChassisController::turnAngleAsync</definition>
+        <argsstring>(QAngle idegTarget) override</argsstring>
+        <name>turnAngleAsync</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a87fc1f88bf06340d8f022a8c185b5e87">turnAngleAsync</reimplements>
+        <param>
+          <type>QAngle</type>
+          <declname>idegTarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="104" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="86" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1a948978204fc6f2a2443025dfdb0241b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::DefaultOdomChassisController::turnAngleAsync</definition>
+        <argsstring>(double idegTarget) override</argsstring>
+        <name>turnAngleAsync</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a35cadd99478629637b4bd3a5e709871a">turnAngleAsync</reimplements>
+        <param>
+          <type>double</type>
+          <declname>idegTarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="109" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="90" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1aed92ba0b7a9fc15bf645f3789e8598ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::DefaultOdomChassisController::setTurnsMirrored</definition>
+        <argsstring>(bool ishouldMirror) override</argsstring>
+        <name>setTurnsMirrored</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a37ae36ec8936272eb31e3baed7eed417">setTurnsMirrored</reimplements>
+        <param>
+          <type>bool</type>
+          <declname>ishouldMirror</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="114" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="94" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1a44599379129060bdb44e6f603ee5777b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::DefaultOdomChassisController::waitUntilSettled</definition>
+        <argsstring>() override</argsstring>
+        <name>waitUntilSettled</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a01ed4e0eb7332cc149228387bbf1e91c">waitUntilSettled</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="119" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="98" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1af6a98415e2c4e17dfec77e215efb1a41" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::DefaultOdomChassisController::stop</definition>
+        <argsstring>() override</argsstring>
+        <name>stop</name>
+        <reimplements refid="classokapi_1_1ChassisController_1ac67edbbbe1c8480c4503b9875a3719cd">stop</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="124" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="102" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1afa07913b30d47c790fcdce8c2b85a468" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classokapi_1_1ChassisScales" kindref="compound">ChassisScales</ref></type>
+        <definition>ChassisScales okapi::DefaultOdomChassisController::getChassisScales</definition>
+        <argsstring>() const override</argsstring>
+        <name>getChassisScales</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a0a8e32fc7adad8567f550954505aaa06">getChassisScales</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="129" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="106" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1a6912dbe99776f79fb3a6990e2fbea2ff" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair" kindref="compound">AbstractMotor::GearsetRatioPair</ref></type>
+        <definition>AbstractMotor::GearsetRatioPair okapi::DefaultOdomChassisController::getGearsetRatioPair</definition>
+        <argsstring>() const override</argsstring>
+        <name>getGearsetRatioPair</name>
+        <reimplements refid="classokapi_1_1ChassisController_1aa19351888b997d4a6596dac24520ebff">getGearsetRatioPair</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="134" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="110" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1a83e8bf7115086c331ada990ceb872bf1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; ChassisModel &gt; okapi::DefaultOdomChassisController::getModel</definition>
+        <argsstring>() override</argsstring>
+        <name>getModel</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a1971d4b54b61718437824c026aca53c9">getModel</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="139" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="114" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1DefaultOdomChassisController_1aa917086153b6298bf7792fd3b31ac240" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref> &amp;</type>
+        <definition>ChassisModel &amp; okapi::DefaultOdomChassisController::model</definition>
+        <argsstring>() override</argsstring>
+        <name>model</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a239802eda7e4317a65d1a04994f7b97e">model</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This delegates to the input <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="144" column="1" bodyfile="src/api/chassis/controller/defaultOdomChassisController.cpp" bodystart="118" bodyend="120"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="286">
+        <label>okapi::DefaultOdomChassisController</label>
+        <link refid="classokapi_1_1DefaultOdomChassisController"/>
+        <childnode refid="287" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="288">
+        <label>okapi::ChassisController</label>
+        <link refid="classokapi_1_1ChassisController"/>
+      </node>
+      <node id="287">
+        <label>okapi::OdomChassisController</label>
+        <link refid="classokapi_1_1OdomChassisController"/>
+        <childnode refid="288" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="294">
+        <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::AbstractRate &gt; &gt;</label>
+        <link refid="classokapi_1_1Supplier"/>
+      </node>
+      <node id="296">
+        <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::AbstractTimer &gt; &gt;</label>
+        <link refid="classokapi_1_1Supplier"/>
+      </node>
+      <node id="293">
+        <label>okapi::TimeUtil</label>
+        <link refid="classokapi_1_1TimeUtil"/>
+        <childnode refid="294" relation="usage">
+          <edgelabel>rateSupplier</edgelabel>
+        </childnode>
+        <childnode refid="295" relation="usage">
+          <edgelabel>settledUtilSupplier</edgelabel>
+        </childnode>
+        <childnode refid="296" relation="usage">
+          <edgelabel>timerSupplier</edgelabel>
+        </childnode>
+      </node>
+      <node id="289">
+        <label>okapi::DefaultOdomChassisController</label>
+        <link refid="classokapi_1_1DefaultOdomChassisController"/>
+        <childnode refid="290" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="295">
+        <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::SettledUtil &gt; &gt;</label>
+        <link refid="classokapi_1_1Supplier"/>
+      </node>
+      <node id="291">
+        <label>okapi::ChassisController</label>
+        <link refid="classokapi_1_1ChassisController"/>
+      </node>
+      <node id="292">
+        <label>CrossplatformThread</label>
+        <link refid="classCrossplatformThread"/>
+      </node>
+      <node id="290">
+        <label>okapi::OdomChassisController</label>
+        <link refid="classokapi_1_1OdomChassisController"/>
+        <childnode refid="291" relation="public-inheritance">
+        </childnode>
+        <childnode refid="292" relation="usage">
+          <edgelabel>odomTask</edgelabel>
+        </childnode>
+        <childnode refid="293" relation="usage">
+          <edgelabel>timeUtil</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" line="17" column="1" bodyfile="include/okapi/api/chassis/controller/defaultOdomChassisController.hpp" bodystart="17" bodyend="149"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1add1bed5d02d3da37306ef0016b7ad8a2" prot="public" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>chassisController</name></member>
+      <member refid="classokapi_1_1ChassisController_1a8a4a431cb9da03a1c84e600dc0e31333" prot="public" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>ChassisController</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a0513b32bd09e7af2b82a5d67895b6165" prot="protected" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>controller</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a5fe023ef9ccab0532fd29d237bc91677" prot="public" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>DefaultOdomChassisController</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a31474749c8a6c0dca45a4c02418fadab" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>driveToPoint</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a2af36f833e8ac382c4386f729f904bae" prot="protected" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>dtorCalled</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a2b5fc33c7fbe8d6fd49f4fd46fb84a2d" prot="public" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>getChassisController</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1afa07913b30d47c790fcdce8c2b85a468" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>getChassisScales</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a6912dbe99776f79fb3a6990e2fbea2ff" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>getGearsetRatioPair</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a83e8bf7115086c331ada990ceb872bf1" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>getModel</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a6523c9291a330272edcf951e6653ae02" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>getMoveThreshold</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a6ab78730e502dc551894e7efdb9f4edf" prot="public" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>getOdomThread</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1aa7b4675edd3cdd920e287fc5e824892f" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>getState</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a17e3855a8b8ecdb9a027828d604722d9" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>getTurnThreshold</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a1e34483ae1bcef368d80b69f54a3b091" prot="protected" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>logger</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1aafdbc13dae2d14e13b879dd7d93993c7" prot="protected" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>loop</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1aa917086153b6298bf7792fd3b31ac240" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>model</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a3143bc60f72ab8ff8f63aad9a810a1c6" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>moveDistance</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a42abd53b9a0b96b722186ada8eb13d98" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>moveDistance</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a61ca0d303fcbfd08932157af9adbbb12" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>moveDistanceAsync</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1ab1abaec33ecce2515895d3a8af363c8c" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>moveDistanceAsync</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a8fc34ac66535e1a2afaf8856f09a9f95" prot="protected" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>moveThreshold</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a7167160f48f0f75fb1bc7964c4cc608b" prot="protected" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>odom</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a91015290cdd5f9c459adfb59115bc92d" prot="public" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>OdomChassisController</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a75246d7a17442c9a63afaef68bbf95e0" prot="protected" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>odomTask</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1adf98b0e1b91d1f72cce5b76b992257a0" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>setMoveThreshold</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a843ab24d9ed26ba68833ece0b28bf345" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>setState</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1aed92ba0b7a9fc15bf645f3789e8598ae" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>setTurnsMirrored</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a771daa37b47909a523571e9173f676d5" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>setTurnThreshold</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a519c7ad1905fbf9132c95e1e14bc973c" prot="public" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>startOdomThread</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1af6a98415e2c4e17dfec77e215efb1a41" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>stop</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a3afde0b7a16a998873923f41fedb041a" prot="protected" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>timeUtil</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a11be9684a858686cfc3204b493422308" prot="protected" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>trampoline</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a4ba07ac4bea9ff2d8aea30be72f6a0ea" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>turnAngle</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a05a8a6684b3afe4f7c2ecbc24699f70d" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>turnAngle</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a18d748097a7938e3102638d17be54c76" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>turnAngleAsync</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a948978204fc6f2a2443025dfdb0241b1" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>turnAngleAsync</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1ac0d74721713d2928a047562675ae25ef" prot="protected" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>turnThreshold</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1aaf6e4d74384b87510d35b639e45f9dc2" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>turnToAngle</name></member>
+      <member refid="classokapi_1_1DefaultOdomChassisController_1a44599379129060bdb44e6f603ee5777b" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>waitUntilSettled</name></member>
+      <member refid="classokapi_1_1ChassisController_1a886a1cfbd9430fb2fbe177bc4d4ab392" prot="public" virt="virtual"><scope>okapi::DefaultOdomChassisController</scope><name>~ChassisController</name></member>
+      <member refid="classokapi_1_1OdomChassisController_1a25ee4fe0432b6cdc8052a869856cfc7c" prot="public" virt="non-virtual"><scope>okapi::DefaultOdomChassisController</scope><name>~OdomChassisController</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

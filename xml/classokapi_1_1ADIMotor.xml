@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ADIMotor" kind="class" language="C++" prot="public">
+    <compoundname>okapi::ADIMotor</compoundname>
+    <basecompoundref refid="classokapi_1_1ControllerOutput" prot="public" virt="non-virtual">okapi::ControllerOutput&lt; double &gt;</basecompoundref>
+    <includes refid="adiMotor_8hpp" local="no">adiMotor.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1ADIMotor_1aae748af2c07c58821db34dff7924f4b7" prot="protected" static="no" mutable="no">
+        <type>const std::uint8_t</type>
+        <definition>const std::uint8_t okapi::ADIMotor::port</definition>
+        <argsstring></argsstring>
+        <name>port</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/device/motor/adiMotor.hpp" line="44" column="1" bodyfile="include/okapi/impl/device/motor/adiMotor.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ADIMotor_1a3abbe2875ba0abb35297d8dbe91cd4f4" prot="protected" static="no" mutable="no">
+        <type>const std::int8_t</type>
+        <definition>const std::int8_t okapi::ADIMotor::reversed</definition>
+        <argsstring></argsstring>
+        <name>reversed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/device/motor/adiMotor.hpp" line="45" column="1" bodyfile="include/okapi/impl/device/motor/adiMotor.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1ADIMotor_1a44abc0f7804cc45e2ad98a54d4fea920" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::ADIMotor::ADIMotor</definition>
+        <argsstring>(std::uint8_t iport, bool ireverse=false, const std::shared_ptr&lt; Logger &gt; &amp;logger=Logger::getDefaultLogger())</argsstring>
+        <name>ADIMotor</name>
+        <param>
+          <type>std::uint8_t</type>
+          <declname>iport</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>ireverse</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt; &amp;</type>
+          <declname>logger</declname>
+          <defval><ref refid="classokapi_1_1Logger_1a5053cf778b4b55acba788a3797dc96d2" kindref="member">Logger::getDefaultLogger</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A motor on the ADI ports.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iport</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ADI port number. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ireverse</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether the motor is reversed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>logger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The logger that initialization warnings will be logged to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/device/motor/adiMotor.hpp" line="24" column="1" bodyfile="src/impl/device/motor/adiMotor.cpp" bodystart="11" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ADIMotor_1a4c992efbe21467c0339308fba926b1a6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ADIMotor::moveVoltage</definition>
+        <argsstring>(std::int8_t ivoltage) const</argsstring>
+        <name>moveVoltage</name>
+        <param>
+          <type>std::int8_t</type>
+          <declname>ivoltage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the voltage to the motor.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ivoltage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>voltage in the range [-127, 127]. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/device/motor/adiMotor.hpp" line="33" column="1" bodyfile="src/impl/device/motor/adiMotor.cpp" bodystart="22" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ADIMotor_1ac290a47e904c728ff1e61ee85408a1be" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ADIMotor::controllerSet</definition>
+        <argsstring>(double ivalue) override</argsstring>
+        <name>controllerSet</name>
+        <reimplements refid="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49">controllerSet</reimplements>
+        <param>
+          <type>double</type>
+          <declname>ivalue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Writes the value of the controller output. This method might be automatically called in another thread by the controller. The range of input values is expected to be [-1, 1].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ivalue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the controller&apos;s output in the range [-1, 1] </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/device/motor/adiMotor.hpp" line="41" column="1" bodyfile="src/impl/device/motor/adiMotor.cpp" bodystart="26" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="44">
+        <label>okapi::ControllerOutput&lt; double &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+      <node id="43">
+        <label>okapi::ADIMotor</label>
+        <link refid="classokapi_1_1ADIMotor"/>
+        <childnode refid="44" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="46">
+        <label>okapi::ControllerOutput&lt; double &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+      <node id="45">
+        <label>okapi::ADIMotor</label>
+        <link refid="classokapi_1_1ADIMotor"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/impl/device/motor/adiMotor.hpp" line="15" column="1" bodyfile="include/okapi/impl/device/motor/adiMotor.hpp" bodystart="15" bodyend="46"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ADIMotor_1a44abc0f7804cc45e2ad98a54d4fea920" prot="public" virt="non-virtual"><scope>okapi::ADIMotor</scope><name>ADIMotor</name></member>
+      <member refid="classokapi_1_1ADIMotor_1ac290a47e904c728ff1e61ee85408a1be" prot="public" virt="virtual"><scope>okapi::ADIMotor</scope><name>controllerSet</name></member>
+      <member refid="classokapi_1_1ADIMotor_1a4c992efbe21467c0339308fba926b1a6" prot="public" virt="virtual"><scope>okapi::ADIMotor</scope><name>moveVoltage</name></member>
+      <member refid="classokapi_1_1ADIMotor_1aae748af2c07c58821db34dff7924f4b7" prot="protected" virt="non-virtual"><scope>okapi::ADIMotor</scope><name>port</name></member>
+      <member refid="classokapi_1_1ADIMotor_1a3abbe2875ba0abb35297d8dbe91cd4f4" prot="protected" virt="non-virtual"><scope>okapi::ADIMotor</scope><name>reversed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

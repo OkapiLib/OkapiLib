@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="QArea_8hpp" kind="file" language="C++">
+    <compoundname>QArea.hpp</compoundname>
+    <includes refid="QLength_8hpp" local="yes">okapi/api/units/QLength.hpp</includes>
+    <includes refid="RQuantity_8hpp" local="yes">okapi/api/units/RQuantity.hpp</includes>
+    <includedby refid="QPressure_8hpp" local="yes">include/okapi/api/units/QPressure.hpp</includedby>
+    <includedby refid="QVolume_8hpp" local="yes">include/okapi/api/units/QVolume.hpp</includedby>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <incdepgraph>
+      <node id="2670">
+        <label>cmath</label>
+      </node>
+      <node id="2668">
+        <label>okapi/api/units/QLength.hpp</label>
+        <link refid="QLength_8hpp"/>
+        <childnode refid="2669" relation="include">
+        </childnode>
+      </node>
+      <node id="2671">
+        <label>ratio</label>
+      </node>
+      <node id="2669">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="2670" relation="include">
+        </childnode>
+        <childnode refid="2671" relation="include">
+        </childnode>
+      </node>
+      <node id="2667">
+        <label>include/okapi/api/units/QArea.hpp</label>
+        <link refid="QArea_8hpp"/>
+        <childnode refid="2668" relation="include">
+        </childnode>
+        <childnode refid="2669" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2674">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="2675">
+        <label>include/okapi/api/units/QVolume.hpp</label>
+        <link refid="QVolume_8hpp"/>
+        <childnode refid="2674" relation="include">
+        </childnode>
+      </node>
+      <node id="2673">
+        <label>include/okapi/api/units/QPressure.hpp</label>
+        <link refid="QPressure_8hpp"/>
+        <childnode refid="2674" relation="include">
+        </childnode>
+      </node>
+      <node id="2672">
+        <label>include/okapi/api/units/QArea.hpp</label>
+        <link refid="QArea_8hpp"/>
+        <childnode refid="2673" relation="include">
+        </childnode>
+        <childnode refid="2675" relation="include">
+        </childnode>
+        <childnode refid="2674" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/units/QArea.hpp"/>
+  </compounddef>
+</doxygen>

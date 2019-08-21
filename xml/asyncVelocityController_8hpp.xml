@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="asyncVelocityController_8hpp" kind="file" language="C++">
+    <compoundname>asyncVelocityController.hpp</compoundname>
+    <includes refid="asyncController_8hpp" local="yes">okapi/api/control/async/asyncController.hpp</includes>
+    <includes local="no">memory</includes>
+    <includedby refid="asyncVelIntegratedController_8hpp" local="yes">include/okapi/api/control/async/asyncVelIntegratedController.hpp</includedby>
+    <includedby refid="asyncVelPidController_8hpp" local="yes">include/okapi/api/control/async/asyncVelPidController.hpp</includedby>
+    <includedby refid="asyncVelControllerBuilder_8hpp" local="yes">include/okapi/impl/control/async/asyncVelControllerBuilder.hpp</includedby>
+    <incdepgraph>
+      <node id="977">
+        <label>okapi/api/control/async/asyncController.hpp</label>
+        <link refid="asyncController_8hpp"/>
+        <childnode refid="978" relation="include">
+        </childnode>
+      </node>
+      <node id="982">
+        <label>cmath</label>
+      </node>
+      <node id="980">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="981" relation="include">
+        </childnode>
+      </node>
+      <node id="983">
+        <label>ratio</label>
+      </node>
+      <node id="976">
+        <label>include/okapi/api/control/async/asyncVelocityController.hpp</label>
+        <link refid="asyncVelocityController_8hpp"/>
+        <childnode refid="977" relation="include">
+        </childnode>
+        <childnode refid="984" relation="include">
+        </childnode>
+      </node>
+      <node id="979">
+        <label>okapi/api/control/controllerOutput.hpp</label>
+        <link refid="controllerOutput_8hpp"/>
+      </node>
+      <node id="981">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="982" relation="include">
+        </childnode>
+        <childnode refid="983" relation="include">
+        </childnode>
+      </node>
+      <node id="978">
+        <label>okapi/api/control/closedLoopController.hpp</label>
+        <link refid="closedLoopController_8hpp"/>
+        <childnode refid="979" relation="include">
+        </childnode>
+        <childnode refid="980" relation="include">
+        </childnode>
+      </node>
+      <node id="984">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="990">
+        <label>src/api/control/async/asyncVelIntegratedController.cpp</label>
+        <link refid="asyncVelIntegratedController_8cpp"/>
+      </node>
+      <node id="987">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="992">
+        <label>src/api/control/async/asyncVelPidController.cpp</label>
+        <link refid="asyncVelPidController_8cpp"/>
+      </node>
+      <node id="988">
+        <label>include/okapi/impl/control/async/asyncVelControllerBuilder.hpp</label>
+        <link refid="asyncVelControllerBuilder_8hpp"/>
+        <childnode refid="987" relation="include">
+        </childnode>
+        <childnode refid="989" relation="include">
+        </childnode>
+      </node>
+      <node id="991">
+        <label>include/okapi/api/control/async/asyncVelPidController.hpp</label>
+        <link refid="asyncVelPidController_8hpp"/>
+        <childnode refid="987" relation="include">
+        </childnode>
+        <childnode refid="988" relation="include">
+        </childnode>
+        <childnode refid="992" relation="include">
+        </childnode>
+      </node>
+      <node id="986">
+        <label>include/okapi/api/control/async/asyncVelIntegratedController.hpp</label>
+        <link refid="asyncVelIntegratedController_8hpp"/>
+        <childnode refid="987" relation="include">
+        </childnode>
+        <childnode refid="988" relation="include">
+        </childnode>
+        <childnode refid="990" relation="include">
+        </childnode>
+      </node>
+      <node id="985">
+        <label>include/okapi/api/control/async/asyncVelocityController.hpp</label>
+        <link refid="asyncVelocityController_8hpp"/>
+        <childnode refid="986" relation="include">
+        </childnode>
+        <childnode refid="991" relation="include">
+        </childnode>
+        <childnode refid="988" relation="include">
+        </childnode>
+      </node>
+      <node id="989">
+        <label>src/impl/control/async/asyncVelControllerBuilder.cpp</label>
+        <link refid="asyncVelControllerBuilder_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1AsyncVelocityController" prot="public">okapi::AsyncVelocityController</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/control/async/asyncVelocityController.hpp"/>
+  </compounddef>
+</doxygen>

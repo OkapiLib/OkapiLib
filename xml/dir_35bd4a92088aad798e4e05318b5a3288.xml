@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_35bd4a92088aad798e4e05318b5a3288" kind="dir">
+    <compoundname>src/api/device/motor</compoundname>
+    <innerfile refid="abstractMotor_8cpp">abstractMotor.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/device/motor/"/>
+  </compounddef>
+</doxygen>

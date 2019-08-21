@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ThreeEncoderSkidSteerModel" kind="class" language="C++" prot="public">
+    <compoundname>okapi::ThreeEncoderSkidSteerModel</compoundname>
+    <basecompoundref refid="classokapi_1_1SkidSteerModel" prot="public" virt="non-virtual">okapi::SkidSteerModel</basecompoundref>
+    <includes refid="threeEncoderSkidSteerModel_8hpp" local="no">threeEncoderSkidSteerModel.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1ThreeEncoderSkidSteerModel_1a24ca08fb88096f1f3e5b84974086e972" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;ContinuousRotarySensor&gt; okapi::ThreeEncoderSkidSteerModel::middleSensor</definition>
+        <argsstring></argsstring>
+        <name>middleSensor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp" line="46" column="1" bodyfile="include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1ThreeEncoderSkidSteerModel_1a27ca581fa9c5f43168d9f52e3dba8d74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel</definition>
+        <argsstring>(std::shared_ptr&lt; AbstractMotor &gt; ileftSideMotor, std::shared_ptr&lt; AbstractMotor &gt; irightSideMotor, std::shared_ptr&lt; ContinuousRotarySensor &gt; ileftEnc, std::shared_ptr&lt; ContinuousRotarySensor &gt; imiddleEnc, std::shared_ptr&lt; ContinuousRotarySensor &gt; irightEnc, double imaxVelocity, double imaxVoltage)</argsstring>
+        <name>ThreeEncoderSkidSteerModel</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+          <declname>ileftSideMotor</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+          <declname>irightSideMotor</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
+          <declname>ileftEnc</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
+          <declname>imiddleEnc</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
+          <declname>irightEnc</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>imaxVelocity</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>imaxVoltage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Model for a skid steer drive (wheels parallel with robot&apos;s direction of motion). When all motors are powered +127, the robot should move forward in a straight line.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ileftSideMotor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>left side motor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>irightSideMotor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>right side motor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ileftEnc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>left side encoder </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>imiddleEnc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>middle encoder (mounted perpendicular to the left and right side encoders) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>irightEnc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>right side encoder </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp" line="25" column="1" bodyfile="src/api/chassis/model/threeEncoderSkidSteerModel.cpp" bodystart="11" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ThreeEncoderSkidSteerModel_1a39af35aa25e5385584b3834911aed341" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>std::valarray&lt; std::int32_t &gt;</type>
+        <definition>std::valarray&lt; std::int32_t &gt; okapi::ThreeEncoderSkidSteerModel::getSensorVals</definition>
+        <argsstring>() const override</argsstring>
+        <name>getSensorVals</name>
+        <reimplements refid="classokapi_1_1SkidSteerModel_1a850e4de7ab3a30a354ac39f30a1e8603">getSensorVals</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Read the sensors.</para>
+<para><simplesect kind="return"><para>sensor readings in the format {left, right, middle} </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp" line="38" column="1" bodyfile="src/api/chassis/model/threeEncoderSkidSteerModel.cpp" bodystart="28" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ThreeEncoderSkidSteerModel_1a6e4d43a1f3027798c0451c93f8cde057" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ThreeEncoderSkidSteerModel::resetSensors</definition>
+        <argsstring>() override</argsstring>
+        <name>resetSensors</name>
+        <reimplements refid="classokapi_1_1SkidSteerModel_1af8885fc16e654eafa872dd7c760591cf">resetSensors</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reset the sensors to their zero point. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp" line="43" column="1" bodyfile="src/api/chassis/model/threeEncoderSkidSteerModel.cpp" bodystart="35" bodyend="38"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="509">
+        <label>okapi::ReadOnlyChassisModel</label>
+        <link refid="classokapi_1_1ReadOnlyChassisModel"/>
+      </node>
+      <node id="506">
+        <label>okapi::ThreeEncoderSkidSteerModel</label>
+        <link refid="classokapi_1_1ThreeEncoderSkidSteerModel"/>
+        <childnode refid="507" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="508">
+        <label>okapi::ChassisModel</label>
+        <link refid="classokapi_1_1ChassisModel"/>
+        <childnode refid="509" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="507">
+        <label>okapi::SkidSteerModel</label>
+        <link refid="classokapi_1_1SkidSteerModel"/>
+        <childnode refid="508" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="513">
+        <label>okapi::ReadOnlyChassisModel</label>
+        <link refid="classokapi_1_1ReadOnlyChassisModel"/>
+      </node>
+      <node id="510">
+        <label>okapi::ThreeEncoderSkidSteerModel</label>
+        <link refid="classokapi_1_1ThreeEncoderSkidSteerModel"/>
+        <childnode refid="511" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="512">
+        <label>okapi::ChassisModel</label>
+        <link refid="classokapi_1_1ChassisModel"/>
+        <childnode refid="513" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="511">
+        <label>okapi::SkidSteerModel</label>
+        <link refid="classokapi_1_1SkidSteerModel"/>
+        <childnode refid="512" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp" line="13" column="1" bodyfile="include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp" bodystart="13" bodyend="47"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1SkidSteerModel_1a145f671aa2dd1c6991945929e4a3d97d" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>arcade</name></member>
+      <member refid="classokapi_1_1ChassisModel_1ae292afae5511e46eec17cf0f9bad1bb6" prot="public" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>ChassisModel</name></member>
+      <member refid="classokapi_1_1ChassisModel_1a8201eb131b58c99a2b93630758e8367d" prot="public" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>ChassisModel</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a5fa39473f6a6d2deae988f63e972b66a" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>driveVector</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1aa9b68af25f8f924117b07a5c8e9f6c93" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>driveVectorVoltage</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a74ca9d9f1b0f80c9453194567c58e967" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>forward</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a3f1813ada8205396c35abccbc0c9ff21" prot="public" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>getLeftSideMotor</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a7e2fcfb65e940ea4d71780966b4b5b68" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>getMaxVelocity</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1ad4849d18c3a244eb60e1056860a3c4cf" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>getMaxVoltage</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a0c58a580708b864d8c4391c7045e590b" prot="public" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>getRightSideMotor</name></member>
+      <member refid="classokapi_1_1ThreeEncoderSkidSteerModel_1a39af35aa25e5385584b3834911aed341" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>getSensorVals</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1af2b00108853b82eb0fb5ecb3b71f413d" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>left</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1ae286eda43ccd14ac74c06c95f05b14eb" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>leftSensor</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a086c099795122b42cf66c67a334a6c30" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>leftSideMotor</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a7328ea414229603ad144297832aba668" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>maxVelocity</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a5a8c43598d98dad4d2c76d5c5c9b34ad" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>maxVoltage</name></member>
+      <member refid="classokapi_1_1ThreeEncoderSkidSteerModel_1a24ca08fb88096f1f3e5b84974086e972" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>middleSensor</name></member>
+      <member refid="classokapi_1_1ChassisModel_1ab6c89183b8a5317a1e149df5ed22dfb1" prot="public" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>operator=</name></member>
+      <member refid="classokapi_1_1ThreeEncoderSkidSteerModel_1a6e4d43a1f3027798c0451c93f8cde057" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>resetSensors</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1ada9bd222b5aeaa0507b57906ac59dd3b" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>right</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a35b26b12648944bb561e7978468fd679" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>rightSensor</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a858a234f53f66803c7a498e69c86032b" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>rightSideMotor</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1af02dab85c80cf8aa226b33a39851feff" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>rotate</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a84c100815058f4dcdc958b3349713f73" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>setBrakeMode</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a8922c028a9f09893061938fe50fb2a79" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>setEncoderUnits</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1ad890989e345cfd7455436bc5dd6efdcc" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>setGearing</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a4beda353f201fa72fc8d31f47a08d473" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>setMaxVelocity</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1ad4dc0f8e3877b23ffb8ae58903bdffb7" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>setMaxVoltage</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1ac79ebd9b643ea68da98576ec355e94a5" prot="public" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>SkidSteerModel</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1a98d212cff8bad647ada6bcd3054c7581" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>stop</name></member>
+      <member refid="classokapi_1_1SkidSteerModel_1aa51195896f1be6afe661d5c9a8e6ea4e" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>tank</name></member>
+      <member refid="classokapi_1_1ThreeEncoderSkidSteerModel_1a27ca581fa9c5f43168d9f52e3dba8d74" prot="public" virt="non-virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>ThreeEncoderSkidSteerModel</name></member>
+      <member refid="classokapi_1_1ReadOnlyChassisModel_1a1994ed80cbfdc34f30f90083d4c8620d" prot="public" virt="virtual"><scope>okapi::ThreeEncoderSkidSteerModel</scope><name>~ReadOnlyChassisModel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

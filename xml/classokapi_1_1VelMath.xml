@@ -1,0 +1,326 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1VelMath" kind="class" language="C++" prot="public">
+    <compoundname>okapi::VelMath</compoundname>
+    <includes refid="velMath_8hpp" local="no">velMath.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1VelMath_1aab9b5774fde584b40fb113808d59eb8b" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;Logger&gt; okapi::VelMath::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="65" column="1" bodyfile="include/okapi/api/filter/velMath.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1VelMath_1af8386892892d453a118581e46839a0c3" prot="protected" static="no" mutable="no">
+        <type>QAngularSpeed</type>
+        <definition>QAngularSpeed okapi::VelMath::vel</definition>
+        <argsstring></argsstring>
+        <name>vel</name>
+        <initializer>{0_rpm}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="66" column="1" bodyfile="include/okapi/api/filter/velMath.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1VelMath_1a237571e8eece5874fdc599e5c49c2258" prot="protected" static="no" mutable="no">
+        <type>QAngularSpeed</type>
+        <definition>QAngularSpeed okapi::VelMath::lastVel</definition>
+        <argsstring></argsstring>
+        <name>lastVel</name>
+        <initializer>{0_rpm}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="67" column="1" bodyfile="include/okapi/api/filter/velMath.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1VelMath_1abe73288852f21916155e04266faea8b7" prot="protected" static="no" mutable="no">
+        <type>QAngularAcceleration</type>
+        <definition>QAngularAcceleration okapi::VelMath::accel</definition>
+        <argsstring></argsstring>
+        <name>accel</name>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="68" column="1" bodyfile="include/okapi/api/filter/velMath.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1VelMath_1a9f669c3d70753ef68971dae4b6f45c27" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::VelMath::lastPos</definition>
+        <argsstring></argsstring>
+        <name>lastPos</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="69" column="1" bodyfile="include/okapi/api/filter/velMath.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1VelMath_1ad889516cc153d23febbbfd4c9c45e5ec" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::VelMath::ticksPerRev</definition>
+        <argsstring></argsstring>
+        <name>ticksPerRev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="70" column="1" bodyfile="include/okapi/api/filter/velMath.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1VelMath_1a015a781b3f7f454f24b1a86a43a9a76d" prot="protected" static="no" mutable="no">
+        <type>QTime</type>
+        <definition>QTime okapi::VelMath::sampleTime</definition>
+        <argsstring></argsstring>
+        <name>sampleTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="72" column="1" bodyfile="include/okapi/api/filter/velMath.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1VelMath_1a36a8a63ac4b47806259e080cfbd0d462" prot="protected" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classokapi_1_1AbstractTimer" kindref="compound">AbstractTimer</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;AbstractTimer&gt; okapi::VelMath::loopDtTimer</definition>
+        <argsstring></argsstring>
+        <name>loopDtTimer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="73" column="1" bodyfile="include/okapi/api/filter/velMath.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1VelMath_1ab100cf49e925d37139d5bf4c4aca87d0" prot="protected" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classokapi_1_1Filter" kindref="compound">Filter</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;Filter&gt; okapi::VelMath::filter</definition>
+        <argsstring></argsstring>
+        <name>filter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="74" column="1" bodyfile="include/okapi/api/filter/velMath.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1VelMath_1af70c4c5ae0a71719e833ba375f76b5d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::VelMath::VelMath</definition>
+        <argsstring>(double iticksPerRev, std::unique_ptr&lt; Filter &gt; ifilter, QTime isampleTime, std::unique_ptr&lt; AbstractTimer &gt; iloopDtTimer, std::shared_ptr&lt; Logger &gt; ilogger=Logger::getDefaultLogger())</argsstring>
+        <name>VelMath</name>
+        <param>
+          <type>double</type>
+          <declname>iticksPerRev</declname>
+        </param>
+        <param>
+          <type>std::unique_ptr&lt; <ref refid="classokapi_1_1Filter" kindref="compound">Filter</ref> &gt;</type>
+          <declname>ifilter</declname>
+        </param>
+        <param>
+          <type>QTime</type>
+          <declname>isampleTime</declname>
+        </param>
+        <param>
+          <type>std::unique_ptr&lt; <ref refid="classokapi_1_1AbstractTimer" kindref="compound">AbstractTimer</ref> &gt;</type>
+          <declname>iloopDtTimer</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
+          <declname>ilogger</declname>
+          <defval><ref refid="classokapi_1_1Logger_1a5053cf778b4b55acba788a3797dc96d2" kindref="member">Logger::getDefaultLogger</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Velocity math helper. Calculates filtered velocity. Throws a <computeroutput>std::invalid_argument</computeroutput> exception if <computeroutput>iticksPerRev</computeroutput> is zero.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iticksPerRev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of ticks per revolution (or whatever units you are using). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ifilter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The filter used for filtering the calculated velocity. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>isampleTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimum time between velocity measurements. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ilogger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The logger this instance will log to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="30" column="1" bodyfile="src/api/filter/velMath.cpp" bodystart="15" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1VelMath_1a555b678899ad8e231543d6f206ae0db6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>okapi::VelMath::~VelMath</definition>
+        <argsstring>()</argsstring>
+        <name>~VelMath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="36" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1VelMath_1a4c6e14c7f2054512b59a30736f61982f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>QAngularSpeed</type>
+        <definition>QAngularSpeed okapi::VelMath::step</definition>
+        <argsstring>(double inewPos)</argsstring>
+        <name>step</name>
+        <param>
+          <type>double</type>
+          <declname>inewPos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates the current velocity and acceleration. Returns the (filtered) velocity.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>inewPos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new position measurement. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The new velocity estimate. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="44" column="1" bodyfile="src/api/filter/velMath.cpp" bodystart="35" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1VelMath_1a0a95837a35bfb2702a170da95daba559" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::VelMath::setTicksPerRev</definition>
+        <argsstring>(double iTPR)</argsstring>
+        <name>setTicksPerRev</name>
+        <param>
+          <type>double</type>
+          <declname>iTPR</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets ticks per revolution (or whatever units you are using). Throws a <computeroutput>std::invalid_argument</computeroutput> exception if iticksPerRev is zero.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iTPR</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of ticks per revolution. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="52" column="1" bodyfile="src/api/filter/velMath.cpp" bodystart="49" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1VelMath_1ae366b0895bfac15e986448aa9c22b26c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QAngularSpeed</type>
+        <definition>QAngularSpeed okapi::VelMath::getVelocity</definition>
+        <argsstring>() const</argsstring>
+        <name>getVelocity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The last calculated velocity. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="57" column="1" bodyfile="src/api/filter/velMath.cpp" bodystart="60" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1VelMath_1ac47c50d2fc6035739607801d1aa2272d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QAngularAcceleration</type>
+        <definition>QAngularAcceleration okapi::VelMath::getAccel</definition>
+        <argsstring>() const</argsstring>
+        <name>getAccel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The last calculated acceleration. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/velMath.hpp" line="62" column="1" bodyfile="src/api/filter/velMath.cpp" bodystart="64" bodyend="66"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/filter/velMath.hpp" line="19" column="1" bodyfile="include/okapi/api/filter/velMath.hpp" bodystart="19" bodyend="75"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1VelMath_1abe73288852f21916155e04266faea8b7" prot="protected" virt="non-virtual"><scope>okapi::VelMath</scope><name>accel</name></member>
+      <member refid="classokapi_1_1VelMath_1ab100cf49e925d37139d5bf4c4aca87d0" prot="protected" virt="non-virtual"><scope>okapi::VelMath</scope><name>filter</name></member>
+      <member refid="classokapi_1_1VelMath_1ac47c50d2fc6035739607801d1aa2272d" prot="public" virt="virtual"><scope>okapi::VelMath</scope><name>getAccel</name></member>
+      <member refid="classokapi_1_1VelMath_1ae366b0895bfac15e986448aa9c22b26c" prot="public" virt="virtual"><scope>okapi::VelMath</scope><name>getVelocity</name></member>
+      <member refid="classokapi_1_1VelMath_1a9f669c3d70753ef68971dae4b6f45c27" prot="protected" virt="non-virtual"><scope>okapi::VelMath</scope><name>lastPos</name></member>
+      <member refid="classokapi_1_1VelMath_1a237571e8eece5874fdc599e5c49c2258" prot="protected" virt="non-virtual"><scope>okapi::VelMath</scope><name>lastVel</name></member>
+      <member refid="classokapi_1_1VelMath_1aab9b5774fde584b40fb113808d59eb8b" prot="protected" virt="non-virtual"><scope>okapi::VelMath</scope><name>logger</name></member>
+      <member refid="classokapi_1_1VelMath_1a36a8a63ac4b47806259e080cfbd0d462" prot="protected" virt="non-virtual"><scope>okapi::VelMath</scope><name>loopDtTimer</name></member>
+      <member refid="classokapi_1_1VelMath_1a015a781b3f7f454f24b1a86a43a9a76d" prot="protected" virt="non-virtual"><scope>okapi::VelMath</scope><name>sampleTime</name></member>
+      <member refid="classokapi_1_1VelMath_1a0a95837a35bfb2702a170da95daba559" prot="public" virt="virtual"><scope>okapi::VelMath</scope><name>setTicksPerRev</name></member>
+      <member refid="classokapi_1_1VelMath_1a4c6e14c7f2054512b59a30736f61982f" prot="public" virt="virtual"><scope>okapi::VelMath</scope><name>step</name></member>
+      <member refid="classokapi_1_1VelMath_1ad889516cc153d23febbbfd4c9c45e5ec" prot="protected" virt="non-virtual"><scope>okapi::VelMath</scope><name>ticksPerRev</name></member>
+      <member refid="classokapi_1_1VelMath_1af8386892892d453a118581e46839a0c3" prot="protected" virt="non-virtual"><scope>okapi::VelMath</scope><name>vel</name></member>
+      <member refid="classokapi_1_1VelMath_1af70c4c5ae0a71719e833ba375f76b5d1" prot="public" virt="non-virtual"><scope>okapi::VelMath</scope><name>VelMath</name></member>
+      <member refid="classokapi_1_1VelMath_1a555b678899ad8e231543d6f206ae0db6" prot="public" virt="virtual"><scope>okapi::VelMath</scope><name>~VelMath</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

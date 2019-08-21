@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_a682ebdadffd7e3de671b571cdbc7309" kind="dir">
+    <compoundname>include/okapi/impl/util</compoundname>
+    <innerfile refid="rate_8hpp">rate.hpp</innerfile>
+    <innerfile refid="timer_8hpp">timer.hpp</innerfile>
+    <innerfile refid="timeUtilFactory_8hpp">timeUtilFactory.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/util/"/>
+  </compounddef>
+</doxygen>

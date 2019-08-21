@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="QForce_8hpp" kind="file" language="C++">
+    <compoundname>QForce.hpp</compoundname>
+    <includes refid="QAcceleration_8hpp" local="yes">okapi/api/units/QAcceleration.hpp</includes>
+    <includes refid="QMass_8hpp" local="yes">okapi/api/units/QMass.hpp</includes>
+    <includes refid="RQuantity_8hpp" local="yes">okapi/api/units/RQuantity.hpp</includes>
+    <includedby refid="QTorque_8hpp" local="yes">include/okapi/api/units/QTorque.hpp</includedby>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <incdepgraph>
+      <node id="2677">
+        <label>okapi/api/units/QAcceleration.hpp</label>
+        <link refid="QAcceleration_8hpp"/>
+        <childnode refid="2678" relation="include">
+        </childnode>
+        <childnode refid="2682" relation="include">
+        </childnode>
+        <childnode refid="2679" relation="include">
+        </childnode>
+      </node>
+      <node id="2680">
+        <label>cmath</label>
+      </node>
+      <node id="2682">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="2679" relation="include">
+        </childnode>
+      </node>
+      <node id="2683">
+        <label>okapi/api/units/QMass.hpp</label>
+        <link refid="QMass_8hpp"/>
+        <childnode refid="2679" relation="include">
+        </childnode>
+      </node>
+      <node id="2678">
+        <label>okapi/api/units/QLength.hpp</label>
+        <link refid="QLength_8hpp"/>
+        <childnode refid="2679" relation="include">
+        </childnode>
+      </node>
+      <node id="2681">
+        <label>ratio</label>
+      </node>
+      <node id="2676">
+        <label>include/okapi/api/units/QForce.hpp</label>
+        <link refid="QForce_8hpp"/>
+        <childnode refid="2677" relation="include">
+        </childnode>
+        <childnode refid="2683" relation="include">
+        </childnode>
+        <childnode refid="2679" relation="include">
+        </childnode>
+      </node>
+      <node id="2679">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="2680" relation="include">
+        </childnode>
+        <childnode refid="2681" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2686">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="2684">
+        <label>include/okapi/api/units/QForce.hpp</label>
+        <link refid="QForce_8hpp"/>
+        <childnode refid="2685" relation="include">
+        </childnode>
+        <childnode refid="2686" relation="include">
+        </childnode>
+      </node>
+      <node id="2685">
+        <label>include/okapi/api/units/QTorque.hpp</label>
+        <link refid="QTorque_8hpp"/>
+        <childnode refid="2686" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <innernamespace refid="namespaceokapi_1_1literals">okapi::literals</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/units/QForce.hpp"/>
+  </compounddef>
+</doxygen>

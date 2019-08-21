@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="medianFilter_8hpp" kind="file" language="C++">
+    <compoundname>medianFilter.hpp</compoundname>
+    <includes refid="filter_8hpp" local="yes">okapi/api/filter/filter.hpp</includes>
+    <includes local="no">algorithm</includes>
+    <includes local="no">array</includes>
+    <includes local="no">cstddef</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <includedby refid="velMath_8cpp" local="yes">src/api/filter/velMath.cpp</includedby>
+    <incdepgraph>
+      <node id="2313">
+        <label>okapi/api/filter/filter.hpp</label>
+        <link refid="filter_8hpp"/>
+      </node>
+      <node id="2315">
+        <label>array</label>
+      </node>
+      <node id="2316">
+        <label>cstddef</label>
+      </node>
+      <node id="2312">
+        <label>include/okapi/api/filter/medianFilter.hpp</label>
+        <link refid="medianFilter_8hpp"/>
+        <childnode refid="2313" relation="include">
+        </childnode>
+        <childnode refid="2314" relation="include">
+        </childnode>
+        <childnode refid="2315" relation="include">
+        </childnode>
+        <childnode refid="2316" relation="include">
+        </childnode>
+      </node>
+      <node id="2314">
+        <label>algorithm</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2318">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="2317">
+        <label>include/okapi/api/filter/medianFilter.hpp</label>
+        <link refid="medianFilter_8hpp"/>
+        <childnode refid="2318" relation="include">
+        </childnode>
+        <childnode refid="2319" relation="include">
+        </childnode>
+      </node>
+      <node id="2319">
+        <label>src/api/filter/velMath.cpp</label>
+        <link refid="velMath_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1MedianFilter" prot="public">okapi::MedianFilter</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/filter/medianFilter.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_968dfa43eba935f529ddc21983430ea9" kind="dir">
+    <compoundname>src/impl/device/button</compoundname>
+    <innerfile refid="adiButton_8cpp">adiButton.cpp</innerfile>
+    <innerfile refid="controllerButton_8cpp">controllerButton.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/impl/device/button/"/>
+  </compounddef>
+</doxygen>

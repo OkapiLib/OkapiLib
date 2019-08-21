@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_fa2b4880d9b3e94a151696e753f1a74d" kind="dir">
+    <compoundname>src/impl/chassis</compoundname>
+    <innerdir refid="dir_c12f4fe103edeb67536118ec2631bcf9">src/impl/chassis/controller</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/impl/chassis/"/>
+  </compounddef>
+</doxygen>

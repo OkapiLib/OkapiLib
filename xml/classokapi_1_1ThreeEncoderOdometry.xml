@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ThreeEncoderOdometry" kind="class" language="C++" prot="public">
+    <compoundname>okapi::ThreeEncoderOdometry</compoundname>
+    <basecompoundref refid="classokapi_1_1Odometry" prot="public" virt="non-virtual">okapi::Odometry</basecompoundref>
+    <includes refid="threeEncoderOdometry_8hpp" local="no">threeEncoderOdometry.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1ThreeEncoderOdometry_1ad2a5ed5af817d5d2cc6e49357fe6f1da" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ReadOnlyChassisModel" kindref="compound">ReadOnlyChassisModel</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;ReadOnlyChassisModel&gt; okapi::ThreeEncoderOdometry::model</definition>
+        <argsstring></argsstring>
+        <name>model</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/odometry/threeEncoderOdometry.hpp" line="36" column="1" bodyfile="include/okapi/api/odometry/threeEncoderOdometry.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1ThreeEncoderOdometry_1ad65a58475f76fbfa90207b39e02d96dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::ThreeEncoderOdometry::ThreeEncoderOdometry</definition>
+        <argsstring>(const TimeUtil &amp;itimeUtil, std::shared_ptr&lt; ReadOnlyChassisModel &gt; imodel, const ChassisScales &amp;ichassisScales, const QSpeed &amp;iwheelVelDelta=0.0001_mps, const std::shared_ptr&lt; Logger &gt; &amp;ilogger=Logger::getDefaultLogger())</argsstring>
+        <name>ThreeEncoderOdometry</name>
+        <param>
+          <type>const <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref> &amp;</type>
+          <declname>itimeUtil</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ReadOnlyChassisModel" kindref="compound">ReadOnlyChassisModel</ref> &gt;</type>
+          <declname>imodel</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classokapi_1_1ChassisScales" kindref="compound">ChassisScales</ref> &amp;</type>
+          <declname>ichassisScales</declname>
+        </param>
+        <param>
+          <type>const QSpeed &amp;</type>
+          <declname>iwheelVelDelta</declname>
+          <defval>0.0001_mps</defval>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt; &amp;</type>
+          <declname>ilogger</declname>
+          <defval><ref refid="classokapi_1_1Logger_1a5053cf778b4b55acba788a3797dc96d2" kindref="member">Logger::getDefaultLogger</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="classokapi_1_1Odometry" kindref="compound">Odometry</ref>. Tracks the movement of the robot and estimates its position in coordinates relative to the start (assumed to be (0, 0)).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itimeUtil</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>imodel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The chassis model for reading sensors. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ichassisScales</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>See <ref refid="classokapi_1_1ChassisScales" kindref="compound">ChassisScales</ref> docs (the middle wheel scale is the third member) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iwheelVelDelta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum delta between wheel velocities to consider the robot as driving straight. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ilogger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The logger this instance will log to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/odometry/threeEncoderOdometry.hpp" line="29" column="1" bodyfile="src/api/odometry/threeEncoderOdometry.cpp" bodystart="13" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classokapi_1_1ThreeEncoderOdometry_1a8c0811674b9da0623a3cece56a25cca6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structokapi_1_1OdomState" kindref="compound">OdomState</ref></type>
+        <definition>OdomState okapi::ThreeEncoderOdometry::odomMathStep</definition>
+        <argsstring>(const std::valarray&lt; std::int32_t &gt; &amp;itickDiff, const QTime &amp;ideltaT) override</argsstring>
+        <name>odomMathStep</name>
+        <reimplements refid="classokapi_1_1Odometry_1a8fc2c3d72a0c475a7333eb9affe593a5">odomMathStep</reimplements>
+        <param>
+          <type>const std::valarray&lt; std::int32_t &gt; &amp;</type>
+          <declname>itickDiff</declname>
+        </param>
+        <param>
+          <type>const QTime &amp;</type>
+          <declname>ideltaT</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Does the math, side-effect free, for one odom step.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itickDiff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The tick difference from the previous step to this step. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ideltaT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time difference from the previous step to this step. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The estimated position/orientation offset. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/odometry/threeEncoderOdometry.hpp" line="45" column="1" bodyfile="src/api/odometry/threeEncoderOdometry.cpp" bodystart="32" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="500">
+        <label>okapi::ThreeEncoderOdometry</label>
+        <link refid="classokapi_1_1ThreeEncoderOdometry"/>
+        <childnode refid="501" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="501">
+        <label>okapi::Odometry</label>
+        <link refid="classokapi_1_1Odometry"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="502">
+        <label>okapi::ThreeEncoderOdometry</label>
+        <link refid="classokapi_1_1ThreeEncoderOdometry"/>
+        <childnode refid="503" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="505">
+        <label>okapi::ChassisScales</label>
+        <link refid="classokapi_1_1ChassisScales"/>
+      </node>
+      <node id="504">
+        <label>okapi::OdomState</label>
+        <link refid="structokapi_1_1OdomState"/>
+      </node>
+      <node id="503">
+        <label>okapi::Odometry</label>
+        <link refid="classokapi_1_1Odometry"/>
+        <childnode refid="504" relation="usage">
+          <edgelabel>state</edgelabel>
+        </childnode>
+        <childnode refid="505" relation="usage">
+          <edgelabel>chassisScales</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/odometry/threeEncoderOdometry.hpp" line="16" column="1" bodyfile="include/okapi/api/odometry/threeEncoderOdometry.hpp" bodystart="16" bodyend="47"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1Odometry_1afb1605502a0164b1e946a15ae585ace0" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>chassisScales</name></member>
+      <member refid="classokapi_1_1Odometry_1a1ca6892feeeca68de3eb6faf6cf4bd18" prot="public" virt="virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>getState</name></member>
+      <member refid="classokapi_1_1Odometry_1a7431f21a4bc30c9812f45e4f9d560cfa" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>lastTicks</name></member>
+      <member refid="classokapi_1_1Odometry_1a30cfb095d16b4a32b471568a40ab4711" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>logger</name></member>
+      <member refid="classokapi_1_1ThreeEncoderOdometry_1ad2a5ed5af817d5d2cc6e49357fe6f1da" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>model</name></member>
+      <member refid="classokapi_1_1Odometry_1aabbd64b0c4969953599f694c71eb1a7f" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>newTicks</name></member>
+      <member refid="classokapi_1_1Odometry_1a495d43ceb8cc03513e8365fdc1b37974" prot="public" virt="non-virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>Odometry</name></member>
+      <member refid="classokapi_1_1ThreeEncoderOdometry_1a8c0811674b9da0623a3cece56a25cca6" prot="protected" virt="virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>odomMathStep</name></member>
+      <member refid="classokapi_1_1Odometry_1a51a3a499e443240742ae8d3272be2110" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>rate</name></member>
+      <member refid="classokapi_1_1Odometry_1a5330b093e51d650b8ff2c6fe0ec2d27e" prot="public" virt="virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>setScales</name></member>
+      <member refid="classokapi_1_1Odometry_1a0f18a0770477130307b7c6a9702b0cc6" prot="public" virt="virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>setState</name></member>
+      <member refid="classokapi_1_1Odometry_1a63165b62b596c34c1965f674f57aae5f" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>state</name></member>
+      <member refid="classokapi_1_1Odometry_1a04586a88418c606f7bbd0ac3287c730d" prot="public" virt="virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>step</name></member>
+      <member refid="classokapi_1_1ThreeEncoderOdometry_1ad65a58475f76fbfa90207b39e02d96dc" prot="public" virt="non-virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>ThreeEncoderOdometry</name></member>
+      <member refid="classokapi_1_1Odometry_1a28be79e0e646d4dcfc831896c61d81fc" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>tickDiff</name></member>
+      <member refid="classokapi_1_1Odometry_1aedf3fb84bba92fbaf2fc9dfe8d91fd20" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>timer</name></member>
+      <member refid="classokapi_1_1Odometry_1acebfb2e25552de9062dd824fcccfb50e" prot="protected" virt="non-virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>wheelVelDelta</name></member>
+      <member refid="classokapi_1_1Odometry_1acdaa18c094c9ca21b094a85aa4f3081e" prot="public" virt="virtual"><scope>okapi::ThreeEncoderOdometry</scope><name>~Odometry</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

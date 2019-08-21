@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="demaFilter_8hpp" kind="file" language="C++">
+    <compoundname>demaFilter.hpp</compoundname>
+    <includes refid="filter_8hpp" local="yes">okapi/api/filter/filter.hpp</includes>
+    <includes local="no">ratio</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <includedby refid="demaFilter_8cpp" local="yes">src/api/filter/demaFilter.cpp</includedby>
+    <incdepgraph>
+      <node id="2226">
+        <label>ratio</label>
+      </node>
+      <node id="2225">
+        <label>okapi/api/filter/filter.hpp</label>
+        <link refid="filter_8hpp"/>
+      </node>
+      <node id="2224">
+        <label>include/okapi/api/filter/demaFilter.hpp</label>
+        <link refid="demaFilter_8hpp"/>
+        <childnode refid="2225" relation="include">
+        </childnode>
+        <childnode refid="2226" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2228">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="2229">
+        <label>src/api/filter/demaFilter.cpp</label>
+        <link refid="demaFilter_8cpp"/>
+      </node>
+      <node id="2227">
+        <label>include/okapi/api/filter/demaFilter.hpp</label>
+        <link refid="demaFilter_8hpp"/>
+        <childnode refid="2228" relation="include">
+        </childnode>
+        <childnode refid="2229" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1DemaFilter" prot="public">okapi::DemaFilter</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/filter/demaFilter.hpp"/>
+  </compounddef>
+</doxygen>

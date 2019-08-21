@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_609a048006c0721eb630f4a371b79378" kind="dir">
+    <compoundname>src/api/chassis/model</compoundname>
+    <innerfile refid="skidSteerModel_8cpp">skidSteerModel.cpp</innerfile>
+    <innerfile refid="threeEncoderSkidSteerModel_8cpp">threeEncoderSkidSteerModel.cpp</innerfile>
+    <innerfile refid="xDriveModel_8cpp">xDriveModel.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/chassis/model/"/>
+  </compounddef>
+</doxygen>

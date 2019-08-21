@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="structokapi_1_1AbstractMotor_1_1GearsetRatioPair" kind="struct" language="C++" prot="public">
+    <compoundname>okapi::AbstractMotor::GearsetRatioPair</compoundname>
+    <includes refid="abstractMotor_8hpp" local="no">abstractMotor.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structokapi_1_1AbstractMotor_1_1GearsetRatioPair_1aa98dba092145fa1f0f2669d754e2e37d" prot="public" static="no" mutable="no">
+        <type><ref refid="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5" kindref="member">gearset</ref></type>
+        <definition>gearset okapi::AbstractMotor::GearsetRatioPair::internalGearset</definition>
+        <argsstring></argsstring>
+        <name>internalGearset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="61" column="1" bodyfile="include/okapi/api/device/motor/abstractMotor.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1AbstractMotor_1_1GearsetRatioPair_1a4a8e2e226cf3171194616b125ead58cb" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::AbstractMotor::GearsetRatioPair::ratio</definition>
+        <argsstring></argsstring>
+        <name>ratio</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="62" column="1" bodyfile="include/okapi/api/device/motor/abstractMotor.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structokapi_1_1AbstractMotor_1_1GearsetRatioPair_1aac7d2a71ed59cee3eb126c834d59d69a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>okapi::AbstractMotor::GearsetRatioPair::GearsetRatioPair</definition>
+        <argsstring>(const gearset igearset, const double iratio=1)</argsstring>
+        <name>GearsetRatioPair</name>
+        <param>
+          <type>const <ref refid="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5" kindref="member">gearset</ref></type>
+          <declname>igearset</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>iratio</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A simple structure representing the full ratio between motor and wheel.</para>
+<para>The ratio is motor rotation : wheel rotation. So for example, if one motor rotation corresponds to two wheel rotations, the ratio is 1.0/2.0.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>igearset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the motor&apos;s gearset </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the ratio of motor rotation to wheel rotation </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="55" column="1" bodyfile="include/okapi/api/device/motor/abstractMotor.hpp" bodystart="55" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="structokapi_1_1AbstractMotor_1_1GearsetRatioPair_1a78b0163286cab14b29c8545aaf8ccd9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::AbstractMotor::GearsetRatioPair::~GearsetRatioPair</definition>
+        <argsstring>()=default</argsstring>
+        <name>~GearsetRatioPair</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="59" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A simple structure representing the full ratio between motor and wheel. </para>
+    </detaileddescription>
+    <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="45" column="1" bodyfile="include/okapi/api/device/motor/abstractMotor.hpp" bodystart="45" bodyend="63"/>
+    <listofallmembers>
+      <member refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair_1aac7d2a71ed59cee3eb126c834d59d69a" prot="public" virt="non-virtual"><scope>okapi::AbstractMotor::GearsetRatioPair</scope><name>GearsetRatioPair</name></member>
+      <member refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair_1aa98dba092145fa1f0f2669d754e2e37d" prot="public" virt="non-virtual"><scope>okapi::AbstractMotor::GearsetRatioPair</scope><name>internalGearset</name></member>
+      <member refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair_1a4a8e2e226cf3171194616b125ead58cb" prot="public" virt="non-virtual"><scope>okapi::AbstractMotor::GearsetRatioPair</scope><name>ratio</name></member>
+      <member refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair_1a78b0163286cab14b29c8545aaf8ccd9d" prot="public" virt="non-virtual"><scope>okapi::AbstractMotor::GearsetRatioPair</scope><name>~GearsetRatioPair</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

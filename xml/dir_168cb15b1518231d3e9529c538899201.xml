@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_168cb15b1518231d3e9529c538899201" kind="dir">
+    <compoundname>include/okapi/api/device</compoundname>
+    <innerdir refid="dir_2aa889f55eb695dc38195e50edced4e0">include/okapi/api/device/button</innerdir>
+    <innerdir refid="dir_574d0eb49bbc748870bae9b025dbd674">include/okapi/api/device/motor</innerdir>
+    <innerdir refid="dir_6cd138e6435d2fcbac3fd73f0893bcbc">include/okapi/api/device/rotarysensor</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/device/"/>
+  </compounddef>
+</doxygen>

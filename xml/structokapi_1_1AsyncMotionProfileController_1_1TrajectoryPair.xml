@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair" kind="struct" language="C++" prot="protected">
+    <compoundname>okapi::AsyncMotionProfileController::TrajectoryPair</compoundname>
+    <includes refid="asyncMotionProfileController_8hpp" local="no">asyncMotionProfileController.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair_1abd4e509e21e592550e8de930757f5b16" prot="public" static="no" mutable="no">
+        <type>Segment *</type>
+        <definition>Segment* okapi::AsyncMotionProfileController::TrajectoryPair::left</definition>
+        <argsstring></argsstring>
+        <name>left</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncMotionProfileController.hpp" line="254" column="1" bodyfile="include/okapi/api/control/async/asyncMotionProfileController.hpp" bodystart="254" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair_1afed9f551e21365233c83fb7eb14f50d2" prot="public" static="no" mutable="no">
+        <type>Segment *</type>
+        <definition>Segment* okapi::AsyncMotionProfileController::TrajectoryPair::right</definition>
+        <argsstring></argsstring>
+        <name>right</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncMotionProfileController.hpp" line="255" column="1" bodyfile="include/okapi/api/control/async/asyncMotionProfileController.hpp" bodystart="255" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair_1a438b73c80a94e07dd9abca0df6d4aa7f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int okapi::AsyncMotionProfileController::TrajectoryPair::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncMotionProfileController.hpp" line="256" column="1" bodyfile="include/okapi/api/control/async/asyncMotionProfileController.hpp" bodystart="256" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/control/async/asyncMotionProfileController.hpp" line="253" column="1" bodyfile="include/okapi/api/control/async/asyncMotionProfileController.hpp" bodystart="253" bodyend="257"/>
+    <listofallmembers>
+      <member refid="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair_1abd4e509e21e592550e8de930757f5b16" prot="public" virt="non-virtual"><scope>okapi::AsyncMotionProfileController::TrajectoryPair</scope><name>left</name></member>
+      <member refid="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair_1a438b73c80a94e07dd9abca0df6d4aa7f" prot="public" virt="non-virtual"><scope>okapi::AsyncMotionProfileController::TrajectoryPair</scope><name>length</name></member>
+      <member refid="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair_1afed9f551e21365233c83fb7eb14f50d2" prot="public" virt="non-virtual"><scope>okapi::AsyncMotionProfileController::TrajectoryPair</scope><name>right</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

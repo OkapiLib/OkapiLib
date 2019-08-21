@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="structokapi_1_1IterativeVelPIDController_1_1Gains" kind="struct" language="C++" prot="public">
+    <compoundname>okapi::IterativeVelPIDController::Gains</compoundname>
+    <includes refid="iterativeVelPidController_8hpp" local="no">iterativeVelPidController.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structokapi_1_1IterativeVelPIDController_1_1Gains_1a2c9a15d8ae4cd165fda3a1464debffcf" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::IterativeVelPIDController::Gains::kP</definition>
+        <argsstring></argsstring>
+        <name>kP</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativeVelPidController.hpp" line="21" column="1" bodyfile="include/okapi/api/control/iterative/iterativeVelPidController.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1IterativeVelPIDController_1_1Gains_1a78f7915e215ba90882a0ae0e7e91e181" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::IterativeVelPIDController::Gains::kD</definition>
+        <argsstring></argsstring>
+        <name>kD</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativeVelPidController.hpp" line="22" column="1" bodyfile="include/okapi/api/control/iterative/iterativeVelPidController.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1IterativeVelPIDController_1_1Gains_1acb243343a08960737a7211f350ecd795" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::IterativeVelPIDController::Gains::kF</definition>
+        <argsstring></argsstring>
+        <name>kF</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativeVelPidController.hpp" line="23" column="1" bodyfile="include/okapi/api/control/iterative/iterativeVelPidController.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1IterativeVelPIDController_1_1Gains_1af53bcd56585d99282ce99531b92ddf41" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::IterativeVelPIDController::Gains::kSF</definition>
+        <argsstring></argsstring>
+        <name>kSF</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativeVelPidController.hpp" line="24" column="1" bodyfile="include/okapi/api/control/iterative/iterativeVelPidController.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/control/iterative/iterativeVelPidController.hpp" line="20" column="1" bodyfile="include/okapi/api/control/iterative/iterativeVelPidController.hpp" bodystart="20" bodyend="25"/>
+    <listofallmembers>
+      <member refid="structokapi_1_1IterativeVelPIDController_1_1Gains_1a78f7915e215ba90882a0ae0e7e91e181" prot="public" virt="non-virtual"><scope>okapi::IterativeVelPIDController::Gains</scope><name>kD</name></member>
+      <member refid="structokapi_1_1IterativeVelPIDController_1_1Gains_1acb243343a08960737a7211f350ecd795" prot="public" virt="non-virtual"><scope>okapi::IterativeVelPIDController::Gains</scope><name>kF</name></member>
+      <member refid="structokapi_1_1IterativeVelPIDController_1_1Gains_1a2c9a15d8ae4cd165fda3a1464debffcf" prot="public" virt="non-virtual"><scope>okapi::IterativeVelPIDController::Gains</scope><name>kP</name></member>
+      <member refid="structokapi_1_1IterativeVelPIDController_1_1Gains_1af53bcd56585d99282ce99531b92ddf41" prot="public" virt="non-virtual"><scope>okapi::IterativeVelPIDController::Gains</scope><name>kSF</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

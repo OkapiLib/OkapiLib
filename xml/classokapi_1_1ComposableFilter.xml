@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ComposableFilter" kind="class" language="C++" prot="public">
+    <compoundname>okapi::ComposableFilter</compoundname>
+    <basecompoundref refid="classokapi_1_1Filter" prot="public" virt="non-virtual">okapi::Filter</basecompoundref>
+    <includes refid="composableFilter_8hpp" local="no">composableFilter.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1ComposableFilter_1a83da1d231c702e8db79557a2b458fc90" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classokapi_1_1Filter" kindref="compound">Filter</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::shared_ptr&lt;Filter&gt; &gt; okapi::ComposableFilter::filters</definition>
+        <argsstring></argsstring>
+        <name>filters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/composableFilter.hpp" line="49" column="1" bodyfile="include/okapi/api/filter/composableFilter.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ComposableFilter_1ab956536a303c97c86fd2ec3af3c35eef" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::ComposableFilter::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/composableFilter.hpp" line="50" column="1" bodyfile="include/okapi/api/filter/composableFilter.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1ComposableFilter_1ab435425858bcf6710a9ffc1fdcd84fa0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::ComposableFilter::ComposableFilter</definition>
+        <argsstring>(const std::initializer_list&lt; std::shared_ptr&lt; Filter &gt;&gt; &amp;ilist)</argsstring>
+        <name>ComposableFilter</name>
+        <param>
+          <type>const std::initializer_list&lt; std::shared_ptr&lt; <ref refid="classokapi_1_1Filter" kindref="compound">Filter</ref> &gt;&gt; &amp;</type>
+          <declname>ilist</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A composable filter is a filter that consists of other filters. The input signal is passed through each filter in sequence. The final output of this filter is the output of the last filter.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ilist</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The filters to use in sequence. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/composableFilter.hpp" line="26" column="1" bodyfile="src/api/filter/composableFilter.cpp" bodystart="12" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ComposableFilter_1a76925f04dcd186b249e5bfb169f27992" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double okapi::ComposableFilter::filter</definition>
+        <argsstring>(double ireading) override</argsstring>
+        <name>filter</name>
+        <reimplements refid="classokapi_1_1Filter_1a7c2ea0b64b37b688900189856d58da15">filter</reimplements>
+        <param>
+          <type>double</type>
+          <declname>ireading</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Filters a value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ireading</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A new measurement. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The filtered result. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/composableFilter.hpp" line="34" column="1" bodyfile="src/api/filter/composableFilter.cpp" bodystart="18" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ComposableFilter_1a2d54899ce84c463af2f22cfbf36c7c7c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double okapi::ComposableFilter::getOutput</definition>
+        <argsstring>() const override</argsstring>
+        <name>getOutput</name>
+        <reimplements refid="classokapi_1_1Filter_1a3469cd4bc108f8accf300d9f5cc9f42f">getOutput</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The previous output from filter. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/composableFilter.hpp" line="39" column="1" bodyfile="src/api/filter/composableFilter.cpp" bodystart="35" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ComposableFilter_1a5a051c89bddbccaaaffa83d868f6b289" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ComposableFilter::addFilter</definition>
+        <argsstring>(std::shared_ptr&lt; Filter &gt; ifilter)</argsstring>
+        <name>addFilter</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Filter" kindref="compound">Filter</ref> &gt;</type>
+          <declname>ifilter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Adds a filter to the end of the sequence.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ifilter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The filter to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/composableFilter.hpp" line="46" column="1" bodyfile="src/api/filter/composableFilter.cpp" bodystart="39" bodyend="41"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="249">
+        <label>okapi::ComposableFilter</label>
+        <link refid="classokapi_1_1ComposableFilter"/>
+        <childnode refid="250" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="250">
+        <label>okapi::Filter</label>
+        <link refid="classokapi_1_1Filter"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="251">
+        <label>okapi::ComposableFilter</label>
+        <link refid="classokapi_1_1ComposableFilter"/>
+        <childnode refid="252" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="252">
+        <label>okapi::Filter</label>
+        <link refid="classokapi_1_1Filter"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/filter/composableFilter.hpp" line="17" column="1" bodyfile="include/okapi/api/filter/composableFilter.hpp" bodystart="17" bodyend="51"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ComposableFilter_1a5a051c89bddbccaaaffa83d868f6b289" prot="public" virt="virtual"><scope>okapi::ComposableFilter</scope><name>addFilter</name></member>
+      <member refid="classokapi_1_1ComposableFilter_1ab435425858bcf6710a9ffc1fdcd84fa0" prot="public" virt="non-virtual"><scope>okapi::ComposableFilter</scope><name>ComposableFilter</name></member>
+      <member refid="classokapi_1_1ComposableFilter_1a76925f04dcd186b249e5bfb169f27992" prot="public" virt="virtual"><scope>okapi::ComposableFilter</scope><name>filter</name></member>
+      <member refid="classokapi_1_1ComposableFilter_1a83da1d231c702e8db79557a2b458fc90" prot="protected" virt="non-virtual"><scope>okapi::ComposableFilter</scope><name>filters</name></member>
+      <member refid="classokapi_1_1ComposableFilter_1a2d54899ce84c463af2f22cfbf36c7c7c" prot="public" virt="virtual"><scope>okapi::ComposableFilter</scope><name>getOutput</name></member>
+      <member refid="classokapi_1_1ComposableFilter_1ab956536a303c97c86fd2ec3af3c35eef" prot="protected" virt="non-virtual"><scope>okapi::ComposableFilter</scope><name>output</name></member>
+      <member refid="classokapi_1_1Filter_1a7391c913f315e28947bbfc3d8e29bef8" prot="public" virt="virtual"><scope>okapi::ComposableFilter</scope><name>~Filter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

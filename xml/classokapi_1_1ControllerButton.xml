@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ControllerButton" kind="class" language="C++" prot="public">
+    <compoundname>okapi::ControllerButton</compoundname>
+    <basecompoundref refid="classokapi_1_1ButtonBase" prot="public" virt="non-virtual">okapi::ButtonBase</basecompoundref>
+    <includes refid="controllerButton_8hpp" local="no">controllerButton.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1ControllerButton_1a0e671c560eccd470d1a00f3f5444cc53" prot="protected" static="no" mutable="no">
+        <type>pros::controller_id_e_t</type>
+        <definition>pros::controller_id_e_t okapi::ControllerButton::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/device/button/controllerButton.hpp" line="35" column="1" bodyfile="include/okapi/impl/device/button/controllerButton.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ControllerButton_1aec7d466c709dac6876d8f27245afde1e" prot="protected" static="no" mutable="no">
+        <type>pros::controller_digital_e_t</type>
+        <definition>pros::controller_digital_e_t okapi::ControllerButton::btn</definition>
+        <argsstring></argsstring>
+        <name>btn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/device/button/controllerButton.hpp" line="36" column="1" bodyfile="include/okapi/impl/device/button/controllerButton.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1ControllerButton_1a4c82179b73b34bae616c5fe180c207a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::ControllerButton::ControllerButton</definition>
+        <argsstring>(ControllerDigital ibtn, bool iinverted=false)</argsstring>
+        <name>ControllerButton</name>
+        <param>
+          <type><ref refid="namespaceokapi_1af5040b3f1f33d27698871423e1453ab6" kindref="member">ControllerDigital</ref></type>
+          <declname>ibtn</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>iinverted</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A button on a <ref refid="classokapi_1_1Controller" kindref="compound">Controller</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ibtn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The button id. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iinverted</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether the button is inverted (default pressed instead of default released). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/device/button/controllerButton.hpp" line="23" column="1" bodyfile="src/impl/device/button/controllerButton.cpp" bodystart="11" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ControllerButton_1a491473201555bb78fb5dc20666e12bcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::ControllerButton::ControllerButton</definition>
+        <argsstring>(ControllerId icontroller, ControllerDigital ibtn, bool iinverted=false)</argsstring>
+        <name>ControllerButton</name>
+        <param>
+          <type><ref refid="namespaceokapi_1a56349a0562b06c6ffc742e94cb1e4361" kindref="member">ControllerId</ref></type>
+          <declname>icontroller</declname>
+        </param>
+        <param>
+          <type><ref refid="namespaceokapi_1af5040b3f1f33d27698871423e1453ab6" kindref="member">ControllerDigital</ref></type>
+          <declname>ibtn</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>iinverted</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A button on a <ref refid="classokapi_1_1Controller" kindref="compound">Controller</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>icontroller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classokapi_1_1Controller" kindref="compound">Controller</ref> the button is on. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ibtn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The button id. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iinverted</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether the button is inverted (default pressed instead of default released). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/device/button/controllerButton.hpp" line="32" column="1" bodyfile="src/impl/device/button/controllerButton.cpp" bodystart="15" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classokapi_1_1ControllerButton_1a35ee73925d03c31b19568530248c0892" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool okapi::ControllerButton::currentlyPressed</definition>
+        <argsstring>() override</argsstring>
+        <name>currentlyPressed</name>
+        <reimplements refid="classokapi_1_1ButtonBase_1a748b6f2b5ebce9fa9f6bbc9d170d3d7a">currentlyPressed</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/device/button/controllerButton.hpp" line="38" column="1" bodyfile="src/impl/device/button/controllerButton.cpp" bodystart="23" bodyend="26"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="264">
+        <label>okapi::ControllerButton</label>
+        <link refid="classokapi_1_1ControllerButton"/>
+        <childnode refid="265" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="265">
+        <label>okapi::ButtonBase</label>
+        <link refid="classokapi_1_1ButtonBase"/>
+        <childnode refid="266" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="267">
+        <label>okapi::ControllerInput&lt; bool &gt;</label>
+        <link refid="classokapi_1_1ControllerInput"/>
+      </node>
+      <node id="266">
+        <label>okapi::AbstractButton</label>
+        <link refid="classokapi_1_1AbstractButton"/>
+        <childnode refid="267" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="268">
+        <label>okapi::ControllerButton</label>
+        <link refid="classokapi_1_1ControllerButton"/>
+        <childnode refid="269" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="269">
+        <label>okapi::ButtonBase</label>
+        <link refid="classokapi_1_1ButtonBase"/>
+        <childnode refid="270" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="271">
+        <label>okapi::ControllerInput&lt; bool &gt;</label>
+        <link refid="classokapi_1_1ControllerInput"/>
+      </node>
+      <node id="270">
+        <label>okapi::AbstractButton</label>
+        <link refid="classokapi_1_1AbstractButton"/>
+        <childnode refid="271" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/impl/device/button/controllerButton.hpp" line="15" column="1" bodyfile="include/okapi/impl/device/button/controllerButton.hpp" bodystart="15" bodyend="39"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ControllerButton_1aec7d466c709dac6876d8f27245afde1e" prot="protected" virt="non-virtual"><scope>okapi::ControllerButton</scope><name>btn</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a6327e273244bac5ca425f23999807849" prot="public" virt="non-virtual"><scope>okapi::ControllerButton</scope><name>ButtonBase</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a0d70e238573b2454fec934a6a7b2338d" prot="public" virt="virtual"><scope>okapi::ControllerButton</scope><name>changed</name></member>
+      <member refid="classokapi_1_1ButtonBase_1ac97e3d96db3d83f1638ad071e2dff856" prot="public" virt="virtual"><scope>okapi::ControllerButton</scope><name>changedToPressed</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a7916b659f61e8ef2b23aec879a65fbac" prot="public" virt="virtual"><scope>okapi::ControllerButton</scope><name>changedToReleased</name></member>
+      <member refid="classokapi_1_1ControllerButton_1a4c82179b73b34bae616c5fe180c207a4" prot="public" virt="non-virtual"><scope>okapi::ControllerButton</scope><name>ControllerButton</name></member>
+      <member refid="classokapi_1_1ControllerButton_1a491473201555bb78fb5dc20666e12bcf" prot="public" virt="non-virtual"><scope>okapi::ControllerButton</scope><name>ControllerButton</name></member>
+      <member refid="classokapi_1_1AbstractButton_1a4b8574ff797eb44fcd84d6831dc8a8a0" prot="public" virt="virtual"><scope>okapi::ControllerButton</scope><name>controllerGet</name></member>
+      <member refid="classokapi_1_1ControllerButton_1a35ee73925d03c31b19568530248c0892" prot="protected" virt="virtual"><scope>okapi::ControllerButton</scope><name>currentlyPressed</name></member>
+      <member refid="classokapi_1_1ControllerButton_1a0e671c560eccd470d1a00f3f5444cc53" prot="protected" virt="non-virtual"><scope>okapi::ControllerButton</scope><name>id</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a6eca82b96f124416c295520de271e91d" prot="protected" virt="non-virtual"><scope>okapi::ControllerButton</scope><name>inverted</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a82f27002395801e0d1a6c3213b6454f4" prot="public" virt="virtual"><scope>okapi::ControllerButton</scope><name>isPressed</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a21864143d48104dfe9b7dd7b6b52fe7f" prot="protected" virt="non-virtual"><scope>okapi::ControllerButton</scope><name>wasPressedLast_c</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a12c3c9abdb6937795849d0a3442bc7d0" prot="protected" virt="non-virtual"><scope>okapi::ControllerButton</scope><name>wasPressedLast_ctp</name></member>
+      <member refid="classokapi_1_1ButtonBase_1ac6cc2a03f469e31fa0be8719716e4dfc" prot="protected" virt="non-virtual"><scope>okapi::ControllerButton</scope><name>wasPressedLast_ctr</name></member>
+      <member refid="classokapi_1_1AbstractButton_1a3b05b71f4e527d173e1ae5bfd582fb61" prot="public" virt="virtual"><scope>okapi::ControllerButton</scope><name>~AbstractButton</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

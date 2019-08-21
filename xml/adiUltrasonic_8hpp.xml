@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="adiUltrasonic_8hpp" kind="file" language="C++">
+    <compoundname>adiUltrasonic.hpp</compoundname>
+    <includes local="yes">api.h</includes>
+    <includes refid="controllerInput_8hpp" local="yes">okapi/api/control/controllerInput.hpp</includes>
+    <includes refid="passthroughFilter_8hpp" local="yes">okapi/api/filter/passthroughFilter.hpp</includes>
+    <includes local="no">memory</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <includedby refid="adiUltrasonic_8cpp" local="yes">src/impl/device/adiUltrasonic.cpp</includedby>
+    <incdepgraph>
+      <node id="3978">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="3977">
+        <label>api.h</label>
+      </node>
+      <node id="3979">
+        <label>okapi/api/filter/passthroughFilter.hpp</label>
+        <link refid="passthroughFilter_8hpp"/>
+        <childnode refid="3980" relation="include">
+        </childnode>
+      </node>
+      <node id="3980">
+        <label>okapi/api/filter/filter.hpp</label>
+        <link refid="filter_8hpp"/>
+      </node>
+      <node id="3976">
+        <label>include/okapi/impl/device/adiUltrasonic.hpp</label>
+        <link refid="adiUltrasonic_8hpp"/>
+        <childnode refid="3977" relation="include">
+        </childnode>
+        <childnode refid="3978" relation="include">
+        </childnode>
+        <childnode refid="3979" relation="include">
+        </childnode>
+        <childnode refid="3981" relation="include">
+        </childnode>
+      </node>
+      <node id="3981">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3984">
+        <label>src/impl/device/adiUltrasonic.cpp</label>
+        <link refid="adiUltrasonic_8cpp"/>
+      </node>
+      <node id="3983">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="3982">
+        <label>include/okapi/impl/device/adiUltrasonic.hpp</label>
+        <link refid="adiUltrasonic_8hpp"/>
+        <childnode refid="3983" relation="include">
+        </childnode>
+        <childnode refid="3984" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1ADIUltrasonic" prot="public">okapi::ADIUltrasonic</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/device/adiUltrasonic.hpp"/>
+  </compounddef>
+</doxygen>

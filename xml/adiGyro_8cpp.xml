@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="adiGyro_8cpp" kind="file" language="C++">
+    <compoundname>adiGyro.cpp</compoundname>
+    <includes refid="adiGyro_8hpp" local="yes">okapi/impl/device/rotarysensor/adiGyro.hpp</includes>
+    <includes refid="mathUtil_8hpp" local="yes">okapi/api/util/mathUtil.hpp</includes>
+    <incdepgraph>
+      <node id="6117">
+        <label>functional</label>
+      </node>
+      <node id="6114">
+        <label>cstdint</label>
+      </node>
+      <node id="6107">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="6112">
+        <label>cstdbool</label>
+      </node>
+      <node id="6120">
+        <label>okapi/api/util/mathUtil.hpp</label>
+        <link refid="mathUtil_8hpp"/>
+        <childnode refid="6121" relation="include">
+        </childnode>
+        <childnode refid="6124" relation="include">
+        </childnode>
+        <childnode refid="6114" relation="include">
+        </childnode>
+        <childnode refid="6125" relation="include">
+        </childnode>
+        <childnode refid="6126" relation="include">
+        </childnode>
+      </node>
+      <node id="6111">
+        <label>cmath</label>
+      </node>
+      <node id="6108">
+        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
+        <link refid="continuousRotarySensor_8hpp"/>
+        <childnode refid="6109" relation="include">
+        </childnode>
+      </node>
+      <node id="6121">
+        <label>okapi/api/device/motor/abstractMotor.hpp</label>
+        <link refid="abstractMotor_8hpp"/>
+        <childnode refid="6122" relation="include">
+        </childnode>
+        <childnode refid="6108" relation="include">
+        </childnode>
+        <childnode refid="6123" relation="include">
+        </childnode>
+      </node>
+      <node id="6110">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="6111" relation="include">
+        </childnode>
+        <childnode refid="6112" relation="include">
+        </childnode>
+        <childnode refid="6113" relation="include">
+        </childnode>
+        <childnode refid="6114" relation="include">
+        </childnode>
+        <childnode refid="6115" relation="include">
+        </childnode>
+        <childnode refid="6116" relation="include">
+        </childnode>
+        <childnode refid="6117" relation="include">
+        </childnode>
+        <childnode refid="6118" relation="include">
+        </childnode>
+        <childnode refid="6106" relation="include">
+        </childnode>
+        <childnode refid="6119" relation="include">
+        </childnode>
+      </node>
+      <node id="6106">
+        <label>api.h</label>
+      </node>
+      <node id="6105">
+        <label>okapi/impl/device/rotarysensor/adiGyro.hpp</label>
+        <link refid="adiGyro_8hpp"/>
+        <childnode refid="6106" relation="include">
+        </childnode>
+        <childnode refid="6107" relation="include">
+        </childnode>
+        <childnode refid="6108" relation="include">
+        </childnode>
+      </node>
+      <node id="6122">
+        <label>okapi/api/control/controllerOutput.hpp</label>
+        <link refid="controllerOutput_8hpp"/>
+      </node>
+      <node id="6115">
+        <label>cstdio</label>
+      </node>
+      <node id="6104">
+        <label>src/impl/device/rotarysensor/adiGyro.cpp</label>
+        <link refid="adiGyro_8cpp"/>
+        <childnode refid="6105" relation="include">
+        </childnode>
+        <childnode refid="6120" relation="include">
+        </childnode>
+      </node>
+      <node id="6118">
+        <label>sstream</label>
+      </node>
+      <node id="6109">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="6107" relation="include">
+        </childnode>
+        <childnode refid="6110" relation="include">
+        </childnode>
+      </node>
+      <node id="6125">
+        <label>math.h</label>
+      </node>
+      <node id="6116">
+        <label>cstdlib</label>
+      </node>
+      <node id="6113">
+        <label>cstddef</label>
+      </node>
+      <node id="6126">
+        <label>type_traits</label>
+      </node>
+      <node id="6124">
+        <label>algorithm</label>
+      </node>
+      <node id="6119">
+        <label>pros/apix.h</label>
+      </node>
+      <node id="6123">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/impl/device/rotarysensor/adiGyro.cpp"/>
+  </compounddef>
+</doxygen>

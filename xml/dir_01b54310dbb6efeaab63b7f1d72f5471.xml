@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_01b54310dbb6efeaab63b7f1d72f5471" kind="dir">
+    <compoundname>include/okapi/impl/device/motor</compoundname>
+    <innerfile refid="adiMotor_8hpp">adiMotor.hpp</innerfile>
+    <innerfile refid="motor_8hpp">motor.hpp</innerfile>
+    <innerfile refid="motorGroup_8hpp">motorGroup.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/device/motor/"/>
+  </compounddef>
+</doxygen>

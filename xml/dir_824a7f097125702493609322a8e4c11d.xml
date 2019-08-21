@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_824a7f097125702493609322a8e4c11d" kind="dir">
+    <compoundname>src/api/control/iterative</compoundname>
+    <innerfile refid="iterativeMotorVelocityController_8cpp">iterativeMotorVelocityController.cpp</innerfile>
+    <innerfile refid="iterativePosPidController_8cpp">iterativePosPidController.cpp</innerfile>
+    <innerfile refid="iterativeVelPidController_8cpp">iterativeVelPidController.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/control/iterative/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="settledUtilFactory_8hpp" kind="file" language="C++">
+    <compoundname>settledUtilFactory.hpp</compoundname>
+    <includes refid="settledUtil_8hpp" local="yes">okapi/api/control/util/settledUtil.hpp</includes>
+    <includes local="no">memory</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <includedby refid="pidTunerFactory_8cpp" local="yes">src/impl/control/util/pidTunerFactory.cpp</includedby>
+    <includedby refid="settledUtilFactory_8cpp" local="yes">src/impl/control/util/settledUtilFactory.cpp</includedby>
+    <includedby refid="timeUtilFactory_8cpp" local="yes">src/impl/util/timeUtilFactory.cpp</includedby>
+    <incdepgraph>
+      <node id="3968">
+        <label>okapi/api/util/abstractTimer.hpp</label>
+        <link refid="abstractTimer_8hpp"/>
+        <childnode refid="3969" relation="include">
+        </childnode>
+        <childnode refid="3964" relation="include">
+        </childnode>
+      </node>
+      <node id="3969">
+        <label>okapi/api/units/QFrequency.hpp</label>
+        <link refid="QFrequency_8hpp"/>
+        <childnode refid="3965" relation="include">
+        </childnode>
+      </node>
+      <node id="3966">
+        <label>cmath</label>
+      </node>
+      <node id="3964">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="3965" relation="include">
+        </childnode>
+      </node>
+      <node id="3967">
+        <label>ratio</label>
+      </node>
+      <node id="3962">
+        <label>include/okapi/impl/control/util/settledUtilFactory.hpp</label>
+        <link refid="settledUtilFactory_8hpp"/>
+        <childnode refid="3963" relation="include">
+        </childnode>
+        <childnode refid="3970" relation="include">
+        </childnode>
+      </node>
+      <node id="3965">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="3966" relation="include">
+        </childnode>
+        <childnode refid="3967" relation="include">
+        </childnode>
+      </node>
+      <node id="3963">
+        <label>okapi/api/control/util/settledUtil.hpp</label>
+        <link refid="settledUtil_8hpp"/>
+        <childnode refid="3964" relation="include">
+        </childnode>
+        <childnode refid="3968" relation="include">
+        </childnode>
+        <childnode refid="3970" relation="include">
+        </childnode>
+      </node>
+      <node id="3970">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3975">
+        <label>src/impl/util/timeUtilFactory.cpp</label>
+        <link refid="timeUtilFactory_8cpp"/>
+      </node>
+      <node id="3972">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="3974">
+        <label>src/impl/control/util/settledUtilFactory.cpp</label>
+        <link refid="settledUtilFactory_8cpp"/>
+      </node>
+      <node id="3973">
+        <label>src/impl/control/util/pidTunerFactory.cpp</label>
+        <link refid="pidTunerFactory_8cpp"/>
+      </node>
+      <node id="3971">
+        <label>include/okapi/impl/control/util/settledUtilFactory.hpp</label>
+        <link refid="settledUtilFactory_8hpp"/>
+        <childnode refid="3972" relation="include">
+        </childnode>
+        <childnode refid="3973" relation="include">
+        </childnode>
+        <childnode refid="3974" relation="include">
+        </childnode>
+        <childnode refid="3975" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1SettledUtilFactory" prot="public">okapi::SettledUtilFactory</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/control/util/settledUtilFactory.hpp"/>
+  </compounddef>
+</doxygen>

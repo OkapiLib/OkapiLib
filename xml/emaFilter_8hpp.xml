@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="emaFilter_8hpp" kind="file" language="C++">
+    <compoundname>emaFilter.hpp</compoundname>
+    <includes refid="filter_8hpp" local="yes">okapi/api/filter/filter.hpp</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <includedby refid="emaFilter_8cpp" local="yes">src/api/filter/emaFilter.cpp</includedby>
+    <incdepgraph>
+      <node id="2256">
+        <label>include/okapi/api/filter/emaFilter.hpp</label>
+        <link refid="emaFilter_8hpp"/>
+        <childnode refid="2257" relation="include">
+        </childnode>
+      </node>
+      <node id="2257">
+        <label>okapi/api/filter/filter.hpp</label>
+        <link refid="filter_8hpp"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2259">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="2258">
+        <label>include/okapi/api/filter/emaFilter.hpp</label>
+        <link refid="emaFilter_8hpp"/>
+        <childnode refid="2259" relation="include">
+        </childnode>
+        <childnode refid="2260" relation="include">
+        </childnode>
+      </node>
+      <node id="2260">
+        <label>src/api/filter/emaFilter.cpp</label>
+        <link refid="emaFilter_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1EmaFilter" prot="public">okapi::EmaFilter</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/filter/emaFilter.hpp"/>
+  </compounddef>
+</doxygen>

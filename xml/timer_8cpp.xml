@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="timer_8cpp" kind="file" language="C++">
+    <compoundname>timer.cpp</compoundname>
+    <includes refid="timer_8hpp" local="yes">okapi/impl/util/timer.hpp</includes>
+    <includes local="yes">api.h</includes>
+    <incdepgraph>
+      <node id="6239">
+        <label>okapi/api/util/abstractTimer.hpp</label>
+        <link refid="abstractTimer_8hpp"/>
+        <childnode refid="6240" relation="include">
+        </childnode>
+        <childnode refid="6244" relation="include">
+        </childnode>
+      </node>
+      <node id="6240">
+        <label>okapi/api/units/QFrequency.hpp</label>
+        <link refid="QFrequency_8hpp"/>
+        <childnode refid="6241" relation="include">
+        </childnode>
+      </node>
+      <node id="6242">
+        <label>cmath</label>
+      </node>
+      <node id="6244">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="6241" relation="include">
+        </childnode>
+      </node>
+      <node id="6245">
+        <label>api.h</label>
+      </node>
+      <node id="6243">
+        <label>ratio</label>
+      </node>
+      <node id="6237">
+        <label>src/impl/util/timer.cpp</label>
+        <link refid="timer_8cpp"/>
+        <childnode refid="6238" relation="include">
+        </childnode>
+        <childnode refid="6245" relation="include">
+        </childnode>
+      </node>
+      <node id="6241">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="6242" relation="include">
+        </childnode>
+        <childnode refid="6243" relation="include">
+        </childnode>
+      </node>
+      <node id="6238">
+        <label>okapi/impl/util/timer.hpp</label>
+        <link refid="timer_8hpp"/>
+        <childnode refid="6239" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/impl/util/timer.cpp"/>
+  </compounddef>
+</doxygen>

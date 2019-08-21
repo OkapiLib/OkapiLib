@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="flywheelSimulator_8hpp" kind="file" language="C++">
+    <compoundname>flywheelSimulator.hpp</compoundname>
+    <includes local="no">functional</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <includedby refid="flywheelSimulator_8cpp" local="yes">src/api/control/util/flywheelSimulator.cpp</includedby>
+    <incdepgraph>
+      <node id="1624">
+        <label>functional</label>
+      </node>
+      <node id="1623">
+        <label>include/okapi/api/control/util/flywheelSimulator.hpp</label>
+        <link refid="flywheelSimulator_8hpp"/>
+        <childnode refid="1624" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1625">
+        <label>include/okapi/api/control/util/flywheelSimulator.hpp</label>
+        <link refid="flywheelSimulator_8hpp"/>
+        <childnode refid="1626" relation="include">
+        </childnode>
+        <childnode refid="1627" relation="include">
+        </childnode>
+      </node>
+      <node id="1626">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="1627">
+        <label>src/api/control/util/flywheelSimulator.cpp</label>
+        <link refid="flywheelSimulator_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1FlywheelSimulator" prot="public">okapi::FlywheelSimulator</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/control/util/flywheelSimulator.hpp"/>
+  </compounddef>
+</doxygen>

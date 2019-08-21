@@ -1,0 +1,750 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ChassisControllerIntegrated" kind="class" language="C++" prot="public">
+    <compoundname>okapi::ChassisControllerIntegrated</compoundname>
+    <basecompoundref refid="classokapi_1_1ChassisController" prot="public" virt="non-virtual">okapi::ChassisController</basecompoundref>
+    <includes refid="chassisControllerIntegrated_8hpp" local="no">chassisControllerIntegrated.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1ChassisControllerIntegrated_1a9427d1704071c9a2c3b2cf188acb3dd6" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;Logger&gt; okapi::ChassisControllerIntegrated::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="171" column="1" bodyfile="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ChassisControllerIntegrated_1a76f6d35c280f998a9d8af013e9131f90" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool okapi::ChassisControllerIntegrated::normalTurns</definition>
+        <argsstring></argsstring>
+        <name>normalTurns</name>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="172" column="1" bodyfile="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ChassisControllerIntegrated_1a1bd4b6be267db5c317f4600c37044abb" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;ChassisModel&gt; okapi::ChassisControllerIntegrated::chassisModel</definition>
+        <argsstring></argsstring>
+        <name>chassisModel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="173" column="1" bodyfile="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ChassisControllerIntegrated_1addd982f5928a19f17105409a96eaf419" prot="protected" static="no" mutable="no">
+        <type><ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref></type>
+        <definition>TimeUtil okapi::ChassisControllerIntegrated::timeUtil</definition>
+        <argsstring></argsstring>
+        <name>timeUtil</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="174" column="1" bodyfile="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ChassisControllerIntegrated_1a88fed580a2c24de00def9d00eee941bf" prot="protected" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classokapi_1_1AsyncPosIntegratedController" kindref="compound">AsyncPosIntegratedController</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;AsyncPosIntegratedController&gt; okapi::ChassisControllerIntegrated::leftController</definition>
+        <argsstring></argsstring>
+        <name>leftController</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="175" column="1" bodyfile="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ChassisControllerIntegrated_1a830da9ca0c53fcf7d85f37f48489be90" prot="protected" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classokapi_1_1AsyncPosIntegratedController" kindref="compound">AsyncPosIntegratedController</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;AsyncPosIntegratedController&gt; okapi::ChassisControllerIntegrated::rightController</definition>
+        <argsstring></argsstring>
+        <name>rightController</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="176" column="1" bodyfile="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ChassisControllerIntegrated_1a8da00973b2828f04a19572b246ba2ec5" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int okapi::ChassisControllerIntegrated::lastTarget</definition>
+        <argsstring></argsstring>
+        <name>lastTarget</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="177" column="1" bodyfile="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" bodystart="177" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ChassisControllerIntegrated_1af833eeaa8569585c7f44280261c46521" prot="protected" static="no" mutable="no">
+        <type><ref refid="classokapi_1_1ChassisScales" kindref="compound">ChassisScales</ref></type>
+        <definition>ChassisScales okapi::ChassisControllerIntegrated::scales</definition>
+        <argsstring></argsstring>
+        <name>scales</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="178" column="1" bodyfile="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ChassisControllerIntegrated_1a24178f28a3d581242235e5150618b148" prot="protected" static="no" mutable="no">
+        <type><ref refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair" kindref="compound">AbstractMotor::GearsetRatioPair</ref></type>
+        <definition>AbstractMotor::GearsetRatioPair okapi::ChassisControllerIntegrated::gearsetRatioPair</definition>
+        <argsstring></argsstring>
+        <name>gearsetRatioPair</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="179" column="1" bodyfile="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1ab78c2cf4add65a424b6bf31c9030f7b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::ChassisControllerIntegrated::ChassisControllerIntegrated</definition>
+        <argsstring>(const TimeUtil &amp;itimeUtil, std::shared_ptr&lt; ChassisModel &gt; imodel, std::unique_ptr&lt; AsyncPosIntegratedController &gt; ileftController, std::unique_ptr&lt; AsyncPosIntegratedController &gt; irightController, const AbstractMotor::GearsetRatioPair &amp;igearset=AbstractMotor::gearset::green, const ChassisScales &amp;iscales=ChassisScales({1, 1}, imev5GreenTPR), std::shared_ptr&lt; Logger &gt; ilogger=Logger::getDefaultLogger())</argsstring>
+        <name>ChassisControllerIntegrated</name>
+        <param>
+          <type>const <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref> &amp;</type>
+          <declname>itimeUtil</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref> &gt;</type>
+          <declname>imodel</declname>
+        </param>
+        <param>
+          <type>std::unique_ptr&lt; <ref refid="classokapi_1_1AsyncPosIntegratedController" kindref="compound">AsyncPosIntegratedController</ref> &gt;</type>
+          <declname>ileftController</declname>
+        </param>
+        <param>
+          <type>std::unique_ptr&lt; <ref refid="classokapi_1_1AsyncPosIntegratedController" kindref="compound">AsyncPosIntegratedController</ref> &gt;</type>
+          <declname>irightController</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair" kindref="compound">AbstractMotor::GearsetRatioPair</ref> &amp;</type>
+          <declname>igearset</declname>
+          <defval><ref refid="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5a9f27410725ab8cc8854a2769c7a516b8" kindref="member">AbstractMotor::gearset::green</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="classokapi_1_1ChassisScales" kindref="compound">ChassisScales</ref> &amp;</type>
+          <declname>iscales</declname>
+          <defval><ref refid="classokapi_1_1ChassisScales" kindref="compound">ChassisScales</ref>({1, 1}, <ref refid="namespaceokapi_1a5263bab3bfecd482a573b6d04fb584ac" kindref="member">imev5GreenTPR</ref>)</defval>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
+          <declname>ilogger</declname>
+          <defval><ref refid="classokapi_1_1Logger_1a5053cf778b4b55acba788a3797dc96d2" kindref="member">Logger::getDefaultLogger</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref> using the V5 motor&apos;s integrated control. Puts the motors into encoder count units. Throws a <computeroutput>std::invalid_argument</computeroutput> exception if the gear ratio is zero. The initial model&apos;s max velocity will be propagated to the controllers.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itimeUtil</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>imodel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref> used to read from sensors/write to motors. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ileftController</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The controller used for the left side motors. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>irightController</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The controller used for the right side motors. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>igearset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The internal gearset and external ratio used on the drive motors. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iscales</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classokapi_1_1ChassisScales" kindref="compound">ChassisScales</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ilogger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The logger this instance will log to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="31" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="12" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1aa9af3fb56afdb940f92bd8016ef63925" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ChassisControllerIntegrated::moveDistance</definition>
+        <argsstring>(QLength itarget) override</argsstring>
+        <name>moveDistance</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a6d5b69139dfa8b814d05c74c22bcaa43">moveDistance</reimplements>
+        <param>
+          <type>QLength</type>
+          <declname>itarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drives the robot straight for a distance (using closed-loop control).</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Drive<sp/>forward<sp/>6<sp/>inches</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">chassis-&gt;moveDistance(6_in);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Drive<sp/>backward<sp/>0.2<sp/>meters</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">chassis-&gt;moveDistance(-0.2_m);</highlight></codeline>
+</programlisting></para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itarget</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>distance to travel </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="53" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="41" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1ab0361bc7bb5dc0b4ac4c990c1b9dd14f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ChassisControllerIntegrated::moveDistance</definition>
+        <argsstring>(double itarget) override</argsstring>
+        <name>moveDistance</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a58619e777fd1b3f8e1aae871d46a8ccf">moveDistance</reimplements>
+        <param>
+          <type>double</type>
+          <declname>itarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drives the robot straight for a distance (using closed-loop control).</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Drive<sp/>forward<sp/>by<sp/>spinning<sp/>the<sp/>motors<sp/>400<sp/>degrees</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">chassis-&gt;moveDistance(400);</highlight></codeline>
+</programlisting></para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itarget</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>distance to travel in motor degrees </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="65" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="46" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1afc97bc450a090d91b57bc6353b4a6972" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ChassisControllerIntegrated::moveDistanceAsync</definition>
+        <argsstring>(QLength itarget) override</argsstring>
+        <name>moveDistanceAsync</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a67a17268b871a4f1ae74d67891cbf5dd">moveDistanceAsync</reimplements>
+        <param>
+          <type>QLength</type>
+          <declname>itarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the target distance for the robot to drive straight (using closed-loop control).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itarget</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>distance to travel </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="72" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="51" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1ab3cb8eb0c7d5162aafffe8b8ec2751d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ChassisControllerIntegrated::moveDistanceAsync</definition>
+        <argsstring>(double itarget) override</argsstring>
+        <name>moveDistanceAsync</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a24b46ec1c42f32c0527d57738a07820a">moveDistanceAsync</reimplements>
+        <param>
+          <type>double</type>
+          <declname>itarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the target distance for the robot to drive straight (using closed-loop control).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itarget</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>distance to travel in motor degrees </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="79" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="69" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1a3c2ae782167fd9c6b27d637563e3a066" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ChassisControllerIntegrated::turnAngle</definition>
+        <argsstring>(QAngle idegTarget) override</argsstring>
+        <name>turnAngle</name>
+        <reimplements refid="classokapi_1_1ChassisController_1aab12308b3fad6793c007d7a33730a3f7">turnAngle</reimplements>
+        <param>
+          <type>QAngle</type>
+          <declname>idegTarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Turns the robot clockwise in place (using closed-loop control).</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Turn<sp/>90<sp/>degrees<sp/>clockwise</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">chassis-&gt;turnAngle(90_deg);</highlight></codeline>
+</programlisting></para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idegTarget</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>angle to turn for </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="91" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="74" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1a3f13749508bf420468ffdb54f62a9da2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ChassisControllerIntegrated::turnAngle</definition>
+        <argsstring>(double idegTarget) override</argsstring>
+        <name>turnAngle</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a6aca227e35ececd02eed1cc42d09ad1d">turnAngle</reimplements>
+        <param>
+          <type>double</type>
+          <declname>idegTarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Turns the robot clockwise in place (using closed-loop control).</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Turn<sp/>clockwise<sp/>by<sp/>spinning<sp/>the<sp/>motors<sp/>200<sp/>degrees</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">chassis-&gt;turnAngle(200);</highlight></codeline>
+</programlisting></para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idegTarget</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>angle to turn for in motor degrees </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="103" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="79" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1a773a99fe7a1540da856ad6b6008ba24f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ChassisControllerIntegrated::turnAngleAsync</definition>
+        <argsstring>(QAngle idegTarget) override</argsstring>
+        <name>turnAngleAsync</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a87fc1f88bf06340d8f022a8c185b5e87">turnAngleAsync</reimplements>
+        <param>
+          <type>QAngle</type>
+          <declname>idegTarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idegTarget</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>angle to turn for </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="110" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="84" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1abd638be1352919fb211e9b70c181d940" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ChassisControllerIntegrated::turnAngleAsync</definition>
+        <argsstring>(double idegTarget) override</argsstring>
+        <name>turnAngleAsync</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a35cadd99478629637b4bd3a5e709871a">turnAngleAsync</reimplements>
+        <param>
+          <type>double</type>
+          <declname>idegTarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idegTarget</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>angle to turn for in motor degrees </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="117" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="103" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1a37d538f92439644efa50a226c3cefd6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ChassisControllerIntegrated::setTurnsMirrored</definition>
+        <argsstring>(bool ishouldMirror) override</argsstring>
+        <name>setTurnsMirrored</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a37ae36ec8936272eb31e3baed7eed417">setTurnsMirrored</reimplements>
+        <param>
+          <type>bool</type>
+          <declname>ishouldMirror</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets whether turns should be mirrored.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ishouldMirror</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether turns should be mirrored </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="124" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="108" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1a2af994f5ddc68a48d7692fd16ca590c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ChassisControllerIntegrated::waitUntilSettled</definition>
+        <argsstring>() override</argsstring>
+        <name>waitUntilSettled</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a01ed4e0eb7332cc149228387bbf1e91c">waitUntilSettled</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Delays until the currently executing movement completes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="129" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="112" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1aab2f5d5cfb8ad96bd32be26a5a4e7113" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ChassisControllerIntegrated::stop</definition>
+        <argsstring>() override</argsstring>
+        <name>stop</name>
+        <reimplements refid="classokapi_1_1ChassisController_1ac67edbbbe1c8480c4503b9875a3719cd">stop</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Interrupts the current movement to stop the robot. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="134" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="127" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1a6bbab5d22753736b0507d5fd4deb3982" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classokapi_1_1ChassisScales" kindref="compound">ChassisScales</ref></type>
+        <definition>ChassisScales okapi::ChassisControllerIntegrated::getChassisScales</definition>
+        <argsstring>() const override</argsstring>
+        <name>getChassisScales</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a0a8e32fc7adad8567f550954505aaa06">getChassisScales</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the <ref refid="classokapi_1_1ChassisScales" kindref="compound">ChassisScales</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="139" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="135" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1a42cab9878235cdb4bea46e69f7ccd75d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair" kindref="compound">AbstractMotor::GearsetRatioPair</ref></type>
+        <definition>AbstractMotor::GearsetRatioPair okapi::ChassisControllerIntegrated::getGearsetRatioPair</definition>
+        <argsstring>() const override</argsstring>
+        <name>getGearsetRatioPair</name>
+        <reimplements refid="classokapi_1_1ChassisController_1aa19351888b997d4a6596dac24520ebff">getGearsetRatioPair</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the GearsetRatioPair. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="144" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="139" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1a60c9a11616a2a41400c17952c36a5b57" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; ChassisModel &gt; okapi::ChassisControllerIntegrated::getModel</definition>
+        <argsstring>() override</argsstring>
+        <name>getModel</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a1971d4b54b61718437824c026aca53c9">getModel</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The internal <ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="149" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="143" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1a726fc6cd37748b860e56ddb586b5555a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref> &amp;</type>
+        <definition>ChassisModel &amp; okapi::ChassisControllerIntegrated::model</definition>
+        <argsstring>() override</argsstring>
+        <name>model</name>
+        <reimplements refid="classokapi_1_1ChassisController_1a239802eda7e4317a65d1a04994f7b97e">model</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The internal <ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="154" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="147" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1aaff13c4d1ec3e98a6e153d3602996141" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::ChassisControllerIntegrated::setMaxVelocity</definition>
+        <argsstring>(double imaxVelocity)</argsstring>
+        <name>setMaxVelocity</name>
+        <param>
+          <type>double</type>
+          <declname>imaxVelocity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets a new maximum velocity in RPM [0-600].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>imaxVelocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new maximum velocity </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="161" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="150" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerIntegrated_1a0009684f33e2a008621fd601785f85fb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double okapi::ChassisControllerIntegrated::getMaxVelocity</definition>
+        <argsstring>() const</argsstring>
+        <name>getMaxVelocity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the maximum velocity in RPM [0-600].</para>
+<para><simplesect kind="return"><para>The maximum velocity in RPM [0-600]. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="168" column="1" bodyfile="src/api/chassis/controller/chassisControllerIntegrated.cpp" bodystart="155" bodyend="157"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="209">
+        <label>okapi::ChassisController</label>
+        <link refid="classokapi_1_1ChassisController"/>
+      </node>
+      <node id="208">
+        <label>okapi::ChassisControllerIntegrated</label>
+        <link refid="classokapi_1_1ChassisControllerIntegrated"/>
+        <childnode refid="209" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="215">
+        <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::AbstractRate &gt; &gt;</label>
+        <link refid="classokapi_1_1Supplier"/>
+      </node>
+      <node id="217">
+        <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::AbstractTimer &gt; &gt;</label>
+        <link refid="classokapi_1_1Supplier"/>
+      </node>
+      <node id="212">
+        <label>okapi::AbstractMotor::GearsetRatioPair</label>
+        <link refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair"/>
+      </node>
+      <node id="214">
+        <label>okapi::TimeUtil</label>
+        <link refid="classokapi_1_1TimeUtil"/>
+        <childnode refid="215" relation="usage">
+          <edgelabel>rateSupplier</edgelabel>
+        </childnode>
+        <childnode refid="216" relation="usage">
+          <edgelabel>settledUtilSupplier</edgelabel>
+        </childnode>
+        <childnode refid="217" relation="usage">
+          <edgelabel>timerSupplier</edgelabel>
+        </childnode>
+      </node>
+      <node id="216">
+        <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::SettledUtil &gt; &gt;</label>
+        <link refid="classokapi_1_1Supplier"/>
+      </node>
+      <node id="211">
+        <label>okapi::ChassisController</label>
+        <link refid="classokapi_1_1ChassisController"/>
+      </node>
+      <node id="210">
+        <label>okapi::ChassisControllerIntegrated</label>
+        <link refid="classokapi_1_1ChassisControllerIntegrated"/>
+        <childnode refid="211" relation="public-inheritance">
+        </childnode>
+        <childnode refid="212" relation="usage">
+          <edgelabel>gearsetRatioPair</edgelabel>
+        </childnode>
+        <childnode refid="213" relation="usage">
+          <edgelabel>scales</edgelabel>
+        </childnode>
+        <childnode refid="214" relation="usage">
+          <edgelabel>timeUtil</edgelabel>
+        </childnode>
+      </node>
+      <node id="213">
+        <label>okapi::ChassisScales</label>
+        <link refid="classokapi_1_1ChassisScales"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" line="16" column="1" bodyfile="include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp" bodystart="16" bodyend="180"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ChassisController_1a8a4a431cb9da03a1c84e600dc0e31333" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>ChassisController</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1ab78c2cf4add65a424b6bf31c9030f7b2" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>ChassisControllerIntegrated</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a1bd4b6be267db5c317f4600c37044abb" prot="protected" virt="non-virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>chassisModel</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a24178f28a3d581242235e5150618b148" prot="protected" virt="non-virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>gearsetRatioPair</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a6bbab5d22753736b0507d5fd4deb3982" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>getChassisScales</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a42cab9878235cdb4bea46e69f7ccd75d" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>getGearsetRatioPair</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a0009684f33e2a008621fd601785f85fb" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>getMaxVelocity</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a60c9a11616a2a41400c17952c36a5b57" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>getModel</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a8da00973b2828f04a19572b246ba2ec5" prot="protected" virt="non-virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>lastTarget</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a88fed580a2c24de00def9d00eee941bf" prot="protected" virt="non-virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>leftController</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a9427d1704071c9a2c3b2cf188acb3dd6" prot="protected" virt="non-virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>logger</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a726fc6cd37748b860e56ddb586b5555a" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>model</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1aa9af3fb56afdb940f92bd8016ef63925" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>moveDistance</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1ab0361bc7bb5dc0b4ac4c990c1b9dd14f" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>moveDistance</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1afc97bc450a090d91b57bc6353b4a6972" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>moveDistanceAsync</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1ab3cb8eb0c7d5162aafffe8b8ec2751d5" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>moveDistanceAsync</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a76f6d35c280f998a9d8af013e9131f90" prot="protected" virt="non-virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>normalTurns</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a830da9ca0c53fcf7d85f37f48489be90" prot="protected" virt="non-virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>rightController</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1af833eeaa8569585c7f44280261c46521" prot="protected" virt="non-virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>scales</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1aaff13c4d1ec3e98a6e153d3602996141" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>setMaxVelocity</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a37d538f92439644efa50a226c3cefd6d" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>setTurnsMirrored</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1aab2f5d5cfb8ad96bd32be26a5a4e7113" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>stop</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1addd982f5928a19f17105409a96eaf419" prot="protected" virt="non-virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>timeUtil</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a3c2ae782167fd9c6b27d637563e3a066" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>turnAngle</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a3f13749508bf420468ffdb54f62a9da2" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>turnAngle</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a773a99fe7a1540da856ad6b6008ba24f" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>turnAngleAsync</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1abd638be1352919fb211e9b70c181d940" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>turnAngleAsync</name></member>
+      <member refid="classokapi_1_1ChassisControllerIntegrated_1a2af994f5ddc68a48d7692fd16ca590c0" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>waitUntilSettled</name></member>
+      <member refid="classokapi_1_1ChassisController_1a886a1cfbd9430fb2fbe177bc4d4ab392" prot="public" virt="virtual"><scope>okapi::ChassisControllerIntegrated</scope><name>~ChassisController</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

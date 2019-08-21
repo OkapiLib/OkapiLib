@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="vision_8hpp" kind="file" language="C++">
+    <compoundname>vision.hpp</compoundname>
+    <includes local="yes">api.h</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <incdepgraph>
+      <node id="4248">
+        <label>api.h</label>
+      </node>
+      <node id="4247">
+        <label>include/okapi/impl/device/vision.hpp</label>
+        <link refid="vision_8hpp"/>
+        <childnode refid="4248" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4250">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="4249">
+        <label>include/okapi/impl/device/vision.hpp</label>
+        <link refid="vision_8hpp"/>
+        <childnode refid="4250" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/device/vision.hpp"/>
+  </compounddef>
+</doxygen>

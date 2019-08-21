@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_0c1b0fbcbcaef362abf0c442cbebf8be" kind="dir">
+    <compoundname>src/impl/device/rotarysensor</compoundname>
+    <innerfile refid="adiEncoder_8cpp">adiEncoder.cpp</innerfile>
+    <innerfile refid="adiGyro_8cpp">adiGyro.cpp</innerfile>
+    <innerfile refid="integratedEncoder_8cpp">integratedEncoder.cpp</innerfile>
+    <innerfile refid="potentiometer_8cpp">potentiometer.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/impl/device/rotarysensor/"/>
+  </compounddef>
+</doxygen>

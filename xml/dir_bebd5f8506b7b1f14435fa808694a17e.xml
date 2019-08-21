@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_bebd5f8506b7b1f14435fa808694a17e" kind="dir">
+    <compoundname>include/okapi/api/chassis/controller</compoundname>
+    <innerfile refid="chassisController_8hpp">chassisController.hpp</innerfile>
+    <innerfile refid="chassisControllerIntegrated_8hpp">chassisControllerIntegrated.hpp</innerfile>
+    <innerfile refid="chassisControllerPid_8hpp">chassisControllerPid.hpp</innerfile>
+    <innerfile refid="chassisScales_8hpp">chassisScales.hpp</innerfile>
+    <innerfile refid="defaultOdomChassisController_8hpp">defaultOdomChassisController.hpp</innerfile>
+    <innerfile refid="odomChassisController_8hpp">odomChassisController.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/chassis/controller/"/>
+  </compounddef>
+</doxygen>

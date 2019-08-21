@@ -1,0 +1,1170 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1AbstractMotor" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>okapi::AbstractMotor</compoundname>
+    <basecompoundref refid="classokapi_1_1ControllerOutput" prot="public" virt="non-virtual">okapi::ControllerOutput&lt; double &gt;</basecompoundref>
+    <derivedcompoundref refid="classokapi_1_1Motor" prot="public" virt="non-virtual">okapi::Motor</derivedcompoundref>
+    <derivedcompoundref refid="classokapi_1_1MotorGroup" prot="public" virt="non-virtual">okapi::MotorGroup</derivedcompoundref>
+    <includes refid="abstractMotor_8hpp" local="no">abstractMotor.hpp</includes>
+    <innerclass refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair" prot="public">okapi::AbstractMotor::GearsetRatioPair</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classokapi_1_1AbstractMotor_1a132e0485dbb59a60c3f934338d8fa601" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>brakeMode</name>
+        <enumvalue id="classokapi_1_1AbstractMotor_1a132e0485dbb59a60c3f934338d8fa601a756d153ba898e1be8218d4651009e981" prot="public">
+          <name>coast</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classokapi_1_1AbstractMotor_1a132e0485dbb59a60c3f934338d8fa601ab4628ac934a343cc5df197f6a709633b" prot="public">
+          <name>brake</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classokapi_1_1AbstractMotor_1a132e0485dbb59a60c3f934338d8fa601aaf1d8213f4a22b0f9803fec9259ff7a8" prot="public">
+          <name>hold</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classokapi_1_1AbstractMotor_1a132e0485dbb59a60c3f934338d8fa601afedb2d84cafe20862cb4399751a8a7e3" prot="public">
+          <name>invalid</name>
+          <initializer>= INT32_MAX</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Indicates the &apos;brake mode&apos; of a motor. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="20" column="1" bodyfile="include/okapi/api/device/motor/abstractMotor.hpp" bodystart="20" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="enum" id="classokapi_1_1AbstractMotor_1ae811cd825099f2defadeb1b7f7e7764c" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>encoderUnits</name>
+        <enumvalue id="classokapi_1_1AbstractMotor_1ae811cd825099f2defadeb1b7f7e7764ca18daee01fc6e54aacd7f4c2eef60ff4d" prot="public">
+          <name>degrees</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classokapi_1_1AbstractMotor_1ae811cd825099f2defadeb1b7f7e7764cad52e30a99086786b005c11c05b280215" prot="public">
+          <name>rotations</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classokapi_1_1AbstractMotor_1ae811cd825099f2defadeb1b7f7e7764ca0700cd3e2cd8b37ef510dd5aa2c81fc6" prot="public">
+          <name>counts</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classokapi_1_1AbstractMotor_1ae811cd825099f2defadeb1b7f7e7764cafedb2d84cafe20862cb4399751a8a7e3" prot="public">
+          <name>invalid</name>
+          <initializer>= INT32_MAX</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Indicates the units used by the motor encoders. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="30" column="1" bodyfile="include/okapi/api/device/motor/abstractMotor.hpp" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="enum" id="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>gearset</name>
+        <enumvalue id="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5abda9643ac6601722a28f238714274da4" prot="public">
+          <name>red</name>
+          <initializer>= 100</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5a9f27410725ab8cc8854a2769c7a516b8" prot="public">
+          <name>green</name>
+          <initializer>= 200</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5a48d6215903dff56238e52e8891380c8f" prot="public">
+          <name>blue</name>
+          <initializer>= 600</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5afedb2d84cafe20862cb4399751a8a7e3" prot="public">
+          <name>invalid</name>
+          <initializer>= INT32_MAX</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Indicates the internal gear ratio of a motor. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="35" column="1" bodyfile="include/okapi/api/device/motor/abstractMotor.hpp" bodystart="35" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a2cc6e2eb96fc99c426c3e6dda9e8f3da" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>okapi::AbstractMotor::~AbstractMotor</definition>
+        <argsstring>()</argsstring>
+        <name>~AbstractMotor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="65" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1ab84ff0f3e39fa14dcf74bcc867863ff8" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::moveAbsolute</definition>
+        <argsstring>(double iposition, std::int32_t ivelocity)=0</argsstring>
+        <name>moveAbsolute</name>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1afe6800639a995d37d8963c72fb8526d4">moveAbsolute</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1a5f95fd5864805b57f16fa5defdbf1968">moveAbsolute</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>iposition</declname>
+        </param>
+        <param>
+          <type>std::int32_t</type>
+          <declname>ivelocity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="classokapi_1_1Motor" kindref="compound">Motor</ref> movement functions These functions allow programmers to make motors move Sets the target absolute position for the motor to move to.</para>
+<para>This movement is relative to the position of the motor when initialized or the position when it was most recently reset with setZeroPosition().</para>
+<para><simplesect kind="note"><para>This function simply sets the target for the motor, it does not block program execution until the movement finishes.</para>
+</simplesect>
+This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iposition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The absolute position to move to in the motor&apos;s encoder units </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ivelocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum allowable velocity for the movement in RPM </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="89" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a5a65d70a30f536593326cb754700e240" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::moveRelative</definition>
+        <argsstring>(double iposition, std::int32_t ivelocity)=0</argsstring>
+        <name>moveRelative</name>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a4295103133b5cb721dfb457a8cc8c2bc">moveRelative</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1a40f6f70ed9b12d1834551d1232303ef1">moveRelative</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>iposition</declname>
+        </param>
+        <param>
+          <type>std::int32_t</type>
+          <declname>ivelocity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the relative target position for the motor to move to.</para>
+<para>This movement is relative to the current position of the motor. Providing 10.0 as the position parameter would result in the motor moving clockwise 10 units, no matter what the current position is.</para>
+<para><simplesect kind="note"><para>This function simply sets the target for the motor, it does not block program execution until the movement finishes.</para>
+</simplesect>
+This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iposition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The relative position to move to in the motor&apos;s encoder units </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ivelocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum allowable velocity for the movement in RPM </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="108" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a3170268f8d06f728327dcda08505e02b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::moveVelocity</definition>
+        <argsstring>(std::int16_t ivelocity)=0</argsstring>
+        <name>moveVelocity</name>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a9f31c14e92efe7ab492b2c335c51b488">moveVelocity</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1afc3377b9b10a72de0c22e9a74cbcfd16">moveVelocity</reimplementedby>
+        <param>
+          <type>std::int16_t</type>
+          <declname>ivelocity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the velocity for the motor.</para>
+<para>This velocity corresponds to different actual speeds depending on the gearset used for the motor. This results in a range of +-100 for pros::c::red, +-200 for green, and +-600 for blue. The velocity is held with PID to ensure consistent speed, as opposed to setting the motor&apos;s voltage.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ivelocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new motor velocity from -+-100, +-200, or +-600 depending on the motor&apos;s gearset </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="126" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a15d12555f527109b046c65fe753d7e20" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::moveVoltage</definition>
+        <argsstring>(std::int16_t ivoltage)=0</argsstring>
+        <name>moveVoltage</name>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1acebebe160f2c733ee497b1b8b50b0781">moveVoltage</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1a64b53a041c90c7b7a3903c607a9b17eb">moveVoltage</reimplementedby>
+        <param>
+          <type>std::int16_t</type>
+          <declname>ivoltage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the voltage for the motor from -12000 to 12000.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ivoltage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new voltage value from -12000 to 12000 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="137" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a1d131cbf0b8a325a54034e540c3be6d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::modifyProfiledVelocity</definition>
+        <argsstring>(std::int32_t ivelocity)=0</argsstring>
+        <name>modifyProfiledVelocity</name>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a616f20db24f1eff4d3641b86faef4fbd">modifyProfiledVelocity</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1a8778f90005a3add64d0dfd7574fb8289">modifyProfiledVelocity</reimplementedby>
+        <param>
+          <type>std::int32_t</type>
+          <declname>ivelocity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Changes the output velocity for a profiled movement (moveAbsolute or moveRelative). This will have no effect if the motor is not following a profiled movement.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ivelocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new motor velocity from -+-100, +-200, or +-600 depending on the motor&apos;s gearset </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="150" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a144377e461ec5801289c37bab5132cce" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double okapi::AbstractMotor::getTargetPosition</definition>
+        <argsstring>()=0</argsstring>
+        <name>getTargetPosition</name>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1ad6332111f8b2642bc13fbd8822328121">getTargetPosition</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1af575af2b4d4cf5aea6e8aac50ef1cbbd">getTargetPosition</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="classokapi_1_1Motor" kindref="compound">Motor</ref> telemetry functions These functions allow programmers to collect telemetry from motors Gets the target position set for the motor by the user.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>The target position in its encoder units or PROS_ERR_F if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="167" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a4f9d74e054600c5ddb49ebb8164004d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double okapi::AbstractMotor::getPosition</definition>
+        <argsstring>()=0</argsstring>
+        <name>getPosition</name>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a6bf3c5a2f5caf0e5b02e8dcf2e8130d9">getPosition</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1a4592f8a1cce4474f85ceabd3d7e2fe0b">getPosition</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the absolute position of the motor in its encoder units.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>The motor&apos;s absolute position in its encoder units or PROS_ERR_F if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="178" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1aaef41096c3a80f319f8fd42321726310" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double okapi::AbstractMotor::getPositionError</definition>
+        <argsstring>()</argsstring>
+        <name>getPositionError</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the positional error (target position minus actual position) of the motor in its encoder units.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>The motor&apos;s positional error in its encoder units or PROS_ERR_F if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="190" column="1" bodyfile="src/api/device/motor/abstractMotor.cpp" bodystart="18" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1ac36edbc92db85a11adcfee56275de15b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::tarePosition</definition>
+        <argsstring>()=0</argsstring>
+        <name>tarePosition</name>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a59aef8ea3c212e3466b67631978e47eb">tarePosition</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1aa71f3d93b734caec5c9245b211d4a0ad">tarePosition</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the &quot;absolute&quot; zero position of the motor to its current position.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="200" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a96b02cca7b51f75c01d2d22aab474fe4" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::getTargetVelocity</definition>
+        <argsstring>()=0</argsstring>
+        <name>getTargetVelocity</name>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a841736ae664104fb38ffff33ef763394">getTargetVelocity</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1aee4697f4e1f39bc0206062d0247caf47">getTargetVelocity</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the velocity commanded to the motor by the user.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>The commanded motor velocity from +-100, +-200, or +-600, or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="211" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a45b2013cc318577fad4ac38ad22ce219" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double okapi::AbstractMotor::getActualVelocity</definition>
+        <argsstring>()=0</argsstring>
+        <name>getActualVelocity</name>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a5cbb95146d4663440632a9e3ccc99ae9">getActualVelocity</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1a12dab94ff8e0636c01d3c568d9461655">getActualVelocity</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the actual velocity of the motor.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>The motor&apos;s actual velocity in RPM or PROS_ERR_F if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="222" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1ada65f68f96d4e69b6740bd59e8418f94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double okapi::AbstractMotor::getVelocityError</definition>
+        <argsstring>()</argsstring>
+        <name>getVelocityError</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the difference between the target velocity of the motor and the actual velocity of the motor.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>The motor&apos;s velocity error in RPM or PROS_ERR_F if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="234" column="1" bodyfile="src/api/device/motor/abstractMotor.cpp" bodystart="22" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a755ad2c78a4b36cc56eef1029a3aa217" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::getCurrentDraw</definition>
+        <argsstring>()=0</argsstring>
+        <name>getCurrentDraw</name>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a5cdc06b92c943b2348130b162f6c5f16">getCurrentDraw</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1ac5107f8aef228d4b4fec06d549c55cf6">getCurrentDraw</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the current drawn by the motor in mA.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>The motor&apos;s current in mA or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="245" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a94763d1700bd91b995333b012c0b683f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::getDirection</definition>
+        <argsstring>()=0</argsstring>
+        <name>getDirection</name>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a5466d52a245b10765945b91c0194da66">getDirection</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1a72c69d60e2ec69c126c84dc81f78742d">getDirection</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the direction of movement for the motor.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>1 for moving in the positive direction, -1 for moving in the negative direction, and PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="257" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a27a6e3ec007619a9b91f9d6ebc61e613" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double okapi::AbstractMotor::getEfficiency</definition>
+        <argsstring>()=0</argsstring>
+        <name>getEfficiency</name>
+        <reimplementedby refid="classokapi_1_1Motor_1a7703340c95e9e7dcafa243685a7d2d50">getEfficiency</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a16413d00d77dd73b4977e8b7f73a33ce">getEfficiency</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the efficiency of the motor in percent.</para>
+<para>An efficiency of 100% means that the motor is moving electrically while drawing no electrical power, and an efficiency of 0% means that the motor is drawing power but not moving.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>The motor&apos;s efficiency in percent or PROS_ERR_F if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="272" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a3d365496ebb8566c0a12611f090c5231" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::isOverCurrent</definition>
+        <argsstring>()=0</argsstring>
+        <name>isOverCurrent</name>
+        <reimplementedby refid="classokapi_1_1Motor_1aff882cb26c477355551d7bbf8e5c03bb">isOverCurrent</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1ab714cb81d252599ab2933e13cc8af40d">isOverCurrent</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Checks if the motor is drawing over its current limit.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>1 if the motor&apos;s current limit is being exceeded and 0 if the current limit is not exceeded, or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="284" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a61e24db43d1fe790b173cc0b4e27922f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::isOverTemp</definition>
+        <argsstring>()=0</argsstring>
+        <name>isOverTemp</name>
+        <reimplementedby refid="classokapi_1_1Motor_1a8a51f7dede42f768280b73d85a528d91">isOverTemp</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a60eaf29b00c8c0f26b9e70f3f28f74be">isOverTemp</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Checks if the motor&apos;s temperature is above its limit.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>1 if the temperature limit is exceeded and 0 if the the temperature is below the limit, or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="296" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1aa46c96a6eec7921ad5b12fcd4119358e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::isStopped</definition>
+        <argsstring>()=0</argsstring>
+        <name>isStopped</name>
+        <reimplementedby refid="classokapi_1_1Motor_1ab4edaf8e4ed576fa2003d4cc8e02c364">isStopped</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a50dfcb9272ad53aa231119a523ad2f2e">isStopped</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Checks if the motor is stopped.</para>
+<para>Although this function forwards data from the motor, the motor presently does not provide any value. This function returns PROS_ERR with errno set to ENOSYS.</para>
+<para><simplesect kind="return"><para>1 if the motor is not moving, 0 if the motor is moving, or PROS_ERR if the operation failed, setting errno </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="307" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a07079ee87a07b98b7008f2ce91c645ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::getZeroPositionFlag</definition>
+        <argsstring>()=0</argsstring>
+        <name>getZeroPositionFlag</name>
+        <reimplementedby refid="classokapi_1_1Motor_1a2640dea57e59a19aa6000da2c7cefdeb">getZeroPositionFlag</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a94be8c4591e65b268dd4f7357fdf4b50">getZeroPositionFlag</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Checks if the motor is at its zero position.</para>
+<para>Although this function forwards data from the motor, the motor presently does not provide any value. This function returns PROS_ERR with errno set to ENOSYS.</para>
+<para><simplesect kind="return"><para>1 if the motor is at zero absolute position, 0 if the motor has moved from its absolute zero, or PROS_ERR if the operation failed, setting errno </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="318" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1ae741463ec8de88c4f7ba854b5d6d7bce" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>uint32_t</type>
+        <definition>virtual uint32_t okapi::AbstractMotor::getFaults</definition>
+        <argsstring>()=0</argsstring>
+        <name>getFaults</name>
+        <reimplementedby refid="classokapi_1_1Motor_1a7d16e9d0a3319a02a12476b5bec991d7">getFaults</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a1fece81a588e0d2ab40a08a1bcb86475">getFaults</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the faults experienced by the motor. Compare this bitfield to the bitmasks in pros::motor_fault_e_t.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>A currently unknown bitfield containing the motor&apos;s faults. 0b00000100 = Current Limit Hit </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="331" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1aaae44487bf20ac2e18b52ee57b7a06ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>uint32_t</type>
+        <definition>virtual uint32_t okapi::AbstractMotor::getFlags</definition>
+        <argsstring>()=0</argsstring>
+        <name>getFlags</name>
+        <reimplementedby refid="classokapi_1_1Motor_1acb0097ba7ac778674efaa2c0765f6f3f">getFlags</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a5a8206be671413586f461a45132c9056">getFlags</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the flags set by the motor&apos;s operation. Compare this bitfield to the bitmasks in pros::motor_flag_e_t.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>A currently unknown bitfield containing the motor&apos;s flags. These seem to be unrelated to the individual get_specific_flag functions </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="344" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1aa34fefa954fbff26e3d68e59c4f10964" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::getRawPosition</definition>
+        <argsstring>(std::uint32_t *timestamp)=0</argsstring>
+        <name>getRawPosition</name>
+        <reimplementedby refid="classokapi_1_1Motor_1a74c579c35863bc5180c9551fd5185d94">getRawPosition</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1ac7d9b049f24ddc141b2b63f7e3e4d3ba">getRawPosition</reimplementedby>
+        <param>
+          <type>std::uint32_t *</type>
+          <declname>timestamp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the raw encoder count of the motor at a given timestamp.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timestamp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to a time in milliseconds for which the encoder count will be returned. If NULL, the timestamp at which the encoder count was read will not be supplied</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The raw encoder count at the given timestamp or PROS_ERR if the operation failed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="358" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1aed423ac40cec85c5880f7954b6d810fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double okapi::AbstractMotor::getPower</definition>
+        <argsstring>()=0</argsstring>
+        <name>getPower</name>
+        <reimplementedby refid="classokapi_1_1Motor_1a992171c86829e52f5418988fada0b6fa">getPower</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a67bdc04d59ba8293ccd58d26b849c9f0">getPower</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the power drawn by the motor in Watts.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>The motor&apos;s power draw in Watts or PROS_ERR_F if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="369" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a96ef2dc7eeb1ac23713e3e37af9e95f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double okapi::AbstractMotor::getTemperature</definition>
+        <argsstring>()=0</argsstring>
+        <name>getTemperature</name>
+        <reimplementedby refid="classokapi_1_1Motor_1ab5b9208b001c1ab49f8c058eff58e5b3">getTemperature</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1acba91d770dbc7e38f59070e8d5957d6d">getTemperature</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the temperature of the motor in degrees Celsius.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>The motor&apos;s temperature in degrees Celsius or PROS_ERR_F if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="381" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a955818baa689b279b36dda6a74f15d4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double okapi::AbstractMotor::getTorque</definition>
+        <argsstring>()=0</argsstring>
+        <name>getTorque</name>
+        <reimplementedby refid="classokapi_1_1Motor_1a4a8c14c49ae44d687772ff41591fdf1d">getTorque</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a591e2ac0cc80b58f6b5b767c5d0128c5">getTorque</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the torque generated by the motor in Newton Metres (Nm).</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>The motor&apos;s torque in NM or PROS_ERR_F if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="392" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a855b35b508e90074f21662b06ad2a0c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::getVoltage</definition>
+        <argsstring>()=0</argsstring>
+        <name>getVoltage</name>
+        <reimplementedby refid="classokapi_1_1Motor_1af60eb970996183d86bd4786869f5adb0">getVoltage</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a399d4a16683c5498483f1f1e5e6307b5">getVoltage</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the voltage delivered to the motor in millivolts.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>The motor&apos;s voltage in V or PROS_ERR_F if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="403" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1af7bb7d0d895c89d6b193f500587a818b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::setBrakeMode</definition>
+        <argsstring>(brakeMode imode)=0</argsstring>
+        <name>setBrakeMode</name>
+        <reimplementedby refid="classokapi_1_1Motor_1a2c40313fa5ff49c25947645885898f91">setBrakeMode</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a2124ee76893c401cd6dbf4879808349a">setBrakeMode</reimplementedby>
+        <param>
+          <type><ref refid="classokapi_1_1AbstractMotor_1a132e0485dbb59a60c3f934338d8fa601" kindref="member">brakeMode</ref></type>
+          <declname>imode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="classokapi_1_1Motor" kindref="compound">Motor</ref> configuration functions These functions allow programmers to configure the behavior of motors Sets one of brakeMode to the motor.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>imode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new motor brake mode to set for the motor </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="420" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a157407c39c952a7c2eb497bddb868c93" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classokapi_1_1AbstractMotor_1a132e0485dbb59a60c3f934338d8fa601" kindref="member">brakeMode</ref></type>
+        <definition>virtual brakeMode okapi::AbstractMotor::getBrakeMode</definition>
+        <argsstring>()=0</argsstring>
+        <name>getBrakeMode</name>
+        <reimplementedby refid="classokapi_1_1Motor_1aec419fead574828b4b1b2642a424dcbe">getBrakeMode</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a96fb47ca2da80930123c2b7e7176befb">getBrakeMode</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the brake mode that was set for the motor.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>One of brakeMode, according to what was set for the motor, or <ref refid="classokapi_1_1AbstractMotor_1a132e0485dbb59a60c3f934338d8fa601afedb2d84cafe20862cb4399751a8a7e3" kindref="member">brakeMode::invalid</ref> if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="431" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1aec97c81f3d6604363ebc8ceaf425fe39" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::setCurrentLimit</definition>
+        <argsstring>(std::int32_t ilimit)=0</argsstring>
+        <name>setCurrentLimit</name>
+        <reimplementedby refid="classokapi_1_1Motor_1ab54e856d8d55c1f53e1be113a9e90a00">setCurrentLimit</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a6d70691246bb8ba18d17f97b40a7f3f9">setCurrentLimit</reimplementedby>
+        <param>
+          <type>std::int32_t</type>
+          <declname>ilimit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the current limit for the motor in mA.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ilimit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new current limit in mA </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="442" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1ab83ef3319ffe1cb1d020e5a10127aab8" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::getCurrentLimit</definition>
+        <argsstring>()=0</argsstring>
+        <name>getCurrentLimit</name>
+        <reimplementedby refid="classokapi_1_1Motor_1ae309fb32ea479cec950dfaa65f3ffebd">getCurrentLimit</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1afe3f1ed73d64cc7204074d5cdb2a874e">getCurrentLimit</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the current limit for the motor in mA.</para>
+<para>The default value is 2500 mA.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>The motor&apos;s current limit in mA or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="454" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1aae559b72399b0eb2124d969e40f97415" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::setEncoderUnits</definition>
+        <argsstring>(encoderUnits iunits)=0</argsstring>
+        <name>setEncoderUnits</name>
+        <reimplementedby refid="classokapi_1_1Motor_1a96466636470045aa63d81cb0effc9486">setEncoderUnits</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1ad08cc59d805811a81ce5d25580ad0ce0">setEncoderUnits</reimplementedby>
+        <param>
+          <type><ref refid="classokapi_1_1AbstractMotor_1ae811cd825099f2defadeb1b7f7e7764c" kindref="member">encoderUnits</ref></type>
+          <declname>iunits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets one of encoderUnits for the motor encoder.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iunits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new motor encoder units </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="465" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1ae8225381a81ca0b54469949a6022b775" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classokapi_1_1AbstractMotor_1ae811cd825099f2defadeb1b7f7e7764c" kindref="member">encoderUnits</ref></type>
+        <definition>virtual encoderUnits okapi::AbstractMotor::getEncoderUnits</definition>
+        <argsstring>()=0</argsstring>
+        <name>getEncoderUnits</name>
+        <reimplementedby refid="classokapi_1_1Motor_1afcc6183588ce056927878dfc479e6fee">getEncoderUnits</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a1bc6347732e108a171b6e9a846722817">getEncoderUnits</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the encoder units that were set for the motor.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>One of encoderUnits according to what is set for the motor or <ref refid="classokapi_1_1AbstractMotor_1ae811cd825099f2defadeb1b7f7e7764cafedb2d84cafe20862cb4399751a8a7e3" kindref="member">encoderUnits::invalid</ref> if the operation failed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="476" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1aba300f0e323cbdec60f1fee0f3197419" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::setGearing</definition>
+        <argsstring>(gearset igearset)=0</argsstring>
+        <name>setGearing</name>
+        <reimplementedby refid="classokapi_1_1Motor_1a670cb230fe9686ce8fa71ee20607eb12">setGearing</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a5720f3775594f0097856754776526a47">setGearing</reimplementedby>
+        <param>
+          <type><ref refid="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5" kindref="member">gearset</ref></type>
+          <declname>igearset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets one of gearset for the motor.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>igearset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new motor gearset </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="487" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1adc90f1fc8af6c34c4e833355693474bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5" kindref="member">gearset</ref></type>
+        <definition>virtual gearset okapi::AbstractMotor::getGearing</definition>
+        <argsstring>()=0</argsstring>
+        <name>getGearing</name>
+        <reimplementedby refid="classokapi_1_1Motor_1a4dbe4aec1a4c6cb1cad659bada1ab8ed">getGearing</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1abe6d309d6e883b469997c4ddc4584834">getGearing</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the gearset that was set for the motor.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><simplesect kind="return"><para>One of gearset according to what is set for the motor, or <ref refid="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5afedb2d84cafe20862cb4399751a8a7e3" kindref="member">gearset::invalid</ref> if the operation failed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="498" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a72a6a4eb9d237ad57b92401b08ad64fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::setReversed</definition>
+        <argsstring>(bool ireverse)=0</argsstring>
+        <name>setReversed</name>
+        <reimplementedby refid="classokapi_1_1Motor_1a558e94850abf85132811a8b281e872df">setReversed</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a5655accbdc1b548bc75ec49d40337fe0">setReversed</reimplementedby>
+        <param>
+          <type>bool</type>
+          <declname>ireverse</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the reverse flag for the motor.</para>
+<para>This will invert its movements and the values returned for its position.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ireverse</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>True reverses the motor, false is default </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="511" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a2f33faf946b99cd34e9a591ccc33d644" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::int32_t</type>
+        <definition>virtual std::int32_t okapi::AbstractMotor::setVoltageLimit</definition>
+        <argsstring>(std::int32_t ilimit)=0</argsstring>
+        <name>setVoltageLimit</name>
+        <reimplementedby refid="classokapi_1_1Motor_1a5aab4b416675b7f7ee324fff4d8cda30">setVoltageLimit</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a1ccc0bc9af94c6bab28f2373a902b23a">setVoltageLimit</reimplementedby>
+        <param>
+          <type>std::int32_t</type>
+          <declname>ilimit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the voltage limit for the motor in Volts.</para>
+<para>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ilimit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new voltage limit in Volts </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the operation was successful or PROS_ERR if the operation failed, setting errno. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="522" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractMotor_1a87177280c20a855a74354dd8ba6e1d6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
+        <definition>virtual std::shared_ptr&lt;ContinuousRotarySensor&gt; okapi::AbstractMotor::getEncoder</definition>
+        <argsstring>()=0</argsstring>
+        <name>getEncoder</name>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a911d4c2a66deafb2e54f66411eceaa59">getEncoder</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1a57d8ddb900475fcfba56413e61e6e252">getEncoder</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the encoder associated with this motor.</para>
+<para><simplesect kind="return"><para>the encoder for this motor </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="529" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="8">
+        <label>okapi::ControllerOutput&lt; double &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+      <node id="7">
+        <label>okapi::AbstractMotor</label>
+        <link refid="classokapi_1_1AbstractMotor"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>okapi::MotorGroup</label>
+        <link refid="classokapi_1_1MotorGroup"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>okapi::Motor</label>
+        <link refid="classokapi_1_1Motor"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="12">
+        <label>okapi::ControllerOutput&lt; double &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+      <node id="11">
+        <label>okapi::AbstractMotor</label>
+        <link refid="classokapi_1_1AbstractMotor"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/device/motor/abstractMotor.hpp" line="15" column="1" bodyfile="include/okapi/api/device/motor/abstractMotor.hpp" bodystart="15" bodyend="530"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1AbstractMotor_1a132e0485dbb59a60c3f934338d8fa601" prot="public" virt="non-virtual"><scope>okapi::AbstractMotor</scope><name>brakeMode</name></member>
+      <member refid="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>controllerSet</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1ae811cd825099f2defadeb1b7f7e7764c" prot="public" virt="non-virtual"><scope>okapi::AbstractMotor</scope><name>encoderUnits</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5" prot="public" virt="non-virtual"><scope>okapi::AbstractMotor</scope><name>gearset</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a45b2013cc318577fad4ac38ad22ce219" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getActualVelocity</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a157407c39c952a7c2eb497bddb868c93" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getBrakeMode</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a755ad2c78a4b36cc56eef1029a3aa217" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getCurrentDraw</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1ab83ef3319ffe1cb1d020e5a10127aab8" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getCurrentLimit</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a94763d1700bd91b995333b012c0b683f" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getDirection</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a27a6e3ec007619a9b91f9d6ebc61e613" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getEfficiency</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a87177280c20a855a74354dd8ba6e1d6a" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getEncoder</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1ae8225381a81ca0b54469949a6022b775" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getEncoderUnits</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1ae741463ec8de88c4f7ba854b5d6d7bce" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getFaults</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1aaae44487bf20ac2e18b52ee57b7a06ad" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getFlags</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1adc90f1fc8af6c34c4e833355693474bb" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getGearing</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a4f9d74e054600c5ddb49ebb8164004d3" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getPosition</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1aaef41096c3a80f319f8fd42321726310" prot="public" virt="non-virtual"><scope>okapi::AbstractMotor</scope><name>getPositionError</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1aed423ac40cec85c5880f7954b6d810fe" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getPower</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1aa34fefa954fbff26e3d68e59c4f10964" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getRawPosition</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a144377e461ec5801289c37bab5132cce" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getTargetPosition</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a96b02cca7b51f75c01d2d22aab474fe4" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getTargetVelocity</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a96ef2dc7eeb1ac23713e3e37af9e95f2" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getTemperature</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a955818baa689b279b36dda6a74f15d4e" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getTorque</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1ada65f68f96d4e69b6740bd59e8418f94" prot="public" virt="non-virtual"><scope>okapi::AbstractMotor</scope><name>getVelocityError</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a855b35b508e90074f21662b06ad2a0c8" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getVoltage</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a07079ee87a07b98b7008f2ce91c645ea" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>getZeroPositionFlag</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a3d365496ebb8566c0a12611f090c5231" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>isOverCurrent</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a61e24db43d1fe790b173cc0b4e27922f" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>isOverTemp</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1aa46c96a6eec7921ad5b12fcd4119358e" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>isStopped</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a1d131cbf0b8a325a54034e540c3be6d2" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>modifyProfiledVelocity</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1ab84ff0f3e39fa14dcf74bcc867863ff8" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>moveAbsolute</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a5a65d70a30f536593326cb754700e240" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>moveRelative</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a3170268f8d06f728327dcda08505e02b" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>moveVelocity</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a15d12555f527109b046c65fe753d7e20" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>moveVoltage</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1af7bb7d0d895c89d6b193f500587a818b" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>setBrakeMode</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1aec97c81f3d6604363ebc8ceaf425fe39" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>setCurrentLimit</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1aae559b72399b0eb2124d969e40f97415" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>setEncoderUnits</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1aba300f0e323cbdec60f1fee0f3197419" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>setGearing</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a72a6a4eb9d237ad57b92401b08ad64fa" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>setReversed</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a2f33faf946b99cd34e9a591ccc33d644" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>setVoltageLimit</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1ac36edbc92db85a11adcfee56275de15b" prot="public" virt="pure-virtual"><scope>okapi::AbstractMotor</scope><name>tarePosition</name></member>
+      <member refid="classokapi_1_1AbstractMotor_1a2cc6e2eb96fc99c426c3e6dda9e8f3da" prot="public" virt="virtual"><scope>okapi::AbstractMotor</scope><name>~AbstractMotor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

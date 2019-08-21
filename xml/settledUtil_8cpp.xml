@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="settledUtil_8cpp" kind="file" language="C++">
+    <compoundname>settledUtil.cpp</compoundname>
+    <includes refid="settledUtil_8hpp" local="yes">okapi/api/control/util/settledUtil.hpp</includes>
+    <includes local="no">cmath</includes>
+    <incdepgraph>
+      <node id="5193">
+        <label>okapi/api/util/abstractTimer.hpp</label>
+        <link refid="abstractTimer_8hpp"/>
+        <childnode refid="5194" relation="include">
+        </childnode>
+        <childnode refid="5189" relation="include">
+        </childnode>
+      </node>
+      <node id="5194">
+        <label>okapi/api/units/QFrequency.hpp</label>
+        <link refid="QFrequency_8hpp"/>
+        <childnode refid="5190" relation="include">
+        </childnode>
+      </node>
+      <node id="5191">
+        <label>cmath</label>
+      </node>
+      <node id="5189">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="5190" relation="include">
+        </childnode>
+      </node>
+      <node id="5192">
+        <label>ratio</label>
+      </node>
+      <node id="5187">
+        <label>src/api/control/util/settledUtil.cpp</label>
+        <link refid="settledUtil_8cpp"/>
+        <childnode refid="5188" relation="include">
+        </childnode>
+        <childnode refid="5191" relation="include">
+        </childnode>
+      </node>
+      <node id="5190">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="5191" relation="include">
+        </childnode>
+        <childnode refid="5192" relation="include">
+        </childnode>
+      </node>
+      <node id="5188">
+        <label>okapi/api/control/util/settledUtil.hpp</label>
+        <link refid="settledUtil_8hpp"/>
+        <childnode refid="5189" relation="include">
+        </childnode>
+        <childnode refid="5193" relation="include">
+        </childnode>
+        <childnode refid="5195" relation="include">
+        </childnode>
+      </node>
+      <node id="5195">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/control/util/settledUtil.cpp"/>
+  </compounddef>
+</doxygen>

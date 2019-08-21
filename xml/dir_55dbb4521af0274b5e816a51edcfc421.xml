@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_55dbb4521af0274b5e816a51edcfc421" kind="dir">
+    <compoundname>src/impl/device/motor</compoundname>
+    <innerfile refid="adiMotor_8cpp">adiMotor.cpp</innerfile>
+    <innerfile refid="motor_8cpp">motor.cpp</innerfile>
+    <innerfile refid="motorGroup_8cpp">motorGroup.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/impl/device/motor/"/>
+  </compounddef>
+</doxygen>

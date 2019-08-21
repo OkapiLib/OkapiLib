@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="md_README" kind="page">
+    <compoundname>md_README</compoundname>
+    <title>README</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><ulink url="https://travis-ci.org/OkapiLib/OkapiLib"><image type="html" name="OkapiLib.svg?branch=develop" inline="yes">></image>
+</ulink> <ulink url="https://codecov.io/gh/OkapiLib/OkapiLib"><image type="html" name="badge.svg" inline="yes">></image>
+</ulink> <ulink url="https://github.com/OkapiLib/OkapiLib/releases"><image type="html" name="total.svg" inline="yes">></image>
+</ulink> <ulink url="https://opensource.org/licenses/MPL-2.0"><image type="html" name="License-MPL%202.0-brightgreen.svg" inline="yes">></image>
+</ulink></para>
+<para><heading level="1">OkapiLib</heading>
+</para>
+<para>A PROS library for programming VEX V5 robots. This library is intended to raise the floor for teams with all levels of experience. New teams should have an easier time getting their robot up and running, and veteran teams should find that OkapiLib doesn&apos;t get in the way or place any limits on functionality.</para>
+<para>Documentation is hosted on the PROS website: <ulink url="https://pros.cs.purdue.edu/v5/okapi/index.html">OkapiLib Docs</ulink></para>
+<para><heading level="2">Installing</heading>
+</para>
+<para>OkapiLib is installed by default in new projects. If it is not, you can install it using the PROS CLI. In your terminal, inside the project you want to install OkapiLib in, run <computeroutput>prosv5 conduct apply okapilib</computeroutput>.</para>
+<para><heading level="2">Contributing</heading>
+</para>
+<para>Please read <ref refid="md_CONTRIBUTING" kindref="compound">CONTRIBUTING.md</ref> for details on how to help contribute to this project and make OkapiLib better. It covers submitting bugs and features, opening pull requests, and other formatting and code style requirements.</para>
+<para><heading level="2">Versioning</heading>
+</para>
+<para>OkapiLib uses <ulink url="semver.org">SemVer</ulink> for versioning. For available versions, see the <ulink url="https://github.com/OkapiLib/OkapiLib/tags">tags on this repository</ulink>.</para>
+<para><heading level="2">License</heading>
+</para>
+<para>This project is licensed under the Mozilla Public License, version 2.0 - see the [LICENSE](LICENSE) file for the full license.</para>
+<para><heading level="2">Acknowledgments</heading>
+</para>
+<para>The OkapiLib team would like to thank, for their contributions, knowledge, and/or otherwise,<itemizedlist>
+<listitem><para><ulink url="https://github.com/purduesigbots">The PROS team</ulink></para>
+</listitem><listitem><para><ulink url="https://github.com/purduesigbots/libblrs">Jonathan Bayless and Purdue Vex U team BLRS</ulink></para>
+</listitem><listitem><para><ulink url="https://github.com/wpilibsuite/allwpilib">Brad Miller and WPIlib</ulink> </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

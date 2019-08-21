@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_d71a13ccebea64891540b8465dcfed38" kind="dir">
+    <compoundname>src/impl/util</compoundname>
+    <innerfile refid="rate_8cpp">rate.cpp</innerfile>
+    <innerfile refid="timer_8cpp">timer.cpp</innerfile>
+    <innerfile refid="timeUtilFactory_8cpp">timeUtilFactory.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/impl/util/"/>
+  </compounddef>
+</doxygen>

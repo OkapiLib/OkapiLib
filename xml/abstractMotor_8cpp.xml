@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="abstractMotor_8cpp" kind="file" language="C++">
+    <compoundname>abstractMotor.cpp</compoundname>
+    <includes refid="abstractMotor_8hpp" local="yes">okapi/api/device/motor/abstractMotor.hpp</includes>
+    <incdepgraph>
+      <node id="5219">
+        <label>functional</label>
+      </node>
+      <node id="5216">
+        <label>cstdint</label>
+      </node>
+      <node id="5211">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="5214">
+        <label>cstdbool</label>
+      </node>
+      <node id="5213">
+        <label>cmath</label>
+      </node>
+      <node id="5209">
+        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
+        <link refid="continuousRotarySensor_8hpp"/>
+        <childnode refid="5210" relation="include">
+        </childnode>
+      </node>
+      <node id="5207">
+        <label>okapi/api/device/motor/abstractMotor.hpp</label>
+        <link refid="abstractMotor_8hpp"/>
+        <childnode refid="5208" relation="include">
+        </childnode>
+        <childnode refid="5209" relation="include">
+        </childnode>
+        <childnode refid="5223" relation="include">
+        </childnode>
+      </node>
+      <node id="5212">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="5213" relation="include">
+        </childnode>
+        <childnode refid="5214" relation="include">
+        </childnode>
+        <childnode refid="5215" relation="include">
+        </childnode>
+        <childnode refid="5216" relation="include">
+        </childnode>
+        <childnode refid="5217" relation="include">
+        </childnode>
+        <childnode refid="5218" relation="include">
+        </childnode>
+        <childnode refid="5219" relation="include">
+        </childnode>
+        <childnode refid="5220" relation="include">
+        </childnode>
+        <childnode refid="5221" relation="include">
+        </childnode>
+        <childnode refid="5222" relation="include">
+        </childnode>
+      </node>
+      <node id="5221">
+        <label>api.h</label>
+      </node>
+      <node id="5208">
+        <label>okapi/api/control/controllerOutput.hpp</label>
+        <link refid="controllerOutput_8hpp"/>
+      </node>
+      <node id="5217">
+        <label>cstdio</label>
+      </node>
+      <node id="5220">
+        <label>sstream</label>
+      </node>
+      <node id="5210">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="5211" relation="include">
+        </childnode>
+        <childnode refid="5212" relation="include">
+        </childnode>
+      </node>
+      <node id="5218">
+        <label>cstdlib</label>
+      </node>
+      <node id="5215">
+        <label>cstddef</label>
+      </node>
+      <node id="5206">
+        <label>src/api/device/motor/abstractMotor.cpp</label>
+        <link refid="abstractMotor_8cpp"/>
+        <childnode refid="5207" relation="include">
+        </childnode>
+      </node>
+      <node id="5222">
+        <label>pros/apix.h</label>
+      </node>
+      <node id="5223">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/device/motor/abstractMotor.cpp"/>
+  </compounddef>
+</doxygen>

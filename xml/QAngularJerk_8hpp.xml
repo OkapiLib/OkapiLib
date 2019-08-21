@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="QAngularJerk_8hpp" kind="file" language="C++">
+    <compoundname>QAngularJerk.hpp</compoundname>
+    <includes refid="RQuantity_8hpp" local="yes">okapi/api/units/RQuantity.hpp</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <incdepgraph>
+      <node id="2634">
+        <label>cmath</label>
+      </node>
+      <node id="2635">
+        <label>ratio</label>
+      </node>
+      <node id="2633">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="2634" relation="include">
+        </childnode>
+        <childnode refid="2635" relation="include">
+        </childnode>
+      </node>
+      <node id="2632">
+        <label>include/okapi/api/units/QAngularJerk.hpp</label>
+        <link refid="QAngularJerk_8hpp"/>
+        <childnode refid="2633" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2637">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="2636">
+        <label>include/okapi/api/units/QAngularJerk.hpp</label>
+        <link refid="QAngularJerk_8hpp"/>
+        <childnode refid="2637" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/units/QAngularJerk.hpp"/>
+  </compounddef>
+</doxygen>

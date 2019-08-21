@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1Timer" kind="class" language="C++" prot="public">
+    <compoundname>okapi::Timer</compoundname>
+    <basecompoundref refid="classokapi_1_1AbstractTimer" prot="public" virt="non-virtual">okapi::AbstractTimer</basecompoundref>
+    <includes refid="timer_8hpp" local="no">timer.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1Timer_1a1161f5fa79c7c804af90e1169cba1f9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::Timer::Timer</definition>
+        <argsstring>()</argsstring>
+        <name>Timer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/util/timer.hpp" line="15" column="1" bodyfile="src/impl/util/timer.cpp" bodystart="12" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Timer_1aca51b21d6302021cd24b49b64648c13c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QTime</type>
+        <definition>QTime okapi::Timer::millis</definition>
+        <argsstring>() const override</argsstring>
+        <name>millis</name>
+        <reimplements refid="classokapi_1_1AbstractTimer_1a6871e119f74d8b6a8c928244e837e762">millis</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the current time in units of QTime.</para>
+<para><simplesect kind="return"><para>the current time </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/util/timer.hpp" line="22" column="1" bodyfile="src/impl/util/timer.cpp" bodystart="15" bodyend="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="515">
+        <label>okapi::AbstractTimer</label>
+        <link refid="classokapi_1_1AbstractTimer"/>
+      </node>
+      <node id="514">
+        <label>okapi::Timer</label>
+        <link refid="classokapi_1_1Timer"/>
+        <childnode refid="515" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="517">
+        <label>okapi::AbstractTimer</label>
+        <link refid="classokapi_1_1AbstractTimer"/>
+      </node>
+      <node id="516">
+        <label>okapi::Timer</label>
+        <link refid="classokapi_1_1Timer"/>
+        <childnode refid="517" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/impl/util/timer.hpp" line="13" column="1" bodyfile="include/okapi/impl/util/timer.hpp" bodystart="13" bodyend="23"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1AbstractTimer_1aec03f7e11e25f300ec1fd44aaff3596f" prot="public" virt="non-virtual"><scope>okapi::Timer</scope><name>AbstractTimer</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1af462e941170d1659dd04ab9d1ead3968" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>clearHardMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a78d62559bbd51a71372f37920af78261" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>clearMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1ace6c48ceaa4736cca3d34345fc8a9f5b" prot="protected" virt="non-virtual"><scope>okapi::Timer</scope><name>firstCalled</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a6c79c35780dbc4e04e356167bb175424" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>getDt</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1ae32d95df73d640f248f987757163a164" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>getDtFromHardMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a11b84685aac3247ce5abdd11419e350e" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>getDtFromMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1ac681cdd9a5147df0b796e9af836502c8" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>getDtFromStart</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a4707dcc563e750ee491918d7c5755bc3" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>getStartingTime</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a306968ddbbae48420a16ac42de9bca1f" prot="protected" virt="non-virtual"><scope>okapi::Timer</scope><name>hardMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1aaac21f537a3729ac5d73bf13792b2e8a" prot="protected" virt="non-virtual"><scope>okapi::Timer</scope><name>lastCalled</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1ab33f65dd0d151c890307a86449eb74fc" prot="protected" virt="non-virtual"><scope>okapi::Timer</scope><name>mark</name></member>
+      <member refid="classokapi_1_1Timer_1aca51b21d6302021cd24b49b64648c13c" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>millis</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a177197191296d0d7a5c49c86d5a514fc" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>placeHardMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a34c9be79510d23d702fd22188d542ec9" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>placeMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a4208d7ef0b828422ba02dfd563306ab1" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>readDt</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a452be1d251e938ab4c69801ea2d52e20" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>repeat</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a9153fc8d0b6daf843fa533bf601a15dd" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>repeat</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1ae3d1fd628749051d0b90b066bccd4e2b" prot="protected" virt="non-virtual"><scope>okapi::Timer</scope><name>repeatMark</name></member>
+      <member refid="classokapi_1_1Timer_1a1161f5fa79c7c804af90e1169cba1f9f" prot="public" virt="non-virtual"><scope>okapi::Timer</scope><name>Timer</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a720f854545bab2158135149174758736" prot="public" virt="virtual"><scope>okapi::Timer</scope><name>~AbstractTimer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

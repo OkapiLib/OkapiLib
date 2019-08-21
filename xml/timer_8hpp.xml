@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="timer_8hpp" kind="file" language="C++">
+    <compoundname>timer.hpp</compoundname>
+    <includes refid="abstractTimer_8hpp" local="yes">okapi/api/util/abstractTimer.hpp</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <includedby refid="settledUtilFactory_8cpp" local="yes">src/impl/control/util/settledUtilFactory.cpp</includedby>
+    <includedby refid="velMathFactory_8cpp" local="yes">src/impl/filter/velMathFactory.cpp</includedby>
+    <includedby refid="timer_8cpp" local="yes">src/impl/util/timer.cpp</includedby>
+    <includedby refid="timeUtilFactory_8cpp" local="yes">src/impl/util/timeUtilFactory.cpp</includedby>
+    <incdepgraph>
+      <node id="4316">
+        <label>okapi/api/util/abstractTimer.hpp</label>
+        <link refid="abstractTimer_8hpp"/>
+        <childnode refid="4317" relation="include">
+        </childnode>
+        <childnode refid="4321" relation="include">
+        </childnode>
+      </node>
+      <node id="4317">
+        <label>okapi/api/units/QFrequency.hpp</label>
+        <link refid="QFrequency_8hpp"/>
+        <childnode refid="4318" relation="include">
+        </childnode>
+      </node>
+      <node id="4319">
+        <label>cmath</label>
+      </node>
+      <node id="4321">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="4318" relation="include">
+        </childnode>
+      </node>
+      <node id="4320">
+        <label>ratio</label>
+      </node>
+      <node id="4318">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="4319" relation="include">
+        </childnode>
+        <childnode refid="4320" relation="include">
+        </childnode>
+      </node>
+      <node id="4315">
+        <label>include/okapi/impl/util/timer.hpp</label>
+        <link refid="timer_8hpp"/>
+        <childnode refid="4316" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4327">
+        <label>src/impl/util/timeUtilFactory.cpp</label>
+        <link refid="timeUtilFactory_8cpp"/>
+      </node>
+      <node id="4325">
+        <label>src/impl/filter/velMathFactory.cpp</label>
+        <link refid="velMathFactory_8cpp"/>
+      </node>
+      <node id="4323">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="4324">
+        <label>src/impl/control/util/settledUtilFactory.cpp</label>
+        <link refid="settledUtilFactory_8cpp"/>
+      </node>
+      <node id="4326">
+        <label>src/impl/util/timer.cpp</label>
+        <link refid="timer_8cpp"/>
+      </node>
+      <node id="4322">
+        <label>include/okapi/impl/util/timer.hpp</label>
+        <link refid="timer_8hpp"/>
+        <childnode refid="4323" relation="include">
+        </childnode>
+        <childnode refid="4324" relation="include">
+        </childnode>
+        <childnode refid="4325" relation="include">
+        </childnode>
+        <childnode refid="4326" relation="include">
+        </childnode>
+        <childnode refid="4327" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1Timer" prot="public">okapi::Timer</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/util/timer.hpp"/>
+  </compounddef>
+</doxygen>

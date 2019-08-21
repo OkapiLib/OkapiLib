@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="adiEncoder_8hpp" kind="file" language="C++">
+    <compoundname>adiEncoder.hpp</compoundname>
+    <includes local="yes">api.h</includes>
+    <includes refid="continuousRotarySensor_8hpp" local="yes">okapi/api/device/rotarysensor/continuousRotarySensor.hpp</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <includedby refid="chassisControllerBuilder_8hpp" local="yes">include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp</includedby>
+    <includedby refid="asyncPosControllerBuilder_8hpp" local="yes">include/okapi/impl/control/async/asyncPosControllerBuilder.hpp</includedby>
+    <includedby refid="asyncVelControllerBuilder_8hpp" local="yes">include/okapi/impl/control/async/asyncVelControllerBuilder.hpp</includedby>
+    <includedby refid="adiEncoder_8cpp" local="yes">src/impl/device/rotarysensor/adiEncoder.cpp</includedby>
+    <incdepgraph>
+      <node id="4160">
+        <label>functional</label>
+      </node>
+      <node id="4157">
+        <label>cstdint</label>
+      </node>
+      <node id="4152">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="4155">
+        <label>cstdbool</label>
+      </node>
+      <node id="4154">
+        <label>cmath</label>
+      </node>
+      <node id="4150">
+        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
+        <link refid="continuousRotarySensor_8hpp"/>
+        <childnode refid="4151" relation="include">
+        </childnode>
+      </node>
+      <node id="4153">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="4154" relation="include">
+        </childnode>
+        <childnode refid="4155" relation="include">
+        </childnode>
+        <childnode refid="4156" relation="include">
+        </childnode>
+        <childnode refid="4157" relation="include">
+        </childnode>
+        <childnode refid="4158" relation="include">
+        </childnode>
+        <childnode refid="4159" relation="include">
+        </childnode>
+        <childnode refid="4160" relation="include">
+        </childnode>
+        <childnode refid="4161" relation="include">
+        </childnode>
+        <childnode refid="4149" relation="include">
+        </childnode>
+        <childnode refid="4162" relation="include">
+        </childnode>
+      </node>
+      <node id="4149">
+        <label>api.h</label>
+      </node>
+      <node id="4158">
+        <label>cstdio</label>
+      </node>
+      <node id="4161">
+        <label>sstream</label>
+      </node>
+      <node id="4151">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="4152" relation="include">
+        </childnode>
+        <childnode refid="4153" relation="include">
+        </childnode>
+      </node>
+      <node id="4159">
+        <label>cstdlib</label>
+      </node>
+      <node id="4156">
+        <label>cstddef</label>
+      </node>
+      <node id="4148">
+        <label>include/okapi/impl/device/rotarysensor/adiEncoder.hpp</label>
+        <link refid="adiEncoder_8hpp"/>
+        <childnode refid="4149" relation="include">
+        </childnode>
+        <childnode refid="4150" relation="include">
+        </childnode>
+      </node>
+      <node id="4162">
+        <label>pros/apix.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4171">
+        <label>src/impl/device/rotarysensor/adiEncoder.cpp</label>
+        <link refid="adiEncoder_8cpp"/>
+      </node>
+      <node id="4164">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="4168">
+        <label>src/impl/control/async/asyncPosControllerBuilder.cpp</label>
+        <link refid="asyncPosControllerBuilder_8cpp"/>
+      </node>
+      <node id="4169">
+        <label>include/okapi/impl/control/async/asyncVelControllerBuilder.hpp</label>
+        <link refid="asyncVelControllerBuilder_8hpp"/>
+        <childnode refid="4164" relation="include">
+        </childnode>
+        <childnode refid="4170" relation="include">
+        </childnode>
+      </node>
+      <node id="4165">
+        <label>include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp</label>
+        <link refid="chassisControllerBuilder_8hpp"/>
+        <childnode refid="4164" relation="include">
+        </childnode>
+        <childnode refid="4166" relation="include">
+        </childnode>
+      </node>
+      <node id="4166">
+        <label>src/impl/chassis/controller/chassisControllerBuilder.cpp</label>
+        <link refid="chassisControllerBuilder_8cpp"/>
+      </node>
+      <node id="4167">
+        <label>include/okapi/impl/control/async/asyncPosControllerBuilder.hpp</label>
+        <link refid="asyncPosControllerBuilder_8hpp"/>
+        <childnode refid="4164" relation="include">
+        </childnode>
+        <childnode refid="4168" relation="include">
+        </childnode>
+      </node>
+      <node id="4163">
+        <label>include/okapi/impl/device/rotarysensor/adiEncoder.hpp</label>
+        <link refid="adiEncoder_8hpp"/>
+        <childnode refid="4164" relation="include">
+        </childnode>
+        <childnode refid="4165" relation="include">
+        </childnode>
+        <childnode refid="4167" relation="include">
+        </childnode>
+        <childnode refid="4169" relation="include">
+        </childnode>
+        <childnode refid="4171" relation="include">
+        </childnode>
+      </node>
+      <node id="4170">
+        <label>src/impl/control/async/asyncVelControllerBuilder.cpp</label>
+        <link refid="asyncVelControllerBuilder_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1ADIEncoder" prot="public">okapi::ADIEncoder</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/device/rotarysensor/adiEncoder.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="md_CONTRIBUTING" kind="page">
+    <compoundname>md_CONTRIBUTING</compoundname>
+    <title>Contributing to OkapiLib</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>:+1::tada: First off, thanks for taking the time to contribute! :tada::+1:</para>
+<para>The following is a set of guidelines for contributing to OkapiLib. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.</para>
+<para><heading level="4">Table Of Contents</heading>
+</para>
+<para><ulink url="#code-of-conduct">Code of Conduct</ulink></para>
+<para><ulink url="#i-dont-want-to-read-this-whole-thing-i-just-have-a-question">I don&apos;t want to read this whole thing, I just have a question!!!</ulink></para>
+<para><ulink url="#how-can-i-contribute">How Can I Contribute?</ulink><itemizedlist>
+<listitem><para><ulink url="#reporting-bugs">Reporting Bugs</ulink></para>
+</listitem><listitem><para><ulink url="#suggesting-enhancements">Suggesting Enhancements</ulink></para>
+</listitem><listitem><para><ulink url="#your-first-code-contribution">Your First Code Contribution</ulink></para>
+</listitem><listitem><para><ulink url="#pull-requests">Pull Requests</ulink></para>
+</listitem></itemizedlist>
+</para>
+<para><ulink url="#styleguides">Styleguides</ulink><itemizedlist>
+<listitem><para><ulink url="#git-commit-messages">Git Commit Messages</ulink></para>
+</listitem><listitem><para><ulink url="#git-branch-naming">Git Branch Naming</ulink></para>
+</listitem><listitem><para><ulink url="#code-styleguide">Code Styleguide</ulink></para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="2">Code of Conduct</heading>
+</para>
+<para>This project and everyone participating in it is governed by OkapiLib&apos;s <ref refid="md_code-of-conduct" kindref="compound">Code of Conduct</ref>. By participating, you are expected to uphold this code.</para>
+<para><heading level="2">I don&apos;t want to read this whole thing I just have a question!!!</heading>
+</para>
+<para>You can get help for questions that can&apos;t be answered by <ulink url="https://pros.cs.purdue.edu/v5/okapi/index.html">OkapiLib&apos;s docs</ulink> by <ulink url="https://github.com/OkapiLib/OkapiLib/issues/new/choose">filing an issue</ulink>.</para>
+<para><heading level="2">How Can I Contribute?</heading>
+</para>
+<para><heading level="3">Reporting Bugs</heading>
+</para>
+<para>This section guides you through submitting a bug report. Following these guidelines helps maintainers and the community understand your report :pencil:, reproduce the behavior :computer: :computer:, and find related reports :mag_right:.</para>
+<para>Before creating bug reports, please check <ulink url="#before-submitting-a-bug-report">this list</ulink> as you might find out that you don&apos;t need to create one. When you are creating a bug report, please <ulink url="#how-do-i-submit-a-good-bug-report">include as many details as possible</ulink>. Fill out the required template, the information it asks for helps us resolve issues faster.</para>
+<para><blockquote><para><bold>Note:</bold> If you find a <bold>closed</bold> issue that seems like it is the same thing that you&apos;re experiencing, open a new issue and include a link to the original issue in the body of your new one. </para>
+</blockquote></para>
+<para><heading level="4">Before Submitting A Bug Report</heading>
+</para>
+<para><itemizedlist>
+<listitem><para><bold>Perform a cursory search</bold> to see if the problem has already been reported. If it has <bold>and the issue is still open</bold>, add a comment to the existing issue instead of opening a new one.</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="4">How Do I Submit A (Good) Bug Report?</heading>
+</para>
+<para>Bugs are tracked as <ulink url="https://guides.github.com/features/issues/">GitHub issues</ulink>. Create an issue and provide the following information by filling in the template.</para>
+<para>Explain the problem and include additional details to help maintainers reproduce the problem:</para>
+<para><itemizedlist>
+<listitem><para><bold>Use a clear and descriptive title</bold> for the issue to identify the problem.</para>
+</listitem><listitem><para><bold>Describe the exact steps which reproduce the problem</bold> in as many details as possible. When listing steps, <bold>don&apos;t just say what you did, but explain how you did it</bold>. For example, if you used a <computeroutput>ChassisController</computeroutput> to drive the robot forward, don&apos;t just explain the arguments, but also explain how the method you are calling is used in your code.</para>
+</listitem><listitem><para><bold>Provide specific examples to demonstrate the steps</bold>. Include links to files or GitHub projects, or copy/pasteable snippets, which you use in those examples. If you&apos;re providing snippets in the issue, use <ulink url="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code">Markdown code blocks</ulink>.</para>
+</listitem><listitem><para><bold>Describe the behavior you observed after following the steps</bold> and point out what exactly is the problem with that behavior.</para>
+</listitem><listitem><para><bold>Explain which behavior you expected to see instead and why.</bold></para>
+</listitem><listitem><para><bold>If the problem wasn&apos;t triggered by a specific action</bold>, describe what you were doing before the problem happened and share more information using the guidelines below.</para>
+</listitem></itemizedlist>
+</para>
+<para>Provide more context by answering these questions:</para>
+<para><itemizedlist>
+<listitem><para><bold>Did the problem start happening recently</bold> (e.g. after updating to a new version) or was this always a problem?</para>
+</listitem><listitem><para>If the problem started happening recently, what&apos;s the most recent version in which the problem doesn&apos;t happen?</para>
+</listitem><listitem><para><bold>Can you reliably reproduce the issue?</bold> If not, provide details about how often the problem happens and under which conditions it normally happens.</para>
+</listitem></itemizedlist>
+</para>
+<para>Include details about your configuration and environment:</para>
+<para><itemizedlist>
+<listitem><para><bold>Which version of OkapiLib and PROS are you using?</bold> You can get the version by running <computeroutput>pros conduct info-project</computeroutput> in your terminal.</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="3">Suggesting Enhancements</heading>
+</para>
+<para>This section guides you through submitting an enhancement suggestion, including completely new features and minor improvements to existing functionality. Following these guidelines helps maintainers and the community understand your suggestion :pencil: and find related suggestions :mag_right:.</para>
+<para>Before creating enhancement suggestions, please check <ulink url="#before-submitting-an-enhancement-suggestion">this list</ulink> as you might find out that you don&apos;t need to create one. When you are creating an enhancement suggestion, please <ulink url="#how-do-i-submit-a-good-enhancement-suggestion">include as many details as possible</ulink>. Fill in the template, including the steps that you imagine you would take if the feature you&apos;re requesting existed.</para>
+<para><heading level="4">Before Submitting An Enhancement Suggestion</heading>
+</para>
+<para><itemizedlist>
+<listitem><para><bold>Perform a cursory search</bold> to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="4">How Do I Submit A (Good) Enhancement Suggestion?</heading>
+</para>
+<para>Enhancement suggestions are tracked as <ulink url="https://guides.github.com/features/issues/">GitHub issues</ulink>. Create an issue on that repository and provide the following information:</para>
+<para><itemizedlist>
+<listitem><para><bold>Use a clear and descriptive title</bold> for the issue to identify the suggestion.</para>
+</listitem><listitem><para><bold>Provide a step-by-step description of the suggested enhancement</bold> in as many details as possible.</para>
+</listitem><listitem><para><bold>Provide specific examples to demonstrate the steps</bold>. Include copy/pasteable snippets which you use in those examples, as <ulink url="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code">Markdown code blocks</ulink>.</para>
+</listitem><listitem><para><bold>Explain why this enhancement would be useful</bold> to most users.</para>
+</listitem><listitem><para><bold>Specify which version of OkapiLib and PROS you&apos;re using.</bold> You can get the version by running <computeroutput>pros conduct info-project</computeroutput> in your terminal.</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="3">Your First Code Contribution</heading>
+</para>
+<para>Unsure where to begin contributing? You can start by looking through these <computeroutput>beginner</computeroutput> and <computeroutput>help-wanted</computeroutput> issues:</para>
+<para><itemizedlist>
+<listitem><para>[Beginner issues][good first issue] - issues which should only require a few lines of code</para>
+</listitem><listitem><para>[Help wanted issues][help wanted] - issues which should be a bit more involved than <computeroutput>beginner</computeroutput> issues.</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="3">Pull Requests</heading>
+</para>
+<para><itemizedlist>
+<listitem><para>Fill in <ref refid="md_PULL_REQUEST_TEMPLATE" kindref="compound">the required template</ref></para>
+</listitem><listitem><para>Title the pull request [issue number][description]<itemizedlist>
+<listitem><para>For example, <computeroutput>Issue #0: Add a readme file</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>End all files with a newline</para>
+</listitem><listitem><para>Follow the <ulink url="#code-styleguide">style guide</ulink></para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="2">Styleguides</heading>
+</para>
+<para><heading level="3">Git Commit Messages</heading>
+</para>
+<para><itemizedlist>
+<listitem><para>Use the present tense (&quot;Add feature&quot; not &quot;Added feature&quot;)</para>
+</listitem><listitem><para>Use the imperative mood (&quot;Move cursor to...&quot; not &quot;Moves cursor to...&quot;)</para>
+</listitem><listitem><para>Title the commit message [issue number][message]<itemizedlist>
+<listitem><para>For example, <computeroutput>Issue #0: Initial commit adding a readme file</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Place additional information after the first line</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="3">Git Branch Naming</heading>
+</para>
+<para><itemizedlist>
+<listitem><para>This project uses Git flow. If you are not familiar, look here: <ulink url="http://nvie.com/posts/a-successful-git-branching-model/">http://nvie.com/posts/a-successful-git-branching-model/</ulink><itemizedlist>
+<listitem><para>If Git flow looks difficult or confusing, you can download <ulink url="https://www.gitkraken.com/">GitKraken</ulink> and it will handle branching/merging for you (<ulink url="https://support.gitkraken.com/git-workflows-and-extensions/git-flow">tutorial here</ulink>).</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>Name a new branch according to its purpose in the format: [issue/bug/feature]/[your initials]/[issue number][description]<itemizedlist>
+<listitem><para>For example, to make a branch to fix Issue #0 about adding a README file, name the branch <computeroutput>issue/ABC/#0_add_readme_file</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="3">Code Styleguide</heading>
+</para>
+<para><heading level="4">clang-format</heading>
+</para>
+<para>OkapiLib uses the program <ulink url="https://clang.llvm.org/docs/ClangFormat.html">clang-format</ulink> to format code to meet a specific style (lightly modified LLVM style). Install the latest version and run <computeroutput>./run_clang-format.sh</computeroutput> to format all project files. Atom and VS Code, among other editors, have plugins that add support for running clang-format when you save a file. OkapiLib recommends these plugins so you stay on top of your formatting as you work.</para>
+<para><heading level="4">cppcheck</heading>
+</para>
+<para>OkapiLib uses the program <ulink url="http://cppcheck.sourceforge.net/">cppcheck</ulink> for static analysis. Install the latest version and run <computeroutput>./run_cppcheck.sh</computeroutput> to check all project files.</para>
+<para><heading level="3">Other Points</heading>
+</para>
+<para><itemizedlist>
+<listitem><para>Every file must include the MPL2.0 header and attributions to applicable authors (first authors placed first).</para>
+</listitem><listitem><para>Use <ulink url="https://www.tutorialspoint.com/java/java_documentation.htm">Javadoc-style</ulink> comments on constructors and methods.</para>
+</listitem><listitem><para>Name classes and methods using Camel case. Class names should start with a capital letter.</para>
+</listitem><listitem><para>Do not prefix member variables with <computeroutput>m_</computeroutput>; instead, prefix parameters with <computeroutput>i</computeroutput>.</para>
+</listitem><listitem><para>Place protected and private class members at the bottom of the class declaration.</para>
+</listitem><listitem><para>Do not <computeroutput>using namespace std</computeroutput> or any other namespace as this pollutes the user&apos;s namespace.</para>
+</listitem><listitem><para>No raw pointers. Use references (preferably <computeroutput>const</computeroutput> references) instead. If you need to pass an abstract class and can&apos;t use a reference, use a smart pointer.</para>
+</listitem><listitem><para>Use in-class member initializers and default constructors for no-arg constructors where possible.</para>
+</listitem><listitem><para>Use default arguments instead of method overloading.</para>
+</listitem><listitem><para>Everything that can be <computeroutput>const</computeroutput> should be.</para>
+</listitem><listitem><para>Don&apos;t optimize for no reason or prematurely optimize.</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="2">Licensing</heading>
+</para>
+<para>By contributing to OkapiLib, you agree that your code will be distributed with OkapiLib, and licensed under the license for the OkapiLib project. You should not contribute code that you do not have permission to relicense in this manner. Our license is the Mozilla Public License 2.0, which you can find [here](LICENSE).</para>
+<para>(This licensing clause adapted from the WPIlib clause <ulink url="https://github.com/wpilibsuite/allwpilib/blob/master/CONTRIBUTING.md#licensing">here</ulink>) </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

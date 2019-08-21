@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="xDriveModel_8hpp" kind="file" language="C++">
+    <compoundname>xDriveModel.hpp</compoundname>
+    <includes refid="chassisModel_8hpp" local="yes">okapi/api/chassis/model/chassisModel.hpp</includes>
+    <includes refid="abstractMotor_8hpp" local="yes">okapi/api/device/motor/abstractMotor.hpp</includes>
+    <includes refid="continuousRotarySensor_8hpp" local="yes">okapi/api/device/rotarysensor/continuousRotarySensor.hpp</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <includedby refid="chassisControllerBuilder_8hpp" local="yes">include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp</includedby>
+    <includedby refid="xDriveModel_8cpp" local="yes">src/api/chassis/model/xDriveModel.cpp</includedby>
+    <incdepgraph>
+      <node id="649">
+        <label>valarray</label>
+      </node>
+      <node id="645">
+        <label>functional</label>
+      </node>
+      <node id="642">
+        <label>cstdint</label>
+      </node>
+      <node id="654">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="640">
+        <label>cstdbool</label>
+      </node>
+      <node id="639">
+        <label>cmath</label>
+      </node>
+      <node id="652">
+        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
+        <link refid="continuousRotarySensor_8hpp"/>
+        <childnode refid="653" relation="include">
+        </childnode>
+      </node>
+      <node id="650">
+        <label>okapi/api/device/motor/abstractMotor.hpp</label>
+        <link refid="abstractMotor_8hpp"/>
+        <childnode refid="651" relation="include">
+        </childnode>
+        <childnode refid="652" relation="include">
+        </childnode>
+        <childnode refid="655" relation="include">
+        </childnode>
+      </node>
+      <node id="635">
+        <label>include/okapi/api/chassis/model/xDriveModel.hpp</label>
+        <link refid="xDriveModel_8hpp"/>
+        <childnode refid="636" relation="include">
+        </childnode>
+        <childnode refid="650" relation="include">
+        </childnode>
+        <childnode refid="652" relation="include">
+        </childnode>
+      </node>
+      <node id="638">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="639" relation="include">
+        </childnode>
+        <childnode refid="640" relation="include">
+        </childnode>
+        <childnode refid="641" relation="include">
+        </childnode>
+        <childnode refid="642" relation="include">
+        </childnode>
+        <childnode refid="643" relation="include">
+        </childnode>
+        <childnode refid="644" relation="include">
+        </childnode>
+        <childnode refid="645" relation="include">
+        </childnode>
+        <childnode refid="646" relation="include">
+        </childnode>
+        <childnode refid="647" relation="include">
+        </childnode>
+        <childnode refid="648" relation="include">
+        </childnode>
+      </node>
+      <node id="647">
+        <label>api.h</label>
+      </node>
+      <node id="651">
+        <label>okapi/api/control/controllerOutput.hpp</label>
+        <link refid="controllerOutput_8hpp"/>
+      </node>
+      <node id="643">
+        <label>cstdio</label>
+      </node>
+      <node id="658">
+        <label>vector</label>
+      </node>
+      <node id="656">
+        <label>array</label>
+      </node>
+      <node id="646">
+        <label>sstream</label>
+      </node>
+      <node id="653">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="654" relation="include">
+        </childnode>
+        <childnode refid="638" relation="include">
+        </childnode>
+      </node>
+      <node id="644">
+        <label>cstdlib</label>
+      </node>
+      <node id="636">
+        <label>okapi/api/chassis/model/chassisModel.hpp</label>
+        <link refid="chassisModel_8hpp"/>
+        <childnode refid="637" relation="include">
+        </childnode>
+        <childnode refid="650" relation="include">
+        </childnode>
+        <childnode refid="656" relation="include">
+        </childnode>
+        <childnode refid="657" relation="include">
+        </childnode>
+        <childnode refid="655" relation="include">
+        </childnode>
+        <childnode refid="658" relation="include">
+        </childnode>
+      </node>
+      <node id="641">
+        <label>cstddef</label>
+      </node>
+      <node id="637">
+        <label>okapi/api/chassis/model/readOnlyChassisModel.hpp</label>
+        <link refid="readOnlyChassisModel_8hpp"/>
+        <childnode refid="638" relation="include">
+        </childnode>
+        <childnode refid="649" relation="include">
+        </childnode>
+      </node>
+      <node id="648">
+        <label>pros/apix.h</label>
+      </node>
+      <node id="655">
+        <label>memory</label>
+      </node>
+      <node id="657">
+        <label>initializer_list</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="660">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="659">
+        <label>include/okapi/api/chassis/model/xDriveModel.hpp</label>
+        <link refid="xDriveModel_8hpp"/>
+        <childnode refid="660" relation="include">
+        </childnode>
+        <childnode refid="661" relation="include">
+        </childnode>
+        <childnode refid="663" relation="include">
+        </childnode>
+      </node>
+      <node id="661">
+        <label>include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp</label>
+        <link refid="chassisControllerBuilder_8hpp"/>
+        <childnode refid="660" relation="include">
+        </childnode>
+        <childnode refid="662" relation="include">
+        </childnode>
+      </node>
+      <node id="662">
+        <label>src/impl/chassis/controller/chassisControllerBuilder.cpp</label>
+        <link refid="chassisControllerBuilder_8cpp"/>
+      </node>
+      <node id="663">
+        <label>src/api/chassis/model/xDriveModel.cpp</label>
+        <link refid="xDriveModel_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1XDriveModel" prot="public">okapi::XDriveModel</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/chassis/model/xDriveModel.hpp"/>
+  </compounddef>
+</doxygen>

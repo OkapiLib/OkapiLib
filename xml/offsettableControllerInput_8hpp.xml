@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="offsettableControllerInput_8hpp" kind="file" language="C++">
+    <compoundname>offsettableControllerInput.hpp</compoundname>
+    <includes refid="controllerInput_8hpp" local="yes">okapi/api/control/controllerInput.hpp</includes>
+    <includes local="no">memory</includes>
+    <includedby refid="asyncPosPidController_8hpp" local="yes">include/okapi/api/control/async/asyncPosPidController.hpp</includedby>
+    <includedby refid="offsettableControllerInput_8cpp" local="yes">src/api/control/offsettableControllerInput.cpp</includedby>
+    <incdepgraph>
+      <node id="1575">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="1574">
+        <label>include/okapi/api/control/offsettableControllerInput.hpp</label>
+        <link refid="offsettableControllerInput_8hpp"/>
+        <childnode refid="1575" relation="include">
+        </childnode>
+        <childnode refid="1576" relation="include">
+        </childnode>
+      </node>
+      <node id="1576">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1582">
+        <label>src/api/control/async/asyncPosPidController.cpp</label>
+        <link refid="asyncPosPidController_8cpp"/>
+      </node>
+      <node id="1579">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="1581">
+        <label>src/impl/control/async/asyncPosControllerBuilder.cpp</label>
+        <link refid="asyncPosControllerBuilder_8cpp"/>
+      </node>
+      <node id="1577">
+        <label>include/okapi/api/control/offsettableControllerInput.hpp</label>
+        <link refid="offsettableControllerInput_8hpp"/>
+        <childnode refid="1578" relation="include">
+        </childnode>
+        <childnode refid="1583" relation="include">
+        </childnode>
+      </node>
+      <node id="1580">
+        <label>include/okapi/impl/control/async/asyncPosControllerBuilder.hpp</label>
+        <link refid="asyncPosControllerBuilder_8hpp"/>
+        <childnode refid="1579" relation="include">
+        </childnode>
+        <childnode refid="1581" relation="include">
+        </childnode>
+      </node>
+      <node id="1578">
+        <label>include/okapi/api/control/async/asyncPosPidController.hpp</label>
+        <link refid="asyncPosPidController_8hpp"/>
+        <childnode refid="1579" relation="include">
+        </childnode>
+        <childnode refid="1580" relation="include">
+        </childnode>
+        <childnode refid="1582" relation="include">
+        </childnode>
+      </node>
+      <node id="1583">
+        <label>src/api/control/offsettableControllerInput.cpp</label>
+        <link refid="offsettableControllerInput_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1OffsetableControllerInput" prot="public">okapi::OffsetableControllerInput</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/control/offsettableControllerInput.hpp"/>
+  </compounddef>
+</doxygen>

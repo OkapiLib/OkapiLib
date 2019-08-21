@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="structokapi_1_1PIDTuner_1_1Particle" kind="struct" language="C++" prot="protected">
+    <compoundname>okapi::PIDTuner::Particle</compoundname>
+    <includes refid="pidTuner_8hpp" local="no">pidTuner.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structokapi_1_1PIDTuner_1_1Particle_1a59ef510201da8dc860a803c202044b2d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::PIDTuner::Particle::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/pidTuner.hpp" line="57" column="1" bodyfile="include/okapi/api/control/util/pidTuner.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1PIDTuner_1_1Particle_1a16dc34bf86fd5c57182d513a597249c8" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::PIDTuner::Particle::vel</definition>
+        <argsstring></argsstring>
+        <name>vel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/pidTuner.hpp" line="57" column="1" bodyfile="include/okapi/api/control/util/pidTuner.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1PIDTuner_1_1Particle_1a5b52868df1aae1367f6ec138e2494e09" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::PIDTuner::Particle::best</definition>
+        <argsstring></argsstring>
+        <name>best</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/pidTuner.hpp" line="57" column="1" bodyfile="include/okapi/api/control/util/pidTuner.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/control/util/pidTuner.hpp" line="56" column="1" bodyfile="include/okapi/api/control/util/pidTuner.hpp" bodystart="56" bodyend="58"/>
+    <listofallmembers>
+      <member refid="structokapi_1_1PIDTuner_1_1Particle_1a5b52868df1aae1367f6ec138e2494e09" prot="public" virt="non-virtual"><scope>okapi::PIDTuner::Particle</scope><name>best</name></member>
+      <member refid="structokapi_1_1PIDTuner_1_1Particle_1a59ef510201da8dc860a803c202044b2d" prot="public" virt="non-virtual"><scope>okapi::PIDTuner::Particle</scope><name>pos</name></member>
+      <member refid="structokapi_1_1PIDTuner_1_1Particle_1a16dc34bf86fd5c57182d513a597249c8" prot="public" virt="non-virtual"><scope>okapi::PIDTuner::Particle</scope><name>vel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

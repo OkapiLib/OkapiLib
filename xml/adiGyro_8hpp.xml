@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="adiGyro_8hpp" kind="file" language="C++">
+    <compoundname>adiGyro.hpp</compoundname>
+    <includes local="yes">api.h</includes>
+    <includes refid="controllerInput_8hpp" local="yes">okapi/api/control/controllerInput.hpp</includes>
+    <includes refid="continuousRotarySensor_8hpp" local="yes">okapi/api/device/rotarysensor/continuousRotarySensor.hpp</includes>
+    <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
+    <includedby refid="adiGyro_8cpp" local="yes">src/impl/device/rotarysensor/adiGyro.cpp</includedby>
+    <incdepgraph>
+      <node id="4184">
+        <label>functional</label>
+      </node>
+      <node id="4181">
+        <label>cstdint</label>
+      </node>
+      <node id="4174">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="4179">
+        <label>cstdbool</label>
+      </node>
+      <node id="4178">
+        <label>cmath</label>
+      </node>
+      <node id="4175">
+        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
+        <link refid="continuousRotarySensor_8hpp"/>
+        <childnode refid="4176" relation="include">
+        </childnode>
+      </node>
+      <node id="4177">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="4178" relation="include">
+        </childnode>
+        <childnode refid="4179" relation="include">
+        </childnode>
+        <childnode refid="4180" relation="include">
+        </childnode>
+        <childnode refid="4181" relation="include">
+        </childnode>
+        <childnode refid="4182" relation="include">
+        </childnode>
+        <childnode refid="4183" relation="include">
+        </childnode>
+        <childnode refid="4184" relation="include">
+        </childnode>
+        <childnode refid="4185" relation="include">
+        </childnode>
+        <childnode refid="4173" relation="include">
+        </childnode>
+        <childnode refid="4186" relation="include">
+        </childnode>
+      </node>
+      <node id="4173">
+        <label>api.h</label>
+      </node>
+      <node id="4172">
+        <label>include/okapi/impl/device/rotarysensor/adiGyro.hpp</label>
+        <link refid="adiGyro_8hpp"/>
+        <childnode refid="4173" relation="include">
+        </childnode>
+        <childnode refid="4174" relation="include">
+        </childnode>
+        <childnode refid="4175" relation="include">
+        </childnode>
+      </node>
+      <node id="4182">
+        <label>cstdio</label>
+      </node>
+      <node id="4185">
+        <label>sstream</label>
+      </node>
+      <node id="4176">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="4174" relation="include">
+        </childnode>
+        <childnode refid="4177" relation="include">
+        </childnode>
+      </node>
+      <node id="4183">
+        <label>cstdlib</label>
+      </node>
+      <node id="4180">
+        <label>cstddef</label>
+      </node>
+      <node id="4186">
+        <label>pros/apix.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4188">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="4187">
+        <label>include/okapi/impl/device/rotarysensor/adiGyro.hpp</label>
+        <link refid="adiGyro_8hpp"/>
+        <childnode refid="4188" relation="include">
+        </childnode>
+        <childnode refid="4189" relation="include">
+        </childnode>
+      </node>
+      <node id="4189">
+        <label>src/impl/device/rotarysensor/adiGyro.cpp</label>
+        <link refid="adiGyro_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classokapi_1_1ADIGyro" prot="public">okapi::ADIGyro</innerclass>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/device/rotarysensor/adiGyro.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,364 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ClosedLoopController" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>okapi::ClosedLoopController</compoundname>
+    <basecompoundref refid="classokapi_1_1ControllerOutput" prot="public" virt="non-virtual">okapi::ControllerOutput&lt; Input &gt;</basecompoundref>
+    <derivedcompoundref refid="classokapi_1_1AsyncController" prot="public" virt="non-virtual">okapi::AsyncController&lt; Input, Output &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classokapi_1_1IterativeController" prot="public" virt="non-virtual">okapi::IterativeController&lt; Input, Output &gt;</derivedcompoundref>
+    <includes refid="closedLoopController_8hpp" local="no">closedLoopController.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>Input</declname>
+        <defname>Input</defname>
+      </param>
+      <param>
+        <type>typename</type>
+        <declname>Output</declname>
+        <defname>Output</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1ClosedLoopController_1a7fa88d53b8f248e0894b8e0865918d5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual okapi::ClosedLoopController&lt; Input, Output &gt;::~ClosedLoopController</definition>
+        <argsstring>()=default</argsstring>
+        <name>~ClosedLoopController</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/closedLoopController.hpp" line="23" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ClosedLoopController_1ac14482d0768b3f157d52e0214a4c36d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ClosedLoopController&lt; Input, Output &gt;::setTarget</definition>
+        <argsstring>(Input itarget)=0</argsstring>
+        <name>setTarget</name>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1a9a5a1d57df3faa75474245200ed34a18">setTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncPosIntegratedController_1ae5cb385dc40c2c183266a3fa4aed7cac">setTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncVelIntegratedController_1a5f1444ba57a64a21bfbdbdc57a264c2d">setTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1aa4b9a4ff29aff5047425e239b574c3c6">setTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1aa4b9a4ff29aff5047425e239b574c3c6">setTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a566f7d7834eefd6b542d2e231d6219f9">setTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1ab4ec4344fa758ba8cce93633aa0851d2">setTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncMotionProfileController_1adf705d6bfd3d0a83d8a6c50a05ffd156">setTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncLinearMotionProfileController_1a18e3ba77f08cb5dd93a9cba23d4c2a1e">setTarget</reimplementedby>
+        <param>
+          <type>Input</type>
+          <declname>itarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the target for the controller.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itarget</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new target </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/closedLoopController.hpp" line="30" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ClosedLoopController_1a22012bedbfaff6e5a3a508f274ec2497" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>Input</type>
+        <definition>virtual Input okapi::ClosedLoopController&lt; Input, Output &gt;::getTarget</definition>
+        <argsstring>()=0</argsstring>
+        <name>getTarget</name>
+        <reimplementedby refid="classokapi_1_1AsyncPosIntegratedController_1a8d09fefb4a02fcb9d0352b4aa68821e3">getTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncVelIntegratedController_1a030ca47508587f799dfdd7d97ed86d7d">getTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1a3e54865f6b424954f3846cd1361077c5">getTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1a2471c7b5f388d441db77fa9199db7b83">getTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1a2471c7b5f388d441db77fa9199db7b83">getTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a1c4c3a54b616e4250e65a88b0cb12276">getTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1a5f2bbad6e916345f8a3abf762609321c">getTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncMotionProfileController_1a9f9e44e987481619cbec37d5e35c71e8">getTarget</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncLinearMotionProfileController_1afc9a1b30a5fd499c38455e8b05982be9">getTarget</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the last set target, or the default target if none was set.</para>
+<para><simplesect kind="return"><para>the last target </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/closedLoopController.hpp" line="37" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ClosedLoopController_1a50c73444ff6e3e631951c43d0f951953" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>Output</type>
+        <definition>virtual Output okapi::ClosedLoopController&lt; Input, Output &gt;::getError</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getError</name>
+        <reimplementedby refid="classokapi_1_1AsyncPosIntegratedController_1a82aeb0cb2d1aab524b9a79a249260e11">getError</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncVelIntegratedController_1a6641352cebd3f0baa4e3e1ab4ad27be3">getError</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1aee5e0bfdaa45c2748b9f4bf8b549f286">getError</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1a64b690883ff7475375a6d08ad3fb62f9">getError</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1a64b690883ff7475375a6d08ad3fb62f9">getError</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1a7e60b432a91d73db0a62c5d31759ed10">getError</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a632611340113011f75c7ee1c389231e3">getError</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncMotionProfileController_1aeb60fb677877b3461c1232dda7d0db50">getError</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncLinearMotionProfileController_1a31057c2bb8cface61147b1edd0d97ce5">getError</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the last error of the controller. Does not update when disabled.</para>
+<para><simplesect kind="return"><para>the last error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/closedLoopController.hpp" line="44" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ClosedLoopController_1aed7aa0e94b6474c28314f8517d6cb4d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool okapi::ClosedLoopController&lt; Input, Output &gt;::isSettled</definition>
+        <argsstring>()=0</argsstring>
+        <name>isSettled</name>
+        <reimplementedby refid="classokapi_1_1AsyncPosIntegratedController_1a21b7ee29d335ee33aed1c41969a27f62">isSettled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncVelIntegratedController_1a8518d706827ccc8d42d0a401566d58f7">isSettled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1ade18c38b1ec3196b25b0ea323d8e1075">isSettled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1a93343937a8bbe762aeb6460197a22dfe">isSettled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1a93343937a8bbe762aeb6460197a22dfe">isSettled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1a818347e199d8e7fd3e11f9f1aa369749">isSettled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a856b633717128607fa8f1b52d91f89d6">isSettled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncMotionProfileController_1abfc944ba6d703dc1aa6fb16a44b5e395">isSettled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncLinearMotionProfileController_1aecfed2c6a0ead2c38253250e26ce17d4">isSettled</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns whether the controller has settled at the target. Determining what settling means is implementation-dependent.</para>
+<para>If the controller is disabled, this method must return <computeroutput>true</computeroutput>.</para>
+<para><simplesect kind="return"><para>whether the controller is settled </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/closedLoopController.hpp" line="54" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ClosedLoopController_1a7dd6ce28b3e38bdf987514a1b6c83c8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ClosedLoopController&lt; Input, Output &gt;::reset</definition>
+        <argsstring>()=0</argsstring>
+        <name>reset</name>
+        <reimplementedby refid="classokapi_1_1AsyncPosIntegratedController_1a5858445747fe5a03f17f6fd83ee9aaaa">reset</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncVelIntegratedController_1aef78a032062241ece030d58407179912">reset</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1a404105de7fd0e34dd50f09d47c8b110f">reset</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1a51607c29e072a672522a9e93bbd12410">reset</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a038da11f8e6e16139423e2284afa797c">reset</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1a9372a74580e5be429ecd65ec0e110c23">reset</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1a9372a74580e5be429ecd65ec0e110c23">reset</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncMotionProfileController_1a9ad15272defac4db5e2b318671eb3850">reset</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncLinearMotionProfileController_1a925381153aeda65c448489a8f2c3803c">reset</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Resets the controller&apos;s internal state so it is similar to when it was first initialized, while keeping any user-configured information. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/closedLoopController.hpp" line="60" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ClosedLoopController_1a9de69b60885df41cd2164fe1a23f34d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ClosedLoopController&lt; Input, Output &gt;::flipDisable</definition>
+        <argsstring>()=0</argsstring>
+        <name>flipDisable</name>
+        <reimplementedby refid="classokapi_1_1AsyncPosIntegratedController_1a95c0b1350a2287e72d6517acdb8082b1">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncVelIntegratedController_1ab75c1617544e0817949df5998fa2a8d7">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1a24d2200fe82b8f454839caaa511483f6">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1a9a575df2d0a53ca71a812a86d673b8fa">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a8f7e1c7bc45f6b9df7a24edb60fc9e6a">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1afdf4d80b0f3eec3d77280a561b24f0b0">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1afdf4d80b0f3eec3d77280a561b24f0b0">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncMotionProfileController_1a7069b2b7373aec21c84369392d8d34d8">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncLinearMotionProfileController_1a56b05f978f2a98c2183fdae0f13466e7">flipDisable</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Changes whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/closedLoopController.hpp" line="66" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ClosedLoopController_1a768cd1db40ce9cd5c89b20be6e838ccc" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ClosedLoopController&lt; Input, Output &gt;::flipDisable</definition>
+        <argsstring>(bool iisDisabled)=0</argsstring>
+        <name>flipDisable</name>
+        <reimplementedby refid="classokapi_1_1AsyncPosIntegratedController_1a6476dde71ef77fceb1c461b4f0ebe62b">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncVelIntegratedController_1a1e906e904500fe920ea4cad6a922b523">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1a8419fd62ca804f0446204b59ce37d01c">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1a6bd2a04813b0fd99f0904808ff963f28">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a5b0755a4839a25af4c5fa7f4e03398ca">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1ab47f9a7ee52a5d699cb39b21b0926981">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1ab47f9a7ee52a5d699cb39b21b0926981">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncMotionProfileController_1a3dc30b14b36f1fc1fc61c9c45ced002e">flipDisable</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncLinearMotionProfileController_1a3072d7ac1e5d0f387f739657e9f82fd8">flipDisable</reimplementedby>
+        <param>
+          <type>bool</type>
+          <declname>iisDisabled</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iisDisabled</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether the controller is disabled </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/closedLoopController.hpp" line="74" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ClosedLoopController_1a40bd4ec2b8c75503fbf6f494fd7cbe69" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool okapi::ClosedLoopController&lt; Input, Output &gt;::isDisabled</definition>
+        <argsstring>() const =0</argsstring>
+        <name>isDisabled</name>
+        <reimplementedby refid="classokapi_1_1AsyncPosIntegratedController_1a8774fe656abb2cf72d046b40ba3572a9">isDisabled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncVelIntegratedController_1ad4c6394b3512ae44ffa36c9e01f6321b">isDisabled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1a3d0383caf0fb0b982806e224492af473">isDisabled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1a628a5093634f85d788015c4cc1353c54">isDisabled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a8800531c198ae47c0e7b602db2dd10d3">isDisabled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1a83d411851373f0483b5ae392560a180a">isDisabled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1a83d411851373f0483b5ae392560a180a">isDisabled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncMotionProfileController_1a04bc0f7be2c116163bfbef0571dec2ef">isDisabled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncLinearMotionProfileController_1a99ae2e378cc88745c82a08b6ddf52ee4">isDisabled</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns whether the controller is currently disabled.</para>
+<para><simplesect kind="return"><para>whether the controller is currently disabled </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/closedLoopController.hpp" line="81" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An abstract closed-loop controller.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target/input type. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The error/output type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="246">
+        <label>okapi::IterativeVelocityController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1IterativeVelocityController"/>
+        <childnode refid="244" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="241">
+        <label>okapi::AsyncPositionController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1AsyncPositionController"/>
+        <childnode refid="240" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="238">
+        <label>okapi::ClosedLoopController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1ClosedLoopController"/>
+        <childnode refid="239" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="243">
+        <label>okapi::AsyncWrapper&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1AsyncWrapper"/>
+        <childnode refid="240" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="244">
+        <label>okapi::IterativeController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1IterativeController"/>
+        <childnode refid="238" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="245">
+        <label>okapi::IterativePositionController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1IterativePositionController"/>
+        <childnode refid="244" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="242">
+        <label>okapi::AsyncVelocityController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1AsyncVelocityController"/>
+        <childnode refid="240" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="240">
+        <label>okapi::AsyncController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1AsyncController"/>
+        <childnode refid="238" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="239">
+        <label>okapi::ControllerOutput&lt; Input &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="247">
+        <label>okapi::ClosedLoopController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1ClosedLoopController"/>
+        <childnode refid="248" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="248">
+        <label>okapi::ControllerOutput&lt; Input &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/control/closedLoopController.hpp" line="21" column="1" bodyfile="include/okapi/api/control/closedLoopController.hpp" bodystart="21" bodyend="82"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49" prot="public" virt="pure-virtual"><scope>okapi::ClosedLoopController</scope><name>controllerSet</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a9de69b60885df41cd2164fe1a23f34d3" prot="public" virt="pure-virtual"><scope>okapi::ClosedLoopController</scope><name>flipDisable</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a768cd1db40ce9cd5c89b20be6e838ccc" prot="public" virt="pure-virtual"><scope>okapi::ClosedLoopController</scope><name>flipDisable</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a50c73444ff6e3e631951c43d0f951953" prot="public" virt="pure-virtual"><scope>okapi::ClosedLoopController</scope><name>getError</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a22012bedbfaff6e5a3a508f274ec2497" prot="public" virt="pure-virtual"><scope>okapi::ClosedLoopController</scope><name>getTarget</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a40bd4ec2b8c75503fbf6f494fd7cbe69" prot="public" virt="pure-virtual"><scope>okapi::ClosedLoopController</scope><name>isDisabled</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1aed7aa0e94b6474c28314f8517d6cb4d8" prot="public" virt="pure-virtual"><scope>okapi::ClosedLoopController</scope><name>isSettled</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a7dd6ce28b3e38bdf987514a1b6c83c8c" prot="public" virt="pure-virtual"><scope>okapi::ClosedLoopController</scope><name>reset</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1ac14482d0768b3f157d52e0214a4c36d7" prot="public" virt="pure-virtual"><scope>okapi::ClosedLoopController</scope><name>setTarget</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a7fa88d53b8f248e0894b8e0865918d5b" prot="public" virt="virtual"><scope>okapi::ClosedLoopController</scope><name>~ClosedLoopController</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

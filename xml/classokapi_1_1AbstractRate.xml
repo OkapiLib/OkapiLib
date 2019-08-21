@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1AbstractRate" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>okapi::AbstractRate</compoundname>
+    <derivedcompoundref refid="classokapi_1_1Rate" prot="public" virt="non-virtual">okapi::Rate</derivedcompoundref>
+    <includes refid="abstractRate_8hpp" local="no">abstractRate.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1AbstractRate_1ab2d9563d840f0378325712480a3e572c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>okapi::AbstractRate::~AbstractRate</definition>
+        <argsstring>()</argsstring>
+        <name>~AbstractRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractRate.hpp" line="17" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractRate_1ab1abf71d6cf3184abeed1d3556d39d4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::AbstractRate::delay</definition>
+        <argsstring>(QFrequency ihz)=0</argsstring>
+        <name>delay</name>
+        <reimplementedby refid="classokapi_1_1Rate_1ad066b6b32b6d43f4ccbb66617018e1fc">delay</reimplementedby>
+        <param>
+          <type>QFrequency</type>
+          <declname>ihz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Delay the current task such that it runs at the given frequency. The first delay will run for 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the task.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ihz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the frequency </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractRate.hpp" line="25" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractRate_1a89a4325d3fc4739abc085813095d659a" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::AbstractRate::delay</definition>
+        <argsstring>(int ihz)=0</argsstring>
+        <name>delay</name>
+        <reimplementedby refid="classokapi_1_1Rate_1a302ef2dc3cece68cd0125934c71936cc">delay</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>ihz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Delay the current task such that it runs every ihz ms. The first delay will run for 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the task.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ihz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the frequency in ms </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractRate.hpp" line="33" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractRate_1a53a15074ca3bd0787ce34d30c068d9b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::AbstractRate::delayUntil</definition>
+        <argsstring>(QTime itime)=0</argsstring>
+        <name>delayUntil</name>
+        <reimplementedby refid="classokapi_1_1Rate_1a9244a301c81388054954076b739cec50">delayUntil</reimplementedby>
+        <param>
+          <type>QTime</type>
+          <declname>itime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Delay the current task until itime has passed. This method can be used by periodic tasks to ensure a consistent execution frequency.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the time period </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractRate.hpp" line="41" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractRate_1a3faf54ea2951ae5e0567cd50ddba0227" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::AbstractRate::delayUntil</definition>
+        <argsstring>(uint32_t ims)=0</argsstring>
+        <name>delayUntil</name>
+        <reimplementedby refid="classokapi_1_1Rate_1a0d31416c85408d63830cceaa07aff1e0">delayUntil</reimplementedby>
+        <param>
+          <type>uint32_t</type>
+          <declname>ims</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Delay the current task until ims milliseconds have passed. This method can be used by periodic tasks to ensure a consistent execution frequency.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ims</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the time period </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractRate.hpp" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="14">
+        <label>okapi::Rate</label>
+        <link refid="classokapi_1_1Rate"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>okapi::AbstractRate</label>
+        <link refid="classokapi_1_1AbstractRate"/>
+      </node>
+    </inheritancegraph>
+    <location file="include/okapi/api/util/abstractRate.hpp" line="15" column="1" bodyfile="include/okapi/api/util/abstractRate.hpp" bodystart="15" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1AbstractRate_1ab1abf71d6cf3184abeed1d3556d39d4f" prot="public" virt="pure-virtual"><scope>okapi::AbstractRate</scope><name>delay</name></member>
+      <member refid="classokapi_1_1AbstractRate_1a89a4325d3fc4739abc085813095d659a" prot="public" virt="pure-virtual"><scope>okapi::AbstractRate</scope><name>delay</name></member>
+      <member refid="classokapi_1_1AbstractRate_1a53a15074ca3bd0787ce34d30c068d9b2" prot="public" virt="pure-virtual"><scope>okapi::AbstractRate</scope><name>delayUntil</name></member>
+      <member refid="classokapi_1_1AbstractRate_1a3faf54ea2951ae5e0567cd50ddba0227" prot="public" virt="pure-virtual"><scope>okapi::AbstractRate</scope><name>delayUntil</name></member>
+      <member refid="classokapi_1_1AbstractRate_1ab2d9563d840f0378325712480a3e572c" prot="public" virt="virtual"><scope>okapi::AbstractRate</scope><name>~AbstractRate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

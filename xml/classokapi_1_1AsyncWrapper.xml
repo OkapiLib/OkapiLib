@@ -1,0 +1,832 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1AsyncWrapper" kind="class" language="C++" prot="public">
+    <compoundname>okapi::AsyncWrapper</compoundname>
+    <basecompoundref refid="classokapi_1_1AsyncController" prot="public" virt="virtual">okapi::AsyncController&lt; Input, Output &gt;</basecompoundref>
+    <includes refid="asyncWrapper_8hpp" local="no">asyncWrapper.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>Input</declname>
+        <defname>Input</defname>
+      </param>
+      <param>
+        <type>typename</type>
+        <declname>Output</declname>
+        <defname>Output</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1AsyncWrapper_1a9b55140b9c8b7cab105959a7667038ff" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;Logger&gt; okapi::AsyncWrapper&lt; Input, Output &gt;::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="239" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="239" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncWrapper_1ad758e3e7e99f65dc9f2c97312a6e7483" prot="protected" static="no" mutable="no">
+        <type><ref refid="classokapi_1_1Supplier" kindref="compound">Supplier</ref>&lt; std::unique_ptr&lt; <ref refid="classokapi_1_1AbstractRate" kindref="compound">AbstractRate</ref> &gt; &gt;</type>
+        <definition>Supplier&lt;std::unique_ptr&lt;AbstractRate&gt; &gt; okapi::AsyncWrapper&lt; Input, Output &gt;::rateSupplier</definition>
+        <argsstring></argsstring>
+        <name>rateSupplier</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="240" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="240" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncWrapper_1a96e7029482813dd1277cc7e45c149938" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ControllerInput" kindref="compound">ControllerInput</ref>&lt; Input &gt; &gt;</type>
+        <definition>std::shared_ptr&lt;ControllerInput&lt;Input&gt; &gt; okapi::AsyncWrapper&lt; Input, Output &gt;::input</definition>
+        <argsstring></argsstring>
+        <name>input</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="241" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="241" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncWrapper_1a7bbdffe660513797a479cb22018fd7bf" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ControllerOutput" kindref="compound">ControllerOutput</ref>&lt; Output &gt; &gt;</type>
+        <definition>std::shared_ptr&lt;ControllerOutput&lt;Output&gt; &gt; okapi::AsyncWrapper&lt; Input, Output &gt;::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="242" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="242" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncWrapper_1a0a6e4e3e58a885ce74a2d0f729f679c3" prot="protected" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classokapi_1_1IterativeController" kindref="compound">IterativeController</ref>&lt; Input, Output &gt; &gt;</type>
+        <definition>std::unique_ptr&lt;IterativeController&lt;Input, Output&gt; &gt; okapi::AsyncWrapper&lt; Input, Output &gt;::controller</definition>
+        <argsstring></argsstring>
+        <name>controller</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="243" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="243" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncWrapper_1a75812fac3f252bf5e8d3d4e466d085b8" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool okapi::AsyncWrapper&lt; Input, Output &gt;::hasFirstTarget</definition>
+        <argsstring></argsstring>
+        <name>hasFirstTarget</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="244" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="244" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncWrapper_1ac5fe1a784c27377eb80a995fb229a349" prot="protected" static="no" mutable="no">
+        <type>Input</type>
+        <definition>Input okapi::AsyncWrapper&lt; Input, Output &gt;::lastTarget</definition>
+        <argsstring></argsstring>
+        <name>lastTarget</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="245" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="245" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncWrapper_1a2fbcaacada8d9de5111d7c420a4a4635" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::AsyncWrapper&lt; Input, Output &gt;::ratio</definition>
+        <argsstring></argsstring>
+        <name>ratio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="246" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="246" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncWrapper_1aae007010b0b30b530f0b468ebe1d2aef" prot="protected" static="no" mutable="no">
+        <type>std::atomic_bool</type>
+        <definition>std::atomic_bool okapi::AsyncWrapper&lt; Input, Output &gt;::dtorCalled</definition>
+        <argsstring></argsstring>
+        <name>dtorCalled</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="247" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="247" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncWrapper_1a8956664e9b8e52e9437a9129df141d5b" prot="protected" static="no" mutable="no">
+        <type><ref refid="classCrossplatformThread" kindref="compound">CrossplatformThread</ref> *</type>
+        <definition>CrossplatformThread* okapi::AsyncWrapper&lt; Input, Output &gt;::task</definition>
+        <argsstring></argsstring>
+        <name>task</name>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="248" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="248" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1adbbf06146d19a3fd5747f6ddd8bc084e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>okapi::AsyncWrapper&lt; Input, Output &gt;::AsyncWrapper</definition>
+        <argsstring>(const std::shared_ptr&lt; ControllerInput&lt; Input &gt;&gt; &amp;iinput, const std::shared_ptr&lt; ControllerOutput&lt; Output &gt;&gt; &amp;ioutput, std::unique_ptr&lt; IterativeController&lt; Input, Output &gt;&gt; icontroller, const Supplier&lt; std::unique_ptr&lt; AbstractRate &gt;&gt; &amp;irateSupplier, const double iratio=1, const std::shared_ptr&lt; Logger &gt; &amp;ilogger=Logger::getDefaultLogger())</argsstring>
+        <name>AsyncWrapper</name>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1ControllerInput" kindref="compound">ControllerInput</ref>&lt; Input &gt;&gt; &amp;</type>
+          <declname>iinput</declname>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1ControllerOutput" kindref="compound">ControllerOutput</ref>&lt; Output &gt;&gt; &amp;</type>
+          <declname>ioutput</declname>
+        </param>
+        <param>
+          <type>std::unique_ptr&lt; <ref refid="classokapi_1_1IterativeController" kindref="compound">IterativeController</ref>&lt; Input, Output &gt;&gt;</type>
+          <declname>icontroller</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classokapi_1_1Supplier" kindref="compound">Supplier</ref>&lt; std::unique_ptr&lt; <ref refid="classokapi_1_1AbstractRate" kindref="compound">AbstractRate</ref> &gt;&gt; &amp;</type>
+          <declname>irateSupplier</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>iratio</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt; &amp;</type>
+          <declname>ilogger</declname>
+          <defval><ref refid="classokapi_1_1Logger_1a5053cf778b4b55acba788a3797dc96d2" kindref="member">Logger::getDefaultLogger</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A wrapper class that transforms an <computeroutput><ref refid="classokapi_1_1IterativeController" kindref="compound">IterativeController</ref></computeroutput> into an <computeroutput><ref refid="classokapi_1_1AsyncController" kindref="compound">AsyncController</ref></computeroutput> by running it in another task. The input controller will act like an <computeroutput><ref refid="classokapi_1_1AsyncController" kindref="compound">AsyncController</ref></computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iinput</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>controller input, passed to the <computeroutput><ref refid="classokapi_1_1IterativeController" kindref="compound">IterativeController</ref></computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ioutput</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>controller output, written to from the <computeroutput><ref refid="classokapi_1_1IterativeController" kindref="compound">IterativeController</ref></computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>icontroller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the controller to use </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>irateSupplier</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>used for rates used in the main loop and in <computeroutput>waitUntilSettled</computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Any external gear ratio. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ilogger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The logger this instance will log to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="37" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="37" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a6824804fd4c85627d6af2a563ea9fcf0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::AsyncWrapper&lt; Input, Output &gt;::AsyncWrapper</definition>
+        <argsstring>(AsyncWrapper&lt; Input, Output &gt; &amp;&amp;other)=delete</argsstring>
+        <name>AsyncWrapper</name>
+        <param>
+          <type><ref refid="classokapi_1_1AsyncWrapper" kindref="compound">AsyncWrapper</ref>&lt; Input, Output &gt; &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="51" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a6c58083a3bfbeb836cc9a10b23e4bc11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classokapi_1_1AsyncWrapper" kindref="compound">AsyncWrapper</ref>&lt; Input, Output &gt; &amp;</type>
+        <definition>AsyncWrapper&lt;Input, Output&gt;&amp; okapi::AsyncWrapper&lt; Input, Output &gt;::operator=</definition>
+        <argsstring>(AsyncWrapper&lt; Input, Output &gt; &amp;&amp;other)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classokapi_1_1AsyncWrapper" kindref="compound">AsyncWrapper</ref>&lt; Input, Output &gt; &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="53" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a4974501184df515a5c5d911ee2a7b4be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>okapi::AsyncWrapper&lt; Input, Output &gt;::~AsyncWrapper</definition>
+        <argsstring>() override</argsstring>
+        <name>~AsyncWrapper</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="55" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="55" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1aa4b9a4ff29aff5047425e239b574c3c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncWrapper&lt; Input, Output &gt;::setTarget</definition>
+        <argsstring>(const Input itarget) override</argsstring>
+        <name>setTarget</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1ac14482d0768b3f157d52e0214a4c36d7">setTarget</reimplements>
+        <param>
+          <type>const Input</type>
+          <declname>itarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the target for the controller. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="63" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="63" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1aec6d1a4214bad2151bee23dc5e8076e7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncWrapper&lt; Input, Output &gt;::controllerSet</definition>
+        <argsstring>(const Input ivalue) override</argsstring>
+        <name>controllerSet</name>
+        <reimplements refid="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49">controllerSet</reimplements>
+        <param>
+          <type>const Input</type>
+          <declname>ivalue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Writes the value of the controller output. This method might be automatically called in another thread by the controller.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ivalue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the controller&apos;s output </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="76" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="76" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a2471c7b5f388d441db77fa9199db7b83" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Input</type>
+        <definition>Input okapi::AsyncWrapper&lt; Input, Output &gt;::getTarget</definition>
+        <argsstring>() override</argsstring>
+        <name>getTarget</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1a22012bedbfaff6e5a3a508f274ec2497">getTarget</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the last set target, or the default target if none was set.</para>
+<para><simplesect kind="return"><para>the last target </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="85" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="85" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a6f3859f212f0348e73df98c83208f3c4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>Output</type>
+        <definition>Output okapi::AsyncWrapper&lt; Input, Output &gt;::getOutput</definition>
+        <argsstring>() const</argsstring>
+        <name>getOutput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the last calculated output of the controller. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="92" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="92" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a64b690883ff7475375a6d08ad3fb62f9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>Output</type>
+        <definition>Output okapi::AsyncWrapper&lt; Input, Output &gt;::getError</definition>
+        <argsstring>() const override</argsstring>
+        <name>getError</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1a50c73444ff6e3e631951c43d0f951953">getError</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the last error of the controller. Does not update when disabled. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="99" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="99" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a93343937a8bbe762aeb6460197a22dfe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool okapi::AsyncWrapper&lt; Input, Output &gt;::isSettled</definition>
+        <argsstring>() override</argsstring>
+        <name>isSettled</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1aed7aa0e94b6474c28314f8517d6cb4d8">isSettled</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns whether the controller has settled at the target. Determining what settling means is implementation-dependent.</para>
+<para>If the controller is disabled, this method must return true.</para>
+<para><simplesect kind="return"><para>whether the controller is settled </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="111" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="111" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1afe14fb6e7727c313bd40cf74d28f0a14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncWrapper&lt; Input, Output &gt;::setSampleTime</definition>
+        <argsstring>(const QTime &amp;isampleTime)</argsstring>
+        <name>setSampleTime</name>
+        <param>
+          <type>const QTime &amp;</type>
+          <declname>isampleTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set time between loops.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>isampleTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time between loops </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="120" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="120" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a668c83b4a2b5bee7f2d072b57157d19a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncWrapper&lt; Input, Output &gt;::setOutputLimits</definition>
+        <argsstring>(const Output imax, const Output imin)</argsstring>
+        <name>setOutputLimits</name>
+        <param>
+          <type>const Output</type>
+          <declname>imax</declname>
+        </param>
+        <param>
+          <type>const Output</type>
+          <declname>imin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set controller output bounds.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>imax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max output </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>imin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>min output </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="130" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="130" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a9cb3a50a27e7d3e1263ed3aa6c57bb82" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncWrapper&lt; Input, Output &gt;::setControllerSetTargetLimits</definition>
+        <argsstring>(double itargetMax, double itargetMin)</argsstring>
+        <name>setControllerSetTargetLimits</name>
+        <param>
+          <type>double</type>
+          <declname>itargetMax</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>itargetMin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the (soft) limits for the target range that <ref refid="classokapi_1_1AsyncWrapper_1aec6d1a4214bad2151bee23dc5e8076e7" kindref="member">controllerSet()</ref> scales into. The target computed by <ref refid="classokapi_1_1AsyncWrapper_1aec6d1a4214bad2151bee23dc5e8076e7" kindref="member">controllerSet()</ref> is scaled into the range [-itargetMin, itargetMax].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itargetMax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new max target for <ref refid="classokapi_1_1AsyncWrapper_1aec6d1a4214bad2151bee23dc5e8076e7" kindref="member">controllerSet()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>itargetMin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new min target for <ref refid="classokapi_1_1AsyncWrapper_1aec6d1a4214bad2151bee23dc5e8076e7" kindref="member">controllerSet()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="141" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="141" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a95112bac1792ef04010cd97efa135998" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Output</type>
+        <definition>Output okapi::AsyncWrapper&lt; Input, Output &gt;::getMaxOutput</definition>
+        <argsstring>()</argsstring>
+        <name>getMaxOutput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the upper output bound.</para>
+<para><simplesect kind="return"><para>the upper output bound </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="150" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="150" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a41ccefbf1da06cca1ec525d0ad80fa00" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Output</type>
+        <definition>Output okapi::AsyncWrapper&lt; Input, Output &gt;::getMinOutput</definition>
+        <argsstring>()</argsstring>
+        <name>getMinOutput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the lower output bound.</para>
+<para><simplesect kind="return"><para>the lower output bound </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="159" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="159" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a9372a74580e5be429ecd65ec0e110c23" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncWrapper&lt; Input, Output &gt;::reset</definition>
+        <argsstring>() override</argsstring>
+        <name>reset</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1a7dd6ce28b3e38bdf987514a1b6c83c8c">reset</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Resets the controller&apos;s internal state so it is similar to when it was first initialized, while keeping any user-configured information. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="167" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="167" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1afdf4d80b0f3eec3d77280a561b24f0b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncWrapper&lt; Input, Output &gt;::flipDisable</definition>
+        <argsstring>() override</argsstring>
+        <name>flipDisable</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1a9de69b60885df41cd2164fe1a23f34d3">flipDisable</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Changes whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="177" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="177" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1ab47f9a7ee52a5d699cb39b21b0926981" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncWrapper&lt; Input, Output &gt;::flipDisable</definition>
+        <argsstring>(const bool iisDisabled) override</argsstring>
+        <name>flipDisable</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1a768cd1db40ce9cd5c89b20be6e838ccc">flipDisable</reimplements>
+        <param>
+          <type>const bool</type>
+          <declname>iisDisabled</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iisDisabled</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether the controller is disabled </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="189" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="189" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a83d411851373f0483b5ae392560a180a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool okapi::AsyncWrapper&lt; Input, Output &gt;::isDisabled</definition>
+        <argsstring>() const override</argsstring>
+        <name>isDisabled</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1a40bd4ec2b8c75503fbf6f494fd7cbe69">isDisabled</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns whether the controller is currently disabled.</para>
+<para><simplesect kind="return"><para>whether the controller is currently disabled </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="200" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="200" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a23435c257ac2d6df59ab5d96408e608a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncWrapper&lt; Input, Output &gt;::waitUntilSettled</definition>
+        <argsstring>() override</argsstring>
+        <name>waitUntilSettled</name>
+        <reimplements refid="classokapi_1_1AsyncController_1a20e19f334e3dc7a3092e0e4355edcf49">waitUntilSettled</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Blocks the current task until the controller has settled. Determining what settling means is implementation-dependent. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="208" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="208" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a5225a6b4748da30bf17ddbda692cbf4a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncWrapper&lt; Input, Output &gt;::startThread</definition>
+        <argsstring>()</argsstring>
+        <name>startThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Starts the internal thread. This should not be called by normal users. This method is called by the AsyncControllerFactory when making a new instance of this class. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="223" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="223" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1aef499c3f854e809951f6fa4f2d3ff40e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classCrossplatformThread" kindref="compound">CrossplatformThread</ref> *</type>
+        <definition>CrossplatformThread* okapi::AsyncWrapper&lt; Input, Output &gt;::getThread</definition>
+        <argsstring>() const</argsstring>
+        <name>getThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the underlying thread handle.</para>
+<para><simplesect kind="return"><para>The underlying thread handle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="234" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="234" bodyend="236"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1aa947c53d1f595ae6526f996da9b77ca9" prot="protected" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void okapi::AsyncWrapper&lt; Input, Output &gt;::trampoline</definition>
+        <argsstring>(void *context)</argsstring>
+        <name>trampoline</name>
+        <param>
+          <type>void *</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="250" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="250" bodyend="254"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1aebaec0e97543204889293256ba7bec4a" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncWrapper&lt; Input, Output &gt;::loop</definition>
+        <argsstring>()</argsstring>
+        <name>loop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="256" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="256" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncWrapper_1a67fa1bf10df9b8f3c280d8f2b136038a" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void okapi::AsyncWrapper&lt; Input, Output &gt;::resumeMovement</definition>
+        <argsstring>()</argsstring>
+        <name>resumeMovement</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Resumes moving after the controller is reset. Should not cause movement if the controller is turned off, reset, and turned back on. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="271" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="271" bodyend="280"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="179">
+        <label>okapi::ClosedLoopController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1ClosedLoopController"/>
+        <childnode refid="180" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="177">
+        <label>okapi::AsyncWrapper&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1AsyncWrapper"/>
+        <childnode refid="178" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="178">
+        <label>okapi::AsyncController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1AsyncController"/>
+        <childnode refid="179" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="180">
+        <label>okapi::ControllerOutput&lt; Input &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="186">
+        <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::AbstractRate &gt; &gt;</label>
+        <link refid="classokapi_1_1Supplier"/>
+      </node>
+      <node id="183">
+        <label>okapi::ClosedLoopController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1ClosedLoopController"/>
+        <childnode refid="184" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="187">
+        <label>Input</label>
+      </node>
+      <node id="181">
+        <label>okapi::AsyncWrapper&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1AsyncWrapper"/>
+        <childnode refid="182" relation="public-inheritance">
+        </childnode>
+        <childnode refid="185" relation="usage">
+          <edgelabel>task</edgelabel>
+        </childnode>
+        <childnode refid="186" relation="usage">
+          <edgelabel>rateSupplier</edgelabel>
+        </childnode>
+        <childnode refid="187" relation="usage">
+          <edgelabel>lastTarget</edgelabel>
+        </childnode>
+      </node>
+      <node id="182">
+        <label>okapi::AsyncController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1AsyncController"/>
+        <childnode refid="183" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="185">
+        <label>CrossplatformThread</label>
+        <link refid="classCrossplatformThread"/>
+      </node>
+      <node id="184">
+        <label>okapi::ControllerOutput&lt; Input &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/control/async/asyncWrapper.hpp" line="24" column="1" bodyfile="include/okapi/api/control/async/asyncWrapper.hpp" bodystart="24" bodyend="281"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1AsyncWrapper_1adbbf06146d19a3fd5747f6ddd8bc084e" prot="public" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>AsyncWrapper</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a6824804fd4c85627d6af2a563ea9fcf0" prot="public" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>AsyncWrapper</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a0a6e4e3e58a885ce74a2d0f729f679c3" prot="protected" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>controller</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1aec6d1a4214bad2151bee23dc5e8076e7" prot="public" virt="virtual"><scope>okapi::AsyncWrapper</scope><name>controllerSet</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1aae007010b0b30b530f0b468ebe1d2aef" prot="protected" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>dtorCalled</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1afdf4d80b0f3eec3d77280a561b24f0b0" prot="public" virt="virtual"><scope>okapi::AsyncWrapper</scope><name>flipDisable</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1ab47f9a7ee52a5d699cb39b21b0926981" prot="public" virt="virtual"><scope>okapi::AsyncWrapper</scope><name>flipDisable</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a64b690883ff7475375a6d08ad3fb62f9" prot="public" virt="virtual"><scope>okapi::AsyncWrapper</scope><name>getError</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a95112bac1792ef04010cd97efa135998" prot="public" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>getMaxOutput</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a41ccefbf1da06cca1ec525d0ad80fa00" prot="public" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>getMinOutput</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a6f3859f212f0348e73df98c83208f3c4" prot="public" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>getOutput</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a2471c7b5f388d441db77fa9199db7b83" prot="public" virt="virtual"><scope>okapi::AsyncWrapper</scope><name>getTarget</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1aef499c3f854e809951f6fa4f2d3ff40e" prot="public" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>getThread</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a75812fac3f252bf5e8d3d4e466d085b8" prot="protected" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>hasFirstTarget</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a96e7029482813dd1277cc7e45c149938" prot="protected" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>input</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a83d411851373f0483b5ae392560a180a" prot="public" virt="virtual"><scope>okapi::AsyncWrapper</scope><name>isDisabled</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a93343937a8bbe762aeb6460197a22dfe" prot="public" virt="virtual"><scope>okapi::AsyncWrapper</scope><name>isSettled</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1ac5fe1a784c27377eb80a995fb229a349" prot="protected" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>lastTarget</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a9b55140b9c8b7cab105959a7667038ff" prot="protected" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>logger</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1aebaec0e97543204889293256ba7bec4a" prot="protected" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>loop</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a6c58083a3bfbeb836cc9a10b23e4bc11" prot="public" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>operator=</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a7bbdffe660513797a479cb22018fd7bf" prot="protected" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>output</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1ad758e3e7e99f65dc9f2c97312a6e7483" prot="protected" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>rateSupplier</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a2fbcaacada8d9de5111d7c420a4a4635" prot="protected" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>ratio</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a9372a74580e5be429ecd65ec0e110c23" prot="public" virt="virtual"><scope>okapi::AsyncWrapper</scope><name>reset</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a67fa1bf10df9b8f3c280d8f2b136038a" prot="protected" virt="virtual"><scope>okapi::AsyncWrapper</scope><name>resumeMovement</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a9cb3a50a27e7d3e1263ed3aa6c57bb82" prot="public" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>setControllerSetTargetLimits</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a668c83b4a2b5bee7f2d072b57157d19a" prot="public" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>setOutputLimits</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1afe14fb6e7727c313bd40cf74d28f0a14" prot="public" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>setSampleTime</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1aa4b9a4ff29aff5047425e239b574c3c6" prot="public" virt="virtual"><scope>okapi::AsyncWrapper</scope><name>setTarget</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a5225a6b4748da30bf17ddbda692cbf4a" prot="public" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>startThread</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a8956664e9b8e52e9437a9129df141d5b" prot="protected" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>task</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1aa947c53d1f595ae6526f996da9b77ca9" prot="protected" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>trampoline</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a23435c257ac2d6df59ab5d96408e608a" prot="public" virt="virtual"><scope>okapi::AsyncWrapper</scope><name>waitUntilSettled</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a4974501184df515a5c5d911ee2a7b4be" prot="public" virt="non-virtual"><scope>okapi::AsyncWrapper</scope><name>~AsyncWrapper</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a7fa88d53b8f248e0894b8e0865918d5b" prot="public" virt="virtual"><scope>okapi::AsyncWrapper</scope><name>~ClosedLoopController</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

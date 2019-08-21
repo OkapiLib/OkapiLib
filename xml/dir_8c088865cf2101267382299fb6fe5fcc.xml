@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_8c088865cf2101267382299fb6fe5fcc" kind="dir">
+    <compoundname>include/okapi</compoundname>
+    <innerdir refid="dir_63ebd08b8cf71fd366bf0de4231ab7e6">include/okapi/api</innerdir>
+    <innerdir refid="dir_9ca976e092481eb07e9003022e88f298">include/okapi/impl</innerdir>
+    <innerfile refid="api_8hpp">api.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/"/>
+  </compounddef>
+</doxygen>

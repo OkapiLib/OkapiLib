@@ -1,0 +1,399 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1AbstractTimer" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>okapi::AbstractTimer</compoundname>
+    <derivedcompoundref refid="classokapi_1_1Timer" prot="public" virt="non-virtual">okapi::Timer</derivedcompoundref>
+    <includes refid="abstractTimer_8hpp" local="no">abstractTimer.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1AbstractTimer_1ace6c48ceaa4736cca3d34345fc8a9f5b" prot="protected" static="no" mutable="no">
+        <type>QTime</type>
+        <definition>QTime okapi::AbstractTimer::firstCalled</definition>
+        <argsstring></argsstring>
+        <name>firstCalled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="121" column="1" bodyfile="include/okapi/api/util/abstractTimer.hpp" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AbstractTimer_1aaac21f537a3729ac5d73bf13792b2e8a" prot="protected" static="no" mutable="no">
+        <type>QTime</type>
+        <definition>QTime okapi::AbstractTimer::lastCalled</definition>
+        <argsstring></argsstring>
+        <name>lastCalled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="122" column="1" bodyfile="include/okapi/api/util/abstractTimer.hpp" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AbstractTimer_1ab33f65dd0d151c890307a86449eb74fc" prot="protected" static="no" mutable="no">
+        <type>QTime</type>
+        <definition>QTime okapi::AbstractTimer::mark</definition>
+        <argsstring></argsstring>
+        <name>mark</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="123" column="1" bodyfile="include/okapi/api/util/abstractTimer.hpp" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AbstractTimer_1a306968ddbbae48420a16ac42de9bca1f" prot="protected" static="no" mutable="no">
+        <type>QTime</type>
+        <definition>QTime okapi::AbstractTimer::hardMark</definition>
+        <argsstring></argsstring>
+        <name>hardMark</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="124" column="1" bodyfile="include/okapi/api/util/abstractTimer.hpp" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AbstractTimer_1ae3d1fd628749051d0b90b066bccd4e2b" prot="protected" static="no" mutable="no">
+        <type>QTime</type>
+        <definition>QTime okapi::AbstractTimer::repeatMark</definition>
+        <argsstring></argsstring>
+        <name>repeatMark</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="125" column="1" bodyfile="include/okapi/api/util/abstractTimer.hpp" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1aec03f7e11e25f300ec1fd44aaff3596f" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::AbstractTimer::AbstractTimer</definition>
+        <argsstring>(QTime ifirstCalled)</argsstring>
+        <name>AbstractTimer</name>
+        <param>
+          <type>QTime</type>
+          <declname>ifirstCalled</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A <ref refid="classokapi_1_1Timer" kindref="compound">Timer</ref> base class which implements its methods in terms of <ref refid="classokapi_1_1AbstractTimer_1a6871e119f74d8b6a8c928244e837e762" kindref="member">millis()</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ifirstCalled</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current time </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="21" column="1" bodyfile="src/api/util/abstractTimer.cpp" bodystart="11" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1a720f854545bab2158135149174758736" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>okapi::AbstractTimer::~AbstractTimer</definition>
+        <argsstring>()</argsstring>
+        <name>~AbstractTimer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="23" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1a6871e119f74d8b6a8c928244e837e762" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>QTime</type>
+        <definition>virtual QTime okapi::AbstractTimer::millis</definition>
+        <argsstring>() const =0</argsstring>
+        <name>millis</name>
+        <reimplementedby refid="classokapi_1_1Timer_1aca51b21d6302021cd24b49b64648c13c">millis</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the current time in units of QTime.</para>
+<para><simplesect kind="return"><para>the current time </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="30" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1a6c79c35780dbc4e04e356167bb175424" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>QTime</type>
+        <definition>QTime okapi::AbstractTimer::getDt</definition>
+        <argsstring>()</argsstring>
+        <name>getDt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the time passed in ms since the previous call of this function.</para>
+<para><simplesect kind="return"><para>The time passed in ms since the previous call of this function </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="37" column="1" bodyfile="src/api/util/abstractTimer.cpp" bodystart="17" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1a4208d7ef0b828422ba02dfd563306ab1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QTime</type>
+        <definition>QTime okapi::AbstractTimer::readDt</definition>
+        <argsstring>() const</argsstring>
+        <name>readDt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the time passed in ms since the previous call of <ref refid="classokapi_1_1AbstractTimer_1a6c79c35780dbc4e04e356167bb175424" kindref="member">getDt()</ref>. Does not change the time recorded by <ref refid="classokapi_1_1AbstractTimer_1a6c79c35780dbc4e04e356167bb175424" kindref="member">getDt()</ref>.</para>
+<para><simplesect kind="return"><para>The time passed in ms since the previous call of <ref refid="classokapi_1_1AbstractTimer_1a6c79c35780dbc4e04e356167bb175424" kindref="member">getDt()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="45" column="1" bodyfile="src/api/util/abstractTimer.cpp" bodystart="24" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1a4707dcc563e750ee491918d7c5755bc3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QTime</type>
+        <definition>QTime okapi::AbstractTimer::getStartingTime</definition>
+        <argsstring>() const</argsstring>
+        <name>getStartingTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the time the timer was first constructed.</para>
+<para><simplesect kind="return"><para>The time the timer was first constructed </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="52" column="1" bodyfile="src/api/util/abstractTimer.cpp" bodystart="28" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1ac681cdd9a5147df0b796e9af836502c8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QTime</type>
+        <definition>QTime okapi::AbstractTimer::getDtFromStart</definition>
+        <argsstring>() const</argsstring>
+        <name>getDtFromStart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the time since the timer was first constructed.</para>
+<para><simplesect kind="return"><para>The time since the timer was first constructed </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="59" column="1" bodyfile="src/api/util/abstractTimer.cpp" bodystart="32" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1a34c9be79510d23d702fd22188d542ec9" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AbstractTimer::placeMark</definition>
+        <argsstring>()</argsstring>
+        <name>placeMark</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Place a time marker. Placing another marker will overwrite the previous one. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="64" column="1" bodyfile="src/api/util/abstractTimer.cpp" bodystart="36" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1a78d62559bbd51a71372f37920af78261" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>QTime</type>
+        <definition>QTime okapi::AbstractTimer::clearMark</definition>
+        <argsstring>()</argsstring>
+        <name>clearMark</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears the marker.</para>
+<para><simplesect kind="return"><para>The old marker </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="71" column="1" bodyfile="src/api/util/abstractTimer.cpp" bodystart="40" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1a177197191296d0d7a5c49c86d5a514fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AbstractTimer::placeHardMark</definition>
+        <argsstring>()</argsstring>
+        <name>placeHardMark</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Place a hard time marker. Placing another hard marker will not overwrite the previous one; instead, call <ref refid="classokapi_1_1AbstractTimer_1af462e941170d1659dd04ab9d1ead3968" kindref="member">clearHardMark()</ref> and then place another. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="77" column="1" bodyfile="src/api/util/abstractTimer.cpp" bodystart="46" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1af462e941170d1659dd04ab9d1ead3968" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>QTime</type>
+        <definition>QTime okapi::AbstractTimer::clearHardMark</definition>
+        <argsstring>()</argsstring>
+        <name>clearHardMark</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clears the hard marker.</para>
+<para><simplesect kind="return"><para>The old hard marker </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="84" column="1" bodyfile="src/api/util/abstractTimer.cpp" bodystart="51" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1a11b84685aac3247ce5abdd11419e350e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QTime</type>
+        <definition>QTime okapi::AbstractTimer::getDtFromMark</definition>
+        <argsstring>() const</argsstring>
+        <name>getDtFromMark</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the time since the time marker. Returns 0_ms if there is no marker.</para>
+<para><simplesect kind="return"><para>The time since the time marker </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="91" column="1" bodyfile="src/api/util/abstractTimer.cpp" bodystart="57" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1ae32d95df73d640f248f987757163a164" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QTime</type>
+        <definition>QTime okapi::AbstractTimer::getDtFromHardMark</definition>
+        <argsstring>() const</argsstring>
+        <name>getDtFromHardMark</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the time since the hard time marker. Returns 0_ms if there is no hard marker set.</para>
+<para><simplesect kind="return"><para>The time since the hard time marker </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="98" column="1" bodyfile="src/api/util/abstractTimer.cpp" bodystart="61" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1a452be1d251e938ab4c69801ea2d52e20" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool okapi::AbstractTimer::repeat</definition>
+        <argsstring>(QTime time)</argsstring>
+        <name>repeat</name>
+        <param>
+          <type>QTime</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true when the input time period has passed, then resets. Meant to be used in loops to run an action every time period without blocking.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time period </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true when the input time period has passed, false after reading true until the period has passed again </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="108" column="1" bodyfile="src/api/util/abstractTimer.cpp" bodystart="65" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AbstractTimer_1a9153fc8d0b6daf843fa533bf601a15dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool okapi::AbstractTimer::repeat</definition>
+        <argsstring>(QFrequency frequency)</argsstring>
+        <name>repeat</name>
+        <param>
+          <type>QFrequency</type>
+          <declname>frequency</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true when the input time period has passed, then resets. Meant to be used in loops to run an action every time period without blocking.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>frequency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the repeat frequency </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true when the input time period has passed, false after reading true until the period has passed again </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/abstractTimer.hpp" line="118" column="1" bodyfile="src/api/util/abstractTimer.cpp" bodystart="79" bodyend="81"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="16">
+        <label>okapi::AbstractTimer</label>
+        <link refid="classokapi_1_1AbstractTimer"/>
+      </node>
+      <node id="17">
+        <label>okapi::Timer</label>
+        <link refid="classokapi_1_1Timer"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="include/okapi/api/util/abstractTimer.hpp" line="14" column="1" bodyfile="include/okapi/api/util/abstractTimer.hpp" bodystart="14" bodyend="126"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1AbstractTimer_1aec03f7e11e25f300ec1fd44aaff3596f" prot="public" virt="non-virtual"><scope>okapi::AbstractTimer</scope><name>AbstractTimer</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1af462e941170d1659dd04ab9d1ead3968" prot="public" virt="virtual"><scope>okapi::AbstractTimer</scope><name>clearHardMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a78d62559bbd51a71372f37920af78261" prot="public" virt="virtual"><scope>okapi::AbstractTimer</scope><name>clearMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1ace6c48ceaa4736cca3d34345fc8a9f5b" prot="protected" virt="non-virtual"><scope>okapi::AbstractTimer</scope><name>firstCalled</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a6c79c35780dbc4e04e356167bb175424" prot="public" virt="virtual"><scope>okapi::AbstractTimer</scope><name>getDt</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1ae32d95df73d640f248f987757163a164" prot="public" virt="virtual"><scope>okapi::AbstractTimer</scope><name>getDtFromHardMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a11b84685aac3247ce5abdd11419e350e" prot="public" virt="virtual"><scope>okapi::AbstractTimer</scope><name>getDtFromMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1ac681cdd9a5147df0b796e9af836502c8" prot="public" virt="virtual"><scope>okapi::AbstractTimer</scope><name>getDtFromStart</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a4707dcc563e750ee491918d7c5755bc3" prot="public" virt="virtual"><scope>okapi::AbstractTimer</scope><name>getStartingTime</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a306968ddbbae48420a16ac42de9bca1f" prot="protected" virt="non-virtual"><scope>okapi::AbstractTimer</scope><name>hardMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1aaac21f537a3729ac5d73bf13792b2e8a" prot="protected" virt="non-virtual"><scope>okapi::AbstractTimer</scope><name>lastCalled</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1ab33f65dd0d151c890307a86449eb74fc" prot="protected" virt="non-virtual"><scope>okapi::AbstractTimer</scope><name>mark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a6871e119f74d8b6a8c928244e837e762" prot="public" virt="pure-virtual"><scope>okapi::AbstractTimer</scope><name>millis</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a177197191296d0d7a5c49c86d5a514fc" prot="public" virt="virtual"><scope>okapi::AbstractTimer</scope><name>placeHardMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a34c9be79510d23d702fd22188d542ec9" prot="public" virt="virtual"><scope>okapi::AbstractTimer</scope><name>placeMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a4208d7ef0b828422ba02dfd563306ab1" prot="public" virt="virtual"><scope>okapi::AbstractTimer</scope><name>readDt</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a452be1d251e938ab4c69801ea2d52e20" prot="public" virt="virtual"><scope>okapi::AbstractTimer</scope><name>repeat</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a9153fc8d0b6daf843fa533bf601a15dd" prot="public" virt="virtual"><scope>okapi::AbstractTimer</scope><name>repeat</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1ae3d1fd628749051d0b90b066bccd4e2b" prot="protected" virt="non-virtual"><scope>okapi::AbstractTimer</scope><name>repeatMark</name></member>
+      <member refid="classokapi_1_1AbstractTimer_1a720f854545bab2158135149174758736" prot="public" virt="virtual"><scope>okapi::AbstractTimer</scope><name>~AbstractTimer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

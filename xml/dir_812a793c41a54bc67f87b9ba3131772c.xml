@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_812a793c41a54bc67f87b9ba3131772c" kind="dir">
+    <compoundname>include/okapi/api/control/async</compoundname>
+    <innerfile refid="asyncController_8hpp">asyncController.hpp</innerfile>
+    <innerfile refid="asyncLinearMotionProfileController_8hpp">asyncLinearMotionProfileController.hpp</innerfile>
+    <innerfile refid="asyncMotionProfileController_8hpp">asyncMotionProfileController.hpp</innerfile>
+    <innerfile refid="asyncPosIntegratedController_8hpp">asyncPosIntegratedController.hpp</innerfile>
+    <innerfile refid="asyncPositionController_8hpp">asyncPositionController.hpp</innerfile>
+    <innerfile refid="asyncPosPidController_8hpp">asyncPosPidController.hpp</innerfile>
+    <innerfile refid="asyncVelIntegratedController_8hpp">asyncVelIntegratedController.hpp</innerfile>
+    <innerfile refid="asyncVelocityController_8hpp">asyncVelocityController.hpp</innerfile>
+    <innerfile refid="asyncVelPidController_8hpp">asyncVelPidController.hpp</innerfile>
+    <innerfile refid="asyncWrapper_8hpp">asyncWrapper.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/control/async/"/>
+  </compounddef>
+</doxygen>

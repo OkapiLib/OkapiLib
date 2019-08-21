@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1AverageFilter" kind="class" language="C++" prot="public">
+    <compoundname>okapi::AverageFilter</compoundname>
+    <basecompoundref refid="classokapi_1_1Filter" prot="public" virt="non-virtual">okapi::Filter</basecompoundref>
+    <includes refid="averageFilter_8hpp" local="no">averageFilter.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>std::size_t</type>
+        <declname>n</declname>
+        <defname>n</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1AverageFilter_1a1aeb97bb7bda056a072281c974b074be" prot="protected" static="no" mutable="no">
+        <type>std::array&lt; double, n &gt;</type>
+        <definition>std::array&lt;double, n&gt; okapi::AverageFilter&lt; n &gt;::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/averageFilter.hpp" line="57" column="1" bodyfile="include/okapi/api/filter/averageFilter.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AverageFilter_1ab551add0adf7ec09120e73e3f83af411" prot="protected" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t okapi::AverageFilter&lt; n &gt;::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/averageFilter.hpp" line="58" column="1" bodyfile="include/okapi/api/filter/averageFilter.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AverageFilter_1ad01d62f539475ad62ca73bb92aa3968d" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::AverageFilter&lt; n &gt;::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/averageFilter.hpp" line="59" column="1" bodyfile="include/okapi/api/filter/averageFilter.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1AverageFilter_1a21483cccbe9d9aa49200c3b4b6d8a878" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::AverageFilter&lt; n &gt;::AverageFilter</definition>
+        <argsstring>()=default</argsstring>
+        <name>AverageFilter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Averaging filter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/averageFilter.hpp" line="25" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AverageFilter_1a6030d718df73a9a1d7a99c104c3e564e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>double okapi::AverageFilter&lt; n &gt;::filter</definition>
+        <argsstring>(const double ireading) override</argsstring>
+        <name>filter</name>
+        <reimplements refid="classokapi_1_1Filter_1a7c2ea0b64b37b688900189856d58da15">filter</reimplements>
+        <param>
+          <type>const double</type>
+          <declname>ireading</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Filters a value, like a sensor reading.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ireading</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>new measurement </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>filtered result </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/averageFilter.hpp" line="33" column="1" bodyfile="include/okapi/api/filter/averageFilter.hpp" bodystart="33" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AverageFilter_1a2ee104dfc880e779079dc8e1e242a44b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>double okapi::AverageFilter&lt; n &gt;::getOutput</definition>
+        <argsstring>() const override</argsstring>
+        <name>getOutput</name>
+        <reimplements refid="classokapi_1_1Filter_1a3469cd4bc108f8accf300d9f5cc9f42f">getOutput</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the previous output from filter.</para>
+<para><simplesect kind="return"><para>the previous output from filter </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/averageFilter.hpp" line="52" column="1" bodyfile="include/okapi/api/filter/averageFilter.hpp" bodystart="52" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A filter which returns the average of a list of values.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of taps in the filter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="188">
+        <label>okapi::AverageFilter&lt; n &gt;</label>
+        <link refid="classokapi_1_1AverageFilter"/>
+        <childnode refid="189" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="189">
+        <label>okapi::Filter</label>
+        <link refid="classokapi_1_1Filter"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="190">
+        <label>okapi::AverageFilter&lt; n &gt;</label>
+        <link refid="classokapi_1_1AverageFilter"/>
+        <childnode refid="191" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="191">
+        <label>okapi::Filter</label>
+        <link refid="classokapi_1_1Filter"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/filter/averageFilter.hpp" line="20" column="1" bodyfile="include/okapi/api/filter/averageFilter.hpp" bodystart="20" bodyend="60"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1AverageFilter_1a21483cccbe9d9aa49200c3b4b6d8a878" prot="public" virt="non-virtual"><scope>okapi::AverageFilter</scope><name>AverageFilter</name></member>
+      <member refid="classokapi_1_1AverageFilter_1a1aeb97bb7bda056a072281c974b074be" prot="protected" virt="non-virtual"><scope>okapi::AverageFilter</scope><name>data</name></member>
+      <member refid="classokapi_1_1AverageFilter_1a6030d718df73a9a1d7a99c104c3e564e" prot="public" virt="virtual"><scope>okapi::AverageFilter</scope><name>filter</name></member>
+      <member refid="classokapi_1_1AverageFilter_1a2ee104dfc880e779079dc8e1e242a44b" prot="public" virt="virtual"><scope>okapi::AverageFilter</scope><name>getOutput</name></member>
+      <member refid="classokapi_1_1AverageFilter_1ab551add0adf7ec09120e73e3f83af411" prot="protected" virt="non-virtual"><scope>okapi::AverageFilter</scope><name>index</name></member>
+      <member refid="classokapi_1_1AverageFilter_1ad01d62f539475ad62ca73bb92aa3968d" prot="protected" virt="non-virtual"><scope>okapi::AverageFilter</scope><name>output</name></member>
+      <member refid="classokapi_1_1Filter_1a7391c913f315e28947bbfc3d8e29bef8" prot="public" virt="virtual"><scope>okapi::AverageFilter</scope><name>~Filter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

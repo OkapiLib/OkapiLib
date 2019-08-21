@@ -1,0 +1,262 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ButtonBase" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>okapi::ButtonBase</compoundname>
+    <basecompoundref refid="classokapi_1_1AbstractButton" prot="public" virt="non-virtual">okapi::AbstractButton</basecompoundref>
+    <derivedcompoundref refid="classokapi_1_1ADIButton" prot="public" virt="non-virtual">okapi::ADIButton</derivedcompoundref>
+    <derivedcompoundref refid="classokapi_1_1ControllerButton" prot="public" virt="non-virtual">okapi::ControllerButton</derivedcompoundref>
+    <includes refid="buttonBase_8hpp" local="no">buttonBase.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1ButtonBase_1a6eca82b96f124416c295520de271e91d" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool okapi::ButtonBase::inverted</definition>
+        <argsstring></argsstring>
+        <name>inverted</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="44" column="1" bodyfile="include/okapi/api/device/button/buttonBase.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ButtonBase_1a21864143d48104dfe9b7dd7b6b52fe7f" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool okapi::ButtonBase::wasPressedLast_c</definition>
+        <argsstring></argsstring>
+        <name>wasPressedLast_c</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="45" column="1" bodyfile="include/okapi/api/device/button/buttonBase.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ButtonBase_1a12c3c9abdb6937795849d0a3442bc7d0" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool okapi::ButtonBase::wasPressedLast_ctp</definition>
+        <argsstring></argsstring>
+        <name>wasPressedLast_ctp</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="46" column="1" bodyfile="include/okapi/api/device/button/buttonBase.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ButtonBase_1ac6cc2a03f469e31fa0be8719716e4dfc" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool okapi::ButtonBase::wasPressedLast_ctr</definition>
+        <argsstring></argsstring>
+        <name>wasPressedLast_ctr</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="47" column="1" bodyfile="include/okapi/api/device/button/buttonBase.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1ButtonBase_1a6327e273244bac5ca425f23999807849" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::ButtonBase::ButtonBase</definition>
+        <argsstring>(bool iinverted=false)</argsstring>
+        <name>ButtonBase</name>
+        <param>
+          <type>bool</type>
+          <declname>iinverted</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iinverted</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether the button is inverted (<computeroutput>true</computeroutput> meaning default pressed and <computeroutput>false</computeroutput> meaning default not pressed). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="19" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="4" bodyend="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ButtonBase_1a82f27002395801e0d1a6c3213b6454f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool okapi::ButtonBase::isPressed</definition>
+        <argsstring>() override</argsstring>
+        <name>isPressed</name>
+        <reimplements refid="classokapi_1_1AbstractButton_1aea582f04f6ec3f5714b285421d2db66e">isPressed</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Return whether the button is currently pressed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="24" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="7" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ButtonBase_1a0d70e238573b2454fec934a6a7b2338d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool okapi::ButtonBase::changed</definition>
+        <argsstring>() override</argsstring>
+        <name>changed</name>
+        <reimplements refid="classokapi_1_1AbstractButton_1a72dd56f1e084b3313a2a407aa35dc7dc">changed</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Return whether the state of the button changed since the last time this method was called. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="29" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="11" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ButtonBase_1ac97e3d96db3d83f1638ad071e2dff856" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool okapi::ButtonBase::changedToPressed</definition>
+        <argsstring>() override</argsstring>
+        <name>changedToPressed</name>
+        <reimplements refid="classokapi_1_1AbstractButton_1a762fbcfb5065497d743a6a43fd2032f3">changedToPressed</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Return whether the state of the button changed to pressed since the last time this method was called. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="35" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="15" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ButtonBase_1a7916b659f61e8ef2b23aec879a65fbac" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool okapi::ButtonBase::changedToReleased</definition>
+        <argsstring>() override</argsstring>
+        <name>changedToReleased</name>
+        <reimplements refid="classokapi_1_1AbstractButton_1ab4f7a216d6d0a9d14bb89705df0327b3">changedToReleased</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Return whether the state of the button to not pressed since the last time this method was called. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="41" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="19" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classokapi_1_1ButtonBase_1a748b6f2b5ebce9fa9f6bbc9d170d3d7a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool okapi::ButtonBase::currentlyPressed</definition>
+        <argsstring>()=0</argsstring>
+        <name>currentlyPressed</name>
+        <reimplementedby refid="classokapi_1_1ADIButton_1af37e345e8239a572021c0b0b31f859aa">currentlyPressed</reimplementedby>
+        <reimplementedby refid="classokapi_1_1ControllerButton_1a35ee73925d03c31b19568530248c0892">currentlyPressed</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classokapi_1_1ButtonBase_1a5347e674fe6be5d23e8ac2a992a88484" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool okapi::ButtonBase::changedImpl</definition>
+        <argsstring>(bool &amp;prevState)</argsstring>
+        <name>changedImpl</name>
+        <param>
+          <type>bool &amp;</type>
+          <declname>prevState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="52" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="23" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="196">
+        <label>okapi::ControllerButton</label>
+        <link refid="classokapi_1_1ControllerButton"/>
+        <childnode refid="192" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="195">
+        <label>okapi::ADIButton</label>
+        <link refid="classokapi_1_1ADIButton"/>
+        <childnode refid="192" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="192">
+        <label>okapi::ButtonBase</label>
+        <link refid="classokapi_1_1ButtonBase"/>
+        <childnode refid="193" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="194">
+        <label>okapi::ControllerInput&lt; bool &gt;</label>
+        <link refid="classokapi_1_1ControllerInput"/>
+      </node>
+      <node id="193">
+        <label>okapi::AbstractButton</label>
+        <link refid="classokapi_1_1AbstractButton"/>
+        <childnode refid="194" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="197">
+        <label>okapi::ButtonBase</label>
+        <link refid="classokapi_1_1ButtonBase"/>
+        <childnode refid="198" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="199">
+        <label>okapi::ControllerInput&lt; bool &gt;</label>
+        <link refid="classokapi_1_1ControllerInput"/>
+      </node>
+      <node id="198">
+        <label>okapi::AbstractButton</label>
+        <link refid="classokapi_1_1AbstractButton"/>
+        <childnode refid="199" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/device/button/buttonBase.hpp" line="13" column="1" bodyfile="include/okapi/api/device/button/buttonBase.hpp" bodystart="13" bodyend="53"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ButtonBase_1a6327e273244bac5ca425f23999807849" prot="public" virt="non-virtual"><scope>okapi::ButtonBase</scope><name>ButtonBase</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a0d70e238573b2454fec934a6a7b2338d" prot="public" virt="virtual"><scope>okapi::ButtonBase</scope><name>changed</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a5347e674fe6be5d23e8ac2a992a88484" prot="private" virt="non-virtual"><scope>okapi::ButtonBase</scope><name>changedImpl</name></member>
+      <member refid="classokapi_1_1ButtonBase_1ac97e3d96db3d83f1638ad071e2dff856" prot="public" virt="virtual"><scope>okapi::ButtonBase</scope><name>changedToPressed</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a7916b659f61e8ef2b23aec879a65fbac" prot="public" virt="virtual"><scope>okapi::ButtonBase</scope><name>changedToReleased</name></member>
+      <member refid="classokapi_1_1AbstractButton_1a4b8574ff797eb44fcd84d6831dc8a8a0" prot="public" virt="virtual"><scope>okapi::ButtonBase</scope><name>controllerGet</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a748b6f2b5ebce9fa9f6bbc9d170d3d7a" prot="protected" virt="pure-virtual"><scope>okapi::ButtonBase</scope><name>currentlyPressed</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a6eca82b96f124416c295520de271e91d" prot="protected" virt="non-virtual"><scope>okapi::ButtonBase</scope><name>inverted</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a82f27002395801e0d1a6c3213b6454f4" prot="public" virt="virtual"><scope>okapi::ButtonBase</scope><name>isPressed</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a21864143d48104dfe9b7dd7b6b52fe7f" prot="protected" virt="non-virtual"><scope>okapi::ButtonBase</scope><name>wasPressedLast_c</name></member>
+      <member refid="classokapi_1_1ButtonBase_1a12c3c9abdb6937795849d0a3442bc7d0" prot="protected" virt="non-virtual"><scope>okapi::ButtonBase</scope><name>wasPressedLast_ctp</name></member>
+      <member refid="classokapi_1_1ButtonBase_1ac6cc2a03f469e31fa0be8719716e4dfc" prot="protected" virt="non-virtual"><scope>okapi::ButtonBase</scope><name>wasPressedLast_ctr</name></member>
+      <member refid="classokapi_1_1AbstractButton_1a3b05b71f4e527d173e1ae5bfd582fb61" prot="public" virt="virtual"><scope>okapi::ButtonBase</scope><name>~AbstractButton</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,511 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1Logger" kind="class" language="C++" prot="public">
+    <compoundname>okapi::Logger</compoundname>
+    <includes refid="logging_8hpp" local="no">logging.hpp</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classokapi_1_1Logger_1a66826a92c568743a2722d3c3f6887d81" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>LogLevel</name>
+        <enumvalue id="classokapi_1_1Logger_1a66826a92c568743a2722d3c3f6887d81aad42f6697b035b7580e4fef93be20b4d" prot="public">
+          <name>debug</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classokapi_1_1Logger_1a66826a92c568743a2722d3c3f6887d81acaf9b6b99962bf5c2264824231d7a40c" prot="public">
+          <name>info</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classokapi_1_1Logger_1a66826a92c568743a2722d3c3f6887d81a1ea4c3ab05ee0c6d4de30740443769cb" prot="public">
+          <name>warn</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classokapi_1_1Logger_1a66826a92c568743a2722d3c3f6887d81acb5e100e5a9a3e7f6d1fd97512215282" prot="public">
+          <name>error</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classokapi_1_1Logger_1a66826a92c568743a2722d3c3f6887d81a3262d48df5d75e3452f0f16b313b7808" prot="public">
+          <name>off</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="24" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="24" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classokapi_1_1Logger_1ae1e040935d964606a4482e09ab154660" prot="private" static="no" mutable="no">
+        <type>const std::unique_ptr&lt; <ref refid="classokapi_1_1AbstractTimer" kindref="compound">AbstractTimer</ref> &gt;</type>
+        <definition>const std::unique_ptr&lt;AbstractTimer&gt; okapi::Logger::timer</definition>
+        <argsstring></argsstring>
+        <name>timer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="140" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1Logger_1ac4945c3fca3b8f5c4c4297b64ceb0e9c" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classokapi_1_1Logger_1a66826a92c568743a2722d3c3f6887d81" kindref="member">LogLevel</ref></type>
+        <definition>const LogLevel okapi::Logger::logLevel</definition>
+        <argsstring></argsstring>
+        <name>logLevel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="141" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1Logger_1ab0b68a602e1be5068429fd09c87ddf72" prot="private" static="no" mutable="no">
+        <type>FILE *</type>
+        <definition>FILE* okapi::Logger::logfile</definition>
+        <argsstring></argsstring>
+        <name>logfile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="142" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1Logger_1a988c082348f4c05bf8c65355d5ff88aa" prot="private" static="no" mutable="no">
+        <type><ref refid="classCrossplatformMutex" kindref="compound">CrossplatformMutex</ref></type>
+        <definition>CrossplatformMutex okapi::Logger::logfileMutex</definition>
+        <argsstring></argsstring>
+        <name>logfileMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="143" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classokapi_1_1Logger_1a2f44dd2f7e9aaec7cf78a874cbc5ba17" prot="private" static="yes" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; Logger &gt; okapi::Logger::defaultLogger</definition>
+        <argsstring></argsstring>
+        <name>defaultLogger</name>
+        <initializer>= std::make_shared&lt;<ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="144" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1Logger_1a9a81a6dda1c3cc49e6f103a1496eb2ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::Logger::Logger</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>Logger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A logger that does nothing. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="29" column="1" bodyfile="src/api/util/logging.cpp" bodystart="6" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Logger_1aca21f246a76dd95b6664332407d8279e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::Logger::Logger</definition>
+        <argsstring>(std::unique_ptr&lt; AbstractTimer &gt; itimer, std::string_view ifileName, const LogLevel &amp;ilevel) noexcept</argsstring>
+        <name>Logger</name>
+        <param>
+          <type>std::unique_ptr&lt; <ref refid="classokapi_1_1AbstractTimer" kindref="compound">AbstractTimer</ref> &gt;</type>
+          <declname>itimer</declname>
+        </param>
+        <param>
+          <type>std::string_view</type>
+          <declname>ifileName</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classokapi_1_1Logger_1a66826a92c568743a2722d3c3f6887d81" kindref="member">LogLevel</ref> &amp;</type>
+          <declname>ilevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A logger that opens the input file by name. If the file contains <computeroutput>/ser/</computeroutput>, the file will be opened in write mode. Otherwise, the file will be opened in append mode. The file will be closed when the logger is destructed.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itimer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A timer used to get the current time for log statements. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ifileName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the log file to open. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ilevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The log level. Log statements more verbose than this level will be disabled. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="40" column="1" bodyfile="src/api/util/logging.cpp" bodystart="9" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Logger_1ad23bb773b75860507dd4ab8cd67d8d51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::Logger::Logger</definition>
+        <argsstring>(std::unique_ptr&lt; AbstractTimer &gt; itimer, FILE *ifile, const LogLevel &amp;ilevel) noexcept</argsstring>
+        <name>Logger</name>
+        <param>
+          <type>std::unique_ptr&lt; <ref refid="classokapi_1_1AbstractTimer" kindref="compound">AbstractTimer</ref> &gt;</type>
+          <declname>itimer</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>ifile</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classokapi_1_1Logger_1a66826a92c568743a2722d3c3f6887d81" kindref="member">LogLevel</ref> &amp;</type>
+          <declname>ilevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A logger that uses an existing file handle. The file will be closed when the logger is destructed.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itimer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A timer used to get the current time for log statements. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ifile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The log file to open. Will be closed by the logger! </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ilevel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The log level. Log statements more verbose than this level will be disabled. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="52" column="1" bodyfile="src/api/util/logging.cpp" bodystart="17" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Logger_1aa73eef76e53a36ce17f1bd8897352d6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::Logger::~Logger</definition>
+        <argsstring>()</argsstring>
+        <name>~Logger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="54" column="1" bodyfile="src/api/util/logging.cpp" bodystart="23" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Logger_1ac690892e7119bd42d2db074cafa51faf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool okapi::Logger::isDebugLevelEnabled</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>isDebugLevelEnabled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="56" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="56" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Logger_1a66cb0a59dbadc76f82b093bf99002bce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void okapi::Logger::debug</definition>
+        <argsstring>(T ilazyMessage) noexcept</argsstring>
+        <name>debug</name>
+        <param>
+          <type>T</type>
+          <declname>ilazyMessage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="60" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="60" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Logger_1ad796cc10a1526e8f6ee0c0e46180f616" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool okapi::Logger::isInfoLevelEnabled</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>isInfoLevelEnabled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="71" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="71" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Logger_1a8db954232f9c2a5cbd57dbf50c9ce1d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void okapi::Logger::info</definition>
+        <argsstring>(T ilazyMessage) noexcept</argsstring>
+        <name>info</name>
+        <param>
+          <type>T</type>
+          <declname>ilazyMessage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="75" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="75" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Logger_1a7a8511d6ab38c6d661d29c1dfcf7ac1d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool okapi::Logger::isWarnLevelEnabled</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>isWarnLevelEnabled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="86" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="86" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Logger_1a46199a0d137b7bd237a70ca5da2da14c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void okapi::Logger::warn</definition>
+        <argsstring>(T ilazyMessage) noexcept</argsstring>
+        <name>warn</name>
+        <param>
+          <type>T</type>
+          <declname>ilazyMessage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="90" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="90" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Logger_1a1fe2a16dc905d576a32a74186d08e346" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool okapi::Logger::isErrorLevelEnabled</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>isErrorLevelEnabled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="101" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="101" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Logger_1a9be5bbf6b6e90265b37a955bebba4387" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void okapi::Logger::error</definition>
+        <argsstring>(T ilazyMessage) noexcept</argsstring>
+        <name>error</name>
+        <param>
+          <type>T</type>
+          <declname>ilazyMessage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="105" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="105" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Logger_1a15f8ef2e95e376c59c5f556bab2bd38a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr void</type>
+        <definition>constexpr void okapi::Logger::close</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>close</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Closes the connection to the log file. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="119" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="119" bodyend="124"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classokapi_1_1Logger_1a5053cf778b4b55acba788a3797dc96d2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; Logger &gt; okapi::Logger::getDefaultLogger</definition>
+        <argsstring>()</argsstring>
+        <name>getDefaultLogger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The default logger. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="129" column="1" bodyfile="src/api/util/logging.cpp" bodystart="30" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1Logger_1a8ce00328c5d878bb340cf360694b103c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void okapi::Logger::setDefaultLogger</definition>
+        <argsstring>(std::shared_ptr&lt; Logger &gt; ilogger)</argsstring>
+        <name>setDefaultLogger</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
+          <declname>ilogger</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets a new default logger. OkapiLib classes use the default logger unless given another logger in their constructor.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ilogger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new logger instance. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="137" column="1" bodyfile="src/api/util/logging.cpp" bodystart="34" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classokapi_1_1Logger_1a552c19bcb9b9d464201f7834b8651687" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool okapi::Logger::isSerialStream</definition>
+        <argsstring>(std::string_view filename)</argsstring>
+        <name>isSerialStream</name>
+        <param>
+          <type>std::string_view</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/util/logging.hpp" line="146" column="1" bodyfile="src/api/util/logging.cpp" bodystart="38" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/util/logging.hpp" line="22" column="1" bodyfile="include/okapi/api/util/logging.hpp" bodystart="22" bodyend="147"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1Logger_1a15f8ef2e95e376c59c5f556bab2bd38a" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>close</name></member>
+      <member refid="classokapi_1_1Logger_1a66cb0a59dbadc76f82b093bf99002bce" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>debug</name></member>
+      <member refid="classokapi_1_1Logger_1a2f44dd2f7e9aaec7cf78a874cbc5ba17" prot="private" virt="non-virtual"><scope>okapi::Logger</scope><name>defaultLogger</name></member>
+      <member refid="classokapi_1_1Logger_1a9be5bbf6b6e90265b37a955bebba4387" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>error</name></member>
+      <member refid="classokapi_1_1Logger_1a5053cf778b4b55acba788a3797dc96d2" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>getDefaultLogger</name></member>
+      <member refid="classokapi_1_1Logger_1a8db954232f9c2a5cbd57dbf50c9ce1d3" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>info</name></member>
+      <member refid="classokapi_1_1Logger_1ac690892e7119bd42d2db074cafa51faf" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>isDebugLevelEnabled</name></member>
+      <member refid="classokapi_1_1Logger_1a1fe2a16dc905d576a32a74186d08e346" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>isErrorLevelEnabled</name></member>
+      <member refid="classokapi_1_1Logger_1ad796cc10a1526e8f6ee0c0e46180f616" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>isInfoLevelEnabled</name></member>
+      <member refid="classokapi_1_1Logger_1a552c19bcb9b9d464201f7834b8651687" prot="private" virt="non-virtual"><scope>okapi::Logger</scope><name>isSerialStream</name></member>
+      <member refid="classokapi_1_1Logger_1a7a8511d6ab38c6d661d29c1dfcf7ac1d" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>isWarnLevelEnabled</name></member>
+      <member refid="classokapi_1_1Logger_1ab0b68a602e1be5068429fd09c87ddf72" prot="private" virt="non-virtual"><scope>okapi::Logger</scope><name>logfile</name></member>
+      <member refid="classokapi_1_1Logger_1a988c082348f4c05bf8c65355d5ff88aa" prot="private" virt="non-virtual"><scope>okapi::Logger</scope><name>logfileMutex</name></member>
+      <member refid="classokapi_1_1Logger_1a9a81a6dda1c3cc49e6f103a1496eb2ca" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>Logger</name></member>
+      <member refid="classokapi_1_1Logger_1aca21f246a76dd95b6664332407d8279e" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>Logger</name></member>
+      <member refid="classokapi_1_1Logger_1ad23bb773b75860507dd4ab8cd67d8d51" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>Logger</name></member>
+      <member refid="classokapi_1_1Logger_1ac4945c3fca3b8f5c4c4297b64ceb0e9c" prot="private" virt="non-virtual"><scope>okapi::Logger</scope><name>logLevel</name></member>
+      <member refid="classokapi_1_1Logger_1a66826a92c568743a2722d3c3f6887d81" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>LogLevel</name></member>
+      <member refid="classokapi_1_1Logger_1a8ce00328c5d878bb340cf360694b103c" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>setDefaultLogger</name></member>
+      <member refid="classokapi_1_1Logger_1ae1e040935d964606a4482e09ab154660" prot="private" virt="non-virtual"><scope>okapi::Logger</scope><name>timer</name></member>
+      <member refid="classokapi_1_1Logger_1a46199a0d137b7bd237a70ca5da2da14c" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>warn</name></member>
+      <member refid="classokapi_1_1Logger_1aa73eef76e53a36ce17f1bd8897352d6e" prot="public" virt="non-virtual"><scope>okapi::Logger</scope><name>~Logger</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

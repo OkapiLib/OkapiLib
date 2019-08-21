@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_428e79857a7aec22fdd08041af71c9bd" kind="dir">
+    <compoundname>include/okapi/impl/control/iterative</compoundname>
+    <innerfile refid="iterativeControllerFactory_8hpp">iterativeControllerFactory.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/control/iterative/"/>
+  </compounddef>
+</doxygen>

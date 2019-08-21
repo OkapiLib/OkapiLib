@@ -1,0 +1,541 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1AsyncVelIntegratedController" kind="class" language="C++" prot="public">
+    <compoundname>okapi::AsyncVelIntegratedController</compoundname>
+    <basecompoundref refid="classokapi_1_1AsyncVelocityController" prot="public" virt="non-virtual">okapi::AsyncVelocityController&lt; double, double &gt;</basecompoundref>
+    <includes refid="asyncVelIntegratedController_8hpp" local="no">asyncVelIntegratedController.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1AsyncVelIntegratedController_1afa4028d0303fcfcb7aa7f280b6df663a" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;Logger&gt; okapi::AsyncVelIntegratedController::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="109" column="1" bodyfile="include/okapi/api/control/async/asyncVelIntegratedController.hpp" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncVelIntegratedController_1a2cfa27f4610d93fa505a0c82f11c9d16" prot="protected" static="no" mutable="no">
+        <type><ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref></type>
+        <definition>TimeUtil okapi::AsyncVelIntegratedController::timeUtil</definition>
+        <argsstring></argsstring>
+        <name>timeUtil</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="110" column="1" bodyfile="include/okapi/api/control/async/asyncVelIntegratedController.hpp" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncVelIntegratedController_1a4160de7d42a6817cf037e6a7d91abf37" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;AbstractMotor&gt; okapi::AsyncVelIntegratedController::motor</definition>
+        <argsstring></argsstring>
+        <name>motor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="111" column="1" bodyfile="include/okapi/api/control/async/asyncVelIntegratedController.hpp" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncVelIntegratedController_1a76fcd4c095ff6202e0e9513f8081374d" prot="protected" static="no" mutable="no">
+        <type><ref refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair" kindref="compound">AbstractMotor::GearsetRatioPair</ref></type>
+        <definition>AbstractMotor::GearsetRatioPair okapi::AsyncVelIntegratedController::pair</definition>
+        <argsstring></argsstring>
+        <name>pair</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="112" column="1" bodyfile="include/okapi/api/control/async/asyncVelIntegratedController.hpp" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncVelIntegratedController_1ae6e7d75b066164832207df762b2928ef" prot="protected" static="no" mutable="no">
+        <type>std::int32_t</type>
+        <definition>std::int32_t okapi::AsyncVelIntegratedController::maxVelocity</definition>
+        <argsstring></argsstring>
+        <name>maxVelocity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="113" column="1" bodyfile="include/okapi/api/control/async/asyncVelIntegratedController.hpp" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncVelIntegratedController_1adeffae970b04bf2d484dd19e449810fb" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::AsyncVelIntegratedController::lastTarget</definition>
+        <argsstring></argsstring>
+        <name>lastTarget</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="114" column="1" bodyfile="include/okapi/api/control/async/asyncVelIntegratedController.hpp" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncVelIntegratedController_1aed3ebba016794f5eb888edde33a929af" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool okapi::AsyncVelIntegratedController::controllerIsDisabled</definition>
+        <argsstring></argsstring>
+        <name>controllerIsDisabled</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="115" column="1" bodyfile="include/okapi/api/control/async/asyncVelIntegratedController.hpp" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncVelIntegratedController_1acaf2cbb592c8011df80c5ce618bfb79b" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool okapi::AsyncVelIntegratedController::hasFirstTarget</definition>
+        <argsstring></argsstring>
+        <name>hasFirstTarget</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="116" column="1" bodyfile="include/okapi/api/control/async/asyncVelIntegratedController.hpp" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1AsyncVelIntegratedController_1aa9890eed087ca10be20b6fc3936508b9" prot="protected" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classokapi_1_1SettledUtil" kindref="compound">SettledUtil</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;SettledUtil&gt; okapi::AsyncVelIntegratedController::settledUtil</definition>
+        <argsstring></argsstring>
+        <name>settledUtil</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="117" column="1" bodyfile="include/okapi/api/control/async/asyncVelIntegratedController.hpp" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1AsyncVelIntegratedController_1a8b272566332633b02aca9c8ea585e8f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::AsyncVelIntegratedController::AsyncVelIntegratedController</definition>
+        <argsstring>(const std::shared_ptr&lt; AbstractMotor &gt; &amp;imotor, const AbstractMotor::GearsetRatioPair &amp;ipair, std::int32_t imaxVelocity, const TimeUtil &amp;itimeUtil, const std::shared_ptr&lt; Logger &gt; &amp;ilogger=Logger::getDefaultLogger())</argsstring>
+        <name>AsyncVelIntegratedController</name>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt; &amp;</type>
+          <declname>imotor</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair" kindref="compound">AbstractMotor::GearsetRatioPair</ref> &amp;</type>
+          <declname>ipair</declname>
+        </param>
+        <param>
+          <type>std::int32_t</type>
+          <declname>imaxVelocity</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref> &amp;</type>
+          <declname>itimeUtil</declname>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt; &amp;</type>
+          <declname>ilogger</declname>
+          <defval><ref refid="classokapi_1_1Logger_1a5053cf778b4b55acba788a3797dc96d2" kindref="member">Logger::getDefaultLogger</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Closed-loop controller that uses the V5 motor&apos;s onboard control to move. Input units are whatever units the motor is in. Throws a std::invalid_argument exception if the gear ratio is zero.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>imotor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The motor to control. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ipair</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The gearset. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>imaxVelocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum velocity after gearing. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>itimeUtil</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ilogger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The logger this instance will log to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="34" column="1" bodyfile="src/api/control/async/asyncVelIntegratedController.cpp" bodystart="12" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncVelIntegratedController_1a5f1444ba57a64a21bfbdbdc57a264c2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncVelIntegratedController::setTarget</definition>
+        <argsstring>(double itarget) override</argsstring>
+        <name>setTarget</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1ac14482d0768b3f157d52e0214a4c36d7">setTarget</reimplements>
+        <param>
+          <type>double</type>
+          <declname>itarget</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the target for the controller. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="43" column="1" bodyfile="src/api/control/async/asyncVelIntegratedController.cpp" bodystart="34" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncVelIntegratedController_1a030ca47508587f799dfdd7d97ed86d7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double okapi::AsyncVelIntegratedController::getTarget</definition>
+        <argsstring>() override</argsstring>
+        <name>getTarget</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1a22012bedbfaff6e5a3a508f274ec2497">getTarget</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the last set target, or the default target if none was set.</para>
+<para><simplesect kind="return"><para>the last target </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="50" column="1" bodyfile="src/api/control/async/asyncVelIntegratedController.cpp" bodystart="52" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncVelIntegratedController_1a6641352cebd3f0baa4e3e1ab4ad27be3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double okapi::AsyncVelIntegratedController::getError</definition>
+        <argsstring>() const override</argsstring>
+        <name>getError</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1a50c73444ff6e3e631951c43d0f951953">getError</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the last error of the controller. Does not update when disabled. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="55" column="1" bodyfile="src/api/control/async/asyncVelIntegratedController.cpp" bodystart="56" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncVelIntegratedController_1a8518d706827ccc8d42d0a401566d58f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool okapi::AsyncVelIntegratedController::isSettled</definition>
+        <argsstring>() override</argsstring>
+        <name>isSettled</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1aed7aa0e94b6474c28314f8517d6cb4d8">isSettled</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns whether the controller has settled at the target. Determining what settling means is implementation-dependent.</para>
+<para>If the controller is disabled, this method must return true.</para>
+<para><simplesect kind="return"><para>whether the controller is settled </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="65" column="1" bodyfile="src/api/control/async/asyncVelIntegratedController.cpp" bodystart="60" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncVelIntegratedController_1aef78a032062241ece030d58407179912" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncVelIntegratedController::reset</definition>
+        <argsstring>() override</argsstring>
+        <name>reset</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1a7dd6ce28b3e38bdf987514a1b6c83c8c">reset</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Resets the controller&apos;s internal state so it is similar to when it was first initialized, while keeping any user-configured information. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="71" column="1" bodyfile="src/api/control/async/asyncVelIntegratedController.cpp" bodystart="64" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncVelIntegratedController_1ab75c1617544e0817949df5998fa2a8d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncVelIntegratedController::flipDisable</definition>
+        <argsstring>() override</argsstring>
+        <name>flipDisable</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1a9de69b60885df41cd2164fe1a23f34d3">flipDisable</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Changes whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="77" column="1" bodyfile="src/api/control/async/asyncVelIntegratedController.cpp" bodystart="70" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncVelIntegratedController_1a1e906e904500fe920ea4cad6a922b523" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncVelIntegratedController::flipDisable</definition>
+        <argsstring>(bool iisDisabled) override</argsstring>
+        <name>flipDisable</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1a768cd1db40ce9cd5c89b20be6e838ccc">flipDisable</reimplements>
+        <param>
+          <type>bool</type>
+          <declname>iisDisabled</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iisDisabled</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether the controller is disabled </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="85" column="1" bodyfile="src/api/control/async/asyncVelIntegratedController.cpp" bodystart="74" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncVelIntegratedController_1ad4c6394b3512ae44ffa36c9e01f6321b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool okapi::AsyncVelIntegratedController::isDisabled</definition>
+        <argsstring>() const override</argsstring>
+        <name>isDisabled</name>
+        <reimplements refid="classokapi_1_1ClosedLoopController_1a40bd4ec2b8c75503fbf6f494fd7cbe69">isDisabled</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns whether the controller is currently disabled.</para>
+<para><simplesect kind="return"><para>whether the controller is currently disabled </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="92" column="1" bodyfile="src/api/control/async/asyncVelIntegratedController.cpp" bodystart="80" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncVelIntegratedController_1aa1a838d836496ca5565c1d8379c2897a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncVelIntegratedController::waitUntilSettled</definition>
+        <argsstring>() override</argsstring>
+        <name>waitUntilSettled</name>
+        <reimplements refid="classokapi_1_1AsyncController_1a20e19f334e3dc7a3092e0e4355edcf49">waitUntilSettled</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Blocks the current task until the controller has settled. Determining what settling means is implementation-dependent. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="98" column="1" bodyfile="src/api/control/async/asyncVelIntegratedController.cpp" bodystart="94" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncVelIntegratedController_1ae50c09f44077284278e4d8a80656077d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncVelIntegratedController::controllerSet</definition>
+        <argsstring>(double ivalue) override</argsstring>
+        <name>controllerSet</name>
+        <reimplements refid="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49">controllerSet</reimplements>
+        <param>
+          <type>double</type>
+          <declname>ivalue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Writes the value of the controller output. This method might be automatically called in another thread by the controller. The range of input values is expected to be [-1, 1].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ivalue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the controller&apos;s output in the range [-1, 1] </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="106" column="1" bodyfile="src/api/control/async/asyncVelIntegratedController.cpp" bodystart="105" bodyend="115"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classokapi_1_1AsyncVelIntegratedController_1ae017d0031a2ba76d199039cbf7a1465f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncVelIntegratedController::resumeMovement</definition>
+        <argsstring>()</argsstring>
+        <name>resumeMovement</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="119" column="1" bodyfile="src/api/control/async/asyncVelIntegratedController.cpp" bodystart="84" bodyend="92"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Closed-loop controller that uses the V5 motor&apos;s onboard control to move. Input units are whatever units the motor is in. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="144">
+        <label>okapi::ControllerOutput&lt; double &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+      <node id="141">
+        <label>okapi::AsyncVelocityController&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1AsyncVelocityController"/>
+        <childnode refid="142" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="140">
+        <label>okapi::AsyncVelIntegratedController</label>
+        <link refid="classokapi_1_1AsyncVelIntegratedController"/>
+        <childnode refid="141" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="142">
+        <label>okapi::AsyncController&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1AsyncController"/>
+        <childnode refid="143" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="143">
+        <label>okapi::ClosedLoopController&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1ClosedLoopController"/>
+        <childnode refid="144" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="149">
+        <label>okapi::ControllerOutput&lt; double &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+      <node id="146">
+        <label>okapi::AsyncVelocityController&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1AsyncVelocityController"/>
+        <childnode refid="147" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="152">
+        <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::AbstractRate &gt; &gt;</label>
+        <link refid="classokapi_1_1Supplier"/>
+      </node>
+      <node id="145">
+        <label>okapi::AsyncVelIntegratedController</label>
+        <link refid="classokapi_1_1AsyncVelIntegratedController"/>
+        <childnode refid="146" relation="public-inheritance">
+        </childnode>
+        <childnode refid="150" relation="usage">
+          <edgelabel>pair</edgelabel>
+        </childnode>
+        <childnode refid="151" relation="usage">
+          <edgelabel>timeUtil</edgelabel>
+        </childnode>
+      </node>
+      <node id="154">
+        <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::AbstractTimer &gt; &gt;</label>
+        <link refid="classokapi_1_1Supplier"/>
+      </node>
+      <node id="150">
+        <label>okapi::AbstractMotor::GearsetRatioPair</label>
+        <link refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair"/>
+      </node>
+      <node id="151">
+        <label>okapi::TimeUtil</label>
+        <link refid="classokapi_1_1TimeUtil"/>
+        <childnode refid="152" relation="usage">
+          <edgelabel>rateSupplier</edgelabel>
+        </childnode>
+        <childnode refid="153" relation="usage">
+          <edgelabel>settledUtilSupplier</edgelabel>
+        </childnode>
+        <childnode refid="154" relation="usage">
+          <edgelabel>timerSupplier</edgelabel>
+        </childnode>
+      </node>
+      <node id="153">
+        <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::SettledUtil &gt; &gt;</label>
+        <link refid="classokapi_1_1Supplier"/>
+      </node>
+      <node id="147">
+        <label>okapi::AsyncController&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1AsyncController"/>
+        <childnode refid="148" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="148">
+        <label>okapi::ClosedLoopController&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1ClosedLoopController"/>
+        <childnode refid="149" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/control/async/asyncVelIntegratedController.hpp" line="21" column="1" bodyfile="include/okapi/api/control/async/asyncVelIntegratedController.hpp" bodystart="21" bodyend="120"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1a8b272566332633b02aca9c8ea585e8f9" prot="public" virt="non-virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>AsyncVelIntegratedController</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1aed3ebba016794f5eb888edde33a929af" prot="protected" virt="non-virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>controllerIsDisabled</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1ae50c09f44077284278e4d8a80656077d" prot="public" virt="virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>controllerSet</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1ab75c1617544e0817949df5998fa2a8d7" prot="public" virt="virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>flipDisable</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1a1e906e904500fe920ea4cad6a922b523" prot="public" virt="virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>flipDisable</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1a6641352cebd3f0baa4e3e1ab4ad27be3" prot="public" virt="virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>getError</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1a030ca47508587f799dfdd7d97ed86d7d" prot="public" virt="virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>getTarget</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1acaf2cbb592c8011df80c5ce618bfb79b" prot="protected" virt="non-virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>hasFirstTarget</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1ad4c6394b3512ae44ffa36c9e01f6321b" prot="public" virt="virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>isDisabled</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1a8518d706827ccc8d42d0a401566d58f7" prot="public" virt="virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>isSettled</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1adeffae970b04bf2d484dd19e449810fb" prot="protected" virt="non-virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>lastTarget</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1afa4028d0303fcfcb7aa7f280b6df663a" prot="protected" virt="non-virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>logger</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1ae6e7d75b066164832207df762b2928ef" prot="protected" virt="non-virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>maxVelocity</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1a4160de7d42a6817cf037e6a7d91abf37" prot="protected" virt="non-virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>motor</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1a76fcd4c095ff6202e0e9513f8081374d" prot="protected" virt="non-virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>pair</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1aef78a032062241ece030d58407179912" prot="public" virt="virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>reset</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1ae017d0031a2ba76d199039cbf7a1465f" prot="protected" virt="virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>resumeMovement</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1a5f1444ba57a64a21bfbdbdc57a264c2d" prot="public" virt="virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>setTarget</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1aa9890eed087ca10be20b6fc3936508b9" prot="protected" virt="non-virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>settledUtil</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1a2cfa27f4610d93fa505a0c82f11c9d16" prot="protected" virt="non-virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>timeUtil</name></member>
+      <member refid="classokapi_1_1AsyncVelIntegratedController_1aa1a838d836496ca5565c1d8379c2897a" prot="public" virt="virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>waitUntilSettled</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a7fa88d53b8f248e0894b8e0865918d5b" prot="public" virt="virtual"><scope>okapi::AsyncVelIntegratedController</scope><name>~ClosedLoopController</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="adiEncoder_8cpp" kind="file" language="C++">
+    <compoundname>adiEncoder.cpp</compoundname>
+    <includes refid="adiEncoder_8hpp" local="yes">okapi/impl/device/rotarysensor/adiEncoder.hpp</includes>
+    <incdepgraph>
+      <node id="6100">
+        <label>functional</label>
+      </node>
+      <node id="6087">
+        <label>src/impl/device/rotarysensor/adiEncoder.cpp</label>
+        <link refid="adiEncoder_8cpp"/>
+        <childnode refid="6088" relation="include">
+        </childnode>
+      </node>
+      <node id="6097">
+        <label>cstdint</label>
+      </node>
+      <node id="6092">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="6095">
+        <label>cstdbool</label>
+      </node>
+      <node id="6094">
+        <label>cmath</label>
+      </node>
+      <node id="6090">
+        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
+        <link refid="continuousRotarySensor_8hpp"/>
+        <childnode refid="6091" relation="include">
+        </childnode>
+      </node>
+      <node id="6093">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="6094" relation="include">
+        </childnode>
+        <childnode refid="6095" relation="include">
+        </childnode>
+        <childnode refid="6096" relation="include">
+        </childnode>
+        <childnode refid="6097" relation="include">
+        </childnode>
+        <childnode refid="6098" relation="include">
+        </childnode>
+        <childnode refid="6099" relation="include">
+        </childnode>
+        <childnode refid="6100" relation="include">
+        </childnode>
+        <childnode refid="6101" relation="include">
+        </childnode>
+        <childnode refid="6089" relation="include">
+        </childnode>
+        <childnode refid="6102" relation="include">
+        </childnode>
+      </node>
+      <node id="6089">
+        <label>api.h</label>
+      </node>
+      <node id="6098">
+        <label>cstdio</label>
+      </node>
+      <node id="6101">
+        <label>sstream</label>
+      </node>
+      <node id="6091">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="6092" relation="include">
+        </childnode>
+        <childnode refid="6093" relation="include">
+        </childnode>
+      </node>
+      <node id="6099">
+        <label>cstdlib</label>
+      </node>
+      <node id="6096">
+        <label>cstddef</label>
+      </node>
+      <node id="6088">
+        <label>okapi/impl/device/rotarysensor/adiEncoder.hpp</label>
+        <link refid="adiEncoder_8hpp"/>
+        <childnode refid="6089" relation="include">
+        </childnode>
+        <childnode refid="6090" relation="include">
+        </childnode>
+      </node>
+      <node id="6102">
+        <label>pros/apix.h</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/impl/device/rotarysensor/adiEncoder.cpp"/>
+  </compounddef>
+</doxygen>

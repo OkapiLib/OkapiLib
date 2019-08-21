@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="demaFilter_8cpp" kind="file" language="C++">
+    <compoundname>demaFilter.cpp</compoundname>
+    <includes refid="demaFilter_8hpp" local="yes">okapi/api/filter/demaFilter.hpp</includes>
+    <incdepgraph>
+      <node id="5249">
+        <label>src/api/filter/demaFilter.cpp</label>
+        <link refid="demaFilter_8cpp"/>
+        <childnode refid="5250" relation="include">
+        </childnode>
+      </node>
+      <node id="5252">
+        <label>ratio</label>
+      </node>
+      <node id="5251">
+        <label>okapi/api/filter/filter.hpp</label>
+        <link refid="filter_8hpp"/>
+      </node>
+      <node id="5250">
+        <label>okapi/api/filter/demaFilter.hpp</label>
+        <link refid="demaFilter_8hpp"/>
+        <childnode refid="5251" relation="include">
+        </childnode>
+        <childnode refid="5252" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/filter/demaFilter.cpp"/>
+  </compounddef>
+</doxygen>

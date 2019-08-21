@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ControllerRunnerFactory" kind="class" language="C++" prot="public">
+    <compoundname>okapi::ControllerRunnerFactory</compoundname>
+    <includes refid="controllerRunnerFactory_8hpp" local="no">controllerRunnerFactory.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Input</type>
+      </param>
+      <param>
+        <type>typename Output</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classokapi_1_1ControllerRunnerFactory_1a979365d1b7cfaab76828765a5791da5b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classokapi_1_1ControllerRunner" kindref="compound">ControllerRunner</ref>&lt; Input, Output &gt;</type>
+        <definition>static ControllerRunner&lt;Input, Output&gt; okapi::ControllerRunnerFactory&lt; Input, Output &gt;::create</definition>
+        <argsstring>(const std::shared_ptr&lt; Logger &gt; &amp;ilogger=Logger::getDefaultLogger())</argsstring>
+        <name>create</name>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt; &amp;</type>
+          <declname>ilogger</declname>
+          <defval><ref refid="classokapi_1_1Logger_1a5053cf778b4b55acba788a3797dc96d2" kindref="member">Logger::getDefaultLogger</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A utility class that runs a closed-loop controller.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ilogger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The logger this instance will log to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/control/util/controllerRunnerFactory.hpp" line="23" column="1" bodyfile="include/okapi/impl/control/util/controllerRunnerFactory.hpp" bodystart="23" bodyend="25"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/impl/control/util/controllerRunnerFactory.hpp" line="14" column="1" bodyfile="include/okapi/impl/control/util/controllerRunnerFactory.hpp" bodystart="14" bodyend="26"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ControllerRunnerFactory_1a979365d1b7cfaab76828765a5791da5b" prot="public" virt="non-virtual"><scope>okapi::ControllerRunnerFactory</scope><name>create</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

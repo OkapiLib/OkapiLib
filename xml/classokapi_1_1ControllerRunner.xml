@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ControllerRunner" kind="class" language="C++" prot="public">
+    <compoundname>okapi::ControllerRunner</compoundname>
+    <includes refid="controllerRunner_8hpp" local="no">controllerRunner.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Input</type>
+      </param>
+      <param>
+        <type>typename Output</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1ControllerRunner_1a0a4d64e7f687666140602d0b6e47a377" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;Logger&gt; okapi::ControllerRunner&lt; Input, Output &gt;::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/controllerRunner.hpp" line="130" column="1" bodyfile="include/okapi/api/control/util/controllerRunner.hpp" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ControllerRunner_1ac3c13044655d54c89e5bb14b1c6bc5f6" prot="protected" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classokapi_1_1AbstractRate" kindref="compound">AbstractRate</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;AbstractRate&gt; okapi::ControllerRunner&lt; Input, Output &gt;::rate</definition>
+        <argsstring></argsstring>
+        <name>rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/controllerRunner.hpp" line="131" column="1" bodyfile="include/okapi/api/control/util/controllerRunner.hpp" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1ControllerRunner_1a48f341d8073ec533b09307d48b719bb7" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>okapi::ControllerRunner&lt; Input, Output &gt;::ControllerRunner</definition>
+        <argsstring>(const TimeUtil &amp;itimeUtil, const std::shared_ptr&lt; Logger &gt; &amp;ilogger=Logger::getDefaultLogger())</argsstring>
+        <name>ControllerRunner</name>
+        <param>
+          <type>const <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref> &amp;</type>
+          <declname>itimeUtil</declname>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt; &amp;</type>
+          <declname>ilogger</declname>
+          <defval><ref refid="classokapi_1_1Logger_1a5053cf778b4b55acba788a3797dc96d2" kindref="member">Logger::getDefaultLogger</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A utility class that runs a closed-loop controller.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itimeUtil</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ilogger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The logger this instance will log to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/controllerRunner.hpp" line="27" column="1" bodyfile="include/okapi/api/control/util/controllerRunner.hpp" bodystart="27" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ControllerRunner_1aaab33207b895fe8d2d3f1533a9ad1446" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Output</type>
+        <definition>virtual Output okapi::ControllerRunner&lt; Input, Output &gt;::runUntilSettled</definition>
+        <argsstring>(const Input itarget, AsyncController&lt; Input, Output &gt; &amp;icontroller)</argsstring>
+        <name>runUntilSettled</name>
+        <param>
+          <type>const Input</type>
+          <declname>itarget</declname>
+        </param>
+        <param>
+          <type><ref refid="classokapi_1_1AsyncController" kindref="compound">AsyncController</ref>&lt; Input, Output &gt; &amp;</type>
+          <declname>icontroller</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Runs the controller until it has settled.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itarget</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new target </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>icontroller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the controller to run </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the error when settled </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/controllerRunner.hpp" line="39" column="1" bodyfile="include/okapi/api/control/util/controllerRunner.hpp" bodystart="39" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ControllerRunner_1ab419d2bf6bccca115380467df452d6ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Output</type>
+        <definition>virtual Output okapi::ControllerRunner&lt; Input, Output &gt;::runUntilSettled</definition>
+        <argsstring>(const Input itarget, IterativeController&lt; Input, Output &gt; &amp;icontroller, ControllerOutput&lt; Output &gt; &amp;ioutput)</argsstring>
+        <name>runUntilSettled</name>
+        <param>
+          <type>const Input</type>
+          <declname>itarget</declname>
+        </param>
+        <param>
+          <type><ref refid="classokapi_1_1IterativeController" kindref="compound">IterativeController</ref>&lt; Input, Output &gt; &amp;</type>
+          <declname>icontroller</declname>
+        </param>
+        <param>
+          <type><ref refid="classokapi_1_1ControllerOutput" kindref="compound">ControllerOutput</ref>&lt; Output &gt; &amp;</type>
+          <declname>ioutput</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Runs the controller until it has settled.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itarget</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new target </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>icontroller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the controller to run </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ioutput</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the output to write to </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the error when settled </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/controllerRunner.hpp" line="60" column="1" bodyfile="include/okapi/api/control/util/controllerRunner.hpp" bodystart="60" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ControllerRunner_1ab1e85de9c843d4b946f3d8672bf47f51" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Output</type>
+        <definition>virtual Output okapi::ControllerRunner&lt; Input, Output &gt;::runUntilAtTarget</definition>
+        <argsstring>(const Input itarget, AsyncController&lt; Input, Output &gt; &amp;icontroller)</argsstring>
+        <name>runUntilAtTarget</name>
+        <param>
+          <type>const Input</type>
+          <declname>itarget</declname>
+        </param>
+        <param>
+          <type><ref refid="classokapi_1_1AsyncController" kindref="compound">AsyncController</ref>&lt; Input, Output &gt; &amp;</type>
+          <declname>icontroller</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Runs the controller until it has reached its target, but not necessarily settled.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itarget</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new target </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>icontroller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the controller to run </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the error when settled </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/controllerRunner.hpp" line="83" column="1" bodyfile="include/okapi/api/control/util/controllerRunner.hpp" bodystart="83" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ControllerRunner_1af9654dd06bf58274b7cbcfd84813193a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Output</type>
+        <definition>virtual Output okapi::ControllerRunner&lt; Input, Output &gt;::runUntilAtTarget</definition>
+        <argsstring>(const Input itarget, IterativeController&lt; Input, Output &gt; &amp;icontroller, ControllerOutput&lt; Output &gt; &amp;ioutput)</argsstring>
+        <name>runUntilAtTarget</name>
+        <param>
+          <type>const Input</type>
+          <declname>itarget</declname>
+        </param>
+        <param>
+          <type><ref refid="classokapi_1_1IterativeController" kindref="compound">IterativeController</ref>&lt; Input, Output &gt; &amp;</type>
+          <declname>icontroller</declname>
+        </param>
+        <param>
+          <type><ref refid="classokapi_1_1ControllerOutput" kindref="compound">ControllerOutput</ref>&lt; Output &gt; &amp;</type>
+          <declname>ioutput</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Runs the controller until it has reached its target, but not necessarily settled.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itarget</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new target </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>icontroller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the controller to run </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ioutput</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the output to write to </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the error when settled </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/controllerRunner.hpp" line="109" column="1" bodyfile="include/okapi/api/control/util/controllerRunner.hpp" bodystart="109" bodyend="127"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/control/util/controllerRunner.hpp" line="19" column="1" bodyfile="include/okapi/api/control/util/controllerRunner.hpp" bodystart="19" bodyend="132"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ControllerRunner_1a48f341d8073ec533b09307d48b719bb7" prot="public" virt="non-virtual"><scope>okapi::ControllerRunner</scope><name>ControllerRunner</name></member>
+      <member refid="classokapi_1_1ControllerRunner_1a0a4d64e7f687666140602d0b6e47a377" prot="protected" virt="non-virtual"><scope>okapi::ControllerRunner</scope><name>logger</name></member>
+      <member refid="classokapi_1_1ControllerRunner_1ac3c13044655d54c89e5bb14b1c6bc5f6" prot="protected" virt="non-virtual"><scope>okapi::ControllerRunner</scope><name>rate</name></member>
+      <member refid="classokapi_1_1ControllerRunner_1ab1e85de9c843d4b946f3d8672bf47f51" prot="public" virt="virtual"><scope>okapi::ControllerRunner</scope><name>runUntilAtTarget</name></member>
+      <member refid="classokapi_1_1ControllerRunner_1af9654dd06bf58274b7cbcfd84813193a" prot="public" virt="virtual"><scope>okapi::ControllerRunner</scope><name>runUntilAtTarget</name></member>
+      <member refid="classokapi_1_1ControllerRunner_1aaab33207b895fe8d2d3f1533a9ad1446" prot="public" virt="virtual"><scope>okapi::ControllerRunner</scope><name>runUntilSettled</name></member>
+      <member refid="classokapi_1_1ControllerRunner_1ab419d2bf6bccca115380467df452d6ca" prot="public" virt="virtual"><scope>okapi::ControllerRunner</scope><name>runUntilSettled</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

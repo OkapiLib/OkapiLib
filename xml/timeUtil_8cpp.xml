@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="timeUtil_8cpp" kind="file" language="C++">
+    <compoundname>timeUtil.cpp</compoundname>
+    <includes refid="timeUtil_8hpp" local="yes">okapi/api/util/timeUtil.hpp</includes>
+    <incdepgraph>
+      <node id="5548">
+        <label>functional</label>
+      </node>
+      <node id="5538">
+        <label>okapi/api/util/abstractTimer.hpp</label>
+        <link refid="abstractTimer_8hpp"/>
+        <childnode refid="5539" relation="include">
+        </childnode>
+        <childnode refid="5534" relation="include">
+        </childnode>
+      </node>
+      <node id="5545">
+        <label>cstdint</label>
+      </node>
+      <node id="5539">
+        <label>okapi/api/units/QFrequency.hpp</label>
+        <link refid="QFrequency_8hpp"/>
+        <childnode refid="5535" relation="include">
+        </childnode>
+      </node>
+      <node id="5543">
+        <label>cstdbool</label>
+      </node>
+      <node id="5536">
+        <label>cmath</label>
+      </node>
+      <node id="5552">
+        <label>okapi/api/util/supplier.hpp</label>
+        <link refid="supplier_8hpp"/>
+        <childnode refid="5548" relation="include">
+        </childnode>
+      </node>
+      <node id="5534">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="5535" relation="include">
+        </childnode>
+      </node>
+      <node id="5532">
+        <label>okapi/api/util/timeUtil.hpp</label>
+        <link refid="timeUtil_8hpp"/>
+        <childnode refid="5533" relation="include">
+        </childnode>
+        <childnode refid="5541" relation="include">
+        </childnode>
+        <childnode refid="5538" relation="include">
+        </childnode>
+        <childnode refid="5552" relation="include">
+        </childnode>
+      </node>
+      <node id="5542">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="5536" relation="include">
+        </childnode>
+        <childnode refid="5543" relation="include">
+        </childnode>
+        <childnode refid="5544" relation="include">
+        </childnode>
+        <childnode refid="5545" relation="include">
+        </childnode>
+        <childnode refid="5546" relation="include">
+        </childnode>
+        <childnode refid="5547" relation="include">
+        </childnode>
+        <childnode refid="5548" relation="include">
+        </childnode>
+        <childnode refid="5549" relation="include">
+        </childnode>
+        <childnode refid="5550" relation="include">
+        </childnode>
+        <childnode refid="5551" relation="include">
+        </childnode>
+      </node>
+      <node id="5541">
+        <label>okapi/api/util/abstractRate.hpp</label>
+        <link refid="abstractRate_8hpp"/>
+        <childnode refid="5542" relation="include">
+        </childnode>
+        <childnode refid="5539" relation="include">
+        </childnode>
+        <childnode refid="5534" relation="include">
+        </childnode>
+      </node>
+      <node id="5550">
+        <label>api.h</label>
+      </node>
+      <node id="5537">
+        <label>ratio</label>
+      </node>
+      <node id="5546">
+        <label>cstdio</label>
+      </node>
+      <node id="5531">
+        <label>src/api/util/timeUtil.cpp</label>
+        <link refid="timeUtil_8cpp"/>
+        <childnode refid="5532" relation="include">
+        </childnode>
+      </node>
+      <node id="5549">
+        <label>sstream</label>
+      </node>
+      <node id="5547">
+        <label>cstdlib</label>
+      </node>
+      <node id="5544">
+        <label>cstddef</label>
+      </node>
+      <node id="5535">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="5536" relation="include">
+        </childnode>
+        <childnode refid="5537" relation="include">
+        </childnode>
+      </node>
+      <node id="5533">
+        <label>okapi/api/control/util/settledUtil.hpp</label>
+        <link refid="settledUtil_8hpp"/>
+        <childnode refid="5534" relation="include">
+        </childnode>
+        <childnode refid="5538" relation="include">
+        </childnode>
+        <childnode refid="5540" relation="include">
+        </childnode>
+      </node>
+      <node id="5551">
+        <label>pros/apix.h</label>
+      </node>
+      <node id="5540">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/util/timeUtil.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="ekfFilter_8cpp" kind="file" language="C++">
+    <compoundname>ekfFilter.cpp</compoundname>
+    <includes refid="ekfFilter_8hpp" local="yes">okapi/api/filter/ekfFilter.hpp</includes>
+    <incdepgraph>
+      <node id="5270">
+        <label>functional</label>
+      </node>
+      <node id="5267">
+        <label>cstdint</label>
+      </node>
+      <node id="5255">
+        <label>okapi/api/filter/ekfFilter.hpp</label>
+        <link refid="ekfFilter_8hpp"/>
+        <childnode refid="5256" relation="include">
+        </childnode>
+        <childnode refid="5257" relation="include">
+        </childnode>
+      </node>
+      <node id="5262">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="5265">
+        <label>cstdbool</label>
+      </node>
+      <node id="5257">
+        <label>okapi/api/util/mathUtil.hpp</label>
+        <link refid="mathUtil_8hpp"/>
+        <childnode refid="5258" relation="include">
+        </childnode>
+        <childnode refid="5275" relation="include">
+        </childnode>
+        <childnode refid="5267" relation="include">
+        </childnode>
+        <childnode refid="5276" relation="include">
+        </childnode>
+        <childnode refid="5277" relation="include">
+        </childnode>
+      </node>
+      <node id="5264">
+        <label>cmath</label>
+      </node>
+      <node id="5260">
+        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
+        <link refid="continuousRotarySensor_8hpp"/>
+        <childnode refid="5261" relation="include">
+        </childnode>
+      </node>
+      <node id="5254">
+        <label>src/api/filter/ekfFilter.cpp</label>
+        <link refid="ekfFilter_8cpp"/>
+        <childnode refid="5255" relation="include">
+        </childnode>
+      </node>
+      <node id="5258">
+        <label>okapi/api/device/motor/abstractMotor.hpp</label>
+        <link refid="abstractMotor_8hpp"/>
+        <childnode refid="5259" relation="include">
+        </childnode>
+        <childnode refid="5260" relation="include">
+        </childnode>
+        <childnode refid="5274" relation="include">
+        </childnode>
+      </node>
+      <node id="5263">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="5264" relation="include">
+        </childnode>
+        <childnode refid="5265" relation="include">
+        </childnode>
+        <childnode refid="5266" relation="include">
+        </childnode>
+        <childnode refid="5267" relation="include">
+        </childnode>
+        <childnode refid="5268" relation="include">
+        </childnode>
+        <childnode refid="5269" relation="include">
+        </childnode>
+        <childnode refid="5270" relation="include">
+        </childnode>
+        <childnode refid="5271" relation="include">
+        </childnode>
+        <childnode refid="5272" relation="include">
+        </childnode>
+        <childnode refid="5273" relation="include">
+        </childnode>
+      </node>
+      <node id="5272">
+        <label>api.h</label>
+      </node>
+      <node id="5259">
+        <label>okapi/api/control/controllerOutput.hpp</label>
+        <link refid="controllerOutput_8hpp"/>
+      </node>
+      <node id="5256">
+        <label>okapi/api/filter/filter.hpp</label>
+        <link refid="filter_8hpp"/>
+      </node>
+      <node id="5268">
+        <label>cstdio</label>
+      </node>
+      <node id="5271">
+        <label>sstream</label>
+      </node>
+      <node id="5261">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="5262" relation="include">
+        </childnode>
+        <childnode refid="5263" relation="include">
+        </childnode>
+      </node>
+      <node id="5276">
+        <label>math.h</label>
+      </node>
+      <node id="5269">
+        <label>cstdlib</label>
+      </node>
+      <node id="5266">
+        <label>cstddef</label>
+      </node>
+      <node id="5277">
+        <label>type_traits</label>
+      </node>
+      <node id="5275">
+        <label>algorithm</label>
+      </node>
+      <node id="5273">
+        <label>pros/apix.h</label>
+      </node>
+      <node id="5274">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/filter/ekfFilter.cpp"/>
+  </compounddef>
+</doxygen>

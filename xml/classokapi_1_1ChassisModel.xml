@@ -1,0 +1,664 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ChassisModel" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>okapi::ChassisModel</compoundname>
+    <basecompoundref refid="classokapi_1_1ReadOnlyChassisModel" prot="public" virt="non-virtual">okapi::ReadOnlyChassisModel</basecompoundref>
+    <derivedcompoundref refid="classokapi_1_1SkidSteerModel" prot="public" virt="non-virtual">okapi::SkidSteerModel</derivedcompoundref>
+    <derivedcompoundref refid="classokapi_1_1XDriveModel" prot="public" virt="non-virtual">okapi::XDriveModel</derivedcompoundref>
+    <includes refid="chassisModel_8hpp" local="no">chassisModel.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1ae292afae5511e46eec17cf0f9bad1bb6" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::ChassisModel::ChassisModel</definition>
+        <argsstring>()=default</argsstring>
+        <name>ChassisModel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="25" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1a8201eb131b58c99a2b93630758e8367d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::ChassisModel::ChassisModel</definition>
+        <argsstring>(const ChassisModel &amp;)=delete</argsstring>
+        <name>ChassisModel</name>
+        <param>
+          <type>const <ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="26" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1ab6c89183b8a5317a1e149df5ed22dfb1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref> &amp;</type>
+        <definition>ChassisModel&amp; okapi::ChassisModel::operator=</definition>
+        <argsstring>(const ChassisModel &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="27" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1ae39e8ccd15b6f84e32cd21fe99bdd6c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::forward</definition>
+        <argsstring>(double ispeed)=0</argsstring>
+        <name>forward</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1a74ca9d9f1b0f80c9453194567c58e967">forward</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1a2a26c9bd57c26ca0251040a14272226c">forward</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>ispeed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drive the robot forwards (using open-loop control). Uses velocity mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ipower</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motor power </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="34" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1aa621ce62c2bc336e41b859e2cb10dda5" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::driveVector</definition>
+        <argsstring>(double iforwardSpeed, double iyaw)=0</argsstring>
+        <name>driveVector</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1a5fa39473f6a6d2deae988f63e972b66a">driveVector</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1ab36e677deea155bf9a691090f4b0f590">driveVector</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>iforwardSpeed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>iyaw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drive the robot in an arc (using open-loop control). Uses velocity mode. The algorithm is (approximately): leftPower = forwardSpeed + yaw rightPower = forwardSpeed - yaw</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iforwadSpeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed in the forward direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iyaw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed around the vertical axis </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="45" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1a69115758be9e29888dce34f317d57150" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::driveVectorVoltage</definition>
+        <argsstring>(double iforwardSpeed, double iyaw)=0</argsstring>
+        <name>driveVectorVoltage</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1aa9b68af25f8f924117b07a5c8e9f6c93">driveVectorVoltage</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1a2a066629991985282b8205af6b03d9f6">driveVectorVoltage</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>iforwardSpeed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>iyaw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drive the robot in an arc. Uses voltage mode. The algorithm is (approximately): leftPower = forwardSpeed + yaw rightPower = forwardSpeed - yaw</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iforwadSpeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed in the forward direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iyaw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed around the vertical axis </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="56" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1af13aa5281c762eb61a444f0b35176014" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::rotate</definition>
+        <argsstring>(double ispeed)=0</argsstring>
+        <name>rotate</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1af02dab85c80cf8aa226b33a39851feff">rotate</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1ab9a2d6f5e1f44b2c8640d41a534d4869">rotate</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>ispeed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Turn the robot clockwise (using open-loop control). Uses velocity mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ispeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motor power </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="63" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1ad67ad9abae41c5441c2a2d671d0c8a55" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::stop</definition>
+        <argsstring>()=0</argsstring>
+        <name>stop</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1a98d212cff8bad647ada6bcd3054c7581">stop</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1a2fe09b755e8a6f321d6365cedc774e04">stop</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Stop the robot (set all the motors to 0). Uses velocity mode. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="68" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1a185a667048f84c3a0fced6882c5f7980" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::tank</definition>
+        <argsstring>(double ileftSpeed, double irightSpeed, double ithreshold=0)=0</argsstring>
+        <name>tank</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1aa51195896f1be6afe661d5c9a8e6ea4e">tank</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1a2d5bd618cae6e639083857f2ef310859">tank</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>ileftSpeed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>irightSpeed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ithreshold</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drive the robot with a tank drive layout. Uses voltage mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ileftSpeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>left side speed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>irightSpeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>right side speed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ithreshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>deadband on joystick values </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="77" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1a632d4c0b74747ab3b9c5a159a36bdd03" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::arcade</definition>
+        <argsstring>(double iforwardSpeed, double iyaw, double ithreshold=0)=0</argsstring>
+        <name>arcade</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1a145f671aa2dd1c6991945929e4a3d97d">arcade</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1a0489ac1303ad42f65e346adf1dfc986f">arcade</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>iforwardSpeed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>iyaw</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ithreshold</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Drive the robot with an arcade drive layout. Uses voltage mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iforwardSpeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed forward direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iyaw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>speed around the vertical axis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ithreshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>deadband on joystick values </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="86" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1aa2008856c169eb64c6648bc64c31c504" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::left</definition>
+        <argsstring>(double ispeed)=0</argsstring>
+        <name>left</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1af2b00108853b82eb0fb5ecb3b71f413d">left</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1a0a4688df022b66164e81709e6eaa02e5">left</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>ispeed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Power the left side motors. Uses velocity mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ipower</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motor power </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1a282fcf947aea9630cadd2c673eb5f7e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::right</definition>
+        <argsstring>(double ispeed)=0</argsstring>
+        <name>right</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1ada9bd222b5aeaa0507b57906ac59dd3b">right</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1a21bc8f93cda3b0b58ec6543a6dc02c24">right</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>ispeed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Power the right side motors. Uses velocity mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ipower</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motor power </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="100" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1a6bd7e6bb60d41d3f1f5a5a129acfe1b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::resetSensors</definition>
+        <argsstring>()=0</argsstring>
+        <name>resetSensors</name>
+        <reimplementedby refid="classokapi_1_1ThreeEncoderSkidSteerModel_1a6e4d43a1f3027798c0451c93f8cde057">resetSensors</reimplementedby>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1af8885fc16e654eafa872dd7c760591cf">resetSensors</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1adbc23b11cde6aebb3c7eefb1f0251af7">resetSensors</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reset the sensors to their zero point. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="105" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1a20e3cde96d536e6c722aa5686e5cc8e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::setBrakeMode</definition>
+        <argsstring>(AbstractMotor::brakeMode mode)=0</argsstring>
+        <name>setBrakeMode</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1a84c100815058f4dcdc958b3349713f73">setBrakeMode</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1a27356e54c9fd0361d01de4c81ff851e7">setBrakeMode</reimplementedby>
+        <param>
+          <type><ref refid="classokapi_1_1AbstractMotor_1a132e0485dbb59a60c3f934338d8fa601" kindref="member">AbstractMotor::brakeMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the brake mode for each motor.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>new brake mode </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="112" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1ae8ba9a72bf827af4c6feffaac99b33ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::setEncoderUnits</definition>
+        <argsstring>(AbstractMotor::encoderUnits units)=0</argsstring>
+        <name>setEncoderUnits</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1a8922c028a9f09893061938fe50fb2a79">setEncoderUnits</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1a56b590280c856259ad710e888d8e215c">setEncoderUnits</reimplementedby>
+        <param>
+          <type><ref refid="classokapi_1_1AbstractMotor_1ae811cd825099f2defadeb1b7f7e7764c" kindref="member">AbstractMotor::encoderUnits</ref></type>
+          <declname>units</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the encoder units for each motor.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>units</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>new motor encoder units </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="119" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1a960d6ce2f21e5832fce1d7566408cb61" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::setGearing</definition>
+        <argsstring>(AbstractMotor::gearset gearset)=0</argsstring>
+        <name>setGearing</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1ad890989e345cfd7455436bc5dd6efdcc">setGearing</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1ae9205c16e581786fecabaeb5066edab6">setGearing</reimplementedby>
+        <param>
+          <type><ref refid="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5" kindref="member">AbstractMotor::gearset</ref></type>
+          <declname>gearset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the gearset for each motor.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gearset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>new motor gearset </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="126" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1ae7fcb4cc95fdd7fd3c8f8388b4a698b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::setMaxVelocity</definition>
+        <argsstring>(double imaxVelocity)=0</argsstring>
+        <name>setMaxVelocity</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1a4beda353f201fa72fc8d31f47a08d473">setMaxVelocity</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1aec91f0569213bbca770ad4a25529beb6">setMaxVelocity</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>imaxVelocity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets a new maximum velocity in RPM [0-600].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>imaxVelocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new maximum velocity </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="133" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1ab45dd7430636ed1c1dee25dae6df5d46" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double okapi::ChassisModel::getMaxVelocity</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getMaxVelocity</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1a7e2fcfb65e940ea4d71780966b4b5b68">getMaxVelocity</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1aa5b5c3431c99c612ade5c97858478828">getMaxVelocity</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the maximum velocity in RPM [0-600].</para>
+<para><simplesect kind="return"><para>The maximum velocity in RPM [0-600]. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="140" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1a2fb261636b79e118f22530cc3fce4f41" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ChassisModel::setMaxVoltage</definition>
+        <argsstring>(double imaxVoltage)=0</argsstring>
+        <name>setMaxVoltage</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1ad4dc0f8e3877b23ffb8ae58903bdffb7">setMaxVoltage</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1a6d001a2147ecb642f60cd21ac73c64ea">setMaxVoltage</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>imaxVoltage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets a new maximum voltage in mV [0-12000].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>imaxVoltage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new maximum voltage </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="147" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ChassisModel_1a3ced2121524ae523592db64733c69472" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>double</type>
+        <definition>virtual double okapi::ChassisModel::getMaxVoltage</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getMaxVoltage</name>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1ad4849d18c3a244eb60e1056860a3c4cf">getMaxVoltage</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1a402487e35a717c47cfcc85ad1cfb0861">getMaxVoltage</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the maximum voltage in mV [0-12000].</para>
+<para><simplesect kind="return"><para>The maximum voltage in mV [0-12000]. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="154" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A version of the <ref refid="classokapi_1_1ReadOnlyChassisModel" kindref="compound">ReadOnlyChassisModel</ref> that also supports write methods, such as setting motor speed. Because this class can write to motors, there can only be one owner and as such copying is disabled. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="230">
+        <label>okapi::ReadOnlyChassisModel</label>
+        <link refid="classokapi_1_1ReadOnlyChassisModel"/>
+      </node>
+      <node id="232">
+        <label>okapi::ThreeEncoderSkidSteerModel</label>
+        <link refid="classokapi_1_1ThreeEncoderSkidSteerModel"/>
+        <childnode refid="231" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="233">
+        <label>okapi::XDriveModel</label>
+        <link refid="classokapi_1_1XDriveModel"/>
+        <childnode refid="229" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="229">
+        <label>okapi::ChassisModel</label>
+        <link refid="classokapi_1_1ChassisModel"/>
+        <childnode refid="230" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="231">
+        <label>okapi::SkidSteerModel</label>
+        <link refid="classokapi_1_1SkidSteerModel"/>
+        <childnode refid="229" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="235">
+        <label>okapi::ReadOnlyChassisModel</label>
+        <link refid="classokapi_1_1ReadOnlyChassisModel"/>
+      </node>
+      <node id="234">
+        <label>okapi::ChassisModel</label>
+        <link refid="classokapi_1_1ChassisModel"/>
+        <childnode refid="235" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/chassis/model/chassisModel.hpp" line="23" column="1" bodyfile="include/okapi/api/chassis/model/chassisModel.hpp" bodystart="23" bodyend="155"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ChassisModel_1a632d4c0b74747ab3b9c5a159a36bdd03" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>arcade</name></member>
+      <member refid="classokapi_1_1ChassisModel_1ae292afae5511e46eec17cf0f9bad1bb6" prot="public" virt="non-virtual"><scope>okapi::ChassisModel</scope><name>ChassisModel</name></member>
+      <member refid="classokapi_1_1ChassisModel_1a8201eb131b58c99a2b93630758e8367d" prot="public" virt="non-virtual"><scope>okapi::ChassisModel</scope><name>ChassisModel</name></member>
+      <member refid="classokapi_1_1ChassisModel_1aa621ce62c2bc336e41b859e2cb10dda5" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>driveVector</name></member>
+      <member refid="classokapi_1_1ChassisModel_1a69115758be9e29888dce34f317d57150" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>driveVectorVoltage</name></member>
+      <member refid="classokapi_1_1ChassisModel_1ae39e8ccd15b6f84e32cd21fe99bdd6c9" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>forward</name></member>
+      <member refid="classokapi_1_1ChassisModel_1ab45dd7430636ed1c1dee25dae6df5d46" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>getMaxVelocity</name></member>
+      <member refid="classokapi_1_1ChassisModel_1a3ced2121524ae523592db64733c69472" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>getMaxVoltage</name></member>
+      <member refid="classokapi_1_1ReadOnlyChassisModel_1af2d844d9e12bb7c778ac9a5a0074f848" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>getSensorVals</name></member>
+      <member refid="classokapi_1_1ChassisModel_1aa2008856c169eb64c6648bc64c31c504" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>left</name></member>
+      <member refid="classokapi_1_1ChassisModel_1ab6c89183b8a5317a1e149df5ed22dfb1" prot="public" virt="non-virtual"><scope>okapi::ChassisModel</scope><name>operator=</name></member>
+      <member refid="classokapi_1_1ChassisModel_1a6bd7e6bb60d41d3f1f5a5a129acfe1b6" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>resetSensors</name></member>
+      <member refid="classokapi_1_1ChassisModel_1a282fcf947aea9630cadd2c673eb5f7e3" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>right</name></member>
+      <member refid="classokapi_1_1ChassisModel_1af13aa5281c762eb61a444f0b35176014" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>rotate</name></member>
+      <member refid="classokapi_1_1ChassisModel_1a20e3cde96d536e6c722aa5686e5cc8e8" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>setBrakeMode</name></member>
+      <member refid="classokapi_1_1ChassisModel_1ae8ba9a72bf827af4c6feffaac99b33ee" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>setEncoderUnits</name></member>
+      <member refid="classokapi_1_1ChassisModel_1a960d6ce2f21e5832fce1d7566408cb61" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>setGearing</name></member>
+      <member refid="classokapi_1_1ChassisModel_1ae7fcb4cc95fdd7fd3c8f8388b4a698b2" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>setMaxVelocity</name></member>
+      <member refid="classokapi_1_1ChassisModel_1a2fb261636b79e118f22530cc3fce4f41" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>setMaxVoltage</name></member>
+      <member refid="classokapi_1_1ChassisModel_1ad67ad9abae41c5441c2a2d671d0c8a55" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>stop</name></member>
+      <member refid="classokapi_1_1ChassisModel_1a185a667048f84c3a0fced6882c5f7980" prot="public" virt="pure-virtual"><scope>okapi::ChassisModel</scope><name>tank</name></member>
+      <member refid="classokapi_1_1ReadOnlyChassisModel_1a1994ed80cbfdc34f30f90083d4c8620d" prot="public" virt="virtual"><scope>okapi::ChassisModel</scope><name>~ReadOnlyChassisModel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

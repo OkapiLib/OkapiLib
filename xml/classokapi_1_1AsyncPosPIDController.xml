@@ -1,0 +1,442 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1AsyncPosPIDController" kind="class" language="C++" prot="public">
+    <compoundname>okapi::AsyncPosPIDController</compoundname>
+    <basecompoundref refid="classokapi_1_1AsyncWrapper" prot="public" virt="non-virtual">okapi::AsyncWrapper&lt; double, double &gt;</basecompoundref>
+    <basecompoundref refid="classokapi_1_1AsyncPositionController" prot="public" virt="non-virtual">okapi::AsyncPositionController&lt; double, double &gt;</basecompoundref>
+    <includes refid="asyncPosPidController_8hpp" local="no">asyncPosPidController.hpp</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1AsyncPosPIDController_1a6e7a064075af197d89f4369e3c8e48b6" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classokapi_1_1OffsetableControllerInput" kindref="compound">OffsetableControllerInput</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;OffsetableControllerInput&gt; okapi::AsyncPosPIDController::offsettableInput</definition>
+        <argsstring></argsstring>
+        <name>offsettableInput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncPosPidController.hpp" line="78" column="1" bodyfile="include/okapi/api/control/async/asyncPosPidController.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1AsyncPosPIDController_1ad66e9890d43f60ed304a356b52baad80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::AsyncPosPIDController::AsyncPosPIDController</definition>
+        <argsstring>(const std::shared_ptr&lt; ControllerInput&lt; double &gt;&gt; &amp;iinput, const std::shared_ptr&lt; ControllerOutput&lt; double &gt;&gt; &amp;ioutput, const TimeUtil &amp;itimeUtil, double ikP, double ikI, double ikD, double ikBias=0, double iratio=1, std::unique_ptr&lt; Filter &gt; iderivativeFilter=std::make_unique&lt; PassthroughFilter &gt;(), const std::shared_ptr&lt; Logger &gt; &amp;ilogger=Logger::getDefaultLogger())</argsstring>
+        <name>AsyncPosPIDController</name>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1ControllerInput" kindref="compound">ControllerInput</ref>&lt; double &gt;&gt; &amp;</type>
+          <declname>iinput</declname>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1ControllerOutput" kindref="compound">ControllerOutput</ref>&lt; double &gt;&gt; &amp;</type>
+          <declname>ioutput</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref> &amp;</type>
+          <declname>itimeUtil</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ikP</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ikI</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ikD</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ikBias</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>iratio</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>std::unique_ptr&lt; <ref refid="classokapi_1_1Filter" kindref="compound">Filter</ref> &gt;</type>
+          <declname>iderivativeFilter</declname>
+          <defval>std::make_unique&lt; <ref refid="classokapi_1_1PassthroughFilter" kindref="compound">PassthroughFilter</ref> &gt;()</defval>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt; &amp;</type>
+          <declname>ilogger</declname>
+          <defval><ref refid="classokapi_1_1Logger_1a5053cf778b4b55acba788a3797dc96d2" kindref="member">Logger::getDefaultLogger</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>An async position PID controller.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iinput</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The controller input. Will be turned into an OffsettableControllerInput. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ioutput</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The controller output. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>itimeUtil</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ikP</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The proportional gain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ikI</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The integral gain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ikD</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The derivative gain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ikBias</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The controller bias. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Any external gear ratio. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iderivativeFilter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The derivative filter. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncPosPidController.hpp" line="35" column="1" bodyfile="src/api/control/async/asyncPosPidController.cpp" bodystart="11" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncPosPIDController_1a4038bde6275c8c69fc22edfbead726d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>okapi::AsyncPosPIDController::AsyncPosPIDController</definition>
+        <argsstring>(const std::shared_ptr&lt; OffsetableControllerInput &gt; &amp;iinput, const std::shared_ptr&lt; ControllerOutput&lt; double &gt;&gt; &amp;ioutput, const TimeUtil &amp;itimeUtil, double ikP, double ikI, double ikD, double ikBias=0, double iratio=1, std::unique_ptr&lt; Filter &gt; iderivativeFilter=std::make_unique&lt; PassthroughFilter &gt;(), const std::shared_ptr&lt; Logger &gt; &amp;ilogger=Logger::getDefaultLogger())</argsstring>
+        <name>AsyncPosPIDController</name>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1OffsetableControllerInput" kindref="compound">OffsetableControllerInput</ref> &gt; &amp;</type>
+          <declname>iinput</declname>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1ControllerOutput" kindref="compound">ControllerOutput</ref>&lt; double &gt;&gt; &amp;</type>
+          <declname>ioutput</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref> &amp;</type>
+          <declname>itimeUtil</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ikP</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ikI</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ikD</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ikBias</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>iratio</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>std::unique_ptr&lt; <ref refid="classokapi_1_1Filter" kindref="compound">Filter</ref> &gt;</type>
+          <declname>iderivativeFilter</declname>
+          <defval>std::make_unique&lt; <ref refid="classokapi_1_1PassthroughFilter" kindref="compound">PassthroughFilter</ref> &gt;()</defval>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt; &amp;</type>
+          <declname>ilogger</declname>
+          <defval><ref refid="classokapi_1_1Logger_1a5053cf778b4b55acba788a3797dc96d2" kindref="member">Logger::getDefaultLogger</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>An async position PID controller.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iinput</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The controller input. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ioutput</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The controller output. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>itimeUtil</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ikP</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The proportional gain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ikI</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The integral gain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ikD</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The derivative gain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ikBias</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The controller bias. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Any external gear ratio. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iderivativeFilter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The derivative filter. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncPosPidController.hpp" line="60" column="1" bodyfile="src/api/control/async/asyncPosPidController.cpp" bodystart="34" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncPosPIDController_1a4d5bb5646dcdc3bc80f15c1d6ae72747" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void okapi::AsyncPosPIDController::tarePosition</definition>
+        <argsstring>() override</argsstring>
+        <name>tarePosition</name>
+        <reimplements refid="classokapi_1_1AsyncPositionController_1a0af03d0035343cbf843a19374f38a059">tarePosition</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the &quot;absolute&quot; zero position of the controller to its current position. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncPosPidController.hpp" line="75" column="1" bodyfile="src/api/control/async/asyncPosPidController.cpp" bodystart="60" bodyend="62"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="128">
+        <label>okapi::ControllerOutput&lt; double &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+      <node id="125">
+        <label>okapi::AsyncWrapper&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1AsyncWrapper"/>
+        <childnode refid="126" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="129">
+        <label>okapi::AsyncPositionController&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1AsyncPositionController"/>
+        <childnode refid="126" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="126">
+        <label>okapi::AsyncController&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1AsyncController"/>
+        <childnode refid="127" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="127">
+        <label>okapi::ClosedLoopController&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1ClosedLoopController"/>
+        <childnode refid="128" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="124">
+        <label>okapi::AsyncPosPIDController</label>
+        <link refid="classokapi_1_1AsyncPosPIDController"/>
+        <childnode refid="125" relation="public-inheritance">
+        </childnode>
+        <childnode refid="129" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="134">
+        <label>okapi::ControllerOutput&lt; double &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+      <node id="131">
+        <label>okapi::AsyncWrapper&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1AsyncWrapper"/>
+        <childnode refid="132" relation="public-inheritance">
+        </childnode>
+        <childnode refid="135" relation="usage">
+          <edgelabel>task</edgelabel>
+        </childnode>
+        <childnode refid="136" relation="usage">
+          <edgelabel>rateSupplier</edgelabel>
+        </childnode>
+      </node>
+      <node id="136">
+        <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::AbstractRate &gt; &gt;</label>
+        <link refid="classokapi_1_1Supplier"/>
+      </node>
+      <node id="137">
+        <label>okapi::AsyncPositionController&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1AsyncPositionController"/>
+        <childnode refid="132" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="132">
+        <label>okapi::AsyncController&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1AsyncController"/>
+        <childnode refid="133" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="133">
+        <label>okapi::ClosedLoopController&lt; double, double &gt;</label>
+        <link refid="classokapi_1_1ClosedLoopController"/>
+        <childnode refid="134" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="135">
+        <label>CrossplatformThread</label>
+        <link refid="classCrossplatformThread"/>
+      </node>
+      <node id="130">
+        <label>okapi::AsyncPosPIDController</label>
+        <link refid="classokapi_1_1AsyncPosPIDController"/>
+        <childnode refid="131" relation="public-inheritance">
+        </childnode>
+        <childnode refid="137" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/control/async/asyncPosPidController.hpp" line="20" column="1" bodyfile="include/okapi/api/control/async/asyncPosPidController.hpp" bodystart="19" bodyend="79"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1AsyncPosPIDController_1ad66e9890d43f60ed304a356b52baad80" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>AsyncPosPIDController</name></member>
+      <member refid="classokapi_1_1AsyncPosPIDController_1a4038bde6275c8c69fc22edfbead726d2" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>AsyncPosPIDController</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1adbbf06146d19a3fd5747f6ddd8bc084e" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>AsyncWrapper</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a6824804fd4c85627d6af2a563ea9fcf0" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>AsyncWrapper</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a0a6e4e3e58a885ce74a2d0f729f679c3" prot="protected" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>controller</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1aec6d1a4214bad2151bee23dc5e8076e7" prot="public" virt="virtual"><scope>okapi::AsyncPosPIDController</scope><name>controllerSet</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1aae007010b0b30b530f0b468ebe1d2aef" prot="protected" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>dtorCalled</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1afdf4d80b0f3eec3d77280a561b24f0b0" prot="public" virt="virtual"><scope>okapi::AsyncPosPIDController</scope><name>flipDisable</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1ab47f9a7ee52a5d699cb39b21b0926981" prot="public" virt="virtual"><scope>okapi::AsyncPosPIDController</scope><name>flipDisable</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a64b690883ff7475375a6d08ad3fb62f9" prot="public" virt="virtual"><scope>okapi::AsyncPosPIDController</scope><name>getError</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a95112bac1792ef04010cd97efa135998" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>getMaxOutput</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a41ccefbf1da06cca1ec525d0ad80fa00" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>getMinOutput</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a6f3859f212f0348e73df98c83208f3c4" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>getOutput</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a2471c7b5f388d441db77fa9199db7b83" prot="public" virt="virtual"><scope>okapi::AsyncPosPIDController</scope><name>getTarget</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1aef499c3f854e809951f6fa4f2d3ff40e" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>getThread</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a75812fac3f252bf5e8d3d4e466d085b8" prot="protected" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>hasFirstTarget</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a96e7029482813dd1277cc7e45c149938" prot="protected" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>input</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a83d411851373f0483b5ae392560a180a" prot="public" virt="virtual"><scope>okapi::AsyncPosPIDController</scope><name>isDisabled</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a93343937a8bbe762aeb6460197a22dfe" prot="public" virt="virtual"><scope>okapi::AsyncPosPIDController</scope><name>isSettled</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1ac5fe1a784c27377eb80a995fb229a349" prot="protected" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>lastTarget</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a9b55140b9c8b7cab105959a7667038ff" prot="protected" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>logger</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1aebaec0e97543204889293256ba7bec4a" prot="protected" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>loop</name></member>
+      <member refid="classokapi_1_1AsyncPosPIDController_1a6e7a064075af197d89f4369e3c8e48b6" prot="protected" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>offsettableInput</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a6c58083a3bfbeb836cc9a10b23e4bc11" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>operator=</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a7bbdffe660513797a479cb22018fd7bf" prot="protected" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>output</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1ad758e3e7e99f65dc9f2c97312a6e7483" prot="protected" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>rateSupplier</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a2fbcaacada8d9de5111d7c420a4a4635" prot="protected" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>ratio</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a9372a74580e5be429ecd65ec0e110c23" prot="public" virt="virtual"><scope>okapi::AsyncPosPIDController</scope><name>reset</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a67fa1bf10df9b8f3c280d8f2b136038a" prot="protected" virt="virtual"><scope>okapi::AsyncPosPIDController</scope><name>resumeMovement</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a9cb3a50a27e7d3e1263ed3aa6c57bb82" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>setControllerSetTargetLimits</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a668c83b4a2b5bee7f2d072b57157d19a" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>setOutputLimits</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1afe14fb6e7727c313bd40cf74d28f0a14" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>setSampleTime</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1aa4b9a4ff29aff5047425e239b574c3c6" prot="public" virt="virtual"><scope>okapi::AsyncPosPIDController</scope><name>setTarget</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a5225a6b4748da30bf17ddbda692cbf4a" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>startThread</name></member>
+      <member refid="classokapi_1_1AsyncPosPIDController_1a4d5bb5646dcdc3bc80f15c1d6ae72747" prot="public" virt="virtual"><scope>okapi::AsyncPosPIDController</scope><name>tarePosition</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a8956664e9b8e52e9437a9129df141d5b" prot="protected" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>task</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1aa947c53d1f595ae6526f996da9b77ca9" prot="protected" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>trampoline</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a23435c257ac2d6df59ab5d96408e608a" prot="public" virt="virtual"><scope>okapi::AsyncPosPIDController</scope><name>waitUntilSettled</name></member>
+      <member refid="classokapi_1_1AsyncWrapper_1a4974501184df515a5c5d911ee2a7b4be" prot="public" virt="non-virtual"><scope>okapi::AsyncPosPIDController</scope><name>~AsyncWrapper</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a7fa88d53b8f248e0894b8e0865918d5b" prot="public" virt="virtual"><scope>okapi::AsyncPosPIDController</scope><name>~ClosedLoopController</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ControllerOutput" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>okapi::ControllerOutput</compoundname>
+    <includes refid="controllerOutput_8hpp" local="no">controllerOutput.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::ControllerOutput&lt; T &gt;::controllerSet</definition>
+        <argsstring>(T ivalue)=0</argsstring>
+        <name>controllerSet</name>
+        <reimplementedby refid="classokapi_1_1ADIMotor_1ac290a47e904c728ff1e61ee85408a1be">controllerSet</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1a5a36064df12b3d34f2bfa09ca1992b9e">controllerSet</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1aec6d1a4214bad2151bee23dc5e8076e7">controllerSet</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncWrapper_1aec6d1a4214bad2151bee23dc5e8076e7">controllerSet</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1ab77771ba39d01e5f8d29984fd43abd38">controllerSet</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1a50c069752036261395871fbe175ae101">controllerSet</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncPosIntegratedController_1aaa8d694c814e7b419dfb55b3e3a1d72e">controllerSet</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncVelIntegratedController_1ae50c09f44077284278e4d8a80656077d">controllerSet</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncMotionProfileController_1a292b22f53ed0ef67a479e00c92f68e3f">controllerSet</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncLinearMotionProfileController_1a45b62483002333a2d99deea8de2af43e">controllerSet</reimplementedby>
+        <reimplementedby refid="classokapi_1_1MotorGroup_1a9da308795bb956d5f7f3f7885a727d8e">controllerSet</reimplementedby>
+        <reimplementedby refid="classokapi_1_1Motor_1a262c36a80a942d125e574d691b77b440">controllerSet</reimplementedby>
+        <param>
+          <type>T</type>
+          <declname>ivalue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Writes the value of the controller output. This method might be automatically called in another thread by the controller. The range of input values is expected to be <computeroutput>[-1, 1]</computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ivalue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the controller&apos;s output in the range <computeroutput>[-1, 1]</computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/controllerOutput.hpp" line="19" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/control/controllerOutput.hpp" line="11" column="1" bodyfile="include/okapi/api/control/controllerOutput.hpp" bodystart="11" bodyend="20"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49" prot="public" virt="pure-virtual"><scope>okapi::ControllerOutput</scope><name>controllerSet</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

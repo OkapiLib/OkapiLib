@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="iterativeMotorVelocityController_8cpp" kind="file" language="C++">
+    <compoundname>iterativeMotorVelocityController.cpp</compoundname>
+    <includes refid="iterativeMotorVelocityController_8hpp" local="yes">okapi/api/control/iterative/iterativeMotorVelocityController.hpp</includes>
+    <incdepgraph>
+      <node id="4999">
+        <label>functional</label>
+      </node>
+      <node id="4996">
+        <label>cstdint</label>
+      </node>
+      <node id="4992">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="4994">
+        <label>cstdbool</label>
+      </node>
+      <node id="4987">
+        <label>cmath</label>
+      </node>
+      <node id="4980">
+        <label>okapi/api/control/iterative/iterativeMotorVelocityController.hpp</label>
+        <link refid="iterativeMotorVelocityController_8hpp"/>
+        <childnode refid="4981" relation="include">
+        </childnode>
+        <childnode refid="4989" relation="include">
+        </childnode>
+        <childnode refid="5004" relation="include">
+        </childnode>
+        <childnode refid="5003" relation="include">
+        </childnode>
+      </node>
+      <node id="4990">
+        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
+        <link refid="continuousRotarySensor_8hpp"/>
+        <childnode refid="4991" relation="include">
+        </childnode>
+      </node>
+      <node id="4985">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="4986" relation="include">
+        </childnode>
+      </node>
+      <node id="4989">
+        <label>okapi/api/device/motor/abstractMotor.hpp</label>
+        <link refid="abstractMotor_8hpp"/>
+        <childnode refid="4984" relation="include">
+        </childnode>
+        <childnode refid="4990" relation="include">
+        </childnode>
+        <childnode refid="5003" relation="include">
+        </childnode>
+      </node>
+      <node id="4993">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="4987" relation="include">
+        </childnode>
+        <childnode refid="4994" relation="include">
+        </childnode>
+        <childnode refid="4995" relation="include">
+        </childnode>
+        <childnode refid="4996" relation="include">
+        </childnode>
+        <childnode refid="4997" relation="include">
+        </childnode>
+        <childnode refid="4998" relation="include">
+        </childnode>
+        <childnode refid="4999" relation="include">
+        </childnode>
+        <childnode refid="5000" relation="include">
+        </childnode>
+        <childnode refid="5001" relation="include">
+        </childnode>
+        <childnode refid="5002" relation="include">
+        </childnode>
+      </node>
+      <node id="4979">
+        <label>src/api/control/iterative/iterativeMotorVelocityController.cpp</label>
+        <link refid="iterativeMotorVelocityController_8cpp"/>
+        <childnode refid="4980" relation="include">
+        </childnode>
+      </node>
+      <node id="5001">
+        <label>api.h</label>
+      </node>
+      <node id="4981">
+        <label>okapi/api/control/iterative/iterativeVelocityController.hpp</label>
+        <link refid="iterativeVelocityController_8hpp"/>
+        <childnode refid="4982" relation="include">
+        </childnode>
+      </node>
+      <node id="4988">
+        <label>ratio</label>
+      </node>
+      <node id="4984">
+        <label>okapi/api/control/controllerOutput.hpp</label>
+        <link refid="controllerOutput_8hpp"/>
+      </node>
+      <node id="4997">
+        <label>cstdio</label>
+      </node>
+      <node id="5004">
+        <label>array</label>
+      </node>
+      <node id="5000">
+        <label>sstream</label>
+      </node>
+      <node id="4991">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="4992" relation="include">
+        </childnode>
+        <childnode refid="4993" relation="include">
+        </childnode>
+      </node>
+      <node id="4998">
+        <label>cstdlib</label>
+      </node>
+      <node id="4995">
+        <label>cstddef</label>
+      </node>
+      <node id="4986">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="4987" relation="include">
+        </childnode>
+        <childnode refid="4988" relation="include">
+        </childnode>
+      </node>
+      <node id="4983">
+        <label>okapi/api/control/closedLoopController.hpp</label>
+        <link refid="closedLoopController_8hpp"/>
+        <childnode refid="4984" relation="include">
+        </childnode>
+        <childnode refid="4985" relation="include">
+        </childnode>
+      </node>
+      <node id="5002">
+        <label>pros/apix.h</label>
+      </node>
+      <node id="5003">
+        <label>memory</label>
+      </node>
+      <node id="4982">
+        <label>okapi/api/control/iterative/iterativeController.hpp</label>
+        <link refid="iterativeController_8hpp"/>
+        <childnode refid="4983" relation="include">
+        </childnode>
+        <childnode refid="4985" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/api/control/iterative/iterativeMotorVelocityController.cpp"/>
+  </compounddef>
+</doxygen>

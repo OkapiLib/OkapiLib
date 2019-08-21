@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="structokapi_1_1IterativePosPIDController_1_1Gains" kind="struct" language="C++" prot="public">
+    <compoundname>okapi::IterativePosPIDController::Gains</compoundname>
+    <includes refid="iterativePosPidController_8hpp" local="no">iterativePosPidController.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structokapi_1_1IterativePosPIDController_1_1Gains_1afe6336add0771e75884db9edf272ae56" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::IterativePosPIDController::Gains::kP</definition>
+        <argsstring></argsstring>
+        <name>kP</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativePosPidController.hpp" line="25" column="1" bodyfile="include/okapi/api/control/iterative/iterativePosPidController.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1IterativePosPIDController_1_1Gains_1ad3fd4e3ac5980917b3d98dc486f0c51d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::IterativePosPIDController::Gains::kI</definition>
+        <argsstring></argsstring>
+        <name>kI</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativePosPidController.hpp" line="26" column="1" bodyfile="include/okapi/api/control/iterative/iterativePosPidController.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1IterativePosPIDController_1_1Gains_1a7f867052ff5d78bc7ed9bb3997178186" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::IterativePosPIDController::Gains::kD</definition>
+        <argsstring></argsstring>
+        <name>kD</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativePosPidController.hpp" line="27" column="1" bodyfile="include/okapi/api/control/iterative/iterativePosPidController.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1IterativePosPIDController_1_1Gains_1aaf9ce6bbf78c786af3bd95f68c9f7fab" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::IterativePosPIDController::Gains::kBias</definition>
+        <argsstring></argsstring>
+        <name>kBias</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativePosPidController.hpp" line="28" column="1" bodyfile="include/okapi/api/control/iterative/iterativePosPidController.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/control/iterative/iterativePosPidController.hpp" line="24" column="1" bodyfile="include/okapi/api/control/iterative/iterativePosPidController.hpp" bodystart="24" bodyend="29"/>
+    <listofallmembers>
+      <member refid="structokapi_1_1IterativePosPIDController_1_1Gains_1aaf9ce6bbf78c786af3bd95f68c9f7fab" prot="public" virt="non-virtual"><scope>okapi::IterativePosPIDController::Gains</scope><name>kBias</name></member>
+      <member refid="structokapi_1_1IterativePosPIDController_1_1Gains_1a7f867052ff5d78bc7ed9bb3997178186" prot="public" virt="non-virtual"><scope>okapi::IterativePosPIDController::Gains</scope><name>kD</name></member>
+      <member refid="structokapi_1_1IterativePosPIDController_1_1Gains_1ad3fd4e3ac5980917b3d98dc486f0c51d" prot="public" virt="non-virtual"><scope>okapi::IterativePosPIDController::Gains</scope><name>kI</name></member>
+      <member refid="structokapi_1_1IterativePosPIDController_1_1Gains_1afe6336add0771e75884db9edf272ae56" prot="public" virt="non-virtual"><scope>okapi::IterativePosPIDController::Gains</scope><name>kP</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

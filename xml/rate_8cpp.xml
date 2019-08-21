@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="rate_8cpp" kind="file" language="C++">
+    <compoundname>rate.cpp</compoundname>
+    <includes refid="rate_8hpp" local="yes">okapi/impl/util/rate.hpp</includes>
+    <includes local="yes">api.h</includes>
+    <incdepgraph>
+      <node id="6228">
+        <label>functional</label>
+      </node>
+      <node id="6225">
+        <label>cstdint</label>
+      </node>
+      <node id="6232">
+        <label>okapi/api/units/QFrequency.hpp</label>
+        <link refid="QFrequency_8hpp"/>
+        <childnode refid="6233" relation="include">
+        </childnode>
+      </node>
+      <node id="6223">
+        <label>cstdbool</label>
+      </node>
+      <node id="6222">
+        <label>cmath</label>
+      </node>
+      <node id="6235">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="6233" relation="include">
+        </childnode>
+      </node>
+      <node id="6221">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="6222" relation="include">
+        </childnode>
+        <childnode refid="6223" relation="include">
+        </childnode>
+        <childnode refid="6224" relation="include">
+        </childnode>
+        <childnode refid="6225" relation="include">
+        </childnode>
+        <childnode refid="6226" relation="include">
+        </childnode>
+        <childnode refid="6227" relation="include">
+        </childnode>
+        <childnode refid="6228" relation="include">
+        </childnode>
+        <childnode refid="6229" relation="include">
+        </childnode>
+        <childnode refid="6230" relation="include">
+        </childnode>
+        <childnode refid="6231" relation="include">
+        </childnode>
+      </node>
+      <node id="6220">
+        <label>okapi/api/util/abstractRate.hpp</label>
+        <link refid="abstractRate_8hpp"/>
+        <childnode refid="6221" relation="include">
+        </childnode>
+        <childnode refid="6232" relation="include">
+        </childnode>
+        <childnode refid="6235" relation="include">
+        </childnode>
+      </node>
+      <node id="6230">
+        <label>api.h</label>
+      </node>
+      <node id="6234">
+        <label>ratio</label>
+      </node>
+      <node id="6219">
+        <label>okapi/impl/util/rate.hpp</label>
+        <link refid="rate_8hpp"/>
+        <childnode refid="6220" relation="include">
+        </childnode>
+      </node>
+      <node id="6226">
+        <label>cstdio</label>
+      </node>
+      <node id="6229">
+        <label>sstream</label>
+      </node>
+      <node id="6218">
+        <label>src/impl/util/rate.cpp</label>
+        <link refid="rate_8cpp"/>
+        <childnode refid="6219" relation="include">
+        </childnode>
+        <childnode refid="6230" relation="include">
+        </childnode>
+      </node>
+      <node id="6227">
+        <label>cstdlib</label>
+      </node>
+      <node id="6224">
+        <label>cstddef</label>
+      </node>
+      <node id="6233">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="6222" relation="include">
+        </childnode>
+        <childnode refid="6234" relation="include">
+        </childnode>
+      </node>
+      <node id="6231">
+        <label>pros/apix.h</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceokapi">okapi</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/impl/util/rate.cpp"/>
+  </compounddef>
+</doxygen>

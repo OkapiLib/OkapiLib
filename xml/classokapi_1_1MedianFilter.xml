@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1MedianFilter" kind="class" language="C++" prot="public">
+    <compoundname>okapi::MedianFilter</compoundname>
+    <basecompoundref refid="classokapi_1_1Filter" prot="public" virt="non-virtual">okapi::Filter</basecompoundref>
+    <includes refid="medianFilter_8hpp" local="no">medianFilter.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>std::size_t</type>
+        <declname>n</declname>
+        <defname>n</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classokapi_1_1MedianFilter_1a9a6648a537ca4aac1095ee6de6e02806" prot="protected" static="no" mutable="no">
+        <type>std::array&lt; double, n &gt;</type>
+        <definition>std::array&lt;double, n&gt; okapi::MedianFilter&lt; n &gt;::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/medianFilter.hpp" line="54" column="1" bodyfile="include/okapi/api/filter/medianFilter.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1MedianFilter_1af5188b3df2e2f5cffed1b8b903ce1ef9" prot="protected" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t okapi::MedianFilter&lt; n &gt;::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/medianFilter.hpp" line="55" column="1" bodyfile="include/okapi/api/filter/medianFilter.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1MedianFilter_1a1cd7af575ee6be29f36a6b920277ef21" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double okapi::MedianFilter&lt; n &gt;::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/medianFilter.hpp" line="56" column="1" bodyfile="include/okapi/api/filter/medianFilter.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1MedianFilter_1a0730bda4e8ae740fc21ed98441d58fb2" prot="protected" static="no" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t okapi::MedianFilter&lt; n &gt;::middleIndex</definition>
+        <argsstring></argsstring>
+        <name>middleIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/medianFilter.hpp" line="57" column="1" bodyfile="include/okapi/api/filter/medianFilter.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1MedianFilter_1ab48a9a26745bf3ba81275c2857e63838" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>okapi::MedianFilter&lt; n &gt;::MedianFilter</definition>
+        <argsstring>()</argsstring>
+        <name>MedianFilter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/medianFilter.hpp" line="25" column="1" bodyfile="include/okapi/api/filter/medianFilter.hpp" bodystart="25" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1MedianFilter_1a91e4104c4862082cd17ab92b43c02fab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>double okapi::MedianFilter&lt; n &gt;::filter</definition>
+        <argsstring>(const double ireading) override</argsstring>
+        <name>filter</name>
+        <reimplements refid="classokapi_1_1Filter_1a7c2ea0b64b37b688900189856d58da15">filter</reimplements>
+        <param>
+          <type>const double</type>
+          <declname>ireading</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Filters a value, like a sensor reading.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ireading</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>new measurement </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>filtered result </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/medianFilter.hpp" line="34" column="1" bodyfile="include/okapi/api/filter/medianFilter.hpp" bodystart="34" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1MedianFilter_1ac38e6d04879eaeb98b853a24cb26e28c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>double okapi::MedianFilter&lt; n &gt;::getOutput</definition>
+        <argsstring>() const override</argsstring>
+        <name>getOutput</name>
+        <reimplements refid="classokapi_1_1Filter_1a3469cd4bc108f8accf300d9f5cc9f42f">getOutput</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the previous output from filter.</para>
+<para><simplesect kind="return"><para>the previous output from filter </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/medianFilter.hpp" line="49" column="1" bodyfile="include/okapi/api/filter/medianFilter.hpp" bodystart="49" bodyend="51"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classokapi_1_1MedianFilter_1afe9b963e054b89cbdc13ea1acaaa900b" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double okapi::MedianFilter&lt; n &gt;::kth_smallset</definition>
+        <argsstring>()</argsstring>
+        <name>kth_smallset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Algorithm from N. Wirth’s book, implementation by N. Devillard. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/filter/medianFilter.hpp" line="62" column="1" bodyfile="include/okapi/api/filter/medianFilter.hpp" bodystart="62" bodyend="94"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A filter which returns the median value of list of values.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of taps in the filter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="396">
+        <label>okapi::MedianFilter&lt; n &gt;</label>
+        <link refid="classokapi_1_1MedianFilter"/>
+        <childnode refid="397" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="397">
+        <label>okapi::Filter</label>
+        <link refid="classokapi_1_1Filter"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="398">
+        <label>okapi::MedianFilter&lt; n &gt;</label>
+        <link refid="classokapi_1_1MedianFilter"/>
+        <childnode refid="399" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="399">
+        <label>okapi::Filter</label>
+        <link refid="classokapi_1_1Filter"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/filter/medianFilter.hpp" line="23" column="1" bodyfile="include/okapi/api/filter/medianFilter.hpp" bodystart="23" bodyend="95"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1MedianFilter_1a9a6648a537ca4aac1095ee6de6e02806" prot="protected" virt="non-virtual"><scope>okapi::MedianFilter</scope><name>data</name></member>
+      <member refid="classokapi_1_1MedianFilter_1a91e4104c4862082cd17ab92b43c02fab" prot="public" virt="virtual"><scope>okapi::MedianFilter</scope><name>filter</name></member>
+      <member refid="classokapi_1_1MedianFilter_1ac38e6d04879eaeb98b853a24cb26e28c" prot="public" virt="virtual"><scope>okapi::MedianFilter</scope><name>getOutput</name></member>
+      <member refid="classokapi_1_1MedianFilter_1af5188b3df2e2f5cffed1b8b903ce1ef9" prot="protected" virt="non-virtual"><scope>okapi::MedianFilter</scope><name>index</name></member>
+      <member refid="classokapi_1_1MedianFilter_1afe9b963e054b89cbdc13ea1acaaa900b" prot="protected" virt="non-virtual"><scope>okapi::MedianFilter</scope><name>kth_smallset</name></member>
+      <member refid="classokapi_1_1MedianFilter_1ab48a9a26745bf3ba81275c2857e63838" prot="public" virt="non-virtual"><scope>okapi::MedianFilter</scope><name>MedianFilter</name></member>
+      <member refid="classokapi_1_1MedianFilter_1a0730bda4e8ae740fc21ed98441d58fb2" prot="protected" virt="non-virtual"><scope>okapi::MedianFilter</scope><name>middleIndex</name></member>
+      <member refid="classokapi_1_1MedianFilter_1a1cd7af575ee6be29f36a6b920277ef21" prot="protected" virt="non-virtual"><scope>okapi::MedianFilter</scope><name>output</name></member>
+      <member refid="classokapi_1_1Filter_1a7391c913f315e28947bbfc3d8e29bef8" prot="public" virt="virtual"><scope>okapi::MedianFilter</scope><name>~Filter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

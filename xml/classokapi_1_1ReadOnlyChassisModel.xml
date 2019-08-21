@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1ReadOnlyChassisModel" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>okapi::ReadOnlyChassisModel</compoundname>
+    <derivedcompoundref refid="classokapi_1_1ChassisModel" prot="public" virt="non-virtual">okapi::ChassisModel</derivedcompoundref>
+    <includes refid="readOnlyChassisModel_8hpp" local="no">readOnlyChassisModel.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1ReadOnlyChassisModel_1a1994ed80cbfdc34f30f90083d4c8620d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual okapi::ReadOnlyChassisModel::~ReadOnlyChassisModel</definition>
+        <argsstring>()=default</argsstring>
+        <name>~ReadOnlyChassisModel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/readOnlyChassisModel.hpp" line="21" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1ReadOnlyChassisModel_1af2d844d9e12bb7c778ac9a5a0074f848" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::valarray&lt; std::int32_t &gt;</type>
+        <definition>virtual std::valarray&lt;std::int32_t&gt; okapi::ReadOnlyChassisModel::getSensorVals</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getSensorVals</name>
+        <reimplementedby refid="classokapi_1_1ThreeEncoderSkidSteerModel_1a39af35aa25e5385584b3834911aed341">getSensorVals</reimplementedby>
+        <reimplementedby refid="classokapi_1_1SkidSteerModel_1a850e4de7ab3a30a354ac39f30a1e8603">getSensorVals</reimplementedby>
+        <reimplementedby refid="classokapi_1_1XDriveModel_1a3beef170f1e7fd988d815f335cafad1e">getSensorVals</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Read the sensors.</para>
+<para><simplesect kind="return"><para>sensor readings (format is implementation dependent) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/chassis/model/readOnlyChassisModel.hpp" line="28" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A version of the <ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref> that only supports read methods, such as querying sensor values. This class does not let you write to motors, so it supports having multiple owners and as a result copying is enabled. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="468">
+        <label>okapi::ReadOnlyChassisModel</label>
+        <link refid="classokapi_1_1ReadOnlyChassisModel"/>
+      </node>
+      <node id="471">
+        <label>okapi::ThreeEncoderSkidSteerModel</label>
+        <link refid="classokapi_1_1ThreeEncoderSkidSteerModel"/>
+        <childnode refid="470" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="472">
+        <label>okapi::XDriveModel</label>
+        <link refid="classokapi_1_1XDriveModel"/>
+        <childnode refid="469" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="469">
+        <label>okapi::ChassisModel</label>
+        <link refid="classokapi_1_1ChassisModel"/>
+        <childnode refid="468" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="470">
+        <label>okapi::SkidSteerModel</label>
+        <link refid="classokapi_1_1SkidSteerModel"/>
+        <childnode refid="469" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="include/okapi/api/chassis/model/readOnlyChassisModel.hpp" line="19" column="1" bodyfile="include/okapi/api/chassis/model/readOnlyChassisModel.hpp" bodystart="19" bodyend="29"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ReadOnlyChassisModel_1af2d844d9e12bb7c778ac9a5a0074f848" prot="public" virt="pure-virtual"><scope>okapi::ReadOnlyChassisModel</scope><name>getSensorVals</name></member>
+      <member refid="classokapi_1_1ReadOnlyChassisModel_1a1994ed80cbfdc34f30f90083d4c8620d" prot="public" virt="virtual"><scope>okapi::ReadOnlyChassisModel</scope><name>~ReadOnlyChassisModel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

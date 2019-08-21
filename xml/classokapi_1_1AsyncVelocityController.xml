@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1AsyncVelocityController" kind="class" language="C++" prot="public">
+    <compoundname>okapi::AsyncVelocityController</compoundname>
+    <basecompoundref refid="classokapi_1_1AsyncController" prot="public" virt="virtual">okapi::AsyncController&lt; Input, Output &gt;</basecompoundref>
+    <includes refid="asyncVelocityController_8hpp" local="no">asyncVelocityController.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>Input</declname>
+        <defname>Input</defname>
+      </param>
+      <param>
+        <type>typename</type>
+        <declname>Output</declname>
+        <defname>Output</defname>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="157">
+        <label>okapi::ClosedLoopController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1ClosedLoopController"/>
+        <childnode refid="158" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="155">
+        <label>okapi::AsyncVelocityController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1AsyncVelocityController"/>
+        <childnode refid="156" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="156">
+        <label>okapi::AsyncController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1AsyncController"/>
+        <childnode refid="157" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="158">
+        <label>okapi::ControllerOutput&lt; Input &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="161">
+        <label>okapi::ClosedLoopController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1ClosedLoopController"/>
+        <childnode refid="162" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="159">
+        <label>okapi::AsyncVelocityController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1AsyncVelocityController"/>
+        <childnode refid="160" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="160">
+        <label>okapi::AsyncController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1AsyncController"/>
+        <childnode refid="161" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="162">
+        <label>okapi::ControllerOutput&lt; Input &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/control/async/asyncVelocityController.hpp" line="15" column="1" bodyfile="include/okapi/api/control/async/asyncVelocityController.hpp" bodystart="15" bodyend="15"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49" prot="public" virt="pure-virtual"><scope>okapi::AsyncVelocityController</scope><name>controllerSet</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a9de69b60885df41cd2164fe1a23f34d3" prot="public" virt="pure-virtual"><scope>okapi::AsyncVelocityController</scope><name>flipDisable</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a768cd1db40ce9cd5c89b20be6e838ccc" prot="public" virt="pure-virtual"><scope>okapi::AsyncVelocityController</scope><name>flipDisable</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a50c73444ff6e3e631951c43d0f951953" prot="public" virt="pure-virtual"><scope>okapi::AsyncVelocityController</scope><name>getError</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a22012bedbfaff6e5a3a508f274ec2497" prot="public" virt="pure-virtual"><scope>okapi::AsyncVelocityController</scope><name>getTarget</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a40bd4ec2b8c75503fbf6f494fd7cbe69" prot="public" virt="pure-virtual"><scope>okapi::AsyncVelocityController</scope><name>isDisabled</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1aed7aa0e94b6474c28314f8517d6cb4d8" prot="public" virt="pure-virtual"><scope>okapi::AsyncVelocityController</scope><name>isSettled</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a7dd6ce28b3e38bdf987514a1b6c83c8c" prot="public" virt="pure-virtual"><scope>okapi::AsyncVelocityController</scope><name>reset</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1ac14482d0768b3f157d52e0214a4c36d7" prot="public" virt="pure-virtual"><scope>okapi::AsyncVelocityController</scope><name>setTarget</name></member>
+      <member refid="classokapi_1_1AsyncController_1a20e19f334e3dc7a3092e0e4355edcf49" prot="public" virt="pure-virtual"><scope>okapi::AsyncVelocityController</scope><name>waitUntilSettled</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a7fa88d53b8f248e0894b8e0865918d5b" prot="public" virt="virtual"><scope>okapi::AsyncVelocityController</scope><name>~ClosedLoopController</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

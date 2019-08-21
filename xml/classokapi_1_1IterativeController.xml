@@ -1,0 +1,326 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classokapi_1_1IterativeController" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>okapi::IterativeController</compoundname>
+    <basecompoundref refid="classokapi_1_1ClosedLoopController" prot="public" virt="non-virtual">okapi::ClosedLoopController&lt; Input, Output &gt;</basecompoundref>
+    <derivedcompoundref refid="classokapi_1_1IterativePositionController" prot="public" virt="non-virtual">okapi::IterativePositionController&lt; Input, Output &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classokapi_1_1IterativeVelocityController" prot="public" virt="non-virtual">okapi::IterativeVelocityController&lt; Input, Output &gt;</derivedcompoundref>
+    <includes refid="iterativeController_8hpp" local="no">iterativeController.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>Input</declname>
+        <defname>Input</defname>
+      </param>
+      <param>
+        <type>typename</type>
+        <declname>Output</declname>
+        <defname>Output</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classokapi_1_1IterativeController_1a751bcad1407099e629e3ffbe395daf2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>Output</type>
+        <definition>virtual Output okapi::IterativeController&lt; Input, Output &gt;::step</definition>
+        <argsstring>(Input ireading)=0</argsstring>
+        <name>step</name>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1a71f514d22293dc2e23de26ecd994d57c">step</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1acec6d9ee4c41f78b54b6b28317bcd1e9">step</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1a7d75bb1622974daba25a9dec4df68325">step</reimplementedby>
+        <param>
+          <type>Input</type>
+          <declname>ireading</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Do one iteration of the controller.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ireading</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A new measurement. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The controller output. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativeController.hpp" line="29" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1IterativeController_1a83e0aac640804974f0e06936b9f7898a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>Output</type>
+        <definition>virtual Output okapi::IterativeController&lt; Input, Output &gt;::getOutput</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getOutput</name>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1a078d0d0d20118e374d01d2b9eba23da3">getOutput</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1ab3f4050524cb54b4e3df951a8d84ac57">getOutput</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1aeb015338c954bf1a7ef0b792ea6c490c">getOutput</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the last calculated output of the controller. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativeController.hpp" line="34" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1IterativeController_1ae1a7d9bd29d176a26bcc70c741f0d50f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::IterativeController&lt; Input, Output &gt;::setOutputLimits</definition>
+        <argsstring>(Output imax, Output imin)=0</argsstring>
+        <name>setOutputLimits</name>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1a7614e53a0847e47e5418df21670c1ddd">setOutputLimits</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1a02efd865f97b0f2da3f826c1120ec07b">setOutputLimits</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a64c3fddb91ceaac4e747404afc5295ae">setOutputLimits</reimplementedby>
+        <param>
+          <type>Output</type>
+          <declname>imax</declname>
+        </param>
+        <param>
+          <type>Output</type>
+          <declname>imin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set controller output bounds.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>imax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max output </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>imin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>min output </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativeController.hpp" line="42" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1IterativeController_1a7c514b702b78be6c45c03b718edce035" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::IterativeController&lt; Input, Output &gt;::setControllerSetTargetLimits</definition>
+        <argsstring>(Output itargetMax, Output itargetMin)=0</argsstring>
+        <name>setControllerSetTargetLimits</name>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1a083db063a4f8f15787a0c97068eef755">setControllerSetTargetLimits</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1a054d5bff10ba504b9f72db567ad45bfb">setControllerSetTargetLimits</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a556937096c9a1331e705a8fa9175c884">setControllerSetTargetLimits</reimplementedby>
+        <param>
+          <type>Output</type>
+          <declname>itargetMax</declname>
+        </param>
+        <param>
+          <type>Output</type>
+          <declname>itargetMin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the (soft) limits for the target range that <ref refid="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49" kindref="member">controllerSet()</ref> scales into. The target computed by <computeroutput><ref refid="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49" kindref="member">controllerSet()</ref></computeroutput> is scaled into the range <computeroutput>[-itargetMin, itargetMax]</computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>itargetMax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new max target for <computeroutput><ref refid="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49" kindref="member">controllerSet()</ref></computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>itargetMin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new min target for <computeroutput><ref refid="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49" kindref="member">controllerSet()</ref></computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativeController.hpp" line="51" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1IterativeController_1a09bdba3a6d7854d943ed5401210b0595" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>Output</type>
+        <definition>virtual Output okapi::IterativeController&lt; Input, Output &gt;::getMaxOutput</definition>
+        <argsstring>()=0</argsstring>
+        <name>getMaxOutput</name>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1a48d88a7c9cec2c7046d0f7f61d8777c9">getMaxOutput</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1acf26277c959a7fd03c918340e194a361">getMaxOutput</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a71538d55cd0a98812a749af84f8ec7aa">getMaxOutput</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the upper output bound.</para>
+<para><simplesect kind="return"><para>the upper output bound </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativeController.hpp" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1IterativeController_1a4d271df97caeedbcc807b714a48eaa30" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>Output</type>
+        <definition>virtual Output okapi::IterativeController&lt; Input, Output &gt;::getMinOutput</definition>
+        <argsstring>()=0</argsstring>
+        <name>getMinOutput</name>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1a32942ed7359481ede1fba86d7dc44795">getMinOutput</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1a0401715743d991c5ca9f3afa51a5a069">getMinOutput</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a51666c20236a2a9ff87e843cf746833e">getMinOutput</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the lower output bound.</para>
+<para><simplesect kind="return"><para>the lower output bound </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativeController.hpp" line="65" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1IterativeController_1ac4cfb1b37a3c707b2fc8f2fbda526f3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void okapi::IterativeController&lt; Input, Output &gt;::setSampleTime</definition>
+        <argsstring>(QTime isampleTime)=0</argsstring>
+        <name>setSampleTime</name>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1ab94173452bbba03ffe51a4e700e2a870">setSampleTime</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1aef5ba457e81871d47519413551856bb8">setSampleTime</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a89e9f71510b9779282175fe3f5b071d6">setSampleTime</reimplementedby>
+        <param>
+          <type>QTime</type>
+          <declname>isampleTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set time between loops.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>isampleTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time between loops </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativeController.hpp" line="72" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1IterativeController_1a48cd86626af7036db4f36b4124df4f98" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>QTime</type>
+        <definition>virtual QTime okapi::IterativeController&lt; Input, Output &gt;::getSampleTime</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getSampleTime</name>
+        <reimplementedby refid="classokapi_1_1IterativeMotorVelocityController_1ae67b1aec831d3711f12beb85f69eb7f0">getSampleTime</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1aa786680075677c2f43619d48cad0e154">getSampleTime</reimplementedby>
+        <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a12d70574d5234d2928d77114e0c90df9">getSampleTime</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the last set sample time.</para>
+<para><simplesect kind="return"><para>sample time </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/iterative/iterativeController.hpp" line="79" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Closed-loop controller that steps iteratively using the step method below.</para>
+<para><computeroutput><ref refid="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49" kindref="member">ControllerOutput::controllerSet()</ref></computeroutput> should set the controller&apos;s target to the input scaled by the output bounds. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="342">
+        <label>okapi::IterativeVelocityController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1IterativeVelocityController"/>
+        <childnode refid="338" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="339">
+        <label>okapi::ClosedLoopController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1ClosedLoopController"/>
+        <childnode refid="340" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="338">
+        <label>okapi::IterativeController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1IterativeController"/>
+        <childnode refid="339" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="341">
+        <label>okapi::IterativePositionController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1IterativePositionController"/>
+        <childnode refid="338" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="340">
+        <label>okapi::ControllerOutput&lt; Input &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="344">
+        <label>okapi::ClosedLoopController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1ClosedLoopController"/>
+        <childnode refid="345" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="343">
+        <label>okapi::IterativeController&lt; Input, Output &gt;</label>
+        <link refid="classokapi_1_1IterativeController"/>
+        <childnode refid="344" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="345">
+        <label>okapi::ControllerOutput&lt; Input &gt;</label>
+        <link refid="classokapi_1_1ControllerOutput"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/okapi/api/control/iterative/iterativeController.hpp" line="21" column="1" bodyfile="include/okapi/api/control/iterative/iterativeController.hpp" bodystart="21" bodyend="80"/>
+    <listofallmembers>
+      <member refid="classokapi_1_1ControllerOutput_1a360c08f0c10b36f882d6d3100c2cad49" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>controllerSet</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a9de69b60885df41cd2164fe1a23f34d3" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>flipDisable</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a768cd1db40ce9cd5c89b20be6e838ccc" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>flipDisable</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a50c73444ff6e3e631951c43d0f951953" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>getError</name></member>
+      <member refid="classokapi_1_1IterativeController_1a09bdba3a6d7854d943ed5401210b0595" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>getMaxOutput</name></member>
+      <member refid="classokapi_1_1IterativeController_1a4d271df97caeedbcc807b714a48eaa30" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>getMinOutput</name></member>
+      <member refid="classokapi_1_1IterativeController_1a83e0aac640804974f0e06936b9f7898a" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>getOutput</name></member>
+      <member refid="classokapi_1_1IterativeController_1a48cd86626af7036db4f36b4124df4f98" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>getSampleTime</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a22012bedbfaff6e5a3a508f274ec2497" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>getTarget</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a40bd4ec2b8c75503fbf6f494fd7cbe69" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>isDisabled</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1aed7aa0e94b6474c28314f8517d6cb4d8" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>isSettled</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a7dd6ce28b3e38bdf987514a1b6c83c8c" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>reset</name></member>
+      <member refid="classokapi_1_1IterativeController_1a7c514b702b78be6c45c03b718edce035" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>setControllerSetTargetLimits</name></member>
+      <member refid="classokapi_1_1IterativeController_1ae1a7d9bd29d176a26bcc70c741f0d50f" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>setOutputLimits</name></member>
+      <member refid="classokapi_1_1IterativeController_1ac4cfb1b37a3c707b2fc8f2fbda526f3e" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>setSampleTime</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1ac14482d0768b3f157d52e0214a4c36d7" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>setTarget</name></member>
+      <member refid="classokapi_1_1IterativeController_1a751bcad1407099e629e3ffbe395daf2b" prot="public" virt="pure-virtual"><scope>okapi::IterativeController</scope><name>step</name></member>
+      <member refid="classokapi_1_1ClosedLoopController_1a7fa88d53b8f248e0894b8e0865918d5b" prot="public" virt="virtual"><scope>okapi::IterativeController</scope><name>~ClosedLoopController</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
