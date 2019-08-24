@@ -18,8 +18,8 @@ stages:
       - script: sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa -y
       - script: sudo apt update
       - script: sudo apt install gcc-arm-embedded g++-7 lcov valgrind doxygen
-      - script: pip3 install --user -U pip
-      - script: pip3 install --user jinja2 Pygments
+      - script: pip install --user -U pip
+      - script: pip install --user jinja2 Pygments
       - script: make
       - script: mkdir cmake-build-debug
       - script: cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
