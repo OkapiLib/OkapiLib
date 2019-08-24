@@ -202,7 +202,7 @@ add_executable(OkapiLibV5
         test/offsettableControllerInputTests.cpp
         test/asyncPosPIDControllerTests.cpp
         test/threeEncoderOdometryTests.cpp
-        include/okapi/api/odometry/point2d.h
+        include/okapi/api/odometry/point.hpp
         test/odomMathTests.cpp
         include/okapi/api/odometry/stateMode.hpp)
 

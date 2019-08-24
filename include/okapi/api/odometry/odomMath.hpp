@@ -8,7 +8,7 @@
 #pragma once
 
 #include "okapi/api/odometry/odometry.hpp"
-#include "okapi/api/odometry/point2d.h"
+#include "okapi/api/odometry/point.hpp"
 #include "okapi/api/util/logging.hpp"
 #include <tuple>
 

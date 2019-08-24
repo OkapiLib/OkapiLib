@@ -11,7 +11,7 @@
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/coreProsAPI.hpp"
 #include "okapi/api/odometry/odometry.hpp"
-#include "okapi/api/odometry/point2d.h"
+#include "okapi/api/odometry/point.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
