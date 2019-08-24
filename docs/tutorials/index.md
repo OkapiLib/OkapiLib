@@ -8,13 +8,15 @@ The OkapiLib tutorials are split into two sections:
 
 ## Walkthrough Tutorials
 
-If you want to write full sample programs to learn to use OkapiLib through practical
-applications, or teach students to use OkapiLib in a classroom environment, the
-**Walkthrough Tutorials** are a great resource to go step by step through the
-process of writing an OkapiLib program.
+If you want to write full sample programs to learn to use OkapiLib through
+practical applications, or teach students to use OkapiLib in a classroom
+environment, the **Walkthrough Tutorials** are a great resource to go step by
+step through the process of writing an OkapiLib program.
+
+ - [Getting Started](docs/tutorials/walkthrough/gettingStarted.md)
 
 ## Topical Tutorials
 
-If you want more information about using a particular part of the OkapiLib API after
-reading through the API reference, the **Topical Tutorials** offer longer examples and more detail about using the API.
-
+If you want more information about using a particular part of the OkapiLib API
+after reading through the API reference, the **Topical Tutorials** offer longer
+examples and more detail about using the API.

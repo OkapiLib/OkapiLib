@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
-  <compounddef id="Tutorial1_8md" kind="file" language="Markdown">
-    <compoundname>Tutorial1.md</compoundname>
+  <compounddef id="gettingStarted_8md" kind="file" language="Markdown">
+    <compoundname>gettingStarted.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="doc/Tutorial1.md"/>
+    <location file="docs/tutorials/walkthrough/gettingStarted.md"/>
   </compounddef>
 </doxygen>

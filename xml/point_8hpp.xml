@@ -7,104 +7,104 @@
     <includedby refid="odomChassisController_8hpp" local="yes">include/okapi/api/chassis/controller/odomChassisController.hpp</includedby>
     <includedby refid="odomMath_8hpp" local="yes">include/okapi/api/odometry/odomMath.hpp</includedby>
     <incdepgraph>
-      <node id="2526">
+      <node id="2528">
         <label>cmath</label>
       </node>
-      <node id="2524">
+      <node id="2526">
         <label>okapi/api/units/QLength.hpp</label>
         <link refid="QLength_8hpp"/>
-        <childnode refid="2525" relation="include">
-        </childnode>
-      </node>
-      <node id="2527">
-        <label>ratio</label>
-      </node>
-      <node id="2523">
-        <label>okapi/api/odometry/stateMode.hpp</label>
-        <link refid="stateMode_8hpp"/>
-      </node>
-      <node id="2525">
-        <label>okapi/api/units/RQuantity.hpp</label>
-        <link refid="RQuantity_8hpp"/>
-        <childnode refid="2526" relation="include">
-        </childnode>
         <childnode refid="2527" relation="include">
         </childnode>
       </node>
-      <node id="2522">
+      <node id="2529">
+        <label>ratio</label>
+      </node>
+      <node id="2525">
+        <label>okapi/api/odometry/stateMode.hpp</label>
+        <link refid="stateMode_8hpp"/>
+      </node>
+      <node id="2527">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="2528" relation="include">
+        </childnode>
+        <childnode refid="2529" relation="include">
+        </childnode>
+      </node>
+      <node id="2524">
         <label>include/okapi/api/odometry/point.hpp</label>
         <link refid="point_8hpp"/>
-        <childnode refid="2523" relation="include">
+        <childnode refid="2525" relation="include">
         </childnode>
-        <childnode refid="2524" relation="include">
+        <childnode refid="2526" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2531">
+      <node id="2533">
         <label>include/okapi/api.hpp</label>
         <link refid="api_8hpp"/>
       </node>
-      <node id="2535">
+      <node id="2537">
         <label>src/api/chassis/controller/odomChassisController.cpp</label>
         <link refid="odomChassisController_8cpp"/>
       </node>
-      <node id="2532">
+      <node id="2534">
         <label>include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp</label>
         <link refid="chassisControllerBuilder_8hpp"/>
-        <childnode refid="2531" relation="include">
-        </childnode>
         <childnode refid="2533" relation="include">
-        </childnode>
-      </node>
-      <node id="2537">
-        <label>src/api/odometry/odomMath.cpp</label>
-        <link refid="odomMath_8cpp"/>
-      </node>
-      <node id="2534">
-        <label>src/api/chassis/controller/defaultOdomChassisController.cpp</label>
-        <link refid="defaultOdomChassisController_8cpp"/>
-      </node>
-      <node id="2533">
-        <label>src/impl/chassis/controller/chassisControllerBuilder.cpp</label>
-        <link refid="chassisControllerBuilder_8cpp"/>
-      </node>
-      <node id="2536">
-        <label>include/okapi/api/odometry/odomMath.hpp</label>
-        <link refid="odomMath_8hpp"/>
-        <childnode refid="2531" relation="include">
-        </childnode>
-        <childnode refid="2534" relation="include">
-        </childnode>
-        <childnode refid="2537" relation="include">
-        </childnode>
-      </node>
-      <node id="2528">
-        <label>include/okapi/api/odometry/point.hpp</label>
-        <link refid="point_8hpp"/>
-        <childnode refid="2529" relation="include">
-        </childnode>
-        <childnode refid="2536" relation="include">
-        </childnode>
-      </node>
-      <node id="2529">
-        <label>include/okapi/api/chassis/controller/odomChassisController.hpp</label>
-        <link refid="odomChassisController_8hpp"/>
-        <childnode refid="2530" relation="include">
-        </childnode>
-        <childnode refid="2531" relation="include">
         </childnode>
         <childnode refid="2535" relation="include">
         </childnode>
       </node>
+      <node id="2539">
+        <label>src/api/odometry/odomMath.cpp</label>
+        <link refid="odomMath_8cpp"/>
+      </node>
+      <node id="2536">
+        <label>src/api/chassis/controller/defaultOdomChassisController.cpp</label>
+        <link refid="defaultOdomChassisController_8cpp"/>
+      </node>
+      <node id="2535">
+        <label>src/impl/chassis/controller/chassisControllerBuilder.cpp</label>
+        <link refid="chassisControllerBuilder_8cpp"/>
+      </node>
+      <node id="2538">
+        <label>include/okapi/api/odometry/odomMath.hpp</label>
+        <link refid="odomMath_8hpp"/>
+        <childnode refid="2533" relation="include">
+        </childnode>
+        <childnode refid="2536" relation="include">
+        </childnode>
+        <childnode refid="2539" relation="include">
+        </childnode>
+      </node>
       <node id="2530">
-        <label>include/okapi/api/chassis/controller/defaultOdomChassisController.hpp</label>
-        <link refid="defaultOdomChassisController_8hpp"/>
+        <label>include/okapi/api/odometry/point.hpp</label>
+        <link refid="point_8hpp"/>
         <childnode refid="2531" relation="include">
         </childnode>
+        <childnode refid="2538" relation="include">
+        </childnode>
+      </node>
+      <node id="2531">
+        <label>include/okapi/api/chassis/controller/odomChassisController.hpp</label>
+        <link refid="odomChassisController_8hpp"/>
         <childnode refid="2532" relation="include">
         </childnode>
+        <childnode refid="2533" relation="include">
+        </childnode>
+        <childnode refid="2537" relation="include">
+        </childnode>
+      </node>
+      <node id="2532">
+        <label>include/okapi/api/chassis/controller/defaultOdomChassisController.hpp</label>
+        <link refid="defaultOdomChassisController_8hpp"/>
+        <childnode refid="2533" relation="include">
+        </childnode>
         <childnode refid="2534" relation="include">
+        </childnode>
+        <childnode refid="2536" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

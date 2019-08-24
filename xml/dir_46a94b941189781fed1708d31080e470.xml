@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
-  <compounddef id="md_doc_Tutorial1" kind="page">
-    <compoundname>md_doc_Tutorial1</compoundname>
-    <title>Tutorial 1</title>
+  <compounddef id="dir_46a94b941189781fed1708d31080e470" kind="dir">
+    <compoundname>docs/tutorials</compoundname>
+    <innerdir refid="dir_d5f57786135ac658b57dd725d6376230">docs/tutorials/walkthrough</innerdir>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>Some info. </para>
     </detaileddescription>
+    <location file="docs/tutorials/"/>
   </compounddef>
 </doxygen>

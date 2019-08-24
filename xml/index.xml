@@ -1689,7 +1689,9 @@
     <member refid="namespaceokapi_1_1literals_1a40698358b7eaa4c223ff8b0076249f4e" kind="function"><name>operator&quot;&quot;_pi</name></member>
     <member refid="namespaceokapi_1_1literals_1a32a563b32efa7e39480f90e5b9db8e6a" kind="function"><name>operator&quot;&quot;_pi</name></member>
   </compound>
-  <compound refid="Tutorial1_8md" kind="file"><name>Tutorial1.md</name>
+  <compound refid="index_8md" kind="file"><name>index.md</name>
+  </compound>
+  <compound refid="gettingStarted_8md" kind="file"><name>gettingStarted.md</name>
   </compound>
   <compound refid="api_8hpp" kind="file"><name>api.hpp</name>
   </compound>
@@ -2039,7 +2041,9 @@
   </compound>
   <compound refid="timeUtilFactory_8cpp" kind="file"><name>timeUtilFactory.cpp</name>
   </compound>
-  <compound refid="md_doc_Tutorial1" kind="page"><name>md_doc_Tutorial1</name>
+  <compound refid="md_docs_tutorials_index" kind="page"><name>md_docs_tutorials_index</name>
+  </compound>
+  <compound refid="md_docs_tutorials_walkthrough_gettingStarted" kind="page"><name>md_docs_tutorials_walkthrough_gettingStarted</name>
   </compound>
   <compound refid="dir_63ebd08b8cf71fd366bf0de4231ab7e6" kind="dir"><name>include/okapi/api</name>
   </compound>
@@ -2061,17 +2065,17 @@
   </compound>
   <compound refid="dir_968dfa43eba935f529ddc21983430ea9" kind="dir"><name>src/impl/device/button</name>
   </compound>
-  <compound refid="dir_4202d117f5e57a9e678d731f6dbe9d69" kind="dir"><name>include/okapi/api/chassis</name>
-  </compound>
   <compound refid="dir_c0959e89180861cd68fb4b3242aafadf" kind="dir"><name>src/api/chassis</name>
   </compound>
   <compound refid="dir_b5d60c76f5747196f43dc5e75fd8e58c" kind="dir"><name>include/okapi/impl/chassis</name>
   </compound>
   <compound refid="dir_fa2b4880d9b3e94a151696e753f1a74d" kind="dir"><name>src/impl/chassis</name>
   </compound>
-  <compound refid="dir_ee8fabeddabdeff2f9d7f82f9bc73f75" kind="dir"><name>include/okapi/api/control</name>
+  <compound refid="dir_4202d117f5e57a9e678d731f6dbe9d69" kind="dir"><name>include/okapi/api/chassis</name>
   </compound>
   <compound refid="dir_329639348781c5d28c3b282d2258f951" kind="dir"><name>src/api/control</name>
+  </compound>
+  <compound refid="dir_ee8fabeddabdeff2f9d7f82f9bc73f75" kind="dir"><name>include/okapi/api/control</name>
   </compound>
   <compound refid="dir_65508a59c808b894a62e5fd576508e2d" kind="dir"><name>include/okapi/impl/control</name>
   </compound>
@@ -2079,27 +2083,27 @@
   </compound>
   <compound refid="dir_d5e88c66fec6cf921ee6ec56e9e91087" kind="dir"><name>src/api/chassis/controller</name>
   </compound>
-  <compound refid="dir_10c5e4e38284d03956607e12c6ca3f5d" kind="dir"><name>include/okapi/impl/chassis/controller</name>
-  </compound>
   <compound refid="dir_bebd5f8506b7b1f14435fa808694a17e" kind="dir"><name>include/okapi/api/chassis/controller</name>
+  </compound>
+  <compound refid="dir_10c5e4e38284d03956607e12c6ca3f5d" kind="dir"><name>include/okapi/impl/chassis/controller</name>
   </compound>
   <compound refid="dir_c12f4fe103edeb67536118ec2631bcf9" kind="dir"><name>src/impl/chassis/controller</name>
   </compound>
   <compound refid="dir_c93ca87059c82fd762816f42010ab1fd" kind="dir"><name>src/api/device</name>
   </compound>
-  <compound refid="dir_168cb15b1518231d3e9529c538899201" kind="dir"><name>include/okapi/api/device</name>
+  <compound refid="dir_498af6ea41adb63c91c476258d6e97a2" kind="dir"><name>src/impl/device</name>
   </compound>
   <compound refid="dir_cbfaa812b5a187f9f977bd73c61fc8cb" kind="dir"><name>include/okapi/impl/device</name>
   </compound>
-  <compound refid="dir_498af6ea41adb63c91c476258d6e97a2" kind="dir"><name>src/impl/device</name>
+  <compound refid="dir_168cb15b1518231d3e9529c538899201" kind="dir"><name>include/okapi/api/device</name>
   </compound>
-  <compound refid="dir_e68e8157741866f444e17edd764ebbae" kind="dir"><name>doc</name>
+  <compound refid="dir_49e56c817e5e54854c35e136979f97ca" kind="dir"><name>docs</name>
+  </compound>
+  <compound refid="dir_794805a0fdd80135d0777782497ed32b" kind="dir"><name>include/okapi/impl/filter</name>
   </compound>
   <compound refid="dir_7f5467880c6256ea2f9499e004d2592a" kind="dir"><name>include/okapi/api/filter</name>
   </compound>
   <compound refid="dir_33b45b82b9e14013023582e3e9ebaa62" kind="dir"><name>src/api/filter</name>
-  </compound>
-  <compound refid="dir_794805a0fdd80135d0777782497ed32b" kind="dir"><name>include/okapi/impl/filter</name>
   </compound>
   <compound refid="dir_f68326cdd017b324d99b32d6dc6f95e4" kind="dir"><name>src/impl/filter</name>
   </compound>
@@ -2109,25 +2113,25 @@
   </compound>
   <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
   </compound>
-  <compound refid="dir_428e79857a7aec22fdd08041af71c9bd" kind="dir"><name>include/okapi/impl/control/iterative</name>
+  <compound refid="dir_824a7f097125702493609322a8e4c11d" kind="dir"><name>src/api/control/iterative</name>
   </compound>
   <compound refid="dir_98667259adeb9581d7d9a26a21984dcf" kind="dir"><name>include/okapi/api/control/iterative</name>
   </compound>
-  <compound refid="dir_824a7f097125702493609322a8e4c11d" kind="dir"><name>src/api/control/iterative</name>
+  <compound refid="dir_428e79857a7aec22fdd08041af71c9bd" kind="dir"><name>include/okapi/impl/control/iterative</name>
   </compound>
   <compound refid="dir_406a7ffd0ddba68ade99abb40366a751" kind="dir"><name>src/impl/control/iterative</name>
   </compound>
-  <compound refid="dir_609a048006c0721eb630f4a371b79378" kind="dir"><name>src/api/chassis/model</name>
-  </compound>
   <compound refid="dir_74f8e2f2711d1b4942288037bd723b6f" kind="dir"><name>include/okapi/api/chassis/model</name>
   </compound>
-  <compound refid="dir_574d0eb49bbc748870bae9b025dbd674" kind="dir"><name>include/okapi/api/device/motor</name>
+  <compound refid="dir_609a048006c0721eb630f4a371b79378" kind="dir"><name>src/api/chassis/model</name>
   </compound>
-  <compound refid="dir_35bd4a92088aad798e4e05318b5a3288" kind="dir"><name>src/api/device/motor</name>
+  <compound refid="dir_574d0eb49bbc748870bae9b025dbd674" kind="dir"><name>include/okapi/api/device/motor</name>
   </compound>
   <compound refid="dir_55dbb4521af0274b5e816a51edcfc421" kind="dir"><name>src/impl/device/motor</name>
   </compound>
   <compound refid="dir_01b54310dbb6efeaab63b7f1d72f5471" kind="dir"><name>include/okapi/impl/device/motor</name>
+  </compound>
+  <compound refid="dir_35bd4a92088aad798e4e05318b5a3288" kind="dir"><name>src/api/device/motor</name>
   </compound>
   <compound refid="dir_e21bf6c49265067d53af28061fee8994" kind="dir"><name>src/api/odometry</name>
   </compound>
@@ -2135,33 +2139,37 @@
   </compound>
   <compound refid="dir_8c088865cf2101267382299fb6fe5fcc" kind="dir"><name>include/okapi</name>
   </compound>
-  <compound refid="dir_bc643c72aed8e064b2fdc893d918342a" kind="dir"><name>include/okapi/impl/device/rotarysensor</name>
-  </compound>
   <compound refid="dir_0c1b0fbcbcaef362abf0c442cbebf8be" kind="dir"><name>src/impl/device/rotarysensor</name>
-  </compound>
-  <compound refid="dir_53575978520be5e6b1102a5f023ce339" kind="dir"><name>src/api/device/rotarysensor</name>
   </compound>
   <compound refid="dir_6cd138e6435d2fcbac3fd73f0893bcbc" kind="dir"><name>include/okapi/api/device/rotarysensor</name>
   </compound>
+  <compound refid="dir_bc643c72aed8e064b2fdc893d918342a" kind="dir"><name>include/okapi/impl/device/rotarysensor</name>
+  </compound>
+  <compound refid="dir_53575978520be5e6b1102a5f023ce339" kind="dir"><name>src/api/device/rotarysensor</name>
+  </compound>
   <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+  <compound refid="dir_46a94b941189781fed1708d31080e470" kind="dir"><name>docs/tutorials</name>
   </compound>
   <compound refid="dir_e84fea72a7bc70ffe5d343194ba5b48e" kind="dir"><name>include/okapi/api/units</name>
   </compound>
   <compound refid="dir_01997f625f96480294339ddf79b14f04" kind="dir"><name>include/okapi/api/util</name>
   </compound>
+  <compound refid="dir_c5ef6d121b08f819be088636517cdaed" kind="dir"><name>src/api/control/util</name>
+  </compound>
+  <compound refid="dir_8bef4742c12bf48e91033b1cdffba180" kind="dir"><name>src/impl/control/util</name>
+  </compound>
   <compound refid="dir_72ccae87f7209aff0e1ad89aa89987e8" kind="dir"><name>include/okapi/api/control/util</name>
   </compound>
   <compound refid="dir_a682ebdadffd7e3de671b571cdbc7309" kind="dir"><name>include/okapi/impl/util</name>
-  </compound>
-  <compound refid="dir_c5ef6d121b08f819be088636517cdaed" kind="dir"><name>src/api/control/util</name>
-  </compound>
-  <compound refid="dir_d71a13ccebea64891540b8465dcfed38" kind="dir"><name>src/impl/util</name>
   </compound>
   <compound refid="dir_747c56ab96dfbdc61e1878e19fbe7572" kind="dir"><name>src/api/util</name>
   </compound>
   <compound refid="dir_b5f0c0e63c713dc5d7f6580b98693f29" kind="dir"><name>include/okapi/impl/control/util</name>
   </compound>
-  <compound refid="dir_8bef4742c12bf48e91033b1cdffba180" kind="dir"><name>src/impl/control/util</name>
+  <compound refid="dir_d71a13ccebea64891540b8465dcfed38" kind="dir"><name>src/impl/util</name>
+  </compound>
+  <compound refid="dir_d5f57786135ac658b57dd725d6376230" kind="dir"><name>docs/tutorials/walkthrough</name>
   </compound>
   <compound refid="indexpage" kind="page"><name>index</name>
   </compound>

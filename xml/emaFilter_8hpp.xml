@@ -6,31 +6,31 @@
     <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
     <includedby refid="emaFilter_8cpp" local="yes">src/api/filter/emaFilter.cpp</includedby>
     <incdepgraph>
-      <node id="2260">
-        <label>include/okapi/api/filter/emaFilter.hpp</label>
-        <link refid="emaFilter_8hpp"/>
-        <childnode refid="2261" relation="include">
-        </childnode>
-      </node>
-      <node id="2261">
-        <label>okapi/api/filter/filter.hpp</label>
-        <link refid="filter_8hpp"/>
-      </node>
-    </incdepgraph>
-    <invincdepgraph>
-      <node id="2263">
-        <label>include/okapi/api.hpp</label>
-        <link refid="api_8hpp"/>
-      </node>
       <node id="2262">
         <label>include/okapi/api/filter/emaFilter.hpp</label>
         <link refid="emaFilter_8hpp"/>
         <childnode refid="2263" relation="include">
         </childnode>
-        <childnode refid="2264" relation="include">
-        </childnode>
+      </node>
+      <node id="2263">
+        <label>okapi/api/filter/filter.hpp</label>
+        <link refid="filter_8hpp"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2265">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
       </node>
       <node id="2264">
+        <label>include/okapi/api/filter/emaFilter.hpp</label>
+        <link refid="emaFilter_8hpp"/>
+        <childnode refid="2265" relation="include">
+        </childnode>
+        <childnode refid="2266" relation="include">
+        </childnode>
+      </node>
+      <node id="2266">
         <label>src/api/filter/emaFilter.cpp</label>
         <link refid="emaFilter_8cpp"/>
       </node>

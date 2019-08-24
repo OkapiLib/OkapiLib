@@ -1,0 +1,19 @@
+\subsection*{Introduction}
+
+Okapi\+Lib is installed in all new P\+R\+OS projects by default. If you are unsure if Okapi\+Lib is installed, you can check the output of {\ttfamily prosv5 conduct info-\/project}. Additionally, Okapi\+Lib\textquotesingle{}s header files reside in {\ttfamily include/okapi}. Once you know that Okapi\+Lib is installed, you can start using it by uncommenting Okapi\+Lib\textquotesingle{}s A\+PI header include statement in the file {\ttfamily include/main.\+h} \+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#include "api.h"}
+\DoxyCodeLine{}
+\DoxyCodeLine{/**}
+\DoxyCodeLine{ * You should add more \#includes here}
+\DoxyCodeLine{ */}
+\DoxyCodeLine{\#include "okapi/api.hpp" // <-- UNCOMMENT THIS LINE}
+\DoxyCodeLine{//\#include "pros/api\_legacy.h"}
+\end{DoxyCode}
+
+
+\subsection*{Troubleshooting}
+
+If Okapi\+Lib is not getting downloaded from Git\+Hub correctly duringinstallation, you can \href{https://github.com/OkapiLib/OkapiLib/releases}{\texttt{ download it manuallyhere}} and then install it byrunning {\ttfamily prosv5 conduct fetch path/to/okapilib.\+zip}. Once Okapi\+Lib isinstalled, try creating a P\+R\+OS project again. 

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="md_docs_tutorials_walkthrough_gettingStarted" kind="page">
+    <compoundname>md_docs_tutorials_walkthrough_gettingStarted</compoundname>
+    <title>Getting Started with OkapiLib</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><heading level="2">Introduction</heading>
+</para>
+<para>OkapiLib is installed in all new PROS projects by default. If you are unsure if OkapiLib is installed, you can check the output of <computeroutput>prosv5 conduct info-project</computeroutput>. Additionally, OkapiLib&apos;s header files reside in <computeroutput>include/okapi</computeroutput>. Once you know that OkapiLib is installed, you can start using it by uncommenting OkapiLib&apos;s API header include statement in the file <computeroutput>include/main.h</computeroutput> :</para>
+<para><programlisting><codeline><highlight class="normal">#include<sp/>&quot;api.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>You<sp/>should<sp/>add<sp/>more<sp/>#includes<sp/>here</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;okapi/api.hpp&quot;<sp/>//<sp/>&lt;--<sp/>UNCOMMENT<sp/>THIS<sp/>LINE</highlight></codeline>
+<codeline><highlight class="normal">//#include<sp/>&quot;pros/api_legacy.h&quot;</highlight></codeline>
+</programlisting></para>
+<para><heading level="2">Troubleshooting</heading>
+</para>
+<para>If OkapiLib is not getting downloaded from GitHub correctly duringinstallation, you can <ulink url="https://github.com/OkapiLib/OkapiLib/releases">download it manuallyhere</ulink> and then install it byrunning <computeroutput>prosv5 conduct fetch path/to/okapilib.zip</computeroutput>. Once OkapiLib isinstalled, try creating a PROS project again. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

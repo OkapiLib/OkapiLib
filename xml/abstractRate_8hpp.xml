@@ -14,37 +14,33 @@
     <includedby refid="rate_8hpp" local="yes">include/okapi/impl/util/rate.hpp</includedby>
     <includedby refid="abstractRate_8cpp" local="yes">src/api/util/abstractRate.cpp</includedby>
     <incdepgraph>
-      <node id="3167">
+      <node id="3169">
         <label>functional</label>
       </node>
-      <node id="3164">
+      <node id="3166">
         <label>cstdint</label>
       </node>
-      <node id="3171">
+      <node id="3173">
         <label>okapi/api/units/QFrequency.hpp</label>
         <link refid="QFrequency_8hpp"/>
-        <childnode refid="3172" relation="include">
+        <childnode refid="3174" relation="include">
+        </childnode>
+      </node>
+      <node id="3164">
+        <label>cstdbool</label>
+      </node>
+      <node id="3163">
+        <label>cmath</label>
+      </node>
+      <node id="3176">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="3174" relation="include">
         </childnode>
       </node>
       <node id="3162">
-        <label>cstdbool</label>
-      </node>
-      <node id="3161">
-        <label>cmath</label>
-      </node>
-      <node id="3174">
-        <label>okapi/api/units/QTime.hpp</label>
-        <link refid="QTime_8hpp"/>
-        <childnode refid="3172" relation="include">
-        </childnode>
-      </node>
-      <node id="3160">
         <label>okapi/api/coreProsAPI.hpp</label>
         <link refid="coreProsAPI_8hpp"/>
-        <childnode refid="3161" relation="include">
-        </childnode>
-        <childnode refid="3162" relation="include">
-        </childnode>
         <childnode refid="3163" relation="include">
         </childnode>
         <childnode refid="3164" relation="include">
@@ -61,481 +57,485 @@
         </childnode>
         <childnode refid="3170" relation="include">
         </childnode>
-      </node>
-      <node id="3159">
-        <label>include/okapi/api/util/abstractRate.hpp</label>
-        <link refid="abstractRate_8hpp"/>
-        <childnode refid="3160" relation="include">
-        </childnode>
         <childnode refid="3171" relation="include">
         </childnode>
-        <childnode refid="3174" relation="include">
+        <childnode refid="3172" relation="include">
         </childnode>
       </node>
-      <node id="3169">
-        <label>api.h</label>
-      </node>
-      <node id="3173">
-        <label>ratio</label>
-      </node>
-      <node id="3165">
-        <label>cstdio</label>
-      </node>
-      <node id="3168">
-        <label>sstream</label>
-      </node>
-      <node id="3166">
-        <label>cstdlib</label>
-      </node>
-      <node id="3163">
-        <label>cstddef</label>
-      </node>
-      <node id="3172">
-        <label>okapi/api/units/RQuantity.hpp</label>
-        <link refid="RQuantity_8hpp"/>
-        <childnode refid="3161" relation="include">
+      <node id="3161">
+        <label>include/okapi/api/util/abstractRate.hpp</label>
+        <link refid="abstractRate_8hpp"/>
+        <childnode refid="3162" relation="include">
         </childnode>
         <childnode refid="3173" relation="include">
         </childnode>
+        <childnode refid="3176" relation="include">
+        </childnode>
+      </node>
+      <node id="3171">
+        <label>api.h</label>
+      </node>
+      <node id="3175">
+        <label>ratio</label>
+      </node>
+      <node id="3167">
+        <label>cstdio</label>
       </node>
       <node id="3170">
+        <label>sstream</label>
+      </node>
+      <node id="3168">
+        <label>cstdlib</label>
+      </node>
+      <node id="3165">
+        <label>cstddef</label>
+      </node>
+      <node id="3174">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="3163" relation="include">
+        </childnode>
+        <childnode refid="3175" relation="include">
+        </childnode>
+      </node>
+      <node id="3172">
         <label>pros/apix.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="3180">
+      <node id="3182">
         <label>src/api/chassis/controller/chassisControllerPid.cpp</label>
         <link refid="chassisControllerPid_8cpp"/>
       </node>
-      <node id="3204">
+      <node id="3206">
         <label>include/okapi/impl/control/async/asyncMotionProfileControllerBuilder.hpp</label>
         <link refid="asyncMotionProfileControllerBuilder_8hpp"/>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3205" relation="include">
-        </childnode>
-      </node>
-      <node id="3224">
-        <label>src/impl/util/timeUtilFactory.cpp</label>
-        <link refid="timeUtilFactory_8cpp"/>
-      </node>
-      <node id="3219">
-        <label>src/impl/control/iterative/iterativeControllerFactory.cpp</label>
-        <link refid="iterativeControllerFactory_8cpp"/>
-      </node>
-      <node id="3212">
-        <label>src/api/control/async/asyncVelIntegratedController.cpp</label>
-        <link refid="asyncVelIntegratedController_8cpp"/>
-      </node>
-      <node id="3220">
-        <label>src/api/control/iterative/iterativePosPidController.cpp</label>
-        <link refid="iterativePosPidController_8cpp"/>
-      </node>
-      <node id="3185">
-        <label>src/api/control/async/asyncPosPidController.cpp</label>
-        <link refid="asyncPosPidController_8cpp"/>
-      </node>
-      <node id="3217">
-        <label>src/api/control/util/pidTuner.cpp</label>
-        <link refid="pidTuner_8cpp"/>
-      </node>
-      <node id="3208">
-        <label>src/api/control/async/asyncMotionProfileController.cpp</label>
-        <link refid="asyncMotionProfileController_8cpp"/>
-      </node>
-      <node id="3198">
-        <label>src/api/odometry/threeEncoderOdometry.cpp</label>
-        <link refid="threeEncoderOdometry_8cpp"/>
-      </node>
-      <node id="3209">
-        <label>include/okapi/api/control/async/asyncPosIntegratedController.hpp</label>
-        <link refid="asyncPosIntegratedController_8hpp"/>
-        <childnode refid="3201" relation="include">
-        </childnode>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3183" relation="include">
-        </childnode>
-        <childnode refid="3210" relation="include">
-        </childnode>
-      </node>
-      <node id="3210">
-        <label>src/api/control/async/asyncPosIntegratedController.cpp</label>
-        <link refid="asyncPosIntegratedController_8cpp"/>
-      </node>
-      <node id="3199">
-        <label>src/api/odometry/odometry.cpp</label>
-        <link refid="odometry_8cpp"/>
-      </node>
-      <node id="3192">
-        <label>include/okapi/api/odometry/odometry.hpp</label>
-        <link refid="odometry_8hpp"/>
-        <childnode refid="3193" relation="include">
-        </childnode>
-        <childnode refid="3195" relation="include">
-        </childnode>
-        <childnode refid="3197" relation="include">
-        </childnode>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3199" relation="include">
-        </childnode>
-      </node>
-      <node id="3177">
-        <label>include/okapi/api.hpp</label>
-        <link refid="api_8hpp"/>
-      </node>
-      <node id="3196">
-        <label>src/api/chassis/controller/odomChassisController.cpp</label>
-        <link refid="odomChassisController_8cpp"/>
-      </node>
-      <node id="3184">
-        <label>src/impl/control/async/asyncPosControllerBuilder.cpp</label>
-        <link refid="asyncPosControllerBuilder_8cpp"/>
-      </node>
-      <node id="3189">
-        <label>src/api/control/async/asyncVelPidController.cpp</label>
-        <link refid="asyncVelPidController_8cpp"/>
-      </node>
-      <node id="3218">
-        <label>include/okapi/impl/control/iterative/iterativeControllerFactory.hpp</label>
-        <link refid="iterativeControllerFactory_8hpp"/>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3219" relation="include">
-        </childnode>
-        <childnode refid="3216" relation="include">
-        </childnode>
-      </node>
-      <node id="3200">
-        <label>include/okapi/api/util/timeUtil.hpp</label>
-        <link refid="timeUtil_8hpp"/>
-        <childnode refid="3201" relation="include">
-        </childnode>
-        <childnode refid="3176" relation="include">
-        </childnode>
-        <childnode refid="3195" relation="include">
-        </childnode>
-        <childnode refid="3203" relation="include">
+        <childnode refid="3179" relation="include">
         </childnode>
         <childnode refid="3207" relation="include">
         </childnode>
-        <childnode refid="3209" relation="include">
-        </childnode>
-        <childnode refid="3182" relation="include">
-        </childnode>
-        <childnode refid="3211" relation="include">
-        </childnode>
-        <childnode refid="3186" relation="include">
-        </childnode>
-        <childnode refid="3213" relation="include">
-        </childnode>
-        <childnode refid="3221" relation="include">
-        </childnode>
-        <childnode refid="3190" relation="include">
-        </childnode>
-        <childnode refid="3214" relation="include">
-        </childnode>
-        <childnode refid="3192" relation="include">
-        </childnode>
-        <childnode refid="3197" relation="include">
-        </childnode>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3223" relation="include">
-        </childnode>
-        <childnode refid="3225" relation="include">
-        </childnode>
       </node>
-      <node id="3207">
-        <label>include/okapi/api/control/async/asyncMotionProfileController.hpp</label>
-        <link refid="asyncMotionProfileController_8hpp"/>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3204" relation="include">
-        </childnode>
-        <childnode refid="3208" relation="include">
-        </childnode>
+      <node id="3226">
+        <label>src/impl/util/timeUtilFactory.cpp</label>
+        <link refid="timeUtilFactory_8cpp"/>
+      </node>
+      <node id="3221">
+        <label>src/impl/control/iterative/iterativeControllerFactory.cpp</label>
+        <link refid="iterativeControllerFactory_8cpp"/>
       </node>
       <node id="3214">
-        <label>include/okapi/api/control/util/pidTuner.hpp</label>
-        <link refid="pidTuner_8hpp"/>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3215" relation="include">
-        </childnode>
-        <childnode refid="3217" relation="include">
-        </childnode>
+        <label>src/api/control/async/asyncVelIntegratedController.cpp</label>
+        <link refid="asyncVelIntegratedController_8cpp"/>
       </node>
-      <node id="3175">
-        <label>include/okapi/api/util/abstractRate.hpp</label>
-        <link refid="abstractRate_8hpp"/>
-        <childnode refid="3176" relation="include">
-        </childnode>
-        <childnode refid="3181" relation="include">
-        </childnode>
-        <childnode refid="3190" relation="include">
-        </childnode>
-        <childnode refid="3192" relation="include">
-        </childnode>
-        <childnode refid="3200" relation="include">
-        </childnode>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3226" relation="include">
-        </childnode>
-        <childnode refid="3228" relation="include">
-        </childnode>
+      <node id="3222">
+        <label>src/api/control/iterative/iterativePosPidController.cpp</label>
+        <link refid="iterativePosPidController_8cpp"/>
       </node>
       <node id="3187">
-        <label>include/okapi/impl/control/async/asyncVelControllerBuilder.hpp</label>
-        <link refid="asyncVelControllerBuilder_8hpp"/>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3188" relation="include">
-        </childnode>
+        <label>src/api/control/async/asyncPosPidController.cpp</label>
+        <link refid="asyncPosPidController_8cpp"/>
       </node>
-      <node id="3186">
-        <label>include/okapi/api/control/async/asyncVelPidController.hpp</label>
-        <link refid="asyncVelPidController_8hpp"/>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3187" relation="include">
-        </childnode>
-        <childnode refid="3189" relation="include">
-        </childnode>
+      <node id="3219">
+        <label>src/api/control/util/pidTuner.cpp</label>
+        <link refid="pidTuner_8cpp"/>
       </node>
-      <node id="3178">
-        <label>include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp</label>
-        <link refid="chassisControllerBuilder_8hpp"/>
-        <childnode refid="3177" relation="include">
+      <node id="3210">
+        <label>src/api/control/async/asyncMotionProfileController.cpp</label>
+        <link refid="asyncMotionProfileController_8cpp"/>
+      </node>
+      <node id="3200">
+        <label>src/api/odometry/threeEncoderOdometry.cpp</label>
+        <link refid="threeEncoderOdometry_8cpp"/>
+      </node>
+      <node id="3211">
+        <label>include/okapi/api/control/async/asyncPosIntegratedController.hpp</label>
+        <link refid="asyncPosIntegratedController_8hpp"/>
+        <childnode refid="3203" relation="include">
         </childnode>
         <childnode refid="3179" relation="include">
         </childnode>
-      </node>
-      <node id="3190">
-        <label>include/okapi/api/control/util/controllerRunner.hpp</label>
-        <link refid="controllerRunner_8hpp"/>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3191" relation="include">
-        </childnode>
-      </node>
-      <node id="3211">
-        <label>include/okapi/api/control/async/asyncVelIntegratedController.hpp</label>
-        <link refid="asyncVelIntegratedController_8hpp"/>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3187" relation="include">
+        <childnode refid="3185" relation="include">
         </childnode>
         <childnode refid="3212" relation="include">
         </childnode>
       </node>
-      <node id="3181">
-        <label>include/okapi/api/control/async/asyncWrapper.hpp</label>
-        <link refid="asyncWrapper_8hpp"/>
-        <childnode refid="3182" relation="include">
-        </childnode>
-        <childnode refid="3186" relation="include">
-        </childnode>
-        <childnode refid="3177" relation="include">
-        </childnode>
+      <node id="3212">
+        <label>src/api/control/async/asyncPosIntegratedController.cpp</label>
+        <link refid="asyncPosIntegratedController_8cpp"/>
       </node>
-      <node id="3202">
-        <label>src/api/chassis/controller/chassisControllerIntegrated.cpp</label>
-        <link refid="chassisControllerIntegrated_8cpp"/>
-      </node>
-      <node id="3226">
-        <label>include/okapi/impl/util/rate.hpp</label>
-        <link refid="rate_8hpp"/>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3227" relation="include">
-        </childnode>
-        <childnode refid="3224" relation="include">
-        </childnode>
-      </node>
-      <node id="3176">
-        <label>include/okapi/api/chassis/controller/chassisControllerPid.hpp</label>
-        <link refid="chassisControllerPid_8hpp"/>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3178" relation="include">
-        </childnode>
-        <childnode refid="3180" relation="include">
-        </childnode>
-      </node>
-      <node id="3216">
-        <label>src/impl/control/util/pidTunerFactory.cpp</label>
-        <link refid="pidTunerFactory_8cpp"/>
+      <node id="3201">
+        <label>src/api/odometry/odometry.cpp</label>
+        <link refid="odometry_8cpp"/>
       </node>
       <node id="3194">
-        <label>src/api/chassis/controller/defaultOdomChassisController.cpp</label>
-        <link refid="defaultOdomChassisController_8cpp"/>
+        <label>include/okapi/api/odometry/odometry.hpp</label>
+        <link refid="odometry_8hpp"/>
+        <childnode refid="3195" relation="include">
+        </childnode>
+        <childnode refid="3197" relation="include">
+        </childnode>
+        <childnode refid="3199" relation="include">
+        </childnode>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3201" relation="include">
+        </childnode>
       </node>
       <node id="3179">
-        <label>src/impl/chassis/controller/chassisControllerBuilder.cpp</label>
-        <link refid="chassisControllerBuilder_8cpp"/>
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
       </node>
-      <node id="3223">
-        <label>include/okapi/impl/util/timeUtilFactory.hpp</label>
-        <link refid="timeUtilFactory_8hpp"/>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3178" relation="include">
-        </childnode>
-        <childnode refid="3204" relation="include">
-        </childnode>
-        <childnode refid="3183" relation="include">
-        </childnode>
-        <childnode refid="3187" relation="include">
-        </childnode>
-        <childnode refid="3191" relation="include">
-        </childnode>
-        <childnode refid="3219" relation="include">
-        </childnode>
-        <childnode refid="3216" relation="include">
-        </childnode>
-        <childnode refid="3224" relation="include">
-        </childnode>
+      <node id="3198">
+        <label>src/api/chassis/controller/odomChassisController.cpp</label>
+        <link refid="odomChassisController_8cpp"/>
       </node>
-      <node id="3183">
-        <label>include/okapi/impl/control/async/asyncPosControllerBuilder.hpp</label>
-        <link refid="asyncPosControllerBuilder_8hpp"/>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3184" relation="include">
-        </childnode>
+      <node id="3186">
+        <label>src/impl/control/async/asyncPosControllerBuilder.cpp</label>
+        <link refid="asyncPosControllerBuilder_8cpp"/>
       </node>
-      <node id="3225">
-        <label>src/api/util/timeUtil.cpp</label>
-        <link refid="timeUtil_8cpp"/>
+      <node id="3191">
+        <label>src/api/control/async/asyncVelPidController.cpp</label>
+        <link refid="asyncVelPidController_8cpp"/>
       </node>
-      <node id="3213">
-        <label>include/okapi/api/control/iterative/iterativePosPidController.hpp</label>
-        <link refid="iterativePosPidController_8hpp"/>
-        <childnode refid="3176" relation="include">
+      <node id="3220">
+        <label>include/okapi/impl/control/iterative/iterativeControllerFactory.hpp</label>
+        <link refid="iterativeControllerFactory_8hpp"/>
+        <childnode refid="3179" relation="include">
         </childnode>
-        <childnode refid="3182" relation="include">
-        </childnode>
-        <childnode refid="3214" relation="include">
-        </childnode>
-        <childnode refid="3177" relation="include">
+        <childnode refid="3221" relation="include">
         </childnode>
         <childnode refid="3218" relation="include">
         </childnode>
-        <childnode refid="3220" relation="include">
+      </node>
+      <node id="3202">
+        <label>include/okapi/api/util/timeUtil.hpp</label>
+        <link refid="timeUtil_8hpp"/>
+        <childnode refid="3203" relation="include">
+        </childnode>
+        <childnode refid="3178" relation="include">
+        </childnode>
+        <childnode refid="3197" relation="include">
+        </childnode>
+        <childnode refid="3205" relation="include">
+        </childnode>
+        <childnode refid="3209" relation="include">
+        </childnode>
+        <childnode refid="3211" relation="include">
+        </childnode>
+        <childnode refid="3184" relation="include">
+        </childnode>
+        <childnode refid="3213" relation="include">
+        </childnode>
+        <childnode refid="3188" relation="include">
+        </childnode>
+        <childnode refid="3215" relation="include">
+        </childnode>
+        <childnode refid="3223" relation="include">
+        </childnode>
+        <childnode refid="3192" relation="include">
+        </childnode>
+        <childnode refid="3216" relation="include">
+        </childnode>
+        <childnode refid="3194" relation="include">
+        </childnode>
+        <childnode refid="3199" relation="include">
+        </childnode>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3225" relation="include">
+        </childnode>
+        <childnode refid="3227" relation="include">
         </childnode>
       </node>
-      <node id="3227">
-        <label>src/impl/util/rate.cpp</label>
-        <link refid="rate_8cpp"/>
-      </node>
-      <node id="3197">
-        <label>include/okapi/api/odometry/threeEncoderOdometry.hpp</label>
-        <link refid="threeEncoderOdometry_8hpp"/>
-        <childnode refid="3177" relation="include">
+      <node id="3209">
+        <label>include/okapi/api/control/async/asyncMotionProfileController.hpp</label>
+        <link refid="asyncMotionProfileController_8hpp"/>
+        <childnode refid="3179" relation="include">
         </childnode>
-        <childnode refid="3198" relation="include">
+        <childnode refid="3206" relation="include">
+        </childnode>
+        <childnode refid="3210" relation="include">
+        </childnode>
+      </node>
+      <node id="3216">
+        <label>include/okapi/api/control/util/pidTuner.hpp</label>
+        <link refid="pidTuner_8hpp"/>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3217" relation="include">
+        </childnode>
+        <childnode refid="3219" relation="include">
+        </childnode>
+      </node>
+      <node id="3177">
+        <label>include/okapi/api/util/abstractRate.hpp</label>
+        <link refid="abstractRate_8hpp"/>
+        <childnode refid="3178" relation="include">
+        </childnode>
+        <childnode refid="3183" relation="include">
+        </childnode>
+        <childnode refid="3192" relation="include">
+        </childnode>
+        <childnode refid="3194" relation="include">
+        </childnode>
+        <childnode refid="3202" relation="include">
+        </childnode>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3228" relation="include">
+        </childnode>
+        <childnode refid="3230" relation="include">
+        </childnode>
+      </node>
+      <node id="3189">
+        <label>include/okapi/impl/control/async/asyncVelControllerBuilder.hpp</label>
+        <link refid="asyncVelControllerBuilder_8hpp"/>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3190" relation="include">
+        </childnode>
+      </node>
+      <node id="3188">
+        <label>include/okapi/api/control/async/asyncVelPidController.hpp</label>
+        <link refid="asyncVelPidController_8hpp"/>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3189" relation="include">
+        </childnode>
+        <childnode refid="3191" relation="include">
+        </childnode>
+      </node>
+      <node id="3180">
+        <label>include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp</label>
+        <link refid="chassisControllerBuilder_8hpp"/>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3181" relation="include">
+        </childnode>
+      </node>
+      <node id="3192">
+        <label>include/okapi/api/control/util/controllerRunner.hpp</label>
+        <link refid="controllerRunner_8hpp"/>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3193" relation="include">
+        </childnode>
+      </node>
+      <node id="3213">
+        <label>include/okapi/api/control/async/asyncVelIntegratedController.hpp</label>
+        <link refid="asyncVelIntegratedController_8hpp"/>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3189" relation="include">
+        </childnode>
+        <childnode refid="3214" relation="include">
+        </childnode>
+      </node>
+      <node id="3183">
+        <label>include/okapi/api/control/async/asyncWrapper.hpp</label>
+        <link refid="asyncWrapper_8hpp"/>
+        <childnode refid="3184" relation="include">
+        </childnode>
+        <childnode refid="3188" relation="include">
         </childnode>
         <childnode refid="3179" relation="include">
         </childnode>
       </node>
-      <node id="3221">
-        <label>include/okapi/api/control/iterative/iterativeVelPidController.hpp</label>
-        <link refid="iterativeVelPidController_8hpp"/>
-        <childnode refid="3186" relation="include">
+      <node id="3204">
+        <label>src/api/chassis/controller/chassisControllerIntegrated.cpp</label>
+        <link refid="chassisControllerIntegrated_8cpp"/>
+      </node>
+      <node id="3228">
+        <label>include/okapi/impl/util/rate.hpp</label>
+        <link refid="rate_8hpp"/>
+        <childnode refid="3179" relation="include">
         </childnode>
-        <childnode refid="3177" relation="include">
+        <childnode refid="3229" relation="include">
+        </childnode>
+        <childnode refid="3226" relation="include">
+        </childnode>
+      </node>
+      <node id="3178">
+        <label>include/okapi/api/chassis/controller/chassisControllerPid.hpp</label>
+        <link refid="chassisControllerPid_8hpp"/>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3180" relation="include">
+        </childnode>
+        <childnode refid="3182" relation="include">
+        </childnode>
+      </node>
+      <node id="3218">
+        <label>src/impl/control/util/pidTunerFactory.cpp</label>
+        <link refid="pidTunerFactory_8cpp"/>
+      </node>
+      <node id="3196">
+        <label>src/api/chassis/controller/defaultOdomChassisController.cpp</label>
+        <link refid="defaultOdomChassisController_8cpp"/>
+      </node>
+      <node id="3181">
+        <label>src/impl/chassis/controller/chassisControllerBuilder.cpp</label>
+        <link refid="chassisControllerBuilder_8cpp"/>
+      </node>
+      <node id="3225">
+        <label>include/okapi/impl/util/timeUtilFactory.hpp</label>
+        <link refid="timeUtilFactory_8hpp"/>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3180" relation="include">
+        </childnode>
+        <childnode refid="3206" relation="include">
+        </childnode>
+        <childnode refid="3185" relation="include">
+        </childnode>
+        <childnode refid="3189" relation="include">
+        </childnode>
+        <childnode refid="3193" relation="include">
+        </childnode>
+        <childnode refid="3221" relation="include">
         </childnode>
         <childnode refid="3218" relation="include">
+        </childnode>
+        <childnode refid="3226" relation="include">
+        </childnode>
+      </node>
+      <node id="3185">
+        <label>include/okapi/impl/control/async/asyncPosControllerBuilder.hpp</label>
+        <link refid="asyncPosControllerBuilder_8hpp"/>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3186" relation="include">
+        </childnode>
+      </node>
+      <node id="3227">
+        <label>src/api/util/timeUtil.cpp</label>
+        <link refid="timeUtil_8cpp"/>
+      </node>
+      <node id="3215">
+        <label>include/okapi/api/control/iterative/iterativePosPidController.hpp</label>
+        <link refid="iterativePosPidController_8hpp"/>
+        <childnode refid="3178" relation="include">
+        </childnode>
+        <childnode refid="3184" relation="include">
+        </childnode>
+        <childnode refid="3216" relation="include">
+        </childnode>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3220" relation="include">
         </childnode>
         <childnode refid="3222" relation="include">
         </childnode>
       </node>
-      <node id="3203">
-        <label>include/okapi/api/control/async/asyncLinearMotionProfileController.hpp</label>
-        <link refid="asyncLinearMotionProfileController_8hpp"/>
-        <childnode refid="3177" relation="include">
+      <node id="3229">
+        <label>src/impl/util/rate.cpp</label>
+        <link refid="rate_8cpp"/>
+      </node>
+      <node id="3199">
+        <label>include/okapi/api/odometry/threeEncoderOdometry.hpp</label>
+        <link refid="threeEncoderOdometry_8hpp"/>
+        <childnode refid="3179" relation="include">
         </childnode>
-        <childnode refid="3204" relation="include">
+        <childnode refid="3200" relation="include">
         </childnode>
-        <childnode refid="3206" relation="include">
+        <childnode refid="3181" relation="include">
         </childnode>
       </node>
-      <node id="3182">
-        <label>include/okapi/api/control/async/asyncPosPidController.hpp</label>
-        <link refid="asyncPosPidController_8hpp"/>
-        <childnode refid="3177" relation="include">
+      <node id="3223">
+        <label>include/okapi/api/control/iterative/iterativeVelPidController.hpp</label>
+        <link refid="iterativeVelPidController_8hpp"/>
+        <childnode refid="3188" relation="include">
         </childnode>
-        <childnode refid="3183" relation="include">
+        <childnode refid="3179" relation="include">
         </childnode>
-        <childnode refid="3185" relation="include">
+        <childnode refid="3220" relation="include">
         </childnode>
-      </node>
-      <node id="3201">
-        <label>include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp</label>
-        <link refid="chassisControllerIntegrated_8hpp"/>
-        <childnode refid="3193" relation="include">
-        </childnode>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3178" relation="include">
-        </childnode>
-        <childnode refid="3202" relation="include">
+        <childnode refid="3224" relation="include">
         </childnode>
       </node>
       <node id="3205">
+        <label>include/okapi/api/control/async/asyncLinearMotionProfileController.hpp</label>
+        <link refid="asyncLinearMotionProfileController_8hpp"/>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3206" relation="include">
+        </childnode>
+        <childnode refid="3208" relation="include">
+        </childnode>
+      </node>
+      <node id="3184">
+        <label>include/okapi/api/control/async/asyncPosPidController.hpp</label>
+        <link refid="asyncPosPidController_8hpp"/>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3185" relation="include">
+        </childnode>
+        <childnode refid="3187" relation="include">
+        </childnode>
+      </node>
+      <node id="3203">
+        <label>include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp</label>
+        <link refid="chassisControllerIntegrated_8hpp"/>
+        <childnode refid="3195" relation="include">
+        </childnode>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3180" relation="include">
+        </childnode>
+        <childnode refid="3204" relation="include">
+        </childnode>
+      </node>
+      <node id="3207">
         <label>src/impl/control/async/asyncMotionProfileControllerBuilder.cpp</label>
         <link refid="asyncMotionProfileControllerBuilder_8cpp"/>
       </node>
-      <node id="3206">
+      <node id="3208">
         <label>src/api/control/async/asyncLinearMotionProfileController.cpp</label>
         <link refid="asyncLinearMotionProfileController_8cpp"/>
       </node>
-      <node id="3215">
+      <node id="3217">
         <label>include/okapi/impl/control/util/pidTunerFactory.hpp</label>
         <link refid="pidTunerFactory_8hpp"/>
-        <childnode refid="3177" relation="include">
+        <childnode refid="3179" relation="include">
         </childnode>
-        <childnode refid="3216" relation="include">
+        <childnode refid="3218" relation="include">
         </childnode>
       </node>
-      <node id="3222">
+      <node id="3224">
         <label>src/api/control/iterative/iterativeVelPidController.cpp</label>
         <link refid="iterativeVelPidController_8cpp"/>
       </node>
-      <node id="3191">
+      <node id="3193">
         <label>include/okapi/impl/control/util/controllerRunnerFactory.hpp</label>
         <link refid="controllerRunnerFactory_8hpp"/>
-        <childnode refid="3177" relation="include">
+        <childnode refid="3179" relation="include">
         </childnode>
       </node>
-      <node id="3195">
+      <node id="3197">
         <label>include/okapi/api/chassis/controller/odomChassisController.hpp</label>
         <link refid="odomChassisController_8hpp"/>
-        <childnode refid="3193" relation="include">
+        <childnode refid="3195" relation="include">
         </childnode>
-        <childnode refid="3177" relation="include">
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3198" relation="include">
+        </childnode>
+      </node>
+      <node id="3230">
+        <label>src/api/util/abstractRate.cpp</label>
+        <link refid="abstractRate_8cpp"/>
+      </node>
+      <node id="3195">
+        <label>include/okapi/api/chassis/controller/defaultOdomChassisController.hpp</label>
+        <link refid="defaultOdomChassisController_8hpp"/>
+        <childnode refid="3179" relation="include">
+        </childnode>
+        <childnode refid="3180" relation="include">
         </childnode>
         <childnode refid="3196" relation="include">
         </childnode>
       </node>
-      <node id="3228">
-        <label>src/api/util/abstractRate.cpp</label>
-        <link refid="abstractRate_8cpp"/>
-      </node>
-      <node id="3193">
-        <label>include/okapi/api/chassis/controller/defaultOdomChassisController.hpp</label>
-        <link refid="defaultOdomChassisController_8hpp"/>
-        <childnode refid="3177" relation="include">
-        </childnode>
-        <childnode refid="3178" relation="include">
-        </childnode>
-        <childnode refid="3194" relation="include">
-        </childnode>
-      </node>
-      <node id="3188">
+      <node id="3190">
         <label>src/impl/control/async/asyncVelControllerBuilder.cpp</label>
         <link refid="asyncVelControllerBuilder_8cpp"/>
       </node>
