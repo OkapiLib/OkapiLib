@@ -50,15 +50,16 @@ class DefaultOdomChassisController : public OdomChassisController {
   /**
    * Drives the robot straight to a point in the odom frame.
    *
-   * @param ix x coordinate
-   * @param iy y coordinate
-   * @param ibackwards whether to drive to the target point backwards
-   * @param ioffset offset from target point in the direction pointing towards the robot
+   * @param ipoint The target point to navigate to.
+   * @param ibackwards Whether to drive to the target point backwards.
+   * @param ioffset An offset from the target point in the direction pointing towards the robot. The
+   * robot will stop this far away from the target point.
+   * @param imode The mode to read the Odometry state in.
    */
-  void driveToPoint(const QLength &ix,
-                    const QLength &iy,
+  void driveToPoint(const Point2d &ipoint,
                     bool ibackwards = false,
-                    const QLength &ioffset = 0_mm) override;
+                    const QLength &ioffset = 0_mm,
+                    const StateMode &imode = StateMode::FRAME_TRANSFORMATION) override;
 
   /**
    * Turns the robot to face an angle in the odom frame.

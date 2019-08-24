@@ -36,7 +36,7 @@ TEST_F(DefaultOdomChassisControllerTest, MoveBelowThreshold) {
   drive->setMoveThreshold(5_m);
   EXPECT_EQ(drive->getMoveThreshold(), 5_m);
 
-  drive->driveToPoint(4_m, 0_m);
+  drive->driveToPoint({4_m, 0_m});
   EXPECT_EQ(controller->lastMoveDistanceTargetQLength, 0_m);
 }
 
@@ -44,7 +44,7 @@ TEST_F(DefaultOdomChassisControllerTest, MoveAboveThreshold) {
   drive->setMoveThreshold(5_m);
   EXPECT_EQ(drive->getMoveThreshold(), 5_m);
 
-  drive->driveToPoint(6_m, 0_m);
+  drive->driveToPoint({6_m, 0_m});
   EXPECT_EQ(controller->lastMoveDistanceTargetQLength, 6_m);
 }
 

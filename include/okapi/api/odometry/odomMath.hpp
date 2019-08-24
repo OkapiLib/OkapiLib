@@ -8,6 +8,7 @@
 #pragma once
 
 #include "okapi/api/odometry/odometry.hpp"
+#include "okapi/api/odometry/point2d.h"
 #include "okapi/api/util/logging.hpp"
 #include <tuple>
 
@@ -17,38 +18,33 @@ class OdomMath {
   /**
    * Computes the distance from the given Odometry state to the given point.
    *
-   * @param ix x coordinate
-   * @param iy y coordinate
-   * @param istate odometry state
-   * @return distance between the points
+   * @param ipoint The point.
+   * @param istate The odometry state.
+   * @return The distance between the odometry state and the point.
    */
-  static QLength computeDistanceToPoint(QLength ix, QLength iy, const OdomState &istate);
+  static QLength computeDistanceToPoint(const Point2d &ipoint, const OdomState &istate);
 
   /**
    * Computes the angle from the given Odometry state to the given point.
    *
-   * @param ix x coordinate
-   * @param iy y coordinate
-   * @param istate odometry state
-   * @return angle to the point
+   * @param ipoint The point.
+   * @param istate The odometry state.
+   * @return The angle between the odometry state and the point.
    */
-  static QAngle computeAngleToPoint(QLength ix, QLength iy, const OdomState &istate);
+  static QAngle computeAngleToPoint(const Point2d &ipoint, const OdomState &istate);
 
   /**
    * Computes the distance and angle from the given Odometry state to the given point.
    *
-   * @param ix x coordinate
-   * @param iy y coordinate
-   * @param istate odometry state
-   * @return distance and angle to the point
+   * @param ipoint The point.
+   * @param istate The odometry state.
+   * @return The distance and angle between the odometry state and the point.
    */
-  static std::pair<QLength, QAngle>
-  computeDistanceAndAngleToPoint(QLength ix, QLength iy, const OdomState &istate);
+  static std::pair<QLength, QAngle> computeDistanceAndAngleToPoint(const Point2d &ipoint,
+                                                                   const OdomState &istate);
 
   private:
   OdomMath();
   ~OdomMath();
-
-  Logger *logger;
 };
 } // namespace okapi

@@ -11,6 +11,7 @@
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/coreProsAPI.hpp"
 #include "okapi/api/odometry/odometry.hpp"
+#include "okapi/api/odometry/point2d.h"
 #include "okapi/api/util/timeUtil.hpp"
 
 namespace okapi {
@@ -43,15 +44,16 @@ class OdomChassisController : public ChassisController {
   /**
    * Drives the robot straight to a point in the odom frame.
    *
-   * @param ix x coordinate
-   * @param iy y coordinate
-   * @param ibackwards whether to drive to the target point backwards
-   * @param ioffset offset from target point in the direction pointing towards the robot
+   * @param ipoint The target point to navigate to.
+   * @param ibackwards Whether to drive to the target point backwards.
+   * @param ioffset An offset from the target point in the direction pointing towards the robot. The
+   * robot will stop this far away from the target point.
+   * @param imode The mode to read the target point in.
    */
-  virtual void driveToPoint(const QLength &ix,
-                            const QLength &iy,
+  virtual void driveToPoint(const Point2d &ipoint,
                             bool ibackwards = false,
-                            const QLength &ioffset = 0_mm) = 0;
+                            const QLength &ioffset = 0_mm,
+                            const StateMode &imode = StateMode::FRAME_TRANSFORMATION) = 0;
 
   /**
    * Turns the robot to face an angle in the odom frame.

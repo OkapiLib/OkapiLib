@@ -22,11 +22,11 @@ DefaultOdomChassisController::DefaultOdomChassisController(
     controller(std::move(icontroller)) {
 }
 
-void DefaultOdomChassisController::driveToPoint(const QLength &ix,
-                                                const QLength &iy,
+void DefaultOdomChassisController::driveToPoint(const Point2d &ipoint,
                                                 const bool ibackwards,
-                                                const QLength &ioffset) {
-  auto [length, angle] = OdomMath::computeDistanceAndAngleToPoint(ix, iy, odom->getState());
+                                                const QLength &ioffset,
+                                                const StateMode &imode) {
+  auto [length, angle] = OdomMath::computeDistanceAndAngleToPoint(ipoint, odom->getState(imode));
 
   if (ibackwards) {
     length *= -1;
