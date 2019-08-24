@@ -38,8 +38,8 @@ before_install:
   - eval "${MATRIX_EVAL}"
 
 install:
-  - pip install --user -U pip
-  - pip install --user jinja2 Pygments
+  - pip3 install --user -U pip
+  - pip3 install --user jinja2 Pygments
 
 script:
   - make # run the cross-compiler
@@ -52,15 +52,7 @@ script:
   # - valgrind --tool=massif --stacks=yes --time-unit=B --massif-out-file=massif.out.txt ./OkapiLibV5
   # - ms_print massif.out.txt
   - cd ..
-  - alias python=python3
   - ./run_doxygen.sh
-
-after_success:
-  - lcov --directory . --capture --output-file coverage.info # capture coverage info
-  - lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter out system
-  - lcov --list coverage.info # debug info
-  # Uploading report to CodeCov
-  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
 
 deploy:
   provider: pages
@@ -69,3 +61,10 @@ deploy:
   github_token: $GH_PAGES_TOKEN
   on:
     branch: master
+
+after_success:
+  - lcov --directory . --capture --output-file coverage.info # capture coverage info
+  - lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter out system
+  - lcov --list coverage.info # debug info
+  # Uploading report to CodeCov
+  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
