@@ -18,6 +18,8 @@ stages:
       - script: sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa -y
       - script: sudo apt update
       - script: sudo apt install gcc-arm-embedded g++-7 lcov valgrind doxygen
+      - script: sudo pip uninstall pip
+      - script: sudo apt install python3-pip --reinstall
       - script: pip install --user -U pip
       - script: pip install --user jinja2 Pygments
       - script: make
