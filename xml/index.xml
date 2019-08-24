@@ -1691,6 +1691,8 @@
   </compound>
   <compound refid="index_8md" kind="file"><name>index.md</name>
   </compound>
+  <compound refid="asyncAutonomousMovement_8md" kind="file"><name>asyncAutonomousMovement.md</name>
+  </compound>
   <compound refid="gettingStarted_8md" kind="file"><name>gettingStarted.md</name>
   </compound>
   <compound refid="api_8hpp" kind="file"><name>api.hpp</name>
@@ -2042,6 +2044,8 @@
   <compound refid="timeUtilFactory_8cpp" kind="file"><name>timeUtilFactory.cpp</name>
   </compound>
   <compound refid="md_docs_tutorials_index" kind="page"><name>md_docs_tutorials_index</name>
+  </compound>
+  <compound refid="md_docs_tutorials_walkthrough_asyncAutonomousMovement" kind="page"><name>md_docs_tutorials_walkthrough_asyncAutonomousMovement</name>
   </compound>
   <compound refid="md_docs_tutorials_walkthrough_gettingStarted" kind="page"><name>md_docs_tutorials_walkthrough_gettingStarted</name>
   </compound>

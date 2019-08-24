@@ -7,60 +7,60 @@
     <includedby refid="QPressure_8hpp" local="yes">include/okapi/api/units/QPressure.hpp</includedby>
     <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
     <incdepgraph>
-      <node id="2884">
+      <node id="2886">
         <label>cmath</label>
       </node>
-      <node id="2882">
+      <node id="2884">
         <label>include/okapi/api/units/QMass.hpp</label>
         <link refid="QMass_8hpp"/>
-        <childnode refid="2883" relation="include">
+        <childnode refid="2885" relation="include">
         </childnode>
       </node>
-      <node id="2885">
+      <node id="2887">
         <label>ratio</label>
       </node>
-      <node id="2883">
+      <node id="2885">
         <label>okapi/api/units/RQuantity.hpp</label>
         <link refid="RQuantity_8hpp"/>
-        <childnode refid="2884" relation="include">
+        <childnode refid="2886" relation="include">
         </childnode>
-        <childnode refid="2885" relation="include">
+        <childnode refid="2887" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2889">
+      <node id="2891">
         <label>include/okapi/api.hpp</label>
         <link refid="api_8hpp"/>
       </node>
-      <node id="2886">
+      <node id="2888">
         <label>include/okapi/api/units/QMass.hpp</label>
         <link refid="QMass_8hpp"/>
-        <childnode refid="2887" relation="include">
-        </childnode>
-        <childnode refid="2890" relation="include">
-        </childnode>
         <childnode refid="2889" relation="include">
         </childnode>
+        <childnode refid="2892" relation="include">
+        </childnode>
+        <childnode refid="2891" relation="include">
+        </childnode>
       </node>
-      <node id="2887">
+      <node id="2889">
         <label>include/okapi/api/units/QForce.hpp</label>
         <link refid="QForce_8hpp"/>
-        <childnode refid="2888" relation="include">
+        <childnode refid="2890" relation="include">
         </childnode>
-        <childnode refid="2889" relation="include">
-        </childnode>
-      </node>
-      <node id="2888">
-        <label>include/okapi/api/units/QTorque.hpp</label>
-        <link refid="QTorque_8hpp"/>
-        <childnode refid="2889" relation="include">
+        <childnode refid="2891" relation="include">
         </childnode>
       </node>
       <node id="2890">
+        <label>include/okapi/api/units/QTorque.hpp</label>
+        <link refid="QTorque_8hpp"/>
+        <childnode refid="2891" relation="include">
+        </childnode>
+      </node>
+      <node id="2892">
         <label>include/okapi/api/units/QPressure.hpp</label>
         <link refid="QPressure_8hpp"/>
-        <childnode refid="2889" relation="include">
+        <childnode refid="2891" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

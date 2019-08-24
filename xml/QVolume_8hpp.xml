@@ -7,54 +7,54 @@
     <includes refid="RQuantity_8hpp" local="yes">okapi/api/units/RQuantity.hpp</includes>
     <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
     <incdepgraph>
-      <node id="3043">
+      <node id="3045">
         <label>cmath</label>
       </node>
-      <node id="3041">
+      <node id="3043">
         <label>okapi/api/units/QLength.hpp</label>
         <link refid="QLength_8hpp"/>
-        <childnode refid="3042" relation="include">
+        <childnode refid="3044" relation="include">
         </childnode>
       </node>
-      <node id="3044">
+      <node id="3046">
         <label>ratio</label>
       </node>
-      <node id="3039">
+      <node id="3041">
         <label>include/okapi/api/units/QVolume.hpp</label>
         <link refid="QVolume_8hpp"/>
-        <childnode refid="3040" relation="include">
-        </childnode>
-        <childnode refid="3041" relation="include">
-        </childnode>
         <childnode refid="3042" relation="include">
         </childnode>
-      </node>
-      <node id="3042">
-        <label>okapi/api/units/RQuantity.hpp</label>
-        <link refid="RQuantity_8hpp"/>
         <childnode refid="3043" relation="include">
         </childnode>
         <childnode refid="3044" relation="include">
         </childnode>
       </node>
-      <node id="3040">
+      <node id="3044">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="3045" relation="include">
+        </childnode>
+        <childnode refid="3046" relation="include">
+        </childnode>
+      </node>
+      <node id="3042">
         <label>okapi/api/units/QArea.hpp</label>
         <link refid="QArea_8hpp"/>
-        <childnode refid="3041" relation="include">
+        <childnode refid="3043" relation="include">
         </childnode>
-        <childnode refid="3042" relation="include">
+        <childnode refid="3044" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="3046">
+      <node id="3048">
         <label>include/okapi/api.hpp</label>
         <link refid="api_8hpp"/>
       </node>
-      <node id="3045">
+      <node id="3047">
         <label>include/okapi/api/units/QVolume.hpp</label>
         <link refid="QVolume_8hpp"/>
-        <childnode refid="3046" relation="include">
+        <childnode refid="3048" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

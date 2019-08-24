@@ -8,61 +8,61 @@
     <includedby refid="controller_8cpp" local="yes">src/impl/device/controller.cpp</includedby>
     <includedby refid="controllerUtil_8cpp" local="yes">src/impl/device/controllerUtil.cpp</includedby>
     <incdepgraph>
-      <node id="4074">
-        <label>include/okapi/impl/device/controllerUtil.hpp</label>
-        <link refid="controllerUtil_8hpp"/>
-        <childnode refid="4075" relation="include">
-        </childnode>
-      </node>
-      <node id="4075">
-        <label>api.h</label>
-      </node>
-    </incdepgraph>
-    <invincdepgraph>
-      <node id="4080">
-        <label>src/impl/device/controller.cpp</label>
-        <link refid="controller_8cpp"/>
-      </node>
-      <node id="4077">
-        <label>include/okapi/impl/device/button/controllerButton.hpp</label>
-        <link refid="controllerButton_8hpp"/>
-        <childnode refid="4078" relation="include">
-        </childnode>
-        <childnode refid="4079" relation="include">
-        </childnode>
-        <childnode refid="4081" relation="include">
-        </childnode>
-      </node>
       <node id="4076">
         <label>include/okapi/impl/device/controllerUtil.hpp</label>
         <link refid="controllerUtil_8hpp"/>
         <childnode refid="4077" relation="include">
         </childnode>
-        <childnode refid="4079" relation="include">
-        </childnode>
+      </node>
+      <node id="4077">
+        <label>api.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4082">
+        <label>src/impl/device/controller.cpp</label>
+        <link refid="controller_8cpp"/>
+      </node>
+      <node id="4079">
+        <label>include/okapi/impl/device/button/controllerButton.hpp</label>
+        <link refid="controllerButton_8hpp"/>
         <childnode refid="4080" relation="include">
         </childnode>
-        <childnode refid="4082" relation="include">
+        <childnode refid="4081" relation="include">
+        </childnode>
+        <childnode refid="4083" relation="include">
         </childnode>
       </node>
       <node id="4078">
+        <label>include/okapi/impl/device/controllerUtil.hpp</label>
+        <link refid="controllerUtil_8hpp"/>
+        <childnode refid="4079" relation="include">
+        </childnode>
+        <childnode refid="4081" relation="include">
+        </childnode>
+        <childnode refid="4082" relation="include">
+        </childnode>
+        <childnode refid="4084" relation="include">
+        </childnode>
+      </node>
+      <node id="4080">
         <label>include/okapi/api.hpp</label>
         <link refid="api_8hpp"/>
       </node>
-      <node id="4082">
+      <node id="4084">
         <label>src/impl/device/controllerUtil.cpp</label>
         <link refid="controllerUtil_8cpp"/>
       </node>
-      <node id="4081">
+      <node id="4083">
         <label>src/impl/device/button/controllerButton.cpp</label>
         <link refid="controllerButton_8cpp"/>
       </node>
-      <node id="4079">
+      <node id="4081">
         <label>include/okapi/impl/device/controller.hpp</label>
         <link refid="controller_8hpp"/>
-        <childnode refid="4078" relation="include">
-        </childnode>
         <childnode refid="4080" relation="include">
+        </childnode>
+        <childnode refid="4082" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

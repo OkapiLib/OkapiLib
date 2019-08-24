@@ -5,73 +5,73 @@
     <includes refid="settledUtilFactory_8hpp" local="yes">okapi/impl/control/util/settledUtilFactory.hpp</includes>
     <includes refid="timer_8hpp" local="yes">okapi/impl/util/timer.hpp</includes>
     <incdepgraph>
-      <node id="6003">
+      <node id="6005">
         <label>okapi/api/util/abstractTimer.hpp</label>
         <link refid="abstractTimer_8hpp"/>
-        <childnode refid="6004" relation="include">
+        <childnode refid="6006" relation="include">
         </childnode>
+        <childnode refid="6001" relation="include">
+        </childnode>
+      </node>
+      <node id="6006">
+        <label>okapi/api/units/QFrequency.hpp</label>
+        <link refid="QFrequency_8hpp"/>
+        <childnode refid="6002" relation="include">
+        </childnode>
+      </node>
+      <node id="6003">
+        <label>cmath</label>
+      </node>
+      <node id="6001">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="6002" relation="include">
+        </childnode>
+      </node>
+      <node id="5998">
+        <label>src/impl/control/util/settledUtilFactory.cpp</label>
+        <link refid="settledUtilFactory_8cpp"/>
         <childnode refid="5999" relation="include">
+        </childnode>
+        <childnode refid="6008" relation="include">
         </childnode>
       </node>
       <node id="6004">
-        <label>okapi/api/units/QFrequency.hpp</label>
-        <link refid="QFrequency_8hpp"/>
-        <childnode refid="6000" relation="include">
-        </childnode>
-      </node>
-      <node id="6001">
-        <label>cmath</label>
+        <label>ratio</label>
       </node>
       <node id="5999">
-        <label>okapi/api/units/QTime.hpp</label>
-        <link refid="QTime_8hpp"/>
+        <label>okapi/impl/control/util/settledUtilFactory.hpp</label>
+        <link refid="settledUtilFactory_8hpp"/>
         <childnode refid="6000" relation="include">
         </childnode>
-      </node>
-      <node id="5996">
-        <label>src/impl/control/util/settledUtilFactory.cpp</label>
-        <link refid="settledUtilFactory_8cpp"/>
-        <childnode refid="5997" relation="include">
-        </childnode>
-        <childnode refid="6006" relation="include">
+        <childnode refid="6007" relation="include">
         </childnode>
       </node>
       <node id="6002">
-        <label>ratio</label>
-      </node>
-      <node id="5997">
-        <label>okapi/impl/control/util/settledUtilFactory.hpp</label>
-        <link refid="settledUtilFactory_8hpp"/>
-        <childnode refid="5998" relation="include">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="6003" relation="include">
         </childnode>
+        <childnode refid="6004" relation="include">
+        </childnode>
+      </node>
+      <node id="6008">
+        <label>okapi/impl/util/timer.hpp</label>
+        <link refid="timer_8hpp"/>
         <childnode refid="6005" relation="include">
         </childnode>
       </node>
       <node id="6000">
-        <label>okapi/api/units/RQuantity.hpp</label>
-        <link refid="RQuantity_8hpp"/>
-        <childnode refid="6001" relation="include">
-        </childnode>
-        <childnode refid="6002" relation="include">
-        </childnode>
-      </node>
-      <node id="6006">
-        <label>okapi/impl/util/timer.hpp</label>
-        <link refid="timer_8hpp"/>
-        <childnode refid="6003" relation="include">
-        </childnode>
-      </node>
-      <node id="5998">
         <label>okapi/api/control/util/settledUtil.hpp</label>
         <link refid="settledUtil_8hpp"/>
-        <childnode refid="5999" relation="include">
-        </childnode>
-        <childnode refid="6003" relation="include">
+        <childnode refid="6001" relation="include">
         </childnode>
         <childnode refid="6005" relation="include">
         </childnode>
+        <childnode refid="6007" relation="include">
+        </childnode>
       </node>
-      <node id="6005">
+      <node id="6007">
         <label>memory</label>
       </node>
     </incdepgraph>

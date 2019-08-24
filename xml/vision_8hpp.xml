@@ -5,25 +5,25 @@
     <includes local="yes">api.h</includes>
     <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
     <incdepgraph>
-      <node id="4307">
-        <label>api.h</label>
-      </node>
-      <node id="4306">
-        <label>include/okapi/impl/device/vision.hpp</label>
-        <link refid="vision_8hpp"/>
-        <childnode refid="4307" relation="include">
-        </childnode>
-      </node>
-    </incdepgraph>
-    <invincdepgraph>
       <node id="4309">
-        <label>include/okapi/api.hpp</label>
-        <link refid="api_8hpp"/>
+        <label>api.h</label>
       </node>
       <node id="4308">
         <label>include/okapi/impl/device/vision.hpp</label>
         <link refid="vision_8hpp"/>
         <childnode refid="4309" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4311">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="4310">
+        <label>include/okapi/impl/device/vision.hpp</label>
+        <link refid="vision_8hpp"/>
+        <childnode refid="4311" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

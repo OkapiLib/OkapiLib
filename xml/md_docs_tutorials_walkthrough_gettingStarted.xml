@@ -19,7 +19,7 @@
 </programlisting></para>
 <para><heading level="2">Troubleshooting</heading>
 </para>
-<para>If OkapiLib is not getting downloaded from GitHub correctly duringinstallation, you can <ulink url="https://github.com/OkapiLib/OkapiLib/releases">download it manuallyhere</ulink> and then install it byrunning <computeroutput>prosv5 conduct fetch path/to/okapilib.zip</computeroutput>. Once OkapiLib isinstalled, try creating a PROS project again. </para>
+<para>If OkapiLib is not getting downloaded from GitHub correctly during installation, you can <ulink url="https://github.com/OkapiLib/OkapiLib/releases">download it manually here</ulink> and then install it by running <computeroutput>prosv5 conduct fetch path/to/okapilib.zip</computeroutput>. Once OkapiLib is installed, try creating a PROS project again. </para>
     </detaileddescription>
   </compounddef>
 </doxygen>
