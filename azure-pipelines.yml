@@ -1,0 +1,34 @@
+trigger:
+  branches:
+    include:
+      - '*'
+  tags:
+    include:
+      - '*'
+
+stages:
+- stage: Build
+  jobs:
+    - job: Linux
+
+      pool:
+        vmImage: ubuntu-16.04
+
+      steps:
+      - script: sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa -y
+      - script: sudo add-apt-repository ubuntu-toolchain-r-test -y
+      - script: sudo apt update
+      - script: sudo apt install gcc-arm-embedded g++-7 lcov valgrind doxygen
+      - script: pip3 install --user -U pip
+      - script: pip3 install --user jinja2 Pygments
+      - script: make
+      - script: mkdir cmake-build-debug
+      - script: cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
+        workingDirectory: cmake-build-debug
+      - script: cmake --build . --target OkapiLibV5 -- -j 2
+        workingDirectory: cmake-build-debug
+      - script: ./OkapiLibV5
+        workingDirectory: cmake-build-debug
+      - script: valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
+        workingDirectory: cmake-build-debug
+      - script: ./run_doxygen.sh
