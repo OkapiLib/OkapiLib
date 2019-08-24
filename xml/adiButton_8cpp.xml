@@ -4,37 +4,37 @@
     <compoundname>adiButton.cpp</compoundname>
     <includes refid="adiButton_8hpp" local="yes">okapi/impl/device/button/adiButton.hpp</includes>
     <incdepgraph>
-      <node id="6020">
+      <node id="6012">
         <label>src/impl/device/button/adiButton.cpp</label>
         <link refid="adiButton_8cpp"/>
-        <childnode refid="6021" relation="include">
+        <childnode refid="6013" relation="include">
         </childnode>
       </node>
-      <node id="6025">
+      <node id="6017">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="6021">
+      <node id="6013">
         <label>okapi/impl/device/button/adiButton.hpp</label>
         <link refid="adiButton_8hpp"/>
-        <childnode refid="6022" relation="include">
+        <childnode refid="6014" relation="include">
         </childnode>
-        <childnode refid="6023" relation="include">
+        <childnode refid="6015" relation="include">
         </childnode>
       </node>
-      <node id="6022">
+      <node id="6014">
         <label>api.h</label>
       </node>
-      <node id="6024">
+      <node id="6016">
         <label>okapi/api/device/button/abstractButton.hpp</label>
         <link refid="abstractButton_8hpp"/>
-        <childnode refid="6025" relation="include">
+        <childnode refid="6017" relation="include">
         </childnode>
       </node>
-      <node id="6023">
+      <node id="6015">
         <label>okapi/api/device/button/buttonBase.hpp</label>
         <link refid="buttonBase_8hpp"/>
-        <childnode refid="6024" relation="include">
+        <childnode refid="6016" relation="include">
         </childnode>
       </node>
     </incdepgraph>

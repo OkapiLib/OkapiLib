@@ -10,93 +10,101 @@
     <includedby refid="defaultOdomChassisController_8cpp" local="yes">src/api/chassis/controller/defaultOdomChassisController.cpp</includedby>
     <includedby refid="odomMath_8cpp" local="yes">src/api/odometry/odomMath.cpp</includedby>
     <incdepgraph>
-      <node id="2464">
+      <node id="2460">
         <label>okapi/api/units/QAngle.hpp</label>
         <link refid="QAngle_8hpp"/>
-        <childnode refid="2465" relation="include">
+        <childnode refid="2461" relation="include">
         </childnode>
-        <childnode refid="2466" relation="include">
+        <childnode refid="2462" relation="include">
         </childnode>
       </node>
-      <node id="2479">
+      <node id="2475">
         <label>functional</label>
       </node>
-      <node id="2483">
+      <node id="2479">
         <label>okapi/api/util/abstractTimer.hpp</label>
         <link refid="abstractTimer_8hpp"/>
+        <childnode refid="2480" relation="include">
+        </childnode>
+        <childnode refid="2481" relation="include">
+        </childnode>
+      </node>
+      <node id="2472">
+        <label>cstdint</label>
+      </node>
+      <node id="2480">
+        <label>okapi/api/units/QFrequency.hpp</label>
+        <link refid="QFrequency_8hpp"/>
+        <childnode refid="2461" relation="include">
+        </childnode>
+      </node>
+      <node id="2487">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
+      </node>
+      <node id="2470">
+        <label>cstdbool</label>
+      </node>
+      <node id="2482">
+        <label>okapi/api/util/mathUtil.hpp</label>
+        <link refid="mathUtil_8hpp"/>
+        <childnode refid="2483" relation="include">
+        </childnode>
+        <childnode refid="2489" relation="include">
+        </childnode>
+        <childnode refid="2472" relation="include">
+        </childnode>
+        <childnode refid="2490" relation="include">
+        </childnode>
+        <childnode refid="2491" relation="include">
+        </childnode>
+      </node>
+      <node id="2462">
+        <label>cmath</label>
+      </node>
+      <node id="2485">
+        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
+        <link refid="continuousRotarySensor_8hpp"/>
+        <childnode refid="2486" relation="include">
+        </childnode>
+      </node>
+      <node id="2481">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="2461" relation="include">
+        </childnode>
+      </node>
+      <node id="2465">
+        <label>string</label>
+      </node>
+      <node id="2483">
+        <label>okapi/api/device/motor/abstractMotor.hpp</label>
+        <link refid="abstractMotor_8hpp"/>
         <childnode refid="2484" relation="include">
         </childnode>
         <childnode refid="2485" relation="include">
         </childnode>
-      </node>
-      <node id="2476">
-        <label>cstdint</label>
-      </node>
-      <node id="2484">
-        <label>okapi/api/units/QFrequency.hpp</label>
-        <link refid="QFrequency_8hpp"/>
-        <childnode refid="2465" relation="include">
+        <childnode refid="2488" relation="include">
         </childnode>
       </node>
-      <node id="2491">
-        <label>okapi/api/control/controllerInput.hpp</label>
-        <link refid="controllerInput_8hpp"/>
-      </node>
-      <node id="2474">
-        <label>cstdbool</label>
-      </node>
-      <node id="2486">
-        <label>okapi/api/util/mathUtil.hpp</label>
-        <link refid="mathUtil_8hpp"/>
-        <childnode refid="2487" relation="include">
-        </childnode>
-        <childnode refid="2493" relation="include">
-        </childnode>
-        <childnode refid="2476" relation="include">
-        </childnode>
-        <childnode refid="2494" relation="include">
-        </childnode>
-        <childnode refid="2495" relation="include">
-        </childnode>
-      </node>
-      <node id="2466">
-        <label>cmath</label>
-      </node>
-      <node id="2489">
-        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
-        <link refid="continuousRotarySensor_8hpp"/>
-        <childnode refid="2490" relation="include">
-        </childnode>
-      </node>
-      <node id="2485">
-        <label>okapi/api/units/QTime.hpp</label>
-        <link refid="QTime_8hpp"/>
-        <childnode refid="2465" relation="include">
+      <node id="2464">
+        <label>okapi/api/units/QLength.hpp</label>
+        <link refid="QLength_8hpp"/>
+        <childnode refid="2461" relation="include">
         </childnode>
       </node>
       <node id="2469">
-        <label>string</label>
-      </node>
-      <node id="2487">
-        <label>okapi/api/device/motor/abstractMotor.hpp</label>
-        <link refid="abstractMotor_8hpp"/>
-        <childnode refid="2488" relation="include">
-        </childnode>
-        <childnode refid="2489" relation="include">
-        </childnode>
-        <childnode refid="2492" relation="include">
-        </childnode>
-      </node>
-      <node id="2468">
-        <label>okapi/api/units/QLength.hpp</label>
-        <link refid="QLength_8hpp"/>
-        <childnode refid="2465" relation="include">
-        </childnode>
-      </node>
-      <node id="2473">
         <label>okapi/api/coreProsAPI.hpp</label>
         <link refid="coreProsAPI_8hpp"/>
-        <childnode refid="2466" relation="include">
+        <childnode refid="2462" relation="include">
+        </childnode>
+        <childnode refid="2470" relation="include">
+        </childnode>
+        <childnode refid="2471" relation="include">
+        </childnode>
+        <childnode refid="2472" relation="include">
+        </childnode>
+        <childnode refid="2473" relation="include">
         </childnode>
         <childnode refid="2474" relation="include">
         </childnode>
@@ -108,144 +116,136 @@
         </childnode>
         <childnode refid="2478" relation="include">
         </childnode>
-        <childnode refid="2479" relation="include">
-        </childnode>
-        <childnode refid="2480" relation="include">
-        </childnode>
-        <childnode refid="2481" relation="include">
-        </childnode>
-        <childnode refid="2482" relation="include">
-        </childnode>
       </node>
-      <node id="2481">
+      <node id="2477">
         <label>api.h</label>
       </node>
-      <node id="2467">
+      <node id="2463">
         <label>ratio</label>
       </node>
-      <node id="2488">
+      <node id="2484">
         <label>okapi/api/control/controllerOutput.hpp</label>
         <link refid="controllerOutput_8hpp"/>
       </node>
-      <node id="2477">
+      <node id="2473">
         <label>cstdio</label>
       </node>
-      <node id="2497">
+      <node id="2493">
         <label>tuple</label>
       </node>
-      <node id="2471">
+      <node id="2467">
         <label>okapi/api/odometry/stateMode.hpp</label>
         <link refid="stateMode_8hpp"/>
       </node>
-      <node id="2472">
+      <node id="2468">
         <label>okapi/api/util/logging.hpp</label>
         <link refid="logging_8hpp"/>
-        <childnode refid="2473" relation="include">
+        <childnode refid="2469" relation="include">
         </childnode>
-        <childnode refid="2483" relation="include">
+        <childnode refid="2479" relation="include">
         </childnode>
-        <childnode refid="2486" relation="include">
+        <childnode refid="2482" relation="include">
+        </childnode>
+        <childnode refid="2488" relation="include">
         </childnode>
         <childnode refid="2492" relation="include">
         </childnode>
-        <childnode refid="2496" relation="include">
-        </childnode>
       </node>
-      <node id="2480">
+      <node id="2476">
         <label>sstream</label>
       </node>
-      <node id="2490">
+      <node id="2486">
         <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
         <link refid="rotarySensor_8hpp"/>
-        <childnode refid="2491" relation="include">
-        </childnode>
-        <childnode refid="2473" relation="include">
-        </childnode>
-      </node>
-      <node id="2494">
-        <label>math.h</label>
-      </node>
-      <node id="2478">
-        <label>cstdlib</label>
-      </node>
-      <node id="2475">
-        <label>cstddef</label>
-      </node>
-      <node id="2465">
-        <label>okapi/api/units/RQuantity.hpp</label>
-        <link refid="RQuantity_8hpp"/>
-        <childnode refid="2466" relation="include">
-        </childnode>
-        <childnode refid="2467" relation="include">
-        </childnode>
-      </node>
-      <node id="2462">
-        <label>include/okapi/api/odometry/odomMath.hpp</label>
-        <link refid="odomMath_8hpp"/>
-        <childnode refid="2463" relation="include">
-        </childnode>
-        <childnode refid="2470" relation="include">
-        </childnode>
-        <childnode refid="2472" relation="include">
-        </childnode>
-        <childnode refid="2497" relation="include">
-        </childnode>
-      </node>
-      <node id="2496">
-        <label>mutex</label>
-      </node>
-      <node id="2470">
-        <label>okapi/api/odometry/point.hpp</label>
-        <link refid="point_8hpp"/>
-        <childnode refid="2471" relation="include">
-        </childnode>
-        <childnode refid="2468" relation="include">
-        </childnode>
-      </node>
-      <node id="2495">
-        <label>type_traits</label>
-      </node>
-      <node id="2493">
-        <label>algorithm</label>
-      </node>
-      <node id="2482">
-        <label>pros/apix.h</label>
-      </node>
-      <node id="2492">
-        <label>memory</label>
-      </node>
-      <node id="2463">
-        <label>okapi/api/odometry/odomState.hpp</label>
-        <link refid="odomState_8hpp"/>
-        <childnode refid="2464" relation="include">
-        </childnode>
-        <childnode refid="2468" relation="include">
+        <childnode refid="2487" relation="include">
         </childnode>
         <childnode refid="2469" relation="include">
         </childnode>
       </node>
+      <node id="2490">
+        <label>math.h</label>
+      </node>
+      <node id="2474">
+        <label>cstdlib</label>
+      </node>
+      <node id="2471">
+        <label>cstddef</label>
+      </node>
+      <node id="2461">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="2462" relation="include">
+        </childnode>
+        <childnode refid="2463" relation="include">
+        </childnode>
+      </node>
+      <node id="2458">
+        <label>include/okapi/api/odometry/odomMath.hpp</label>
+        <link refid="odomMath_8hpp"/>
+        <childnode refid="2459" relation="include">
+        </childnode>
+        <childnode refid="2466" relation="include">
+        </childnode>
+        <childnode refid="2468" relation="include">
+        </childnode>
+        <childnode refid="2493" relation="include">
+        </childnode>
+      </node>
+      <node id="2492">
+        <label>mutex</label>
+      </node>
+      <node id="2466">
+        <label>okapi/api/odometry/point.hpp</label>
+        <link refid="point_8hpp"/>
+        <childnode refid="2467" relation="include">
+        </childnode>
+        <childnode refid="2464" relation="include">
+        </childnode>
+      </node>
+      <node id="2491">
+        <label>type_traits</label>
+      </node>
+      <node id="2489">
+        <label>algorithm</label>
+      </node>
+      <node id="2478">
+        <label>pros/apix.h</label>
+      </node>
+      <node id="2488">
+        <label>memory</label>
+      </node>
+      <node id="2459">
+        <label>okapi/api/odometry/odomState.hpp</label>
+        <link refid="odomState_8hpp"/>
+        <childnode refid="2460" relation="include">
+        </childnode>
+        <childnode refid="2464" relation="include">
+        </childnode>
+        <childnode refid="2465" relation="include">
+        </childnode>
+      </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2499">
+      <node id="2495">
         <label>include/okapi/api.hpp</label>
         <link refid="api_8hpp"/>
       </node>
-      <node id="2501">
+      <node id="2497">
         <label>src/api/odometry/odomMath.cpp</label>
         <link refid="odomMath_8cpp"/>
       </node>
-      <node id="2500">
+      <node id="2496">
         <label>src/api/chassis/controller/defaultOdomChassisController.cpp</label>
         <link refid="defaultOdomChassisController_8cpp"/>
       </node>
-      <node id="2498">
+      <node id="2494">
         <label>include/okapi/api/odometry/odomMath.hpp</label>
         <link refid="odomMath_8hpp"/>
-        <childnode refid="2499" relation="include">
+        <childnode refid="2495" relation="include">
         </childnode>
-        <childnode refid="2500" relation="include">
+        <childnode refid="2496" relation="include">
         </childnode>
-        <childnode refid="2501" relation="include">
+        <childnode refid="2497" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

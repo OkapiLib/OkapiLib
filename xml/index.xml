@@ -1689,10 +1689,6 @@
     <member refid="namespaceokapi_1_1literals_1a40698358b7eaa4c223ff8b0076249f4e" kind="function"><name>operator&quot;&quot;_pi</name></member>
     <member refid="namespaceokapi_1_1literals_1a32a563b32efa7e39480f90e5b9db8e6a" kind="function"><name>operator&quot;&quot;_pi</name></member>
   </compound>
-  <compound refid="code-of-conduct_8md" kind="file"><name>code-of-conduct.md</name>
-  </compound>
-  <compound refid="CONTRIBUTING_8md" kind="file"><name>CONTRIBUTING.md</name>
-  </compound>
   <compound refid="api_8hpp" kind="file"><name>api.hpp</name>
   </compound>
   <compound refid="chassisController_8hpp" kind="file"><name>chassisController.hpp</name>
@@ -1915,10 +1911,6 @@
   </compound>
   <compound refid="timeUtilFactory_8hpp" kind="file"><name>timeUtilFactory.hpp</name>
   </compound>
-  <compound refid="PULL__REQUEST__TEMPLATE_8md" kind="file"><name>PULL_REQUEST_TEMPLATE.md</name>
-  </compound>
-  <compound refid="README_8md" kind="file"><name>README.md</name>
-  </compound>
   <compound refid="chassisControllerIntegrated_8cpp" kind="file"><name>chassisControllerIntegrated.cpp</name>
   </compound>
   <compound refid="chassisControllerPid_8cpp" kind="file"><name>chassisControllerPid.cpp</name>
@@ -2044,14 +2036,6 @@
   <compound refid="timer_8cpp" kind="file"><name>timer.cpp</name>
   </compound>
   <compound refid="timeUtilFactory_8cpp" kind="file"><name>timeUtilFactory.cpp</name>
-  </compound>
-  <compound refid="md_code-of-conduct" kind="page"><name>md_code-of-conduct</name>
-  </compound>
-  <compound refid="md_CONTRIBUTING" kind="page"><name>md_CONTRIBUTING</name>
-  </compound>
-  <compound refid="md_PULL_REQUEST_TEMPLATE" kind="page"><name>md_PULL_REQUEST_TEMPLATE</name>
-  </compound>
-  <compound refid="md_README" kind="page"><name>md_README</name>
   </compound>
   <compound refid="dir_63ebd08b8cf71fd366bf0de4231ab7e6" kind="dir"><name>include/okapi/api</name>
   </compound>

@@ -4,90 +4,90 @@
     <compoundname>adiEncoder.cpp</compoundname>
     <includes refid="adiEncoder_8hpp" local="yes">okapi/impl/device/rotarysensor/adiEncoder.hpp</includes>
     <incdepgraph>
-      <node id="6178">
+      <node id="6170">
         <label>functional</label>
       </node>
-      <node id="6165">
+      <node id="6157">
         <label>src/impl/device/rotarysensor/adiEncoder.cpp</label>
         <link refid="adiEncoder_8cpp"/>
-        <childnode refid="6166" relation="include">
-        </childnode>
-      </node>
-      <node id="6175">
-        <label>cstdint</label>
-      </node>
-      <node id="6170">
-        <label>okapi/api/control/controllerInput.hpp</label>
-        <link refid="controllerInput_8hpp"/>
-      </node>
-      <node id="6173">
-        <label>cstdbool</label>
-      </node>
-      <node id="6172">
-        <label>cmath</label>
-      </node>
-      <node id="6168">
-        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
-        <link refid="continuousRotarySensor_8hpp"/>
-        <childnode refid="6169" relation="include">
-        </childnode>
-      </node>
-      <node id="6171">
-        <label>okapi/api/coreProsAPI.hpp</label>
-        <link refid="coreProsAPI_8hpp"/>
-        <childnode refid="6172" relation="include">
-        </childnode>
-        <childnode refid="6173" relation="include">
-        </childnode>
-        <childnode refid="6174" relation="include">
-        </childnode>
-        <childnode refid="6175" relation="include">
-        </childnode>
-        <childnode refid="6176" relation="include">
-        </childnode>
-        <childnode refid="6177" relation="include">
-        </childnode>
-        <childnode refid="6178" relation="include">
-        </childnode>
-        <childnode refid="6179" relation="include">
-        </childnode>
-        <childnode refid="6167" relation="include">
-        </childnode>
-        <childnode refid="6180" relation="include">
+        <childnode refid="6158" relation="include">
         </childnode>
       </node>
       <node id="6167">
-        <label>api.h</label>
+        <label>cstdint</label>
       </node>
-      <node id="6176">
-        <label>cstdio</label>
+      <node id="6162">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="6179">
-        <label>sstream</label>
+      <node id="6165">
+        <label>cstdbool</label>
       </node>
-      <node id="6169">
-        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
-        <link refid="rotarySensor_8hpp"/>
-        <childnode refid="6170" relation="include">
+      <node id="6164">
+        <label>cmath</label>
+      </node>
+      <node id="6160">
+        <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
+        <link refid="continuousRotarySensor_8hpp"/>
+        <childnode refid="6161" relation="include">
         </childnode>
-        <childnode refid="6171" relation="include">
+      </node>
+      <node id="6163">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="6164" relation="include">
         </childnode>
-      </node>
-      <node id="6177">
-        <label>cstdlib</label>
-      </node>
-      <node id="6174">
-        <label>cstddef</label>
-      </node>
-      <node id="6166">
-        <label>okapi/impl/device/rotarysensor/adiEncoder.hpp</label>
-        <link refid="adiEncoder_8hpp"/>
+        <childnode refid="6165" relation="include">
+        </childnode>
+        <childnode refid="6166" relation="include">
+        </childnode>
         <childnode refid="6167" relation="include">
         </childnode>
         <childnode refid="6168" relation="include">
         </childnode>
+        <childnode refid="6169" relation="include">
+        </childnode>
+        <childnode refid="6170" relation="include">
+        </childnode>
+        <childnode refid="6171" relation="include">
+        </childnode>
+        <childnode refid="6159" relation="include">
+        </childnode>
+        <childnode refid="6172" relation="include">
+        </childnode>
       </node>
-      <node id="6180">
+      <node id="6159">
+        <label>api.h</label>
+      </node>
+      <node id="6168">
+        <label>cstdio</label>
+      </node>
+      <node id="6171">
+        <label>sstream</label>
+      </node>
+      <node id="6161">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="6162" relation="include">
+        </childnode>
+        <childnode refid="6163" relation="include">
+        </childnode>
+      </node>
+      <node id="6169">
+        <label>cstdlib</label>
+      </node>
+      <node id="6166">
+        <label>cstddef</label>
+      </node>
+      <node id="6158">
+        <label>okapi/impl/device/rotarysensor/adiEncoder.hpp</label>
+        <link refid="adiEncoder_8hpp"/>
+        <childnode refid="6159" relation="include">
+        </childnode>
+        <childnode refid="6160" relation="include">
+        </childnode>
+      </node>
+      <node id="6172">
         <label>pros/apix.h</label>
       </node>
     </incdepgraph>

@@ -7,37 +7,37 @@
     <includes local="no">memory</includes>
     <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
     <incdepgraph>
-      <node id="2313">
+      <node id="2309">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="2314">
+      <node id="2310">
         <label>okapi/api/filter/filter.hpp</label>
         <link refid="filter_8hpp"/>
       </node>
-      <node id="2315">
+      <node id="2311">
         <label>memory</label>
+      </node>
+      <node id="2308">
+        <label>include/okapi/api/filter/filteredControllerInput.hpp</label>
+        <link refid="filteredControllerInput_8hpp"/>
+        <childnode refid="2309" relation="include">
+        </childnode>
+        <childnode refid="2310" relation="include">
+        </childnode>
+        <childnode refid="2311" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2313">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
       </node>
       <node id="2312">
         <label>include/okapi/api/filter/filteredControllerInput.hpp</label>
         <link refid="filteredControllerInput_8hpp"/>
         <childnode refid="2313" relation="include">
-        </childnode>
-        <childnode refid="2314" relation="include">
-        </childnode>
-        <childnode refid="2315" relation="include">
-        </childnode>
-      </node>
-    </incdepgraph>
-    <invincdepgraph>
-      <node id="2317">
-        <label>include/okapi/api.hpp</label>
-        <link refid="api_8hpp"/>
-      </node>
-      <node id="2316">
-        <label>include/okapi/api/filter/filteredControllerInput.hpp</label>
-        <link refid="filteredControllerInput_8hpp"/>
-        <childnode refid="2317" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

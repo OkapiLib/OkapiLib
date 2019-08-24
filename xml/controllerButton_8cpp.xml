@@ -4,45 +4,45 @@
     <compoundname>controllerButton.cpp</compoundname>
     <includes refid="controllerButton_8hpp" local="yes">okapi/impl/device/button/controllerButton.hpp</includes>
     <incdepgraph>
-      <node id="6028">
+      <node id="6020">
         <label>okapi/impl/device/button/controllerButton.hpp</label>
         <link refid="controllerButton_8hpp"/>
-        <childnode refid="6029" relation="include">
+        <childnode refid="6021" relation="include">
         </childnode>
-        <childnode refid="6030" relation="include">
+        <childnode refid="6022" relation="include">
         </childnode>
-        <childnode refid="6033" relation="include">
+        <childnode refid="6025" relation="include">
         </childnode>
       </node>
-      <node id="6033">
+      <node id="6025">
         <label>okapi/impl/device/controllerUtil.hpp</label>
         <link refid="controllerUtil_8hpp"/>
-        <childnode refid="6029" relation="include">
+        <childnode refid="6021" relation="include">
         </childnode>
       </node>
-      <node id="6032">
+      <node id="6024">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="6027">
+      <node id="6019">
         <label>src/impl/device/button/controllerButton.cpp</label>
         <link refid="controllerButton_8cpp"/>
-        <childnode refid="6028" relation="include">
+        <childnode refid="6020" relation="include">
         </childnode>
       </node>
-      <node id="6029">
+      <node id="6021">
         <label>api.h</label>
       </node>
-      <node id="6031">
+      <node id="6023">
         <label>okapi/api/device/button/abstractButton.hpp</label>
         <link refid="abstractButton_8hpp"/>
-        <childnode refid="6032" relation="include">
+        <childnode refid="6024" relation="include">
         </childnode>
       </node>
-      <node id="6030">
+      <node id="6022">
         <label>okapi/api/device/button/buttonBase.hpp</label>
         <link refid="buttonBase_8hpp"/>
-        <childnode refid="6031" relation="include">
+        <childnode refid="6023" relation="include">
         </childnode>
       </node>
     </incdepgraph>

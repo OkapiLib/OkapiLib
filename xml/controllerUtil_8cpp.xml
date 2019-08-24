@@ -4,19 +4,19 @@
     <compoundname>controllerUtil.cpp</compoundname>
     <includes refid="controllerUtil_8hpp" local="yes">okapi/impl/device/controllerUtil.hpp</includes>
     <incdepgraph>
-      <node id="6065">
+      <node id="6057">
         <label>okapi/impl/device/controllerUtil.hpp</label>
         <link refid="controllerUtil_8hpp"/>
-        <childnode refid="6066" relation="include">
+        <childnode refid="6058" relation="include">
         </childnode>
       </node>
-      <node id="6064">
+      <node id="6056">
         <label>src/impl/device/controllerUtil.cpp</label>
         <link refid="controllerUtil_8cpp"/>
-        <childnode refid="6065" relation="include">
+        <childnode refid="6057" relation="include">
         </childnode>
       </node>
-      <node id="6066">
+      <node id="6058">
         <label>api.h</label>
       </node>
     </incdepgraph>
