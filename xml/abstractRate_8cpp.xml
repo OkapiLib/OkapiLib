@@ -4,37 +4,33 @@
     <compoundname>abstractRate.cpp</compoundname>
     <includes refid="abstractRate_8hpp" local="yes">okapi/api/util/abstractRate.hpp</includes>
     <incdepgraph>
-      <node id="5556">
+      <node id="5558">
         <label>functional</label>
       </node>
-      <node id="5553">
+      <node id="5555">
         <label>cstdint</label>
       </node>
-      <node id="5560">
+      <node id="5562">
         <label>okapi/api/units/QFrequency.hpp</label>
         <link refid="QFrequency_8hpp"/>
-        <childnode refid="5561" relation="include">
+        <childnode refid="5563" relation="include">
+        </childnode>
+      </node>
+      <node id="5553">
+        <label>cstdbool</label>
+      </node>
+      <node id="5552">
+        <label>cmath</label>
+      </node>
+      <node id="5565">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="5563" relation="include">
         </childnode>
       </node>
       <node id="5551">
-        <label>cstdbool</label>
-      </node>
-      <node id="5550">
-        <label>cmath</label>
-      </node>
-      <node id="5563">
-        <label>okapi/api/units/QTime.hpp</label>
-        <link refid="QTime_8hpp"/>
-        <childnode refid="5561" relation="include">
-        </childnode>
-      </node>
-      <node id="5549">
         <label>okapi/api/coreProsAPI.hpp</label>
         <link refid="coreProsAPI_8hpp"/>
-        <childnode refid="5550" relation="include">
-        </childnode>
-        <childnode refid="5551" relation="include">
-        </childnode>
         <childnode refid="5552" relation="include">
         </childnode>
         <childnode refid="5553" relation="include">
@@ -51,50 +47,54 @@
         </childnode>
         <childnode refid="5559" relation="include">
         </childnode>
-      </node>
-      <node id="5548">
-        <label>okapi/api/util/abstractRate.hpp</label>
-        <link refid="abstractRate_8hpp"/>
-        <childnode refid="5549" relation="include">
-        </childnode>
         <childnode refid="5560" relation="include">
         </childnode>
-        <childnode refid="5563" relation="include">
+        <childnode refid="5561" relation="include">
         </childnode>
       </node>
-      <node id="5558">
-        <label>api.h</label>
-      </node>
-      <node id="5562">
-        <label>ratio</label>
-      </node>
-      <node id="5554">
-        <label>cstdio</label>
-      </node>
-      <node id="5557">
-        <label>sstream</label>
-      </node>
-      <node id="5555">
-        <label>cstdlib</label>
-      </node>
-      <node id="5552">
-        <label>cstddef</label>
-      </node>
-      <node id="5561">
-        <label>okapi/api/units/RQuantity.hpp</label>
-        <link refid="RQuantity_8hpp"/>
-        <childnode refid="5550" relation="include">
+      <node id="5550">
+        <label>okapi/api/util/abstractRate.hpp</label>
+        <link refid="abstractRate_8hpp"/>
+        <childnode refid="5551" relation="include">
         </childnode>
         <childnode refid="5562" relation="include">
         </childnode>
-      </node>
-      <node id="5547">
-        <label>src/api/util/abstractRate.cpp</label>
-        <link refid="abstractRate_8cpp"/>
-        <childnode refid="5548" relation="include">
+        <childnode refid="5565" relation="include">
         </childnode>
       </node>
+      <node id="5560">
+        <label>api.h</label>
+      </node>
+      <node id="5564">
+        <label>ratio</label>
+      </node>
+      <node id="5556">
+        <label>cstdio</label>
+      </node>
       <node id="5559">
+        <label>sstream</label>
+      </node>
+      <node id="5557">
+        <label>cstdlib</label>
+      </node>
+      <node id="5554">
+        <label>cstddef</label>
+      </node>
+      <node id="5563">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="5552" relation="include">
+        </childnode>
+        <childnode refid="5564" relation="include">
+        </childnode>
+      </node>
+      <node id="5549">
+        <label>src/api/util/abstractRate.cpp</label>
+        <link refid="abstractRate_8cpp"/>
+        <childnode refid="5550" relation="include">
+        </childnode>
+      </node>
+      <node id="5561">
         <label>pros/apix.h</label>
       </node>
     </incdepgraph>

@@ -1,0 +1,39 @@
+Arguably the most fundamental task with regard to creating a good autonomous routine is ensuring consistent and accurate movement of the chassis. Robotic autonomous movement is an unsolved problem even among professional engineers, so it is obviously a difficult task. Okapi\+Lib makes it easy to get reasonably accurate autonomous movements.
+
+The basis for this autonomous movement is the Chassis\+Controller class. Take a look at its {\ttfamily A\+PI $<$../../api/chassis/controller/chassis-\/controller-\/integrated.html$>$}\+\_\+ for more detailed info on it.
+
+We\textquotesingle{}ll use a {\ttfamily Chassis\+Controller\+Integrated} for this tutorial, using the V5 motors\textquotesingle{} onboard P\+ID makes setup a much quicker and easier process (No P\+ID tuning needed!).
+
+Let\textquotesingle{}s start by creating the {\ttfamily Chassis\+Controller\+Integrated} with drive motors in ports 1 and 2\+:
+
+.. highlight\+: cpp .. code-\/block\+:: cpp \+:linenos\+:
+
+using namespace okapi;
+
+const int D\+R\+I\+V\+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+L\+E\+FT = 1; const int D\+R\+I\+V\+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+R\+I\+G\+HT = 2;
+
+auto chassis = Chassis\+Controller\+Builder() .with\+Motors(D\+R\+I\+V\+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+L\+E\+FT, -\/D\+R\+I\+V\+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+R\+I\+G\+HT) .build();
+
+Now that we\textquotesingle{}ve created a Chassis\+Controller, let\textquotesingle{}s start moving around. There are two fundamental movement types -\/ {\ttfamily move\+Distance()} and {\ttfamily turn\+Angle()}, for moving forward/backward and turning on a point.
+
+.. highlight\+: cpp .. code-\/block\+:: cpp \+:linenos\+:
+
+using namespace okapi;
+
+const int D\+R\+I\+V\+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+L\+E\+FT = 1; const int D\+R\+I\+V\+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+R\+I\+G\+HT = 2;
+
+auto chassis = Chassis\+Controller\+Builder() .with\+Motors(D\+R\+I\+V\+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+L\+E\+FT, -\/D\+R\+I\+V\+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+R\+I\+G\+HT) .build();
+
+void autonomous() \{ // Move to first goal chassis-\/$>$move\+Distance(1000); // Turn to face second goal chassis-\/$>$turn\+Angle(100); // Drive toward second goal chassis-\/$>$move\+Distance(1500); \}
+
+If you\textquotesingle{}d like to set movements in real life units, that\textquotesingle{}s possible as well. Just pass in the drive\textquotesingle{}s gearset and dimensions, and then use the appropriate suffix for the units that you would like the movement to occur in.
+
+.. highlight\+: cpp .. code-\/block\+:: cpp \+:linenos\+:
+
+using namespace okapi;
+
+const int D\+R\+I\+V\+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+L\+E\+FT = 1; const int D\+R\+I\+V\+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+R\+I\+G\+HT = 2; const auto W\+H\+E\+E\+L\+\_\+\+D\+I\+A\+M\+E\+T\+ER = 4\+\_\+in; const auto C\+H\+A\+S\+S\+I\+S\+\_\+\+W\+I\+D\+TH = 13.\+5\+\_\+in;
+
+auto chassis = Chassis\+Controller\+Builder() .with\+Motors(D\+R\+I\+V\+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+L\+E\+FT, -\/D\+R\+I\+V\+E\+\_\+\+M\+O\+T\+O\+R\+\_\+\+R\+I\+G\+HT) .with\+Gearset(\+Abstract\+Motor\+::gearset\+::green) .with\+Dimensions(\{\{W\+H\+E\+E\+L\+\_\+\+D\+I\+A\+M\+E\+T\+ER, C\+H\+A\+S\+S\+I\+S\+\_\+\+W\+I\+D\+TH\}, imev5\+Green\+T\+PR\}) .build();
+
+void autonomous() \{ // Move 1 meter to the first goal chassis-\/$>$move\+Distance(1\+\_\+m); // Turn 90 degrees to face second goal chassis-\/$>$turn\+Angle(90\+\_\+deg); // Drive 1 and a half feet toward second goal chassis-\/$>$move\+Distance(1.\+5\+\_\+ft); \} 

@@ -4,8 +4,8 @@ Oftentimes the fastest way to move in autonomous involves actuating multiple
 subsystems at once (i.e. driving and raising/lowering a lift). This is made
 possible with Async Controllers.
 
-To create a ChassisController for a given system, modify the below example to
-fit your subsystem.
+To create a [ChassisController](@ref okapi::ChassisController) for a given system,
+modify the below example to fit your subsystem.
 
 ```cpp
 using namespace okapi;
@@ -50,7 +50,9 @@ void autonomous() {
 Now that we have two subsystems to run, let's execute a few different movements.
 If we want both systems to move, and the next movement in the autonomous routine
 only depends on the drive completing its movement (and it doesn't care about the
-lift's status), we'll run `waitUntilSettled()` with just the drive controller.
+lift's status), we'll run
+[waitUntilSettled()](@ref okapi::ChassisController::waitUntilSettled) with just
+the drive controller.
 
 ```cpp
 using namespace okapi;
@@ -84,8 +86,9 @@ void autonomous() {
 
 If blocking the next movement with regard only to the lift is desired, swap
 `driveController` for `liftController` in the last line. If both movements need
-to finish before executing the next movement, then call `waitUntilSettled()` on
-both controllers.
+to finish before executing the next movement, then call
+[waitUntilSettled()](@ref okapi::ChassisController::waitUntilSettled) on both
+controllers.
 
 ```cpp
 using namespace okapi;

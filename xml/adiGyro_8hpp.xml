@@ -8,35 +8,31 @@
     <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
     <includedby refid="adiGyro_8cpp" local="yes">src/impl/device/rotarysensor/adiGyro.cpp</includedby>
     <incdepgraph>
-      <node id="4245">
+      <node id="4247">
         <label>functional</label>
       </node>
-      <node id="4242">
+      <node id="4244">
         <label>cstdint</label>
       </node>
-      <node id="4235">
+      <node id="4237">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="4240">
+      <node id="4242">
         <label>cstdbool</label>
       </node>
-      <node id="4239">
+      <node id="4241">
         <label>cmath</label>
       </node>
-      <node id="4236">
+      <node id="4238">
         <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
         <link refid="continuousRotarySensor_8hpp"/>
-        <childnode refid="4237" relation="include">
-        </childnode>
-      </node>
-      <node id="4238">
-        <label>okapi/api/coreProsAPI.hpp</label>
-        <link refid="coreProsAPI_8hpp"/>
         <childnode refid="4239" relation="include">
         </childnode>
-        <childnode refid="4240" relation="include">
-        </childnode>
+      </node>
+      <node id="4240">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
         <childnode refid="4241" relation="include">
         </childnode>
         <childnode refid="4242" relation="include">
@@ -49,62 +45,66 @@
         </childnode>
         <childnode refid="4246" relation="include">
         </childnode>
-        <childnode refid="4234" relation="include">
-        </childnode>
         <childnode refid="4247" relation="include">
         </childnode>
-      </node>
-      <node id="4234">
-        <label>api.h</label>
-      </node>
-      <node id="4233">
-        <label>include/okapi/impl/device/rotarysensor/adiGyro.hpp</label>
-        <link refid="adiGyro_8hpp"/>
-        <childnode refid="4234" relation="include">
-        </childnode>
-        <childnode refid="4235" relation="include">
+        <childnode refid="4248" relation="include">
         </childnode>
         <childnode refid="4236" relation="include">
         </childnode>
+        <childnode refid="4249" relation="include">
+        </childnode>
       </node>
-      <node id="4243">
-        <label>cstdio</label>
+      <node id="4236">
+        <label>api.h</label>
       </node>
-      <node id="4246">
-        <label>sstream</label>
-      </node>
-      <node id="4237">
-        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
-        <link refid="rotarySensor_8hpp"/>
-        <childnode refid="4235" relation="include">
+      <node id="4235">
+        <label>include/okapi/impl/device/rotarysensor/adiGyro.hpp</label>
+        <link refid="adiGyro_8hpp"/>
+        <childnode refid="4236" relation="include">
+        </childnode>
+        <childnode refid="4237" relation="include">
         </childnode>
         <childnode refid="4238" relation="include">
         </childnode>
       </node>
-      <node id="4244">
+      <node id="4245">
+        <label>cstdio</label>
+      </node>
+      <node id="4248">
+        <label>sstream</label>
+      </node>
+      <node id="4239">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="4237" relation="include">
+        </childnode>
+        <childnode refid="4240" relation="include">
+        </childnode>
+      </node>
+      <node id="4246">
         <label>cstdlib</label>
       </node>
-      <node id="4241">
+      <node id="4243">
         <label>cstddef</label>
       </node>
-      <node id="4247">
+      <node id="4249">
         <label>pros/apix.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4249">
+      <node id="4251">
         <label>include/okapi/api.hpp</label>
         <link refid="api_8hpp"/>
       </node>
-      <node id="4248">
+      <node id="4250">
         <label>include/okapi/impl/device/rotarysensor/adiGyro.hpp</label>
         <link refid="adiGyro_8hpp"/>
-        <childnode refid="4249" relation="include">
+        <childnode refid="4251" relation="include">
         </childnode>
-        <childnode refid="4250" relation="include">
+        <childnode refid="4252" relation="include">
         </childnode>
       </node>
-      <node id="4250">
+      <node id="4252">
         <label>src/impl/device/rotarysensor/adiGyro.cpp</label>
         <link refid="adiGyro_8cpp"/>
       </node>

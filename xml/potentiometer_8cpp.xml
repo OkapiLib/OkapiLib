@@ -4,29 +4,25 @@
     <compoundname>potentiometer.cpp</compoundname>
     <includes refid="potentiometer_8hpp" local="yes">okapi/impl/device/rotarysensor/potentiometer.hpp</includes>
     <incdepgraph>
-      <node id="6248">
+      <node id="6250">
         <label>functional</label>
       </node>
-      <node id="6245">
+      <node id="6247">
         <label>cstdint</label>
       </node>
-      <node id="6240">
+      <node id="6242">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="6243">
+      <node id="6245">
         <label>cstdbool</label>
       </node>
-      <node id="6242">
+      <node id="6244">
         <label>cmath</label>
       </node>
-      <node id="6241">
+      <node id="6243">
         <label>okapi/api/coreProsAPI.hpp</label>
         <link refid="coreProsAPI_8hpp"/>
-        <childnode refid="6242" relation="include">
-        </childnode>
-        <childnode refid="6243" relation="include">
-        </childnode>
         <childnode refid="6244" relation="include">
         </childnode>
         <childnode refid="6245" relation="include">
@@ -39,49 +35,53 @@
         </childnode>
         <childnode refid="6249" relation="include">
         </childnode>
-        <childnode refid="6238" relation="include">
-        </childnode>
         <childnode refid="6250" relation="include">
+        </childnode>
+        <childnode refid="6251" relation="include">
+        </childnode>
+        <childnode refid="6240" relation="include">
+        </childnode>
+        <childnode refid="6252" relation="include">
+        </childnode>
+      </node>
+      <node id="6240">
+        <label>api.h</label>
+      </node>
+      <node id="6248">
+        <label>cstdio</label>
+      </node>
+      <node id="6251">
+        <label>sstream</label>
+      </node>
+      <node id="6241">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="6242" relation="include">
+        </childnode>
+        <childnode refid="6243" relation="include">
         </childnode>
       </node>
       <node id="6238">
-        <label>api.h</label>
-      </node>
-      <node id="6246">
-        <label>cstdio</label>
+        <label>src/impl/device/rotarysensor/potentiometer.cpp</label>
+        <link refid="potentiometer_8cpp"/>
+        <childnode refid="6239" relation="include">
+        </childnode>
       </node>
       <node id="6249">
-        <label>sstream</label>
+        <label>cstdlib</label>
+      </node>
+      <node id="6246">
+        <label>cstddef</label>
       </node>
       <node id="6239">
-        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
-        <link refid="rotarySensor_8hpp"/>
+        <label>okapi/impl/device/rotarysensor/potentiometer.hpp</label>
+        <link refid="potentiometer_8hpp"/>
         <childnode refid="6240" relation="include">
         </childnode>
         <childnode refid="6241" relation="include">
         </childnode>
       </node>
-      <node id="6236">
-        <label>src/impl/device/rotarysensor/potentiometer.cpp</label>
-        <link refid="potentiometer_8cpp"/>
-        <childnode refid="6237" relation="include">
-        </childnode>
-      </node>
-      <node id="6247">
-        <label>cstdlib</label>
-      </node>
-      <node id="6244">
-        <label>cstddef</label>
-      </node>
-      <node id="6237">
-        <label>okapi/impl/device/rotarysensor/potentiometer.hpp</label>
-        <link refid="potentiometer_8hpp"/>
-        <childnode refid="6238" relation="include">
-        </childnode>
-        <childnode refid="6239" relation="include">
-        </childnode>
-      </node>
-      <node id="6250">
+      <node id="6252">
         <label>pros/apix.h</label>
       </node>
     </incdepgraph>

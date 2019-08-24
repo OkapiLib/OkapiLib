@@ -4,37 +4,37 @@
     <compoundname>adiButton.cpp</compoundname>
     <includes refid="adiButton_8hpp" local="yes">okapi/impl/device/button/adiButton.hpp</includes>
     <incdepgraph>
-      <node id="6018">
+      <node id="6020">
         <label>src/impl/device/button/adiButton.cpp</label>
         <link refid="adiButton_8cpp"/>
-        <childnode refid="6019" relation="include">
-        </childnode>
-      </node>
-      <node id="6023">
-        <label>okapi/api/control/controllerInput.hpp</label>
-        <link refid="controllerInput_8hpp"/>
-      </node>
-      <node id="6019">
-        <label>okapi/impl/device/button/adiButton.hpp</label>
-        <link refid="adiButton_8hpp"/>
-        <childnode refid="6020" relation="include">
-        </childnode>
         <childnode refid="6021" relation="include">
         </childnode>
       </node>
-      <node id="6020">
-        <label>api.h</label>
+      <node id="6025">
+        <label>okapi/api/control/controllerInput.hpp</label>
+        <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="6022">
-        <label>okapi/api/device/button/abstractButton.hpp</label>
-        <link refid="abstractButton_8hpp"/>
+      <node id="6021">
+        <label>okapi/impl/device/button/adiButton.hpp</label>
+        <link refid="adiButton_8hpp"/>
+        <childnode refid="6022" relation="include">
+        </childnode>
         <childnode refid="6023" relation="include">
         </childnode>
       </node>
-      <node id="6021">
+      <node id="6022">
+        <label>api.h</label>
+      </node>
+      <node id="6024">
+        <label>okapi/api/device/button/abstractButton.hpp</label>
+        <link refid="abstractButton_8hpp"/>
+        <childnode refid="6025" relation="include">
+        </childnode>
+      </node>
+      <node id="6023">
         <label>okapi/api/device/button/buttonBase.hpp</label>
         <link refid="buttonBase_8hpp"/>
-        <childnode refid="6022" relation="include">
+        <childnode refid="6024" relation="include">
         </childnode>
       </node>
     </incdepgraph>

@@ -6,83 +6,83 @@
     <includedby refid="buttonBase_8hpp" local="yes">include/okapi/api/device/button/buttonBase.hpp</includedby>
     <includedby refid="abstractButton_8cpp" local="yes">src/api/device/button/abstractButton.cpp</includedby>
     <incdepgraph>
-      <node id="1873">
+      <node id="1875">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
-      </node>
-      <node id="1872">
-        <label>include/okapi/api/device/button/abstractButton.hpp</label>
-        <link refid="abstractButton_8hpp"/>
-        <childnode refid="1873" relation="include">
-        </childnode>
-      </node>
-    </incdepgraph>
-    <invincdepgraph>
-      <node id="1878">
-        <label>src/impl/device/button/adiButton.cpp</label>
-        <link refid="adiButton_8cpp"/>
-      </node>
-      <node id="1881">
-        <label>src/impl/device/controller.cpp</label>
-        <link refid="controller_8cpp"/>
-      </node>
-      <node id="1879">
-        <label>include/okapi/impl/device/button/controllerButton.hpp</label>
-        <link refid="controllerButton_8hpp"/>
-        <childnode refid="1877" relation="include">
-        </childnode>
-        <childnode refid="1880" relation="include">
-        </childnode>
-        <childnode refid="1882" relation="include">
-        </childnode>
-      </node>
-      <node id="1877">
-        <label>include/okapi/api.hpp</label>
-        <link refid="api_8hpp"/>
-      </node>
-      <node id="1882">
-        <label>src/impl/device/button/controllerButton.cpp</label>
-        <link refid="controllerButton_8cpp"/>
-      </node>
-      <node id="1876">
-        <label>include/okapi/impl/device/button/adiButton.hpp</label>
-        <link refid="adiButton_8hpp"/>
-        <childnode refid="1877" relation="include">
-        </childnode>
-        <childnode refid="1878" relation="include">
-        </childnode>
-      </node>
-      <node id="1884">
-        <label>src/api/device/button/abstractButton.cpp</label>
-        <link refid="abstractButton_8cpp"/>
       </node>
       <node id="1874">
         <label>include/okapi/api/device/button/abstractButton.hpp</label>
         <link refid="abstractButton_8hpp"/>
         <childnode refid="1875" relation="include">
         </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1880">
+        <label>src/impl/device/button/adiButton.cpp</label>
+        <link refid="adiButton_8cpp"/>
+      </node>
+      <node id="1883">
+        <label>src/impl/device/controller.cpp</label>
+        <link refid="controller_8cpp"/>
+      </node>
+      <node id="1881">
+        <label>include/okapi/impl/device/button/controllerButton.hpp</label>
+        <link refid="controllerButton_8hpp"/>
+        <childnode refid="1879" relation="include">
+        </childnode>
+        <childnode refid="1882" relation="include">
+        </childnode>
         <childnode refid="1884" relation="include">
         </childnode>
       </node>
-      <node id="1880">
-        <label>include/okapi/impl/device/controller.hpp</label>
-        <link refid="controller_8hpp"/>
-        <childnode refid="1877" relation="include">
+      <node id="1879">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="1884">
+        <label>src/impl/device/button/controllerButton.cpp</label>
+        <link refid="controllerButton_8cpp"/>
+      </node>
+      <node id="1878">
+        <label>include/okapi/impl/device/button/adiButton.hpp</label>
+        <link refid="adiButton_8hpp"/>
+        <childnode refid="1879" relation="include">
         </childnode>
-        <childnode refid="1881" relation="include">
+        <childnode refid="1880" relation="include">
         </childnode>
       </node>
-      <node id="1875">
-        <label>include/okapi/api/device/button/buttonBase.hpp</label>
-        <link refid="buttonBase_8hpp"/>
-        <childnode refid="1876" relation="include">
+      <node id="1886">
+        <label>src/api/device/button/abstractButton.cpp</label>
+        <link refid="abstractButton_8cpp"/>
+      </node>
+      <node id="1876">
+        <label>include/okapi/api/device/button/abstractButton.hpp</label>
+        <link refid="abstractButton_8hpp"/>
+        <childnode refid="1877" relation="include">
         </childnode>
+        <childnode refid="1886" relation="include">
+        </childnode>
+      </node>
+      <node id="1882">
+        <label>include/okapi/impl/device/controller.hpp</label>
+        <link refid="controller_8hpp"/>
         <childnode refid="1879" relation="include">
         </childnode>
         <childnode refid="1883" relation="include">
         </childnode>
       </node>
-      <node id="1883">
+      <node id="1877">
+        <label>include/okapi/api/device/button/buttonBase.hpp</label>
+        <link refid="buttonBase_8hpp"/>
+        <childnode refid="1878" relation="include">
+        </childnode>
+        <childnode refid="1881" relation="include">
+        </childnode>
+        <childnode refid="1885" relation="include">
+        </childnode>
+      </node>
+      <node id="1885">
         <label>src/api/device/button/buttonBase.cpp</label>
         <link refid="buttonBase_8cpp"/>
       </node>

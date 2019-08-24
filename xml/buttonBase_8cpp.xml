@@ -4,26 +4,26 @@
     <compoundname>buttonBase.cpp</compoundname>
     <includes refid="buttonBase_8hpp" local="yes">okapi/api/device/button/buttonBase.hpp</includes>
     <incdepgraph>
-      <node id="5269">
+      <node id="5271">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="5268">
+      <node id="5270">
         <label>okapi/api/device/button/abstractButton.hpp</label>
         <link refid="abstractButton_8hpp"/>
-        <childnode refid="5269" relation="include">
+        <childnode refid="5271" relation="include">
         </childnode>
       </node>
-      <node id="5267">
+      <node id="5269">
         <label>okapi/api/device/button/buttonBase.hpp</label>
         <link refid="buttonBase_8hpp"/>
-        <childnode refid="5268" relation="include">
+        <childnode refid="5270" relation="include">
         </childnode>
       </node>
-      <node id="5266">
+      <node id="5268">
         <label>src/api/device/button/buttonBase.cpp</label>
         <link refid="buttonBase_8cpp"/>
-        <childnode refid="5267" relation="include">
+        <childnode refid="5269" relation="include">
         </childnode>
       </node>
     </incdepgraph>
