@@ -8,7 +8,7 @@
 #pragma once
 
 #include "okapi/api/units/QLength.hpp"
-#include "okapi/api/odometry/odometry.hpp"
+#include "okapi/api/odometry/stateMode.hpp"
 
 namespace okapi {
 struct Point {

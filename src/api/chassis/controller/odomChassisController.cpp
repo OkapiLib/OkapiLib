@@ -33,7 +33,7 @@ void OdomChassisController::setState(const OdomState &istate) {
   odom->setState(istate, defaultStateMode);
 }
 
-void OdomChassisController::setDefaultStateMode(const okapi::StateMode &imode) {
+void OdomChassisController::setDefaultStateMode(const StateMode &imode) {
   defaultStateMode = imode;
 }
 

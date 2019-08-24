@@ -13,6 +13,7 @@
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
+#include "okapi/api/odometry/stateMode.hpp"
 #include <atomic>
 #include <memory>
 #include <valarray>
@@ -32,13 +33,6 @@ struct OdomState {
 
   bool operator!=(const OdomState &rhs) const;
 };
-
-/**
- * The mode for the state calculated by odometry.
- * FRAME_TRANSFORMATION: +x is forward, +y is right, 0 degrees is along +x.
- * CARTESIAN: +x is right, +y is forward, 0 degrees is along +y.
- */
-enum class StateMode { FRAME_TRANSFORMATION, CARTESIAN };
 
 class Odometry {
   public:
