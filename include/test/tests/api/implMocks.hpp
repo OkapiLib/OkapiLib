@@ -7,6 +7,7 @@
  */
 #pragma once
 
+#include "okapi/api/chassis/controller/chassisController.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/control/async/asyncPosIntegratedController.hpp"
 #include "okapi/api/control/async/asyncVelIntegratedController.hpp"
@@ -16,6 +17,7 @@
 #include "okapi/api/control/util/settledUtil.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
+#include "okapi/api/odometry/odometry.hpp"
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/abstractTimer.hpp"
 #include "okapi/api/util/timeUtil.hpp"
@@ -73,6 +75,8 @@ class MockMotor : public AbstractMotor {
 
   std::shared_ptr<ContinuousRotarySensor> getEncoder() override;
 
+  virtual std::shared_ptr<MockContinuousRotarySensor> getMockEncoder();
+
   std::int32_t moveVelocity(std::int16_t ivelocity) override;
 
   std::int32_t moveVoltage(std::int16_t ivoltage) override;
@@ -106,28 +110,6 @@ class MockMotor : public AbstractMotor {
   int32_t getVoltage() override;
 
   int32_t modifyProfiledVelocity(std::int32_t ivelocity) override;
-
-  int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) override;
-
-  int32_t setPosPIDFull(double ikF,
-                        double ikP,
-                        double ikI,
-                        double ikD,
-                        double ifilter,
-                        double ilimit,
-                        double ithreshold,
-                        double iloopSpeed) override;
-
-  int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) override;
-
-  int32_t setVelPIDFull(double ikF,
-                        double ikP,
-                        double ikI,
-                        double ikD,
-                        double ifilter,
-                        double ilimit,
-                        double ithreshold,
-                        double iloopSpeed) override;
 
   AbstractMotor::brakeMode getBrakeMode() override;
 
@@ -221,28 +203,6 @@ class ThreadedMockMotor : public AbstractMotor {
   int32_t setReversed(bool ireverse) override;
 
   int32_t setVoltageLimit(std::int32_t ilimit) override;
-
-  int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) override;
-
-  int32_t setPosPIDFull(double ikF,
-                        double ikP,
-                        double ikI,
-                        double ikD,
-                        double ifilter,
-                        double ilimit,
-                        double ithreshold,
-                        double iloopSpeed) override;
-
-  int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) override;
-
-  int32_t setVelPIDFull(double ikF,
-                        double ikP,
-                        double ikI,
-                        double ikD,
-                        double ifilter,
-                        double ilimit,
-                        double ithreshold,
-                        double iloopSpeed) override;
 
   std::shared_ptr<ContinuousRotarySensor> getEncoder() override;
 
@@ -480,4 +440,204 @@ void assertIterativeControllerScalesControllerSetTargets(
 
 void assertAsyncWrapperScalesControllerSetTargets(AsyncWrapper<double, double> &controller);
 
+void assertOdomStateEquals(double x, double y, double theta, const OdomState &actual);
+
+void assertOdomStateEquals(Odometry *odom, QLength x, QLength y, QAngle theta);
+
+class MockReadOnlyChassisModel : public ReadOnlyChassisModel {
+  public:
+  std::valarray<int32_t> getSensorVals() const override {
+    return {0, 0};
+  }
+};
+
+class MockChassisModel : public ChassisModel {
+  public:
+  MockChassisModel() : ChassisModel() {
+  }
+
+  void forward(double ispeed) override {
+    lastForward = ispeed;
+  }
+
+  void driveVector(double iySpeed, double izRotation) override {
+    lastVectorY = iySpeed;
+    lastVectorZ = izRotation;
+  }
+
+  void driveVectorVoltage(double iySpeed, double izRotation) override {
+    lastVectorY = iySpeed;
+    lastVectorZ = izRotation;
+  }
+
+  void rotate(double ispeed) override {
+    lastRotate = ispeed;
+  }
+
+  void stop() override {
+    stopWasCalled = true;
+  }
+
+  void tank(double ileftSpeed, double irightSpeed, double) override {
+    lastTankLeft = ileftSpeed;
+    lastTankRight = irightSpeed;
+  }
+
+  void arcade(double iySpeed, double izRotation, double) override {
+    lastArcadeY = iySpeed;
+    lastArcadeZ = izRotation;
+  }
+
+  void left(double ispeed) override {
+    lastLeft = ispeed;
+  }
+
+  void right(double ispeed) override {
+    lastRight = ispeed;
+  }
+
+  void resetSensors() override {
+    resetSensorsWasCalled = true;
+  }
+
+  void setBrakeMode(AbstractMotor::brakeMode mode) override {
+    lastBrakeMode = mode;
+  }
+
+  void setEncoderUnits(AbstractMotor::encoderUnits units) override {
+    lastEncoderUnits = units;
+  }
+
+  void setGearing(AbstractMotor::gearset gearset) override {
+    lastGearset = gearset;
+  }
+
+  std::valarray<int32_t> getSensorVals() const override {
+    return {0, 0};
+  }
+
+  void setMaxVelocity(double imaxVelocity) override {
+    maxVelocity = imaxVelocity;
+  }
+  double getMaxVelocity() const override {
+    return maxVelocity;
+  }
+  void setMaxVoltage(double imaxVoltage) override {
+    maxVoltage = imaxVoltage;
+  }
+  double getMaxVoltage() const override {
+    return maxVoltage;
+  }
+
+  mutable double lastForward{0};
+  mutable double lastVectorY{0};
+  mutable double lastVectorZ{0};
+  mutable double lastRotate{0};
+  mutable bool stopWasCalled{false};
+  mutable double lastTankLeft{0};
+  mutable double lastTankRight{0};
+  mutable double lastArcadeY{0};
+  mutable double lastArcadeZ{0};
+  mutable double lastLeft{0};
+  mutable double lastRight{0};
+  mutable bool resetSensorsWasCalled{false};
+  double maxVelocity{600};
+  double maxVoltage{12000};
+  mutable AbstractMotor::brakeMode lastBrakeMode{AbstractMotor::brakeMode::invalid};
+  mutable AbstractMotor::encoderUnits lastEncoderUnits{AbstractMotor::encoderUnits::invalid};
+  mutable AbstractMotor::gearset lastGearset{AbstractMotor::gearset::invalid};
+};
+
+class MockSkidSteerModel : public SkidSteerModel {
+  public:
+  explicit MockSkidSteerModel(
+    const std::shared_ptr<MockMotor> &ileftMtr = std::make_shared<MockMotor>(),
+    const std::shared_ptr<MockMotor> &irightMtr = std::make_shared<MockMotor>())
+    : SkidSteerModel(ileftMtr,
+                     irightMtr,
+                     ileftMtr->getMockEncoder(),
+                     irightMtr->getMockEncoder(),
+                     600,
+                     v5MotorMaxVoltage),
+      leftMtr(ileftMtr),
+      rightMtr(irightMtr),
+      leftEnc(ileftMtr->getMockEncoder()),
+      rightEnc(irightMtr->getMockEncoder()) {
+  }
+
+  std::valarray<std::int32_t> getSensorVals() const override {
+    return std::valarray<std::int32_t>{static_cast<int>(leftEnc->get()),
+                                       static_cast<int>(rightEnc->get())};
+  }
+
+  void setSensorVals(std::int32_t left, std::int32_t right) {
+    leftEnc->value = left;
+    rightEnc->value = right;
+  }
+
+  std::shared_ptr<MockMotor> leftMtr;
+  std::shared_ptr<MockMotor> rightMtr;
+  std::shared_ptr<MockContinuousRotarySensor> leftEnc;
+  std::shared_ptr<MockContinuousRotarySensor> rightEnc;
+};
+
+class MockChassisController : public ChassisController {
+  public:
+  void moveDistance(QLength itarget) override {
+    lastMoveDistanceTargetQLength = itarget;
+  }
+  void moveDistance(double itarget) override {
+    lastMoveDistanceTargetDouble = itarget;
+  }
+  void moveDistanceAsync(QLength itarget) override {
+    moveDistance(itarget);
+  }
+  void moveDistanceAsync(double itarget) override {
+    moveDistance(itarget);
+  }
+  void turnAngle(QAngle idegTarget) override {
+    lastTurnAngleTargetQAngle = idegTarget;
+  }
+  void turnAngle(double idegTarget) override {
+    lastTurnAngleTargetDouble = idegTarget;
+  }
+  void turnAngleAsync(QAngle idegTarget) override {
+    turnAngle(idegTarget);
+  }
+  void turnAngleAsync(double idegTarget) override {
+    turnAngle(idegTarget);
+  }
+  void setTurnsMirrored(bool ishouldMirror) override {
+    turnsMirrored = ishouldMirror;
+  }
+  void waitUntilSettled() override {
+    waitUntilSettledCalled++;
+  }
+  void stop() override {
+    stopCalled++;
+  }
+  ChassisScales getChassisScales() const override {
+    return scales;
+  }
+  AbstractMotor::GearsetRatioPair getGearsetRatioPair() const override {
+    return gearset;
+  }
+  std::shared_ptr<ChassisModel> getModel() override {
+    return chassisModel;
+  }
+  ChassisModel &model() override {
+    return *chassisModel;
+  }
+
+  QLength lastMoveDistanceTargetQLength;
+  double lastMoveDistanceTargetDouble;
+  QAngle lastTurnAngleTargetQAngle;
+  double lastTurnAngleTargetDouble;
+  bool turnsMirrored{false};
+  int waitUntilSettledCalled{0};
+  int stopCalled{0};
+  ChassisScales scales{{4.125_in, 10_in}, imev5GreenTPR};
+  AbstractMotor::GearsetRatioPair gearset{AbstractMotor::gearset::green};
+  std::shared_ptr<MockChassisModel> chassisModel = std::make_shared<MockChassisModel>();
+};
 } // namespace okapi

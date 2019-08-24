@@ -13,7 +13,8 @@ using namespace okapi;
 
 class SkidSteerModelTest : public ::testing::Test {
   public:
-  SkidSteerModelTest() : model(leftMotor, rightMotor, leftSensor, rightSensor, 127) {
+  SkidSteerModelTest()
+    : model(leftMotor, rightMotor, leftSensor, rightSensor, 127, v5MotorMaxVoltage) {
   }
 
   void assertAllMotorsLastVelocity(const std::int16_t expectedLastVelocity) const {
@@ -227,4 +228,19 @@ TEST_F(SkidSteerModelTest, Reset) {
 
   EXPECT_EQ(leftSensor->get(), 0);
   EXPECT_EQ(rightSensor->get(), 0);
+}
+
+TEST_F(SkidSteerModelTest, SetMaxVoltageGreaterThan12000) {
+  model.setMaxVoltage(12001);
+  EXPECT_EQ(model.getMaxVoltage(), 12000);
+}
+
+TEST_F(SkidSteerModelTest, SetMaxVoltageLessThan0) {
+  model.setMaxVoltage(-1);
+  EXPECT_EQ(model.getMaxVoltage(), 0);
+}
+
+TEST_F(SkidSteerModelTest, SetMaxVelocityLessThan0) {
+  model.setMaxVelocity(-1);
+  EXPECT_EQ(model.getMaxVelocity(), 0);
 }

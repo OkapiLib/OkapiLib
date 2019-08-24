@@ -45,12 +45,12 @@ AsyncMotionProfileController::~AsyncMotionProfileController() {
   delete task;
 }
 
-void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwaypoints,
+void AsyncMotionProfileController::generatePath(std::initializer_list<PathfinderPoint> iwaypoints,
                                                 const std::string &ipathId) {
   generatePath(iwaypoints, ipathId, limits);
 }
 
-void AsyncMotionProfileController::generatePath(std::initializer_list<Point> iwaypoints,
+void AsyncMotionProfileController::generatePath(std::initializer_list<PathfinderPoint> iwaypoints,
                                                 const std::string &ipathId,
                                                 const PathfinderLimits &ilimits) {
   if (iwaypoints.size() == 0) {
@@ -148,7 +148,7 @@ std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<
                                                               const std::string &ipathId,
                                                               int length) {
   auto pointToString = [](Waypoint point) {
-    return "Point{x=" + std::to_string(point.x) + ", y=" + std::to_string(point.y) +
+    return "PathfinderPoint{x=" + std::to_string(point.x) + ", y=" + std::to_string(point.y) +
            ", theta=" + std::to_string(point.angle) + "}";
   };
 
@@ -299,13 +299,13 @@ void AsyncMotionProfileController::waitUntilSettled() {
   LOG_INFO(std::string("AsyncMotionProfileController: Done waiting to settle"));
 }
 
-void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints,
+void AsyncMotionProfileController::moveTo(std::initializer_list<PathfinderPoint> iwaypoints,
                                           bool ibackwards,
                                           bool imirrored) {
   moveTo(iwaypoints, limits, ibackwards, imirrored);
 }
 
-void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoints,
+void AsyncMotionProfileController::moveTo(std::initializer_list<PathfinderPoint> iwaypoints,
                                           const PathfinderLimits &ilimits,
                                           const bool ibackwards,
                                           const bool imirrored) {
@@ -317,8 +317,8 @@ void AsyncMotionProfileController::moveTo(std::initializer_list<Point> iwaypoint
   forceRemovePath(name);
 }
 
-Point AsyncMotionProfileController::getError() const {
-  return Point{0_m, 0_m, 0_deg};
+PathfinderPoint AsyncMotionProfileController::getError() const {
+  return PathfinderPoint{0_m, 0_m, 0_deg};
 }
 
 bool AsyncMotionProfileController::isSettled() {

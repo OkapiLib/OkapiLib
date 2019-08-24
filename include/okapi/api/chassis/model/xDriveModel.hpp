@@ -18,25 +18,6 @@ class XDriveModel : public ChassisModel {
    * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
    * +100%, the robot should move forward in a straight line.
    *
-   * This constructor infers the two sensors from the top left and top right motors (using the
-   * integrated encoders).
-   *
-   * @param itopLeftMotor top left motor
-   * @param itopRightMotor top right motor
-   * @param ibottomRightMotor bottom right motor
-   * @param ibottomLeftMotor bottom left motor
-   */
-  XDriveModel(const std::shared_ptr<AbstractMotor> &itopLeftMotor,
-              const std::shared_ptr<AbstractMotor> &itopRightMotor,
-              const std::shared_ptr<AbstractMotor> &ibottomRightMotor,
-              const std::shared_ptr<AbstractMotor> &ibottomLeftMotor,
-              double imaxVelocity,
-              double imaxVoltage = 12000);
-
-  /**
-   * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
-   * +100%, the robot should move forward in a straight line.
-   *
    * @param itopLeftMotor top left motor
    * @param itopRightMotor top right motor
    * @param ibottomRightMotor bottom right motor
@@ -44,14 +25,14 @@ class XDriveModel : public ChassisModel {
    * @param ileftEnc Left side encoder
    * @param irightEnc Right side encoder
    */
-  XDriveModel(const std::shared_ptr<AbstractMotor> &itopLeftMotor,
-              const std::shared_ptr<AbstractMotor> &itopRightMotor,
-              const std::shared_ptr<AbstractMotor> &ibottomRightMotor,
-              const std::shared_ptr<AbstractMotor> &ibottomLeftMotor,
-              const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
-              const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
+  XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
+              std::shared_ptr<AbstractMotor> itopRightMotor,
+              std::shared_ptr<AbstractMotor> ibottomRightMotor,
+              std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+              std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+              std::shared_ptr<ContinuousRotarySensor> irightEnc,
               double imaxVelocity,
-              double imaxVoltage = 12000);
+              double imaxVoltage);
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.
@@ -171,70 +152,31 @@ class XDriveModel : public ChassisModel {
   void setGearing(AbstractMotor::gearset gearset) override;
 
   /**
-   * Sets new PID constants.
+   * Sets a new maximum velocity in RPM. The usable maximum depends on the maximum velocity of the
+   * currently installed gearset. If the configured maximum velocity is greater than the attainable
+   * maximum velocity from the currently installed gearset, the ChassisModel will still scale to
+   * that velocity.
    *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   * @param imaxVelocity The new maximum velocity.
    */
-  void setPosPID(double ikF, double ikP, double ikI, double ikD) override;
+  void setMaxVelocity(double imaxVelocity) override;
 
   /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @param ifilter a constant used for filtering the profile acceleration
-   * @param ilimit the integral limit
-   * @param ithreshold the threshold for determining if a position movement has reached its goal
-   * @param iloopSpeed the rate at which the PID computation is run (in ms)
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   * @return The current maximum velocity.
    */
-  void setPosPIDFull(double ikF,
-                     double ikP,
-                     double ikI,
-                     double ikD,
-                     double ifilter,
-                     double ilimit,
-                     double ithreshold,
-                     double iloopSpeed) override;
+  double getMaxVelocity() const override;
 
   /**
-   * Sets new PID constants.
+   * Sets a new maximum voltage in mV in the range `[0-12000]`.
    *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   * @param imaxVoltage The new maximum voltage.
    */
-  void setVelPID(double ikF, double ikP, double ikI, double ikD) override;
+  void setMaxVoltage(double imaxVoltage) override;
 
   /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @param ifilter a constant used for filtering the profile acceleration
-   * @param ilimit the integral limit
-   * @param ithreshold the threshold for determining if a position movement has reached its goal
-   * @param iloopSpeed the rate at which the PID computation is run (in ms)
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   * @return The maximum voltage in mV in the range `[0-12000]`.
    */
-  void setVelPIDFull(double ikF,
-                     double ikP,
-                     double ikI,
-                     double ikD,
-                     double ifilter,
-                     double ilimit,
-                     double ithreshold,
-                     double iloopSpeed) override;
+  double getMaxVoltage() const override;
 
   /**
    * Returns the top left motor.
@@ -265,6 +207,8 @@ class XDriveModel : public ChassisModel {
   std::shared_ptr<AbstractMotor> getBottomLeftMotor() const;
 
   protected:
+  double maxVelocity;
+  double maxVoltage;
   std::shared_ptr<AbstractMotor> topLeftMotor;
   std::shared_ptr<AbstractMotor> topRightMotor;
   std::shared_ptr<AbstractMotor> bottomRightMotor;

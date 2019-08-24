@@ -9,11 +9,12 @@
 
 namespace okapi {
 ADIButton::ADIButton(const uint8_t iport, const bool iinverted)
-  : ButtonBase(iinverted), btn(iport), port(iport) {
+  : ButtonBase(iinverted), port(iport) {
+  pros::c::adi_port_set_config(port, pros::E_ADI_DIGITAL_IN);
 }
 
 bool ADIButton::currentlyPressed() {
-  const std::int32_t state = btn.get_value();
+  const std::int32_t state = pros::c::adi_digital_read(port);
   const bool pressed = state != 0 && state != PROS_ERR;
   return inverted ? !pressed : pressed;
 }

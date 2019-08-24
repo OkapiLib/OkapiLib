@@ -40,17 +40,15 @@ AsyncMotionProfileControllerBuilder &AsyncMotionProfileControllerBuilder::withOu
 }
 
 AsyncMotionProfileControllerBuilder &
-AsyncMotionProfileControllerBuilder::withOutput(const ChassisController &icontroller) {
-  return withOutput(icontroller.getChassisModel(),
-                    icontroller.getChassisScales(),
-                    icontroller.getGearsetRatioPair());
+AsyncMotionProfileControllerBuilder::withOutput(ChassisController &icontroller) {
+  return withOutput(
+    icontroller.getModel(), icontroller.getChassisScales(), icontroller.getGearsetRatioPair());
 }
 
 AsyncMotionProfileControllerBuilder &AsyncMotionProfileControllerBuilder::withOutput(
   const std::shared_ptr<ChassisController> &icontroller) {
-  return withOutput(icontroller->getChassisModel(),
-                    icontroller->getChassisScales(),
-                    icontroller->getGearsetRatioPair());
+  return withOutput(
+    icontroller->getModel(), icontroller->getChassisScales(), icontroller->getGearsetRatioPair());
 }
 
 AsyncMotionProfileControllerBuilder &

@@ -22,7 +22,7 @@ namespace okapi {
  */
 class ChassisModel : public ReadOnlyChassisModel {
   public:
-  ChassisModel(double imaxVelocity, double imaxVoltage = 12000);
+  explicit ChassisModel() = default;
   ChassisModel(const ChassisModel &) = delete;
   ChassisModel &operator=(const ChassisModel &) = delete;
 
@@ -126,83 +126,30 @@ class ChassisModel : public ReadOnlyChassisModel {
   virtual void setGearing(AbstractMotor::gearset gearset) = 0;
 
   /**
-   * Sets new PID constants.
+   * Sets a new maximum velocity in RPM. The usable maximum depends on the maximum velocity of the
+   * currently installed gearset. If the configured maximum velocity is greater than the attainable
+   * maximum velocity from the currently installed gearset, the ChassisModel will still scale to
+   * that velocity.
    *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
+   * @param imaxVelocity The new maximum velocity.
    */
-  virtual void setPosPID(double ikF, double ikP, double ikI, double ikD) = 0;
+  virtual void setMaxVelocity(double imaxVelocity) = 0;
 
   /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @param ifilter a constant used for filtering the profile acceleration
-   * @param ilimit the integral limit
-   * @param ithreshold the threshold for determining if a position movement has reached its goal
-   * @param iloopSpeed the rate at which the PID computation is run (in ms)
+   * @return The current maximum velocity.
    */
-  virtual void setPosPIDFull(double ikF,
-                             double ikP,
-                             double ikI,
-                             double ikD,
-                             double ifilter,
-                             double ilimit,
-                             double ithreshold,
-                             double iloopSpeed) = 0;
+  virtual double getMaxVelocity() const = 0;
 
   /**
-   * Sets new PID constants.
+   * Sets a new maximum voltage in mV in the range `[0-12000]`.
    *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
+   * @param imaxVoltage The new maximum voltage.
    */
-  virtual void setVelPID(double ikF, double ikP, double ikI, double ikD) = 0;
+  virtual void setMaxVoltage(double imaxVoltage) = 0;
 
   /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @param ifilter a constant used for filtering the profile acceleration
-   * @param ilimit the integral limit
-   * @param ithreshold the threshold for determining if a position movement has reached its goal
-   * @param iloopSpeed the rate at which the PID computation is run (in ms)
+   * @return The maximum voltage in mV `[0-12000]`.
    */
-  virtual void setVelPIDFull(double ikF,
-                             double ikP,
-                             double ikI,
-                             double ikD,
-                             double ifilter,
-                             double ilimit,
-                             double ithreshold,
-                             double iloopSpeed) = 0;
-
-  /**
-   * Sets a new maximum velocity in RPM [0-600].
-   *
-   * @param imaxVelocity the new maximum velocity
-   */
-  virtual void setMaxVelocity(double imaxVelocity);
-
-  /**
-   * Sets a new maximum voltage in mV [0-12000].
-   *
-   * @param imaxVoltage the new maximum voltage
-   */
-  virtual void setMaxVoltage(double imaxVoltage);
-
-  protected:
-  double maxVelocity;
-  double maxVoltage;
+  virtual double getMaxVoltage() const = 0;
 };
 } // namespace okapi

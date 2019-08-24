@@ -21,7 +21,7 @@ class ThreeEncoderSkidSteerModelTest : public ::testing::Test {
     rightSensor = std::make_shared<MockContinuousRotarySensor>();
     middleSensor = std::make_shared<MockContinuousRotarySensor>();
     model = new ThreeEncoderSkidSteerModel(
-      leftMotor, rightMotor, leftSensor, middleSensor, rightSensor, 100);
+      leftMotor, rightMotor, leftSensor, middleSensor, rightSensor, 100, v5MotorMaxVoltage);
   }
 
   void TearDown() override {
@@ -42,7 +42,8 @@ TEST_F(ThreeEncoderSkidSteerModelTest, GetSensorValsIsCompatibleWithSkidSteerMod
   middleSensor->value = 3;
 
   auto skidSteerModelVals =
-    SkidSteerModel(leftMotor, rightMotor, leftSensor, rightSensor, 100).getSensorVals();
+    SkidSteerModel(leftMotor, rightMotor, leftSensor, rightSensor, 100, v5MotorMaxVoltage)
+      .getSensorVals();
   auto threeEncoderSkidSteerModelVals = model->getSensorVals();
 
   EXPECT_EQ(skidSteerModelVals[0], threeEncoderSkidSteerModelVals[0]);
@@ -56,7 +57,8 @@ TEST_F(ThreeEncoderSkidSteerModelTest, GetSensorValsIsCompatibleWithXDriveModel)
 
   // nonsense motors because it doesn't matter
   auto xDriveModelVals =
-    XDriveModel(leftMotor, rightMotor, leftMotor, rightMotor, leftSensor, rightSensor, 100)
+    XDriveModel(
+      leftMotor, rightMotor, leftMotor, rightMotor, leftSensor, rightSensor, 100, v5MotorMaxVoltage)
       .getSensorVals();
   auto threeEncoderSkidSteerModelVals = model->getSensorVals();
 

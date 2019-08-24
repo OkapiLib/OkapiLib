@@ -23,7 +23,7 @@ extern "C" {
 }
 
 namespace okapi {
-class AsyncMotionProfileController : public AsyncPositionController<std::string, Point> {
+class AsyncMotionProfileController : public AsyncPositionController<std::string, PathfinderPoint> {
   public:
   /**
    * An Async Controller which generates and follows 2D motion profiles. Throws a
@@ -40,7 +40,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
                                const std::shared_ptr<ChassisModel> &imodel,
                                const ChassisScales &iscales,
                                const AbstractMotor::GearsetRatioPair &ipair,
-                               const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+                               const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   AsyncMotionProfileController(AsyncMotionProfileController &&other) = delete;
 
@@ -59,7 +59,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param iwaypoints The waypoints to hit on the path.
    * @param ipathId A unique identifier to save the path with.
    */
-  void generatePath(std::initializer_list<Point> iwaypoints, const std::string &ipathId);
+  void generatePath(std::initializer_list<PathfinderPoint> iwaypoints, const std::string &ipathId);
 
   /**
    * Generates a path which intersects the given waypoints and saves it internally with a key of
@@ -73,7 +73,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param ipathId A unique identifier to save the path with.
    * @param ilimits The limits to use for this path only.
    */
-  void generatePath(std::initializer_list<Point> iwaypoints,
+  void generatePath(std::initializer_list<PathfinderPoint> iwaypoints,
                     const std::string &ipathId,
                     const PathfinderLimits &ilimits);
 
@@ -139,8 +139,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param ibackwards Whether to follow the profile backwards.
    * @param imirrored Whether to follow the profile mirrored.
    */
-  void
-  moveTo(std::initializer_list<Point> iwaypoints, bool ibackwards = false, bool imirrored = false);
+  void moveTo(std::initializer_list<PathfinderPoint> iwaypoints,
+              bool ibackwards = false,
+              bool imirrored = false);
 
   /**
    * Generates a new path from the position (typically the current position) to the target and
@@ -151,7 +152,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param ibackwards Whether to follow the profile backwards.
    * @param imirrored Whether to follow the profile mirrored.
    */
-  void moveTo(std::initializer_list<Point> iwaypoints,
+  void moveTo(std::initializer_list<PathfinderPoint> iwaypoints,
               const PathfinderLimits &ilimits,
               bool ibackwards = false,
               bool imirrored = false);
@@ -163,7 +164,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    *
    * @return the last error
    */
-  Point getError() const override;
+  PathfinderPoint getError() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is

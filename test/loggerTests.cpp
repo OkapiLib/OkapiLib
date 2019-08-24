@@ -152,3 +152,25 @@ TEST_F(LoggerTest, DebugLevel) {
     free(line);
   }
 }
+
+TEST_F(LoggerTest, TestLazyLogging) {
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::info);
+
+  int x = 0;
+  logger->debug([=, &x]() {
+    x++;
+    return std::string("");
+  });
+
+  EXPECT_EQ(x, 0);
+
+  char *line = nullptr;
+  size_t len;
+
+  getline(&line, &len, logFile);
+
+  if (line) {
+    free(line);
+  }
+}

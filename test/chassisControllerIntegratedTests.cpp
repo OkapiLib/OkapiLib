@@ -12,31 +12,25 @@
 
 using namespace okapi;
 
-class MockSkidSteerModel : public SkidSteerModel {
-  public:
-  using SkidSteerModel::maxVelocity;
-  using SkidSteerModel::SkidSteerModel;
-};
-
 class ChassisControllerIntegratedTest : public ::testing::Test {
   protected:
   void SetUp() override {
     scales = new ChassisScales({wheelDiam, wheelTrack}, gearsetToTPR(gearset));
-    leftMotor = new MockMotor();
-    rightMotor = new MockMotor();
 
     leftController = new MockAsyncPosIntegratedController();
     rightController = new MockAsyncPosIntegratedController();
 
-    model = new MockSkidSteerModel(
-      std::unique_ptr<AbstractMotor>(leftMotor), std::unique_ptr<AbstractMotor>(rightMotor), 100);
+    model = new MockSkidSteerModel();
+    model->setMaxVelocity(101);
+    leftMotor = model->leftMtr.get();
+    rightMotor = model->rightMtr.get();
 
     controller = new ChassisControllerIntegrated(
       createTimeUtil(),
       std::shared_ptr<ChassisModel>(model),
       std::unique_ptr<AsyncPosIntegratedController>(leftController),
       std::unique_ptr<AsyncPosIntegratedController>(rightController),
-      gearset, // must match the tpr given to ChassisScales
+      gearset,
       *scales);
   }
 
@@ -49,13 +43,18 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
   QLength wheelTrack = 8_in;
   AbstractMotor::gearset gearset = AbstractMotor::gearset::green;
   ChassisScales *scales;
-  ChassisController *controller;
+  ChassisControllerIntegrated *controller;
   MockMotor *leftMotor;
   MockMotor *rightMotor;
   MockAsyncPosIntegratedController *leftController;
   MockAsyncPosIntegratedController *rightController;
   MockSkidSteerModel *model;
 };
+
+TEST_F(ChassisControllerIntegratedTest, InitialMaxVelocityIsPropagatedToControllers) {
+  EXPECT_EQ(leftController->maxVelocity, 101);
+  EXPECT_EQ(rightController->maxVelocity, 101);
+}
 
 TEST_F(ChassisControllerIntegratedTest, GearsetIsCorrect) {
   EXPECT_EQ(AbstractMotor::gearset::green, controller->getGearsetRatioPair().internalGearset);
@@ -320,5 +319,5 @@ TEST_F(ChassisControllerIntegratedTest, SetMaxVelocityTest) {
   controller->setMaxVelocity(42);
   EXPECT_EQ(leftController->maxVelocity, 42);
   EXPECT_EQ(rightController->maxVelocity, 42);
-  EXPECT_EQ(model->maxVelocity, 42);
+  EXPECT_EQ(model->getMaxVelocity(), 42);
 }

@@ -96,6 +96,10 @@ std::shared_ptr<ContinuousRotarySensor> MockMotor::getEncoder() {
   return encoder;
 }
 
+std::shared_ptr<MockContinuousRotarySensor> MockMotor::getMockEncoder() {
+  return encoder;
+}
+
 std::int32_t MockMotor::moveVelocity(const std::int16_t ivelocity) {
   lastVelocity = ivelocity;
   if (ivelocity > maxVelocity) {
@@ -166,22 +170,6 @@ int32_t MockMotor::getVoltage() {
 }
 
 int32_t MockMotor::modifyProfiledVelocity(std::int32_t) {
-  return 0;
-}
-
-int32_t MockMotor::setPosPID(double, double, double, double) {
-  return 0;
-}
-
-int32_t MockMotor::setPosPIDFull(double, double, double, double, double, double, double, double) {
-  return 0;
-}
-
-int32_t MockMotor::setVelPID(double, double, double, double) {
-  return 0;
-}
-
-int32_t MockMotor::setVelPIDFull(double, double, double, double, double, double, double, double) {
   return 0;
 }
 
@@ -694,24 +682,6 @@ int32_t ThreadedMockMotor::setVoltageLimit(std::int32_t ilimit) {
   return 1;
 }
 
-int32_t ThreadedMockMotor::setPosPID(double, double, double, double) {
-  return 0;
-}
-
-int32_t
-ThreadedMockMotor::setPosPIDFull(double, double, double, double, double, double, double, double) {
-  return 0;
-}
-
-int32_t ThreadedMockMotor::setVelPID(double, double, double, double) {
-  return 0;
-}
-
-int32_t
-ThreadedMockMotor::setVelPIDFull(double, double, double, double, double, double, double, double) {
-  return 0;
-}
-
 std::shared_ptr<ContinuousRotarySensor> ThreadedMockMotor::getEncoder() {
   return encoder;
 }
@@ -764,5 +734,18 @@ void ThreadedMockMotor::threadFunc() {
 
     std::this_thread::sleep_for(std::chrono::milliseconds(dt));
   }
+}
+
+void assertOdomStateEquals(double x, double y, double theta, const OdomState &actual) {
+  EXPECT_DOUBLE_EQ(actual.x.convert(meter), x);
+  EXPECT_DOUBLE_EQ(actual.y.convert(meter), y);
+  EXPECT_DOUBLE_EQ(actual.theta.convert(degree), theta);
+}
+
+void assertOdomStateEquals(Odometry *odom, QLength x, QLength y, QAngle theta) {
+  const auto error = 1e-4;
+  EXPECT_NEAR(odom->getState().x.convert(meter), x.convert(meter), error);
+  EXPECT_NEAR(odom->getState().y.convert(meter), y.convert(meter), error);
+  EXPECT_NEAR(odom->getState().theta.convert(degree), theta.convert(degree), error);
 }
 } // namespace okapi

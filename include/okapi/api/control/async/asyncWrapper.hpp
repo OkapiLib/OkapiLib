@@ -39,7 +39,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
                std::unique_ptr<IterativeController<Input, Output>> icontroller,
                const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
                const double iratio = 1,
-               const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
+               const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger())
     : logger(ilogger),
       rateSupplier(irateSupplier),
       input(iinput),

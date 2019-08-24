@@ -9,8 +9,6 @@
 #include <utility>
 
 namespace okapi {
-ComposableFilter::ComposableFilter() = default;
-
 ComposableFilter::ComposableFilter(const std::initializer_list<std::shared_ptr<Filter>> &ilist) {
   for (auto &&elem : ilist) {
     filters.push_back(elem);
@@ -38,7 +36,7 @@ double ComposableFilter::getOutput() const {
   return output;
 }
 
-void ComposableFilter::addFilter(const std::shared_ptr<Filter> &ifilter) {
-  filters.push_back(ifilter);
+void ComposableFilter::addFilter(std::shared_ptr<Filter> ifilter) {
+  filters.push_back(std::move(ifilter));
 }
 } // namespace okapi

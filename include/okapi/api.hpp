@@ -10,12 +10,13 @@
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
+#include "okapi/api/chassis/controller/defaultOdomChassisController.hpp"
+#include "okapi/api/chassis/controller/odomChassisController.hpp"
 #include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
 #include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
-#include "okapi/impl/chassis/model/chassisModelFactory.hpp"
 
 #include "okapi/api/control/async/asyncLinearMotionProfileController.hpp"
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
@@ -40,6 +41,10 @@
 #include "okapi/impl/control/util/controllerRunnerFactory.hpp"
 #include "okapi/impl/control/util/pidTunerFactory.hpp"
 #include "okapi/impl/control/util/settledUtilFactory.hpp"
+
+#include "okapi/api/odometry/odomMath.hpp"
+#include "okapi/api/odometry/odometry.hpp"
+#include "okapi/api/odometry/threeEncoderOdometry.hpp"
 
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
 #include "okapi/api/device/rotarysensor/rotarySensor.hpp"

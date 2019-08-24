@@ -15,11 +15,13 @@ ControllerButton::ControllerButton(const ControllerDigital ibtn, const bool iinv
 ControllerButton::ControllerButton(const ControllerId icontroller,
                                    const ControllerDigital ibtn,
                                    const bool iinverted)
-  : ButtonBase(iinverted), controller(ControllerUtil::idToProsEnum(icontroller)), btn(ibtn) {
+  : ButtonBase(iinverted),
+    id(ControllerUtil::idToProsEnum(icontroller)),
+    btn(ControllerUtil::digitalToProsEnum(ibtn)) {
 }
 
 bool ControllerButton::currentlyPressed() {
-  const bool pressed = controller.get_digital(ControllerUtil::digitalToProsEnum(btn)) != 0;
+  const bool pressed = pros::c::controller_get_digital(id, btn) != 0;
   return inverted == !pressed;
 }
 } // namespace okapi

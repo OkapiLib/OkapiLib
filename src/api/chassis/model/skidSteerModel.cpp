@@ -10,28 +10,18 @@
 #include <utility>
 
 namespace okapi {
-SkidSteerModel::SkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
-                               const std::shared_ptr<AbstractMotor> &irightSideMotor,
-                               const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
-                               const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
+SkidSteerModel::SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                               std::shared_ptr<AbstractMotor> irightSideMotor,
+                               std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                               std::shared_ptr<ContinuousRotarySensor> irightEnc,
                                const double imaxVelocity,
                                const double imaxVoltage)
-  : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage),
-    leftSideMotor(ileftSideMotor),
-    rightSideMotor(irightSideMotor),
-    leftSensor(ileftEnc),
-    rightSensor(irightEnc) {
-}
-
-SkidSteerModel::SkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
-                               const std::shared_ptr<AbstractMotor> &irightSideMotor,
-                               const double imaxVelocity,
-                               const double imaxVoltage)
-  : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage),
-    leftSideMotor(ileftSideMotor),
-    rightSideMotor(irightSideMotor),
-    leftSensor(ileftSideMotor->getEncoder()),
-    rightSensor(irightSideMotor->getEncoder()) {
+  : maxVelocity(imaxVelocity),
+    maxVoltage(imaxVoltage),
+    leftSideMotor(std::move(ileftSideMotor)),
+    rightSideMotor(std::move(irightSideMotor)),
+    leftSensor(std::move(ileftEnc)),
+    rightSensor(std::move(irightEnc)) {
 }
 
 void SkidSteerModel::forward(const double ispeed) {
@@ -181,44 +171,30 @@ void SkidSteerModel::setGearing(const AbstractMotor::gearset gearset) {
   rightSideMotor->setGearing(gearset);
 }
 
-void SkidSteerModel::setPosPID(const double ikF,
-                               const double ikP,
-                               const double ikI,
-                               const double ikD) {
-  leftSideMotor->setPosPID(ikF, ikP, ikI, ikD);
-  rightSideMotor->setPosPID(ikF, ikP, ikI, ikD);
+void SkidSteerModel::setMaxVelocity(double imaxVelocity) {
+  if (imaxVelocity < 0) {
+    maxVelocity = 0;
+  } else {
+    maxVelocity = imaxVelocity;
+  }
 }
 
-void SkidSteerModel::setPosPIDFull(const double ikF,
-                                   const double ikP,
-                                   const double ikI,
-                                   const double ikD,
-                                   const double ifilter,
-                                   const double ilimit,
-                                   const double ithreshold,
-                                   const double iloopSpeed) {
-  leftSideMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-  rightSideMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+double SkidSteerModel::getMaxVelocity() const {
+  return maxVelocity;
 }
 
-void SkidSteerModel::setVelPID(const double ikF,
-                               const double ikP,
-                               const double ikI,
-                               const double ikD) {
-  leftSideMotor->setVelPID(ikF, ikP, ikI, ikD);
-  rightSideMotor->setVelPID(ikF, ikP, ikI, ikD);
+void SkidSteerModel::setMaxVoltage(double imaxVoltage) {
+  if (imaxVoltage < 0) {
+    maxVoltage = 0;
+  } else if (imaxVoltage > 12000) {
+    maxVoltage = 12000;
+  } else {
+    maxVoltage = imaxVoltage;
+  }
 }
 
-void SkidSteerModel::setVelPIDFull(const double ikF,
-                                   const double ikP,
-                                   const double ikI,
-                                   const double ikD,
-                                   const double ifilter,
-                                   const double ilimit,
-                                   const double ithreshold,
-                                   const double iloopSpeed) {
-  leftSideMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-  rightSideMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+double SkidSteerModel::getMaxVoltage() const {
+  return maxVoltage;
 }
 
 std::shared_ptr<AbstractMotor> SkidSteerModel::getLeftSideMotor() const {

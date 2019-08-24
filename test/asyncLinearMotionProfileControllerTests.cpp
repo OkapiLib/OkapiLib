@@ -45,6 +45,12 @@ class AsyncLinearMotionProfileControllerTest : public ::testing::Test {
   MockAsyncLinearMotionProfileController *controller;
 };
 
+TEST_F(AsyncLinearMotionProfileControllerTest, ConstructWithGearRatioOf0) {
+  EXPECT_THROW(AsyncLinearMotionProfileController(
+                 createTimeUtil(), {}, nullptr, 2_in, AbstractMotor::gearset::green * 0),
+               std::invalid_argument);
+}
+
 TEST_F(AsyncLinearMotionProfileControllerTest, SettledWhenDisabled) {
   controller->generatePath({0_m, 3_m}, "A");
   assertControllerIsSettledWhenDisabled(*controller, std::string("A"));

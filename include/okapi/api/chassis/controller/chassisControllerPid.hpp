@@ -17,27 +17,30 @@
 #include <tuple>
 
 namespace okapi {
-class ChassisControllerPID : public virtual ChassisController {
+class ChassisControllerPID : public ChassisController {
   public:
   /**
-   * ChassisController using PID control. Puts the motors into encoder degree units. Throws a
+   * ChassisController using PID control. Puts the motors into encoder count units. Throws a
    * std::invalid_argument exception if the gear ratio is zero.
    *
+   * @param itimeUtil The TimeUtil.
    * @param imodelArgs ChassisModelArgs
    * @param idistanceController distance PID controller
+   * @param iturnController turn PID controller (handles turning)
    * @param iangleController angle PID controller (keeps the robot straight)
    * @param igearset motor internal gearset and gear ratio
    * @param iscales see ChassisScales docs
    * @param ilogger The logger this instance will log to.
    */
-  ChassisControllerPID(const TimeUtil &itimeUtil,
-                       const std::shared_ptr<ChassisModel> &imodel,
-                       std::unique_ptr<IterativePosPIDController> idistanceController,
-                       std::unique_ptr<IterativePosPIDController> iturnController,
-                       std::unique_ptr<IterativePosPIDController> iangleController,
-                       AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::green,
-                       const ChassisScales &iscales = ChassisScales({1, 1}, imev5GreenTPR),
-                       const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+  ChassisControllerPID(
+    const TimeUtil &itimeUtil,
+    std::shared_ptr<ChassisModel> imodel,
+    std::unique_ptr<IterativePosPIDController> idistanceController,
+    std::unique_ptr<IterativePosPIDController> iturnController,
+    std::unique_ptr<IterativePosPIDController> iangleController,
+    const AbstractMotor::GearsetRatioPair &igearset = AbstractMotor::gearset::green,
+    const ChassisScales &iscales = ChassisScales({1, 1}, imev5GreenTPR),
+    std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
   ChassisControllerPID(ChassisControllerPID &&other) = delete;
 
@@ -102,14 +105,16 @@ class ChassisControllerPID : public virtual ChassisController {
   void turnAngleAsync(double idegTarget) override;
 
   /**
+   * Sets whether turns should be mirrored.
+   *
+   * @param ishouldMirror whether turns should be mirrored
+   */
+  void setTurnsMirrored(bool ishouldMirror) override;
+
+  /**
    * Delays until the currently executing movement completes.
    */
   void waitUntilSettled() override;
-
-  /**
-   * Stops the robot (set all the motors to 0 and stops the PID controllers).
-   */
-  void stop() override;
 
   /**
    * Gets the ChassisScales.
@@ -165,8 +170,25 @@ class ChassisControllerPID : public virtual ChassisController {
    */
   CrossplatformThread *getThread() const;
 
+  /**
+   * Interrupts the current movement to stop the robot.
+   */
+  void stop() override;
+
+  /**
+   * @return The internal ChassisModel.
+   */
+  std::shared_ptr<ChassisModel> getModel() override;
+
+  /**
+   * @return The internal ChassisModel.
+   */
+  ChassisModel &model() override;
+
   protected:
   std::shared_ptr<Logger> logger;
+  bool normalTurns{true};
+  std::shared_ptr<ChassisModel> chassisModel;
   TimeUtil timeUtil;
   std::unique_ptr<IterativePosPIDController> distancePid;
   std::unique_ptr<IterativePosPIDController> turnPid;

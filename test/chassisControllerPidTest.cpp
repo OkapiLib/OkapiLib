@@ -12,25 +12,18 @@
 
 using namespace okapi;
 
-class MockSkidSteerModel : public SkidSteerModel {
-  public:
-  using SkidSteerModel::maxVelocity;
-  using SkidSteerModel::SkidSteerModel;
-};
-
 class ChassisControllerPIDTest : public ::testing::Test {
   protected:
   void SetUp() override {
     scales = new ChassisScales({wheelDiam, wheelTrack}, gearsetToTPR(gearset));
-    leftMotor = new MockMotor();
-    rightMotor = new MockMotor();
 
     distanceController = new MockIterativeController(0.1);
     turnController = new MockIterativeController(0.1);
     angleController = new MockIterativeController(0.1);
 
-    model = new MockSkidSteerModel(
-      std::unique_ptr<AbstractMotor>(leftMotor), std::unique_ptr<AbstractMotor>(rightMotor), 100);
+    model = new MockSkidSteerModel();
+    leftMotor = model->leftMtr.get();
+    rightMotor = model->rightMtr.get();
 
     controller =
       new ChassisControllerPID(createTimeUtil(),
@@ -332,11 +325,6 @@ TEST_F(ChassisControllerPIDTest, WaitUntilSettledInModeNone) {
   EXPECT_TRUE(turnController->isDisabled());
   EXPECT_TRUE(distanceController->isDisabled());
   EXPECT_TRUE(angleController->isDisabled());
-}
-
-TEST_F(ChassisControllerPIDTest, SetMaxVelocityTest) {
-  controller->setMaxVelocity(42);
-  EXPECT_EQ(model->maxVelocity, 42);
 }
 
 TEST_F(ChassisControllerPIDTest, GetGainsReturnsTheSetGains) {

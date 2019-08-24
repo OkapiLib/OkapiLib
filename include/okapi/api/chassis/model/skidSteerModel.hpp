@@ -18,32 +18,17 @@ class SkidSteerModel : public ChassisModel {
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
    * motors are powered +100%, the robot should move forward in a straight line.
    *
-   * This constructor infers the two sensors from the left and right motors (using the integrated
-   * encoders).
-   *
-   * @param ileftSideMotor left side motor
-   * @param irightSideMotor right side motor
-   */
-  SkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
-                 const std::shared_ptr<AbstractMotor> &irightSideMotor,
-                 double imaxVelocity,
-                 double imaxVoltage = 12000);
-
-  /**
-   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-   * motors are powered +100%, the robot should move forward in a straight line.
-   *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
    * @param ileftEnc  left side encoder
    * @param irightEnc right side encoder
    */
-  SkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
-                 const std::shared_ptr<AbstractMotor> &irightSideMotor,
-                 const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
-                 const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
+  SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                 std::shared_ptr<AbstractMotor> irightSideMotor,
+                 std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                 std::shared_ptr<ContinuousRotarySensor> irightEnc,
                  double imaxVelocity,
-                 double imaxVoltage = 12000);
+                 double imaxVoltage);
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.
@@ -152,70 +137,31 @@ class SkidSteerModel : public ChassisModel {
   void setGearing(AbstractMotor::gearset gearset) override;
 
   /**
-   * Sets new PID constants.
+   * Sets a new maximum velocity in RPM. The usable maximum depends on the maximum velocity of the
+   * currently installed gearset. If the configured maximum velocity is greater than the attainable
+   * maximum velocity from the currently installed gearset, the ChassisModel will still scale to
+   * that velocity.
    *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   * @param imaxVelocity The new maximum velocity.
    */
-  void setPosPID(double ikF, double ikP, double ikI, double ikD) override;
+  void setMaxVelocity(double imaxVelocity) override;
 
   /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @param ifilter a constant used for filtering the profile acceleration
-   * @param ilimit the integral limit
-   * @param ithreshold the threshold for determining if a position movement has reached its goal
-   * @param iloopSpeed the rate at which the PID computation is run (in ms)
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   * @return The current maximum velocity.
    */
-  void setPosPIDFull(double ikF,
-                     double ikP,
-                     double ikI,
-                     double ikD,
-                     double ifilter,
-                     double ilimit,
-                     double ithreshold,
-                     double iloopSpeed) override;
+  double getMaxVelocity() const override;
 
   /**
-   * Sets new PID constants.
+   * Sets a new maximum voltage in mV in the range `[0-12000]`.
    *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   * @param imaxVoltage The new maximum voltage.
    */
-  void setVelPID(double ikF, double ikP, double ikI, double ikD) override;
+  void setMaxVoltage(double imaxVoltage) override;
 
   /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @param ifilter a constant used for filtering the profile acceleration
-   * @param ilimit the integral limit
-   * @param ithreshold the threshold for determining if a position movement has reached its goal
-   * @param iloopSpeed the rate at which the PID computation is run (in ms)
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
+   * @return The maximum voltage in mV in the range `[0-12000]`.
    */
-  void setVelPIDFull(double ikF,
-                     double ikP,
-                     double ikI,
-                     double ikD,
-                     double ifilter,
-                     double ilimit,
-                     double ithreshold,
-                     double iloopSpeed) override;
+  double getMaxVoltage() const override;
 
   /**
    * Returns the left side motor.
@@ -232,6 +178,8 @@ class SkidSteerModel : public ChassisModel {
   std::shared_ptr<AbstractMotor> getRightSideMotor() const;
 
   protected:
+  double maxVelocity;
+  double maxVoltage;
   std::shared_ptr<AbstractMotor> leftSideMotor;
   std::shared_ptr<AbstractMotor> rightSideMotor;
   std::shared_ptr<ContinuousRotarySensor> leftSensor;

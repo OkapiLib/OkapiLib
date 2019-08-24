@@ -13,6 +13,7 @@
  */
 #pragma once
 
+#include <cmath>
 #include <ratio>
 
 namespace okapi {
@@ -43,6 +44,16 @@ class RQuantity {
     return RQuantity(value * -1);
   }
 
+  constexpr RQuantity const &operator*=(const double rhs) {
+    value *= rhs;
+    return *this;
+  }
+
+  constexpr RQuantity const &operator/=(const double rhs) {
+    value /= rhs;
+    return *this;
+  }
+
   // Returns the value of the quantity in multiples of the specified unit
   constexpr double convert(const RQuantity &rhs) const {
     return value / rhs.value;
@@ -51,6 +62,10 @@ class RQuantity {
   // returns the raw value of the quantity (should not be used)
   constexpr double getValue() const {
     return value;
+  }
+
+  constexpr RQuantity<MassDim, LengthDim, TimeDim, AngleDim> abs() const {
+    return RQuantity<MassDim, LengthDim, TimeDim, AngleDim>(std::fabs(value));
   }
 
   private:

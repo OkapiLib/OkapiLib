@@ -9,36 +9,22 @@
 #include <utility>
 
 namespace okapi {
-XDriveModel::XDriveModel(const std::shared_ptr<AbstractMotor> &itopLeftMotor,
-                         const std::shared_ptr<AbstractMotor> &itopRightMotor,
-                         const std::shared_ptr<AbstractMotor> &ibottomRightMotor,
-                         const std::shared_ptr<AbstractMotor> &ibottomLeftMotor,
-                         const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
-                         const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
+XDriveModel::XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
+                         std::shared_ptr<AbstractMotor> itopRightMotor,
+                         std::shared_ptr<AbstractMotor> ibottomRightMotor,
+                         std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+                         std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                         std::shared_ptr<ContinuousRotarySensor> irightEnc,
                          const double imaxVelocity,
                          const double imaxVoltage)
-  : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage),
-    topLeftMotor(itopLeftMotor),
-    topRightMotor(itopRightMotor),
-    bottomRightMotor(ibottomRightMotor),
-    bottomLeftMotor(ibottomLeftMotor),
-    leftSensor(ileftEnc),
-    rightSensor(irightEnc) {
-}
-
-XDriveModel::XDriveModel(const std::shared_ptr<AbstractMotor> &itopLeftMotor,
-                         const std::shared_ptr<AbstractMotor> &itopRightMotor,
-                         const std::shared_ptr<AbstractMotor> &ibottomRightMotor,
-                         const std::shared_ptr<AbstractMotor> &ibottomLeftMotor,
-                         const double imaxVelocity,
-                         const double imaxVoltage)
-  : ChassisModel::ChassisModel(imaxVelocity, imaxVoltage),
-    topLeftMotor(itopLeftMotor),
-    topRightMotor(itopRightMotor),
-    bottomRightMotor(ibottomRightMotor),
-    bottomLeftMotor(ibottomLeftMotor),
-    leftSensor(itopLeftMotor->getEncoder()),
-    rightSensor(itopRightMotor->getEncoder()) {
+  : maxVelocity(imaxVelocity),
+    maxVoltage(imaxVoltage),
+    topLeftMotor(std::move(itopLeftMotor)),
+    topRightMotor(std::move(itopRightMotor)),
+    bottomRightMotor(std::move(ibottomRightMotor)),
+    bottomLeftMotor(std::move(ibottomLeftMotor)),
+    leftSensor(std::move(ileftEnc)),
+    rightSensor(std::move(irightEnc)) {
 }
 
 void XDriveModel::forward(const double ispeed) {
@@ -239,52 +225,30 @@ void XDriveModel::setGearing(const AbstractMotor::gearset gearset) {
   bottomLeftMotor->setGearing(gearset);
 }
 
-void XDriveModel::setPosPID(const double ikF,
-                            const double ikP,
-                            const double ikI,
-                            const double ikD) {
-  topLeftMotor->setPosPID(ikF, ikP, ikI, ikD);
-  topRightMotor->setPosPID(ikF, ikP, ikI, ikD);
-  bottomRightMotor->setPosPID(ikF, ikP, ikI, ikD);
-  bottomLeftMotor->setPosPID(ikF, ikP, ikI, ikD);
+void XDriveModel::setMaxVelocity(double imaxVelocity) {
+  if (imaxVelocity < 0) {
+    maxVelocity = 0;
+  } else {
+    maxVelocity = imaxVelocity;
+  }
 }
 
-void XDriveModel::setPosPIDFull(const double ikF,
-                                const double ikP,
-                                const double ikI,
-                                const double ikD,
-                                const double ifilter,
-                                const double ilimit,
-                                const double ithreshold,
-                                const double iloopSpeed) {
-  topLeftMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-  topRightMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-  bottomRightMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-  bottomLeftMotor->setPosPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+double XDriveModel::getMaxVelocity() const {
+  return maxVelocity;
 }
 
-void XDriveModel::setVelPID(const double ikF,
-                            const double ikP,
-                            const double ikI,
-                            const double ikD) {
-  topLeftMotor->setVelPID(ikF, ikP, ikI, ikD);
-  topRightMotor->setVelPID(ikF, ikP, ikI, ikD);
-  bottomRightMotor->setVelPID(ikF, ikP, ikI, ikD);
-  bottomLeftMotor->setVelPID(ikF, ikP, ikI, ikD);
+void XDriveModel::setMaxVoltage(double imaxVoltage) {
+  if (imaxVoltage < 0) {
+    maxVoltage = 0;
+  } else if (imaxVoltage > 12000) {
+    maxVoltage = 12000;
+  } else {
+    maxVoltage = imaxVoltage;
+  }
 }
 
-void XDriveModel::setVelPIDFull(const double ikF,
-                                const double ikP,
-                                const double ikI,
-                                const double ikD,
-                                const double ifilter,
-                                const double ilimit,
-                                const double ithreshold,
-                                const double iloopSpeed) {
-  topLeftMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-  topRightMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-  bottomRightMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
-  bottomLeftMotor->setVelPIDFull(ikF, ikP, ikI, ikD, ifilter, ilimit, ithreshold, iloopSpeed);
+double XDriveModel::getMaxVoltage() const {
+  return maxVoltage;
 }
 
 std::shared_ptr<AbstractMotor> XDriveModel::getTopLeftMotor() const {

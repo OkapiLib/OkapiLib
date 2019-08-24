@@ -23,7 +23,7 @@ class VelMathFactory {
    */
   static VelMath create(double iticksPerRev,
                         QTime isampleTime = 0_ms,
-                        const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+                        const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity math helper. Calculates filtered velocity. Throws a std::invalid_argument exception
@@ -36,7 +36,7 @@ class VelMathFactory {
   static std::unique_ptr<VelMath>
   createPtr(double iticksPerRev,
             QTime isampleTime = 0_ms,
-            const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+            const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity math helper. Calculates filtered velocity. Throws a std::invalid_argument exception
@@ -50,7 +50,7 @@ class VelMathFactory {
   static VelMath create(double iticksPerRev,
                         std::unique_ptr<Filter> ifilter,
                         QTime isampleTime = 0_ms,
-                        const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+                        const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity math helper. Calculates filtered velocity. Throws a std::invalid_argument exception
@@ -65,6 +65,6 @@ class VelMathFactory {
   createPtr(double iticksPerRev,
             std::unique_ptr<Filter> ifilter,
             QTime isampleTime = 0_ms,
-            const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>());
+            const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 };
 } // namespace okapi
