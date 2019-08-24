@@ -120,7 +120,7 @@ AsyncLinearMotionProfileController::getPathErrorMessage(const std::vector<Waypoi
                                                         const std::string &ipathId,
                                                         const int length) {
   auto pointToString = [](Waypoint point) {
-    return "Point{x=" + std::to_string(point.x) + ", y=" + std::to_string(point.y) +
+    return "PathfinderPoint{x=" + std::to_string(point.x) + ", y=" + std::to_string(point.y) +
            ", theta=" + std::to_string(point.angle) + "}";
   };
 
