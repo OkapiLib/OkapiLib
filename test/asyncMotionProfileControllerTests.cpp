@@ -76,6 +76,13 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
   size_t rightFileSize;
 };
 
+TEST_F(AsyncMotionProfileControllerTest, ConstructWithGearRatioOf0) {
+  EXPECT_THROW(
+    AsyncMotionProfileController(
+      createTimeUtil(), {}, nullptr, {{2_in, 8_in}, 360}, AbstractMotor::gearset::green * 0),
+    std::invalid_argument);
+}
+
 TEST_F(AsyncMotionProfileControllerTest, SettledWhenDisabled) {
   assertControllerIsSettledWhenDisabled(*controller, std::string("A"));
 }

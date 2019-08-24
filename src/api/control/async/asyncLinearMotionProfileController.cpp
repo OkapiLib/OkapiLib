@@ -24,6 +24,13 @@ AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
     diameter(idiameter),
     pair(ipair),
     timeUtil(itimeUtil) {
+  if (ipair.ratio == 0) {
+    std::string msg(
+      "AsyncLinearMotionProfileController: The gear ratio cannot be zero! Check if you are "
+      "using integer division.");
+    LOG_ERROR(msg);
+    throw std::invalid_argument(msg);
+  }
 }
 
 AsyncLinearMotionProfileController::~AsyncLinearMotionProfileController() {
