@@ -1693,7 +1693,7 @@
   </compound>
   <compound refid="asyncAutonomousMovement_8md" kind="file"><name>asyncAutonomousMovement.md</name>
   </compound>
-  <compound refid="basicAutonomousMovment_8md" kind="file"><name>basicAutonomousMovment.md</name>
+  <compound refid="basicAutonomousMovement_8md" kind="file"><name>basicAutonomousMovement.md</name>
   </compound>
   <compound refid="gettingStarted_8md" kind="file"><name>gettingStarted.md</name>
   </compound>
@@ -2049,7 +2049,7 @@
   </compound>
   <compound refid="md_docs_tutorials_walkthrough_asyncAutonomousMovement" kind="page"><name>md_docs_tutorials_walkthrough_asyncAutonomousMovement</name>
   </compound>
-  <compound refid="md_docs_tutorials_walkthrough_basicAutonomousMovment" kind="page"><name>md_docs_tutorials_walkthrough_basicAutonomousMovment</name>
+  <compound refid="md_docs_tutorials_walkthrough_basicAutonomousMovement" kind="page"><name>md_docs_tutorials_walkthrough_basicAutonomousMovement</name>
   </compound>
   <compound refid="md_docs_tutorials_walkthrough_gettingStarted" kind="page"><name>md_docs_tutorials_walkthrough_gettingStarted</name>
   </compound>

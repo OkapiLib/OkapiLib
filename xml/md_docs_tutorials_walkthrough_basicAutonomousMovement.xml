@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="md_docs_tutorials_walkthrough_basicAutonomousMovement" kind="page">
+    <compoundname>md_docs_tutorials_walkthrough_basicAutonomousMovement</compoundname>
+    <title>Moving Autonomously</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Arguably the most fundamental task with regard to creating a good autonomous routine is ensuring consistent and accurate movement of the chassis. Robotic autonomous movement is an unsolved problem even among professional engineers, so it is obviously a difficult task. OkapiLib makes it easy to get reasonably accurate autonomous movements.</para>
+<para>The basis for this autonomous movement is the <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref> class. Take a look at its API for more detailed info on it.</para>
+<para>We&apos;ll use a <ref refid="classokapi_1_1ChassisControllerIntegrated" kindref="compound">ChassisControllerIntegrated</ref> for this tutorial; using the V5 motors&apos; onboard PID makes setup a much quicker and easier process (No PID tuning needed!).</para>
+<para>Let&apos;s start by creating the <ref refid="classokapi_1_1ChassisControllerIntegrated" kindref="compound">ChassisControllerIntegrated</ref> with drive motors in ports 1 and 2:</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceokapi" kindref="compound">okapi</ref>;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DRIVE_MOTOR_LEFT<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DRIVE_MOTOR_RIGHT<sp/>=<sp/>2;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>chassis<sp/>=<sp/><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref>()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="classokapi_1_1ChassisControllerBuilder_1a1ceb7c4b4f0ccfd37a92d8ffd64fa64e" kindref="member">withMotors</ref>(DRIVE_MOTOR_LEFT,<sp/>-DRIVE_MOTOR_RIGHT)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="classokapi_1_1ChassisControllerBuilder_1a5dfd1f4d60a3c4bfcc28a57211c1a6a2" kindref="member">build</ref>();</highlight></codeline>
+</programlisting></para>
+<para>Now that we&apos;ve created a ChassisController, let&apos;s start moving around. There are two fundamental movement types: <ref refid="classokapi_1_1ChassisController_1a6d5b69139dfa8b814d05c74c22bcaa43" kindref="member">moveDistance</ref> and <ref refid="classokapi_1_1ChassisController_1aab12308b3fad6793c007d7a33730a3f7" kindref="member">turnAngle</ref>, for moving forward/backward and turning on a point.</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceokapi" kindref="compound">okapi</ref>;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DRIVE_MOTOR_LEFT<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DRIVE_MOTOR_RIGHT<sp/>=<sp/>2;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>chassis<sp/>=<sp/><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref>()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="classokapi_1_1ChassisControllerBuilder_1a1ceb7c4b4f0ccfd37a92d8ffd64fa64e" kindref="member">withMotors</ref>(DRIVE_MOTOR_LEFT,<sp/>-DRIVE_MOTOR_RIGHT)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="classokapi_1_1ChassisControllerBuilder_1a5dfd1f4d60a3c4bfcc28a57211c1a6a2" kindref="member">build</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>autonomous()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Move<sp/>to<sp/>first<sp/>goal</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>chassis-&gt;moveDistance(1000);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Turn<sp/>to<sp/>face<sp/>second<sp/>goal</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>chassis-&gt;turnAngle(100);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Drive<sp/>toward<sp/>second<sp/>goal</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>chassis-&gt;moveDistance(1500);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>If you&apos;d like to set movements in real life units, that&apos;s possible as well. Just pass in the drive&apos;s gearset and dimensions, and then use the appropriate suffix for the units that you would like the movement to occur in.</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceokapi" kindref="compound">okapi</ref>;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DRIVE_MOTOR_LEFT<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DRIVE_MOTOR_RIGHT<sp/>=<sp/>2;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>WHEEL_DIAMETER<sp/>=<sp/>4_in;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>CHASSIS_WIDTH<sp/>=<sp/>13.5_in;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>chassis<sp/>=<sp/><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref>()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="classokapi_1_1ChassisControllerBuilder_1a1ceb7c4b4f0ccfd37a92d8ffd64fa64e" kindref="member">withMotors</ref>(DRIVE_MOTOR_LEFT,<sp/>-DRIVE_MOTOR_RIGHT)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="classokapi_1_1ChassisControllerBuilder_1aea1e3d32abede99a1b565205275aea78" kindref="member">withGearset</ref>(<ref refid="classokapi_1_1AbstractMotor_1a88aaa6ea2fa10f5520a537bbf26774d5a9f27410725ab8cc8854a2769c7a516b8" kindref="member">AbstractMotor::gearset::green</ref>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="classokapi_1_1ChassisControllerBuilder_1a72a642f59112da74960942aae390a5ed" kindref="member">withDimensions</ref>({{WHEEL_DIAMETER,<sp/>CHASSIS_WIDTH},<sp/><ref refid="namespaceokapi_1a5263bab3bfecd482a573b6d04fb584ac" kindref="member">imev5GreenTPR</ref>})</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.build();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>autonomous()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Move<sp/>1<sp/>meter<sp/>to<sp/>the<sp/>first<sp/>goal</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>chassis-&gt;moveDistance(1_m);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Turn<sp/>90<sp/>degrees<sp/>to<sp/>face<sp/>second<sp/>goal</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>chassis-&gt;turnAngle(90_deg);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Drive<sp/>1<sp/>and<sp/>a<sp/>half<sp/>feet<sp/>toward<sp/>second<sp/>goal</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>chassis-&gt;moveDistance(1.5_ft);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

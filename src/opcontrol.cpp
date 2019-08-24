@@ -18,27 +18,8 @@ void printSensorVals(void *) {
   }
 }
 
-const int DRIVE_MOTOR_LEFT = 1;
-const int DRIVE_MOTOR_RIGHT = 2;
-
-const double liftkP = 0.001;
-const double liftkI = 0.0001;
-const double liftkD = 0.0001;
-const int LIFT_MOTOR = 2;
-
 void opcontrol() {
   pros::delay(100);
-
-  auto driveController =
-    ChassisControllerBuilder().withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT).build();
-
-  auto liftController =
-    AsyncPosControllerBuilder().withMotor(LIFT_MOTOR).withGains({liftkP, liftkI, liftkD}).build();
-
-  driveController->moveDistanceAsync(1000); // Move 1000 motor degrees forward
-  liftController->setTarget(200); // Move 200 motor degrees upward
-  driveController->waitUntilSettled();
-  liftController->waitUntilSettled();
 
   Logger::setDefaultLogger(
     std::make_shared<Logger>(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug));

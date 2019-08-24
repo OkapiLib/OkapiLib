@@ -1,0 +1,116 @@
+Oftentimes the fastest way to move in autonomous involves actuating multiple subsystems at once (i.\+e. driving and raising/lowering a lift). This is made possible with Async Controllers.
+
+To create a \mbox{\hyperlink{classokapi_1_1ChassisController}{Chassis\+Controller}} for a given system, modify the below example to fit your subsystem.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{using namespace }\mbox{\hyperlink{namespaceokapi}{okapi}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{int} DRIVE\_MOTOR\_LEFT = 1;}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{int} DRIVE\_MOTOR\_RIGHT = 2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{auto} driveController = \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{ChassisControllerBuilder}}()}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a1ceb7c4b4f0ccfd37a92d8ffd64fa64e}{withMotors}}(DRIVE\_MOTOR\_LEFT, -DRIVE\_MOTOR\_RIGHT)}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a5dfd1f4d60a3c4bfcc28a57211c1a6a2}{build}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} autonomous() \{}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+And then we\textquotesingle{}ll add a lift subsystem as an Async Controller\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{using namespace }\mbox{\hyperlink{namespaceokapi}{okapi}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{int} DRIVE\_MOTOR\_LEFT = 1;}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{int} DRIVE\_MOTOR\_RIGHT = 2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{double} liftkP = 0.001;}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{double} liftkI = 0.0001;}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{double} liftkD = 0.0001;}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{int} LIFT\_MOTOR = 2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{auto} driveController = \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{ChassisControllerBuilder}}()}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a1ceb7c4b4f0ccfd37a92d8ffd64fa64e}{withMotors}}(DRIVE\_MOTOR\_LEFT, -DRIVE\_MOTOR\_RIGHT)}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a5dfd1f4d60a3c4bfcc28a57211c1a6a2}{build}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{auto} liftController = \mbox{\hyperlink{classokapi_1_1AsyncPosControllerBuilder}{AsyncPosControllerBuilder}}()}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1AsyncPosControllerBuilder_afe930ec31b591b6b2bf80be12bba3d79}{withMotor}}(LIFT\_MOTOR)}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1AsyncPosControllerBuilder_a4ac4afe101f6e49150d5f285ccd02e50}{withGains}}(\{liftkP, liftkI, liftkD\})}
+\DoxyCodeLine{                        .build();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} autonomous() \{}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+Now that we have two subsystems to run, let\textquotesingle{}s execute a few different movements. If we want both systems to move, and the next movement in the autonomous routine only depends on the drive completing its movement (and it doesn\textquotesingle{}t care about the lift\textquotesingle{}s status), we\textquotesingle{}ll run \mbox{\hyperlink{classokapi_1_1ChassisController_a01ed4e0eb7332cc149228387bbf1e91c}{wait\+Until\+Settled()}} with just the drive controller.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{using namespace }\mbox{\hyperlink{namespaceokapi}{okapi}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{int} DRIVE\_MOTOR\_LEFT = 1;}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{int} DRIVE\_MOTOR\_RIGHT = 2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{double} liftkP = 0.001;}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{double} liftkI = 0.0001;}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{double} liftkD = 0.0001;}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{int} LIFT\_MOTOR = 2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{auto} driveController = \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{ChassisControllerBuilder}}()}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a1ceb7c4b4f0ccfd37a92d8ffd64fa64e}{withMotors}}(DRIVE\_MOTOR\_LEFT, -DRIVE\_MOTOR\_RIGHT)}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a5dfd1f4d60a3c4bfcc28a57211c1a6a2}{build}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{auto} liftController = \mbox{\hyperlink{classokapi_1_1AsyncPosControllerBuilder}{AsyncPosControllerBuilder}}()}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1AsyncPosControllerBuilder_afe930ec31b591b6b2bf80be12bba3d79}{withMotor}}(LIFT\_MOTOR)}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1AsyncPosControllerBuilder_a4ac4afe101f6e49150d5f285ccd02e50}{withGains}}(\{liftkP, liftkI, liftkD\})}
+\DoxyCodeLine{                        .build();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} autonomous() \{}
+\DoxyCodeLine{    \textcolor{comment}{// Begin movements}}
+\DoxyCodeLine{    driveController->moveDistanceAsync(1000); \textcolor{comment}{// Move 1000 motor degrees forward}}
+\DoxyCodeLine{    liftController->setTarget(200); \textcolor{comment}{// Move 200 motor degrees upward}}
+\DoxyCodeLine{    driveController->waitUntilSettled();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Then the next movement will execute after the drive movement finishes}}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+If blocking the next movement with regard only to the lift is desired, swap {\ttfamily drive\+Controller} for {\ttfamily lift\+Controller} in the last line. If both movements need to finish before executing the next movement, then call \mbox{\hyperlink{classokapi_1_1ChassisController_a01ed4e0eb7332cc149228387bbf1e91c}{wait\+Until\+Settled()}} on both controllers.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{using namespace }\mbox{\hyperlink{namespaceokapi}{okapi}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{int} DRIVE\_MOTOR\_LEFT = 1;}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{int} DRIVE\_MOTOR\_RIGHT = 2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{double} liftkP = 0.001;}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{double} liftkI = 0.0001;}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{double} liftkD = 0.0001;}
+\DoxyCodeLine{\textcolor{keyword}{const} \textcolor{keywordtype}{int} LIFT\_MOTOR = 2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{auto} driveController = \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{ChassisControllerBuilder}}()}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a1ceb7c4b4f0ccfd37a92d8ffd64fa64e}{withMotors}}(DRIVE\_MOTOR\_LEFT, -DRIVE\_MOTOR\_RIGHT)}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a5dfd1f4d60a3c4bfcc28a57211c1a6a2}{build}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{auto} liftController = \mbox{\hyperlink{classokapi_1_1AsyncPosControllerBuilder}{AsyncPosControllerBuilder}}()}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1AsyncPosControllerBuilder_afe930ec31b591b6b2bf80be12bba3d79}{withMotor}}(LIFT\_MOTOR)}
+\DoxyCodeLine{                        .\mbox{\hyperlink{classokapi_1_1AsyncPosControllerBuilder_a4ac4afe101f6e49150d5f285ccd02e50}{withGains}}(\{liftkP, liftkI, liftkD\})}
+\DoxyCodeLine{                        .build();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} autonomous() \{}
+\DoxyCodeLine{    \textcolor{comment}{// Begin movements}}
+\DoxyCodeLine{    driveController->moveDistanceAsync(1000); \textcolor{comment}{// Move 1000 motor degrees forward}}
+\DoxyCodeLine{    liftController->setTarget(200); \textcolor{comment}{// Move 200 motor degrees upward}}
+\DoxyCodeLine{    driveController->waitUntilSettled();}
+\DoxyCodeLine{    liftController->waitUntilSettled();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Then the next movement will execute after both movements finish}}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+ 

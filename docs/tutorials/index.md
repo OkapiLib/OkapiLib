@@ -14,6 +14,7 @@ environment, the **Walkthrough Tutorials** are a great resource to go step by
 step through the process of writing an OkapiLib program.
 
  - [Getting Started](docs/tutorials/walkthrough/gettingStarted.md)
+ - [Basic Autonomous Movement](docs/tutorials/walkthrough/basicAutonomousMovement.md)
  - [Async Autonomous Movement](docs/tutorials/walkthrough/asyncAutonomousMovement.md)
 
 ## Topical Tutorials

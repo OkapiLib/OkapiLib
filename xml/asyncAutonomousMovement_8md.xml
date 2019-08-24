@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
-  <compounddef id="basicAutonomousMovment_8md" kind="file" language="Markdown">
-    <compoundname>basicAutonomousMovment.md</compoundname>
+  <compounddef id="asyncAutonomousMovement_8md" kind="file" language="Markdown">
+    <compoundname>asyncAutonomousMovement.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="docs/tutorials/walkthrough/basicAutonomousMovment.md"/>
+    <location file="docs/tutorials/walkthrough/asyncAutonomousMovement.md"/>
   </compounddef>
 </doxygen>
