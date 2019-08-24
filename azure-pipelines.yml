@@ -15,6 +15,7 @@ stages:
         vmImage: ubuntu-16.04
 
       steps:
+      - script: git submodule update --init --recursive
       - script: sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa -y
       - script: sudo apt update
       - script: sudo apt install gcc-arm-embedded g++-7 lcov valgrind doxygen
