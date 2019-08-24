@@ -17,8 +17,8 @@ class ChassisControllerIntegrated : public ChassisController {
   public:
   /**
    * ChassisController using the V5 motor's integrated control. Puts the motors into encoder count
-   * units. Throws a `std::invalid_argument` exception if the gear ratio is zero. The initial model's
-   * max velocity will be propagated to the controllers.
+   * units. Throws a `std::invalid_argument` exception if the gear ratio is zero. The initial
+   * model's max velocity will be propagated to the controllers.
    *
    * @param itimeUtil The TimeUtil.
    * @param imodel The ChassisModel used to read from sensors/write to motors.
