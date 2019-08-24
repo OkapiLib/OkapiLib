@@ -20,8 +20,8 @@ class OdomMath {
    * OdomState must be in the same StateMode.
    *
    * @param ipoint The point.
-   * @param istate The odometry state.
-   * @return The distance between the odometry state and the point.
+   * @param istate The Odometry state.
+   * @return The distance between the Odometry state and the point.
    */
   static QLength computeDistanceToPoint(const Point &ipoint, const OdomState &istate);
 
@@ -30,8 +30,8 @@ class OdomMath {
    * OdomState must be in the same StateMode.
    *
    * @param ipoint The point.
-   * @param istate The odometry state.
-   * @return The angle between the odometry state and the point.
+   * @param istate The Odometry state.
+   * @return The angle between the Odometry state and the point.
    */
   static QAngle computeAngleToPoint(const Point &ipoint, const OdomState &istate);
 
@@ -40,8 +40,8 @@ class OdomMath {
    * the OdomState must be in the same StateMode.
    *
    * @param ipoint The point.
-   * @param istate The odometry state.
-   * @return The distance and angle between the odometry state and the point.
+   * @param istate The Odometry state.
+   * @return The distance and angle between the Odometry state and the point.
    */
   static std::pair<QLength, QAngle> computeDistanceAndAngleToPoint(const Point &ipoint,
                                                                    const OdomState &istate);
@@ -49,5 +49,33 @@ class OdomMath {
   private:
   OdomMath();
   ~OdomMath();
+
+  /**
+   * Computes the x and y diffs in meters between the points.
+   *
+   * @param ipoint The point.
+   * @param istate The Odometry state.
+   * @return The diffs in the order `{xDiff, yDiff}`.
+   */
+  static std::pair<double, double> computeDiffs(const Point &ipoint, const OdomState &istate);
+
+  /**
+   * Computes the distance between the points.
+   *
+   * @param xDiff The x-axis diff in meters.
+   * @param yDiff The y-axis diff in meters.
+   * @return The cartesian distance in meters.
+   */
+  static double computeDistance(double xDiff, double yDiff);
+
+  /**
+   * Compites the angle between the points.
+   *
+   * @param xDiff The x-axis diff in meters.
+   * @param yDiff The y-axis diff in meters.
+   * @param theta The current robot's theta in radians.
+   * @return The angle in radians.
+   */
+  static double computeAngle(double xDiff, double yDiff, double theta);
 };
 } // namespace okapi
