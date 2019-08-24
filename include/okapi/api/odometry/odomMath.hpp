@@ -16,42 +16,35 @@ namespace okapi {
 class OdomMath {
   public:
   /**
-   * Computes the distance from the given Odometry state to the given point.
+   * Computes the distance from the given Odometry state to the given point. The point and the
+   * OdomState must be in the same StateMode.
    *
    * @param ipoint The point.
-   * @param istate The odometry state, assumed to be in `StateMode::FRAME_TRANSFORMATION`.
-   * @param ipointMode The StateMode that `ipoint` is in.
+   * @param istate The odometry state.
    * @return The distance between the odometry state and the point.
    */
-  static QLength
-  computeDistanceToPoint(const Point &ipoint,
-                         const OdomState &istate,
-                         const StateMode &ipointMode = StateMode::FRAME_TRANSFORMATION);
+  static QLength computeDistanceToPoint(const Point &ipoint, const OdomState &istate);
 
   /**
-   * Computes the angle from the given Odometry state to the given point.
+   * Computes the angle from the given Odometry state to the given point. The point and the
+   * OdomState must be in the same StateMode.
    *
    * @param ipoint The point.
-   * @param istate The odometry state, assumed to be in `StateMode::FRAME_TRANSFORMATION`.
-   * @param ipointMode The StateMode that `ipoint` is in.
+   * @param istate The odometry state.
    * @return The angle between the odometry state and the point.
    */
-  static QAngle computeAngleToPoint(const Point &ipoint,
-                                    const OdomState &istate,
-                                    const StateMode &ipointMode = StateMode::FRAME_TRANSFORMATION);
+  static QAngle computeAngleToPoint(const Point &ipoint, const OdomState &istate);
 
   /**
-   * Computes the distance and angle from the given Odometry state to the given point.
+   * Computes the distance and angle from the given Odometry state to the given point. The point and
+   * the OdomState must be in the same StateMode.
    *
    * @param ipoint The point.
-   * @param istate The odometry state, assumed to be in `StateMode::FRAME_TRANSFORMATION`.
-   * @param ipointMode The StateMode that `ipoint` is in.
+   * @param istate The odometry state.
    * @return The distance and angle between the odometry state and the point.
    */
-  static std::pair<QLength, QAngle>
-  computeDistanceAndAngleToPoint(const Point &ipoint,
-                                 const OdomState &istate,
-                                 const StateMode &ipointMode = StateMode::FRAME_TRANSFORMATION);
+  static std::pair<QLength, QAngle> computeDistanceAndAngleToPoint(const Point &ipoint,
+                                                                   const OdomState &istate);
 
   private:
   OdomMath();

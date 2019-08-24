@@ -14,26 +14,21 @@ OdomMath::OdomMath() = default;
 
 OdomMath::~OdomMath() = default;
 
-QLength OdomMath::computeDistanceToPoint(const Point &ipoint,
-                                         const OdomState &istate,
-                                         const StateMode &ipointMode) {
+QLength OdomMath::computeDistanceToPoint(const Point &ipoint, const OdomState &istate) {
   const double xDiff = (ipoint.x - istate.x).convert(meter);
   const double yDiff = (ipoint.y - istate.y).convert(meter);
   return std::sqrt((xDiff * xDiff) + (yDiff * yDiff)) * meter;
 }
 
-QAngle OdomMath::computeAngleToPoint(const Point &ipoint,
-                                     const OdomState &istate,
-                                     const StateMode &ipointMode) {
+QAngle OdomMath::computeAngleToPoint(const Point &ipoint, const OdomState &istate) {
   const double xDiff = (ipoint.x - istate.x).convert(meter);
   const double yDiff = (ipoint.y - istate.y).convert(meter);
   return (std::atan2(yDiff, xDiff) * radian) - istate.theta;
 }
 
 std::pair<QLength, QAngle> OdomMath::computeDistanceAndAngleToPoint(const Point &ipoint,
-                                                                    const OdomState &istate,
-                                                                    const StateMode &ipointMode) {
-  return std::make_pair(computeDistanceToPoint(ipoint, istate, ipointMode),
-                        computeAngleToPoint(ipoint, istate, ipointMode));
+                                                                    const OdomState &istate) {
+  return std::make_pair(computeDistanceToPoint(ipoint, istate),
+                        computeAngleToPoint(ipoint, istate));
 }
 } // namespace okapi
