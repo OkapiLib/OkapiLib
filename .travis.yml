@@ -34,6 +34,9 @@ matrix:
 language: cpp
 compiler: gcc
 
+python:
+  - "3.6"
+
 before_install:
   - eval "${MATRIX_EVAL}"
 
