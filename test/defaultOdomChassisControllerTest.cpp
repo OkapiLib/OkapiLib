@@ -48,6 +48,75 @@ TEST_F(DefaultOdomChassisControllerTest, MoveAboveThreshold) {
   EXPECT_EQ(controller->lastMoveDistanceTargetQLength, 6_m);
 }
 
+TEST_F(DefaultOdomChassisControllerTest, MoveAboveThresholdInCartesianModeWithNonzeroOdomState) {
+  drive->setMoveThreshold(5_m);
+  EXPECT_EQ(drive->getMoveThreshold(), 5_m);
+
+  drive->setState({5_m, 7_m, 10_deg}, StateMode::CARTESIAN);
+
+  drive->driveToPoint({6_m, 0_m}, StateMode::CARTESIAN);
+  EXPECT_FLOAT_EQ(controller->lastMoveDistanceTargetQLength.convert(meter), sqrt(1 + 7 * 7));
+  EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree),
+                  atan2(1, -7) * radianToDegree - 10);
+}
+
+TEST_F(DefaultOdomChassisControllerTest, TurnToPointBelowThreshold) {
+  drive->setTurnThreshold(5_deg);
+  EXPECT_EQ(drive->getTurnThreshold(), 5_deg);
+
+  drive->turnToPoint({1_m, 0.01_m});
+  EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree), 0);
+}
+
+TEST_F(DefaultOdomChassisControllerTest, TurnToPointBelowThresholdInCartesianMode) {
+  drive->setTurnThreshold(5_deg);
+  EXPECT_EQ(drive->getTurnThreshold(), 5_deg);
+
+  drive->turnToPoint({0.01_m, 1_m}, StateMode::CARTESIAN);
+  EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree), 0);
+}
+
+TEST_F(DefaultOdomChassisControllerTest, TurnToPointAboveThreshold) {
+  drive->setTurnThreshold(5_deg);
+  EXPECT_EQ(drive->getTurnThreshold(), 5_deg);
+
+  drive->turnToPoint({1_m, 2_m});
+  EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree),
+                  atan2(2, 1) * radianToDegree);
+}
+
+TEST_F(DefaultOdomChassisControllerTest, TurnToPointAboveThresholdInCartesianMode) {
+  drive->setTurnThreshold(5_deg);
+  EXPECT_EQ(drive->getTurnThreshold(), 5_deg);
+
+  drive->turnToPoint({2_m, 1_m}, StateMode::CARTESIAN);
+  EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree),
+                  atan2(2, 1) * radianToDegree);
+}
+
+TEST_F(DefaultOdomChassisControllerTest,
+       TurnToPointAboveThresholdInCartesianModeWithNonzeroOdomState) {
+  drive->setTurnThreshold(5_deg);
+  EXPECT_EQ(drive->getTurnThreshold(), 5_deg);
+
+  drive->setState({5_m, 7_m, 10_deg}, StateMode::CARTESIAN);
+
+  drive->turnToPoint({2_m, 1_m}, StateMode::CARTESIAN);
+  EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree),
+                  atan2(-3, -6) * radianToDegree - 10);
+}
+
+TEST_F(DefaultOdomChassisControllerTest, TurnToPointAboveThresholdModeWithNonzeroOdomState) {
+  drive->setTurnThreshold(5_deg);
+  EXPECT_EQ(drive->getTurnThreshold(), 5_deg);
+
+  drive->setState({7_m, 5_m, 10_deg}, StateMode::FRAME_TRANSFORMATION);
+
+  drive->turnToPoint({1_m, 2_m}, StateMode::FRAME_TRANSFORMATION);
+  EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree),
+                  atan2(-3, -6) * radianToDegree - 10);
+}
+
 TEST_F(DefaultOdomChassisControllerTest, TurnBelowThreshold) {
   drive->setTurnThreshold(5_deg);
   EXPECT_EQ(drive->getTurnThreshold(), 5_deg);

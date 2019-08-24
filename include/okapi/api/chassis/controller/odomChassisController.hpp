@@ -45,20 +45,29 @@ class OdomChassisController : public ChassisController {
    * Drives the robot straight to a point in the odom frame.
    *
    * @param ipoint The target point to navigate to.
+   * @param imode The mode to read the target point in.
    * @param ibackwards Whether to drive to the target point backwards.
    * @param ioffset An offset from the target point in the direction pointing towards the robot. The
    * robot will stop this far away from the target point.
-   * @param imode The mode to read the target point in.
    */
   virtual void driveToPoint(const Point2d &ipoint,
+                            const StateMode &imode = StateMode::FRAME_TRANSFORMATION,
                             bool ibackwards = false,
-                            const QLength &ioffset = 0_mm,
-                            const StateMode &imode = StateMode::FRAME_TRANSFORMATION) = 0;
+                            const QLength &ioffset = 0_mm) = 0;
+
+  /**
+   * Turns the robot to face a point in the odom frame.
+   *
+   * @param ipoint The target point to turn to face.
+   * @param imode The mode to read the target point in.
+   */
+  virtual void turnToPoint(const Point2d &ipoint,
+                           const StateMode &imode = StateMode::FRAME_TRANSFORMATION) = 0;
 
   /**
    * Turns the robot to face an angle in the odom frame.
    *
-   * @param iangle angle to turn to
+   * @param iangle The angle to turn to.
    */
   virtual void turnToAngle(const QAngle &iangle) = 0;
 

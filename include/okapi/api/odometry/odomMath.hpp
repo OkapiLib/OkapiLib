@@ -19,29 +19,39 @@ class OdomMath {
    * Computes the distance from the given Odometry state to the given point.
    *
    * @param ipoint The point.
-   * @param istate The odometry state.
+   * @param istate The odometry state, assumed to be in `StateMode::FRAME_TRANSFORMATION`.
+   * @param ipointMode The StateMode that `ipoint` is in.
    * @return The distance between the odometry state and the point.
    */
-  static QLength computeDistanceToPoint(const Point2d &ipoint, const OdomState &istate);
+  static QLength
+  computeDistanceToPoint(const Point2d &ipoint,
+                         const OdomState &istate,
+                         const StateMode &ipointMode = StateMode::FRAME_TRANSFORMATION);
 
   /**
    * Computes the angle from the given Odometry state to the given point.
    *
    * @param ipoint The point.
-   * @param istate The odometry state.
+   * @param istate The odometry state, assumed to be in `StateMode::FRAME_TRANSFORMATION`.
+   * @param ipointMode The StateMode that `ipoint` is in.
    * @return The angle between the odometry state and the point.
    */
-  static QAngle computeAngleToPoint(const Point2d &ipoint, const OdomState &istate);
+  static QAngle computeAngleToPoint(const Point2d &ipoint,
+                                    const OdomState &istate,
+                                    const StateMode &ipointMode = StateMode::FRAME_TRANSFORMATION);
 
   /**
    * Computes the distance and angle from the given Odometry state to the given point.
    *
    * @param ipoint The point.
-   * @param istate The odometry state.
+   * @param istate The odometry state, assumed to be in `StateMode::FRAME_TRANSFORMATION`.
+   * @param ipointMode The StateMode that `ipoint` is in.
    * @return The distance and angle between the odometry state and the point.
    */
-  static std::pair<QLength, QAngle> computeDistanceAndAngleToPoint(const Point2d &ipoint,
-                                                                   const OdomState &istate);
+  static std::pair<QLength, QAngle>
+  computeDistanceAndAngleToPoint(const Point2d &ipoint,
+                                 const OdomState &istate,
+                                 const StateMode &ipointMode = StateMode::FRAME_TRANSFORMATION);
 
   private:
   OdomMath();
