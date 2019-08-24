@@ -99,20 +99,4 @@ void Odometry::setState(const OdomState &istate, const StateMode &imode) {
     state = OdomState{istate.y, istate.x, istate.theta};
   }
 }
-
-bool OdomState::operator==(const OdomState &rhs) const {
-  return x == rhs.x && y == rhs.y && theta == rhs.theta;
-}
-
-bool OdomState::operator!=(const OdomState &rhs) const {
-  return !(rhs == *this);
-}
-
-std::string OdomState::str() const {
-  std::ostringstream os;
-  os << "OdomState(x=" << std::to_string(x.convert(meter))
-     << "m, y=" << std::to_string(y.convert(meter))
-     << "m, theta=" << std::to_string(theta.convert(degree)) << "deg)";
-  return os.str();
-}
 } // namespace okapi

@@ -204,7 +204,9 @@ add_executable(OkapiLibV5
         test/threeEncoderOdometryTests.cpp
         include/okapi/api/odometry/point.hpp
         test/odomMathTests.cpp
-        include/okapi/api/odometry/stateMode.hpp)
+        include/okapi/api/odometry/stateMode.hpp
+        include/okapi/api/odometry/odomState.hpp
+        src/api/odometry/odomState.cpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)
