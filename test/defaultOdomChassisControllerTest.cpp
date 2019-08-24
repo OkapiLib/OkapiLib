@@ -53,12 +53,12 @@ TEST_F(DefaultOdomChassisControllerTest, MoveAboveThresholdInCartesianModeWithNo
   EXPECT_EQ(drive->getMoveThreshold(), 5_m);
 
   drive->setDefaultStateMode(StateMode::CARTESIAN);
-  drive->setState({5_m, 7_m, 10_deg});
+  drive->setState({0_m, 0_m, 0_deg});
 
-  drive->driveToPoint({6_m, 0_m});
-  EXPECT_FLOAT_EQ(controller->lastMoveDistanceTargetQLength.convert(meter), sqrt(1 + 7 * 7));
+  drive->driveToPoint({2_m, 6_m});
+  EXPECT_FLOAT_EQ(controller->lastMoveDistanceTargetQLength.convert(meter), sqrt(2 * 2 + 6 * 6));
   EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree),
-                  atan2(-7, 1) * radianToDegree - 10);
+                  atan2(2, 6) * radianToDegree);
 }
 
 TEST_F(DefaultOdomChassisControllerTest, TurnToPointBelowThreshold) {
@@ -74,7 +74,7 @@ TEST_F(DefaultOdomChassisControllerTest, TurnToPointBelowThresholdInCartesianMod
   EXPECT_EQ(drive->getTurnThreshold(), 5_deg);
 
   drive->setDefaultStateMode(StateMode::CARTESIAN);
-  drive->setState({0_m, 0_m, 90_deg});
+  drive->setState({0_m, 0_m, 0_deg});
   drive->turnToPoint({0.01_m, 1_m});
   EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree), 0);
 }
@@ -95,7 +95,7 @@ TEST_F(DefaultOdomChassisControllerTest, TurnToPointAboveThresholdInCartesianMod
   drive->setDefaultStateMode(StateMode::CARTESIAN);
   drive->turnToPoint({2_m, 1_m});
   EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree),
-                  atan2(1, 2) * radianToDegree);
+                  atan2(2, 1) * radianToDegree);
 }
 
 TEST_F(DefaultOdomChassisControllerTest,
@@ -108,7 +108,7 @@ TEST_F(DefaultOdomChassisControllerTest,
 
   drive->turnToPoint({2_m, 1_m});
   EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree),
-                  atan2(-6, -3) * radianToDegree - 10);
+                  atan2(-3, -6) * radianToDegree - 10);
 }
 
 TEST_F(DefaultOdomChassisControllerTest, TurnToPointAboveThresholdModeWithNonzeroOdomState) {
