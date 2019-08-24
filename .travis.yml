@@ -51,6 +51,7 @@ script:
   - valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
   # - valgrind --tool=massif --stacks=yes --time-unit=B --massif-out-file=massif.out.txt ./OkapiLibV5
   # - ms_print massif.out.txt
+  - cd ..
   - ./run_doxygen.sh
 
 after_success:
