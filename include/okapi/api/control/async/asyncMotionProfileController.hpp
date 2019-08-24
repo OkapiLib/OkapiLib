@@ -139,8 +139,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param ibackwards Whether to follow the profile backwards.
    * @param imirrored Whether to follow the profile mirrored.
    */
-  void
-  moveTo(std::initializer_list<PathfinderPoint> iwaypoints, bool ibackwards = false, bool imirrored = false);
+  void moveTo(std::initializer_list<PathfinderPoint> iwaypoints,
+              bool ibackwards = false,
+              bool imirrored = false);
 
   /**
    * Generates a new path from the position (typically the current position) to the target and
