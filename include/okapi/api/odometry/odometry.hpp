@@ -9,6 +9,8 @@
 
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
+#include "okapi/api/odometry/odomState.hpp"
+#include "okapi/api/odometry/stateMode.hpp"
 #include "okapi/api/units/QSpeed.hpp"
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/logging.hpp"
@@ -18,28 +20,6 @@
 #include <valarray>
 
 namespace okapi {
-struct OdomState {
-  QLength x{0_m};
-  QLength y{0_m};
-  QAngle theta{0_deg};
-
-  /**
-   * @return A string representing the state.
-   */
-  std::string str() const;
-
-  bool operator==(const OdomState &rhs) const;
-
-  bool operator!=(const OdomState &rhs) const;
-};
-
-/**
- * The mode for the state calculated by odometry.
- * FRAME_TRANSFORMATION: +x is forward, +y is right
- * CARTESIAN: +x is right, +y is forward
- */
-enum class StateMode { FRAME_TRANSFORMATION, CARTESIAN };
-
 class Odometry {
   public:
   /**

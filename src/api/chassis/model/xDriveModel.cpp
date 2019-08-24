@@ -226,7 +226,11 @@ void XDriveModel::setGearing(const AbstractMotor::gearset gearset) {
 }
 
 void XDriveModel::setMaxVelocity(double imaxVelocity) {
-  maxVelocity = imaxVelocity;
+  if (imaxVelocity < 0) {
+    maxVelocity = 0;
+  } else {
+    maxVelocity = imaxVelocity;
+  }
 }
 
 double XDriveModel::getMaxVelocity() const {
@@ -234,7 +238,13 @@ double XDriveModel::getMaxVelocity() const {
 }
 
 void XDriveModel::setMaxVoltage(double imaxVoltage) {
-  maxVoltage = imaxVoltage;
+  if (imaxVoltage < 0) {
+    maxVoltage = 0;
+  } else if (imaxVoltage > 12000) {
+    maxVoltage = 12000;
+  } else {
+    maxVoltage = imaxVoltage;
+  }
 }
 
 double XDriveModel::getMaxVoltage() const {

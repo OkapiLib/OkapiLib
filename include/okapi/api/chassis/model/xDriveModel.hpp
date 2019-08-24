@@ -152,30 +152,29 @@ class XDriveModel : public ChassisModel {
   void setGearing(AbstractMotor::gearset gearset) override;
 
   /**
-   * Sets a new maximum velocity in RPM [0-600].
+   * Sets a new maximum velocity in RPM. The usable maximum depends on the maximum velocity of the
+   * currently installed gearset. If the configured maximum velocity is greater than the attainable
+   * maximum velocity from the currently installed gearset, the ChassisModel will still scale to
+   * that velocity.
    *
-   * @param imaxVelocity the new maximum velocity
+   * @param imaxVelocity The new maximum velocity.
    */
   void setMaxVelocity(double imaxVelocity) override;
 
   /**
-   * Returns the maximum velocity in RPM [0-600].
-   *
-   * @return The maximum velocity in RPM [0-600].
+   * @return The current maximum velocity.
    */
   double getMaxVelocity() const override;
 
   /**
-   * Sets a new maximum voltage in mV [0-12000].
+   * Sets a new maximum voltage in mV in the range `[0-12000]`.
    *
-   * @param imaxVoltage the new maximum voltage
+   * @param imaxVoltage The new maximum voltage.
    */
   void setMaxVoltage(double imaxVoltage) override;
 
   /**
-   * Returns the maximum voltage in mV [0-12000].
-   *
-   * @return The maximum voltage in mV [0-12000].
+   * @return The maximum voltage in mV in the range `[0-12000]`.
    */
   double getMaxVoltage() const override;
 

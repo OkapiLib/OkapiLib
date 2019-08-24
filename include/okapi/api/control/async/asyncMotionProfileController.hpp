@@ -23,7 +23,7 @@ extern "C" {
 }
 
 namespace okapi {
-class AsyncMotionProfileController : public AsyncPositionController<std::string, Point> {
+class AsyncMotionProfileController : public AsyncPositionController<std::string, PathfinderPoint> {
   public:
   /**
    * An Async Controller which generates and follows 2D motion profiles. Throws a
@@ -60,7 +60,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param iwaypoints The waypoints to hit on the path.
    * @param ipathId A unique identifier to save the path with.
    */
-  void generatePath(std::initializer_list<Point> iwaypoints, const std::string &ipathId);
+  void generatePath(std::initializer_list<PathfinderPoint> iwaypoints, const std::string &ipathId);
 
   /**
    * Generates a path which intersects the given waypoints and saves it internally with a key of
@@ -74,7 +74,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param ipathId A unique identifier to save the path with.
    * @param ilimits The limits to use for this path only.
    */
-  void generatePath(std::initializer_list<Point> iwaypoints,
+  void generatePath(std::initializer_list<PathfinderPoint> iwaypoints,
                     const std::string &ipathId,
                     const PathfinderLimits &ilimits);
 
@@ -140,8 +140,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param ibackwards Whether to follow the profile backwards.
    * @param imirrored Whether to follow the profile mirrored.
    */
-  void
-  moveTo(std::initializer_list<Point> iwaypoints, bool ibackwards = false, bool imirrored = false);
+  void moveTo(std::initializer_list<PathfinderPoint> iwaypoints,
+              bool ibackwards = false,
+              bool imirrored = false);
 
   /**
    * Generates a new path from the position (typically the current position) to the target and
@@ -152,7 +153,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * @param ibackwards Whether to follow the profile backwards.
    * @param imirrored Whether to follow the profile mirrored.
    */
-  void moveTo(std::initializer_list<Point> iwaypoints,
+  void moveTo(std::initializer_list<PathfinderPoint> iwaypoints,
               const PathfinderLimits &ilimits,
               bool ibackwards = false,
               bool imirrored = false);
@@ -164,7 +165,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    *
    * @return the last error
    */
-  Point getError() const override;
+  PathfinderPoint getError() const override;
 
   /**
    * Returns whether the controller has settled at the target. Determining what settling means is
@@ -250,9 +251,12 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   void forceRemovePath(const std::string &ipathId);
 
   protected:
+  using TrajectoryPtr = std::unique_ptr<TrajectoryCandidate, void (*)(TrajectoryCandidate *)>;
+  using SegmentPtr = std::unique_ptr<Segment, void (*)(void *)>;
+
   struct TrajectoryPair {
-    Segment *left;
-    Segment *right;
+    SegmentPtr left;
+    SegmentPtr right;
     int length;
   };
 
@@ -263,7 +267,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   ChassisScales scales;
   AbstractMotor::GearsetRatioPair pair;
   TimeUtil timeUtil;
-  CrossplatformMutex pathRemoveMutex;
+
+  // This must be locked when accessing the current path
+  CrossplatformMutex currentPathMutex;
 
   std::string currentPath{""};
   std::atomic_bool isRunning{false};
@@ -304,5 +310,13 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
 
   void internalStorePath(FILE *leftPathFile, FILE *rightPathFile, const std::string &ipathId);
   void internalLoadPath(FILE *leftPathFile, FILE *rightPathFile, const std::string &ipathId);
+
+  /**
+   * Reads the length of the path in a thread-safe manner.
+   *
+   * @param path The path to read from.
+   * @return The length of the path.
+   */
+  int getPathLength(const TrajectoryPair &path);
 };
 } // namespace okapi

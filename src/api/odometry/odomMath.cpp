@@ -14,26 +14,34 @@ OdomMath::OdomMath() = default;
 
 OdomMath::~OdomMath() = default;
 
-QLength
-OdomMath::computeDistanceToPoint(const QLength ix, const QLength iy, const OdomState &istate) {
-  const double xDiff = (ix - istate.x).convert(meter);
-  const double yDiff = (iy - istate.y).convert(meter);
-  return std::sqrt((xDiff * xDiff) + (yDiff * yDiff)) * meter;
+QLength OdomMath::computeDistanceToPoint(const Point &ipoint, const OdomState &istate) {
+  const auto [xDiff, yDiff] = computeDiffs(ipoint, istate);
+  return computeDistance(xDiff, yDiff) * meter;
 }
 
-QAngle OdomMath::computeAngleToPoint(const QLength ix, const QLength iy, const OdomState &istate) {
-  const double xDiff = (ix - istate.x).convert(meter);
-  const double yDiff = (iy - istate.y).convert(meter);
-  return (std::atan2(yDiff, xDiff) * radian) - istate.theta;
+QAngle OdomMath::computeAngleToPoint(const Point &ipoint, const OdomState &istate) {
+  const auto [xDiff, yDiff] = computeDiffs(ipoint, istate);
+  return computeAngle(xDiff, yDiff, istate.theta.convert(radian)) * radian;
 }
 
-std::tuple<QLength, QAngle> OdomMath::computeDistanceAndAngleToPoint(const QLength ix,
-                                                                     const QLength iy,
-                                                                     const OdomState &istate) {
-  const double xDiff = (ix - istate.x).convert(meter);
-  const double yDiff = (iy - istate.y).convert(meter);
+std::pair<QLength, QAngle> OdomMath::computeDistanceAndAngleToPoint(const Point &ipoint,
+                                                                    const OdomState &istate) {
+  const auto [xDiff, yDiff] = computeDiffs(ipoint, istate);
+  return std::make_pair(computeDistance(xDiff, yDiff) * meter,
+                        computeAngle(xDiff, yDiff, istate.theta.convert(radian)) * radian);
+}
 
-  return std::make_tuple(std::sqrt((xDiff * xDiff) + (yDiff * yDiff)) * meter,
-                         (std::atan2(yDiff, xDiff) * radian) - istate.theta);
+std::pair<double, double> OdomMath::computeDiffs(const Point &ipoint, const OdomState &istate) {
+  const double xDiff = (ipoint.x - istate.x).convert(meter);
+  const double yDiff = (ipoint.y - istate.y).convert(meter);
+  return std::make_pair(xDiff, yDiff);
+}
+
+double OdomMath::computeDistance(double xDiff, double yDiff) {
+  return std::sqrt((xDiff * xDiff) + (yDiff * yDiff));
+}
+
+double OdomMath::computeAngle(double xDiff, double yDiff, double theta) {
+  return std::atan2(yDiff, xDiff) - theta;
 }
 } // namespace okapi

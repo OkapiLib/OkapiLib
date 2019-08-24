@@ -168,11 +168,13 @@ ChassisControllerBuilder::withDerivativeFilters(std::unique_ptr<Filter> idistanc
   return *this;
 }
 
-ChassisControllerBuilder &ChassisControllerBuilder::withOdometry(const QLength &imoveThreshold,
+ChassisControllerBuilder &ChassisControllerBuilder::withOdometry(const StateMode &imode,
+                                                                 const QLength &imoveThreshold,
                                                                  const QAngle &iturnThreshold,
                                                                  const QSpeed &iwheelVelDelta) {
   hasOdom = true;
   odometry = nullptr;
+  stateMode = imode;
   moveThreshold = imoveThreshold;
   turnThreshold = iturnThreshold;
   wheelVelDelta = iwheelVelDelta;
@@ -181,6 +183,7 @@ ChassisControllerBuilder &ChassisControllerBuilder::withOdometry(const QLength &
 
 ChassisControllerBuilder &
 ChassisControllerBuilder::withOdometry(std::unique_ptr<Odometry> iodometry,
+                                       const StateMode &imode,
                                        const QLength &imoveThreshold,
                                        const QAngle &iturnThreshold) {
   if (iodometry == nullptr) {
@@ -190,6 +193,7 @@ ChassisControllerBuilder::withOdometry(std::unique_ptr<Odometry> iodometry,
 
   hasOdom = true;
   odometry = std::move(iodometry);
+  stateMode = imode;
   moveThreshold = imoveThreshold;
   turnThreshold = iturnThreshold;
   return *this;
@@ -301,6 +305,7 @@ ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisCo
       std::make_shared<DefaultOdomChassisController>(chassisControllerTimeUtilFactory.create(),
                                                      std::move(odometry),
                                                      chassisController,
+                                                     stateMode,
                                                      moveThreshold,
                                                      turnThreshold,
                                                      controllerLogger);

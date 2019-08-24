@@ -27,8 +27,8 @@ class DefaultOdomChassisController : public OdomChassisController {
    * @param itimeUtil The TimeUtil.
    * @param iodometry The odometry to read state estimates from.
    * @param icontroller The chassis controller to delegate to.
-   * @param igearset The motor gearset.
-   * @param iscales The chassis scales.
+   * @param imode The new default StateMode used to interpret target points and query the Odometry
+   * state.
    * @param imoveThreshold minimum length movement (smaller movements will be skipped)
    * @param iturnThreshold minimum angle turn (smaller turns will be skipped)
    * @param ilogger The logger this instance will log to.
@@ -36,22 +36,34 @@ class DefaultOdomChassisController : public OdomChassisController {
   DefaultOdomChassisController(const TimeUtil &itimeUtil,
                                std::unique_ptr<Odometry> iodometry,
                                std::shared_ptr<ChassisController> icontroller,
-                               QLength imoveThreshold = 10_mm,
-                               QAngle iturnThreshold = 1_deg,
+                               const StateMode &imode = StateMode::FRAME_TRANSFORMATION,
+                               QLength imoveThreshold = 0_mm,
+                               QAngle iturnThreshold = 0_deg,
                                std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
+
+  DefaultOdomChassisController(const DefaultOdomChassisController &) = delete;
+  DefaultOdomChassisController(DefaultOdomChassisController &&other) = delete;
+  DefaultOdomChassisController &operator=(const DefaultOdomChassisController &other) = delete;
+  DefaultOdomChassisController &operator=(DefaultOdomChassisController &&other) = delete;
 
   /**
    * Drives the robot straight to a point in the odom frame.
    *
-   * @param ix x coordinate
-   * @param iy y coordinate
-   * @param ibackwards whether to drive to the target point backwards
-   * @param ioffset offset from target point in the direction pointing towards the robot
+   * @param ipoint The target point to navigate to.
+   * @param ibackwards Whether to drive to the target point backwards.
+   * @param ioffset An offset from the target point in the direction pointing towards the robot. The
+   * robot will stop this far away from the target point.
    */
-  void driveToPoint(const QLength &ix,
-                    const QLength &iy,
+  void driveToPoint(const Point &ipoint,
                     bool ibackwards = false,
                     const QLength &ioffset = 0_mm) override;
+
+  /**
+   * Turns the robot to face a point in the odom frame.
+   *
+   * @param ipoint The target point to turn to face.
+   */
+  void turnToPoint(const Point &ipoint) override;
 
   /**
    * @return The internal ChassisController.

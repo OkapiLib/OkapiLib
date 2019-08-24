@@ -10,12 +10,14 @@
 namespace okapi {
 OdomChassisController::OdomChassisController(const TimeUtil &itimeUtil,
                                              std::unique_ptr<Odometry> iodometry,
+                                             const StateMode &imode,
                                              const QLength &imoveThreshold,
                                              const QAngle &iturnThreshold)
   : timeUtil(itimeUtil),
     moveThreshold(imoveThreshold),
     turnThreshold(iturnThreshold),
-    odom(std::move(iodometry)) {
+    odom(std::move(iodometry)),
+    defaultStateMode(imode) {
 }
 
 OdomChassisController::~OdomChassisController() {
@@ -23,12 +25,16 @@ OdomChassisController::~OdomChassisController() {
   delete odomTask;
 }
 
-OdomState OdomChassisController::getState(const StateMode &imode) const {
-  return odom->getState(imode);
+OdomState OdomChassisController::getState() const {
+  return odom->getState(defaultStateMode);
 }
 
-void OdomChassisController::setState(const OdomState &istate, const StateMode &imode) {
-  odom->setState(istate, imode);
+void OdomChassisController::setState(const OdomState &istate) {
+  odom->setState(istate, defaultStateMode);
+}
+
+void OdomChassisController::setDefaultStateMode(const StateMode &imode) {
+  defaultStateMode = imode;
 }
 
 void OdomChassisController::setMoveThreshold(const QLength &imoveThreshold) {

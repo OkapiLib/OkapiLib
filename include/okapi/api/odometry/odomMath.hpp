@@ -7,7 +7,8 @@
  */
 #pragma once
 
-#include "okapi/api/odometry/odometry.hpp"
+#include "okapi/api/odometry/odomState.hpp"
+#include "okapi/api/odometry/point.hpp"
 #include "okapi/api/util/logging.hpp"
 #include <tuple>
 
@@ -15,40 +16,66 @@ namespace okapi {
 class OdomMath {
   public:
   /**
-   * Computes the distance from the given Odometry state to the given point.
+   * Computes the distance from the given Odometry state to the given point. The point and the
+   * OdomState must be in `StateMode::FRAME_TRANSFORMATION`.
    *
-   * @param ix x coordinate
-   * @param iy y coordinate
-   * @param istate odometry state
-   * @return distance between the points
+   * @param ipoint The point.
+   * @param istate The Odometry state.
+   * @return The distance between the Odometry state and the point.
    */
-  static QLength computeDistanceToPoint(QLength ix, QLength iy, const OdomState &istate);
+  static QLength computeDistanceToPoint(const Point &ipoint, const OdomState &istate);
 
   /**
-   * Computes the angle from the given Odometry state to the given point.
+   * Computes the angle from the given Odometry state to the given point. The point and the
+   * OdomState must be in `StateMode::FRAME_TRANSFORMATION`.
    *
-   * @param ix x coordinate
-   * @param iy y coordinate
-   * @param istate odometry state
-   * @return angle to the point
+   * @param ipoint The point.
+   * @param istate The Odometry state.
+   * @return The angle between the Odometry state and the point.
    */
-  static QAngle computeAngleToPoint(QLength ix, QLength iy, const OdomState &istate);
+  static QAngle computeAngleToPoint(const Point &ipoint, const OdomState &istate);
 
   /**
-   * Computes the distance and angle from the given Odometry state to the given point.
+   * Computes the distance and angle from the given Odometry state to the given point. The point and
+   * the OdomState must be in `StateMode::FRAME_TRANSFORMATION`.
    *
-   * @param ix x coordinate
-   * @param iy y coordinate
-   * @param istate odometry state
-   * @return distance and angle to the point
+   * @param ipoint The point.
+   * @param istate The Odometry state.
+   * @return The distance and angle between the Odometry state and the point.
    */
-  static std::tuple<QLength, QAngle>
-  computeDistanceAndAngleToPoint(QLength ix, QLength iy, const OdomState &istate);
+  static std::pair<QLength, QAngle> computeDistanceAndAngleToPoint(const Point &ipoint,
+                                                                   const OdomState &istate);
 
   private:
   OdomMath();
   ~OdomMath();
 
-  Logger *logger;
+  /**
+   * Computes the x and y diffs in meters between the points.
+   *
+   * @param ipoint The point.
+   * @param istate The Odometry state.
+   * @return The diffs in the order `{xDiff, yDiff}`.
+   */
+  static std::pair<double, double> computeDiffs(const Point &ipoint, const OdomState &istate);
+
+  /**
+   * Computes the distance between the points.
+   *
+   * @param xDiff The x-axis diff in meters.
+   * @param yDiff The y-axis diff in meters.
+   * @return The cartesian distance in meters.
+   */
+  static double computeDistance(double xDiff, double yDiff);
+
+  /**
+   * Compites the angle between the points.
+   *
+   * @param xDiff The x-axis diff in meters.
+   * @param yDiff The y-axis diff in meters.
+   * @param theta The current robot's theta in radians.
+   * @return The angle in radians.
+   */
+  static double computeAngle(double xDiff, double yDiff, double theta);
 };
 } // namespace okapi
