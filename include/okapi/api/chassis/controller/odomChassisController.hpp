@@ -19,6 +19,7 @@ class OdomChassisController : public ChassisController {
   public:
   /**
    * Odometry based chassis controller. Starts task at the default for odometry when constructed.
+   * The default StateMode is `StateMode::FRAME_TRANSFORMATION`.
    *
    * Moves the robot around in the odom frame. Instead of telling the robot to drive forward or
    * turn some amount, you instead tell it to drive to a specific point on the field or turn to
@@ -26,13 +27,16 @@ class OdomChassisController : public ChassisController {
    *
    * @param itimeUtil The TimeUtil.
    * @param iparams odometry parameters for the internal odometry math
+   * @param imode The new default StateMode used to interpret target points and query the Odometry
+   * state.
    * @param imoveThreshold minimum length movement (smaller movements will be skipped)
    * @param iturnThreshold minimum angle turn (smaller turns will be skipped)
    */
   OdomChassisController(const TimeUtil &itimeUtil,
                         std::unique_ptr<Odometry> iodometry,
-                        const QLength &imoveThreshold = 10_mm,
-                        const QAngle &iturnThreshold = 1_deg);
+                        const StateMode &imode = StateMode::FRAME_TRANSFORMATION,
+                        const QLength &imoveThreshold = 0_mm,
+                        const QAngle &iturnThreshold = 0_deg);
 
   ~OdomChassisController() override;
 
@@ -45,24 +49,19 @@ class OdomChassisController : public ChassisController {
    * Drives the robot straight to a point in the odom frame.
    *
    * @param ipoint The target point to navigate to.
-   * @param imode The mode to read the target point in.
    * @param ibackwards Whether to drive to the target point backwards.
    * @param ioffset An offset from the target point in the direction pointing towards the robot. The
    * robot will stop this far away from the target point.
    */
-  virtual void driveToPoint(const Point &ipoint,
-                            const StateMode &imode = StateMode::FRAME_TRANSFORMATION,
-                            bool ibackwards = false,
-                            const QLength &ioffset = 0_mm) = 0;
+  virtual void
+  driveToPoint(const Point &ipoint, bool ibackwards = false, const QLength &ioffset = 0_mm) = 0;
 
   /**
    * Turns the robot to face a point in the odom frame.
    *
    * @param ipoint The target point to turn to face.
-   * @param imode The mode to read the target point in.
    */
-  virtual void turnToPoint(const Point &ipoint,
-                           const StateMode &imode = StateMode::FRAME_TRANSFORMATION) = 0;
+  virtual void turnToPoint(const Point &ipoint) = 0;
 
   /**
    * Turns the robot to face an angle in the odom frame.
@@ -72,21 +71,26 @@ class OdomChassisController : public ChassisController {
   virtual void turnToAngle(const QAngle &iangle) = 0;
 
   /**
-   * Returns the current state.
-   *
-   * @param imode The mode to return the state in.
-   * @return The current state in the given format.
+   * @return The current state.
    */
-  virtual OdomState getState(const StateMode &imode = StateMode::FRAME_TRANSFORMATION) const;
+  virtual OdomState getState() const;
 
   /**
-   * Set a new state to be the current state.
+   * Set a new state to be the current state. The default StateMode is
+   * `StateMode::FRAME_TRANSFORMATION`.
    *
    * @param istate The new state in the given format.
    * @param imode The mode to treat the input state as.
    */
-  virtual void setState(const OdomState &istate,
-                        const StateMode &imode = StateMode::FRAME_TRANSFORMATION);
+  virtual void setState(const OdomState &istate);
+
+  /**
+   * Sets a default StateMode that will be used to interpret target points and query the Odometry
+   * state.
+   *
+   * @param imode The new default StateMode.
+   */
+  void setDefaultStateMode(const StateMode &imode);
 
   /**
    * Set a new move threshold. Any requested movements smaller than this threshold will be skipped.
@@ -131,6 +135,7 @@ class OdomChassisController : public ChassisController {
   std::unique_ptr<Odometry> odom;
   CrossplatformThread *odomTask{nullptr};
   std::atomic_bool dtorCalled{false};
+  StateMode defaultStateMode{StateMode::FRAME_TRANSFORMATION};
 
   static void trampoline(void *context);
   void loop();

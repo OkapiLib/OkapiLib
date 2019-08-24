@@ -14,20 +14,20 @@ DefaultOdomChassisController::DefaultOdomChassisController(
   const TimeUtil &itimeUtil,
   std::unique_ptr<Odometry> iodometry,
   std::shared_ptr<ChassisController> icontroller,
+  const StateMode &imode,
   const QLength imoveThreshold,
   const QAngle iturnThreshold,
   std::shared_ptr<Logger> ilogger)
-  : OdomChassisController(itimeUtil, std::move(iodometry), imoveThreshold, iturnThreshold),
+  : OdomChassisController(itimeUtil, std::move(iodometry), imode, imoveThreshold, iturnThreshold),
     logger(std::move(ilogger)),
     controller(std::move(icontroller)) {
 }
 
 void DefaultOdomChassisController::driveToPoint(const Point &ipoint,
-                                                const StateMode &imode,
                                                 const bool ibackwards,
                                                 const QLength &ioffset) {
   auto [length, angle] = OdomMath::computeDistanceAndAngleToPoint(
-    ipoint, odom->getState(StateMode::FRAME_TRANSFORMATION), imode);
+    ipoint, odom->getState(defaultStateMode), defaultStateMode);
 
   if (ibackwards) {
     length *= -1;
@@ -51,9 +51,9 @@ void DefaultOdomChassisController::driveToPoint(const Point &ipoint,
   }
 }
 
-void DefaultOdomChassisController::turnToPoint(const Point &ipoint, const StateMode &imode) {
+void DefaultOdomChassisController::turnToPoint(const Point &ipoint) {
   const auto angle =
-    OdomMath::computeAngleToPoint(ipoint, odom->getState(StateMode::FRAME_TRANSFORMATION), imode);
+    OdomMath::computeAngleToPoint(ipoint, odom->getState(defaultStateMode), defaultStateMode);
 
   LOG_INFO("DefaultOdomChassisController: Computed angle of " +
            std::to_string(angle.convert(degree)) + " degrees");
@@ -66,7 +66,7 @@ void DefaultOdomChassisController::turnToPoint(const Point &ipoint, const StateM
 }
 
 void DefaultOdomChassisController::turnToAngle(const QAngle &iangle) {
-  const auto angle = iangle - odom->getState(StateMode::FRAME_TRANSFORMATION).theta;
+  const auto angle = iangle - odom->getState(defaultStateMode).theta;
 
   LOG_INFO("DefaultOdomChassisController: Computed angle of " +
            std::to_string(angle.convert(degree)) + " degrees");

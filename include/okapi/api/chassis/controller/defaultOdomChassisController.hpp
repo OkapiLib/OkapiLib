@@ -29,6 +29,8 @@ class DefaultOdomChassisController : public OdomChassisController {
    * @param iodometry The odometry.
    * @param ileftController left side controller
    * @param irightController right side controller
+   * @param imode The new default StateMode used to interpret target points and query the Odometry
+   * state.
    * @param igearset The motor gearset.
    * @param iscales The chassis scales.
    * @param imoveThreshold minimum length movement (smaller movements will be skipped)
@@ -38,8 +40,9 @@ class DefaultOdomChassisController : public OdomChassisController {
   DefaultOdomChassisController(const TimeUtil &itimeUtil,
                                std::unique_ptr<Odometry> iodometry,
                                std::shared_ptr<ChassisController> icontroller,
-                               QLength imoveThreshold = 10_mm,
-                               QAngle iturnThreshold = 1_deg,
+                               const StateMode &imode = StateMode::FRAME_TRANSFORMATION,
+                               QLength imoveThreshold = 0_mm,
+                               QAngle iturnThreshold = 0_deg,
                                std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
   DefaultOdomChassisController(const DefaultOdomChassisController &) = delete;
@@ -51,13 +54,11 @@ class DefaultOdomChassisController : public OdomChassisController {
    * Drives the robot straight to a point in the odom frame.
    *
    * @param ipoint The target point to navigate to.
-   * @param imode The mode to read the target point in.
    * @param ibackwards Whether to drive to the target point backwards.
    * @param ioffset An offset from the target point in the direction pointing towards the robot. The
    * robot will stop this far away from the target point.
    */
   void driveToPoint(const Point &ipoint,
-                    const StateMode &imode = StateMode::FRAME_TRANSFORMATION,
                     bool ibackwards = false,
                     const QLength &ioffset = 0_mm) override;
 
@@ -65,10 +66,8 @@ class DefaultOdomChassisController : public OdomChassisController {
    * Turns the robot to face a point in the odom frame.
    *
    * @param ipoint The target point to turn to face.
-   * @param imode The mode to read the target point in.
    */
-  void turnToPoint(const Point &ipoint,
-                   const StateMode &imode = StateMode::FRAME_TRANSFORMATION) override;
+  void turnToPoint(const Point &ipoint) override;
 
   /**
    * Turns the robot to face an angle in the odom frame.
