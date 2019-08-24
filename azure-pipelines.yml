@@ -28,7 +28,7 @@ stages:
       - script: cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
         workingDirectory: cmake-build-debug
         env: {
-          CC: gcc-7
+          CC: gcc-7,
           CXX: g++-7
         }
       - script: cmake --build . --target OkapiLibV5 -- -j 2
