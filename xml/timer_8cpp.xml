@@ -5,55 +5,55 @@
     <includes refid="timer_8hpp" local="yes">okapi/impl/util/timer.hpp</includes>
     <includes local="yes">api.h</includes>
     <incdepgraph>
-      <node id="6309">
+      <node id="6311">
         <label>okapi/api/util/abstractTimer.hpp</label>
         <link refid="abstractTimer_8hpp"/>
-        <childnode refid="6310" relation="include">
+        <childnode refid="6312" relation="include">
         </childnode>
-        <childnode refid="6314" relation="include">
-        </childnode>
-      </node>
-      <node id="6310">
-        <label>okapi/api/units/QFrequency.hpp</label>
-        <link refid="QFrequency_8hpp"/>
-        <childnode refid="6311" relation="include">
+        <childnode refid="6316" relation="include">
         </childnode>
       </node>
       <node id="6312">
-        <label>cmath</label>
-      </node>
-      <node id="6314">
-        <label>okapi/api/units/QTime.hpp</label>
-        <link refid="QTime_8hpp"/>
-        <childnode refid="6311" relation="include">
+        <label>okapi/api/units/QFrequency.hpp</label>
+        <link refid="QFrequency_8hpp"/>
+        <childnode refid="6313" relation="include">
         </childnode>
       </node>
-      <node id="6315">
+      <node id="6314">
+        <label>cmath</label>
+      </node>
+      <node id="6316">
+        <label>okapi/api/units/QTime.hpp</label>
+        <link refid="QTime_8hpp"/>
+        <childnode refid="6313" relation="include">
+        </childnode>
+      </node>
+      <node id="6317">
         <label>api.h</label>
       </node>
-      <node id="6313">
+      <node id="6315">
         <label>ratio</label>
       </node>
-      <node id="6307">
+      <node id="6309">
         <label>src/impl/util/timer.cpp</label>
         <link refid="timer_8cpp"/>
-        <childnode refid="6308" relation="include">
+        <childnode refid="6310" relation="include">
+        </childnode>
+        <childnode refid="6317" relation="include">
+        </childnode>
+      </node>
+      <node id="6313">
+        <label>okapi/api/units/RQuantity.hpp</label>
+        <link refid="RQuantity_8hpp"/>
+        <childnode refid="6314" relation="include">
         </childnode>
         <childnode refid="6315" relation="include">
         </childnode>
       </node>
-      <node id="6311">
-        <label>okapi/api/units/RQuantity.hpp</label>
-        <link refid="RQuantity_8hpp"/>
-        <childnode refid="6312" relation="include">
-        </childnode>
-        <childnode refid="6313" relation="include">
-        </childnode>
-      </node>
-      <node id="6308">
+      <node id="6310">
         <label>okapi/impl/util/timer.hpp</label>
         <link refid="timer_8hpp"/>
-        <childnode refid="6309" relation="include">
+        <childnode refid="6311" relation="include">
         </childnode>
       </node>
     </incdepgraph>

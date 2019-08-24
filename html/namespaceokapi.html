@@ -1191,21 +1191,21 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">base</td>
-                  <td>base</td>
+                  <td>The base.</td>
                 </tr>
                 <tr>
                   <td>expo</td>
-                  <td>exponent</td>
+                  <td>The exponent.</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>base^expo</td>
+                  <td><code>base^expo</code>.</td>
                 </tr>
               </tfoot>
             </table>
-<p>Integer power function. Computes base^expo.</p>
+<p>Integer power function. Computes <code>base^expo</code>.</p>
           </div></section>
           <section class="m-doc-details" id="a9addecfa5e4788ced786601de724be03"><div>
             <h3>
@@ -1221,25 +1221,25 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">value</td>
-                  <td>number to bound</td>
+                  <td>The number to bound.</td>
                 </tr>
                 <tr>
                   <td>min</td>
-                  <td>lower bound of range</td>
+                  <td>The lower bound of range.</td>
                 </tr>
                 <tr>
                   <td>max</td>
-                  <td>upper bound of range</td>
+                  <td>The upper bound of range.</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>the remapped value</td>
+                  <td>The remapped value.</td>
                 </tr>
               </tfoot>
             </table>
-<p>Cuts out a range from the number. The new range of the input number will be (-inf, min]U[max, +inf). If value sits equally between min and max, max will be returned.</p>
+<p>Cuts out a range from the number. The new range of the input number will be <code>(-inf, min]U[max, +inf)</code>. If value sits equally between <code>min</code> and <code>max</code>, <code>max</code> will be returned.</p>
           </div></section>
           <section class="m-doc-details" id="a3e4d3d6ba218365ec624a70840134039"><div>
             <h3>
@@ -1255,25 +1255,25 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">value</td>
-                  <td>number to deadband</td>
+                  <td>The number to deadband.</td>
                 </tr>
                 <tr>
                   <td>min</td>
-                  <td>lower bound of deadband</td>
+                  <td>The lower bound of deadband.</td>
                 </tr>
                 <tr>
                   <td>max</td>
-                  <td>upper bound of deadband</td>
+                  <td>The upper bound of deadband.</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>value, or 0 if it is in the range [min, max]</td>
+                  <td>The input value or <code>0</code> if it is in the range <code>[min, max]</code>.</td>
                 </tr>
               </tfoot>
             </table>
-<p>Deadbands a range of the number. Returns the input value, or 0 if it is in the range [min, max].</p>
+<p>Deadbands a range of the number. Returns the input value, or <code>0</code> if it is in the range <code>[min, max]</code>.</p>
           </div></section>
           <section class="m-doc-details" id="aa3f2ac5be19e6749d986489c69968605"><div>
             <h3>
@@ -1291,33 +1291,33 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">value</td>
-                  <td>value in the old range</td>
+                  <td>The value in the old range.</td>
                 </tr>
                 <tr>
                   <td>oldMin</td>
-                  <td>old range lower bound</td>
+                  <td>The old range lower bound.</td>
                 </tr>
                 <tr>
                   <td>oldMax</td>
-                  <td>old range upper bound</td>
+                  <td>The old range upper bound.</td>
                 </tr>
                 <tr>
                   <td>newMin</td>
-                  <td>new range lower bound</td>
+                  <td>The new range lower bound.</td>
                 </tr>
                 <tr>
                   <td>newMax</td>
-                  <td>new range upper bound</td>
+                  <td>The new range upper bound.</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>remapped value in the new range [newMin, newMax]</td>
+                  <td>The input value in the new range <code>[newMin, newMax]</code>.</td>
                 </tr>
               </tfoot>
             </table>
-<p>Remap a value in the range [oldMin, oldMax] to the range [newMin, newMax].</p>
+<p>Remap a value in the range <code>[oldMin, oldMax]</code> to the range <code>[newMin, newMax]</code>.</p>
           </div></section>
           <section class="m-doc-details" id="a458b2538f443eedc4e601b2f8a9acf03"><div>
             <h3>
@@ -1327,6 +1327,23 @@
               </div>
               <span class="m-doc-wrap-bumper">auto okapi::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a458b2538f443eedc4e601b2f8a9acf03" class="m-doc-self">toUnderlyingType</a>(</span><span class="m-doc-wrap">const E e) <span class="m-label m-primary">constexpr</span> <span class="m-label m-success">noexcept</span></span></span>
             </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">e</td>
+                  <td>The enum value.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>The corresponding value.</td>
+                </tr>
+              </tfoot>
+            </table>
 <p>Converts an enum to its value type.</p>
           </div></section>
           <section class="m-doc-details" id="a8b21920388594f5d7da116069741deb4"><div>
@@ -1334,7 +1351,24 @@
               <span class="m-doc-wrap-bumper">auto okapi::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8b21920388594f5d7da116069741deb4" class="m-doc-self">boolToSign</a>(</span><span class="m-doc-wrap">const bool b) <span class="m-label m-primary">constexpr</span> <span class="m-label m-success">noexcept</span></span></span>
               <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="mathUtil_8hpp.html">&lt;include/okapi/api/util/mathUtil.hpp&gt;</a></div>
             </h3>
-<p>Converts a bool to a sign. True corresponds to 1 and false corresponds to -1.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">b</td>
+                  <td>The bool.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>True corresponds to <code>1</code> and false corresponds to <code>-1</code>.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Converts a bool to a sign.</p>
           </div></section>
           <section class="m-doc-details" id="a32aac326b5e0f0ba82bb5dea50852504"><div>
             <h3>
@@ -1349,21 +1383,21 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">lhs</td>
-                  <td>the left-hand side</td>
+                  <td>The left-hand side.</td>
                 </tr>
                 <tr>
                   <td>rhs</td>
-                  <td>the right-hand side</td>
+                  <td>The right-hand side.</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>lhs mod rhs</td>
+                  <td><code>lhs</code> mod <code>rhs</code>.</td>
                 </tr>
               </tfoot>
             </table>
-<p>Computes lhs mod rhs using Euclidean division. C&#x27;s % symbol computes the remainder, not modulus.</p>
+<p>Computes <code>lhs mod rhs</code> using Euclidean division. C&#x27;s <code>%</code> symbol computes the remainder, not modulus.</p>
           </div></section>
           <section class="m-doc-details" id="a771e911293fb57115a4085904bd83663"><div>
             <h3>
@@ -1383,7 +1417,7 @@
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>The TPR.</td>
+                  <td>The corresponding TPR.</td>
                 </tr>
               </tfoot>
             </table>

@@ -9,54 +9,54 @@
     <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
     <includedby refid="adiUltrasonic_8cpp" local="yes">src/impl/device/adiUltrasonic.cpp</includedby>
     <incdepgraph>
-      <node id="4033">
+      <node id="4035">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="4032">
+      <node id="4034">
         <label>api.h</label>
       </node>
-      <node id="4034">
+      <node id="4036">
         <label>okapi/api/filter/passthroughFilter.hpp</label>
         <link refid="passthroughFilter_8hpp"/>
-        <childnode refid="4035" relation="include">
+        <childnode refid="4037" relation="include">
         </childnode>
       </node>
-      <node id="4035">
+      <node id="4037">
         <label>okapi/api/filter/filter.hpp</label>
         <link refid="filter_8hpp"/>
       </node>
-      <node id="4031">
+      <node id="4033">
         <label>include/okapi/impl/device/adiUltrasonic.hpp</label>
         <link refid="adiUltrasonic_8hpp"/>
-        <childnode refid="4032" relation="include">
-        </childnode>
-        <childnode refid="4033" relation="include">
-        </childnode>
         <childnode refid="4034" relation="include">
+        </childnode>
+        <childnode refid="4035" relation="include">
         </childnode>
         <childnode refid="4036" relation="include">
         </childnode>
+        <childnode refid="4038" relation="include">
+        </childnode>
       </node>
-      <node id="4036">
+      <node id="4038">
         <label>memory</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4039">
+      <node id="4041">
         <label>src/impl/device/adiUltrasonic.cpp</label>
         <link refid="adiUltrasonic_8cpp"/>
       </node>
-      <node id="4038">
+      <node id="4040">
         <label>include/okapi/api.hpp</label>
         <link refid="api_8hpp"/>
       </node>
-      <node id="4037">
+      <node id="4039">
         <label>include/okapi/impl/device/adiUltrasonic.hpp</label>
         <link refid="adiUltrasonic_8hpp"/>
-        <childnode refid="4038" relation="include">
+        <childnode refid="4040" relation="include">
         </childnode>
-        <childnode refid="4039" relation="include">
+        <childnode refid="4041" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

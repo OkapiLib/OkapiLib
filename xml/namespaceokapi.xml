@@ -1967,13 +1967,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Integer power function. Computes base^expo.</para>
+<para>Integer power function. Computes <computeroutput>base^expo</computeroutput>.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>base</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>base </para>
+<para>The base. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -1981,11 +1981,11 @@
 <parametername>expo</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>exponent </para>
+<para>The exponent. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>base^expo </para>
+<simplesect kind="return"><para><computeroutput>base^expo</computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -2013,13 +2013,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Cuts out a range from the number. The new range of the input number will be (-inf, min]U[max, +inf). If value sits equally between min and max, max will be returned.</para>
+<para>Cuts out a range from the number. The new range of the input number will be <computeroutput>(-inf, min]U[max, +inf)</computeroutput>. If value sits equally between <computeroutput>min</computeroutput> and <computeroutput>max</computeroutput>, <computeroutput>max</computeroutput> will be returned.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>value</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>number to bound </para>
+<para>The number to bound. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -2027,7 +2027,7 @@
 <parametername>min</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>lower bound of range </para>
+<para>The lower bound of range. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -2035,11 +2035,11 @@
 <parametername>max</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>upper bound of range </para>
+<para>The upper bound of range. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>the remapped value </para>
+<simplesect kind="return"><para>The remapped value. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -2067,13 +2067,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Deadbands a range of the number. Returns the input value, or 0 if it is in the range [min, max].</para>
+<para>Deadbands a range of the number. Returns the input value, or <computeroutput>0</computeroutput> if it is in the range <computeroutput>[min, max]</computeroutput>.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>value</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>number to deadband </para>
+<para>The number to deadband. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -2081,7 +2081,7 @@
 <parametername>min</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>lower bound of deadband </para>
+<para>The lower bound of deadband. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -2089,17 +2089,17 @@
 <parametername>max</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>upper bound of deadband </para>
+<para>The upper bound of deadband. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>value, or 0 if it is in the range [min, max] </para>
+<simplesect kind="return"><para>The input value or <computeroutput>0</computeroutput> if it is in the range <computeroutput>[min, max]</computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/mathUtil.hpp" line="85" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="85" bodyend="87"/>
+        <location file="include/okapi/api/util/mathUtil.hpp" line="86" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="86" bodyend="88"/>
       </memberdef>
       <memberdef kind="function" id="namespaceokapi_1aa3f2ac5be19e6749d986489c69968605" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr double</type>
@@ -2129,13 +2129,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Remap a value in the range [oldMin, oldMax] to the range [newMin, newMax].</para>
+<para>Remap a value in the range <computeroutput>[oldMin, oldMax]</computeroutput> to the range <computeroutput>[newMin, newMax]</computeroutput>.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>value</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>value in the old range </para>
+<para>The value in the old range. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -2143,7 +2143,7 @@
 <parametername>oldMin</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>old range lower bound </para>
+<para>The old range lower bound. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -2151,7 +2151,7 @@
 <parametername>oldMax</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>old range upper bound </para>
+<para>The old range upper bound. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -2159,7 +2159,7 @@
 <parametername>newMin</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>new range lower bound </para>
+<para>The new range lower bound. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -2167,17 +2167,17 @@
 <parametername>newMax</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>new range upper bound </para>
+<para>The new range upper bound. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>remapped value in the new range [newMin, newMax] </para>
+<simplesect kind="return"><para>The input value in the new range <computeroutput>[newMin, newMax]</computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/mathUtil.hpp" line="99" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="99" bodyend="105"/>
+        <location file="include/okapi/api/util/mathUtil.hpp" line="100" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="100" bodyend="106"/>
       </memberdef>
       <memberdef kind="function" id="namespaceokapi_1a458b2538f443eedc4e601b2f8a9acf03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -2196,11 +2196,23 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Converts an enum to its value type. </para>
+<para>Converts an enum to its value type.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The enum value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The corresponding value. </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/mathUtil.hpp" line="110" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="110" bodyend="112"/>
+        <location file="include/okapi/api/util/mathUtil.hpp" line="114" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="114" bodyend="116"/>
       </memberdef>
       <memberdef kind="function" id="namespaceokapi_1a8b21920388594f5d7da116069741deb4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr auto</type>
@@ -2214,11 +2226,23 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Converts a bool to a sign. True corresponds to 1 and false corresponds to -1. </para>
+<para>Converts a bool to a sign.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bool. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True corresponds to <computeroutput>1</computeroutput> and false corresponds to <computeroutput>-1</computeroutput>. </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/mathUtil.hpp" line="117" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="117" bodyend="119"/>
+        <location file="include/okapi/api/util/mathUtil.hpp" line="124" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="124" bodyend="126"/>
       </memberdef>
       <memberdef kind="function" id="namespaceokapi_1a32aac326b5e0f0ba82bb5dea50852504" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr long</type>
@@ -2236,13 +2260,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Computes lhs mod rhs using Euclidean division. C&apos;s % symbol computes the remainder, not modulus.</para>
+<para>Computes <computeroutput>lhs mod rhs</computeroutput> using Euclidean division. C&apos;s <computeroutput>%</computeroutput> symbol computes the remainder, not modulus.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>lhs</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the left-hand side </para>
+<para>The left-hand side. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -2250,17 +2274,17 @@
 <parametername>rhs</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the right-hand side </para>
+<para>The right-hand side. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>lhs mod rhs </para>
+<simplesect kind="return"><para><computeroutput>lhs</computeroutput> mod <computeroutput>rhs</computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/mathUtil.hpp" line="128" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="128" bodyend="130"/>
+        <location file="include/okapi/api/util/mathUtil.hpp" line="136" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="136" bodyend="138"/>
       </memberdef>
       <memberdef kind="function" id="namespaceokapi_1a771e911293fb57115a4085904bd83663" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr std::int32_t</type>
@@ -2284,13 +2308,13 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The TPR. </para>
+<simplesect kind="return"><para>The corresponding TPR. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/mathUtil.hpp" line="138" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="138" bodyend="149"/>
+        <location file="include/okapi/api/util/mathUtil.hpp" line="146" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="146" bodyend="157"/>
       </memberdef>
       <memberdef kind="function" id="namespaceokapi_1a9a07f99442516f34af3c1f22e26f75b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr std::int8_t</type>
@@ -2325,7 +2349,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/mathUtil.hpp" line="164" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="164" bodyend="172"/>
+        <location file="include/okapi/api/util/mathUtil.hpp" line="172" column="1" bodyfile="include/okapi/api/util/mathUtil.hpp" bodystart="172" bodyend="180"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

@@ -554,7 +554,17 @@ C\+A\+R\+T\+E\+S\+I\+AN&\\
 \subsubsection{\texorpdfstring{boolToSign()}{boolToSign()}}
 {\footnotesize\ttfamily constexpr auto okapi\+::bool\+To\+Sign (\begin{DoxyParamCaption}\item[{const bool}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
-Converts a bool to a sign. True corresponds to 1 and false corresponds to -\/1. \mbox{\Hypertarget{namespaceokapi_a06879c25af60ece2ce818b93b6d8b681}\label{namespaceokapi_a06879c25af60ece2ce818b93b6d8b681}} 
+Converts a bool to a sign.
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & The bool. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True corresponds to {\ttfamily 1} and false corresponds to {\ttfamily -\/1}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceokapi_a06879c25af60ece2ce818b93b6d8b681}\label{namespaceokapi_a06879c25af60ece2ce818b93b6d8b681}} 
 \index{okapi@{okapi}!convertHertzToRadPerSec@{convertHertzToRadPerSec}}
 \index{convertHertzToRadPerSec@{convertHertzToRadPerSec}!okapi@{okapi}}
 \subsubsection{\texorpdfstring{convertHertzToRadPerSec()}{convertHertzToRadPerSec()}}
@@ -566,19 +576,19 @@ Converts a bool to a sign. True corresponds to 1 and false corresponds to -\/1. 
 \subsubsection{\texorpdfstring{cutRange()}{cutRange()}}
 {\footnotesize\ttfamily constexpr double okapi\+::cut\+Range (\begin{DoxyParamCaption}\item[{const double}]{value,  }\item[{const double}]{min,  }\item[{const double}]{max }\end{DoxyParamCaption})}
 
-Cuts out a range from the number. The new range of the input number will be (-\/inf, min\mbox{]}U\mbox{[}max, +inf). If value sits equally between min and max, max will be returned.
+Cuts out a range from the number. The new range of the input number will be {\ttfamily (-\/inf, min\mbox{]}U\mbox{[}max, +inf)}. If value sits equally between {\ttfamily min} and {\ttfamily max}, {\ttfamily max} will be returned.
 
 
 \begin{DoxyParams}{Parameters}
-{\em value} & number to bound \\
+{\em value} & The number to bound. \\
 \hline
-{\em min} & lower bound of range \\
+{\em min} & The lower bound of range. \\
 \hline
-{\em max} & upper bound of range \\
+{\em max} & The upper bound of range. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-the remapped value 
+The remapped value. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespaceokapi_a3e4d3d6ba218365ec624a70840134039}\label{namespaceokapi_a3e4d3d6ba218365ec624a70840134039}} 
 \index{okapi@{okapi}!deadband@{deadband}}
@@ -586,19 +596,19 @@ the remapped value
 \subsubsection{\texorpdfstring{deadband()}{deadband()}}
 {\footnotesize\ttfamily constexpr double okapi\+::deadband (\begin{DoxyParamCaption}\item[{const double}]{value,  }\item[{const double}]{min,  }\item[{const double}]{max }\end{DoxyParamCaption})}
 
-Deadbands a range of the number. Returns the input value, or 0 if it is in the range \mbox{[}min, max\mbox{]}.
+Deadbands a range of the number. Returns the input value, or {\ttfamily 0} if it is in the range {\ttfamily \mbox{[}min, max\mbox{]}}.
 
 
 \begin{DoxyParams}{Parameters}
-{\em value} & number to deadband \\
+{\em value} & The number to deadband. \\
 \hline
-{\em min} & lower bound of deadband \\
+{\em min} & The lower bound of deadband. \\
 \hline
-{\em max} & upper bound of deadband \\
+{\em max} & The upper bound of deadband. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-value, or 0 if it is in the range \mbox{[}min, max\mbox{]} 
+The input value or {\ttfamily 0} if it is in the range {\ttfamily \mbox{[}min, max\mbox{]}}. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespaceokapi_a771e911293fb57115a4085904bd83663}\label{namespaceokapi_a771e911293fb57115a4085904bd83663}} 
 \index{okapi@{okapi}!gearsetToTPR@{gearsetToTPR}}
@@ -614,7 +624,7 @@ Converts a gearset to its T\+PR.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The T\+PR. 
+The corresponding T\+PR. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespaceokapi_a42f10a655cddac477a7be71e1b296320}\label{namespaceokapi_a42f10a655cddac477a7be71e1b296320}} 
 \index{okapi@{okapi}!Hz@{Hz}}
@@ -628,17 +638,17 @@ The T\+PR.
 \subsubsection{\texorpdfstring{ipow()}{ipow()}}
 {\footnotesize\ttfamily constexpr double okapi\+::ipow (\begin{DoxyParamCaption}\item[{const double}]{base,  }\item[{const int}]{expo }\end{DoxyParamCaption})}
 
-Integer power function. Computes base$^\wedge$expo.
+Integer power function. Computes {\ttfamily base$^\wedge$expo}.
 
 
 \begin{DoxyParams}{Parameters}
-{\em base} & base \\
+{\em base} & The base. \\
 \hline
-{\em expo} & exponent \\
+{\em expo} & The exponent. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-base$^\wedge$expo 
+{\ttfamily base$^\wedge$expo}. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespaceokapi_afcc67eb55c70e21f82cbee49aa19d05a}\label{namespaceokapi_afcc67eb55c70e21f82cbee49aa19d05a}} 
 \index{okapi@{okapi}!kg@{kg}}
@@ -658,17 +668,17 @@ base$^\wedge$expo
 \subsubsection{\texorpdfstring{modulus()}{modulus()}}
 {\footnotesize\ttfamily constexpr long okapi\+::modulus (\begin{DoxyParamCaption}\item[{const long}]{lhs,  }\item[{const long}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
-Computes lhs mod rhs using Euclidean division. C\textquotesingle{}s \% symbol computes the remainder, not modulus.
+Computes {\ttfamily lhs mod rhs} using Euclidean division. C\textquotesingle{}s {\ttfamily \%} symbol computes the remainder, not modulus.
 
 
 \begin{DoxyParams}{Parameters}
-{\em lhs} & the left-\/hand side \\
+{\em lhs} & The left-\/hand side. \\
 \hline
-{\em rhs} & the right-\/hand side \\
+{\em rhs} & The right-\/hand side. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-lhs mod rhs 
+{\ttfamily lhs} mod {\ttfamily rhs}. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespaceokapi_a48bcd0bd9113d86c24325eb1003709de}\label{namespaceokapi_a48bcd0bd9113d86c24325eb1003709de}} 
 \index{okapi@{okapi}!operator $\ast$@{operator $\ast$}}
@@ -792,23 +802,23 @@ constexpr bool okapi\+::operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox
 \subsubsection{\texorpdfstring{remapRange()}{remapRange()}}
 {\footnotesize\ttfamily constexpr double okapi\+::remap\+Range (\begin{DoxyParamCaption}\item[{const double}]{value,  }\item[{const double}]{old\+Min,  }\item[{const double}]{old\+Max,  }\item[{const double}]{new\+Min,  }\item[{const double}]{new\+Max }\end{DoxyParamCaption})}
 
-Remap a value in the range \mbox{[}old\+Min, old\+Max\mbox{]} to the range \mbox{[}new\+Min, new\+Max\mbox{]}.
+Remap a value in the range {\ttfamily \mbox{[}old\+Min, old\+Max\mbox{]}} to the range {\ttfamily \mbox{[}new\+Min, new\+Max\mbox{]}}.
 
 
 \begin{DoxyParams}{Parameters}
-{\em value} & value in the old range \\
+{\em value} & The value in the old range. \\
 \hline
-{\em old\+Min} & old range lower bound \\
+{\em old\+Min} & The old range lower bound. \\
 \hline
-{\em old\+Max} & old range upper bound \\
+{\em old\+Max} & The old range upper bound. \\
 \hline
-{\em new\+Min} & new range lower bound \\
+{\em new\+Min} & The new range lower bound. \\
 \hline
-{\em new\+Max} & new range upper bound \\
+{\em new\+Max} & The new range upper bound. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-remapped value in the new range \mbox{[}new\+Min, new\+Max\mbox{]} 
+The input value in the new range {\ttfamily \mbox{[}new\+Min, new\+Max\mbox{]}}. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespaceokapi_ae9ece1daf9cd9f6d3a597cc5c0dc7b40}\label{namespaceokapi_ae9ece1daf9cd9f6d3a597cc5c0dc7b40}} 
 \index{okapi@{okapi}!second@{second}}
@@ -823,7 +833,17 @@ remapped value in the new range \mbox{[}new\+Min, new\+Max\mbox{]}
 {\footnotesize\ttfamily template$<$typename E $>$ \\
 constexpr auto okapi\+::to\+Underlying\+Type (\begin{DoxyParamCaption}\item[{const E}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
-Converts an enum to its value type. \mbox{\Hypertarget{namespaceokapi_a9a07f99442516f34af3c1f22e26f75b8}\label{namespaceokapi_a9a07f99442516f34af3c1f22e26f75b8}} 
+Converts an enum to its value type.
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The enum value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding value. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceokapi_a9a07f99442516f34af3c1f22e26f75b8}\label{namespaceokapi_a9a07f99442516f34af3c1f22e26f75b8}} 
 \index{okapi@{okapi}!transformADIPort@{transformADIPort}}
 \index{transformADIPort@{transformADIPort}!okapi@{okapi}}
 \subsubsection{\texorpdfstring{transformADIPort()}{transformADIPort()}}

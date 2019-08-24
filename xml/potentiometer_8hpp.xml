@@ -7,29 +7,25 @@
     <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
     <includedby refid="potentiometer_8cpp" local="yes">src/impl/device/rotarysensor/potentiometer.cpp</includedby>
     <incdepgraph>
-      <node id="4296">
+      <node id="4298">
         <label>functional</label>
       </node>
-      <node id="4293">
+      <node id="4295">
         <label>cstdint</label>
       </node>
-      <node id="4288">
+      <node id="4290">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="4291">
+      <node id="4293">
         <label>cstdbool</label>
       </node>
-      <node id="4290">
+      <node id="4292">
         <label>cmath</label>
       </node>
-      <node id="4289">
+      <node id="4291">
         <label>okapi/api/coreProsAPI.hpp</label>
         <link refid="coreProsAPI_8hpp"/>
-        <childnode refid="4290" relation="include">
-        </childnode>
-        <childnode refid="4291" relation="include">
-        </childnode>
         <childnode refid="4292" relation="include">
         </childnode>
         <childnode refid="4293" relation="include">
@@ -42,61 +38,65 @@
         </childnode>
         <childnode refid="4297" relation="include">
         </childnode>
-        <childnode refid="4286" relation="include">
-        </childnode>
         <childnode refid="4298" relation="include">
         </childnode>
+        <childnode refid="4299" relation="include">
+        </childnode>
+        <childnode refid="4288" relation="include">
+        </childnode>
+        <childnode refid="4300" relation="include">
+        </childnode>
       </node>
-      <node id="4286">
+      <node id="4288">
         <label>api.h</label>
       </node>
-      <node id="4294">
+      <node id="4296">
         <label>cstdio</label>
       </node>
-      <node id="4297">
+      <node id="4299">
         <label>sstream</label>
       </node>
-      <node id="4287">
+      <node id="4289">
         <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
         <link refid="rotarySensor_8hpp"/>
+        <childnode refid="4290" relation="include">
+        </childnode>
+        <childnode refid="4291" relation="include">
+        </childnode>
+      </node>
+      <node id="4297">
+        <label>cstdlib</label>
+      </node>
+      <node id="4294">
+        <label>cstddef</label>
+      </node>
+      <node id="4287">
+        <label>include/okapi/impl/device/rotarysensor/potentiometer.hpp</label>
+        <link refid="potentiometer_8hpp"/>
         <childnode refid="4288" relation="include">
         </childnode>
         <childnode refid="4289" relation="include">
         </childnode>
       </node>
-      <node id="4295">
-        <label>cstdlib</label>
-      </node>
-      <node id="4292">
-        <label>cstddef</label>
-      </node>
-      <node id="4285">
-        <label>include/okapi/impl/device/rotarysensor/potentiometer.hpp</label>
-        <link refid="potentiometer_8hpp"/>
-        <childnode refid="4286" relation="include">
-        </childnode>
-        <childnode refid="4287" relation="include">
-        </childnode>
-      </node>
-      <node id="4298">
+      <node id="4300">
         <label>pros/apix.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4300">
+      <node id="4302">
         <label>include/okapi/api.hpp</label>
         <link refid="api_8hpp"/>
       </node>
-      <node id="4301">
+      <node id="4303">
         <label>src/impl/device/rotarysensor/potentiometer.cpp</label>
         <link refid="potentiometer_8cpp"/>
       </node>
-      <node id="4299">
+      <node id="4301">
         <label>include/okapi/impl/device/rotarysensor/potentiometer.hpp</label>
         <link refid="potentiometer_8hpp"/>
-        <childnode refid="4300" relation="include">
+        <childnode refid="4302" relation="include">
         </childnode>
-        <childnode refid="4301" relation="include">
+        <childnode refid="4303" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

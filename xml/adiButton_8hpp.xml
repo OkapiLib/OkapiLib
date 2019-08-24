@@ -7,49 +7,49 @@
     <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
     <includedby refid="adiButton_8cpp" local="yes">src/impl/device/button/adiButton.cpp</includedby>
     <incdepgraph>
-      <node id="4044">
+      <node id="4046">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="4040">
+      <node id="4042">
         <label>include/okapi/impl/device/button/adiButton.hpp</label>
         <link refid="adiButton_8hpp"/>
-        <childnode refid="4041" relation="include">
+        <childnode refid="4043" relation="include">
         </childnode>
-        <childnode refid="4042" relation="include">
-        </childnode>
-      </node>
-      <node id="4041">
-        <label>api.h</label>
-      </node>
-      <node id="4043">
-        <label>okapi/api/device/button/abstractButton.hpp</label>
-        <link refid="abstractButton_8hpp"/>
         <childnode refid="4044" relation="include">
         </childnode>
       </node>
-      <node id="4042">
+      <node id="4043">
+        <label>api.h</label>
+      </node>
+      <node id="4045">
+        <label>okapi/api/device/button/abstractButton.hpp</label>
+        <link refid="abstractButton_8hpp"/>
+        <childnode refid="4046" relation="include">
+        </childnode>
+      </node>
+      <node id="4044">
         <label>okapi/api/device/button/buttonBase.hpp</label>
         <link refid="buttonBase_8hpp"/>
-        <childnode refid="4043" relation="include">
+        <childnode refid="4045" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4047">
+      <node id="4049">
         <label>src/impl/device/button/adiButton.cpp</label>
         <link refid="adiButton_8cpp"/>
       </node>
-      <node id="4046">
+      <node id="4048">
         <label>include/okapi/api.hpp</label>
         <link refid="api_8hpp"/>
       </node>
-      <node id="4045">
+      <node id="4047">
         <label>include/okapi/impl/device/button/adiButton.hpp</label>
         <link refid="adiButton_8hpp"/>
-        <childnode refid="4046" relation="include">
+        <childnode refid="4048" relation="include">
         </childnode>
-        <childnode refid="4047" relation="include">
+        <childnode refid="4049" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

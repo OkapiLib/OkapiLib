@@ -8,7 +8,12 @@
     <detaileddescription>
 <sect1 id="index_1intro_sec">
 <title>Introduction</title>
-<para>OkapiLib is a library. </para>
+<para><bold>OkapiLib</bold> is a PROS library for programming VEX V5 robots. This library is intended to raise the floor for teams with all levels of experience. New teams should have an easier time getting their robot up and running, and veteran teams should find that OkapiLib doesn&apos;t get in the way or place any limits on functionality.</para>
+<para>For tutorials on how to get the most out of OkapiLib, see the <bold>Tutorials</bold> section:</para>
+<para><ref refid="md_doc_Tutorial1" kindref="compound">Tutorials</ref></para>
+<para>For documentation on using the OkapiLib <bold>API</bold>, see the OkapiLib <bold>API</bold> section:</para>
+<para><ulink url="annotated.html">OkapiLib Classes</ulink></para>
+<para>Not sure where to go? Take a look at the <computeroutput>Getting Started tutorial &lt;tutorials/walkthrough/getting-started.html&gt;</computeroutput>_. </para>
 </sect1>
     </detaileddescription>
   </compounddef>

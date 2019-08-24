@@ -4,44 +4,44 @@
     <compoundname>abstractTimer.cpp</compoundname>
     <includes refid="abstractTimer_8hpp" local="yes">okapi/api/util/abstractTimer.hpp</includes>
     <incdepgraph>
-      <node id="5560">
+      <node id="5562">
         <label>okapi/api/util/abstractTimer.hpp</label>
         <link refid="abstractTimer_8hpp"/>
-        <childnode refid="5561" relation="include">
+        <childnode refid="5563" relation="include">
         </childnode>
-        <childnode refid="5565" relation="include">
-        </childnode>
-      </node>
-      <node id="5561">
-        <label>okapi/api/units/QFrequency.hpp</label>
-        <link refid="QFrequency_8hpp"/>
-        <childnode refid="5562" relation="include">
+        <childnode refid="5567" relation="include">
         </childnode>
       </node>
       <node id="5563">
-        <label>cmath</label>
+        <label>okapi/api/units/QFrequency.hpp</label>
+        <link refid="QFrequency_8hpp"/>
+        <childnode refid="5564" relation="include">
+        </childnode>
       </node>
       <node id="5565">
+        <label>cmath</label>
+      </node>
+      <node id="5567">
         <label>okapi/api/units/QTime.hpp</label>
         <link refid="QTime_8hpp"/>
+        <childnode refid="5564" relation="include">
+        </childnode>
+      </node>
+      <node id="5566">
+        <label>ratio</label>
+      </node>
+      <node id="5561">
+        <label>src/api/util/abstractTimer.cpp</label>
+        <link refid="abstractTimer_8cpp"/>
         <childnode refid="5562" relation="include">
         </childnode>
       </node>
       <node id="5564">
-        <label>ratio</label>
-      </node>
-      <node id="5559">
-        <label>src/api/util/abstractTimer.cpp</label>
-        <link refid="abstractTimer_8cpp"/>
-        <childnode refid="5560" relation="include">
-        </childnode>
-      </node>
-      <node id="5562">
         <label>okapi/api/units/RQuantity.hpp</label>
         <link refid="RQuantity_8hpp"/>
-        <childnode refid="5563" relation="include">
+        <childnode refid="5565" relation="include">
         </childnode>
-        <childnode refid="5564" relation="include">
+        <childnode refid="5566" relation="include">
         </childnode>
       </node>
     </incdepgraph>
