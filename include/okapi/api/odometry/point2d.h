@@ -8,10 +8,25 @@
 #pragma once
 
 #include "okapi/api/units/QLength.hpp"
+#include "okapi/api/odometry/odometry.hpp"
 
 namespace okapi {
 struct Point {
   QLength x{0_m};
   QLength y{0_m};
+
+  /**
+   * Computes the value of this point in `StateMode::FRAME_TRANSFORMATION`.
+   *
+   * @param imode The StateMode this Point is currently specified in.
+   * @return This point specified in `StateMode::FRAME_TRANSFORMATION`.
+   */
+  Point inFT(const StateMode &imode) const {
+    if (imode == StateMode::FRAME_TRANSFORMATION) {
+      return *this;
+    } else {
+      return {y, x};
+    }
+  }
 };
 } // namespace okapi

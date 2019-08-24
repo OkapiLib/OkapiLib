@@ -17,7 +17,7 @@ class OdomMath {
   public:
   /**
    * Computes the distance from the given Odometry state to the given point. The point and the
-   * OdomState must be in the same StateMode.
+   * OdomState must be in `StateMode::FRAME_TRANSFORMATION`.
    *
    * @param ipoint The point.
    * @param istate The Odometry state.
@@ -27,7 +27,7 @@ class OdomMath {
 
   /**
    * Computes the angle from the given Odometry state to the given point. The point and the
-   * OdomState must be in the same StateMode.
+   * OdomState must be in `StateMode::FRAME_TRANSFORMATION`.
    *
    * @param ipoint The point.
    * @param istate The Odometry state.
@@ -37,7 +37,7 @@ class OdomMath {
 
   /**
    * Computes the distance and angle from the given Odometry state to the given point. The point and
-   * the OdomState must be in the same StateMode.
+   * the OdomState must be in `StateMode::FRAME_TRANSFORMATION`.
    *
    * @param ipoint The point.
    * @param istate The Odometry state.
