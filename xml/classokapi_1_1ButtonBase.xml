@@ -91,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/device/button/buttonBase.hpp" line="19" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="4" bodyend="5"/>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="19" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="11" bodyend="12"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ButtonBase_1a82f27002395801e0d1a6c3213b6454f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/device/button/buttonBase.hpp" line="24" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="7" bodyend="9"/>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="24" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="14" bodyend="16"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ButtonBase_1a0d70e238573b2454fec934a6a7b2338d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/device/button/buttonBase.hpp" line="29" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="11" bodyend="13"/>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="29" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="18" bodyend="20"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ButtonBase_1ac97e3d96db3d83f1638ad071e2dff856" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
@@ -136,7 +136,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/device/button/buttonBase.hpp" line="35" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="15" bodyend="17"/>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="35" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="22" bodyend="24"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ButtonBase_1a7916b659f61e8ef2b23aec879a65fbac" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
@@ -151,7 +151,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/device/button/buttonBase.hpp" line="41" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="19" bodyend="21"/>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="41" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="26" bodyend="28"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-func">
@@ -187,7 +187,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/device/button/buttonBase.hpp" line="52" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="23" bodyend="28"/>
+        <location file="include/okapi/api/device/button/buttonBase.hpp" line="52" column="1" bodyfile="src/api/device/button/buttonBase.cpp" bodystart="30" bodyend="35"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -6,6 +6,13 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #pragma once
+
+/** \mainpage OkapiLib Index Page
+ *
+ * \section intro_sec Introduction
+ *
+ * OkapiLib is a library.
+ */
 
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"

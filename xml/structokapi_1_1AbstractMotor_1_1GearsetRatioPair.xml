@@ -51,13 +51,13 @@
         </briefdescription>
         <detaileddescription>
 <para>A simple structure representing the full ratio between motor and wheel.</para>
-<para>The ratio is motor rotation : wheel rotation. So for example, if one motor rotation corresponds to two wheel rotations, the ratio is 1.0/2.0.</para>
+<para>The ratio is <computeroutput>motor rotation : wheel rotation</computeroutput>, e.x., if one motor rotation corresponds to two wheel rotations, the ratio is <computeroutput>1.0/2.0</computeroutput>.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>igearset</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the motor&apos;s gearset </para>
+<para>The gearset in the motor. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -65,7 +65,7 @@
 <parametername>iratio</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the ratio of motor rotation to wheel rotation </para>
+<para>The ratio of motor rotation to wheel rotation. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>

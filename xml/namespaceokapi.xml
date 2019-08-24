@@ -112,11 +112,12 @@
         </briefdescription>
         <detaileddescription>
 <para>The mode for the <ref refid="structokapi_1_1OdomState" kindref="compound">OdomState</ref> calculated by <ref refid="classokapi_1_1Odometry" kindref="compound">Odometry</ref>.</para>
-<para><computeroutput>FRAME_TRANSFORMATION</computeroutput>: +x is forward, +y is right, 0 degrees is along +x. <computeroutput>CARTESIAN</computeroutput>: +x is right, +y is forward, 0 degrees is along +y. </para>
+<para><computeroutput>FRAME_TRANSFORMATION</computeroutput>: +x is forward, +y is right, 0 degrees is along +x.</para>
+<para><computeroutput>CARTESIAN</computeroutput>: +x is right, +y is forward, 0 degrees is along +y. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/stateMode.hpp" line="17" column="1" bodyfile="include/okapi/api/odometry/stateMode.hpp" bodystart="17" bodyend="17"/>
+        <location file="include/okapi/api/odometry/stateMode.hpp" line="18" column="1" bodyfile="include/okapi/api/odometry/stateMode.hpp" bodystart="18" bodyend="18"/>
       </memberdef>
       <memberdef kind="enum" id="namespaceokapi_1a56349a0562b06c6ffc742e94cb1e4361" prot="public" static="no" strong="yes">
         <type></type>
@@ -2330,35 +2331,6 @@
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para><simplesect kind="author"><para>Ryan Benasutti, WPI</para>
-</simplesect>
-This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <ulink url="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</ulink>.</para>
-<para>Based on the Arduino PID controller: <ulink url="https://github.com/br3ttb/Arduino-PID-Library">https://github.com/br3ttb/Arduino-PID-Library</ulink></para>
-<para><simplesect kind="author"><para>Ryan Benasutti, WPI</para>
-</simplesect>
-This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <ulink url="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</ulink>.</para>
-<para><simplesect kind="author"><para>Kevin Harrington, Common Wealth Robotics </para>
-</simplesect>
-<simplesect kind="author"><para>Ryan Benasutti, WPI</para>
-</simplesect>
-This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <ulink url="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</ulink>.</para>
-<para><simplesect kind="author"><para>Jonathan Bayless, Team BLRS </para>
-</simplesect>
-<simplesect kind="author"><para>Ryan Benasutti, WPI</para>
-</simplesect>
-This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <ulink url="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</ulink>.</para>
-<para>Uses the median filter algorithm from N. Wirth’s book, implementation by N. Devillard.</para>
-<para><simplesect kind="author"><para>Ryan Benasutti, WPI</para>
-</simplesect>
-This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <ulink url="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</ulink>.</para>
-<para><simplesect kind="author"><para>Mikhail Semenov </para>
-</simplesect>
-<simplesect kind="author"><para>Benjamin Jurke </para>
-</simplesect>
-<simplesect kind="author"><para>Ryan Benasutti, WPI</para>
-</simplesect>
-This code is a modified version of Benjamin Jurke&apos;s work in 2015. You can read his blog post here: <ulink url="https://benjaminjurke.com/content/articles/2015/compile-time-numerical-unit-dimension-checking/">https://benjaminjurke.com/content/articles/2015/compile-time-numerical-unit-dimension-checking/</ulink></para>
-<para>This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <ulink url="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</ulink>. </para>
     </detaileddescription>
     <location file="include/okapi/api/chassis/controller/chassisController.hpp" line="18" column="1"/>
   </compounddef>

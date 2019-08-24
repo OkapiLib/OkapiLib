@@ -95,7 +95,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/device/button/abstractButton.hpp" line="46" column="1" bodyfile="src/api/device/button/abstractButton.cpp" bodystart="6" bodyend="8"/>
+        <location file="include/okapi/api/device/button/abstractButton.hpp" line="46" column="1" bodyfile="src/api/device/button/abstractButton.cpp" bodystart="13" bodyend="15"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

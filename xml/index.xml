@@ -2157,4 +2157,6 @@
   </compound>
   <compound refid="dir_72ccae87f7209aff0e1ad89aa89987e8" kind="dir"><name>include/okapi/api/control/util</name>
   </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
 </doxygenindex>

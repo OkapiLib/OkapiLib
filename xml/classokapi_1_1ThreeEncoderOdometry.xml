@@ -135,7 +135,7 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The estimated position/orientation offset. </para>
+<simplesect kind="return"><para>The newly computed <ref refid="structokapi_1_1OdomState" kindref="compound">OdomState</ref>. </para>
 </simplesect>
 </para>
         </detaileddescription>

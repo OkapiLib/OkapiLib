@@ -1,4 +1,4 @@
-/**
+/*
  * @author Mikhail Semenov
  * @author Benjamin Jurke
  * @author Ryan Benasutti, WPI

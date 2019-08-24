@@ -1,4 +1,4 @@
-/**
+/*
  * @author Kevin Harrington, Common Wealth Robotics
  * @author Ryan Benasutti, WPI
  *

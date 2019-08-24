@@ -1,4 +1,4 @@
-/**
+/*
  * Uses the median filter algorithm from N. Wirth’s book, implementation by N. Devillard.
  *
  * @author Ryan Benasutti, WPI
