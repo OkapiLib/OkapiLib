@@ -56,7 +56,7 @@ class DefaultOdomChassisController : public OdomChassisController {
    * @param ioffset An offset from the target point in the direction pointing towards the robot. The
    * robot will stop this far away from the target point.
    */
-  void driveToPoint(const Point2d &ipoint,
+  void driveToPoint(const Point &ipoint,
                     const StateMode &imode = StateMode::FRAME_TRANSFORMATION,
                     bool ibackwards = false,
                     const QLength &ioffset = 0_mm) override;
@@ -67,7 +67,7 @@ class DefaultOdomChassisController : public OdomChassisController {
    * @param ipoint The target point to turn to face.
    * @param imode The mode to read the target point in.
    */
-  void turnToPoint(const Point2d &ipoint,
+  void turnToPoint(const Point &ipoint,
                    const StateMode &imode = StateMode::FRAME_TRANSFORMATION) override;
 
   /**

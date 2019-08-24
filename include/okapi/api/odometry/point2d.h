@@ -10,22 +10,8 @@
 #include "okapi/api/units/QLength.hpp"
 
 namespace okapi {
-struct Point2d {
+struct Point {
   QLength x{0_m};
   QLength y{0_m};
-
-  /**
-   * Computes the value of this point in the given StateMode.
-   *
-   * @param imode The StateMode.
-   * @return This point in the StateMode.
-   */
-  Point2d inMode(const StateMode &imode) const {
-    if (imode == StateMode::FRAME_TRANSFORMATION) {
-      return *this;
-    } else {
-      return {y, x};
-    }
-  }
 };
 } // namespace okapi

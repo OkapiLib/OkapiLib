@@ -14,7 +14,7 @@ OdomMath::OdomMath() = default;
 
 OdomMath::~OdomMath() = default;
 
-QLength OdomMath::computeDistanceToPoint(const Point2d &ipoint,
+QLength OdomMath::computeDistanceToPoint(const Point &ipoint,
                                          const OdomState &istate,
                                          const StateMode &ipointMode) {
   if (ipointMode == StateMode::CARTESIAN) {
@@ -28,7 +28,7 @@ QLength OdomMath::computeDistanceToPoint(const Point2d &ipoint,
   }
 }
 
-QAngle OdomMath::computeAngleToPoint(const Point2d &ipoint,
+QAngle OdomMath::computeAngleToPoint(const Point &ipoint,
                                      const OdomState &istate,
                                      const StateMode &ipointMode) {
   if (ipointMode == StateMode::CARTESIAN) {
@@ -42,7 +42,7 @@ QAngle OdomMath::computeAngleToPoint(const Point2d &ipoint,
   }
 }
 
-std::pair<QLength, QAngle> OdomMath::computeDistanceAndAngleToPoint(const Point2d &ipoint,
+std::pair<QLength, QAngle> OdomMath::computeDistanceAndAngleToPoint(const Point &ipoint,
                                                                     const OdomState &istate,
                                                                     const StateMode &ipointMode) {
   if (ipointMode == StateMode::CARTESIAN) {

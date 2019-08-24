@@ -22,7 +22,7 @@ DefaultOdomChassisController::DefaultOdomChassisController(
     controller(std::move(icontroller)) {
 }
 
-void DefaultOdomChassisController::driveToPoint(const Point2d &ipoint,
+void DefaultOdomChassisController::driveToPoint(const Point &ipoint,
                                                 const StateMode &imode,
                                                 const bool ibackwards,
                                                 const QLength &ioffset) {
@@ -51,7 +51,7 @@ void DefaultOdomChassisController::driveToPoint(const Point2d &ipoint,
   }
 }
 
-void DefaultOdomChassisController::turnToPoint(const Point2d &ipoint, const StateMode &imode) {
+void DefaultOdomChassisController::turnToPoint(const Point &ipoint, const StateMode &imode) {
   const auto angle =
     OdomMath::computeAngleToPoint(ipoint, odom->getState(StateMode::FRAME_TRANSFORMATION), imode);
 

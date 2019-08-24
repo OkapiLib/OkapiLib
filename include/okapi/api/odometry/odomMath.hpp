@@ -24,7 +24,7 @@ class OdomMath {
    * @return The distance between the odometry state and the point.
    */
   static QLength
-  computeDistanceToPoint(const Point2d &ipoint,
+  computeDistanceToPoint(const Point &ipoint,
                          const OdomState &istate,
                          const StateMode &ipointMode = StateMode::FRAME_TRANSFORMATION);
 
@@ -36,7 +36,7 @@ class OdomMath {
    * @param ipointMode The StateMode that `ipoint` is in.
    * @return The angle between the odometry state and the point.
    */
-  static QAngle computeAngleToPoint(const Point2d &ipoint,
+  static QAngle computeAngleToPoint(const Point &ipoint,
                                     const OdomState &istate,
                                     const StateMode &ipointMode = StateMode::FRAME_TRANSFORMATION);
 
@@ -49,7 +49,7 @@ class OdomMath {
    * @return The distance and angle between the odometry state and the point.
    */
   static std::pair<QLength, QAngle>
-  computeDistanceAndAngleToPoint(const Point2d &ipoint,
+  computeDistanceAndAngleToPoint(const Point &ipoint,
                                  const OdomState &istate,
                                  const StateMode &ipointMode = StateMode::FRAME_TRANSFORMATION);
 
