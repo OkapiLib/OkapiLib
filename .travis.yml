@@ -52,6 +52,7 @@ script:
   # - valgrind --tool=massif --stacks=yes --time-unit=B --massif-out-file=massif.out.txt ./OkapiLibV5
   # - ms_print massif.out.txt
   - cd ..
+  - alias python=python3
   - ./run_doxygen.sh
 
 after_success:
