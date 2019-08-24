@@ -92,37 +92,37 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="458">
+      <node id="460">
         <label>okapi::Potentiometer</label>
         <link refid="classokapi_1_1Potentiometer"/>
-        <childnode refid="459" relation="public-inheritance">
+        <childnode refid="461" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="459">
+      <node id="461">
         <label>okapi::RotarySensor</label>
         <link refid="classokapi_1_1RotarySensor"/>
-        <childnode refid="460" relation="public-inheritance">
+        <childnode refid="462" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="460">
+      <node id="462">
         <label>okapi::ControllerInput&lt; double &gt;</label>
         <link refid="classokapi_1_1ControllerInput"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="461">
+      <node id="463">
         <label>okapi::Potentiometer</label>
         <link refid="classokapi_1_1Potentiometer"/>
-        <childnode refid="462" relation="public-inheritance">
+        <childnode refid="464" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="462">
+      <node id="464">
         <label>okapi::RotarySensor</label>
         <link refid="classokapi_1_1RotarySensor"/>
-        <childnode refid="463" relation="public-inheritance">
+        <childnode refid="465" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="463">
+      <node id="465">
         <label>okapi::ControllerInput&lt; double &gt;</label>
         <link refid="classokapi_1_1ControllerInput"/>
       </node>

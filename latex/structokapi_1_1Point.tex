@@ -2,40 +2,56 @@
 \label{structokapi_1_1Point}\index{okapi::Point@{okapi::Point}}
 
 
-{\ttfamily \#include $<$pathfinder\+Util.\+hpp$>$}
+{\ttfamily \#include $<$point.\+hpp$>$}
 
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structokapi_1_1Point}{Point}} \mbox{\hyperlink{structokapi_1_1Point_a98fb5f28afff23f35318297cfb3131e5}{in\+FT}} (const \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07}{State\+Mode}} \&imode) const
+\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-Q\+Length \mbox{\hyperlink{structokapi_1_1Point_a49a37b80b4c067214556e3da3532d2ac}{x}}
+Q\+Length \mbox{\hyperlink{structokapi_1_1Point_a49a37b80b4c067214556e3da3532d2ac}{x}} \{0\+\_\+m\}
 \item 
-Q\+Length \mbox{\hyperlink{structokapi_1_1Point_a6acb599ade55d1df76ad805ac6bb174d}{y}}
-\item 
-Q\+Angle \mbox{\hyperlink{structokapi_1_1Point_aff79941175ee144b5d9cea628c00ebc8}{theta}}
+Q\+Length \mbox{\hyperlink{structokapi_1_1Point_a6acb599ade55d1df76ad805ac6bb174d}{y}} \{0\+\_\+m\}
 \end{DoxyCompactItemize}
 
 
-\subsection{Member Data Documentation}
-\mbox{\Hypertarget{structokapi_1_1Point_aff79941175ee144b5d9cea628c00ebc8}\label{structokapi_1_1Point_aff79941175ee144b5d9cea628c00ebc8}} 
-\index{okapi::Point@{okapi::Point}!theta@{theta}}
-\index{theta@{theta}!okapi::Point@{okapi::Point}}
-\subsubsection{\texorpdfstring{theta}{theta}}
-{\footnotesize\ttfamily Q\+Angle okapi\+::\+Point\+::theta}
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structokapi_1_1Point_a98fb5f28afff23f35318297cfb3131e5}\label{structokapi_1_1Point_a98fb5f28afff23f35318297cfb3131e5}} 
+\index{okapi::Point@{okapi::Point}!inFT@{inFT}}
+\index{inFT@{inFT}!okapi::Point@{okapi::Point}}
+\subsubsection{\texorpdfstring{inFT()}{inFT()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structokapi_1_1Point}{Point}} okapi\+::\+Point\+::in\+FT (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07}{State\+Mode}} \&}]{imode }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+Computes the value of this point in {\ttfamily \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b}{State\+Mode\+::\+F\+R\+A\+M\+E\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON}}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em imode} & The State\+Mode this \mbox{\hyperlink{structokapi_1_1Point}{Point}} is currently specified in. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This point specified in {\ttfamily \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b}{State\+Mode\+::\+F\+R\+A\+M\+E\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON}}}. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
 \mbox{\Hypertarget{structokapi_1_1Point_a49a37b80b4c067214556e3da3532d2ac}\label{structokapi_1_1Point_a49a37b80b4c067214556e3da3532d2ac}} 
 \index{okapi::Point@{okapi::Point}!x@{x}}
 \index{x@{x}!okapi::Point@{okapi::Point}}
 \subsubsection{\texorpdfstring{x}{x}}
-{\footnotesize\ttfamily Q\+Length okapi\+::\+Point\+::x}
+{\footnotesize\ttfamily Q\+Length okapi\+::\+Point\+::x \{0\+\_\+m\}}
 
 \mbox{\Hypertarget{structokapi_1_1Point_a6acb599ade55d1df76ad805ac6bb174d}\label{structokapi_1_1Point_a6acb599ade55d1df76ad805ac6bb174d}} 
 \index{okapi::Point@{okapi::Point}!y@{y}}
 \index{y@{y}!okapi::Point@{okapi::Point}}
 \subsubsection{\texorpdfstring{y}{y}}
-{\footnotesize\ttfamily Q\+Length okapi\+::\+Point\+::y}
+{\footnotesize\ttfamily Q\+Length okapi\+::\+Point\+::y \{0\+\_\+m\}}
 
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/okapi/api/control/util/\mbox{\hyperlink{pathfinderUtil_8hpp}{pathfinder\+Util.\+hpp}}\end{DoxyCompactItemize}
+include/okapi/api/odometry/\mbox{\hyperlink{point_8hpp}{point.\+hpp}}\end{DoxyCompactItemize}

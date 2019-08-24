@@ -7,49 +7,49 @@
     <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
     <includedby refid="adiButton_8cpp" local="yes">src/impl/device/button/adiButton.cpp</includedby>
     <incdepgraph>
-      <node id="3989">
+      <node id="4048">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="3985">
+      <node id="4044">
         <label>include/okapi/impl/device/button/adiButton.hpp</label>
         <link refid="adiButton_8hpp"/>
-        <childnode refid="3986" relation="include">
+        <childnode refid="4045" relation="include">
         </childnode>
-        <childnode refid="3987" relation="include">
+        <childnode refid="4046" relation="include">
         </childnode>
       </node>
-      <node id="3986">
+      <node id="4045">
         <label>api.h</label>
       </node>
-      <node id="3988">
+      <node id="4047">
         <label>okapi/api/device/button/abstractButton.hpp</label>
         <link refid="abstractButton_8hpp"/>
-        <childnode refid="3989" relation="include">
+        <childnode refid="4048" relation="include">
         </childnode>
       </node>
-      <node id="3987">
+      <node id="4046">
         <label>okapi/api/device/button/buttonBase.hpp</label>
         <link refid="buttonBase_8hpp"/>
-        <childnode refid="3988" relation="include">
+        <childnode refid="4047" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="3992">
+      <node id="4051">
         <label>src/impl/device/button/adiButton.cpp</label>
         <link refid="adiButton_8cpp"/>
       </node>
-      <node id="3991">
+      <node id="4050">
         <label>include/okapi/api.hpp</label>
         <link refid="api_8hpp"/>
       </node>
-      <node id="3990">
+      <node id="4049">
         <label>include/okapi/impl/device/button/adiButton.hpp</label>
         <link refid="adiButton_8hpp"/>
-        <childnode refid="3991" relation="include">
+        <childnode refid="4050" relation="include">
         </childnode>
-        <childnode refid="3992" relation="include">
+        <childnode refid="4051" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

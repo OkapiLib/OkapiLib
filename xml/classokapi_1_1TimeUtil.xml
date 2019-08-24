@@ -155,28 +155,28 @@
 <para>Utility class for holding an <ref refid="classokapi_1_1AbstractTimer" kindref="compound">AbstractTimer</ref>, <ref refid="classokapi_1_1AbstractRate" kindref="compound">AbstractRate</ref>, and <ref refid="classokapi_1_1SettledUtil" kindref="compound">SettledUtil</ref> together in one class since they are commonly used together. </para>
     </detaileddescription>
     <collaborationgraph>
-      <node id="520">
+      <node id="522">
         <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::AbstractRate &gt; &gt;</label>
         <link refid="classokapi_1_1Supplier"/>
       </node>
-      <node id="522">
+      <node id="524">
         <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::AbstractTimer &gt; &gt;</label>
         <link refid="classokapi_1_1Supplier"/>
       </node>
-      <node id="519">
+      <node id="521">
         <label>okapi::TimeUtil</label>
         <link refid="classokapi_1_1TimeUtil"/>
-        <childnode refid="520" relation="usage">
+        <childnode refid="522" relation="usage">
           <edgelabel>rateSupplier</edgelabel>
         </childnode>
-        <childnode refid="521" relation="usage">
+        <childnode refid="523" relation="usage">
           <edgelabel>settledUtilSupplier</edgelabel>
         </childnode>
-        <childnode refid="522" relation="usage">
+        <childnode refid="524" relation="usage">
           <edgelabel>timerSupplier</edgelabel>
         </childnode>
       </node>
-      <node id="521">
+      <node id="523">
         <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::SettledUtil &gt; &gt;</label>
         <link refid="classokapi_1_1Supplier"/>
       </node>

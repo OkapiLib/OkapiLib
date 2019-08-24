@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="structokapi_1_1PathfinderPoint" kind="struct" language="C++" prot="public">
+    <compoundname>okapi::PathfinderPoint</compoundname>
+    <includes refid="pathfinderUtil_8hpp" local="no">pathfinderUtil.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structokapi_1_1PathfinderPoint_1a1f5e447cf4694b86d02d4242ee2d544d" prot="public" static="no" mutable="no">
+        <type>QLength</type>
+        <definition>QLength okapi::PathfinderPoint::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/pathfinderUtil.hpp" line="15" column="1" bodyfile="include/okapi/api/control/util/pathfinderUtil.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1PathfinderPoint_1ad6709f91b4117b390ce82247d35f70ca" prot="public" static="no" mutable="no">
+        <type>QLength</type>
+        <definition>QLength okapi::PathfinderPoint::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/pathfinderUtil.hpp" line="16" column="1" bodyfile="include/okapi/api/control/util/pathfinderUtil.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structokapi_1_1PathfinderPoint_1ae9329b225ce544bf342fc328d6c43cbe" prot="public" static="no" mutable="no">
+        <type>QAngle</type>
+        <definition>QAngle okapi::PathfinderPoint::theta</definition>
+        <argsstring></argsstring>
+        <name>theta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/util/pathfinderUtil.hpp" line="17" column="1" bodyfile="include/okapi/api/control/util/pathfinderUtil.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/okapi/api/control/util/pathfinderUtil.hpp" line="14" column="1" bodyfile="include/okapi/api/control/util/pathfinderUtil.hpp" bodystart="14" bodyend="18"/>
+    <listofallmembers>
+      <member refid="structokapi_1_1PathfinderPoint_1ae9329b225ce544bf342fc328d6c43cbe" prot="public" virt="non-virtual"><scope>okapi::PathfinderPoint</scope><name>theta</name></member>
+      <member refid="structokapi_1_1PathfinderPoint_1a1f5e447cf4694b86d02d4242ee2d544d" prot="public" virt="non-virtual"><scope>okapi::PathfinderPoint</scope><name>x</name></member>
+      <member refid="structokapi_1_1PathfinderPoint_1ad6709f91b4117b390ce82247d35f70ca" prot="public" virt="non-virtual"><scope>okapi::PathfinderPoint</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

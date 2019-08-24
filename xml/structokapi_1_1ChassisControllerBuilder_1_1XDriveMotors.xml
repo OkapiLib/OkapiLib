@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="322" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="322" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="328" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="328" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structokapi_1_1ChassisControllerBuilder_1_1XDriveMotors_1a0278709ab493196f073e589a1e839831" prot="public" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="323" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="323" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="329" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="329" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structokapi_1_1ChassisControllerBuilder_1_1XDriveMotors_1ad121cb239a6c4c210e7332ded7a9483c" prot="public" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="324" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="324" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="330" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="330" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structokapi_1_1ChassisControllerBuilder_1_1XDriveMotors_1a27a5a11d1eed23ad7f2520ef9d49dfba" prot="public" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
@@ -53,14 +53,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="325" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="325" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="331" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="331" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="321" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="321" bodyend="326"/>
+    <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="327" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="327" bodyend="332"/>
     <listofallmembers>
       <member refid="structokapi_1_1ChassisControllerBuilder_1_1XDriveMotors_1a27a5a11d1eed23ad7f2520ef9d49dfba" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerBuilder::XDriveMotors</scope><name>bottomLeft</name></member>
       <member refid="structokapi_1_1ChassisControllerBuilder_1_1XDriveMotors_1ad121cb239a6c4c210e7332ded7a9483c" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerBuilder::XDriveMotors</scope><name>bottomRight</name></member>

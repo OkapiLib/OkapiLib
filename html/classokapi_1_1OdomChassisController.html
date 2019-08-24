@@ -87,14 +87,23 @@
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a91015290cdd5f9c459adfb59115bc92d" class="m-doc">OdomChassisController</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a>&amp; itimeUtil,
+              <span class="m-doc-wrap-bumper"><a href="#a3a550eef9b0030b6057eeaf8c5a3bb51" class="m-doc">OdomChassisController</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a>&amp; itimeUtil,
               std::unique_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt; iodometry,
-              const QLength&amp; imoveThreshold = 10_mm,
-              const QAngle&amp; iturnThreshold = 1_deg)</span>
+              const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
+              const QLength&amp; imoveThreshold = 0_mm,
+              const QAngle&amp; iturnThreshold = 0_deg)</span>
             </dt>
             <dd></dd>
             <dt id="a25ee4fe0432b6cdc8052a869856cfc7c">
               <span class="m-doc-wrap-bumper"><a href="#a25ee4fe0432b6cdc8052a869856cfc7c" class="m-doc-self">~OdomChassisController</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ad9b7ee54f60d1974c2824f8fbcff1304">
+              <span class="m-doc-wrap-bumper"><a href="#ad9b7ee54f60d1974c2824f8fbcff1304" class="m-doc-self">OdomChassisController</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1OdomChassisController.html" class="m-doc">OdomChassisController</a>&amp;) <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a841d9679487509c9805e030ad7a663a9">
+              <span class="m-doc-wrap-bumper"><a href="#a841d9679487509c9805e030ad7a663a9" class="m-doc-self">OdomChassisController</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1OdomChassisController.html" class="m-doc">OdomChassisController</a>&amp;&amp; other) <span class="m-label m-flat m-danger">deleted</span></span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -102,11 +111,22 @@
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
+            <dt id="abf1d2bbcacf41866867e03e7bdd68f06">
+              <span class="m-doc-wrap-bumper">auto <a href="#abf1d2bbcacf41866867e03e7bdd68f06" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1OdomChassisController.html" class="m-doc">OdomChassisController</a>&amp; other) -&gt; <a href="classokapi_1_1OdomChassisController.html" class="m-doc">OdomChassisController</a>&amp; <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ab0f6b3231dde46d04d570ec31caf7495">
+              <span class="m-doc-wrap-bumper">auto <a href="#ab0f6b3231dde46d04d570ec31caf7495" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1OdomChassisController.html" class="m-doc">OdomChassisController</a>&amp;&amp; other) -&gt; <a href="classokapi_1_1OdomChassisController.html" class="m-doc">OdomChassisController</a>&amp; <span class="m-label m-flat m-danger">deleted</span></span>
+            </dt>
+            <dd><span></span></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a5e87dea6c90a200bc6a9dc638e45365a" class="m-doc">driveToPoint</a>(</span><span class="m-doc-wrap">const QLength&amp; ix,
-              const QLength&amp; iy,
+              <span class="m-doc-wrap-bumper">void <a href="#abea9bd3860ad9f1acb1cdc1e36869fbf" class="m-doc">driveToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint,
               bool ibackwards = false,
               const QLength&amp; ioffset = 0_mm) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a4566bc34f36fd107bc868b17942f4245" class="m-doc">turnToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
             <dd></dd>
             <dt>
@@ -114,12 +134,15 @@
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#aa7b4675edd3cdd920e287fc5e824892f" class="m-doc">getState</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>) const -&gt; <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a> <span class="m-label m-flat m-warning">virtual</span></span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a4f4a588ea6e302e9cf13fb776ce0c5e4" class="m-doc">getState</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a> <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a843ab24d9ed26ba68833ece0b28bf345" class="m-doc">setState</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate,
-              const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>) <span class="m-label m-flat m-warning">virtual</span></span>
+              <span class="m-doc-wrap-bumper">void <a href="#a1e3a4b62e89ab0869c4046983ab7d11b" class="m-doc">setState</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate) <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a79152ae9fb43abbb51179f7bd7ce5fde" class="m-doc">setDefaultStateMode</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode)</span>
             </dt>
             <dd></dd>
             <dt>
@@ -193,16 +216,21 @@
               std::atomic_bool <a href="#a2af36f833e8ac382c4386f729f904bae" class="m-doc-self">dtorCalled</a>
             </dt>
             <dd><span></span></dd>
+            <dt id="a762ce2bcc4cdbfd0c6bd296ba21a4c4d">
+              <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a> <a href="#a762ce2bcc4cdbfd0c6bd296ba21a4c4d" class="m-doc-self">defaultStateMode</a>
+            </dt>
+            <dd><span></span></dd>
           </dl>
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a91015290cdd5f9c459adfb59115bc92d"><div>
+          <section class="m-doc-details" id="a3a550eef9b0030b6057eeaf8c5a3bb51"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"> okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a91015290cdd5f9c459adfb59115bc92d" class="m-doc-self">OdomChassisController</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a>&amp; itimeUtil,
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3a550eef9b0030b6057eeaf8c5a3bb51" class="m-doc-self">OdomChassisController</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a>&amp; itimeUtil,
               std::unique_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt; iodometry,
-              const QLength&amp; imoveThreshold = 10_mm,
-              const QAngle&amp; iturnThreshold = 1_deg)</span></span>
+              const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
+              const QLength&amp; imoveThreshold = 0_mm,
+              const QAngle&amp; iturnThreshold = 0_deg)</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -215,7 +243,11 @@
                 </tr>
                 <tr>
                   <td>iodometry</td>
-                  <td>The odometry instance to run in a new task.</td>
+                  <td>The <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> instance to run in a new task.</td>
+                </tr>
+                <tr>
+                  <td>imode</td>
+                  <td>The new default StateMode used to interpret target points and query the <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state.</td>
                 </tr>
                 <tr>
                   <td>imoveThreshold</td>
@@ -227,12 +259,11 @@
                 </tr>
               </tbody>
             </table>
-<p><a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> based chassis controller. Starts task at the default for odometry when constructed, which calls <code><a href="classokapi_1_1Odometry.html#a04586a88418c606f7bbd0ac3287c730d" class="m-doc">Odometry::<wbr />step</a></code> every <code>10ms</code>.</p><p>Moves the robot around in the odom frame. Instead of telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific point on the field or turn to a specific angle relative to its starting position.</p>
+<p><a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> based chassis controller. Starts task at the default for odometry when constructed, which calls <code><a href="classokapi_1_1Odometry.html#a04586a88418c606f7bbd0ac3287c730d" class="m-doc">Odometry::<wbr />step</a></code> every <code>10ms</code>. The default StateMode is <code><a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a></code>.</p><p>Moves the robot around in the odom frame. Instead of telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific point on the field or turn to a specific angle relative to its starting position.</p>
           </div></section>
-          <section class="m-doc-details" id="a5e87dea6c90a200bc6a9dc638e45365a"><div>
+          <section class="m-doc-details" id="abea9bd3860ad9f1acb1cdc1e36869fbf"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5e87dea6c90a200bc6a9dc638e45365a" class="m-doc-self">driveToPoint</a>(</span><span class="m-doc-wrap">const QLength&amp; ix,
-              const QLength&amp; iy,
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abea9bd3860ad9f1acb1cdc1e36869fbf" class="m-doc-self">driveToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint,
               bool ibackwards = false,
               const QLength&amp; ioffset = 0_mm) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
@@ -242,24 +273,37 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="width: 1%">ix</td>
-                  <td>x coordinate</td>
-                </tr>
-                <tr>
-                  <td>iy</td>
-                  <td>y coordinate</td>
+                  <td style="width: 1%">ipoint</td>
+                  <td>The target point to navigate to.</td>
                 </tr>
                 <tr>
                   <td>ibackwards</td>
-                  <td>whether to drive to the target point backwards</td>
+                  <td>Whether to drive to the target point backwards.</td>
                 </tr>
                 <tr>
                   <td>ioffset</td>
-                  <td>offset from target point in the direction pointing towards the robot</td>
+                  <td>An offset from the target point in the direction pointing towards the robot. The robot will stop this far away from the target point.</td>
                 </tr>
               </tbody>
             </table>
 <p>Drives the robot straight to a point in the odom frame.</p>
+          </div></section>
+          <section class="m-doc-details" id="a4566bc34f36fd107bc868b17942f4245"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4566bc34f36fd107bc868b17942f4245" class="m-doc-self">turnToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ipoint</td>
+                  <td>The target point to turn to face.</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Turns the robot to face a point in the odom frame.</p>
           </div></section>
           <section class="m-doc-details" id="ac90298bb9081d95c52800dbf679dd658"><div>
             <h3>
@@ -272,39 +316,28 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">iangle</td>
-                  <td>angle to turn to</td>
+                  <td>The angle to turn to.</td>
                 </tr>
               </tbody>
             </table>
 <p>Turns the robot to face an angle in the odom frame.</p>
           </div></section>
-          <section class="m-doc-details" id="aa7b4675edd3cdd920e287fc5e824892f"><div>
+          <section class="m-doc-details" id="a4f4a588ea6e302e9cf13fb776ce0c5e4"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"><a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a> okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa7b4675edd3cdd920e287fc5e824892f" class="m-doc-self">getState</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>) const <span class="m-label m-warning">virtual</span></span></span>
+              <span class="m-doc-wrap-bumper"><a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a> okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4f4a588ea6e302e9cf13fb776ce0c5e4" class="m-doc-self">getState</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">virtual</span></span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">imode</td>
-                  <td>The mode to return the state in.</td>
-                </tr>
-              </tbody>
               <tfoot>
                 <tr>
-                  <th>Returns</th>
-                  <td>The current state in the given format.</td>
+                  <th style="width: 1%">Returns</th>
+                  <td>The current state.</td>
                 </tr>
               </tfoot>
             </table>
-<p>Returns the current state.</p>
           </div></section>
-          <section class="m-doc-details" id="a843ab24d9ed26ba68833ece0b28bf345"><div>
+          <section class="m-doc-details" id="a1e3a4b62e89ab0869c4046983ab7d11b"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a843ab24d9ed26ba68833ece0b28bf345" class="m-doc-self">setState</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate,
-              const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>) <span class="m-label m-warning">virtual</span></span></span>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1e3a4b62e89ab0869c4046983ab7d11b" class="m-doc-self">setState</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -315,13 +348,26 @@
                   <td style="width: 1%">istate</td>
                   <td>The new state in the given format.</td>
                 </tr>
+              </tbody>
+            </table>
+<p>Set a new state to be the current state. The default StateMode is <code><a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a></code>.</p>
+          </div></section>
+          <section class="m-doc-details" id="a79152ae9fb43abbb51179f7bd7ce5fde"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a79152ae9fb43abbb51179f7bd7ce5fde" class="m-doc-self">setDefaultStateMode</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
                 <tr>
-                  <td>imode</td>
-                  <td>The mode to treat the input state as.</td>
+                  <td style="width: 1%">imode</td>
+                  <td>The new default StateMode.</td>
                 </tr>
               </tbody>
             </table>
-<p>Set a new state to be the current state.</p>
+<p>Sets a default StateMode that will be used to interpret target points and query the <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state.</p>
           </div></section>
           <section class="m-doc-details" id="adf98b0e1b91d1f72cce5b76b992257a0"><div>
             <h3>

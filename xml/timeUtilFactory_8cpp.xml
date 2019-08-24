@@ -7,168 +7,168 @@
     <includes refid="rate_8hpp" local="yes">okapi/impl/util/rate.hpp</includes>
     <includes refid="timer_8hpp" local="yes">okapi/impl/util/timer.hpp</includes>
     <incdepgraph>
-      <node id="6247">
+      <node id="6325">
         <label>src/impl/util/timeUtilFactory.cpp</label>
         <link refid="timeUtilFactory_8cpp"/>
-        <childnode refid="6248" relation="include">
+        <childnode refid="6326" relation="include">
         </childnode>
-        <childnode refid="6270" relation="include">
+        <childnode refid="6348" relation="include">
         </childnode>
-        <childnode refid="6271" relation="include">
+        <childnode refid="6349" relation="include">
         </childnode>
-        <childnode refid="6272" relation="include">
+        <childnode refid="6350" relation="include">
         </childnode>
       </node>
-      <node id="6265">
+      <node id="6343">
         <label>functional</label>
       </node>
-      <node id="6255">
+      <node id="6333">
         <label>okapi/api/util/abstractTimer.hpp</label>
         <link refid="abstractTimer_8hpp"/>
-        <childnode refid="6256" relation="include">
+        <childnode refid="6334" relation="include">
         </childnode>
-        <childnode refid="6251" relation="include">
+        <childnode refid="6329" relation="include">
         </childnode>
       </node>
-      <node id="6262">
+      <node id="6340">
         <label>cstdint</label>
       </node>
-      <node id="6256">
+      <node id="6334">
         <label>okapi/api/units/QFrequency.hpp</label>
         <link refid="QFrequency_8hpp"/>
-        <childnode refid="6252" relation="include">
+        <childnode refid="6330" relation="include">
         </childnode>
       </node>
-      <node id="6260">
+      <node id="6338">
         <label>cstdbool</label>
       </node>
-      <node id="6253">
+      <node id="6331">
         <label>cmath</label>
       </node>
-      <node id="6269">
+      <node id="6347">
         <label>okapi/api/util/supplier.hpp</label>
         <link refid="supplier_8hpp"/>
-        <childnode refid="6265" relation="include">
+        <childnode refid="6343" relation="include">
         </childnode>
       </node>
-      <node id="6251">
+      <node id="6329">
         <label>okapi/api/units/QTime.hpp</label>
         <link refid="QTime_8hpp"/>
-        <childnode refid="6252" relation="include">
+        <childnode refid="6330" relation="include">
         </childnode>
       </node>
-      <node id="6249">
+      <node id="6327">
         <label>okapi/api/util/timeUtil.hpp</label>
         <link refid="timeUtil_8hpp"/>
-        <childnode refid="6250" relation="include">
+        <childnode refid="6328" relation="include">
         </childnode>
-        <childnode refid="6258" relation="include">
+        <childnode refid="6336" relation="include">
         </childnode>
-        <childnode refid="6255" relation="include">
+        <childnode refid="6333" relation="include">
         </childnode>
-        <childnode refid="6269" relation="include">
+        <childnode refid="6347" relation="include">
         </childnode>
       </node>
-      <node id="6259">
+      <node id="6337">
         <label>okapi/api/coreProsAPI.hpp</label>
         <link refid="coreProsAPI_8hpp"/>
-        <childnode refid="6253" relation="include">
+        <childnode refid="6331" relation="include">
         </childnode>
-        <childnode refid="6260" relation="include">
+        <childnode refid="6338" relation="include">
         </childnode>
-        <childnode refid="6261" relation="include">
+        <childnode refid="6339" relation="include">
         </childnode>
-        <childnode refid="6262" relation="include">
+        <childnode refid="6340" relation="include">
         </childnode>
-        <childnode refid="6263" relation="include">
+        <childnode refid="6341" relation="include">
         </childnode>
-        <childnode refid="6264" relation="include">
+        <childnode refid="6342" relation="include">
         </childnode>
-        <childnode refid="6265" relation="include">
+        <childnode refid="6343" relation="include">
         </childnode>
-        <childnode refid="6266" relation="include">
+        <childnode refid="6344" relation="include">
         </childnode>
-        <childnode refid="6267" relation="include">
+        <childnode refid="6345" relation="include">
         </childnode>
-        <childnode refid="6268" relation="include">
+        <childnode refid="6346" relation="include">
         </childnode>
       </node>
-      <node id="6258">
+      <node id="6336">
         <label>okapi/api/util/abstractRate.hpp</label>
         <link refid="abstractRate_8hpp"/>
-        <childnode refid="6259" relation="include">
+        <childnode refid="6337" relation="include">
         </childnode>
-        <childnode refid="6256" relation="include">
+        <childnode refid="6334" relation="include">
         </childnode>
-        <childnode refid="6251" relation="include">
+        <childnode refid="6329" relation="include">
         </childnode>
       </node>
-      <node id="6267">
+      <node id="6345">
         <label>api.h</label>
       </node>
-      <node id="6254">
+      <node id="6332">
         <label>ratio</label>
       </node>
-      <node id="6271">
+      <node id="6349">
         <label>okapi/impl/util/rate.hpp</label>
         <link refid="rate_8hpp"/>
-        <childnode refid="6258" relation="include">
+        <childnode refid="6336" relation="include">
         </childnode>
       </node>
-      <node id="6263">
+      <node id="6341">
         <label>cstdio</label>
       </node>
-      <node id="6248">
+      <node id="6326">
         <label>okapi/impl/util/timeUtilFactory.hpp</label>
         <link refid="timeUtilFactory_8hpp"/>
-        <childnode refid="6249" relation="include">
+        <childnode refid="6327" relation="include">
         </childnode>
       </node>
-      <node id="6266">
+      <node id="6344">
         <label>sstream</label>
       </node>
-      <node id="6264">
+      <node id="6342">
         <label>cstdlib</label>
       </node>
-      <node id="6261">
+      <node id="6339">
         <label>cstddef</label>
       </node>
-      <node id="6270">
+      <node id="6348">
         <label>okapi/impl/control/util/settledUtilFactory.hpp</label>
         <link refid="settledUtilFactory_8hpp"/>
-        <childnode refid="6250" relation="include">
+        <childnode refid="6328" relation="include">
         </childnode>
-        <childnode refid="6257" relation="include">
+        <childnode refid="6335" relation="include">
         </childnode>
       </node>
-      <node id="6252">
+      <node id="6330">
         <label>okapi/api/units/RQuantity.hpp</label>
         <link refid="RQuantity_8hpp"/>
-        <childnode refid="6253" relation="include">
+        <childnode refid="6331" relation="include">
         </childnode>
-        <childnode refid="6254" relation="include">
+        <childnode refid="6332" relation="include">
         </childnode>
       </node>
-      <node id="6272">
+      <node id="6350">
         <label>okapi/impl/util/timer.hpp</label>
         <link refid="timer_8hpp"/>
-        <childnode refid="6255" relation="include">
+        <childnode refid="6333" relation="include">
         </childnode>
       </node>
-      <node id="6250">
+      <node id="6328">
         <label>okapi/api/control/util/settledUtil.hpp</label>
         <link refid="settledUtil_8hpp"/>
-        <childnode refid="6251" relation="include">
+        <childnode refid="6329" relation="include">
         </childnode>
-        <childnode refid="6255" relation="include">
+        <childnode refid="6333" relation="include">
         </childnode>
-        <childnode refid="6257" relation="include">
+        <childnode refid="6335" relation="include">
         </childnode>
       </node>
-      <node id="6268">
+      <node id="6346">
         <label>pros/apix.h</label>
       </node>
-      <node id="6257">
+      <node id="6335">
         <label>memory</label>
       </node>
     </incdepgraph>

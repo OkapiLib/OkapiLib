@@ -5,422 +5,422 @@
     <includes refid="iterativeControllerFactory_8hpp" local="yes">okapi/impl/control/iterative/iterativeControllerFactory.hpp</includes>
     <includes refid="timeUtilFactory_8hpp" local="yes">okapi/impl/util/timeUtilFactory.hpp</includes>
     <incdepgraph>
-      <node id="5856">
+      <node id="5934">
         <label>okapi/api/units/QAngle.hpp</label>
         <link refid="QAngle_8hpp"/>
-        <childnode refid="5813" relation="include">
+        <childnode refid="5891" relation="include">
         </childnode>
-        <childnode refid="5814" relation="include">
+        <childnode refid="5892" relation="include">
         </childnode>
       </node>
-      <node id="5805">
+      <node id="5883">
         <label>src/impl/control/iterative/iterativeControllerFactory.cpp</label>
         <link refid="iterativeControllerFactory_8cpp"/>
-        <childnode refid="5806" relation="include">
+        <childnode refid="5884" relation="include">
         </childnode>
-        <childnode refid="5860" relation="include">
+        <childnode refid="5938" relation="include">
         </childnode>
       </node>
-      <node id="5826">
+      <node id="5904">
         <label>functional</label>
       </node>
-      <node id="5848">
+      <node id="5926">
         <label>limits</label>
       </node>
-      <node id="5858">
+      <node id="5936">
         <label>okapi/impl/device/motor/motorGroup.hpp</label>
         <link refid="motorGroup_8hpp"/>
-        <childnode refid="5816" relation="include">
+        <childnode refid="5894" relation="include">
         </childnode>
-        <childnode refid="5839" relation="include">
+        <childnode refid="5917" relation="include">
         </childnode>
-        <childnode refid="5857" relation="include">
+        <childnode refid="5935" relation="include">
         </childnode>
-        <childnode refid="5852" relation="include">
+        <childnode refid="5930" relation="include">
         </childnode>
-        <childnode refid="5853" relation="include">
+        <childnode refid="5931" relation="include">
         </childnode>
       </node>
-      <node id="5835">
+      <node id="5913">
         <label>okapi/api/util/abstractTimer.hpp</label>
         <link refid="abstractTimer_8hpp"/>
-        <childnode refid="5836" relation="include">
+        <childnode refid="5914" relation="include">
         </childnode>
-        <childnode refid="5812" relation="include">
+        <childnode refid="5890" relation="include">
         </childnode>
       </node>
-      <node id="5823">
+      <node id="5901">
         <label>cstdint</label>
       </node>
-      <node id="5836">
+      <node id="5914">
         <label>okapi/api/units/QFrequency.hpp</label>
         <link refid="QFrequency_8hpp"/>
-        <childnode refid="5813" relation="include">
+        <childnode refid="5891" relation="include">
         </childnode>
       </node>
-      <node id="5857">
+      <node id="5935">
         <label>okapi/impl/device/motor/motor.hpp</label>
         <link refid="motor_8hpp"/>
-        <childnode refid="5828" relation="include">
+        <childnode refid="5906" relation="include">
         </childnode>
-        <childnode refid="5816" relation="include">
+        <childnode refid="5894" relation="include">
         </childnode>
-        <childnode refid="5839" relation="include">
+        <childnode refid="5917" relation="include">
         </childnode>
       </node>
-      <node id="5819">
+      <node id="5897">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="5821">
+      <node id="5899">
         <label>cstdbool</label>
       </node>
-      <node id="5840">
+      <node id="5918">
         <label>okapi/api/util/mathUtil.hpp</label>
         <link refid="mathUtil_8hpp"/>
-        <childnode refid="5816" relation="include">
+        <childnode refid="5894" relation="include">
         </childnode>
-        <childnode refid="5841" relation="include">
+        <childnode refid="5919" relation="include">
         </childnode>
-        <childnode refid="5823" relation="include">
+        <childnode refid="5901" relation="include">
         </childnode>
-        <childnode refid="5842" relation="include">
+        <childnode refid="5920" relation="include">
         </childnode>
-        <childnode refid="5843" relation="include">
+        <childnode refid="5921" relation="include">
         </childnode>
       </node>
-      <node id="5814">
+      <node id="5892">
         <label>cmath</label>
       </node>
-      <node id="5807">
+      <node id="5885">
         <label>okapi/api/control/iterative/iterativeMotorVelocityController.hpp</label>
         <link refid="iterativeMotorVelocityController_8hpp"/>
-        <childnode refid="5808" relation="include">
+        <childnode refid="5886" relation="include">
         </childnode>
-        <childnode refid="5816" relation="include">
+        <childnode refid="5894" relation="include">
         </childnode>
-        <childnode refid="5831" relation="include">
+        <childnode refid="5909" relation="include">
         </childnode>
-        <childnode refid="5830" relation="include">
+        <childnode refid="5908" relation="include">
         </childnode>
       </node>
-      <node id="5817">
+      <node id="5895">
         <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
         <link refid="continuousRotarySensor_8hpp"/>
-        <childnode refid="5818" relation="include">
+        <childnode refid="5896" relation="include">
         </childnode>
       </node>
-      <node id="5847">
+      <node id="5925">
         <label>okapi/api/util/supplier.hpp</label>
         <link refid="supplier_8hpp"/>
-        <childnode refid="5826" relation="include">
+        <childnode refid="5904" relation="include">
         </childnode>
       </node>
-      <node id="5812">
+      <node id="5890">
         <label>okapi/api/units/QTime.hpp</label>
         <link refid="QTime_8hpp"/>
-        <childnode refid="5813" relation="include">
+        <childnode refid="5891" relation="include">
         </childnode>
       </node>
-      <node id="5806">
+      <node id="5884">
         <label>okapi/impl/control/iterative/iterativeControllerFactory.hpp</label>
         <link refid="iterativeControllerFactory_8hpp"/>
-        <childnode refid="5807" relation="include">
+        <childnode refid="5885" relation="include">
         </childnode>
-        <childnode refid="5832" relation="include">
+        <childnode refid="5910" relation="include">
         </childnode>
-        <childnode refid="5849" relation="include">
+        <childnode refid="5927" relation="include">
         </childnode>
-        <childnode refid="5840" relation="include">
+        <childnode refid="5918" relation="include">
         </childnode>
-        <childnode refid="5857" relation="include">
+        <childnode refid="5935" relation="include">
         </childnode>
-        <childnode refid="5858" relation="include">
+        <childnode refid="5936" relation="include">
         </childnode>
-        <childnode refid="5859" relation="include">
+        <childnode refid="5937" relation="include">
         </childnode>
       </node>
-      <node id="5845">
+      <node id="5923">
         <label>okapi/api/util/timeUtil.hpp</label>
         <link refid="timeUtil_8hpp"/>
-        <childnode refid="5834" relation="include">
+        <childnode refid="5912" relation="include">
         </childnode>
-        <childnode refid="5846" relation="include">
+        <childnode refid="5924" relation="include">
         </childnode>
-        <childnode refid="5835" relation="include">
+        <childnode refid="5913" relation="include">
         </childnode>
-        <childnode refid="5847" relation="include">
+        <childnode refid="5925" relation="include">
         </childnode>
       </node>
-      <node id="5816">
+      <node id="5894">
         <label>okapi/api/device/motor/abstractMotor.hpp</label>
         <link refid="abstractMotor_8hpp"/>
-        <childnode refid="5811" relation="include">
+        <childnode refid="5889" relation="include">
         </childnode>
-        <childnode refid="5817" relation="include">
+        <childnode refid="5895" relation="include">
         </childnode>
-        <childnode refid="5830" relation="include">
+        <childnode refid="5908" relation="include">
         </childnode>
       </node>
-      <node id="5854">
+      <node id="5932">
         <label>okapi/api/units/QAngularAcceleration.hpp</label>
         <link refid="QAngularAcceleration_8hpp"/>
-        <childnode refid="5813" relation="include">
+        <childnode refid="5891" relation="include">
         </childnode>
       </node>
-      <node id="5820">
+      <node id="5898">
         <label>okapi/api/coreProsAPI.hpp</label>
         <link refid="coreProsAPI_8hpp"/>
-        <childnode refid="5814" relation="include">
+        <childnode refid="5892" relation="include">
         </childnode>
-        <childnode refid="5821" relation="include">
+        <childnode refid="5899" relation="include">
         </childnode>
-        <childnode refid="5822" relation="include">
+        <childnode refid="5900" relation="include">
         </childnode>
-        <childnode refid="5823" relation="include">
+        <childnode refid="5901" relation="include">
         </childnode>
-        <childnode refid="5824" relation="include">
+        <childnode refid="5902" relation="include">
         </childnode>
-        <childnode refid="5825" relation="include">
+        <childnode refid="5903" relation="include">
         </childnode>
-        <childnode refid="5826" relation="include">
+        <childnode refid="5904" relation="include">
         </childnode>
-        <childnode refid="5827" relation="include">
+        <childnode refid="5905" relation="include">
         </childnode>
-        <childnode refid="5828" relation="include">
+        <childnode refid="5906" relation="include">
         </childnode>
-        <childnode refid="5829" relation="include">
+        <childnode refid="5907" relation="include">
         </childnode>
       </node>
-      <node id="5851">
+      <node id="5929">
         <label>okapi/api/filter/composableFilter.hpp</label>
         <link refid="composableFilter_8hpp"/>
-        <childnode refid="5837" relation="include">
+        <childnode refid="5915" relation="include">
         </childnode>
-        <childnode refid="5826" relation="include">
+        <childnode refid="5904" relation="include">
         </childnode>
-        <childnode refid="5852" relation="include">
+        <childnode refid="5930" relation="include">
         </childnode>
-        <childnode refid="5830" relation="include">
+        <childnode refid="5908" relation="include">
         </childnode>
-        <childnode refid="5853" relation="include">
+        <childnode refid="5931" relation="include">
         </childnode>
       </node>
-      <node id="5846">
+      <node id="5924">
         <label>okapi/api/util/abstractRate.hpp</label>
         <link refid="abstractRate_8hpp"/>
-        <childnode refid="5820" relation="include">
+        <childnode refid="5898" relation="include">
         </childnode>
-        <childnode refid="5836" relation="include">
+        <childnode refid="5914" relation="include">
         </childnode>
-        <childnode refid="5812" relation="include">
+        <childnode refid="5890" relation="include">
         </childnode>
       </node>
-      <node id="5828">
+      <node id="5906">
         <label>api.h</label>
       </node>
-      <node id="5808">
+      <node id="5886">
         <label>okapi/api/control/iterative/iterativeVelocityController.hpp</label>
         <link refid="iterativeVelocityController_8hpp"/>
-        <childnode refid="5809" relation="include">
+        <childnode refid="5887" relation="include">
         </childnode>
       </node>
-      <node id="5838">
+      <node id="5916">
         <label>okapi/api/filter/passthroughFilter.hpp</label>
         <link refid="passthroughFilter_8hpp"/>
-        <childnode refid="5837" relation="include">
+        <childnode refid="5915" relation="include">
         </childnode>
       </node>
-      <node id="5815">
+      <node id="5893">
         <label>ratio</label>
       </node>
-      <node id="5811">
+      <node id="5889">
         <label>okapi/api/control/controllerOutput.hpp</label>
         <link refid="controllerOutput_8hpp"/>
       </node>
-      <node id="5837">
+      <node id="5915">
         <label>okapi/api/filter/filter.hpp</label>
         <link refid="filter_8hpp"/>
       </node>
-      <node id="5850">
+      <node id="5928">
         <label>okapi/api/filter/velMath.hpp</label>
         <link refid="velMath_8hpp"/>
-        <childnode refid="5851" relation="include">
+        <childnode refid="5929" relation="include">
         </childnode>
-        <childnode refid="5854" relation="include">
+        <childnode refid="5932" relation="include">
         </childnode>
-        <childnode refid="5855" relation="include">
+        <childnode refid="5933" relation="include">
         </childnode>
-        <childnode refid="5812" relation="include">
+        <childnode refid="5890" relation="include">
         </childnode>
-        <childnode refid="5835" relation="include">
+        <childnode refid="5913" relation="include">
         </childnode>
-        <childnode refid="5839" relation="include">
+        <childnode refid="5917" relation="include">
         </childnode>
-        <childnode refid="5830" relation="include">
+        <childnode refid="5908" relation="include">
         </childnode>
       </node>
-      <node id="5855">
+      <node id="5933">
         <label>okapi/api/units/QAngularSpeed.hpp</label>
         <link refid="QAngularSpeed_8hpp"/>
-        <childnode refid="5856" relation="include">
+        <childnode refid="5934" relation="include">
         </childnode>
-        <childnode refid="5836" relation="include">
+        <childnode refid="5914" relation="include">
         </childnode>
-        <childnode refid="5812" relation="include">
+        <childnode refid="5890" relation="include">
         </childnode>
-        <childnode refid="5813" relation="include">
+        <childnode refid="5891" relation="include">
         </childnode>
       </node>
-      <node id="5824">
+      <node id="5902">
         <label>cstdio</label>
       </node>
-      <node id="5853">
+      <node id="5931">
         <label>vector</label>
       </node>
-      <node id="5860">
+      <node id="5938">
         <label>okapi/impl/util/timeUtilFactory.hpp</label>
         <link refid="timeUtilFactory_8hpp"/>
-        <childnode refid="5845" relation="include">
+        <childnode refid="5923" relation="include">
         </childnode>
       </node>
-      <node id="5839">
+      <node id="5917">
         <label>okapi/api/util/logging.hpp</label>
         <link refid="logging_8hpp"/>
-        <childnode refid="5820" relation="include">
+        <childnode refid="5898" relation="include">
         </childnode>
-        <childnode refid="5835" relation="include">
+        <childnode refid="5913" relation="include">
         </childnode>
-        <childnode refid="5840" relation="include">
+        <childnode refid="5918" relation="include">
         </childnode>
-        <childnode refid="5830" relation="include">
+        <childnode refid="5908" relation="include">
         </childnode>
-        <childnode refid="5844" relation="include">
+        <childnode refid="5922" relation="include">
         </childnode>
       </node>
-      <node id="5833">
+      <node id="5911">
         <label>okapi/api/control/iterative/iterativePositionController.hpp</label>
         <link refid="iterativePositionController_8hpp"/>
-        <childnode refid="5809" relation="include">
+        <childnode refid="5887" relation="include">
         </childnode>
       </node>
-      <node id="5831">
+      <node id="5909">
         <label>array</label>
       </node>
-      <node id="5827">
+      <node id="5905">
         <label>sstream</label>
       </node>
-      <node id="5832">
+      <node id="5910">
         <label>okapi/api/control/iterative/iterativePosPidController.hpp</label>
         <link refid="iterativePosPidController_8hpp"/>
-        <childnode refid="5833" relation="include">
+        <childnode refid="5911" relation="include">
         </childnode>
-        <childnode refid="5834" relation="include">
+        <childnode refid="5912" relation="include">
         </childnode>
-        <childnode refid="5837" relation="include">
+        <childnode refid="5915" relation="include">
         </childnode>
-        <childnode refid="5838" relation="include">
+        <childnode refid="5916" relation="include">
         </childnode>
-        <childnode refid="5839" relation="include">
+        <childnode refid="5917" relation="include">
         </childnode>
-        <childnode refid="5845" relation="include">
+        <childnode refid="5923" relation="include">
         </childnode>
-        <childnode refid="5848" relation="include">
+        <childnode refid="5926" relation="include">
         </childnode>
-        <childnode refid="5830" relation="include">
+        <childnode refid="5908" relation="include">
         </childnode>
       </node>
-      <node id="5818">
+      <node id="5896">
         <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
         <link refid="rotarySensor_8hpp"/>
-        <childnode refid="5819" relation="include">
+        <childnode refid="5897" relation="include">
         </childnode>
-        <childnode refid="5820" relation="include">
+        <childnode refid="5898" relation="include">
         </childnode>
       </node>
-      <node id="5849">
+      <node id="5927">
         <label>okapi/api/control/iterative/iterativeVelPidController.hpp</label>
         <link refid="iterativeVelPidController_8hpp"/>
-        <childnode refid="5808" relation="include">
+        <childnode refid="5886" relation="include">
         </childnode>
-        <childnode refid="5834" relation="include">
+        <childnode refid="5912" relation="include">
         </childnode>
-        <childnode refid="5838" relation="include">
+        <childnode refid="5916" relation="include">
         </childnode>
-        <childnode refid="5850" relation="include">
+        <childnode refid="5928" relation="include">
         </childnode>
-        <childnode refid="5839" relation="include">
+        <childnode refid="5917" relation="include">
         </childnode>
-        <childnode refid="5845" relation="include">
+        <childnode refid="5923" relation="include">
         </childnode>
       </node>
-      <node id="5842">
+      <node id="5920">
         <label>math.h</label>
       </node>
-      <node id="5825">
+      <node id="5903">
         <label>cstdlib</label>
       </node>
-      <node id="5822">
+      <node id="5900">
         <label>cstddef</label>
       </node>
-      <node id="5813">
+      <node id="5891">
         <label>okapi/api/units/RQuantity.hpp</label>
         <link refid="RQuantity_8hpp"/>
-        <childnode refid="5814" relation="include">
+        <childnode refid="5892" relation="include">
         </childnode>
-        <childnode refid="5815" relation="include">
+        <childnode refid="5893" relation="include">
         </childnode>
       </node>
-      <node id="5810">
+      <node id="5888">
         <label>okapi/api/control/closedLoopController.hpp</label>
         <link refid="closedLoopController_8hpp"/>
-        <childnode refid="5811" relation="include">
+        <childnode refid="5889" relation="include">
         </childnode>
-        <childnode refid="5812" relation="include">
+        <childnode refid="5890" relation="include">
         </childnode>
       </node>
-      <node id="5844">
+      <node id="5922">
         <label>mutex</label>
       </node>
-      <node id="5843">
+      <node id="5921">
         <label>type_traits</label>
       </node>
-      <node id="5859">
+      <node id="5937">
         <label>okapi/impl/filter/velMathFactory.hpp</label>
         <link refid="velMathFactory_8hpp"/>
-        <childnode refid="5850" relation="include">
+        <childnode refid="5928" relation="include">
         </childnode>
-        <childnode refid="5830" relation="include">
+        <childnode refid="5908" relation="include">
         </childnode>
       </node>
-      <node id="5834">
+      <node id="5912">
         <label>okapi/api/control/util/settledUtil.hpp</label>
         <link refid="settledUtil_8hpp"/>
-        <childnode refid="5812" relation="include">
+        <childnode refid="5890" relation="include">
         </childnode>
-        <childnode refid="5835" relation="include">
+        <childnode refid="5913" relation="include">
         </childnode>
-        <childnode refid="5830" relation="include">
+        <childnode refid="5908" relation="include">
         </childnode>
       </node>
-      <node id="5841">
+      <node id="5919">
         <label>algorithm</label>
       </node>
-      <node id="5829">
+      <node id="5907">
         <label>pros/apix.h</label>
       </node>
-      <node id="5830">
+      <node id="5908">
         <label>memory</label>
       </node>
-      <node id="5852">
+      <node id="5930">
         <label>initializer_list</label>
       </node>
-      <node id="5809">
+      <node id="5887">
         <label>okapi/api/control/iterative/iterativeController.hpp</label>
         <link refid="iterativeController_8hpp"/>
-        <childnode refid="5810" relation="include">
+        <childnode refid="5888" relation="include">
         </childnode>
-        <childnode refid="5812" relation="include">
+        <childnode refid="5890" relation="include">
         </childnode>
       </node>
     </incdepgraph>

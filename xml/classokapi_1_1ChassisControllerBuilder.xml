@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="314" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="314" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="320" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="320" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a4b06388f38adaef235363d37cee44c52" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="328" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="328" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="334" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="334" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a36381bf3a669d3a9005ec5711066f50c" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="329" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="329" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="335" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="335" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a7cdc148f76862392b61422bf29a4c950" prot="private" static="no" mutable="no">
         <type>SkidSteerMotors</type>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="330" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="330" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="336" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="336" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a2c58d1ee214a1854e8be3d9c4a31f7a9" prot="private" static="no" mutable="no">
         <type>XDriveMotors</type>
@@ -71,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="331" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="331" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="337" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="337" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a82c45aeb7427b1ddaca0f2ff2edbcf3f" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -85,7 +85,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="333" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="333" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="339" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="339" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a1d8a95522515e72681c521084936168c" prot="private" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
@@ -99,7 +99,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="334" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="334" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="340" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="340" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a4d6c6037aa312ed880d5d7d618a38eaa" prot="private" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
@@ -113,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="335" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="335" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="341" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="341" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1aa0a5339fc78a570270aef05a81d5ff95" prot="private" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
@@ -127,7 +127,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="336" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="336" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="342" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="342" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a6b5ce773a30ee1f27981a5dce462a497" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -141,7 +141,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="338" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="338" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="344" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="344" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1adb9a3cbebf17222eaf1005d4fff12e3e" prot="private" static="no" mutable="no">
         <type><ref refid="structokapi_1_1IterativePosPIDController_1_1Gains" kindref="compound">IterativePosPIDController::Gains</ref></type>
@@ -154,7 +154,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="339" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="339" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="345" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="345" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1ae34e148843009d4bee269fa3d5c01822" prot="private" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classokapi_1_1Filter" kindref="compound">Filter</ref> &gt;</type>
@@ -168,7 +168,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="340" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="340" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="346" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="346" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a5132d236df76456df79e5b86bbf03a3a" prot="private" static="no" mutable="no">
         <type><ref refid="structokapi_1_1IterativePosPIDController_1_1Gains" kindref="compound">IterativePosPIDController::Gains</ref></type>
@@ -181,7 +181,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="341" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="341" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="347" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="347" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a858691f337b15633addeaa74c5216781" prot="private" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classokapi_1_1Filter" kindref="compound">Filter</ref> &gt;</type>
@@ -195,7 +195,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="342" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="342" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="348" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="348" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a660e0fe40e8dfbd505b60c094da9b272" prot="private" static="no" mutable="no">
         <type><ref refid="structokapi_1_1IterativePosPIDController_1_1Gains" kindref="compound">IterativePosPIDController::Gains</ref></type>
@@ -208,7 +208,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="343" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="343" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="349" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="349" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1af9e3c44dcee065ead44d0ecc145cdc68" prot="private" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classokapi_1_1Filter" kindref="compound">Filter</ref> &gt;</type>
@@ -222,7 +222,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="344" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="344" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="350" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="350" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a9fedf30fa7246f8bf8983452f397eb5a" prot="private" static="no" mutable="no">
         <type><ref refid="classokapi_1_1TimeUtilFactory" kindref="compound">TimeUtilFactory</ref></type>
@@ -236,7 +236,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="345" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="345" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="351" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="351" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a03255e77dec235d4af3818db91f9552e" prot="private" static="no" mutable="no">
         <type><ref refid="classokapi_1_1TimeUtilFactory" kindref="compound">TimeUtilFactory</ref></type>
@@ -250,7 +250,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="346" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="346" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="352" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="352" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1ab690d2a35c51cdd4f14a6a0a6e4d1ba1" prot="private" static="no" mutable="no">
         <type><ref refid="classokapi_1_1TimeUtilFactory" kindref="compound">TimeUtilFactory</ref></type>
@@ -264,7 +264,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="347" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="347" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="353" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="353" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1ae72db959b82de5f1e63e999d771f2f54" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -278,7 +278,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="349" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="349" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="355" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="355" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a7fd82a0f66755a69f05085ad0adacf94" prot="private" static="no" mutable="no">
         <type><ref refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair" kindref="compound">AbstractMotor::GearsetRatioPair</ref></type>
@@ -292,7 +292,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="350" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="350" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="356" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="356" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1aef80b3a024b83fb94da6f31c283e81ac" prot="private" static="no" mutable="no">
         <type><ref refid="classokapi_1_1ChassisScales" kindref="compound">ChassisScales</ref></type>
@@ -306,7 +306,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="351" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="351" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="357" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="357" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a96418cbd1647eaa4cb9ba8873636a099" prot="private" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
@@ -320,7 +320,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="352" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="352" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="358" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="358" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a74333ef2f6930e2bb82b6e0a92d06a16" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -334,7 +334,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="354" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="354" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="360" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="360" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a8d65c7b9461a392e607552d6e6fd1142" prot="private" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classokapi_1_1Odometry" kindref="compound">Odometry</ref> &gt;</type>
@@ -347,7 +347,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="355" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="355" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="361" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="361" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1af4167e100fc835a034b26f9f091f58f6" prot="private" static="no" mutable="no">
         <type>QSpeed</type>
@@ -360,7 +360,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="356" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="356" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="362" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="362" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a005e5a409f953b868803be52662e943a" prot="private" static="no" mutable="no">
+        <type><ref refid="namespaceokapi_1af37fbd761bd859a00ff4dd4a87dd8c07" kindref="member">StateMode</ref></type>
+        <definition>StateMode okapi::ChassisControllerBuilder::stateMode</definition>
+        <argsstring></argsstring>
+        <name>stateMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="363" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="363" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a4770676e616026ac4215399cae91c4ae" prot="private" static="no" mutable="no">
         <type>QLength</type>
@@ -373,7 +386,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="357" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="357" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="364" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="364" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1abfdae072e6f6178926cdc93935f8114b" prot="private" static="no" mutable="no">
         <type>QAngle</type>
@@ -386,7 +399,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="358" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="358" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="365" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="365" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a6a706383d723514c42935f274633e49b" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -400,7 +413,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="360" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="360" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="367" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="367" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a5e3cd2bf5f2d89f048e00f40d5e2531e" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -414,7 +427,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="361" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="361" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="368" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="368" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1ChassisControllerBuilder_1a7d1d01e772c46fa5364a1c869c72a83c" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -428,7 +441,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="363" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="363" bodyend="-1"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="370" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="370" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -1169,20 +1182,25 @@
         </inbodydescription>
         <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="187" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="151" bodyend="159"/>
       </memberdef>
-      <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1a2dfb66cd7cf160b8cce3e9c2ffec7c74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1aa4686900014387dbc3b335ee813c3ead" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref> &amp;</type>
         <definition>ChassisControllerBuilder &amp; okapi::ChassisControllerBuilder::withOdometry</definition>
-        <argsstring>(const QLength &amp;imoveThreshold=10_mm, const QAngle &amp;iturnThreshold=1_deg, const QSpeed &amp;iwheelVelDelta=0.0001_mps)</argsstring>
+        <argsstring>(const StateMode &amp;imode=StateMode::FRAME_TRANSFORMATION, const QLength &amp;imoveThreshold=0_mm, const QAngle &amp;iturnThreshold=0_deg, const QSpeed &amp;iwheelVelDelta=0.0001_mps)</argsstring>
         <name>withOdometry</name>
+        <param>
+          <type>const <ref refid="namespaceokapi_1af37fbd761bd859a00ff4dd4a87dd8c07" kindref="member">StateMode</ref> &amp;</type>
+          <declname>imode</declname>
+          <defval><ref refid="namespaceokapi_1af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" kindref="member">StateMode::FRAME_TRANSFORMATION</ref></defval>
+        </param>
         <param>
           <type>const QLength &amp;</type>
           <declname>imoveThreshold</declname>
-          <defval>10_mm</defval>
+          <defval>0_mm</defval>
         </param>
         <param>
           <type>const QAngle &amp;</type>
           <declname>iturnThreshold</declname>
-          <defval>1_deg</defval>
+          <defval>0_deg</defval>
         </param>
         <param>
           <type>const QSpeed &amp;</type>
@@ -1194,6 +1212,14 @@
         <detaileddescription>
 <para>Sets the odometry information, causing the builder to generate an <ref refid="classokapi_1_1Odometry" kindref="compound">Odometry</ref> variant.</para>
 <para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>imode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new default StateMode used to interpret target points and query the <ref refid="classokapi_1_1Odometry" kindref="compound">Odometry</ref> state. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
 <parameternamelist>
 <parametername>imoveThreshold</parametername>
 </parameternamelist>
@@ -1224,26 +1250,31 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="200" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="171" bodyend="180"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="202" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="171" bodyend="182"/>
       </memberdef>
-      <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1ad581d48529b154b1335aada35465e3ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1aa775099a284db24e6832022668d0a344" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref> &amp;</type>
         <definition>ChassisControllerBuilder &amp; okapi::ChassisControllerBuilder::withOdometry</definition>
-        <argsstring>(std::unique_ptr&lt; Odometry &gt; iodometry, const QLength &amp;imoveThreshold=10_mm, const QAngle &amp;iturnThreshold=1_deg)</argsstring>
+        <argsstring>(std::unique_ptr&lt; Odometry &gt; iodometry, const StateMode &amp;imode=StateMode::FRAME_TRANSFORMATION, const QLength &amp;imoveThreshold=0_mm, const QAngle &amp;iturnThreshold=0_deg)</argsstring>
         <name>withOdometry</name>
         <param>
           <type>std::unique_ptr&lt; <ref refid="classokapi_1_1Odometry" kindref="compound">Odometry</ref> &gt;</type>
           <declname>iodometry</declname>
         </param>
         <param>
+          <type>const <ref refid="namespaceokapi_1af37fbd761bd859a00ff4dd4a87dd8c07" kindref="member">StateMode</ref> &amp;</type>
+          <declname>imode</declname>
+          <defval><ref refid="namespaceokapi_1af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" kindref="member">StateMode::FRAME_TRANSFORMATION</ref></defval>
+        </param>
+        <param>
           <type>const QLength &amp;</type>
           <declname>imoveThreshold</declname>
-          <defval>10_mm</defval>
+          <defval>0_mm</defval>
         </param>
         <param>
           <type>const QAngle &amp;</type>
           <declname>iturnThreshold</declname>
-          <defval>1_deg</defval>
+          <defval>0_deg</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -1255,6 +1286,14 @@
 </parameternamelist>
 <parameterdescription>
 <para>The odometry object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>imode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new default StateMode used to interpret target points and query the <ref refid="classokapi_1_1Odometry" kindref="compound">Odometry</ref> state. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -1280,7 +1319,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="212" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="183" bodyend="196"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="217" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="185" bodyend="200"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1a4d65988fd98e4530dfa236fce6d4d99a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref> &amp;</type>
@@ -1336,7 +1375,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="224" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="162" bodyend="169"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="230" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="162" bodyend="169"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1aea1e3d32abede99a1b565205275aea78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref> &amp;</type>
@@ -1366,7 +1405,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="235" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="199" bodyend="208"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="241" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="203" bodyend="212"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1a72a642f59112da74960942aae390a5ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref> &amp;</type>
@@ -1396,7 +1435,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="243" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="210" bodyend="213"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="249" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="214" bodyend="217"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1aee0580c75bf16663f065aad88fdc795d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref> &amp;</type>
@@ -1426,7 +1465,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="251" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="215" bodyend="219"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="257" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="219" bodyend="223"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1a7bf0a781b124ae39c8fc46786d18243a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref> &amp;</type>
@@ -1456,7 +1495,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="259" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="221" bodyend="224"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="265" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="225" bodyend="228"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1a1ca2919cbd6fa19b34aeaa1eeee98462" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref> &amp;</type>
@@ -1486,7 +1525,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="269" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="226" bodyend="230"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="275" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="230" bodyend="234"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1a5bf13424f9357099d6e4d336cc0cec98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref> &amp;</type>
@@ -1516,7 +1555,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="279" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="232" bodyend="236"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="285" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="236" bodyend="240"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1ab601ad0881616b9af271d19c820ca3f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref> &amp;</type>
@@ -1546,7 +1585,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="288" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="239" bodyend="242"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="294" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="243" bodyend="246"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1ac2ba4b3f5a3b08e611ea21e0d9406250" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classokapi_1_1ChassisControllerBuilder" kindref="compound">ChassisControllerBuilder</ref> &amp;</type>
@@ -1576,7 +1615,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="296" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="245" bodyend="248"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="302" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="249" bodyend="252"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1a5dfd1f4d60a3c4bfcc28a57211c1a6a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ChassisController" kindref="compound">ChassisController</ref> &gt;</type>
@@ -1593,7 +1632,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="303" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="250" bodyend="269"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="309" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="254" bodyend="273"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1a9c631ea817466483aa2cfcb886f6d892" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1OdomChassisController" kindref="compound">OdomChassisController</ref> &gt;</type>
@@ -1610,7 +1649,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="311" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="271" bodyend="279"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="317" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="275" bodyend="283"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -1625,7 +1664,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="365" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="319" bodyend="369"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="372" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="324" bodyend="374"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1a458e452597a6b3039460884e5c259cc9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ChassisControllerIntegrated" kindref="compound">ChassisControllerIntegrated</ref> &gt;</type>
@@ -1638,7 +1677,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="366" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="371" bodyend="412"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="373" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="376" bodyend="417"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1a59ca56b8cdfc06feb3effba2e930bd30" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1DefaultOdomChassisController" kindref="compound">DefaultOdomChassisController</ref> &gt;</type>
@@ -1655,7 +1694,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="368" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="282" bodyend="317"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="375" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="286" bodyend="322"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1afbd17479cb1d5a0d2a325e58efc875cf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1SkidSteerModel" kindref="compound">SkidSteerModel</ref> &gt;</type>
@@ -1668,7 +1707,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="369" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="414" bodyend="431"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="376" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="419" bodyend="436"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1ChassisControllerBuilder_1a91e6ac3df8c0933acfaa9c2706339d03" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1XDriveModel" kindref="compound">XDriveModel</ref> &gt;</type>
@@ -1681,14 +1720,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="370" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="433" bodyend="442"/>
+        <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="377" column="1" bodyfile="src/impl/chassis/controller/chassisControllerBuilder.cpp" bodystart="438" bodyend="447"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="24" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="24" bodyend="371"/>
+    <location file="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" line="24" column="1" bodyfile="include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp" bodystart="24" bodyend="378"/>
     <listofallmembers>
       <member refid="classokapi_1_1ChassisControllerBuilder_1a858691f337b15633addeaa74c5216781" prot="private" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>angleFilter</name></member>
       <member refid="classokapi_1_1ChassisControllerBuilder_1a5132d236df76456df79e5b86bbf03a3a" prot="private" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>angleGains</name></member>
@@ -1724,6 +1763,7 @@
       <member refid="classokapi_1_1ChassisControllerBuilder_1aef80b3a024b83fb94da6f31c283e81ac" prot="private" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>scales</name></member>
       <member refid="classokapi_1_1ChassisControllerBuilder_1a82c45aeb7427b1ddaca0f2ff2edbcf3f" prot="private" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>sensorsSetByUser</name></member>
       <member refid="classokapi_1_1ChassisControllerBuilder_1a7cdc148f76862392b61422bf29a4c950" prot="private" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>skidSteerMotors</name></member>
+      <member refid="classokapi_1_1ChassisControllerBuilder_1a005e5a409f953b868803be52662e943a" prot="private" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>stateMode</name></member>
       <member refid="classokapi_1_1ChassisControllerBuilder_1af9e3c44dcee065ead44d0ecc145cdc68" prot="private" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>turnFilter</name></member>
       <member refid="classokapi_1_1ChassisControllerBuilder_1a660e0fe40e8dfbd505b60c094da9b272" prot="private" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>turnGains</name></member>
       <member refid="classokapi_1_1ChassisControllerBuilder_1abfdae072e6f6178926cdc93935f8114b" prot="private" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>turnThreshold</name></member>
@@ -1744,8 +1784,8 @@
       <member refid="classokapi_1_1ChassisControllerBuilder_1a0d0a144c1b600aa90cf19b6a76a7dd04" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>withMotors</name></member>
       <member refid="classokapi_1_1ChassisControllerBuilder_1a5f8ddcfcd9c00fc205c1ec0536db3118" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>withMotors</name></member>
       <member refid="classokapi_1_1ChassisControllerBuilder_1a423ebf033857cae3bfcf5542db6dffd2" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>withMotors</name></member>
-      <member refid="classokapi_1_1ChassisControllerBuilder_1a2dfb66cd7cf160b8cce3e9c2ffec7c74" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>withOdometry</name></member>
-      <member refid="classokapi_1_1ChassisControllerBuilder_1ad581d48529b154b1335aada35465e3ac" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>withOdometry</name></member>
+      <member refid="classokapi_1_1ChassisControllerBuilder_1aa4686900014387dbc3b335ee813c3ead" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>withOdometry</name></member>
+      <member refid="classokapi_1_1ChassisControllerBuilder_1aa775099a284db24e6832022668d0a344" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>withOdometry</name></member>
       <member refid="classokapi_1_1ChassisControllerBuilder_1ab601ad0881616b9af271d19c820ca3f2" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>withOdometryTimeUtilFactory</name></member>
       <member refid="classokapi_1_1ChassisControllerBuilder_1a0197aa35c2c36dd82476bc70c5824a56" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>withSensors</name></member>
       <member refid="classokapi_1_1ChassisControllerBuilder_1a5733a2198a3f10befcae5ee2a9a02d7e" prot="public" virt="non-virtual"><scope>okapi::ChassisControllerBuilder</scope><name>withSensors</name></member>

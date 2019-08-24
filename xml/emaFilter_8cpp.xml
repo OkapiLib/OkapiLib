@@ -4,19 +4,19 @@
     <compoundname>emaFilter.cpp</compoundname>
     <includes refid="emaFilter_8hpp" local="yes">okapi/api/filter/emaFilter.hpp</includes>
     <incdepgraph>
-      <node id="5280">
+      <node id="5347">
         <label>okapi/api/filter/emaFilter.hpp</label>
         <link refid="emaFilter_8hpp"/>
-        <childnode refid="5281" relation="include">
+        <childnode refid="5348" relation="include">
         </childnode>
       </node>
-      <node id="5279">
+      <node id="5346">
         <label>src/api/filter/emaFilter.cpp</label>
         <link refid="emaFilter_8cpp"/>
-        <childnode refid="5280" relation="include">
+        <childnode refid="5347" relation="include">
         </childnode>
       </node>
-      <node id="5281">
+      <node id="5348">
         <label>okapi/api/filter/filter.hpp</label>
         <link refid="filter_8hpp"/>
       </node>

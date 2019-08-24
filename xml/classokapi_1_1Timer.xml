@@ -42,18 +42,6 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="515">
-        <label>okapi::AbstractTimer</label>
-        <link refid="classokapi_1_1AbstractTimer"/>
-      </node>
-      <node id="514">
-        <label>okapi::Timer</label>
-        <link refid="classokapi_1_1Timer"/>
-        <childnode refid="515" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="517">
         <label>okapi::AbstractTimer</label>
         <link refid="classokapi_1_1AbstractTimer"/>
@@ -62,6 +50,18 @@
         <label>okapi::Timer</label>
         <link refid="classokapi_1_1Timer"/>
         <childnode refid="517" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="519">
+        <label>okapi::AbstractTimer</label>
+        <link refid="classokapi_1_1AbstractTimer"/>
+      </node>
+      <node id="518">
+        <label>okapi::Timer</label>
+        <link refid="classokapi_1_1Timer"/>
+        <childnode refid="519" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

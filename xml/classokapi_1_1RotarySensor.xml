@@ -47,55 +47,55 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="480">
+      <node id="482">
         <label>okapi::Potentiometer</label>
         <link refid="classokapi_1_1Potentiometer"/>
-        <childnode refid="474" relation="public-inheritance">
+        <childnode refid="476" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="477">
+      <node id="479">
         <label>okapi::ADIEncoder</label>
         <link refid="classokapi_1_1ADIEncoder"/>
-        <childnode refid="476" relation="public-inheritance">
+        <childnode refid="478" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="478">
+      <node id="480">
         <label>okapi::ADIGyro</label>
         <link refid="classokapi_1_1ADIGyro"/>
-        <childnode refid="476" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="474">
-        <label>okapi::RotarySensor</label>
-        <link refid="classokapi_1_1RotarySensor"/>
-        <childnode refid="475" relation="public-inheritance">
+        <childnode refid="478" relation="public-inheritance">
         </childnode>
       </node>
       <node id="476">
-        <label>okapi::ContinuousRotarySensor</label>
-        <link refid="classokapi_1_1ContinuousRotarySensor"/>
-        <childnode refid="474" relation="public-inheritance">
+        <label>okapi::RotarySensor</label>
+        <link refid="classokapi_1_1RotarySensor"/>
+        <childnode refid="477" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="475">
+      <node id="478">
+        <label>okapi::ContinuousRotarySensor</label>
+        <link refid="classokapi_1_1ContinuousRotarySensor"/>
+        <childnode refid="476" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="477">
         <label>okapi::ControllerInput&lt; double &gt;</label>
         <link refid="classokapi_1_1ControllerInput"/>
       </node>
-      <node id="479">
+      <node id="481">
         <label>okapi::IntegratedEncoder</label>
         <link refid="classokapi_1_1IntegratedEncoder"/>
-        <childnode refid="476" relation="public-inheritance">
+        <childnode refid="478" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="481">
+      <node id="483">
         <label>okapi::RotarySensor</label>
         <link refid="classokapi_1_1RotarySensor"/>
-        <childnode refid="482" relation="public-inheritance">
+        <childnode refid="484" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="482">
+      <node id="484">
         <label>okapi::ControllerInput&lt; double &gt;</label>
         <link refid="classokapi_1_1ControllerInput"/>
       </node>

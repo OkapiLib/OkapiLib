@@ -4,6 +4,7 @@
     <compoundname>src/api/odometry</compoundname>
     <innerfile refid="odometry_8cpp">odometry.cpp</innerfile>
     <innerfile refid="odomMath_8cpp">odomMath.cpp</innerfile>
+    <innerfile refid="odomState_8cpp">odomState.cpp</innerfile>
     <innerfile refid="threeEncoderOdometry_8cpp">threeEncoderOdometry.cpp</innerfile>
     <briefdescription>
     </briefdescription>

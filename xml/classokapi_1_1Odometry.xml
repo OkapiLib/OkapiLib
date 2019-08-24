@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="92" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="92" bodyend="-1"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="72" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="72" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1Odometry_1a51a3a499e443240742ae8d3272be2110" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classokapi_1_1AbstractRate" kindref="compound">AbstractRate</ref> &gt;</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="93" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="93" bodyend="-1"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="73" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1Odometry_1aedf3fb84bba92fbaf2fc9dfe8d91fd20" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; <ref refid="classokapi_1_1AbstractTimer" kindref="compound">AbstractTimer</ref> &gt;</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="94" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="94" bodyend="-1"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="74" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="74" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1Odometry_1a71fc47e8d90c6d6728a0a5163319d2ed" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ReadOnlyChassisModel" kindref="compound">ReadOnlyChassisModel</ref> &gt;</type>
@@ -55,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="95" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="95" bodyend="-1"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="75" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1Odometry_1afb1605502a0164b1e946a15ae585ace0" prot="protected" static="no" mutable="no">
         <type><ref refid="classokapi_1_1ChassisScales" kindref="compound">ChassisScales</ref></type>
@@ -68,7 +68,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="96" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="96" bodyend="-1"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="76" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="76" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1Odometry_1acebfb2e25552de9062dd824fcccfb50e" prot="protected" static="no" mutable="no">
         <type>QSpeed</type>
@@ -81,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="97" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="97" bodyend="-1"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="77" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="77" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1Odometry_1a63165b62b596c34c1965f674f57aae5f" prot="protected" static="no" mutable="no">
         <type><ref refid="structokapi_1_1OdomState" kindref="compound">OdomState</ref></type>
@@ -94,7 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="98" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="98" bodyend="-1"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="78" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="78" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1Odometry_1aabbd64b0c4969953599f694c71eb1a7f" prot="protected" static="no" mutable="no">
         <type>std::valarray&lt; std::int32_t &gt;</type>
@@ -108,7 +108,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="99" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="99" bodyend="-1"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="79" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1Odometry_1a28be79e0e646d4dcfc831896c61d81fc" prot="protected" static="no" mutable="no">
         <type>std::valarray&lt; std::int32_t &gt;</type>
@@ -122,7 +122,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="99" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="99" bodyend="-1"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="79" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1Odometry_1a7431f21a4bc30c9812f45e4f9d560cfa" prot="protected" static="no" mutable="no">
         <type>std::valarray&lt; std::int32_t &gt;</type>
@@ -136,7 +136,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="99" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="99" bodyend="-1"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="79" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -216,7 +216,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="56" column="1" bodyfile="src/api/odometry/odometry.cpp" bodystart="14" bodyend="25"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="36" column="1" bodyfile="src/api/odometry/odometry.cpp" bodystart="14" bodyend="25"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1Odometry_1acdaa18c094c9ca21b094a85aa4f3081e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type></type>
@@ -229,7 +229,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="62" column="1"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="42" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1Odometry_1a5330b093e51d650b8ff2c6fe0ec2d27e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -247,7 +247,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="67" column="1" bodyfile="src/api/odometry/odometry.cpp" bodystart="27" bodyend="29"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="47" column="1" bodyfile="src/api/odometry/odometry.cpp" bodystart="27" bodyend="29"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1Odometry_1a04586a88418c606f7bbd0ac3287c730d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -261,7 +261,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="72" column="1" bodyfile="src/api/odometry/odometry.cpp" bodystart="31" bodyend="45"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="52" column="1" bodyfile="src/api/odometry/odometry.cpp" bodystart="31" bodyend="45"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1Odometry_1a1ca6892feeeca68de3eb6faf6cf4bd18" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type><ref refid="structokapi_1_1OdomState" kindref="compound">OdomState</ref></type>
@@ -292,7 +292,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="80" column="1" bodyfile="src/api/odometry/odometry.cpp" bodystart="86" bodyend="92"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="60" column="1" bodyfile="src/api/odometry/odometry.cpp" bodystart="86" bodyend="92"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1Odometry_1a0f18a0770477130307b7c6a9702b0cc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -333,7 +333,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="88" column="1" bodyfile="src/api/odometry/odometry.cpp" bodystart="94" bodyend="101"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="68" column="1" bodyfile="src/api/odometry/odometry.cpp" bodystart="94" bodyend="101"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-func">
@@ -378,7 +378,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="108" column="1" bodyfile="src/api/odometry/odometry.cpp" bodystart="47" bodyend="84"/>
+        <location file="include/okapi/api/odometry/odometry.hpp" line="88" column="1" bodyfile="src/api/odometry/odometry.cpp" bodystart="47" bodyend="84"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -417,7 +417,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="include/okapi/api/odometry/odometry.hpp" line="43" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="43" bodyend="110"/>
+    <location file="include/okapi/api/odometry/odometry.hpp" line="23" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="23" bodyend="90"/>
     <listofallmembers>
       <member refid="classokapi_1_1Odometry_1afb1605502a0164b1e946a15ae585ace0" prot="protected" virt="non-virtual"><scope>okapi::Odometry</scope><name>chassisScales</name></member>
       <member refid="classokapi_1_1Odometry_1a1ca6892feeeca68de3eb6faf6cf4bd18" prot="public" virt="virtual"><scope>okapi::Odometry</scope><name>getState</name></member>

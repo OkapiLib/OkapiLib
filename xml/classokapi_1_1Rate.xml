@@ -156,18 +156,6 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="464">
-        <label>okapi::Rate</label>
-        <link refid="classokapi_1_1Rate"/>
-        <childnode refid="465" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="465">
-        <label>okapi::AbstractRate</label>
-        <link refid="classokapi_1_1AbstractRate"/>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="466">
         <label>okapi::Rate</label>
         <link refid="classokapi_1_1Rate"/>
@@ -175,6 +163,18 @@
         </childnode>
       </node>
       <node id="467">
+        <label>okapi::AbstractRate</label>
+        <link refid="classokapi_1_1AbstractRate"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="468">
+        <label>okapi::Rate</label>
+        <link refid="classokapi_1_1Rate"/>
+        <childnode refid="469" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="469">
         <label>okapi::AbstractRate</label>
         <link refid="classokapi_1_1AbstractRate"/>
       </node>

@@ -45,7 +45,7 @@
       <div class="m-col-l-10 m-push-l-1">
         <h1>
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>Point <span class="m-thin">struct</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="pathfinderUtil_8hpp.html">&lt;include/okapi/api/control/util/pathfinderUtil.hpp&gt;</a></div>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="point_8hpp.html">&lt;include/okapi/api/odometry/point.hpp&gt;</a></div>
         </h1>
         <p><span></span></p>
         <div class="m-block m-default">
@@ -54,11 +54,21 @@
             <li>
               Reference
               <ul>
+                <li><a href="#pub-methods">Public functions</a></li>
                 <li><a href="#pub-attribs">Public variables</a></li>
               </ul>
             </li>
           </ul>
         </div>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a98fb5f28afff23f35318297cfb3131e5" class="m-doc">inFT</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode) const -&gt; <a href="structokapi_1_1Point.html" class="m-doc">Point</a></span>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
         <section id="pub-attribs">
           <h2><a href="#pub-attribs">Public variables</a></h2>
           <dl class="m-doc">
@@ -70,11 +80,33 @@
               QLength <a href="#a6acb599ade55d1df76ad805ac6bb174d" class="m-doc-self">y</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="aff79941175ee144b5d9cea628c00ebc8">
-              QAngle <a href="#aff79941175ee144b5d9cea628c00ebc8" class="m-doc-self">theta</a>
-            </dt>
-            <dd><span></span></dd>
           </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a98fb5f28afff23f35318297cfb3131e5"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="structokapi_1_1Point.html" class="m-doc">Point</a> okapi::<wbr />Point::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a98fb5f28afff23f35318297cfb3131e5" class="m-doc-self">inFT</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode) const</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">imode</td>
+                  <td>The StateMode this <a href="structokapi_1_1Point.html" class="m-doc">Point</a> is currently specified in.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>This point specified in <code><a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a></code>.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Computes the value of this point in <code><a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a></code>.</p>
+          </div></section>
         </section>
       </div>
     </div>

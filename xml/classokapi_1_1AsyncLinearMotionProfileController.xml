@@ -5,6 +5,34 @@
     <basecompoundref refid="classokapi_1_1AsyncPositionController" prot="public" virt="non-virtual">okapi::AsyncPositionController&lt; std::string, double &gt;</basecompoundref>
     <includes refid="asyncLinearMotionProfileController_8hpp" local="no">asyncLinearMotionProfileController.hpp</includes>
     <innerclass refid="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair" prot="protected">okapi::AsyncLinearMotionProfileController::TrajectoryPair</innerclass>
+      <sectiondef kind="protected-type">
+      <memberdef kind="typedef" id="classokapi_1_1AsyncLinearMotionProfileController_1a4793d9c4aebdb9a947b3c5659f919e14" prot="protected" static="no">
+        <type>std::unique_ptr&lt; TrajectoryCandidate, void(*)(TrajectoryCandidate *)&gt;</type>
+        <definition>using okapi::AsyncLinearMotionProfileController::TrajectoryPtr =  std::unique_ptr&lt;TrajectoryCandidate, void (*)(TrajectoryCandidate *)&gt;</definition>
+        <argsstring></argsstring>
+        <name>TrajectoryPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="242" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="242" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classokapi_1_1AsyncLinearMotionProfileController_1a714a13979ef81d5fbca93264d044b8cc" prot="protected" static="no">
+        <type>std::unique_ptr&lt; Segment, void(*)(void *)&gt;</type>
+        <definition>using okapi::AsyncLinearMotionProfileController::SegmentPtr =  std::unique_ptr&lt;Segment, void (*)(void *)&gt;</definition>
+        <argsstring></argsstring>
+        <name>SegmentPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="243" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="243" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
       <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1abfdbc29ef850cf20ed15b3c1398c7cc1" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1Logger" kindref="compound">Logger</ref> &gt;</type>
@@ -17,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="247" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="247" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="250" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="250" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1a955697ca2debe00771c8039b3df328f0" prot="protected" static="no" mutable="no">
         <type>std::map&lt; std::string, <ref refid="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair" kindref="compound">TrajectoryPair</ref> &gt;</type>
@@ -31,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="248" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="248" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="251" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="251" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1a9d2bb17d4a934984d488b3b4fba11c6e" prot="protected" static="no" mutable="no">
         <type><ref refid="structokapi_1_1PathfinderLimits" kindref="compound">PathfinderLimits</ref></type>
@@ -44,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="249" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="249" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="252" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="252" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1a5a718fd422ce52e613e1d231910860a9" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ControllerOutput" kindref="compound">ControllerOutput</ref>&lt; double &gt; &gt;</type>
@@ -57,7 +85,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="250" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="250" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="253" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="253" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1a0b3cafe78cb551d68c2cb6ac31d1a753" prot="protected" static="no" mutable="no">
         <type>QLength</type>
@@ -70,7 +98,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="251" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="251" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="254" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="254" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1a3727388c1310a387524b7d38d5c0b1b0" prot="protected" static="no" mutable="no">
         <type><ref refid="structokapi_1_1AbstractMotor_1_1GearsetRatioPair" kindref="compound">AbstractMotor::GearsetRatioPair</ref></type>
@@ -83,7 +111,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="252" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="252" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="255" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="255" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1a94c203e635765357bd825ffc4d061741" prot="protected" static="no" mutable="no">
         <type>double</type>
@@ -97,7 +125,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="253" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="253" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="256" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="256" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1a320e12b446817ebc8dfb01c6bb36e3cb" prot="protected" static="no" mutable="no">
         <type><ref refid="classokapi_1_1TimeUtil" kindref="compound">TimeUtil</ref></type>
@@ -110,20 +138,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="254" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="254" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="257" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="257" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1ac68c8ff11c8a38eca42efd2950584b90" prot="protected" static="no" mutable="no">
+      <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1a5645f7c2eff01ca271d14fafcebbf2a8" prot="protected" static="no" mutable="no">
         <type><ref refid="classCrossplatformMutex" kindref="compound">CrossplatformMutex</ref></type>
-        <definition>CrossplatformMutex okapi::AsyncLinearMotionProfileController::pathRemoveMutex</definition>
+        <definition>CrossplatformMutex okapi::AsyncLinearMotionProfileController::currentPathMutex</definition>
         <argsstring></argsstring>
-        <name>pathRemoveMutex</name>
+        <name>currentPathMutex</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="255" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="255" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="260" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="260" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1a010cd3afaa58154ee7a32059cadae555" prot="protected" static="no" mutable="no">
         <type>std::string</type>
@@ -137,7 +165,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="257" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="257" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="262" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="262" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1a587f56ae443b18e8fe0b9feeca624b07" prot="protected" static="no" mutable="no">
         <type>std::atomic_bool</type>
@@ -151,7 +179,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="258" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="258" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="263" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="263" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1af82aa4936830711c126e7f00222fdbd8" prot="protected" static="no" mutable="no">
         <type>std::atomic_int</type>
@@ -165,7 +193,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="259" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="259" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="264" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="264" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1a6fc7e4b240646a8e2a8ecc06701e5ee0" prot="protected" static="no" mutable="no">
         <type>std::atomic_bool</type>
@@ -179,7 +207,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="260" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="260" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="265" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="265" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1aa876f79a2053e1f6b01519f17ccaebfa" prot="protected" static="no" mutable="no">
         <type>std::atomic_bool</type>
@@ -193,7 +221,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="261" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="261" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="266" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="266" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1AsyncLinearMotionProfileController_1aa49e2d190f4e8af09fdc4b13951c212d" prot="protected" static="no" mutable="no">
         <type><ref refid="classCrossplatformThread" kindref="compound">CrossplatformThread</ref> *</type>
@@ -207,7 +235,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="262" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="262" bodyend="-1"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="267" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="267" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -298,7 +326,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="37" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="14" bodyend="27"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="37" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="14" bodyend="34"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a9d12f6da129f5c8f8c2c6ddad12274bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -345,7 +373,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="50" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="29" bodyend="37"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="50" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="36" bodyend="45"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1aef2acba51417d929695ca38e309b0f6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -386,7 +414,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="63" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="39" bodyend="42"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="63" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="47" bodyend="50"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1ada94ccc2679082ea7fb2317458ca80d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -439,7 +467,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="77" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="44" bodyend="120"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="77" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="52" bodyend="123"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1acebf5db475871566e1c8f34c179b00be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -469,7 +497,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="89" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="139" bodyend="159"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="89" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="142" bodyend="162"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1ac8495348b177b54bc2978c8b2a27dd4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; std::string &gt;</type>
@@ -486,7 +514,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="96" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="161" bodyend="169"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="96" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="164" bodyend="172"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a18e3ba77f08cb5dd93a9cba23d4c2a1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -515,7 +543,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="104" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="171" bodyend="173"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="104" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="174" bodyend="176"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a7b1aa345da6264a6bd76ab106ade2a56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -555,7 +583,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="113" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="175" bodyend="182"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="113" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="178" bodyend="185"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a45b62483002333a2d99deea8de2af43e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -575,7 +603,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="121" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="184" bodyend="186"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="121" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="187" bodyend="189"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1afc9a1b30a5fd499c38455e8b05982be9" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>std::string</type>
@@ -593,7 +621,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="128" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="188" bodyend="190"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="128" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="191" bodyend="193"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1accae83d74f347e9a839eeae9d2693917" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>std::string</type>
@@ -610,7 +638,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="135" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="192" bodyend="194"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="135" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="195" bodyend="197"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1ad2609e435baad67b73b86b48730fdc9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -625,7 +653,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="141" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="256" bodyend="265"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="141" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="268" bodyend="277"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1ab721150111976222636c3591840bfa13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -678,7 +706,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="151" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="267" bodyend="271"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="151" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="279" bodyend="283"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1afe90cebb82ac0f61e45b3726506e2685" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -743,7 +771,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="162" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="273" bodyend="286"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="162" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="285" bodyend="298"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a31057c2bb8cface61147b1edd0d97ce5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>double</type>
@@ -761,7 +789,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="173" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="288" bodyend="295"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="173" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="300" bodyend="307"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1aecfed2c6a0ead2c38253250e26ce17d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
@@ -780,7 +808,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="183" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="297" bodyend="299"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="183" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="309" bodyend="311"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a925381153aeda65c448489a8f2c3803c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -795,7 +823,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="189" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="301" bodyend="313"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="189" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="313" bodyend="325"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a56b05f978f2a98c2183fdae0f13466e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -810,7 +838,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="195" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="315" bodyend="317"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="195" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="327" bodyend="329"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a3072d7ac1e5d0f387f739657e9f82fd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -839,7 +867,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="203" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="319" bodyend="324"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="203" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="331" bodyend="336"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a99ae2e378cc88745c82a08b6ddf52ee4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
@@ -857,7 +885,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="210" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="326" bodyend="328"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="210" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="338" bodyend="340"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a6cfe67f9e4db556fbed1f2c4c4252b0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -873,7 +901,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="218" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="340" bodyend="341"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="218" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="352" bodyend="353"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a6b9c0bc4fc13623225f0c02b992b3ed6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -887,7 +915,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="224" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="330" bodyend="334"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="224" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="342" bodyend="346"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a944e0c5f2dfa054ccfc554c8440f4aef" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classCrossplatformThread" kindref="compound">CrossplatformThread</ref> *</type>
@@ -904,7 +932,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="231" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="336" bodyend="338"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="231" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="348" bodyend="350"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a59582a155943d96d5f6be9c06cfbf704" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -932,7 +960,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="239" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="343" bodyend="349"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="239" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="355" bodyend="361"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-static-func">
@@ -951,7 +979,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="264" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="250" bodyend="254"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="269" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="262" bodyend="266"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-func">
@@ -966,7 +994,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="265" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="196" bodyend="224"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="270" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="199" bodyend="227"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1ac9f7d18503d72627ff4b7f70d2c373bd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -988,7 +1016,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="270" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="226" bodyend="244"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="275" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="229" bodyend="251"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a3b2473f949bab83f6837b8d448b198cb" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QAngularSpeed</type>
@@ -1018,7 +1046,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="278" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="246" bodyend="248"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="283" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="258" bodyend="260"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1a6778fc13018167cec6cccfa6abf7a0ad" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
@@ -1043,7 +1071,37 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="281" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="123" bodyend="137"/>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="286" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="126" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classokapi_1_1AsyncLinearMotionProfileController_1aede6dc18c7d2c8f5014c4ad6cd91d85d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int okapi::AsyncLinearMotionProfileController::getPathLength</definition>
+        <argsstring>(const TrajectoryPair &amp;path)</argsstring>
+        <name>getPathLength</name>
+        <param>
+          <type>const <ref refid="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair" kindref="compound">TrajectoryPair</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reads the length of the path in a thread-safe manner.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to read from. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The length of the path. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="294" column="1" bodyfile="src/api/control/async/asyncLinearMotionProfileController.cpp" bodystart="253" bodyend="256"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -1097,7 +1155,7 @@
           <edgelabel>task</edgelabel>
         </childnode>
         <childnode refid="72" relation="usage">
-          <edgelabel>pathRemoveMutex</edgelabel>
+          <edgelabel>currentPathMutex</edgelabel>
         </childnode>
         <childnode refid="73" relation="usage">
           <edgelabel>limits</edgelabel>
@@ -1166,13 +1224,14 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="25" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="25" bodyend="282"/>
+    <location file="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" line="25" column="1" bodyfile="include/okapi/api/control/async/asyncLinearMotionProfileController.hpp" bodystart="25" bodyend="295"/>
     <listofallmembers>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a6a5c233fef5c310eaac306467e6a402b" prot="public" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>AsyncLinearMotionProfileController</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a9d12f6da129f5c8f8c2c6ddad12274bf" prot="public" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>AsyncLinearMotionProfileController</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a45b62483002333a2d99deea8de2af43e" prot="public" virt="virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>controllerSet</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a3b2473f949bab83f6837b8d448b198cb" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>convertLinearToRotational</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a010cd3afaa58154ee7a32059cadae555" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>currentPath</name></member>
+      <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a5645f7c2eff01ca271d14fafcebbf2a8" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>currentPathMutex</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a94c203e635765357bd825ffc4d061741" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>currentProfilePosition</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a0b3cafe78cb551d68c2cb6ac31d1a753" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>diameter</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1af82aa4936830711c126e7f00222fdbd8" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>direction</name></member>
@@ -1186,6 +1245,7 @@
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1ada94ccc2679082ea7fb2317458ca80d1" prot="public" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>generatePath</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a31057c2bb8cface61147b1edd0d97ce5" prot="public" virt="virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>getError</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a6778fc13018167cec6cccfa6abf7a0ad" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>getPathErrorMessage</name></member>
+      <member refid="classokapi_1_1AsyncLinearMotionProfileController_1aede6dc18c7d2c8f5014c4ad6cd91d85d" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>getPathLength</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1ac8495348b177b54bc2978c8b2a27dd4e" prot="public" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>getPaths</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1afc9a1b30a5fd499c38455e8b05982be9" prot="public" virt="virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>getTarget</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1accae83d74f347e9a839eeae9d2693917" prot="public" virt="virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>getTarget</name></member>
@@ -1201,16 +1261,17 @@
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a27f16841fdb3586adaf978da580e4f31" prot="public" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>operator=</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a5a718fd422ce52e613e1d231910860a9" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>output</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a3727388c1310a387524b7d38d5c0b1b0" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>pair</name></member>
-      <member refid="classokapi_1_1AsyncLinearMotionProfileController_1ac68c8ff11c8a38eca42efd2950584b90" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>pathRemoveMutex</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a955697ca2debe00771c8039b3df328f0" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>paths</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1acebf5db475871566e1c8f34c179b00be" prot="public" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>removePath</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a925381153aeda65c448489a8f2c3803c" prot="public" virt="virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>reset</name></member>
+      <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a714a13979ef81d5fbca93264d044b8cc" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>SegmentPtr</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a18e3ba77f08cb5dd93a9cba23d4c2a1e" prot="public" virt="virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>setTarget</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a7b1aa345da6264a6bd76ab106ade2a56" prot="public" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>setTarget</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a6b9c0bc4fc13623225f0c02b992b3ed6" prot="public" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>startThread</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a6cfe67f9e4db556fbed1f2c4c4252b0a" prot="public" virt="virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>tarePosition</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1aa49e2d190f4e8af09fdc4b13951c212d" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>task</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a320e12b446817ebc8dfb01c6bb36e3cb" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>timeUtil</name></member>
+      <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a4793d9c4aebdb9a947b3c5659f919e14" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>TrajectoryPtr</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a9b49662a9d4107ebe1b4799934e472a3" prot="protected" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>trampoline</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1ad2609e435baad67b73b86b48730fdc9c" prot="public" virt="virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>waitUntilSettled</name></member>
       <member refid="classokapi_1_1AsyncLinearMotionProfileController_1aaf6806399023d0a4d7dd0ae1a64b3470" prot="public" virt="non-virtual"><scope>okapi::AsyncLinearMotionProfileController</scope><name>~AsyncLinearMotionProfileController</name></member>

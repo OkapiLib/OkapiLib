@@ -68,6 +68,7 @@
     <innerclass refid="classokapi_1_1OffsetableControllerInput" prot="public">okapi::OffsetableControllerInput</innerclass>
     <innerclass refid="classokapi_1_1PassthroughFilter" prot="public">okapi::PassthroughFilter</innerclass>
     <innerclass refid="structokapi_1_1PathfinderLimits" prot="public">okapi::PathfinderLimits</innerclass>
+    <innerclass refid="structokapi_1_1PathfinderPoint" prot="public">okapi::PathfinderPoint</innerclass>
     <innerclass refid="classokapi_1_1PIDTuner" prot="public">okapi::PIDTuner</innerclass>
     <innerclass refid="classokapi_1_1PIDTunerFactory" prot="public">okapi::PIDTunerFactory</innerclass>
     <innerclass refid="structokapi_1_1Point" prot="public">okapi::Point</innerclass>
@@ -110,11 +111,12 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>The mode for the state calculated by odometry. FRAME_TRANSFORMATION: +x is forward, +y is right CARTESIAN: +x is right, +y is forward </para>
+<para>The mode for the <ref refid="structokapi_1_1OdomState" kindref="compound">OdomState</ref> calculated by <ref refid="classokapi_1_1Odometry" kindref="compound">Odometry</ref>.</para>
+<para><computeroutput>FRAME_TRANSFORMATION</computeroutput>: +x is forward, +y is right, 0 degrees is along +x. <computeroutput>CARTESIAN</computeroutput>: +x is right, +y is forward, 0 degrees is along +y. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/odometry/odometry.hpp" line="41" column="1" bodyfile="include/okapi/api/odometry/odometry.hpp" bodystart="41" bodyend="41"/>
+        <location file="include/okapi/api/odometry/stateMode.hpp" line="17" column="1" bodyfile="include/okapi/api/odometry/stateMode.hpp" bodystart="17" bodyend="17"/>
       </memberdef>
       <memberdef kind="enum" id="namespaceokapi_1a56349a0562b06c6ffc742e94cb1e4361" prot="public" static="no" strong="yes">
         <type></type>

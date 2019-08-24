@@ -9,72 +9,72 @@
     <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
     <includedby refid="controller_8cpp" local="yes">src/impl/device/controller.cpp</includedby>
     <incdepgraph>
-      <node id="4006">
+      <node id="4065">
         <label>okapi/impl/device/button/controllerButton.hpp</label>
         <link refid="controllerButton_8hpp"/>
-        <childnode refid="4005" relation="include">
+        <childnode refid="4064" relation="include">
         </childnode>
-        <childnode refid="4007" relation="include">
+        <childnode refid="4066" relation="include">
         </childnode>
-        <childnode refid="4010" relation="include">
+        <childnode refid="4069" relation="include">
         </childnode>
       </node>
-      <node id="4010">
+      <node id="4069">
         <label>okapi/impl/device/controllerUtil.hpp</label>
         <link refid="controllerUtil_8hpp"/>
-        <childnode refid="4005" relation="include">
+        <childnode refid="4064" relation="include">
         </childnode>
       </node>
-      <node id="4009">
+      <node id="4068">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="4005">
+      <node id="4064">
         <label>api.h</label>
       </node>
-      <node id="4008">
+      <node id="4067">
         <label>okapi/api/device/button/abstractButton.hpp</label>
         <link refid="abstractButton_8hpp"/>
-        <childnode refid="4009" relation="include">
+        <childnode refid="4068" relation="include">
         </childnode>
       </node>
-      <node id="4011">
+      <node id="4070">
         <label>array</label>
       </node>
-      <node id="4004">
+      <node id="4063">
         <label>include/okapi/impl/device/controller.hpp</label>
         <link refid="controller_8hpp"/>
-        <childnode refid="4005" relation="include">
+        <childnode refid="4064" relation="include">
         </childnode>
-        <childnode refid="4006" relation="include">
+        <childnode refid="4065" relation="include">
         </childnode>
-        <childnode refid="4010" relation="include">
+        <childnode refid="4069" relation="include">
         </childnode>
-        <childnode refid="4011" relation="include">
+        <childnode refid="4070" relation="include">
         </childnode>
       </node>
-      <node id="4007">
+      <node id="4066">
         <label>okapi/api/device/button/buttonBase.hpp</label>
         <link refid="buttonBase_8hpp"/>
-        <childnode refid="4008" relation="include">
+        <childnode refid="4067" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4014">
+      <node id="4073">
         <label>src/impl/device/controller.cpp</label>
         <link refid="controller_8cpp"/>
       </node>
-      <node id="4013">
+      <node id="4072">
         <label>include/okapi/api.hpp</label>
         <link refid="api_8hpp"/>
       </node>
-      <node id="4012">
+      <node id="4071">
         <label>include/okapi/impl/device/controller.hpp</label>
         <link refid="controller_8hpp"/>
-        <childnode refid="4013" relation="include">
+        <childnode refid="4072" relation="include">
         </childnode>
-        <childnode refid="4014" relation="include">
+        <childnode refid="4073" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

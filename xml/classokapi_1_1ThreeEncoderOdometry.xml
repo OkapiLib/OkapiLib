@@ -149,39 +149,39 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="500">
-        <label>okapi::ThreeEncoderOdometry</label>
-        <link refid="classokapi_1_1ThreeEncoderOdometry"/>
-        <childnode refid="501" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="501">
-        <label>okapi::Odometry</label>
-        <link refid="classokapi_1_1Odometry"/>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="502">
         <label>okapi::ThreeEncoderOdometry</label>
         <link refid="classokapi_1_1ThreeEncoderOdometry"/>
         <childnode refid="503" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="505">
-        <label>okapi::ChassisScales</label>
-        <link refid="classokapi_1_1ChassisScales"/>
-      </node>
-      <node id="504">
-        <label>okapi::OdomState</label>
-        <link refid="structokapi_1_1OdomState"/>
-      </node>
       <node id="503">
         <label>okapi::Odometry</label>
         <link refid="classokapi_1_1Odometry"/>
-        <childnode refid="504" relation="usage">
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="504">
+        <label>okapi::ThreeEncoderOdometry</label>
+        <link refid="classokapi_1_1ThreeEncoderOdometry"/>
+        <childnode refid="505" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="507">
+        <label>okapi::ChassisScales</label>
+        <link refid="classokapi_1_1ChassisScales"/>
+      </node>
+      <node id="506">
+        <label>okapi::OdomState</label>
+        <link refid="structokapi_1_1OdomState"/>
+      </node>
+      <node id="505">
+        <label>okapi::Odometry</label>
+        <link refid="classokapi_1_1Odometry"/>
+        <childnode refid="506" relation="usage">
           <edgelabel>state</edgelabel>
         </childnode>
-        <childnode refid="505" relation="usage">
+        <childnode refid="507" relation="usage">
           <edgelabel>chassisScales</edgelabel>
         </childnode>
       </node>

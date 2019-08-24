@@ -63,31 +63,27 @@
           <h2><a href="#pub-static-methods">Public static functions</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper">static auto <a href="#ac81f741da8bbd4563314b2f44b2d2098" class="m-doc">computeDistanceToPoint</a>(</span><span class="m-doc-wrap">QLength ix,
-              QLength iy,
+              <span class="m-doc-wrap-bumper">static auto <a href="#a58abbf02061a774eb292cc62a0371afa" class="m-doc">computeDistanceToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint,
               const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate) -&gt; QLength</span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">static auto <a href="#a96413a2d30c4bf9c5e17accf06c5ea4f" class="m-doc">computeAngleToPoint</a>(</span><span class="m-doc-wrap">QLength ix,
-              QLength iy,
+              <span class="m-doc-wrap-bumper">static auto <a href="#a993603bff1e35c0270cdfdab1196c695" class="m-doc">computeAngleToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint,
               const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate) -&gt; QAngle</span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">static auto <a href="#a69dfaa5262378560c644cd56a6f495b0" class="m-doc">computeDistanceAndAngleToPoint</a>(</span><span class="m-doc-wrap">QLength ix,
-              QLength iy,
-              const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate) -&gt; std::tuple&lt;QLength, QAngle&gt;</span>
+              <span class="m-doc-wrap-bumper">static auto <a href="#a97865973f203ed07eb8f642fea344c23" class="m-doc">computeDistanceAndAngleToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint,
+              const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate) -&gt; std::pair&lt;QLength, QAngle&gt;</span>
             </dt>
             <dd></dd>
           </dl>
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="ac81f741da8bbd4563314b2f44b2d2098"><div>
+          <section class="m-doc-details" id="a58abbf02061a774eb292cc62a0371afa"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">static QLength okapi::<wbr />OdomMath::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac81f741da8bbd4563314b2f44b2d2098" class="m-doc-self">computeDistanceToPoint</a>(</span><span class="m-doc-wrap">QLength ix,
-              QLength iy,
+              <span class="m-doc-wrap-bumper">static QLength okapi::<wbr />OdomMath::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a58abbf02061a774eb292cc62a0371afa" class="m-doc-self">computeDistanceToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint,
               const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate)</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
@@ -96,31 +92,26 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="width: 1%">ix</td>
-                  <td>x coordinate</td>
-                </tr>
-                <tr>
-                  <td>iy</td>
-                  <td>y coordinate</td>
+                  <td style="width: 1%">ipoint</td>
+                  <td>The point.</td>
                 </tr>
                 <tr>
                   <td>istate</td>
-                  <td>odometry state</td>
+                  <td>The <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state.</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>distance between the points</td>
+                  <td>The distance between the <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state and the point.</td>
                 </tr>
               </tfoot>
             </table>
-<p>Computes the distance from the given <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state to the given point.</p>
+<p>Computes the distance from the given <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state to the given point. The point and the <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a> must be in <code><a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a></code>.</p>
           </div></section>
-          <section class="m-doc-details" id="a96413a2d30c4bf9c5e17accf06c5ea4f"><div>
+          <section class="m-doc-details" id="a993603bff1e35c0270cdfdab1196c695"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">static QAngle okapi::<wbr />OdomMath::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a96413a2d30c4bf9c5e17accf06c5ea4f" class="m-doc-self">computeAngleToPoint</a>(</span><span class="m-doc-wrap">QLength ix,
-              QLength iy,
+              <span class="m-doc-wrap-bumper">static QAngle okapi::<wbr />OdomMath::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a993603bff1e35c0270cdfdab1196c695" class="m-doc-self">computeAngleToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint,
               const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate)</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
@@ -129,31 +120,26 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="width: 1%">ix</td>
-                  <td>x coordinate</td>
-                </tr>
-                <tr>
-                  <td>iy</td>
-                  <td>y coordinate</td>
+                  <td style="width: 1%">ipoint</td>
+                  <td>The point.</td>
                 </tr>
                 <tr>
                   <td>istate</td>
-                  <td>odometry state</td>
+                  <td>The <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state.</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>angle to the point</td>
+                  <td>The angle between the <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state and the point.</td>
                 </tr>
               </tfoot>
             </table>
-<p>Computes the angle from the given <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state to the given point.</p>
+<p>Computes the angle from the given <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state to the given point. The point and the <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a> must be in <code><a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a></code>.</p>
           </div></section>
-          <section class="m-doc-details" id="a69dfaa5262378560c644cd56a6f495b0"><div>
+          <section class="m-doc-details" id="a97865973f203ed07eb8f642fea344c23"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">static std::tuple&lt;QLength, QAngle&gt; okapi::<wbr />OdomMath::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a69dfaa5262378560c644cd56a6f495b0" class="m-doc-self">computeDistanceAndAngleToPoint</a>(</span><span class="m-doc-wrap">QLength ix,
-              QLength iy,
+              <span class="m-doc-wrap-bumper">static std::pair&lt;QLength, QAngle&gt; okapi::<wbr />OdomMath::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a97865973f203ed07eb8f642fea344c23" class="m-doc-self">computeDistanceAndAngleToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint,
               const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate)</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
@@ -162,26 +148,22 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="width: 1%">ix</td>
-                  <td>x coordinate</td>
-                </tr>
-                <tr>
-                  <td>iy</td>
-                  <td>y coordinate</td>
+                  <td style="width: 1%">ipoint</td>
+                  <td>The point.</td>
                 </tr>
                 <tr>
                   <td>istate</td>
-                  <td>odometry state</td>
+                  <td>The <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state.</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>distance and angle to the point</td>
+                  <td>The distance and angle between the <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state and the point.</td>
                 </tr>
               </tfoot>
             </table>
-<p>Computes the distance and angle from the given <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state to the given point.</p>
+<p>Computes the distance and angle from the given <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state to the given point. The point and the <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a> must be in <code><a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a></code>.</p>
           </div></section>
         </section>
       </div>

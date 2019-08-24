@@ -143,50 +143,50 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="509">
+      <node id="511">
         <label>okapi::ReadOnlyChassisModel</label>
         <link refid="classokapi_1_1ReadOnlyChassisModel"/>
       </node>
-      <node id="506">
+      <node id="508">
         <label>okapi::ThreeEncoderSkidSteerModel</label>
         <link refid="classokapi_1_1ThreeEncoderSkidSteerModel"/>
-        <childnode refid="507" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="508">
-        <label>okapi::ChassisModel</label>
-        <link refid="classokapi_1_1ChassisModel"/>
         <childnode refid="509" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="507">
+      <node id="510">
+        <label>okapi::ChassisModel</label>
+        <link refid="classokapi_1_1ChassisModel"/>
+        <childnode refid="511" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="509">
         <label>okapi::SkidSteerModel</label>
         <link refid="classokapi_1_1SkidSteerModel"/>
-        <childnode refid="508" relation="public-inheritance">
+        <childnode refid="510" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="513">
+      <node id="515">
         <label>okapi::ReadOnlyChassisModel</label>
         <link refid="classokapi_1_1ReadOnlyChassisModel"/>
       </node>
-      <node id="510">
+      <node id="512">
         <label>okapi::ThreeEncoderSkidSteerModel</label>
         <link refid="classokapi_1_1ThreeEncoderSkidSteerModel"/>
-        <childnode refid="511" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="512">
-        <label>okapi::ChassisModel</label>
-        <link refid="classokapi_1_1ChassisModel"/>
         <childnode refid="513" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="511">
+      <node id="514">
+        <label>okapi::ChassisModel</label>
+        <link refid="classokapi_1_1ChassisModel"/>
+        <childnode refid="515" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="513">
         <label>okapi::SkidSteerModel</label>
         <link refid="classokapi_1_1SkidSteerModel"/>
-        <childnode refid="512" relation="public-inheritance">
+        <childnode refid="514" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

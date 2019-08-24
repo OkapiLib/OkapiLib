@@ -37,9 +37,9 @@
 \item 
 \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a4fa2d56589f5a4c8e69b36238bc3f4de}{with\+Gains}} (const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} \&idistance\+Gains, const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} \&iturn\+Gains, const \mbox{\hyperlink{structokapi_1_1IterativePosPIDController_1_1Gains}{Iterative\+Pos\+P\+I\+D\+Controller\+::\+Gains}} \&iangle\+Gains)
 \item 
-\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a2dfb66cd7cf160b8cce3e9c2ffec7c74}{with\+Odometry}} (const Q\+Length \&imove\+Threshold=10\+\_\+mm, const Q\+Angle \&iturn\+Threshold=1\+\_\+deg, const Q\+Speed \&iwheel\+Vel\+Delta=0.\+0001\+\_\+mps)
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_aa4686900014387dbc3b335ee813c3ead}{with\+Odometry}} (const \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07}{State\+Mode}} \&imode=\mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b}{State\+Mode\+::\+F\+R\+A\+M\+E\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON}}, const Q\+Length \&imove\+Threshold=0\+\_\+mm, const Q\+Angle \&iturn\+Threshold=0\+\_\+deg, const Q\+Speed \&iwheel\+Vel\+Delta=0.\+0001\+\_\+mps)
 \item 
-\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_ad581d48529b154b1335aada35465e3ac}{with\+Odometry}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} $>$ iodometry, const Q\+Length \&imove\+Threshold=10\+\_\+mm, const Q\+Angle \&iturn\+Threshold=1\+\_\+deg)
+\mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_aa775099a284db24e6832022668d0a344}{with\+Odometry}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} $>$ iodometry, const \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07}{State\+Mode}} \&imode=\mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b}{State\+Mode\+::\+F\+R\+A\+M\+E\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON}}, const Q\+Length \&imove\+Threshold=0\+\_\+mm, const Q\+Angle \&iturn\+Threshold=0\+\_\+deg)
 \item 
 \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder_a4d65988fd98e4530dfa236fce6d4d99a}{with\+Derivative\+Filters}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ idistance\+Filter, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ iturn\+Filter=std\+::make\+\_\+unique$<$ \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} $>$(), std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Filter}{Filter}} $>$ iangle\+Filter=std\+::make\+\_\+unique$<$ \mbox{\hyperlink{classokapi_1_1PassthroughFilter}{Passthrough\+Filter}} $>$())
 \item 
@@ -394,16 +394,18 @@ Sets the motors using an x-\/drive layout.
 \begin{DoxyReturn}{Returns}
 An ongoing builder. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_a2dfb66cd7cf160b8cce3e9c2ffec7c74}\label{classokapi_1_1ChassisControllerBuilder_a2dfb66cd7cf160b8cce3e9c2ffec7c74}} 
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_aa4686900014387dbc3b335ee813c3ead}\label{classokapi_1_1ChassisControllerBuilder_aa4686900014387dbc3b335ee813c3ead}} 
 \index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withOdometry@{withOdometry}}
 \index{withOdometry@{withOdometry}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
 \subsubsection{\texorpdfstring{withOdometry()}{withOdometry()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Odometry (\begin{DoxyParamCaption}\item[{const Q\+Length \&}]{imove\+Threshold = {\ttfamily 10\+\_\+mm},  }\item[{const Q\+Angle \&}]{iturn\+Threshold = {\ttfamily 1\+\_\+deg},  }\item[{const Q\+Speed \&}]{iwheel\+Vel\+Delta = {\ttfamily 0.0001\+\_\+mps} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Odometry (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07}{State\+Mode}} \&}]{imode = {\ttfamily \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b}{State\+Mode\+::\+F\+R\+A\+M\+E\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON}}},  }\item[{const Q\+Length \&}]{imove\+Threshold = {\ttfamily 0\+\_\+mm},  }\item[{const Q\+Angle \&}]{iturn\+Threshold = {\ttfamily 0\+\_\+deg},  }\item[{const Q\+Speed \&}]{iwheel\+Vel\+Delta = {\ttfamily 0.0001\+\_\+mps} }\end{DoxyParamCaption})}
 
 Sets the odometry information, causing the builder to generate an \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} variant.
 
 
 \begin{DoxyParams}{Parameters}
+{\em imode} & The new default State\+Mode used to interpret target points and query the \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} state. \\
+\hline
 {\em imove\+Threshold} & The minimum length movement. \\
 \hline
 {\em iturn\+Threshold} & The minimum angle turn. \\
@@ -414,17 +416,19 @@ Sets the odometry information, causing the builder to generate an \mbox{\hyperli
 \begin{DoxyReturn}{Returns}
 An ongoing builder. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_ad581d48529b154b1335aada35465e3ac}\label{classokapi_1_1ChassisControllerBuilder_ad581d48529b154b1335aada35465e3ac}} 
+\mbox{\Hypertarget{classokapi_1_1ChassisControllerBuilder_aa775099a284db24e6832022668d0a344}\label{classokapi_1_1ChassisControllerBuilder_aa775099a284db24e6832022668d0a344}} 
 \index{okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}!withOdometry@{withOdometry}}
 \index{withOdometry@{withOdometry}!okapi::ChassisControllerBuilder@{okapi::ChassisControllerBuilder}}
 \subsubsection{\texorpdfstring{withOdometry()}{withOdometry()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Odometry (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} $>$}]{iodometry,  }\item[{const Q\+Length \&}]{imove\+Threshold = {\ttfamily 10\+\_\+mm},  }\item[{const Q\+Angle \&}]{iturn\+Threshold = {\ttfamily 1\+\_\+deg} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classokapi_1_1ChassisControllerBuilder}{Chassis\+Controller\+Builder}} \& okapi\+::\+Chassis\+Controller\+Builder\+::with\+Odometry (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} $>$}]{iodometry,  }\item[{const \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07}{State\+Mode}} \&}]{imode = {\ttfamily \mbox{\hyperlink{namespaceokapi_af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b}{State\+Mode\+::\+F\+R\+A\+M\+E\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+A\+T\+I\+ON}}},  }\item[{const Q\+Length \&}]{imove\+Threshold = {\ttfamily 0\+\_\+mm},  }\item[{const Q\+Angle \&}]{iturn\+Threshold = {\ttfamily 0\+\_\+deg} }\end{DoxyParamCaption})}
 
 Sets the odometry information, causing the builder to generate an \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} variant.
 
 
 \begin{DoxyParams}{Parameters}
 {\em iodometry} & The odometry object. \\
+\hline
+{\em imode} & The new default State\+Mode used to interpret target points and query the \mbox{\hyperlink{classokapi_1_1Odometry}{Odometry}} state. \\
 \hline
 {\em imove\+Threshold} & The minimum length movement. \\
 \hline

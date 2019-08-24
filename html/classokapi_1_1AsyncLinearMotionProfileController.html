@@ -210,6 +210,14 @@
               struct <a href="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>
             </dt>
             <dd><span></span></dd>
+            <dt id="a4793d9c4aebdb9a947b3c5659f919e14">
+              using <a href="#a4793d9c4aebdb9a947b3c5659f919e14" class="m-doc-self">TrajectoryPtr</a> = std::unique_ptr&lt;TrajectoryCandidate, void(*)(TrajectoryCandidate*)&gt;
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a714a13979ef81d5fbca93264d044b8cc">
+              using <a href="#a714a13979ef81d5fbca93264d044b8cc" class="m-doc-self">SegmentPtr</a> = std::unique_ptr&lt;Segment, void(*)(void*)&gt;
+            </dt>
+            <dd><span></span></dd>
           </dl>
         </section>
         <section id="pro-static-methods">
@@ -243,6 +251,10 @@
               int length) -&gt; std::string</span>
             </dt>
             <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aede6dc18c7d2c8f5014c4ad6cd91d85d" class="m-doc">getPathLength</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path) -&gt; int</span>
+            </dt>
+            <dd></dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -280,8 +292,8 @@
               <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a> <a href="#a320e12b446817ebc8dfb01c6bb36e3cb" class="m-doc-self">timeUtil</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="ac68c8ff11c8a38eca42efd2950584b90">
-              <a href="classCrossplatformMutex.html" class="m-doc">CrossplatformMutex</a> <a href="#ac68c8ff11c8a38eca42efd2950584b90" class="m-doc-self">pathRemoveMutex</a>
+            <dt id="a5645f7c2eff01ca271d14fafcebbf2a8">
+              <a href="classCrossplatformMutex.html" class="m-doc">CrossplatformMutex</a> <a href="#a5645f7c2eff01ca271d14fafcebbf2a8" class="m-doc-self">currentPathMutex</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a010cd3afaa58154ee7a32059cadae555">
@@ -721,6 +733,29 @@
               </tfoot>
             </table>
 <p>Converts linear &quot;chassis&quot; speed to rotational motor speed.</p>
+          </div></section>
+          <section class="m-doc-details" id="aede6dc18c7d2c8f5014c4ad6cd91d85d"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int okapi::<wbr />AsyncLinearMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aede6dc18c7d2c8f5014c4ad6cd91d85d" class="m-doc-self">getPathLength</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path) <span class="m-label m-warning">protected</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">path</td>
+                  <td>The path to read from.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>The length of the path.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Reads the length of the path in a thread-safe manner.</p>
           </div></section>
         </section>
       </div>

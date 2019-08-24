@@ -132,6 +132,8 @@
     <member refid="classokapi_1_1AsyncController_1a20e19f334e3dc7a3092e0e4355edcf49" kind="function"><name>waitUntilSettled</name></member>
   </compound>
   <compound refid="classokapi_1_1AsyncLinearMotionProfileController" kind="class"><name>okapi::AsyncLinearMotionProfileController</name>
+    <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a4793d9c4aebdb9a947b3c5659f919e14" kind="typedef"><name>TrajectoryPtr</name></member>
+    <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a714a13979ef81d5fbca93264d044b8cc" kind="typedef"><name>SegmentPtr</name></member>
     <member refid="classokapi_1_1AsyncLinearMotionProfileController_1abfdbc29ef850cf20ed15b3c1398c7cc1" kind="variable"><name>logger</name></member>
     <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a955697ca2debe00771c8039b3df328f0" kind="variable"><name>paths</name></member>
     <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a9d2bb17d4a934984d488b3b4fba11c6e" kind="variable"><name>limits</name></member>
@@ -140,7 +142,7 @@
     <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a3727388c1310a387524b7d38d5c0b1b0" kind="variable"><name>pair</name></member>
     <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a94c203e635765357bd825ffc4d061741" kind="variable"><name>currentProfilePosition</name></member>
     <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a320e12b446817ebc8dfb01c6bb36e3cb" kind="variable"><name>timeUtil</name></member>
-    <member refid="classokapi_1_1AsyncLinearMotionProfileController_1ac68c8ff11c8a38eca42efd2950584b90" kind="variable"><name>pathRemoveMutex</name></member>
+    <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a5645f7c2eff01ca271d14fafcebbf2a8" kind="variable"><name>currentPathMutex</name></member>
     <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a010cd3afaa58154ee7a32059cadae555" kind="variable"><name>currentPath</name></member>
     <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a587f56ae443b18e8fe0b9feeca624b07" kind="variable"><name>isRunning</name></member>
     <member refid="classokapi_1_1AsyncLinearMotionProfileController_1af82aa4936830711c126e7f00222fdbd8" kind="variable"><name>direction</name></member>
@@ -178,8 +180,11 @@
     <member refid="classokapi_1_1AsyncLinearMotionProfileController_1ac9f7d18503d72627ff4b7f70d2c373bd" kind="function"><name>executeSinglePath</name></member>
     <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a3b2473f949bab83f6837b8d448b198cb" kind="function"><name>convertLinearToRotational</name></member>
     <member refid="classokapi_1_1AsyncLinearMotionProfileController_1a6778fc13018167cec6cccfa6abf7a0ad" kind="function"><name>getPathErrorMessage</name></member>
+    <member refid="classokapi_1_1AsyncLinearMotionProfileController_1aede6dc18c7d2c8f5014c4ad6cd91d85d" kind="function"><name>getPathLength</name></member>
   </compound>
   <compound refid="classokapi_1_1AsyncMotionProfileController" kind="class"><name>okapi::AsyncMotionProfileController</name>
+    <member refid="classokapi_1_1AsyncMotionProfileController_1acf9be87bd2dd90aec23d91f0474f2d35" kind="typedef"><name>TrajectoryPtr</name></member>
+    <member refid="classokapi_1_1AsyncMotionProfileController_1a3ed298e703263af478d65e862afca6f3" kind="typedef"><name>SegmentPtr</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a3ee7290ff00e7e10f381a9d166f5e5f9" kind="variable"><name>logger</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a2aa4ab02d2ef7cf29d6e6a952b3c4d9e" kind="variable"><name>paths</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a2278da257c608adfcf52b0e3b1b7802b" kind="variable"><name>limits</name></member>
@@ -187,7 +192,7 @@
     <member refid="classokapi_1_1AsyncMotionProfileController_1aad6f433eebbc0f7dff98cd3f258981a4" kind="variable"><name>scales</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a89073eb9854629c18558842f14af5cf0" kind="variable"><name>pair</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a82610b4101b963cbd314e6c287be4ec4" kind="variable"><name>timeUtil</name></member>
-    <member refid="classokapi_1_1AsyncMotionProfileController_1ad3f504521a49ce164e7e8465e66899c1" kind="variable"><name>pathRemoveMutex</name></member>
+    <member refid="classokapi_1_1AsyncMotionProfileController_1a43d16a7cf5c24e67938e25ca23d183a1" kind="variable"><name>currentPathMutex</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a3d2962ff85f036b10e19eb90083572be" kind="variable"><name>currentPath</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a597827de59250b56093a13e39a16d02d" kind="variable"><name>isRunning</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a7fc07f6d257d934fea7b40b18ab112cb" kind="variable"><name>direction</name></member>
@@ -199,8 +204,8 @@
     <member refid="classokapi_1_1AsyncMotionProfileController_1ad5c9863c0a6be7c6b333703d8e778399" kind="function"><name>AsyncMotionProfileController</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1adb67189604f463a2cdc719a59baa128c" kind="function"><name>operator=</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1ad39490ab331f47d969eb484c4d5c63e1" kind="function"><name>~AsyncMotionProfileController</name></member>
-    <member refid="classokapi_1_1AsyncMotionProfileController_1a767919702ab379bac5273010baf03cda" kind="function"><name>generatePath</name></member>
-    <member refid="classokapi_1_1AsyncMotionProfileController_1ada198a8805433f0ed8608577dc83dc5f" kind="function"><name>generatePath</name></member>
+    <member refid="classokapi_1_1AsyncMotionProfileController_1a3b8ba2a691bea6f1cf7596f0ecb8b899" kind="function"><name>generatePath</name></member>
+    <member refid="classokapi_1_1AsyncMotionProfileController_1a4b01625204f9949abd00e54513e3b1fa" kind="function"><name>generatePath</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a6c6a889067dbb3a54c33f829b3aa1246" kind="function"><name>removePath</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a5853ae5af552cf56f36c9563733c6ace" kind="function"><name>getPaths</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1adf705d6bfd3d0a83d8a6c50a05ffd156" kind="function"><name>setTarget</name></member>
@@ -208,9 +213,9 @@
     <member refid="classokapi_1_1AsyncMotionProfileController_1a292b22f53ed0ef67a479e00c92f68e3f" kind="function"><name>controllerSet</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a9f9e44e987481619cbec37d5e35c71e8" kind="function"><name>getTarget</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a0b08d2f39d786739a734c50523db1eb2" kind="function"><name>waitUntilSettled</name></member>
-    <member refid="classokapi_1_1AsyncMotionProfileController_1ab467935f98d48fdcaca047b1994b8597" kind="function"><name>moveTo</name></member>
-    <member refid="classokapi_1_1AsyncMotionProfileController_1a95fc55789adfe0c760e9fd6c758f810a" kind="function"><name>moveTo</name></member>
-    <member refid="classokapi_1_1AsyncMotionProfileController_1aeb60fb677877b3461c1232dda7d0db50" kind="function"><name>getError</name></member>
+    <member refid="classokapi_1_1AsyncMotionProfileController_1a027d632b17e5e9e0acbcb5b4000d038c" kind="function"><name>moveTo</name></member>
+    <member refid="classokapi_1_1AsyncMotionProfileController_1a5845299e779fc876f6226aa083ddfaa8" kind="function"><name>moveTo</name></member>
+    <member refid="classokapi_1_1AsyncMotionProfileController_1aae5c2ef0766fba9e635c43c0314da10a" kind="function"><name>getError</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1abfc944ba6d703dc1aa6fb16a44b5e395" kind="function"><name>isSettled</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a9ad15272defac4db5e2b318671eb3850" kind="function"><name>reset</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1a7069b2b7373aec21c84369392d8d34d8" kind="function"><name>flipDisable</name></member>
@@ -230,6 +235,7 @@
     <member refid="classokapi_1_1AsyncMotionProfileController_1add71d15d34ef8c10205c3b6791e32f71" kind="function"><name>getPathErrorMessage</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1ae9f67978e53a0bab9c96ef774505bd58" kind="function"><name>internalStorePath</name></member>
     <member refid="classokapi_1_1AsyncMotionProfileController_1adc93d9516b749dee19f0af735d4b83cb" kind="function"><name>internalLoadPath</name></member>
+    <member refid="classokapi_1_1AsyncMotionProfileController_1af14f6b6c201a7b80c32f5fc14c11022f" kind="function"><name>getPathLength</name></member>
   </compound>
   <compound refid="classokapi_1_1AsyncMotionProfileControllerBuilder" kind="class"><name>okapi::AsyncMotionProfileControllerBuilder</name>
     <member refid="classokapi_1_1AsyncMotionProfileControllerBuilder_1ac890adc6f720888f26421a59910ab26c" kind="variable"><name>logger</name></member>
@@ -492,6 +498,7 @@
     <member refid="classokapi_1_1ChassisControllerBuilder_1a74333ef2f6930e2bb82b6e0a92d06a16" kind="variable"><name>hasOdom</name></member>
     <member refid="classokapi_1_1ChassisControllerBuilder_1a8d65c7b9461a392e607552d6e6fd1142" kind="variable"><name>odometry</name></member>
     <member refid="classokapi_1_1ChassisControllerBuilder_1af4167e100fc835a034b26f9f091f58f6" kind="variable"><name>wheelVelDelta</name></member>
+    <member refid="classokapi_1_1ChassisControllerBuilder_1a005e5a409f953b868803be52662e943a" kind="variable"><name>stateMode</name></member>
     <member refid="classokapi_1_1ChassisControllerBuilder_1a4770676e616026ac4215399cae91c4ae" kind="variable"><name>moveThreshold</name></member>
     <member refid="classokapi_1_1ChassisControllerBuilder_1abfdae072e6f6178926cdc93935f8114b" kind="variable"><name>turnThreshold</name></member>
     <member refid="classokapi_1_1ChassisControllerBuilder_1a6a706383d723514c42935f274633e49b" kind="variable"><name>maxVelSetByUser</name></member>
@@ -512,8 +519,8 @@
     <member refid="classokapi_1_1ChassisControllerBuilder_1a2c2d1276f03425ecbe97b55ce8832d9e" kind="function"><name>withSensors</name></member>
     <member refid="classokapi_1_1ChassisControllerBuilder_1ac7b348a81cda8897540db92f14d1d8e3" kind="function"><name>withGains</name></member>
     <member refid="classokapi_1_1ChassisControllerBuilder_1a4fa2d56589f5a4c8e69b36238bc3f4de" kind="function"><name>withGains</name></member>
-    <member refid="classokapi_1_1ChassisControllerBuilder_1a2dfb66cd7cf160b8cce3e9c2ffec7c74" kind="function"><name>withOdometry</name></member>
-    <member refid="classokapi_1_1ChassisControllerBuilder_1ad581d48529b154b1335aada35465e3ac" kind="function"><name>withOdometry</name></member>
+    <member refid="classokapi_1_1ChassisControllerBuilder_1aa4686900014387dbc3b335ee813c3ead" kind="function"><name>withOdometry</name></member>
+    <member refid="classokapi_1_1ChassisControllerBuilder_1aa775099a284db24e6832022668d0a344" kind="function"><name>withOdometry</name></member>
     <member refid="classokapi_1_1ChassisControllerBuilder_1a4d65988fd98e4530dfa236fce6d4d99a" kind="function"><name>withDerivativeFilters</name></member>
     <member refid="classokapi_1_1ChassisControllerBuilder_1aea1e3d32abede99a1b565205275aea78" kind="function"><name>withGearset</name></member>
     <member refid="classokapi_1_1ChassisControllerBuilder_1a72a642f59112da74960942aae390a5ed" kind="function"><name>withDimensions</name></member>
@@ -736,8 +743,13 @@
   <compound refid="classokapi_1_1DefaultOdomChassisController" kind="class"><name>okapi::DefaultOdomChassisController</name>
     <member refid="classokapi_1_1DefaultOdomChassisController_1a1e34483ae1bcef368d80b69f54a3b091" kind="variable"><name>logger</name></member>
     <member refid="classokapi_1_1DefaultOdomChassisController_1a0513b32bd09e7af2b82a5d67895b6165" kind="variable"><name>controller</name></member>
-    <member refid="classokapi_1_1DefaultOdomChassisController_1a5fe023ef9ccab0532fd29d237bc91677" kind="function"><name>DefaultOdomChassisController</name></member>
-    <member refid="classokapi_1_1DefaultOdomChassisController_1a31474749c8a6c0dca45a4c02418fadab" kind="function"><name>driveToPoint</name></member>
+    <member refid="classokapi_1_1DefaultOdomChassisController_1ab0b6772507b1e7dc25aea0612ffffbab" kind="function"><name>DefaultOdomChassisController</name></member>
+    <member refid="classokapi_1_1DefaultOdomChassisController_1a93e8f16e2f9d162d14a2aec69e969cdb" kind="function"><name>DefaultOdomChassisController</name></member>
+    <member refid="classokapi_1_1DefaultOdomChassisController_1a08eb9b5f888b80392ce9b6652b9eaa4c" kind="function"><name>DefaultOdomChassisController</name></member>
+    <member refid="classokapi_1_1DefaultOdomChassisController_1a1afd04cb4449601d959bcdc7d03091ae" kind="function"><name>operator=</name></member>
+    <member refid="classokapi_1_1DefaultOdomChassisController_1ab8d67b8e5ded9fb80dd7538f96fe7e59" kind="function"><name>operator=</name></member>
+    <member refid="classokapi_1_1DefaultOdomChassisController_1ad89098abcab5e9f333cb3c70c9e8299f" kind="function"><name>driveToPoint</name></member>
+    <member refid="classokapi_1_1DefaultOdomChassisController_1a6692219d4f4c264346c5c8096be41610" kind="function"><name>turnToPoint</name></member>
     <member refid="classokapi_1_1DefaultOdomChassisController_1a2b5fc33c7fbe8d6fd49f4fd46fb84a2d" kind="function"><name>getChassisController</name></member>
     <member refid="classokapi_1_1DefaultOdomChassisController_1add1bed5d02d3da37306ef0016b7ad8a2" kind="function"><name>chassisController</name></member>
     <member refid="classokapi_1_1DefaultOdomChassisController_1aaf6e4d74384b87510d35b639e45f9dc2" kind="function"><name>turnToAngle</name></member>
@@ -1142,12 +1154,19 @@
     <member refid="classokapi_1_1OdomChassisController_1a7167160f48f0f75fb1bc7964c4cc608b" kind="variable"><name>odom</name></member>
     <member refid="classokapi_1_1OdomChassisController_1a75246d7a17442c9a63afaef68bbf95e0" kind="variable"><name>odomTask</name></member>
     <member refid="classokapi_1_1OdomChassisController_1a2af36f833e8ac382c4386f729f904bae" kind="variable"><name>dtorCalled</name></member>
-    <member refid="classokapi_1_1OdomChassisController_1a91015290cdd5f9c459adfb59115bc92d" kind="function"><name>OdomChassisController</name></member>
+    <member refid="classokapi_1_1OdomChassisController_1a762ce2bcc4cdbfd0c6bd296ba21a4c4d" kind="variable"><name>defaultStateMode</name></member>
+    <member refid="classokapi_1_1OdomChassisController_1a3a550eef9b0030b6057eeaf8c5a3bb51" kind="function"><name>OdomChassisController</name></member>
     <member refid="classokapi_1_1OdomChassisController_1a25ee4fe0432b6cdc8052a869856cfc7c" kind="function"><name>~OdomChassisController</name></member>
-    <member refid="classokapi_1_1OdomChassisController_1a5e87dea6c90a200bc6a9dc638e45365a" kind="function"><name>driveToPoint</name></member>
+    <member refid="classokapi_1_1OdomChassisController_1ad9b7ee54f60d1974c2824f8fbcff1304" kind="function"><name>OdomChassisController</name></member>
+    <member refid="classokapi_1_1OdomChassisController_1a841d9679487509c9805e030ad7a663a9" kind="function"><name>OdomChassisController</name></member>
+    <member refid="classokapi_1_1OdomChassisController_1abf1d2bbcacf41866867e03e7bdd68f06" kind="function"><name>operator=</name></member>
+    <member refid="classokapi_1_1OdomChassisController_1ab0f6b3231dde46d04d570ec31caf7495" kind="function"><name>operator=</name></member>
+    <member refid="classokapi_1_1OdomChassisController_1abea9bd3860ad9f1acb1cdc1e36869fbf" kind="function"><name>driveToPoint</name></member>
+    <member refid="classokapi_1_1OdomChassisController_1a4566bc34f36fd107bc868b17942f4245" kind="function"><name>turnToPoint</name></member>
     <member refid="classokapi_1_1OdomChassisController_1ac90298bb9081d95c52800dbf679dd658" kind="function"><name>turnToAngle</name></member>
-    <member refid="classokapi_1_1OdomChassisController_1aa7b4675edd3cdd920e287fc5e824892f" kind="function"><name>getState</name></member>
-    <member refid="classokapi_1_1OdomChassisController_1a843ab24d9ed26ba68833ece0b28bf345" kind="function"><name>setState</name></member>
+    <member refid="classokapi_1_1OdomChassisController_1a4f4a588ea6e302e9cf13fb776ce0c5e4" kind="function"><name>getState</name></member>
+    <member refid="classokapi_1_1OdomChassisController_1a1e3a4b62e89ab0869c4046983ab7d11b" kind="function"><name>setState</name></member>
+    <member refid="classokapi_1_1OdomChassisController_1a79152ae9fb43abbb51179f7bd7ce5fde" kind="function"><name>setDefaultStateMode</name></member>
     <member refid="classokapi_1_1OdomChassisController_1adf98b0e1b91d1f72cce5b76b992257a0" kind="function"><name>setMoveThreshold</name></member>
     <member refid="classokapi_1_1OdomChassisController_1a771daa37b47909a523571e9173f676d5" kind="function"><name>setTurnThreshold</name></member>
     <member refid="classokapi_1_1OdomChassisController_1a6523c9291a330272edcf951e6653ae02" kind="function"><name>getMoveThreshold</name></member>
@@ -1177,12 +1196,14 @@
     <member refid="classokapi_1_1Odometry_1a8fc2c3d72a0c475a7333eb9affe593a5" kind="function"><name>odomMathStep</name></member>
   </compound>
   <compound refid="classokapi_1_1OdomMath" kind="class"><name>okapi::OdomMath</name>
-    <member refid="classokapi_1_1OdomMath_1a32f10adba46957c7a9439a99ce40b203" kind="variable"><name>logger</name></member>
-    <member refid="classokapi_1_1OdomMath_1ac81f741da8bbd4563314b2f44b2d2098" kind="function"><name>computeDistanceToPoint</name></member>
-    <member refid="classokapi_1_1OdomMath_1a96413a2d30c4bf9c5e17accf06c5ea4f" kind="function"><name>computeAngleToPoint</name></member>
-    <member refid="classokapi_1_1OdomMath_1a69dfaa5262378560c644cd56a6f495b0" kind="function"><name>computeDistanceAndAngleToPoint</name></member>
+    <member refid="classokapi_1_1OdomMath_1a58abbf02061a774eb292cc62a0371afa" kind="function"><name>computeDistanceToPoint</name></member>
+    <member refid="classokapi_1_1OdomMath_1a993603bff1e35c0270cdfdab1196c695" kind="function"><name>computeAngleToPoint</name></member>
+    <member refid="classokapi_1_1OdomMath_1a97865973f203ed07eb8f642fea344c23" kind="function"><name>computeDistanceAndAngleToPoint</name></member>
     <member refid="classokapi_1_1OdomMath_1a8bde63b77114e173d35ab2ee3be98d1a" kind="function"><name>OdomMath</name></member>
     <member refid="classokapi_1_1OdomMath_1a602f23515d9d286db39bd6d4594934aa" kind="function"><name>~OdomMath</name></member>
+    <member refid="classokapi_1_1OdomMath_1a38d97664cdaf7bc9bdd7b4c8f12b3ae2" kind="function"><name>computeDiffs</name></member>
+    <member refid="classokapi_1_1OdomMath_1ac3a8ece04c060d4143746515c3322724" kind="function"><name>computeDistance</name></member>
+    <member refid="classokapi_1_1OdomMath_1ab3608d36e3b333171699074364229861" kind="function"><name>computeAngle</name></member>
   </compound>
   <compound refid="structokapi_1_1OdomState" kind="struct"><name>okapi::OdomState</name>
     <member refid="structokapi_1_1OdomState_1a53fbbb483d5073e703517745d769eb45" kind="variable"><name>x</name></member>
@@ -1227,6 +1248,11 @@
     <member refid="structokapi_1_1PathfinderLimits_1ae8d48e9e81e8ef6a5662d1bfb2bb242c" kind="variable"><name>maxAccel</name></member>
     <member refid="structokapi_1_1PathfinderLimits_1a8602f4203b183f242c94c83031847938" kind="variable"><name>maxJerk</name></member>
   </compound>
+  <compound refid="structokapi_1_1PathfinderPoint" kind="struct"><name>okapi::PathfinderPoint</name>
+    <member refid="structokapi_1_1PathfinderPoint_1a1f5e447cf4694b86d02d4242ee2d544d" kind="variable"><name>x</name></member>
+    <member refid="structokapi_1_1PathfinderPoint_1ad6709f91b4117b390ce82247d35f70ca" kind="variable"><name>y</name></member>
+    <member refid="structokapi_1_1PathfinderPoint_1ae9329b225ce544bf342fc328d6c43cbe" kind="variable"><name>theta</name></member>
+  </compound>
   <compound refid="classokapi_1_1PIDTuner" kind="class"><name>okapi::PIDTuner</name>
     <member refid="classokapi_1_1PIDTuner_1af70d618cad57725e416a9efad2812384" kind="variable"><name>inertia</name></member>
     <member refid="classokapi_1_1PIDTuner_1a7fdfc18fff603aeac1785649fdc92773" kind="variable"><name>confSelf</name></member>
@@ -1261,7 +1287,7 @@
   <compound refid="structokapi_1_1Point" kind="struct"><name>okapi::Point</name>
     <member refid="structokapi_1_1Point_1a49a37b80b4c067214556e3da3532d2ac" kind="variable"><name>x</name></member>
     <member refid="structokapi_1_1Point_1a6acb599ade55d1df76ad805ac6bb174d" kind="variable"><name>y</name></member>
-    <member refid="structokapi_1_1Point_1aff79941175ee144b5d9cea628c00ebc8" kind="variable"><name>theta</name></member>
+    <member refid="structokapi_1_1Point_1a98fb5f28afff23f35318297cfb3131e5" kind="function"><name>inFT</name></member>
   </compound>
   <compound refid="classokapi_1_1Potentiometer" kind="class"><name>okapi::Potentiometer</name>
     <member refid="classokapi_1_1Potentiometer_1ade12a9942bf6fd83f43e38f22ed210d3" kind="variable"><name>port</name></member>
@@ -1385,14 +1411,14 @@
     <member refid="classokapi_1_1TimeUtilFactory_1a0a1a191219798c66ed0046ea78aee88b" kind="function"><name>create</name></member>
     <member refid="classokapi_1_1TimeUtilFactory_1a870592766590f3ce9e0d0b09bc5e236f" kind="function"><name>withSettledUtilParams</name></member>
   </compound>
-  <compound refid="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair" kind="struct"><name>okapi::AsyncLinearMotionProfileController::TrajectoryPair</name>
-    <member refid="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair_1a627dab74f981316cdfcbacd27c671aa4" kind="variable"><name>segment</name></member>
-    <member refid="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair_1a66c7b592d667cac8582564c5ced6f970" kind="variable"><name>length</name></member>
-  </compound>
   <compound refid="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair" kind="struct"><name>okapi::AsyncMotionProfileController::TrajectoryPair</name>
-    <member refid="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair_1abd4e509e21e592550e8de930757f5b16" kind="variable"><name>left</name></member>
-    <member refid="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair_1afed9f551e21365233c83fb7eb14f50d2" kind="variable"><name>right</name></member>
+    <member refid="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair_1a4021e1f2c3da40dd50bea69610d49084" kind="variable"><name>left</name></member>
+    <member refid="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair_1ab380266ccc644fe5ef0775617540ce01" kind="variable"><name>right</name></member>
     <member refid="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair_1a438b73c80a94e07dd9abca0df6d4aa7f" kind="variable"><name>length</name></member>
+  </compound>
+  <compound refid="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair" kind="struct"><name>okapi::AsyncLinearMotionProfileController::TrajectoryPair</name>
+    <member refid="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair_1a288d267243a16f96a8ba701b0adc1722" kind="variable"><name>segment</name></member>
+    <member refid="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair_1a66c7b592d667cac8582564c5ced6f970" kind="variable"><name>length</name></member>
   </compound>
   <compound refid="classokapi_1_1VelMath" kind="class"><name>okapi::VelMath</name>
     <member refid="classokapi_1_1VelMath_1aab9b5774fde584b40fb113808d59eb8b" kind="variable"><name>logger</name></member>
@@ -1779,6 +1805,12 @@
   </compound>
   <compound refid="odomMath_8hpp" kind="file"><name>odomMath.hpp</name>
   </compound>
+  <compound refid="odomState_8hpp" kind="file"><name>odomState.hpp</name>
+  </compound>
+  <compound refid="point_8hpp" kind="file"><name>point.hpp</name>
+  </compound>
+  <compound refid="stateMode_8hpp" kind="file"><name>stateMode.hpp</name>
+  </compound>
   <compound refid="threeEncoderOdometry_8hpp" kind="file"><name>threeEncoderOdometry.hpp</name>
   </compound>
   <compound refid="QAcceleration_8hpp" kind="file"><name>QAcceleration.hpp</name>
@@ -1954,6 +1986,8 @@
   <compound refid="odometry_8cpp" kind="file"><name>odometry.cpp</name>
   </compound>
   <compound refid="odomMath_8cpp" kind="file"><name>odomMath.cpp</name>
+  </compound>
+  <compound refid="odomState_8cpp" kind="file"><name>odomState.cpp</name>
   </compound>
   <compound refid="threeEncoderOdometry_8cpp" kind="file"><name>threeEncoderOdometry.cpp</name>
   </compound>

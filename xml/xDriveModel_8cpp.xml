@@ -5,150 +5,150 @@
     <includes refid="xDriveModel_8hpp" local="yes">okapi/api/chassis/model/xDriveModel.hpp</includes>
     <includes local="no">utility</includes>
     <incdepgraph>
-      <node id="4688">
+      <node id="4755">
         <label>valarray</label>
       </node>
-      <node id="4684">
+      <node id="4751">
         <label>functional</label>
       </node>
-      <node id="4681">
+      <node id="4748">
         <label>cstdint</label>
       </node>
-      <node id="4693">
+      <node id="4760">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="4679">
+      <node id="4746">
         <label>cstdbool</label>
       </node>
-      <node id="4678">
+      <node id="4745">
         <label>cmath</label>
       </node>
-      <node id="4691">
+      <node id="4758">
         <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
         <link refid="continuousRotarySensor_8hpp"/>
-        <childnode refid="4692" relation="include">
+        <childnode refid="4759" relation="include">
         </childnode>
       </node>
-      <node id="4689">
+      <node id="4756">
         <label>okapi/api/device/motor/abstractMotor.hpp</label>
         <link refid="abstractMotor_8hpp"/>
-        <childnode refid="4690" relation="include">
+        <childnode refid="4757" relation="include">
         </childnode>
-        <childnode refid="4691" relation="include">
+        <childnode refid="4758" relation="include">
         </childnode>
-        <childnode refid="4694" relation="include">
+        <childnode refid="4761" relation="include">
         </childnode>
       </node>
-      <node id="4674">
+      <node id="4741">
         <label>okapi/api/chassis/model/xDriveModel.hpp</label>
         <link refid="xDriveModel_8hpp"/>
-        <childnode refid="4675" relation="include">
+        <childnode refid="4742" relation="include">
         </childnode>
-        <childnode refid="4689" relation="include">
+        <childnode refid="4756" relation="include">
         </childnode>
-        <childnode refid="4691" relation="include">
+        <childnode refid="4758" relation="include">
         </childnode>
       </node>
-      <node id="4677">
+      <node id="4744">
         <label>okapi/api/coreProsAPI.hpp</label>
         <link refid="coreProsAPI_8hpp"/>
-        <childnode refid="4678" relation="include">
+        <childnode refid="4745" relation="include">
         </childnode>
-        <childnode refid="4679" relation="include">
+        <childnode refid="4746" relation="include">
         </childnode>
-        <childnode refid="4680" relation="include">
+        <childnode refid="4747" relation="include">
         </childnode>
-        <childnode refid="4681" relation="include">
+        <childnode refid="4748" relation="include">
         </childnode>
-        <childnode refid="4682" relation="include">
+        <childnode refid="4749" relation="include">
         </childnode>
-        <childnode refid="4683" relation="include">
+        <childnode refid="4750" relation="include">
         </childnode>
-        <childnode refid="4684" relation="include">
+        <childnode refid="4751" relation="include">
         </childnode>
-        <childnode refid="4685" relation="include">
+        <childnode refid="4752" relation="include">
         </childnode>
-        <childnode refid="4686" relation="include">
+        <childnode refid="4753" relation="include">
         </childnode>
-        <childnode refid="4687" relation="include">
+        <childnode refid="4754" relation="include">
         </childnode>
       </node>
-      <node id="4686">
+      <node id="4753">
         <label>api.h</label>
       </node>
-      <node id="4690">
+      <node id="4757">
         <label>okapi/api/control/controllerOutput.hpp</label>
         <link refid="controllerOutput_8hpp"/>
       </node>
-      <node id="4682">
+      <node id="4749">
         <label>cstdio</label>
       </node>
-      <node id="4697">
+      <node id="4764">
         <label>vector</label>
       </node>
-      <node id="4698">
+      <node id="4765">
         <label>utility</label>
       </node>
-      <node id="4695">
+      <node id="4762">
         <label>array</label>
       </node>
-      <node id="4685">
+      <node id="4752">
         <label>sstream</label>
       </node>
-      <node id="4692">
+      <node id="4759">
         <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
         <link refid="rotarySensor_8hpp"/>
-        <childnode refid="4693" relation="include">
+        <childnode refid="4760" relation="include">
         </childnode>
-        <childnode refid="4677" relation="include">
+        <childnode refid="4744" relation="include">
         </childnode>
       </node>
-      <node id="4683">
+      <node id="4750">
         <label>cstdlib</label>
       </node>
-      <node id="4675">
+      <node id="4742">
         <label>okapi/api/chassis/model/chassisModel.hpp</label>
         <link refid="chassisModel_8hpp"/>
-        <childnode refid="4676" relation="include">
+        <childnode refid="4743" relation="include">
         </childnode>
-        <childnode refid="4689" relation="include">
+        <childnode refid="4756" relation="include">
         </childnode>
-        <childnode refid="4695" relation="include">
+        <childnode refid="4762" relation="include">
         </childnode>
-        <childnode refid="4696" relation="include">
+        <childnode refid="4763" relation="include">
         </childnode>
-        <childnode refid="4694" relation="include">
+        <childnode refid="4761" relation="include">
         </childnode>
-        <childnode refid="4697" relation="include">
+        <childnode refid="4764" relation="include">
         </childnode>
       </node>
-      <node id="4680">
+      <node id="4747">
         <label>cstddef</label>
       </node>
-      <node id="4676">
+      <node id="4743">
         <label>okapi/api/chassis/model/readOnlyChassisModel.hpp</label>
         <link refid="readOnlyChassisModel_8hpp"/>
-        <childnode refid="4677" relation="include">
+        <childnode refid="4744" relation="include">
         </childnode>
-        <childnode refid="4688" relation="include">
+        <childnode refid="4755" relation="include">
         </childnode>
       </node>
-      <node id="4673">
+      <node id="4740">
         <label>src/api/chassis/model/xDriveModel.cpp</label>
         <link refid="xDriveModel_8cpp"/>
-        <childnode refid="4674" relation="include">
+        <childnode refid="4741" relation="include">
         </childnode>
-        <childnode refid="4698" relation="include">
+        <childnode refid="4765" relation="include">
         </childnode>
       </node>
-      <node id="4687">
+      <node id="4754">
         <label>pros/apix.h</label>
       </node>
-      <node id="4694">
+      <node id="4761">
         <label>memory</label>
       </node>
-      <node id="4696">
+      <node id="4763">
         <label>initializer_list</label>
       </node>
     </incdepgraph>

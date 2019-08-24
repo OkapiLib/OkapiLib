@@ -417,35 +417,35 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="451">
+      <node id="453">
         <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::AbstractRate &gt; &gt;</label>
         <link refid="classokapi_1_1Supplier"/>
       </node>
-      <node id="453">
+      <node id="455">
         <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::AbstractTimer &gt; &gt;</label>
         <link refid="classokapi_1_1Supplier"/>
       </node>
-      <node id="449">
+      <node id="451">
         <label>okapi::PIDTuner</label>
         <link refid="classokapi_1_1PIDTuner"/>
-        <childnode refid="450" relation="usage">
+        <childnode refid="452" relation="usage">
           <edgelabel>timeUtil</edgelabel>
         </childnode>
       </node>
-      <node id="450">
+      <node id="452">
         <label>okapi::TimeUtil</label>
         <link refid="classokapi_1_1TimeUtil"/>
-        <childnode refid="451" relation="usage">
+        <childnode refid="453" relation="usage">
           <edgelabel>rateSupplier</edgelabel>
         </childnode>
-        <childnode refid="452" relation="usage">
+        <childnode refid="454" relation="usage">
           <edgelabel>settledUtilSupplier</edgelabel>
         </childnode>
-        <childnode refid="453" relation="usage">
+        <childnode refid="455" relation="usage">
           <edgelabel>timerSupplier</edgelabel>
         </childnode>
       </node>
-      <node id="452">
+      <node id="454">
         <label>okapi::Supplier&lt; std::unique_ptr&lt; okapi::SettledUtil &gt; &gt;</label>
         <link refid="classokapi_1_1Supplier"/>
       </node>

@@ -4,99 +4,99 @@
     <compoundname>abstractMotor.cpp</compoundname>
     <includes refid="abstractMotor_8hpp" local="yes">okapi/api/device/motor/abstractMotor.hpp</includes>
     <incdepgraph>
-      <node id="5219">
+      <node id="5286">
         <label>functional</label>
       </node>
-      <node id="5216">
+      <node id="5283">
         <label>cstdint</label>
       </node>
-      <node id="5211">
+      <node id="5278">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="5214">
+      <node id="5281">
         <label>cstdbool</label>
       </node>
-      <node id="5213">
+      <node id="5280">
         <label>cmath</label>
       </node>
-      <node id="5209">
+      <node id="5276">
         <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
         <link refid="continuousRotarySensor_8hpp"/>
-        <childnode refid="5210" relation="include">
+        <childnode refid="5277" relation="include">
         </childnode>
       </node>
-      <node id="5207">
+      <node id="5274">
         <label>okapi/api/device/motor/abstractMotor.hpp</label>
         <link refid="abstractMotor_8hpp"/>
-        <childnode refid="5208" relation="include">
+        <childnode refid="5275" relation="include">
         </childnode>
-        <childnode refid="5209" relation="include">
+        <childnode refid="5276" relation="include">
         </childnode>
-        <childnode refid="5223" relation="include">
+        <childnode refid="5290" relation="include">
         </childnode>
       </node>
-      <node id="5212">
+      <node id="5279">
         <label>okapi/api/coreProsAPI.hpp</label>
         <link refid="coreProsAPI_8hpp"/>
-        <childnode refid="5213" relation="include">
+        <childnode refid="5280" relation="include">
         </childnode>
-        <childnode refid="5214" relation="include">
+        <childnode refid="5281" relation="include">
         </childnode>
-        <childnode refid="5215" relation="include">
+        <childnode refid="5282" relation="include">
         </childnode>
-        <childnode refid="5216" relation="include">
+        <childnode refid="5283" relation="include">
         </childnode>
-        <childnode refid="5217" relation="include">
+        <childnode refid="5284" relation="include">
         </childnode>
-        <childnode refid="5218" relation="include">
+        <childnode refid="5285" relation="include">
         </childnode>
-        <childnode refid="5219" relation="include">
+        <childnode refid="5286" relation="include">
         </childnode>
-        <childnode refid="5220" relation="include">
+        <childnode refid="5287" relation="include">
         </childnode>
-        <childnode refid="5221" relation="include">
+        <childnode refid="5288" relation="include">
         </childnode>
-        <childnode refid="5222" relation="include">
+        <childnode refid="5289" relation="include">
         </childnode>
       </node>
-      <node id="5221">
+      <node id="5288">
         <label>api.h</label>
       </node>
-      <node id="5208">
+      <node id="5275">
         <label>okapi/api/control/controllerOutput.hpp</label>
         <link refid="controllerOutput_8hpp"/>
       </node>
-      <node id="5217">
+      <node id="5284">
         <label>cstdio</label>
       </node>
-      <node id="5220">
+      <node id="5287">
         <label>sstream</label>
       </node>
-      <node id="5210">
+      <node id="5277">
         <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
         <link refid="rotarySensor_8hpp"/>
-        <childnode refid="5211" relation="include">
+        <childnode refid="5278" relation="include">
         </childnode>
-        <childnode refid="5212" relation="include">
+        <childnode refid="5279" relation="include">
         </childnode>
       </node>
-      <node id="5218">
+      <node id="5285">
         <label>cstdlib</label>
       </node>
-      <node id="5215">
+      <node id="5282">
         <label>cstddef</label>
       </node>
-      <node id="5206">
+      <node id="5273">
         <label>src/api/device/motor/abstractMotor.cpp</label>
         <link refid="abstractMotor_8cpp"/>
-        <childnode refid="5207" relation="include">
+        <childnode refid="5274" relation="include">
         </childnode>
       </node>
-      <node id="5222">
+      <node id="5289">
         <label>pros/apix.h</label>
       </node>
-      <node id="5223">
+      <node id="5290">
         <label>memory</label>
       </node>
     </incdepgraph>

@@ -105,12 +105,12 @@
             </dt>
             <dd><span></span></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a767919702ab379bac5273010baf03cda" class="m-doc">generatePath</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1Point.html" class="m-doc">Point</a>&gt; iwaypoints,
+              <span class="m-doc-wrap-bumper">void <a href="#a3b8ba2a691bea6f1cf7596f0ecb8b899" class="m-doc">generatePath</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt; iwaypoints,
               const std::string&amp; ipathId)</span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#ada198a8805433f0ed8608577dc83dc5f" class="m-doc">generatePath</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1Point.html" class="m-doc">Point</a>&gt; iwaypoints,
+              <span class="m-doc-wrap-bumper">void <a href="#a4b01625204f9949abd00e54513e3b1fa" class="m-doc">generatePath</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt; iwaypoints,
               const std::string&amp; ipathId,
               const <a href="structokapi_1_1PathfinderLimits.html" class="m-doc">PathfinderLimits</a>&amp; ilimits)</span>
             </dt>
@@ -146,20 +146,20 @@
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#ab467935f98d48fdcaca047b1994b8597" class="m-doc">moveTo</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1Point.html" class="m-doc">Point</a>&gt; iwaypoints,
+              <span class="m-doc-wrap-bumper">void <a href="#a027d632b17e5e9e0acbcb5b4000d038c" class="m-doc">moveTo</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt; iwaypoints,
               bool ibackwards = false,
               bool imirrored = false)</span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a95fc55789adfe0c760e9fd6c758f810a" class="m-doc">moveTo</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1Point.html" class="m-doc">Point</a>&gt; iwaypoints,
+              <span class="m-doc-wrap-bumper">void <a href="#a5845299e779fc876f6226aa083ddfaa8" class="m-doc">moveTo</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt; iwaypoints,
               const <a href="structokapi_1_1PathfinderLimits.html" class="m-doc">PathfinderLimits</a>&amp; ilimits,
               bool ibackwards = false,
               bool imirrored = false)</span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#aeb60fb677877b3461c1232dda7d0db50" class="m-doc">getError</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1Point.html" class="m-doc">Point</a> <span class="m-label m-flat m-warning">override</span></span>
+              <span class="m-doc-wrap-bumper">auto <a href="#aae5c2ef0766fba9e635c43c0314da10a" class="m-doc">getError</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a> <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
             <dt>
@@ -217,6 +217,14 @@
               struct <a href="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>
             </dt>
             <dd><span></span></dd>
+            <dt id="acf9be87bd2dd90aec23d91f0474f2d35">
+              using <a href="#acf9be87bd2dd90aec23d91f0474f2d35" class="m-doc-self">TrajectoryPtr</a> = std::unique_ptr&lt;TrajectoryCandidate, void(*)(TrajectoryCandidate*)&gt;
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a3ed298e703263af478d65e862afca6f3">
+              using <a href="#a3ed298e703263af478d65e862afca6f3" class="m-doc-self">SegmentPtr</a> = std::unique_ptr&lt;Segment, void(*)(void*)&gt;
+            </dt>
+            <dd><span></span></dd>
           </dl>
         </section>
         <section id="pro-static-methods">
@@ -267,6 +275,10 @@
               const std::string&amp; ipathId)</span>
             </dt>
             <dd><span></span></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#af14f6b6c201a7b80c32f5fc14c11022f" class="m-doc">getPathLength</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path) -&gt; int</span>
+            </dt>
+            <dd></dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -300,8 +312,8 @@
               <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a> <a href="#a82610b4101b963cbd314e6c287be4ec4" class="m-doc-self">timeUtil</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="ad3f504521a49ce164e7e8465e66899c1">
-              <a href="classCrossplatformMutex.html" class="m-doc">CrossplatformMutex</a> <a href="#ad3f504521a49ce164e7e8465e66899c1" class="m-doc-self">pathRemoveMutex</a>
+            <dt id="a43d16a7cf5c24e67938e25ca23d183a1">
+              <a href="classCrossplatformMutex.html" class="m-doc">CrossplatformMutex</a> <a href="#a43d16a7cf5c24e67938e25ca23d183a1" class="m-doc-self">currentPathMutex</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a3d2962ff85f036b10e19eb90083572be">
@@ -378,9 +390,9 @@
             </table>
 <p>An Async <a href="classokapi_1_1Controller.html" class="m-doc">Controller</a> which generates and follows 2D motion profiles. Throws a <code>std::invalid_argument</code> exception if the gear ratio is zero.</p>
           </div></section>
-          <section class="m-doc-details" id="a767919702ab379bac5273010baf03cda"><div>
+          <section class="m-doc-details" id="a3b8ba2a691bea6f1cf7596f0ecb8b899"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a767919702ab379bac5273010baf03cda" class="m-doc-self">generatePath</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1Point.html" class="m-doc">Point</a>&gt; iwaypoints,
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3b8ba2a691bea6f1cf7596f0ecb8b899" class="m-doc-self">generatePath</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt; iwaypoints,
               const std::string&amp; ipathId)</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
@@ -400,9 +412,9 @@
             </table>
 <p>Generates a path which intersects the given waypoints and saves it internally with a key of pathId. Call <code>executePath()</code> with the same pathId to run it.</p><p>If the waypoints form a path which is impossible to achieve, an instance of <code>std::runtime_error</code> is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.</p>
           </div></section>
-          <section class="m-doc-details" id="ada198a8805433f0ed8608577dc83dc5f"><div>
+          <section class="m-doc-details" id="a4b01625204f9949abd00e54513e3b1fa"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ada198a8805433f0ed8608577dc83dc5f" class="m-doc-self">generatePath</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1Point.html" class="m-doc">Point</a>&gt; iwaypoints,
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4b01625204f9949abd00e54513e3b1fa" class="m-doc-self">generatePath</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt; iwaypoints,
               const std::string&amp; ipathId,
               const <a href="structokapi_1_1PathfinderLimits.html" class="m-doc">PathfinderLimits</a>&amp; ilimits)</span></span>
             </h3>
@@ -438,7 +450,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">ipathId</td>
-                  <td>A unique identifier for the path, previously passed to <code><a href="classokapi_1_1AsyncMotionProfileController.html#a767919702ab379bac5273010baf03cda" class="m-doc">generatePath()</a></code></td>
+                  <td>A unique identifier for the path, previously passed to <code><a href="classokapi_1_1AsyncMotionProfileController.html#a3b8ba2a691bea6f1cf7596f0ecb8b899" class="m-doc">generatePath()</a></code></td>
                 </tr>
               </tbody>
               <tfoot>
@@ -475,7 +487,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">ipathId</td>
-                  <td>A unique identifier for the path, previously passed to <code><a href="classokapi_1_1AsyncMotionProfileController.html#a767919702ab379bac5273010baf03cda" class="m-doc">generatePath()</a></code>.</td>
+                  <td>A unique identifier for the path, previously passed to <code><a href="classokapi_1_1AsyncMotionProfileController.html#a3b8ba2a691bea6f1cf7596f0ecb8b899" class="m-doc">generatePath()</a></code>.</td>
                 </tr>
               </tbody>
             </table>
@@ -494,7 +506,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">ipathId</td>
-                  <td>A unique identifier for the path, previously passed to <code><a href="classokapi_1_1AsyncMotionProfileController.html#a767919702ab379bac5273010baf03cda" class="m-doc">generatePath()</a></code>.</td>
+                  <td>A unique identifier for the path, previously passed to <code><a href="classokapi_1_1AsyncMotionProfileController.html#a3b8ba2a691bea6f1cf7596f0ecb8b899" class="m-doc">generatePath()</a></code>.</td>
                 </tr>
                 <tr>
                   <td>ibackwards</td>
@@ -534,9 +546,9 @@
             </h3>
 <p>Blocks the current task until the controller has settled. This controller is settled when it has finished following a path. If no path is being followed, it is settled.</p>
           </div></section>
-          <section class="m-doc-details" id="ab467935f98d48fdcaca047b1994b8597"><div>
+          <section class="m-doc-details" id="a027d632b17e5e9e0acbcb5b4000d038c"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab467935f98d48fdcaca047b1994b8597" class="m-doc-self">moveTo</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1Point.html" class="m-doc">Point</a>&gt; iwaypoints,
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a027d632b17e5e9e0acbcb5b4000d038c" class="m-doc-self">moveTo</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt; iwaypoints,
               bool ibackwards = false,
               bool imirrored = false)</span></span>
             </h3>
@@ -561,9 +573,9 @@
             </table>
 <p>Generates a new path from the position (typically the current position) to the target and blocks until the controller has settled. Does not save the path which was generated.</p>
           </div></section>
-          <section class="m-doc-details" id="a95fc55789adfe0c760e9fd6c758f810a"><div>
+          <section class="m-doc-details" id="a5845299e779fc876f6226aa083ddfaa8"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a95fc55789adfe0c760e9fd6c758f810a" class="m-doc-self">moveTo</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1Point.html" class="m-doc">Point</a>&gt; iwaypoints,
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5845299e779fc876f6226aa083ddfaa8" class="m-doc-self">moveTo</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt; iwaypoints,
               const <a href="structokapi_1_1PathfinderLimits.html" class="m-doc">PathfinderLimits</a>&amp; ilimits,
               bool ibackwards = false,
               bool imirrored = false)</span></span>
@@ -593,9 +605,9 @@
             </table>
 <p>Generates a new path from the position (typically the current position) to the target and blocks until the controller has settled. Does not save the path which was generated.</p>
           </div></section>
-          <section class="m-doc-details" id="aeb60fb677877b3461c1232dda7d0db50"><div>
+          <section class="m-doc-details" id="aae5c2ef0766fba9e635c43c0314da10a"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"><a href="structokapi_1_1Point.html" class="m-doc">Point</a> okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aeb60fb677877b3461c1232dda7d0db50" class="m-doc-self">getError</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
+              <span class="m-doc-wrap-bumper"><a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a> okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aae5c2ef0766fba9e635c43c0314da10a" class="m-doc-self">getError</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
@@ -807,6 +819,29 @@
               </tfoot>
             </table>
 <p>Converts linear chassis speed to rotational motor speed.</p>
+          </div></section>
+          <section class="m-doc-details" id="af14f6b6c201a7b80c32f5fc14c11022f"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">int okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af14f6b6c201a7b80c32f5fc14c11022f" class="m-doc-self">getPathLength</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path) <span class="m-label m-warning">protected</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">path</td>
+                  <td>The path to read from.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>The length of the path.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Reads the length of the path in a thread-safe manner.</p>
           </div></section>
         </section>
       </div>

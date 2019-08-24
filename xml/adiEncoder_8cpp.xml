@@ -4,90 +4,90 @@
     <compoundname>adiEncoder.cpp</compoundname>
     <includes refid="adiEncoder_8hpp" local="yes">okapi/impl/device/rotarysensor/adiEncoder.hpp</includes>
     <incdepgraph>
-      <node id="6100">
+      <node id="6178">
         <label>functional</label>
       </node>
-      <node id="6087">
+      <node id="6165">
         <label>src/impl/device/rotarysensor/adiEncoder.cpp</label>
         <link refid="adiEncoder_8cpp"/>
-        <childnode refid="6088" relation="include">
+        <childnode refid="6166" relation="include">
         </childnode>
       </node>
-      <node id="6097">
+      <node id="6175">
         <label>cstdint</label>
       </node>
-      <node id="6092">
+      <node id="6170">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="6095">
+      <node id="6173">
         <label>cstdbool</label>
       </node>
-      <node id="6094">
+      <node id="6172">
         <label>cmath</label>
       </node>
-      <node id="6090">
+      <node id="6168">
         <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
         <link refid="continuousRotarySensor_8hpp"/>
-        <childnode refid="6091" relation="include">
+        <childnode refid="6169" relation="include">
         </childnode>
       </node>
-      <node id="6093">
+      <node id="6171">
         <label>okapi/api/coreProsAPI.hpp</label>
         <link refid="coreProsAPI_8hpp"/>
-        <childnode refid="6094" relation="include">
+        <childnode refid="6172" relation="include">
         </childnode>
-        <childnode refid="6095" relation="include">
+        <childnode refid="6173" relation="include">
         </childnode>
-        <childnode refid="6096" relation="include">
+        <childnode refid="6174" relation="include">
         </childnode>
-        <childnode refid="6097" relation="include">
+        <childnode refid="6175" relation="include">
         </childnode>
-        <childnode refid="6098" relation="include">
+        <childnode refid="6176" relation="include">
         </childnode>
-        <childnode refid="6099" relation="include">
+        <childnode refid="6177" relation="include">
         </childnode>
-        <childnode refid="6100" relation="include">
+        <childnode refid="6178" relation="include">
         </childnode>
-        <childnode refid="6101" relation="include">
+        <childnode refid="6179" relation="include">
         </childnode>
-        <childnode refid="6089" relation="include">
+        <childnode refid="6167" relation="include">
         </childnode>
-        <childnode refid="6102" relation="include">
+        <childnode refid="6180" relation="include">
         </childnode>
       </node>
-      <node id="6089">
+      <node id="6167">
         <label>api.h</label>
       </node>
-      <node id="6098">
+      <node id="6176">
         <label>cstdio</label>
       </node>
-      <node id="6101">
+      <node id="6179">
         <label>sstream</label>
       </node>
-      <node id="6091">
+      <node id="6169">
         <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
         <link refid="rotarySensor_8hpp"/>
-        <childnode refid="6092" relation="include">
+        <childnode refid="6170" relation="include">
         </childnode>
-        <childnode refid="6093" relation="include">
+        <childnode refid="6171" relation="include">
         </childnode>
       </node>
-      <node id="6099">
+      <node id="6177">
         <label>cstdlib</label>
       </node>
-      <node id="6096">
+      <node id="6174">
         <label>cstddef</label>
       </node>
-      <node id="6088">
+      <node id="6166">
         <label>okapi/impl/device/rotarysensor/adiEncoder.hpp</label>
         <link refid="adiEncoder_8hpp"/>
-        <childnode refid="6089" relation="include">
+        <childnode refid="6167" relation="include">
         </childnode>
-        <childnode refid="6090" relation="include">
+        <childnode refid="6168" relation="include">
         </childnode>
       </node>
-      <node id="6102">
+      <node id="6180">
         <label>pros/apix.h</label>
       </node>
     </incdepgraph>

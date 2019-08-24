@@ -213,10 +213,8 @@ the bottom right motor
 \subsubsection{\texorpdfstring{getMaxVelocity()}{getMaxVelocity()}}
 {\footnotesize\ttfamily double okapi\+::\+X\+Drive\+Model\+::get\+Max\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Returns the maximum velocity in R\+PM \mbox{[}0-\/600\mbox{]}.
-
 \begin{DoxyReturn}{Returns}
-The maximum velocity in R\+PM \mbox{[}0-\/600\mbox{]}. 
+The current maximum velocity. 
 \end{DoxyReturn}
 
 
@@ -228,10 +226,8 @@ Implements \mbox{\hyperlink{classokapi_1_1ChassisModel_ab45dd7430636ed1c1dee25da
 \subsubsection{\texorpdfstring{getMaxVoltage()}{getMaxVoltage()}}
 {\footnotesize\ttfamily double okapi\+::\+X\+Drive\+Model\+::get\+Max\+Voltage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Returns the maximum voltage in mV \mbox{[}0-\/12000\mbox{]}.
-
 \begin{DoxyReturn}{Returns}
-The maximum voltage in mV \mbox{[}0-\/12000\mbox{]}. 
+The maximum voltage in mV in the range {\ttfamily \mbox{[}0-\/12000\mbox{]}}. 
 \end{DoxyReturn}
 
 
@@ -392,11 +388,11 @@ Implements \mbox{\hyperlink{classokapi_1_1ChassisModel_a960d6ce2f21e5832fce1d756
 \subsubsection{\texorpdfstring{setMaxVelocity()}{setMaxVelocity()}}
 {\footnotesize\ttfamily void okapi\+::\+X\+Drive\+Model\+::set\+Max\+Velocity (\begin{DoxyParamCaption}\item[{double}]{imax\+Velocity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Sets a new maximum velocity in R\+PM \mbox{[}0-\/600\mbox{]}.
+Sets a new maximum velocity in R\+PM. The usable maximum depends on the maximum velocity of the currently installed gearset. If the configured maximum velocity is greater than the attainable maximum velocity from the currently installed gearset, the \mbox{\hyperlink{classokapi_1_1ChassisModel}{Chassis\+Model}} will still scale to that velocity.
 
 
 \begin{DoxyParams}{Parameters}
-{\em imax\+Velocity} & the new maximum velocity \\
+{\em imax\+Velocity} & The new maximum velocity. \\
 \hline
 \end{DoxyParams}
 
@@ -409,11 +405,11 @@ Implements \mbox{\hyperlink{classokapi_1_1ChassisModel_ae7fcb4cc95fdd7fd3c8f8388
 \subsubsection{\texorpdfstring{setMaxVoltage()}{setMaxVoltage()}}
 {\footnotesize\ttfamily void okapi\+::\+X\+Drive\+Model\+::set\+Max\+Voltage (\begin{DoxyParamCaption}\item[{double}]{imax\+Voltage }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Sets a new maximum voltage in mV \mbox{[}0-\/12000\mbox{]}.
+Sets a new maximum voltage in mV in the range {\ttfamily \mbox{[}0-\/12000\mbox{]}}.
 
 
 \begin{DoxyParams}{Parameters}
-{\em imax\+Voltage} & the new maximum voltage \\
+{\em imax\+Voltage} & The new maximum voltage. \\
 \hline
 \end{DoxyParams}
 

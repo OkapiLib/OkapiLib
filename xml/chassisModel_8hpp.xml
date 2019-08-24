@@ -12,319 +12,319 @@
     <includedby refid="skidSteerModel_8hpp" local="yes">include/okapi/api/chassis/model/skidSteerModel.hpp</includedby>
     <includedby refid="xDriveModel_8hpp" local="yes">include/okapi/api/chassis/model/xDriveModel.hpp</includedby>
     <incdepgraph>
-      <node id="485">
+      <node id="495">
         <label>valarray</label>
       </node>
-      <node id="481">
+      <node id="491">
         <label>functional</label>
       </node>
-      <node id="478">
+      <node id="488">
         <label>cstdint</label>
       </node>
-      <node id="490">
+      <node id="500">
         <label>okapi/api/control/controllerInput.hpp</label>
         <link refid="controllerInput_8hpp"/>
       </node>
-      <node id="476">
+      <node id="486">
         <label>cstdbool</label>
       </node>
-      <node id="475">
+      <node id="485">
         <label>cmath</label>
       </node>
-      <node id="488">
+      <node id="498">
         <label>okapi/api/device/rotarysensor/continuousRotarySensor.hpp</label>
         <link refid="continuousRotarySensor_8hpp"/>
-        <childnode refid="489" relation="include">
+        <childnode refid="499" relation="include">
         </childnode>
       </node>
-      <node id="486">
+      <node id="496">
         <label>okapi/api/device/motor/abstractMotor.hpp</label>
         <link refid="abstractMotor_8hpp"/>
+        <childnode refid="497" relation="include">
+        </childnode>
+        <childnode refid="498" relation="include">
+        </childnode>
+        <childnode refid="501" relation="include">
+        </childnode>
+      </node>
+      <node id="484">
+        <label>okapi/api/coreProsAPI.hpp</label>
+        <link refid="coreProsAPI_8hpp"/>
+        <childnode refid="485" relation="include">
+        </childnode>
+        <childnode refid="486" relation="include">
+        </childnode>
         <childnode refid="487" relation="include">
         </childnode>
         <childnode refid="488" relation="include">
         </childnode>
-        <childnode refid="491" relation="include">
+        <childnode refid="489" relation="include">
         </childnode>
-      </node>
-      <node id="474">
-        <label>okapi/api/coreProsAPI.hpp</label>
-        <link refid="coreProsAPI_8hpp"/>
-        <childnode refid="475" relation="include">
-        </childnode>
-        <childnode refid="476" relation="include">
-        </childnode>
-        <childnode refid="477" relation="include">
-        </childnode>
-        <childnode refid="478" relation="include">
-        </childnode>
-        <childnode refid="479" relation="include">
-        </childnode>
-        <childnode refid="480" relation="include">
-        </childnode>
-        <childnode refid="481" relation="include">
-        </childnode>
-        <childnode refid="482" relation="include">
-        </childnode>
-        <childnode refid="483" relation="include">
-        </childnode>
-        <childnode refid="484" relation="include">
-        </childnode>
-      </node>
-      <node id="483">
-        <label>api.h</label>
-      </node>
-      <node id="487">
-        <label>okapi/api/control/controllerOutput.hpp</label>
-        <link refid="controllerOutput_8hpp"/>
-      </node>
-      <node id="479">
-        <label>cstdio</label>
-      </node>
-      <node id="494">
-        <label>vector</label>
-      </node>
-      <node id="492">
-        <label>array</label>
-      </node>
-      <node id="482">
-        <label>sstream</label>
-      </node>
-      <node id="489">
-        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
-        <link refid="rotarySensor_8hpp"/>
         <childnode refid="490" relation="include">
         </childnode>
-        <childnode refid="474" relation="include">
-        </childnode>
-      </node>
-      <node id="480">
-        <label>cstdlib</label>
-      </node>
-      <node id="472">
-        <label>include/okapi/api/chassis/model/chassisModel.hpp</label>
-        <link refid="chassisModel_8hpp"/>
-        <childnode refid="473" relation="include">
-        </childnode>
-        <childnode refid="486" relation="include">
+        <childnode refid="491" relation="include">
         </childnode>
         <childnode refid="492" relation="include">
         </childnode>
         <childnode refid="493" relation="include">
         </childnode>
-        <childnode refid="491" relation="include">
-        </childnode>
         <childnode refid="494" relation="include">
         </childnode>
       </node>
-      <node id="477">
+      <node id="493">
+        <label>api.h</label>
+      </node>
+      <node id="497">
+        <label>okapi/api/control/controllerOutput.hpp</label>
+        <link refid="controllerOutput_8hpp"/>
+      </node>
+      <node id="489">
+        <label>cstdio</label>
+      </node>
+      <node id="504">
+        <label>vector</label>
+      </node>
+      <node id="502">
+        <label>array</label>
+      </node>
+      <node id="492">
+        <label>sstream</label>
+      </node>
+      <node id="499">
+        <label>okapi/api/device/rotarysensor/rotarySensor.hpp</label>
+        <link refid="rotarySensor_8hpp"/>
+        <childnode refid="500" relation="include">
+        </childnode>
+        <childnode refid="484" relation="include">
+        </childnode>
+      </node>
+      <node id="490">
+        <label>cstdlib</label>
+      </node>
+      <node id="482">
+        <label>include/okapi/api/chassis/model/chassisModel.hpp</label>
+        <link refid="chassisModel_8hpp"/>
+        <childnode refid="483" relation="include">
+        </childnode>
+        <childnode refid="496" relation="include">
+        </childnode>
+        <childnode refid="502" relation="include">
+        </childnode>
+        <childnode refid="503" relation="include">
+        </childnode>
+        <childnode refid="501" relation="include">
+        </childnode>
+        <childnode refid="504" relation="include">
+        </childnode>
+      </node>
+      <node id="487">
         <label>cstddef</label>
       </node>
-      <node id="473">
+      <node id="483">
         <label>okapi/api/chassis/model/readOnlyChassisModel.hpp</label>
         <link refid="readOnlyChassisModel_8hpp"/>
-        <childnode refid="474" relation="include">
+        <childnode refid="484" relation="include">
         </childnode>
-        <childnode refid="485" relation="include">
+        <childnode refid="495" relation="include">
         </childnode>
       </node>
-      <node id="484">
+      <node id="494">
         <label>pros/apix.h</label>
       </node>
-      <node id="491">
+      <node id="501">
         <label>memory</label>
       </node>
-      <node id="493">
+      <node id="503">
         <label>initializer_list</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="505">
+      <node id="515">
         <label>src/api/chassis/controller/chassisControllerPid.cpp</label>
         <link refid="chassisControllerPid_8cpp"/>
       </node>
-      <node id="508">
+      <node id="518">
         <label>include/okapi/impl/control/async/asyncMotionProfileControllerBuilder.hpp</label>
         <link refid="asyncMotionProfileControllerBuilder_8hpp"/>
-        <childnode refid="499" relation="include">
-        </childnode>
         <childnode refid="509" relation="include">
-        </childnode>
-      </node>
-      <node id="516">
-        <label>src/api/control/async/asyncMotionProfileController.cpp</label>
-        <link refid="asyncMotionProfileController_8cpp"/>
-      </node>
-      <node id="513">
-        <label>src/api/odometry/threeEncoderOdometry.cpp</label>
-        <link refid="threeEncoderOdometry_8cpp"/>
-      </node>
-      <node id="499">
-        <label>include/okapi/api.hpp</label>
-        <link refid="api_8hpp"/>
-      </node>
-      <node id="507">
-        <label>src/api/chassis/controller/odomChassisController.cpp</label>
-        <link refid="odomChassisController_8cpp"/>
-      </node>
-      <node id="510">
-        <label>include/okapi/api/chassis/model/skidSteerModel.hpp</label>
-        <link refid="skidSteerModel_8hpp"/>
-        <childnode refid="498" relation="include">
-        </childnode>
-        <childnode refid="506" relation="include">
-        </childnode>
-        <childnode refid="511" relation="include">
-        </childnode>
-        <childnode refid="515" relation="include">
-        </childnode>
-        <childnode refid="499" relation="include">
-        </childnode>
-        <childnode refid="500" relation="include">
-        </childnode>
-        <childnode refid="517" relation="include">
-        </childnode>
-      </node>
-      <node id="518">
-        <label>include/okapi/api/chassis/model/xDriveModel.hpp</label>
-        <link refid="xDriveModel_8hpp"/>
-        <childnode refid="499" relation="include">
-        </childnode>
-        <childnode refid="500" relation="include">
         </childnode>
         <childnode refid="519" relation="include">
         </childnode>
       </node>
-      <node id="515">
-        <label>include/okapi/api/control/async/asyncMotionProfileController.hpp</label>
-        <link refid="asyncMotionProfileController_8hpp"/>
-        <childnode refid="499" relation="include">
-        </childnode>
+      <node id="526">
+        <label>src/api/control/async/asyncMotionProfileController.cpp</label>
+        <link refid="asyncMotionProfileController_8cpp"/>
+      </node>
+      <node id="523">
+        <label>src/api/odometry/threeEncoderOdometry.cpp</label>
+        <link refid="threeEncoderOdometry_8cpp"/>
+      </node>
+      <node id="509">
+        <label>include/okapi/api.hpp</label>
+        <link refid="api_8hpp"/>
+      </node>
+      <node id="517">
+        <label>src/api/chassis/controller/odomChassisController.cpp</label>
+        <link refid="odomChassisController_8cpp"/>
+      </node>
+      <node id="520">
+        <label>include/okapi/api/chassis/model/skidSteerModel.hpp</label>
+        <link refid="skidSteerModel_8hpp"/>
         <childnode refid="508" relation="include">
         </childnode>
         <childnode refid="516" relation="include">
         </childnode>
-      </node>
-      <node id="500">
-        <label>include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp</label>
-        <link refid="chassisControllerBuilder_8hpp"/>
-        <childnode refid="499" relation="include">
+        <childnode refid="521" relation="include">
         </childnode>
-        <childnode refid="501" relation="include">
+        <childnode refid="525" relation="include">
         </childnode>
-      </node>
-      <node id="496">
-        <label>include/okapi/api/chassis/controller/chassisController.hpp</label>
-        <link refid="chassisController_8hpp"/>
-        <childnode refid="497" relation="include">
-        </childnode>
-        <childnode refid="504" relation="include">
-        </childnode>
-        <childnode refid="506" relation="include">
-        </childnode>
-        <childnode refid="508" relation="include">
-        </childnode>
-      </node>
-      <node id="503">
-        <label>src/api/chassis/controller/chassisControllerIntegrated.cpp</label>
-        <link refid="chassisControllerIntegrated_8cpp"/>
-      </node>
-      <node id="504">
-        <label>include/okapi/api/chassis/controller/chassisControllerPid.hpp</label>
-        <link refid="chassisControllerPid_8hpp"/>
-        <childnode refid="499" relation="include">
-        </childnode>
-        <childnode refid="500" relation="include">
-        </childnode>
-        <childnode refid="505" relation="include">
-        </childnode>
-      </node>
-      <node id="517">
-        <label>src/api/chassis/model/skidSteerModel.cpp</label>
-        <link refid="skidSteerModel_8cpp"/>
-      </node>
-      <node id="502">
-        <label>src/api/chassis/controller/defaultOdomChassisController.cpp</label>
-        <link refid="defaultOdomChassisController_8cpp"/>
-      </node>
-      <node id="501">
-        <label>src/impl/chassis/controller/chassisControllerBuilder.cpp</label>
-        <link refid="chassisControllerBuilder_8cpp"/>
-      </node>
-      <node id="514">
-        <label>src/api/chassis/model/threeEncoderSkidSteerModel.cpp</label>
-        <link refid="threeEncoderSkidSteerModel_8cpp"/>
-      </node>
-      <node id="512">
-        <label>include/okapi/api/odometry/threeEncoderOdometry.hpp</label>
-        <link refid="threeEncoderOdometry_8hpp"/>
-        <childnode refid="499" relation="include">
-        </childnode>
-        <childnode refid="513" relation="include">
-        </childnode>
-        <childnode refid="501" relation="include">
-        </childnode>
-      </node>
-      <node id="497">
-        <label>include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp</label>
-        <link refid="chassisControllerIntegrated_8hpp"/>
-        <childnode refid="498" relation="include">
-        </childnode>
-        <childnode refid="499" relation="include">
-        </childnode>
-        <childnode refid="500" relation="include">
-        </childnode>
-        <childnode refid="503" relation="include">
-        </childnode>
-      </node>
-      <node id="495">
-        <label>include/okapi/api/chassis/model/chassisModel.hpp</label>
-        <link refid="chassisModel_8hpp"/>
-        <childnode refid="496" relation="include">
+        <childnode refid="509" relation="include">
         </childnode>
         <childnode refid="510" relation="include">
+        </childnode>
+        <childnode refid="527" relation="include">
+        </childnode>
+      </node>
+      <node id="528">
+        <label>include/okapi/api/chassis/model/xDriveModel.hpp</label>
+        <link refid="xDriveModel_8hpp"/>
+        <childnode refid="509" relation="include">
+        </childnode>
+        <childnode refid="510" relation="include">
+        </childnode>
+        <childnode refid="529" relation="include">
+        </childnode>
+      </node>
+      <node id="525">
+        <label>include/okapi/api/control/async/asyncMotionProfileController.hpp</label>
+        <link refid="asyncMotionProfileController_8hpp"/>
+        <childnode refid="509" relation="include">
+        </childnode>
+        <childnode refid="518" relation="include">
+        </childnode>
+        <childnode refid="526" relation="include">
+        </childnode>
+      </node>
+      <node id="510">
+        <label>include/okapi/impl/chassis/controller/chassisControllerBuilder.hpp</label>
+        <link refid="chassisControllerBuilder_8hpp"/>
+        <childnode refid="509" relation="include">
+        </childnode>
+        <childnode refid="511" relation="include">
+        </childnode>
+      </node>
+      <node id="506">
+        <label>include/okapi/api/chassis/controller/chassisController.hpp</label>
+        <link refid="chassisController_8hpp"/>
+        <childnode refid="507" relation="include">
+        </childnode>
+        <childnode refid="514" relation="include">
+        </childnode>
+        <childnode refid="516" relation="include">
         </childnode>
         <childnode refid="518" relation="include">
         </childnode>
       </node>
-      <node id="509">
+      <node id="513">
+        <label>src/api/chassis/controller/chassisControllerIntegrated.cpp</label>
+        <link refid="chassisControllerIntegrated_8cpp"/>
+      </node>
+      <node id="514">
+        <label>include/okapi/api/chassis/controller/chassisControllerPid.hpp</label>
+        <link refid="chassisControllerPid_8hpp"/>
+        <childnode refid="509" relation="include">
+        </childnode>
+        <childnode refid="510" relation="include">
+        </childnode>
+        <childnode refid="515" relation="include">
+        </childnode>
+      </node>
+      <node id="527">
+        <label>src/api/chassis/model/skidSteerModel.cpp</label>
+        <link refid="skidSteerModel_8cpp"/>
+      </node>
+      <node id="512">
+        <label>src/api/chassis/controller/defaultOdomChassisController.cpp</label>
+        <link refid="defaultOdomChassisController_8cpp"/>
+      </node>
+      <node id="511">
+        <label>src/impl/chassis/controller/chassisControllerBuilder.cpp</label>
+        <link refid="chassisControllerBuilder_8cpp"/>
+      </node>
+      <node id="524">
+        <label>src/api/chassis/model/threeEncoderSkidSteerModel.cpp</label>
+        <link refid="threeEncoderSkidSteerModel_8cpp"/>
+      </node>
+      <node id="522">
+        <label>include/okapi/api/odometry/threeEncoderOdometry.hpp</label>
+        <link refid="threeEncoderOdometry_8hpp"/>
+        <childnode refid="509" relation="include">
+        </childnode>
+        <childnode refid="523" relation="include">
+        </childnode>
+        <childnode refid="511" relation="include">
+        </childnode>
+      </node>
+      <node id="507">
+        <label>include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp</label>
+        <link refid="chassisControllerIntegrated_8hpp"/>
+        <childnode refid="508" relation="include">
+        </childnode>
+        <childnode refid="509" relation="include">
+        </childnode>
+        <childnode refid="510" relation="include">
+        </childnode>
+        <childnode refid="513" relation="include">
+        </childnode>
+      </node>
+      <node id="505">
+        <label>include/okapi/api/chassis/model/chassisModel.hpp</label>
+        <link refid="chassisModel_8hpp"/>
+        <childnode refid="506" relation="include">
+        </childnode>
+        <childnode refid="520" relation="include">
+        </childnode>
+        <childnode refid="528" relation="include">
+        </childnode>
+      </node>
+      <node id="519">
         <label>src/impl/control/async/asyncMotionProfileControllerBuilder.cpp</label>
         <link refid="asyncMotionProfileControllerBuilder_8cpp"/>
       </node>
-      <node id="519">
+      <node id="529">
         <label>src/api/chassis/model/xDriveModel.cpp</label>
         <link refid="xDriveModel_8cpp"/>
       </node>
-      <node id="506">
+      <node id="516">
         <label>include/okapi/api/chassis/controller/odomChassisController.hpp</label>
         <link refid="odomChassisController_8hpp"/>
-        <childnode refid="498" relation="include">
+        <childnode refid="508" relation="include">
         </childnode>
-        <childnode refid="499" relation="include">
+        <childnode refid="509" relation="include">
         </childnode>
-        <childnode refid="507" relation="include">
+        <childnode refid="517" relation="include">
         </childnode>
       </node>
-      <node id="511">
+      <node id="521">
         <label>include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp</label>
         <link refid="threeEncoderSkidSteerModel_8hpp"/>
-        <childnode refid="512" relation="include">
+        <childnode refid="522" relation="include">
         </childnode>
-        <childnode refid="499" relation="include">
+        <childnode refid="509" relation="include">
         </childnode>
-        <childnode refid="514" relation="include">
+        <childnode refid="524" relation="include">
         </childnode>
-        <childnode refid="501" relation="include">
+        <childnode refid="511" relation="include">
         </childnode>
       </node>
-      <node id="498">
+      <node id="508">
         <label>include/okapi/api/chassis/controller/defaultOdomChassisController.hpp</label>
         <link refid="defaultOdomChassisController_8hpp"/>
-        <childnode refid="499" relation="include">
+        <childnode refid="509" relation="include">
         </childnode>
-        <childnode refid="500" relation="include">
+        <childnode refid="510" relation="include">
         </childnode>
-        <childnode refid="502" relation="include">
+        <childnode refid="512" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

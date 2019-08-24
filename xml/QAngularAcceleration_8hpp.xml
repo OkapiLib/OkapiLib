@@ -6,127 +6,127 @@
     <includedby refid="velMath_8hpp" local="yes">include/okapi/api/filter/velMath.hpp</includedby>
     <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
     <incdepgraph>
-      <node id="2615">
+      <node id="2672">
         <label>cmath</label>
       </node>
-      <node id="2613">
+      <node id="2670">
         <label>include/okapi/api/units/QAngularAcceleration.hpp</label>
         <link refid="QAngularAcceleration_8hpp"/>
-        <childnode refid="2614" relation="include">
+        <childnode refid="2671" relation="include">
         </childnode>
       </node>
-      <node id="2616">
+      <node id="2673">
         <label>ratio</label>
       </node>
-      <node id="2614">
+      <node id="2671">
         <label>okapi/api/units/RQuantity.hpp</label>
         <link refid="RQuantity_8hpp"/>
-        <childnode refid="2615" relation="include">
+        <childnode refid="2672" relation="include">
         </childnode>
-        <childnode refid="2616" relation="include">
+        <childnode refid="2673" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2626">
+      <node id="2683">
         <label>src/impl/control/iterative/iterativeControllerFactory.cpp</label>
         <link refid="iterativeControllerFactory_8cpp"/>
       </node>
-      <node id="2630">
+      <node id="2687">
         <label>src/impl/filter/velMathFactory.cpp</label>
         <link refid="velMathFactory_8cpp"/>
       </node>
-      <node id="2621">
+      <node id="2678">
         <label>include/okapi/api.hpp</label>
         <link refid="api_8hpp"/>
       </node>
-      <node id="2624">
+      <node id="2681">
         <label>src/api/control/async/asyncVelPidController.cpp</label>
         <link refid="asyncVelPidController_8cpp"/>
       </node>
-      <node id="2625">
+      <node id="2682">
         <label>include/okapi/impl/control/iterative/iterativeControllerFactory.hpp</label>
         <link refid="iterativeControllerFactory_8hpp"/>
-        <childnode refid="2621" relation="include">
+        <childnode refid="2678" relation="include">
         </childnode>
-        <childnode refid="2626" relation="include">
+        <childnode refid="2683" relation="include">
         </childnode>
-        <childnode refid="2627" relation="include">
+        <childnode refid="2684" relation="include">
         </childnode>
       </node>
-      <node id="2617">
+      <node id="2674">
         <label>include/okapi/api/units/QAngularAcceleration.hpp</label>
         <link refid="QAngularAcceleration_8hpp"/>
-        <childnode refid="2618" relation="include">
+        <childnode refid="2675" relation="include">
         </childnode>
-        <childnode refid="2621" relation="include">
+        <childnode refid="2678" relation="include">
         </childnode>
       </node>
-      <node id="2622">
+      <node id="2679">
         <label>include/okapi/impl/control/async/asyncVelControllerBuilder.hpp</label>
         <link refid="asyncVelControllerBuilder_8hpp"/>
-        <childnode refid="2621" relation="include">
+        <childnode refid="2678" relation="include">
         </childnode>
-        <childnode refid="2623" relation="include">
+        <childnode refid="2680" relation="include">
         </childnode>
       </node>
-      <node id="2620">
+      <node id="2677">
         <label>include/okapi/api/control/async/asyncVelPidController.hpp</label>
         <link refid="asyncVelPidController_8hpp"/>
-        <childnode refid="2621" relation="include">
+        <childnode refid="2678" relation="include">
         </childnode>
-        <childnode refid="2622" relation="include">
+        <childnode refid="2679" relation="include">
         </childnode>
-        <childnode refid="2624" relation="include">
+        <childnode refid="2681" relation="include">
         </childnode>
       </node>
-      <node id="2618">
+      <node id="2675">
         <label>include/okapi/api/filter/velMath.hpp</label>
         <link refid="velMath_8hpp"/>
-        <childnode refid="2619" relation="include">
+        <childnode refid="2676" relation="include">
         </childnode>
-        <childnode refid="2621" relation="include">
+        <childnode refid="2678" relation="include">
         </childnode>
-        <childnode refid="2629" relation="include">
+        <childnode refid="2686" relation="include">
         </childnode>
-        <childnode refid="2631" relation="include">
+        <childnode refid="2688" relation="include">
         </childnode>
       </node>
-      <node id="2627">
+      <node id="2684">
         <label>src/impl/control/util/pidTunerFactory.cpp</label>
         <link refid="pidTunerFactory_8cpp"/>
       </node>
-      <node id="2619">
+      <node id="2676">
         <label>include/okapi/api/control/iterative/iterativeVelPidController.hpp</label>
         <link refid="iterativeVelPidController_8hpp"/>
-        <childnode refid="2620" relation="include">
+        <childnode refid="2677" relation="include">
         </childnode>
-        <childnode refid="2621" relation="include">
+        <childnode refid="2678" relation="include">
         </childnode>
-        <childnode refid="2625" relation="include">
+        <childnode refid="2682" relation="include">
         </childnode>
-        <childnode refid="2628" relation="include">
+        <childnode refid="2685" relation="include">
         </childnode>
       </node>
-      <node id="2628">
+      <node id="2685">
         <label>src/api/control/iterative/iterativeVelPidController.cpp</label>
         <link refid="iterativeVelPidController_8cpp"/>
       </node>
-      <node id="2629">
+      <node id="2686">
         <label>include/okapi/impl/filter/velMathFactory.hpp</label>
         <link refid="velMathFactory_8hpp"/>
-        <childnode refid="2621" relation="include">
+        <childnode refid="2678" relation="include">
         </childnode>
-        <childnode refid="2625" relation="include">
+        <childnode refid="2682" relation="include">
         </childnode>
-        <childnode refid="2630" relation="include">
+        <childnode refid="2687" relation="include">
         </childnode>
       </node>
-      <node id="2631">
+      <node id="2688">
         <label>src/api/filter/velMath.cpp</label>
         <link refid="velMath_8cpp"/>
       </node>
-      <node id="2623">
+      <node id="2680">
         <label>src/impl/control/async/asyncVelControllerBuilder.cpp</label>
         <link refid="asyncVelControllerBuilder_8cpp"/>
       </node>

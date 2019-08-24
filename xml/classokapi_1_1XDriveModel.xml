@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="211" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="211" bodyend="-1"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="210" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="210" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1XDriveModel_1a30569bcd27d696b44836f32d62688809" prot="protected" static="no" mutable="no">
         <type>double</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="212" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="212" bodyend="-1"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="211" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="211" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1XDriveModel_1a7fd97da22c4f052efd49e7c7554409aa" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="213" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="213" bodyend="-1"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="212" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="212" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1XDriveModel_1abe393384e83737181b5b836d99b0a480" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
@@ -55,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="214" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="214" bodyend="-1"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="213" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="213" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1XDriveModel_1a43ba3ac3a9750895b2bfd5b8c121ca7e" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
@@ -68,7 +68,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="215" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="215" bodyend="-1"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="214" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="214" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1XDriveModel_1ac4c184a14b3431a1dda1136ca1133400" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
@@ -81,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="216" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="216" bodyend="-1"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="215" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="215" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1XDriveModel_1a16ef5d576e9b819d79b6762e706906c5" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
@@ -94,7 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="217" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="217" bodyend="-1"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="216" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="216" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classokapi_1_1XDriveModel_1ab50a3276501ce448d46415361f8a422f" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1ContinuousRotarySensor" kindref="compound">ContinuousRotarySensor</ref> &gt;</type>
@@ -107,7 +107,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="218" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="218" bodyend="-1"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="217" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="217" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -726,13 +726,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Sets a new maximum velocity in RPM [0-600].</para>
+<para>Sets a new maximum velocity in RPM. The usable maximum depends on the maximum velocity of the currently installed gearset. If the configured maximum velocity is greater than the attainable maximum velocity from the currently installed gearset, the <ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref> will still scale to that velocity.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>imaxVelocity</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the new maximum velocity </para>
+<para>The new maximum velocity. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -740,7 +740,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="159" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="228" bodyend="230"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="162" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="228" bodyend="234"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1XDriveModel_1aa5b5c3431c99c612ade5c97858478828" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>double</type>
@@ -751,14 +751,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Returns the maximum velocity in RPM [0-600].</para>
-<para><simplesect kind="return"><para>The maximum velocity in RPM [0-600]. </para>
+<para><simplesect kind="return"><para>The current maximum velocity. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="166" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="232" bodyend="234"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="167" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="236" bodyend="238"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1XDriveModel_1a6d001a2147ecb642f60cd21ac73c64ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -773,13 +772,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Sets a new maximum voltage in mV [0-12000].</para>
+<para>Sets a new maximum voltage in mV in the range <computeroutput>[0-12000]</computeroutput>.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>imaxVoltage</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the new maximum voltage </para>
+<para>The new maximum voltage. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -787,7 +786,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="173" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="236" bodyend="238"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="174" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="240" bodyend="248"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1XDriveModel_1a402487e35a717c47cfcc85ad1cfb0861" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>double</type>
@@ -798,14 +797,13 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Returns the maximum voltage in mV [0-12000].</para>
-<para><simplesect kind="return"><para>The maximum voltage in mV [0-12000]. </para>
+<para><simplesect kind="return"><para>The maximum voltage in mV in the range <computeroutput>[0-12000]</computeroutput>. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="180" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="240" bodyend="242"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="179" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="250" bodyend="252"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1XDriveModel_1a6ffd50946ef2655b3d8c74c0d211101b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
@@ -822,7 +820,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="187" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="244" bodyend="246"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="186" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="254" bodyend="256"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1XDriveModel_1abd08edca41aa963c15fafc4b735c0e8d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
@@ -839,7 +837,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="194" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="248" bodyend="250"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="193" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="258" bodyend="260"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1XDriveModel_1aa7305b4d70feaf3d7201c4b60f29b289" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
@@ -856,7 +854,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="201" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="252" bodyend="254"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="200" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="262" bodyend="264"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1XDriveModel_1a9d009ced4cfce5d1ba9ac2c4ad67212a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::shared_ptr&lt; <ref refid="classokapi_1_1AbstractMotor" kindref="compound">AbstractMotor</ref> &gt;</type>
@@ -873,7 +871,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="208" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="256" bodyend="258"/>
+        <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="207" column="1" bodyfile="src/api/chassis/model/xDriveModel.cpp" bodystart="266" bodyend="268"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -881,42 +879,42 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="535">
+      <node id="537">
         <label>okapi::ReadOnlyChassisModel</label>
         <link refid="classokapi_1_1ReadOnlyChassisModel"/>
       </node>
-      <node id="533">
+      <node id="535">
         <label>okapi::XDriveModel</label>
         <link refid="classokapi_1_1XDriveModel"/>
-        <childnode refid="534" relation="public-inheritance">
+        <childnode refid="536" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="534">
+      <node id="536">
         <label>okapi::ChassisModel</label>
         <link refid="classokapi_1_1ChassisModel"/>
-        <childnode refid="535" relation="public-inheritance">
+        <childnode refid="537" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="538">
+      <node id="540">
         <label>okapi::ReadOnlyChassisModel</label>
         <link refid="classokapi_1_1ReadOnlyChassisModel"/>
       </node>
-      <node id="536">
+      <node id="538">
         <label>okapi::XDriveModel</label>
         <link refid="classokapi_1_1XDriveModel"/>
-        <childnode refid="537" relation="public-inheritance">
+        <childnode refid="539" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="537">
+      <node id="539">
         <label>okapi::ChassisModel</label>
         <link refid="classokapi_1_1ChassisModel"/>
-        <childnode refid="538" relation="public-inheritance">
+        <childnode refid="540" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="15" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="15" bodyend="219"/>
+    <location file="include/okapi/api/chassis/model/xDriveModel.hpp" line="15" column="1" bodyfile="include/okapi/api/chassis/model/xDriveModel.hpp" bodystart="15" bodyend="218"/>
     <listofallmembers>
       <member refid="classokapi_1_1XDriveModel_1a0489ac1303ad42f65e346adf1dfc986f" prot="public" virt="virtual"><scope>okapi::XDriveModel</scope><name>arcade</name></member>
       <member refid="classokapi_1_1XDriveModel_1ac4c184a14b3431a1dda1136ca1133400" prot="protected" virt="non-virtual"><scope>okapi::XDriveModel</scope><name>bottomLeftMotor</name></member>

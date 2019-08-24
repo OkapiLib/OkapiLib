@@ -153,15 +153,17 @@
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a2dfb66cd7cf160b8cce3e9c2ffec7c74" class="m-doc">withOdometry</a>(</span><span class="m-doc-wrap">const QLength&amp; imoveThreshold = 10_mm,
-              const QAngle&amp; iturnThreshold = 1_deg,
+              <span class="m-doc-wrap-bumper">auto <a href="#aa4686900014387dbc3b335ee813c3ead" class="m-doc">withOdometry</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
+              const QLength&amp; imoveThreshold = 0_mm,
+              const QAngle&amp; iturnThreshold = 0_deg,
               const QSpeed&amp; iwheelVelDelta = 0.0001_mps) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ad581d48529b154b1335aada35465e3ac" class="m-doc">withOdometry</a>(</span><span class="m-doc-wrap">std::unique_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt; iodometry,
-              const QLength&amp; imoveThreshold = 10_mm,
-              const QAngle&amp; iturnThreshold = 1_deg) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#aa775099a284db24e6832022668d0a344" class="m-doc">withOdometry</a>(</span><span class="m-doc-wrap">std::unique_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt; iodometry,
+              const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
+              const QLength&amp; imoveThreshold = 0_mm,
+              const QAngle&amp; iturnThreshold = 0_deg) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
             </dt>
             <dd></dd>
             <dt>
@@ -673,10 +675,11 @@
             </table>
 <p>Sets the PID controller gains, causing the builder to generate a <a href="classokapi_1_1ChassisControllerPID.html" class="m-doc">ChassisControllerPID</a>.</p>
           </div></section>
-          <section class="m-doc-details" id="a2dfb66cd7cf160b8cce3e9c2ffec7c74"><div>
+          <section class="m-doc-details" id="aa4686900014387dbc3b335ee813c3ead"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2dfb66cd7cf160b8cce3e9c2ffec7c74" class="m-doc-self">withOdometry</a>(</span><span class="m-doc-wrap">const QLength&amp; imoveThreshold = 10_mm,
-              const QAngle&amp; iturnThreshold = 1_deg,
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa4686900014387dbc3b335ee813c3ead" class="m-doc-self">withOdometry</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
+              const QLength&amp; imoveThreshold = 0_mm,
+              const QAngle&amp; iturnThreshold = 0_deg,
               const QSpeed&amp; iwheelVelDelta = 0.0001_mps)</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
@@ -685,7 +688,11 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="width: 1%">imoveThreshold</td>
+                  <td style="width: 1%">imode</td>
+                  <td>The new default StateMode used to interpret target points and query the <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state.</td>
+                </tr>
+                <tr>
+                  <td>imoveThreshold</td>
                   <td>The minimum length movement.</td>
                 </tr>
                 <tr>
@@ -706,11 +713,12 @@
             </table>
 <p>Sets the odometry information, causing the builder to generate an <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> variant.</p>
           </div></section>
-          <section class="m-doc-details" id="ad581d48529b154b1335aada35465e3ac"><div>
+          <section class="m-doc-details" id="aa775099a284db24e6832022668d0a344"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad581d48529b154b1335aada35465e3ac" class="m-doc-self">withOdometry</a>(</span><span class="m-doc-wrap">std::unique_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt; iodometry,
-              const QLength&amp; imoveThreshold = 10_mm,
-              const QAngle&amp; iturnThreshold = 1_deg)</span></span>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa775099a284db24e6832022668d0a344" class="m-doc-self">withOdometry</a>(</span><span class="m-doc-wrap">std::unique_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt; iodometry,
+              const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
+              const QLength&amp; imoveThreshold = 0_mm,
+              const QAngle&amp; iturnThreshold = 0_deg)</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -720,6 +728,10 @@
                 <tr>
                   <td style="width: 1%">iodometry</td>
                   <td>The odometry object.</td>
+                </tr>
+                <tr>
+                  <td>imode</td>
+                  <td>The new default StateMode used to interpret target points and query the <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state.</td>
                 </tr>
                 <tr>
                   <td>imoveThreshold</td>

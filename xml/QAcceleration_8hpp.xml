@@ -9,76 +9,76 @@
     <includedby refid="QPressure_8hpp" local="yes">include/okapi/api/units/QPressure.hpp</includedby>
     <includedby refid="api_8hpp" local="yes">include/okapi/api.hpp</includedby>
     <incdepgraph>
-      <node id="2556">
+      <node id="2611">
         <label>include/okapi/api/units/QAcceleration.hpp</label>
         <link refid="QAcceleration_8hpp"/>
-        <childnode refid="2557" relation="include">
+        <childnode refid="2612" relation="include">
         </childnode>
-        <childnode refid="2561" relation="include">
+        <childnode refid="2616" relation="include">
         </childnode>
-        <childnode refid="2558" relation="include">
+        <childnode refid="2613" relation="include">
         </childnode>
       </node>
-      <node id="2559">
+      <node id="2614">
         <label>cmath</label>
       </node>
-      <node id="2561">
+      <node id="2616">
         <label>okapi/api/units/QTime.hpp</label>
         <link refid="QTime_8hpp"/>
-        <childnode refid="2558" relation="include">
+        <childnode refid="2613" relation="include">
         </childnode>
       </node>
-      <node id="2557">
+      <node id="2612">
         <label>okapi/api/units/QLength.hpp</label>
         <link refid="QLength_8hpp"/>
-        <childnode refid="2558" relation="include">
+        <childnode refid="2613" relation="include">
         </childnode>
       </node>
-      <node id="2560">
+      <node id="2615">
         <label>ratio</label>
       </node>
-      <node id="2558">
+      <node id="2613">
         <label>okapi/api/units/RQuantity.hpp</label>
         <link refid="RQuantity_8hpp"/>
-        <childnode refid="2559" relation="include">
+        <childnode refid="2614" relation="include">
         </childnode>
-        <childnode refid="2560" relation="include">
+        <childnode refid="2615" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2562">
+      <node id="2617">
         <label>include/okapi/api/units/QAcceleration.hpp</label>
         <link refid="QAcceleration_8hpp"/>
-        <childnode refid="2563" relation="include">
+        <childnode refid="2618" relation="include">
         </childnode>
-        <childnode refid="2566" relation="include">
+        <childnode refid="2621" relation="include">
         </childnode>
-        <childnode refid="2565" relation="include">
+        <childnode refid="2620" relation="include">
         </childnode>
       </node>
-      <node id="2565">
+      <node id="2620">
         <label>include/okapi/api.hpp</label>
         <link refid="api_8hpp"/>
       </node>
-      <node id="2563">
+      <node id="2618">
         <label>include/okapi/api/units/QForce.hpp</label>
         <link refid="QForce_8hpp"/>
-        <childnode refid="2564" relation="include">
+        <childnode refid="2619" relation="include">
         </childnode>
-        <childnode refid="2565" relation="include">
+        <childnode refid="2620" relation="include">
         </childnode>
       </node>
-      <node id="2564">
+      <node id="2619">
         <label>include/okapi/api/units/QTorque.hpp</label>
         <link refid="QTorque_8hpp"/>
-        <childnode refid="2565" relation="include">
+        <childnode refid="2620" relation="include">
         </childnode>
       </node>
-      <node id="2566">
+      <node id="2621">
         <label>include/okapi/api/units/QPressure.hpp</label>
         <link refid="QPressure_8hpp"/>
-        <childnode refid="2565" relation="include">
+        <childnode refid="2620" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

@@ -45,32 +45,32 @@
 <para>A version of the <ref refid="classokapi_1_1ChassisModel" kindref="compound">ChassisModel</ref> that only supports read methods, such as querying sensor values. This class does not let you write to motors, so it supports having multiple owners and as a result copying is enabled. </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="468">
+      <node id="470">
         <label>okapi::ReadOnlyChassisModel</label>
         <link refid="classokapi_1_1ReadOnlyChassisModel"/>
       </node>
-      <node id="471">
+      <node id="473">
         <label>okapi::ThreeEncoderSkidSteerModel</label>
         <link refid="classokapi_1_1ThreeEncoderSkidSteerModel"/>
+        <childnode refid="472" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="474">
+        <label>okapi::XDriveModel</label>
+        <link refid="classokapi_1_1XDriveModel"/>
+        <childnode refid="471" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="471">
+        <label>okapi::ChassisModel</label>
+        <link refid="classokapi_1_1ChassisModel"/>
         <childnode refid="470" relation="public-inheritance">
         </childnode>
       </node>
       <node id="472">
-        <label>okapi::XDriveModel</label>
-        <link refid="classokapi_1_1XDriveModel"/>
-        <childnode refid="469" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="469">
-        <label>okapi::ChassisModel</label>
-        <link refid="classokapi_1_1ChassisModel"/>
-        <childnode refid="468" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="470">
         <label>okapi::SkidSteerModel</label>
         <link refid="classokapi_1_1SkidSteerModel"/>
-        <childnode refid="469" relation="public-inheritance">
+        <childnode refid="471" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>

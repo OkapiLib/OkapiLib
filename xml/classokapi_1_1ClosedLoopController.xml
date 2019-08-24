@@ -107,7 +107,7 @@
         <reimplementedby refid="classokapi_1_1AsyncWrapper_1a64b690883ff7475375a6d08ad3fb62f9">getError</reimplementedby>
         <reimplementedby refid="classokapi_1_1IterativeVelPIDController_1a7e60b432a91d73db0a62c5d31759ed10">getError</reimplementedby>
         <reimplementedby refid="classokapi_1_1IterativePosPIDController_1a632611340113011f75c7ee1c389231e3">getError</reimplementedby>
-        <reimplementedby refid="classokapi_1_1AsyncMotionProfileController_1aeb60fb677877b3461c1232dda7d0db50">getError</reimplementedby>
+        <reimplementedby refid="classokapi_1_1AsyncMotionProfileController_1aae5c2ef0766fba9e635c43c0314da10a">getError</reimplementedby>
         <reimplementedby refid="classokapi_1_1AsyncLinearMotionProfileController_1a31057c2bb8cface61147b1edd0d97ce5">getError</reimplementedby>
         <briefdescription>
         </briefdescription>

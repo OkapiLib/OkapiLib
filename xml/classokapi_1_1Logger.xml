@@ -139,7 +139,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/logging.hpp" line="29" column="1" bodyfile="src/api/util/logging.cpp" bodystart="6" bodyend="7"/>
+        <location file="include/okapi/api/util/logging.hpp" line="29" column="1" bodyfile="src/api/util/logging.cpp" bodystart="13" bodyend="14"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1Logger_1aca21f246a76dd95b6664332407d8279e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -191,7 +191,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/logging.hpp" line="40" column="1" bodyfile="src/api/util/logging.cpp" bodystart="9" bodyend="15"/>
+        <location file="include/okapi/api/util/logging.hpp" line="40" column="1" bodyfile="src/api/util/logging.cpp" bodystart="16" bodyend="22"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1Logger_1ad23bb773b75860507dd4ab8cd67d8d51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -243,7 +243,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/logging.hpp" line="52" column="1" bodyfile="src/api/util/logging.cpp" bodystart="17" bodyend="21"/>
+        <location file="include/okapi/api/util/logging.hpp" line="52" column="1" bodyfile="src/api/util/logging.cpp" bodystart="24" bodyend="28"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1Logger_1aa73eef76e53a36ce17f1bd8897352d6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -256,7 +256,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/logging.hpp" line="54" column="1" bodyfile="src/api/util/logging.cpp" bodystart="23" bodyend="28"/>
+        <location file="include/okapi/api/util/logging.hpp" line="54" column="1" bodyfile="src/api/util/logging.cpp" bodystart="30" bodyend="35"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1Logger_1ac690892e7119bd42d2db074cafa51faf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>constexpr bool</type>
@@ -428,7 +428,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/logging.hpp" line="129" column="1" bodyfile="src/api/util/logging.cpp" bodystart="30" bodyend="32"/>
+        <location file="include/okapi/api/util/logging.hpp" line="129" column="1" bodyfile="src/api/util/logging.cpp" bodystart="37" bodyend="39"/>
       </memberdef>
       <memberdef kind="function" id="classokapi_1_1Logger_1a8ce00328c5d878bb340cf360694b103c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -456,7 +456,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/logging.hpp" line="137" column="1" bodyfile="src/api/util/logging.cpp" bodystart="34" bodyend="36"/>
+        <location file="include/okapi/api/util/logging.hpp" line="137" column="1" bodyfile="src/api/util/logging.cpp" bodystart="41" bodyend="43"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-static-func">
@@ -475,7 +475,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/okapi/api/util/logging.hpp" line="146" column="1" bodyfile="src/api/util/logging.cpp" bodystart="38" bodyend="40"/>
+        <location file="include/okapi/api/util/logging.hpp" line="146" column="1" bodyfile="src/api/util/logging.cpp" bodystart="45" bodyend="47"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

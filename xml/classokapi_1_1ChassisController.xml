@@ -112,8 +112,8 @@
         <argsstring>(QLength itarget)=0</argsstring>
         <name>moveDistanceAsync</name>
         <reimplementedby refid="classokapi_1_1ChassisControllerIntegrated_1afc97bc450a090d91b57bc6353b4a6972">moveDistanceAsync</reimplementedby>
-        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a61ca0d303fcbfd08932157af9adbbb12">moveDistanceAsync</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerPID_1affad4aa1b0bd54db728ac600493a6c4c">moveDistanceAsync</reimplementedby>
+        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a61ca0d303fcbfd08932157af9adbbb12">moveDistanceAsync</reimplementedby>
         <param>
           <type>QLength</type>
           <declname>itarget</declname>
@@ -143,8 +143,8 @@
         <argsstring>(double itarget)=0</argsstring>
         <name>moveDistanceAsync</name>
         <reimplementedby refid="classokapi_1_1ChassisControllerIntegrated_1ab3cb8eb0c7d5162aafffe8b8ec2751d5">moveDistanceAsync</reimplementedby>
-        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1ab1abaec33ecce2515895d3a8af363c8c">moveDistanceAsync</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerPID_1a7a13b5cd2fe7bce73cf0e3a3144fe6db">moveDistanceAsync</reimplementedby>
+        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1ab1abaec33ecce2515895d3a8af363c8c">moveDistanceAsync</reimplementedby>
         <param>
           <type>double</type>
           <declname>itarget</declname>
@@ -174,8 +174,8 @@
         <argsstring>(QAngle idegTarget)=0</argsstring>
         <name>turnAngle</name>
         <reimplementedby refid="classokapi_1_1ChassisControllerIntegrated_1a3c2ae782167fd9c6b27d637563e3a066">turnAngle</reimplementedby>
-        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a4ba07ac4bea9ff2d8aea30be72f6a0ea">turnAngle</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerPID_1a56aae5a15daa9ed81963dd48fce69535">turnAngle</reimplementedby>
+        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a4ba07ac4bea9ff2d8aea30be72f6a0ea">turnAngle</reimplementedby>
         <param>
           <type>QAngle</type>
           <declname>idegTarget</declname>
@@ -204,8 +204,8 @@
         <definition>virtual void okapi::ChassisController::turnAngle</definition>
         <argsstring>(double idegTarget)=0</argsstring>
         <name>turnAngle</name>
-        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a05a8a6684b3afe4f7c2ecbc24699f70d">turnAngle</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerIntegrated_1a3f13749508bf420468ffdb54f62a9da2">turnAngle</reimplementedby>
+        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a05a8a6684b3afe4f7c2ecbc24699f70d">turnAngle</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerPID_1a140679da584fdc8bd057678e277742e7">turnAngle</reimplementedby>
         <param>
           <type>double</type>
@@ -235,8 +235,8 @@
         <definition>virtual void okapi::ChassisController::turnAngleAsync</definition>
         <argsstring>(QAngle idegTarget)=0</argsstring>
         <name>turnAngleAsync</name>
-        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a18d748097a7938e3102638d17be54c76">turnAngleAsync</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerIntegrated_1a773a99fe7a1540da856ad6b6008ba24f">turnAngleAsync</reimplementedby>
+        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a18d748097a7938e3102638d17be54c76">turnAngleAsync</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerPID_1a391c12c7b3cb5461cd28c4aebc4aeab0">turnAngleAsync</reimplementedby>
         <param>
           <type>QAngle</type>
@@ -266,8 +266,8 @@
         <definition>virtual void okapi::ChassisController::turnAngleAsync</definition>
         <argsstring>(double idegTarget)=0</argsstring>
         <name>turnAngleAsync</name>
-        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a948978204fc6f2a2443025dfdb0241b1">turnAngleAsync</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerIntegrated_1abd638be1352919fb211e9b70c181d940">turnAngleAsync</reimplementedby>
+        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a948978204fc6f2a2443025dfdb0241b1">turnAngleAsync</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerPID_1a3a16a11e8b0e11dbfb2a03b5685e509b">turnAngleAsync</reimplementedby>
         <param>
           <type>double</type>
@@ -297,8 +297,8 @@
         <definition>virtual void okapi::ChassisController::setTurnsMirrored</definition>
         <argsstring>(bool ishouldMirror)=0</argsstring>
         <name>setTurnsMirrored</name>
-        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1aed92ba0b7a9fc15bf645f3789e8598ae">setTurnsMirrored</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerIntegrated_1a37d538f92439644efa50a226c3cefd6d">setTurnsMirrored</reimplementedby>
+        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1aed92ba0b7a9fc15bf645f3789e8598ae">setTurnsMirrored</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerPID_1a1e68419f6e695fd35576a6d886618741">setTurnsMirrored</reimplementedby>
         <param>
           <type>bool</type>
@@ -328,8 +328,8 @@
         <definition>virtual void okapi::ChassisController::waitUntilSettled</definition>
         <argsstring>()=0</argsstring>
         <name>waitUntilSettled</name>
-        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a44599379129060bdb44e6f603ee5777b">waitUntilSettled</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerIntegrated_1a2af994f5ddc68a48d7692fd16ca590c0">waitUntilSettled</reimplementedby>
+        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a44599379129060bdb44e6f603ee5777b">waitUntilSettled</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerPID_1a964cc8132bfa76492df0ee06aadb255a">waitUntilSettled</reimplementedby>
         <briefdescription>
         </briefdescription>
@@ -345,8 +345,8 @@
         <definition>virtual void okapi::ChassisController::stop</definition>
         <argsstring>()=0</argsstring>
         <name>stop</name>
-        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1af6a98415e2c4e17dfec77e215efb1a41">stop</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerIntegrated_1aab2f5d5cfb8ad96bd32be26a5a4e7113">stop</reimplementedby>
+        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1af6a98415e2c4e17dfec77e215efb1a41">stop</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerPID_1a852462fc20fb2322bbb3fd984b01a121">stop</reimplementedby>
         <briefdescription>
         </briefdescription>
@@ -362,8 +362,8 @@
         <definition>virtual ChassisScales okapi::ChassisController::getChassisScales</definition>
         <argsstring>() const =0</argsstring>
         <name>getChassisScales</name>
-        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1afa07913b30d47c790fcdce8c2b85a468">getChassisScales</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerIntegrated_1a6bbab5d22753736b0507d5fd4deb3982">getChassisScales</reimplementedby>
+        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1afa07913b30d47c790fcdce8c2b85a468">getChassisScales</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerPID_1a75f4e1b26f2440ac4066fd740dee7b13">getChassisScales</reimplementedby>
         <briefdescription>
         </briefdescription>
@@ -379,8 +379,8 @@
         <definition>virtual AbstractMotor::GearsetRatioPair okapi::ChassisController::getGearsetRatioPair</definition>
         <argsstring>() const =0</argsstring>
         <name>getGearsetRatioPair</name>
-        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a6912dbe99776f79fb3a6990e2fbea2ff">getGearsetRatioPair</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerIntegrated_1a42cab9878235cdb4bea46e69f7ccd75d">getGearsetRatioPair</reimplementedby>
+        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a6912dbe99776f79fb3a6990e2fbea2ff">getGearsetRatioPair</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerPID_1a50673f2911c969e2f6e89b02a29ce582">getGearsetRatioPair</reimplementedby>
         <briefdescription>
         </briefdescription>
@@ -396,8 +396,8 @@
         <definition>virtual std::shared_ptr&lt;ChassisModel&gt; okapi::ChassisController::getModel</definition>
         <argsstring>()=0</argsstring>
         <name>getModel</name>
-        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a83e8bf7115086c331ada990ceb872bf1">getModel</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerIntegrated_1a60c9a11616a2a41400c17952c36a5b57">getModel</reimplementedby>
+        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1a83e8bf7115086c331ada990ceb872bf1">getModel</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerPID_1adffe6c9a65b6bd7664e0a884638d9097">getModel</reimplementedby>
         <briefdescription>
         </briefdescription>
@@ -415,8 +415,8 @@
         <definition>virtual ChassisModel&amp; okapi::ChassisController::model</definition>
         <argsstring>()=0</argsstring>
         <name>model</name>
-        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1aa917086153b6298bf7792fd3b31ac240">model</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerIntegrated_1a726fc6cd37748b860e56ddb586b5555a">model</reimplementedby>
+        <reimplementedby refid="classokapi_1_1DefaultOdomChassisController_1aa917086153b6298bf7792fd3b31ac240">model</reimplementedby>
         <reimplementedby refid="classokapi_1_1ChassisControllerPID_1a225446cae7b569ff104d41d9aa2ae9b8">model</reimplementedby>
         <briefdescription>
         </briefdescription>
