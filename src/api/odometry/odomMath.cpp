@@ -27,13 +27,13 @@ QAngle OdomMath::computeAngleToPoint(const QLength ix, const QLength iy, const O
   return (std::atan2(yDiff, xDiff) * radian) - istate.theta;
 }
 
-std::tuple<QLength, QAngle> OdomMath::computeDistanceAndAngleToPoint(const QLength ix,
-                                                                     const QLength iy,
-                                                                     const OdomState &istate) {
+std::pair<QLength, QAngle> OdomMath::computeDistanceAndAngleToPoint(const QLength ix,
+                                                                    const QLength iy,
+                                                                    const OdomState &istate) {
   const double xDiff = (ix - istate.x).convert(meter);
   const double yDiff = (iy - istate.y).convert(meter);
 
-  return std::make_tuple(std::sqrt((xDiff * xDiff) + (yDiff * yDiff)) * meter,
-                         (std::atan2(yDiff, xDiff) * radian) - istate.theta);
+  return std::make_pair(std::sqrt((xDiff * xDiff) + (yDiff * yDiff)) * meter,
+                        (std::atan2(yDiff, xDiff) * radian) - istate.theta);
 }
 } // namespace okapi

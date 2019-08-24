@@ -42,7 +42,7 @@ class OdomMath {
    * @param istate odometry state
    * @return distance and angle to the point
    */
-  static std::tuple<QLength, QAngle>
+  static std::pair<QLength, QAngle>
   computeDistanceAndAngleToPoint(QLength ix, QLength iy, const OdomState &istate);
 
   private:
