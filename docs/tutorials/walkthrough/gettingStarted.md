@@ -20,8 +20,8 @@ API header include statement in the file `include/main.h` :
 
 ## Troubleshooting
 
-If OkapiLib is not getting downloaded from GitHub correctly duringinstallation,
-you can
-[download it manuallyhere](https://github.com/OkapiLib/OkapiLib/releases) and
-then install it byrunning `prosv5 conduct fetch path/to/okapilib.zip`. Once
-OkapiLib isinstalled, try creating a PROS project again.
+If OkapiLib is not getting downloaded from GitHub correctly during
+installation, you can
+[download it manually here](https://github.com/OkapiLib/OkapiLib/releases) and
+then install it by running `prosv5 conduct fetch path/to/okapilib.zip`. Once
+OkapiLib is installed, try creating a PROS project again.
