@@ -9,7 +9,7 @@ void printSensorVals(void *) {
   while (true) {
     // auto state = drive->model().getSensorVals();
     // printf("left: %ld, right: %ld\n", state[0], state[1]);
-    auto state = drive->getState(StateMode::FRAME_TRANSFORMATION);
+    auto state = drive->getState();
     printf("x=%f, y=%f, theta=%f\n",
            state.x.convert(inch),
            state.y.convert(inch),

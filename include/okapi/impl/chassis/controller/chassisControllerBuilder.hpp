@@ -191,27 +191,33 @@ class ChassisControllerBuilder {
   /**
    * Sets the odometry information, causing the builder to generate an Odometry variant.
    *
+   * @param imode The new default StateMode used to interpret target points and query the Odometry
+   * state.
    * @param imoveThreshold The minimum length movement.
    * @param iturnThreshold The minimum angle turn.
    * @param iwheelVelDelta The maximum delta between wheel velocities to consider the robot as
    * driving straight.
    * @return An ongoing builder.
    */
-  ChassisControllerBuilder &withOdometry(const QLength &imoveThreshold = 10_mm,
-                                         const QAngle &iturnThreshold = 1_deg,
+  ChassisControllerBuilder &withOdometry(const StateMode &imode = StateMode::FRAME_TRANSFORMATION,
+                                         const QLength &imoveThreshold = 0_mm,
+                                         const QAngle &iturnThreshold = 0_deg,
                                          const QSpeed &iwheelVelDelta = 0.0001_mps);
 
   /**
    * Sets the odometry information, causing the builder to generate an Odometry variant.
    *
    * @param iodometry The odometry object.
+   * @param imode The new default StateMode used to interpret target points and query the Odometry
+   * state.
    * @param imoveThreshold The minimum length movement.
    * @param iturnThreshold The minimum angle turn.
    * @return An ongoing builder.
    */
   ChassisControllerBuilder &withOdometry(std::unique_ptr<Odometry> iodometry,
-                                         const QLength &imoveThreshold = 10_mm,
-                                         const QAngle &iturnThreshold = 1_deg);
+                                         const StateMode &imode = StateMode::FRAME_TRANSFORMATION,
+                                         const QLength &imoveThreshold = 0_mm,
+                                         const QAngle &iturnThreshold = 0_deg);
 
   /**
    * Sets the derivative filters. Uses a PassthroughFilter by default.
@@ -354,6 +360,7 @@ class ChassisControllerBuilder {
   bool hasOdom{false}; // Whether odometry was passed
   std::unique_ptr<Odometry> odometry;
   QSpeed wheelVelDelta;
+  StateMode stateMode;
   QLength moveThreshold;
   QAngle turnThreshold;
 
