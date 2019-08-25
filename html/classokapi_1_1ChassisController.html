@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>okapi::ChassisController class | OkapiLib A PROS library for programming VEX robots.</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="logo-doxygen.jpeg" type="image/jpeg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">OkapiLib <span class="m-thin">A PROS library for programming VEX robots.</span></a>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path d="m6 0c-3.3144 0-6 2.6856-6 6 0 3.3144 2.6856 6 6 6 1.4858 0 2.8463-0.54083 3.8945-1.4355-0.0164 0.33797 0.14734 0.75854 0.5 1.1504l3.2227 3.7891c0.55185 0.6139 1.4517 0.66544 2.002 0.11524 0.55022-0.55022 0.49866-1.4501-0.11524-2.002l-3.7891-3.2246c-0.39184-0.35266-0.81242-0.51469-1.1504-0.5 0.89472-1.0482 1.4355-2.4088 1.4355-3.8945 0-3.3128-2.6856-5.998-6-5.998zm0 1.5625a4.4375 4.4375 0 0 1 4.4375 4.4375 4.4375 4.4375 0 0 1-4.4375 4.4375 4.4375 4.4375 0 0 1-4.4375-4.4375 4.4375 4.4375 0 0 1 4.4375-4.4375z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li><a href="pages.html">Pages</a></li>
+            <li><a href="namespaces.html">Namespaces</a></li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="3">
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <path d="m6 0c-3.3144 0-6 2.6856-6 6 0 3.3144 2.6856 6 6 6 1.4858 0 2.8463-0.54083 3.8945-1.4355-0.0164 0.33797 0.14734 0.75854 0.5 1.1504l3.2227 3.7891c0.55185 0.6139 1.4517 0.66544 2.002 0.11524 0.55022-0.55022 0.49866-1.4501-0.11524-2.002l-3.7891-3.2246c-0.39184-0.35266-0.81242-0.51469-1.1504-0.5 0.89472-1.0482 1.4355-2.4088 1.4355-3.8945 0-3.3128-2.6856-5.998-6-5.998zm0 1.5625a4.4375 4.4375 0 0 1 4.4375 4.4375 4.4375 4.4375 0 0 1-4.4375 4.4375 4.4375 4.4375 0 0 1-4.4375-4.4375 4.4375 4.4375 0 0 1 4.4375-4.4375z"/>
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>ChassisController <span class="m-thin">class</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="chassisController_8hpp.html">&lt;include/okapi/api/chassis/controller/chassisController.hpp&gt;</a></div>
+        </h1>
+        <p><span></span></p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#derived-classes">Derived classes</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="derived-classes">
+          <h2><a href="#derived-classes">Derived classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              class <a href="classokapi_1_1ChassisControllerIntegrated.html" class="m-doc">ChassisControllerIntegrated</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classokapi_1_1ChassisControllerPID.html" class="m-doc">ChassisControllerPID</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classokapi_1_1OdomChassisController.html" class="m-doc">OdomChassisController</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a8a4a431cb9da03a1c84e600dc0e31333" class="m-doc">ChassisController</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span> <span class="m-label m-flat m-info">explicit</span> </span>
+            </dt>
+            <dd></dd>
+            <dt id="a886a1cfbd9430fb2fbe177bc4d4ab392">
+              <span class="m-doc-wrap-bumper"><a href="#a886a1cfbd9430fb2fbe177bc4d4ab392" class="m-doc-self">~ChassisController</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span> <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a6d5b69139dfa8b814d05c74c22bcaa43" class="m-doc">moveDistance</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a58619e777fd1b3f8e1aae871d46a8ccf" class="m-doc">moveDistance</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a67a17268b871a4f1ae74d67891cbf5dd" class="m-doc">moveDistanceAsync</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a24b46ec1c42f32c0527d57738a07820a" class="m-doc">moveDistanceAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#aab12308b3fad6793c007d7a33730a3f7" class="m-doc">turnAngle</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a6aca227e35ececd02eed1cc42d09ad1d" class="m-doc">turnAngle</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a87fc1f88bf06340d8f022a8c185b5e87" class="m-doc">turnAngleAsync</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a35cadd99478629637b4bd3a5e709871a" class="m-doc">turnAngleAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a37ae36ec8936272eb31e3baed7eed417" class="m-doc">setTurnsMirrored</a>(</span><span class="m-doc-wrap">bool ishouldMirror) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a01ed4e0eb7332cc149228387bbf1e91c" class="m-doc">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#ac67edbbbe1c8480c4503b9875a3719cd" class="m-doc">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a0a8e32fc7adad8567f550954505aaa06" class="m-doc">getChassisScales</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aa19351888b997d4a6596dac24520ebff" class="m-doc">getGearsetRatioPair</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a> <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a1971d4b54b61718437824c026aca53c9" class="m-doc">getModel</a>(</span><span class="m-doc-wrap">) -&gt; std::shared_ptr&lt;<a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>&gt; <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a239802eda7e4317a65d1a04994f7b97e" class="m-doc">model</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>&amp; <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a8a4a431cb9da03a1c84e600dc0e31333"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8a4a431cb9da03a1c84e600dc0e31333" class="m-doc-self">ChassisController</a>(</span><span class="m-doc-wrap">) <span class="m-label m-info">explicit</span>  <span class="m-label m-info">defaulted</span></span></span>
+            </h3>
+<p>A <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a> adds a closed-loop layer on top of a <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>. moveDistance and turnAngle both use closed-loop control to move the robot. There are passthrough functions for everything defined in <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>.</p>
+          </div></section>
+          <section class="m-doc-details" id="a6d5b69139dfa8b814d05c74c22bcaa43"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6d5b69139dfa8b814d05c74c22bcaa43" class="m-doc-self">moveDistance</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">itarget</td>
+                  <td>distance to travel</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Drives the robot straight for a distance (using closed-loop control).</p>
+          </div></section>
+          <section class="m-doc-details" id="a58619e777fd1b3f8e1aae871d46a8ccf"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a58619e777fd1b3f8e1aae871d46a8ccf" class="m-doc-self">moveDistance</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">itarget</td>
+                  <td>distance to travel in motor degrees</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Drives the robot straight for a distance (using closed-loop control).</p>
+          </div></section>
+          <section class="m-doc-details" id="a67a17268b871a4f1ae74d67891cbf5dd"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a67a17268b871a4f1ae74d67891cbf5dd" class="m-doc-self">moveDistanceAsync</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">itarget</td>
+                  <td>distance to travel</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Sets the target distance for the robot to drive straight (using closed-loop control).</p>
+          </div></section>
+          <section class="m-doc-details" id="a24b46ec1c42f32c0527d57738a07820a"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a24b46ec1c42f32c0527d57738a07820a" class="m-doc-self">moveDistanceAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">itarget</td>
+                  <td>distance to travel in motor degrees</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Sets the target distance for the robot to drive straight (using closed-loop control).</p>
+          </div></section>
+          <section class="m-doc-details" id="aab12308b3fad6793c007d7a33730a3f7"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aab12308b3fad6793c007d7a33730a3f7" class="m-doc-self">turnAngle</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">idegTarget</td>
+                  <td>angle to turn for</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Turns the robot clockwise in place (using closed-loop control).</p>
+          </div></section>
+          <section class="m-doc-details" id="a6aca227e35ececd02eed1cc42d09ad1d"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6aca227e35ececd02eed1cc42d09ad1d" class="m-doc-self">turnAngle</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">idegTarget</td>
+                  <td>angle to turn for in motor degrees</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Turns the robot clockwise in place (using closed-loop control).</p>
+          </div></section>
+          <section class="m-doc-details" id="a87fc1f88bf06340d8f022a8c185b5e87"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a87fc1f88bf06340d8f022a8c185b5e87" class="m-doc-self">turnAngleAsync</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">idegTarget</td>
+                  <td>angle to turn for</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</p>
+          </div></section>
+          <section class="m-doc-details" id="a35cadd99478629637b4bd3a5e709871a"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a35cadd99478629637b4bd3a5e709871a" class="m-doc-self">turnAngleAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">idegTarget</td>
+                  <td>angle to turn for in motor degrees</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</p>
+          </div></section>
+          <section class="m-doc-details" id="a37ae36ec8936272eb31e3baed7eed417"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a37ae36ec8936272eb31e3baed7eed417" class="m-doc-self">setTurnsMirrored</a>(</span><span class="m-doc-wrap">bool ishouldMirror) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ishouldMirror</td>
+                  <td>whether turns should be mirrored</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Sets whether turns should be mirrored.</p>
+          </div></section>
+          <section class="m-doc-details" id="a01ed4e0eb7332cc149228387bbf1e91c"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a01ed4e0eb7332cc149228387bbf1e91c" class="m-doc-self">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+<p>Delays until the currently executing movement completes.</p>
+          </div></section>
+          <section class="m-doc-details" id="ac67edbbbe1c8480c4503b9875a3719cd"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac67edbbbe1c8480c4503b9875a3719cd" class="m-doc-self">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+<p>Interrupts the current movement to stop the robot.</p>
+          </div></section>
+          <section class="m-doc-details" id="a0a8e32fc7adad8567f550954505aaa06"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0a8e32fc7adad8567f550954505aaa06" class="m-doc-self">getChassisScales</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+<p>Get the <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>.</p>
+          </div></section>
+          <section class="m-doc-details" id="aa19351888b997d4a6596dac24520ebff"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a> okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa19351888b997d4a6596dac24520ebff" class="m-doc-self">getGearsetRatioPair</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+<p>Get the GearsetRatioPair.</p>
+          </div></section>
+          <section class="m-doc-details" id="a1971d4b54b61718437824c026aca53c9"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::shared_ptr&lt;<a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>&gt; okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1971d4b54b61718437824c026aca53c9" class="m-doc-self">getModel</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The internal <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a239802eda7e4317a65d1a04994f7b97e"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>&amp; okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a239802eda7e4317a65d1a04994f7b97e" class="m-doc-self">model</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The internal <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>OkapiLib A PROS library for programming VEX robots.. Created with <a href="https://doxygen.org/">Doxygen</a> 1.8.13 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>

@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>okapi::Motor class | OkapiLib A PROS library for programming VEX robots.</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="icon" href="logo-doxygen.jpeg" type="image/jpeg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">OkapiLib <span class="m-thin">A PROS library for programming VEX robots.</span></a>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path d="m6 0c-3.3144 0-6 2.6856-6 6 0 3.3144 2.6856 6 6 6 1.4858 0 2.8463-0.54083 3.8945-1.4355-0.0164 0.33797 0.14734 0.75854 0.5 1.1504l3.2227 3.7891c0.55185 0.6139 1.4517 0.66544 2.002 0.11524 0.55022-0.55022 0.49866-1.4501-0.11524-2.002l-3.7891-3.2246c-0.39184-0.35266-0.81242-0.51469-1.1504-0.5 0.89472-1.0482 1.4355-2.4088 1.4355-3.8945 0-3.3128-2.6856-5.998-6-5.998zm0 1.5625a4.4375 4.4375 0 0 1 4.4375 4.4375 4.4375 4.4375 0 0 1-4.4375 4.4375 4.4375 4.4375 0 0 1-4.4375-4.4375 4.4375 4.4375 0 0 1 4.4375-4.4375z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li><a href="pages.html">Pages</a></li>
+            <li><a href="namespaces.html">Namespaces</a></li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="3">
+            <li><a href="annotated.html">Classes</a></li>
+            <li><a href="files.html">Files</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <path d="m6 0c-3.3144 0-6 2.6856-6 6 0 3.3144 2.6856 6 6 6 1.4858 0 2.8463-0.54083 3.8945-1.4355-0.0164 0.33797 0.14734 0.75854 0.5 1.1504l3.2227 3.7891c0.55185 0.6139 1.4517 0.66544 2.002 0.11524 0.55022-0.55022 0.49866-1.4501-0.11524-2.002l-3.7891-3.2246c-0.39184-0.35266-0.81242-0.51469-1.1504-0.5 0.89472-1.0482 1.4355-2.4088 1.4355-3.8945 0-3.3128-2.6856-5.998-6-5.998zm0 1.5625a4.4375 4.4375 0 0 1 4.4375 4.4375 4.4375 4.4375 0 0 1-4.4375 4.4375 4.4375 4.4375 0 0 1-4.4375-4.4375 4.4375 4.4375 0 0 1 4.4375-4.4375z"/>
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>Motor <span class="m-thin">class</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="motor_8hpp.html">&lt;include/okapi/impl/device/motor/motor.hpp&gt;</a></div>
+        </h1>
+        <p><span></span></p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#base-classes">Base classes</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#pro-attribs">Protected variables</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="base-classes">
+          <h2><a href="#base-classes">Base classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              class <a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a6509ec14fe9e1c48c705fe74154873dd" class="m-doc">Motor</a>(</span><span class="m-doc-wrap">std::int8_t iport)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a42ca0cde0ca0c3f987737385be9656f2" class="m-doc">Motor</a>(</span><span class="m-doc-wrap">std::uint8_t iport,
+              bool ireverse,
+              <a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">AbstractMotor::<wbr />gearset</a> igearset,
+              <a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764c" class="m-doc">AbstractMotor::<wbr />encoderUnits</a> iencoderUnits,
+              const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; logger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a5f95fd5864805b57f16fa5defdbf1968" class="m-doc">moveAbsolute</a>(</span><span class="m-doc-wrap">double iposition,
+              std::int32_t ivelocity) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a40f6f70ed9b12d1834551d1232303ef1" class="m-doc">moveRelative</a>(</span><span class="m-doc-wrap">double iposition,
+              std::int32_t ivelocity) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#afc3377b9b10a72de0c22e9a74cbcfd16" class="m-doc">moveVelocity</a>(</span><span class="m-doc-wrap">std::int16_t ivelocity) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a64b53a041c90c7b7a3903c607a9b17eb" class="m-doc">moveVoltage</a>(</span><span class="m-doc-wrap">std::int16_t ivoltage) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a8778f90005a3add64d0dfd7574fb8289" class="m-doc">modifyProfiledVelocity</a>(</span><span class="m-doc-wrap">std::int32_t ivelocity) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#af575af2b4d4cf5aea6e8aac50ef1cbbd" class="m-doc">getTargetPosition</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a4592f8a1cce4474f85ceabd3d7e2fe0b" class="m-doc">getPosition</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aa71f3d93b734caec5c9245b211d4a0ad" class="m-doc">tarePosition</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aee4697f4e1f39bc0206062d0247caf47" class="m-doc">getTargetVelocity</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a12dab94ff8e0636c01d3c568d9461655" class="m-doc">getActualVelocity</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ac5107f8aef228d4b4fec06d549c55cf6" class="m-doc">getCurrentDraw</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a72c69d60e2ec69c126c84dc81f78742d" class="m-doc">getDirection</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a7703340c95e9e7dcafa243685a7d2d50" class="m-doc">getEfficiency</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aff882cb26c477355551d7bbf8e5c03bb" class="m-doc">isOverCurrent</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a8a51f7dede42f768280b73d85a528d91" class="m-doc">isOverTemp</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab4edaf8e4ed576fa2003d4cc8e02c364" class="m-doc">isStopped</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a2640dea57e59a19aa6000da2c7cefdeb" class="m-doc">getZeroPositionFlag</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a7d16e9d0a3319a02a12476b5bec991d7" class="m-doc">getFaults</a>(</span><span class="m-doc-wrap">) -&gt; uint32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#acb0097ba7ac778674efaa2c0765f6f3f" class="m-doc">getFlags</a>(</span><span class="m-doc-wrap">) -&gt; uint32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a74c579c35863bc5180c9551fd5185d94" class="m-doc">getRawPosition</a>(</span><span class="m-doc-wrap">std::uint32_t* timestamp) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a992171c86829e52f5418988fada0b6fa" class="m-doc">getPower</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab5b9208b001c1ab49f8c058eff58e5b3" class="m-doc">getTemperature</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a4a8c14c49ae44d687772ff41591fdf1d" class="m-doc">getTorque</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#af60eb970996183d86bd4786869f5adb0" class="m-doc">getVoltage</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a2c40313fa5ff49c25947645885898f91" class="m-doc">setBrakeMode</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#a132e0485dbb59a60c3f934338d8fa601" class="m-doc">AbstractMotor::<wbr />brakeMode</a> imode) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aec419fead574828b4b1b2642a424dcbe" class="m-doc">getBrakeMode</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classokapi_1_1AbstractMotor.html#a132e0485dbb59a60c3f934338d8fa601" class="m-doc">brakeMode</a> <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ab54e856d8d55c1f53e1be113a9e90a00" class="m-doc">setCurrentLimit</a>(</span><span class="m-doc-wrap">std::int32_t ilimit) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ae309fb32ea479cec950dfaa65f3ffebd" class="m-doc">getCurrentLimit</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a96466636470045aa63d81cb0effc9486" class="m-doc">setEncoderUnits</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764c" class="m-doc">AbstractMotor::<wbr />encoderUnits</a> iunits) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#afcc6183588ce056927878dfc479e6fee" class="m-doc">getEncoderUnits</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764c" class="m-doc">encoderUnits</a> <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a670cb230fe9686ce8fa71ee20607eb12" class="m-doc">setGearing</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">AbstractMotor::<wbr />gearset</a> igearset) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a4dbe4aec1a4c6cb1cad659bada1ab8ed" class="m-doc">getGearing</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">gearset</a> <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a558e94850abf85132811a8b281e872df" class="m-doc">setReversed</a>(</span><span class="m-doc-wrap">bool ireverse) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a5aab4b416675b7f7ee324fff4d8cda30" class="m-doc">setVoltageLimit</a>(</span><span class="m-doc-wrap">std::int32_t ilimit) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a13564c05ee3a9ce580850ef33280a7e9" class="m-doc">setPosPID</a>(</span><span class="m-doc-wrap">double ikF,
+              double ikP,
+              double ikI,
+              double ikD) -&gt; std::int32_t <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#afe4ae812a9454167fc6ebef8713c716c" class="m-doc">setPosPIDFull</a>(</span><span class="m-doc-wrap">double ikF,
+              double ikP,
+              double ikI,
+              double ikD,
+              double ifilter,
+              double ilimit,
+              double ithreshold,
+              double iloopSpeed) -&gt; std::int32_t <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#afe462dda44723c4e39f9ef9d1a95e23e" class="m-doc">setVelPID</a>(</span><span class="m-doc-wrap">double ikF,
+              double ikP,
+              double ikI,
+              double ikD) -&gt; std::int32_t <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a2719aabe6b89b8195c93614e5ce7b9f6" class="m-doc">setVelPIDFull</a>(</span><span class="m-doc-wrap">double ikF,
+              double ikP,
+              double ikI,
+              double ikD,
+              double ifilter,
+              double ilimit,
+              double ithreshold,
+              double iloopSpeed) -&gt; std::int32_t <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a57d8ddb900475fcfba56413e61e6e252" class="m-doc">getEncoder</a>(</span><span class="m-doc-wrap">) -&gt; std::shared_ptr&lt;<a href="classokapi_1_1ContinuousRotarySensor.html" class="m-doc">ContinuousRotarySensor</a>&gt; <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a262c36a80a942d125e574d691b77b440" class="m-doc">controllerSet</a>(</span><span class="m-doc-wrap">double ivalue) <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ac1f1ac84ac7a96dab84cc0c0023a2ae4" class="m-doc">getPort</a>(</span><span class="m-doc-wrap">) const -&gt; std::uint8_t</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a75a2c72a1c941b07cea677bc4ba2e42d" class="m-doc">isReversed</a>(</span><span class="m-doc-wrap">) const -&gt; bool</span>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
+        <section id="pro-attribs">
+          <h2><a href="#pro-attribs">Protected variables</a></h2>
+          <dl class="m-doc">
+            <dt id="a25a8cc5b2fe8e50d83c42129b0d57b7e">
+              std::uint8_t <a href="#a25a8cc5b2fe8e50d83c42129b0d57b7e" class="m-doc-self">port</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ad5d21f1324cc2dc887075eb11c38149d">
+              std::int8_t <a href="#ad5d21f1324cc2dc887075eb11c38149d" class="m-doc-self">reversed</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section>
+          <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a6509ec14fe9e1c48c705fe74154873dd"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6509ec14fe9e1c48c705fe74154873dd" class="m-doc-self">Motor</a>(</span><span class="m-doc-wrap">std::int8_t iport)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iport</td>
+                  <td>The port number in the range [1, 21]. A negative port number is shorthand for reversing the motor.</td>
+                </tr>
+              </tbody>
+            </table>
+<p>A V5 motor.</p>
+          </div></section>
+          <section class="m-doc-details" id="a42ca0cde0ca0c3f987737385be9656f2"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a42ca0cde0ca0c3f987737385be9656f2" class="m-doc-self">Motor</a>(</span><span class="m-doc-wrap">std::uint8_t iport,
+              bool ireverse,
+              <a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">AbstractMotor::<wbr />gearset</a> igearset,
+              <a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764c" class="m-doc">AbstractMotor::<wbr />encoderUnits</a> iencoderUnits,
+              const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; logger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iport</td>
+                  <td>The port number in the range [1, 21].</td>
+                </tr>
+                <tr>
+                  <td>ireverse</td>
+                  <td>Whether the motor is reversed (this setting is not written to the motor, it is maintained by <a href="classokapi_1_1Motor.html" class="m-doc">okapi::<wbr />Motor</a> instead).</td>
+                </tr>
+                <tr>
+                  <td>igearset</td>
+                  <td>The internal gearset to set in the motor.</td>
+                </tr>
+                <tr>
+                  <td>iencoderUnits</td>
+                  <td>The encoder units to set in the motor.</td>
+                </tr>
+                <tr>
+                  <td>logger</td>
+                  <td>The logger that initialization warnings will be logged to.</td>
+                </tr>
+              </tbody>
+            </table>
+<p>A V5 motor.</p>
+          </div></section>
+          <section class="m-doc-details" id="a5f95fd5864805b57f16fa5defdbf1968"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5f95fd5864805b57f16fa5defdbf1968" class="m-doc-self">moveAbsolute</a>(</span><span class="m-doc-wrap">double iposition,
+              std::int32_t ivelocity) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iposition</td>
+                  <td>The absolute position to move to in the motor&#x27;s encoder units</td>
+                </tr>
+                <tr>
+                  <td>ivelocity</td>
+                  <td>The maximum allowable velocity for the movement in RPM</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p><a href="classokapi_1_1Motor.html" class="m-doc">Motor</a> movement functions These functions allow programmers to make motors move Sets the target absolute position for the motor to move to.</p><p>This movement is relative to the position of the motor when initialized or the position when it was most recently reset with setZeroPosition().</p><aside class="m-note m-info"><h4>Note</h4><p>This function simply sets the target for the motor, it does not block program execution until the movement finishes.</p></aside><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a40f6f70ed9b12d1834551d1232303ef1"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a40f6f70ed9b12d1834551d1232303ef1" class="m-doc-self">moveRelative</a>(</span><span class="m-doc-wrap">double iposition,
+              std::int32_t ivelocity) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iposition</td>
+                  <td>The relative position to move to in the motor&#x27;s encoder units</td>
+                </tr>
+                <tr>
+                  <td>ivelocity</td>
+                  <td>The maximum allowable velocity for the movement in RPM</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets the relative target position for the motor to move to.</p><p>This movement is relative to the current position of the motor. Providing 10.0 as the position parameter would result in the motor moving clockwise 10 units, no matter what the current position is.</p><aside class="m-note m-info"><h4>Note</h4><p>This function simply sets the target for the motor, it does not block program execution until the movement finishes.</p></aside><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="afc3377b9b10a72de0c22e9a74cbcfd16"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afc3377b9b10a72de0c22e9a74cbcfd16" class="m-doc-self">moveVelocity</a>(</span><span class="m-doc-wrap">std::int16_t ivelocity) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ivelocity</td>
+                  <td>The new motor velocity from -+-100, +-200, or +-600 depending on the motor&#x27;s gearset</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets the velocity for the motor.</p><p>This velocity corresponds to different actual speeds depending on the gearset used for the motor. This results in a range of +-100 for pros::c::red, +-200 for green, and +-600 for blue. The velocity is held with PID to ensure consistent speed, as opposed to setting the motor&#x27;s voltage.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a64b53a041c90c7b7a3903c607a9b17eb"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a64b53a041c90c7b7a3903c607a9b17eb" class="m-doc-self">moveVoltage</a>(</span><span class="m-doc-wrap">std::int16_t ivoltage) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ivoltage</td>
+                  <td>The new voltage value from -12000 to 12000.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets the voltage for the motor from -12000 to 12000.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a8778f90005a3add64d0dfd7574fb8289"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8778f90005a3add64d0dfd7574fb8289" class="m-doc-self">modifyProfiledVelocity</a>(</span><span class="m-doc-wrap">std::int32_t ivelocity) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ivelocity</td>
+                  <td>The new motor velocity from -+-100, +-200, or +-600 depending on the motor&#x27;s gearset</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Changes the output velocity for a profiled movement (moveAbsolute or moveRelative). This will have no effect if the motor is not following a profiled movement.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="af575af2b4d4cf5aea6e8aac50ef1cbbd"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">double okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af575af2b4d4cf5aea6e8aac50ef1cbbd" class="m-doc-self">getTargetPosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The target position in its encoder units or PROS_ERR_F if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p><a href="classokapi_1_1Motor.html" class="m-doc">Motor</a> telemetry functions These functions allow programmers to collect telemetry from motors Gets the target position set for the motor by the user.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a4592f8a1cce4474f85ceabd3d7e2fe0b"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">double okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4592f8a1cce4474f85ceabd3d7e2fe0b" class="m-doc-self">getPosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The motor&#x27;s absolute position in its encoder units or PROS_ERR_F if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the absolute position of the motor in its encoder units.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="aa71f3d93b734caec5c9245b211d4a0ad"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa71f3d93b734caec5c9245b211d4a0ad" class="m-doc-self">tarePosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets the &quot;absolute&quot; zero position of the motor to its current position.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="aee4697f4e1f39bc0206062d0247caf47"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aee4697f4e1f39bc0206062d0247caf47" class="m-doc-self">getTargetVelocity</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The commanded motor velocity from +-100, +-200, or +-600, or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the velocity commanded to the motor by the user.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a12dab94ff8e0636c01d3c568d9461655"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">double okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a12dab94ff8e0636c01d3c568d9461655" class="m-doc-self">getActualVelocity</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The motor&#x27;s actual velocity in RPM or PROS_ERR_F if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the actual velocity of the motor.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="ac5107f8aef228d4b4fec06d549c55cf6"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac5107f8aef228d4b4fec06d549c55cf6" class="m-doc-self">getCurrentDraw</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The motor&#x27;s current in mA or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the current drawn by the motor in mA.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a72c69d60e2ec69c126c84dc81f78742d"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a72c69d60e2ec69c126c84dc81f78742d" class="m-doc-self">getDirection</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>1 for moving in the positive direction, -1 for moving in the negative direction, and PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the direction of movement for the motor.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a7703340c95e9e7dcafa243685a7d2d50"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">double okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7703340c95e9e7dcafa243685a7d2d50" class="m-doc-self">getEfficiency</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The motor&#x27;s efficiency in percent or PROS_ERR_F if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the efficiency of the motor in percent.</p><p>An efficiency of 100% means that the motor is moving electrically while drawing no electrical power, and an efficiency of 0% means that the motor is drawing power but not moving.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="aff882cb26c477355551d7bbf8e5c03bb"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aff882cb26c477355551d7bbf8e5c03bb" class="m-doc-self">isOverCurrent</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>1 if the motor&#x27;s current limit is being exceeded and 0 if the current limit is not exceeded, or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Checks if the motor is drawing over its current limit.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a8a51f7dede42f768280b73d85a528d91"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8a51f7dede42f768280b73d85a528d91" class="m-doc-self">isOverTemp</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>1 if the temperature limit is exceeded and 0 if the the temperature is below the limit, or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Checks if the motor&#x27;s temperature is above its limit.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="ab4edaf8e4ed576fa2003d4cc8e02c364"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab4edaf8e4ed576fa2003d4cc8e02c364" class="m-doc-self">isStopped</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>1 if the motor is not moving, 0 if the motor is moving, or PROS_ERR if the operation failed, setting errno</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Checks if the motor is stopped.</p><p>Although this function forwards data from the motor, the motor presently does not provide any value. This function returns PROS_ERR with errno set to ENOSYS.</p>
+          </div></section>
+          <section class="m-doc-details" id="a2640dea57e59a19aa6000da2c7cefdeb"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2640dea57e59a19aa6000da2c7cefdeb" class="m-doc-self">getZeroPositionFlag</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>1 if the motor is at zero absolute position, 0 if the motor has moved from its absolute zero, or PROS_ERR if the operation failed, setting errno</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Checks if the motor is at its zero position.</p><p>Although this function forwards data from the motor, the motor presently does not provide any value. This function returns PROS_ERR with errno set to ENOSYS.</p>
+          </div></section>
+          <section class="m-doc-details" id="a7d16e9d0a3319a02a12476b5bec991d7"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">uint32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7d16e9d0a3319a02a12476b5bec991d7" class="m-doc-self">getFaults</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>A currently unknown bitfield containing the motor&#x27;s faults. 0b00000100 = Current Limit Hit</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the faults experienced by the motor. Compare this bitfield to the bitmasks in pros::motor_fault_e_t.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="acb0097ba7ac778674efaa2c0765f6f3f"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">uint32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acb0097ba7ac778674efaa2c0765f6f3f" class="m-doc-self">getFlags</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>A currently unknown bitfield containing the motor&#x27;s flags. These seem to be unrelated to the individual get_specific_flag functions</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the flags set by the motor&#x27;s operation. Compare this bitfield to the bitmasks in pros::motor_flag_e_t.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a74c579c35863bc5180c9551fd5185d94"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a74c579c35863bc5180c9551fd5185d94" class="m-doc-self">getRawPosition</a>(</span><span class="m-doc-wrap">std::uint32_t* timestamp) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">timestamp</td>
+                  <td>A pointer to a time in milliseconds for which the encoder count will be returned. If NULL, the timestamp at which the encoder count was read will not be supplied</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>The raw encoder count at the given timestamp or PROS_ERR if the operation failed.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the raw encoder count of the motor at a given timestamp.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a992171c86829e52f5418988fada0b6fa"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">double okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a992171c86829e52f5418988fada0b6fa" class="m-doc-self">getPower</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The motor&#x27;s power draw in Watts or PROS_ERR_F if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the power drawn by the motor in Watts.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="ab5b9208b001c1ab49f8c058eff58e5b3"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">double okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab5b9208b001c1ab49f8c058eff58e5b3" class="m-doc-self">getTemperature</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The motor&#x27;s temperature in degrees Celsius or PROS_ERR_F if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the temperature of the motor in degrees Celsius.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a4a8c14c49ae44d687772ff41591fdf1d"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">double okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4a8c14c49ae44d687772ff41591fdf1d" class="m-doc-self">getTorque</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The motor&#x27;s torque in NM or PROS_ERR_F if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the torque generated by the motor in Newton Metres (Nm).</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="af60eb970996183d86bd4786869f5adb0"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af60eb970996183d86bd4786869f5adb0" class="m-doc-self">getVoltage</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The motor&#x27;s voltage in V or PROS_ERR_F if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the voltage delivered to the motor in millivolts.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a2c40313fa5ff49c25947645885898f91"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2c40313fa5ff49c25947645885898f91" class="m-doc-self">setBrakeMode</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#a132e0485dbb59a60c3f934338d8fa601" class="m-doc">AbstractMotor::<wbr />brakeMode</a> imode) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">imode</td>
+                  <td>The new motor brake mode to set for the motor</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p><a href="classokapi_1_1Motor.html" class="m-doc">Motor</a> configuration functions These functions allow programmers to configure the behavior of motors Sets one of <a href="classokapi_1_1AbstractMotor.html#a132e0485dbb59a60c3f934338d8fa601" class="m-doc">AbstractMotor::<wbr />brakeMode</a> to the motor.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="aec419fead574828b4b1b2642a424dcbe"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AbstractMotor.html#a132e0485dbb59a60c3f934338d8fa601" class="m-doc">brakeMode</a> okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aec419fead574828b4b1b2642a424dcbe" class="m-doc-self">getBrakeMode</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>One of brakeMode, according to what was set for the motor, or <a href="classokapi_1_1AbstractMotor.html#a132e0485dbb59a60c3f934338d8fa601afedb2d84cafe20862cb4399751a8a7e3" class="m-doc">brakeMode::<wbr />invalid</a> if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the brake mode that was set for the motor.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="ab54e856d8d55c1f53e1be113a9e90a00"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab54e856d8d55c1f53e1be113a9e90a00" class="m-doc-self">setCurrentLimit</a>(</span><span class="m-doc-wrap">std::int32_t ilimit) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ilimit</td>
+                  <td>The new current limit in mA</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets the current limit for the motor in mA.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="ae309fb32ea479cec950dfaa65f3ffebd"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae309fb32ea479cec950dfaa65f3ffebd" class="m-doc-self">getCurrentLimit</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The motor&#x27;s current limit in mA or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the current limit for the motor in mA.</p><p>The default value is 2500 mA.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a96466636470045aa63d81cb0effc9486"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a96466636470045aa63d81cb0effc9486" class="m-doc-self">setEncoderUnits</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764c" class="m-doc">AbstractMotor::<wbr />encoderUnits</a> iunits) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iunits</td>
+                  <td>The new motor encoder units</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets one of <a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764c" class="m-doc">AbstractMotor::<wbr />encoderUnits</a> for the motor encoder.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="afcc6183588ce056927878dfc479e6fee"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764c" class="m-doc">encoderUnits</a> okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afcc6183588ce056927878dfc479e6fee" class="m-doc-self">getEncoderUnits</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>One of encoderUnits according to what is set for the motor or <a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764cafedb2d84cafe20862cb4399751a8a7e3" class="m-doc">encoderUnits::<wbr />invalid</a> if the operation failed.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the encoder units that were set for the motor.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a670cb230fe9686ce8fa71ee20607eb12"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a670cb230fe9686ce8fa71ee20607eb12" class="m-doc-self">setGearing</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">AbstractMotor::<wbr />gearset</a> igearset) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">igearset</td>
+                  <td>The new motor gearset</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets one of <a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">AbstractMotor::<wbr />gearset</a> for the motor.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a4dbe4aec1a4c6cb1cad659bada1ab8ed"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">gearset</a> okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4dbe4aec1a4c6cb1cad659bada1ab8ed" class="m-doc-self">getGearing</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>One of gearset according to what is set for the motor, or <a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5afedb2d84cafe20862cb4399751a8a7e3" class="m-doc">gearset::<wbr />invalid</a> if the operation failed.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the gearset that was set for the motor.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a558e94850abf85132811a8b281e872df"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a558e94850abf85132811a8b281e872df" class="m-doc-self">setReversed</a>(</span><span class="m-doc-wrap">bool ireverse) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ireverse</td>
+                  <td>True reverses the motor, false is default</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets the reverse flag for the motor.</p><p>This will invert its movements and the values returned for its position.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a5aab4b416675b7f7ee324fff4d8cda30"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5aab4b416675b7f7ee324fff4d8cda30" class="m-doc-self">setVoltageLimit</a>(</span><span class="m-doc-wrap">std::int32_t ilimit) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ilimit</td>
+                  <td>The new voltage limit in Volts</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets the voltage limit for the motor in Volts.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+          </div></section>
+          <section class="m-doc-details" id="a13564c05ee3a9ce580850ef33280a7e9"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a13564c05ee3a9ce580850ef33280a7e9" class="m-doc-self">setPosPID</a>(</span><span class="m-doc-wrap">double ikF,
+              double ikP,
+              double ikI,
+              double ikD) <span class="m-label m-warning">virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ikF</td>
+                  <td>the feed-forward constant</td>
+                </tr>
+                <tr>
+                  <td>ikP</td>
+                  <td>the proportional constant</td>
+                </tr>
+                <tr>
+                  <td>ikI</td>
+                  <td>the integral constant</td>
+                </tr>
+                <tr>
+                  <td>ikD</td>
+                  <td>the derivative constant</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets new PID constants.</p>
+          </div></section>
+          <section class="m-doc-details" id="afe4ae812a9454167fc6ebef8713c716c"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afe4ae812a9454167fc6ebef8713c716c" class="m-doc-self">setPosPIDFull</a>(</span><span class="m-doc-wrap">double ikF,
+              double ikP,
+              double ikI,
+              double ikD,
+              double ifilter,
+              double ilimit,
+              double ithreshold,
+              double iloopSpeed) <span class="m-label m-warning">virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ikF</td>
+                  <td>the feed-forward constant</td>
+                </tr>
+                <tr>
+                  <td>ikP</td>
+                  <td>the proportional constant</td>
+                </tr>
+                <tr>
+                  <td>ikI</td>
+                  <td>the integral constant</td>
+                </tr>
+                <tr>
+                  <td>ikD</td>
+                  <td>the derivative constant</td>
+                </tr>
+                <tr>
+                  <td>ifilter</td>
+                  <td>a constant used for filtering the profile acceleration</td>
+                </tr>
+                <tr>
+                  <td>ilimit</td>
+                  <td>the integral limit</td>
+                </tr>
+                <tr>
+                  <td>ithreshold</td>
+                  <td>the threshold for determining if a position movement has reached its goal</td>
+                </tr>
+                <tr>
+                  <td>iloopSpeed</td>
+                  <td>the rate at which the PID computation is run (in ms)</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets new PID constants.</p>
+          </div></section>
+          <section class="m-doc-details" id="afe462dda44723c4e39f9ef9d1a95e23e"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afe462dda44723c4e39f9ef9d1a95e23e" class="m-doc-self">setVelPID</a>(</span><span class="m-doc-wrap">double ikF,
+              double ikP,
+              double ikI,
+              double ikD) <span class="m-label m-warning">virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ikF</td>
+                  <td>the feed-forward constant</td>
+                </tr>
+                <tr>
+                  <td>ikP</td>
+                  <td>the proportional constant</td>
+                </tr>
+                <tr>
+                  <td>ikI</td>
+                  <td>the integral constant</td>
+                </tr>
+                <tr>
+                  <td>ikD</td>
+                  <td>the derivative constant</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets new PID constants.</p>
+          </div></section>
+          <section class="m-doc-details" id="a2719aabe6b89b8195c93614e5ce7b9f6"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2719aabe6b89b8195c93614e5ce7b9f6" class="m-doc-self">setVelPIDFull</a>(</span><span class="m-doc-wrap">double ikF,
+              double ikP,
+              double ikI,
+              double ikD,
+              double ifilter,
+              double ilimit,
+              double ithreshold,
+              double iloopSpeed) <span class="m-label m-warning">virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ikF</td>
+                  <td>the feed-forward constant</td>
+                </tr>
+                <tr>
+                  <td>ikP</td>
+                  <td>the proportional constant</td>
+                </tr>
+                <tr>
+                  <td>ikI</td>
+                  <td>the integral constant</td>
+                </tr>
+                <tr>
+                  <td>ikD</td>
+                  <td>the derivative constant</td>
+                </tr>
+                <tr>
+                  <td>ifilter</td>
+                  <td>a constant used for filtering the profile acceleration</td>
+                </tr>
+                <tr>
+                  <td>ilimit</td>
+                  <td>the integral limit</td>
+                </tr>
+                <tr>
+                  <td>ithreshold</td>
+                  <td>the threshold for determining if a position movement has reached its goal</td>
+                </tr>
+                <tr>
+                  <td>iloopSpeed</td>
+                  <td>the rate at which the PID computation is run (in ms)</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>1 if the operation was successful or PROS_ERR if the operation failed, setting errno.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets new PID constants.</p>
+          </div></section>
+          <section class="m-doc-details" id="a57d8ddb900475fcfba56413e61e6e252"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::shared_ptr&lt;<a href="classokapi_1_1ContinuousRotarySensor.html" class="m-doc">ContinuousRotarySensor</a>&gt; okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a57d8ddb900475fcfba56413e61e6e252" class="m-doc-self">getEncoder</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>encoder for this motor</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Get the encoder associated with this motor.</p>
+          </div></section>
+          <section class="m-doc-details" id="a262c36a80a942d125e574d691b77b440"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a262c36a80a942d125e574d691b77b440" class="m-doc-self">controllerSet</a>(</span><span class="m-doc-wrap">double ivalue) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ivalue</td>
+                  <td>the controller&#x27;s output in the range [-1, 1]</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Writes the value of the controller output. This method might be automatically called in another thread by the controller. The range of input values is expected to be [-1, 1].</p>
+          </div></section>
+          <section class="m-doc-details" id="ac1f1ac84ac7a96dab84cc0c0023a2ae4"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::uint8_t okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac1f1ac84ac7a96dab84cc0c0023a2ae4" class="m-doc-self">getPort</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The port number.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="a75a2c72a1c941b07cea677bc4ba2e42d"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">bool okapi::<wbr />Motor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a75a2c72a1c941b07cea677bc4ba2e42d" class="m-doc-self">isReversed</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>Whether this motor is reversed.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+        </section>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>OkapiLib A PROS library for programming VEX robots.. Created with <a href="https://doxygen.org/">Doxygen</a> 1.8.13 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>
