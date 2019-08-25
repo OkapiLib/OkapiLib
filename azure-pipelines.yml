@@ -37,6 +37,14 @@ stages:
       - script: valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
         displayName: "Run Valgrind"
         workingDirectory: cmake-build-debug
+      - script: |
+          lcov --directory . --capture --output-file coverage.info
+          lcov --remove coverage.info '/usr/*' --output-file coverage.info
+          lcov --list coverage.info
+          bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+        displayName: "Upload Coverage"
+        env:
+          CODECOV_TOKEN: $(CODECOV_TOKEN)
       - script: ./run_doxygen.sh
         displayName: "Build Docs"
       - script: |
@@ -44,9 +52,10 @@ stages:
           git config --local user.email "azuredevops@microsoft.com"
           git checkout gh-pages
           git add html
-          git commit -m "Publishing GitHub Pages ${Build.BuildNumber}"
+          git commit -m "Publishing GitHub Pages ${BUILD_NUM}"
           git push https://$(DOCS_PUBLISH_PAT)@github.com/OkapiLib/OkapiLib.git
         displayName: "Publish Docs"
         condition: succeeded() # and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
         env:
           DOCS_PUBLISH_PAT: $(DOCS_PUBLISH_PAT)
+          BUILD_NUM: $(Build.BuildNumber)
