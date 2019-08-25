@@ -16,6 +16,7 @@ step through the process of writing an OkapiLib program.
  - [Getting Started](docs/tutorials/walkthrough/gettingStarted.md)
  - [Basic Autonomous Movement](docs/tutorials/walkthrough/basicAutonomousMovement.md)
  - [Async Autonomous Movement](docs/tutorials/walkthrough/asyncAutonomousMovement.md)
+ - [Lift Movement](docs/tutorials/walkthrough/liftMovement.md)
  - [Chassis Controller Builder](docs/tutorials/walkthrough/chassisControllerBuilder.md)
 
 ## Topical Tutorials
