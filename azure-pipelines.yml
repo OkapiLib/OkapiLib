@@ -19,6 +19,7 @@ stages:
       container: ubuntu1804
 
       steps:
+      - script: sudo apt install git
       - script: git submodule update --init --recursive
       - script: sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa -y
       - script: sudo apt update
