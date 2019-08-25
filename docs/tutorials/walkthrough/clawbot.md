@@ -56,13 +56,12 @@ For the ADI:
 
 To create, build, and upload a new project in PROS 3, run
 
-.. code :: bash
-
-    prosv5 conduct new <path_to_project>
-    prosv5 make
-    prosv5 upload
-    prosv5 terminal
-
+```bash
+prosv5 conduct new <path_to_project>
+prosv5 make
+prosv5 upload
+prosv5 terminal
+```
 
 The last 3 commands (`make`, `upload`, `terminal`) can be simplified to
 `prosv5 mut`.
@@ -132,7 +131,7 @@ Controller controller;
 while (true) {
     // Arcade drive with the left stick.
     drive->arcade(controller.getAnalog(ControllerAnalog::leftY),
-                    controller.getAnalog(ControllerAnalog::leftX));
+                  controller.getAnalog(ControllerAnalog::leftX));
 
     // Wait and give up the time we don't need to other tasks.
     // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
@@ -205,11 +204,11 @@ if (armLimitSwitch.isPressed()) {
 } else {
     // Else, the arm isn't all the way down
     if (armUpButton.isPressed()) {
-    armMotor.move_voltage(127);
+        armMotor.move_voltage(127);
     } else if (armDownButton.isPressed()) {
-    armMotor.move_voltage(-127);
+        armMotor.move_voltage(-127);
     } else {
-    armMotor.move_voltage(0);
+        armMotor.move_voltage(0);
     }
 }
 ```
