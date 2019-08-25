@@ -6,35 +6,33 @@ trigger:
     include:
       - '*'
 
+resources:
+  containers:
+  - container: ubuntu:18.04
+    image: ubuntu1804
+
 stages:
 - stage: Build
   jobs:
     - job: Linux
 
-      pool:
-        vmImage: ubuntu-16.04
+      container: ubuntu1804
 
       steps:
       - script: git submodule update --init --recursive
       - script: sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa -y
       - script: sudo apt update
       - script: sudo apt install gcc-arm-embedded g++-7 lcov valgrind doxygen
-#      - script: sudo pip uninstall pip
-#      - script: sudo apt install python3-pip --reinstall
-#      - script: pip install --user -U pip
       - script: pip install --user jinja2 Pygments
       - script: make
       - script: mkdir cmake-build-debug
       - script: cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
         workingDirectory: cmake-build-debug
-        env: {
-          CC: gcc-7,
-          CXX: g++-7
-        }
+        env: { CC: gcc-7, CXX: g++-7 }
       - script: cmake --build . --target OkapiLibV5 -- -j 2
         workingDirectory: cmake-build-debug
       - script: ./OkapiLibV5
         workingDirectory: cmake-build-debug
-      - script: valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
+      - script: valgrind-3.15.0/bin/valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
         workingDirectory: cmake-build-debug
       - script: ./run_doxygen.sh
