@@ -10,8 +10,10 @@ with all levels of experience. New teams should have an easier time getting thei
 running, and veteran teams should find that OkapiLib doesn't get in the way or place any limits on
 functionality.
 
-Documentation is hosted on the PROS website: [OkapiLib
-Docs](https://pros.cs.purdue.edu/v5/okapi/index.html)
+OkapiLib documentation is hosted on GitHub Pages
+[here](https://okapilib.github.io/OkapiLib/index.html).
+PROS documentation is hosted on the Purdue site
+[here](https://pros.cs.purdue.edu/v5).
 
 ## Installing
 
