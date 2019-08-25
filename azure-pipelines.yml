@@ -8,8 +8,8 @@ trigger:
 
 resources:
   containers:
-  - container: ubuntu:18.04
-    image: ubuntu1804
+  - container: ubuntu1804
+    image: ubuntu:18.04
 
 stages:
 - stage: Build
