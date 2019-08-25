@@ -48,7 +48,8 @@ stages:
       - script: ./run_doxygen.sh
         displayName: "Build Docs"
       - script: |
-          cp -r html /tmp/html
+          rm -rf /tmp/html
+          cp -r html /tmp/
           git config --local user.name "Azure Pipelines"
           git config --local user.email "azuredevops@microsoft.com"
           git checkout gh-pages
