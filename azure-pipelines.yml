@@ -48,10 +48,13 @@ stages:
       - script: ./run_doxygen.sh
         displayName: "Build Docs"
       - script: |
+          cp -r html /tmp/html
           git config --local user.name "Azure Pipelines"
           git config --local user.email "azuredevops@microsoft.com"
           git checkout gh-pages
-          git add html
+          rm -rf *
+          cp -r /tmp/html/**/* .
+          git add .
           git commit -m "Publishing GitHub Pages ${BUILD_NUM}"
           git push https://$(DOCS_PUBLISH_PAT)@github.com/OkapiLib/OkapiLib.git
         displayName: "Publish Docs"
