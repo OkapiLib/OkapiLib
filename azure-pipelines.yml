@@ -54,7 +54,7 @@ stages:
           git config --local user.email "azuredevops@microsoft.com"
           git checkout gh-pages
           rm -rf *
-          cp -r /tmp/html/**/* .
+          cp -r /tmp/html/* .
           git add .
           git commit -m "Publishing GitHub Pages ${BUILD_NUM}"
           git push https://$(DOCS_PUBLISH_PAT)@github.com/OkapiLib/OkapiLib.git
