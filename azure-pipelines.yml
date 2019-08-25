@@ -20,15 +20,22 @@ stages:
 
       steps:
       - script: git submodule update --init --recursive
+        displayName: "Update Submodules"
       - script: make
+        displayName: "Make"
       - script: mkdir cmake-build-debug
       - script: cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
+        displayName: "CMake Configure"
         workingDirectory: cmake-build-debug
         env: { CC: gcc-7, CXX: g++-7 }
       - script: cmake --build . --target OkapiLibV5 -- -j 2
+        displayName: "CMake Build"
         workingDirectory: cmake-build-debug
       - script: ./OkapiLibV5
+        displayName: "Run Tests"
         workingDirectory: cmake-build-debug
-      - script: valgrind-3.15.0/bin/valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
+      - script: valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
+        displayName: "Run Valgrind"
         workingDirectory: cmake-build-debug
       - script: ./run_doxygen.sh
+        displayName: "Build Docs"
