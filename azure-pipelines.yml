@@ -39,3 +39,14 @@ stages:
         workingDirectory: cmake-build-debug
       - script: ./run_doxygen.sh
         displayName: "Build Docs"
+      - script: |
+          git config --local user.name "Azure Pipelines"
+          git config --local user.email "azuredevops@microsoft.com"
+          git checkout gh-pages
+          git add html
+          git commit -m "Publishing GitHub Pages ${Build.BuildNumber}"
+          git push https://$(DOCS_PUBLISH_PAT)@github.com/OkapiLib/OkapiLib.git
+        displayName: "Publish Docs"
+        condition: succeeded() # and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+        env:
+          DOCS_PUBLISH_PAT: $(DOCS_PUBLISH_PAT)
