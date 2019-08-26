@@ -26,12 +26,12 @@ stages:
       - script: |
           make template
           mkdir artifacts
-          cp okapilib@*.zip artifacts/
+          cp okapilib@*.zip template/
         displayName: "Make Template"
-      - task: PublishBuildArtifacts@1
+      - task: PublishPipelineArtifact@1
         inputs:
-          publishLocation: FilePath
-          targetPath: artifacts
+          targetPath: template
+          artifactName: template
         condition: succeeded()
         displayName: "Publish Template"
       - script: mkdir cmake-build-debug
