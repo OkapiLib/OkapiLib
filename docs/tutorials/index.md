@@ -25,3 +25,9 @@ step through the process of writing an OkapiLib program.
 If you want more information about using a particular part of the OkapiLib API
 after reading through the API reference, the **Topical Tutorials** offer longer
 examples and more detail about using the API.
+
+- [2D Motion Profiling](docs/tutorials/concepts/2dmotionprofiling.md)
+- [Controller Inputs and Outputs](docs/tutorials/concepts/controller-io.md)
+- [Filtering](docs/tutorials/concepts/filtering.md)
+- [Iterative and Async Controllers](docs/tutorials/concepts/iterative-async-controllers.md)
+- [SettledUtil](docs/tutorials/concepts/settled-util.md)
