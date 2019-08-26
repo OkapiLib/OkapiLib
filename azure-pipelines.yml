@@ -25,7 +25,7 @@ stages:
         displayName: "Make"
       - script: |
           make template
-          mkdir artifacts
+          mkdir template
           cp okapilib@*.zip template/
         displayName: "Make Template"
       - task: PublishPipelineArtifact@1
