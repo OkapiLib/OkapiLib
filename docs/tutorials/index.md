@@ -30,4 +30,4 @@ examples and more detail about using the API.
 - [Controller Inputs and Outputs](docs/tutorials/concepts/controller-io.md)
 - [Filtering](docs/tutorials/concepts/filtering.md)
 - [Iterative and Async Controllers](docs/tutorials/concepts/iterative-async-controllers.md)
-- [SettledUtils](docs/tutorials/concepts/settled-util.md)
+- [SettledUtil](docs/tutorials/concepts/settled-util.md)

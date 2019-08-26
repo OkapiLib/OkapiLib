@@ -1,4 +1,4 @@
-# SettledUtils
+# SettledUtil
 
 One of the most important factors in utilizing feedback controllers is
 establishing proper exit conditions. If a feedback controller decides
