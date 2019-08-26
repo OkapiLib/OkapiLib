@@ -259,12 +259,13 @@ std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
   }
 
   if (!gearsetSetByUser) {
-    LOG_WARN(std::string("The gearset was not set. This could be a bug."));
+    LOG_WARN(std::string(
+      "ChassisControllerBuilder: The default gearset is selected. This could be a bug."));
   }
 
   std::int32_t calculatedTPR = gearsetToTPR(gearset.internalGearset) * gearset.ratio;
   if (calculatedTPR != scales.tpr) {
-    LOG_WARN("The calculated TPR from the given gearset and ratio (" +
+    LOG_WARN("ChassisControllerBuilder: The calculated TPR from the given gearset and ratio (" +
              std::to_string(calculatedTPR) +
              ") does not equal the TPR given in the ChassisScales (" + std::to_string(scales.tpr) +
              "). This is probably a bug.");
