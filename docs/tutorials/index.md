@@ -31,4 +31,3 @@ examples and more detail about using the API.
 - [Filtering](docs/tutorials/concepts/filtering.md)
 - [Iterative and Async Controllers](docs/tutorials/concepts/iterative-async-controllers.md)
 - [SettledUtils](docs/tutorials/concepts/settled-util.md)
-- [Smart Pointers](docs/tutorials/concepts/smart-pointers.md)

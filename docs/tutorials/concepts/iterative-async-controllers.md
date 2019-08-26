@@ -1,5 +1,4 @@
-Iterative and Async Controllers
-===============================
+# Iterative and Async Controllers
 
 OkapiLib provides two main types of feedback controllers, **Iterative
 Controllers** and **Async Controllers**. The two both accomplish the
@@ -9,15 +8,15 @@ achieve the same response from a system with either option, but one will
 likely be better than the other for your particular preference with code
 organization.
 
-Iterative Controllers
----------------------
+## Iterative Controllers
 
 **Iterative Controllers** operate **discretely**, meaning that an
 Iterative Controller will produce an output for the given input *at a
-single point in time* (see  IterativeController#step()).
-If you want to execute a full movement for a system with an Iterative
-Controller, you will need to write a loop that runs
-`IterativeController::step()` repeatedly until the movement is finished.
+single point in time*. If you want to execute a full movement for a system with
+an [IterativeController](@ref okapi::IterativeController), you will need to
+write a loop that runs
+[IterativeController::step](@ref okapi::IterativeController::step) repeatedly
+until the movement is finished.
 
 An example movement:
 
@@ -46,21 +45,24 @@ void opcontrol() {
 }
 ```
 
-Async Controllers
------------------
+## Async Controllers
 
 **Async Controllers** were given their name because they can operate
 **asynchronously** to one another, which means practically that you can
 have multiple movements by multiple controllers operating at the same
-time easily. Each Async Controller operates in its own task, so starting
-a movement for one Async Controller won't prevent another Async
-Controller (or Iterative Controller) from running immediately
+time easily. Each [AsyncController](@ref okapi::AsyncController) operates in its
+own task, so starting a movement for one
+[AsyncController](@ref okapi::AsyncController) won't prevent another
+[AsyncController](@ref okapi::AsyncController) (or
+[IterativeController](@ref okapi::IterativeController)) from running immediately
 thereafter.
 
 You don't need to run a loop to generate and set the controller output
-like with an Iterative Controller, and blocking further movements until
-an Async Controller's movement is done is as simple as a call to
-`AsyncController::waitUntilSettled()`.
+like with an [IterativeController](@ref okapi::IterativeController), and
+blocking further movements until an
+[AsyncController's](@ref okapi::AsyncController) movement is done is as simple
+as a call to
+[AsyncController::waitUntilSettled](@ref okapi::AsyncController::waitUntilSettled).
 
 An example movement:
 
@@ -85,8 +87,7 @@ void opcontrol() {
 }
 ```
 
-When Should I Use Which Controller?
------------------------------------
+## When Should I Use Which Controller?
 
 Async Controllers are obviously the easiest to work with for normal
 movements, as seen in the above example code. If you just want to run a

@@ -1,5 +1,4 @@
-Filtering
-=========
+# Filtering
 
 OkapiLib makes it easy to use any one of a number of various types of
 filters on sensors and controllers. The specifics of how each filter
@@ -7,8 +6,7 @@ works and should be initialized will be left to its API reference, but
 this guide will help provide the general knowledge necessary to make the
 most out of OkapiLib's filtering functionality.
 
-Filtering Generic Sensor Input
-------------------------------
+## Filtering Generic Sensor Input
 
 It's possible with OkapiLib to filter any value that you want, which
 makes it easy to filter sensors. The example below gives an example of
@@ -34,8 +32,7 @@ void opcontrol() {
 The above example will print out the average of the last five readings
 of the potentiometer.
 
-Adding a Filter to a Controller
--------------------------------
+## Adding a Filter to a Controller
 
 Velocity PID Controllers often benefit from filtering the velocity
 reading. As a result, it is possible to pass in a filter as an argument
@@ -68,4 +65,4 @@ void opcontrol() {
 ```
 
 This will create a velocity PID controller which uses an
-`AverageFilter<NUM_AVE_POINTS>`.
+[AverageFilter](@ref okapi::AverageFilter).
