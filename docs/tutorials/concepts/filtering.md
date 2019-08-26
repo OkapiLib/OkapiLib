@@ -14,7 +14,7 @@ It's possible with OkapiLib to filter any value that you want, which
 makes it easy to filter sensors. The example below gives an example of
 filtering a sensor value.
 
-``` {.cpp}
+```cpp
 using namespace okapi;
 
 const int POTENTIOMETER_PORT = 1;
@@ -46,7 +46,7 @@ supported as a result.
 Using a filter with a velocity PID Controller can be done in the
 following manner:
 
-``` {.cpp}
+```cpp
 using namespace okapi;
 
 const double kP = 0.001;

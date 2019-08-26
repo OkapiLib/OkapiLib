@@ -21,7 +21,7 @@ Controller, you will need to write a loop that runs
 
 An example movement:
 
-``` {.cpp}
+```cpp
 using namespace okapi;
 
 const double kP = 0.001;
@@ -64,7 +64,7 @@ an Async Controller's movement is done is as simple as a call to
 
 An example movement:
 
-``` {.cpp}
+```cpp
 using namespace okapi;
 
 const double kP = 1.0;
