@@ -23,6 +23,17 @@ stages:
         displayName: "Update Submodules"
       - script: make
         displayName: "Make"
+      - script: |
+          make template
+          mkdir artifacts
+          cp okapilib@*.zip artifacts/
+        displayName: "Make Template"
+      - task: PublishBuildArtifacts@1
+        inputs:
+          publishLocation: FilePath
+          targetPath: artifacts
+        condition: succeeded()
+        displayName: "Publish Template"
       - script: mkdir cmake-build-debug
       - script: cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
         displayName: "CMake Configure"
