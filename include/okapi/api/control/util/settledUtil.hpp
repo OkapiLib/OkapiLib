@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -16,7 +16,7 @@ class SettledUtil {
   public:
   /**
    * A utility class to determine if a control loop has settled based on error. A control loop is
-   * settled if the error is within atTargetError and atTargetDerivative for atTargetTime.
+   * settled if the error is within `iatTargetError` and `iatTargetDerivative` for `iatTargetTime`.
    *
    * @param iatTargetError minimum error to be considered settled
    * @param iatTargetDerivative minimum error derivative to be considered settled
@@ -38,7 +38,7 @@ class SettledUtil {
   virtual bool isSettled(double ierror);
 
   /**
-   * Resets the "at target" timer.
+   * Resets the "at target" timer and clears the previous error.
    */
   virtual void reset();
 

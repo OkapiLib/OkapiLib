@@ -33,19 +33,19 @@ void opcontrol() {
             //            .withLogger(std::make_shared<Logger>(
             //              std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug))
             .withMaxVelocity(60)
-            .withOdometry(StateMode::FRAME_TRANSFORMATION) //StateMode::CARTESIAN
+            .withOdometry(StateMode::FRAME_TRANSFORMATION) // StateMode::CARTESIAN
             .buildOdometry();
 
-   pros::Task printSensorValsTask(printSensorVals);
+  pros::Task printSensorValsTask(printSensorVals);
 
-   drive->driveToPoint({6_in, 2_in});
-   drive->driveToPoint({6_in, 6_in});
-   drive->driveToPoint({0_in, 0_in}, true);
-   // drive->turnToPoint({6_in, 2_in});
-   // drive->turnToAngle(90_deg);
-   // drive->moveDistance(6_in);
-   // drive->turnAngle(90_deg);
-   // drive->moveDistance(6_in);
+  drive->driveToPoint({6_in, 2_in});
+  drive->driveToPoint({6_in, 6_in});
+  drive->driveToPoint({0_in, 0_in}, true);
+  // drive->turnToPoint({6_in, 2_in});
+  // drive->turnToAngle(90_deg);
+  // drive->moveDistance(6_in);
+  // drive->turnAngle(90_deg);
+  // drive->moveDistance(6_in);
 
   while (true) {
     pros::delay(50);

@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -21,19 +21,20 @@ class ChassisControllerPID : public ChassisController {
   public:
   /**
    * ChassisController using PID control. Puts the motors into encoder count units. Throws a
-   * std::invalid_argument exception if the gear ratio is zero.
+   * `std::invalid_argument` exception if the gear ratio is zero.
    *
    * @param itimeUtil The TimeUtil.
-   * @param imodelArgs ChassisModelArgs
-   * @param idistanceController distance PID controller
-   * @param iturnController turn PID controller (handles turning)
-   * @param iangleController angle PID controller (keeps the robot straight)
-   * @param igearset motor internal gearset and gear ratio
-   * @param iscales see ChassisScales docs
+   * @param imodel The ChassisModel used to read from sensors/write to motors.
+   * @param idistanceController The PID controller that controls chassis distance for driving
+   * straight.
+   * @param iturnController The PID controller that controls chassis angle for turning.
+   * @param iangleController The PID controller that controls chassis angle for driving straight.
+   * @param igearset The internal gearset and external ratio used on the drive motors.
+   * @param iscales The ChassisScales.
    * @param ilogger The logger this instance will log to.
    */
   ChassisControllerPID(
-    const TimeUtil &itimeUtil,
+    TimeUtil itimeUtil,
     std::shared_ptr<ChassisModel> imodel,
     std::unique_ptr<IterativePosPIDController> idistanceController,
     std::unique_ptr<IterativePosPIDController> iturnController,
@@ -42,8 +43,9 @@ class ChassisControllerPID : public ChassisController {
     const ChassisScales &iscales = ChassisScales({1, 1}, imev5GreenTPR),
     std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
+  ChassisControllerPID(const ChassisControllerPID &) = delete;
   ChassisControllerPID(ChassisControllerPID &&other) = delete;
-
+  ChassisControllerPID &operator=(const ChassisControllerPID &other) = delete;
   ChassisControllerPID &operator=(ChassisControllerPID &&other) = delete;
 
   ~ChassisControllerPID() override;
@@ -51,12 +53,25 @@ class ChassisControllerPID : public ChassisController {
   /**
    * Drives the robot straight for a distance (using closed-loop control).
    *
+   * ```cpp
+   * // Drive forward 6 inches
+   * chassis->moveDistance(6_in);
+   *
+   * // Drive backward 0.2 meters
+   * chassis->moveDistance(-0.2_m);
+   * ```
+   *
    * @param itarget distance to travel
    */
   void moveDistance(QLength itarget) override;
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
+   *
+   * ```cpp
+   * // Drive forward by spinning the motors 400 degrees
+   * chassis->moveDistance(400);
+   * ```
    *
    * @param itarget distance to travel in motor degrees
    */
@@ -79,12 +94,22 @@ class ChassisControllerPID : public ChassisController {
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
+   * ```cpp
+   * // Turn 90 degrees clockwise
+   * chassis->turnAngle(90_deg);
+   * ```
+   *
    * @param idegTarget angle to turn for
    */
   void turnAngle(QAngle idegTarget) override;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
+   *
+   * ```cpp
+   * // Turn clockwise by spinning the motors 200 degrees
+   * chassis->turnAngle(200);
+   * ```
    *
    * @param idegTarget angle to turn for in motor degrees
    */
@@ -128,7 +153,7 @@ class ChassisControllerPID : public ChassisController {
 
   /**
    * Sets the velocity mode flag. When the controller is in velocity mode, the control loop will
-   * set motor velocities. When the controller is in voltage mode (ivelocityMode = false), the
+   * set motor velocities. When the controller is in voltage mode (`ivelocityMode = false`), the
    * control loop will set motor voltages. Additionally, when the controller is in voltage mode,
    * it will not obey maximum velocity limits.
    *
@@ -158,8 +183,8 @@ class ChassisControllerPID : public ChassisController {
   getGains() const;
 
   /**
-   * Starts the internal thread. This should not be called by normal users. This method is called
-   * by the ChassisControllerFactory when making a new instance of this class.
+   * Starts the internal thread. This method is called by the ChassisControllerBuilder when making a
+   * new instance of this class.
    */
   void startThread();
 

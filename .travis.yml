@@ -7,6 +7,10 @@ notifications:
     on_failure: always
     on_success: change
 
+env:
+  global:
+    - secure: "BHmcyu40Qj75Fy8tk41jiwS+OiGPVUmtgC3GUF8zk5maCK7NRMJ3rNb7FjX0/l/lRAZwMKOhcV7F7LxKMctm4gt8WXflUv31Hz3ajG+aQC8XPBUtexmbyvlTA7jjD3viK21bSTr3Sre93L9mVPn4MWOyaApFQFl+ZVZ48P1zCRiGn7MY/8KsCCjb2RR5Qpv26mrgYyUxbgOuuOH5X842bLPr1ocrYTa+OG49omHxRIq8PSeG1CK9zJ43QZas+VmG+4rwYmbu50G+XcZdOeSe3b2FENGrMha/H23lIi4u8Ywoey436YaQsAYAh3Jda/uI8B/wwjN+9YZfTU3kzXjs9RWPWqajIAQXGQ8GAeoHwGbyrLHxYQ4Q6lTF43wOkkzRYy7qP0jGgVurlrlHV/ClsUX9kgWg3sl3NfBDp6nbD1mmxtdYqaLHgDpRTseWcQ5+mUOXUtEVz+dcg4rrhIRA4VJIUWPZqMOTVwzGeU9sLZNIjYQ06aSNHb9Ym+Q9abfBsAFFhUKjCGp5Q4+iTGKfVEH1iGE0FLROVgFAFPedJ3HegXUiKUavYdcNhEERsVy+doX2UXYSoHr1Jq2Ml88Wk407+OYxXb4t70FovVG3gu+R2zl/Tp8UAu6IaY0vX0OvLhnYVXoKpw5dvXvK/se+PpOPXR8a+E724S30bgV+7cw="
+
 matrix:
   include:
     - os: linux
@@ -23,14 +27,22 @@ matrix:
             - g++-7
             - lcov
             - valgrind
+            - doxygen
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
 language: cpp
 compiler: gcc
 
+python:
+  - "3.6"
+
 before_install:
   - eval "${MATRIX_EVAL}"
+
+install:
+  - pip3 install --user -U pip
+  - pip3 install --user jinja2 Pygments
 
 script:
   - make # run the cross-compiler
@@ -42,6 +54,16 @@ script:
   - valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
   # - valgrind --tool=massif --stacks=yes --time-unit=B --massif-out-file=massif.out.txt ./OkapiLibV5
   # - ms_print massif.out.txt
+  - cd ..
+  - ./run_doxygen.sh
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: html
+  github_token: $GH_PAGES_TOKEN
+  on:
+    branch: master
 
 after_success:
   - lcov --directory . --capture --output-file coverage.info # capture coverage info

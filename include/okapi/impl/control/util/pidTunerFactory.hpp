@@ -1,4 +1,4 @@
-/**
+/*
  * @author Jonathan Bayless, Team BLRS
  * @author Ryan Benasutti, WPI
  *

@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -26,8 +26,8 @@ DefaultOdomChassisController::DefaultOdomChassisController(
 void DefaultOdomChassisController::driveToPoint(const Point &ipoint,
                                                 const bool ibackwards,
                                                 const QLength &ioffset) {
-  auto [length, angle] =
-    OdomMath::computeDistanceAndAngleToPoint(ipoint.inFT(defaultStateMode), odom->getState(StateMode::FRAME_TRANSFORMATION));
+  auto [length, angle] = OdomMath::computeDistanceAndAngleToPoint(
+    ipoint.inFT(defaultStateMode), odom->getState(StateMode::FRAME_TRANSFORMATION));
 
   if (ibackwards) {
     length *= -1;
@@ -52,7 +52,8 @@ void DefaultOdomChassisController::driveToPoint(const Point &ipoint,
 }
 
 void DefaultOdomChassisController::turnToPoint(const Point &ipoint) {
-  const auto angle = OdomMath::computeAngleToPoint(ipoint.inFT(defaultStateMode), odom->getState(StateMode::FRAME_TRANSFORMATION));
+  const auto angle = OdomMath::computeAngleToPoint(ipoint.inFT(defaultStateMode),
+                                                   odom->getState(StateMode::FRAME_TRANSFORMATION));
 
   LOG_INFO("DefaultOdomChassisController: Computed angle of " +
            std::to_string(angle.convert(degree)) + " degrees");
@@ -76,54 +77,71 @@ void DefaultOdomChassisController::turnToAngle(const QAngle &iangle) {
     controller->turnAngle(angle);
   }
 }
+
 void DefaultOdomChassisController::moveDistance(QLength itarget) {
   controller->moveDistance(itarget);
 }
+
 void DefaultOdomChassisController::moveDistance(double itarget) {
   controller->moveDistance(itarget);
 }
+
 void DefaultOdomChassisController::moveDistanceAsync(QLength itarget) {
   controller->moveDistanceAsync(itarget);
 }
+
 void DefaultOdomChassisController::moveDistanceAsync(double itarget) {
   controller->moveDistanceAsync(itarget);
 }
+
 void DefaultOdomChassisController::turnAngle(QAngle idegTarget) {
   controller->turnAngle(idegTarget);
 }
+
 void DefaultOdomChassisController::turnAngle(double idegTarget) {
   controller->turnAngle(idegTarget);
 }
+
 void DefaultOdomChassisController::turnAngleAsync(QAngle idegTarget) {
   controller->turnAngleAsync(idegTarget);
 }
+
 void DefaultOdomChassisController::turnAngleAsync(double idegTarget) {
   controller->turnAngleAsync(idegTarget);
 }
+
 void DefaultOdomChassisController::setTurnsMirrored(bool ishouldMirror) {
   controller->setTurnsMirrored(ishouldMirror);
 }
+
 void DefaultOdomChassisController::waitUntilSettled() {
   controller->waitUntilSettled();
 }
+
 void DefaultOdomChassisController::stop() {
   controller->stop();
 }
+
 ChassisScales DefaultOdomChassisController::getChassisScales() const {
   return controller->getChassisScales();
 }
+
 AbstractMotor::GearsetRatioPair DefaultOdomChassisController::getGearsetRatioPair() const {
   return controller->getGearsetRatioPair();
 }
+
 std::shared_ptr<ChassisModel> DefaultOdomChassisController::getModel() {
   return controller->getModel();
 }
+
 ChassisModel &DefaultOdomChassisController::model() {
   return controller->model();
 }
+
 std::shared_ptr<ChassisController> DefaultOdomChassisController::getChassisController() {
   return controller;
 }
+
 ChassisController &DefaultOdomChassisController::chassisController() {
   return *controller;
 }

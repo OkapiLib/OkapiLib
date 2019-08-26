@@ -1,4 +1,4 @@
-/**
+/*
  * Based on the Arduino PID controller: https://github.com/br3ttb/Arduino-PID-Library
  *
  * @author Ryan Benasutti, WPI

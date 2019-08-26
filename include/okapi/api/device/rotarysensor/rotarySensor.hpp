@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -18,7 +18,7 @@ class RotarySensor : public ControllerInput<double> {
   /**
    * Get the current sensor value.
    *
-   * @return the current sensor value, or ``PROS_ERR`` on a failure.
+   * @return the current sensor value, or `PROS_ERR` on a failure.
    */
   virtual double get() const = 0;
 };

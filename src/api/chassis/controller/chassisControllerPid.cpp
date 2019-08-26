@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -8,10 +8,11 @@
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include <cmath>
+#include <utility>
 
 namespace okapi {
 ChassisControllerPID::ChassisControllerPID(
-  const TimeUtil &itimeUtil,
+  TimeUtil itimeUtil,
   std::shared_ptr<ChassisModel> ichassisModel,
   std::unique_ptr<IterativePosPIDController> idistanceController,
   std::unique_ptr<IterativePosPIDController> iturnController,
@@ -21,7 +22,7 @@ ChassisControllerPID::ChassisControllerPID(
   std::shared_ptr<Logger> ilogger)
   : logger(std::move(ilogger)),
     chassisModel(std::move(ichassisModel)),
-    timeUtil(itimeUtil),
+    timeUtil(std::move(itimeUtil)),
     distancePid(std::move(idistanceController)),
     turnPid(std::move(iturnController)),
     anglePid(std::move(iangleController)),

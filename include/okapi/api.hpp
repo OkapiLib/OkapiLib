@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -6,6 +6,27 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #pragma once
+
+/** \mainpage OkapiLib Index Page
+ *
+ * \section intro_sec Introduction
+ *
+ * **OkapiLib** is a PROS library for programming VEX V5 robots. This library is intended to raise
+ * the floor for teams with all levels of experience. New teams should have an easier time getting
+ * their robot up and running, and veteran teams should find that OkapiLib doesn't get in the way or
+ * place any limits on functionality.
+ *
+ * For tutorials on how to get the most out of OkapiLib, see the **Tutorials** section:
+ *
+ * [Tutorials](docs/tutorials/index.md)
+ *
+ * For documentation on using the OkapiLib **API**, see the OkapiLib **API** section:
+ *
+ * <a href="annotated.html">OkapiLib Classes</a>
+ *
+ * Not sure where to go? Take a look at the `Getting Started tutorial
+ * <tutorials/walkthrough/getting-started.html>`_.
+ */
 
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"

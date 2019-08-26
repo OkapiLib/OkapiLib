@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -27,6 +27,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   /**
    * An Async Controller which generates and follows 1D motion profiles.
    *
+   * @param itimeUtil The TimeUtil.
    * @param ilimits The default limits.
    * @param ioutput The output to write velocity targets to.
    * @param idiameter The effective diameter for whatever the motor spins.
@@ -50,11 +51,11 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
 
   /**
    * Generates a path which intersects the given waypoints and saves it internally with a key of
-   * pathId. Call executePath() with the same pathId to run it.
+   * pathId. Call `executePath()` with the same `pathId` to run it.
    *
-   * If the waypoints form a path which is impossible to achieve, an instance of std::runtime_error
-   * is thrown (and an error is logged) which describes the waypoints. If there are no waypoints,
-   * no path is generated.
+   * If the waypoints form a path which is impossible to achieve, an instance of
+   * `std::runtime_error` is thrown (and an error is logged) which describes the waypoints. If there
+   * are no waypoints, no path is generated.
    *
    * @param iwaypoints The waypoints to hit on the path.
    * @param ipathId A unique identifier to save the path with.
@@ -63,11 +64,11 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
 
   /**
    * Generates a path which intersects the given waypoints and saves it internally with a key of
-   * pathId. Call executePath() with the same pathId to run it.
+   * pathId. Call `executePath()` with the same pathId to run it.
    *
-   * If the waypoints form a path which is impossible to achieve, an instance of std::runtime_error
-   * is thrown (and an error is logged) which describes the waypoints. If there are no waypoints,
-   * no path is generated.
+   * If the waypoints form a path which is impossible to achieve, an instance of
+   * `std::runtime_error` is thrown (and an error is logged) which describes the waypoints. If there
+   * are no waypoints, no path is generated.
    *
    * @param iwaypoints The waypoints to hit on the path.
    * @param ipathId A unique identifier to save the path with.
@@ -78,17 +79,17 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
                     const PathfinderLimits &ilimits);
 
   /**
-   * Removes a path and frees the memory it used.
-   * This function returns true if the path was either deleted or didn't exist in the first place.
-   * It returns false if the path could not be removed because it is running.
+   * Removes a path and frees the memory it used. This function returns `true` if the path was
+   * either deleted or didn't exist in the first place. It returns `false` if the path could not be
+   * removed because it is running.
    *
    * @param ipathId A unique identifier for the path, previously passed to generatePath()
-   * @return True if the path no longer exists
+   * @return `true` if the path no longer exists
    */
   bool removePath(const std::string &ipathId);
 
   /**
-   * Gets the identifiers of all paths saved in this AsyncMotionProfileController.
+   * Gets the identifiers of all paths saved in this `AsyncMotionProfileController`.
    *
    * @return The identifiers of all paths
    */
@@ -98,7 +99,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * Executes a path with the given ID. If there is no path matching the ID, the method will
    * return. Any targets set while a path is being followed will be ignored.
    *
-   * @param ipathId A unique identifier for the path, previously passed to generatePath().
+   * @param ipathId A unique identifier for the path, previously passed to `generatePath()`.
    */
   void setTarget(std::string ipathId) override;
 
@@ -106,14 +107,16 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * Executes a path with the given ID. If there is no path matching the ID, the method will
    * return. Any targets set while a path is being followed will be ignored.
    *
-   * @param ipathId A unique identifier for the path, previously passed to generatePath().
+   * @param ipathId A unique identifier for the path, previously passed to `generatePath()`.
    * @param ibackwards Whether to follow the profile backwards.
    */
   void setTarget(std::string ipathId, bool ibackwards);
 
   /**
    * Writes the value of the controller output. This method might be automatically called in another
-   * thread by the controller. This just calls setTarget().
+   * thread by the controller.
+   *
+   * This just calls `setTarget()`.
    */
   void controllerSet(std::string ivalue) override;
 
@@ -173,7 +176,7 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    * Returns whether the controller has settled at the target. Determining what settling means is
    * implementation-dependent.
    *
-   * If the controller is disabled, this method must return true.
+   * If the controller is disabled, this method must return `true`.
    *
    * @return whether the controller is settled
    */
@@ -228,8 +231,8 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   CrossplatformThread *getThread() const;
 
   /**
-   * Attempts to remove a path without stopping execution, then if that fails,
-   * disables the controller and removes the path
+   * Attempts to remove a path without stopping execution, then if that fails, disables the
+   * controller and removes the path.
    *
    * @param ipathId The path ID that will be removed
    */

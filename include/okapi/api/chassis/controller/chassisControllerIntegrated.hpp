@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -17,15 +17,15 @@ class ChassisControllerIntegrated : public ChassisController {
   public:
   /**
    * ChassisController using the V5 motor's integrated control. Puts the motors into encoder count
-   * units. Throws a std::invalid_argument exception if the gear ratio is zero. The initial model's
-   * max velocity will be propagated to the controllers.
+   * units. Throws a `std::invalid_argument` exception if the gear ratio is zero. The initial
+   * model's max velocity will be propagated to the controllers.
    *
    * @param itimeUtil The TimeUtil.
-   * @param imodelArgs ChassisModelArgs
-   * @param ileftControllerArgs left side controller params
-   * @param irightControllerArgs right side controller params
-   * @param igearset motor internal gearset and gear ratio
-   * @param iscales see ChassisScales docs
+   * @param imodel The ChassisModel used to read from sensors/write to motors.
+   * @param ileftController The controller used for the left side motors.
+   * @param irightController The controller used for the right side motors.
+   * @param igearset The internal gearset and external ratio used on the drive motors.
+   * @param iscales The ChassisScales.
    * @param ilogger The logger this instance will log to.
    */
   ChassisControllerIntegrated(
@@ -40,12 +40,25 @@ class ChassisControllerIntegrated : public ChassisController {
   /**
    * Drives the robot straight for a distance (using closed-loop control).
    *
+   * ```cpp
+   * // Drive forward 6 inches
+   * chassis->moveDistance(6_in);
+   *
+   * // Drive backward 0.2 meters
+   * chassis->moveDistance(-0.2_m);
+   * ```
+   *
    * @param itarget distance to travel
    */
   void moveDistance(QLength itarget) override;
 
   /**
    * Drives the robot straight for a distance (using closed-loop control).
+   *
+   * ```cpp
+   * // Drive forward by spinning the motors 400 degrees
+   * chassis->moveDistance(400);
+   * ```
    *
    * @param itarget distance to travel in motor degrees
    */
@@ -68,12 +81,22 @@ class ChassisControllerIntegrated : public ChassisController {
   /**
    * Turns the robot clockwise in place (using closed-loop control).
    *
+   * ```cpp
+   * // Turn 90 degrees clockwise
+   * chassis->turnAngle(90_deg);
+   * ```
+   *
    * @param idegTarget angle to turn for
    */
   void turnAngle(QAngle idegTarget) override;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
+   *
+   * ```cpp
+   * // Turn clockwise by spinning the motors 200 degrees
+   * chassis->turnAngle(200);
+   * ```
    *
    * @param idegTarget angle to turn for in motor degrees
    */

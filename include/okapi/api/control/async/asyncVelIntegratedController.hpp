@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -28,6 +28,7 @@ class AsyncVelIntegratedController : public AsyncVelocityController<double, doub
    * @param imotor The motor to control.
    * @param ipair The gearset.
    * @param imaxVelocity The maximum velocity after gearing.
+   * @param itimeUtil The TimeUtil.
    * @param ilogger The logger this instance will log to.
    */
   AsyncVelIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,

@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -18,15 +18,16 @@ namespace okapi {
 class OdomChassisController : public ChassisController {
   public:
   /**
-   * Odometry based chassis controller. Starts task at the default for odometry when constructed.
-   * The default StateMode is `StateMode::FRAME_TRANSFORMATION`.
+   * Odometry based chassis controller. Starts task at the default for odometry when constructed,
+   * which calls `Odometry::step` every `10ms`. The default StateMode is
+   * `StateMode::FRAME_TRANSFORMATION`.
    *
    * Moves the robot around in the odom frame. Instead of telling the robot to drive forward or
    * turn some amount, you instead tell it to drive to a specific point on the field or turn to
    * a specific angle relative to its starting position.
    *
    * @param itimeUtil The TimeUtil.
-   * @param iparams odometry parameters for the internal odometry math
+   * @param iodometry The Odometry instance to run in a new task.
    * @param imode The new default StateMode used to interpret target points and query the Odometry
    * state.
    * @param imoveThreshold minimum length movement (smaller movements will be skipped)
@@ -122,8 +123,6 @@ class OdomChassisController : public ChassisController {
   void startOdomThread();
 
   /**
-   * Returns the underlying thread handle.
-   *
    * @return The underlying thread handle.
    */
   CrossplatformThread *getOdomThread() const;

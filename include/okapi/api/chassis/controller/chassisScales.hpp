@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -39,7 +39,7 @@ class ChassisScales {
    *                     |         +       v       +  |
    *                     |        ++---------------++ |
    *                     |        |                 | v
-   *       Wheel Track   |        |                 |
+   *       Wheel track   |        |                 |
    *                     |        |        x        |+|  <-- Middle wheel
    *                     |        |                 |
    *                     |        |                 |

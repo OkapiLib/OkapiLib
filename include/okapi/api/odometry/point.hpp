@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -7,8 +7,8 @@
  */
 #pragma once
 
-#include "okapi/api/units/QLength.hpp"
 #include "okapi/api/odometry/stateMode.hpp"
+#include "okapi/api/units/QLength.hpp"
 
 namespace okapi {
 struct Point {

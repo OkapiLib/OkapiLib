@@ -5,3 +5,6 @@
 [submodule "include/test/FakeIt"]
 	path = include/test/FakeIt
 	url = https://github.com/eranpeer/FakeIt.git
+[submodule "m.css"]
+	path = m.css
+	url = git://github.com/mosra/m.css
