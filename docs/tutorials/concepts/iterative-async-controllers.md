@@ -100,5 +100,7 @@ your system (i.e. running both a heading PID and a forward/backward PID
 on a drivetrain), the using two Iterative Controllers would be the best
 idea.
 
-To conclude, for most applications an Async Controller should suffice,
-but if you want more complex behavior, then use an Iterative Controller.
+To conclude, for most applications an
+[AsyncController](@ref okapi::AsyncController) should suffice, but if you want
+more complex behavior, then use an
+[IterativeController](@ref okapi::IterativeController).
