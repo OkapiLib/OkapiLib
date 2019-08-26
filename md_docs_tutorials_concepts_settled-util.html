@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>OkapiLib A PROS library for programming VEX robots.</title>
+  <title>SettledUtil | OkapiLib A PROS library for programming VEX robots.</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="logo-doxygen.jpeg" type="image/jpeg" />
@@ -24,7 +24,7 @@
       <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
         <div class="m-row">
           <ol class="m-col-t-6 m-col-m-none">
-            <li><a href="pages.html" id="m-navbar-current">Pages</a></li>
+            <li><a href="pages.html">Pages</a></li>
             <li><a href="namespaces.html">Namespaces</a></li>
           </ol>
           <ol class="m-col-t-6 m-col-m-none" start="3">
@@ -43,37 +43,10 @@
   <div class="m-container m-container-inflatable">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <h1>Pages</h2>
-        <ul class="m-doc">
-          <li><a href="md_docs_tutorials_concepts_2dmotionprofiling.html" class="m-doc">2D Motion Profiling</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_concepts_controller-io.html" class="m-doc">Controller Inputs and Outputs</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_concepts_filtering.html" class="m-doc">Filtering</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_concepts_iterative-async-controllers.html" class="m-doc">Iterative and Async Controllers</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_concepts_settled-util.html" class="m-doc">SettledUtil</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_index.html" class="m-doc">Tutorials</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_asyncAutonomousMovement.html" class="m-doc">Asynchronous Autonomous Movement</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_basicAutonomousMovement.html" class="m-doc">Moving Autonomously</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_chassisControllerBuilder.html" class="m-doc">Using the ChassisControllerBuilder</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_clawbot.html" class="m-doc">Programming the Clawbot</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_gettingStarted.html" class="m-doc">Getting Started with OkapiLib</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_liftMovement.html" class="m-doc">Lift Movement</a> <span class="m-doc"></span></li>
-        </ul>
-        <script>
-        function toggle(e) {
-            e.parentElement.className = e.parentElement.className == 'm-doc-collapsible' ?
-                'm-doc-expansible' : 'm-doc-collapsible';
-            return false;
-        }
-        /* Collapse all nodes marked as such. Doing it via JS instead of
-           directly in markup so disabling it doesn't harm usability. The list
-           is somehow regenerated on every iteration and shrinks as I change
-           the classes. It's not documented anywhere and I'm not sure if this
-           is the same across browsers, so I am going backwards in that list to
-           be sure. */
-        var collapsed = document.getElementsByClassName("collapsed");
-        for(var i = collapsed.length - 1; i >= 0; --i)
-            collapsed[i].className = 'm-doc-expansible';
-        </script>
+        <h1>
+          SettledUtil
+        </h1>
+<p>One of the most important factors in utilizing feedback controllers is establishing proper exit conditions. If a feedback controller decides that it has reached its target and exits too early, then the target will never be met. Alternatively, if the controller takes too long to realize that it&#x27;s at its goal, the best case scenario is that the movement is just a bit slower, but in the worst case the movement may never be considered complete, leaving the motors humming indefinitely.</p><p>OkapiLib&#x27;s <a href="classokapi_1_1SettledUtil.html" class="m-doc">SettledUtil</a> provides three different parameters for tuning this exit condition: <code>atTargetError</code>, <code>atTargetDerivative</code>, and <code>atTargetTime</code>. We&#x27;ll take a further look at tuning these three parameters.</p><h3>atTargetError</h3><p><code>atTargetError</code> is the maximum error value for the controller to consider itself &quot;settled&quot;, or conclusively at its target. This value can also be thought of as the precision for the controller&#x27;s movement; if a controller with an <code>atTargetError</code> value of <code>10</code> is moving towards a target of <code>100</code>, then the movement could be considered done at any value between <code>90</code> and <code>110</code>.</p><p>It would be ideal to be able to set <code>0</code> for this value and theoretically ensure that the controller ends up exactly at its target with every movement, but this is a very good way to end up in the indefinite motor humming scenario detailed at the top of the tutorial. At the very least this value needs to be greater than the mechanical slop in the system (the amount that the sensor can move without encountering resistance from the motors), but typically this value will be closer to the default of <code>50</code>.</p><p>To disable this check, set the maximum value for a double.</p><h3>atTargetDerivative</h3><p><code>atTargetDerivative</code> is the maximum <em>change in error</em> that the controller can be observing and still consider itself settled. This value helps prevent scenarios where the controller considers itself settled while quickly passing by the target and oscillating.</p><p>To disable this check, set the maximum value for a double.</p><h3>atTargetTime</h3><p><code>atTargetTime</code> is the minimum amount of time that the controller must stay in the range of <code>Target +- atTargetError</code> to be considered settled. This also helps prevent a false settled scenario when oscillating around the target.</p><p>To disable this check, set <code>0</code>.</p>
       </div>
     </div>
   </div>

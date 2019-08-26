@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>OkapiLib A PROS library for programming VEX robots.</title>
+  <title>Filtering | OkapiLib A PROS library for programming VEX robots.</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="logo-doxygen.jpeg" type="image/jpeg" />
@@ -24,7 +24,7 @@
       <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
         <div class="m-row">
           <ol class="m-col-t-6 m-col-m-none">
-            <li><a href="pages.html" id="m-navbar-current">Pages</a></li>
+            <li><a href="pages.html">Pages</a></li>
             <li><a href="namespaces.html">Namespaces</a></li>
           </ol>
           <ol class="m-col-t-6 m-col-m-none" start="3">
@@ -43,37 +43,40 @@
   <div class="m-container m-container-inflatable">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <h1>Pages</h2>
-        <ul class="m-doc">
-          <li><a href="md_docs_tutorials_concepts_2dmotionprofiling.html" class="m-doc">2D Motion Profiling</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_concepts_controller-io.html" class="m-doc">Controller Inputs and Outputs</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_concepts_filtering.html" class="m-doc">Filtering</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_concepts_iterative-async-controllers.html" class="m-doc">Iterative and Async Controllers</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_concepts_settled-util.html" class="m-doc">SettledUtil</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_index.html" class="m-doc">Tutorials</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_asyncAutonomousMovement.html" class="m-doc">Asynchronous Autonomous Movement</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_basicAutonomousMovement.html" class="m-doc">Moving Autonomously</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_chassisControllerBuilder.html" class="m-doc">Using the ChassisControllerBuilder</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_clawbot.html" class="m-doc">Programming the Clawbot</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_gettingStarted.html" class="m-doc">Getting Started with OkapiLib</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_liftMovement.html" class="m-doc">Lift Movement</a> <span class="m-doc"></span></li>
-        </ul>
-        <script>
-        function toggle(e) {
-            e.parentElement.className = e.parentElement.className == 'm-doc-collapsible' ?
-                'm-doc-expansible' : 'm-doc-collapsible';
-            return false;
-        }
-        /* Collapse all nodes marked as such. Doing it via JS instead of
-           directly in markup so disabling it doesn't harm usability. The list
-           is somehow regenerated on every iteration and shrinks as I change
-           the classes. It's not documented anywhere and I'm not sure if this
-           is the same across browsers, so I am going backwards in that list to
-           be sure. */
-        var collapsed = document.getElementsByClassName("collapsed");
-        for(var i = collapsed.length - 1; i >= 0; --i)
-            collapsed[i].className = 'm-doc-expansible';
-        </script>
+        <h1>
+          Filtering
+        </h1>
+<p>OkapiLib makes it easy to use any one of a number of various types of filters on sensors and controllers. The specifics of how each filter works and should be initialized will be left to its API reference, but this guide will help provide the general knowledge necessary to make the most out of OkapiLib&#x27;s filtering functionality.</p><h3>Filtering Generic Sensor Input</h3><p>It&#x27;s possible with OkapiLib to filter any value that you want, which makes it easy to filter sensors. The example below gives an example of filtering a sensor value.</p><pre class="m-code"><span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="kt">int</span> <span class="n">POTENTIOMETER_PORT</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">NUM_AVE_POINTS</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+
+<span class="n">Potentiometer</span> <span class="nf">exampleSensor</span><span class="p">(</span><span class="n">POTENTIOMETER_PORT</span><span class="p">);</span>
+<span class="n">AverageFilter</span><span class="o">&lt;</span><span class="n">NUM_AVE_POINTS</span><span class="o">&gt;</span> <span class="n">exampleFilter</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Current Sensor Reading: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">exampleFilter</span><span class="p">.</span><span class="n">filter</span><span class="p">(</span><span class="n">exampleSensor</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
+    <span class="n">pros</span><span class="o">::</span><span class="n">Task</span><span class="o">::</span><span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span></pre><p>The above example will print out the average of the last five readings of the potentiometer.</p><h3>Adding a Filter to a Controller</h3><p>Velocity PID Controllers often benefit from filtering the velocity reading. As a result, it is possible to pass in a filter as an argument to the constructor for a Velocity PID Controller. Note -- filtering will not have a positive impact on position PID movements, and is not supported as a result.</p><p>Using a filter with a velocity PID Controller can be done in the following manner:</p><pre class="m-code"><span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="kt">double</span> <span class="n">kP</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">double</span> <span class="n">kD</span> <span class="o">=</span> <span class="mf">0.0001</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">double</span> <span class="n">kF</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">double</span> <span class="n">kSF</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">NUM_AVE_POINTS</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+
+<span class="k">auto</span> <span class="n">exampleController</span> <span class="o">=</span> <span class="n">IterativeControllerFactory</span><span class="o">::</span><span class="n">velPID</span><span class="p">(</span>
+                           <span class="n">kP</span><span class="p">,</span> <span class="n">kD</span><span class="p">,</span> <span class="n">kF</span><span class="p">,</span> <span class="n">kSF</span><span class="p">,</span>
+                           <span class="n">VelMathFactory</span><span class="o">::</span><span class="n">createPtr</span><span class="p">(</span>
+                             <span class="n">imev5GreenTPR</span><span class="p">,</span>
+                             <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AverageFilter</span><span class="o">&lt;</span><span class="n">NUM_AVE_POINTS</span><span class="o">&gt;&gt;</span><span class="p">()</span>
+                           <span class="p">)</span>
+                         <span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">}</span></pre><p>This will create a velocity PID controller which uses an <a href="classokapi_1_1AverageFilter.html" class="m-doc">AverageFilter</a>.</p>
       </div>
     </div>
   </div>

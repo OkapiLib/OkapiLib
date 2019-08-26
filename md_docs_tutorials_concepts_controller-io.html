@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>OkapiLib A PROS library for programming VEX robots.</title>
+  <title>Controller Inputs and Outputs | OkapiLib A PROS library for programming VEX robots.</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="logo-doxygen.jpeg" type="image/jpeg" />
@@ -24,7 +24,7 @@
       <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
         <div class="m-row">
           <ol class="m-col-t-6 m-col-m-none">
-            <li><a href="pages.html" id="m-navbar-current">Pages</a></li>
+            <li><a href="pages.html">Pages</a></li>
             <li><a href="namespaces.html">Namespaces</a></li>
           </ol>
           <ol class="m-col-t-6 m-col-m-none" start="3">
@@ -43,37 +43,10 @@
   <div class="m-container m-container-inflatable">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <h1>Pages</h2>
-        <ul class="m-doc">
-          <li><a href="md_docs_tutorials_concepts_2dmotionprofiling.html" class="m-doc">2D Motion Profiling</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_concepts_controller-io.html" class="m-doc">Controller Inputs and Outputs</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_concepts_filtering.html" class="m-doc">Filtering</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_concepts_iterative-async-controllers.html" class="m-doc">Iterative and Async Controllers</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_concepts_settled-util.html" class="m-doc">SettledUtil</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_index.html" class="m-doc">Tutorials</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_asyncAutonomousMovement.html" class="m-doc">Asynchronous Autonomous Movement</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_basicAutonomousMovement.html" class="m-doc">Moving Autonomously</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_chassisControllerBuilder.html" class="m-doc">Using the ChassisControllerBuilder</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_clawbot.html" class="m-doc">Programming the Clawbot</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_gettingStarted.html" class="m-doc">Getting Started with OkapiLib</a> <span class="m-doc"></span></li>
-          <li><a href="md_docs_tutorials_walkthrough_liftMovement.html" class="m-doc">Lift Movement</a> <span class="m-doc"></span></li>
-        </ul>
-        <script>
-        function toggle(e) {
-            e.parentElement.className = e.parentElement.className == 'm-doc-collapsible' ?
-                'm-doc-expansible' : 'm-doc-collapsible';
-            return false;
-        }
-        /* Collapse all nodes marked as such. Doing it via JS instead of
-           directly in markup so disabling it doesn't harm usability. The list
-           is somehow regenerated on every iteration and shrinks as I change
-           the classes. It's not documented anywhere and I'm not sure if this
-           is the same across browsers, so I am going backwards in that list to
-           be sure. */
-        var collapsed = document.getElementsByClassName("collapsed");
-        for(var i = collapsed.length - 1; i >= 0; --i)
-            collapsed[i].className = 'm-doc-expansible';
-        </script>
+        <h1>
+          Controller Inputs and Outputs
+        </h1>
+<p>Fundamentally, a feedback control system needs both an input and an output. In OkapiLib, Iterative Controllers do not require Controller Inputs and Outputs to be passed into the constructor like Async Controllers do, but they are still necessary for making use of the controller. This tutorial will explain more about what Controller Inputs and Outputs are, and what classes can be used for such purposes.</p><h3>General Usage</h3><p>Using Controller Inputs and Outputs is quite simple, they each only have one function. Controller Inputs will return their current state with the <a href="classokapi_1_1ControllerInput.html#a3c6c86d897983f367928a93890551e17" class="m-doc">controllerGet</a> function, and Controller Outputs can be given a desired output with <a href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49" class="m-doc">controllerSet</a>. The exact implementation of these functions varies depending on what device you are using, but all Controller Outputs will accept a range of <code>[-1, 1]</code> as the input to <a href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49" class="m-doc">controllerSet</a> for the sake of standardization across multiple different devices and configurations (i.e. motors with different gearings).</p><h3>What Classes are of Each Type?</h3><p><strong>Controller Inputs:</strong></p><ul><li><a href="classokapi_1_1ADIButton.html" class="m-doc">ADIButton</a></li><li><a href="classokapi_1_1ADIEncoder.html" class="m-doc">ADIEncoder</a></li><li><a href="classokapi_1_1ADIGyro.html" class="m-doc">ADIGyro</a></li><li><a href="classokapi_1_1ADIUltrasonic.html" class="m-doc">ADIUltrasonic</a></li><li><a href="classokapi_1_1ControllerButton.html" class="m-doc">ControllerButton</a></li><li><a href="classokapi_1_1FilteredControllerInput.html" class="m-doc">FilteredControllerInput</a></li><li><a href="classokapi_1_1IntegratedEncoder.html" class="m-doc">IntegratedEncoder</a></li><li><a href="classokapi_1_1OffsetableControllerInput.html" class="m-doc">OffsetableControllerInput</a></li><li><a href="classokapi_1_1Potentiometer.html" class="m-doc">Potentiometer</a></li></ul><p><strong>Controller Outputs:</strong></p><ul><li><a href="classokapi_1_1ADIMotor.html" class="m-doc">ADIMotor</a></li><li><a href="classokapi_1_1Motor.html" class="m-doc">Motor</a></li><li><a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a></li></ul>
       </div>
     </div>
   </div>
