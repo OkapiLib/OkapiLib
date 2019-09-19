@@ -51,3 +51,15 @@ void opcontrol() {
     pros::delay(50);
   }
 }
+
+void initialize() {
+}
+
+void disabled() {
+}
+
+void competition_initialize() {
+}
+
+void autonomous() {
+}
