@@ -80,6 +80,7 @@ class RQuantity {
 
 // Unitless
 QUANTITY_TYPE(0, 0, 0, 0, Number)
+constexpr Number number(1.0);
 
 // Standard arithmetic operators:
 // ------------------------------
