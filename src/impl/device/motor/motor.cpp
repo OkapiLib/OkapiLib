@@ -280,7 +280,7 @@ std::shared_ptr<ContinuousRotarySensor> Motor::getEncoder() {
 }
 
 void Motor::controllerSet(const double ivalue) {
-  //Reversing is done by moveVelocity, no need to add * reversed.
+  // Reversing is done by moveVelocity, no need to reverse here
   moveVelocity(ivalue * toUnderlyingType(getGearing()));
 }
 
