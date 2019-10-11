@@ -322,7 +322,7 @@
                 </tr>
               </tfoot>
             </table>
-<p><a href="classokapi_1_1Motor.html" class="m-doc">Motor</a> movement functions These functions allow programmers to make motors move Sets the target absolute position for the motor to move to.</p><p>This movement is relative to the position of the motor when initialized or the position when it was most recently reset with setZeroPosition().</p><aside class="m-note m-info"><h4>Note</h4><p>This function simply sets the target for the motor, it does not block program execution until the movement finishes.</p></aside><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p><a href="classokapi_1_1Motor.html" class="m-doc">Motor</a> movement functions These functions allow programmers to make motors move Sets the target absolute position for the motor to move to.</p><p>This movement is relative to the position of the motor when initialized or the position when it was most recently reset with setZeroPosition().</p><aside class="m-note m-info"><h4>Note</h4><p>This function simply sets the target for the motor, it does not block program execution until the movement finishes.</p></aside>
           </div></section>
           <section class="m-doc-details" id="a4295103133b5cb721dfb457a8cc8c2bc"><div>
             <h3>
@@ -350,7 +350,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the relative target position for the motor to move to.</p><p>This movement is relative to the current position of the motor. Providing 10.0 as the position parameter would result in the motor moving clockwise 10 units, no matter what the current position is.</p><aside class="m-note m-info"><h4>Note</h4><p>This function simply sets the target for the motor, it does not block program execution until the movement finishes.</p></aside><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Sets the relative target position for the motor to move to.</p><p>This movement is relative to the current position of the motor. Providing 10.0 as the position parameter would result in the motor moving clockwise 10 units, no matter what the current position is.</p><aside class="m-note m-info"><h4>Note</h4><p>This function simply sets the target for the motor, it does not block program execution until the movement finishes.</p></aside>
           </div></section>
           <section class="m-doc-details" id="a9f31c14e92efe7ab492b2c335c51b488"><div>
             <h3>
@@ -373,7 +373,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the velocity for the motor.</p><p>This velocity corresponds to different actual speeds depending on the gearset used for the motor. This results in a range of +-100 for pros::c::red, +-200 for green, and +-600 for blue. The velocity is held with PID to ensure consistent speed, as opposed to setting the motor&#x27;s voltage.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Sets the velocity for the motor.</p><p>This velocity corresponds to different actual speeds depending on the gearset used for the motor. This results in a range of +-100 for pros::c::red, +-200 for green, and +-600 for blue. The velocity is held with PID to ensure consistent speed, as opposed to setting the motor&#x27;s voltage.</p>
           </div></section>
           <section class="m-doc-details" id="acebebe160f2c733ee497b1b8b50b0781"><div>
             <h3>
@@ -386,7 +386,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">ivoltage</td>
-                  <td>The new voltage value from -12000 to 12000.</td>
+                  <td>The new voltage value from <code>-12000</code> to <code>12000</code>.</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -396,7 +396,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the voltage for the motor from -12000 to 12000.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Sets the voltage for the motor from <code>-12000</code> to <code>12000</code>.</p>
           </div></section>
           <section class="m-doc-details" id="a616f20db24f1eff4d3641b86faef4fbd"><div>
             <h3>
@@ -409,7 +409,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">ivelocity</td>
-                  <td>The new motor velocity from -+-100, +-200, or +-600 depending on the motor&#x27;s gearset</td>
+                  <td>The new motor velocity from <code>+-100</code>, <code>+-200</code>, or <code>+-600</code> depending on the motor&#x27;s gearset.</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -419,7 +419,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Changes the output velocity for a profiled movement (moveAbsolute or moveRelative). This will have no effect if the motor is not following a profiled movement.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Changes the output velocity for a profiled movement (moveAbsolute or moveRelative). This will have no effect if the motor is not following a profiled movement.</p>
           </div></section>
           <section class="m-doc-details" id="ad6332111f8b2642bc13fbd8822328121"><div>
             <h3>
@@ -433,7 +433,7 @@
                 </tr>
               </tfoot>
             </table>
-<p><a href="classokapi_1_1Motor.html" class="m-doc">Motor</a> telemetry functions These functions allow programmers to collect telemetry from motors Gets the target position set for the motor by the user.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p><a href="classokapi_1_1Motor.html" class="m-doc">Motor</a> telemetry functions These functions allow programmers to collect telemetry from motors Gets the target position set for the motor by the user.</p>
           </div></section>
           <section class="m-doc-details" id="a6bf3c5a2f5caf0e5b02e8dcf2e8130d9"><div>
             <h3>
@@ -447,7 +447,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the absolute position of the motor in its encoder units.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the absolute position of the motor in its encoder units.</p>
           </div></section>
           <section class="m-doc-details" id="a59aef8ea3c212e3466b67631978e47eb"><div>
             <h3>
@@ -461,7 +461,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the &quot;absolute&quot; zero position of the motor to its current position.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Sets the &quot;absolute&quot; zero position of the motor to its current position.</p>
           </div></section>
           <section class="m-doc-details" id="a841736ae664104fb38ffff33ef763394"><div>
             <h3>
@@ -475,7 +475,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the velocity commanded to the motor by the user.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the velocity commanded to the motor by the user.</p>
           </div></section>
           <section class="m-doc-details" id="a5cbb95146d4663440632a9e3ccc99ae9"><div>
             <h3>
@@ -489,7 +489,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the actual velocity of the motor.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the actual velocity of the motor.</p>
           </div></section>
           <section class="m-doc-details" id="a5cdc06b92c943b2348130b162f6c5f16"><div>
             <h3>
@@ -503,7 +503,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the current drawn by the motor in mA.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the current drawn by the motor in mA.</p>
           </div></section>
           <section class="m-doc-details" id="a5466d52a245b10765945b91c0194da66"><div>
             <h3>
@@ -517,7 +517,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the direction of movement for the motor.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the direction of movement for the motor.</p>
           </div></section>
           <section class="m-doc-details" id="a16413d00d77dd73b4977e8b7f73a33ce"><div>
             <h3>
@@ -531,7 +531,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the efficiency of the motor in percent.</p><p>An efficiency of 100% means that the motor is moving electrically while drawing no electrical power, and an efficiency of 0% means that the motor is drawing power but not moving.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the efficiency of the motor in percent.</p><p>An efficiency of 100% means that the motor is moving electrically while drawing no electrical power, and an efficiency of 0% means that the motor is drawing power but not moving.</p>
           </div></section>
           <section class="m-doc-details" id="ab714cb81d252599ab2933e13cc8af40d"><div>
             <h3>
@@ -545,7 +545,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Checks if the motor is drawing over its current limit.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Checks if the motor is drawing over its current limit.</p>
           </div></section>
           <section class="m-doc-details" id="a60eaf29b00c8c0f26b9e70f3f28f74be"><div>
             <h3>
@@ -559,7 +559,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Checks if the motor&#x27;s temperature is above its limit.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Checks if the motor&#x27;s temperature is above its limit.</p>
           </div></section>
           <section class="m-doc-details" id="a50dfcb9272ad53aa231119a523ad2f2e"><div>
             <h3>
@@ -573,7 +573,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Checks if the motor is stopped.</p><aside class="m-note m-info"><h4>Note</h4><p>Although this function forwards data from the motor, the motor presently does not provide any value. This function returns <code>PROS_ERR</code> with errno set to ENOSYS.</p></aside>
+<p>Checks if the motor is stopped.</p><p>Although this function forwards data from the motor, the motor presently does not provide any value. This function returns <code>PROS_ERR</code> with errno set to <code>ENOSYS</code>.</p>
           </div></section>
           <section class="m-doc-details" id="a94be8c4591e65b268dd4f7357fdf4b50"><div>
             <h3>
@@ -583,11 +583,11 @@
               <tfoot>
                 <tr>
                   <th style="width: 1%">Returns</th>
-                  <td>1 if the motor is at zero absolute position, 0 if the motor has moved from its absolute zero, or <code>PROS_ERR</code> if the operation failed, setting errno</td>
+                  <td>1 if the motor is at zero absolute position, <code>0</code> if the motor has moved from its absolute zero, or <code>PROS_ERR</code> if the operation failed, setting errno</td>
                 </tr>
               </tfoot>
             </table>
-<p>Checks if the motor is at its zero position.</p><p>Although this function forwards data from the motor, the motor presently does not provide any value. This function returns <code>PROS_ERR</code> with errno set to ENOSYS.</p>
+<p>Checks if the motor is at its zero position.</p><p>Although this function forwards data from the motor, the motor presently does not provide any value. This function returns <code>PROS_ERR</code> with errno set to <code>ENOSYS</code>.</p>
           </div></section>
           <section class="m-doc-details" id="a1fece81a588e0d2ab40a08a1bcb86475"><div>
             <h3>
@@ -597,11 +597,11 @@
               <tfoot>
                 <tr>
                   <th style="width: 1%">Returns</th>
-                  <td>A currently unknown bitfield containing the motor&#x27;s faults. 0b00000100 = Current Limit Hit</td>
+                  <td>A currently unknown bitfield containing the motor&#x27;s faults. <code>0b00000100</code> = Current Limit Hit</td>
                 </tr>
               </tfoot>
             </table>
-<p>Gets the faults experienced by the motor. Compare this bitfield to the bitmasks in pros::motor_fault_e_t.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the faults experienced by the motor. Compare this bitfield to the bitmasks in pros::motor_fault_e_t.</p>
           </div></section>
           <section class="m-doc-details" id="a5a8206be671413586f461a45132c9056"><div>
             <h3>
@@ -615,7 +615,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the flags set by the motor&#x27;s operation. Compare this bitfield to the bitmasks in pros::motor_flag_e_t.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the flags set by the motor&#x27;s operation. Compare this bitfield to the bitmasks in pros::motor_flag_e_t.</p>
           </div></section>
           <section class="m-doc-details" id="ac7d9b049f24ddc141b2b63f7e3e4d3ba"><div>
             <h3>
@@ -628,7 +628,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">timestamp</td>
-                  <td>A pointer to a time in milliseconds for which the encoder count will be returned. If NULL, the timestamp at which the encoder count was read will not be supplied</td>
+                  <td>A pointer to a time in milliseconds for which the encoder count will be returned. If <code>NULL</code>, the timestamp at which the encoder count was read will not be supplied.</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -638,7 +638,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the raw encoder count of the motor at a given timestamp.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the raw encoder count of the motor at a given timestamp.</p>
           </div></section>
           <section class="m-doc-details" id="a67bdc04d59ba8293ccd58d26b849c9f0"><div>
             <h3>
@@ -652,7 +652,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the power drawn by the motor in Watts.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the power drawn by the motor in Watts.</p>
           </div></section>
           <section class="m-doc-details" id="acba91d770dbc7e38f59070e8d5957d6d"><div>
             <h3>
@@ -666,7 +666,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the temperature of the motor in degrees Celsius.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the temperature of the motor in degrees Celsius.</p>
           </div></section>
           <section class="m-doc-details" id="a591e2ac0cc80b58f6b5b767c5d0128c5"><div>
             <h3>
@@ -680,7 +680,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the torque generated by the motor in Newton Metres (Nm).</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the torque generated by the motor in Newton Metres (Nm).</p>
           </div></section>
           <section class="m-doc-details" id="a399d4a16683c5498483f1f1e5e6307b5"><div>
             <h3>
@@ -694,7 +694,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the voltage delivered to the motor in millivolts.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the voltage delivered to the motor in millivolts.</p>
           </div></section>
           <section class="m-doc-details" id="a2124ee76893c401cd6dbf4879808349a"><div>
             <h3>
@@ -707,7 +707,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">imode</td>
-                  <td>The new motor brake mode to set for the motor</td>
+                  <td>The new motor brake mode to set for the motor.</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -731,7 +731,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the brake mode that was set for the motor.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the brake mode that was set for the motor.</p>
           </div></section>
           <section class="m-doc-details" id="a6d70691246bb8ba18d17f97b40a7f3f9"><div>
             <h3>
@@ -744,7 +744,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">ilimit</td>
-                  <td>The new current limit in mA</td>
+                  <td>The new current limit in mA.</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -768,7 +768,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the current limit for the motor in mA.</p><p>The default value is 2500 mA.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the current limit for the motor in mA. The default value is <code>2500</code> mA.</p>
           </div></section>
           <section class="m-doc-details" id="ad08cc59d805811a81ce5d25580ad0ce0"><div>
             <h3>
@@ -781,7 +781,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">iunits</td>
-                  <td>The new motor encoder units</td>
+                  <td>The new motor encoder units.</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -791,7 +791,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets one of <a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764c" class="m-doc">AbstractMotor::<wbr />encoderUnits</a> for the motor encoder.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Sets one of <a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764c" class="m-doc">AbstractMotor::<wbr />encoderUnits</a> for the motor encoder.</p>
           </div></section>
           <section class="m-doc-details" id="a1bc6347732e108a171b6e9a846722817"><div>
             <h3>
@@ -805,7 +805,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the encoder units that were set for the motor.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the encoder units that were set for the motor.</p>
           </div></section>
           <section class="m-doc-details" id="a5720f3775594f0097856754776526a47"><div>
             <h3>
@@ -818,7 +818,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">igearset</td>
-                  <td>The new motor gearset</td>
+                  <td>The new motor gearset.</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -828,7 +828,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets one of <a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">AbstractMotor::<wbr />gearset</a> for the motor.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Sets one of <a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">AbstractMotor::<wbr />gearset</a> for the motor.</p>
           </div></section>
           <section class="m-doc-details" id="abe6d309d6e883b469997c4ddc4584834"><div>
             <h3>
@@ -842,7 +842,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the gearset that was set for the motor.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Gets the gearset that was set for the motor.</p>
           </div></section>
           <section class="m-doc-details" id="a5655accbdc1b548bc75ec49d40337fe0"><div>
             <h3>
@@ -855,7 +855,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">ireverse</td>
-                  <td>True reverses the motor, false is default</td>
+                  <td>True reverses the motor, false is default.</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -865,7 +865,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the reverse flag for the motor.</p><p>This will invert its movements and the values returned for its position.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Sets the reverse flag for the motor. This will invert its movements and the values returned for its position.</p>
           </div></section>
           <section class="m-doc-details" id="a1ccc0bc9af94c6bab28f2373a902b23a"><div>
             <h3>
@@ -878,7 +878,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">ilimit</td>
-                  <td>The new voltage limit in Volts</td>
+                  <td>The new voltage limit in Volts.</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -888,7 +888,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the voltage limit for the motor in Volts.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the port.</p>
+<p>Sets the voltage limit for the motor in Volts.</p>
           </div></section>
           <section class="m-doc-details" id="a9da308795bb956d5f7f3f7885a727d8e"><div>
             <h3>
