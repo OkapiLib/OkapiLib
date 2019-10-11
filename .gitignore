@@ -19,3 +19,4 @@ html/
 latex/
 xml/
 venv/
+*.d/

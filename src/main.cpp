@@ -36,7 +36,7 @@ void opcontrol() {
             .withOdometry(StateMode::FRAME_TRANSFORMATION) // StateMode::CARTESIAN
             .buildOdometry();
 
-  pros::Task printSensorValsTask(printSensorVals);
+  pros::Task printSensorValsTask(printSensorVals, NULL, "");
 
   drive->driveToPoint({6_in, 2_in});
   drive->driveToPoint({6_in, 6_in});
