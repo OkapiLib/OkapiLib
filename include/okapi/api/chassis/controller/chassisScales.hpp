@@ -19,7 +19,7 @@ namespace okapi {
 class ChassisScales {
   public:
   /**
-   * The scales a Chassis Controller needs to do all of its closed-loop control. First index is
+   * The scales a ChassisController needs to do all of its closed-loop control. First index is
    * the wheel diameter, second index is the wheel track. An optional third index is the middle
    * wheel diameter if you are using a 3-encoder setup.
    *
@@ -58,7 +58,7 @@ class ChassisScales {
                 const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
-   * The scales a Chassis Controller needs to do all of its closed-loop control. First index is
+   * The scales a ChassisController needs to do all of its closed-loop control. First index is
    * the straight scale, second index is the turn scale. An optional third index is the middle
    * scale. The straight scale converts motor degrees to meters, the turn scale converts motor
    * degrees to robot turn degrees, and the middle scale converts middle wheel degrees to meters.
