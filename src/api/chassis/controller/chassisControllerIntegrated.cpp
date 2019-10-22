@@ -109,11 +109,15 @@ void ChassisControllerIntegrated::setTurnsMirrored(const bool ishouldMirror) {
   normalTurns = !ishouldMirror;
 }
 
+bool ChassisControllerIntegrated::isSettled() {
+  return leftController->isSettled() && rightController->isSettled();
+}
+
 void ChassisControllerIntegrated::waitUntilSettled() {
   LOG_INFO(std::string("ChassisControllerIntegrated: Waiting to settle"));
 
   auto rate = timeUtil.getRate();
-  while (!(leftController->isSettled() && rightController->isSettled())) {
+  while (!isSettled()) {
     rate->delayUntil(10_ms);
   }
 

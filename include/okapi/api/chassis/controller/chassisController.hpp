@@ -93,6 +93,13 @@ class ChassisController {
   virtual void setTurnsMirrored(bool ishouldMirror) = 0;
 
   /**
+   * Checks whether the internal controllers are currently settled.
+   *
+   * @return Whether this ChassisController is settled.
+   */
+  virtual bool isSettled() = 0;
+
+  /**
    * Delays until the currently executing movement completes.
    */
   virtual void waitUntilSettled() = 0;

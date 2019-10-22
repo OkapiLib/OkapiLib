@@ -352,6 +352,8 @@ class SimulatedSystem : public ControllerInput<double>, public ControllerOutput<
   std::thread thread;
 };
 
+enum class IsSettledOverride { none, alwaysSettled, neverSettled };
+
 class MockAsyncPosIntegratedController : public AsyncPosIntegratedController {
   public:
   MockAsyncPosIntegratedController();
@@ -360,7 +362,7 @@ class MockAsyncPosIntegratedController : public AsyncPosIntegratedController {
 
   bool isSettled() override;
 
-  bool isSettledOverride{true};
+  IsSettledOverride isSettledOverride{IsSettledOverride::none};
   using AsyncPosIntegratedController::maxVelocity;
 };
 
@@ -374,7 +376,7 @@ class MockAsyncVelIntegratedController : public AsyncVelIntegratedController {
 
   void controllerSet(double ivalue) override;
 
-  bool isSettledOverride{true};
+  IsSettledOverride isSettledOverride{IsSettledOverride::none};
 
   double lastTarget{0};
   double maxTarget{0};
@@ -391,7 +393,7 @@ class MockIterativeController : public IterativePosPIDController {
 
   bool isSettled() override;
 
-  bool isSettledOverride{true};
+  IsSettledOverride isSettledOverride{IsSettledOverride::none};
 };
 
 void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor);
@@ -610,6 +612,9 @@ class MockChassisController : public ChassisController {
   void setTurnsMirrored(bool ishouldMirror) override {
     turnsMirrored = ishouldMirror;
   }
+  bool isSettled() override {
+    return settled;
+  }
   void waitUntilSettled() override {
     waitUntilSettledCalled++;
   }
@@ -634,6 +639,7 @@ class MockChassisController : public ChassisController {
   QAngle lastTurnAngleTargetQAngle;
   double lastTurnAngleTargetDouble;
   bool turnsMirrored{false};
+  bool settled{true};
   int waitUntilSettledCalled{0};
   int stopCalled{0};
   ChassisScales scales{{4.125_in, 10_in}, imev5GreenTPR};

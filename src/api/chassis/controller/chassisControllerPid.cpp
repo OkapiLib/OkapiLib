@@ -188,6 +188,19 @@ void ChassisControllerPID::setTurnsMirrored(const bool ishouldMirror) {
   normalTurns = !ishouldMirror;
 }
 
+bool ChassisControllerPID::isSettled() {
+  switch (mode) {
+  case distance:
+    return distancePid->isSettled() && anglePid->isSettled();
+
+  case angle:
+    return turnPid->isSettled();
+
+  default:
+    return true;
+  }
+}
+
 void ChassisControllerPID::waitUntilSettled() {
   LOG_INFO(std::string("ChassisControllerPID: Waiting to settle"));
 

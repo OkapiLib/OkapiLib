@@ -114,6 +114,10 @@ void DefaultOdomChassisController::setTurnsMirrored(bool ishouldMirror) {
   controller->setTurnsMirrored(ishouldMirror);
 }
 
+bool DefaultOdomChassisController::isSettled() {
+  return controller->isSettled();
+}
+
 void DefaultOdomChassisController::waitUntilSettled() {
   controller->waitUntilSettled();
 }

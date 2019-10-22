@@ -124,6 +124,13 @@ class ChassisControllerIntegrated : public ChassisController {
   void setTurnsMirrored(bool ishouldMirror) override;
 
   /**
+   * Checks whether the internal controllers are currently settled.
+   *
+   * @return Whether this ChassisController is settled.
+   */
+  bool isSettled() override;
+
+  /**
    * Delays until the currently executing movement completes.
    */
   void waitUntilSettled() override;
