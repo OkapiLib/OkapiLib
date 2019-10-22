@@ -24,7 +24,8 @@
  *
  * <a href="annotated.html">OkapiLib Classes</a>
  *
- * Not sure where to go? Take a look at the [Getting Started tutorial](docs/tutorials/walkthrough/gettingStarted.md).
+ * Not sure where to go? Take a look at the
+ * [Getting Started tutorial](docs/tutorials/walkthrough/gettingStarted.md).
  */
 
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"

@@ -358,7 +358,14 @@ MockAsyncPosIntegratedController::MockAsyncPosIntegratedController(const TimeUti
 }
 
 bool MockAsyncPosIntegratedController::isSettled() {
-  return isSettledOverride || AsyncPosIntegratedController::isSettled();
+  switch (isSettledOverride) {
+  case IsSettledOverride::none:
+    return AsyncPosIntegratedController::isSettled();
+  case IsSettledOverride::alwaysSettled:
+    return true;
+  case IsSettledOverride::neverSettled:
+    return false;
+  }
 }
 
 MockAsyncVelIntegratedController::MockAsyncVelIntegratedController()
@@ -369,7 +376,14 @@ MockAsyncVelIntegratedController::MockAsyncVelIntegratedController()
 }
 
 bool MockAsyncVelIntegratedController::isSettled() {
-  return isSettledOverride || AsyncVelIntegratedController::isSettled();
+  switch (isSettledOverride) {
+  case IsSettledOverride::none:
+    return AsyncVelIntegratedController::isSettled();
+  case IsSettledOverride::alwaysSettled:
+    return true;
+  case IsSettledOverride::neverSettled:
+    return false;
+  }
 }
 
 void MockAsyncVelIntegratedController::setTarget(const double itarget) {
@@ -401,7 +415,14 @@ MockIterativeController::MockIterativeController(const double ikP)
 }
 
 bool MockIterativeController::isSettled() {
-  return isSettledOverride || IterativePosPIDController::isSettled();
+  switch (isSettledOverride) {
+  case IsSettledOverride::none:
+    return IterativePosPIDController::isSettled();
+  case IsSettledOverride::alwaysSettled:
+    return true;
+  case IsSettledOverride::neverSettled:
+    return false;
+  }
 }
 
 void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor) {

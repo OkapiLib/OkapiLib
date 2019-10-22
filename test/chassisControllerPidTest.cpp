@@ -12,7 +12,14 @@
 
 using namespace okapi;
 
-class ChassisControllerPIDTest : public ::testing::Test {
+class CCPIDUnderTest : public ChassisControllerPID {
+  public:
+  using ChassisControllerPID::ChassisControllerPID;
+  using ChassisControllerPID::mode;
+  using ChassisControllerPID::modeType;
+};
+
+class ChassisControllerPIDTest : public ::testing::Test { // NOLINT(hicpp-member-init)
   protected:
   void SetUp() override {
     scales = new ChassisScales({wheelDiam, wheelTrack}, gearsetToTPR(gearset));
@@ -21,18 +28,21 @@ class ChassisControllerPIDTest : public ::testing::Test {
     turnController = new MockIterativeController(0.1);
     angleController = new MockIterativeController(0.1);
 
+    distanceController->isSettledOverride = IsSettledOverride::alwaysSettled;
+    turnController->isSettledOverride = IsSettledOverride::alwaysSettled;
+    angleController->isSettledOverride = IsSettledOverride::alwaysSettled;
+
     model = new MockSkidSteerModel();
     leftMotor = model->leftMtr.get();
     rightMotor = model->rightMtr.get();
 
-    controller =
-      new ChassisControllerPID(createTimeUtil(),
-                               std::shared_ptr<ChassisModel>(model),
-                               std::unique_ptr<IterativePosPIDController>(distanceController),
-                               std::unique_ptr<IterativePosPIDController>(turnController),
-                               std::unique_ptr<IterativePosPIDController>(angleController),
-                               gearset, // must match the tpr given to ChassisScales
-                               *scales);
+    controller = new CCPIDUnderTest(createTimeUtil(),
+                                    std::shared_ptr<ChassisModel>(model),
+                                    std::unique_ptr<IterativePosPIDController>(distanceController),
+                                    std::unique_ptr<IterativePosPIDController>(turnController),
+                                    std::unique_ptr<IterativePosPIDController>(angleController),
+                                    gearset, // must match the tpr given to ChassisScales
+                                    *scales);
     controller->startThread();
   }
 
@@ -45,7 +55,7 @@ class ChassisControllerPIDTest : public ::testing::Test {
   QLength wheelTrack = 8_in;
   AbstractMotor::gearset gearset = AbstractMotor::gearset::green;
   ChassisScales *scales;
-  ChassisControllerPID *controller;
+  CCPIDUnderTest *controller;
   MockMotor *leftMotor;
   MockMotor *rightMotor;
   MockIterativeController *distanceController;
@@ -345,4 +355,49 @@ TEST_F(ChassisControllerPIDTest, GetGainsReturnsTheSetGains) {
   EXPECT_FLOAT_EQ(angleGains.kI, 1.0);
   EXPECT_FLOAT_EQ(angleGains.kD, 1.1);
   EXPECT_FLOAT_EQ(angleGains.kBias, 1.2);
+}
+
+TEST_F(ChassisControllerPIDTest, isNotSettledWhenDistanceControllerIsNotSettled) {
+  distanceController->isSettledOverride = IsSettledOverride::neverSettled;
+  angleController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  turnController->isSettledOverride = IsSettledOverride::neverSettled;
+  controller->mode = CCPIDUnderTest::modeType::distance;
+  EXPECT_FALSE(controller->isSettled());
+}
+
+TEST_F(ChassisControllerPIDTest, isNotSettledWhenAngleControllerIsNotSettled) {
+  distanceController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  angleController->isSettledOverride = IsSettledOverride::neverSettled;
+  turnController->isSettledOverride = IsSettledOverride::neverSettled;
+  controller->mode = CCPIDUnderTest::modeType::distance;
+  EXPECT_FALSE(controller->isSettled());
+}
+
+TEST_F(ChassisControllerPIDTest, isSettledWhenDistanceAndAngleControllersAreSettled) {
+  distanceController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  angleController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  turnController->isSettledOverride = IsSettledOverride::neverSettled;
+  controller->mode = CCPIDUnderTest::modeType::distance;
+  EXPECT_TRUE(controller->isSettled());
+}
+
+TEST_F(ChassisControllerPIDTest, isNotSettledWhenTurnControllerIsNotSettled) {
+  distanceController->isSettledOverride = IsSettledOverride::neverSettled;
+  angleController->isSettledOverride = IsSettledOverride::neverSettled;
+  turnController->isSettledOverride = IsSettledOverride::neverSettled;
+  controller->mode = CCPIDUnderTest::modeType::angle;
+  EXPECT_FALSE(controller->isSettled());
+}
+
+TEST_F(ChassisControllerPIDTest, isSettledWhenTurnControllerIsSettled) {
+  angleController->isSettledOverride = IsSettledOverride::neverSettled;
+  angleController->isSettledOverride = IsSettledOverride::neverSettled;
+  turnController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  controller->mode = CCPIDUnderTest::modeType::angle;
+  EXPECT_TRUE(controller->isSettled());
+}
+
+TEST_F(ChassisControllerPIDTest, isSettledInModeNone) {
+  controller->mode = CCPIDUnderTest::modeType::none;
+  EXPECT_TRUE(controller->isSettled());
 }

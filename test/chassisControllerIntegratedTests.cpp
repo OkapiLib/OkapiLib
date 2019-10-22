@@ -12,13 +12,16 @@
 
 using namespace okapi;
 
-class ChassisControllerIntegratedTest : public ::testing::Test {
+class ChassisControllerIntegratedTest : public ::testing::Test { // NOLINT(hicpp-member-init)
   protected:
   void SetUp() override {
     scales = new ChassisScales({wheelDiam, wheelTrack}, gearsetToTPR(gearset));
 
     leftController = new MockAsyncPosIntegratedController();
     rightController = new MockAsyncPosIntegratedController();
+
+    leftController->isSettledOverride = IsSettledOverride::alwaysSettled;
+    rightController->isSettledOverride = IsSettledOverride::alwaysSettled;
 
     model = new MockSkidSteerModel();
     model->setMaxVelocity(101);
@@ -320,4 +323,22 @@ TEST_F(ChassisControllerIntegratedTest, SetMaxVelocityTest) {
   EXPECT_EQ(leftController->maxVelocity, 42);
   EXPECT_EQ(rightController->maxVelocity, 42);
   EXPECT_EQ(model->getMaxVelocity(), 42);
+}
+
+TEST_F(ChassisControllerIntegratedTest, isNotSettledWhenLeftControllerIsNotSettled) {
+  leftController->isSettledOverride = IsSettledOverride::neverSettled;
+  rightController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  EXPECT_FALSE(controller->isSettled());
+}
+
+TEST_F(ChassisControllerIntegratedTest, isNotSettledWhenRightControllerIsNotSettled) {
+  leftController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  rightController->isSettledOverride = IsSettledOverride::neverSettled;
+  EXPECT_FALSE(controller->isSettled());
+}
+
+TEST_F(ChassisControllerIntegratedTest, isSettledWhenLeftAndRightControllersAreSettled) {
+  leftController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  rightController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  EXPECT_TRUE(controller->isSettled());
 }
