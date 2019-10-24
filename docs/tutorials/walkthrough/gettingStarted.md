@@ -18,8 +18,8 @@ API header include statement in the file `include/main.h` :
 //#include "pros/api_legacy.h"
 ```
 
-All okapi methods are located in the `okapi::` namespace. 
-To avoid typing `okapi::` in front of every command, uncomment the `using namespace okapi` statement in the file `include/main.h` :
+All okapi methods are located in the okapi namespace. 
+To avoid typing `okapi::` in front of every command, uncomment the `using` statement in the file `include/main.h` :
 
 ``` cpp
 /**
@@ -36,6 +36,7 @@ using namespace okapi; // <-- UNCOMMENT THIS LINE
 ```
 
 If you don't want to use the okapi namespace, but you want to use unit literals such as `1_in`, add the following line to the file `include/main.h` :
+
 ``` cpp
 using namespace okapi::literals;
 ```
