@@ -154,7 +154,7 @@ button is pressed.
 We can define our button as an [ADIButton](@ref okapi::ADIButton):
 
 ```cpp
-ADIButton armLimitSwitch('H');
+ADIButton armLimitSwitch(8); // triport 8 (H)
 ```
 
 And the arm motor:
@@ -270,7 +270,7 @@ void opcontrol() {
     Controller controller;
 
     // Arm related objects
-    ADIButton armLimitSwitch('H');
+    ADIButton armLimitSwitch(8); // triport 8 (H)
     ControllerButton armUpButton(ControllerDigital::A);
     ControllerButton armDownButton(ControllerDigital::B);
     Motor armMotor(-8);
@@ -332,7 +332,7 @@ void opcontrol() {
     Controller controller;
 
     // Arm related objects
-    ADIButton armLimitSwitch('H');
+    ADIButton armLimitSwitch(8); // triport 8 (H)
     ControllerButton armUpButton(ControllerDigital::A);
     ControllerButton armDownButton(ControllerDigital::B);
     Motor armMotor(-8);
