@@ -5,6 +5,9 @@ versatile and simple way to make a
 [ChassisController](@ref okapi::ChassisController). This tutorial will give an
 overview of how to use it and customize it for your robot.
 
+Please read the preface on where to use builders:
+[Where to use builders](docs/tutorials/concepts/builders-and-tasks.md)
+
 ## Configuring motors
 
 The only required parameter is the motor configuration. Both skid-steer and
@@ -48,14 +51,14 @@ using namespace okapi;
 void opcontrol() {
 auto drive = ChassisControllerBuilder()
                 .withMotors(
-                    {1, 2},  // Left motors are 1 & 2
-                    {-3, -4} // Right motors are 3 & 4 (reversed)
+                    {-1, -2}, // Left motors are 1 & 2 (reversed)
+                    {3, 4}    // Right motors are 3 & 4
                 )
                 .build();
 }
 ```
 
-### More than two motors:
+### More than two motors by objects:
 
 ```cpp
 #include "okapi/api.hpp"
