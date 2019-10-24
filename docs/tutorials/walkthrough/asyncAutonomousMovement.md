@@ -56,6 +56,8 @@ const double liftkD = 0.0001;
 
 auto driveController = ChassisControllerBuilder()
                         .withMotors(1, -2)
+                        // 4 inch wheel diameter, 13 inch wheelbase, green cartridge
+                        .withDimensions({{4_in, 13_in}, imev5GreenTPR})
                         .build();
 
 auto liftController = AsyncPosControllerBuilder()
@@ -65,7 +67,7 @@ auto liftController = AsyncPosControllerBuilder()
 
 void autonomous() {
     // Begin movements
-    driveController->moveDistanceAsync(1000); // Move 1000 motor degrees forward
+    driveController->moveDistanceAsync(10_in); // Move 10 inches forward
     liftController->setTarget(200); // Move 200 motor degrees upward
     driveController->waitUntilSettled();
 
@@ -88,6 +90,8 @@ const double liftkD = 0.0001;
 
 auto driveController = ChassisControllerBuilder()
                         .withMotors(1, -2)
+                        // 4 inch wheel diameter, 13 inch wheelbase, green cartridge
+                        .withDimensions({{4_in, 13_in}, imev5GreenTPR})
                         .build();
 
 auto liftController = AsyncPosControllerBuilder()
@@ -97,7 +101,7 @@ auto liftController = AsyncPosControllerBuilder()
 
 void autonomous() {
     // Begin movements
-    driveController->moveDistanceAsync(1000); // Move 1000 motor degrees forward
+    driveController->moveDistanceAsync(10_in); // Move 10 inches forward
     liftController->setTarget(200); // Move 200 motor degrees upward
     driveController->waitUntilSettled();
     liftController->waitUntilSettled();
