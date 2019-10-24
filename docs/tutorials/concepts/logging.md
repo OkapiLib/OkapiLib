@@ -2,13 +2,20 @@
 
 ## Enable the Default Logger
 
-OkapiLib has a [Logger](okapi::Logger) class which is used internally by many of
-OkapiLib's classes. If you are trying to work through a problem with your code
-or with OkapiLib, enabling the default [Logger](okapi::Logger) can help you
-gather more information. Enable it with:
+OkapiLib has a [Logger](@ref okapi::Logger) class which is used internally by many of
+OkapiLib's classes. It is a good idea to use the [warn](@ref okapi::Logger::LogLevel::warn)
+[LogLevel](@ref okapi::Logger::LogLevel) all the time to catch warnings or errors as they arise
+during development (or during a match! you can log to a file on the SD card with the path
+`"/usd/test_logging.txt"`). Enable it with:
 ```cpp
-Logger::setDefaultLogger(std::make_shared<Logger>(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug));
+Logger::setDefaultLogger(
+    std::make_shared<Logger>(
+        TimeUtilFactory::create().getTimer(), // It needs a Timer
+        "/ser/sout", // Output to the PROS terminal
+        Logger::LogLevel::warn // Show errors and warnings
+    )
+);
 ```
 
 Place that code in a place where it will run before the code you are debugging.
-The first line of `void initialize()` is a good place.
+The first line of `initialize` is a good place.

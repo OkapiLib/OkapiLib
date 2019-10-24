@@ -27,6 +27,7 @@ after reading through the API reference, the **Topical Tutorials** offer longer
 examples and more detail about using the API.
 
 - [Where to use builders](docs/tutorials/concepts/builders-and-tasks.md)
+- [Logging](docs/tutorials/concepts/logging.md)
 - [2D Motion Profiling](docs/tutorials/concepts/twodmotionprofiling.md)
 - [Controller Inputs and Outputs](docs/tutorials/concepts/controller-io.md)
 - [Filtering](docs/tutorials/concepts/filtering.md)
