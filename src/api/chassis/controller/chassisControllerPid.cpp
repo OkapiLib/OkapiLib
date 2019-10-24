@@ -45,6 +45,8 @@ ChassisControllerPID::~ChassisControllerPID() {
 }
 
 void ChassisControllerPID::loop() {
+  LOG_INFO_S("Started ChassisControllerPID task.");
+
   auto encStartVals = chassisModel->getSensorVals();
   std::valarray<std::int32_t> encVals;
   double distanceElapsed = 0, angleChange = 0;
@@ -104,6 +106,8 @@ void ChassisControllerPID::loop() {
 
     rate->delayUntil(threadSleepTime);
   }
+
+  LOG_INFO_S("Stopped ChassisControllerPID task.");
 }
 
 void ChassisControllerPID::trampoline(void *context) {
@@ -202,7 +206,7 @@ bool ChassisControllerPID::isSettled() {
 }
 
 void ChassisControllerPID::waitUntilSettled() {
-  LOG_INFO(std::string("ChassisControllerPID: Waiting to settle"));
+  LOG_INFO_S("ChassisControllerPID: Waiting to settle");
 
   bool completelySettled = false;
 
@@ -236,7 +240,7 @@ void ChassisControllerPID::waitUntilSettled() {
   // Stop after the thread has run at least once
   stopAfterSettled();
 
-  LOG_INFO(std::string("ChassisControllerPID: Done waiting to settle"));
+  LOG_INFO_S("ChassisControllerPID: Done waiting to settle");
 }
 
 /**
@@ -245,14 +249,13 @@ void ChassisControllerPID::waitUntilSettled() {
  * @return true if done settling; false if settling should be tried again
  */
 bool ChassisControllerPID::waitForDistanceSettled() {
-  LOG_INFO(std::string("ChassisControllerPID: Waiting to settle in distance mode"));
+  LOG_INFO_S("ChassisControllerPID: Waiting to settle in distance mode");
 
   auto rate = timeUtil.getRate();
   while (!(distancePid->isSettled() && anglePid->isSettled())) {
     if (mode == angle) {
       // False will cause the loop to re-enter the switch
-      LOG_WARN(
-        std::string("ChassisControllerPID: Mode changed to angle while waiting in distance!"));
+      LOG_WARN_S("ChassisControllerPID: Mode changed to angle while waiting in distance!");
       return false;
     }
 
@@ -269,14 +272,13 @@ bool ChassisControllerPID::waitForDistanceSettled() {
  * @return true if done settling; false if settling should be tried again
  */
 bool ChassisControllerPID::waitForAngleSettled() {
-  LOG_INFO(std::string("ChassisControllerPID: Waiting to settle in angle mode"));
+  LOG_INFO_S("ChassisControllerPID: Waiting to settle in angle mode");
 
   auto rate = timeUtil.getRate();
   while (!turnPid->isSettled()) {
     if (mode == distance) {
       // False will cause the loop to re-enter the switch
-      LOG_WARN(
-        std::string("ChassisControllerPID: Mode changed to distance while waiting in angle!"));
+      LOG_WARN_S("ChassisControllerPID: Mode changed to distance while waiting in angle!");
       return false;
     }
 
@@ -332,7 +334,7 @@ CrossplatformThread *ChassisControllerPID::getThread() const {
 }
 
 void ChassisControllerPID::stop() {
-  LOG_INFO(std::string("ChassisControllerPID: Stopping"));
+  LOG_INFO_S("ChassisControllerPID: Stopping");
 
   mode = none;
   doneLooping.store(true, std::memory_order_release);

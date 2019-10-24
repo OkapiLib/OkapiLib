@@ -46,7 +46,7 @@ class IterativePosPIDController : public IterativePositionController<double, dou
     double ikBias,
     const TimeUtil &itimeUtil,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-    const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+    std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
   /**
    * Position PID controller.
@@ -59,7 +59,7 @@ class IterativePosPIDController : public IterativePositionController<double, dou
     const Gains &igains,
     const TimeUtil &itimeUtil,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-    const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+    std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
   /**
    * Do one iteration of the controller. Returns the reading in the range [-1, 1] unless the

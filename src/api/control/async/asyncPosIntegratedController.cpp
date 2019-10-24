@@ -56,7 +56,7 @@ bool AsyncPosIntegratedController::isSettled() {
 }
 
 void AsyncPosIntegratedController::reset() {
-  LOG_INFO(std::string("AsyncPosIntegratedController: Reset"));
+  LOG_INFO_S("AsyncPosIntegratedController: Reset");
   hasFirstTarget = false;
   settledUtil->reset();
 }
@@ -86,14 +86,14 @@ void AsyncPosIntegratedController::resumeMovement() {
 }
 
 void AsyncPosIntegratedController::waitUntilSettled() {
-  LOG_INFO(std::string("AsyncPosIntegratedController: Waiting to settle"));
+  LOG_INFO_S("AsyncPosIntegratedController: Waiting to settle");
 
   auto rate = timeUtil.getRate();
   while (!isSettled()) {
     rate->delayUntil(motorUpdateRate);
   }
 
-  LOG_INFO(std::string("AsyncPosIntegratedController: Done waiting to settle"));
+  LOG_INFO_S("AsyncPosIntegratedController: Done waiting to settle");
 }
 
 void AsyncPosIntegratedController::controllerSet(double ivalue) {

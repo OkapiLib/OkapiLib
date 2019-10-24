@@ -19,10 +19,9 @@ ChassisScales::ChassisScales(const std::initializer_list<QLength> &idimensions,
   wheelTrack = vec.at(1);
 
   if (wheelDiameter > wheelTrack) {
-    LOG_WARN(std::string(
-      "ChassisScales: Wheel diameter (" + std::to_string(wheelDiameter.convert(meter)) +
-      " meters) is greater than wheel track (" + std::to_string(wheelTrack.convert(meter)) +
-      " meters). This is probably an error."));
+    LOG_WARN("ChassisScales: Wheel diameter (" + std::to_string(wheelDiameter.convert(meter)) +
+             " meters) is greater than wheel track (" + std::to_string(wheelTrack.convert(meter)) +
+             " meters). This is probably an error.");
   }
 
   if (vec.size() >= 3) {

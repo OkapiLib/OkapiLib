@@ -114,7 +114,7 @@ bool ChassisControllerIntegrated::isSettled() {
 }
 
 void ChassisControllerIntegrated::waitUntilSettled() {
-  LOG_INFO(std::string("ChassisControllerIntegrated: Waiting to settle"));
+  LOG_INFO_S("ChassisControllerIntegrated: Waiting to settle");
 
   auto rate = timeUtil.getRate();
   while (!isSettled()) {
@@ -125,12 +125,11 @@ void ChassisControllerIntegrated::waitUntilSettled() {
   rightController->flipDisable(true);
   chassisModel->stop();
 
-  LOG_INFO(std::string("ChassisControllerIntegrated: Done waiting to settle"));
+  LOG_INFO_S("ChassisControllerIntegrated: Done waiting to settle");
 }
 
 void ChassisControllerIntegrated::stop() {
-  LOG_INFO(std::string("ChassisControllerIntegrated: Stopping"));
-
+  LOG_INFO_S("ChassisControllerIntegrated: Stopping");
   leftController->flipDisable(true);
   rightController->flipDisable(true);
   chassisModel->stop();

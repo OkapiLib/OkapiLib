@@ -55,8 +55,8 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Pathfinder
                                                 const PathfinderLimits &ilimits) {
   if (iwaypoints.size() == 0) {
     // No point in generating a path
-    LOG_WARN(std::string(
-      "AsyncMotionProfileController: Not generating a path because no waypoints were given."));
+    LOG_WARN_S(
+      "AsyncMotionProfileController: Not generating a path because no waypoints were given.");
     return;
   }
 
@@ -67,7 +67,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Pathfinder
       Waypoint{point.x.convert(meter), point.y.convert(meter), point.theta.convert(radian)});
   }
 
-  LOG_INFO(std::string("AsyncMotionProfileController: Preparing trajectory"));
+  LOG_INFO_S("AsyncMotionProfileController: Preparing trajectory");
 
   TrajectoryPtr candidate(new TrajectoryCandidate, [](TrajectoryCandidate *c) {
     if (c->laptr) {
@@ -111,7 +111,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Pathfinder
     throw std::runtime_error(message);
   }
 
-  LOG_INFO(std::string("AsyncMotionProfileController: Generating path"));
+  LOG_INFO_S("AsyncMotionProfileController: Generating path");
 
   pathfinder_generate(candidate.get(), trajectory.get());
 
@@ -127,7 +127,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Pathfinder
     throw std::runtime_error(message);
   }
 
-  LOG_INFO(std::string("AsyncMotionProfileController: Modifying for tank drive"));
+  LOG_INFO_S("AsyncMotionProfileController: Modifying for tank drive");
   pathfinder_modify_tank(trajectory.get(),
                          length,
                          leftTrajectory.get(),
@@ -213,6 +213,8 @@ std::string AsyncMotionProfileController::getTarget() {
 }
 
 void AsyncMotionProfileController::loop() {
+  LOG_INFO_S("Started AsyncMotionProfileController task.");
+
   auto rate = timeUtil.getRate();
 
   while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
@@ -230,7 +232,7 @@ void AsyncMotionProfileController::loop() {
         executeSinglePath(path->second, timeUtil.getRate());
         model->stop();
 
-        LOG_INFO(std::string("AsyncMotionProfileController: Done moving"));
+        LOG_INFO_S("AsyncMotionProfileController: Done moving");
       }
 
       isRunning.store(false, std::memory_order_release);
@@ -238,6 +240,8 @@ void AsyncMotionProfileController::loop() {
 
     rate->delayUntil(10_ms);
   }
+
+  LOG_INFO_S("Stopped AsyncMotionProfileController task.");
 }
 
 void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
@@ -289,14 +293,14 @@ void AsyncMotionProfileController::trampoline(void *context) {
 }
 
 void AsyncMotionProfileController::waitUntilSettled() {
-  LOG_INFO(std::string("AsyncMotionProfileController: Waiting to settle"));
+  LOG_INFO_S("AsyncMotionProfileController: Waiting to settle");
 
   auto rate = timeUtil.getRate();
   while (!isSettled()) {
     rate->delayUntil(10_ms);
   }
 
-  LOG_INFO(std::string("AsyncMotionProfileController: Done waiting to settle"));
+  LOG_INFO_S("AsyncMotionProfileController: Done waiting to settle");
 }
 
 void AsyncMotionProfileController::moveTo(std::initializer_list<PathfinderPoint> iwaypoints,
@@ -329,7 +333,7 @@ void AsyncMotionProfileController::reset() {
   // Interrupt executeSinglePath() by disabling the controller
   flipDisable(true);
 
-  LOG_INFO(std::string("AsyncMotionProfileController: Waiting to reset"));
+  LOG_INFO_S("AsyncMotionProfileController: Waiting to reset");
 
   auto rate = timeUtil.getRate();
   while (isRunning.load(std::memory_order_acquire)) {

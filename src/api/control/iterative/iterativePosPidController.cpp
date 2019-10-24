@@ -19,18 +19,18 @@ IterativePosPIDController::IterativePosPIDController(const double ikP,
                                                      const double ikBias,
                                                      const TimeUtil &itimeUtil,
                                                      std::unique_ptr<Filter> iderivativeFilter,
-                                                     const std::shared_ptr<Logger> &ilogger)
+                                                     std::shared_ptr<Logger> ilogger)
   : IterativePosPIDController({ikP, ikI, ikD, ikBias},
                               itimeUtil,
                               std::move(iderivativeFilter),
-                              ilogger) {
+                              std::move(ilogger)) {
 }
 
 IterativePosPIDController::IterativePosPIDController(const Gains &igains,
                                                      const TimeUtil &itimeUtil,
                                                      std::unique_ptr<Filter> iderivativeFilter,
-                                                     const std::shared_ptr<Logger> &ilogger)
-  : logger(ilogger),
+                                                     std::shared_ptr<Logger> ilogger)
+  : logger(std::move(ilogger)),
     derivativeFilter(std::move(iderivativeFilter)),
     loopDtTimer(itimeUtil.getTimer()),
     settledUtil(itimeUtil.getSettledUtil()) {
@@ -148,7 +148,7 @@ double IterativePosPIDController::step(const double inewReading) {
 }
 
 void IterativePosPIDController::reset() {
-  LOG_INFO(std::string("IterativePosPIDController: Reset"));
+  LOG_INFO_S("IterativePosPIDController: Reset");
 
   error = 0;
   lastError = 0;

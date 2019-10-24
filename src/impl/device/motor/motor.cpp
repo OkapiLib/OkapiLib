@@ -31,11 +31,11 @@ Motor::Motor(const std::uint8_t iport,
   }
 
   if (igearset == AbstractMotor::gearset::invalid) {
-    LOG_WARN(std::string("Motor: The gearset is invalid."));
+    LOG_WARN_S("Motor: The gearset is invalid.");
   }
 
   if (iencoderUnits == AbstractMotor::encoderUnits::invalid) {
-    LOG_WARN(std::string("Motor: The encoder units are invalid."));
+    LOG_WARN_S("Motor: The encoder units are invalid.");
   }
 
   setGearing(igearset);

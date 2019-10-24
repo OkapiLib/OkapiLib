@@ -187,8 +187,9 @@ ChassisControllerBuilder::withOdometry(std::unique_ptr<Odometry> iodometry,
                                        const QLength &imoveThreshold,
                                        const QAngle &iturnThreshold) {
   if (iodometry == nullptr) {
-    LOG_ERROR(std::string("ChassisControllerBuilder: Odometry cannot be null."));
-    throw std::runtime_error("ChassisControllerBuilder: Odometry cannot be null.");
+    std::string msg = "ChassisControllerBuilder: Odometry cannot be null.";
+    LOG_ERROR(msg);
+    throw std::runtime_error(msg);
   }
 
   hasOdom = true;
@@ -259,8 +260,7 @@ std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
   }
 
   if (!gearsetSetByUser) {
-    LOG_WARN(std::string(
-      "ChassisControllerBuilder: The default gearset is selected. This could be a bug."));
+    LOG_WARN_S("ChassisControllerBuilder: The default gearset is selected. This could be a bug.");
   }
 
   std::int32_t calculatedTPR = gearsetToTPR(gearset.internalGearset) * gearset.ratio;

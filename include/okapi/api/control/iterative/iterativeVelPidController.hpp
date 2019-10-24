@@ -44,7 +44,7 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
     std::unique_ptr<VelMath> ivelMath,
     const TimeUtil &itimeUtil,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-    const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+    std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity PD controller.
@@ -60,7 +60,7 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
     std::unique_ptr<VelMath> ivelMath,
     const TimeUtil &itimeUtil,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
-    const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+    std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
   /**
    * Do one iteration of the controller. Returns the reading in the range [-1, 1] unless the

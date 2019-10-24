@@ -39,8 +39,8 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
                std::unique_ptr<IterativeController<Input, Output>> icontroller,
                const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
                const double iratio = 1,
-               const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger())
-    : logger(ilogger),
+               std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger())
+    : logger(std::move(ilogger)),
       rateSupplier(irateSupplier),
       input(iinput),
       output(ioutput),
@@ -165,7 +165,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * keeping any user-configured information.
    */
   void reset() override {
-    LOG_INFO(std::string("AsyncWrapper: Reset"));
+    LOG_INFO_S("AsyncWrapper: Reset");
     controller->reset();
     hasFirstTarget = false;
   }
@@ -206,14 +206,14 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    * implementation-dependent.
    */
   void waitUntilSettled() override {
-    LOG_INFO(std::string("AsyncWrapper: Waiting to settle"));
+    LOG_INFO_S("AsyncWrapper: Waiting to settle");
 
     auto rate = rateSupplier.get();
     while (!isSettled()) {
       rate->delayUntil(motorUpdateRate);
     }
 
-    LOG_INFO(std::string("AsyncWrapper: Done waiting to settle"));
+    LOG_INFO_S("AsyncWrapper: Done waiting to settle");
   }
 
   /**

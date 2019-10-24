@@ -18,20 +18,20 @@ IterativeVelPIDController::IterativeVelPIDController(const double ikP,
                                                      std::unique_ptr<VelMath> ivelMath,
                                                      const TimeUtil &itimeUtil,
                                                      std::unique_ptr<Filter> iderivativeFilter,
-                                                     const std::shared_ptr<Logger> &ilogger)
+                                                     std::shared_ptr<Logger> ilogger)
   : IterativeVelPIDController({ikP, ikD, ikF, ikSF},
                               std::move(ivelMath),
                               itimeUtil,
                               std::move(iderivativeFilter),
-                              ilogger) {
+                              std::move(ilogger)) {
 }
 
 IterativeVelPIDController::IterativeVelPIDController(const Gains &igains,
                                                      std::unique_ptr<VelMath> ivelMath,
                                                      const TimeUtil &itimeUtil,
                                                      std::unique_ptr<Filter> iderivativeFilter,
-                                                     const std::shared_ptr<Logger> &ilogger)
-  : logger(ilogger),
+                                                     std::shared_ptr<Logger> ilogger)
+  : logger(std::move(ilogger)),
     velMath(std::move(ivelMath)),
     derivativeFilter(std::move(iderivativeFilter)),
     loopDtTimer(itimeUtil.getTimer()),
@@ -139,7 +139,7 @@ bool IterativeVelPIDController::isSettled() {
 }
 
 void IterativeVelPIDController::reset() {
-  LOG_INFO(std::string("IterativeVelPIDController: Reset"));
+  LOG_INFO_S("IterativeVelPIDController: Reset");
 
   error = 0;
   outputSum = 0;

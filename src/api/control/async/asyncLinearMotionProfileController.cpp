@@ -54,8 +54,8 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
                                                       const PathfinderLimits &ilimits) {
   if (iwaypoints.size() == 0) {
     // No point in generating a path
-    LOG_WARN(std::string("AsyncLinearMotionProfileController: Not generating a path because no "
-                         "waypoints were given."));
+    LOG_WARN_S("AsyncLinearMotionProfileController: Not generating a path because no "
+               "waypoints were given.");
     return;
   }
 
@@ -65,7 +65,7 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
     points.push_back(Waypoint{point.convert(meter), 0, 0});
   }
 
-  LOG_INFO(std::string("AsyncLinearMotionProfileController: Preparing trajectory"));
+  LOG_INFO_S("AsyncLinearMotionProfileController: Preparing trajectory");
 
   TrajectoryPtr candidate(new TrajectoryCandidate, [](TrajectoryCandidate *c) {
     if (c->laptr) {
@@ -109,7 +109,7 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
     throw std::runtime_error(message);
   }
 
-  LOG_INFO(std::string("AsyncLinearMotionProfileController: Generating path"));
+  LOG_INFO_S("AsyncLinearMotionProfileController: Generating path");
 
   pathfinder_generate(candidate.get(), trajectory.get());
 
@@ -197,6 +197,8 @@ std::string AsyncLinearMotionProfileController::getTarget() const {
 }
 
 void AsyncLinearMotionProfileController::loop() {
+  LOG_INFO_S("Started AsyncLinearMotionProfileController task.");
+
   auto rate = timeUtil.getRate();
 
   while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
@@ -216,7 +218,7 @@ void AsyncLinearMotionProfileController::loop() {
         executeSinglePath(path->second, timeUtil.getRate());
         output->controllerSet(0);
 
-        LOG_INFO(std::string("AsyncLinearMotionProfileController: Done moving"));
+        LOG_INFO_S("AsyncLinearMotionProfileController: Done moving");
       }
 
       isRunning.store(false, std::memory_order_release);
@@ -224,6 +226,8 @@ void AsyncLinearMotionProfileController::loop() {
 
     rate->delayUntil(10_ms);
   }
+
+  LOG_INFO_S("Stopped AsyncLinearMotionProfileController task.");
 }
 
 void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair &path,
@@ -266,14 +270,14 @@ void AsyncLinearMotionProfileController::trampoline(void *context) {
 }
 
 void AsyncLinearMotionProfileController::waitUntilSettled() {
-  LOG_INFO(std::string("AsyncLinearMotionProfileController: Waiting to settle"));
+  LOG_INFO_S("AsyncLinearMotionProfileController: Waiting to settle");
 
   auto rate = timeUtil.getRate();
   while (!isSettled()) {
     rate->delayUntil(10_ms);
   }
 
-  LOG_INFO(std::string("AsyncLinearMotionProfileController: Done waiting to settle"));
+  LOG_INFO_S("AsyncLinearMotionProfileController: Done waiting to settle");
 }
 
 void AsyncLinearMotionProfileController::moveTo(const QLength &iposition,
@@ -293,7 +297,7 @@ void AsyncLinearMotionProfileController::moveTo(const QLength &iposition,
   waitUntilSettled();
   if (!removePath(name)) {
     // Failed to remove path (Warn and move on)
-    LOG_WARN(std::string("AsyncLinearMotionProfileController: Couldn't remove path after moveTo"));
+    LOG_WARN_S("AsyncLinearMotionProfileController: Couldn't remove path after moveTo");
   }
 }
 
@@ -314,7 +318,7 @@ void AsyncLinearMotionProfileController::reset() {
   // Interrupt executeSinglePath() by disabling the controller
   flipDisable(true);
 
-  LOG_INFO(std::string("AsyncLinearMotionProfileController: Waiting to reset"));
+  LOG_INFO_S("AsyncLinearMotionProfileController: Waiting to reset");
 
   auto rate = timeUtil.getRate();
   while (isRunning.load(std::memory_order_acquire)) {

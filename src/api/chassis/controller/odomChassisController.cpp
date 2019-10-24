@@ -8,12 +8,14 @@
 #include "okapi/api/chassis/controller/odomChassisController.hpp"
 
 namespace okapi {
-OdomChassisController::OdomChassisController(const TimeUtil &itimeUtil,
+OdomChassisController::OdomChassisController(TimeUtil itimeUtil,
                                              std::unique_ptr<Odometry> iodometry,
                                              const StateMode &imode,
                                              const QLength &imoveThreshold,
-                                             const QAngle &iturnThreshold)
-  : timeUtil(itimeUtil),
+                                             const QAngle &iturnThreshold,
+                                             std::shared_ptr<Logger> ilogger)
+  : logger(std::move(ilogger)),
+    timeUtil(std::move(itimeUtil)),
     moveThreshold(imoveThreshold),
     turnThreshold(iturnThreshold),
     odom(std::move(iodometry)),
@@ -66,11 +68,15 @@ void OdomChassisController::trampoline(void *context) {
 }
 
 void OdomChassisController::loop() {
+  LOG_INFO_S("Started OdomChassisController task.");
+
   auto rate = timeUtil.getRate();
   while (!dtorCalled.load(std::memory_order_acquire) && !odomTask->notifyTake(0)) {
     odom->step();
     rate->delayUntil(10_ms);
   }
+
+  LOG_INFO_S("Stopped OdomChassisController task.");
 }
 
 CrossplatformThread *OdomChassisController::getOdomThread() const {
