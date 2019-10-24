@@ -65,7 +65,7 @@ auto liftController = AsyncPosControllerBuilder()
 
 void autonomous() {
     // Begin movements
-    driveController->moveDistanceAsync(10_in); // Move 10 inches forward
+    driveController->moveDistanceAsync(1000); // Move 1000 motor degrees forward
     liftController->setTarget(200); // Move 200 motor degrees upward
     driveController->waitUntilSettled();
 
@@ -97,7 +97,7 @@ auto liftController = AsyncPosControllerBuilder()
 
 void autonomous() {
     // Begin movements
-    driveController->moveDistanceAsync(10_in); // Move 10 inches forward
+    driveController->moveDistanceAsync(1000); // Move 1000 motor degrees forward
     liftController->setTarget(200); // Move 200 motor degrees upward
     driveController->waitUntilSettled();
     liftController->waitUntilSettled();
