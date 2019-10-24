@@ -117,7 +117,7 @@ while (true) {
 
     // Wait and give up the time we don't need to other tasks.
     // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-    pros::Task::delay(10);
+    pros::delay(10);
 }
 ```
 
@@ -135,7 +135,7 @@ while (true) {
 
     // Wait and give up the time we don't need to other tasks.
     // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-    pros::Task::delay(10);
+    pros::delay(10);
 }
 ```
 
@@ -309,7 +309,7 @@ void opcontrol() {
 
         // Wait and give up the time we don't need to other tasks.
         // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-        pros::Task::delay(10);
+        pros::delay(10);
     }
 }
 ```
@@ -371,7 +371,7 @@ void opcontrol() {
 
         // Wait and give up the time we don't need to other tasks.
         // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-        pros::Task::delay(10);
+        pros::delay(10);
     }
 }
 ```
