@@ -99,7 +99,11 @@ AsyncMotionProfileControllerBuilder::buildLinearMotionProfileController() {
   auto out = std::make_shared<AsyncLinearMotionProfileController>(
     timeUtilFactory.create(), limits, output, diameter, pair, controllerLogger);
   out->startThread();
-  out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+
+  GUARD_INITIALIZE_TASK {
+    out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+  }
+
   return out;
 }
 
@@ -120,7 +124,11 @@ AsyncMotionProfileControllerBuilder::buildMotionProfileController() {
   auto out = std::make_shared<AsyncMotionProfileController>(
     timeUtilFactory.create(), limits, model, scales, pair, controllerLogger);
   out->startThread();
-  out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+
+  GUARD_INITIALIZE_TASK {
+    out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+  }
+
   return out;
 }
 } // namespace okapi

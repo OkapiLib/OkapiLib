@@ -321,7 +321,10 @@ ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisCo
                                                      controllerLogger);
 
     out->startOdomThread();
-    out->getOdomThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+
+    GUARD_INITIALIZE_TASK {
+      out->getOdomThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+    }
 
     return out;
   } else {
@@ -353,7 +356,10 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
       controllerLogger);
 
     out->startThread();
-    out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+
+    GUARD_INITIALIZE_TASK {
+      out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+    }
 
     return out;
   } else {
@@ -377,7 +383,10 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
       controllerLogger);
 
     out->startThread();
-    out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+
+    GUARD_INITIALIZE_TASK {
+      out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+    }
 
     return out;
   }

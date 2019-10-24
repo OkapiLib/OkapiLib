@@ -128,7 +128,11 @@ std::shared_ptr<AsyncPosPIDController> AsyncPosControllerBuilder::buildAPPC() {
                                                      std::move(derivativeFilter),
                                                      controllerLogger);
   out->startThread();
-  out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+
+  GUARD_INITIALIZE_TASK {
+    out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+  }
+
   return out;
 }
 } // namespace okapi
