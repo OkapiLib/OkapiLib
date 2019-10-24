@@ -279,9 +279,6 @@ std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
     out = buildCCI();
   }
 
-  // Delay so the encoders don't return erroneous values
-  pros::delay(30);
-
   return out;
 }
 
