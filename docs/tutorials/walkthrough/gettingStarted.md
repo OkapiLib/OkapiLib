@@ -24,14 +24,14 @@ To avoid typing `okapi::` in front of every command, uncomment the `using` state
 ``` cpp
 /**
  * If you find doing pros::Motor() to be tedious and you'd prefer just to do
- * Motor,
- * you can use the namespace with the following commented out line.
+ * Motor, you can use the namespace with the following commented out line.
  *
  * IMPORTANT: Only the okapi or pros namespace may be used, not both
  * concurrently! The okapi namespace will export all symbols inside the pros
  * namespace.
  */
 // using namespace pros;
+// using namespace pros::literals;
 using namespace okapi; // <-- UNCOMMENT THIS LINE
 ```
 
