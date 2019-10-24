@@ -179,7 +179,7 @@ Then we can check if it's pressed and stop powering the arm motor:
 ```cpp
 // Don't power the arm if it is all the way down
 if (armLimitSwitch.isPressed()) {
-    armMotor.move_voltage(0);
+    armMotor.moveVoltage(0);
 } else {
     // Normal arm control
 }
@@ -200,15 +200,15 @@ arm:
 ```cpp
 // Don't power the arm if it is all the way down
 if (armLimitSwitch.isPressed()) {
-    armMotor.move_voltage(0);
+    armMotor.moveVoltage(0);
 } else {
     // Else, the arm isn't all the way down
     if (armUpButton.isPressed()) {
-        armMotor.move_voltage(127);
+        armMotor.moveVoltage(12000);
     } else if (armDownButton.isPressed()) {
-        armMotor.move_voltage(-127);
+        armMotor.moveVoltage(-12000);
     } else {
-        armMotor.move_voltage(0);
+        armMotor.moveVoltage(0);
     }
 }
 ```
@@ -286,15 +286,15 @@ void opcontrol() {
 
         // Don't power the arm if it is all the way down
         if (armLimitSwitch.isPressed()) {
-            armMotor.move_voltage(0);
+            armMotor.moveVoltage(0);
         } else {
             // else, the arm isn't all the way down
             if (armUpButton.isPressed()) {
-                armMotor.move_voltage(127);
+                armMotor.moveVoltage(12000);
             } else if (armDownButton.isPressed()) {
-                armMotor.move_voltage(-127);
+                armMotor.moveVoltage(-12000);
             } else {
-                armMotor.move_voltage(0);
+                armMotor.moveVoltage(0);
             }
         }
 
@@ -348,15 +348,15 @@ void opcontrol() {
 
         // Don't power the arm if it is all the way down
         if (armLimitSwitch.isPressed()) {
-            armMotor.move_voltage(0);
+            armMotor.moveVoltage(0);
         } else {
             // else, the arm isn't all the way down
             if (armUpButton.isPressed()) {
-                armMotor.move_voltage(127);
+                armMotor.moveVoltage(12000);
             } else if (armDownButton.isPressed()) {
-                armMotor.move_voltage(-127);
+                armMotor.moveVoltage(-12000);
             } else {
-                armMotor.move_voltage(0);
+                armMotor.moveVoltage(0);
             }
         }
 
