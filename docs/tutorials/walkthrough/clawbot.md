@@ -243,10 +243,8 @@ After this, you can move the chassis in physical units, such as inches and
 degrees:
 
 ```cpp
-for (int i = 0; i < 4; i++) {
-    drive->moveDistance(12_in); // Drive forward 12 inches
-    drive->turnAngle(90_deg);   // Turn in place 90 degrees
-}
+drive->moveDistance(12_in); // Drive forward 12 inches
+drive->turnAngle(90_deg);   // Turn in place 90 degrees
 ```
 
 ## Wrap Up
