@@ -164,14 +164,15 @@ Motor armMotor = 8_rmtr;
 ```
 
 The `_mtr` syntax is called a user-defined literal. It's a succinct way of
-initializing a motor. For example,
+initializing a motor. There are many ways to initialize a motor :
 
 ```cpp
-Motor foo = 1_mtr; // Motor in port 1
 Motor foo(1);      // Motor in port 1
+Motor foo = 1_mtr; // Motor in port 1
 
-Motor bar = 1_rmtr; // Reversed motor in port 1
 Motor bar(1, true); // Reversed motor in port 1
+Motor bar(-1);      // Reversed motor in port 1
+Motor bar = 1_rmtr; // Reversed motor in port 1
 ```
 
 Then we can check if it's pressed and stop powering the arm motor:
@@ -274,7 +275,7 @@ void opcontrol() {
     ADIButton armLimitSwitch('H');
     ControllerButton armUpButton(ControllerDigital::A);
     ControllerButton armDownButton(ControllerDigital::B);
-    Motor armMotor = 8_rmtr;
+    Motor armMotor(-8);
 
     // Button to run our sample autonomous routine
     ControllerButton runAutoButton(ControllerDigital::X);
@@ -336,7 +337,7 @@ void opcontrol() {
     ADIButton armLimitSwitch('H');
     ControllerButton armUpButton(ControllerDigital::A);
     ControllerButton armDownButton(ControllerDigital::B);
-    Motor armMotor = 8_rmtr;
+    Motor armMotor(-8);
 
     // Button to run our sample autonomous routine
     ControllerButton runAutoButton(ControllerDigital::X);
