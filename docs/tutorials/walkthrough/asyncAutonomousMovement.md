@@ -10,11 +10,8 @@ modify the below example to fit your subsystem.
 ```cpp
 using namespace okapi;
 
-const int DRIVE_MOTOR_LEFT = 1;
-const int DRIVE_MOTOR_RIGHT = 2;
-
 auto driveController = ChassisControllerBuilder()
-                        .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                        .withMotors(1, -2)
                         .build();
 
 void autonomous() {
@@ -26,20 +23,16 @@ And then we'll add a lift subsystem as an Async Controller:
 ```cpp
 using namespace okapi;
 
-const int DRIVE_MOTOR_LEFT = 1;
-const int DRIVE_MOTOR_RIGHT = 2;
-
 const double liftkP = 0.001;
 const double liftkI = 0.0001;
 const double liftkD = 0.0001;
-const int LIFT_MOTOR = 2;
 
 auto driveController = ChassisControllerBuilder()
-                        .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                        .withMotors(1, -2)
                         .build();
 
 auto liftController = AsyncPosControllerBuilder()
-                        .withMotor(LIFT_MOTOR)
+                        .withMotor(3) // lift motor port 3
                         .withGains({liftkP, liftkI, liftkD})
                         .build();
 
@@ -57,20 +50,16 @@ the drive controller.
 ```cpp
 using namespace okapi;
 
-const int DRIVE_MOTOR_LEFT = 1;
-const int DRIVE_MOTOR_RIGHT = 2;
-
 const double liftkP = 0.001;
 const double liftkI = 0.0001;
 const double liftkD = 0.0001;
-const int LIFT_MOTOR = 2;
 
 auto driveController = ChassisControllerBuilder()
-                        .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                        .withMotors(1, -2)
                         .build();
 
 auto liftController = AsyncPosControllerBuilder()
-                        .withMotor(LIFT_MOTOR)
+                        .withMotor(3) // lift motor port 3
                         .withGains({liftkP, liftkI, liftkD})
                         .build();
 
@@ -93,20 +82,16 @@ controllers.
 ```cpp
 using namespace okapi;
 
-const int DRIVE_MOTOR_LEFT = 1;
-const int DRIVE_MOTOR_RIGHT = 2;
-
 const double liftkP = 0.001;
 const double liftkI = 0.0001;
 const double liftkD = 0.0001;
-const int LIFT_MOTOR = 2;
 
 auto driveController = ChassisControllerBuilder()
-                        .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                        .withMotors(1, -2)
                         .build();
 
 auto liftController = AsyncPosControllerBuilder()
-                        .withMotor(LIFT_MOTOR)
+                        .withMotor(3) // lift motor port 3
                         .withGains({liftkP, liftkI, liftkD})
                         .build();
 
