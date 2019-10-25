@@ -8,6 +8,9 @@
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
 #include "okapi/api/odometry/threeEncoderOdometry.hpp"
+#include "okapi/impl/util/configurableTimeUtilFactory.hpp"
+#include "okapi/impl/util/rate.hpp"
+#include "okapi/impl/util/timer.hpp"
 #include <stdexcept>
 
 namespace okapi {
@@ -237,6 +240,15 @@ ChassisControllerBuilder &ChassisControllerBuilder::withChassisControllerTimeUti
 ChassisControllerBuilder &ChassisControllerBuilder::withClosedLoopControllerTimeUtilFactory(
   const TimeUtilFactory &itimeUtilFactory) {
   closedLoopControllerTimeUtilFactory = itimeUtilFactory;
+  return *this;
+}
+
+ChassisControllerBuilder &
+ChassisControllerBuilder::withClosedLoopControllerTimeUtil(const double iatTargetError,
+                                                           const double iatTargetDerivative,
+                                                           const QTime &iatTargetTime) {
+  closedLoopControllerTimeUtilFactory =
+    ConfigurableTimeUtilFactory(iatTargetError, iatTargetDerivative, iatTargetTime);
   return *this;
 }
 

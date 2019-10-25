@@ -61,7 +61,6 @@
 #include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
 #include "okapi/impl/control/util/controllerRunnerFactory.hpp"
 #include "okapi/impl/control/util/pidTunerFactory.hpp"
-#include "okapi/impl/control/util/settledUtilFactory.hpp"
 
 #include "okapi/api/odometry/odomMath.hpp"
 #include "okapi/api/odometry/odometry.hpp"

@@ -10,7 +10,7 @@ during development (or during a match! you can log to a file on the SD card with
 ```cpp
 Logger::setDefaultLogger(
     std::make_shared<Logger>(
-        TimeUtilFactory::create().getTimer(), // It needs a Timer
+        TimeUtilFactory::createDefault().getTimer(), // It needs a Timer
         "/ser/sout", // Output to the PROS terminal
         Logger::LogLevel::warn // Show errors and warnings
     )

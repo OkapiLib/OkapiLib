@@ -265,7 +265,8 @@ class ChassisControllerBuilder {
   ChassisControllerBuilder &withMaxVoltage(double imaxVoltage);
 
   /**
-   * Sets the TimeUtilFactory used when building a ChassisController. The default is the static
+   * Sets the TimeUtilFactory used when building a ChassisController. This instance will be given
+   * to the ChassisController (not to controllers it uses). The default is the static
    * TimeUtilFactory.
    *
    * @param itimeUtilFactory The TimeUtilFactory.
@@ -275,14 +276,27 @@ class ChassisControllerBuilder {
   withChassisControllerTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
 
   /**
-   * Sets the TimeUtilFactory used when building a ClosedLoopController. The default is the static
-   * TimeUtilFactory.
+   * Sets the TimeUtilFactory used when building a ClosedLoopController. This instance will be given
+   * to any ClosedLoopController instances. The default is the static TimeUtilFactory.
    *
    * @param itimeUtilFactory The TimeUtilFactory.
    * @return An ongoing builder.
    */
   ChassisControllerBuilder &
   withClosedLoopControllerTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
+
+  /**
+   * Creates a new ConfigurableTimeUtilFactory with the given parameters. Given to any
+   * ClosedLoopController instances.
+   *
+   * @param iatTargetError The minimum error to be considered settled.
+   * @param iatTargetDerivative The minimum error derivative to be considered settled.
+   * @param iatTargetTime The minimum time within atTargetError to be considered settled.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withClosedLoopControllerTimeUtil(double iatTargetError = 50,
+                                                             double iatTargetDerivative = 5,
+                                                             const QTime &iatTargetTime = 250_ms);
 
   /**
    * Sets the TimeUtilFactory used when building an Odometry. The default is the static

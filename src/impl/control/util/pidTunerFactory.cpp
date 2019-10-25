@@ -7,7 +7,6 @@
  */
 #include "okapi/impl/control/util/pidTunerFactory.hpp"
 #include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
-#include "okapi/impl/control/util/settledUtilFactory.hpp"
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
 namespace okapi {
@@ -28,7 +27,7 @@ PIDTuner PIDTunerFactory::create(const std::shared_ptr<ControllerInput<double>> 
                                  const std::shared_ptr<Logger> &ilogger) {
   return PIDTuner(iinput,
                   ioutput,
-                  TimeUtilFactory::create(),
+                  TimeUtilFactory::createDefault(),
                   itimeout,
                   igoal,
                   ikPMin,
@@ -62,7 +61,7 @@ PIDTunerFactory::createPtr(const std::shared_ptr<ControllerInput<double>> &iinpu
                            const std::shared_ptr<Logger> &ilogger) {
   return std::make_unique<PIDTuner>(iinput,
                                     ioutput,
-                                    TimeUtilFactory::create(),
+                                    TimeUtilFactory::createDefault(),
                                     itimeout,
                                     igoal,
                                     ikPMin,
