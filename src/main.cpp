@@ -21,8 +21,8 @@ void printSensorVals(void *) {
 void opcontrol() {
   pros::delay(100);
 
-  Logger::setDefaultLogger(
-    std::make_shared<Logger>(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::debug));
+  Logger::setDefaultLogger(std::make_shared<Logger>(
+    TimeUtilFactory::createDefault().getTimer(), "/ser/sout", Logger::LogLevel::debug));
 
   drive = ChassisControllerBuilder()
             .withMotors({-18, 19, 20}, {16, -17, -14})
