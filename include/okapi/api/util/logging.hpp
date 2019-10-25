@@ -26,7 +26,13 @@
 namespace okapi {
 class Logger {
   public:
-  enum class LogLevel { debug = 4, info = 3, warn = 2, error = 1, off = 0 };
+  enum class LogLevel {
+    debug = 4, ///< debug
+    info = 3,  ///< info
+    warn = 2,  ///< warn
+    error = 1, ///< error
+    off = 0    ///< off
+  };
 
   /**
    * A logger that does nothing.
