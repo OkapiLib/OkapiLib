@@ -334,7 +334,7 @@ ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisCo
 
     out->startOdomThread();
 
-    GUARD_INITIALIZE_TASK {
+    if (NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
       out->getOdomThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
     }
 
@@ -369,7 +369,7 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
 
     out->startThread();
 
-    GUARD_INITIALIZE_TASK {
+    if (NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
       out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
     }
 
@@ -396,7 +396,7 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
 
     out->startThread();
 
-    GUARD_INITIALIZE_TASK {
+    if (NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
       out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
     }
 

@@ -129,7 +129,7 @@ std::shared_ptr<AsyncPosPIDController> AsyncPosControllerBuilder::buildAPPC() {
                                                      controllerLogger);
   out->startThread();
 
-  GUARD_INITIALIZE_TASK {
+  if (NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
     out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
   }
 

@@ -100,7 +100,7 @@ AsyncMotionProfileControllerBuilder::buildLinearMotionProfileController() {
     timeUtilFactory.create(), limits, output, diameter, pair, controllerLogger);
   out->startThread();
 
-  GUARD_INITIALIZE_TASK {
+  if (NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
     out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
   }
 
@@ -125,7 +125,7 @@ AsyncMotionProfileControllerBuilder::buildMotionProfileController() {
     timeUtilFactory.create(), limits, model, scales, pair, controllerLogger);
   out->startThread();
 
-  GUARD_INITIALIZE_TASK {
+  if (NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
     out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
   }
 
