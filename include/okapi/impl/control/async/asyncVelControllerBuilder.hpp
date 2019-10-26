@@ -140,6 +140,31 @@ class AsyncVelControllerBuilder {
   AsyncVelControllerBuilder &withLogger(const std::shared_ptr<Logger> &ilogger);
 
   /**
+   * Parents the internal tasks started by this builder to the current task, meaning they will be
+   * deleted once the current task is deleted. The `initialize` and `competition_initialize` tasks
+   * are never parented to. This is the default behavior.
+   *
+   * Read more about this in the [builders and tasks tutorial]
+   * (docs/tutorials/concepts/builders-and-tasks.md).
+   *
+   * @return An ongoing builder.
+   */
+  AsyncVelControllerBuilder &parentedToCurrentTask();
+
+  /**
+   * Prevents parenting the internal tasks started by this builder to the current task, meaning they
+   * will not be deleted once the current task is deleted. This can cause runaway tasks, but is
+   * sometimes the desired behavior (e.x., if you want to use this builder once in `autonomous` and
+   * then again in `opcontrol`).
+   *
+   * Read more about this in the [builders and tasks tutorial]
+   * (docs/tutorials/concepts/builders-and-tasks.md).
+   *
+   * @return An ongoing builder.
+   */
+  AsyncVelControllerBuilder &notParentedToCurrentTask();
+
+  /**
    * Builds the AsyncVelocityController. Throws a std::runtime_exception is no motors were set.
    *
    * @return A fully built AsyncVelocityController.
@@ -171,6 +196,8 @@ class AsyncVelControllerBuilder {
 
   TimeUtilFactory timeUtilFactory = TimeUtilFactory();
   std::shared_ptr<Logger> controllerLogger = Logger::getDefaultLogger();
+
+  bool isParentedToCurrentTask{true};
 
   std::shared_ptr<AsyncVelIntegratedController> buildAVIC();
   std::shared_ptr<AsyncVelPIDController> buildAVPC();

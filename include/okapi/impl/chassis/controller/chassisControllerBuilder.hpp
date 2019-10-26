@@ -316,6 +316,31 @@ class ChassisControllerBuilder {
   ChassisControllerBuilder &withLogger(const std::shared_ptr<Logger> &ilogger);
 
   /**
+   * Parents the internal tasks started by this builder to the current task, meaning they will be
+   * deleted once the current task is deleted. The `initialize` and `competition_initialize` tasks
+   * are never parented to. This is the default behavior.
+   *
+   * Read more about this in the [builders and tasks tutorial]
+   * (docs/tutorials/concepts/builders-and-tasks.md).
+   *
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &parentedToCurrentTask();
+
+  /**
+   * Prevents parenting the internal tasks started by this builder to the current task, meaning they
+   * will not be deleted once the current task is deleted. This can cause runaway tasks, but is
+   * sometimes the desired behavior (e.x., if you want to use this builder once in `autonomous` and
+   * then again in `opcontrol`).
+   *
+   * Read more about this in the [builders and tasks tutorial]
+   * (docs/tutorials/concepts/builders-and-tasks.md).
+   *
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &notParentedToCurrentTask();
+
+  /**
    * Builds the ChassisController. Throws a std::runtime_exception if no motors were set.
    *
    * @return A fully built ChassisController.
@@ -382,6 +407,8 @@ class ChassisControllerBuilder {
   double maxVelocity{600};
 
   double maxVoltage{12000};
+
+  bool isParentedToCurrentTask{true};
 
   std::shared_ptr<ChassisControllerPID> buildCCPID();
   std::shared_ptr<ChassisControllerIntegrated> buildCCI();

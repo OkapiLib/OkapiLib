@@ -264,6 +264,14 @@ ChassisControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
   return *this;
 }
 
+ChassisControllerBuilder &ChassisControllerBuilder::parentedToCurrentTask() {
+  isParentedToCurrentTask = true;
+}
+
+ChassisControllerBuilder &ChassisControllerBuilder::notParentedToCurrentTask() {
+  isParentedToCurrentTask = false;
+}
+
 std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
   if (!hasMotors) {
     std::string msg("ChassisControllerBuilder: No motors given.");
@@ -334,7 +342,7 @@ ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisCo
 
     out->startOdomThread();
 
-    if (NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
+    if (isParentedToCurrentTask && NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
       out->getOdomThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
     }
 
@@ -369,7 +377,7 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
 
     out->startThread();
 
-    if (NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
+    if (isParentedToCurrentTask && NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
       out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
     }
 
@@ -396,7 +404,7 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
 
     out->startThread();
 
-    if (NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
+    if (isParentedToCurrentTask && NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
       out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
     }
 
