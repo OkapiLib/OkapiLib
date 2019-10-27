@@ -33,7 +33,6 @@
 - [PID Tuner](@ref okapi::PIDTuner)
 - [PID Tuner Factory](@ref okapi::PIDTunerFactory)
 - [Settled Utility](@ref okapi::SettledUtil)
-- [Settled Utility Factory](@ref okapi::SettledUtilFactory)
 - [Flywheel Simulator](@ref okapi::FlywheelSimulator)
 
 ## Controller Interfaces
