@@ -150,11 +150,24 @@ class Logger {
   static bool isSerialStream(std::string_view filename);
 };
 
-extern Logger &defaultLoggerMem;
-extern std::shared_ptr<Logger> &defaultLogger;
+extern std::shared_ptr<Logger> defaultLogger;
 
-static struct DefaultLoggerInitializer {
-  DefaultLoggerInitializer();
-  ~DefaultLoggerInitializer();
-} defaultLoggerInitializer; // NOLINT(cert-err58-cpp)
+struct DefaultLoggerInitializer {
+  DefaultLoggerInitializer() {
+    if (count++ == 0) {
+      init();
+    }
+  }
+  ~DefaultLoggerInitializer() {
+    if (--count == 0) {
+      cleanup();
+    }
+  }
+
+  static int count;
+  static void init();
+  static void cleanup();
+};
+
+static DefaultLoggerInitializer defaultLoggerInitializer; // NOLINT(cert-err58-cpp)
 } // namespace okapi

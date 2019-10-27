@@ -8,26 +8,17 @@
 #include "okapi/api/util/logging.hpp"
 
 namespace okapi {
-static int defaultLoggerNiftyCounter;
+std::shared_ptr<Logger> defaultLogger;
 
-static typename std::aligned_storage<sizeof(Logger), alignof(Logger)>::type defaultLoggerMemBuf;
+int DefaultLoggerInitializer::count;
 
-static typename std::aligned_storage<sizeof(std::shared_ptr<Logger>),
-                                     alignof(std::shared_ptr<Logger>)>::type defaultLoggerBuf;
-
-Logger &defaultLoggerMem = reinterpret_cast<Logger &>(defaultLoggerMemBuf);
-
-std::shared_ptr<Logger> &defaultLogger =
-  reinterpret_cast<std::shared_ptr<Logger> &>(defaultLoggerBuf);
-
-DefaultLoggerInitializer::DefaultLoggerInitializer() {
-  if (defaultLoggerNiftyCounter++ == 0) {
-    new (&defaultLoggerMem) Logger();
-    new (&defaultLogger) std::shared_ptr<Logger>(&defaultLoggerMem);
-  }
+void DefaultLoggerInitializer::init() {
+  defaultLogger = std::make_shared<Logger>();
 }
 
-DefaultLoggerInitializer::~DefaultLoggerInitializer() = default;
+void DefaultLoggerInitializer::cleanup() {
+  defaultLogger.reset();
+}
 
 Logger::Logger() noexcept : Logger(nullptr, nullptr, LogLevel::off) {
 }
@@ -58,7 +49,7 @@ std::shared_ptr<Logger> Logger::getDefaultLogger() {
 }
 
 void Logger::setDefaultLogger(std::shared_ptr<Logger> ilogger) {
-  new (&defaultLogger) std::shared_ptr<Logger>(std::move(ilogger));
+  defaultLogger = std::move(ilogger);
 }
 
 bool Logger::isSerialStream(std::string_view filename) {
