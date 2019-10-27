@@ -17,7 +17,6 @@ void DefaultLoggerInitializer::init() {
 }
 
 void DefaultLoggerInitializer::cleanup() {
-  defaultLogger.reset();
 }
 
 Logger::Logger() noexcept : Logger(nullptr, nullptr, LogLevel::off) {
