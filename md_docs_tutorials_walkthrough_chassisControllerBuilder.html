@@ -227,7 +227,7 @@
                 <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
                 <span class="p">.</span><span class="n">withLogger</span><span class="p">(</span>
                     <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Logger</span><span class="o">&gt;</span><span class="p">(</span>
-                        <span class="n">TimeUtilFactory</span><span class="o">::</span><span class="n">create</span><span class="p">().</span><span class="n">getTimer</span><span class="p">(),</span> <span class="c1">// It needs a Timer</span>
+                        <span class="n">TimeUtilFactory</span><span class="o">::</span><span class="n">createDefault</span><span class="p">().</span><span class="n">getTimer</span><span class="p">(),</span> <span class="c1">// It needs a Timer</span>
                         <span class="s">&quot;/ser/sout&quot;</span><span class="p">,</span> <span class="c1">// Output to the PROS terminal</span>
                         <span class="n">Logger</span><span class="o">::</span><span class="n">LogLevel</span><span class="o">::</span><span class="n">debug</span> <span class="c1">// Most verbose log level</span>
                     <span class="p">)</span>
@@ -241,7 +241,7 @@
                 <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
                 <span class="p">.</span><span class="n">withLogger</span><span class="p">(</span>
                     <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Logger</span><span class="o">&gt;</span><span class="p">(</span>
-                        <span class="n">TimeUtilFactory</span><span class="o">::</span><span class="n">create</span><span class="p">().</span><span class="n">getTimer</span><span class="p">(),</span> <span class="c1">// It needs a Timer</span>
+                        <span class="n">TimeUtilFactory</span><span class="o">::</span><span class="n">createDefault</span><span class="p">().</span><span class="n">getTimer</span><span class="p">(),</span> <span class="c1">// It needs a Timer</span>
                         <span class="s">&quot;/usd/test_logging.txt&quot;</span><span class="p">,</span> <span class="c1">// Output to a file on the SD card</span>
                         <span class="n">Logger</span><span class="o">::</span><span class="n">LogLevel</span><span class="o">::</span><span class="n">debug</span>  <span class="c1">// Most verbose log level</span>
                     <span class="p">)</span>

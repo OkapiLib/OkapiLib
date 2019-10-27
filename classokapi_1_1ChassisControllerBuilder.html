@@ -195,11 +195,25 @@
             </dt>
             <dd></dd>
             <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a7d38aeba7a515ea7cb621488ce2979bb" class="m-doc">withClosedLoopControllerTimeUtil</a>(</span><span class="m-doc-wrap">double iatTargetError = 50,
+              double iatTargetDerivative = 5,
+              const QTime&amp; iatTargetTime = 250_ms) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
+            </dt>
+            <dd></dd>
+            <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ab601ad0881616b9af271d19c820ca3f2" class="m-doc">withOdometryTimeUtilFactory</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a>&amp; itimeUtilFactory) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
             </dt>
             <dd></dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ac2ba4b3f5a3b08e611ea21e0d9406250" class="m-doc">withLogger</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#adbfc4b12deb93feb87cd74eadc53b0f5" class="m-doc">parentedToCurrentTask</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a1fcfad731fc317b44b310aa8b89c9953" class="m-doc">notParentedToCurrentTask</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
             </dt>
             <dd></dd>
             <dt>
@@ -895,7 +909,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a> used when building a <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>. The default is the static <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a>.</p>
+<p>Sets the <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a> used when building a <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>. This instance will be given to the <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a> (not to controllers it uses). The default is the static <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a>.</p>
           </div></section>
           <section class="m-doc-details" id="a5bf13424f9357099d6e4d336cc0cec98"><div>
             <h3>
@@ -918,7 +932,40 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a> used when building a <a href="classokapi_1_1ClosedLoopController.html" class="m-doc">ClosedLoopController</a>. The default is the static <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a>.</p>
+<p>Sets the <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a> used when building a <a href="classokapi_1_1ClosedLoopController.html" class="m-doc">ClosedLoopController</a>. This instance will be given to any <a href="classokapi_1_1ClosedLoopController.html" class="m-doc">ClosedLoopController</a> instances. The default is the static <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a>.</p>
+          </div></section>
+          <section class="m-doc-details" id="a7d38aeba7a515ea7cb621488ce2979bb"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7d38aeba7a515ea7cb621488ce2979bb" class="m-doc-self">withClosedLoopControllerTimeUtil</a>(</span><span class="m-doc-wrap">double iatTargetError = 50,
+              double iatTargetDerivative = 5,
+              const QTime&amp; iatTargetTime = 250_ms)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iatTargetError</td>
+                  <td>The minimum error to be considered settled.</td>
+                </tr>
+                <tr>
+                  <td>iatTargetDerivative</td>
+                  <td>The minimum error derivative to be considered settled.</td>
+                </tr>
+                <tr>
+                  <td>iatTargetTime</td>
+                  <td>The minimum time within atTargetError to be considered settled.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>An ongoing builder.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Creates a new <a href="classokapi_1_1ConfigurableTimeUtilFactory.html" class="m-doc">ConfigurableTimeUtilFactory</a> with the given parameters. Given to any <a href="classokapi_1_1ClosedLoopController.html" class="m-doc">ClosedLoopController</a> instances.</p>
           </div></section>
           <section class="m-doc-details" id="ab601ad0881616b9af271d19c820ca3f2"><div>
             <h3>
@@ -965,6 +1012,34 @@
               </tfoot>
             </table>
 <p>Sets the logger used for the <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a> and ClosedLoopControllers.</p>
+          </div></section>
+          <section class="m-doc-details" id="adbfc4b12deb93feb87cd74eadc53b0f5"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#adbfc4b12deb93feb87cd74eadc53b0f5" class="m-doc-self">parentedToCurrentTask</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>An ongoing builder.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Parents the internal tasks started by this builder to the current task, meaning they will be deleted once the current task is deleted. The <code>initialize</code> and <code>competition_initialize</code> tasks are never parented to. This is the default behavior.</p><p>Read more about this in the <a href="md_docs_tutorials_concepts_builders-and-tasks.html" class="m-doc">builders and tasks tutorial</a>.</p>
+          </div></section>
+          <section class="m-doc-details" id="a1fcfad731fc317b44b310aa8b89c9953"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1fcfad731fc317b44b310aa8b89c9953" class="m-doc-self">notParentedToCurrentTask</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>An ongoing builder.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Prevents parenting the internal tasks started by this builder to the current task, meaning they will not be deleted once the current task is deleted. This can cause runaway tasks, but is sometimes the desired behavior (e.x., if you want to use this builder once in <code>autonomous</code> and then again in <code>opcontrol</code>).</p><p>Read more about this in the <a href="md_docs_tutorials_concepts_builders-and-tasks.html" class="m-doc">builders and tasks tutorial</a>.</p>
           </div></section>
           <section class="m-doc-details" id="a5dfd1f4d60a3c4bfcc28a57211c1a6a2"><div>
             <h3>

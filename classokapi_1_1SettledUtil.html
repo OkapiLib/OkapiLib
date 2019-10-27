@@ -129,19 +129,19 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">iatTargetTimer</td>
-                  <td></td>
+                  <td>A timer used to track <code>iatTargetTime</code>.</td>
                 </tr>
                 <tr>
                   <td>iatTargetError</td>
-                  <td>minimum error to be considered settled</td>
+                  <td>The minimum error to be considered settled.</td>
                 </tr>
                 <tr>
                   <td>iatTargetDerivative</td>
-                  <td>minimum error derivative to be considered settled</td>
+                  <td>The minimum error derivative to be considered settled.</td>
                 </tr>
                 <tr>
                   <td>iatTargetTime</td>
-                  <td>minimum time within atTargetError to be considered settled</td>
+                  <td>The minimum time within atTargetError to be considered settled.</td>
                 </tr>
               </tbody>
             </table>
@@ -158,17 +158,17 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">ierror</td>
-                  <td>current error</td>
+                  <td>The current error.</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th>Returns</th>
-                  <td>whether the controller is settled</td>
+                  <td>Whether the controller is settled.</td>
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller is settled.</p><p>Timer::getDtFromhardMark() returns 0_ms if there is no hard mark set, so this needs to be special-cased. Setting atTargetTime to 0_ms means that the user wants to exit immediately when in range of the target.</p>
+<p>Returns whether the controller is settled.</p>
           </div></section>
           <section class="m-doc-details" id="a5341b7db25eaff4acafbe59b1b385ada"><div>
             <h3>

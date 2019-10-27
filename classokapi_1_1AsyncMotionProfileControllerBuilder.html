@@ -115,6 +115,14 @@
             </dt>
             <dd></dd>
             <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ae6eb9da8f0bd64ba5672713d3e9ad60e" class="m-doc">parentedToCurrentTask</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classokapi_1_1AsyncMotionProfileControllerBuilder.html" class="m-doc">AsyncMotionProfileControllerBuilder</a>&amp;</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#abdd950548deb6ed3a8bb3f206a03d6e9" class="m-doc">notParentedToCurrentTask</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classokapi_1_1AsyncMotionProfileControllerBuilder.html" class="m-doc">AsyncMotionProfileControllerBuilder</a>&amp;</span>
+            </dt>
+            <dd></dd>
+            <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a8e10bfca343f885d73d7b8f370741815" class="m-doc">buildLinearMotionProfileController</a>(</span><span class="m-doc-wrap">) -&gt; std::shared_ptr&lt;<a href="classokapi_1_1AsyncLinearMotionProfileController.html" class="m-doc">AsyncLinearMotionProfileController</a>&gt;</span>
             </dt>
             <dd></dd>
@@ -389,6 +397,34 @@
               </tfoot>
             </table>
 <p>Sets the logger.</p>
+          </div></section>
+          <section class="m-doc-details" id="ae6eb9da8f0bd64ba5672713d3e9ad60e"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncMotionProfileControllerBuilder.html" class="m-doc">AsyncMotionProfileControllerBuilder</a>&amp; okapi::<wbr />AsyncMotionProfileControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae6eb9da8f0bd64ba5672713d3e9ad60e" class="m-doc-self">parentedToCurrentTask</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>An ongoing builder.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Parents the internal tasks started by this builder to the current task, meaning they will be deleted once the current task is deleted. The <code>initialize</code> and <code>competition_initialize</code> tasks are never parented to. This is the default behavior.</p><p>Read more about this in the <a href="md_docs_tutorials_concepts_builders-and-tasks.html" class="m-doc">builders and tasks tutorial</a>.</p>
+          </div></section>
+          <section class="m-doc-details" id="abdd950548deb6ed3a8bb3f206a03d6e9"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncMotionProfileControllerBuilder.html" class="m-doc">AsyncMotionProfileControllerBuilder</a>&amp; okapi::<wbr />AsyncMotionProfileControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abdd950548deb6ed3a8bb3f206a03d6e9" class="m-doc-self">notParentedToCurrentTask</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>An ongoing builder.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Prevents parenting the internal tasks started by this builder to the current task, meaning they will not be deleted once the current task is deleted. This can cause runaway tasks, but is sometimes the desired behavior (e.x., if you want to use this builder once in <code>autonomous</code> and then again in <code>opcontrol</code>).</p><p>Read more about this in the <a href="md_docs_tutorials_concepts_builders-and-tasks.html" class="m-doc">builders and tasks tutorial</a>.</p>
           </div></section>
           <section class="m-doc-details" id="a8e10bfca343f885d73d7b8f370741815"><div>
             <h3>
