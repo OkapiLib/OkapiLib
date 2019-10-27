@@ -266,10 +266,12 @@ ChassisControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
 
 ChassisControllerBuilder &ChassisControllerBuilder::parentedToCurrentTask() {
   isParentedToCurrentTask = true;
+  return *this;
 }
 
 ChassisControllerBuilder &ChassisControllerBuilder::notParentedToCurrentTask() {
   isParentedToCurrentTask = false;
+  return *this;
 }
 
 std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {

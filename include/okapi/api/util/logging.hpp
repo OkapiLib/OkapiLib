@@ -146,8 +146,15 @@ class Logger {
   const LogLevel logLevel;
   FILE *logfile;
   CrossplatformMutex logfileMutex;
-  static std::shared_ptr<Logger> defaultLogger;
 
   static bool isSerialStream(std::string_view filename);
 };
+
+extern Logger &defaultLoggerMem;
+extern std::shared_ptr<Logger> &defaultLogger;
+
+static struct DefaultLoggerInitializer {
+  DefaultLoggerInitializer();
+  ~DefaultLoggerInitializer();
+} defaultLoggerInitializer; // NOLINT(cert-err58-cpp)
 } // namespace okapi

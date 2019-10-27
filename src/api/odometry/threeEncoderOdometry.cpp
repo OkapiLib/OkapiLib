@@ -39,14 +39,14 @@ OdomState ThreeEncoderOdometry::odomMathStep(const std::valarray<std::int32_t> &
 
   const auto deltaM = static_cast<const double>(
     itickDiff[2] / chassisScales.middle -
-    ((deltaTheta / 2_pi) * 1_pi * chassisScales.middleWheelDistance.convert(meter)));
+    ((deltaTheta / 2_pi) * 1_pi * chassisScales.middleWheelDistance.convert(meter) * 2));
 
   if (deltaL == deltaR) {
     localOffX = deltaM;
     localOffY = deltaR;
   } else {
     localOffX = 2 * sin(deltaTheta / 2) *
-                (deltaM / deltaTheta + chassisScales.middleWheelDistance.convert(meter));
+                (deltaM / deltaTheta + chassisScales.middleWheelDistance.convert(meter) * 2);
     localOffY =
       2 * sin(deltaTheta / 2) * (deltaR / deltaTheta + chassisScales.wheelTrack.convert(meter) / 2);
   }

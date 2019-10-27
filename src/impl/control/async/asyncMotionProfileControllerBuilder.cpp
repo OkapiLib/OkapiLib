@@ -84,11 +84,13 @@ AsyncMotionProfileControllerBuilder::withLogger(const std::shared_ptr<Logger> &i
 
 AsyncMotionProfileControllerBuilder &AsyncMotionProfileControllerBuilder::parentedToCurrentTask() {
   isParentedToCurrentTask = true;
+  return *this;
 }
 
 AsyncMotionProfileControllerBuilder &
 AsyncMotionProfileControllerBuilder::notParentedToCurrentTask() {
   isParentedToCurrentTask = false;
+  return *this;
 }
 
 std::shared_ptr<AsyncLinearMotionProfileController>

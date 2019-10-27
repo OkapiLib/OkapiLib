@@ -38,7 +38,7 @@ TEST_F(ChassisScalesTest, TestMiddleScaleWithTwoMeasurements) {
 }
 
 TEST_F(ChassisScalesTest, TestMiddleScaleWithThreeMeasurements) {
-  ChassisScales scales({4_in, 11.5_in, 11.5_in, 5_in}, imev5GreenTPR);
+  ChassisScales scales({4_in, 11.5_in, 11.5_in / 2, 5_in}, imev5GreenTPR);
   EXPECT_FLOAT_EQ(scales.middleWheelDiameter.convert(inch), 5);
   EXPECT_NE(scales.middle, scales.straight);
 }
@@ -53,13 +53,13 @@ TEST_F(ChassisScalesTest, TestDifferentTPR) {
 }
 
 TEST_F(ChassisScalesTest, TestLengthToMiddleWheel) {
-  ChassisScales scales({1_in, 2_in, 3_in}, 360);
-  EXPECT_FLOAT_EQ(scales.middleWheelDistance.convert(inch), 3);
+  ChassisScales scales({1_in, 2_in, 1_in}, 360);
+  EXPECT_FLOAT_EQ(scales.middleWheelDistance.convert(inch), 1);
   EXPECT_FLOAT_EQ(scales.straight, scales.middle);
 }
 
 TEST_F(ChassisScalesTest, TestMiddleWheelScaleWithLength) {
-  ChassisScales scales({1_in, 2_in, 3_in, 2_in}, 360);
-  EXPECT_FLOAT_EQ(scales.middleWheelDistance.convert(inch), 3);
+  ChassisScales scales({1_in, 2_in, 1_in, 2_in}, 360);
+  EXPECT_FLOAT_EQ(scales.middleWheelDistance.convert(inch), 1);
   EXPECT_FLOAT_EQ(scales.middle, scales.straight / 2.0);
 }

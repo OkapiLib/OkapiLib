@@ -48,7 +48,7 @@ class ThreeEncoderOdometryTest : public ::testing::Test {
     odom = new ThreeEncoderOdometry(
       createConstantTimeUtil(10_ms),
       std::shared_ptr<MockThreeEncoderModel>(model),
-      ChassisScales({{wheelDiam, wheelbaseWidth, wheelbaseWidth, wheelDiam}, 360}));
+      ChassisScales({{wheelDiam, wheelbaseWidth, wheelbaseWidth / 2.0, wheelDiam}, 360}));
   }
 
   void TearDown() override {

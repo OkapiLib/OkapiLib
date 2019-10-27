@@ -98,10 +98,12 @@ AsyncPosControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
 
 AsyncPosControllerBuilder &AsyncPosControllerBuilder::parentedToCurrentTask() {
   isParentedToCurrentTask = true;
+  return *this;
 }
 
 AsyncPosControllerBuilder &AsyncPosControllerBuilder::notParentedToCurrentTask() {
   isParentedToCurrentTask = false;
+  return *this;
 }
 
 std::shared_ptr<AsyncPositionController<double, double>> AsyncPosControllerBuilder::build() {

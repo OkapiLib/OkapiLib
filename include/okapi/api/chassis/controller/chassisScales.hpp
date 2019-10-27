@@ -19,9 +19,10 @@ namespace okapi {
 class ChassisScales {
   public:
   /**
-   * The scales a ChassisController needs to do all of its closed-loop control. First index is
-   * the wheel diameter, second index is the wheel track. An optional third index is the middle
-   * wheel diameter if you are using a 3-encoder setup.
+   * The scales a ChassisController needs to do all of its closed-loop control. The first element is
+   * the wheel diameter, the second element is the wheel track. For three-encoder configurations,
+   * the length from the center of rotation to the middle wheel and the middle wheel diameter are
+   * passed as the third and fourth elements.
    *
    * The wheel track is the center-to-center distance between the wheels (center-to-center
    * meaning the width between the centers of both wheels). For example, if you are using four inch
@@ -48,8 +49,8 @@ class ChassisScales {
    *                     +--->    ===             ===
    *
    *
-   * @param  idimensions {wheel diameter, wheel track} or {wheel diameter, wheel track,
-   * length to middle wheel, middle wheel diameter}
+   * @param idimensions {wheel diameter, wheel track} or {wheel diameter, wheel track, length to
+   * middle wheel, middle wheel diameter}.
    * @param itpr The ticks per revolution of the encoders.
    * @param ilogger The logger this instance will log to.
    */
@@ -58,13 +59,15 @@ class ChassisScales {
                 const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
-   * The scales a ChassisController needs to do all of its closed-loop control. First index is
-   * the straight scale, second index is the turn scale. An optional third index is the middle
-   * scale. The straight scale converts motor degrees to meters, the turn scale converts motor
-   * degrees to robot turn degrees, and the middle scale converts middle wheel degrees to meters.
+   * The scales a ChassisController needs to do all of its closed-loop control. The first element is
+   * the straight scale, the second element is the turn scale. Optionally, the length from the
+   * center of rotation to the middle wheel and the middle scale can be passed as the third and
+   * fourth elements. The straight scale converts motor degrees to meters, the turn scale converts
+   * motor degrees to robot turn degrees, and the middle scale converts middle wheel degrees to
+   * meters.
    *
-   * @param  iscales {straight scale, turn scale} or {straight scale, turn scale, length to middle
-   * wheel in meters, middle scale}
+   * @param iscales {straight scale, turn scale} or {straight scale, turn scale, length to middle
+   * wheel in meters, middle scale}.
    * @param itpr The ticks per revolution of the encoders.
    * @param ilogger The logger this instance will log to.
    */

@@ -105,10 +105,12 @@ AsyncVelControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
 
 AsyncVelControllerBuilder &AsyncVelControllerBuilder::parentedToCurrentTask() {
   isParentedToCurrentTask = true;
+  return *this;
 }
 
 AsyncVelControllerBuilder &AsyncVelControllerBuilder::notParentedToCurrentTask() {
   isParentedToCurrentTask = false;
+  return *this;
 }
 
 std::shared_ptr<AsyncVelocityController<double, double>> AsyncVelControllerBuilder::build() {
