@@ -14,7 +14,6 @@
 #include <type_traits>
 
 namespace okapi {
-static constexpr std::int32_t analogInToV = 286;
 static constexpr double inchToMM = 25.4;
 static constexpr double mmToInch = 0.0393700787;
 static constexpr double degreeToRadian = 0.01745329252;
