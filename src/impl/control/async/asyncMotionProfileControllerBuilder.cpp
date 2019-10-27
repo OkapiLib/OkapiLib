@@ -82,6 +82,17 @@ AsyncMotionProfileControllerBuilder::withLogger(const std::shared_ptr<Logger> &i
   return *this;
 }
 
+AsyncMotionProfileControllerBuilder &AsyncMotionProfileControllerBuilder::parentedToCurrentTask() {
+  isParentedToCurrentTask = true;
+  return *this;
+}
+
+AsyncMotionProfileControllerBuilder &
+AsyncMotionProfileControllerBuilder::notParentedToCurrentTask() {
+  isParentedToCurrentTask = false;
+  return *this;
+}
+
 std::shared_ptr<AsyncLinearMotionProfileController>
 AsyncMotionProfileControllerBuilder::buildLinearMotionProfileController() {
   if (!hasOutput) {
@@ -100,7 +111,7 @@ AsyncMotionProfileControllerBuilder::buildLinearMotionProfileController() {
     timeUtilFactory.create(), limits, output, diameter, pair, controllerLogger);
   out->startThread();
 
-  GUARD_INITIALIZE_TASK {
+  if (isParentedToCurrentTask && NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
     out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
   }
 
@@ -125,7 +136,7 @@ AsyncMotionProfileControllerBuilder::buildMotionProfileController() {
     timeUtilFactory.create(), limits, model, scales, pair, controllerLogger);
   out->startThread();
 
-  GUARD_INITIALIZE_TASK {
+  if (isParentedToCurrentTask && NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
     out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
   }
 

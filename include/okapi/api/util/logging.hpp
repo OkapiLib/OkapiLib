@@ -13,6 +13,11 @@
 #include <memory>
 #include <mutex>
 
+#if defined(THREADS_STD)
+#else
+#include "okapi/impl/util/timer.hpp"
+#endif
+
 #define LOG_DEBUG(msg) logger->debug([=]() { return msg; })
 #define LOG_INFO(msg) logger->info([=]() { return msg; })
 #define LOG_WARN(msg) logger->warn([=]() { return msg; })
@@ -152,8 +157,38 @@ class Logger {
   const LogLevel logLevel;
   FILE *logfile;
   CrossplatformMutex logfileMutex;
-  static std::shared_ptr<Logger> defaultLogger;
 
   static bool isSerialStream(std::string_view filename);
 };
+
+extern std::shared_ptr<Logger> defaultLogger;
+
+struct DefaultLoggerInitializer {
+  DefaultLoggerInitializer() {
+    if (count++ == 0) {
+      init();
+    }
+  }
+  ~DefaultLoggerInitializer() {
+    if (--count == 0) {
+      cleanup();
+    }
+  }
+
+  static int count;
+
+  static void init() {
+#if defined(THREADS_STD)
+    defaultLogger = std::make_shared<Logger>();
+#else
+    defaultLogger =
+      std::make_shared<Logger>(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::warn);
+#endif
+  }
+
+  static void cleanup() {
+  }
+};
+
+static DefaultLoggerInitializer defaultLoggerInitializer; // NOLINT(cert-err58-cpp)
 } // namespace okapi

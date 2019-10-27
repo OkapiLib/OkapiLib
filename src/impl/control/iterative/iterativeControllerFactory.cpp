@@ -17,7 +17,7 @@ IterativeControllerFactory::posPID(const double ikP,
                                    std::unique_ptr<Filter> iderivativeFilter,
                                    const std::shared_ptr<Logger> &ilogger) {
   return IterativePosPIDController(
-    ikP, ikI, ikD, ikBias, TimeUtilFactory::create(), std::move(iderivativeFilter), ilogger);
+    ikP, ikI, ikD, ikBias, TimeUtilFactory::createDefault(), std::move(iderivativeFilter), ilogger);
 }
 
 IterativeVelPIDController
@@ -33,7 +33,7 @@ IterativeControllerFactory::velPID(const double ikP,
                                    ikF,
                                    ikSF,
                                    std::move(ivelMath),
-                                   TimeUtilFactory::create(),
+                                   TimeUtilFactory::createDefault(),
                                    std::move(iderivativeFilter),
                                    ilogger);
 }

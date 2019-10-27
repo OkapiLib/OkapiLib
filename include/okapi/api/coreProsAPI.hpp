@@ -29,10 +29,11 @@
 #define CROSSPLATFORM_MUTEX_T pros::Mutex
 #endif
 
-// Prevents the body from running if the current task is the PROS initialization task
-#define GUARD_INITIALIZE_TASK                                                                      \
-  if (strcmp(pros::c::task_get_name(pros::c::task_get_current()), "User Initialization (PROS)") != \
-      0)
+#define NOT_INITIALIZE_TASK                                                                        \
+  (strcmp(pros::c::task_get_name(pros::c::task_get_current()), "User Initialization (PROS)") != 0)
+
+#define NOT_COMP_INITIALIZE_TASK                                                                   \
+  (strcmp(pros::c::task_get_name(pros::c::task_get_current()), "User Comp. Init. (PROS)") != 0)
 
 class CrossplatformThread {
   public:

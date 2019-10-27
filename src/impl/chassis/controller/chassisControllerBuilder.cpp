@@ -8,6 +8,9 @@
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
 #include "okapi/api/odometry/threeEncoderOdometry.hpp"
+#include "okapi/impl/util/configurableTimeUtilFactory.hpp"
+#include "okapi/impl/util/rate.hpp"
+#include "okapi/impl/util/timer.hpp"
 #include <stdexcept>
 
 namespace okapi {
@@ -241,6 +244,15 @@ ChassisControllerBuilder &ChassisControllerBuilder::withClosedLoopControllerTime
 }
 
 ChassisControllerBuilder &
+ChassisControllerBuilder::withClosedLoopControllerTimeUtil(const double iatTargetError,
+                                                           const double iatTargetDerivative,
+                                                           const QTime &iatTargetTime) {
+  closedLoopControllerTimeUtilFactory =
+    ConfigurableTimeUtilFactory(iatTargetError, iatTargetDerivative, iatTargetTime);
+  return *this;
+}
+
+ChassisControllerBuilder &
 ChassisControllerBuilder::withOdometryTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory) {
   odometryTimeUtilFactory = itimeUtilFactory;
   return *this;
@@ -249,6 +261,16 @@ ChassisControllerBuilder::withOdometryTimeUtilFactory(const TimeUtilFactory &iti
 ChassisControllerBuilder &
 ChassisControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
   controllerLogger = ilogger;
+  return *this;
+}
+
+ChassisControllerBuilder &ChassisControllerBuilder::parentedToCurrentTask() {
+  isParentedToCurrentTask = true;
+  return *this;
+}
+
+ChassisControllerBuilder &ChassisControllerBuilder::notParentedToCurrentTask() {
+  isParentedToCurrentTask = false;
   return *this;
 }
 
@@ -322,7 +344,7 @@ ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisCo
 
     out->startOdomThread();
 
-    GUARD_INITIALIZE_TASK {
+    if (isParentedToCurrentTask && NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
       out->getOdomThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
     }
 
@@ -357,7 +379,7 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
 
     out->startThread();
 
-    GUARD_INITIALIZE_TASK {
+    if (isParentedToCurrentTask && NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
       out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
     }
 
@@ -384,7 +406,7 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
 
     out->startThread();
 
-    GUARD_INITIALIZE_TASK {
+    if (isParentedToCurrentTask && NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
       out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
     }
 

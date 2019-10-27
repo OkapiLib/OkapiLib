@@ -8,7 +8,9 @@
 #include "okapi/api/util/logging.hpp"
 
 namespace okapi {
-std::shared_ptr<Logger> Logger::defaultLogger = std::make_shared<Logger>();
+std::shared_ptr<Logger> defaultLogger;
+
+int DefaultLoggerInitializer::count;
 
 Logger::Logger() noexcept : Logger(nullptr, nullptr, LogLevel::off) {
 }

@@ -14,27 +14,104 @@
 #include <type_traits>
 
 namespace okapi {
-static constexpr std::int32_t analogInToV = 286;
+/**
+ * Converts inches to millimeters.
+ */
 static constexpr double inchToMM = 25.4;
+
+/**
+ * Converts millimeters to inches.
+ */
 static constexpr double mmToInch = 0.0393700787;
+
+/**
+ * Converts degrees to radians.
+ */
 static constexpr double degreeToRadian = 0.01745329252;
+
+/**
+ * Converts radians to degrees.
+ */
 static constexpr double radianToDegree = 57.2957795;
+
+/**
+ * The ticks per rotation of the 393 IME with torque gearing.
+ */
 static constexpr double imeTorqueTPR = 627.2;
+
+/**
+ * The ticks per rotation of the 393 IME with speed gearing.
+ */
 static constexpr std::int32_t imeSpeedTPR = 392;
+
+/**
+ * The ticks per rotation of the 393 IME with turbo gearing.
+ */
 static constexpr double imeTurboTPR = 261.333;
+
+/**
+ * The ticks per rotation of the 269 IME.
+ */
 static constexpr double ime269TPR = 240.448;
+
+/**
+ * The ticks per rotation of the V5 motor with a red gearset.
+ */
 static constexpr std::int32_t imev5RedTPR = 1800;
+
+/**
+ * The ticks per rotation of the V5 motor with a hreen gearset.
+ */
 static constexpr std::int32_t imev5GreenTPR = 900;
+
+/**
+ * The ticks per rotation of the V5 motor with a blue gearset.
+ */
 static constexpr std::int32_t imev5BlueTPR = 300;
+
+/**
+ * The ticks per rotation of the red quadrature encoders.
+ */
 static constexpr std::int32_t quadEncoderTPR = 360;
+
+/**
+ * The value of pi.
+ */
 static constexpr double pi = 3.1415926535897932;
+
+/**
+ * The value of pi divided by 2.
+ */
 static constexpr double pi2 = 1.5707963267948966;
+
+/**
+ * The conventional value of gravity of Earth.
+ */
 static constexpr double gravity = 9.80665;
+
+/**
+ * Same as PROS_ERR.
+ */
 static constexpr auto OKAPI_PROS_ERR = INT32_MAX;
+
+/**
+ * Same as PROS_ERR_F.
+ */
 static constexpr auto OKAPI_PROS_ERR_F = INFINITY;
+
+/**
+ * The maximum voltage that can be sent to V5 motors.
+ */
 static constexpr double v5MotorMaxVoltage = 12000;
 
+/**
+ * The polling frequency of V5 motors in milliseconds.
+ */
 static constexpr std::int8_t motorUpdateRate = 10;
+
+/**
+ * The polling frequency of the ADI ports in milliseconds.
+ */
 static constexpr std::int8_t adiUpdateRate = 10;
 
 /**

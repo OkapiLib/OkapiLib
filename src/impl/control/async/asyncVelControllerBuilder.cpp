@@ -103,6 +103,16 @@ AsyncVelControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
   return *this;
 }
 
+AsyncVelControllerBuilder &AsyncVelControllerBuilder::parentedToCurrentTask() {
+  isParentedToCurrentTask = true;
+  return *this;
+}
+
+AsyncVelControllerBuilder &AsyncVelControllerBuilder::notParentedToCurrentTask() {
+  isParentedToCurrentTask = false;
+  return *this;
+}
+
 std::shared_ptr<AsyncVelocityController<double, double>> AsyncVelControllerBuilder::build() {
   if (!hasMotors) {
     std::string msg("AsyncVelControllerBuilder: No motors given.");
@@ -143,7 +153,7 @@ std::shared_ptr<AsyncVelPIDController> AsyncVelControllerBuilder::buildAVPC() {
                                                      controllerLogger);
   out->startThread();
 
-  GUARD_INITIALIZE_TASK {
+  if (isParentedToCurrentTask && NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
     out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
   }
 

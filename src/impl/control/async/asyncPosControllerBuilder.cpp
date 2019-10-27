@@ -96,6 +96,16 @@ AsyncPosControllerBuilder::withLogger(const std::shared_ptr<Logger> &ilogger) {
   return *this;
 }
 
+AsyncPosControllerBuilder &AsyncPosControllerBuilder::parentedToCurrentTask() {
+  isParentedToCurrentTask = true;
+  return *this;
+}
+
+AsyncPosControllerBuilder &AsyncPosControllerBuilder::notParentedToCurrentTask() {
+  isParentedToCurrentTask = false;
+  return *this;
+}
+
 std::shared_ptr<AsyncPositionController<double, double>> AsyncPosControllerBuilder::build() {
   if (!hasMotors) {
     std::string msg("AsyncPosControllerBuilder: No motors given.");
@@ -129,7 +139,7 @@ std::shared_ptr<AsyncPosPIDController> AsyncPosControllerBuilder::buildAPPC() {
                                                      controllerLogger);
   out->startThread();
 
-  GUARD_INITIALIZE_TASK {
+  if (isParentedToCurrentTask && NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
     out->getThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
   }
 

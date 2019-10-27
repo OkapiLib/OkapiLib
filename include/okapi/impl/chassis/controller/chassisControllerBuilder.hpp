@@ -265,7 +265,8 @@ class ChassisControllerBuilder {
   ChassisControllerBuilder &withMaxVoltage(double imaxVoltage);
 
   /**
-   * Sets the TimeUtilFactory used when building a ChassisController. The default is the static
+   * Sets the TimeUtilFactory used when building a ChassisController. This instance will be given
+   * to the ChassisController (not to controllers it uses). The default is the static
    * TimeUtilFactory.
    *
    * @param itimeUtilFactory The TimeUtilFactory.
@@ -275,14 +276,27 @@ class ChassisControllerBuilder {
   withChassisControllerTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
 
   /**
-   * Sets the TimeUtilFactory used when building a ClosedLoopController. The default is the static
-   * TimeUtilFactory.
+   * Sets the TimeUtilFactory used when building a ClosedLoopController. This instance will be given
+   * to any ClosedLoopController instances. The default is the static TimeUtilFactory.
    *
    * @param itimeUtilFactory The TimeUtilFactory.
    * @return An ongoing builder.
    */
   ChassisControllerBuilder &
   withClosedLoopControllerTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory);
+
+  /**
+   * Creates a new ConfigurableTimeUtilFactory with the given parameters. Given to any
+   * ClosedLoopController instances.
+   *
+   * @param iatTargetError The minimum error to be considered settled.
+   * @param iatTargetDerivative The minimum error derivative to be considered settled.
+   * @param iatTargetTime The minimum time within atTargetError to be considered settled.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withClosedLoopControllerTimeUtil(double iatTargetError = 50,
+                                                             double iatTargetDerivative = 5,
+                                                             const QTime &iatTargetTime = 250_ms);
 
   /**
    * Sets the TimeUtilFactory used when building an Odometry. The default is the static
@@ -300,6 +314,31 @@ class ChassisControllerBuilder {
    * @return An ongoing builder.
    */
   ChassisControllerBuilder &withLogger(const std::shared_ptr<Logger> &ilogger);
+
+  /**
+   * Parents the internal tasks started by this builder to the current task, meaning they will be
+   * deleted once the current task is deleted. The `initialize` and `competition_initialize` tasks
+   * are never parented to. This is the default behavior.
+   *
+   * Read more about this in the [builders and tasks tutorial]
+   * (docs/tutorials/concepts/builders-and-tasks.md).
+   *
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &parentedToCurrentTask();
+
+  /**
+   * Prevents parenting the internal tasks started by this builder to the current task, meaning they
+   * will not be deleted once the current task is deleted. This can cause runaway tasks, but is
+   * sometimes the desired behavior (e.x., if you want to use this builder once in `autonomous` and
+   * then again in `opcontrol`).
+   *
+   * Read more about this in the [builders and tasks tutorial]
+   * (docs/tutorials/concepts/builders-and-tasks.md).
+   *
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &notParentedToCurrentTask();
 
   /**
    * Builds the ChassisController. Throws a std::runtime_exception if no motors were set.
@@ -368,6 +407,8 @@ class ChassisControllerBuilder {
   double maxVelocity{600};
 
   double maxVoltage{12000};
+
+  bool isParentedToCurrentTask{true};
 
   std::shared_ptr<ChassisControllerPID> buildCCPID();
   std::shared_ptr<ChassisControllerIntegrated> buildCCI();

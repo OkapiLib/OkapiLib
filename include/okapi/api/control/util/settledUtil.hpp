@@ -18,9 +18,10 @@ class SettledUtil {
    * A utility class to determine if a control loop has settled based on error. A control loop is
    * settled if the error is within `iatTargetError` and `iatTargetDerivative` for `iatTargetTime`.
    *
-   * @param iatTargetError minimum error to be considered settled
-   * @param iatTargetDerivative minimum error derivative to be considered settled
-   * @param iatTargetTime minimum time within atTargetError to be considered settled
+   * @param iatTargetTimer A timer used to track `iatTargetTime`.
+   * @param iatTargetError The minimum error to be considered settled.
+   * @param iatTargetDerivative The minimum error derivative to be considered settled.
+   * @param iatTargetTime The minimum time within atTargetError to be considered settled.
    */
   explicit SettledUtil(std::unique_ptr<AbstractTimer> iatTargetTimer,
                        double iatTargetError = 50,
@@ -32,8 +33,8 @@ class SettledUtil {
   /**
    * Returns whether the controller is settled.
    *
-   * @param ierror current error
-   * @return whether the controller is settled
+   * @param ierror The current error.
+   * @return Whether the controller is settled.
    */
   virtual bool isSettled(double ierror);
 

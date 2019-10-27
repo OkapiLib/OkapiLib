@@ -53,7 +53,7 @@ static void testStop() {
   auto m = std::make_shared<Motor>(MOTOR_1_PORT);
 
   // Slow max speed so we don't coast too much after stopping
-  AsyncPosIntegratedController c(m, MOTOR_GEARSET, 30, TimeUtilFactory::create());
+  AsyncPosIntegratedController c(m, MOTOR_GEARSET, 30, TimeUtilFactory::createDefault());
 
   c.setTarget(moveAmt);
 
