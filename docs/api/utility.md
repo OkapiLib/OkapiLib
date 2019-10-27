@@ -7,5 +7,6 @@
  - [Supplier](@ref okapi::Supplier)
  - [TimeUtil](@ref okapi::TimeUtil)
  - [TimeUtil Factory](@ref okapi::TimeUtilFactory)
+ - [ConfigurableTimeUtil Factory](@ref okapi::ConfigurableTimeUtilFactory)
  - [Rate](@ref okapi::Rate)
  - [Timer](@ref okapi::Timer)
