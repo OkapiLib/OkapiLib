@@ -12,13 +12,6 @@ std::shared_ptr<Logger> defaultLogger;
 
 int DefaultLoggerInitializer::count;
 
-void DefaultLoggerInitializer::init() {
-  defaultLogger = std::make_shared<Logger>();
-}
-
-void DefaultLoggerInitializer::cleanup() {
-}
-
 Logger::Logger() noexcept : Logger(nullptr, nullptr, LogLevel::off) {
 }
 

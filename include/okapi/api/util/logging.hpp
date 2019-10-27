@@ -13,6 +13,11 @@
 #include <memory>
 #include <mutex>
 
+#if defined(THREADS_STD)
+#else
+#include "okapi/impl/util/timer.hpp"
+#endif
+
 #define LOG_DEBUG(msg) logger->debug([=]() { return msg; })
 #define LOG_INFO(msg) logger->info([=]() { return msg; })
 #define LOG_WARN(msg) logger->warn([=]() { return msg; })
@@ -165,8 +170,18 @@ struct DefaultLoggerInitializer {
   }
 
   static int count;
-  static void init();
-  static void cleanup();
+
+  static void init() {
+#if defined(THREADS_STD)
+    defaultLogger = std::make_shared<Logger>();
+#else
+    defaultLogger =
+      std::make_shared<Logger>(std::make_unique<Timer>(), "/ser/sout", Logger::LogLevel::warn);
+#endif
+  }
+
+  static void cleanup() {
+  }
 };
 
 static DefaultLoggerInitializer defaultLoggerInitializer; // NOLINT(cert-err58-cpp)
