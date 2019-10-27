@@ -20,11 +20,8 @@ drive motors in ports 1 and 2:
 ```cpp
 using namespace okapi;
 
-const int DRIVE_MOTOR_LEFT = 1;
-const int DRIVE_MOTOR_RIGHT = 2;
-
 auto chassis = ChassisControllerBuilder()
-                .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                .withMotors(1, -2)
                 .build();
 ```
 
@@ -37,19 +34,16 @@ forward/backward and turning on a point.
 ```cpp
 using namespace okapi;
 
-const int DRIVE_MOTOR_LEFT = 1;
-const int DRIVE_MOTOR_RIGHT = 2;
-
 auto chassis = ChassisControllerBuilder()
-                .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                .withMotors(1, -2)
                 .build();
 
 void autonomous() {
-    // Move to first goal
+    // Move to first goal in motor degrees
     chassis->moveDistance(1000);
-    // Turn to face second goal
+    // Turn to face second goal in motor degrees
     chassis->turnAngle(100);
-    // Drive toward second goal
+    // Drive toward second goal in motor degrees
     chassis->moveDistance(1500);
 }
 ```
@@ -61,13 +55,11 @@ for the units that you would like the movement to occur in.
 ```cpp
 using namespace okapi;
 
-const int DRIVE_MOTOR_LEFT = 1;
-const int DRIVE_MOTOR_RIGHT = 2;
 const auto WHEEL_DIAMETER = 4_in;
 const auto CHASSIS_WIDTH = 13.5_in;
 
 auto chassis = ChassisControllerBuilder()
-                .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                .withMotors(1, -2)
                 .withGearset(AbstractMotor::gearset::green)
                 .withDimensions({{WHEEL_DIAMETER, CHASSIS_WIDTH}, imev5GreenTPR})
                 .build();

@@ -18,6 +18,29 @@ API header include statement in the file `include/main.h` :
 //#include "pros/api_legacy.h"
 ```
 
+All okapi methods are located in the okapi namespace. 
+To avoid typing `okapi::` in front of every command, uncomment the `using` statement in the file `include/main.h` :
+
+``` cpp
+/**
+ * If you find doing pros::Motor() to be tedious and you'd prefer just to do
+ * Motor, you can use the namespace with the following commented out line.
+ *
+ * IMPORTANT: Only the okapi or pros namespace may be used, not both
+ * concurrently! The okapi namespace will export all symbols inside the pros
+ * namespace.
+ */
+// using namespace pros;
+// using namespace pros::literals;
+using namespace okapi; // <-- UNCOMMENT THIS LINE
+```
+
+If you don't want to use the okapi namespace, but you want to use unit literals such as `1_in`, add the following line to the file `include/main.h` :
+
+``` cpp
+using namespace okapi::literals;
+```
+
 ## Troubleshooting
 
 If OkapiLib is not getting downloaded from GitHub correctly during

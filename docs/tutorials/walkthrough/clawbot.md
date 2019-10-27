@@ -117,7 +117,7 @@ while (true) {
 
     // Wait and give up the time we don't need to other tasks.
     // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-    pros::Task::delay(10);
+    pros::delay(10);
 }
 ```
 
@@ -135,7 +135,7 @@ while (true) {
 
     // Wait and give up the time we don't need to other tasks.
     // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-    pros::Task::delay(10);
+    pros::delay(10);
 }
 ```
 
@@ -164,14 +164,15 @@ Motor armMotor = 8_rmtr;
 ```
 
 The `_mtr` syntax is called a user-defined literal. It's a succinct way of
-initializing a motor. For example,
+initializing a motor. There are many ways to initialize a motor :
 
 ```cpp
-Motor foo = 1_mtr; // Motor in port 1
 Motor foo(1);      // Motor in port 1
+Motor foo = 1_mtr; // Motor in port 1
 
-Motor bar = 1_rmtr; // Reversed motor in port 1
 Motor bar(1, true); // Reversed motor in port 1
+Motor bar(-1);      // Reversed motor in port 1
+Motor bar = 1_rmtr; // Reversed motor in port 1
 ```
 
 Then we can check if it's pressed and stop powering the arm motor:
@@ -179,7 +180,7 @@ Then we can check if it's pressed and stop powering the arm motor:
 ```cpp
 // Don't power the arm if it is all the way down
 if (armLimitSwitch.isPressed()) {
-    armMotor.move_voltage(0);
+    armMotor.moveVoltage(0);
 } else {
     // Normal arm control
 }
@@ -200,15 +201,15 @@ arm:
 ```cpp
 // Don't power the arm if it is all the way down
 if (armLimitSwitch.isPressed()) {
-    armMotor.move_voltage(0);
+    armMotor.moveVoltage(0);
 } else {
     // Else, the arm isn't all the way down
     if (armUpButton.isPressed()) {
-        armMotor.move_voltage(127);
+        armMotor.moveVoltage(12000);
     } else if (armDownButton.isPressed()) {
-        armMotor.move_voltage(-127);
+        armMotor.moveVoltage(-12000);
     } else {
-        armMotor.move_voltage(0);
+        armMotor.moveVoltage(0);
     }
 }
 ```
@@ -242,10 +243,8 @@ After this, you can move the chassis in physical units, such as inches and
 degrees:
 
 ```cpp
-for (int i = 0; i < 4; i++) {
-    drive->moveDistance(12_in); // Drive forward 12 inches
-    drive->turnAngle(90_deg);   // Turn in place 90 degrees
-}
+drive->moveDistance(12_in); // Drive forward 12 inches
+drive->turnAngle(90_deg);   // Turn in place 90 degrees
 ```
 
 ## Wrap Up
@@ -274,7 +273,7 @@ void opcontrol() {
     ADIButton armLimitSwitch('H');
     ControllerButton armUpButton(ControllerDigital::A);
     ControllerButton armDownButton(ControllerDigital::B);
-    Motor armMotor = 8_rmtr;
+    Motor armMotor(-8);
 
     // Button to run our sample autonomous routine
     ControllerButton runAutoButton(ControllerDigital::X);
@@ -286,15 +285,15 @@ void opcontrol() {
 
         // Don't power the arm if it is all the way down
         if (armLimitSwitch.isPressed()) {
-            armMotor.move_voltage(0);
+            armMotor.moveVoltage(0);
         } else {
             // else, the arm isn't all the way down
             if (armUpButton.isPressed()) {
-                armMotor.move_voltage(127);
+                armMotor.moveVoltage(12000);
             } else if (armDownButton.isPressed()) {
-                armMotor.move_voltage(-127);
+                armMotor.moveVoltage(-12000);
             } else {
-                armMotor.move_voltage(0);
+                armMotor.moveVoltage(0);
             }
         }
 
@@ -309,7 +308,7 @@ void opcontrol() {
 
         // Wait and give up the time we don't need to other tasks.
         // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-        pros::Task::delay(10);
+        pros::delay(10);
     }
 }
 ```
@@ -336,7 +335,7 @@ void opcontrol() {
     ADIButton armLimitSwitch('H');
     ControllerButton armUpButton(ControllerDigital::A);
     ControllerButton armDownButton(ControllerDigital::B);
-    Motor armMotor = 8_rmtr;
+    Motor armMotor(-8);
 
     // Button to run our sample autonomous routine
     ControllerButton runAutoButton(ControllerDigital::X);
@@ -348,15 +347,15 @@ void opcontrol() {
 
         // Don't power the arm if it is all the way down
         if (armLimitSwitch.isPressed()) {
-            armMotor.move_voltage(0);
+            armMotor.moveVoltage(0);
         } else {
             // else, the arm isn't all the way down
             if (armUpButton.isPressed()) {
-                armMotor.move_voltage(127);
+                armMotor.moveVoltage(12000);
             } else if (armDownButton.isPressed()) {
-                armMotor.move_voltage(-127);
+                armMotor.moveVoltage(-12000);
             } else {
-                armMotor.move_voltage(0);
+                armMotor.moveVoltage(0);
             }
         }
 
@@ -371,7 +370,7 @@ void opcontrol() {
 
         // Wait and give up the time we don't need to other tasks.
         // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-        pros::Task::delay(10);
+        pros::delay(10);
     }
 }
 ```

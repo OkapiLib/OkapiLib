@@ -10,11 +10,8 @@ modify the below example to fit your subsystem.
 ```cpp
 using namespace okapi;
 
-const int DRIVE_MOTOR_LEFT = 1;
-const int DRIVE_MOTOR_RIGHT = 2;
-
 auto driveController = ChassisControllerBuilder()
-                        .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                        .withMotors(1, -2)
                         .build();
 
 void autonomous() {
@@ -26,20 +23,16 @@ And then we'll add a lift subsystem as an Async Controller:
 ```cpp
 using namespace okapi;
 
-const int DRIVE_MOTOR_LEFT = 1;
-const int DRIVE_MOTOR_RIGHT = 2;
-
 const double liftkP = 0.001;
 const double liftkI = 0.0001;
 const double liftkD = 0.0001;
-const int LIFT_MOTOR = 2;
 
 auto driveController = ChassisControllerBuilder()
-                        .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                        .withMotors(1, -2)
                         .build();
 
 auto liftController = AsyncPosControllerBuilder()
-                        .withMotor(LIFT_MOTOR)
+                        .withMotor(3) // lift motor port 3
                         .withGains({liftkP, liftkI, liftkD})
                         .build();
 
@@ -57,26 +50,24 @@ the drive controller.
 ```cpp
 using namespace okapi;
 
-const int DRIVE_MOTOR_LEFT = 1;
-const int DRIVE_MOTOR_RIGHT = 2;
-
 const double liftkP = 0.001;
 const double liftkI = 0.0001;
 const double liftkD = 0.0001;
-const int LIFT_MOTOR = 2;
 
 auto driveController = ChassisControllerBuilder()
-                        .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                        .withMotors(1, -2)
+                        // 4 inch wheel diameter, 13 inch wheelbase, green cartridge
+                        .withDimensions({{4_in, 13_in}, imev5GreenTPR})
                         .build();
 
 auto liftController = AsyncPosControllerBuilder()
-                        .withMotor(LIFT_MOTOR)
+                        .withMotor(3) // lift motor port 3
                         .withGains({liftkP, liftkI, liftkD})
                         .build();
 
 void autonomous() {
     // Begin movements
-    driveController->moveDistanceAsync(1000); // Move 1000 motor degrees forward
+    driveController->moveDistanceAsync(10_in); // Move 10 inches forward
     liftController->setTarget(200); // Move 200 motor degrees upward
     driveController->waitUntilSettled();
 
@@ -93,26 +84,24 @@ controllers.
 ```cpp
 using namespace okapi;
 
-const int DRIVE_MOTOR_LEFT = 1;
-const int DRIVE_MOTOR_RIGHT = 2;
-
 const double liftkP = 0.001;
 const double liftkI = 0.0001;
 const double liftkD = 0.0001;
-const int LIFT_MOTOR = 2;
 
 auto driveController = ChassisControllerBuilder()
-                        .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                        .withMotors(1, -2)
+                        // 4 inch wheel diameter, 13 inch wheelbase, green cartridge
+                        .withDimensions({{4_in, 13_in}, imev5GreenTPR})
                         .build();
 
 auto liftController = AsyncPosControllerBuilder()
-                        .withMotor(LIFT_MOTOR)
+                        .withMotor(3) // lift motor port 3
                         .withGains({liftkP, liftkI, liftkD})
                         .build();
 
 void autonomous() {
     // Begin movements
-    driveController->moveDistanceAsync(1000); // Move 1000 motor degrees forward
+    driveController->moveDistanceAsync(10_in); // Move 10 inches forward
     liftController->setTarget(200); // Move 200 motor degrees upward
     driveController->waitUntilSettled();
     liftController->waitUntilSettled();

@@ -18,24 +18,29 @@ class AbstractMotor : public ControllerOutput<double> {
    * Indicates the 'brake mode' of a motor.
    */
   enum class brakeMode {
-    coast = 0, // Motor coasts when stopped, traditional behavior
-    brake = 1, // Motor brakes when stopped
-    hold = 2,  // Motor actively holds position when stopped
+    coast = 0, ///< Motor coasts when stopped, traditional behavior
+    brake = 1, ///< Motor brakes when stopped
+    hold = 2,  ///< Motor actively holds position when stopped
     invalid = INT32_MAX
   };
 
   /**
    * Indicates the units used by the motor encoders.
    */
-  enum class encoderUnits { degrees = 0, rotations = 1, counts = 2, invalid = INT32_MAX };
+  enum class encoderUnits {
+    degrees = 0,        ///< degrees
+    rotations = 1,      ///< rotations
+    counts = 2,         ///< counts
+    invalid = INT32_MAX ///< invalid
+  };
 
   /**
    * Indicates the internal gear ratio of a motor.
    */
   enum class gearset {
-    red = 100,   // 36:1, 100 RPM, Red gear set
-    green = 200, // 18:1, 200 RPM, Green gear set
-    blue = 600,  // 6:1,  600 RPM, Blue gear set
+    red = 100,   ///< 36:1, 100 RPM, Red gear set
+    green = 200, ///< 18:1, 200 RPM, Green gear set
+    blue = 600,  ///< 6:1,  600 RPM, Blue gear set
     invalid = INT32_MAX
   };
 
