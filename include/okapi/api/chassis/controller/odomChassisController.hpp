@@ -14,6 +14,11 @@
 #include "okapi/api/odometry/point.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
+#include "okapi/api/units/QSpeed.hpp"
+#include "okapi/api/util/abstractRate.hpp"
+#include <atomic>
+#include <memory>
+#include <valarray>
 
 namespace okapi {
 class OdomChassisController : public ChassisController {

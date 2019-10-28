@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/chassis/controller/defaultOdomChassisController.hpp"
+#include "okapi/api/odometry/twoEncoderOdometry.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
 
@@ -14,7 +15,7 @@ using namespace okapi;
 class DefaultOdomChassisControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    odom = new Odometry(createTimeUtil(), std::make_shared<MockReadOnlyChassisModel>(), scales);
+    odom = new TwoEncoderOdometry(createTimeUtil(), std::make_shared<MockReadOnlyChassisModel>(), scales);
     controller = std::make_shared<MockChassisController>();
 
     drive = new DefaultOdomChassisController(
@@ -27,7 +28,7 @@ class DefaultOdomChassisControllerTest : public ::testing::Test {
 
   ChassisScales scales{{4.125_in, 10_in}, imev5GreenTPR};
   SkidSteerModel *model;
-  Odometry *odom;
+  TwoEncoderOdometry *odom;
   DefaultOdomChassisController *drive;
   std::shared_ptr<MockChassisController> controller;
 };

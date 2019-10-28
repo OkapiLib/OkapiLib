@@ -11,13 +11,6 @@
 #include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
 #include "okapi/api/odometry/odomState.hpp"
 #include "okapi/api/odometry/stateMode.hpp"
-#include "okapi/api/units/QSpeed.hpp"
-#include "okapi/api/util/abstractRate.hpp"
-#include "okapi/api/util/logging.hpp"
-#include "okapi/api/util/timeUtil.hpp"
-#include <atomic>
-#include <memory>
-#include <valarray>
 
 namespace okapi {
 class Odometry {
@@ -25,31 +18,20 @@ class Odometry {
   /**
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates
    * relative to the start (assumed to be (0, 0, 0)).
-   *
-   * @param itimeUtil The TimeUtil.
-   * @param imodel The chassis model for reading sensors.
-   * @param ichassisScales The chassis dimensions.
-   * @param iwheelVelDelta The maximum delta between wheel velocities to consider the robot as
-   * driving straight.
-   * @param ilogger The logger this instance will log to.
    */
-  Odometry(const TimeUtil &itimeUtil,
-           const std::shared_ptr<ReadOnlyChassisModel> &imodel,
-           const ChassisScales &ichassisScales,
-           const QSpeed &iwheelVelDelta = 0.0001_mps,
-           const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+  explicit Odometry() = default;
 
   virtual ~Odometry() = default;
 
   /**
    * Sets the drive and turn scales.
    */
-  virtual void setScales(const ChassisScales &ichassisScales);
+  virtual void setScales(const ChassisScales &ichassisScales) = 0;
 
   /**
    * Do one odometry step.
    */
-  virtual void step();
+  virtual void step() = 0;
 
   /**
    * Returns the current state.
@@ -57,7 +39,7 @@ class Odometry {
    * @param imode The mode to return the state in.
    * @return The current state in the given format.
    */
-  virtual OdomState getState(const StateMode &imode = StateMode::FRAME_TRANSFORMATION) const;
+  virtual OdomState getState(const StateMode &imode = StateMode::FRAME_TRANSFORMATION) const = 0;
 
   /**
    * Sets a new state to be the current state.
@@ -66,26 +48,11 @@ class Odometry {
    * @param imode The mode to treat the input state as.
    */
   virtual void setState(const OdomState &istate,
-                        const StateMode &imode = StateMode::FRAME_TRANSFORMATION);
-
-  protected:
-  std::shared_ptr<Logger> logger;
-  std::unique_ptr<AbstractRate> rate;
-  std::unique_ptr<AbstractTimer> timer;
-  std::shared_ptr<ReadOnlyChassisModel> model;
-  ChassisScales chassisScales;
-  QSpeed wheelVelDelta;
-  OdomState state;
-  std::valarray<std::int32_t> newTicks{0, 0, 0}, tickDiff{0, 0, 0}, lastTicks{0, 0, 0};
+                        const StateMode &imode = StateMode::FRAME_TRANSFORMATION) = 0;
 
   /**
-   * Does the math, side-effect free, for one odom step.
-   *
-   * @param itickDiff The tick difference from the previous step to this step.
-   * @param ideltaT The time difference from the previous step to this step.
-   * @return The newly computed OdomState.
+   * @return The internal ChassisModel.
    */
-  virtual OdomState odomMathStep(const std::valarray<std::int32_t> &itickDiff,
-                                 const QTime &ideltaT);
+  virtual std::shared_ptr<ReadOnlyChassisModel> getModel() = 0;
 };
 } // namespace okapi
