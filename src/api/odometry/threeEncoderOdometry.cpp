@@ -73,4 +73,8 @@ OdomState ThreeEncoderOdometry::odomMathStep(const std::valarray<std::int32_t> &
 
   return OdomState{dX * meter, dY * meter, deltaTheta * radian};
 }
+
+std::shared_ptr<ReadOnlyChassisModel> ThreeEncoderOdometry::getModel() {
+  return model;
+}
 } // namespace okapi

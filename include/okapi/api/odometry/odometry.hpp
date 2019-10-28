@@ -49,5 +49,10 @@ class Odometry {
    */
   virtual void setState(const OdomState &istate,
                         const StateMode &imode = StateMode::FRAME_TRANSFORMATION) = 0;
+
+  /**
+   * @return The internal ChassisModel.
+   */
+  virtual std::shared_ptr<ReadOnlyChassisModel> getModel() = 0;
 };
 } // namespace okapi

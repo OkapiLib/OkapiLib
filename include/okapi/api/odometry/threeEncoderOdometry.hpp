@@ -32,6 +32,11 @@ class ThreeEncoderOdometry : public TwoEncoderOdometry {
                        const QSpeed &iwheelVelDelta = 0.0001_mps,
                        const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
+  /**
+   * @return The internal ChassisModel.
+   */
+  std::shared_ptr<ReadOnlyChassisModel> getModel() override;
+
   protected:
   std::shared_ptr<ReadOnlyChassisModel> model;
 

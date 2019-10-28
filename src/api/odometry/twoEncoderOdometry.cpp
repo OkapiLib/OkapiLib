@@ -100,4 +100,8 @@ void TwoEncoderOdometry::setState(const OdomState &istate, const StateMode &imod
     state = OdomState{istate.y, istate.x, istate.theta};
   }
 }
+
+std::shared_ptr<ReadOnlyChassisModel> TwoEncoderOdometry::getModel() {
+  return model;
+}
 } // namespace okapi

@@ -65,6 +65,11 @@ class TwoEncoderOdometry : public Odometry {
   void setState(const OdomState &istate,
                 const StateMode &imode = StateMode::FRAME_TRANSFORMATION) override;
 
+  /**
+   * @return The internal ChassisModel.
+   */
+  std::shared_ptr<ReadOnlyChassisModel> getModel() override;
+
   protected:
   std::shared_ptr<Logger> logger;
   std::unique_ptr<AbstractRate> rate;
