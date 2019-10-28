@@ -293,6 +293,13 @@ std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
              "). This is probably a bug.");
   }
 
+  if (maxVelSetByUser && maxVelocity > toUnderlyingType(gearset.internalGearset)) {
+    LOG_WARN(
+      "ChassisControllerBuilder: The custom maximum velocity (" + std::to_string(maxVelocity) +
+      ") is greater than the maximum velocity of the selected gearset (" +
+      std::to_string(toUnderlyingType(gearset.internalGearset)) + "). This is probably a bug.");
+  }
+
   std::shared_ptr<ChassisController> out;
 
   if (hasGains) {

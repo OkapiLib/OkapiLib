@@ -127,6 +127,11 @@ std::shared_ptr<AsyncVelocityController<double, double>> AsyncVelControllerBuild
       throw std::runtime_error(msg);
     }
 
+    if (!gearsetSetByUser) {
+      LOG_WARN_S(
+        "AsyncVelControllerBuilder: The default gearset is selected. This could be a bug.");
+    }
+
     return buildAVPC();
   } else {
     return buildAVIC();

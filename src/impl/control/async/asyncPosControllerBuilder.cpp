@@ -113,6 +113,10 @@ std::shared_ptr<AsyncPositionController<double, double>> AsyncPosControllerBuild
     throw std::runtime_error(msg);
   }
 
+  if (!gearsetSetByUser) {
+    LOG_WARN_S("AsyncPosControllerBuilder: The default gearset is selected. This could be a bug.");
+  }
+
   if (hasGains) {
     return buildAPPC();
   } else {
