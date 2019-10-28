@@ -8,12 +8,12 @@
 #pragma once
 
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
-#include "okapi/api/odometry/odometry.hpp"
+#include "okapi/api/odometry/twoEncoderOdometry.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <functional>
 
 namespace okapi {
-class ThreeEncoderOdometry : public Odometry {
+class ThreeEncoderOdometry : public TwoEncoderOdometry {
   public:
   /**
    * Odometry. Tracks the movement of the robot and estimates its position in coordinates

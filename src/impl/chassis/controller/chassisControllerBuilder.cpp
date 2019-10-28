@@ -326,7 +326,7 @@ ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisCo
   if (isSkidSteer) {
     if (odometry == nullptr) {
       if (middleSensor == nullptr) {
-        odometry = std::make_unique<Odometry>(odometryTimeUtilFactory.create(),
+        odometry = std::make_unique<TwoEncoderOdometry>(odometryTimeUtilFactory.create(),
                                               chassisController->getModel(),
                                               chassisController->getChassisScales(),
                                               wheelVelDelta,

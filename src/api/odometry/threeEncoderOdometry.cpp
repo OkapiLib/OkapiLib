@@ -15,7 +15,7 @@ ThreeEncoderOdometry::ThreeEncoderOdometry(const TimeUtil &itimeUtil,
                                            const ChassisScales &ichassisScales,
                                            const QSpeed &iwheelVelDelta,
                                            const std::shared_ptr<Logger> &logger)
-  : Odometry(itimeUtil, imodel, ichassisScales, iwheelVelDelta, logger), model(imodel) {
+  : TwoEncoderOdometry(itimeUtil, imodel, ichassisScales, iwheelVelDelta, logger), model(imodel) {
   if (ichassisScales.middle == 0) {
     std::string msg = "ThreeEncoderOdometry: Middle scale cannot be zero.";
     LOG_ERROR(msg);
