@@ -5,17 +5,17 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/api/odometry/odometry.hpp"
+#include "okapi/api/odometry/twoEncoderOdometry.hpp"
 #include "okapi/api/units/QAngularSpeed.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include <cmath>
 
 namespace okapi {
-Odometry::Odometry(const TimeUtil &itimeUtil,
-                   const std::shared_ptr<ReadOnlyChassisModel> &imodel,
-                   const ChassisScales &ichassisScales,
-                   const QSpeed &iwheelVelDelta,
-                   const std::shared_ptr<Logger> &ilogger)
+TwoEncoderOdometry::TwoEncoderOdometry(const TimeUtil &itimeUtil,
+                                       const std::shared_ptr<ReadOnlyChassisModel> &imodel,
+                                       const ChassisScales &ichassisScales,
+                                       const QSpeed &iwheelVelDelta,
+                                       const std::shared_ptr<Logger> &ilogger)
   : logger(ilogger),
     rate(itimeUtil.getRate()),
     timer(itimeUtil.getTimer()),
@@ -24,11 +24,11 @@ Odometry::Odometry(const TimeUtil &itimeUtil,
     wheelVelDelta(iwheelVelDelta) {
 }
 
-void Odometry::setScales(const ChassisScales &ichassisScales) {
+void TwoEncoderOdometry::setScales(const ChassisScales &ichassisScales) {
   chassisScales = ichassisScales;
 }
 
-void Odometry::step() {
+void TwoEncoderOdometry::step() {
   const auto deltaT = timer->getDt();
 
   if (deltaT.getValue() != 0) {
@@ -44,7 +44,8 @@ void Odometry::step() {
   }
 }
 
-OdomState Odometry::odomMathStep(const std::valarray<std::int32_t> &itickDiff, const QTime &) {
+OdomState TwoEncoderOdometry::odomMathStep(const std::valarray<std::int32_t> &itickDiff,
+                                           const QTime &) {
   const double deltaL = itickDiff[0] / chassisScales.straight;
   const double deltaR = itickDiff[1] / chassisScales.straight;
 
@@ -83,7 +84,7 @@ OdomState Odometry::odomMathStep(const std::valarray<std::int32_t> &itickDiff, c
   return OdomState{dX * meter, dY * meter, deltaTheta * radian};
 }
 
-OdomState Odometry::getState(const StateMode &imode) const {
+OdomState TwoEncoderOdometry::getState(const StateMode &imode) const {
   if (imode == StateMode::FRAME_TRANSFORMATION) {
     return state;
   } else {
@@ -91,7 +92,7 @@ OdomState Odometry::getState(const StateMode &imode) const {
   }
 }
 
-void Odometry::setState(const OdomState &istate, const StateMode &imode) {
+void TwoEncoderOdometry::setState(const OdomState &istate, const StateMode &imode) {
   LOG_DEBUG("State set to: " + istate.str());
   if (imode == StateMode::FRAME_TRANSFORMATION) {
     state = istate;

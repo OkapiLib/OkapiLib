@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
-#include "okapi/api/odometry/odometry.hpp"
+#include "okapi/api/odometry/twoEncoderOdometry.hpp"
 #include "okapi/api/odometry/threeEncoderOdometry.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include "test/tests/api/implMocks.hpp"
@@ -19,7 +19,7 @@ class OdometryTest : public ::testing::Test {
   protected:
   void SetUp() override {
     model = new MockSkidSteerModel();
-    odom = new Odometry(createConstantTimeUtil(10_ms),
+    odom = new TwoEncoderOdometry(createConstantTimeUtil(10_ms),
                         std::shared_ptr<MockSkidSteerModel>(model),
                         ChassisScales({{wheelDiam, wheelbaseWidth}, 360}));
   }
@@ -35,7 +35,7 @@ class OdometryTest : public ::testing::Test {
   QLength wheelDiam = 4_in;
   QLength wheelbaseWidth = 10_in;
   MockSkidSteerModel *model;
-  Odometry *odom;
+  TwoEncoderOdometry *odom;
 };
 
 TEST_F(OdometryTest, NoSensorMovementDoesNotAffectState) {
