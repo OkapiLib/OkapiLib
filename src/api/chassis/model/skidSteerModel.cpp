@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include <algorithm>
 #include <utility>
 
@@ -184,13 +185,7 @@ double SkidSteerModel::getMaxVelocity() const {
 }
 
 void SkidSteerModel::setMaxVoltage(double imaxVoltage) {
-  if (imaxVoltage < 0) {
-    maxVoltage = 0;
-  } else if (imaxVoltage > 12000) {
-    maxVoltage = 12000;
-  } else {
-    maxVoltage = imaxVoltage;
-  }
+  maxVoltage = std::clamp(imaxVoltage, 0.0, v5MotorMaxVoltage);
 }
 
 double SkidSteerModel::getMaxVoltage() const {
