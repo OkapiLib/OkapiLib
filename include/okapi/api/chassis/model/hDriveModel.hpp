@@ -12,23 +12,29 @@
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
 
 namespace okapi {
-class SkidSteerModel : public ChassisModel {
+class HDriveModel : public ChassisModel {
   public:
   /**
-   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-   * motors are powered +100%, the robot should move forward in a straight line.
+   * Model for an h-drive (wheels parallel with robot's direction of motion, with an additional
+   * wheel perpendicular to those). When all parallel motors are powered +100%, the robot should
+   * move forward in a straight line. When all perpendicular motors are powered +100%, the robot
+   * should strafe right in a straight line.
    *
    * @param ileftSideMotor The left side motor.
    * @param irightSideMotor The right side motor.
+   * @param imiddleMotor The middle (perpendicular) motor.
    * @param ileftEnc The left side encoder.
    * @param irightEnc The right side encoder.
+   * @param imiddleEnc The middle encoder.
    */
-  SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                 std::shared_ptr<AbstractMotor> irightSideMotor,
-                 std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                 std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                 double imaxVelocity,
-                 double imaxVoltage);
+  HDriveModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
+              std::shared_ptr<AbstractMotor> irightSideMotor,
+              std::shared_ptr<AbstractMotor> imiddleMotor,
+              std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+              std::shared_ptr<ContinuousRotarySensor> irightEnc,
+              std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
+              double imaxVelocity,
+              double imaxVoltage);
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.
@@ -90,6 +96,17 @@ class SkidSteerModel : public ChassisModel {
   void arcade(double iforwardSpeed, double iyaw, double ithreshold = 0) override;
 
   /**
+   * Drive the robot with an arcade drive layout. Uses voltage mode.
+   *
+   * @param irightSpeed speed to the right
+   * @param iforwardSpeed speed in the forward direction
+   * @param iyaw speed around the vertical axis
+   * @param ithreshold deadband on joystick values
+   */
+  virtual void
+  hArcade(double irightSpeed, double iforwardSpeed, double iyaw, double ithreshold = 0);
+
+  /**
    * Power the left side motors. Uses velocity mode.
    *
    * @param ispeed The motor power.
@@ -104,9 +121,16 @@ class SkidSteerModel : public ChassisModel {
   void right(double ispeed) override;
 
   /**
+   * Power the middle motors. Uses velocity mode.
+   *
+   * @param ispeed The motor power.
+   */
+  virtual void middle(double ispeed);
+
+  /**
    * Read the sensors.
    *
-   * @return sensor readings in the format {left, right}
+   * @return sensor readings in the format {left, right, middle}
    */
   std::valarray<std::int32_t> getSensorVals() const override;
 
@@ -177,12 +201,19 @@ class SkidSteerModel : public ChassisModel {
    */
   std::shared_ptr<AbstractMotor> getRightSideMotor() const;
 
+  /**
+   * @return The middle motor.
+   */
+  std::shared_ptr<AbstractMotor> getMiddleMotor() const;
+
   protected:
   double maxVelocity;
   double maxVoltage;
   std::shared_ptr<AbstractMotor> leftSideMotor;
   std::shared_ptr<AbstractMotor> rightSideMotor;
+  std::shared_ptr<AbstractMotor> middleMotor;
   std::shared_ptr<ContinuousRotarySensor> leftSensor;
   std::shared_ptr<ContinuousRotarySensor> rightSensor;
+  std::shared_ptr<ContinuousRotarySensor> middleSensor;
 };
 } // namespace okapi

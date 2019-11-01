@@ -15,7 +15,8 @@ using namespace okapi;
 class DefaultOdomChassisControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
-    odom = new TwoEncoderOdometry(createTimeUtil(), std::make_shared<MockReadOnlyChassisModel>(), scales);
+    odom = new TwoEncoderOdometry(
+      createTimeUtil(), std::make_shared<MockReadOnlyChassisModel>(), scales);
     controller = std::make_shared<MockChassisController>();
 
     drive = new DefaultOdomChassisController(

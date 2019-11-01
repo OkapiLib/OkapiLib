@@ -53,6 +53,7 @@ add_executable(OkapiLibV5
         include/okapi/api/chassis/controller/odomChassisController.hpp
         include/okapi/api/chassis/controller/defaultOdomChassisController.hpp
         include/okapi/api/chassis/model/chassisModel.hpp
+        include/okapi/api/chassis/model/hDriveModel.hpp
         include/okapi/api/chassis/model/readOnlyChassisModel.hpp
         include/okapi/api/chassis/model/skidSteerModel.hpp
         include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp
@@ -132,6 +133,7 @@ add_executable(OkapiLibV5
         src/api/chassis/controller/chassisScales.cpp
         src/api/chassis/controller/odomChassisController.cpp
         src/api/chassis/controller/defaultOdomChassisController.cpp
+        src/api/chassis/model/hDriveModel.cpp
         src/api/chassis/model/skidSteerModel.cpp
         src/api/chassis/model/threeEncoderSkidSteerModel.cpp
         src/api/chassis/model/xDriveModel.cpp
@@ -180,6 +182,7 @@ add_executable(OkapiLibV5
         test/controllerTests.cpp
         test/controlTests.cpp
         test/filterTests.cpp
+        test/hDriveModelTests.cpp
         test/implMocks.cpp
         test/twoEncoderOdometryTests.cpp
         test/utilTests.cpp

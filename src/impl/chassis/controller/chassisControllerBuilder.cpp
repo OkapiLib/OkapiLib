@@ -327,10 +327,10 @@ ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisCo
     if (odometry == nullptr) {
       if (middleSensor == nullptr) {
         odometry = std::make_unique<TwoEncoderOdometry>(odometryTimeUtilFactory.create(),
-                                              chassisController->getModel(),
-                                              chassisController->getChassisScales(),
-                                              wheelVelDelta,
-                                              controllerLogger);
+                                                        chassisController->getModel(),
+                                                        chassisController->getChassisScales(),
+                                                        wheelVelDelta,
+                                                        controllerLogger);
       } else {
         odometry = std::make_unique<ThreeEncoderOdometry>(odometryTimeUtilFactory.create(),
                                                           chassisController->getModel(),

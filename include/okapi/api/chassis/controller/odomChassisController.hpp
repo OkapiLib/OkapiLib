@@ -12,10 +12,10 @@
 #include "okapi/api/coreProsAPI.hpp"
 #include "okapi/api/odometry/odometry.hpp"
 #include "okapi/api/odometry/point.hpp"
-#include "okapi/api/util/logging.hpp"
-#include "okapi/api/util/timeUtil.hpp"
 #include "okapi/api/units/QSpeed.hpp"
 #include "okapi/api/util/abstractRate.hpp"
+#include "okapi/api/util/logging.hpp"
+#include "okapi/api/util/timeUtil.hpp"
 #include <atomic>
 #include <memory>
 #include <valarray>
