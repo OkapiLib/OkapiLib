@@ -10,6 +10,7 @@
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"
 #include "okapi/api/chassis/controller/defaultOdomChassisController.hpp"
+#include "okapi/api/chassis/model/hDriveModel.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/api/util/logging.hpp"
@@ -100,6 +101,40 @@ class ChassisControllerBuilder {
                                        const std::shared_ptr<AbstractMotor> &itopRight,
                                        const std::shared_ptr<AbstractMotor> &ibottomRight,
                                        const std::shared_ptr<AbstractMotor> &ibottomLeft);
+
+  /**
+   * Sets the motors using an h-drive layout.
+   *
+   * @param ileft The left motor.
+   * @param iright The right motor.
+   * @param imiddle The middle motor.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &
+  withMotors(const Motor &ileft, const Motor &iright, const Motor &imiddle);
+
+  /**
+   * Sets the motors using an h-drive layout.
+   *
+   * @param ileft The left motor.
+   * @param iright The right motor.
+   * @param imiddle The middle motor.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &
+  withMotors(const MotorGroup &ileft, const MotorGroup &iright, const MotorGroup &imiddle);
+
+  /**
+   * Sets the motors using an h-drive layout.
+   *
+   * @param ileft The left motor.
+   * @param iright The right motor.
+   * @param imiddle The middle motor.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withMotors(const std::shared_ptr<AbstractMotor> &ileft,
+                                       const std::shared_ptr<AbstractMotor> &iright,
+                                       const std::shared_ptr<AbstractMotor> &imiddle);
 
   /**
    * Sets the sensors. The default sensors are the motor's integrated encoders.
@@ -370,10 +405,19 @@ class ChassisControllerBuilder {
     std::shared_ptr<AbstractMotor> bottomLeft;
   };
 
-  bool hasMotors{false};  // Used to verify motors were passed
-  bool isSkidSteer{true}; // Whether to use SkidSteerMotors or XDriveMotors
+  struct HDriveMotors {
+    std::shared_ptr<AbstractMotor> left;
+    std::shared_ptr<AbstractMotor> right;
+    std::shared_ptr<AbstractMotor> middle;
+  };
+
+  enum class DriveMode { SkidSteer, XDrive, HDrive };
+
+  bool hasMotors{false}; // Used to verify motors were passed
+  DriveMode driveMode{DriveMode::SkidSteer};
   SkidSteerMotors skidSteerMotors;
   XDriveMotors xDriveMotors;
+  HDriveMotors hDriveMotors;
 
   bool sensorsSetByUser{false}; // Used so motors don't overwrite sensors set manually
   std::shared_ptr<ContinuousRotarySensor> leftSensor{nullptr};
@@ -414,7 +458,10 @@ class ChassisControllerBuilder {
   std::shared_ptr<ChassisControllerIntegrated> buildCCI();
   std::shared_ptr<DefaultOdomChassisController>
   buildDOCC(std::shared_ptr<ChassisController> chassisController);
+
+  std::shared_ptr<ChassisModel> makeChassisModel();
   std::shared_ptr<SkidSteerModel> makeSkidSteerModel();
   std::shared_ptr<XDriveModel> makeXDriveModel();
+  std::shared_ptr<HDriveModel> makeHDriveModel();
 };
 } // namespace okapi
