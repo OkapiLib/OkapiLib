@@ -32,6 +32,7 @@ void HDriveModel::forward(const double ispeed) {
   const double speed = std::clamp(ispeed, -1.0, 1.0);
   leftSideMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
   rightSideMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
+  middleMotor->moveVelocity(0);
 }
 
 void HDriveModel::driveVector(const double iforwardSpeed, const double iyaw) {
@@ -50,6 +51,7 @@ void HDriveModel::driveVector(const double iforwardSpeed, const double iyaw) {
 
   leftSideMotor->moveVelocity(static_cast<int16_t>(leftOutput * maxVelocity));
   rightSideMotor->moveVelocity(static_cast<int16_t>(rightOutput * maxVelocity));
+  middleMotor->moveVelocity(0);
 }
 
 void HDriveModel::driveVectorVoltage(const double iforwardSpeed, const double iyaw) {
@@ -68,12 +70,14 @@ void HDriveModel::driveVectorVoltage(const double iforwardSpeed, const double iy
 
   leftSideMotor->moveVoltage(static_cast<int16_t>(leftOutput * maxVoltage));
   rightSideMotor->moveVoltage(static_cast<int16_t>(rightOutput * maxVoltage));
+  middleMotor->moveVelocity(0);
 }
 
 void HDriveModel::rotate(const double ispeed) {
   const double speed = std::clamp(ispeed, -1.0, 1.0);
   leftSideMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
   rightSideMotor->moveVelocity(static_cast<int16_t>(-1 * speed * maxVelocity));
+  middleMotor->moveVelocity(0);
 }
 
 void HDriveModel::stop() {
@@ -97,6 +101,7 @@ void HDriveModel::tank(const double ileftSpeed, const double irightSpeed, const 
 
   leftSideMotor->moveVoltage(static_cast<int16_t>(leftSpeed * maxVoltage));
   rightSideMotor->moveVoltage(static_cast<int16_t>(rightSpeed * maxVoltage));
+  middleMotor->moveVelocity(0);
 }
 
 void HDriveModel::arcade(const double iforwardSpeed, const double iyaw, const double ithreshold) {
@@ -137,6 +142,7 @@ void HDriveModel::arcade(const double iforwardSpeed, const double iyaw, const do
   leftSideMotor->moveVoltage(static_cast<int16_t>(std::clamp(leftOutput, -1.0, 1.0) * maxVoltage));
   rightSideMotor->moveVoltage(
     static_cast<int16_t>(std::clamp(rightOutput, -1.0, 1.0) * maxVoltage));
+  middleMotor->moveVelocity(0);
 }
 
 void HDriveModel::hArcade(const double ixSpeed,

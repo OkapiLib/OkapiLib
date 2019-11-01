@@ -16,8 +16,8 @@ class HDriveModel : public ChassisModel {
   public:
   /**
    * Model for an h-drive (wheels parallel with robot's direction of motion, with an additional
-   * wheel perpendicular to those). When all parallel motors are powered +100%, the robot should
-   * move forward in a straight line. When all perpendicular motors are powered +100%, the robot
+   * wheel perpendicular to those). When the left and right side motors are powered +100%, the robot
+   * should move forward in a straight line. When the middle motor is powered +100%, the robot
    * should strafe right in a straight line.
    *
    * @param ileftSideMotor The left side motor.
@@ -37,17 +37,20 @@ class HDriveModel : public ChassisModel {
               double imaxVoltage);
 
   /**
-   * Drive the robot forwards (using open-loop control). Uses velocity mode.
+   * Drive the robot forwards (using open-loop control). Uses velocity mode. Sets the middle motor
+   * to zero velocity.
    *
    * @param ispeed motor power
    */
   void forward(double ispeed) override;
 
   /**
-   * Drive the robot in an arc (using open-loop control). Uses velocity mode.
+   * Drive the robot in an arc (using open-loop control). Uses velocity mode. Sets the middle motor
+   * to zero velocity.
+   *
    * The algorithm is (approximately):
-   *   leftPower = ySpeed + zRotation
-   *   rightPower = ySpeed - zRotation
+   *    leftPower = ySpeed + zRotation
+   *    rightPower = ySpeed - zRotation
    *
    * @param iySpeed speed on y axis (forward)
    * @param izRotation speed around z axis (up)
@@ -55,7 +58,8 @@ class HDriveModel : public ChassisModel {
   void driveVector(double iySpeed, double izRotation) override;
 
   /**
-   * Drive the robot in an arc. Uses voltage mode.
+   * Drive the robot in an arc. Uses voltage mode. Sets the middle motor to zero velocity.
+   *
    * The algorithm is (approximately):
    *   leftPower = forwardSpeed + yaw
    *   rightPower = forwardSpeed - yaw
@@ -66,7 +70,8 @@ class HDriveModel : public ChassisModel {
   void driveVectorVoltage(double iforwardSpeed, double iyaw) override;
 
   /**
-   * Turn the robot clockwise (using open-loop control). Uses velocity mode.
+   * Turn the robot clockwise (using open-loop control). Uses velocity mode. Sets the middle motor
+   * to zero velocity.
    *
    * @param ispeed motor power
    */
@@ -78,7 +83,8 @@ class HDriveModel : public ChassisModel {
   void stop() override;
 
   /**
-   * Drive the robot with a tank drive layout. Uses voltage mode.
+   * Drive the robot with a tank drive layout. Uses voltage mode. Sets the middle motor to zero
+   * velocity.
    *
    * @param ileftSpeed left side speed
    * @param irightSpeed right side speed
@@ -87,7 +93,8 @@ class HDriveModel : public ChassisModel {
   void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) override;
 
   /**
-   * Drive the robot with an arcade drive layout. Uses voltage mode.
+   * Drive the robot with an arcade drive layout. Uses voltage mode. Sets the middle motor to zero
+   * velocity.
    *
    * @param iforwardSpeed speed in the forward direction
    * @param iyaw speed around the vertical axis
