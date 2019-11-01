@@ -6,8 +6,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
-#include "okapi/api/odometry/twoEncoderOdometry.hpp"
 #include "okapi/api/odometry/threeEncoderOdometry.hpp"
+#include "okapi/api/odometry/twoEncoderOdometry.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
@@ -20,8 +20,8 @@ class OdometryTest : public ::testing::Test {
   void SetUp() override {
     model = new MockSkidSteerModel();
     odom = new TwoEncoderOdometry(createConstantTimeUtil(10_ms),
-                        std::shared_ptr<MockSkidSteerModel>(model),
-                        ChassisScales({{wheelDiam, wheelbaseWidth}, 360}));
+                                  std::shared_ptr<MockSkidSteerModel>(model),
+                                  ChassisScales({{wheelDiam, wheelbaseWidth}, 360}));
   }
 
   void TearDown() override {

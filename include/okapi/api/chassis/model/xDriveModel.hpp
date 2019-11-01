@@ -18,12 +18,12 @@ class XDriveModel : public ChassisModel {
    * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
    * +100%, the robot should move forward in a straight line.
    *
-   * @param itopLeftMotor top left motor
-   * @param itopRightMotor top right motor
-   * @param ibottomRightMotor bottom right motor
-   * @param ibottomLeftMotor bottom left motor
-   * @param ileftEnc Left side encoder
-   * @param irightEnc Right side encoder
+   * @param itopLeftMotor The top left motor.
+   * @param itopRightMotor The top right motor.
+   * @param ibottomRightMotor The bottom right motor.
+   * @param ibottomLeftMotor The bottom left motor.
+   * @param ileftEnc The left side encoder.
+   * @param irightEnc The right side encoder.
    */
   XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
               std::shared_ptr<AbstractMotor> itopRightMotor,
@@ -107,16 +107,16 @@ class XDriveModel : public ChassisModel {
   /**
    * Power the left side motors. Uses velocity mode.
    *
-   * @param ipower motor power
+   * @param ispeed The motor power.
    */
-  void left(double ipower) override;
+  void left(double ispeed) override;
 
   /**
    * Power the right side motors. Uses velocity mode.
    *
-   * @param ipower motor power
+   * @param ispeed The motor power.
    */
-  void right(double ipower) override;
+  void right(double ispeed) override;
 
   /**
    * Read the sensors.

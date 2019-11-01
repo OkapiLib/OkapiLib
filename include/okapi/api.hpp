@@ -33,6 +33,7 @@
 #include "okapi/api/chassis/controller/chassisScales.hpp"
 #include "okapi/api/chassis/controller/defaultOdomChassisController.hpp"
 #include "okapi/api/chassis/controller/odomChassisController.hpp"
+#include "okapi/api/chassis/model/hDriveModel.hpp"
 #include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
