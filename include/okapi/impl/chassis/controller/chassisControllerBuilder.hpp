@@ -132,6 +132,17 @@ class ChassisControllerBuilder {
    * @param imiddle The middle motor.
    * @return An ongoing builder.
    */
+  ChassisControllerBuilder &
+  withMotors(const MotorGroup &ileft, const MotorGroup &iright, const Motor &imiddle);
+
+  /**
+   * Sets the motors using an h-drive layout.
+   *
+   * @param ileft The left motor.
+   * @param iright The right motor.
+   * @param imiddle The middle motor.
+   * @return An ongoing builder.
+   */
   ChassisControllerBuilder &withMotors(const std::shared_ptr<AbstractMotor> &ileft,
                                        const std::shared_ptr<AbstractMotor> &iright,
                                        const std::shared_ptr<AbstractMotor> &imiddle);

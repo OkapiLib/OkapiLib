@@ -112,6 +112,14 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const MotorGroup 
                     std::make_shared<MotorGroup>(imiddle));
 }
 
+ChassisControllerBuilder &ChassisControllerBuilder::withMotors(const MotorGroup &ileft,
+                                                               const MotorGroup &iright,
+                                                               const Motor &imiddle) {
+  return withMotors(std::make_shared<MotorGroup>(ileft),
+                    std::make_shared<MotorGroup>(iright),
+                    std::make_shared<Motor>(imiddle));
+}
+
 ChassisControllerBuilder &
 ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &ileft,
                                      const std::shared_ptr<AbstractMotor> &iright,
@@ -447,7 +455,7 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
     leftMotorGroup = std::make_shared<MotorGroup>(
       std::initializer_list({xDriveMotors.topLeft, xDriveMotors.bottomLeft}), controllerLogger);
     rightMotorGroup = std::make_shared<MotorGroup>(
-      std::initializer_list({xDriveMotors.topRight, xDriveMotors.bottomRight}));
+      std::initializer_list({xDriveMotors.topRight, xDriveMotors.bottomRight}), controllerLogger);
     break;
 
   case DriveMode::HDrive:
