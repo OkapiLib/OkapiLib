@@ -12,32 +12,22 @@ using namespace okapi;
 
 auto driveController = ChassisControllerBuilder()
                         .withMotors(1, -2)
+                        // Green gearset, 4 in wheel diam, 13.5 in wheel track
+                        .withDimensions(AbstractMotor::gearset::green, {4_in, 13.5_in})
                         .build();
-
-void autonomous() {
-}
 ```
 
 And then we'll add a lift subsystem as an Async Controller:
 
 ```cpp
-using namespace okapi;
-
 const double liftkP = 0.001;
 const double liftkI = 0.0001;
 const double liftkD = 0.0001;
-
-auto driveController = ChassisControllerBuilder()
-                        .withMotors(1, -2)
-                        .build();
 
 auto liftController = AsyncPosControllerBuilder()
                         .withMotor(3) // lift motor port 3
                         .withGains({liftkP, liftkI, liftkD})
                         .build();
-
-void autonomous() {
-}
 ```
 
 Now that we have two subsystems to run, let's execute a few different movements.
@@ -48,31 +38,12 @@ lift's status), we'll run
 the drive controller.
 
 ```cpp
-using namespace okapi;
+// Begin movements
+driveController->moveDistanceAsync(10_in); // Move 10 inches forward
+liftController->setTarget(200); // Move 200 motor degrees upward
+driveController->waitUntilSettled();
 
-const double liftkP = 0.001;
-const double liftkI = 0.0001;
-const double liftkD = 0.0001;
-
-auto driveController = ChassisControllerBuilder()
-                        .withMotors(1, -2)
-                        // 4 inch wheel diameter, 13 inch wheelbase, green cartridge
-                        .withDimensions({{4_in, 13_in}, imev5GreenTPR})
-                        .build();
-
-auto liftController = AsyncPosControllerBuilder()
-                        .withMotor(3) // lift motor port 3
-                        .withGains({liftkP, liftkI, liftkD})
-                        .build();
-
-void autonomous() {
-    // Begin movements
-    driveController->moveDistanceAsync(10_in); // Move 10 inches forward
-    liftController->setTarget(200); // Move 200 motor degrees upward
-    driveController->waitUntilSettled();
-
-    // Then the next movement will execute after the drive movement finishes
-}
+// Then the next movement will execute after the drive movement finishes
 ```
 
 If blocking the next movement with regard only to the lift is desired, swap
@@ -82,30 +53,11 @@ to finish before executing the next movement, then call
 controllers.
 
 ```cpp
-using namespace okapi;
+// Begin movements
+driveController->moveDistanceAsync(10_in); // Move 10 inches forward
+liftController->setTarget(200); // Move 200 motor degrees upward
+driveController->waitUntilSettled();
+liftController->waitUntilSettled();
 
-const double liftkP = 0.001;
-const double liftkI = 0.0001;
-const double liftkD = 0.0001;
-
-auto driveController = ChassisControllerBuilder()
-                        .withMotors(1, -2)
-                        // 4 inch wheel diameter, 13 inch wheelbase, green cartridge
-                        .withDimensions({{4_in, 13_in}, imev5GreenTPR})
-                        .build();
-
-auto liftController = AsyncPosControllerBuilder()
-                        .withMotor(3) // lift motor port 3
-                        .withGains({liftkP, liftkI, liftkD})
-                        .build();
-
-void autonomous() {
-    // Begin movements
-    driveController->moveDistanceAsync(10_in); // Move 10 inches forward
-    liftController->setTarget(200); // Move 200 motor degrees upward
-    driveController->waitUntilSettled();
-    liftController->waitUntilSettled();
-
-    // Then the next movement will execute after both movements finish
-}
+// Then the next movement will execute after both movements finish
 ```

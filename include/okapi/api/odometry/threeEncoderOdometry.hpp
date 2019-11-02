@@ -29,7 +29,6 @@ class ThreeEncoderOdometry : public TwoEncoderOdometry {
   ThreeEncoderOdometry(const TimeUtil &itimeUtil,
                        const std::shared_ptr<ReadOnlyChassisModel> &imodel,
                        const ChassisScales &ichassisScales,
-                       const QSpeed &iwheelVelDelta = 0.0001_mps,
                        const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**

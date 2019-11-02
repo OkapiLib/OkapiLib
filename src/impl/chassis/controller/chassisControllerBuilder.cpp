@@ -45,10 +45,6 @@ ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &ileft
     maxVelocity = toUnderlyingType(ileft->getGearing());
   }
 
-  if (!gearsetSetByUser) {
-    gearset = ileft->getGearing();
-  }
-
   return *this;
 }
 
@@ -88,10 +84,6 @@ ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &itopL
 
   if (!maxVelSetByUser) {
     maxVelocity = toUnderlyingType(itopLeft->getGearing());
-  }
-
-  if (!gearsetSetByUser) {
-    gearset = itopLeft->getGearing();
   }
 
   return *this;
@@ -137,10 +129,6 @@ ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &ileft
 
   if (!maxVelSetByUser) {
     maxVelocity = toUnderlyingType(ileft->getGearing());
-  }
-
-  if (!gearsetSetByUser) {
-    gearset = ileft->getGearing();
   }
 
   return *this;
@@ -223,14 +211,26 @@ ChassisControllerBuilder::withDerivativeFilters(std::unique_ptr<Filter> idistanc
 
 ChassisControllerBuilder &ChassisControllerBuilder::withOdometry(const StateMode &imode,
                                                                  const QLength &imoveThreshold,
-                                                                 const QAngle &iturnThreshold,
-                                                                 const QSpeed &iwheelVelDelta) {
+                                                                 const QAngle &iturnThreshold) {
   hasOdom = true;
   odometry = nullptr;
   stateMode = imode;
   moveThreshold = imoveThreshold;
   turnThreshold = iturnThreshold;
-  wheelVelDelta = iwheelVelDelta;
+  return *this;
+}
+
+ChassisControllerBuilder &ChassisControllerBuilder::withOdometry(const ChassisScales &iodomScales,
+                                                                 const StateMode &imode,
+                                                                 const QLength &imoveThreshold,
+                                                                 const QAngle &iturnThreshold) {
+  hasOdom = true;
+  differentOdomScales = true;
+  odomScales = iodomScales;
+  odometry = nullptr;
+  stateMode = imode;
+  moveThreshold = imoveThreshold;
+  turnThreshold = iturnThreshold;
   return *this;
 }
 
@@ -254,19 +254,34 @@ ChassisControllerBuilder::withOdometry(std::unique_ptr<Odometry> iodometry,
 }
 
 ChassisControllerBuilder &
-ChassisControllerBuilder::withGearset(const AbstractMotor::GearsetRatioPair &igearset) {
-  gearsetSetByUser = true;
+ChassisControllerBuilder::withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
+                                         const std::initializer_list<QLength> &idimensions) {
   gearset = igearset;
 
   if (!maxVelSetByUser) {
     maxVelocity = toUnderlyingType(igearset.internalGearset);
   }
 
+  driveScales = ChassisScales(idimensions, gearsetToTPR(gearset.internalGearset), logger);
+  if (!differentOdomScales) {
+    odomScales = driveScales;
+  }
   return *this;
 }
 
-ChassisControllerBuilder &ChassisControllerBuilder::withDimensions(const ChassisScales &iscales) {
-  scales = iscales;
+ChassisControllerBuilder &
+ChassisControllerBuilder::withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
+                                         const std::initializer_list<double> &iscales) {
+  gearset = igearset;
+
+  if (!maxVelSetByUser) {
+    maxVelocity = toUnderlyingType(igearset.internalGearset);
+  }
+
+  driveScales = ChassisScales(iscales, gearsetToTPR(gearset.internalGearset), logger);
+  if (!differentOdomScales) {
+    odomScales = driveScales;
+  }
   return *this;
 }
 
@@ -331,16 +346,11 @@ std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
     throw std::runtime_error(msg);
   }
 
-  if (!gearsetSetByUser) {
-    LOG_WARN_S("ChassisControllerBuilder: The default gearset is selected. This could be a bug.");
-  }
-
-  std::int32_t calculatedTPR = gearsetToTPR(gearset.internalGearset) * gearset.ratio;
-  if (calculatedTPR != scales.tpr) {
-    LOG_WARN("ChassisControllerBuilder: The calculated TPR from the given gearset and ratio (" +
-             std::to_string(calculatedTPR) +
-             ") does not equal the TPR given in the ChassisScales (" + std::to_string(scales.tpr) +
-             "). This is probably a bug.");
+  if (gearset.internalGearset == AbstractMotor::gearset::invalid) {
+    // Invalid by default. The user must provide one.
+    std::string msg("ChassisControllerBuilder: A gearset was not provided.");
+    LOG_ERROR(msg);
+    throw std::runtime_error(msg);
   }
 
   if (maxVelSetByUser && maxVelocity > toUnderlyingType(gearset.internalGearset)) {
@@ -377,14 +387,12 @@ ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisCo
     if (middleSensor == nullptr) {
       odometry = std::make_unique<TwoEncoderOdometry>(odometryTimeUtilFactory.create(),
                                                       chassisController->getModel(),
-                                                      chassisController->getChassisScales(),
-                                                      wheelVelDelta,
+                                                      odomScales,
                                                       controllerLogger);
     } else {
       odometry = std::make_unique<ThreeEncoderOdometry>(odometryTimeUtilFactory.create(),
                                                         chassisController->getModel(),
-                                                        chassisController->getChassisScales(),
-                                                        wheelVelDelta,
+                                                        odomScales,
                                                         controllerLogger);
     }
   }
@@ -424,7 +432,7 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
                                                 std::move(angleFilter),
                                                 controllerLogger),
     gearset,
-    scales,
+    driveScales,
     controllerLogger);
 
   out->startThread();
@@ -473,7 +481,7 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
                                                    closedLoopControllerTimeUtilFactory.create(),
                                                    controllerLogger),
     gearset,
-    scales,
+    driveScales,
     controllerLogger);
 }
 

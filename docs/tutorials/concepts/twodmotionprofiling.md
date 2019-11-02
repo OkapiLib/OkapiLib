@@ -41,17 +41,14 @@ using namespace okapi;
 
 auto myChassis = ChassisControllerBuilder()
                    .withMotors({1, 2}, {-3, -4})
-                   .withGearset(AbstractMotor::gearset::green)
-                   .withDimensions({{4_in, 11.5_in}, imev5GreenTPR})
+                   // Green gearset, 4 in wheel diam, 11.5 in wheel track
+                   .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
                    .build();
 
 auto profileController = AsyncMotionProfileControllerBuilder()
                            .withLimits({1.0, 2.0, 10.0})
                            .withOutput(myChassis)
                            .buildMotionProfileController();
-
-void opcontrol() {
-}
 ```
 
 Next, let's create a motion profile. A profile is created with a list of points
@@ -102,8 +99,8 @@ using namespace okapi;
 
 auto myChassis = ChassisControllerBuilder()
                    .withMotors({1, 2}, {-3, -4})
-                   .withGearset(AbstractMotor::gearset::green)
-                   .withDimensions({{4_in, 11.5_in}, imev5GreenTPR})
+                   // Green gearset, 4 in wheel diam, 11.5 in wheel track
+                   .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
                    .build();
 
 auto profileController = AsyncMotionProfileControllerBuilder()

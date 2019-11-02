@@ -18,9 +18,8 @@ static void testWaitUntilSettledExitsProperly() {
 
   auto drive = ChassisControllerBuilder()
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
-                 .withGearset(MOTOR_GEARSET)
                  .withGains({}, {0.003})
-                 .withDimensions({{4_in, 10_in}, gearsetToTPR(MOTOR_GEARSET)})
+                 .withDimensions(MOTOR_GEARSET, {4_in, 10_in})
                  .build();
 
   for (int i = 0; i < 10; ++i) {
@@ -54,9 +53,8 @@ static void testMoveDistanceGoesTheRightDistance() {
 
   auto drive = ChassisControllerBuilder()
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
-                 .withGearset(MOTOR_GEARSET)
                  .withGains({0.003, 0.0001, 0.00015}, {})
-                 .withDimensions({{4_in, 10_in}, gearsetToTPR(MOTOR_GEARSET)})
+                 .withDimensions(MOTOR_GEARSET, {4_in, 10_in})
                  .build();
 
   // Move one wheel rotation
@@ -83,9 +81,8 @@ static void testTurnAngleGoesTheRightDistance() {
 
   auto drive = ChassisControllerBuilder()
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
-                 .withGearset(MOTOR_GEARSET)
                  .withGains({}, {0.003, 0.0001, 0.00015})
-                 .withDimensions({{4_in, 365_mm}, gearsetToTPR(MOTOR_GEARSET)})
+                 .withDimensions(MOTOR_GEARSET, {4_in, 365_mm})
                  .build();
 
   // Turn one wheel rotation

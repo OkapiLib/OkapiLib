@@ -19,8 +19,7 @@ static void testMoveDistanceGoesTheRightDistance() {
   QLength wheelDiam = 4.125_in;
   auto drive = ChassisControllerBuilder()
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
-                 .withGearset(MOTOR_GEARSET)
-                 .withDimensions({{wheelDiam, 11.375_in}, gearsetToTPR(MOTOR_GEARSET)})
+                 .withDimensions(MOTOR_GEARSET, {wheelDiam, 11.375_in})
                  .build();
 
   // Move one wheel rotation
@@ -47,8 +46,7 @@ static void testTurnAngleGoesTheRightDistance() {
 
   auto drive = ChassisControllerBuilder()
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
-                 .withGearset(MOTOR_GEARSET)
-                 .withDimensions({{4.125_in, 11.375_in}, gearsetToTPR(MOTOR_GEARSET)})
+                 .withDimensions(MOTOR_GEARSET, {4.125_in, 11.375_in})
                  .build();
 
   // Turn one wheel rotation

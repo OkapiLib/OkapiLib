@@ -90,11 +90,16 @@ tuning the PID controllers.
 We will be using
 [ChassisControllerIntegrated](@ref okapi::ChassisControllerIntegrated) for this
 tutorial. Let's initialize it now with our two motors in ports ``1`` and ``10``.
-The motor in port ``10`` is negative because it is reversed.
+The motor in port ``10`` is negative because it is reversed. We should also specify the gearset
+in the drive motors and the chassis dimensions.
 
 ```cpp
 // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-auto drive = ChassisControllerBuilder().withMotors(1, -10).build();
+auto drive = ChassisControllerBuilder()
+                 .withMotors(1, -10)
+                 // Green gearset, 4 in wheel diam, 11.5 in wheel track
+                 .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
+                 .build();
 ```
 
 Next, let's setup tank or arcade control.
@@ -216,31 +221,15 @@ if (armLimitSwitch.isPressed()) {
 
 ## Autonomous Routine
 
-To illustrate the closed-loop control method that
+To illustrate the closed-loop control methods that
 [ChassisController](@ref okapi::ChassisController) has, let's make a simple
 autonomous routine to drive in a square.
 
 Writing an autonomous routine is much easier when distances and turns can be
-done with physical units, so let's configure the
-[ChassisController](@ref okapi::ChassisController) with the clawbot chassis's
-dimensions. This will require that we specify two additional parameters. The
-first is the gearset of the motors on the chassis, in this example we will use
-the standard green cartridges. The second is a
-[list](http://www.cplusplus.com/reference/initializer_list/initializer_list/)
-containing the wheel diameter (`4` inches) and the width of the chassis (`11.5`
-inches).
-
-```cpp
-// Chassis Controller - lets us drive the robot around with open- or closed-loop control
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -10)
-                .withGearset(AbstractMotor::gearset::green)
-                .withDimensions({{4_in, 11.5_in}, imev5GreenTPR})
-                .build();
-```
-
-After this, you can move the chassis in physical units, such as inches and
-degrees:
+done with physical units, but because we have already configured the gearset and chassis
+dimensions for our [ChassisController](@ref okapi::ChassisController), we don't need to do any
+extra work to use this feature. Let's make the robot move along the first quarter of the square
+pattern:
 
 ```cpp
 drive->moveDistance(12_in); // Drive forward 12 inches
@@ -260,10 +249,10 @@ using namespace okapi;
 void opcontrol() {
     // Chassis Controller - lets us drive the robot around with open- or closed-loop control
     auto drive = ChassisControllerBuilder()
-                    .withMotors(1, -10)
-                    .withGearset(AbstractMotor::gearset::green)
-                    .withDimensions({{4_in, 11.5_in}, imev5GreenTPR})
-                    .build();
+                     .withMotors(1, -10)
+                     // Green gearset, 4 in wheel diam, 11.5 in wheel track
+                     .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
+                     .build();
 
     // Joystick to read analog values for tank or arcade control
     // Master controller by default
@@ -322,10 +311,10 @@ using namespace okapi;
 void opcontrol() {
     // Chassis Controller - lets us drive the robot around with open- or closed-loop control
     auto drive = ChassisControllerBuilder()
-                    .withMotors(1, -10)
-                    .withGearset(AbstractMotor::gearset::green)
-                    .withDimensions({{4_in, 11.5_in}, imev5GreenTPR})
-                    .build();
+                     .withMotors(1, -10)
+                     // Green gearset, 4 in wheel diam, 11.5 in wheel track
+                     .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
+                     .build();
 
     // Joystick to read analog values for tank or arcade control
     // Master controller by default

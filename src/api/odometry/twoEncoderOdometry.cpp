@@ -14,14 +14,12 @@ namespace okapi {
 TwoEncoderOdometry::TwoEncoderOdometry(const TimeUtil &itimeUtil,
                                        const std::shared_ptr<ReadOnlyChassisModel> &imodel,
                                        const ChassisScales &ichassisScales,
-                                       const QSpeed &iwheelVelDelta,
                                        const std::shared_ptr<Logger> &ilogger)
   : logger(ilogger),
     rate(itimeUtil.getRate()),
     timer(itimeUtil.getTimer()),
     model(imodel),
-    chassisScales(ichassisScales),
-    wheelVelDelta(iwheelVelDelta) {
+    chassisScales(ichassisScales) {
 }
 
 void TwoEncoderOdometry::setScales(const ChassisScales &ichassisScales) {

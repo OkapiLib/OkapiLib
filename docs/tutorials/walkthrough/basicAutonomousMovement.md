@@ -22,6 +22,8 @@ using namespace okapi;
 
 auto chassis = ChassisControllerBuilder()
                 .withMotors(1, -2)
+                // Green gearset, 4 in wheel diam, 13.5 in wheel track
+                .withDimensions(AbstractMotor::gearset::green, {4_in, 13.5_in})
                 .build();
 ```
 
@@ -32,44 +34,10 @@ two fundamental movement types:
 forward/backward and turning on a point.
 
 ```cpp
-using namespace okapi;
-
-auto chassis = ChassisControllerBuilder()
-                .withMotors(1, -2)
-                .build();
-
-void autonomous() {
-    // Move to first goal in motor degrees
-    chassis->moveRaw(1000);
-    // Turn to face second goal in motor degrees
-    chassis->turnRaw(100);
-    // Drive toward second goal in motor degrees
-    chassis->moveRaw(1500);
-}
-```
-
-If you'd like to set movements in real life units, that's possible as well. Just
-pass in the drive's gearset and dimensions, and then use the appropriate suffix
-for the units that you would like the movement to occur in.
-
-```cpp
-using namespace okapi;
-
-const auto WHEEL_DIAMETER = 4_in;
-const auto CHASSIS_WIDTH = 13.5_in;
-
-auto chassis = ChassisControllerBuilder()
-                .withMotors(1, -2)
-                .withGearset(AbstractMotor::gearset::green)
-                .withDimensions({{WHEEL_DIAMETER, CHASSIS_WIDTH}, imev5GreenTPR})
-                .build();
-
-void autonomous() {
-    // Move 1 meter to the first goal
-    chassis->moveDistance(1_m);
-    // Turn 90 degrees to face second goal
-    chassis->turnAngle(90_deg);
-    // Drive 1 and a half feet toward second goal
-    chassis->moveDistance(1.5_ft);
-}
+// Move 1 meter to the first goal
+chassis->moveDistance(1_m);
+// Turn 90 degrees to face second goal
+chassis->turnAngle(90_deg);
+// Drive 1 and a half feet toward second goal
+chassis->moveDistance(1.5_ft);
 ```
