@@ -37,6 +37,7 @@
 #include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
+#include "okapi/api/chassis/model/threeEncoderXDriveModel.hpp"
 #include "okapi/api/chassis/model/xDriveModel.hpp"
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 
