@@ -60,7 +60,7 @@ static constexpr double ime269TPR = 240.448;
 static constexpr std::int32_t imev5RedTPR = 1800;
 
 /**
- * The ticks per rotation of the V5 motor with a hreen gearset.
+ * The ticks per rotation of the V5 motor with a green gearset.
  */
 static constexpr std::int32_t imev5GreenTPR = 900;
 
