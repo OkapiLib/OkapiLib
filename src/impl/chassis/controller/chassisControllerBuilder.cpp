@@ -223,22 +223,19 @@ ChassisControllerBuilder::withDerivativeFilters(std::unique_ptr<Filter> idistanc
 
 ChassisControllerBuilder &ChassisControllerBuilder::withOdometry(const StateMode &imode,
                                                                  const QLength &imoveThreshold,
-                                                                 const QAngle &iturnThreshold,
-                                                                 const QSpeed &iwheelVelDelta) {
+                                                                 const QAngle &iturnThreshold) {
   hasOdom = true;
   odometry = nullptr;
   stateMode = imode;
   moveThreshold = imoveThreshold;
   turnThreshold = iturnThreshold;
-  wheelVelDelta = iwheelVelDelta;
   return *this;
 }
 
 ChassisControllerBuilder &ChassisControllerBuilder::withOdometry(const ChassisScales &iodomScales,
                                                                  const StateMode &imode,
                                                                  const QLength &imoveThreshold,
-                                                                 const QAngle &iturnThreshold,
-                                                                 const QSpeed &iwheelVelDelta) {
+                                                                 const QAngle &iturnThreshold) {
   hasOdom = true;
   differentOdomScales = true;
   odomScales = iodomScales;
@@ -246,7 +243,6 @@ ChassisControllerBuilder &ChassisControllerBuilder::withOdometry(const ChassisSc
   stateMode = imode;
   moveThreshold = imoveThreshold;
   turnThreshold = iturnThreshold;
-  wheelVelDelta = iwheelVelDelta;
   return *this;
 }
 
@@ -414,13 +410,11 @@ ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisCo
       odometry = std::make_unique<TwoEncoderOdometry>(odometryTimeUtilFactory.create(),
                                                       chassisController->getModel(),
                                                       odomScales,
-                                                      wheelVelDelta,
                                                       controllerLogger);
     } else {
       odometry = std::make_unique<ThreeEncoderOdometry>(odometryTimeUtilFactory.create(),
                                                         chassisController->getModel(),
                                                         odomScales,
-                                                        wheelVelDelta,
                                                         controllerLogger);
     }
   }
