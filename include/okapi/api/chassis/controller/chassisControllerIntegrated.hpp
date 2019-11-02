@@ -57,7 +57,7 @@ class ChassisControllerIntegrated : public ChassisController {
    *
    * ```cpp
    * // Drive forward by spinning the motors 400 degrees
-   * chassis->moveDistance(400);
+   * chassis->moveRaw(400);
    * ```
    *
    * @param itarget distance to travel in motor degrees
@@ -95,7 +95,7 @@ class ChassisControllerIntegrated : public ChassisController {
    *
    * ```cpp
    * // Turn clockwise by spinning the motors 200 degrees
-   * chassis->turnAngle(200);
+   * chassis->turnRaw(200);
    * ```
    *
    * @param idegTarget angle to turn for in motor degrees
