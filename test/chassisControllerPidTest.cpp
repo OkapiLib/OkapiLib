@@ -71,7 +71,7 @@ TEST_F(ChassisControllerPIDTest, GearsetIsCorrect) {
 }
 
 TEST_F(ChassisControllerPIDTest, MoveDistanceRawUnitsTest) {
-  controller->moveDistance(100);
+  controller->moveRaw(100);
 
   EXPECT_DOUBLE_EQ(distanceController->getTarget(), 100);
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
@@ -98,7 +98,7 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceUnitsTest) {
 }
 
 TEST_F(ChassisControllerPIDTest, MoveDistanceAsyncRawUnitsTest) {
-  controller->moveDistanceAsync(100);
+  controller->moveRawAsync(100);
 
   EXPECT_DOUBLE_EQ(distanceController->getTarget(), 100);
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
@@ -137,7 +137,7 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceAsyncUnitsTest) {
 }
 
 TEST_F(ChassisControllerPIDTest, TurnAngleRawUnitsTest) {
-  controller->turnAngle(100);
+  controller->turnRaw(100);
 
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
   EXPECT_DOUBLE_EQ(turnController->getTarget(), 100);
@@ -164,7 +164,7 @@ TEST_F(ChassisControllerPIDTest, TurnAngleUnitsTest) {
 }
 
 TEST_F(ChassisControllerPIDTest, TurnAngleAsyncRawUnitsTest) {
-  controller->turnAngleAsync(100);
+  controller->turnRawAsync(100);
 
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
   EXPECT_DOUBLE_EQ(turnController->getTarget(), 100);
@@ -213,7 +213,7 @@ TEST_F(ChassisControllerPIDTest, MirrorTurnTest) {
 }
 
 TEST_F(ChassisControllerPIDTest, MoveDistanceThenTurnAngleAsyncTest) {
-  controller->moveDistanceAsync(100);
+  controller->moveRawAsync(100);
 
   EXPECT_DOUBLE_EQ(distanceController->getTarget(), 100);
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
@@ -222,7 +222,7 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceThenTurnAngleAsyncTest) {
   EXPECT_FALSE(angleController->isDisabled());
   EXPECT_TRUE(turnController->isDisabled());
 
-  controller->turnAngleAsync(200);
+  controller->turnRawAsync(200);
 
   EXPECT_DOUBLE_EQ(turnController->getTarget(), 200);
 
@@ -240,7 +240,7 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceThenTurnAngleAsyncTest) {
 }
 
 TEST_F(ChassisControllerPIDTest, TurnAngleThenMoveDistanceAsyncTest) {
-  controller->turnAngleAsync(200);
+  controller->turnRawAsync(200);
 
   EXPECT_DOUBLE_EQ(turnController->getTarget(), 200);
 
@@ -248,7 +248,7 @@ TEST_F(ChassisControllerPIDTest, TurnAngleThenMoveDistanceAsyncTest) {
   EXPECT_TRUE(angleController->isDisabled());
   EXPECT_FALSE(turnController->isDisabled());
 
-  controller->moveDistanceAsync(100);
+  controller->moveRawAsync(100);
 
   EXPECT_DOUBLE_EQ(distanceController->getTarget(), 100);
   EXPECT_DOUBLE_EQ(angleController->getTarget(), 0);
@@ -267,14 +267,14 @@ TEST_F(ChassisControllerPIDTest, TurnAngleThenMoveDistanceAsyncTest) {
 }
 
 TEST_F(ChassisControllerPIDTest, MoveDistanceAndWaitTest) {
-  controller->moveDistance(100);
+  controller->moveRaw(100);
   controller->waitUntilSettled();
 
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
 TEST_F(ChassisControllerPIDTest, MoveDistanceGetBumpedAndWaitTest) {
-  controller->moveDistance(100);
+  controller->moveRaw(100);
 
   // First bump
   leftMotor->encoder->value = 500;
@@ -290,14 +290,14 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceGetBumpedAndWaitTest) {
 }
 
 TEST_F(ChassisControllerPIDTest, TurnAngleAndWaitTest) {
-  controller->turnAngle(100);
+  controller->turnRaw(100);
   controller->waitUntilSettled();
 
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
 TEST_F(ChassisControllerPIDTest, TurnAngleGetBumpedAndWaitTest) {
-  controller->turnAngle(100);
+  controller->turnRaw(100);
 
   // First bump
   leftMotor->encoder->value = 500;
@@ -313,7 +313,7 @@ TEST_F(ChassisControllerPIDTest, TurnAngleGetBumpedAndWaitTest) {
 }
 
 TEST_F(ChassisControllerPIDTest, MoveDistanceAndStopTest) {
-  controller->moveDistanceAsync(100);
+  controller->moveRawAsync(100);
   controller->stop();
 
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
@@ -322,7 +322,7 @@ TEST_F(ChassisControllerPIDTest, MoveDistanceAndStopTest) {
 }
 
 TEST_F(ChassisControllerPIDTest, TurnAngleAndStopTest) {
-  controller->turnAngleAsync(100);
+  controller->turnRawAsync(100);
   controller->stop();
 
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);

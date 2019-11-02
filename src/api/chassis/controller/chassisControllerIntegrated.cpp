@@ -43,7 +43,7 @@ void ChassisControllerIntegrated::moveDistance(const QLength itarget) {
   waitUntilSettled();
 }
 
-void ChassisControllerIntegrated::moveDistance(const double itarget) {
+void ChassisControllerIntegrated::moveRaw(const double itarget) {
   // Divide by straightScale so the final result turns back into motor ticks
   moveDistance((itarget / scales.straight) * meter);
 }
@@ -66,7 +66,7 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
   rightController->setTarget(newTarget + enc[1]);
 }
 
-void ChassisControllerIntegrated::moveDistanceAsync(const double itarget) {
+void ChassisControllerIntegrated::moveRawAsync(const double itarget) {
   // Divide by straightScale so the final result turns back into motor ticks
   moveDistanceAsync((itarget / scales.straight) * meter);
 }
@@ -76,7 +76,7 @@ void ChassisControllerIntegrated::turnAngle(const QAngle idegTarget) {
   waitUntilSettled();
 }
 
-void ChassisControllerIntegrated::turnAngle(const double idegTarget) {
+void ChassisControllerIntegrated::turnRaw(const double idegTarget) {
   // Divide by turnScale so the final result turns back into motor ticks
   turnAngle((idegTarget / scales.turn) * degree);
 }
@@ -100,7 +100,7 @@ void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
   rightController->setTarget(-1 * newTarget + enc[1]);
 }
 
-void ChassisControllerIntegrated::turnAngleAsync(const double idegTarget) {
+void ChassisControllerIntegrated::turnRawAsync(const double idegTarget) {
   // Divide by turnScale so the final result turns back into motor ticks
   turnAngleAsync((idegTarget / scales.turn) * degree);
 }

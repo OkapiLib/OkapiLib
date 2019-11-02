@@ -82,32 +82,32 @@ void DefaultOdomChassisController::moveDistance(QLength itarget) {
   controller->moveDistance(itarget);
 }
 
-void DefaultOdomChassisController::moveDistance(double itarget) {
-  controller->moveDistance(itarget);
+void DefaultOdomChassisController::moveRaw(double itarget) {
+  controller->moveRaw(itarget);
 }
 
 void DefaultOdomChassisController::moveDistanceAsync(QLength itarget) {
   controller->moveDistanceAsync(itarget);
 }
 
-void DefaultOdomChassisController::moveDistanceAsync(double itarget) {
-  controller->moveDistanceAsync(itarget);
+void DefaultOdomChassisController::moveRawAsync(double itarget) {
+  controller->moveRawAsync(itarget);
 }
 
 void DefaultOdomChassisController::turnAngle(QAngle idegTarget) {
   controller->turnAngle(idegTarget);
 }
 
-void DefaultOdomChassisController::turnAngle(double idegTarget) {
-  controller->turnAngle(idegTarget);
+void DefaultOdomChassisController::turnRaw(double idegTarget) {
+  controller->turnRaw(idegTarget);
 }
 
 void DefaultOdomChassisController::turnAngleAsync(QAngle idegTarget) {
   controller->turnAngleAsync(idegTarget);
 }
 
-void DefaultOdomChassisController::turnAngleAsync(double idegTarget) {
-  controller->turnAngleAsync(idegTarget);
+void DefaultOdomChassisController::turnRawAsync(double idegTarget) {
+  controller->turnRawAsync(idegTarget);
 }
 
 void DefaultOdomChassisController::setTurnsMirrored(bool ishouldMirror) {

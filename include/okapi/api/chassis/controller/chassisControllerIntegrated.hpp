@@ -62,7 +62,7 @@ class ChassisControllerIntegrated : public ChassisController {
    *
    * @param itarget distance to travel in motor degrees
    */
-  void moveDistance(double itarget) override;
+  void moveRaw(double itarget) override;
 
   /**
    * Sets the target distance for the robot to drive straight (using closed-loop control).
@@ -76,7 +76,7 @@ class ChassisControllerIntegrated : public ChassisController {
    *
    * @param itarget distance to travel in motor degrees
    */
-  void moveDistanceAsync(double itarget) override;
+  void moveRawAsync(double itarget) override;
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
@@ -100,7 +100,7 @@ class ChassisControllerIntegrated : public ChassisController {
    *
    * @param idegTarget angle to turn for in motor degrees
    */
-  void turnAngle(double idegTarget) override;
+  void turnRaw(double idegTarget) override;
 
   /**
    * Sets the target angle for the robot to turn clockwise in place (using closed-loop control).
@@ -114,7 +114,7 @@ class ChassisControllerIntegrated : public ChassisController {
    *
    * @param idegTarget angle to turn for in motor degrees
    */
-  void turnAngleAsync(double idegTarget) override;
+  void turnRawAsync(double idegTarget) override;
 
   /**
    * Sets whether turns should be mirrored.

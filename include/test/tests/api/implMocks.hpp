@@ -588,26 +588,26 @@ class MockChassisController : public ChassisController {
   void moveDistance(QLength itarget) override {
     lastMoveDistanceTargetQLength = itarget;
   }
-  void moveDistance(double itarget) override {
+  void moveRaw(double itarget) override {
     lastMoveDistanceTargetDouble = itarget;
   }
   void moveDistanceAsync(QLength itarget) override {
     moveDistance(itarget);
   }
-  void moveDistanceAsync(double itarget) override {
-    moveDistance(itarget);
+  void moveRawAsync(double itarget) override {
+    moveRaw(itarget);
   }
   void turnAngle(QAngle idegTarget) override {
     lastTurnAngleTargetQAngle = idegTarget;
   }
-  void turnAngle(double idegTarget) override {
+  void turnRaw(double idegTarget) override {
     lastTurnAngleTargetDouble = idegTarget;
   }
   void turnAngleAsync(QAngle idegTarget) override {
     turnAngle(idegTarget);
   }
-  void turnAngleAsync(double idegTarget) override {
-    turnAngle(idegTarget);
+  void turnRawAsync(double idegTarget) override {
+    turnRaw(idegTarget);
   }
   void setTurnsMirrored(bool ishouldMirror) override {
     turnsMirrored = ishouldMirror;
