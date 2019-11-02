@@ -300,7 +300,7 @@ class ChassisControllerBuilder {
   /**
    * Sets the chassis dimensions.
    *
-   * @param igearset The gearset.
+   * @param igearset The gearset in the drive motors.
    * @param idimensions The dimensions in the same order as in ChassisScales.
    * @return An ongoing builder.
    */
@@ -310,7 +310,7 @@ class ChassisControllerBuilder {
   /**
    * Sets the chassis dimensions by setting the raw scales.
    *
-   * @param igearset The gearset.
+   * @param igearset The gearset in the drive motors.
    * @param iscales The raw scales in the same order as in ChassisScales.
    * @return An ongoing builder.
    */
