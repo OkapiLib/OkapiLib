@@ -74,11 +74,12 @@ auto drive = ChassisControllerBuilder()
 }
 ```
 
-## Configuring a gearset
+## Configuring your gearset and robot dimensions
 
-You can pass in a gearset and external gear ratio directly.
+You should also configure the gearset and chassis dimensions to ensure that the gearsets in the
+motors are correct and to enable commanding the robot in real-life units (inches, degrees, etc.).
 
-### No external ratio:
+### Gearset and dimensions:
 
 ```cpp
 #include "okapi/api.hpp"
@@ -87,12 +88,13 @@ using namespace okapi;
 void opcontrol() {
 auto drive = ChassisControllerBuilder()
                 .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withGearset(AbstractMotor::gearset::green) // Green gearset
+                // Green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+                .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
                 .build();
 }
 ```
 
-### With external ratio:
+### Gearset with an external ratio and dimensions:
 
 ```cpp
 #include "okapi/api.hpp"
@@ -101,20 +103,13 @@ using namespace okapi;
 void opcontrol() {
 auto drive = ChassisControllerBuilder()
                 .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withGearset(AbstractMotor::gearset::green * 1.5) // Green gearset, external ratio of 1.5
+                // Green gearset, external ratio of (2.0 / 3.0), 4 inch wheel diameter, 11.5 inch wheelbase
+                .withDimensions(AbstractMotor::gearset::green * (2.0 / 3.0), {4_in, 11.5_in})
                 .build();
 }
 ```
 
-## Configuring your robot dimensions
-
-If you want to command your robot in real-life units (inches, degrees, etc.)
-then you need to pass in your robot's dimensions. Alternatively, if you want to
-fine-tune the scales, you could calculate them by hand and pass them in
-directly. See the [ChassisScales](@ref okapi::ChassisScales) docs for the math
-to do this.
-
-### Dimensions:
+### Gearset and raw scales:
 
 ```cpp
 #include "okapi/api.hpp"
@@ -123,23 +118,8 @@ using namespace okapi;
 void opcontrol() {
 auto drive = ChassisControllerBuilder()
                 .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withGearset(AbstractMotor::gearset::green) // Green gearset
-                .withDimensions({{4_in, 11.5_in}, imev5GreenTPR}) // 4 inch wheel diameter, 11.5 inch wheelbase
-                .build();
-}
-```
-
-### Scales:
-
-```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withGearset(AbstractMotor::gearset::green * 1.5) // Green gearset, external ratio of 1.5
-                .withDimensions({{1127.8696, 2.875}, imev5GreenTPR}) // Straight scale, turn scale
+                // Green gearset, straight scale of 1127.8696, turn scale of 2.875
+                .withDimensions(AbstractMotor::gearset::green, {1127.8696, 2.875})
                 .build();
 }
 ```
@@ -310,13 +290,11 @@ auto drive = ChassisControllerBuilder()
 }
 ```
 
-## Configuring the TimeUtil
+## Configuring the controller settling behavior
 
-You can also change the [TimeUtil](@ref okapi::TimeUtil) used for the
-controllers. This is how you can change the settling behavior of the
-[ChassisController](@ref okapi::ChassisController).
-
-### Change SettledUtil:
+You can change the [SettledUtil](@ref okapi::SettledUtil) that a
+[ClosedLoopController](@ref okapi::ClosedLoopController) gets when it is created by the builder,
+in order to change the settling behavior of the chassis.
 
 ```cpp
 #include "okapi/api.hpp"
@@ -325,7 +303,7 @@ using namespace okapi;
 void opcontrol() {
 auto drive = ChassisControllerBuilder()
                 .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withTimeUtil(TimeUtilFactory::withSettledUtilParams(50, 5, 250_ms))
+                .withClosedLoopControllerTimeUtil(50, 5, 250_ms)
                 .build();
 }
 ```
