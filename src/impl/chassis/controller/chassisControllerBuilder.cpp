@@ -45,10 +45,6 @@ ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &ileft
     maxVelocity = toUnderlyingType(ileft->getGearing());
   }
 
-  if (!gearsetSetByUser) {
-    gearset = ileft->getGearing();
-  }
-
   return *this;
 }
 
@@ -88,10 +84,6 @@ ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &itopL
 
   if (!maxVelSetByUser) {
     maxVelocity = toUnderlyingType(itopLeft->getGearing());
-  }
-
-  if (!gearsetSetByUser) {
-    gearset = itopLeft->getGearing();
   }
 
   return *this;
@@ -137,10 +129,6 @@ ChassisControllerBuilder::withMotors(const std::shared_ptr<AbstractMotor> &ileft
 
   if (!maxVelSetByUser) {
     maxVelocity = toUnderlyingType(ileft->getGearing());
-  }
-
-  if (!gearsetSetByUser) {
-    gearset = ileft->getGearing();
   }
 
   return *this;
@@ -268,7 +256,6 @@ ChassisControllerBuilder::withOdometry(std::unique_ptr<Odometry> iodometry,
 ChassisControllerBuilder &
 ChassisControllerBuilder::withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
                                          const std::initializer_list<QLength> &idimensions) {
-  gearsetSetByUser = true;
   gearset = igearset;
 
   if (!maxVelSetByUser) {
@@ -285,7 +272,6 @@ ChassisControllerBuilder::withDimensions(const AbstractMotor::GearsetRatioPair &
 ChassisControllerBuilder &
 ChassisControllerBuilder::withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
                                          const std::initializer_list<double> &iscales) {
-  gearsetSetByUser = true;
   gearset = igearset;
 
   if (!maxVelSetByUser) {
@@ -360,17 +346,9 @@ std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
     throw std::runtime_error(msg);
   }
 
-  if (!gearsetSetByUser) {
-    LOG_WARN_S(
-      "ChassisControllerBuilder: The default gearset is selected. This is probably a bug.");
-  }
-
-  std::int32_t calculatedTPR = gearsetToTPR(gearset.internalGearset) * gearset.ratio;
-  if (calculatedTPR != driveScales.tpr) {
-    std::string msg(
-      "ChassisControllerBuilder: BUG: The calculated TPR from the given gearset and ratio (" +
-      std::to_string(calculatedTPR) + ") does not equal the TPR given in the ChassisScales (" +
-      std::to_string(driveScales.tpr) + ").");
+  if (gearset.internalGearset == AbstractMotor::gearset::invalid) {
+    // Invalid by default. The user must provide one.
+    std::string msg("ChassisControllerBuilder: A gearset was not provided.");
     LOG_ERROR(msg);
     throw std::runtime_error(msg);
   }

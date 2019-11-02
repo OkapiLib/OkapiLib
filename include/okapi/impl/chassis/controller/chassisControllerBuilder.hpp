@@ -404,15 +404,16 @@ class ChassisControllerBuilder {
   ChassisControllerBuilder &notParentedToCurrentTask();
 
   /**
-   * Builds the ChassisController. Throws a std::runtime_exception if no motors were set.
+   * Builds the ChassisController. Throws a std::runtime_exception if no motors were set or if no
+   * dimensions were set.
    *
    * @return A fully built ChassisController.
    */
   std::shared_ptr<ChassisController> build();
 
   /**
-   * Builds the OdomChassisController. Throws a std::runtime_exception if no motors were set or if
-   * no odometry information was passed.
+   * Builds the OdomChassisController. Throws a std::runtime_exception if no motors were set, if no
+   * dimensions were set, or if no odometry information was passed.
    *
    * @return A fully built OdomChassisController.
    */
@@ -463,7 +464,6 @@ class ChassisControllerBuilder {
   TimeUtilFactory closedLoopControllerTimeUtilFactory = TimeUtilFactory();
   TimeUtilFactory odometryTimeUtilFactory = TimeUtilFactory();
 
-  bool gearsetSetByUser{false}; // Used so motors don't overwrite gearset set manually
   AbstractMotor::GearsetRatioPair gearset{AbstractMotor::gearset::invalid};
   ChassisScales driveScales{{1, 1}, imev5GreenTPR};
   bool differentOdomScales{false};

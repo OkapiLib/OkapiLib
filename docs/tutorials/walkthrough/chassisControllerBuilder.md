@@ -10,73 +10,58 @@ Please read the preface on where to use builders:
 
 ## Configuring motors
 
-The only required parameter is the motor configuration. Both skid-steer and
-x-drive layouts are supported.
+You must configure the motors. Skid-steer, x-drive, and h-drive configurations are supported.
 
-### Two motors by ports:
+### Two motor skid-steer:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .build();
-}
+ChassisControllerBuilder()
+    .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
 ```
 
-### Two motors:
+### Four motor skid-steer:
+
+You may also use [MotorGroups](@ref okapi::MotorGroup). You are not required to have an equal
+number of motors per side. There is no limit on the number of motors per side.
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-Motor leftMotor(1);
-Motor rightMotor(-2);
-
-auto drive = ChassisControllerBuilder()
-                .withMotors(leftMotor, rightMotor)
-                .build();
-}
+ChassisControllerBuilder()
+    .withMotors(
+        {-1, -2}, // Left motors are 1 & 2 (reversed)
+        {3, 4}    // Right motors are 3 & 4
+    )
 ```
 
-### More than two motors by ports:
+### X-Drive:
+
+You may also use [MotorGroups](@ref okapi::MotorGroup).
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(
-                    {-1, -2}, // Left motors are 1 & 2 (reversed)
-                    {3, 4}    // Right motors are 3 & 4
-                )
-                .build();
-}
+ChassisControllerBuilder()
+    .withMotors(
+        1,  // Top left
+        -2, // Top right (reversed)
+        -3, // Bottom right (reversed)
+        4   // Bottom left
+    )
 ```
 
-### More than two motors by objects:
+### H-Drive:
+
+You may also use [MotorGroups](@ref okapi::MotorGroup).
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-MotorGroup leftMotors({1, 2});
-MotorGroup rightMotors({-3, -4});
-
-auto drive = ChassisControllerBuilder()
-                .withMotors(leftMotors, rightMotors)
-                .build();
-}
+ChassisControllerBuilder()
+    .withMotors(
+        1,  // Left side
+        -2, // Right side (reversed)
+        3   // Middle
+    )
 ```
 
 ## Configuring your gearset and robot dimensions
 
-You should also configure the gearset and chassis dimensions to ensure that the gearsets in the
+You must configure the gearset and chassis dimensions to ensure that the gearsets in the
 motors are correct and to enable commanding the robot in real-life units (inches, degrees, etc.).
 
 ### Gearset and dimensions:
@@ -97,31 +82,17 @@ auto drive = ChassisControllerBuilder()
 ### Gearset with an external ratio and dimensions:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                // Green gearset, external ratio of (2.0 / 3.0), 4 inch wheel diameter, 11.5 inch wheelbase
-                .withDimensions(AbstractMotor::gearset::green * (2.0 / 3.0), {4_in, 11.5_in})
-                .build();
-}
+ChassisControllerBuilder()
+    // Green gearset, external ratio of (2.0 / 3.0), 4 inch wheel diameter, 11.5 inch wheelbase
+    .withDimensions(AbstractMotor::gearset::green * (2.0 / 3.0), {4_in, 11.5_in})
 ```
 
 ### Gearset and raw scales:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                // Green gearset, straight scale of 1127.8696, turn scale of 2.875
-                .withDimensions(AbstractMotor::gearset::green, {1127.8696, 2.875})
-                .build();
-}
+ChassisControllerBuilder()
+    // Green gearset, straight scale of 1127.8696, turn scale of 2.875
+    .withDimensions(AbstractMotor::gearset::green, {1127.8696, 2.875})
 ```
 
 ## Configuring your sensors
@@ -132,18 +103,11 @@ encoders), then you will need to pass those in as well.
 ### Encoders:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withSensors(
-                    {'A', 'B'}, // Left encoder in ADI ports A & B
-                    {'C', 'D', true}  // Right encoder in ADI ports C & D (reversed)
-                )
-                .build();
-}
+ChassisControllerBuilder()
+    .withSensors(
+        {'A', 'B'}, // Left encoder in ADI ports A & B
+        {'C', 'D', true}  // Right encoder in ADI ports C & D (reversed)
+    )
 ```
 
 ## Configuring PID gains
@@ -154,36 +118,22 @@ need to pass in two or three sets of PID gains.
 ### Two sets:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withGains(
-                    {0.001, 0, 0.0001}, // Distance controller gains
-                    {0.001, 0, 0.0001}  // Turn controller gains
-                )
-                .build();
-}
+ChassisControllerBuilder()
+    .withGains(
+        {0.001, 0, 0.0001}, // Distance controller gains
+        {0.001, 0, 0.0001}  // Turn controller gains
+    )
 ```
 
 ### Three sets:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withGains(
-                    {0.001, 0, 0.0001}, // Distance controller gains
-                    {0.001, 0, 0.0001}, // Turn controller gains
-                    {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
-                )
-                .build();
-}
+ChassisControllerBuilder()
+    .withGains(
+        {0.001, 0, 0.0001}, // Distance controller gains
+        {0.001, 0, 0.0001}, // Turn controller gains
+        {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
+    )
 ```
 
 ## Configuring derivative filters
@@ -197,65 +147,31 @@ specify any derivative filters, the default filter is a
 ### One filter:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withGains(
-                    {0.001, 0, 0.0001}, // Distance controller gains
-                    {0.001, 0, 0.0001}  // Turn controller gains
-                )
-                .withDerivativeFilters(
-                    std::make_unique<AverageFilter<3>>() // Distance controller filter
-                )
-                .build();
-}
+ChassisControllerBuilder()
+    .withDerivativeFilters(
+        std::make_unique<AverageFilter<3>>() // Distance controller filter
+    )
 ```
 
 ### Two filters:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withGains(
-                    {0.001, 0, 0.0001}, // Distance controller gains
-                    {0.001, 0, 0.0001}  // Turn controller gains
-                )
-                .withDerivativeFilters(
-                    std::make_unique<AverageFilter<3>>(), // Distance controller filter
-                    std::make_unique<AverageFilter<3>>()  // Turn controller filter
-                )
-                .build();
-}
+ChassisControllerBuilder()
+    .withDerivativeFilters(
+        std::make_unique<AverageFilter<3>>(), // Distance controller filter
+        std::make_unique<AverageFilter<3>>()  // Turn controller filter
+    )
 ```
 
 ### Three filters:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withGains(
-                    {0.001, 0, 0.0001}, // Distance controller gains
-                    {0.001, 0, 0.0001}, // Turn controller gains
-                    {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
-                )
-                .withDerivativeFilters(
-                    std::make_unique<AverageFilter<3>>(), // Distance controller filter
-                    std::make_unique<AverageFilter<3>>(), // Turn controller filter
-                    std::make_unique<AverageFilter<3>>()  // Angle controller filter
-                )
-                .build();
-}
+ChassisControllerBuilder()
+    .withDerivativeFilters(
+        std::make_unique<AverageFilter<3>>(), // Distance controller filter
+        std::make_unique<AverageFilter<3>>(), // Turn controller filter
+        std::make_unique<AverageFilter<3>>()  // Angle controller filter
+    )
 ```
 
 ## Configuring maximum velocity and voltage
@@ -265,29 +181,15 @@ You can change the default maximum velocity or voltage.
 ### Max velocity:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withMaxVelocity(100)
-                .build();
-}
+ChassisControllerBuilder()
+    .withMaxVelocity(100)
 ```
 
 ### Max voltage:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withMaxVoltage(10000)
-                .build();
-}
+ChassisControllerBuilder()
+    .withMaxVoltage(10000)
 ```
 
 ## Configuring the controller settling behavior
@@ -297,59 +199,39 @@ You can change the [SettledUtil](@ref okapi::SettledUtil) that a
 in order to change the settling behavior of the chassis.
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withClosedLoopControllerTimeUtil(50, 5, 250_ms)
-                .build();
-}
+ChassisControllerBuilder()
+    .withClosedLoopControllerTimeUtil(50, 5, 250_ms)
 ```
 
 ## Configuring the Logger
 
-If you want the [ChassisController](@ref okapi::ChassisController) and the
-classes it creates to log what they are doing, either for debugging or other
-purposes, you can supply a [Logger](@ref okapi::Logger).
+If you want the [ChassisController](@ref okapi::ChassisController) and the classes it creates to log
+what they are doing, either for debugging or other purposes, you can supply a
+[Logger](@ref okapi::Logger). You can also
+[enable logging globally](docs/tutorials/concepts/logging.md).
 
 ### Log to the PROS terminal:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withLogger(
-                    std::make_shared<Logger>(
-                        TimeUtilFactory::createDefault().getTimer(), // It needs a Timer
-                        "/ser/sout", // Output to the PROS terminal
-                        Logger::LogLevel::debug // Most verbose log level
-                    )
-                )
-                .build();
-}
+ChassisControllerBuilder()
+    .withLogger(
+        std::make_shared<Logger>(
+            TimeUtilFactory::createDefault().getTimer(), // It needs a Timer
+            "/ser/sout", // Output to the PROS terminal
+            Logger::LogLevel::debug // Most verbose log level
+        )
+    )
 ```
 
 ### Log to the SD card:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                .withLogger(
-                    std::make_shared<Logger>(
-                        TimeUtilFactory::createDefault().getTimer(), // It needs a Timer
-                        "/usd/test_logging.txt", // Output to a file on the SD card
-                        Logger::LogLevel::debug  // Most verbose log level
-                    )
-                )
-                .build();
-}
+ChassisControllerBuilder()
+    .withLogger(
+        std::make_shared<Logger>(
+            TimeUtilFactory::createDefault().getTimer(), // It needs a Timer
+            "/usd/test_logging.txt", // Output to a file on the SD card
+            Logger::LogLevel::debug  // Most verbose log level
+        )
+    )
 ```
