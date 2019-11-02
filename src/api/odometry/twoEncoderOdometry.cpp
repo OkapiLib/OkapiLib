@@ -46,6 +46,11 @@ void TwoEncoderOdometry::step() {
 
 OdomState TwoEncoderOdometry::odomMathStep(const std::valarray<std::int32_t> &itickDiff,
                                            const QTime &) {
+  if (itickDiff.size() < 2) {
+    LOG_ERROR_S("TwoEncoderOdometry: itickDiff did not have at least two elements.");
+    return OdomState{};
+  }
+
   const double deltaL = itickDiff[0] / chassisScales.straight;
   const double deltaR = itickDiff[1] / chassisScales.straight;
 

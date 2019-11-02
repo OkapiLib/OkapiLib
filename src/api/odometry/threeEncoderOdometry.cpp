@@ -31,6 +31,11 @@ ThreeEncoderOdometry::ThreeEncoderOdometry(const TimeUtil &itimeUtil,
 
 OdomState ThreeEncoderOdometry::odomMathStep(const std::valarray<std::int32_t> &itickDiff,
                                              const QTime &) {
+  if (itickDiff.size() < 3) {
+    LOG_ERROR_S("ThreeEncoderOdometry: itickDiff did not have at least three elements.");
+    return OdomState{};
+  }
+
   const double deltaL = itickDiff[0] / chassisScales.straight;
   const double deltaR = itickDiff[1] / chassisScales.straight;
 
