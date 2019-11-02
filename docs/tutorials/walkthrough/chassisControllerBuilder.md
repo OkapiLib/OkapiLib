@@ -67,16 +67,9 @@ motors are correct and to enable commanding the robot in real-life units (inches
 ### Gearset and dimensions:
 
 ```cpp
-#include "okapi/api.hpp"
-using namespace okapi;
-
-void opcontrol() {
-auto drive = ChassisControllerBuilder()
-                .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-                // Green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
-                .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
-                .build();
-}
+ChassisControllerBuilder()
+    // Green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
 ```
 
 ### Gearset with an external ratio and dimensions:
