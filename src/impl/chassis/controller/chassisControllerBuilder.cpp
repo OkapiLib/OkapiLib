@@ -505,8 +505,8 @@ std::shared_ptr<SkidSteerModel> ChassisControllerBuilder::makeSkidSteerModel() {
     return std::make_shared<ThreeEncoderSkidSteerModel>(skidSteerMotors.left,
                                                         skidSteerMotors.right,
                                                         leftSensor,
-                                                        middleSensor,
                                                         rightSensor,
+                                                        middleSensor,
                                                         maxVelocity,
                                                         maxVoltage);
   } else {
