@@ -137,7 +137,7 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   newMovement.store(true, std::memory_order_release);
 }
 
-void ChassisControllerPID::moveDistanceAsync(const double itarget) {
+void ChassisControllerPID::moveRawAsync(const double itarget) {
   // Divide by straightScale so the final result turns back into motor ticks
   moveDistanceAsync((itarget / scales.straight) * meter);
 }
@@ -147,7 +147,7 @@ void ChassisControllerPID::moveDistance(const QLength itarget) {
   waitUntilSettled();
 }
 
-void ChassisControllerPID::moveDistance(const double itarget) {
+void ChassisControllerPID::moveRaw(const double itarget) {
   // Divide by straightScale so the final result turns back into motor ticks
   moveDistance((itarget / scales.straight) * meter);
 }
@@ -173,7 +173,7 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   newMovement.store(true, std::memory_order_release);
 }
 
-void ChassisControllerPID::turnAngleAsync(const double idegTarget) {
+void ChassisControllerPID::turnRawAsync(const double idegTarget) {
   // Divide by turnScale so the final result turns back into motor ticks
   turnAngleAsync((idegTarget / scales.turn) * degree);
 }
@@ -183,7 +183,7 @@ void ChassisControllerPID::turnAngle(const QAngle idegTarget) {
   waitUntilSettled();
 }
 
-void ChassisControllerPID::turnAngle(const double idegTarget) {
+void ChassisControllerPID::turnRaw(const double idegTarget) {
   // Divide by turnScale so the final result turns back into motor ticks
   turnAngle((idegTarget / scales.turn) * degree);
 }

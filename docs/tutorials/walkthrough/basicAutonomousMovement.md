@@ -40,11 +40,11 @@ auto chassis = ChassisControllerBuilder()
 
 void autonomous() {
     // Move to first goal in motor degrees
-    chassis->moveDistance(1000);
+    chassis->moveRaw(1000);
     // Turn to face second goal in motor degrees
-    chassis->turnAngle(100);
+    chassis->turnRaw(100);
     // Drive toward second goal in motor degrees
-    chassis->moveDistance(1500);
+    chassis->moveRaw(1500);
 }
 ```
 
