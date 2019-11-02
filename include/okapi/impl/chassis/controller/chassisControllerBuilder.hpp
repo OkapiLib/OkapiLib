@@ -253,6 +253,25 @@ class ChassisControllerBuilder {
   /**
    * Sets the odometry information, causing the builder to generate an Odometry variant.
    *
+   * @param iodomScales The ChassisScales used just for odometry (if they are different than those
+   * for the drive).
+   * @param imode The new default StateMode used to interpret target points and query the Odometry
+   * state.
+   * @param imoveThreshold The minimum length movement.
+   * @param iturnThreshold The minimum angle turn.
+   * @param iwheelVelDelta The maximum delta between wheel velocities to consider the robot as
+   * driving straight.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withOdometry(const ChassisScales &iodomScales,
+                                         const StateMode &imode = StateMode::FRAME_TRANSFORMATION,
+                                         const QLength &imoveThreshold = 0_mm,
+                                         const QAngle &iturnThreshold = 0_deg,
+                                         const QSpeed &iwheelVelDelta = 0.0001_mps);
+
+  /**
+   * Sets the odometry information, causing the builder to generate an Odometry variant.
+   *
    * @param iodometry The odometry object.
    * @param imode The new default StateMode used to interpret target points and query the Odometry
    * state.
@@ -279,20 +298,24 @@ class ChassisControllerBuilder {
     std::unique_ptr<Filter> iangleFilter = std::make_unique<PassthroughFilter>());
 
   /**
-   * Sets the gearset. The default gearset is derived from the motor's.
-   *
-   * @param igearset The gearset.
-   * @return An ongoing builder.
-   */
-  ChassisControllerBuilder &withGearset(const AbstractMotor::GearsetRatioPair &igearset);
-
-  /**
    * Sets the chassis dimensions.
    *
-   * @param iscales The dimensions.
+   * @param igearset The gearset.
+   * @param idimensions The dimensions in the same order as in ChassisScales.
    * @return An ongoing builder.
    */
-  ChassisControllerBuilder &withDimensions(const ChassisScales &iscales);
+  ChassisControllerBuilder &withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
+                                           const std::initializer_list<QLength> &idimensions);
+
+  /**
+   * Sets the chassis dimensions by setting the raw scales.
+   *
+   * @param igearset The gearset.
+   * @param iscales The raw scales in the same order as in ChassisScales.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
+                                           const std::initializer_list<double> &iscales);
 
   /**
    * Sets the max velocity. Overrides the max velocity of the gearset.
@@ -448,7 +471,9 @@ class ChassisControllerBuilder {
 
   bool gearsetSetByUser{false}; // Used so motors don't overwrite gearset set manually
   AbstractMotor::GearsetRatioPair gearset{AbstractMotor::gearset::invalid};
-  ChassisScales scales{{1, 1}, imev5GreenTPR};
+  ChassisScales driveScales{{1, 1}, imev5GreenTPR};
+  bool differentOdomScales{false};
+  ChassisScales odomScales{{1, 1}, imev5GreenTPR};
   std::shared_ptr<Logger> controllerLogger = Logger::getDefaultLogger();
 
   bool hasOdom{false}; // Whether odometry was passed

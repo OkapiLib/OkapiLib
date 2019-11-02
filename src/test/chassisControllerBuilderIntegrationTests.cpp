@@ -18,7 +18,7 @@ static void testForwardUsesCorrectMaximumVelocityForAGearset() {
   const double power = 0.3;
   auto drive = ChassisControllerBuilder()
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
-                 .withGearset(MOTOR_GEARSET)
+                 .withDimensions(MOTOR_GEARSET, {1_in, 10_in})
                  .build();
 
   drive->model().forward(power);
@@ -42,7 +42,7 @@ static void testMaxVelWorksOutOfOrder() {
   auto drive = ChassisControllerBuilder()
                  .withMaxVelocity(maxVel)
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
-                 .withGearset(MOTOR_GEARSET)
+                 .withDimensions(MOTOR_GEARSET, {1_in, 10_in})
                  .build();
 
   drive->model().forward(1);
@@ -65,7 +65,7 @@ static void testSensorsWork() {
   auto drive = ChassisControllerBuilder()
                  .withSensors({MOTOR_1_PORT}, {MOTOR_2_PORT})
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
-                 .withGearset(MOTOR_GEARSET)
+                 .withDimensions(MOTOR_GEARSET, {1_in, 10_in})
                  .build();
 
   Motor leftMtr(MOTOR_1_PORT);
@@ -108,7 +108,7 @@ static void testMotorGearsetsAreNotOverwritten() {
   auto drive = ChassisControllerBuilder()
                  .withSensors({MOTOR_1_PORT}, {MOTOR_2_PORT})
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
-                 .withGearset(AbstractMotor::gearset::blue)
+                 .withDimensions(AbstractMotor::gearset::blue, {1_in, 10_in})
                  .build();
 
   test("Left motor gearset should equal blue",
@@ -128,9 +128,8 @@ static void testOCCI() {
 
   auto drive = ChassisControllerBuilder()
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
-                 .withGearset(MOTOR_GEARSET)
                  .withOdometry()
-                 .withDimensions({{4_in, 10_in}, toUnderlyingType(MOTOR_GEARSET)})
+                 .withDimensions(MOTOR_GEARSET, {4_in, 10_in})
                  .buildOdometry();
 
   const auto stateBefore = drive->getState();
@@ -166,9 +165,8 @@ static void testOCCPID() {
   auto drive = ChassisControllerBuilder()
                  .withMotors(MOTOR_1_PORT, MOTOR_2_PORT)
                  .withGains({0.01, 0, 0}, {0, 0, 0})
-                 .withGearset(MOTOR_GEARSET)
                  .withOdometry()
-                 .withDimensions({{4_in, 10_in}, toUnderlyingType(MOTOR_GEARSET)})
+                 .withDimensions(MOTOR_GEARSET, {4_in, 10_in})
                  .buildOdometry();
 
   const auto stateBefore = drive->getState();

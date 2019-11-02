@@ -234,6 +234,22 @@ ChassisControllerBuilder &ChassisControllerBuilder::withOdometry(const StateMode
   return *this;
 }
 
+ChassisControllerBuilder &ChassisControllerBuilder::withOdometry(const ChassisScales &iodomScales,
+                                                                 const StateMode &imode,
+                                                                 const QLength &imoveThreshold,
+                                                                 const QAngle &iturnThreshold,
+                                                                 const QSpeed &iwheelVelDelta) {
+  hasOdom = true;
+  differentOdomScales = true;
+  odomScales = iodomScales;
+  odometry = nullptr;
+  stateMode = imode;
+  moveThreshold = imoveThreshold;
+  turnThreshold = iturnThreshold;
+  wheelVelDelta = iwheelVelDelta;
+  return *this;
+}
+
 ChassisControllerBuilder &
 ChassisControllerBuilder::withOdometry(std::unique_ptr<Odometry> iodometry,
                                        const StateMode &imode,
@@ -254,7 +270,8 @@ ChassisControllerBuilder::withOdometry(std::unique_ptr<Odometry> iodometry,
 }
 
 ChassisControllerBuilder &
-ChassisControllerBuilder::withGearset(const AbstractMotor::GearsetRatioPair &igearset) {
+ChassisControllerBuilder::withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
+                                         const std::initializer_list<QLength> &idimensions) {
   gearsetSetByUser = true;
   gearset = igearset;
 
@@ -262,11 +279,27 @@ ChassisControllerBuilder::withGearset(const AbstractMotor::GearsetRatioPair &ige
     maxVelocity = toUnderlyingType(igearset.internalGearset);
   }
 
+  driveScales = ChassisScales(idimensions, gearsetToTPR(gearset.internalGearset), logger);
+  if (!differentOdomScales) {
+    odomScales = driveScales;
+  }
   return *this;
 }
 
-ChassisControllerBuilder &ChassisControllerBuilder::withDimensions(const ChassisScales &iscales) {
-  scales = iscales;
+ChassisControllerBuilder &
+ChassisControllerBuilder::withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
+                                         const std::initializer_list<double> &iscales) {
+  gearsetSetByUser = true;
+  gearset = igearset;
+
+  if (!maxVelSetByUser) {
+    maxVelocity = toUnderlyingType(igearset.internalGearset);
+  }
+
+  driveScales = ChassisScales(iscales, gearsetToTPR(gearset.internalGearset), logger);
+  if (!differentOdomScales) {
+    odomScales = driveScales;
+  }
   return *this;
 }
 
@@ -332,15 +365,18 @@ std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
   }
 
   if (!gearsetSetByUser) {
-    LOG_WARN_S("ChassisControllerBuilder: The default gearset is selected. This could be a bug.");
+    LOG_WARN_S(
+      "ChassisControllerBuilder: The default gearset is selected. This is probably a bug.");
   }
 
   std::int32_t calculatedTPR = gearsetToTPR(gearset.internalGearset) * gearset.ratio;
-  if (calculatedTPR != scales.tpr) {
-    LOG_WARN("ChassisControllerBuilder: The calculated TPR from the given gearset and ratio (" +
-             std::to_string(calculatedTPR) +
-             ") does not equal the TPR given in the ChassisScales (" + std::to_string(scales.tpr) +
-             "). This is probably a bug.");
+  if (calculatedTPR != driveScales.tpr) {
+    std::string msg(
+      "ChassisControllerBuilder: BUG: The calculated TPR from the given gearset and ratio (" +
+      std::to_string(calculatedTPR) + ") does not equal the TPR given in the ChassisScales (" +
+      std::to_string(driveScales.tpr) + ").");
+    LOG_ERROR(msg);
+    throw std::runtime_error(msg);
   }
 
   if (maxVelSetByUser && maxVelocity > toUnderlyingType(gearset.internalGearset)) {
@@ -377,13 +413,13 @@ ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisCo
     if (middleSensor == nullptr) {
       odometry = std::make_unique<TwoEncoderOdometry>(odometryTimeUtilFactory.create(),
                                                       chassisController->getModel(),
-                                                      chassisController->getChassisScales(),
+                                                      odomScales,
                                                       wheelVelDelta,
                                                       controllerLogger);
     } else {
       odometry = std::make_unique<ThreeEncoderOdometry>(odometryTimeUtilFactory.create(),
                                                         chassisController->getModel(),
-                                                        chassisController->getChassisScales(),
+                                                        odomScales,
                                                         wheelVelDelta,
                                                         controllerLogger);
     }
@@ -424,7 +460,7 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
                                                 std::move(angleFilter),
                                                 controllerLogger),
     gearset,
-    scales,
+    driveScales,
     controllerLogger);
 
   out->startThread();
@@ -473,7 +509,7 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
                                                    closedLoopControllerTimeUtilFactory.create(),
                                                    controllerLogger),
     gearset,
-    scales,
+    driveScales,
     controllerLogger);
 }
 
