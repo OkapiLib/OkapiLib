@@ -139,3 +139,23 @@ TEST_F(ThreeEncoderOdometryTest, SmallSwingTurnOnRightWheels) {
   odom.step();
   assertOdomStateEquals(&odom, -0.024_in, 0_in, 0.2131_deg);
 }
+
+TEST_F(ThreeEncoderOdometryTest, MiddleEncoderDistanceOfZero) {
+  auto model = std::make_shared<MockThreeEncoderModel>();
+  ThreeEncoderOdometry odom(
+    createConstantTimeUtil(10_ms),
+    model,
+    ChassisScales{{wheelDiam, wheelbaseWidth, 0_in, wheelDiam}, quadEncoderTPR});
+
+  model->setSensorVals(0, 0, 10);
+  odom.step();
+  assertOdomStateEquals(&odom, 0_in, calculateDistanceTraveled(10), 0_deg);
+
+  model->setSensorVals(0, 0, 0);
+  odom.step();
+  assertOdomStateEquals(&odom, 0_in, 0_in, 0_deg);
+
+  model->setSensorVals(10, 10, 10);
+  odom.step();
+  assertOdomStateEquals(&odom, calculateDistanceTraveled(10), calculateDistanceTraveled(10), 0_deg);
+}

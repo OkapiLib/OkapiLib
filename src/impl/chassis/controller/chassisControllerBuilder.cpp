@@ -7,6 +7,7 @@
  */
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
+#include "okapi/api/chassis/model/threeEncoderXDriveModel.hpp"
 #include "okapi/api/odometry/threeEncoderOdometry.hpp"
 #include "okapi/impl/util/configurableTimeUtilFactory.hpp"
 #include "okapi/impl/util/rate.hpp"
@@ -372,44 +373,38 @@ std::shared_ptr<OdomChassisController> ChassisControllerBuilder::buildOdometry()
 
 std::shared_ptr<DefaultOdomChassisController>
 ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisController) {
-  if (driveMode == DriveMode::SkidSteer) {
-    if (odometry == nullptr) {
-      if (middleSensor == nullptr) {
-        odometry = std::make_unique<TwoEncoderOdometry>(odometryTimeUtilFactory.create(),
+  if (odometry == nullptr) {
+    if (middleSensor == nullptr) {
+      odometry = std::make_unique<TwoEncoderOdometry>(odometryTimeUtilFactory.create(),
+                                                      chassisController->getModel(),
+                                                      chassisController->getChassisScales(),
+                                                      wheelVelDelta,
+                                                      controllerLogger);
+    } else {
+      odometry = std::make_unique<ThreeEncoderOdometry>(odometryTimeUtilFactory.create(),
                                                         chassisController->getModel(),
                                                         chassisController->getChassisScales(),
                                                         wheelVelDelta,
                                                         controllerLogger);
-      } else {
-        odometry = std::make_unique<ThreeEncoderOdometry>(odometryTimeUtilFactory.create(),
-                                                          chassisController->getModel(),
-                                                          chassisController->getChassisScales(),
-                                                          wheelVelDelta,
-                                                          controllerLogger);
-      }
     }
-
-    auto out =
-      std::make_shared<DefaultOdomChassisController>(chassisControllerTimeUtilFactory.create(),
-                                                     std::move(odometry),
-                                                     chassisController,
-                                                     stateMode,
-                                                     moveThreshold,
-                                                     turnThreshold,
-                                                     controllerLogger);
-
-    out->startOdomThread();
-
-    if (isParentedToCurrentTask && NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
-      out->getOdomThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
-    }
-
-    return out;
-  } else {
-    std::string msg("ChassisControllerBuilder: Odometry is only supported with skid-steer layout.");
-    LOG_ERROR(msg);
-    throw std::runtime_error(msg);
   }
+
+  auto out =
+    std::make_shared<DefaultOdomChassisController>(chassisControllerTimeUtilFactory.create(),
+                                                   std::move(odometry),
+                                                   chassisController,
+                                                   stateMode,
+                                                   moveThreshold,
+                                                   turnThreshold,
+                                                   controllerLogger);
+
+  out->startOdomThread();
+
+  if (isParentedToCurrentTask && NOT_INITIALIZE_TASK && NOT_COMP_INITIALIZE_TASK) {
+    out->getOdomThread()->notifyWhenDeletingRaw(pros::c::task_get_current());
+  }
+
+  return out;
 }
 
 std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
@@ -483,6 +478,7 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
 }
 
 std::shared_ptr<ChassisModel> ChassisControllerBuilder::makeChassisModel() {
+  // These implementations should handle a null middleSensor
   switch (driveMode) {
   case DriveMode::SkidSteer:
     return makeSkidSteerModel();
@@ -494,7 +490,8 @@ std::shared_ptr<ChassisModel> ChassisControllerBuilder::makeChassisModel() {
     return makeHDriveModel();
 
   default:
-    std::string msg = "ChassisControllerBuilder: Unhandled DriveMode case in makeChassisModel.";
+    std::string msg =
+      "ChassisControllerBuilder: BUG: Unhandled DriveMode case in makeChassisModel.";
     LOG_ERROR(msg);
     throw std::runtime_error(msg);
   }
@@ -505,8 +502,8 @@ std::shared_ptr<SkidSteerModel> ChassisControllerBuilder::makeSkidSteerModel() {
     return std::make_shared<ThreeEncoderSkidSteerModel>(skidSteerMotors.left,
                                                         skidSteerMotors.right,
                                                         leftSensor,
-                                                        middleSensor,
                                                         rightSensor,
+                                                        middleSensor,
                                                         maxVelocity,
                                                         maxVoltage);
   } else {
@@ -520,17 +517,30 @@ std::shared_ptr<SkidSteerModel> ChassisControllerBuilder::makeSkidSteerModel() {
 }
 
 std::shared_ptr<XDriveModel> ChassisControllerBuilder::makeXDriveModel() {
-  return std::make_shared<XDriveModel>(xDriveMotors.topLeft,
-                                       xDriveMotors.topRight,
-                                       xDriveMotors.bottomRight,
-                                       xDriveMotors.bottomLeft,
-                                       leftSensor,
-                                       rightSensor,
-                                       maxVelocity,
-                                       maxVoltage);
+  if (middleSensor != nullptr) {
+    return std::make_shared<ThreeEncoderXDriveModel>(xDriveMotors.topLeft,
+                                                     xDriveMotors.topRight,
+                                                     xDriveMotors.bottomRight,
+                                                     xDriveMotors.bottomLeft,
+                                                     leftSensor,
+                                                     rightSensor,
+                                                     middleSensor,
+                                                     maxVelocity,
+                                                     maxVoltage);
+  } else {
+    return std::make_shared<XDriveModel>(xDriveMotors.topLeft,
+                                         xDriveMotors.topRight,
+                                         xDriveMotors.bottomRight,
+                                         xDriveMotors.bottomLeft,
+                                         leftSensor,
+                                         rightSensor,
+                                         maxVelocity,
+                                         maxVoltage);
+  }
 }
 
 std::shared_ptr<HDriveModel> ChassisControllerBuilder::makeHDriveModel() {
+  // HDriveModel already has three encoders
   return std::make_shared<HDriveModel>(hDriveMotors.left,
                                        hDriveMotors.right,
                                        hDriveMotors.middle,

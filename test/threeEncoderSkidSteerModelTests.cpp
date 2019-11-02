@@ -21,7 +21,7 @@ class ThreeEncoderSkidSteerModelTest : public ::testing::Test {
     rightSensor = std::make_shared<MockContinuousRotarySensor>();
     middleSensor = std::make_shared<MockContinuousRotarySensor>();
     model = new ThreeEncoderSkidSteerModel(
-      leftMotor, rightMotor, leftSensor, middleSensor, rightSensor, 100, v5MotorMaxVoltage);
+      leftMotor, rightMotor, leftSensor, rightSensor, middleSensor, 100, v5MotorMaxVoltage);
   }
 
   void TearDown() override {

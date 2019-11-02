@@ -57,6 +57,7 @@ add_executable(OkapiLibV5
         include/okapi/api/chassis/model/readOnlyChassisModel.hpp
         include/okapi/api/chassis/model/skidSteerModel.hpp
         include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp
+        include/okapi/api/chassis/model/threeEncoderXDriveModel.hpp
         include/okapi/api/chassis/model/xDriveModel.hpp
         include/okapi/api/control/async/asyncController.hpp
         include/okapi/api/control/async/asyncLinearMotionProfileController.hpp
@@ -136,6 +137,7 @@ add_executable(OkapiLibV5
         src/api/chassis/model/hDriveModel.cpp
         src/api/chassis/model/skidSteerModel.cpp
         src/api/chassis/model/threeEncoderSkidSteerModel.cpp
+        src/api/chassis/model/threeEncoderXDriveModel.cpp
         src/api/chassis/model/xDriveModel.cpp
         src/api/control/async/asyncLinearMotionProfileController.cpp
         src/api/control/async/asyncMotionProfileController.cpp
@@ -210,7 +212,8 @@ add_executable(OkapiLibV5
         test/odomMathTests.cpp
         include/okapi/api/odometry/stateMode.hpp
         include/okapi/api/odometry/odomState.hpp
-        src/api/odometry/odomState.cpp)
+        src/api/odometry/odomState.cpp
+        test/threeEncoderXDriveModelTests.cpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)

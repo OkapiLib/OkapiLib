@@ -25,8 +25,8 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
   ThreeEncoderSkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                              std::shared_ptr<AbstractMotor> irightSideMotor,
                              std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                             std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
                              std::shared_ptr<ContinuousRotarySensor> irightEnc,
+                             std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
                              double imaxVelocity,
                              double imaxVoltage);
 

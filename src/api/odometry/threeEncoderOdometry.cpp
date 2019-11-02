@@ -21,12 +21,6 @@ ThreeEncoderOdometry::ThreeEncoderOdometry(const TimeUtil &itimeUtil,
     LOG_ERROR(msg);
     throw std::invalid_argument(msg);
   }
-
-  if (ichassisScales.middleWheelDistance == 0_m) {
-    std::string msg = "ThreeEncoderOdometry: Middle wheel distance cannot be zero.";
-    LOG_ERROR(msg);
-    throw std::invalid_argument(msg);
-  }
 }
 
 OdomState ThreeEncoderOdometry::odomMathStep(const std::valarray<std::int32_t> &itickDiff,
