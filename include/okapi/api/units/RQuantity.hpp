@@ -68,6 +68,17 @@ class RQuantity {
     return RQuantity<MassDim, LengthDim, TimeDim, AngleDim>(std::fabs(value));
   }
 
+  constexpr RQuantity<std::ratio_divide<MassDim, std::ratio<2>>,
+                      std::ratio_divide<LengthDim, std::ratio<2>>,
+                      std::ratio_divide<TimeDim, std::ratio<2>>,
+                      std::ratio_divide<AngleDim, std::ratio<2>>>
+  sqrt() const {
+    return RQuantity<std::ratio_divide<MassDim, std::ratio<2>>,
+                     std::ratio_divide<LengthDim, std::ratio<2>>,
+                     std::ratio_divide<TimeDim, std::ratio<2>>,
+                     std::ratio_divide<AngleDim, std::ratio<2>>>(std::sqrt(value));
+  }
+
   private:
   double value;
 };
