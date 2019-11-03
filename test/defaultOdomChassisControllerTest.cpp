@@ -12,6 +12,12 @@
 
 using namespace okapi;
 
+class MockDefaultOdomChassisController : public DefaultOdomChassisController {
+  public:
+  using DefaultOdomChassisController::DefaultOdomChassisController;
+  using DefaultOdomChassisController::odomTaskRunning;
+};
+
 class DefaultOdomChassisControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
@@ -19,8 +25,9 @@ class DefaultOdomChassisControllerTest : public ::testing::Test {
       createTimeUtil(), std::make_shared<MockReadOnlyChassisModel>(), scales);
     controller = std::make_shared<MockChassisController>();
 
-    drive = new DefaultOdomChassisController(
+    drive = new MockDefaultOdomChassisController(
       createTimeUtil(), std::unique_ptr<Odometry>(odom), controller);
+    drive->odomTaskRunning = true;
   }
 
   void TearDown() override {
@@ -30,7 +37,7 @@ class DefaultOdomChassisControllerTest : public ::testing::Test {
   ChassisScales scales{{4.125_in, 10_in}, imev5GreenTPR};
   SkidSteerModel *model;
   TwoEncoderOdometry *odom;
-  DefaultOdomChassisController *drive;
+  MockDefaultOdomChassisController *drive;
   std::shared_ptr<MockChassisController> controller;
 };
 

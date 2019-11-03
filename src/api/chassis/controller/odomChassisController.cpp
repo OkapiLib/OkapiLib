@@ -68,6 +68,7 @@ void OdomChassisController::trampoline(void *context) {
 }
 
 void OdomChassisController::loop() {
+  odomTaskRunning = true;
   LOG_INFO_S("Started OdomChassisController task.");
 
   auto rate = timeUtil.getRate();
@@ -76,6 +77,7 @@ void OdomChassisController::loop() {
     rate->delayUntil(10_ms);
   }
 
+  odomTaskRunning = false;
   LOG_INFO_S("Stopped OdomChassisController task.");
 }
 
