@@ -54,5 +54,10 @@ class Odometry {
    * @return The internal ChassisModel.
    */
   virtual std::shared_ptr<ReadOnlyChassisModel> getModel() = 0;
+
+  /**
+   * @return The internal ChassisScales.
+   */
+  virtual ChassisScales getScales() = 0;
 };
 } // namespace okapi

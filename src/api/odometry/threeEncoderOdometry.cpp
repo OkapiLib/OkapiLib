@@ -14,7 +14,7 @@ ThreeEncoderOdometry::ThreeEncoderOdometry(const TimeUtil &itimeUtil,
                                            const std::shared_ptr<ReadOnlyChassisModel> &imodel,
                                            const ChassisScales &ichassisScales,
                                            const std::shared_ptr<Logger> &logger)
-  : TwoEncoderOdometry(itimeUtil, imodel, ichassisScales, logger), model(imodel) {
+  : TwoEncoderOdometry(itimeUtil, imodel, ichassisScales, logger) {
   if (ichassisScales.middle == 0) {
     std::string msg = "ThreeEncoderOdometry: Middle scale cannot be zero.";
     LOG_ERROR(msg);
@@ -70,9 +70,5 @@ OdomState ThreeEncoderOdometry::odomMathStep(const std::valarray<std::int32_t> &
   }
 
   return OdomState{dX * meter, dY * meter, deltaTheta * radian};
-}
-
-std::shared_ptr<ReadOnlyChassisModel> ThreeEncoderOdometry::getModel() {
-  return model;
 }
 } // namespace okapi

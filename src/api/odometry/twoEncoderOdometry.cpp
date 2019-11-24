@@ -107,4 +107,8 @@ void TwoEncoderOdometry::setState(const OdomState &istate, const StateMode &imod
 std::shared_ptr<ReadOnlyChassisModel> TwoEncoderOdometry::getModel() {
   return model;
 }
+
+ChassisScales TwoEncoderOdometry::getScales() {
+  return chassisScales;
+}
 } // namespace okapi

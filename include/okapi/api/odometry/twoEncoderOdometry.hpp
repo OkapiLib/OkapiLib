@@ -67,6 +67,11 @@ class TwoEncoderOdometry : public Odometry {
    */
   std::shared_ptr<ReadOnlyChassisModel> getModel() override;
 
+  /**
+   * @return The internal ChassisScales.
+   */
+  ChassisScales getScales() override;
+
   protected:
   std::shared_ptr<Logger> logger;
   std::unique_ptr<AbstractRate> rate;
