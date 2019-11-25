@@ -117,8 +117,8 @@ Controller controller;
 
 while (true) {
     // Tank drive with left and right sticks.
-    drive->tank(controller.getAnalog(ControllerAnalog::leftY),
-                controller.getAnalog(ControllerAnalog::rightY));
+    drive->getModel()->tank(controller.getAnalog(ControllerAnalog::leftY),
+                            controller.getAnalog(ControllerAnalog::rightY));
 
     // Wait and give up the time we don't need to other tasks.
     // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
@@ -135,8 +135,8 @@ Controller controller;
 
 while (true) {
     // Arcade drive with the left stick.
-    drive->arcade(controller.getAnalog(ControllerAnalog::leftY),
-                  controller.getAnalog(ControllerAnalog::leftX));
+    drive->getModel()->arcade(controller.getAnalog(ControllerAnalog::leftY),
+                              controller.getAnalog(ControllerAnalog::leftX));
 
     // Wait and give up the time we don't need to other tasks.
     // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
@@ -269,8 +269,8 @@ void opcontrol() {
 
     while (true) {
         // Tank drive with left and right sticks
-        drive->tank(controller.getAnalog(ControllerAnalog::leftY),
-                    controller.getAnalog(ControllerAnalog::rightY));
+        drive->getModel()->tank(controller.getAnalog(ControllerAnalog::leftY),
+                                controller.getAnalog(ControllerAnalog::rightY));
 
         // Don't power the arm if it is all the way down
         if (armLimitSwitch.isPressed()) {
@@ -331,8 +331,8 @@ void opcontrol() {
 
     while (true) {
         // Arcade drive with the left stick
-        drive->arcade(controller.getAnalog(ControllerAnalog::leftY),
-                      controller.getAnalog(ControllerAnalog::rightY));
+        drive->getModel()->arcade(controller.getAnalog(ControllerAnalog::leftY),
+                                  controller.getAnalog(ControllerAnalog::rightY));
 
         // Don't power the arm if it is all the way down
         if (armLimitSwitch.isPressed()) {
