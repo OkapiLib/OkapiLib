@@ -255,11 +255,7 @@ QTime ConstantMockTimer::clearMark() {
 MockRate::MockRate() = default;
 
 void MockRate::delay(QFrequency ihz) {
-  delay(static_cast<int>(ihz.convert(Hz)));
-}
-
-void MockRate::delay(int ihz) {
-  std::this_thread::sleep_for(std::chrono::milliseconds(1000 / ihz));
+  std::this_thread::sleep_for(std::chrono::milliseconds(1000 / static_cast<int>(ihz.convert(Hz))));
 }
 
 void MockRate::delayUntil(QTime itime) {
