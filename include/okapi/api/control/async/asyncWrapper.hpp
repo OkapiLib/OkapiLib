@@ -87,6 +87,13 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   }
 
   /**
+   * @return The most recent value of the process variable.
+   */
+  Input getProcessValue() const override {
+    return controller->getProcessValue();
+  }
+
+  /**
    * Returns the last calculated output of the controller.
    */
   Output getOutput() const {

@@ -118,6 +118,14 @@ double IterativeVelPIDController::getTarget() {
   return target;
 }
 
+double IterativeVelPIDController::getTarget() const {
+  return target;
+}
+
+double IterativeVelPIDController::getProcessValue() const {
+  return velMath->getVelocity().convert(rpm);
+}
+
 double IterativeVelPIDController::getOutput() const {
   return isDisabled() ? 0 : output;
 }
@@ -131,7 +139,7 @@ double IterativeVelPIDController::getMinOutput() {
 }
 
 double IterativeVelPIDController::getError() const {
-  return target - velMath->getVelocity().convert(rpm);
+  return getTarget() - getProcessValue();
 }
 
 bool IterativeVelPIDController::isSettled() {

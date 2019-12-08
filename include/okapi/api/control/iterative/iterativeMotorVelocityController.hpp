@@ -51,6 +51,11 @@ class IterativeMotorVelocityController : public IterativeVelocityController<doub
   double getTarget() override;
 
   /**
+   * @return The most recent value of the process variable.
+   */
+  double getProcessValue() const override;
+
+  /**
    * Returns the last calculated output of the controller.
    */
   double getOutput() const override;

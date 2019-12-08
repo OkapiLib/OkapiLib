@@ -31,6 +31,10 @@ double IterativeMotorVelocityController::getTarget() {
   return controller->getTarget();
 }
 
+double IterativeMotorVelocityController::getProcessValue() const {
+  return controller->getProcessValue();
+}
+
 double IterativeMotorVelocityController::getOutput() const {
   return controller->getOutput();
 }

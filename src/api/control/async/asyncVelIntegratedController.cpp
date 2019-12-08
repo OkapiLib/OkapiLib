@@ -53,8 +53,12 @@ double AsyncVelIntegratedController::getTarget() {
   return lastTarget;
 }
 
+double AsyncVelIntegratedController::getProcessValue() const {
+  return motor->getActualVelocity();
+}
+
 double AsyncVelIntegratedController::getError() const {
-  return lastTarget - motor->getActualVelocity() / pair.ratio;
+  return lastTarget - getProcessValue() / pair.ratio;
 }
 
 bool AsyncVelIntegratedController::isSettled() {

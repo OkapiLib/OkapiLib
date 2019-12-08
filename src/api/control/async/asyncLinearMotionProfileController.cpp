@@ -196,6 +196,10 @@ std::string AsyncLinearMotionProfileController::getTarget() const {
   return currentPath;
 }
 
+std::string AsyncLinearMotionProfileController::getProcessValue() const {
+  return currentPath;
+}
+
 void AsyncLinearMotionProfileController::loop() {
   LOG_INFO_S("Started AsyncLinearMotionProfileController task.");
 
