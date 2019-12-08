@@ -61,9 +61,8 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
 
   LOG_INFO("ChassisControllerIntegrated: moving " + std::to_string(newTarget) + " motor ticks");
 
-  const auto enc = chassisModel->getSensorVals();
-  leftController->setTarget(newTarget + enc[0]);
-  rightController->setTarget(newTarget + enc[1]);
+  leftController->setTarget(newTarget + leftController->getProcessValue());
+  rightController->setTarget(newTarget + rightController->getProcessValue());
 }
 
 void ChassisControllerIntegrated::moveRawAsync(const double itarget) {
@@ -95,9 +94,8 @@ void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
 
   LOG_INFO("ChassisControllerIntegrated: turning " + std::to_string(newTarget) + " motor ticks");
 
-  const auto enc = chassisModel->getSensorVals();
-  leftController->setTarget(newTarget + enc[0]);
-  rightController->setTarget(-1 * newTarget + enc[1]);
+  leftController->setTarget(newTarget + leftController->getProcessValue());
+  rightController->setTarget(-1 * newTarget + rightController->getProcessValue());
 }
 
 void ChassisControllerIntegrated::turnRawAsync(const double idegTarget) {
