@@ -31,14 +31,7 @@ class ThreeEncoderOdometry : public TwoEncoderOdometry {
                        const ChassisScales &ichassisScales,
                        const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
-  /**
-   * @return The internal ChassisModel.
-   */
-  std::shared_ptr<ReadOnlyChassisModel> getModel() override;
-
   protected:
-  std::shared_ptr<ReadOnlyChassisModel> model;
-
   /**
    * Does the math, side-effect free, for one odom step.
    *
