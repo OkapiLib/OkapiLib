@@ -15,10 +15,6 @@ void Rate::delay(const QFrequency ihz) {
   delayUntil(1000 / ihz.convert(Hz));
 }
 
-void Rate::delay(const int ihz) {
-  delayUntil(1000 / ihz);
-}
-
 void Rate::delayUntil(const QTime itime) {
   delayUntil(itime.convert(millisecond));
 }

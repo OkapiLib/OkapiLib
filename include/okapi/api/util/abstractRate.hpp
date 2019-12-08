@@ -25,14 +25,6 @@ class AbstractRate {
   virtual void delay(QFrequency ihz) = 0;
 
   /**
-   * Delay the current task such that it runs every ihz ms. The first delay will run for
-   * 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the task.
-   *
-   * @param ihz the frequency in ms
-   */
-  virtual void delay(int ihz) = 0;
-
-  /**
    * Delay the current task until itime has passed. This method can be used by periodic tasks to
    * ensure a consistent execution frequency.
    *
