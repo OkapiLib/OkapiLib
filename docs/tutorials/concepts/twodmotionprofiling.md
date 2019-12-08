@@ -42,7 +42,7 @@ using namespace okapi;
 auto myChassis = ChassisControllerBuilder()
                    .withMotors({1, 2}, {-3, -4})
                    // Green gearset, 4 in wheel diam, 11.5 in wheel track
-                   .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
+                   .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
                    .build();
 
 auto profileController = AsyncMotionProfileControllerBuilder()
@@ -100,7 +100,7 @@ using namespace okapi;
 auto myChassis = ChassisControllerBuilder()
                    .withMotors({1, 2}, {-3, -4})
                    // Green gearset, 4 in wheel diam, 11.5 in wheel track
-                   .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
+                   .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
                    .build();
 
 auto profileController = AsyncMotionProfileControllerBuilder()

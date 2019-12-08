@@ -21,7 +21,7 @@ void opcontrol() {
 
   drive = ChassisControllerBuilder()
             .withMotors(-1, 2)
-            .withDimensions(AbstractMotor::gearset::green, {4_in, 11_in})
+            .withDimensions(AbstractMotor::gearset::green, {{4_in, 11_in}, imev5GreenTPR})
             .withMaxVelocity(60)
             .withOdometry(StateMode::FRAME_TRANSFORMATION)
             .buildOdometry();

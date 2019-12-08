@@ -98,7 +98,7 @@ in the drive motors and the chassis dimensions.
 auto drive = ChassisControllerBuilder()
                  .withMotors(1, -10)
                  // Green gearset, 4 in wheel diam, 11.5 in wheel track
-                 .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
+                 .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
                  .build();
 ```
 
@@ -251,7 +251,7 @@ void opcontrol() {
     auto drive = ChassisControllerBuilder()
                      .withMotors(1, -10)
                      // Green gearset, 4 in wheel diam, 11.5 in wheel track
-                     .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
+                     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
                      .build();
 
     // Joystick to read analog values for tank or arcade control
@@ -313,7 +313,7 @@ void opcontrol() {
     auto drive = ChassisControllerBuilder()
                      .withMotors(1, -10)
                      // Green gearset, 4 in wheel diam, 11.5 in wheel track
-                     .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
+                     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
                      .build();
 
     // Joystick to read analog values for tank or arcade control

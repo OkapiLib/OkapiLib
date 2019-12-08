@@ -23,7 +23,7 @@ using namespace okapi;
 auto chassis = ChassisControllerBuilder()
                 .withMotors(1, -2)
                 // Green gearset, 4 in wheel diam, 13.5 in wheel track
-                .withDimensions(AbstractMotor::gearset::green, {4_in, 13.5_in})
+                .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
                 .build();
 ```
 
