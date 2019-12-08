@@ -42,7 +42,7 @@ template <typename Input, typename Output> class ControllerRunner {
     icontroller.setTarget(itarget);
 
     while (!icontroller.isSettled()) {
-      rate->delay(10);
+      rate->delayUntil(10_ms);
     }
 
     LOG_INFO("ControllerRunner: runUntilSettled(AsyncController): Done waiting to settle");
@@ -66,7 +66,7 @@ template <typename Input, typename Output> class ControllerRunner {
 
     while (!icontroller.isSettled()) {
       ioutput.controllerSet(icontroller.getOutput());
-      rate->delay(10);
+      rate->delayUntil(10_ms);
     }
 
     LOG_INFO("ControllerRunner: runUntilSettled(IterativeController): Done waiting to settle");
@@ -90,7 +90,7 @@ template <typename Input, typename Output> class ControllerRunner {
     double lastError = error;
     while (error != 0 && std::copysign(1.0, error) == std::copysign(1.0, lastError)) {
       lastError = error;
-      rate->delay(10);
+      rate->delayUntil(10_ms);
       error = icontroller.getError();
     }
 
@@ -118,7 +118,7 @@ template <typename Input, typename Output> class ControllerRunner {
     while (error != 0 && std::copysign(1.0, error) == std::copysign(1.0, lastError)) {
       ioutput.controllerSet(icontroller.getOutput());
       lastError = error;
-      rate->delay(10);
+      rate->delayUntil(10_ms);
       error = icontroller.getError();
     }
 

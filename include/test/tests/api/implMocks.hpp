@@ -298,8 +298,6 @@ class MockRate : public AbstractRate {
 
   void delay(QFrequency ihz) override;
 
-  void delay(int ihz) override;
-
   void delayUntil(QTime itime) override;
 
   void delayUntil(uint32_t ims) override;
