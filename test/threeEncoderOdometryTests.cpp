@@ -159,3 +159,17 @@ TEST_F(ThreeEncoderOdometryTest, MiddleEncoderDistanceOfZero) {
   odom.step();
   assertOdomStateEquals(&odom, calculateDistanceTraveled(10), calculateDistanceTraveled(10), 0_deg);
 }
+
+TEST_F(ThreeEncoderOdometryTest, TickDiffGreaterThanMax) {
+  odom->setState(OdomState{1_in, 2_in, 45_deg});
+  model->setSensorVals(1e+9, 1e+9, 1e+9);
+  odom->step();
+  assertOdomStateEquals(odom, 1_in, 2_in, 45_deg);
+}
+
+TEST_F(ThreeEncoderOdometryTest, TickDiffLessThanMax) {
+  odom->setState(OdomState{1_in, 2_in, 45_deg});
+  model->setSensorVals(-1e+9, -1e+9, -1e+9);
+  odom->step();
+  assertOdomStateEquals(odom, 1_in, 2_in, 45_deg);
+}

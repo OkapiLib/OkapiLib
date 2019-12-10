@@ -30,7 +30,7 @@ OdomState ThreeEncoderOdometry::odomMathStep(const std::valarray<std::int32_t> &
   }
 
   for (auto &&elem : itickDiff) {
-    if (elem > maximumTickDiff) {
+    if (std::abs(elem) > maximumTickDiff) {
       LOG_ERROR("ThreeEncoderOdometry: A tick diff (" + std::to_string(elem) +
                 ") was greater than the maximum allowable diff (" +
                 std::to_string(maximumTickDiff) + "). Skipping this odometry step.");
