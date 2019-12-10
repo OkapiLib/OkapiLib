@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>okapi::AbstractRate class | OkapiLib A PROS library for programming VEX robots.</title>
+  <title>include/okapi/api/chassis/model/hDriveModel.hpp file | OkapiLib A PROS library for programming VEX robots.</title>
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="okapi-docs.css" />
@@ -55,8 +55,7 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>AbstractRate <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="abstractRate_8hpp.html">&lt;include/okapi/api/util/abstractRate.hpp&gt;</a></div>
+          <span class="m-breadcrumb"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a>/</span><span class="m-breadcrumb"><a href="dir_8c088865cf2101267382299fb6fe5fcc.html">okapi</a>/</span><span class="m-breadcrumb"><a href="dir_63ebd08b8cf71fd366bf0de4231ab7e6.html">api</a>/</span><span class="m-breadcrumb"><a href="dir_4202d117f5e57a9e678d731f6dbe9d69.html">chassis</a>/</span><span class="m-breadcrumb"><a href="dir_74f8e2f2711d1b4942288037bd723b6f.html">model</a>/</span>hDriveModel.hpp <span class="m-thin">file</span>
         </h1>
         <p><span></span></p>
         <div class="m-block m-default">
@@ -65,101 +64,27 @@
             <li>
               Reference
               <ul>
-                <li><a href="#derived-classes">Derived classes</a></li>
-                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
-                <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#namespaces">Namespaces</a></li>
+                <li><a href="#nested-classes">Classes</a></li>
               </ul>
             </li>
           </ul>
         </div>
-        <section id="derived-classes">
-          <h2><a href="#derived-classes">Derived classes</a></h2>
+        <section id="namespaces">
+          <h2><a href="#namespaces">Namespaces</a></h2>
           <dl class="m-doc">
-            <dt>
-              class <a href="classokapi_1_1Rate.html" class="m-doc">Rate</a>
-            </dt>
+            <dt>namespace <a href="namespaceokapi.html" class="m-doc">okapi</a></dt>
             <dd><span></span></dd>
           </dl>
         </section>
-        <section id="typeless-methods">
-          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+        <section id="nested-classes">
+          <h2><a href="#nested-classes">Classes</a></h2>
           <dl class="m-doc">
-            <dt id="ab2d9563d840f0378325712480a3e572c">
-              <span class="m-doc-wrap-bumper"><a href="#ab2d9563d840f0378325712480a3e572c" class="m-doc-self">~AbstractRate</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
+            <dt>
+              class <a href="classokapi_1_1HDriveModel.html" class="m-doc">okapi::HDriveModel</a>
             </dt>
             <dd><span></span></dd>
           </dl>
-        </section>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
-          <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#ab1abf71d6cf3184abeed1d3556d39d4f" class="m-doc">delay</a>(</span><span class="m-doc-wrap">QFrequency ihz) <span class="m-label m-flat m-warning">pure virtual</span></span>
-            </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a53a15074ca3bd0787ce34d30c068d9b2" class="m-doc">delayUntil</a>(</span><span class="m-doc-wrap">QTime itime) <span class="m-label m-flat m-warning">pure virtual</span></span>
-            </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a3faf54ea2951ae5e0567cd50ddba0227" class="m-doc">delayUntil</a>(</span><span class="m-doc-wrap">uint32_t ims) <span class="m-label m-flat m-warning">pure virtual</span></span>
-            </dt>
-            <dd></dd>
-          </dl>
-        </section>
-        <section>
-          <h2>Function documentation</h2>
-          <section class="m-doc-details" id="ab1abf71d6cf3184abeed1d3556d39d4f"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AbstractRate::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab1abf71d6cf3184abeed1d3556d39d4f" class="m-doc-self">delay</a>(</span><span class="m-doc-wrap">QFrequency ihz) <span class="m-label m-warning">pure virtual</span></span></span>
-            </h3>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">ihz</td>
-                  <td>the frequency</td>
-                </tr>
-              </tbody>
-            </table>
-<p>Delay the current task such that it runs at the given frequency. The first delay will run for 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the task.</p>
-          </div></section>
-          <section class="m-doc-details" id="a53a15074ca3bd0787ce34d30c068d9b2"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AbstractRate::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a53a15074ca3bd0787ce34d30c068d9b2" class="m-doc-self">delayUntil</a>(</span><span class="m-doc-wrap">QTime itime) <span class="m-label m-warning">pure virtual</span></span></span>
-            </h3>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">itime</td>
-                  <td>the time period</td>
-                </tr>
-              </tbody>
-            </table>
-<p>Delay the current task until itime has passed. This method can be used by periodic tasks to ensure a consistent execution frequency.</p>
-          </div></section>
-          <section class="m-doc-details" id="a3faf54ea2951ae5e0567cd50ddba0227"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AbstractRate::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3faf54ea2951ae5e0567cd50ddba0227" class="m-doc-self">delayUntil</a>(</span><span class="m-doc-wrap">uint32_t ims) <span class="m-label m-warning">pure virtual</span></span></span>
-            </h3>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">ims</td>
-                  <td>the time period</td>
-                </tr>
-              </tbody>
-            </table>
-<p>Delay the current task until ims milliseconds have passed. This method can be used by periodic tasks to ensure a consistent execution frequency.</p>
-          </div></section>
         </section>
       </div>
     </div>

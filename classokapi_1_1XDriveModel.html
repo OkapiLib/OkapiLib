@@ -66,6 +66,7 @@
               Reference
               <ul>
                 <li><a href="#base-classes">Base classes</a></li>
+                <li><a href="#derived-classes">Derived classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
                 <li><a href="#pro-attribs">Protected variables</a></li>
@@ -80,6 +81,15 @@
               class <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>
             </dt>
             <dd></dd>
+          </dl>
+        </section>
+        <section id="derived-classes">
+          <h2><a href="#derived-classes">Derived classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              class <a href="classokapi_1_1ThreeEncoderXDriveModel.html" class="m-doc">ThreeEncoderXDriveModel</a>
+            </dt>
+            <dd><span></span></dd>
           </dl>
         </section>
         <section id="typeless-methods">
@@ -143,11 +153,11 @@
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a0a4688df022b66164e81709e6eaa02e5" class="m-doc">left</a>(</span><span class="m-doc-wrap">double ipower) <span class="m-label m-flat m-warning">override</span></span>
+              <span class="m-doc-wrap-bumper">void <a href="#ad18118c4b84ca47bf65a695ecbd56290" class="m-doc">left</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a21bc8f93cda3b0b58ec6543a6dc02c24" class="m-doc">right</a>(</span><span class="m-doc-wrap">double ipower) <span class="m-label m-flat m-warning">override</span></span>
+              <span class="m-doc-wrap-bumper">void <a href="#a98fc5dbbe0894a3d960d54fd7bb7d261" class="m-doc">right</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
             <dt>
@@ -261,27 +271,27 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">itopLeftMotor</td>
-                  <td>top left motor</td>
+                  <td>The top left motor.</td>
                 </tr>
                 <tr>
                   <td>itopRightMotor</td>
-                  <td>top right motor</td>
+                  <td>The top right motor.</td>
                 </tr>
                 <tr>
                   <td>ibottomRightMotor</td>
-                  <td>bottom right motor</td>
+                  <td>The bottom right motor.</td>
                 </tr>
                 <tr>
                   <td>ibottomLeftMotor</td>
-                  <td>bottom left motor</td>
+                  <td>The bottom left motor.</td>
                 </tr>
                 <tr>
                   <td>ileftEnc</td>
-                  <td>Left side encoder</td>
+                  <td>The left side encoder.</td>
                 </tr>
                 <tr>
                   <td>irightEnc</td>
-                  <td>Right side encoder</td>
+                  <td>The right side encoder.</td>
                 </tr>
                 <tr>
                   <td>imaxVelocity</td>
@@ -454,9 +464,9 @@
             </table>
 <p>Drive the robot with an arcade drive layout. Uses voltage mode.</p>
           </div></section>
-          <section class="m-doc-details" id="a0a4688df022b66164e81709e6eaa02e5"><div>
+          <section class="m-doc-details" id="ad18118c4b84ca47bf65a695ecbd56290"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />XDriveModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0a4688df022b66164e81709e6eaa02e5" class="m-doc-self">left</a>(</span><span class="m-doc-wrap">double ipower) <span class="m-label m-warning">override</span></span></span>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />XDriveModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad18118c4b84ca47bf65a695ecbd56290" class="m-doc-self">left</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-warning">override</span></span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -464,16 +474,16 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="width: 1%">ipower</td>
-                  <td>motor power</td>
+                  <td style="width: 1%">ispeed</td>
+                  <td>The motor power.</td>
                 </tr>
               </tbody>
             </table>
 <p>Power the left side motors. Uses velocity mode.</p>
           </div></section>
-          <section class="m-doc-details" id="a21bc8f93cda3b0b58ec6543a6dc02c24"><div>
+          <section class="m-doc-details" id="a98fc5dbbe0894a3d960d54fd7bb7d261"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />XDriveModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a21bc8f93cda3b0b58ec6543a6dc02c24" class="m-doc-self">right</a>(</span><span class="m-doc-wrap">double ipower) <span class="m-label m-warning">override</span></span></span>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />XDriveModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a98fc5dbbe0894a3d960d54fd7bb7d261" class="m-doc-self">right</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-warning">override</span></span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -481,8 +491,8 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="width: 1%">ipower</td>
-                  <td>motor power</td>
+                  <td style="width: 1%">ispeed</td>
+                  <td>The motor power.</td>
                 </tr>
               </tbody>
             </table>

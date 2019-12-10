@@ -105,7 +105,7 @@
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#ab0361bc7bb5dc0b4ac4c990c1b9dd14f" class="m-doc">moveDistance</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
+              <span class="m-doc-wrap-bumper">void <a href="#a5feffd32d60a2b56d07f0d97ad218a49" class="m-doc">moveRaw</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
             <dt>
@@ -113,7 +113,7 @@
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#ab3cb8eb0c7d5162aafffe8b8ec2751d5" class="m-doc">moveDistanceAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
+              <span class="m-doc-wrap-bumper">void <a href="#a6a686449818623cb9a3bb0efef73872f" class="m-doc">moveRawAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
             <dt>
@@ -121,7 +121,7 @@
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a3f13749508bf420468ffdb54f62a9da2" class="m-doc">turnAngle</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">override</span></span>
+              <span class="m-doc-wrap-bumper">void <a href="#a42801c5f37d892f8410af8c672387da8" class="m-doc">turnRaw</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
             <dt>
@@ -129,7 +129,7 @@
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#abd638be1352919fb211e9b70c181d940" class="m-doc">turnAngleAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">override</span></span>
+              <span class="m-doc-wrap-bumper">void <a href="#a753e4fbe3ca152c5d1ba544e26c93e92" class="m-doc">turnRawAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
             <dt>
@@ -285,9 +285,9 @@
 <span class="c1">// Drive backward 0.2 meters</span>
 <span class="n">chassis</span><span class="o">-&gt;</span><span class="n">moveDistance</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="n">_m</span><span class="p">);</span></pre>
           </div></section>
-          <section class="m-doc-details" id="ab0361bc7bb5dc0b4ac4c990c1b9dd14f"><div>
+          <section class="m-doc-details" id="a5feffd32d60a2b56d07f0d97ad218a49"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab0361bc7bb5dc0b4ac4c990c1b9dd14f" class="m-doc-self">moveDistance</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">override</span></span></span>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5feffd32d60a2b56d07f0d97ad218a49" class="m-doc-self">moveRaw</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">override</span></span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -301,7 +301,7 @@
               </tbody>
             </table>
 <p>Drives the robot straight for a distance (using closed-loop control).</p><pre class="m-code"><span class="c1">// Drive forward by spinning the motors 400 degrees</span>
-<span class="n">chassis</span><span class="o">-&gt;</span><span class="n">moveDistance</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span></pre>
+<span class="n">chassis</span><span class="o">-&gt;</span><span class="n">moveRaw</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span></pre>
           </div></section>
           <section class="m-doc-details" id="afc97bc450a090d91b57bc6353b4a6972"><div>
             <h3>
@@ -320,9 +320,9 @@
             </table>
 <p>Sets the target distance for the robot to drive straight (using closed-loop control).</p>
           </div></section>
-          <section class="m-doc-details" id="ab3cb8eb0c7d5162aafffe8b8ec2751d5"><div>
+          <section class="m-doc-details" id="a6a686449818623cb9a3bb0efef73872f"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab3cb8eb0c7d5162aafffe8b8ec2751d5" class="m-doc-self">moveDistanceAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">override</span></span></span>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6a686449818623cb9a3bb0efef73872f" class="m-doc-self">moveRawAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">override</span></span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -355,9 +355,9 @@
 <p>Turns the robot clockwise in place (using closed-loop control).</p><pre class="m-code"><span class="c1">// Turn 90 degrees clockwise</span>
 <span class="n">chassis</span><span class="o">-&gt;</span><span class="n">turnAngle</span><span class="p">(</span><span class="mi">90</span><span class="n">_deg</span><span class="p">);</span></pre>
           </div></section>
-          <section class="m-doc-details" id="a3f13749508bf420468ffdb54f62a9da2"><div>
+          <section class="m-doc-details" id="a42801c5f37d892f8410af8c672387da8"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3f13749508bf420468ffdb54f62a9da2" class="m-doc-self">turnAngle</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-warning">override</span></span></span>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a42801c5f37d892f8410af8c672387da8" class="m-doc-self">turnRaw</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-warning">override</span></span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -371,7 +371,7 @@
               </tbody>
             </table>
 <p>Turns the robot clockwise in place (using closed-loop control).</p><pre class="m-code"><span class="c1">// Turn clockwise by spinning the motors 200 degrees</span>
-<span class="n">chassis</span><span class="o">-&gt;</span><span class="n">turnAngle</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span></pre>
+<span class="n">chassis</span><span class="o">-&gt;</span><span class="n">turnRaw</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span></pre>
           </div></section>
           <section class="m-doc-details" id="a773a99fe7a1540da856ad6b6008ba24f"><div>
             <h3>
@@ -390,9 +390,9 @@
             </table>
 <p>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</p>
           </div></section>
-          <section class="m-doc-details" id="abd638be1352919fb211e9b70c181d940"><div>
+          <section class="m-doc-details" id="a753e4fbe3ca152c5d1ba544e26c93e92"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abd638be1352919fb211e9b70c181d940" class="m-doc-self">turnAngleAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-warning">override</span></span></span>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a753e4fbe3ca152c5d1ba544e26c93e92" class="m-doc-self">turnRawAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-warning">override</span></span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>okapi::AbstractRate class | OkapiLib A PROS library for programming VEX robots.</title>
+  <title>okapi::ThreeEncoderXDriveModel class | OkapiLib A PROS library for programming VEX robots.</title>
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="okapi-docs.css" />
@@ -55,8 +55,8 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>AbstractRate <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="abstractRate_8hpp.html">&lt;include/okapi/api/util/abstractRate.hpp&gt;</a></div>
+          <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>ThreeEncoderXDriveModel <span class="m-thin">class</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="threeEncoderXDriveModel_8hpp.html">&lt;include/okapi/api/chassis/model/threeEncoderXDriveModel.hpp&gt;</a></div>
         </h1>
         <p><span></span></p>
         <div class="m-block m-default">
@@ -65,18 +65,19 @@
             <li>
               Reference
               <ul>
-                <li><a href="#derived-classes">Derived classes</a></li>
+                <li><a href="#base-classes">Base classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#pro-attribs">Protected variables</a></li>
               </ul>
             </li>
           </ul>
         </div>
-        <section id="derived-classes">
-          <h2><a href="#derived-classes">Derived classes</a></h2>
+        <section id="base-classes">
+          <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
             <dt>
-              class <a href="classokapi_1_1Rate.html" class="m-doc">Rate</a>
+              class <a href="classokapi_1_1XDriveModel.html" class="m-doc">XDriveModel</a>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -84,34 +85,55 @@
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="ab2d9563d840f0378325712480a3e572c">
-              <span class="m-doc-wrap-bumper"><a href="#ab2d9563d840f0378325712480a3e572c" class="m-doc-self">~AbstractRate</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a0222dfe861fe36a8059079d89e1c6aaf" class="m-doc">ThreeEncoderXDriveModel</a>(</span><span class="m-doc-wrap">std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt; itopLeftMotor,
+              std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt; itopRightMotor,
+              std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt; ibottomRightMotor,
+              std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt; ibottomLeftMotor,
+              std::shared_ptr&lt;<a href="classokapi_1_1ContinuousRotarySensor.html" class="m-doc">ContinuousRotarySensor</a>&gt; ileftEnc,
+              std::shared_ptr&lt;<a href="classokapi_1_1ContinuousRotarySensor.html" class="m-doc">ContinuousRotarySensor</a>&gt; irightEnc,
+              std::shared_ptr&lt;<a href="classokapi_1_1ContinuousRotarySensor.html" class="m-doc">ContinuousRotarySensor</a>&gt; imiddleEnc,
+              double imaxVelocity,
+              double imaxVoltage)</span>
             </dt>
-            <dd><span></span></dd>
+            <dd></dd>
           </dl>
         </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#ab1abf71d6cf3184abeed1d3556d39d4f" class="m-doc">delay</a>(</span><span class="m-doc-wrap">QFrequency ihz) <span class="m-label m-flat m-warning">pure virtual</span></span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a795ca68a4fd9acaf454a58b3f692eb9a" class="m-doc">getSensorVals</a>(</span><span class="m-doc-wrap">) const -&gt; std::valarray&lt;std::int32_t&gt; <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a53a15074ca3bd0787ce34d30c068d9b2" class="m-doc">delayUntil</a>(</span><span class="m-doc-wrap">QTime itime) <span class="m-label m-flat m-warning">pure virtual</span></span>
-            </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a3faf54ea2951ae5e0567cd50ddba0227" class="m-doc">delayUntil</a>(</span><span class="m-doc-wrap">uint32_t ims) <span class="m-label m-flat m-warning">pure virtual</span></span>
+              <span class="m-doc-wrap-bumper">void <a href="#a37273244fe76d87946408292f8ec942f" class="m-doc">resetSensors</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
           </dl>
         </section>
+        <section id="pro-attribs">
+          <h2><a href="#pro-attribs">Protected variables</a></h2>
+          <dl class="m-doc">
+            <dt id="a6db8422f0a5ecd5c68246521a698fb79">
+              std::shared_ptr&lt;<a href="classokapi_1_1ContinuousRotarySensor.html" class="m-doc">ContinuousRotarySensor</a>&gt; <a href="#a6db8422f0a5ecd5c68246521a698fb79" class="m-doc-self">middleSensor</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="ab1abf71d6cf3184abeed1d3556d39d4f"><div>
+          <section class="m-doc-details" id="a0222dfe861fe36a8059079d89e1c6aaf"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AbstractRate::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab1abf71d6cf3184abeed1d3556d39d4f" class="m-doc-self">delay</a>(</span><span class="m-doc-wrap">QFrequency ihz) <span class="m-label m-warning">pure virtual</span></span></span>
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />ThreeEncoderXDriveModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0222dfe861fe36a8059079d89e1c6aaf" class="m-doc-self">ThreeEncoderXDriveModel</a>(</span><span class="m-doc-wrap">std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt; itopLeftMotor,
+              std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt; itopRightMotor,
+              std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt; ibottomRightMotor,
+              std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt; ibottomLeftMotor,
+              std::shared_ptr&lt;<a href="classokapi_1_1ContinuousRotarySensor.html" class="m-doc">ContinuousRotarySensor</a>&gt; ileftEnc,
+              std::shared_ptr&lt;<a href="classokapi_1_1ContinuousRotarySensor.html" class="m-doc">ContinuousRotarySensor</a>&gt; irightEnc,
+              std::shared_ptr&lt;<a href="classokapi_1_1ContinuousRotarySensor.html" class="m-doc">ContinuousRotarySensor</a>&gt; imiddleEnc,
+              double imaxVelocity,
+              double imaxVoltage)</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -119,46 +141,64 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="width: 1%">ihz</td>
-                  <td>the frequency</td>
+                  <td style="width: 1%">itopLeftMotor</td>
+                  <td>The top left motor.</td>
+                </tr>
+                <tr>
+                  <td>itopRightMotor</td>
+                  <td>The top right motor.</td>
+                </tr>
+                <tr>
+                  <td>ibottomRightMotor</td>
+                  <td>The bottom right motor.</td>
+                </tr>
+                <tr>
+                  <td>ibottomLeftMotor</td>
+                  <td>The bottom left motor.</td>
+                </tr>
+                <tr>
+                  <td>ileftEnc</td>
+                  <td>The left side encoder.</td>
+                </tr>
+                <tr>
+                  <td>irightEnc</td>
+                  <td>The right side encoder.</td>
+                </tr>
+                <tr>
+                  <td>imiddleEnc</td>
+                  <td>The middle encoder.</td>
+                </tr>
+                <tr>
+                  <td>imaxVelocity</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>imaxVoltage</td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
-<p>Delay the current task such that it runs at the given frequency. The first delay will run for 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the task.</p>
+<p>Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered +100%, the robot should move forward in a straight line.</p>
           </div></section>
-          <section class="m-doc-details" id="a53a15074ca3bd0787ce34d30c068d9b2"><div>
+          <section class="m-doc-details" id="a795ca68a4fd9acaf454a58b3f692eb9a"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AbstractRate::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a53a15074ca3bd0787ce34d30c068d9b2" class="m-doc-self">delayUntil</a>(</span><span class="m-doc-wrap">QTime itime) <span class="m-label m-warning">pure virtual</span></span></span>
+              <span class="m-doc-wrap-bumper">std::valarray&lt;std::int32_t&gt; okapi::<wbr />ThreeEncoderXDriveModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a795ca68a4fd9acaf454a58b3f692eb9a" class="m-doc-self">getSensorVals</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
+              <tfoot>
                 <tr>
-                  <td style="width: 1%">itime</td>
-                  <td>the time period</td>
+                  <th style="width: 1%">Returns</th>
+                  <td>sensor readings in the format {left, right, middle}</td>
                 </tr>
-              </tbody>
+              </tfoot>
             </table>
-<p>Delay the current task until itime has passed. This method can be used by periodic tasks to ensure a consistent execution frequency.</p>
+<p>Read the sensors.</p>
           </div></section>
-          <section class="m-doc-details" id="a3faf54ea2951ae5e0567cd50ddba0227"><div>
+          <section class="m-doc-details" id="a37273244fe76d87946408292f8ec942f"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AbstractRate::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3faf54ea2951ae5e0567cd50ddba0227" class="m-doc-self">delayUntil</a>(</span><span class="m-doc-wrap">uint32_t ims) <span class="m-label m-warning">pure virtual</span></span></span>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ThreeEncoderXDriveModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a37273244fe76d87946408292f8ec942f" class="m-doc-self">resetSensors</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">ims</td>
-                  <td>the time period</td>
-                </tr>
-              </tbody>
-            </table>
-<p>Delay the current task until ims milliseconds have passed. This method can be used by periodic tasks to ensure a consistent execution frequency.</p>
+<p>Reset the sensors to their zero point.</p>
           </div></section>
         </section>
       </div>

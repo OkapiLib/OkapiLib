@@ -236,6 +236,10 @@
               <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a> <a href="#a762ce2bcc4cdbfd0c6bd296ba21a4c4d" class="m-doc-self">defaultStateMode</a>
             </dt>
             <dd><span></span></dd>
+            <dt id="adc78c74ceaad0ec002e1307421be11a9">
+              std::atomic_bool <a href="#adc78c74ceaad0ec002e1307421be11a9" class="m-doc-self">odomTaskRunning</a>
+            </dt>
+            <dd><span></span></dd>
           </dl>
         </section>
         <section>
@@ -280,7 +284,7 @@
                 </tr>
               </tbody>
             </table>
-<p><a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> based chassis controller. Starts task at the default for odometry when constructed, which calls <code><a href="classokapi_1_1Odometry.html#a04586a88418c606f7bbd0ac3287c730d" class="m-doc">Odometry::<wbr />step</a></code> every <code>10ms</code>. The default StateMode is <code><a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a></code>.</p><p>Moves the robot around in the odom frame. Instead of telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific point on the field or turn to a specific angle relative to its starting position.</p>
+<p><a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> based chassis controller. Starts task at the default for odometry when constructed, which calls <code><a href="classokapi_1_1Odometry.html#a00d4dd37fe02d4f02fc8896a2a760331" class="m-doc">Odometry::<wbr />step</a></code> every <code>10ms</code>. The default StateMode is <code><a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a></code>.</p><p>Moves the robot around in the odom frame. Instead of telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific point on the field or turn to a specific angle relative to its starting position.</p>
           </div></section>
           <section class="m-doc-details" id="abea9bd3860ad9f1acb1cdc1e36869fbf"><div>
             <h3>

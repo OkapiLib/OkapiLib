@@ -68,7 +68,6 @@
                 <li><a href="#base-classes">Base classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pro-methods">Protected functions</a></li>
-                <li><a href="#pro-attribs">Protected variables</a></li>
               </ul>
             </li>
           </ul>
@@ -77,7 +76,7 @@
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
             <dt>
-              class <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>
+              class <a href="classokapi_1_1TwoEncoderOdometry.html" class="m-doc">TwoEncoderOdometry</a>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -86,10 +85,9 @@
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a76268ce166626782fd1e737dca0b9628" class="m-doc">ThreeEncoderOdometry</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a>&amp; itimeUtil,
+              <span class="m-doc-wrap-bumper"><a href="#a8805efae38ad70ba9717ef36833d97b3" class="m-doc">ThreeEncoderOdometry</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a>&amp; itimeUtil,
               const std::shared_ptr&lt;<a href="classokapi_1_1ReadOnlyChassisModel.html" class="m-doc">ReadOnlyChassisModel</a>&gt;&amp; imodel,
               const <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>&amp; ichassisScales,
-              const QSpeed&amp; iwheelVelDelta = 0.0001_mps,
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
             <dd></dd>
@@ -105,23 +103,13 @@
             <dd></dd>
           </dl>
         </section>
-        <section id="pro-attribs">
-          <h2><a href="#pro-attribs">Protected variables</a></h2>
-          <dl class="m-doc">
-            <dt id="ad2a5ed5af817d5d2cc6e49357fe6f1da">
-              std::shared_ptr&lt;<a href="classokapi_1_1ReadOnlyChassisModel.html" class="m-doc">ReadOnlyChassisModel</a>&gt; <a href="#ad2a5ed5af817d5d2cc6e49357fe6f1da" class="m-doc-self">model</a>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a76268ce166626782fd1e737dca0b9628"><div>
+          <section class="m-doc-details" id="a8805efae38ad70ba9717ef36833d97b3"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"> okapi::<wbr />ThreeEncoderOdometry::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a76268ce166626782fd1e737dca0b9628" class="m-doc-self">ThreeEncoderOdometry</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a>&amp; itimeUtil,
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />ThreeEncoderOdometry::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8805efae38ad70ba9717ef36833d97b3" class="m-doc-self">ThreeEncoderOdometry</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a>&amp; itimeUtil,
               const std::shared_ptr&lt;<a href="classokapi_1_1ReadOnlyChassisModel.html" class="m-doc">ReadOnlyChassisModel</a>&gt;&amp; imodel,
               const <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>&amp; ichassisScales,
-              const QSpeed&amp; iwheelVelDelta = 0.0001_mps,
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
@@ -140,10 +128,6 @@
                 <tr>
                   <td>ichassisScales</td>
                   <td>See <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> docs (the middle wheel scale is the third member)</td>
-                </tr>
-                <tr>
-                  <td>iwheelVelDelta</td>
-                  <td>The maximum delta between wheel velocities to consider the robot as driving straight.</td>
                 </tr>
                 <tr>
                   <td>ilogger</td>

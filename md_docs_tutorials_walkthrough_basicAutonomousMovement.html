@@ -61,38 +61,14 @@
 
 <span class="k">auto</span> <span class="n">chassis</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
                 <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span></pre><p>Now that we&#x27;ve created a ChassisController, let&#x27;s start moving around. There are two fundamental movement types: <a href="classokapi_1_1ChassisController.html#a6d5b69139dfa8b814d05c74c22bcaa43" class="m-doc">moveDistance</a> and <a href="classokapi_1_1ChassisController.html#aab12308b3fad6793c007d7a33730a3f7" class="m-doc">turnAngle</a>, for moving forward/backward and turning on a point.</p><pre class="m-code"><span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="k">auto</span> <span class="n">chassis</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-
-<span class="kt">void</span> <span class="nf">autonomous</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Move to first goal in motor degrees</span>
-    <span class="n">chassis</span><span class="o">-&gt;</span><span class="n">moveDistance</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-    <span class="c1">// Turn to face second goal in motor degrees</span>
-    <span class="n">chassis</span><span class="o">-&gt;</span><span class="n">turnAngle</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-    <span class="c1">// Drive toward second goal in motor degrees</span>
-    <span class="n">chassis</span><span class="o">-&gt;</span><span class="n">moveDistance</span><span class="p">(</span><span class="mi">1500</span><span class="p">);</span>
-<span class="p">}</span></pre><p>If you&#x27;d like to set movements in real life units, that&#x27;s possible as well. Just pass in the drive&#x27;s gearset and dimensions, and then use the appropriate suffix for the units that you would like the movement to occur in.</p><pre class="m-code"><span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="k">const</span> <span class="k">auto</span> <span class="n">WHEEL_DIAMETER</span> <span class="o">=</span> <span class="mi">4</span><span class="n">_in</span><span class="p">;</span>
-<span class="k">const</span> <span class="k">auto</span> <span class="n">CHASSIS_WIDTH</span> <span class="o">=</span> <span class="mf">13.5</span><span class="n">_in</span><span class="p">;</span>
-
-<span class="k">auto</span> <span class="n">chassis</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-                <span class="p">.</span><span class="n">withGearset</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">)</span>
-                <span class="p">.</span><span class="n">withDimensions</span><span class="p">({{</span><span class="n">WHEEL_DIAMETER</span><span class="p">,</span> <span class="n">CHASSIS_WIDTH</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-
-<span class="kt">void</span> <span class="nf">autonomous</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Move 1 meter to the first goal</span>
-    <span class="n">chassis</span><span class="o">-&gt;</span><span class="n">moveDistance</span><span class="p">(</span><span class="mi">1</span><span class="n">_m</span><span class="p">);</span>
-    <span class="c1">// Turn 90 degrees to face second goal</span>
-    <span class="n">chassis</span><span class="o">-&gt;</span><span class="n">turnAngle</span><span class="p">(</span><span class="mi">90</span><span class="n">_deg</span><span class="p">);</span>
-    <span class="c1">// Drive 1 and a half feet toward second goal</span>
-    <span class="n">chassis</span><span class="o">-&gt;</span><span class="n">moveDistance</span><span class="p">(</span><span class="mf">1.5</span><span class="n">_ft</span><span class="p">);</span>
-<span class="p">}</span></pre>
+                <span class="c1">// Green gearset, 4 in wheel diam, 11.5 in wheel track</span>
+                <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
+                <span class="p">.</span><span class="n">build</span><span class="p">();</span></pre><p>Now that we&#x27;ve created a ChassisController, let&#x27;s start moving around. There are two fundamental movement types: <a href="classokapi_1_1ChassisController.html#a6d5b69139dfa8b814d05c74c22bcaa43" class="m-doc">moveDistance</a> and <a href="classokapi_1_1ChassisController.html#aab12308b3fad6793c007d7a33730a3f7" class="m-doc">turnAngle</a>, for moving forward/backward and turning on a point.</p><pre class="m-code"><span class="c1">// Move 1 meter to the first goal</span>
+<span class="n">chassis</span><span class="o">-&gt;</span><span class="n">moveDistance</span><span class="p">(</span><span class="mi">1</span><span class="n">_m</span><span class="p">);</span>
+<span class="c1">// Turn 90 degrees to face second goal</span>
+<span class="n">chassis</span><span class="o">-&gt;</span><span class="n">turnAngle</span><span class="p">(</span><span class="mi">90</span><span class="n">_deg</span><span class="p">);</span>
+<span class="c1">// Drive 1 and a half feet toward second goal</span>
+<span class="n">chassis</span><span class="o">-&gt;</span><span class="n">moveDistance</span><span class="p">(</span><span class="mf">1.5</span><span class="n">_ft</span><span class="p">);</span></pre>
       </div>
     </div>
   </div>

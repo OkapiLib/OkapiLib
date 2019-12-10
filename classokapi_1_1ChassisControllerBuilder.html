@@ -120,6 +120,30 @@
             </dt>
             <dd></dd>
             <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aac43aeb3307760f2fd2c6b4db81c9bab" class="m-doc">withMotors</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1Motor.html" class="m-doc">Motor</a>&amp; ileft,
+              const <a href="classokapi_1_1Motor.html" class="m-doc">Motor</a>&amp; iright,
+              const <a href="classokapi_1_1Motor.html" class="m-doc">Motor</a>&amp; imiddle) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aa0bd6b382e456f285421641c786b0daf" class="m-doc">withMotors</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a>&amp; ileft,
+              const <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a>&amp; iright,
+              const <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a>&amp; imiddle) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a670f860d2bda15f85b978b47c8b41b4b" class="m-doc">withMotors</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a>&amp; ileft,
+              const <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a>&amp; iright,
+              const <a href="classokapi_1_1Motor.html" class="m-doc">Motor</a>&amp; imiddle) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a9cf46890f0b7f9a894e617aef1e8be1d" class="m-doc">withMotors</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt;&amp; ileft,
+              const std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt;&amp; iright,
+              const std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt;&amp; imiddle) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
+            </dt>
+            <dd></dd>
+            <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a0197aa35c2c36dd82476bc70c5824a56" class="m-doc">withSensors</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1ADIEncoder.html" class="m-doc">ADIEncoder</a>&amp; ileft,
               const <a href="classokapi_1_1ADIEncoder.html" class="m-doc">ADIEncoder</a>&amp; iright) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
             </dt>
@@ -164,10 +188,16 @@
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#aa4686900014387dbc3b335ee813c3ead" class="m-doc">withOdometry</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
+              <span class="m-doc-wrap-bumper">auto <a href="#aeb585b3b9f21b9e83ce52fa29bc133dd" class="m-doc">withOdometry</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
               const QLength&amp; imoveThreshold = 0_mm,
-              const QAngle&amp; iturnThreshold = 0_deg,
-              const QSpeed&amp; iwheelVelDelta = 0.0001_mps) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
+              const QAngle&amp; iturnThreshold = 0_deg) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a71228bb4e5905b0f3f930e766d5df431" class="m-doc">withOdometry</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>&amp; iodomScales,
+              const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
+              const QLength&amp; imoveThreshold = 0_mm,
+              const QAngle&amp; iturnThreshold = 0_deg) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
             </dt>
             <dd></dd>
             <dt>
@@ -184,11 +214,8 @@
             </dt>
             <dd></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#aea1e3d32abede99a1b565205275aea78" class="m-doc">withGearset</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a>&amp; igearset) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
-            </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a72a642f59112da74960942aae390a5ed" class="m-doc">withDimensions</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>&amp; iscales) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a399b462e1c380ea834011f1b467ede6c" class="m-doc">withDimensions</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">AbstractMotor::<wbr />gearset</a>&amp; igearset,
+              const <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>&amp; iscales) -&gt; <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp;</span>
             </dt>
             <dd></dd>
             <dt>
@@ -456,6 +483,138 @@
             </table>
 <p>Sets the motors using an x-drive layout.</p>
           </div></section>
+          <section class="m-doc-details" id="aac43aeb3307760f2fd2c6b4db81c9bab"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aac43aeb3307760f2fd2c6b4db81c9bab" class="m-doc-self">withMotors</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1Motor.html" class="m-doc">Motor</a>&amp; ileft,
+              const <a href="classokapi_1_1Motor.html" class="m-doc">Motor</a>&amp; iright,
+              const <a href="classokapi_1_1Motor.html" class="m-doc">Motor</a>&amp; imiddle)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ileft</td>
+                  <td>The left motor.</td>
+                </tr>
+                <tr>
+                  <td>iright</td>
+                  <td>The right motor.</td>
+                </tr>
+                <tr>
+                  <td>imiddle</td>
+                  <td>The middle motor.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>An ongoing builder.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets the motors using an h-drive layout.</p>
+          </div></section>
+          <section class="m-doc-details" id="aa0bd6b382e456f285421641c786b0daf"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa0bd6b382e456f285421641c786b0daf" class="m-doc-self">withMotors</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a>&amp; ileft,
+              const <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a>&amp; iright,
+              const <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a>&amp; imiddle)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ileft</td>
+                  <td>The left motor.</td>
+                </tr>
+                <tr>
+                  <td>iright</td>
+                  <td>The right motor.</td>
+                </tr>
+                <tr>
+                  <td>imiddle</td>
+                  <td>The middle motor.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>An ongoing builder.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets the motors using an h-drive layout.</p>
+          </div></section>
+          <section class="m-doc-details" id="a670f860d2bda15f85b978b47c8b41b4b"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a670f860d2bda15f85b978b47c8b41b4b" class="m-doc-self">withMotors</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a>&amp; ileft,
+              const <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a>&amp; iright,
+              const <a href="classokapi_1_1Motor.html" class="m-doc">Motor</a>&amp; imiddle)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ileft</td>
+                  <td>The left motor.</td>
+                </tr>
+                <tr>
+                  <td>iright</td>
+                  <td>The right motor.</td>
+                </tr>
+                <tr>
+                  <td>imiddle</td>
+                  <td>The middle motor.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>An ongoing builder.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets the motors using an h-drive layout.</p>
+          </div></section>
+          <section class="m-doc-details" id="a9cf46890f0b7f9a894e617aef1e8be1d"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9cf46890f0b7f9a894e617aef1e8be1d" class="m-doc-self">withMotors</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt;&amp; ileft,
+              const std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt;&amp; iright,
+              const std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt;&amp; imiddle)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">ileft</td>
+                  <td>The left motor.</td>
+                </tr>
+                <tr>
+                  <td>iright</td>
+                  <td>The right motor.</td>
+                </tr>
+                <tr>
+                  <td>imiddle</td>
+                  <td>The middle motor.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>An ongoing builder.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets the motors using an h-drive layout.</p>
+          </div></section>
           <section class="m-doc-details" id="a0197aa35c2c36dd82476bc70c5824a56"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0197aa35c2c36dd82476bc70c5824a56" class="m-doc-self">withSensors</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1ADIEncoder.html" class="m-doc">ADIEncoder</a>&amp; ileft,
@@ -700,12 +859,11 @@
             </table>
 <p>Sets the PID controller gains, causing the builder to generate a <a href="classokapi_1_1ChassisControllerPID.html" class="m-doc">ChassisControllerPID</a>.</p>
           </div></section>
-          <section class="m-doc-details" id="aa4686900014387dbc3b335ee813c3ead"><div>
+          <section class="m-doc-details" id="aeb585b3b9f21b9e83ce52fa29bc133dd"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa4686900014387dbc3b335ee813c3ead" class="m-doc-self">withOdometry</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aeb585b3b9f21b9e83ce52fa29bc133dd" class="m-doc-self">withOdometry</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
               const QLength&amp; imoveThreshold = 0_mm,
-              const QAngle&amp; iturnThreshold = 0_deg,
-              const QSpeed&amp; iwheelVelDelta = 0.0001_mps)</span></span>
+              const QAngle&amp; iturnThreshold = 0_deg)</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -724,9 +882,43 @@
                   <td>iturnThreshold</td>
                   <td>The minimum angle turn.</td>
                 </tr>
+              </tbody>
+              <tfoot>
                 <tr>
-                  <td>iwheelVelDelta</td>
-                  <td>The maximum delta between wheel velocities to consider the robot as driving straight.</td>
+                  <th>Returns</th>
+                  <td>An ongoing builder.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Sets the odometry information, causing the builder to generate an <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> variant.</p>
+          </div></section>
+          <section class="m-doc-details" id="a71228bb4e5905b0f3f930e766d5df431"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a71228bb4e5905b0f3f930e766d5df431" class="m-doc-self">withOdometry</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>&amp; iodomScales,
+              const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
+              const QLength&amp; imoveThreshold = 0_mm,
+              const QAngle&amp; iturnThreshold = 0_deg)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iodomScales</td>
+                  <td>The <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> used just for odometry (if they are different than those for the drive).</td>
+                </tr>
+                <tr>
+                  <td>imode</td>
+                  <td>The new default StateMode used to interpret target points and query the <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state.</td>
+                </tr>
+                <tr>
+                  <td>imoveThreshold</td>
+                  <td>The minimum length movement.</td>
+                </tr>
+                <tr>
+                  <td>iturnThreshold</td>
+                  <td>The minimum angle turn.</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -809,9 +1001,10 @@
             </table>
 <p>Sets the derivative filters. Uses a <a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a> by default.</p>
           </div></section>
-          <section class="m-doc-details" id="aea1e3d32abede99a1b565205275aea78"><div>
+          <section class="m-doc-details" id="a399b462e1c380ea834011f1b467ede6c"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aea1e3d32abede99a1b565205275aea78" class="m-doc-self">withGearset</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a>&amp; igearset)</span></span>
+              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a399b462e1c380ea834011f1b467ede6c" class="m-doc-self">withDimensions</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">AbstractMotor::<wbr />gearset</a>&amp; igearset,
+              const <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>&amp; iscales)</span></span>
             </h3>
             <table class="m-table m-fullwidth m-flat">
               <thead>
@@ -820,30 +1013,11 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">igearset</td>
-                  <td>The gearset.</td>
+                  <td>The gearset in the drive motors.</td>
                 </tr>
-              </tbody>
-              <tfoot>
                 <tr>
-                  <th>Returns</th>
-                  <td>An ongoing builder.</td>
-                </tr>
-              </tfoot>
-            </table>
-<p>Sets the gearset. The default gearset is derived from the motor&#x27;s.</p>
-          </div></section>
-          <section class="m-doc-details" id="a72a642f59112da74960942aae390a5ed"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>&amp; okapi::<wbr />ChassisControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a72a642f59112da74960942aae390a5ed" class="m-doc-self">withDimensions</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>&amp; iscales)</span></span>
-            </h3>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">iscales</td>
-                  <td>The dimensions.</td>
+                  <td>iscales</td>
+                  <td>The <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> for the base.</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -1066,7 +1240,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Builds the <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>. Throws a std::runtime_exception if no motors were set.</p>
+<p>Builds the <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>. Throws a std::runtime_exception if no motors were set or if no dimensions were set.</p>
           </div></section>
           <section class="m-doc-details" id="a9c631ea817466483aa2cfcb886f6d892"><div>
             <h3>
@@ -1080,7 +1254,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Builds the <a href="classokapi_1_1OdomChassisController.html" class="m-doc">OdomChassisController</a>. Throws a std::runtime_exception if no motors were set or if no odometry information was passed.</p>
+<p>Builds the <a href="classokapi_1_1OdomChassisController.html" class="m-doc">OdomChassisController</a>. Throws a std::runtime_exception if no motors were set, if no dimensions were set, or if no odometry information was passed.</p>
           </div></section>
         </section>
       </div>

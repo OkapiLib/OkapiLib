@@ -57,210 +57,86 @@
         <h1>
           Using the ChassisControllerBuilder
         </h1>
-<p>The <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a> is a versatile and simple way to make a <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>. This tutorial will give an overview of how to use it and customize it for your robot.</p><p>Please read the preface on where to use builders: <a href="md_docs_tutorials_concepts_builders-and-tasks.html" class="m-doc">Where to use builders</a></p><h3>Configuring motors</h3><p>The only required parameter is the motor configuration. Both skid-steer and x-drive layouts are supported.</p><h4>Two motors by ports:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h4>Two motors:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="n">Motor</span> <span class="n">leftMotor</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">Motor</span> <span class="n">rightMotor</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
-
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="n">leftMotor</span><span class="p">,</span> <span class="n">rightMotor</span><span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h4>More than two motors by ports:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span>
-                    <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">},</span> <span class="c1">// Left motors are 1 &amp; 2 (reversed)</span>
-                    <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>    <span class="c1">// Right motors are 3 &amp; 4</span>
-                <span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h4>More than two motors by objects:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="n">MotorGroup</span> <span class="n">leftMotors</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">});</span>
-<span class="n">MotorGroup</span> <span class="n">rightMotors</span><span class="p">({</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">});</span>
-
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="n">leftMotors</span><span class="p">,</span> <span class="n">rightMotors</span><span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h3>Configuring a gearset</h3><p>You can pass in a gearset and external gear ratio directly.</p><h4>No external ratio:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withGearset</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">)</span> <span class="c1">// Green gearset</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h4>With external ratio:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withGearset</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">)</span> <span class="c1">// Green gearset, external ratio of 1.5</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h3>Configuring your robot dimensions</h3><p>If you want to command your robot in real-life units (inches, degrees, etc.) then you need to pass in your robot&#x27;s dimensions. Alternatively, if you want to fine-tune the scales, you could calculate them by hand and pass them in directly. See the <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> docs for the math to do this.</p><h4>Dimensions:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withGearset</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">)</span> <span class="c1">// Green gearset</span>
-                <span class="p">.</span><span class="n">withDimensions</span><span class="p">({{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span> <span class="c1">// 4 inch wheel diameter, 11.5 inch wheelbase</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h4>Scales:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withGearset</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">)</span> <span class="c1">// Green gearset, external ratio of 1.5</span>
-                <span class="p">.</span><span class="n">withDimensions</span><span class="p">({{</span><span class="mf">1127.8696</span><span class="p">,</span> <span class="mf">2.875</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span> <span class="c1">// Straight scale, turn scale</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h3>Configuring your sensors</h3><p>If you do not use the motors&#x27; built-in encoders (e.g., you might use ADI encoders), then you will need to pass those in as well.</p><h4>Encoders:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withSensors</span><span class="p">(</span>
-                    <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// Left encoder in ADI ports A &amp; B</span>
-                    <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// Right encoder in ADI ports C &amp; D (reversed)</span>
-                <span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h3>Configuring PID gains</h3><p>If you want to use OkapiLib&#x27;s PID control instead of the built-in control, you need to pass in two or three sets of PID gains.</p><h4>Two sets:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withGains</span><span class="p">(</span>
-                    <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// Distance controller gains</span>
-                    <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">}</span>  <span class="c1">// Turn controller gains</span>
-                <span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h4>Three sets:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withGains</span><span class="p">(</span>
-                    <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// Distance controller gains</span>
-                    <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// Turn controller gains</span>
-                    <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">}</span>  <span class="c1">// Angle controller gains (helps drive straight)</span>
-                <span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h3>Configuring derivative filters</h3><p>If you are using OkapiLib&#x27;s PID control instead of the built-in control, you can pass in derivative term filters. These are applied to the PID controllers&#x27; derivative terms to smooth them. If you use OkapiLib&#x27;s PID control but do not specify any derivative filters, the default filter is a <a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>.</p><h4>One filter:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withGains</span><span class="p">(</span>
-                    <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// Distance controller gains</span>
-                    <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">}</span>  <span class="c1">// Turn controller gains</span>
-                <span class="p">)</span>
-                <span class="p">.</span><span class="n">withDerivativeFilters</span><span class="p">(</span>
-                    <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AverageFilter</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;&gt;</span><span class="p">()</span> <span class="c1">// Distance controller filter</span>
-                <span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h4>Two filters:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withGains</span><span class="p">(</span>
-                    <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// Distance controller gains</span>
-                    <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">}</span>  <span class="c1">// Turn controller gains</span>
-                <span class="p">)</span>
-                <span class="p">.</span><span class="n">withDerivativeFilters</span><span class="p">(</span>
-                    <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AverageFilter</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;&gt;</span><span class="p">(),</span> <span class="c1">// Distance controller filter</span>
-                    <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AverageFilter</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;&gt;</span><span class="p">()</span>  <span class="c1">// Turn controller filter</span>
-                <span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h4>Three filters:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withGains</span><span class="p">(</span>
-                    <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// Distance controller gains</span>
-                    <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// Turn controller gains</span>
-                    <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">}</span>  <span class="c1">// Angle controller gains (helps drive straight)</span>
-                <span class="p">)</span>
-                <span class="p">.</span><span class="n">withDerivativeFilters</span><span class="p">(</span>
-                    <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AverageFilter</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;&gt;</span><span class="p">(),</span> <span class="c1">// Distance controller filter</span>
-                    <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AverageFilter</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;&gt;</span><span class="p">(),</span> <span class="c1">// Turn controller filter</span>
-                    <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AverageFilter</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;&gt;</span><span class="p">()</span>  <span class="c1">// Angle controller filter</span>
-                <span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h3>Configuring maximum velocity and voltage</h3><p>You can change the default maximum velocity or voltage.</p><h4>Max velocity:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withMaxVelocity</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h4>Max voltage:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withMaxVoltage</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h3>Configuring the TimeUtil</h3><p>You can also change the <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a> used for the controllers. This is how you can change the settling behavior of the <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p><h4>Change SettledUtil:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withTimeUtil</span><span class="p">(</span><span class="n">TimeUtilFactory</span><span class="o">::</span><span class="n">withSettledUtilParams</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">250</span><span class="n">_ms</span><span class="p">))</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h3>Configuring the Logger</h3><p>If you want the <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a> and the classes it creates to log what they are doing, either for debugging or other purposes, you can supply a <a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>.</p><h4>Log to the PROS terminal:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withLogger</span><span class="p">(</span>
-                    <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Logger</span><span class="o">&gt;</span><span class="p">(</span>
-                        <span class="n">TimeUtilFactory</span><span class="o">::</span><span class="n">createDefault</span><span class="p">().</span><span class="n">getTimer</span><span class="p">(),</span> <span class="c1">// It needs a Timer</span>
-                        <span class="s">&quot;/ser/sout&quot;</span><span class="p">,</span> <span class="c1">// Output to the PROS terminal</span>
-                        <span class="n">Logger</span><span class="o">::</span><span class="n">LogLevel</span><span class="o">::</span><span class="n">debug</span> <span class="c1">// Most verbose log level</span>
-                    <span class="p">)</span>
-                <span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre><h4>Log to the SD card:</h4><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">auto</span> <span class="n">drive</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
-                <span class="p">.</span><span class="n">withLogger</span><span class="p">(</span>
-                    <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Logger</span><span class="o">&gt;</span><span class="p">(</span>
-                        <span class="n">TimeUtilFactory</span><span class="o">::</span><span class="n">createDefault</span><span class="p">().</span><span class="n">getTimer</span><span class="p">(),</span> <span class="c1">// It needs a Timer</span>
-                        <span class="s">&quot;/usd/test_logging.txt&quot;</span><span class="p">,</span> <span class="c1">// Output to a file on the SD card</span>
-                        <span class="n">Logger</span><span class="o">::</span><span class="n">LogLevel</span><span class="o">::</span><span class="n">debug</span>  <span class="c1">// Most verbose log level</span>
-                    <span class="p">)</span>
-                <span class="p">)</span>
-                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-<span class="p">}</span></pre>
+<p>The <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a> is a versatile and simple way to make a <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>. This tutorial will give an overview of how to use it and customize it for your robot.</p><p>Please read the preface on where to use builders: <a href="md_docs_tutorials_concepts_builders-and-tasks.html" class="m-doc">Where to use builders</a></p><h3>Configuring motors</h3><p>You must configure the motors. Skid-steer, x-drive, and h-drive configurations are supported.</p><h4>Two motor skid-steer:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span></pre><h4>Four motor skid-steer:</h4><p>You may also use <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroups</a>. You are not required to have an equal number of motors per side. There is no limit on the number of motors per side.</p><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span>
+        <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">},</span> <span class="c1">// Left motors are 1 &amp; 2 (reversed)</span>
+        <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>    <span class="c1">// Right motors are 3 &amp; 4</span>
+    <span class="p">)</span></pre><h4>X-Drive:</h4><p>You may also use <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroups</a>.</p><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span>
+        <span class="mi">1</span><span class="p">,</span>  <span class="c1">// Top left</span>
+        <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="c1">// Top right (reversed)</span>
+        <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="c1">// Bottom right (reversed)</span>
+        <span class="mi">4</span>   <span class="c1">// Bottom left</span>
+    <span class="p">)</span></pre><h4>H-Drive:</h4><p>You may also use <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroups</a>.</p><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span>
+        <span class="mi">1</span><span class="p">,</span>  <span class="c1">// Left side</span>
+        <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="c1">// Right side (reversed)</span>
+        <span class="mi">3</span>   <span class="c1">// Middle</span>
+    <span class="p">)</span></pre><h3>Configuring your gearset and robot dimensions</h3><p>You must configure the gearset and chassis dimensions to ensure that the gearsets in the motors are correct and to enable commanding the robot in real-life units (inches, degrees, etc.). If you specified non-integrated encoders using <code>withSensors</code> then <code>withDimensions</code> will refer to the wheels those encoders are attached to. Otherwise, <code>withDimensions</code> will refer to the driven wheels.</p><h4>Gearset and dimensions:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="c1">// Green gearset, 4 inch wheel diameter, 11.5 inch wheelbase</span>
+    <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span></pre><h4>Gearset with an external ratio and dimensions:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="c1">// Green gearset, external ratio of (2.0 / 3.0), 4 inch wheel diameter, 11.5 inch wheelbase</span>
+    <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)})</span></pre><h4>Gearset and raw scales:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="c1">// Green gearset, straight scale of 1127.8696, turn scale of 2.875</span>
+    <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mf">1127.8696</span><span class="p">,</span> <span class="mf">2.875</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span></pre><h3>Configuring your sensors</h3><p>If you do not use the motors&#x27; built-in encoders (e.g., you might use ADI encoders), then you will need to pass those in as well. These sensor will not affect the <a href="classokapi_1_1ChassisControllerIntegrated.html" class="m-doc">ChassisControllerIntegrated</a> controls because it uses the integrated control (and therefore, the encoders built-in to the motors).</p><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withSensors</span><span class="p">(</span>
+        <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// Left encoder in ADI ports A &amp; B</span>
+        <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// Right encoder in ADI ports C &amp; D (reversed)</span>
+    <span class="p">)</span></pre><h3>Configuring odometry</h3><p>OkapiLib supports odometry for all chassis configurations.</p><h4>Odometry using integrated encoders:</h4><p>If you don&#x27;t have external sensors, don&#x27;t pass an extra <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> to <a href="classokapi_1_1ChassisControllerBuilder.html#aeb585b3b9f21b9e83ce52fa29bc133dd" class="m-doc">withOdometry</a>.</p><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
+    <span class="c1">// Green gearset, 4 inch wheel diameter, 11.5 inch wheelbase</span>
+    <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">withOdometry</span><span class="p">()</span> <span class="c1">// Use the same scales as the chassis (above)</span>
+    <span class="p">.</span><span class="n">buildOdometry</span><span class="p">()</span></pre><h4>Odometry using external encoders:</h4><p>If you have external sensors, you need to pass an extra <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> to <a href="classokapi_1_1ChassisControllerBuilder.html#aeb585b3b9f21b9e83ce52fa29bc133dd" class="m-doc">withOdometry</a> to specify the dimensions for the tracking wheels. If you are using a <a href="classokapi_1_1ChassisControllerPID.html" class="m-doc">ChassisControllerPID</a>, these dimensions will be the same as the ones given to <a href="classokapi_1_1ChassisControllerBuilder.html#a399b462e1c380ea834011f1b467ede6c" class="m-doc">withDimensions</a>. If you are using a <a href="classokapi_1_1ChassisControllerIntegrated.html" class="m-doc">ChassisControllerIntegrated</a>, these dimensions will be different than the ones given to <a href="classokapi_1_1ChassisControllerBuilder.html#a399b462e1c380ea834011f1b467ede6c" class="m-doc">withDimensions</a>.</p><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// Left motor is 1, right motor is 2 (reversed)</span>
+    <span class="c1">// Green gearset, 4 inch wheel diameter, 11.5 inch wheelbase</span>
+    <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">withSensors</span><span class="p">(</span>
+        <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// Left encoder in ADI ports A &amp; B</span>
+        <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// Right encoder in ADI ports C &amp; D (reversed)</span>
+    <span class="p">)</span>
+    <span class="c1">// Specify the tracking wheels diam (3 in), track (7 in), and TPR (360)</span>
+    <span class="p">.</span><span class="n">withOdometry</span><span class="p">({{</span><span class="mi">3</span><span class="n">_in</span><span class="p">,</span> <span class="mi">7</span><span class="n">_in</span><span class="p">},</span> <span class="n">quadEncoderTPR</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">buildOdometry</span><span class="p">()</span></pre><h3>Configuring PID gains</h3><p>If you want to use OkapiLib&#x27;s PID control instead of the built-in control, you need to pass in two or three sets of PID gains.</p><h4>Two sets:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withGains</span><span class="p">(</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// Distance controller gains</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">}</span>  <span class="c1">// Turn controller gains</span>
+    <span class="p">)</span></pre><h4>Three sets:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withGains</span><span class="p">(</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// Distance controller gains</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// Turn controller gains</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">}</span>  <span class="c1">// Angle controller gains (helps drive straight)</span>
+    <span class="p">)</span></pre><h3>Configuring derivative filters</h3><p>If you are using OkapiLib&#x27;s PID control instead of the built-in control, you can pass in derivative term filters. These are applied to the PID controllers&#x27; derivative terms to smooth them. If you use OkapiLib&#x27;s PID control but do not specify any derivative filters, the default filter is a <a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>.</p><h4>One filter:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withDerivativeFilters</span><span class="p">(</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AverageFilter</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;&gt;</span><span class="p">()</span> <span class="c1">// Distance controller filter</span>
+    <span class="p">)</span></pre><h4>Two filters:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withDerivativeFilters</span><span class="p">(</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AverageFilter</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;&gt;</span><span class="p">(),</span> <span class="c1">// Distance controller filter</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AverageFilter</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;&gt;</span><span class="p">()</span>  <span class="c1">// Turn controller filter</span>
+    <span class="p">)</span></pre><h4>Three filters:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withDerivativeFilters</span><span class="p">(</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AverageFilter</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;&gt;</span><span class="p">(),</span> <span class="c1">// Distance controller filter</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AverageFilter</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;&gt;</span><span class="p">(),</span> <span class="c1">// Turn controller filter</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AverageFilter</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;&gt;</span><span class="p">()</span>  <span class="c1">// Angle controller filter</span>
+    <span class="p">)</span></pre><h3>Configuring maximum velocity and voltage</h3><p>You can change the default maximum velocity or voltage.</p><h4>Max velocity:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMaxVelocity</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span></pre><h4>Max voltage:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMaxVoltage</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span></pre><h3>Configuring the controller settling behavior</h3><p>You can change the <a href="classokapi_1_1SettledUtil.html" class="m-doc">SettledUtil</a> that a <a href="classokapi_1_1ClosedLoopController.html" class="m-doc">ClosedLoopController</a> gets when it is created by the builder, in order to change the settling behavior of the chassis.</p><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withClosedLoopControllerTimeUtil</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">250</span><span class="n">_ms</span><span class="p">)</span></pre><h3>Configuring the Logger</h3><p>If you want the <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a> and the classes it creates to log what they are doing, either for debugging or other purposes, you can supply a <a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>. You can also <a href="md_docs_tutorials_concepts_logging.html" class="m-doc">enable logging globally</a>.</p><h4>Log to the PROS terminal:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withLogger</span><span class="p">(</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Logger</span><span class="o">&gt;</span><span class="p">(</span>
+            <span class="n">TimeUtilFactory</span><span class="o">::</span><span class="n">createDefault</span><span class="p">().</span><span class="n">getTimer</span><span class="p">(),</span> <span class="c1">// It needs a Timer</span>
+            <span class="s">&quot;/ser/sout&quot;</span><span class="p">,</span> <span class="c1">// Output to the PROS terminal</span>
+            <span class="n">Logger</span><span class="o">::</span><span class="n">LogLevel</span><span class="o">::</span><span class="n">debug</span> <span class="c1">// Most verbose log level</span>
+        <span class="p">)</span>
+    <span class="p">)</span></pre><h4>Log to the SD card:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withLogger</span><span class="p">(</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Logger</span><span class="o">&gt;</span><span class="p">(</span>
+            <span class="n">TimeUtilFactory</span><span class="o">::</span><span class="n">createDefault</span><span class="p">().</span><span class="n">getTimer</span><span class="p">(),</span> <span class="c1">// It needs a Timer</span>
+            <span class="s">&quot;/usd/test_logging.txt&quot;</span><span class="p">,</span> <span class="c1">// Output to a file on the SD card</span>
+            <span class="n">Logger</span><span class="o">::</span><span class="n">LogLevel</span><span class="o">::</span><span class="n">debug</span>  <span class="c1">// Most verbose log level</span>
+        <span class="p">)</span>
+    <span class="p">)</span></pre>
       </div>
     </div>
   </div>

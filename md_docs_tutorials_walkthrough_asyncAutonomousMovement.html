@@ -61,75 +61,27 @@
 
 <span class="k">auto</span> <span class="n">driveController</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
                         <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-                        <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-
-<span class="kt">void</span> <span class="nf">autonomous</span><span class="p">()</span> <span class="p">{</span>
-<span class="p">}</span></pre><p>And then we&#x27;ll add a lift subsystem as an Async Controller:</p><pre class="m-code"><span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="k">const</span> <span class="kt">double</span> <span class="n">liftkP</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">;</span>
+                        <span class="c1">// Green gearset, 4 in wheel diam, 11.5 in wheel track</span>
+                        <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
+                        <span class="p">.</span><span class="n">build</span><span class="p">();</span></pre><p>And then we&#x27;ll add a lift subsystem as an Async Controller:</p><pre class="m-code"><span class="k">const</span> <span class="kt">double</span> <span class="n">liftkP</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">;</span>
 <span class="k">const</span> <span class="kt">double</span> <span class="n">liftkI</span> <span class="o">=</span> <span class="mf">0.0001</span><span class="p">;</span>
 <span class="k">const</span> <span class="kt">double</span> <span class="n">liftkD</span> <span class="o">=</span> <span class="mf">0.0001</span><span class="p">;</span>
-
-<span class="k">auto</span> <span class="n">driveController</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                        <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-                        <span class="p">.</span><span class="n">build</span><span class="p">();</span>
 
 <span class="k">auto</span> <span class="n">liftController</span> <span class="o">=</span> <span class="n">AsyncPosControllerBuilder</span><span class="p">()</span>
                         <span class="p">.</span><span class="n">withMotor</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">// lift motor port 3</span>
                         <span class="p">.</span><span class="n">withGains</span><span class="p">({</span><span class="n">liftkP</span><span class="p">,</span> <span class="n">liftkI</span><span class="p">,</span> <span class="n">liftkD</span><span class="p">})</span>
-                        <span class="p">.</span><span class="n">build</span><span class="p">();</span>
+                        <span class="p">.</span><span class="n">build</span><span class="p">();</span></pre><p>Now that we have two subsystems to run, let&#x27;s execute a few different movements. If we want both systems to move, and the next movement in the autonomous routine only depends on the drive completing its movement (and it doesn&#x27;t care about the lift&#x27;s status), we&#x27;ll run <a href="classokapi_1_1ChassisController.html#a01ed4e0eb7332cc149228387bbf1e91c" class="m-doc">waitUntilSettled()</a> with just the drive controller.</p><pre class="m-code"><span class="c1">// Begin movements</span>
+<span class="n">driveController</span><span class="o">-&gt;</span><span class="n">moveDistanceAsync</span><span class="p">(</span><span class="mi">10</span><span class="n">_in</span><span class="p">);</span> <span class="c1">// Move 10 inches forward</span>
+<span class="n">liftController</span><span class="o">-&gt;</span><span class="n">setTarget</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span> <span class="c1">// Move 200 motor degrees upward</span>
+<span class="n">driveController</span><span class="o">-&gt;</span><span class="n">waitUntilSettled</span><span class="p">();</span>
 
-<span class="kt">void</span> <span class="nf">autonomous</span><span class="p">()</span> <span class="p">{</span>
-<span class="p">}</span></pre><p>Now that we have two subsystems to run, let&#x27;s execute a few different movements. If we want both systems to move, and the next movement in the autonomous routine only depends on the drive completing its movement (and it doesn&#x27;t care about the lift&#x27;s status), we&#x27;ll run <a href="classokapi_1_1ChassisController.html#a01ed4e0eb7332cc149228387bbf1e91c" class="m-doc">waitUntilSettled()</a> with just the drive controller.</p><pre class="m-code"><span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
+<span class="c1">// Then the next movement will execute after the drive movement finishes</span></pre><p>If blocking the next movement with regard only to the lift is desired, swap <code>driveController</code> for <code>liftController</code> in the last line. If both movements need to finish before executing the next movement, then call <a href="classokapi_1_1ChassisController.html#a01ed4e0eb7332cc149228387bbf1e91c" class="m-doc">waitUntilSettled()</a> on both controllers.</p><pre class="m-code"><span class="c1">// Begin movements</span>
+<span class="n">driveController</span><span class="o">-&gt;</span><span class="n">moveDistanceAsync</span><span class="p">(</span><span class="mi">10</span><span class="n">_in</span><span class="p">);</span> <span class="c1">// Move 10 inches forward</span>
+<span class="n">liftController</span><span class="o">-&gt;</span><span class="n">setTarget</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span> <span class="c1">// Move 200 motor degrees upward</span>
+<span class="n">driveController</span><span class="o">-&gt;</span><span class="n">waitUntilSettled</span><span class="p">();</span>
+<span class="n">liftController</span><span class="o">-&gt;</span><span class="n">waitUntilSettled</span><span class="p">();</span>
 
-<span class="k">const</span> <span class="kt">double</span> <span class="n">liftkP</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">double</span> <span class="n">liftkI</span> <span class="o">=</span> <span class="mf">0.0001</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">double</span> <span class="n">liftkD</span> <span class="o">=</span> <span class="mf">0.0001</span><span class="p">;</span>
-
-<span class="k">auto</span> <span class="n">driveController</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                        <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-                        <span class="c1">// 4 inch wheel diameter, 13 inch wheelbase, green cartridge</span>
-                        <span class="p">.</span><span class="n">withDimensions</span><span class="p">({{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mi">13</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
-                        <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-
-<span class="k">auto</span> <span class="n">liftController</span> <span class="o">=</span> <span class="n">AsyncPosControllerBuilder</span><span class="p">()</span>
-                        <span class="p">.</span><span class="n">withMotor</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">// lift motor port 3</span>
-                        <span class="p">.</span><span class="n">withGains</span><span class="p">({</span><span class="n">liftkP</span><span class="p">,</span> <span class="n">liftkI</span><span class="p">,</span> <span class="n">liftkD</span><span class="p">})</span>
-                        <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-
-<span class="kt">void</span> <span class="nf">autonomous</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Begin movements</span>
-    <span class="n">driveController</span><span class="o">-&gt;</span><span class="n">moveDistanceAsync</span><span class="p">(</span><span class="mi">10</span><span class="n">_in</span><span class="p">);</span> <span class="c1">// Move 10 inches forward</span>
-    <span class="n">liftController</span><span class="o">-&gt;</span><span class="n">setTarget</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span> <span class="c1">// Move 200 motor degrees upward</span>
-    <span class="n">driveController</span><span class="o">-&gt;</span><span class="n">waitUntilSettled</span><span class="p">();</span>
-
-    <span class="c1">// Then the next movement will execute after the drive movement finishes</span>
-<span class="p">}</span></pre><p>If blocking the next movement with regard only to the lift is desired, swap <code>driveController</code> for <code>liftController</code> in the last line. If both movements need to finish before executing the next movement, then call <a href="classokapi_1_1ChassisController.html#a01ed4e0eb7332cc149228387bbf1e91c" class="m-doc">waitUntilSettled()</a> on both controllers.</p><pre class="m-code"><span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span>
-
-<span class="k">const</span> <span class="kt">double</span> <span class="n">liftkP</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">double</span> <span class="n">liftkI</span> <span class="o">=</span> <span class="mf">0.0001</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">double</span> <span class="n">liftkD</span> <span class="o">=</span> <span class="mf">0.0001</span><span class="p">;</span>
-
-<span class="k">auto</span> <span class="n">driveController</span> <span class="o">=</span> <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
-                        <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-                        <span class="c1">// 4 inch wheel diameter, 13 inch wheelbase, green cartridge</span>
-                        <span class="p">.</span><span class="n">withDimensions</span><span class="p">({{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mi">13</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
-                        <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-
-<span class="k">auto</span> <span class="n">liftController</span> <span class="o">=</span> <span class="n">AsyncPosControllerBuilder</span><span class="p">()</span>
-                        <span class="p">.</span><span class="n">withMotor</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">// lift motor port 3</span>
-                        <span class="p">.</span><span class="n">withGains</span><span class="p">({</span><span class="n">liftkP</span><span class="p">,</span> <span class="n">liftkI</span><span class="p">,</span> <span class="n">liftkD</span><span class="p">})</span>
-                        <span class="p">.</span><span class="n">build</span><span class="p">();</span>
-
-<span class="kt">void</span> <span class="nf">autonomous</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Begin movements</span>
-    <span class="n">driveController</span><span class="o">-&gt;</span><span class="n">moveDistanceAsync</span><span class="p">(</span><span class="mi">10</span><span class="n">_in</span><span class="p">);</span> <span class="c1">// Move 10 inches forward</span>
-    <span class="n">liftController</span><span class="o">-&gt;</span><span class="n">setTarget</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span> <span class="c1">// Move 200 motor degrees upward</span>
-    <span class="n">driveController</span><span class="o">-&gt;</span><span class="n">waitUntilSettled</span><span class="p">();</span>
-    <span class="n">liftController</span><span class="o">-&gt;</span><span class="n">waitUntilSettled</span><span class="p">();</span>
-
-    <span class="c1">// Then the next movement will execute after both movements finish</span>
-<span class="p">}</span></pre>
+<span class="c1">// Then the next movement will execute after both movements finish</span></pre>
       </div>
     </div>
   </div>
