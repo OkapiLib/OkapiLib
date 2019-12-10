@@ -163,5 +163,7 @@ class DefaultOdomChassisController : public OdomChassisController {
   protected:
   std::shared_ptr<Logger> logger;
   std::shared_ptr<ChassisController> controller;
+
+  void waitForOdomTask();
 };
 } // namespace okapi

@@ -54,6 +54,14 @@ double IterativePosPIDController::getTarget() {
   return target;
 }
 
+double IterativePosPIDController::getTarget() const {
+  return target;
+}
+
+double IterativePosPIDController::getProcessValue() const {
+  return lastReading;
+}
+
 double IterativePosPIDController::getOutput() const {
   return isDisabled() ? 0 : output;
 }
@@ -67,7 +75,7 @@ double IterativePosPIDController::getMinOutput() {
 }
 
 double IterativePosPIDController::getError() const {
-  return target - lastReading;
+  return getTarget() - getProcessValue();
 }
 
 bool IterativePosPIDController::isSettled() {
@@ -116,6 +124,7 @@ double IterativePosPIDController::step(const double inewReading) {
     loopDtTimer->placeHardMark();
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
+      // lastReading must only be updated here so its updates are time-gated by sampleTime
       const double readingDiff = inewReading - lastReading;
       lastReading = inewReading;
 

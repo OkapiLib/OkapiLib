@@ -49,6 +49,11 @@ class AsyncPosIntegratedController : public AsyncPositionController<double, doub
   double getTarget() override;
 
   /**
+   * @return The most recent value of the process variable.
+   */
+  double getProcessValue() const override;
+
+  /**
    * Returns the last error of the controller. Does not update when disabled.
    */
   double getError() const override;

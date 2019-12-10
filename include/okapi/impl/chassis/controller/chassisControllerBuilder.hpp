@@ -295,21 +295,11 @@ class ChassisControllerBuilder {
    * Sets the chassis dimensions.
    *
    * @param igearset The gearset in the drive motors.
-   * @param idimensions The dimensions in the same order as in ChassisScales.
+   * @param iscales The ChassisScales for the base.
    * @return An ongoing builder.
    */
-  ChassisControllerBuilder &withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
-                                           const std::initializer_list<QLength> &idimensions);
-
-  /**
-   * Sets the chassis dimensions by setting the raw scales.
-   *
-   * @param igearset The gearset in the drive motors.
-   * @param iscales The raw scales in the same order as in ChassisScales.
-   * @return An ongoing builder.
-   */
-  ChassisControllerBuilder &withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
-                                           const std::initializer_list<double> &iscales);
+  ChassisControllerBuilder &withDimensions(const AbstractMotor::gearset &igearset,
+                                           const ChassisScales &iscales);
 
   /**
    * Sets the max velocity. Overrides the max velocity of the gearset.

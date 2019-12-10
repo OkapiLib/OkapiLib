@@ -63,13 +63,15 @@ ChassisControllerBuilder()
 
 You must configure the gearset and chassis dimensions to ensure that the gearsets in the
 motors are correct and to enable commanding the robot in real-life units (inches, degrees, etc.).
+If you specified non-integrated encoders using `withSensors` then `withDimensions` will refer to the
+wheels those encoders are attached to. Otherwise, `withDimensions` will refer to the driven wheels.
 
 ### Gearset and dimensions:
 
 ```cpp
 ChassisControllerBuilder()
     // Green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
-    .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
 ```
 
 ### Gearset with an external ratio and dimensions:
@@ -77,7 +79,7 @@ ChassisControllerBuilder()
 ```cpp
 ChassisControllerBuilder()
     // Green gearset, external ratio of (2.0 / 3.0), 4 inch wheel diameter, 11.5 inch wheelbase
-    .withDimensions(AbstractMotor::gearset::green * (2.0 / 3.0), {4_in, 11.5_in})
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR * (2.0 / 3.0)})
 ```
 
 ### Gearset and raw scales:
@@ -85,7 +87,7 @@ ChassisControllerBuilder()
 ```cpp
 ChassisControllerBuilder()
     // Green gearset, straight scale of 1127.8696, turn scale of 2.875
-    .withDimensions(AbstractMotor::gearset::green, {1127.8696, 2.875})
+    .withDimensions(AbstractMotor::gearset::green, {{1127.8696, 2.875}, imev5GreenTPR})
 ```
 
 ## Configuring your sensors
@@ -116,7 +118,7 @@ to [withOdometry](@ref okapi::ChassisControllerBuilder::withOdometry).
 ChassisControllerBuilder()
     .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
     // Green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
-    .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withOdometry() // Use the same scales as the chassis (above)
     .buildOdometry()
 ```
@@ -136,7 +138,7 @@ will be different than the ones given to
 ChassisControllerBuilder()
     .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
     // Green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
-    .withDimensions(AbstractMotor::gearset::green, {4_in, 11.5_in})
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withSensors(
         {'A', 'B'}, // Left encoder in ADI ports A & B
         {'C', 'D', true}  // Right encoder in ADI ports C & D (reversed)

@@ -110,3 +110,17 @@ TEST_F(OdometryTest, SetStateInCartesianTest) {
   odom->setState(inputState, StateMode::CARTESIAN);
   EXPECT_EQ(odom->getState(StateMode::FRAME_TRANSFORMATION), expected);
 }
+
+TEST_F(OdometryTest, TickDiffGreaterThanMax) {
+  odom->setState(OdomState{1_in, 2_in, 45_deg});
+  model->setSensorVals(1e+9, 1e+9);
+  odom->step();
+  assertOdomStateEquals(odom, 1_in, 2_in, 45_deg);
+}
+
+TEST_F(OdometryTest, TickDiffLessThanMax) {
+  odom->setState(OdomState{1_in, 2_in, 45_deg});
+  model->setSensorVals(-1e+9, -1e+9);
+  odom->step();
+  assertOdomStateEquals(odom, 1_in, 2_in, 45_deg);
+}

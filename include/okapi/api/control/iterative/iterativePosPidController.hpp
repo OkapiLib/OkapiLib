@@ -93,6 +93,18 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   double getTarget() override;
 
   /**
+   * Gets the last set target, or the default target if none was set.
+   *
+   * @return the last target
+   */
+  double getTarget() const;
+
+  /**
+   * @return The most recent value of the process variable.
+   */
+  double getProcessValue() const override;
+
+  /**
    * Returns the last calculated output of the controller. Output is in the range [-1, 1]
    * unless the bounds have been changed with setOutputLimits().
    */

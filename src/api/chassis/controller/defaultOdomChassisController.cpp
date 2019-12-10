@@ -23,9 +23,24 @@ DefaultOdomChassisController::DefaultOdomChassisController(
     controller(std::move(icontroller)) {
 }
 
+void DefaultOdomChassisController::waitForOdomTask() {
+  if (odomTaskRunning) {
+    // Early exit to save calling getRate
+    return;
+  }
+
+  auto rate = timeUtil.getRate();
+  while (!odomTaskRunning) {
+    LOG_INFO_S("DefaultOdomChassisController: Waiting for odometry task to start.");
+    rate->delayUntil(10);
+  }
+}
+
 void DefaultOdomChassisController::driveToPoint(const Point &ipoint,
                                                 const bool ibackwards,
                                                 const QLength &ioffset) {
+  waitForOdomTask();
+
   auto [length, angle] = OdomMath::computeDistanceAndAngleToPoint(
     ipoint.inFT(defaultStateMode), odom->getState(StateMode::FRAME_TRANSFORMATION));
 
@@ -52,6 +67,8 @@ void DefaultOdomChassisController::driveToPoint(const Point &ipoint,
 }
 
 void DefaultOdomChassisController::turnToPoint(const Point &ipoint) {
+  waitForOdomTask();
+
   const auto angle = OdomMath::computeAngleToPoint(ipoint.inFT(defaultStateMode),
                                                    odom->getState(StateMode::FRAME_TRANSFORMATION));
 
@@ -66,6 +83,8 @@ void DefaultOdomChassisController::turnToPoint(const Point &ipoint) {
 }
 
 void DefaultOdomChassisController::turnToAngle(const QAngle &iangle) {
+  waitForOdomTask();
+
   const auto angle = iangle - odom->getState(StateMode::FRAME_TRANSFORMATION).theta;
 
   LOG_INFO("DefaultOdomChassisController: Computed angle of " +

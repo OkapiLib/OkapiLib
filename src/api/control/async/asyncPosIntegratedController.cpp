@@ -47,8 +47,12 @@ double AsyncPosIntegratedController::getTarget() {
   return lastTarget;
 }
 
+double AsyncPosIntegratedController::getProcessValue() const {
+  return motor->getPosition();
+}
+
 double AsyncPosIntegratedController::getError() const {
-  return (lastTarget + offset) - motor->getPosition() / pair.ratio;
+  return (lastTarget + offset) - getProcessValue() / pair.ratio;
 }
 
 bool AsyncPosIntegratedController::isSettled() {
@@ -113,7 +117,7 @@ void AsyncPosIntegratedController::setMaxVelocity(const std::int32_t imaxVelocit
 }
 
 void AsyncPosIntegratedController::tarePosition() {
-  offset = motor->getPosition() / pair.ratio;
+  offset = getProcessValue() / pair.ratio;
 }
 
 void AsyncPosIntegratedController::stop() {

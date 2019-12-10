@@ -342,3 +342,57 @@ TEST_F(ChassisControllerIntegratedTest, isSettledWhenLeftAndRightControllersAreS
   rightController->isSettledOverride = IsSettledOverride::alwaysSettled;
   EXPECT_TRUE(controller->isSettled());
 }
+
+TEST_F(ChassisControllerIntegratedTest, SetsTheCorrectTargetWhenCustomSensorsAreOnTheModelForMove) {
+  auto model = new MockSkidSteerModel();
+  // Set the values on the model (which we are pretending has ADI encoders) to be nonzero
+  // to check that CCI is not reading from them. The motors' integrated encoders should still be
+  // at zero.
+  model->leftEnc->value = 100;
+  model->rightEnc->value = -100;
+
+  auto leftController = new MockAsyncPosIntegratedController();
+  auto rightController = new MockAsyncPosIntegratedController();
+  leftController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  rightController->isSettledOverride = IsSettledOverride::alwaysSettled;
+
+  ChassisControllerIntegrated chassis(
+    createTimeUtil(),
+    std::shared_ptr<ChassisModel>(model),
+    std::unique_ptr<AsyncPosIntegratedController>(leftController),
+    std::unique_ptr<AsyncPosIntegratedController>(rightController),
+    gearset,
+    ChassisScales({wheelDiam, wheelTrack}, gearsetToTPR(gearset)));
+
+  chassis.moveRaw(200);
+
+  EXPECT_DOUBLE_EQ(leftController->getTarget(), 200);
+  EXPECT_DOUBLE_EQ(rightController->getTarget(), 200);
+}
+
+TEST_F(ChassisControllerIntegratedTest, SetsTheCorrectTargetWhenCustomSensorsAreOnTheModelForTurn) {
+  auto model = new MockSkidSteerModel();
+  // Set the values on the model (which we are pretending has ADI encoders) to be nonzero
+  // to check that CCI is not reading from them. The motors' integrated encoders should still be
+  // at zero.
+  model->leftEnc->value = 100;
+  model->rightEnc->value = -100;
+
+  auto leftController = new MockAsyncPosIntegratedController();
+  auto rightController = new MockAsyncPosIntegratedController();
+  leftController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  rightController->isSettledOverride = IsSettledOverride::alwaysSettled;
+
+  ChassisControllerIntegrated chassis(
+    createTimeUtil(),
+    std::shared_ptr<ChassisModel>(model),
+    std::unique_ptr<AsyncPosIntegratedController>(leftController),
+    std::unique_ptr<AsyncPosIntegratedController>(rightController),
+    gearset,
+    ChassisScales({wheelDiam, wheelTrack}, gearsetToTPR(gearset)));
+
+  chassis.turnRaw(200);
+
+  EXPECT_DOUBLE_EQ(leftController->getTarget(), 200);
+  EXPECT_DOUBLE_EQ(rightController->getTarget(), -200);
+}

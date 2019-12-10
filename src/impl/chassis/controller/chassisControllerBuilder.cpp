@@ -254,31 +254,15 @@ ChassisControllerBuilder::withOdometry(std::unique_ptr<Odometry> iodometry,
 }
 
 ChassisControllerBuilder &
-ChassisControllerBuilder::withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
-                                         const std::initializer_list<QLength> &idimensions) {
+ChassisControllerBuilder::withDimensions(const AbstractMotor::gearset &igearset,
+                                         const ChassisScales &iscales) {
   gearset = igearset;
 
   if (!maxVelSetByUser) {
-    maxVelocity = toUnderlyingType(igearset.internalGearset);
+    maxVelocity = toUnderlyingType(igearset);
   }
 
-  driveScales = ChassisScales(idimensions, gearsetToTPR(gearset.internalGearset), logger);
-  if (!differentOdomScales) {
-    odomScales = driveScales;
-  }
-  return *this;
-}
-
-ChassisControllerBuilder &
-ChassisControllerBuilder::withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
-                                         const std::initializer_list<double> &iscales) {
-  gearset = igearset;
-
-  if (!maxVelSetByUser) {
-    maxVelocity = toUnderlyingType(igearset.internalGearset);
-  }
-
-  driveScales = ChassisScales(iscales, gearsetToTPR(gearset.internalGearset), logger);
+  driveScales = iscales;
   if (!differentOdomScales) {
     odomScales = driveScales;
   }
