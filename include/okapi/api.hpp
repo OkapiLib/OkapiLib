@@ -7,25 +7,34 @@
  */
 #pragma once
 
-/** \mainpage OkapiLib Index Page
+/** @mainpage OkapiLib Index Page
  *
- * \section intro_sec Introduction
+ * @section intro_sec Introduction
  *
  * **OkapiLib** is a PROS library for programming VEX V5 robots. This library is intended to raise
  * the floor for teams with all levels of experience. New teams should have an easier time getting
  * their robot up and running, and veteran teams should find that OkapiLib doesn't get in the way or
  * place any limits on functionality.
  *
- * For tutorials on how to get the most out of OkapiLib, see the **Tutorials** section:
+ * For tutorials on how to get the most out of OkapiLib, see the
+ * [Tutorials](docs/tutorials/index.md) section. For documentation on using the OkapiLib API, see
+ * the [API](docs/api/index.md) section.
  *
- * [Tutorials](docs/tutorials/index.md)
+ * @section getting_started Getting Started
+ * Not sure where to start? Take a look at the
+ * [Getting Started](docs/tutorials/walkthrough/gettingStarted.md) tutorial.
+ * Once you have OkapiLib set up, check out the
+ * [Clawbot](docs/tutorials/walkthrough/clawbot.md) tutorial.
  *
- * For documentation on using the OkapiLib **API**, see the OkapiLib **API** section:
+ * @section using_docs Using The Documentation
  *
- * <a href="annotated.html">OkapiLib Classes</a>
+ * Start with reading the [Tutorials](docs/tutorials/index.md). Use the [API](docs/api/index.md)
+ * section to explore the class hierarchy. To see a list of all available classes, use the
+ * [Classes](html/annotated.html) section.
  *
- * Not sure where to go? Take a look at the
- * [Getting Started tutorial](docs/tutorials/walkthrough/gettingStarted.md).
+ * The documentation has a powerful search feature, which can be brought up with the keyboard
+ * shortcuts `Tab` or `T`. All exports to the `okapi` namespace such as enums, constants, or
+ * functions can be found [here](@ref okapi).
  */
 
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
