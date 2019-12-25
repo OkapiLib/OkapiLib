@@ -7,10 +7,11 @@ a lot of opcontrol code for the subject. The following code snippet shows how
 to do this with a [ControllerButton](@ref okapi::ControllerButton):
 
 ```cpp
+const int LIFT_MOTOR_PORT = 1; // Controlling a lift with a single motor on port 1
 
 ControllerButton btnUp(ControllerDigital::R1);
 ControllerButton btnDown(ControllerDigital::R2);
-Motor lift(LIFT_MOTOR);
+Motor lift(LIFT_MOTOR_PORT);
 
 void opcontrol() {
   while (true) {
@@ -34,6 +35,7 @@ common approach used for stacking games where movement to precise heights is
 important.
 
 ```cpp
+const int LIFT_MOTOR_PORT = 1; // Controlling a lift with a single motor on port 1
 
 const int NUM_HEIGHTS = 4;
 const int height1 = 20;
@@ -45,7 +47,7 @@ const int heights[NUM_HEIGHTS] = {height1, height2, height3, height4};
 
 ControllerButton btnUp(ControllerDigital::R1);
 ControllerButton btnDown(ControllerDigital::R2);
-auto liftControl = AsyncPosControllerBuilder().withMotor(LIFT_MOTOR).build();
+auto liftControl = AsyncPosControllerBuilder().withMotor(LIFT_MOTOR_PORT).build();
 
 void opcontrol() {
   int goalHeight = 0;
