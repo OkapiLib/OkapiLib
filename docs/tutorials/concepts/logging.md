@@ -3,7 +3,7 @@
 ## Enable the Default Logger
 
 OkapiLib has a [Logger](@ref okapi::Logger) class which is used internally by many of
-OkapiLib's classes. It is a good idea to use the [warn](@ref okapi::Logger::LogLevel::warn)
+OkapiLib's classes. It is a good idea to use the warn
 [LogLevel](@ref okapi::Logger::LogLevel) all the time to catch warnings or errors as they arise
 during development (or during a match! you can log to a file on the SD card with the path
 `"/usd/test_logging.txt"`). Enable it with:
