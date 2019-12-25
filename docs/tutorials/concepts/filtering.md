@@ -13,8 +13,6 @@ makes it easy to filter sensors. The example below gives an example of
 filtering a sensor value.
 
 ```cpp
-using namespace okapi;
-
 const int POTENTIOMETER_PORT = 1;
 const int NUM_AVE_POINTS = 5;
 
@@ -44,8 +42,6 @@ Using a filter with a velocity PID Controller can be done in the
 following manner:
 
 ```cpp
-using namespace okapi;
-
 const double kP = 0.001;
 const double kD = 0.0001;
 const double kF = 0.0;

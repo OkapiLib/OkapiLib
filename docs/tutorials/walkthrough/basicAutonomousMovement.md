@@ -18,8 +18,6 @@ Let's start by creating the
 drive motors in ports 1 and 2:
 
 ```cpp
-using namespace okapi;
-
 auto chassis = ChassisControllerBuilder()
                 .withMotors(1, -2)
                 // Green gearset, 4 in wheel diam, 11.5 in wheel track

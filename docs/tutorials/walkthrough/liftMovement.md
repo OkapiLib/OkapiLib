@@ -7,9 +7,6 @@ a lot of opcontrol code for the subject. The following code snippet shows how
 to do this with a [ControllerButton](@ref okapi::ControllerButton):
 
 ```cpp
-using namespace okapi;
-
-const int LIFT_MOTOR = 1; // Controlling a lift with a single motor on port 1
 
 ControllerButton btnUp(ControllerDigital::R1);
 ControllerButton btnDown(ControllerDigital::R2);
@@ -37,9 +34,6 @@ common approach used for stacking games where movement to precise heights is
 important.
 
 ```cpp
-using namespace okapi;
-
-const int LIFT_MOTOR = 1; // Controlling a lift with a single motor on port 1
 
 const int NUM_HEIGHTS = 4;
 const int height1 = 20;

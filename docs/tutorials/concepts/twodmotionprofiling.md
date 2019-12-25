@@ -37,8 +37,6 @@ pass into the
 
 
 ```cpp
-using namespace okapi;
-
 auto myChassis = ChassisControllerBuilder()
                    .withMotors({1, 2}, {-3, -4})
                    // Green gearset, 4 in wheel diam, 11.5 in wheel track
@@ -95,8 +93,6 @@ profileController->waitUntilSettled();
 In total, here is how to initialize and use a 2D motion profiling controller:
 
 ```cpp
-using namespace okapi;
-
 auto myChassis = ChassisControllerBuilder()
                    .withMotors({1, 2}, {-3, -4})
                    // Green gearset, 4 in wheel diam, 11.5 in wheel track

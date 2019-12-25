@@ -21,8 +21,6 @@ until the movement is finished.
 An example movement:
 
 ```cpp
-using namespace okapi;
-
 const double kP = 0.001;
 const double kI = 0.0001;
 const double kD = 0.0001;
@@ -67,8 +65,6 @@ as a call to
 An example movement:
 
 ```cpp
-using namespace okapi;
-
 const double kP = 1.0;
 const double kI = 0.001;
 const double kD = 0.1;
