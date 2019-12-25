@@ -26,6 +26,10 @@ issues you should know about:
   - Tight turns: <https://github.com/JacisNonsense/Pathfinder/issues/38>
 - Very long movements (typically movements much longer than a VEX field) can potentially never reach maximum speed: <https://github.com/JacisNonsense/Pathfinder/issues/43>
 
+> Even though OkapiLib cannot generate paths that move backwards, it can still **follow** a path backwards. 
+> To do this, there are parameters in [setTarget](@ref okapi::AsyncMotionProfileController::setTarget(std::string,bool,bool)) 
+> that allow you to follow a path backwards and optionally mirror the path.
+
 First, let's initialize a [ChassisController](@ref okapi::ChassisController) to
 pass into the
 [AsyncMotionProfileControllerBuilder](@ref okapi::AsyncMotionProfileControllerBuilder):
