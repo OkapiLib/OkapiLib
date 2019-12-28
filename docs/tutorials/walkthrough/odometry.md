@@ -5,7 +5,7 @@ This information can be used by motion algorithms to drive to positions or turn 
 
 An excellent overview of the odometry tracking algorithm can be found [here](https://www.vexforum.com/t/team-5225-introduction-to-position-tracking-document/49640).
 
-# Configuring Odometry
+## Configuring Odometry
 
 OkapiLib supports odometry for all chassis configurations, and is configured using 
 [ChassisControllerBuilder](@ref okapi::ChassisControllerBuilder).
@@ -139,7 +139,7 @@ ChassisControllerBuilder()
     .buildOdometry() // build an odometry chassis
 ```
 
-# Using Odometry
+## Using Odometry
 
 The odometry controller built by [buildOdometry](@ref okapi::ChassisControllerBuilder::buildOdometry) is a 
 [DefaultOdomChassisController](@ref okapi::DefaultOdomChassisController), which inherits from 
