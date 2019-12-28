@@ -5,9 +5,9 @@ This information can be used by motion algorithms to drive to positions or turn 
 
 An excellent overview of the odometry tracking algorithm can be found [here](https://www.vexforum.com/t/team-5225-introduction-to-position-tracking-document/49640).
 
-## Configuring Odometry
+# Configuring Odometry
 
-OkapiLib supports odometry for all chassis configurations, and is configured using the 
+OkapiLib supports odometry for all chassis configurations, and is configured using 
 [ChassisControllerBuilder](@ref okapi::ChassisControllerBuilder).
 
 There are three general types of odometry supported by OkapiLib, though most feasible configurations are possible:
@@ -95,11 +95,10 @@ ChassisControllerBuilder()
     .buildOdometry() // build an odometry chassis
 ```
 
-### Odometry using three tracking wheels:
+## Odometry using three tracking wheels:
 
 [ThreeEncoderOdometry](@ref okapi::ThreeEncoderOdometry) is enabled by providing a third sensor to 
 [withSensors](@ref okapi::ChassisControllerBuilder::withSensors). The scales then need to be expanded to incorporate the third sensor.
-
 Here is an example using [ChassisControllerIntegrated](@ref okapi::ChassisControllerIntegrated): 
 
 ```cpp
@@ -133,9 +132,32 @@ ChassisControllerBuilder()
         {'C', 'D', true}  // right encoder in ADI ports C & D (reversed)
         {'E', 'F'}  // middle encoder in ADI ports E & F
     )
-    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // green gearset, 4 inch wheel diameter, 11 inch wheelbase
     // 1 inch middle encoder distance, and 2.75 inch middle wheel diameter
-    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in 1_in, 2.75_in}, imev5GreenTPR})
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11_in, 1_in, 2.75_in}, imev5GreenTPR})
     .withOdometry() // use the same scales as the chassis (above)
     .buildOdometry() // build an odometry chassis
 ```
+
+# Using Odometry
+
+The odometry controller built by [buildOdometry](@ref okapi::ChassisControllerBuilder::buildOdometry) is a 
+[DefaultOdomChassisController](@ref okapi::DefaultOdomChassisController), which inherits from 
+[OdomChassisController](@ref okapi::OdomChassisController). It supports all methods from 
+[ChassisController](@ref okapi::ChassisController) such as 
+[moveDistance](@ref okapi::DefaultOdomChassisController::moveDistance) or 
+[turnAngle](@ref okapi::DefaultOdomChassisController::turnAngle), and adds odometry commands such as 
+[driveToPoint](@ref okapi::DefaultOdomChassisController::driveToPoint), 
+[turnToPoint](@ref okapi::DefaultOdomChassisController::turnToPoint), and 
+[turnToAngle](@ref okapi::DefaultOdomChassisController::turnToAngle).
+
+### Coordinates
+
+OkapiLib supports two methods of representing a coordinate. which are defined in [StateMode](@ref okapi::StateMode). 
+The default is `StateMode::FRAME_TRANSFORMATION`, where positive x is forward and positive y is to the right.
+You can specify the [StateMode](@ref okapi::StateMode) to be used for odometry in [withOdometry](@ref okapi::ChassisControllerBuilder::withOdometry). 
+
+To get and set the odometry state, use [getState](@ref okapi::OdomChassisController::getState) and 
+[setState](@ref okapi::OdomChassisController::setState).
+
+### Moving
