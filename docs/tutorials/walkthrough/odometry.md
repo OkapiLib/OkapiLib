@@ -31,7 +31,7 @@ ChassisControllerBuilder()
     // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withOdometry() // use the same scales as the chassis (above)
-    .buildOdometry() // build an odometry chassis
+    .buildOdometry(); // build an odometry chassis
 ```
 
 Here is the same example using [ChassisControllerPID](@ref okapi::ChassisControllerPID):
@@ -47,7 +47,7 @@ ChassisControllerBuilder()
     // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withOdometry() // use the same scales as the chassis (above)
-    .buildOdometry() // build an odometry chassis
+    .buildOdometry(); // build an odometry chassis
 ```
 
 ## Odometry using external encoders:
@@ -71,7 +71,7 @@ ChassisControllerBuilder()
     )
     // specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)
     .withOdometry({{3_in, 7_in}, quadEncoderTPR})
-    .buildOdometry()
+    .buildOdometry();
 ```
 
 If you are using a [ChassisControllerPID](@ref okapi::ChassisControllerPID) with external sensors, the odometry scales will be the same as
@@ -92,7 +92,7 @@ ChassisControllerBuilder()
     // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withOdometry() // use the same scales as the chassis (above)
-    .buildOdometry() // build an odometry chassis
+    .buildOdometry(); // build an odometry chassis
 ```
 
 ## Odometry using three tracking wheels:
@@ -114,7 +114,7 @@ ChassisControllerBuilder()
     // specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)
     // specify the middle encoder distance (1 in) and diameter (2.75 in)
     .withOdometry({{3_in, 7_in, 1_in, 2.75_in}, quadEncoderTPR})
-    .buildOdometry()
+    .buildOdometry();
 ```
 
 Here is the same example using [ChassisControllerPID](@ref okapi::ChassisControllerPID):
@@ -136,7 +136,7 @@ ChassisControllerBuilder()
     // 1 inch middle encoder distance, and 2.75 inch middle wheel diameter
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11_in, 1_in, 2.75_in}, imev5GreenTPR})
     .withOdometry() // use the same scales as the chassis (above)
-    .buildOdometry() // build an odometry chassis
+    .buildOdometry(); // build an odometry chassis
 ```
 
 ## Using Odometry
@@ -154,10 +154,57 @@ The odometry controller built by [buildOdometry](@ref okapi::ChassisControllerBu
 ### Coordinates
 
 OkapiLib supports two methods of representing a coordinate. which are defined in [StateMode](@ref okapi::StateMode). 
-The default is `StateMode::FRAME_TRANSFORMATION`, where positive x is forward and positive y is to the right.
-You can specify the [StateMode](@ref okapi::StateMode) to be used for odometry in [withOdometry](@ref okapi::ChassisControllerBuilder::withOdometry). 
+The default is [StateMode::FRAME_TRANSFORMATION](@ref okapi::StateMode::FRAME_TRANSFORMATION), 
+where positive x is forward and positive y is to the right. You can specify the 
+[StateMode](@ref okapi::StateMode) to be used for odometry as a parameter to 
+[withOdometry](@ref okapi::ChassisControllerBuilder::withOdometry). 
 
 To get and set the odometry state, use [getState](@ref okapi::OdomChassisController::getState) and 
 [setState](@ref okapi::OdomChassisController::setState).
 
 ### Moving
+
+OkapiLib moves by calculating necessary chassis movement given a desired state and an odometry state, and 
+then forwarding those commands to a [ChassisController](@ref okapi::ChassisController).
+For example, typing
+
+```cpp
+chassis->driveToPoint({1_ft, 1_ft}); // assume starting position of {0, 0, 0}
+```
+
+is equivalent to typing
+```cpp
+chassis->turnAngle(45_deg);
+chassis->moveDistance(1.4_ft); // sqrt(1^2 + 1^2)
+```
+
+The advantage of using these algorithms is that if the odometry state is slightly different than expected, 
+OkapiLib will try to compensate so that the next position is accurate. Programming using odometry is much nicer, 
+as the user can visualize the field and changing a movement will not affect the following movements.
+
+## Full Example:
+
+Here is is a full example of odometry using [ChassisControllerIntegrated](@ref okapi::ChassisControllerIntegrated) and two tracking wheels: 
+
+```cpp
+auto chassis =
+  ChassisControllerBuilder()
+    .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+    // left encoder in ADI ports A & B, right encoder in ADI ports C & D (reversed)
+    .withSensors({'A', 'B'}, {'C', 'D', true})
+    // specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)
+    .withOdometry({{3_in, 7_in}, quadEncoderTPR}, StateMode::FRAME_TRANSFORMATION)
+    .buildOdometry();
+
+// set the state to zero
+chassis->setState({0_in, 0_in, 0_deg});
+// turn 45 degrees and drive approximately 1.4 ft
+chassis->driveToPoint({1_ft, 1_ft});
+// turn approximately 45 degrees to end up at 90 degrees
+chassis->turnToAngle(90_deg);
+// turn approximately -90 degrees to face the point
+chassis->turnToPoint({5_ft, 0_ft});
+```
+
