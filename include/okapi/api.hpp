@@ -32,8 +32,8 @@
  * section to explore the class hierarchy. To see a list of all available classes, use the
  * [Classes](html/annotated.html) section.
  *
- * The documentation has a powerful search feature, which can be brought up with the keyboard
- * shortcuts `Tab` or `T`. All exports to the `okapi` namespace such as enums, constants, or
+ * This documentation has a powerful search feature, which can be brought up with the keyboard
+ * shortcuts `Tab` or `T`. All exports to the `okapi` namespace such as enums, constants, units, or
  * functions can be found [here](@ref okapi).
  */
 

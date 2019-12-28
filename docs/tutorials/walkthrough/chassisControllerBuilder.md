@@ -148,6 +148,8 @@ ChassisControllerBuilder()
     .buildOdometry()
 ```
 
+For more information about odometry, read the [Odometry Tutorial](docs/walkthrough/odometry.md).
+
 ## Configuring PID gains
 
 If you want to use OkapiLib's PID control instead of the built-in control, you

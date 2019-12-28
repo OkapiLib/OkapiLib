@@ -33,3 +33,4 @@ examples and more detail about using the API.
 - [Filtering](docs/tutorials/concepts/filtering.md)
 - [Iterative and Async Controllers](docs/tutorials/concepts/iterative-async-controllers.md)
 - [SettledUtil](docs/tutorials/concepts/settled-util.md)
+- [Odometry](docs/tutorials/concepts/odometry.md)
