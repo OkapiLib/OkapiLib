@@ -19,6 +19,7 @@ step through the process of writing an OkapiLib program.
  - [Async Autonomous Movement](docs/tutorials/walkthrough/asyncAutonomousMovement.md)
  - [Lift Movement](docs/tutorials/walkthrough/liftMovement.md)
  - [Chassis Controller Builder](docs/tutorials/walkthrough/chassisControllerBuilder.md)
+ - [Odometry](docs/tutorials/walkthrough/odometry.md)
 
 ## Topical Tutorials
 
@@ -33,4 +34,3 @@ examples and more detail about using the API.
 - [Filtering](docs/tutorials/concepts/filtering.md)
 - [Iterative and Async Controllers](docs/tutorials/concepts/iterative-async-controllers.md)
 - [SettledUtil](docs/tutorials/concepts/settled-util.md)
-- [Odometry](docs/tutorials/concepts/odometry.md)
