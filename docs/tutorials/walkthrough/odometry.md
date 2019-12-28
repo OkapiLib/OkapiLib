@@ -7,7 +7,7 @@ An excellent overview of the odometry tracking algorithm can be found [here](htt
 
 ## Configuring Odometry
 
-OkapiLib supports odometry for all chassis configurations, and is configured using 
+OkapiLib supports odometry for all chassis configurations. A chassis controller that uses odometry is configured using the 
 [ChassisControllerBuilder](@ref okapi::ChassisControllerBuilder).
 
 There are three general types of odometry supported by OkapiLib, though most feasible configurations are possible:
@@ -207,4 +207,3 @@ chassis->turnToAngle(90_deg);
 // turn approximately -90 degrees to face {5_ft, 0_ft} which is to the north of the robot
 chassis->turnToPoint({5_ft, 0_ft});
 ```
-
