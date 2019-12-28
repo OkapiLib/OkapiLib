@@ -108,6 +108,7 @@ ChassisControllerBuilder()
 ## Configuring odometry
 
 OkapiLib supports odometry for all chassis configurations.
+For more information about odometry, read the [Odometry Tutorial](docs/tutorials/walkthrough/odometry.md).
 
 ### Odometry using integrated encoders:
 
@@ -147,8 +148,6 @@ ChassisControllerBuilder()
     .withOdometry({{3_in, 7_in}, quadEncoderTPR})
     .buildOdometry()
 ```
-
-For more information about odometry, read the [Odometry Tutorial](docs/tutorials/walkthrough/odometry.md).
 
 ## Configuring PID gains
 
