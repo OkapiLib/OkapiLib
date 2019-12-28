@@ -148,7 +148,7 @@ ChassisControllerBuilder()
     .buildOdometry()
 ```
 
-For more information about odometry, read the [Odometry Tutorial](docs/walkthrough/odometry.md).
+For more information about odometry, read the [Odometry Tutorial](docs/tutorials/walkthrough/odometry.md).
 
 ## Configuring PID gains
 

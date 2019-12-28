@@ -17,8 +17,8 @@ namespace okapi {
 class DefaultOdomChassisController : public OdomChassisController {
   public:
   /**
-   * Odometry based chassis controller that moves using the V5 motor's integrated control. Spins up
-   * a task at the default priority plus 1 for odometry when constructed.
+   * Odometry based chassis controller that moves using a separately constructed chassis controller. 
+   * Spins up a task at the default priority plus 1 for odometry when constructed.
    *
    * Moves the robot around in the odom frame. Instead of telling the robot to drive forward or
    * turn some amount, you instead tell it to drive to a specific point on the field or turn to
