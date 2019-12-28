@@ -34,7 +34,7 @@ ChassisControllerBuilder()
     .buildOdometry() // build an odometry chassis
 ```
 
-Here is the same example using [ChassisControllerPID](@ref okapi::ChassisControllerPID).
+Here is the same example using [ChassisControllerPID](@ref okapi::ChassisControllerPID):
 
 ```cpp
 ChassisControllerBuilder()
@@ -44,9 +44,98 @@ ChassisControllerBuilder()
         {0.001, 0, 0.0001}, // Turn controller gains
         {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
     )
-    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbasey
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withOdometry() // use the same scales as the chassis (above)
     .buildOdometry() // build an odometry chassis
 ```
 
+## Odometry using external encoders:
+
+If you are using a [ChassisControllerIntegrated](@ref okapi::ChassisControllerIntegrated), 
+the chassis dimensions will be different than the odometry scales given to 
+[withDimensions](@ref okapi::ChassisControllerBuilder::withDimensions). This is because 
+[ChassisControllerIntegrated](@ref okapi::ChassisControllerIntegrated) still requires scales for
+the powered wheels, while the tracking wheels have a different set of scales. You will need to pass an extra 
+[ChassisScales](@ref okapi::ChassisScales) to [withOdometry](@ref okapi::ChassisControllerBuilder::withOdometry) 
+to specify the scales for the tracking wheels. 
+
+```cpp
+ChassisControllerBuilder()
+    .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+    .withSensors(
+        {'A', 'B'}, // left encoder in ADI ports A & B
+        {'C', 'D', true}  // right encoder in ADI ports C & D (reversed)
+    )
+    // specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)
+    .withOdometry({{3_in, 7_in}, quadEncoderTPR})
+    .buildOdometry()
+```
+
+If you are using a [ChassisControllerPID](@ref okapi::ChassisControllerPID) with external sensors, the odometry scales will be the same as
+the ones given to [withDimensions](@ref okapi::ChassisControllerBuilder::withDimensions).
+
+```cpp
+ChassisControllerBuilder()
+    .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
+    .withGains(
+        {0.001, 0, 0.0001}, // distance controller gains
+        {0.001, 0, 0.0001}, // turn controller gains
+        {0.001, 0, 0.0001}  // angle controller gains (helps drive straight)
+    )
+    .withSensors(
+        {'A', 'B'}, // left encoder in ADI ports A & B
+        {'C', 'D', true}  // right encoder in ADI ports C & D (reversed)
+    )
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+    .withOdometry() // use the same scales as the chassis (above)
+    .buildOdometry() // build an odometry chassis
+```
+
+### Odometry using three tracking wheels:
+
+[ThreeEncoderOdometry](@ref okapi::ThreeEncoderOdometry) is enabled by providing a third sensor to 
+[withSensors](@ref okapi::ChassisControllerBuilder::withSensors). The scales then need to be expanded to incorporate the third sensor.
+
+Here is an example using [ChassisControllerIntegrated](@ref okapi::ChassisControllerIntegrated): 
+
+```cpp
+ChassisControllerBuilder()
+    .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+    .withSensors(
+        {'A', 'B'}, // left encoder in ADI ports A & B
+        {'C', 'D', true}  // right encoder in ADI ports C & D (reversed)
+        {'E', 'F'}  // middle encoder in ADI ports E & F
+    )
+    // specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)
+    // specify the middle encoder distance (1 in) and diameter (2.75 in)
+    .withOdometry({{3_in, 7_in, 1_in, 2.75_in}, quadEncoderTPR})
+    .buildOdometry()
+```
+
+Here is the same example using [ChassisControllerPID](@ref okapi::ChassisControllerPID):
+
+```cpp
+ChassisControllerBuilder()
+    .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
+    .withGains(
+        {0.001, 0, 0.0001}, // distance controller gains
+        {0.001, 0, 0.0001}, // turn controller gains
+        {0.001, 0, 0.0001}  // angle controller gains (helps drive straight)
+    )
+    .withSensors(
+        {'A', 'B'}, // left encoder in ADI ports A & B
+        {'C', 'D', true}  // right encoder in ADI ports C & D (reversed)
+        {'E', 'F'}  // middle encoder in ADI ports E & F
+    )
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // 1 inch middle encoder distance, and 2.75 inch middle wheel diameter
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in 1_in, 2.75_in}, imev5GreenTPR})
+    .withOdometry() // use the same scales as the chassis (above)
+    .buildOdometry() // build an odometry chassis
+```
