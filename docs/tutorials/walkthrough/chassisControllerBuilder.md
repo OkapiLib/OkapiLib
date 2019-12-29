@@ -108,6 +108,7 @@ ChassisControllerBuilder()
 ## Configuring odometry
 
 OkapiLib supports odometry for all chassis configurations.
+For more information about odometry, read the [Odometry Tutorial](docs/tutorials/walkthrough/odometry.md).
 
 ### Odometry using integrated encoders:
 

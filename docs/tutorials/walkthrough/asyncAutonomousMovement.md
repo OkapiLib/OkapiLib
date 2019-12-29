@@ -8,8 +8,6 @@ To create a [ChassisController](@ref okapi::ChassisController) for a given syste
 modify the below example to fit your subsystem.
 
 ```cpp
-using namespace okapi;
-
 auto driveController = ChassisControllerBuilder()
                         .withMotors(1, -2)
                         // Green gearset, 4 in wheel diam, 11.5 in wheel track

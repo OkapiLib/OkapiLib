@@ -26,6 +26,10 @@ issues you should know about:
   - Tight turns: <https://github.com/JacisNonsense/Pathfinder/issues/38>
 - Very long movements (typically movements much longer than a VEX field) can potentially never reach maximum speed: <https://github.com/JacisNonsense/Pathfinder/issues/43>
 
+> Even though OkapiLib cannot generate paths that move backwards, it can still **follow** a path backwards. 
+> To do this, there are parameters in [setTarget](@ref okapi::AsyncMotionProfileController::setTarget(std::string,bool,bool)) 
+> that allow you to follow a path backwards and optionally mirror the path.
+
 First, let's initialize a [ChassisController](@ref okapi::ChassisController) to
 pass into the
 [AsyncMotionProfileControllerBuilder](@ref okapi::AsyncMotionProfileControllerBuilder):
@@ -37,18 +41,18 @@ pass into the
 
 
 ```cpp
-using namespace okapi;
+auto myChassis =
+  ChassisControllerBuilder()
+    .withMotors({1, 2}, {-3, -4})
+    // Green gearset, 4 in wheel diam, 11.5 in wheel track
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+    .build();
 
-auto myChassis = ChassisControllerBuilder()
-                   .withMotors({1, 2}, {-3, -4})
-                   // Green gearset, 4 in wheel diam, 11.5 in wheel track
-                   .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
-                   .build();
-
-auto profileController = AsyncMotionProfileControllerBuilder()
-                           .withLimits({1.0, 2.0, 10.0})
-                           .withOutput(myChassis)
-                           .buildMotionProfileController();
+auto profileController =
+  AsyncMotionProfileControllerBuilder()
+    .withLimits({1.0, 2.0, 10.0})
+    .withOutput(myChassis)
+    .buildMotionProfileController();
 ```
 
 Next, let's create a motion profile. A profile is created with a list of points
@@ -95,13 +99,12 @@ profileController->waitUntilSettled();
 In total, here is how to initialize and use a 2D motion profiling controller:
 
 ```cpp
-using namespace okapi;
-
-auto myChassis = ChassisControllerBuilder()
-                   .withMotors({1, 2}, {-3, -4})
-                   // Green gearset, 4 in wheel diam, 11.5 in wheel track
-                   .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
-                   .build();
+auto myChassis =
+  ChassisControllerBuilder()
+    .withMotors({1, 2}, {-3, -4})
+    // Green gearset, 4 in wheel diam, 11.5 in wheel track
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+    .build();
 
 auto profileController = AsyncMotionProfileControllerBuilder()
                            .withLimits({1.0, 2.0, 10.0})
@@ -109,7 +112,8 @@ auto profileController = AsyncMotionProfileControllerBuilder()
                            .buildMotionProfileController();
 
 void opcontrol() {
-  profileController->generatePath({{0_ft, 0_ft, 0_deg}, {3_ft, 0_ft, 0_deg}}, "A");
+  profileController->generatePath(
+    {{0_ft, 0_ft, 0_deg}, {3_ft, 0_ft, 0_deg}}, "A");
   profileController->setTarget("A");
   profileController->waitUntilSettled();
 }
