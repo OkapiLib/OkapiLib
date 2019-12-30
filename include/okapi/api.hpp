@@ -30,7 +30,7 @@
  *
  * Start with reading the [Tutorials](docs/tutorials/index.md). Use the [API](docs/api/index.md)
  * section to explore the class hierarchy. To see a list of all available classes, use the
- * [Classes](html/annotated.html) section.
+ * [Classes](annotated.html) section.
  *
  * This documentation has a powerful search feature, which can be brought up with the keyboard
  * shortcuts `Tab` or `T`. All exports to the `okapi` namespace such as enums, constants, units, or
